@@ -166,10 +166,12 @@ const HeroSection = () => {
                       transition={{
                         duration: isMobile ? 2.5 : 1.8,
                         delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (visibleAuditors.length - index) * 0.08,
-                        ease: [0.25, 0.46, 0.45, 0.94],
+                        ease: [0.33, 1, 0.68, 1],
+                        type: "tween",
                       }}
                       style={{
                         transformStyle: "preserve-3d",
+                        willChange: "transform, opacity",
                       }}
                     >
                       {/* Card */}
@@ -184,7 +186,7 @@ const HeroSection = () => {
                       >
                         {/* Auditor Image */}
                         <div className="absolute inset-0 flex items-center justify-center pt-6">
-                          <div className="relative w-36 h-36 rounded-full overflow-hidden bg-navy-deep/60 backdrop-blur-sm">
+                          <div className="relative w-36 h-36 rounded-full overflow-hidden">
                             <img
                               src={auditor.image}
                               alt={`Professional auditor from ${auditor.location}`}
