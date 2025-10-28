@@ -49,6 +49,7 @@ const auditors = [
 
 const HeroSection = () => {
   const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const isMobile = useIsMobile();
 
   // Mobile shows 3 cards, desktop shows all 6
@@ -68,11 +69,18 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [isMobile]);
 
+  // Handle card click to cycle to next card
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % visibleAuditors.length);
+  };
+
   // Calculate card positions for fan effect
   const getCardStyle = (index: number) => {
     const totalCards = visibleAuditors.length;
     const centerIndex = (totalCards - 1) / 2;
-    const offset = index - centerIndex;
+    // Adjust index based on activeIndex for rotation effect
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
     
     if (isFanned) {
       if (isMobile) {
@@ -107,8 +115,8 @@ const HeroSection = () => {
         rotateY: 0,
         rotateZ: isMobile ? 0 : -25,
         scale: 0.98,
-        opacity: index === 0 ? 1 : 0,
-        zIndex: totalCards - index,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
       };
     }
   };
@@ -152,7 +160,8 @@ const HeroSection = () => {
                   return (
                     <motion.div
                       key={auditor.location}
-                      className="absolute"
+                      className="absolute cursor-pointer"
+                      onClick={handleCardClick}
                       initial={false}
                       animate={{
                         x: style.x,
@@ -173,6 +182,7 @@ const HeroSection = () => {
                         transformStyle: "preserve-3d",
                         willChange: "transform, opacity",
                       }}
+                      whileHover={{ scale: isFanned ? 1.05 : 1 }}
                     >
                       {/* Card */}
                       <div

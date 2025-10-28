@@ -110,6 +110,7 @@ const FullScreenProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -131,11 +132,17 @@ const FullScreenProjects = () => {
     return () => clearInterval(interval);
   }, [isMobile]);
 
-  // Calculate card positions for fan effect
-  const getCardStyle = (index: number) => {
-    const totalCards = visibleAuditors.length;
+  // Handle card click to cycle to next card
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % visibleAuditors.length);
+  };
+
+  // Calculate card positions for fan effect (for auditors)
+  const getCardStyle = (index: number, totalCards: number) => {
     const centerIndex = (totalCards - 1) / 2;
-    const offset = index - centerIndex;
+    // Adjust index based on activeIndex for rotation effect
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
     
     if (isFanned) {
       if (isMobile) {
@@ -166,8 +173,8 @@ const FullScreenProjects = () => {
         rotateY: 0,
         rotateZ: isMobile ? 0 : -25,
         scale: 0.98,
-        opacity: index === 0 ? 1 : 0,
-        zIndex: totalCards - index,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
       };
     }
   };
@@ -246,13 +253,15 @@ const FullScreenProjects = () => {
                     {/* Cards Container */}
                     <div className="relative h-[400px] flex items-center justify-center">
                       {visibleAuditors.map((auditor, auditorIndex) => {
-                        const style = getCardStyle(auditorIndex);
+                        const style = getCardStyle(auditorIndex, visibleAuditors.length);
                         
                         return (
                           <motion.div
                             key={auditor.location}
-                            className="absolute"
+                            className="absolute cursor-pointer"
+                            onClick={handleCardClick}
                             initial={false}
+                            whileHover={{ scale: isFanned ? 1.05 : 1 }}
                             animate={{
                               x: style.x,
                               y: style.y,
@@ -348,13 +357,15 @@ const FullScreenProjects = () => {
                     {/* Cards Container */}
                     <div className="relative h-[400px] flex items-center justify-center">
                       {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, cardIndex) => {
-                        const style = getCardStyle(cardIndex);
+                        const style = getCardStyle(cardIndex, 3);
                         
                         return (
                           <motion.div
                             key={card.label}
-                            className="absolute"
+                            className="absolute cursor-pointer"
+                            onClick={handleCardClick}
                             initial={false}
+                            whileHover={{ scale: isFanned ? 1.05 : 1 }}
                             animate={{
                               x: style.x,
                               y: style.y,
