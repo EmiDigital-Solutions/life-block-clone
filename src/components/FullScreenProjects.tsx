@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Brain, Sparkles, Zap, Search, Target, Network, Workflow, Clock, CheckCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
@@ -51,6 +51,24 @@ const auditors = [
   },
 ];
 
+const featureCards = {
+  ai: [
+    { icon: Brain, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { icon: Sparkles, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
+    { icon: Zap, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
+  ],
+  supplier: [
+    { icon: Search, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { icon: Target, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
+    { icon: Network, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
+  ],
+  workflow: [
+    { icon: Workflow, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { icon: Clock, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
+    { icon: CheckCircle, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
+  ],
+};
+
 const projects = [
   {
     number: "01",
@@ -64,21 +82,21 @@ const projects = [
     title: "ScanPro+ AI Intelligence Platform",
     description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
     gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))",
-    image: aiAuditInspection,
+    featureType: "ai",
   },
   {
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
     gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))",
-    image: supplierNetworking,
+    featureType: "supplier",
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
-    image: digitalWorkflowTeam,
+    featureType: "workflow",
   },
 ];
 
@@ -203,7 +221,7 @@ const FullScreenProjects = () => {
                 </button>
               </motion.div>
 
-              {/* Right: Auditor Cards or Software Interface */}
+              {/* Right: Auditor Cards or Feature Cards */}
               {project.showAuditors ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -306,7 +324,7 @@ const FullScreenProjects = () => {
                     </div>
                   </div>
                 </motion.div>
-              ) : project.image ? (
+              ) : project.featureType ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -314,28 +332,99 @@ const FullScreenProjects = () => {
                   viewport={{ once: false, amount: 0.3 }}
                   className="flex justify-center lg:justify-end"
                 >
-                  {/* Outer card with vibrant gradient background */}
-                  <div
-                    className="relative p-8 md:p-12 rounded-3xl"
-                    style={{
-                      background: project.gradient,
-                      boxShadow: "0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.1) inset",
-                    }}
+                  <div 
+                    className="relative w-full max-w-2xl"
+                    style={{ perspective: "1500px" }}
                   >
-                    {/* Gradient Overlay for depth */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/40 via-transparent to-white/5"></div>
+                    {/* Atmospheric Glow */}
+                    <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
-                    {/* Inner image card */}
-                    <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
+                    {/* Cards Container */}
+                    <div className="relative h-[400px] flex items-center justify-center">
+                      {featureCards[project.featureType as keyof typeof featureCards].map((card, cardIndex) => {
+                        const style = getCardStyle(cardIndex);
+                        const Icon = card.icon;
+                        
+                        return (
+                          <motion.div
+                            key={card.label}
+                            className="absolute"
+                            initial={false}
+                            animate={{
+                              x: style.x,
+                              y: style.y,
+                              rotateY: style.rotateY,
+                              rotateZ: style.rotateZ,
+                              scale: style.scale,
+                              opacity: style.opacity,
+                              zIndex: style.zIndex,
+                            }}
+                            transition={{
+                              duration: isMobile ? 2.5 : 1.8,
+                              delay: isFanned ? cardIndex * (isMobile ? 0.25 : 0.12) : (3 - cardIndex) * 0.08,
+                              ease: [0.33, 1, 0.68, 1],
+                              type: "tween",
+                            }}
+                            style={{
+                              transformStyle: "preserve-3d",
+                              willChange: "transform, opacity",
+                            }}
+                          >
+                            {/* Card */}
+                            <div
+                              className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
+                              style={{
+                                boxShadow: `
+                                  0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                                  0 0 30px rgba(236, 72, 153, 0.2)
+                                `,
+                              }}
+                            >
+                              {/* Gradient Overlay for depth */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                              
+                              {/* Icon */}
+                              <div className="absolute inset-0 flex items-center justify-center pt-6">
+                                <motion.div
+                                  animate={{
+                                    scale: [1, 1.1, 1],
+                                    rotate: [0, 5, -5, 0],
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                  className="relative w-36 h-36 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center"
+                                >
+                                  <Icon className="w-20 h-20 text-white" strokeWidth={1.5} />
+                                </motion.div>
+                              </div>
+
+                              {/* Label Badge */}
+                              <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
+                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 w-full">
+                                  <p className="text-white font-sans font-bold text-sm text-center">
+                                    {card.label}
+                                  </p>
+                                  <p className="text-white/80 font-sans text-xs text-center">
+                                    {card.sublabel}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Edge Highlight */}
+                              <div 
+                                className="absolute inset-0 pointer-events-none rounded-3xl"
+                                style={{
+                                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                                }}
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
                     </div>
-                    
-                    {/* Edge Highlight */}
-                    <div className="absolute inset-0 rounded-3xl border border-white/20"></div>
                   </div>
                 </motion.div>
               ) : null}
