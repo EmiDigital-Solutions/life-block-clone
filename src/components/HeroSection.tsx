@@ -87,23 +87,25 @@ const HeroSection = () => {
           zIndex: totalCards - Math.abs(offset),
         };
       } else {
-        // Desktop: Vertical fan spread (bottom to top, like a hand fan)
+        // Desktop: Fan from bottom-right corner up to center
+        // Cards spread from lower-right position to their final position
         return {
-          x: offset * 80, // Horizontal spread
-          y: Math.abs(offset) * -40, // Cards lift up as they spread
+          x: offset * 85, // Horizontal spread
+          y: Math.abs(offset) * -45, // Cards lift up as they spread
           rotateY: offset * -8,
-          rotateZ: offset * 8, // More dramatic tilt for fan effect
+          rotateZ: offset * 8, // Tilt for fan effect
           scale: 1,
           opacity: 1,
           zIndex: totalCards - Math.abs(offset),
         };
       }
     } else {
+      // Stacked state - Desktop starts from bottom-right corner
       return {
-        x: 0,
-        y: 0,
+        x: isMobile ? 0 : 180,
+        y: isMobile ? 0 : 80,
         rotateY: 0,
-        rotateZ: 0,
+        rotateZ: isMobile ? 0 : -25,
         scale: 0.98,
         opacity: index === 0 ? 1 : 0,
         zIndex: totalCards - index,
@@ -172,7 +174,7 @@ const HeroSection = () => {
                     >
                       {/* Card */}
                       <div
-                        className={`relative w-56 h-72 rounded-2xl overflow-hidden ${auditor.bgColor} border border-border`}
+                        className={`relative w-56 h-72 rounded-2xl overflow-hidden ${auditor.bgColor}`}
                         style={{
                           boxShadow: `
                             0 20px 40px -10px rgba(0, 0, 0, 0.4),
@@ -182,7 +184,7 @@ const HeroSection = () => {
                       >
                         {/* Auditor Image */}
                         <div className="absolute inset-0 flex items-center justify-center pt-6">
-                          <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="relative w-36 h-36 rounded-full overflow-hidden bg-navy-deep/60 backdrop-blur-sm">
                             <img
                               src={auditor.image}
                               alt={`Professional auditor from ${auditor.location}`}
@@ -192,7 +194,7 @@ const HeroSection = () => {
                             <div 
                               className="absolute inset-0 rounded-full pointer-events-none"
                               style={{
-                                background: "radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.15) 0%, transparent 60%)",
+                                background: "radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.1) 0%, transparent 60%)",
                               }}
                             />
                           </div>
