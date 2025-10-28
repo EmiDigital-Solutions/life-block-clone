@@ -59,19 +59,19 @@ const auditors = [
 
 const featurePhotos = {
   ai: [
-    { image: aiCopilotAnalysis, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: riskScoringAi, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: aiCopilotAnalysis, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: riskScoringAi, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-gray-800 via-gray-900 to-black" },
     { image: realtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
     { image: supplierSearchAi, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: tripleSourceVerified, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: smartMatchSuppliers, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: tripleSourceVerified, label: "Triple Source", sublabel: "Verified Data", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: smartMatchSuppliers, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-blue-600 via-blue-700 to-blue-800" },
   ],
   workflow: [
-    { image: oneClickDispatch, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: oneClickDispatch, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-green-600 via-green-700 to-green-800" },
     { image: liveTrackingDashboard, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: erpIntegrationSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: erpIntegrationSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-green-600 via-green-700 to-green-800" },
   ],
 };
 
