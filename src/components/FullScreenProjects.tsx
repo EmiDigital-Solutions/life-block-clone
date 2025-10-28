@@ -8,15 +8,15 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import aiCopilotAnalysis from "@/assets/ai-copilot-analysis.jpg";
-import riskScoringAi from "@/assets/risk-scoring-ai.jpg";
-import realtimeAlerts from "@/assets/realtime-alerts.jpg";
-import supplierSearchAi from "@/assets/supplier-search-ai.jpg";
-import tripleSourceVerified from "@/assets/triple-source-verified.jpg";
-import smartMatchSuppliers from "@/assets/smart-match-suppliers.jpg";
-import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
-import liveTrackingDashboard from "@/assets/live-tracking-dashboard.jpg";
-import erpIntegrationSync from "@/assets/erp-integration-sync.jpg";
+import illustrationAiCopilot from "@/assets/illustration-ai-copilot.jpg";
+import illustrationRiskScoring from "@/assets/illustration-risk-scoring.jpg";
+import illustrationRealtimeAlerts from "@/assets/illustration-realtime-alerts.jpg";
+import illustrationSupplierSearch from "@/assets/illustration-supplier-search.jpg";
+import illustrationTripleSource from "@/assets/illustration-triple-source.jpg";
+import illustrationSmartMatch from "@/assets/illustration-smart-match.jpg";
+import illustrationOneClick from "@/assets/illustration-one-click.jpg";
+import illustrationLiveTracking from "@/assets/illustration-live-tracking.jpg";
+import illustrationErpSync from "@/assets/illustration-erp-sync.jpg";
 
 const auditors = [
   { 
@@ -59,19 +59,19 @@ const auditors = [
 
 const featurePhotos = {
   ai: [
-    { image: aiCopilotAnalysis, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-gray-700 via-gray-800 to-gray-900" },
-    { image: riskScoringAi, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-slate-700 via-slate-800 to-slate-900" },
-    { image: realtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
-    { image: supplierSearchAi, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-500 via-blue-600 to-blue-700" },
-    { image: tripleSourceVerified, label: "Triple Source", sublabel: "Verified Data", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: smartMatchSuppliers, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-indigo-600 via-indigo-700 to-indigo-800" },
+    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   workflow: [
-    { image: oneClickDispatch, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-green-500 via-green-600 to-green-700" },
-    { image: liveTrackingDashboard, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: erpIntegrationSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-emerald-600 via-emerald-700 to-emerald-800" },
+    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
 };
 
