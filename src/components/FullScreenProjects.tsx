@@ -12,28 +12,28 @@ const projects = [
     title: "Making of Swedish Barn House",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project1,
-    bgColor: "rgb(59, 89, 118)", // Dark blue #3B5976
+    gradient: "linear-gradient(135deg, rgb(59, 89, 152), rgb(89, 119, 182), rgb(59, 89, 152))", // Blue gradient
   },
   {
     number: "02",
     title: "Architectural Design Studio Zero",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project2,
-    bgColor: "rgb(139, 115, 85)", // Warm brown #8B7355
+    gradient: "linear-gradient(135deg, rgb(139, 69, 19), rgb(184, 115, 51), rgb(139, 69, 19))", // Warm brown gradient
   },
   {
     number: "03",
     title: "Pink scandinavian design office",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project3,
-    bgColor: "rgb(30, 95, 91)", // Teal green #1E5F5B
+    gradient: "linear-gradient(135deg, rgb(16, 185, 129), rgb(52, 211, 153), rgb(16, 185, 129))", // Emerald gradient
   },
   {
     number: "04",
     title: "Whisky cellar work office brown",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project4,
-    bgColor: "rgb(90, 70, 60)", // Dark brown
+    gradient: "linear-gradient(135deg, rgb(139, 92, 246), rgb(167, 139, 250), rgb(139, 92, 246))", // Purple gradient
   },
 ];
 
@@ -49,11 +49,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      projects[0].bgColor,
-      projects[1].bgColor,
-      projects[2].bgColor,
-      projects[3].bgColor,
-      projects[3].bgColor,
+      "rgb(59, 89, 152)",
+      "rgb(139, 69, 19)",
+      "rgb(16, 185, 129)",
+      "rgb(139, 92, 246)",
+      "rgb(139, 92, 246)",
     ]
   );
 
@@ -107,22 +107,39 @@ const FullScreenProjects = () => {
                 viewport={{ once: false, amount: 0.3 }}
                 className="flex justify-center lg:justify-end"
               >
-                {/* Outer card with gradient background */}
+                {/* Outer card with vibrant gradient background */}
                 <div
-                  className="relative p-8 md:p-12 rounded-[2.5rem] shadow-2xl"
+                  className="relative p-8 md:p-12 rounded-3xl"
                   style={{
-                    background: `linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)`,
-                    backdropFilter: "blur(10px)",
+                    background: project.gradient,
+                    boxShadow: "0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.1) inset",
                   }}
                 >
+                  {/* Gradient Overlay for depth */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/40 via-transparent to-white/5"></div>
+                  
                   {/* Inner image card */}
-                  <div className="relative rounded-[1.5rem] overflow-hidden shadow-xl w-[280px] h-[360px] md:w-[340px] md:h-[440px]">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                      style={{
+                        filter: "contrast(1.1) brightness(1.1)",
+                      }}
                     />
+                    {/* Dramatic colored lighting effect */}
+                    <div 
+                      className="absolute inset-0 opacity-40"
+                      style={{
+                        background: project.gradient,
+                        mixBlendMode: "color",
+                      }}
+                    ></div>
                   </div>
+                  
+                  {/* Edge Highlight */}
+                  <div className="absolute inset-0 rounded-3xl border border-white/20"></div>
                 </div>
               </motion.div>
             </div>
