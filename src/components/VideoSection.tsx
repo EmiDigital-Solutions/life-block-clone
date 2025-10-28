@@ -23,8 +23,8 @@ const VideoSection = () => {
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/70 to-transparent">
-              <p className="text-white/90 text-sm font-sans mb-2">Featured Project Video</p>
-              <h3 className="text-white text-2xl font-serif">Behind the Scenes</h3>
+              <p className="text-white/90 text-sm font-sans mb-2">ScanPro+ Platform Demo</p>
+              <h3 className="text-white text-2xl font-serif">See YVOO in Action</h3>
             </div>
 
             {/* Edge Highlight */}
@@ -33,7 +33,7 @@ const VideoSection = () => {
 
           <div className="text-center mt-8">
             <p className="text-muted-foreground font-sans text-sm">
-              Watch our creative process unfold from concept to completion
+              Discover how AI and global auditors transform supplier verification from weeks to days
             </p>
           </div>
         </div>

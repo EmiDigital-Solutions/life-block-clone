@@ -9,29 +9,29 @@ import project4 from "@/assets/project-4.jpg";
 const projects = [
   {
     number: "01",
-    title: "Making of Swedish Barn House",
-    description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
+    title: "Global On-Demand Auditor Network",
+    description: "Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.",
     image: project1,
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green gradient
   },
   {
     number: "02",
-    title: "Architectural Design Studio Zero",
-    description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
+    title: "ScanPro+ AI Intelligence Platform",
+    description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
     image: project2,
     gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))", // Black gradient
   },
   {
     number: "03",
-    title: "Pink scandinavian design office",
-    description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
+    title: "Supplier Discovery & Intelligence",
+    description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
     image: project3,
     gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue gradient
   },
   {
     number: "04",
-    title: "Whisky cellar work office brown",
-    description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
+    title: "Seamless Digital Workflow",
+    description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
     image: project4,
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green gradient
   },
@@ -81,7 +81,7 @@ const FullScreenProjects = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-white rounded-full"></div>
                   <span className="text-sm font-sans tracking-wide">
-                    {project.number} Project
+                    {project.number} Feature
                   </span>
                 </div>
 
@@ -94,7 +94,7 @@ const FullScreenProjects = () => {
                 </p>
 
                 <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300">
-                  Our work
+                  Learn more
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>

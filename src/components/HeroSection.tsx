@@ -130,7 +130,7 @@ const HeroSection = () => {
           >
             <div className="flex items-center gap-4 text-white/60 text-sm font-sans mb-8">
               <div className="h-px w-16 bg-cyan-400/40"></div>
-              <span>Global Network · Local Expertise</span>
+              <span>2,000+ Auditors · 90+ Countries · AI-Powered</span>
               <div className="h-px w-16 bg-cyan-400/40"></div>
             </div>
           </motion.div>
@@ -239,7 +239,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-tight max-w-4xl mx-auto"
           >
-            Certified Auditors From Every Continent
+            On-Site Supplier Audits in Days, Not Weeks
           </motion.h1>
 
           {/* Subtitle */}
@@ -249,7 +249,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-2xl md:text-3xl font-sans text-cyan-400/90 mt-6"
           >
-            Global Auditors. Local Expertise. Everywhere.
+            70% Cost Reduction · 80% Time Savings · Global Coverage
           </motion.h2>
 
           {/* Description */}
@@ -259,9 +259,21 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg text-white/70 font-sans max-w-2xl mx-auto"
           >
-            Your local expert from our worldwide network of certified professionals, 
-            ready to deliver excellence across construction, safety, and compliance audits.
+            Physical factory assessments (ISO, VDA, IATF) starting from €700. 
+            AI-powered intelligence with certified auditors across 90+ countries.
           </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-8"
+          >
+            <button className="bg-cyan-400 hover:bg-cyan-500 text-black px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl">
+              Request 30-Minute Demo
+            </button>
+          </motion.div>
         </div>
       </div>
 
