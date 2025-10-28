@@ -8,9 +8,9 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import aiAuditInspection from "@/assets/ai-audit-inspection.jpg";
-import supplierNetworking from "@/assets/supplier-networking.jpg";
-import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
+import aiInspectorTech from "@/assets/ai-inspector-tech.jpg";
+import supplierPartnership from "@/assets/supplier-partnership.jpg";
+import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 
 const auditors = [
   { 
@@ -51,21 +51,21 @@ const auditors = [
   },
 ];
 
-const featureCards = {
+const featurePhotos = {
   ai: [
-    { icon: Brain, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { icon: Sparkles, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
-    { icon: Zap, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: aiInspectorTech, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: aiInspectorTech, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: aiInspectorTech, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
-    { icon: Search, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { icon: Target, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
-    { icon: Network, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: supplierPartnership, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: supplierPartnership, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: supplierPartnership, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   workflow: [
-    { icon: Workflow, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { icon: Clock, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
-    { icon: CheckCircle, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: digitalCollaboration, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: digitalCollaboration, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: digitalCollaboration, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
 };
 
@@ -341,9 +341,8 @@ const FullScreenProjects = () => {
                     
                     {/* Cards Container */}
                     <div className="relative h-[400px] flex items-center justify-center">
-                      {featureCards[project.featureType as keyof typeof featureCards].map((card, cardIndex) => {
+                      {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, cardIndex) => {
                         const style = getCardStyle(cardIndex);
-                        const Icon = card.icon;
                         
                         return (
                           <motion.div
@@ -381,25 +380,17 @@ const FullScreenProjects = () => {
                               }}
                             >
                               {/* Gradient Overlay for depth */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                               
-                              {/* Icon */}
-                              <div className="absolute inset-0 flex items-center justify-center pt-6">
-                                <motion.div
-                                  animate={{
-                                    scale: [1, 1.1, 1],
-                                    rotate: [0, 5, -5, 0],
-                                  }}
-                                  transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
-                                  className="relative w-36 h-36 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center"
-                                >
-                                  <Icon className="w-20 h-20 text-white" strokeWidth={1.5} />
-                                </motion.div>
-                              </div>
+                              {/* Feature Photo */}
+                              <img
+                                src={card.image}
+                                alt={`${card.label} feature visualization`}
+                                className="absolute inset-0 w-full h-full object-cover"
+                              />
+                              
+                              {/* Gradient Overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                               {/* Label Badge */}
                               <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
