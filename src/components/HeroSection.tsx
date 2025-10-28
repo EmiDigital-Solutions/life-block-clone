@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -48,20 +49,21 @@ const auditors = [
 
 const HeroSection = () => {
   const [isFanned, setIsFanned] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const cycle = () => {
       // Fan out
-      setTimeout(() => setIsFanned(true), 1000);
+      setTimeout(() => setIsFanned(true), 1500);
       // Fan in
-      setTimeout(() => setIsFanned(false), 8000);
+      setTimeout(() => setIsFanned(false), isMobile ? 10000 : 8000);
     };
 
     cycle();
-    const interval = setInterval(cycle, 10000);
+    const interval = setInterval(cycle, isMobile ? 13000 : 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
   // Calculate card positions for fan effect
   const getCardStyle = (index: number) => {
@@ -70,17 +72,33 @@ const HeroSection = () => {
     const offset = index - centerIndex;
     
     if (isFanned) {
-      return {
-        x: offset * 120, // Reduced spread
-        rotateY: offset * -8, // Subtle 3D rotation
-        rotateZ: offset * 5, // Gentle tilt
-        scale: 1,
-        opacity: 1,
-        zIndex: totalCards - Math.abs(offset),
-      };
+      if (isMobile) {
+        // Mobile: Simple horizontal spread
+        return {
+          x: offset * 100,
+          y: 0,
+          rotateY: offset * -6,
+          rotateZ: offset * 4,
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      } else {
+        // Desktop: Vertical fan spread (bottom to top, like a hand fan)
+        return {
+          x: offset * 80, // Horizontal spread
+          y: Math.abs(offset) * -40, // Cards lift up as they spread
+          rotateY: offset * -8,
+          rotateZ: offset * 8, // More dramatic tilt for fan effect
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      }
     } else {
       return {
         x: 0,
+        y: 0,
         rotateY: 0,
         rotateZ: 0,
         scale: 0.98,
@@ -133,6 +151,7 @@ const HeroSection = () => {
                       initial={false}
                       animate={{
                         x: style.x,
+                        y: style.y,
                         rotateY: style.rotateY,
                         rotateZ: style.rotateZ,
                         scale: style.scale,
@@ -140,9 +159,9 @@ const HeroSection = () => {
                         zIndex: style.zIndex,
                       }}
                       transition={{
-                        duration: 1.4,
-                        delay: isFanned ? index * 0.08 : (auditors.length - index) * 0.06,
-                        ease: [0.25, 0.46, 0.45, 0.94], // Smoother easing
+                        duration: isMobile ? 2 : 1.4,
+                        delay: isFanned ? index * (isMobile ? 0.12 : 0.08) : (auditors.length - index) * 0.06,
+                        ease: [0.25, 0.46, 0.45, 0.94],
                       }}
                       style={{
                         transformStyle: "preserve-3d",
