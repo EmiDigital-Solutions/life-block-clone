@@ -66,7 +66,7 @@ const FullScreenProjects = () => {
       {projects.map((project, index) => (
         <section
           key={index}
-          className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 sticky top-0"
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
         >
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
