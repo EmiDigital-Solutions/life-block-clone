@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Brain, Cpu, Sparkles, Search, Database, Network, Workflow, Zap, RefreshCw } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
@@ -8,6 +8,9 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import scanproDashboard from "@/assets/scanpro-ai-dashboard.jpg";
+import supplierSearch from "@/assets/supplier-search-interface.jpg";
+import workflowDashboard from "@/assets/workflow-dashboard.jpg";
 
 const auditors = [
   { 
@@ -61,21 +64,21 @@ const projects = [
     title: "ScanPro+ AI Intelligence Platform",
     description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
     gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))",
-    icons: [Brain, Cpu, Sparkles],
+    image: scanproDashboard,
   },
   {
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
     gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))",
-    icons: [Search, Database, Network],
+    image: supplierSearch,
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
-    icons: [Workflow, Zap, RefreshCw],
+    image: workflowDashboard,
   },
 ];
 
@@ -200,7 +203,7 @@ const FullScreenProjects = () => {
                 </button>
               </motion.div>
 
-              {/* Right: Auditor Cards or Icon Animation */}
+              {/* Right: Auditor Cards or Software Interface */}
               {project.showAuditors ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -303,7 +306,7 @@ const FullScreenProjects = () => {
                     </div>
                   </div>
                 </motion.div>
-              ) : project.icons ? (
+              ) : project.image ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -322,49 +325,12 @@ const FullScreenProjects = () => {
                     {/* Gradient Overlay for depth */}
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/40 via-transparent to-white/5"></div>
                     
-                    {/* Inner icon card */}
-                    <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm">
-                      {/* Animated Icons */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-full h-full flex items-center justify-center gap-6">
-                          {project.icons.map((Icon, iconIndex) => (
-                            <motion.div
-                              key={iconIndex}
-                              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                              whileInView={{ 
-                                opacity: [0.6, 1, 0.6],
-                                y: [-10, 10, -10],
-                                scale: [0.9, 1.1, 0.9],
-                              }}
-                              transition={{
-                                duration: 3,
-                                delay: iconIndex * 0.3,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                              }}
-                              viewport={{ once: false }}
-                            >
-                              <Icon className="w-16 h-16 md:w-20 md:h-20 text-white" strokeWidth={1.5} />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Animated glow effect */}
-                      <motion.div
-                        className="absolute inset-0 pointer-events-none"
-                        animate={{
-                          background: [
-                            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                            "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                          ]
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
+                    {/* Inner image card */}
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     
