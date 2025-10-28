@@ -12,32 +12,38 @@ const auditors = [
   { 
     image: auditorEuropean, 
     location: "Europe", 
-    region: "Central Europe"
+    region: "Central Europe",
+    bgColor: "bg-navy-deep"
   },
   { 
     image: auditorAsian, 
     location: "Asia", 
-    region: "East Asia Pacific"
+    region: "East Asia Pacific",
+    bgColor: "bg-project-blue"
   },
   { 
     image: auditorAfrican, 
     location: "Africa", 
-    region: "Sub-Saharan"
+    region: "Sub-Saharan",
+    bgColor: "bg-project-teal"
   },
   { 
     image: auditorLatin, 
     location: "Americas", 
-    region: "North & South"
+    region: "North & South",
+    bgColor: "bg-navy-light"
   },
   { 
     image: auditorMiddleEast, 
     location: "Middle East", 
-    region: "Gulf Region"
+    region: "Gulf Region",
+    bgColor: "bg-project-brown"
   },
   { 
     image: auditorSouthAsian, 
     location: "South Asia", 
-    region: "Indian Subcontinent"
+    region: "Indian Subcontinent",
+    bgColor: "bg-accent"
   },
 ];
 
@@ -170,7 +176,7 @@ const HeroSection = () => {
                     >
                       {/* Card */}
                       <div
-                        className="relative w-56 h-72 rounded-2xl overflow-hidden bg-transparent"
+                        className={`relative w-56 h-72 rounded-2xl overflow-hidden ${auditor.bgColor}`}
                         style={{
                           boxShadow: `
                             0 20px 40px -10px rgba(0, 0, 0, 0.4),
