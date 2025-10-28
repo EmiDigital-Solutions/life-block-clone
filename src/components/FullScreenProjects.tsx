@@ -8,9 +8,9 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import scanproDashboard from "@/assets/scanpro-ai-dashboard.jpg";
-import supplierSearch from "@/assets/supplier-search-interface.jpg";
-import workflowDashboard from "@/assets/workflow-dashboard.jpg";
+import aiAuditInspection from "@/assets/ai-audit-inspection.jpg";
+import supplierNetworking from "@/assets/supplier-networking.jpg";
+import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
 
 const auditors = [
   { 
@@ -64,21 +64,21 @@ const projects = [
     title: "ScanPro+ AI Intelligence Platform",
     description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
     gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))",
-    image: scanproDashboard,
+    image: aiAuditInspection,
   },
   {
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
     gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))",
-    image: supplierSearch,
+    image: supplierNetworking,
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
-    image: workflowDashboard,
+    image: digitalWorkflowTeam,
   },
 ];
 
