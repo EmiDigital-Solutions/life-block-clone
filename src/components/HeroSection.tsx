@@ -13,37 +13,37 @@ const auditors = [
     image: auditorEuropean, 
     location: "Europe", 
     region: "Central Europe",
-    gradient: "from-fuchsia-600 via-purple-600 to-fuchsia-700"
+    gradient: "from-blue-600 via-blue-700 to-blue-800"
   },
   { 
     image: auditorAsian, 
     location: "Asia", 
     region: "East Asia Pacific",
-    gradient: "from-purple-500 via-blue-500 to-cyan-500"
+    gradient: "from-green-600 via-green-700 to-green-800"
   },
   { 
     image: auditorAfrican, 
     location: "Africa", 
     region: "Sub-Saharan",
-    gradient: "from-pink-600 via-rose-600 to-red-600"
+    gradient: "from-gray-800 via-gray-900 to-black"
   },
   { 
     image: auditorLatin, 
     location: "Americas", 
     region: "North & South",
-    gradient: "from-violet-600 via-purple-500 to-fuchsia-600"
+    gradient: "from-blue-600 via-blue-700 to-blue-800"
   },
   { 
     image: auditorMiddleEast, 
     location: "Middle East", 
     region: "Gulf Region",
-    gradient: "from-blue-600 via-cyan-500 to-teal-500"
+    gradient: "from-green-600 via-green-700 to-green-800"
   },
   { 
     image: auditorSouthAsian, 
     location: "South Asia", 
     region: "Indian Subcontinent",
-    gradient: "from-rose-600 via-pink-600 to-fuchsia-700"
+    gradient: "from-gray-800 via-gray-900 to-black"
   },
 ];
 

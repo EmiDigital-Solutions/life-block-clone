@@ -12,28 +12,28 @@ const projects = [
     title: "Making of Swedish Barn House",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project1,
-    gradient: "linear-gradient(135deg, rgb(192, 132, 252), rgb(168, 85, 247), rgb(147, 51, 234))", // Purple gradient
+    gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green gradient
   },
   {
     number: "02",
     title: "Architectural Design Studio Zero",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project2,
-    gradient: "linear-gradient(135deg, rgb(236, 72, 153), rgb(219, 39, 119), rgb(190, 24, 93))", // Pink gradient
+    gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))", // Black gradient
   },
   {
     number: "03",
     title: "Pink scandinavian design office",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project3,
-    gradient: "linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216))", // Blue gradient
+    gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue gradient
   },
   {
     number: "04",
     title: "Whisky cellar work office brown",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project4,
-    gradient: "linear-gradient(135deg, rgb(251, 146, 60), rgb(249, 115, 22), rgb(234, 88, 12))", // Orange gradient
+    gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green gradient
   },
 ];
 
@@ -49,11 +49,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      "rgb(168, 85, 247)",
-      "rgb(219, 39, 119)",
-      "rgb(37, 99, 235)",
-      "rgb(249, 115, 22)",
-      "rgb(249, 115, 22)",
+      "rgb(22, 163, 74)",
+      "rgb(17, 24, 39)",
+      "rgb(29, 78, 216)",
+      "rgb(22, 163, 74)",
+      "rgb(22, 163, 74)",
     ]
   );
 
