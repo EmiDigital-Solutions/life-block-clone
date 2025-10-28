@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import auditorEuropean from "@/assets/auditor-european.png";
-import auditorAsian from "@/assets/auditor-asian.png";
-import auditorAfrican from "@/assets/auditor-african.png";
-import auditorLatin from "@/assets/auditor-latin.png";
-import auditorMiddleEast from "@/assets/auditor-middle-east.png";
-import auditorSouthAsian from "@/assets/auditor-south-asian.png";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 
 const auditors = [
-  { image: auditorEuropean, location: "Europe", region: "European Union" },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe" },
   { image: auditorAsian, location: "Asia", region: "East Asia Pacific" },
-  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan Africa" },
-  { image: auditorLatin, location: "Americas", region: "Latin America" },
-  { image: auditorMiddleEast, location: "Middle East", region: "MENA Region" },
+  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan" },
+  { image: auditorLatin, location: "Americas", region: "North & South" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region" },
   { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent" },
 ];
 
@@ -49,71 +49,70 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* 3D Auditor Animation */}
-          <div className="relative flex justify-center items-center min-h-[500px]">
-            {/* Animated Auditor Head */}
-            <motion.div
-              animate={{ 
-                y: [0, -20, 0],
-              }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative"
-            >
-              {/* Glow Effect */}
-              <div className="absolute inset-0 blur-3xl bg-cyan-400/30 rounded-full scale-150"></div>
+          {/* Professional Auditor Animation */}
+          <div className="relative flex justify-center items-center min-h-[600px]">
+            <div className="relative">
+              {/* Soft Glow Effect */}
+              <div className="absolute inset-0 blur-3xl bg-cyan-400/20 rounded-full scale-125"></div>
               
-              {/* Auditor Images with Crossfade */}
-              <div className="relative w-80 h-80 md:w-96 md:h-96">
+              {/* Auditor Images with Smooth Crossfade */}
+              <div className="relative w-80 h-80 md:w-[420px] md:h-[420px] rounded-full overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentIndex}
                     src={auditors[currentIndex].image}
-                    alt={`Auditor from ${auditors[currentIndex].location}`}
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    alt={`Professional auditor from ${auditors[currentIndex].location}`}
+                    initial={{ 
+                      opacity: 0,
+                      scale: 1
+                    }}
                     animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotate: [0, -2, 2, -2, 0],
+                      opacity: 1,
+                      scale: [1, 1.05, 1.05],
                     }}
-                    exit={{ opacity: 0, scale: 0.95 }}
+                    exit={{ 
+                      opacity: 0
+                    }}
                     transition={{ 
-                      opacity: { duration: 0.5 },
-                      scale: { duration: 0.5 },
-                      rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                      opacity: { duration: 2, ease: "easeInOut" },
+                      scale: { 
+                        duration: 3,
+                        times: [0, 0.2, 1],
+                        ease: "easeOut"
+                      }
                     }}
-                    className="w-full h-full object-contain drop-shadow-2xl"
+                    className="absolute inset-0 w-full h-full object-cover"
                     style={{
-                      filter: "drop-shadow(0 0 40px rgba(0, 217, 255, 0.4))"
+                      filter: "drop-shadow(0 0 30px rgba(0, 217, 255, 0.3))"
                     }}
                   />
                 </AnimatePresence>
-
-                {/* Location Label */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`location-${currentIndex}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center"
-                  >
-                    <div className="bg-cyan-400/10 backdrop-blur-sm border border-cyan-400/30 rounded-full px-6 py-2">
-                      <p className="text-cyan-400 font-sans font-semibold text-lg">
-                        {auditors[currentIndex].location}
-                      </p>
-                      <p className="text-white/60 font-sans text-sm">
-                        {auditors[currentIndex].region}
-                      </p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+                
+                {/* Cyan rim light effect */}
+                <div className="absolute inset-0 rounded-full ring-2 ring-cyan-400/40 pointer-events-none"></div>
               </div>
-            </motion.div>
+
+              {/* Location Label */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`location-${currentIndex}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-center whitespace-nowrap"
+                >
+                  <div className="bg-cyan-400/10 backdrop-blur-sm border border-cyan-400/30 rounded-full px-8 py-3">
+                    <p className="text-cyan-400 font-sans font-semibold text-lg">
+                      {auditors[currentIndex].location}
+                    </p>
+                    <p className="text-white/70 font-sans text-sm">
+                      {auditors[currentIndex].region}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Main Heading */}
