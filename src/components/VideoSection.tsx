@@ -9,8 +9,8 @@ const VideoSection = () => {
           <div 
             className="relative aspect-video rounded-3xl overflow-hidden group cursor-pointer border-2 border-white/10"
             style={{
-              background: "linear-gradient(135deg, rgb(236, 72, 153), rgb(219, 39, 119), rgb(236, 72, 153))",
-              boxShadow: "0 30px 60px -15px rgba(236, 72, 153, 0.4), 0 0 40px rgba(255,255,255,0.1) inset",
+              background: "linear-gradient(135deg, rgb(139, 92, 246), rgb(124, 58, 237), rgb(109, 40, 217))",
+              boxShadow: "0 30px 60px -15px rgba(139, 92, 246, 0.4), 0 0 40px rgba(255,255,255,0.1) inset",
             }}
           >
             {/* Gradient Overlay for depth */}

@@ -12,28 +12,28 @@ const projects = [
     title: "Making of Swedish Barn House",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project1,
-    gradient: "linear-gradient(135deg, rgb(59, 89, 152), rgb(89, 119, 182), rgb(59, 89, 152))", // Blue gradient
+    gradient: "linear-gradient(135deg, rgb(192, 132, 252), rgb(168, 85, 247), rgb(147, 51, 234))", // Purple gradient
   },
   {
     number: "02",
     title: "Architectural Design Studio Zero",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project2,
-    gradient: "linear-gradient(135deg, rgb(139, 69, 19), rgb(184, 115, 51), rgb(139, 69, 19))", // Warm brown gradient
+    gradient: "linear-gradient(135deg, rgb(236, 72, 153), rgb(219, 39, 119), rgb(190, 24, 93))", // Pink gradient
   },
   {
     number: "03",
     title: "Pink scandinavian design office",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project3,
-    gradient: "linear-gradient(135deg, rgb(16, 185, 129), rgb(52, 211, 153), rgb(16, 185, 129))", // Emerald gradient
+    gradient: "linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235), rgb(29, 78, 216))", // Blue gradient
   },
   {
     number: "04",
     title: "Whisky cellar work office brown",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project4,
-    gradient: "linear-gradient(135deg, rgb(139, 92, 246), rgb(167, 139, 250), rgb(139, 92, 246))", // Purple gradient
+    gradient: "linear-gradient(135deg, rgb(251, 146, 60), rgb(249, 115, 22), rgb(234, 88, 12))", // Orange gradient
   },
 ];
 
@@ -49,11 +49,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      "rgb(59, 89, 152)",
-      "rgb(139, 69, 19)",
-      "rgb(16, 185, 129)",
-      "rgb(139, 92, 246)",
-      "rgb(139, 92, 246)",
+      "rgb(168, 85, 247)",
+      "rgb(219, 39, 119)",
+      "rgb(37, 99, 235)",
+      "rgb(249, 115, 22)",
+      "rgb(249, 115, 22)",
     ]
   );
 
@@ -123,19 +123,8 @@ const FullScreenProjects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                      style={{
-                        filter: "contrast(1.1) brightness(1.1)",
-                      }}
+                      className="w-full h-full object-cover"
                     />
-                    {/* Dramatic colored lighting effect */}
-                    <div 
-                      className="absolute inset-0 opacity-40"
-                      style={{
-                        background: project.gradient,
-                        mixBlendMode: "color",
-                      }}
-                    ></div>
                   </div>
                   
                   {/* Edge Highlight */}
