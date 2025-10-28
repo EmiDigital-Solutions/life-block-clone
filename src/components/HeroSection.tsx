@@ -51,34 +51,37 @@ const HeroSection = () => {
   const [isFanned, setIsFanned] = useState(false);
   const isMobile = useIsMobile();
 
+  // Mobile shows 3 cards, desktop shows all 6
+  const visibleAuditors = isMobile ? auditors.slice(0, 3) : auditors;
+
   useEffect(() => {
     const cycle = () => {
-      // Fan out
-      setTimeout(() => setIsFanned(true), 1500);
-      // Fan in
-      setTimeout(() => setIsFanned(false), isMobile ? 10000 : 8000);
+      // Fan out - slower for mobile
+      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
+      // Fan in - much longer display time
+      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
     };
 
     cycle();
-    const interval = setInterval(cycle, isMobile ? 13000 : 10000);
+    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
 
     return () => clearInterval(interval);
   }, [isMobile]);
 
   // Calculate card positions for fan effect
   const getCardStyle = (index: number) => {
-    const totalCards = auditors.length;
+    const totalCards = visibleAuditors.length;
     const centerIndex = (totalCards - 1) / 2;
     const offset = index - centerIndex;
     
     if (isFanned) {
       if (isMobile) {
-        // Mobile: Simple horizontal spread
+        // Mobile: Gentle horizontal spread (3 cards like a hand)
         return {
-          x: offset * 100,
-          y: 0,
-          rotateY: offset * -6,
-          rotateZ: offset * 4,
+          x: offset * 110,
+          y: Math.abs(offset) * -20, // Slight lift
+          rotateY: offset * -8,
+          rotateZ: offset * 6,
           scale: 1,
           opacity: 1,
           zIndex: totalCards - Math.abs(offset),
@@ -141,7 +144,7 @@ const HeroSection = () => {
               
               {/* Cards Container */}
               <div className="relative h-[400px] flex items-center justify-center">
-                {auditors.map((auditor, index) => {
+                {visibleAuditors.map((auditor, index) => {
                   const style = getCardStyle(index);
                   
                   return (
@@ -159,8 +162,8 @@ const HeroSection = () => {
                         zIndex: style.zIndex,
                       }}
                       transition={{
-                        duration: isMobile ? 2 : 1.4,
-                        delay: isFanned ? index * (isMobile ? 0.12 : 0.08) : (auditors.length - index) * 0.06,
+                        duration: isMobile ? 2.5 : 1.8,
+                        delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (visibleAuditors.length - index) * 0.08,
                         ease: [0.25, 0.46, 0.45, 0.94],
                       }}
                       style={{
