@@ -12,28 +12,28 @@ const projects = [
     title: "Making of Swedish Barn House",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project1,
-    gradient: "linear-gradient(135deg, rgb(139, 69, 255) 0%, rgb(88, 86, 214) 50%, rgb(69, 104, 255) 100%)",
+    bgColor: "rgb(59, 89, 118)", // Dark blue #3B5976
   },
   {
     number: "02",
     title: "Architectural Design Studio Zero",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project2,
-    gradient: "linear-gradient(135deg, rgb(236, 72, 153) 0%, rgb(239, 68, 68) 50%, rgb(220, 38, 38) 100%)",
+    bgColor: "rgb(139, 115, 85)", // Warm brown #8B7355
   },
   {
     number: "03",
     title: "Pink scandinavian design office",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project3,
-    gradient: "linear-gradient(135deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 50%, rgb(219, 39, 119) 100%)",
+    bgColor: "rgb(30, 95, 91)", // Teal green #1E5F5B
   },
   {
     number: "04",
     title: "Whisky cellar work office brown",
     description: "We aimed at making both exterior and interiors for this project, and the first thing I did we visiting Swedish...",
     image: project4,
-    gradient: "linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(6, 182, 212) 50%, rgb(20, 184, 166) 100%)",
+    bgColor: "rgb(90, 70, 60)", // Dark brown
   },
 ];
 
@@ -49,11 +49,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      projects[0].gradient,
-      projects[1].gradient,
-      projects[2].gradient,
-      projects[3].gradient,
-      projects[3].gradient,
+      projects[0].bgColor,
+      projects[1].bgColor,
+      projects[2].bgColor,
+      projects[3].bgColor,
+      projects[3].bgColor,
     ]
   );
 
@@ -111,20 +111,17 @@ const FullScreenProjects = () => {
                 <div
                   className="relative p-8 md:p-12 rounded-[2.5rem] shadow-2xl"
                   style={{
-                    background: `linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%)`,
-                    backdropFilter: "blur(20px)",
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.1)",
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)`,
+                    backdropFilter: "blur(10px)",
                   }}
                 >
                   {/* Inner image card */}
-                  <div className="relative rounded-[1.5rem] overflow-hidden shadow-xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10">
+                  <div className="relative rounded-[1.5rem] overflow-hidden shadow-xl w-[280px] h-[360px] md:w-[340px] md:h-[440px]">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                      className="w-full h-full object-cover"
                     />
-                    {/* Dramatic overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent mix-blend-overlay" />
                   </div>
                 </div>
               </motion.div>

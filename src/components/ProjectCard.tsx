@@ -12,13 +12,13 @@ const ProjectCard = ({ number, title, description, image }: ProjectCardProps) =>
   return (
     <div className="group relative bg-card rounded-lg overflow-hidden border border-border hover:shadow-xl transition-all duration-500">
       {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-purple-600 via-fuchsia-600 to-pink-600">
+      <div className="relative aspect-[3/4] overflow-hidden bg-navy-deep">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity opacity-90"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300 mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
       </div>
 
       {/* Content */}
