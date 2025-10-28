@@ -1,12 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-deep/95 backdrop-blur-sm border-b border-white/10">
+    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${
+      isScrolled 
+        ? "bg-background/95 border-border" 
+        : "bg-navy-deep/95 border-white/10"
+    }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -15,28 +29,40 @@ const Navigation = () => {
               <div className="w-6 h-6 border-2 border-white rounded-full"></div>
             </div>
             <div>
-              <div className="text-white font-sans text-sm font-light">Architect</div>
-              <div className="text-white font-serif text-lg font-semibold -mt-1">Nicolai</div>
+              <div className={`font-sans text-sm font-light transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}>Architect</div>
+              <div className={`font-serif text-lg font-semibold -mt-1 transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}>Nicolai</div>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#services" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+            <a href="#services" className={`transition-colors font-sans text-sm ${
+              isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"
+            }`}>
               Services
             </a>
-            <a href="#projects" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+            <a href="#projects" className={`transition-colors font-sans text-sm ${
+              isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"
+            }`}>
               Projects
             </a>
-            <a href="#faq" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+            <a href="#faq" className={`transition-colors font-sans text-sm ${
+              isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"
+            }`}>
               FAQ
             </a>
-            <a href="#about" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+            <a href="#about" className={`transition-colors font-sans text-sm ${
+              isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"
+            }`}>
               About
             </a>
             <Button 
               variant="outline" 
-              className="bg-white text-navy-deep hover:bg-white/90 border-white font-sans text-sm px-6"
+              className={`font-sans text-sm px-6 transition-colors ${
+                isScrolled 
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90 border-primary" 
+                  : "bg-white text-navy-deep hover:bg-white/90 border-white"
+              }`}
             >
               Estimate project
             </Button>
@@ -45,7 +71,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className={`md:hidden transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}
           >
             <Menu size={24} />
           </button>
