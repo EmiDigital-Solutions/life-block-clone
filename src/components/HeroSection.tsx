@@ -12,37 +12,37 @@ const auditors = [
     image: auditorEuropean, 
     location: "Europe", 
     region: "Central Europe",
-    gradient: "from-pink-500 via-rose-500 to-fuchsia-600"
+    bgColor: "bg-navy-deep"
   },
   { 
     image: auditorAsian, 
     location: "Asia", 
     region: "East Asia Pacific",
-    gradient: "from-purple-500 via-violet-500 to-blue-600"
+    bgColor: "bg-project-blue"
   },
   { 
     image: auditorAfrican, 
     location: "Africa", 
     region: "Sub-Saharan",
-    gradient: "from-red-500 via-orange-500 to-amber-600"
+    bgColor: "bg-project-teal"
   },
   { 
     image: auditorLatin, 
     location: "Americas", 
     region: "North & South",
-    gradient: "from-green-500 via-emerald-500 to-teal-600"
+    bgColor: "bg-navy-light"
   },
   { 
     image: auditorMiddleEast, 
     location: "Middle East", 
     region: "Gulf Region",
-    gradient: "from-yellow-500 via-amber-500 to-orange-600"
+    bgColor: "bg-project-brown"
   },
   { 
     image: auditorSouthAsian, 
     location: "South Asia", 
     region: "Indian Subcontinent",
-    gradient: "from-cyan-500 via-blue-500 to-indigo-600"
+    bgColor: "bg-accent"
   },
 ];
 
@@ -71,10 +71,11 @@ const HeroSection = () => {
     
     if (isFanned) {
       return {
-        x: offset * 180, // Horizontal spread
-        rotateY: offset * -12, // 3D rotation
-        rotateZ: offset * 8, // Card tilt
+        x: offset * 120, // Reduced spread
+        rotateY: offset * -8, // Subtle 3D rotation
+        rotateZ: offset * 5, // Gentle tilt
         scale: 1,
+        opacity: 1,
         zIndex: totalCards - Math.abs(offset),
       };
     } else {
@@ -82,7 +83,8 @@ const HeroSection = () => {
         x: 0,
         rotateY: 0,
         rotateZ: 0,
-        scale: index === 0 ? 1 : 0.95,
+        scale: 0.98,
+        opacity: index === 0 ? 1 : 0,
         zIndex: totalCards - index,
       };
     }
@@ -111,16 +113,16 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Card Fan Animation */}
-          <div className="relative flex justify-center items-center min-h-[600px]">
+          <div className="relative flex justify-center items-center min-h-[500px]">
             <div 
-              className="relative w-full max-w-5xl"
-              style={{ perspective: "2000px" }}
+              className="relative w-full max-w-4xl"
+              style={{ perspective: "1500px" }}
             >
               {/* Atmospheric Glow */}
               <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
               
               {/* Cards Container */}
-              <div className="relative h-[500px] flex items-center justify-center">
+              <div className="relative h-[400px] flex items-center justify-center">
                 {auditors.map((auditor, index) => {
                   const style = getCardStyle(index);
                   
@@ -134,12 +136,13 @@ const HeroSection = () => {
                         rotateY: style.rotateY,
                         rotateZ: style.rotateZ,
                         scale: style.scale,
+                        opacity: style.opacity,
                         zIndex: style.zIndex,
                       }}
                       transition={{
-                        duration: 1.2,
-                        delay: isFanned ? index * 0.1 : (auditors.length - index) * 0.08,
-                        ease: [0.34, 1.56, 0.64, 1], // Spring-like easing
+                        duration: 1.4,
+                        delay: isFanned ? index * 0.08 : (auditors.length - index) * 0.06,
+                        ease: [0.25, 0.46, 0.45, 0.94], // Smoother easing
                       }}
                       style={{
                         transformStyle: "preserve-3d",
@@ -147,18 +150,17 @@ const HeroSection = () => {
                     >
                       {/* Card */}
                       <div
-                        className={`relative w-72 h-96 rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                        className={`relative w-56 h-72 rounded-2xl overflow-hidden ${auditor.bgColor} border border-border`}
                         style={{
                           boxShadow: `
-                            0 30px 60px -15px rgba(0, 0, 0, 0.5),
-                            0 15px 30px -10px rgba(0, 0, 0, 0.3),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.1)
+                            0 20px 40px -10px rgba(0, 0, 0, 0.4),
+                            0 10px 20px -5px rgba(0, 0, 0, 0.3)
                           `,
                         }}
                       >
                         {/* Auditor Image */}
-                        <div className="absolute inset-0 flex items-center justify-center p-8">
-                          <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/20">
+                        <div className="absolute inset-0 flex items-center justify-center pt-6">
+                          <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-white/10">
                             <img
                               src={auditor.image}
                               alt={`Professional auditor from ${auditor.location}`}
@@ -168,30 +170,29 @@ const HeroSection = () => {
                             <div 
                               className="absolute inset-0 rounded-full pointer-events-none"
                               style={{
-                                background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 60%)",
-                                mixBlendMode: "overlay"
+                                background: "radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.15) 0%, transparent 60%)",
                               }}
                             />
                           </div>
                         </div>
 
                         {/* Location Badge */}
-                        <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-                          <div className="bg-white/90 backdrop-blur-sm rounded-full px-6 py-2 shadow-lg">
-                            <p className="text-gray-900 font-sans font-bold text-sm">
+                        <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
+                          <div className="bg-cyan-400/10 backdrop-blur-sm border border-cyan-400/20 rounded-full px-5 py-2 w-full">
+                            <p className="text-cyan-400 font-sans font-semibold text-sm text-center">
                               {auditor.location}
                             </p>
-                            <p className="text-gray-600 font-sans text-xs text-center">
+                            <p className="text-white/60 font-sans text-xs text-center">
                               {auditor.region}
                             </p>
                           </div>
                         </div>
 
-                        {/* Card Shine Effect */}
+                        {/* Subtle Edge Highlight */}
                         <div 
-                          className="absolute inset-0 pointer-events-none"
+                          className="absolute inset-0 pointer-events-none rounded-2xl"
                           style={{
-                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                            background: "linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 50%)",
                           }}
                         />
                       </div>
