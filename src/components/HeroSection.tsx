@@ -49,48 +49,112 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Professional Auditor Animation */}
+          {/* Professional Auditor Animation - 3D Floating Effect */}
           <div className="relative flex justify-center items-center min-h-[600px]">
-            <div className="relative">
-              {/* Soft Glow Effect */}
-              <div className="absolute inset-0 blur-3xl bg-cyan-400/20 rounded-full scale-125"></div>
+            <div className="relative" style={{ perspective: "1200px" }}>
+              {/* Atmospheric Glow - Back Layer */}
+              <div className="absolute inset-0 blur-3xl bg-cyan-400/15 rounded-full scale-150 -z-10"></div>
               
-              {/* Auditor Images with Smooth Crossfade */}
-              <div className="relative w-80 h-80 md:w-[420px] md:h-[420px] rounded-full overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentIndex}
-                    src={auditors[currentIndex].image}
-                    alt={`Professional auditor from ${auditors[currentIndex].location}`}
-                    initial={{ 
-                      opacity: 0,
-                      scale: 1
-                    }}
-                    animate={{ 
-                      opacity: 1,
-                      scale: [1, 1.05, 1.05],
-                    }}
-                    exit={{ 
-                      opacity: 0
-                    }}
-                    transition={{ 
-                      opacity: { duration: 2, ease: "easeInOut" },
-                      scale: { 
-                        duration: 3,
-                        times: [0, 0.2, 1],
-                        ease: "easeOut"
-                      }
-                    }}
-                    className="absolute inset-0 w-full h-full object-cover"
+              {/* Floating Shadow - Animated */}
+              <motion.div
+                animate={{
+                  scale: [0.9, 1.1, 0.9],
+                  opacity: [0.4, 0.2, 0.4],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute left-1/2 -translate-x-1/2 w-64 h-16 md:w-80 md:h-20 rounded-full blur-3xl bg-black/60"
+                style={{
+                  top: "calc(100% + 40px)",
+                  filter: "blur(40px)"
+                }}
+              />
+              
+              {/* 3D Floating Head Container */}
+              <motion.div
+                animate={{
+                  y: [0, -30, 0],
+                  rotateY: [-2, 2, -2],
+                  rotateX: [2, -2, 2],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-80 h-80 md:w-[420px] md:h-[420px]"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transform: "perspective(1200px) rotateY(0deg) rotateX(0deg)"
+                }}
+              >
+                {/* Main 3D Image Container */}
+                <div 
+                  className="relative w-full h-full rounded-full overflow-hidden"
+                  style={{
+                    boxShadow: `
+                      0 40px 80px -20px rgba(0, 0, 0, 0.6),
+                      0 20px 40px -10px rgba(0, 0, 0, 0.4),
+                      0 10px 20px -5px rgba(0, 0, 0, 0.3),
+                      inset 0 -20px 40px rgba(0, 0, 0, 0.2),
+                      0 0 0 1px rgba(0, 217, 255, 0.3)
+                    `,
+                    transform: "translateZ(50px)"
+                  }}
+                >
+                  {/* Auditor Images with Smooth Crossfade */}
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentIndex}
+                      src={auditors[currentIndex].image}
+                      alt={`Professional auditor from ${auditors[currentIndex].location}`}
+                      initial={{ 
+                        opacity: 0,
+                        scale: 1.1
+                      }}
+                      animate={{ 
+                        opacity: 1,
+                        scale: 1,
+                      }}
+                      exit={{ 
+                        opacity: 0,
+                        scale: 1.1
+                      }}
+                      transition={{ 
+                        opacity: { duration: 2, ease: "easeInOut" },
+                        scale: { 
+                          duration: 2,
+                          ease: "easeOut"
+                        }
+                      }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        filter: "contrast(1.05) brightness(1.02)"
+                      }}
+                    />
+                  </AnimatePresence>
+                  
+                  {/* Rim Light Effect - Cyan Edge Glow */}
+                  <div 
+                    className="absolute inset-0 rounded-full pointer-events-none"
                     style={{
-                      filter: "drop-shadow(0 0 30px rgba(0, 217, 255, 0.3))"
+                      background: "radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.3) 0%, transparent 40%), radial-gradient(circle at 70% 70%, rgba(0, 217, 255, 0.15) 0%, transparent 50%)",
+                      mixBlendMode: "screen"
                     }}
                   />
-                </AnimatePresence>
-                
-                {/* Cyan rim light effect */}
-                <div className="absolute inset-0 rounded-full ring-2 ring-cyan-400/40 pointer-events-none"></div>
-              </div>
+                  
+                  {/* Edge Vignette for Depth */}
+                  <div 
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{
+                      background: "radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%)"
+                    }}
+                  />
+                </div>
+              </motion.div>
 
               {/* Location Label */}
               <AnimatePresence mode="wait">
