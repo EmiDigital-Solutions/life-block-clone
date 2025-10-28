@@ -59,19 +59,19 @@ const auditors = [
 
 const featurePhotos = {
   ai: [
-    { image: aiCopilotAnalysis, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-gray-800 via-gray-900 to-black" },
-    { image: riskScoringAi, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: aiCopilotAnalysis, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-gray-700 via-gray-800 to-gray-900" },
+    { image: riskScoringAi, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-slate-700 via-slate-800 to-slate-900" },
     { image: realtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
-    { image: supplierSearchAi, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: supplierSearchAi, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-500 via-blue-600 to-blue-700" },
     { image: tripleSourceVerified, label: "Triple Source", sublabel: "Verified Data", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: smartMatchSuppliers, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: smartMatchSuppliers, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-indigo-600 via-indigo-700 to-indigo-800" },
   ],
   workflow: [
-    { image: oneClickDispatch, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: oneClickDispatch, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-green-500 via-green-600 to-green-700" },
     { image: liveTrackingDashboard, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: erpIntegrationSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: erpIntegrationSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-emerald-600 via-emerald-700 to-emerald-800" },
   ],
 };
 
