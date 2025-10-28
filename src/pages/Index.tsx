@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import VideoSection from "@/components/VideoSection";
-import ProjectsSection from "@/components/ProjectsSection";
+import FullScreenProjects from "@/components/FullScreenProjects";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <VideoSection />
-      <ProjectsSection />
+      <FullScreenProjects />
     </div>
   );
 };

@@ -56,6 +56,12 @@ export default {
         },
         slate: "hsl(var(--slate))",
         cream: "hsl(var(--cream))",
+        project: {
+          blue: "hsl(var(--project-blue))",
+          brown: "hsl(var(--project-brown))",
+          teal: "hsl(var(--project-teal))",
+          pink: "hsl(var(--project-pink))",
+        },
       },
       fontFamily: {
         serif: ['Playfair Display', 'serif'],
