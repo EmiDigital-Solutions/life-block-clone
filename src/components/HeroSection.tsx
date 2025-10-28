@@ -13,37 +13,37 @@ const auditors = [
     image: auditorEuropean, 
     location: "Europe", 
     region: "Central Europe",
-    bgColor: "bg-navy-deep"
+    gradient: "from-fuchsia-600 via-purple-600 to-fuchsia-700"
   },
   { 
     image: auditorAsian, 
     location: "Asia", 
     region: "East Asia Pacific",
-    bgColor: "bg-project-blue"
+    gradient: "from-purple-500 via-blue-500 to-cyan-500"
   },
   { 
     image: auditorAfrican, 
     location: "Africa", 
     region: "Sub-Saharan",
-    bgColor: "bg-project-teal"
+    gradient: "from-pink-600 via-rose-600 to-red-600"
   },
   { 
     image: auditorLatin, 
     location: "Americas", 
     region: "North & South",
-    bgColor: "bg-navy-light"
+    gradient: "from-violet-600 via-purple-500 to-fuchsia-600"
   },
   { 
     image: auditorMiddleEast, 
     location: "Middle East", 
     region: "Gulf Region",
-    bgColor: "bg-project-brown"
+    gradient: "from-blue-600 via-cyan-500 to-teal-500"
   },
   { 
     image: auditorSouthAsian, 
     location: "South Asia", 
     region: "Indian Subcontinent",
-    bgColor: "bg-accent"
+    gradient: "from-rose-600 via-pink-600 to-fuchsia-700"
   },
 ];
 
@@ -176,27 +176,30 @@ const HeroSection = () => {
                     >
                       {/* Card */}
                       <div
-                        className={`relative w-56 h-72 rounded-2xl overflow-hidden ${auditor.bgColor}`}
+                        className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                         style={{
                           boxShadow: `
-                            0 20px 40px -10px rgba(0, 0, 0, 0.4),
-                            0 10px 20px -5px rgba(0, 0, 0, 0.3)
+                            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                            0 0 30px rgba(236, 72, 153, 0.2)
                           `,
                         }}
                       >
+                        {/* Gradient Overlay for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        
                         {/* Auditor Image */}
                         <div className="absolute inset-0 flex items-center justify-center pt-6">
-                          <div className="relative w-36 h-36 rounded-full overflow-hidden">
+                          <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-white/10">
                             <img
                               src={auditor.image}
                               alt={`Professional auditor from ${auditor.location}`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover mix-blend-luminosity opacity-90"
                             />
-                            {/* Subtle Glow */}
+                            {/* Dramatic colored lighting effect */}
                             <div 
-                              className="absolute inset-0 rounded-full pointer-events-none"
+                              className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
                               style={{
-                                background: "radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.1) 0%, transparent 60%)",
+                                background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
                               }}
                             />
                           </div>
@@ -204,21 +207,21 @@ const HeroSection = () => {
 
                         {/* Location Badge */}
                         <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
-                          <div className="bg-cyan-400/10 backdrop-blur-sm border border-cyan-400/20 rounded-full px-5 py-2 w-full">
-                            <p className="text-cyan-400 font-sans font-semibold text-sm text-center">
+                          <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 w-full">
+                            <p className="text-white font-sans font-bold text-sm text-center">
                               {auditor.location}
                             </p>
-                            <p className="text-white/60 font-sans text-xs text-center">
+                            <p className="text-white/80 font-sans text-xs text-center">
                               {auditor.region}
                             </p>
                           </div>
                         </div>
 
-                        {/* Subtle Edge Highlight */}
+                        {/* Edge Highlight */}
                         <div 
-                          className="absolute inset-0 pointer-events-none rounded-2xl"
+                          className="absolute inset-0 pointer-events-none rounded-3xl"
                           style={{
-                            background: "linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 50%)",
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                           }}
                         />
                       </div>
