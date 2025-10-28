@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Brain, Cpu, Sparkles, Search, Database, Network, Workflow, Zap, RefreshCw } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
@@ -61,18 +61,21 @@ const projects = [
     title: "ScanPro+ AI Intelligence Platform",
     description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
     gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))",
+    icons: [Brain, Cpu, Sparkles],
   },
   {
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
     gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))",
+    icons: [Search, Database, Network],
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
     gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
+    icons: [Workflow, Zap, RefreshCw],
   },
 ];
 
@@ -197,8 +200,8 @@ const FullScreenProjects = () => {
                 </button>
               </motion.div>
 
-              {/* Right: Auditor Cards or Nothing */}
-              {project.showAuditors && (
+              {/* Right: Auditor Cards or Icon Animation */}
+              {project.showAuditors ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -300,7 +303,76 @@ const FullScreenProjects = () => {
                     </div>
                   </div>
                 </motion.div>
-              )}
+              ) : project.icons ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  className="flex justify-center lg:justify-end"
+                >
+                  {/* Outer card with vibrant gradient background */}
+                  <div
+                    className="relative p-8 md:p-12 rounded-3xl"
+                    style={{
+                      background: project.gradient,
+                      boxShadow: "0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.1) inset",
+                    }}
+                  >
+                    {/* Gradient Overlay for depth */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/40 via-transparent to-white/5"></div>
+                    
+                    {/* Inner icon card */}
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl w-[280px] h-[360px] md:w-[340px] md:h-[440px] border-2 border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm">
+                      {/* Animated Icons */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-full h-full flex items-center justify-center gap-6">
+                          {project.icons.map((Icon, iconIndex) => (
+                            <motion.div
+                              key={iconIndex}
+                              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                              whileInView={{ 
+                                opacity: [0.6, 1, 0.6],
+                                y: [-10, 10, -10],
+                                scale: [0.9, 1.1, 0.9],
+                              }}
+                              transition={{
+                                duration: 3,
+                                delay: iconIndex * 0.3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                              }}
+                              viewport={{ once: false }}
+                            >
+                              <Icon className="w-16 h-16 md:w-20 md:h-20 text-white" strokeWidth={1.5} />
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Animated glow effect */}
+                      <motion.div
+                        className="absolute inset-0 pointer-events-none"
+                        animate={{
+                          background: [
+                            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+                            "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+                            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+                          ]
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Edge Highlight */}
+                    <div className="absolute inset-0 rounded-3xl border border-white/20"></div>
+                  </div>
+                </motion.div>
+              ) : null}
             </div>
           </div>
         </section>
