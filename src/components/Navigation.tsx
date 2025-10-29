@@ -20,36 +20,34 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Detect scroll position and section colors
+  // Detect scroll position and section colors using Intersection Observer
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      // Hero section (dark) - 0 to 1 viewport
-      if (scrollPosition < windowHeight) {
-        setNavTheme('dark');
-      }
-      // First project section (green) - 1 to 2 viewports
-      else if (scrollPosition < windowHeight * 2) {
-        setNavTheme('green');
-      }
-      // Other sections - alternate or default to light
-      else if (scrollPosition < windowHeight * 3) {
-        setNavTheme('dark');
-      }
-      else if (scrollPosition < windowHeight * 4) {
-        setNavTheme('green');
-      }
-      else {
-        setNavTheme('light');
-      }
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50px 0px -50% 0px', // Trigger when section is near the top
+      threshold: 0,
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionTheme = entry.target.getAttribute('data-nav-theme') as 'dark' | 'green' | 'light' | null;
+          if (sectionTheme) {
+            setNavTheme(sectionTheme);
+          }
+        }
+      });
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections with data-nav-theme attribute
+    const sections = document.querySelectorAll('[data-nav-theme]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   // Dynamic navigation styles based on theme

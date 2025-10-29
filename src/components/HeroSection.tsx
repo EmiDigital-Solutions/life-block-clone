@@ -122,7 +122,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-black to-black opacity-90"></div>
 

@@ -198,11 +198,21 @@ const FullScreenProjects = () => {
       style={{ backgroundColor }}
       className="relative"
     >
-      {projects.map((project, index) => (
-        <section
-          key={index}
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
-        >
+      {projects.map((project, index) => {
+        // Determine nav theme based on project gradient
+        let navTheme: 'dark' | 'green' | 'light' = 'dark';
+        if (project.gradient.includes('rgb(34, 197, 94)')) {
+          navTheme = 'green';
+        } else if (project.gradient.includes('rgb(31, 41, 55)') || project.gradient.includes('rgb(37, 99, 235)')) {
+          navTheme = 'dark';
+        }
+
+        return (
+          <section
+            key={index}
+            data-nav-theme={navTheme}
+            className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
+          >
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left: Text Content */}
@@ -439,7 +449,8 @@ const FullScreenProjects = () => {
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
     </motion.div>
   );
 };
