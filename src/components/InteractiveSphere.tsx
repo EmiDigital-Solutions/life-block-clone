@@ -60,9 +60,9 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       <meshStandardMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.2}
-        metalness={0.1}
-        roughness={0.6}
+        emissiveIntensity={emissiveIntensity * 0.15}
+        metalness={0.15}
+        roughness={0.5}
         toneMapped={false}
       />
     </mesh>
@@ -87,15 +87,14 @@ const SphereGroup = () => {
       emissiveIntensity: number;
     }> = [];
     
-    const radius = 2.5;
-    const count = 200; // Dense uniform packing
+    const radius = 2.8; // Slightly larger sphere
+    const count = 250; // More balls for tight packing
     
-    // Very dark colors from auditor cards - no bright colors
+    // Exact colors from auditor cards: green, blue, white only
     const colors = [
-      { color: new THREE.Color(0.176, 0.216, 0.282), weight: 0.3 },  // #2D3748 dark slate
-      { color: new THREE.Color(0.118, 0.227, 0.373), weight: 0.25 }, // #1E3A5F dark blue
-      { color: new THREE.Color(0.067, 0.369, 0.349), weight: 0.25 }, // #115E59 dark teal
-      { color: new THREE.Color(0.290, 0.337, 0.408), weight: 0.2 },  // #4A5568 dark gray
+      { color: new THREE.Color(0.067, 0.369, 0.349), weight: 0.35 }, // #115E59 green card
+      { color: new THREE.Color(0.118, 0.227, 0.373), weight: 0.35 }, // #1E3A5F blue card  
+      { color: new THREE.Color(0.90, 0.91, 0.92), weight: 0.30 },    // #E5E7EB white/light gray
     ];
     
     // Fibonacci sphere distribution
@@ -109,8 +108,8 @@ const SphereGroup = () => {
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
       
-      // UNIFORM SIZE - all spheres same size, tightly packed
-      const size = 0.12;
+      // BIGGER UNIFORM SIZE - all same, no gaps
+      const size = 0.18;
       
       // Pick color based on weights
       const colorRand = Math.random();
