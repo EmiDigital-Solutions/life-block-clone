@@ -196,16 +196,8 @@ const FullScreenProjects = () => {
     <motion.div
       ref={containerRef}
       style={{ backgroundColor }}
-      className="relative -mt-1"
+      className="relative"
     >
-      {/* Smooth gradient transition from hero section */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%)'
-        }}
-      />
-      
       {projects.map((project, index) => {
         // Determine nav theme based on project gradient
         let navTheme: 'dark' | 'green' | 'light' = 'dark';
@@ -219,7 +211,7 @@ const FullScreenProjects = () => {
           <section
             key={index}
             data-nav-theme={navTheme}
-            className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-20"
+            className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
           >
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
