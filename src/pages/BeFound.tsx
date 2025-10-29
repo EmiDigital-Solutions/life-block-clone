@@ -386,7 +386,7 @@ const BeFound = () => {
                 >
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xl">
+                      <div className="w-14 h-14 min-w-14 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0 text-white font-bold text-xl aspect-square">
                         {step.number}
                       </div>
                       <h3 className="text-xl font-semibold text-white">{step.title}</h3>
