@@ -21,52 +21,6 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   // Store original position
   const originalPosition = useMemo(() => new THREE.Vector3(...position), [position]);
   
-  // Create custom shader material for radial gradient effect
-  const shaderMaterial = useMemo(() => {
-    return new THREE.ShaderMaterial({
-      uniforms: {
-        baseColor: { value: baseColor },
-        time: { value: 0 },
-        intensity: { value: emissiveIntensity }
-      },
-      vertexShader: `
-        varying vec3 vNormal;
-        varying vec3 vPosition;
-        
-        void main() {
-          vNormal = normalize(normalMatrix * normal);
-          vPosition = position;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 baseColor;
-        uniform float intensity;
-        varying vec3 vNormal;
-        varying vec3 vPosition;
-        
-        void main() {
-          // Calculate radial gradient from center
-          float dist = length(vPosition);
-          float gradient = smoothstep(0.0, 1.0, dist / 0.5);
-          
-          // Create highlight on the "top" of sphere
-          vec3 lightDir = normalize(vec3(0.5, 0.8, 1.0));
-          float NdotL = max(dot(vNormal, lightDir), 0.0);
-          float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 2.0);
-          
-          // Darker at edges, brighter in center with lighting
-          vec3 color = baseColor * (0.6 + gradient * 0.4);
-          color += baseColor * NdotL * 0.4;
-          color += vec3(1.0) * fresnel * 0.15;
-          
-          gl_FragColor = vec4(color, 1.0);
-        }
-      `,
-      toneMapped: false
-    });
-  }, [baseColor, emissiveIntensity]);
-  
   // Bright colors for hover
   const brightCyan = useMemo(() => new THREE.Color(0, 0.85, 1), []);
   const brightLime = useMemo(() => new THREE.Color(0.02, 1, 0.65), []);
@@ -139,7 +93,17 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   return (
     <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[size, 64, 64]} />
-      <primitive object={shaderMaterial} attach="material" />
+      <meshPhysicalMaterial
+        color={baseColor}
+        emissive={baseColor}
+        emissiveIntensity={emissiveIntensity * 0.3}
+        metalness={0.4}
+        roughness={0.3}
+        clearcoat={0.8}
+        clearcoatRoughness={0.2}
+        reflectivity={0.9}
+        toneMapped={false}
+      />
     </mesh>
   );
 };
@@ -284,10 +248,12 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Subtle professional lighting */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1.0} color="#ffffff" />
-        <pointLight position={[-3, 3, 5]} intensity={0.6} color="#ffffff" />
+        {/* Professional gradient lighting */}
+        <ambientLight intensity={0.3} />
+        <hemisphereLight intensity={0.6} color="#ffffff" groundColor="#000000" />
+        <directionalLight position={[8, 8, 6]} intensity={1.5} color="#ffffff" />
+        <directionalLight position={[-6, -6, -4]} intensity={0.5} color="#6699ff" />
+        <pointLight position={[4, 6, 8]} intensity={1.2} color="#ffffff" />
         
         {/* Sphere Group */}
         <SphereGroup />
