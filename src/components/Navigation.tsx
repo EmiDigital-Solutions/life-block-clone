@@ -217,7 +217,7 @@ const Navigation = () => {
             </a>
             <Button 
               variant="outline" 
-              className="font-sans text-sm px-6 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
+              className="font-sans text-sm px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
             >
               Sign In
             </Button>
@@ -297,7 +297,7 @@ const Navigation = () => {
             </a>
             <Button 
               variant="outline" 
-              className="w-full font-sans text-sm transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
+              className="w-full font-sans text-sm py-3 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md"
             >
               Sign In
             </Button>

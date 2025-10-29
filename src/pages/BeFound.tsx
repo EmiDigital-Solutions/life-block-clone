@@ -2,125 +2,165 @@ import { Button } from "@/components/ui/button";
 import { Check, Users, Eye, TrendingUp, ArrowRight, Building2, Globe2, BarChart3 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 const BeFound = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#1a1a3e] via-[#2a1a5e] to-[#0a4a3a]">
+      {/* Hero Section with Aurora Effect */}
+      <section className="relative pt-32 pb-32 overflow-hidden">
+        {/* Aurora Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a4e] via-[#2a1a6e] via-[#2a2a8e] to-[#1a4a5a] animate-[gradient_15s_ease_infinite]"></div>
+        
+        {/* Animated Gradient Overlays */}
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-emerald-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 text-left">
-              <span className="text-primary">Get discovered</span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-5xl md:text-7xl font-bold mb-8 text-left leading-tight"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Reach your target clients,</span>
               <br />
-              <span className="text-white">by global buyers seeking audited suppliers.</span>
-            </h1>
+              <span className="text-white">showcase verified excellence.</span>
+            </motion.h1>
             
-            <div className="flex flex-wrap gap-6 mb-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-wrap gap-6 mb-10"
+            >
               <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-primary" />
+                <Check className="w-5 h-5 text-emerald-400" />
                 <span className="text-lg">Free Profile</span>
               </div>
               <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-primary" />
+                <Check className="w-5 h-5 text-emerald-400" />
                 <span className="text-lg">Premium Visibility</span>
               </div>
-            </div>
+            </motion.div>
 
-            <Button className="bg-primary text-white hover:bg-primary/90 text-lg px-8 py-6 rounded-full">
-              Claim Your Profile
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold shadow-xl hover:scale-105 transition-all">
+                Claim Your Profile
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </motion.div>
 
-            <p className="mt-8 text-lg text-white/70 max-w-2xl">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-8 text-lg text-white/80 max-w-2xl"
+            >
               Create or claim your supplier profile in minutes. If your company is already listed on YVOO, take control of your profile for free and manage your content.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
 
       {/* Logo Section */}
-      <section className="py-16 bg-background">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
-          <p className="text-center text-muted-foreground mb-12">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center text-muted-foreground mb-12 text-lg"
+          >
             Reach thousands of procurement professionals via YVOO
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center">
-            {["REWE", "KNORR", "IFM", "ABUS", "AVL", "KRONUS"].map((name) => (
-              <div key={name} className="flex items-center justify-center h-20 bg-white rounded-lg border border-gray-200 px-4">
-                <span className="text-2xl font-bold text-gray-800">{name}</span>
-              </div>
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center"
+          >
+            {["REWE", "KNORR", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
+              <motion.div 
+                key={name} 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center justify-center h-24 bg-white rounded-xl shadow-md hover:shadow-lg transition-all px-6"
+              >
+                <span className="text-2xl md:text-3xl font-bold text-gray-800">{name}</span>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-20">
-            <span className="text-primary">Our Value</span>
-          </h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-20"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Our Value</span>
+          </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-background rounded-2xl p-8 shadow-lg">
-              <div className="text-6xl font-bold text-primary mb-4">5K+</div>
-              <div className="text-2xl font-semibold mb-6 text-foreground">Active Buyers Annually</div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Global Procurement Teams
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  B2B Focus
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  All Industries
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-background rounded-2xl p-8 shadow-lg">
-              <div className="text-6xl font-bold text-primary mb-4">25K+</div>
-              <div className="text-2xl font-semibold mb-6 text-foreground">Supplier Views Per Month</div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Manage Profile Content
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Track Your Analytics
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Verified Status Boost
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-background rounded-2xl p-8 shadow-lg">
-              <div className="text-6xl font-bold text-primary mb-4">8x</div>
-              <div className="text-2xl font-semibold mb-6 text-foreground">More Visibility with Premium</div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Precise Targeting
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Advanced Analytics
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  Buyer Intent Data
-                </li>
-              </ul>
-            </div>
+            {[
+              {
+                number: "7M+",
+                title: "Users per year",
+                items: ["Worldwide Audience", "B2B driven", "All industries"]
+              },
+              {
+                number: "12M+",
+                title: "Suppliers viewed per month",
+                items: ["Manage Supplier Profile Content", "Enrich Supplier Data", "Organic Analytics"]
+              },
+              {
+                number: "5x",
+                title: "More Visibility for Premium",
+                items: ["Precise Targeting", "Advanced Analytics", "Buyer Intent Data"]
+              }
+            ].map((stat, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all"
+              >
+                <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">
+                  {stat.number}
+                </div>
+                <div className="text-2xl font-semibold mb-6 text-foreground">{stat.title}</div>
+                <ul className="space-y-3 text-muted-foreground">
+                  {stat.items.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <Check className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -128,116 +168,175 @@ const BeFound = () => {
       {/* Product Overview Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-primary">Product</span> <span className="text-foreground">Overview.</span>
-          </h2>
-          <p className="text-muted-foreground mb-20 max-w-2xl">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-4"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Product</span> <span className="text-foreground">Overview.</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-muted-foreground mb-20 max-w-2xl"
+          >
             Get started in three simple steps and begin connecting with global buyers
-          </p>
+          </motion.p>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-foreground text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground">Create Your Profile</h3>
-              <p className="text-muted-foreground">
-                Sign up and create your supplier profile with your company details, capabilities, certifications, and audit history. Make your profile stand out to potential buyers.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold border-b-4 border-primary">
-                2
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground">Get Verified</h3>
-              <p className="text-muted-foreground">
-                Schedule an on-site audit with our verified auditors. Once completed, your profile receives the YVOO verified badge, significantly increasing buyer trust and visibility.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-foreground text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground">Connect with Buyers</h3>
-              <p className="text-muted-foreground">
-                Start receiving inquiries from global buyers searching for verified suppliers. Track your profile performance, manage leads, and grow your business opportunities.
-              </p>
-            </div>
+            {[
+              {
+                number: 1,
+                title: "Create / Claim your company profile",
+                description: "Sign up and create your supplier profile with your company details, capabilities, certifications, and audit history. Make your profile stand out to potential buyers.",
+                active: false
+              },
+              {
+                number: 2,
+                title: "Analytics",
+                description: "Schedule an on-site audit with our verified auditors. Once completed, your profile receives the YVOO verified badge, significantly increasing buyer trust and visibility.",
+                active: true
+              },
+              {
+                number: 3,
+                title: "YVOO Ads",
+                description: "Start receiving inquiries from global buyers searching for verified suppliers. Track your profile performance, manage leads, and grow your business opportunities.",
+                active: false
+              }
+            ].map((step, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="space-y-4"
+              >
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold ${
+                  step.active 
+                    ? 'bg-purple-100 text-purple-600 border-b-4 border-purple-600' 
+                    : 'bg-gray-100 text-gray-600'
+                }`}>
+                  {step.number}
+                </div>
+                <h3 className="text-2xl font-semibold text-foreground">{step.title}</h3>
+                <p className="text-muted-foreground">
+                  {step.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
-            <span className="text-foreground">Why Choose</span> <span className="text-primary">YVOO</span>
-          </h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-center mb-6"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Global Leads on Autopilot</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-center text-2xl md:text-3xl font-semibold mb-20 text-foreground"
+          >
+            with YVOO Ads
+          </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            <div className="space-y-6">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Eye className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-3xl font-semibold text-foreground">Maximum Visibility</h3>
-              <p className="text-lg text-muted-foreground">
-                Your verified profile appears in search results when buyers look for suppliers in your industry and region. Premium placement ensures you stand out from the competition.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
-                <BarChart3 className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-3xl font-semibold text-foreground">Detailed Analytics</h3>
-              <p className="text-lg text-muted-foreground">
-                Track who views your profile, which products generate interest, and where your inquiries come from. Use data-driven insights to optimize your presence.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Users className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-3xl font-semibold text-foreground">Quality Connections</h3>
-              <p className="text-lg text-muted-foreground">
-                Connect with serious buyers actively searching for suppliers. Our platform attracts procurement professionals and decision-makers, not casual browsers.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
-                <TrendingUp className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-3xl font-semibold text-foreground">Grow Your Business</h3>
-              <p className="text-lg text-muted-foreground">
-                Verified suppliers on YVOO report an average 40% increase in qualified inquiries. Turn visibility into real business opportunities and partnerships.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            {[
+              {
+                icon: TrendingUp,
+                label: "Ranking",
+                title: "Secure a top ranking position at YVOO Search for more leads and greater visibility.",
+                color: "from-purple-600 to-blue-600"
+              },
+              {
+                icon: BarChart3,
+                label: "Performance Reporting",
+                title: "Get advanced insights into the performance of your ad campaigns.",
+                color: "from-blue-600 to-cyan-600"
+              },
+              {
+                icon: Users,
+                label: "Buyer Intent Data",
+                title: "Our platform delivers intent-driven insights so you can focus on the prospects that matter most - those actively exploring solutions like yours.",
+                color: "from-cyan-600 to-emerald-600"
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="space-y-6"
+              >
+                <div className="space-y-4">
+                  <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r ${feature.color}`}>
+                    {feature.label}
+                  </p>
+                  <h3 className="text-xl font-semibold text-foreground leading-tight">
+                    {feature.title}
+                  </h3>
+                </div>
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center"
+                >
+                  <feature.icon className="w-20 h-20 text-cyan-400" />
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-primary/5">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-foreground">Ready to Get</span> <span className="text-primary">Discovered?</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
+            <span className="text-foreground">Ready to Get</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Discovered?</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
+          >
             Join thousands of verified suppliers connecting with global buyers on YVOO
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button className="bg-primary text-white hover:bg-primary/90 text-lg px-8 py-6 rounded-full">
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap gap-4 justify-center"
+          >
+            <Button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold shadow-xl hover:scale-105 transition-all border-2 border-gray-200">
               Create Free Profile
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button variant="outline" className="text-lg px-8 py-6 rounded-full border-2">
+            <Button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold shadow-xl hover:scale-105 transition-all border-2 border-gray-200">
               View Pricing
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
