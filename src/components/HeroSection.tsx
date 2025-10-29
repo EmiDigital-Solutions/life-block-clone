@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
-import InteractiveGlobe from "./InteractiveGlobe";
 
 const HeroSection = () => {
+
   return (
     <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Interactive 3D Globe Background */}
-      <div className="absolute inset-0 z-0">
-        <InteractiveGlobe />
+      {/* Spline 3D Background Animation */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <iframe 
+          src='https://my.spline.design/reactiveorb-hpzUrs2oUoCafTMt0LiZLgzl/' 
+          frameBorder='0' 
+          width='100%' 
+          height='100%'
+          className="w-full h-full"
+        />
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 pointer-events-none"></div>
       </div>
@@ -27,6 +33,7 @@ const HeroSection = () => {
               <div className="h-px w-16 bg-cyan-400/40"></div>
             </div>
           </motion.div>
+
 
           {/* Main Heading */}
           <motion.h1 
@@ -74,7 +81,7 @@ const HeroSection = () => {
       </div>
 
       {/* Decorative Wave */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
+      <div className="absolute bottom-0 left-0 right-0">
         <svg
           className="w-full h-24 text-background"
           viewBox="0 0 1440 100"
