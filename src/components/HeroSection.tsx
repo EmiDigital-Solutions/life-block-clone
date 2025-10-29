@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Spline from "@splinetool/react-spline";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -124,16 +123,67 @@ const HeroSection = () => {
 
   return (
     <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Spline 3D Background Animation */}
-      <div className="absolute inset-0 z-0">
-        <Spline
-          scene="https://prod.spline.design/bAnx0J0gAAbDBSNgALicfuXk/scene.splinecode"
-          className="w-full h-full"
+      {/* Animated Orb Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Main animated orb */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
+          style={{
+            background: "radial-gradient(circle at center, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.3) 40%, transparent 70%)",
+            filter: "blur(60px)",
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
         />
+        
+        {/* Secondary orb */}
+        <motion.div
+          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full"
+          style={{
+            background: "radial-gradient(circle at center, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.2) 50%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Tertiary orb */}
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
+          style={{
+            background: "radial-gradient(circle at center, rgba(34, 211, 238, 0.3) 0%, rgba(14, 165, 233, 0.2) 50%, transparent 70%)",
+            filter: "blur(70px)",
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, -80, 0],
+            y: [0, 80, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
       </div>
-      
-      {/* Dark overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/30 z-[1]"></div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-32 text-center">
