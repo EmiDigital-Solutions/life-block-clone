@@ -1,32 +1,86 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import { ArrowRight, Users, Eye, BarChart3, TrendingUp, Check } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 
 const BeFound = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  useEffect(() => {
+    const cycle = () => {
+      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
+      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
+    };
+
+    cycle();
+    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % 3);
+  };
+
+  const getCardStyle = (index: number, totalCards: number) => {
+    const centerIndex = (totalCards - 1) / 2;
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
+    
+    if (isFanned) {
+      if (isMobile) {
+        return {
+          x: offset * 110,
+          y: Math.abs(offset) * -20,
+          rotateY: offset * -8,
+          rotateZ: offset * 6,
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      } else {
+        return {
+          x: offset * 85,
+          y: Math.abs(offset) * -45,
+          rotateY: offset * -8,
+          rotateZ: offset * 8,
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      }
+    } else {
+      return {
+        x: isMobile ? 0 : 180,
+        y: isMobile ? 0 : 80,
+        rotateY: 0,
+        rotateZ: isMobile ? 0 : -25,
+        scale: 0.98,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
+      };
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
       
-      <motion.div
-        ref={containerRef}
-        className="relative"
-      >
+      <motion.div ref={containerRef} className="relative">
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(0, 0, 0), rgb(17, 24, 39), rgb(0, 0, 0))" }}
         >
           <div className="container mx-auto">
@@ -63,8 +117,9 @@ const BeFound = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
                   Claim Your Profile
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
             </div>
@@ -74,7 +129,7 @@ const BeFound = () => {
         {/* Logo Section */}
         <section
           data-nav-theme="light"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-[70vh] flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246), rgb(249, 250, 251))" }}
         >
           <div className="container mx-auto">
@@ -88,7 +143,7 @@ const BeFound = () => {
                 Trusted by industry leaders worldwide
               </motion.p>
               
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center">
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center max-w-5xl mx-auto">
                 {["REWE", "KNORR", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
                   <motion.div 
                     key={name} 
@@ -107,215 +162,354 @@ const BeFound = () => {
           </div>
         </section>
 
-        {/* Stats Section - Our Value */}
+        {/* Stats Section - Our Value with Cards */}
         <section
           data-nav-theme="green"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
         >
           <div className="container mx-auto">
-            <div className="text-white space-y-12">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-sans font-semibold"
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="text-white space-y-6"
               >
-                Our Value
-              </motion.h2>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-white rounded-full"></div>
+                  <span className="text-sm font-sans tracking-wide font-medium">01 Feature</span>
+                </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
-                {[
-                  {
-                    number: "7M+",
-                    title: "Users per year",
-                    items: ["Worldwide Audience", "B2B driven", "All industries"]
-                  },
-                  {
-                    number: "12M+",
-                    title: "Suppliers viewed per month",
-                    items: ["Manage Supplier Profile Content", "Enrich Supplier Data", "Organic Analytics"]
-                  },
-                  {
-                    number: "5x",
-                    title: "More Visibility for Premium",
-                    items: ["Precise Targeting", "Advanced Analytics", "Buyer Intent Data"]
-                  }
-                ].map((stat, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-                  >
-                    <div className="text-6xl font-bold text-white mb-4">
-                      {stat.number}
-                    </div>
-                    <div className="text-2xl font-semibold mb-6 text-white">{stat.title}</div>
-                    <ul className="space-y-3 text-white/90">
-                      {stat.items.map((item, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <Check className="w-5 h-5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                  Our Value
+                </h2>
+
+                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
+                  Connect with 7M+ users per year, get 12M+ monthly supplier views, and achieve 5x more visibility with our premium placement options.
+                </p>
+
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
+                  Learn more
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="flex justify-center lg:justify-end"
+              >
+                <div 
+                  className="relative w-full max-w-2xl"
+                  style={{ perspective: "1500px" }}
+                >
+                  <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                  
+                  <div className="relative h-[400px] flex items-center justify-center">
+                    {[
+                      { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"], gradient: "from-blue-600 via-blue-700 to-blue-800" },
+                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-green-600 via-green-700 to-green-800" },
+                      { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
+                    ].map((stat, index) => {
+                      const style = getCardStyle(index, 3);
+                      
+                      return (
+                        <motion.div
+                          key={stat.number}
+                          className="absolute cursor-pointer"
+                          onClick={handleCardClick}
+                          initial={false}
+                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                          animate={{
+                            x: style.x,
+                            y: style.y,
+                            rotateY: style.rotateY,
+                            rotateZ: style.rotateZ,
+                            scale: style.scale,
+                            opacity: style.opacity,
+                            zIndex: style.zIndex,
+                          }}
+                          transition={{
+                            duration: isMobile ? 2.5 : 1.8,
+                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
+                            ease: [0.33, 1, 0.68, 1],
+                            type: "tween",
+                          }}
+                          style={{
+                            transformStyle: "preserve-3d",
+                            willChange: "transform, opacity",
+                          }}
+                        >
+                          <div
+                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${stat.gradient}`}
+                            style={{
+                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(236, 72, 153, 0.2)",
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                              <div className="text-5xl font-bold text-white mb-3">{stat.number}</div>
+                              <div className="text-lg font-semibold text-white mb-4">{stat.title}</div>
+                              <div className="space-y-2">
+                                {stat.items.map((item, i) => (
+                                  <div key={i} className="text-sm text-white/90 flex items-center gap-2">
+                                    <Check className="w-4 h-4" />
+                                    {item}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div 
+                              className="absolute inset-0 pointer-events-none rounded-3xl"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Product Overview Section */}
+        {/* Product Overview Section with Cards */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))" }}
         >
           <div className="container mx-auto">
-            <div className="text-white space-y-12">
-              <div>
-                <motion.h2 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-4xl md:text-5xl font-sans font-semibold mb-4"
-                >
-                  <span className="text-cyan-400">Product</span> <span className="text-white">Overview.</span>
-                </motion.h2>
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-white/70 font-sans"
-                >
-                  Get started in three simple steps and begin connecting with global buyers
-                </motion.p>
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="text-white space-y-6"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-white rounded-full"></div>
+                  <span className="text-sm font-sans tracking-wide font-medium">02 Feature</span>
+                </div>
 
-              <div className="grid md:grid-cols-3 gap-12">
-                {[
-                  {
-                    number: 1,
-                    title: "Create / Claim your company profile",
-                    description: "Sign up and create your supplier profile with your company details, capabilities, certifications, and audit history. Make your profile stand out to potential buyers.",
-                    active: false
-                  },
-                  {
-                    number: 2,
-                    title: "Analytics",
-                    description: "Schedule an on-site audit with our verified auditors. Once completed, your profile receives the YVOO verified badge, significantly increasing buyer trust and visibility.",
-                    active: true
-                  },
-                  {
-                    number: 3,
-                    title: "YVOO Ads",
-                    description: "Start receiving inquiries from global buyers searching for verified suppliers. Track your profile performance, manage leads, and grow your business opportunities.",
-                    active: false
-                  }
-                ].map((step, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                    className="space-y-4"
-                  >
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold ${
-                      step.active 
-                        ? 'bg-cyan-400/20 text-cyan-400 border-b-4 border-cyan-400' 
-                        : 'bg-white/10 text-white'
-                    }`}>
-                      {step.number}
-                    </div>
-                    <h3 className="text-2xl font-semibold text-white">{step.title}</h3>
-                    <p className="text-white/70">
-                      {step.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                  <span className="text-cyan-400">Product</span> Overview
+                </h2>
+
+                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
+                  Get started in three simple steps: create your profile, get verified with analytics, and start connecting with global buyers through YVOO Ads.
+                </p>
+
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
+                  Learn more
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="flex justify-center lg:justify-end"
+              >
+                <div 
+                  className="relative w-full max-w-2xl"
+                  style={{ perspective: "1500px" }}
+                >
+                  <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                  
+                  <div className="relative h-[400px] flex items-center justify-center">
+                    {[
+                      { number: 1, title: "Create Profile", desc: "Company profile with details", active: false, gradient: "from-blue-600 via-blue-700 to-blue-800" },
+                      { number: 2, title: "Analytics", desc: "Get verified badge", active: true, gradient: "from-green-600 via-green-700 to-green-800" },
+                      { number: 3, title: "YVOO Ads", desc: "Connect with buyers", active: false, gradient: "from-gray-800 via-gray-900 to-black" },
+                    ].map((step, index) => {
+                      const style = getCardStyle(index, 3);
+                      
+                      return (
+                        <motion.div
+                          key={step.number}
+                          className="absolute cursor-pointer"
+                          onClick={handleCardClick}
+                          initial={false}
+                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                          animate={{
+                            x: style.x,
+                            y: style.y,
+                            rotateY: style.rotateY,
+                            rotateZ: style.rotateZ,
+                            scale: style.scale,
+                            opacity: style.opacity,
+                            zIndex: style.zIndex,
+                          }}
+                          transition={{
+                            duration: isMobile ? 2.5 : 1.8,
+                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
+                            ease: [0.33, 1, 0.68, 1],
+                            type: "tween",
+                          }}
+                          style={{
+                            transformStyle: "preserve-3d",
+                            willChange: "transform, opacity",
+                          }}
+                        >
+                          <div
+                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${step.gradient}`}
+                            style={{
+                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(236, 72, 153, 0.2)",
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl font-bold mb-4 ${
+                                step.active 
+                                  ? 'bg-cyan-400/30 text-cyan-400 border-2 border-cyan-400' 
+                                  : 'bg-white/20 text-white'
+                              }`}>
+                                {step.number}
+                              </div>
+                              <div className="text-xl font-semibold text-white mb-2">{step.title}</div>
+                              <div className="text-sm text-white/80">{step.desc}</div>
+                            </div>
+
+                            <div 
+                              className="absolute inset-0 pointer-events-none rounded-3xl"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Features Section - Global Leads */}
+        {/* Features Section with Cards */}
         <section
           data-nav-theme="green"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))" }}
         >
           <div className="container mx-auto">
-            <div className="text-white space-y-12">
-              <div className="text-center">
-                <motion.h2 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-4xl md:text-5xl font-sans font-semibold mb-4"
-                >
-                  Global Leads on Autopilot
-                </motion.h2>
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-2xl md:text-3xl font-semibold text-white"
-                >
-                  with YVOO Ads
-                </motion.p>
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="text-white space-y-6"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-white rounded-full"></div>
+                  <span className="text-sm font-sans tracking-wide font-medium">03 Feature</span>
+                </div>
 
-              <div className="grid md:grid-cols-3 gap-12">
-                {[
-                  {
-                    icon: TrendingUp,
-                    label: "Ranking",
-                    title: "Secure a top ranking position at YVOO Search for more leads and greater visibility.",
-                  },
-                  {
-                    icon: BarChart3,
-                    label: "Performance Reporting",
-                    title: "Get advanced insights into the performance of your ad campaigns.",
-                  },
-                  {
-                    icon: Users,
-                    label: "Buyer Intent Data",
-                    title: "Our platform delivers intent-driven insights so you can focus on the prospects that matter most - those actively exploring solutions like yours.",
-                  }
-                ].map((feature, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                    className="space-y-6"
-                  >
-                    <div className="space-y-4">
-                      <p className="text-lg font-semibold text-white">
-                        {feature.label}
-                      </p>
-                      <h3 className="text-xl font-semibold text-white leading-tight">
-                        {feature.title}
-                      </h3>
-                    </div>
-                    <motion.div 
-                      whileHover={{ scale: 1.05 }}
-                      className="aspect-video bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 overflow-hidden shadow-2xl flex items-center justify-center"
-                    >
-                      <feature.icon className="w-20 h-20 text-white" />
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                  Global Leads on Autopilot
+                </h2>
+
+                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
+                  Get top ranking positions, performance reporting insights, and buyer intent data to focus on prospects actively exploring solutions like yours.
+                </p>
+
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
+                  Learn more
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="flex justify-center lg:justify-end"
+              >
+                <div 
+                  className="relative w-full max-w-2xl"
+                  style={{ perspective: "1500px" }}
+                >
+                  <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                  
+                  <div className="relative h-[400px] flex items-center justify-center">
+                    {[
+                      { icon: TrendingUp, label: "Ranking", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+                      { icon: BarChart3, label: "Performance", gradient: "from-green-600 via-green-700 to-green-800" },
+                      { icon: Users, label: "Intent Data", gradient: "from-gray-800 via-gray-900 to-black" },
+                    ].map((feature, index) => {
+                      const style = getCardStyle(index, 3);
+                      const IconComponent = feature.icon;
+                      
+                      return (
+                        <motion.div
+                          key={feature.label}
+                          className="absolute cursor-pointer"
+                          onClick={handleCardClick}
+                          initial={false}
+                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                          animate={{
+                            x: style.x,
+                            y: style.y,
+                            rotateY: style.rotateY,
+                            rotateZ: style.rotateZ,
+                            scale: style.scale,
+                            opacity: style.opacity,
+                            zIndex: style.zIndex,
+                          }}
+                          transition={{
+                            duration: isMobile ? 2.5 : 1.8,
+                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
+                            ease: [0.33, 1, 0.68, 1],
+                            type: "tween",
+                          }}
+                          style={{
+                            transformStyle: "preserve-3d",
+                            willChange: "transform, opacity",
+                          }}
+                        >
+                          <div
+                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${feature.gradient}`}
+                            style={{
+                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(236, 72, 153, 0.2)",
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                              <IconComponent className="w-20 h-20 text-white mb-4" />
+                              <div className="text-xl font-semibold text-white">{feature.label}</div>
+                            </div>
+
+                            <div 
+                              className="absolute inset-0 pointer-events-none rounded-3xl"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -323,7 +517,7 @@ const BeFound = () => {
         {/* CTA Section */}
         <section
           data-nav-theme="green"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+          className="relative min-h-[70vh] flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
           style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
         >
           <div className="container mx-auto text-center">
@@ -332,16 +526,16 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-sans font-semibold"
+                className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold"
               >
-                Ready to Get <span className="text-cyan-400">Discovered?</span>
+                Ready to Get Discovered?
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-xl text-white/90 max-w-2xl mx-auto"
+                className="text-xl text-white/90 max-w-2xl mx-auto font-sans"
               >
                 Join thousands of verified suppliers connecting with global buyers on YVOO
               </motion.p>
@@ -352,11 +546,11 @@ const BeFound = () => {
                 transition={{ delay: 0.4 }}
                 className="flex flex-wrap gap-4 justify-center"
               >
-                <button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4 rounded-full font-semibold shadow-xl hover:scale-105 transition-all">
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide hover:scale-105">
                   Create Free Profile
-                  <ArrowRight className="ml-2 w-5 h-5 inline" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4 rounded-full font-semibold shadow-xl hover:scale-105 transition-all">
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide hover:scale-105">
                   View Pricing
                 </button>
               </motion.div>
