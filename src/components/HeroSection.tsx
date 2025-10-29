@@ -33,7 +33,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight tracking-tight"
               >
                 On-Site Supplier Audits in Days, Not Weeks
               </motion.h1>
@@ -43,7 +43,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl md:text-2xl font-sans text-cyan-400/90"
+                className="text-xl md:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide"
               >
                 70% Cost Reduction · 80% Time Savings · Global Coverage
               </motion.h2>
@@ -53,7 +53,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg text-white/70 font-sans"
+                className="text-lg text-white/70 font-sans font-medium"
               >
                 Physical factory assessments (ISO, VDA, IATF) starting from €700. 
                 AI-powered intelligence with certified auditors across 90+ countries.
@@ -86,22 +86,6 @@ const HeroSection = () => {
 
           </div>
         </div>
-      </div>
-
-      {/* Decorative Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          className="w-full h-24 text-background"
-          viewBox="0 0 1440 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z"
-            fill="currentColor"
-          />
-        </svg>
       </div>
     </section>
   );

@@ -196,8 +196,16 @@ const FullScreenProjects = () => {
     <motion.div
       ref={containerRef}
       style={{ backgroundColor }}
-      className="relative"
+      className="relative -mt-1"
     >
+      {/* Smooth gradient transition from hero section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%)'
+        }}
+      />
+      
       {projects.map((project, index) => {
         // Determine nav theme based on project gradient
         let navTheme: 'dark' | 'green' | 'light' = 'dark';
@@ -225,20 +233,20 @@ const FullScreenProjects = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-white rounded-full"></div>
-                  <span className="text-sm font-sans tracking-wide">
+                  <span className="text-sm font-sans tracking-wide font-medium">
                     {project.number} Feature
                   </span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
                   {project.title}
                 </h2>
 
-                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl">
+                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
                   {project.description}
                 </p>
 
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300">
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
                   Learn more
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
