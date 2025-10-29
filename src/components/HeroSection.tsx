@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Spline from "@splinetool/react-spline";
+import InteractiveSphere from "./InteractiveSphere";
 
 const HeroSection = () => {
 
@@ -69,7 +69,7 @@ const HeroSection = () => {
               </motion.div>
             </div>
 
-            {/* Right Side - Spline Animation */}
+            {/* Right Side - Interactive 3D Sphere */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -77,7 +77,7 @@ const HeroSection = () => {
               className="w-full lg:w-[60%] h-[400px] md:h-[600px] lg:h-[700px] relative"
             >
               <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
-              <Spline scene="https://prod.spline.design/hpzUrs2oUoCafTMt0LiZLgzl/scene.splinecode" />
+              <InteractiveSphere />
             </motion.div>
           </div>
         </div>
