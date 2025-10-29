@@ -9,17 +9,10 @@ const BeFound = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section with Aurora Effect */}
+      {/* Hero Section with Static Gradient */}
       <section className="relative pt-32 pb-32 overflow-hidden">
-        {/* Aurora Gradient Background - Black to Blue to Violet to Cyan/Green */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#1a2470] via-[#4a1a70] via-[#2a4a8a] to-[#1a5a4a]" style={{ backgroundSize: '200% 100%', animation: 'gradient 15s ease infinite' }}></div>
-        
-        {/* Animated Gradient Overlays for Aurora Effect */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-violet-600/40 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-cyan-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-blue-600/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
+        {/* Static Gradient Background - Black to Blue to Cyan/Green */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#0a2463] via-[#1e3a8a] via-[#0e4c7a] to-[#0d7377]"></div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
@@ -29,7 +22,7 @@ const BeFound = () => {
               transition={{ duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold mb-8 text-left leading-tight"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Reach your target clients,</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Reach your target clients,</span>
               <br />
               <span className="text-white">showcase verified excellence.</span>
             </motion.h1>
@@ -41,11 +34,11 @@ const BeFound = () => {
               className="flex flex-wrap gap-6 mb-10"
             >
               <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-emerald-400" />
+                <Check className="w-5 h-5 text-cyan-400" />
                 <span className="text-lg">Free Profile</span>
               </div>
               <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-emerald-400" />
+                <Check className="w-5 h-5 text-cyan-400" />
                 <span className="text-lg">Premium Visibility</span>
               </div>
             </motion.div>
@@ -117,7 +110,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-20"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Our Value</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Our Value</span>
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -147,14 +140,14 @@ const BeFound = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all"
               >
-                <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4">
+                <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 mb-4">
                   {stat.number}
                 </div>
                 <div className="text-2xl font-semibold mb-6 text-foreground">{stat.title}</div>
                 <ul className="space-y-3 text-muted-foreground">
                   {stat.items.map((item, i) => (
                     <li key={i} className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-purple-600 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-cyan-600 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -174,7 +167,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-4"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Product</span> <span className="text-foreground">Overview.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Product</span> <span className="text-foreground">Overview.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -217,7 +210,7 @@ const BeFound = () => {
               >
                 <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold ${
                   step.active 
-                    ? 'bg-purple-100 text-purple-600 border-b-4 border-purple-600' 
+                    ? 'bg-cyan-100 text-cyan-700 border-b-4 border-cyan-600' 
                     : 'bg-gray-100 text-gray-600'
                 }`}>
                   {step.number}
@@ -241,7 +234,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Global Leads on Autopilot</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Global Leads on Autopilot</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -259,19 +252,19 @@ const BeFound = () => {
                 icon: TrendingUp,
                 label: "Ranking",
                 title: "Secure a top ranking position at YVOO Search for more leads and greater visibility.",
-                color: "from-purple-600 to-blue-600"
+                color: "from-blue-600 to-cyan-600"
               },
               {
                 icon: BarChart3,
                 label: "Performance Reporting",
                 title: "Get advanced insights into the performance of your ad campaigns.",
-                color: "from-blue-600 to-cyan-600"
+                color: "from-cyan-600 to-emerald-600"
               },
               {
                 icon: Users,
                 label: "Buyer Intent Data",
                 title: "Our platform delivers intent-driven insights so you can focus on the prospects that matter most - those actively exploring solutions like yours.",
-                color: "from-cyan-600 to-emerald-600"
+                color: "from-emerald-600 to-teal-600"
               }
             ].map((feature, index) => (
               <motion.div 
@@ -311,7 +304,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            <span className="text-foreground">Ready to Get</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Discovered?</span>
+            <span className="text-foreground">Ready to Get</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Discovered?</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
