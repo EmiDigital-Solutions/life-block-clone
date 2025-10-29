@@ -37,47 +37,62 @@ const Navigation = () => {
   // Detect scroll position and extract exact background colors
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 80; // Navbar position
+      const navbarHeight = 80;
       
-      // Get all sections
-      const sections = document.querySelectorAll('section');
+      // Get the element directly under the navbar
+      const elementAtNavbar = document.elementFromPoint(window.innerWidth / 2, navbarHeight + 10);
       
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionBottom = sectionTop + rect.height;
+      if (elementAtNavbar) {
+        // Walk up the DOM tree to find the first element with a solid background
+        let currentElement = elementAtNavbar;
+        let foundColor = false;
         
-        // Check if navbar is within this section
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          // Get computed background color
-          const computedStyle = window.getComputedStyle(section);
+        while (currentElement && currentElement !== document.body && !foundColor) {
+          const computedStyle = window.getComputedStyle(currentElement);
           let bgColor = computedStyle.backgroundColor;
           
-          // If background is transparent or has gradient, check background-image
-          if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
+          // Check if we have a valid color (not transparent)
+          if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+            foundColor = true;
+            
+            // Extract RGB values
+            const rgbMatch = bgColor.match(/\d+/g);
+            if (rgbMatch && rgbMatch.length >= 3) {
+              const [r, g, b] = rgbMatch.map(Number);
+              setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+              setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+            }
+          }
+          
+          // Also check for gradient backgrounds
+          if (!foundColor) {
             const bgImage = computedStyle.backgroundImage;
-            if (bgImage && bgImage !== 'none') {
+            if (bgImage && bgImage !== 'none' && bgImage.includes('gradient')) {
               // Extract first color from gradient
-              const colorMatch = bgImage.match(/rgb\([^)]+\)/);
+              const colorMatch = bgImage.match(/rgba?\([^)]+\)/);
               if (colorMatch) {
-                bgColor = colorMatch[0];
+                const color = colorMatch[0];
+                const rgbMatch = color.match(/\d+/g);
+                if (rgbMatch && rgbMatch.length >= 3) {
+                  const [r, g, b] = rgbMatch.map(Number);
+                  setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+                  setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+                  foundColor = true;
+                }
               }
             }
           }
           
-          // Make the nav color slightly transparent
-          const rgbMatch = bgColor.match(/\d+/g);
-          if (rgbMatch && rgbMatch.length >= 3) {
-            const [r, g, b] = rgbMatch.map(Number);
-            setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-            setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-          }
+          currentElement = currentElement.parentElement as HTMLElement;
         }
-      });
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial call
+    
+    // Also call after a short delay to ensure styles are loaded
+    setTimeout(handleScroll, 100);
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
