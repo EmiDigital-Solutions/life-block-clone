@@ -3,13 +3,13 @@ import InteractiveGlobe from "./InteractiveGlobe";
 const HeroSection = () => {
   return (
     <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Interactive Globe Background */}
+      {/* Interactive 3D Globe */}
       <div className="absolute inset-0 z-0">
         <InteractiveGlobe />
       </div>
 
       {/* Decorative Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 z-10">
         <svg
           className="w-full h-24 text-background"
           viewBox="0 0 1440 100"
