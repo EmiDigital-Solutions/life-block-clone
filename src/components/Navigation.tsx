@@ -224,7 +224,7 @@ const Navigation = () => {
                 borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
               }}
             >
-              Estimate project
+              Sign In
             </Button>
           </div>
 
@@ -309,7 +309,7 @@ const Navigation = () => {
                 borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
               }}
             >
-              Estimate project
+              Sign In
             </Button>
           </div>
         )}

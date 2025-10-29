@@ -65,8 +65,8 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <button className="bg-cyan-400 hover:bg-cyan-500 text-black px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl">
-                  Request 30-Minute Demo
+                <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:scale-105 shadow-xl">
+                  Experience a YVOO Audit
                 </button>
               </motion.div>
             </div>
