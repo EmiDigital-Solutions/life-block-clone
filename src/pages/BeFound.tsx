@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const BeFound = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
       
       {/* Hero Section - Matching Main Page Style */}
@@ -65,7 +65,7 @@ const BeFound = () => {
       </section>
 
       {/* Logo Section */}
-      <section className="py-20 bg-background border-t border-border">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
