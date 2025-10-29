@@ -14,10 +14,13 @@ const BeFound = () => {
         {/* Base Black Background */}
         <div className="absolute inset-0 bg-black"></div>
         
-        {/* Aurora Effect - Top Right Corner (30% coverage) */}
+        {/* Aurora Effect - Diagonal from Top Right */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-br from-cyan-400/30 via-blue-600/40 via-blue-800/30 to-transparent"></div>
-          <div className="absolute top-0 right-0 w-[35%] h-[80%] bg-gradient-to-bl from-cyan-300/20 via-blue-500/25 to-transparent blur-2xl"></div>
+          {/* Main gradient sweep from right to left */}
+          <div className="absolute inset-0 bg-gradient-to-l from-cyan-400/40 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-bl from-teal-400/30 via-blue-600/50 via-violet-700/40 to-transparent" style={{ clipPath: 'polygon(40% 0%, 100% 0%, 100% 100%, 70% 100%)' }}></div>
+          {/* Soft glow layers */}
+          <div className="absolute top-0 right-0 w-[50%] h-[70%] bg-gradient-to-bl from-cyan-300/30 via-blue-500/40 via-violet-600/30 to-transparent blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
