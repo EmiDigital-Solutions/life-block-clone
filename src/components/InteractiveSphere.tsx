@@ -92,15 +92,20 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[size, 32, 32]} />
-      <meshStandardMaterial
+      <sphereGeometry args={[size, 64, 64]} />
+      <meshPhysicalMaterial
         color={baseColor}
         emissive={baseColor}
         emissiveIntensity={emissiveIntensity}
-        metalness={0.3}
-        roughness={0.4}
+        metalness={0.1}
+        roughness={0.15}
+        transmission={0.6}
+        thickness={0.5}
+        clearcoat={1.0}
+        clearcoatRoughness={0.1}
+        transparent={true}
+        opacity={0.85}
         toneMapped={false}
-        flatShading={false}
       />
     </mesh>
   );
@@ -127,12 +132,12 @@ const SphereGroup = () => {
     const radius = 2.5;
     const count = 100;
     
-    // Color palette matching reference
+    // Glass-like color palette with blues, greens, and dark tones
     const colors = [
-      { color: new THREE.Color(1, 1, 1), weight: 0.4 },        // white
-      { color: new THREE.Color(0, 0.85, 1), weight: 0.3 },     // cyan
-      { color: new THREE.Color(0, 1, 0.61), weight: 0.2 },     // lime/green
-      { color: new THREE.Color(0.02, 1, 0.65), weight: 0.1 },  // teal
+      { color: new THREE.Color(0.2, 0.4, 0.9), weight: 0.3 },   // blue
+      { color: new THREE.Color(0.15, 0.6, 0.5), weight: 0.25 }, // teal/cyan
+      { color: new THREE.Color(0.2, 0.7, 0.4), weight: 0.25 },  // green
+      { color: new THREE.Color(0.1, 0.15, 0.25), weight: 0.2 }, // dark blue/black
     ];
     
     // Fibonacci sphere distribution
@@ -240,20 +245,21 @@ const InteractiveSphere = () => {
   return (
     <div 
       ref={containerRef}
-      className="w-full h-[400px] md:h-[600px] lg:h-[700px] animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out"
+      className="w-full h-[400px] md:h-[600px] lg:h-[700px] overflow-hidden animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out"
     >
       <Canvas
         camera={{ position: [0, 0, 7], fov: 50 }}
         style={{ background: "transparent" }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Enhanced Lighting for 3D depth and shading */}
-        <ambientLight intensity={0.3} />
-        <hemisphereLight intensity={0.6} color="#ffffff" groundColor="#111111" />
-        <directionalLight position={[10, 10, 5]} intensity={2.0} color="#ffffff" castShadow />
-        <directionalLight position={[-5, -5, -2]} intensity={0.5} color="#0099ff" />
-        <pointLight position={[5, 5, 5]} intensity={1.5} color="#ffffff" />
-        <pointLight position={[-5, 0, 3]} intensity={0.8} color="#00ffaa" />
+        {/* Enhanced Lighting for glass/glossy effect */}
+        <ambientLight intensity={0.4} />
+        <hemisphereLight intensity={0.7} color="#ffffff" groundColor="#222222" />
+        <directionalLight position={[10, 10, 8]} intensity={1.8} color="#ffffff" />
+        <directionalLight position={[-8, -8, -5]} intensity={0.6} color="#4488ff" />
+        <pointLight position={[5, 5, 8]} intensity={2.0} color="#ffffff" />
+        <pointLight position={[-5, 5, 5]} intensity={1.2} color="#44ffaa" />
+        <spotLight position={[0, 10, 0]} intensity={1.5} angle={0.6} penumbra={1} color="#ffffff" />
         
         {/* Sphere Group */}
         <SphereGroup />
