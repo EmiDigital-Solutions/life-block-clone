@@ -57,12 +57,14 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   return (
     <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[size, 32, 32]} />
-      <meshStandardMaterial
+      <meshPhysicalMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.15}
-        metalness={0.15}
-        roughness={0.5}
+        emissiveIntensity={emissiveIntensity * 0.6}
+        metalness={0.3}
+        roughness={0.4}
+        clearcoat={0.5}
+        clearcoatRoughness={0.3}
         toneMapped={false}
       />
     </mesh>
@@ -87,14 +89,15 @@ const SphereGroup = () => {
       emissiveIntensity: number;
     }> = [];
     
-    const radius = 2.8; // Slightly larger sphere
-    const count = 250; // More balls for tight packing
+    const radius = 3.0; // Larger sphere for more balls
+    const count = 300; // More balls for tight packing
     
-    // Exact colors from auditor cards: green, blue, white only
+    // GREEN SHADES ONLY - aurora effect colors
     const colors = [
-      { color: new THREE.Color(0.067, 0.369, 0.349), weight: 0.35 }, // #115E59 green card
-      { color: new THREE.Color(0.118, 0.227, 0.373), weight: 0.35 }, // #1E3A5F blue card  
-      { color: new THREE.Color(0.90, 0.91, 0.92), weight: 0.30 },    // #E5E7EB white/light gray
+      { color: new THREE.Color(0.0, 0.3, 0.25), weight: 0.25 },   // dark teal green
+      { color: new THREE.Color(0.067, 0.369, 0.349), weight: 0.25 }, // auditor green #115E59
+      { color: new THREE.Color(0.0, 0.5, 0.4), weight: 0.25 },    // medium green
+      { color: new THREE.Color(0.0, 0.7, 0.5), weight: 0.25 },    // bright green
     ];
     
     // Fibonacci sphere distribution
@@ -108,8 +111,8 @@ const SphereGroup = () => {
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
       
-      // BIGGER UNIFORM SIZE - all same, no gaps
-      const size = 0.18;
+      // BIGGER SIZE - no gaps between balls
+      const size = 0.2;
       
       // Pick color based on weights
       const colorRand = Math.random();
@@ -193,18 +196,19 @@ const InteractiveSphere = () => {
   return (
     <div 
       ref={containerRef}
-      className="w-full h-[400px] md:h-[600px] lg:h-[700px] overflow-hidden animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out"
+      className="w-full h-[400px] md:h-[600px] lg:h-[700px] overflow-visible p-[50px] animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out"
     >
       <Canvas
         camera={{ position: [0, 0, 7], fov: 50 }}
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Professional 3D lighting */}
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[10, 8, 6]} intensity={1.0} color="#ffffff" />
-        <directionalLight position={[-5, -3, -2]} intensity={0.4} color="#4A90E2" />
-        <pointLight position={[6, 6, 6]} intensity={0.8} color="#ffffff" />
+        {/* Aurora green glow lighting */}
+        <ambientLight intensity={0.4} color="#003d33" />
+        <directionalLight position={[10, 10, 8]} intensity={1.5} color="#00ffaa" />
+        <directionalLight position={[-8, -5, -6]} intensity={0.8} color="#00aa77" />
+        <pointLight position={[0, 0, 10]} intensity={2.0} color="#00ff99" />
+        <pointLight position={[5, 5, 5]} intensity={1.2} color="#00ddaa" />
         
         {/* Sphere Group */}
         <SphereGroup />
