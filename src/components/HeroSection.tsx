@@ -76,7 +76,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="relative"
+              className="relative overflow-visible"
             >
               {/* Atmospheric Glow */}
               <div className="absolute inset-0 blur-3xl bg-cyan-400/20 scale-150 -z-10"></div>

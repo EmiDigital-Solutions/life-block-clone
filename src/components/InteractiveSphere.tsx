@@ -18,12 +18,13 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   // Random initial phase for varied animation
   const phase = useMemo(() => Math.random() * Math.PI * 2, []);
   
-  // Store original position
+  // Store original position, color, and direction from center
   const originalPosition = useMemo(() => new THREE.Vector3(...position), [position]);
+  const originalColor = useMemo(() => baseColor.clone(), [baseColor]);
+  const directionFromCenter = useMemo(() => originalPosition.clone().normalize(), [originalPosition]);
   
-  // Bright colors for hover
-  const brightCyan = useMemo(() => new THREE.Color(0, 0.85, 1), []);
-  const brightLime = useMemo(() => new THREE.Color(0.02, 1, 0.65), []);
+  // White color for hover
+  const white = useMemo(() => new THREE.Color(1, 1, 1), []);
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -43,7 +44,7 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       
       let targetScale = pulseScale;
       let targetEmissive = emissiveIntensity;
-      let targetColor = baseColor;
+      let targetColor = originalColor;
       let pushStrength = 0;
       
       if (distanceToMouse < secondaryRadius) {
@@ -52,22 +53,23 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
           const intensity = 1 - (distanceToMouse / primaryRadius);
           targetScale = pulseScale + intensity * 2.5; // Scale up to 3.5x
           targetEmissive = emissiveIntensity + intensity * 7; // Up to 8
-          targetColor = intensity > 0.5 ? brightCyan : brightLime;
-          pushStrength = intensity * 0.3;
+          // Transition to white
+          targetColor = originalColor.clone().lerp(white, intensity);
+          // Push OUT from sphere center
+          pushStrength = intensity * 0.8;
         } else {
           // Secondary ripple effect
           const intensity = 1 - ((distanceToMouse - primaryRadius) / (secondaryRadius - primaryRadius));
           targetScale = pulseScale + intensity * 0.8; // Scale up to 1.8x
           targetEmissive = emissiveIntensity + intensity * 2;
-          targetColor = baseColor.clone().lerp(brightCyan, intensity * 0.3);
-          pushStrength = intensity * 0.15;
+          targetColor = originalColor.clone().lerp(white, intensity * 0.3);
+          pushStrength = intensity * 0.4;
         }
       }
       
-      // Push away from mouse
+      // Push OUT from sphere center (not away from mouse)
       if (pushStrength > 0) {
-        const pushDirection = worldPosition.clone().sub(mousePosition).normalize();
-        const newPosition = originalPosition.clone().add(pushDirection.multiplyScalar(pushStrength));
+        const newPosition = originalPosition.clone().add(directionFromCenter.clone().multiplyScalar(pushStrength));
         meshRef.current.position.lerp(newPosition, 0.15);
       } else {
         meshRef.current.position.lerp(originalPosition, 0.1);
@@ -80,7 +82,8 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       );
       
       // Smooth color and emissive transitions
-      const material = meshRef.current.material as THREE.MeshStandardMaterial;
+      const material = meshRef.current.material as THREE.MeshPhysicalMaterial;
+      material.color.lerp(targetColor, 0.15);
       material.emissive.lerp(targetColor, 0.15);
       material.emissiveIntensity = THREE.MathUtils.lerp(
         material.emissiveIntensity,
@@ -93,12 +96,15 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   return (
     <mesh ref={meshRef} position={position}>
       <sphereGeometry args={[size, 32, 32]} />
-      <meshStandardMaterial
+      <meshPhysicalMaterial
         color={baseColor}
         emissive={baseColor}
         emissiveIntensity={emissiveIntensity}
         metalness={0.1}
         roughness={0.2}
+        clearcoat={1.0}
+        clearcoatRoughness={0.1}
+        transmission={0.1}
         toneMapped={false}
       />
     </mesh>
@@ -239,7 +245,7 @@ const InteractiveSphere = () => {
   return (
     <div 
       ref={containerRef}
-      className="w-full h-[400px] md:h-[600px] lg:h-[700px] animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out"
+      className="w-full h-[400px] md:h-[600px] lg:h-[700px] animate-in slide-in-from-bottom-8 slide-in-from-right-8 duration-1000 ease-out overflow-visible p-[100px]"
     >
       <Canvas
         camera={{ position: [0, 0, 7], fov: 50 }}
