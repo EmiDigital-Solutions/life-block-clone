@@ -117,8 +117,8 @@ const Navigation = () => {
           <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
-              alt="Connectimus O Logo" 
-              className="h-10 w-10 object-contain"
+              alt="Connectimus O" 
+              className="h-10 w-10 object-contain mix-blend-multiply dark:mix-blend-screen"
             />
             <div>
               <div 
