@@ -217,12 +217,7 @@ const Navigation = () => {
             </a>
             <Button 
               variant="outline" 
-              className="font-sans text-sm px-6 transition-all duration-300 border hover:opacity-90"
-              style={{
-                backgroundColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
-                color: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
-                borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
-              }}
+              className="font-sans text-sm px-6 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
             >
               Sign In
             </Button>
@@ -302,12 +297,7 @@ const Navigation = () => {
             </a>
             <Button 
               variant="outline" 
-              className="w-full font-sans text-sm transition-all duration-300 border hover:opacity-90"
-              style={{
-                backgroundColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
-                color: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
-                borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
-              }}
+              className="w-full font-sans text-sm transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
             >
               Sign In
             </Button>
