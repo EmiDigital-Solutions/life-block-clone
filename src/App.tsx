@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import SearchSuppliers from "./pages/SearchSuppliers";
+import GroundIntelligence from "./pages/GroundIntelligence";
+import BeFound from "./pages/BeFound";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/search-suppliers" element={<SearchSuppliers />} />
+          <Route path="/ground-intelligence" element={<GroundIntelligence />} />
+          <Route path="/be-found" element={<BeFound />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
