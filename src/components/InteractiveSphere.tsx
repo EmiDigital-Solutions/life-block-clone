@@ -14,71 +14,43 @@ interface SmallSphereProps {
 
 const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mousePosition }: SmallSphereProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
+  const lastMousePosition = useRef(new THREE.Vector3(999, 999, 999));
   
   // Store original position and color
   const originalPosition = useMemo(() => new THREE.Vector3(...position), [position]);
   const originalColor = useMemo(() => baseColor.clone(), [baseColor]);
-  
-  // Slightly lighter version for hover (not white, just lighter)
-  const lighterColor = useMemo(() => {
-    return baseColor.clone().lerp(new THREE.Color(0.4, 0.4, 0.4), 0.3);
-  }, [baseColor]);
-  
-  // Direction from sphere center (0,0,0) to this sphere's position
-  const directionFromCenter = useMemo(() => {
-    return originalPosition.clone().normalize();
-  }, [originalPosition]);
 
   useFrame(() => {
     if (meshRef.current) {
-      // Calculate distance to mouse position in 3D space
+      // Calculate distance to mouse position
       const worldPosition = new THREE.Vector3();
       meshRef.current.getWorldPosition(worldPosition);
       const distanceToMouse = worldPosition.distanceTo(mousePosition);
       
-      // Very gentle interaction radius
-      const interactionRadius = 0.8;
+      // Calculate mouse movement direction
+      const mouseMovement = mousePosition.clone().sub(lastMousePosition.current);
+      const movementStrength = mouseMovement.length();
       
-      let targetScale = 1.0; // No pulse, constant size
-      let targetEmissive = emissiveIntensity;
-      let targetColor = originalColor;
-      let pushStrength = 0;
+      // Interaction radius
+      const interactionRadius = 1.5;
       
-      if (distanceToMouse < interactionRadius) {
-        // SUBTLE gentle bump
+      if (distanceToMouse < interactionRadius && movementStrength > 0.01) {
+        // Follow mouse movement direction
         const intensity = 1 - (distanceToMouse / interactionRadius);
-        targetScale = 1.0 + intensity * 0.2; // Scale up to 1.2x only
-        targetEmissive = emissiveIntensity + intensity * 0.4; // Very subtle glow
-        targetColor = originalColor.clone().lerp(lighterColor, intensity * 0.5); // Slightly lighter
-        pushStrength = intensity * 0.2; // Gentle push outward (0.2 max)
-      }
-      
-      // GENTLE push OUTWARD from center (0,0,0)
-      if (pushStrength > 0) {
+        const moveDirection = mouseMovement.clone().normalize();
+        const moveAmount = intensity * movementStrength * 2.0;
+        
         const newPosition = originalPosition.clone().add(
-          directionFromCenter.clone().multiplyScalar(pushStrength)
+          moveDirection.multiplyScalar(moveAmount)
         );
-        meshRef.current.position.lerp(newPosition, 0.06); // Slow smooth
+        meshRef.current.position.lerp(newPosition, 0.15);
       } else {
-        // Smooth magnetic return
-        meshRef.current.position.lerp(originalPosition, 0.06);
+        // Return to original position
+        meshRef.current.position.lerp(originalPosition, 0.08);
       }
       
-      // Smooth scale transition
-      meshRef.current.scale.lerp(
-        new THREE.Vector3(targetScale, targetScale, targetScale), 
-        0.06
-      );
-      
-      // Smooth color transitions
-      const material = meshRef.current.material as THREE.MeshStandardMaterial;
-      material.color.lerp(targetColor, 0.06);
-      material.emissive.lerp(targetColor, 0.06);
-      material.emissiveIntensity = THREE.MathUtils.lerp(
-        material.emissiveIntensity,
-        targetEmissive,
-        0.06
-      );
+      // Update last mouse position
+      lastMousePosition.current.copy(mousePosition);
     }
   });
 
@@ -88,9 +60,9 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       <meshStandardMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.3}
-        metalness={0.0}
-        roughness={0.9}
+        emissiveIntensity={emissiveIntensity * 0.2}
+        metalness={0.1}
+        roughness={0.6}
         toneMapped={false}
       />
     </mesh>
@@ -116,9 +88,9 @@ const SphereGroup = () => {
     }> = [];
     
     const radius = 2.5;
-    const count = 180; // Dense packing
+    const count = 200; // Dense uniform packing
     
-    // Very dark matte professional colors
+    // Very dark colors from auditor cards - no bright colors
     const colors = [
       { color: new THREE.Color(0.176, 0.216, 0.282), weight: 0.3 },  // #2D3748 dark slate
       { color: new THREE.Color(0.118, 0.227, 0.373), weight: 0.25 }, // #1E3A5F dark blue
@@ -137,16 +109,8 @@ const SphereGroup = () => {
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
       
-      // Determine size - more small spheres for dense packing
-      const rand = Math.random();
-      let size: number;
-      if (rand < 0.7) {
-        size = 0.08 + Math.random() * 0.04; // small: 0.08-0.12 (70%)
-      } else if (rand < 0.92) {
-        size = 0.15 + Math.random() * 0.05; // medium: 0.15-0.2 (22%)
-      } else {
-        size = 0.25 + Math.random() * 0.08; // large: 0.25-0.33 (8%)
-      }
+      // UNIFORM SIZE - all spheres same size, tightly packed
+      const size = 0.12;
       
       // Pick color based on weights
       const colorRand = Math.random();
@@ -175,12 +139,23 @@ const SphereGroup = () => {
     return data;
   }, []);
 
-  // Smooth calm rotation only
-  useFrame(() => {
+  // Rotation and mouse tracking
+  useFrame((state) => {
     if (groupRef.current) {
-      // CALM smooth rotation - no shaking
+      // Smooth rotation
       groupRef.current.rotation.y += 0.001;
-      // No x-axis wobble for calm effect
+      
+      // Update raycaster with mouse position
+      raycaster.setFromCamera(mouse.current, camera);
+      
+      // Project mouse to 3D space
+      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+      const intersection = new THREE.Vector3();
+      raycaster.ray.intersectPlane(plane, intersection);
+      
+      if (intersection) {
+        mousePosition.current.copy(intersection);
+      }
     }
   });
 
@@ -226,10 +201,11 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Minimal dark professional lighting */}
-        <ambientLight intensity={0.2} />
-        <directionalLight position={[8, 6, 8]} intensity={0.5} color="#ffffff" />
-        <pointLight position={[5, 5, 5]} intensity={0.4} color="#ffffff" />
+        {/* Professional 3D lighting */}
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[10, 8, 6]} intensity={1.0} color="#ffffff" />
+        <directionalLight position={[-5, -3, -2]} intensity={0.4} color="#4A90E2" />
+        <pointLight position={[6, 6, 6]} intensity={0.8} color="#ffffff" />
         
         {/* Sphere Group */}
         <SphereGroup />
