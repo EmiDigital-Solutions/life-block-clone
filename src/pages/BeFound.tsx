@@ -9,76 +9,71 @@ const BeFound = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section with Diagonal Aurora Effect */}
-      <section className="relative pt-32 pb-32 overflow-hidden">
-        {/* Diagonal Gradient: More Black → Violet → Blue → Cyan */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black from-40% via-[#1a0a3e] via-[#2d1b69] via-[#1e3a8a] via-[#0e7490] to-[#0891b2]"></div>
-        
-        {/* Additional overlay for smoother transition and more black */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 via-transparent to-transparent"></div>
+      {/* Hero Section - Matching Main Page Style */}
+      <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Pure Black Background */}
+        <div className="absolute inset-0 bg-black"></div>
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-8 text-left leading-tight"
-            >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Reach your target clients,</span>
-              <br />
-              <span className="text-white">showcase verified excellence.</span>
-            </motion.h1>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-wrap gap-6 mb-10"
-            >
-              <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-cyan-400" />
-                <span className="text-lg">Free Profile</span>
-              </div>
-              <div className="flex items-center gap-2 text-white">
-                <Check className="w-5 h-5 text-cyan-400" />
-                <span className="text-lg">Premium Visibility</span>
-              </div>
-            </motion.div>
+        {/* Content - Centered Layout like Main Page */}
+        <div className="relative z-10 container mx-auto px-6 py-32">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col items-center justify-center text-center space-y-8">
+              
+              {/* Main Heading */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight tracking-tight max-w-4xl"
+              >
+                Reach Your Target Clients, Showcase Verified Excellence
+              </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Button className="bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-6 rounded-full font-semibold shadow-xl hover:scale-105 transition-all">
-                Claim Your Profile
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </motion.div>
+              {/* Subtitle */}
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-xl md:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide"
+              >
+                Free Profile · Premium Visibility · Global Reach
+              </motion.h2>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 text-lg text-white/80 max-w-2xl"
-            >
-              Create or claim your supplier profile in minutes. If your company is already listed on YVOO, take control of your profile for free and manage your content.
-            </motion.p>
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg text-white/70 font-sans font-medium max-w-3xl"
+              >
+                Create or claim your supplier profile in minutes. If your company is already listed on YVOO, take control of your profile for free and manage your content.
+              </motion.p>
+
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                  Claim Your Profile
+                </button>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Logo Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6">
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center text-muted-foreground mb-12 text-lg"
+            className="text-center text-muted-foreground mb-12 text-base font-sans"
           >
-            Reach thousands of procurement professionals via YVOO
+            Trusted by industry leaders worldwide
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
