@@ -34,58 +34,56 @@ const Navigation = () => {
     return luminance > 0.5 ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)';
   };
 
-  // Detect scroll position and extract exact background colors
+  // Detect scroll position and extract exact section background colors (ignore cards)
   useEffect(() => {
     const handleScroll = () => {
       const navbarHeight = 80;
+      const scrollPosition = window.scrollY + navbarHeight;
       
-      // Get the element directly under the navbar
-      const elementAtNavbar = document.elementFromPoint(window.innerWidth / 2, navbarHeight + 10);
+      // Get all section elements (these contain the background colors we want)
+      const sections = document.querySelectorAll('section');
       
-      if (elementAtNavbar) {
-        // Walk up the DOM tree to find the first element with a solid background
-        let currentElement = elementAtNavbar;
-        let foundColor = false;
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
         
-        while (currentElement && currentElement !== document.body && !foundColor) {
-          const computedStyle = window.getComputedStyle(currentElement);
+        // Check if navbar is within this section
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          // Get the computed style directly from the section (not its children)
+          const computedStyle = window.getComputedStyle(section);
           let bgColor = computedStyle.backgroundColor;
           
-          // Check if we have a valid color (not transparent)
-          if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
-            foundColor = true;
-            
-            // Extract RGB values
-            const rgbMatch = bgColor.match(/\d+/g);
-            if (rgbMatch && rgbMatch.length >= 3) {
-              const [r, g, b] = rgbMatch.map(Number);
-              setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-              setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-            }
-          }
-          
-          // Also check for gradient backgrounds
-          if (!foundColor) {
+          // If transparent, check for gradient background
+          if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
             const bgImage = computedStyle.backgroundImage;
             if (bgImage && bgImage !== 'none' && bgImage.includes('gradient')) {
               // Extract first color from gradient
               const colorMatch = bgImage.match(/rgba?\([^)]+\)/);
               if (colorMatch) {
-                const color = colorMatch[0];
-                const rgbMatch = color.match(/\d+/g);
-                if (rgbMatch && rgbMatch.length >= 3) {
-                  const [r, g, b] = rgbMatch.map(Number);
-                  setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-                  setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-                  foundColor = true;
-                }
+                bgColor = colorMatch[0];
               }
             }
           }
           
-          currentElement = currentElement.parentElement as HTMLElement;
+          // Also check the parent container if section is still transparent
+          if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.parentElement) {
+            const parentStyle = window.getComputedStyle(section.parentElement);
+            const parentBg = parentStyle.backgroundColor;
+            if (parentBg && parentBg !== 'rgba(0, 0, 0, 0)' && parentBg !== 'transparent') {
+              bgColor = parentBg;
+            }
+          }
+          
+          // Extract RGB values and set colors
+          const rgbMatch = bgColor.match(/\d+/g);
+          if (rgbMatch && rgbMatch.length >= 3) {
+            const [r, g, b] = rgbMatch.map(Number);
+            setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+            setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+          }
         }
-      }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
