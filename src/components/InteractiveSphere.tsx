@@ -97,14 +97,10 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
         color={baseColor}
         emissive={baseColor}
         emissiveIntensity={emissiveIntensity}
-        metalness={0.1}
-        roughness={0.15}
-        transmission={0.6}
-        thickness={0.5}
+        metalness={0.2}
+        roughness={0.25}
         clearcoat={1.0}
-        clearcoatRoughness={0.1}
-        transparent={true}
-        opacity={0.85}
+        clearcoatRoughness={0.15}
         toneMapped={false}
       />
     </mesh>
@@ -132,12 +128,11 @@ const SphereGroup = () => {
     const radius = 2.5;
     const count = 100;
     
-    // Glass-like color palette with blues, greens, and dark tones
+    // Exact colors from reference: solid blue, green, and dark tones
     const colors = [
-      { color: new THREE.Color(0.2, 0.4, 0.9), weight: 0.3 },   // blue
-      { color: new THREE.Color(0.15, 0.6, 0.5), weight: 0.25 }, // teal/cyan
-      { color: new THREE.Color(0.2, 0.7, 0.4), weight: 0.25 },  // green
-      { color: new THREE.Color(0.1, 0.15, 0.25), weight: 0.2 }, // dark blue/black
+      { color: new THREE.Color(0.25, 0.41, 0.88), weight: 0.35 },  // solid blue #4169E1
+      { color: new THREE.Color(0.18, 0.49, 0.2), weight: 0.35 },   // solid green #2E7D32
+      { color: new THREE.Color(0.08, 0.12, 0.16), weight: 0.30 },  // dark/black
     ];
     
     // Fibonacci sphere distribution
