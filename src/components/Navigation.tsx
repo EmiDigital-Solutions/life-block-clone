@@ -117,9 +117,17 @@ const Navigation = () => {
           <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
-              alt="Connectimus Logo" 
-              className="h-8 w-auto"
+              alt="Connectimus O Logo" 
+              className="h-10 w-10 object-contain"
             />
+            <div>
+              <div 
+                className="font-sans text-lg font-bold transition-all duration-300"
+                style={{ color: textColor }}
+              >
+                Connectimus
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
