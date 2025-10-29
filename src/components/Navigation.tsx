@@ -153,36 +153,36 @@ const Navigation = () => {
                     borderColor: borderColor 
                   }}
                 >
-              <a 
-                href="/search-suppliers" 
-                className="block px-4 py-3 transition-colors duration-300 border-b"
-                style={{ 
-                  color: textColor,
-                  borderBottomColor: borderColor 
-                }}
-              >
-                <div className="font-semibold">Search Suppliers</div>
-                <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
-              </a>
-              <a 
-                href="/ground-intelligence" 
-                className="block px-4 py-3 transition-colors duration-300 border-b"
-                style={{ 
-                  color: textColor,
-                  borderBottomColor: borderColor 
-                }}
-              >
-                <div className="font-semibold">Ground Intelligence</div>
-                <div className="text-xs opacity-60 mt-0.5">Qualify suppliers on-site</div>
-              </a>
-              <a 
-                href="/be-found" 
-                className="block px-4 py-3 transition-colors duration-300"
-                style={{ color: textColor }}
-              >
-                <div className="font-semibold">Be found</div>
-                <div className="text-xs opacity-60 mt-0.5">Reach your target audience</div>
-              </a>
+                  <a 
+                    href="#search-suppliers" 
+                    className="block px-4 py-3 transition-colors duration-300 border-b"
+                    style={{ 
+                      color: textColor,
+                      borderBottomColor: borderColor 
+                    }}
+                  >
+                    <div className="font-semibold">Search Suppliers</div>
+                    <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
+                  </a>
+                  <a 
+                    href="#ground-intelligence" 
+                    className="block px-4 py-3 transition-colors duration-300 border-b"
+                    style={{ 
+                      color: textColor,
+                      borderBottomColor: borderColor 
+                    }}
+                  >
+                    <div className="font-semibold">Ground Intelligence</div>
+                    <div className="text-xs opacity-60 mt-0.5">Qualify suppliers on-site</div>
+                  </a>
+                  <a 
+                    href="#be-found" 
+                    className="block px-4 py-3 transition-colors duration-300"
+                    style={{ color: textColor }}
+                  >
+                    <div className="font-semibold">Be found</div>
+                    <div className="text-xs opacity-60 mt-0.5">Reach your target audience</div>
+                  </a>
                 </div>
               )}
             </div>
@@ -216,8 +216,8 @@ const Navigation = () => {
               About us
             </a>
             <Button 
-              variant="default"
-              className="font-sans text-sm px-6 py-2 rounded-lg transition-all duration-300 hover:opacity-90 bg-white text-gray-900 hover:bg-white/90"
+              variant="outline" 
+              className="font-sans text-sm px-6 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
             >
               Sign In
             </Button>
@@ -245,21 +245,21 @@ const Navigation = () => {
                 Solutions
               </div>
               <a 
-                href="/search-suppliers" 
+                href="#search-suppliers" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
                 Search Suppliers
               </a>
               <a 
-                href="/ground-intelligence" 
+                href="#ground-intelligence" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
                 Ground Intelligence
               </a>
               <a 
-                href="/be-found" 
+                href="#be-found" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
@@ -296,8 +296,8 @@ const Navigation = () => {
               About us
             </a>
             <Button 
-              variant="default"
-              className="w-full font-sans text-sm px-6 py-2 rounded-lg transition-all duration-300 hover:opacity-90 bg-white text-gray-900 hover:bg-white/90"
+              variant="outline" 
+              className="w-full font-sans text-sm transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-white hover:bg-white/90"
             >
               Sign In
             </Button>
