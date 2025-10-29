@@ -118,7 +118,8 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-12 w-12 object-contain"
+              className="h-16 w-16 object-contain"
+              style={{ filter: 'contrast(1.1) saturate(1.1)' }}
             />
             <div>
               <div 
