@@ -114,7 +114,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
