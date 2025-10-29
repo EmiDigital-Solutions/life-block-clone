@@ -9,33 +9,32 @@ const BeFound = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-background"></div>
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#1a1a3e] via-[#2a1a5e] to-[#0a4a3a]">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-8 text-left">
               <span className="text-primary">Get discovered</span>
               <br />
-              <span className="text-foreground">by global buyers seeking audited suppliers.</span>
+              <span className="text-white">by global buyers seeking audited suppliers.</span>
             </h1>
             
             <div className="flex flex-wrap gap-6 mb-10">
-              <div className="flex items-center gap-2 text-foreground">
+              <div className="flex items-center gap-2 text-white">
                 <Check className="w-5 h-5 text-primary" />
                 <span className="text-lg">Free Profile</span>
               </div>
-              <div className="flex items-center gap-2 text-foreground">
+              <div className="flex items-center gap-2 text-white">
                 <Check className="w-5 h-5 text-primary" />
                 <span className="text-lg">Premium Visibility</span>
               </div>
             </div>
 
-            <Button className="bg-white text-gray-900 hover:bg-white/90 text-lg px-8 py-6 rounded-lg">
+            <Button className="bg-primary text-white hover:bg-primary/90 text-lg px-8 py-6 rounded-full">
               Claim Your Profile
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
 
-            <p className="mt-8 text-lg text-muted-foreground max-w-2xl">
+            <p className="mt-8 text-lg text-white/70 max-w-2xl">
               Create or claim your supplier profile in minutes. If your company is already listed on YVOO, take control of your profile for free and manage your content.
             </p>
           </div>
@@ -43,15 +42,15 @@ const BeFound = () => {
       </section>
 
       {/* Logo Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <p className="text-center text-muted-foreground mb-12">
-            Connect with industry leaders seeking verified suppliers
+            Reach thousands of procurement professionals via YVOO
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center opacity-60">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="flex items-center justify-center h-16 bg-background rounded-lg border">
-                <Building2 className="w-8 h-8 text-muted-foreground" />
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center">
+            {["REWE", "KNORR", "IFM", "ABUS", "AVL", "KRONUS"].map((name) => (
+              <div key={name} className="flex items-center justify-center h-20 bg-white rounded-lg border border-gray-200 px-4">
+                <span className="text-2xl font-bold text-gray-800">{name}</span>
               </div>
             ))}
           </div>
@@ -59,65 +58,65 @@ const BeFound = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
-            <span className="text-primary">Our Reach</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-20">
+            <span className="text-primary">Our Value</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="text-6xl font-bold text-primary mb-4">5,000+</div>
-              <div className="text-2xl font-semibold mb-4 text-foreground">Active Buyers Annually</div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center justify-center gap-2">
-                  <Globe2 className="w-4 h-4" />
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
+              <div className="text-6xl font-bold text-primary mb-4">5K+</div>
+              <div className="text-2xl font-semibold mb-6 text-foreground">Active Buyers Annually</div>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Global Procurement Teams
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <Building2 className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   B2B Focus
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <Users className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   All Industries
                 </li>
               </ul>
             </div>
 
-            <div className="text-center">
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
               <div className="text-6xl font-bold text-primary mb-4">25K+</div>
-              <div className="text-2xl font-semibold mb-4 text-foreground">Supplier Views Per Month</div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center justify-center gap-2">
-                  <Eye className="w-4 h-4" />
+              <div className="text-2xl font-semibold mb-6 text-foreground">Supplier Views Per Month</div>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Manage Profile Content
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <BarChart3 className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Track Your Analytics
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Verified Status Boost
                 </li>
               </ul>
             </div>
 
-            <div className="text-center">
+            <div className="bg-background rounded-2xl p-8 shadow-lg">
               <div className="text-6xl font-bold text-primary mb-4">8x</div>
-              <div className="text-2xl font-semibold mb-4 text-foreground">More Visibility with Premium</div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center justify-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
-                  Priority Placement
+              <div className="text-2xl font-semibold mb-6 text-foreground">More Visibility with Premium</div>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  Precise Targeting
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <BarChart3 className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Advanced Analytics
                 </li>
-                <li className="flex items-center justify-center gap-2">
-                  <Users className="w-4 h-4" />
+                <li className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
                   Buyer Intent Data
                 </li>
               </ul>
@@ -127,18 +126,18 @@ const BeFound = () => {
       </section>
 
       {/* Product Overview Section */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-primary">Product</span> <span className="text-foreground">Overview.</span>
           </h2>
-          <p className="text-center text-muted-foreground mb-20 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mb-20 max-w-2xl">
             Get started in three simple steps and begin connecting with global buyers
           </p>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-foreground text-2xl font-bold">
                 1
               </div>
               <h3 className="text-2xl font-semibold text-foreground">Create Your Profile</h3>
@@ -148,7 +147,7 @@ const BeFound = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold border-b-4 border-primary">
                 2
               </div>
               <h3 className="text-2xl font-semibold text-foreground">Get Verified</h3>
@@ -158,7 +157,7 @@ const BeFound = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-foreground text-2xl font-bold">
                 3
               </div>
               <h3 className="text-2xl font-semibold text-foreground">Connect with Buyers</h3>
@@ -231,11 +230,11 @@ const BeFound = () => {
             Join thousands of verified suppliers connecting with global buyers on YVOO
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button className="bg-white text-gray-900 hover:bg-white/90 text-lg px-8 py-6 rounded-lg">
+            <Button className="bg-primary text-white hover:bg-primary/90 text-lg px-8 py-6 rounded-full">
               Create Free Profile
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button variant="outline" className="text-lg px-8 py-6 rounded-lg">
+            <Button variant="outline" className="text-lg px-8 py-6 rounded-full border-2">
               View Pricing
             </Button>
           </div>
