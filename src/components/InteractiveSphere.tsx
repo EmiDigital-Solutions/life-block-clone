@@ -92,16 +92,13 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[size, 64, 64]} />
-      <meshPhysicalMaterial
+      <sphereGeometry args={[size, 32, 32]} />
+      <meshStandardMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.3}
-        metalness={0.4}
-        roughness={0.3}
-        clearcoat={0.8}
-        clearcoatRoughness={0.2}
-        reflectivity={0.9}
+        emissiveIntensity={emissiveIntensity * 0.15}
+        metalness={0.05}
+        roughness={0.7}
         toneMapped={false}
       />
     </mesh>
@@ -129,11 +126,12 @@ const SphereGroup = () => {
     const radius = 2.5;
     const count = 100;
     
-    // Exact colors from reference: solid blue, green, and dark tones
+    // Exact colors: bright cyan/lime, medium green, dark/black
     const colors = [
-      { color: new THREE.Color(0.25, 0.41, 0.88), weight: 0.35 },  // solid blue #4169E1
-      { color: new THREE.Color(0.18, 0.49, 0.2), weight: 0.35 },   // solid green #2E7D32
-      { color: new THREE.Color(0.08, 0.12, 0.16), weight: 0.30 },  // dark/black
+      { color: new THREE.Color(0.0, 1.0, 0.8), weight: 0.3 },   // bright cyan
+      { color: new THREE.Color(0.5, 1.0, 0.0), weight: 0.25 },  // lime/yellow-green
+      { color: new THREE.Color(0.0, 0.7, 0.5), weight: 0.25 },  // medium teal
+      { color: new THREE.Color(0.05, 0.1, 0.1), weight: 0.2 },  // dark/black
     ];
     
     // Fibonacci sphere distribution
@@ -248,12 +246,11 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Professional gradient lighting */}
-        <ambientLight intensity={0.3} />
-        <hemisphereLight intensity={0.6} color="#ffffff" groundColor="#000000" />
-        <directionalLight position={[8, 8, 6]} intensity={1.5} color="#ffffff" />
-        <directionalLight position={[-6, -6, -4]} intensity={0.5} color="#6699ff" />
-        <pointLight position={[4, 6, 8]} intensity={1.2} color="#ffffff" />
+        {/* Strong directional lighting for gradient effect */}
+        <ambientLight intensity={0.1} />
+        <directionalLight position={[10, 5, 10]} intensity={3.5} color="#ffffff" />
+        <pointLight position={[8, 8, 8]} intensity={2.0} color="#ffffff" />
+        <pointLight position={[-2, -2, -2]} intensity={0.3} color="#003333" />
         
         {/* Sphere Group */}
         <SphereGroup />
