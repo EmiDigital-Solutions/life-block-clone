@@ -1,42 +1,157 @@
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import { Menu, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [navTheme, setNavTheme] = useState<'dark' | 'green' | 'light'>('dark');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Detect scroll position and section colors
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Hero section (dark) - 0 to 1 viewport
+      if (scrollPosition < windowHeight) {
+        setNavTheme('dark');
+      }
+      // First project section (green) - 1 to 2 viewports
+      else if (scrollPosition < windowHeight * 2) {
+        setNavTheme('green');
+      }
+      // Other sections - alternate or default to light
+      else if (scrollPosition < windowHeight * 3) {
+        setNavTheme('dark');
+      }
+      else if (scrollPosition < windowHeight * 4) {
+        setNavTheme('green');
+      }
+      else {
+        setNavTheme('light');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Dynamic navigation styles based on theme
+  const getNavStyles = () => {
+    switch (navTheme) {
+      case 'dark':
+        return {
+          bg: 'bg-navy-deep/95',
+          text: 'text-white',
+          textHover: 'text-white/80 hover:text-white',
+          border: 'border-white/10',
+          button: 'bg-white text-navy-deep hover:bg-white/90 border-white',
+        };
+      case 'green':
+        return {
+          bg: 'bg-green-600/80',
+          text: 'text-white',
+          textHover: 'text-white/80 hover:text-white',
+          border: 'border-white/20',
+          button: 'bg-white text-green-700 hover:bg-white/90 border-white',
+        };
+      case 'light':
+        return {
+          bg: 'bg-white/95',
+          text: 'text-gray-900',
+          textHover: 'text-gray-600 hover:text-gray-900',
+          border: 'border-gray-200',
+          button: 'bg-navy-deep text-white hover:bg-navy-deep/90 border-navy-deep',
+        };
+    }
+  };
+
+  const styles = getNavStyles();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-deep/95 backdrop-blur-sm border-b border-white/10">
+    <nav className={`fixed top-0 left-0 right-0 z-50 ${styles.bg} backdrop-blur-sm border-b ${styles.border} transition-all duration-500 ease-in-out`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-              <div className="w-6 h-6 border-2 border-white rounded-full"></div>
+            <div className={`w-10 h-10 rounded-full ${navTheme === 'light' ? 'bg-gray-200' : 'bg-white/10'} flex items-center justify-center transition-colors duration-500`}>
+              <div className={`w-6 h-6 border-2 ${navTheme === 'light' ? 'border-navy-deep' : 'border-white'} rounded-full transition-colors duration-500`}></div>
             </div>
             <div>
-              <div className="text-white font-sans text-sm font-light">Architect</div>
-              <div className="text-white font-serif text-lg font-semibold -mt-1">Nicolai</div>
+              <div className={`${styles.text} font-sans text-lg font-bold transition-colors duration-500`}>YVOO</div>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#services" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Services
+            {/* Solutions Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`${styles.textHover} transition-all duration-500 font-sans text-sm flex items-center gap-1`}
+              >
+                Solutions
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isDropdownOpen && (
+                <div className={`absolute top-full left-0 mt-2 w-72 ${navTheme === 'light' ? 'bg-white' : 'bg-navy-deep'} rounded-lg shadow-xl border ${styles.border} overflow-hidden transition-all duration-300 animate-fade-in`}>
+                  <a 
+                    href="#search-suppliers" 
+                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'} border-b ${styles.border}`}
+                  >
+                    <div className="font-semibold">Search Suppliers</div>
+                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Find relevant companies</div>
+                  </a>
+                  <a 
+                    href="#ground-intelligence" 
+                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'} border-b ${styles.border}`}
+                  >
+                    <div className="font-semibold">Ground Intelligence</div>
+                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Qualify suppliers on-site</div>
+                  </a>
+                  <a 
+                    href="#be-found" 
+                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'}`}
+                  >
+                    <div className="font-semibold">Be found</div>
+                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Reach your target audience</div>
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <a href="#pricing" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              Pricing
             </a>
-            <a href="#projects" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Projects
+            <a href="#auditors" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              For auditors
             </a>
-            <a href="#faq" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              FAQ
+            <a href="#blog" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              Blog
             </a>
-            <a href="#about" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              About
+            <a href="#about" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              About us
             </a>
             <Button 
               variant="outline" 
-              className="bg-white text-navy-deep hover:bg-white/90 border-white font-sans text-sm px-6"
+              className={`${styles.button} font-sans text-sm px-6 transition-all duration-500`}
             >
               Estimate project
             </Button>
@@ -45,7 +160,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className={`md:hidden ${styles.text} transition-colors duration-500`}
           >
             <Menu size={24} />
           </button>
@@ -53,22 +168,36 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4">
-            <a href="#services" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Services
+          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
+            {/* Solutions Submenu */}
+            <div className="space-y-2">
+              <div className={`${styles.text} font-sans text-sm font-semibold transition-colors duration-500`}>Solutions</div>
+              <a href="#search-suppliers" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+                Search Suppliers
+              </a>
+              <a href="#ground-intelligence" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+                Ground Intelligence
+              </a>
+              <a href="#be-found" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+                Be found
+              </a>
+            </div>
+            
+            <a href="#pricing" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              Pricing
             </a>
-            <a href="#projects" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Projects
+            <a href="#auditors" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              For auditors
             </a>
-            <a href="#faq" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              FAQ
+            <a href="#blog" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              Blog
             </a>
-            <a href="#about" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              About
+            <a href="#about" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              About us
             </a>
             <Button 
               variant="outline" 
-              className="w-full bg-white text-navy-deep hover:bg-white/90 border-white font-sans text-sm"
+              className={`w-full ${styles.button} font-sans text-sm transition-all duration-500`}
             >
               Estimate project
             </Button>
