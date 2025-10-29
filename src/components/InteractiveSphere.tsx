@@ -96,7 +96,7 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       <meshStandardMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.15}
+        emissiveIntensity={emissiveIntensity * 0.12}
         metalness={0.05}
         roughness={0.7}
         toneMapped={false}
@@ -126,11 +126,12 @@ const SphereGroup = () => {
     const radius = 2.5;
     const count = 100;
     
-    // Blue, green, and dark tones - no yellow
+    // Dark professional colors from auditor cards
     const colors = [
-      { color: new THREE.Color(0.25, 0.41, 0.88), weight: 0.35 },  // blue
-      { color: new THREE.Color(0.18, 0.49, 0.2), weight: 0.35 },   // green
-      { color: new THREE.Color(0.08, 0.12, 0.16), weight: 0.30 },  // dark/black
+      { color: new THREE.Color(0.22, 0.25, 0.28), weight: 0.4 },  // dark charcoal #374151
+      { color: new THREE.Color(0.15, 0.39, 0.92), weight: 0.3 },  // dark royal blue #2563EB
+      { color: new THREE.Color(0.02, 0.59, 0.41), weight: 0.2 },  // dark emerald green #059669
+      { color: new THREE.Color(0.90, 0.91, 0.92), weight: 0.1 },  // muted off-white #E5E7EB
     ];
     
     // Fibonacci sphere distribution
@@ -167,9 +168,9 @@ const SphereGroup = () => {
         }
       }
       
-      // Calculate depth-based emissive intensity (brighter in front, dimmer in back)
+      // Calculate depth-based emissive intensity (lower for professional look)
       const normalizedZ = (z + radius) / (2 * radius); // 0 to 1, where 1 is front
-      const emissiveIntensity = 0.5 + normalizedZ * 1.5; // 0.5 to 2.0
+      const emissiveIntensity = 0.3 + normalizedZ * 0.7; // 0.3 to 1.0 (reduced from 0.5-2.0)
       
       data.push({
         position: [x, y, z],
@@ -245,11 +246,11 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Strong directional lighting for gradient effect */}
-        <ambientLight intensity={0.1} />
-        <directionalLight position={[10, 5, 10]} intensity={3.5} color="#ffffff" />
-        <pointLight position={[8, 8, 8]} intensity={2.0} color="#ffffff" />
-        <pointLight position={[-2, -2, -2]} intensity={0.3} color="#003333" />
+        {/* Dark, professional lighting */}
+        <ambientLight intensity={0.15} />
+        <directionalLight position={[10, 5, 10]} intensity={2.0} color="#ffffff" />
+        <pointLight position={[8, 8, 8]} intensity={1.2} color="#ffffff" />
+        <pointLight position={[-2, -2, -2]} intensity={0.2} color="#001a1a" />
         
         {/* Sphere Group */}
         <SphereGroup />
