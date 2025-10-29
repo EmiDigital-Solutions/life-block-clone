@@ -15,93 +15,69 @@ interface SmallSphereProps {
 const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mousePosition }: SmallSphereProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  // Random initial phase for varied animation
-  const phase = useMemo(() => Math.random() * Math.PI * 2, []);
-  
   // Store original position and color
   const originalPosition = useMemo(() => new THREE.Vector3(...position), [position]);
   const originalColor = useMemo(() => baseColor.clone(), [baseColor]);
   
-  // White color for hover effect
-  const whiteColor = useMemo(() => new THREE.Color(1, 1, 1), []);
+  // Slightly lighter version for hover (not white, just lighter)
+  const lighterColor = useMemo(() => {
+    return baseColor.clone().lerp(new THREE.Color(0.4, 0.4, 0.4), 0.3);
+  }, [baseColor]);
   
   // Direction from sphere center (0,0,0) to this sphere's position
   const directionFromCenter = useMemo(() => {
     return originalPosition.clone().normalize();
   }, [originalPosition]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (meshRef.current) {
-      const time = state.clock.getElapsedTime();
-      
-      // Gentle pulse animation
-      const pulseScale = 1 + Math.sin(time * 2 + phase) * 0.03;
-      
       // Calculate distance to mouse position in 3D space
       const worldPosition = new THREE.Vector3();
       meshRef.current.getWorldPosition(worldPosition);
       const distanceToMouse = worldPosition.distanceTo(mousePosition);
       
-      // Interaction thresholds for ripple effect
-      const primaryRadius = 0.6;    // Core interaction zone
-      const secondaryRadius = 1.2;  // Medium ripple
-      const tertiaryRadius = 1.8;   // Outer ripple
+      // Very gentle interaction radius
+      const interactionRadius = 0.8;
       
-      let targetScale = pulseScale;
+      let targetScale = 1.0; // No pulse, constant size
       let targetEmissive = emissiveIntensity;
       let targetColor = originalColor;
       let pushStrength = 0;
       
-      if (distanceToMouse < tertiaryRadius) {
-        if (distanceToMouse < primaryRadius) {
-          // PRIMARY EFFECT - Dramatic change
-          const intensity = 1 - (distanceToMouse / primaryRadius);
-          targetScale = pulseScale + intensity * 2.0; // Scale up to 3x
-          targetEmissive = 5.0 + intensity * 3.0; // Up to 8
-          targetColor = whiteColor; // Pure white
-          pushStrength = intensity * 1.2; // Strong push outward
-        } else if (distanceToMouse < secondaryRadius) {
-          // SECONDARY RIPPLE - Medium effect
-          const intensity = 1 - ((distanceToMouse - primaryRadius) / (secondaryRadius - primaryRadius));
-          targetScale = pulseScale + intensity * 1.0; // Scale up to 2x
-          targetEmissive = emissiveIntensity + intensity * 2.5;
-          targetColor = originalColor.clone().lerp(whiteColor, intensity * 0.7);
-          pushStrength = intensity * 0.7;
-        } else {
-          // TERTIARY RIPPLE - Subtle effect
-          const intensity = 1 - ((distanceToMouse - secondaryRadius) / (tertiaryRadius - secondaryRadius));
-          targetScale = pulseScale + intensity * 0.3; // Scale up to 1.3x
-          targetEmissive = emissiveIntensity + intensity * 1.0;
-          targetColor = originalColor.clone().lerp(whiteColor, intensity * 0.3);
-          pushStrength = intensity * 0.3;
-        }
+      if (distanceToMouse < interactionRadius) {
+        // SUBTLE gentle bump
+        const intensity = 1 - (distanceToMouse / interactionRadius);
+        targetScale = 1.0 + intensity * 0.2; // Scale up to 1.2x only
+        targetEmissive = emissiveIntensity + intensity * 0.4; // Very subtle glow
+        targetColor = originalColor.clone().lerp(lighterColor, intensity * 0.5); // Slightly lighter
+        pushStrength = intensity * 0.2; // Gentle push outward (0.2 max)
       }
       
-      // CRITICAL: Push OUTWARD from center (0,0,0), not toward mouse
+      // GENTLE push OUTWARD from center (0,0,0)
       if (pushStrength > 0) {
         const newPosition = originalPosition.clone().add(
           directionFromCenter.clone().multiplyScalar(pushStrength)
         );
-        meshRef.current.position.lerp(newPosition, 0.1);
+        meshRef.current.position.lerp(newPosition, 0.06); // Slow smooth
       } else {
-        // Smooth return to original position
-        meshRef.current.position.lerp(originalPosition, 0.1);
+        // Smooth magnetic return
+        meshRef.current.position.lerp(originalPosition, 0.06);
       }
       
       // Smooth scale transition
       meshRef.current.scale.lerp(
         new THREE.Vector3(targetScale, targetScale, targetScale), 
-        0.15
+        0.06
       );
       
       // Smooth color transitions
       const material = meshRef.current.material as THREE.MeshStandardMaterial;
-      material.color.lerp(targetColor, 0.1);
-      material.emissive.lerp(targetColor, 0.1);
+      material.color.lerp(targetColor, 0.06);
+      material.emissive.lerp(targetColor, 0.06);
       material.emissiveIntensity = THREE.MathUtils.lerp(
         material.emissiveIntensity,
         targetEmissive,
-        0.15
+        0.06
       );
     }
   });
@@ -112,9 +88,9 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
       <meshStandardMaterial
         color={baseColor}
         emissive={baseColor}
-        emissiveIntensity={emissiveIntensity * 0.12}
-        metalness={0.05}
-        roughness={0.7}
+        emissiveIntensity={emissiveIntensity * 0.3}
+        metalness={0.0}
+        roughness={0.9}
         toneMapped={false}
       />
     </mesh>
@@ -140,14 +116,14 @@ const SphereGroup = () => {
     }> = [];
     
     const radius = 2.5;
-    const count = 150; // Increased density from 100
+    const count = 180; // Dense packing
     
-    // Dark professional colors from auditor cards
+    // Very dark matte professional colors
     const colors = [
-      { color: new THREE.Color(0.22, 0.25, 0.28), weight: 0.4 },  // dark charcoal #374151
-      { color: new THREE.Color(0.15, 0.39, 0.92), weight: 0.3 },  // dark royal blue #2563EB
-      { color: new THREE.Color(0.02, 0.59, 0.41), weight: 0.2 },  // dark emerald green #059669
-      { color: new THREE.Color(0.90, 0.91, 0.92), weight: 0.1 },  // muted off-white #E5E7EB
+      { color: new THREE.Color(0.176, 0.216, 0.282), weight: 0.3 },  // #2D3748 dark slate
+      { color: new THREE.Color(0.118, 0.227, 0.373), weight: 0.25 }, // #1E3A5F dark blue
+      { color: new THREE.Color(0.067, 0.369, 0.349), weight: 0.25 }, // #115E59 dark teal
+      { color: new THREE.Color(0.290, 0.337, 0.408), weight: 0.2 },  // #4A5568 dark gray
     ];
     
     // Fibonacci sphere distribution
@@ -161,15 +137,15 @@ const SphereGroup = () => {
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
       
-      // Determine size - 60% small, 30% medium, 10% large
+      // Determine size - more small spheres for dense packing
       const rand = Math.random();
       let size: number;
-      if (rand < 0.6) {
-        size = 0.08 + Math.random() * 0.04; // small: 0.08-0.12
-      } else if (rand < 0.9) {
-        size = 0.15 + Math.random() * 0.05; // medium: 0.15-0.2
+      if (rand < 0.7) {
+        size = 0.08 + Math.random() * 0.04; // small: 0.08-0.12 (70%)
+      } else if (rand < 0.92) {
+        size = 0.15 + Math.random() * 0.05; // medium: 0.15-0.2 (22%)
       } else {
-        size = 0.25 + Math.random() * 0.1; // large: 0.25-0.35
+        size = 0.25 + Math.random() * 0.08; // large: 0.25-0.33 (8%)
       }
       
       // Pick color based on weights
@@ -199,24 +175,12 @@ const SphereGroup = () => {
     return data;
   }, []);
 
-  // Track mouse movement and rotate sphere
-  useFrame((state) => {
+  // Smooth calm rotation only
+  useFrame(() => {
     if (groupRef.current) {
-      // CONTINUOUS SLOW ROTATION - never stops
-      groupRef.current.rotation.y += 0.002;
-      groupRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
-      
-      // Update raycaster with mouse position
-      raycaster.setFromCamera(mouse.current, camera);
-      
-      // Project mouse position to a plane at the sphere's depth
-      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-      const intersection = new THREE.Vector3();
-      raycaster.ray.intersectPlane(plane, intersection);
-      
-      if (intersection) {
-        mousePosition.current.copy(intersection);
-      }
+      // CALM smooth rotation - no shaking
+      groupRef.current.rotation.y += 0.001;
+      // No x-axis wobble for calm effect
     }
   });
 
@@ -262,11 +226,10 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
-        {/* Dark, professional lighting */}
-        <ambientLight intensity={0.15} />
-        <directionalLight position={[10, 5, 10]} intensity={2.0} color="#ffffff" />
-        <pointLight position={[8, 8, 8]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[-2, -2, -2]} intensity={0.2} color="#001a1a" />
+        {/* Minimal dark professional lighting */}
+        <ambientLight intensity={0.2} />
+        <directionalLight position={[8, 6, 8]} intensity={0.5} color="#ffffff" />
+        <pointLight position={[5, 5, 5]} intensity={0.4} color="#ffffff" />
         
         {/* Sphere Group */}
         <SphereGroup />
