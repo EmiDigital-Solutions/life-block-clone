@@ -176,7 +176,7 @@ const Navigation = () => {
                     <div className="text-xs opacity-60 mt-0.5">Qualify suppliers on-site</div>
                   </a>
                   <a 
-                    href="#be-found" 
+                    href="/be-found" 
                     className="block px-4 py-3 transition-colors duration-300"
                     style={{ color: textColor }}
                   >
@@ -259,7 +259,7 @@ const Navigation = () => {
                 Ground Intelligence
               </a>
               <a 
-                href="#be-found" 
+                href="/be-found" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
