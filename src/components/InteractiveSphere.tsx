@@ -18,58 +18,73 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
   // Random initial phase for varied animation
   const phase = useMemo(() => Math.random() * Math.PI * 2, []);
   
-  // Store original position
+  // Store original position and color
   const originalPosition = useMemo(() => new THREE.Vector3(...position), [position]);
+  const originalColor = useMemo(() => baseColor.clone(), [baseColor]);
   
-  // Bright colors for hover
-  const brightCyan = useMemo(() => new THREE.Color(0, 0.85, 1), []);
-  const brightLime = useMemo(() => new THREE.Color(0.02, 1, 0.65), []);
+  // White color for hover effect
+  const whiteColor = useMemo(() => new THREE.Color(1, 1, 1), []);
+  
+  // Direction from sphere center (0,0,0) to this sphere's position
+  const directionFromCenter = useMemo(() => {
+    return originalPosition.clone().normalize();
+  }, [originalPosition]);
 
   useFrame((state) => {
     if (meshRef.current) {
       const time = state.clock.getElapsedTime();
       
       // Gentle pulse animation
-      const pulseScale = 1 + Math.sin(time * 2 + phase) * 0.05;
+      const pulseScale = 1 + Math.sin(time * 2 + phase) * 0.03;
       
-      // Calculate distance to mouse position
+      // Calculate distance to mouse position in 3D space
       const worldPosition = new THREE.Vector3();
       meshRef.current.getWorldPosition(worldPosition);
       const distanceToMouse = worldPosition.distanceTo(mousePosition);
       
-      // Interaction radius settings
-      const primaryRadius = 0.8; // Direct interaction
-      const secondaryRadius = 2.0; // Ripple effect
+      // Interaction thresholds for ripple effect
+      const primaryRadius = 0.6;    // Core interaction zone
+      const secondaryRadius = 1.2;  // Medium ripple
+      const tertiaryRadius = 1.8;   // Outer ripple
       
       let targetScale = pulseScale;
       let targetEmissive = emissiveIntensity;
-      let targetColor = baseColor;
+      let targetColor = originalColor;
       let pushStrength = 0;
       
-      if (distanceToMouse < secondaryRadius) {
+      if (distanceToMouse < tertiaryRadius) {
         if (distanceToMouse < primaryRadius) {
-          // Primary effect - closest to mouse
+          // PRIMARY EFFECT - Dramatic change
           const intensity = 1 - (distanceToMouse / primaryRadius);
-          targetScale = pulseScale + intensity * 2.5; // Scale up to 3.5x
-          targetEmissive = emissiveIntensity + intensity * 7; // Up to 8
-          targetColor = intensity > 0.5 ? brightCyan : brightLime;
-          pushStrength = intensity * 0.3;
-        } else {
-          // Secondary ripple effect
+          targetScale = pulseScale + intensity * 2.0; // Scale up to 3x
+          targetEmissive = 5.0 + intensity * 3.0; // Up to 8
+          targetColor = whiteColor; // Pure white
+          pushStrength = intensity * 1.2; // Strong push outward
+        } else if (distanceToMouse < secondaryRadius) {
+          // SECONDARY RIPPLE - Medium effect
           const intensity = 1 - ((distanceToMouse - primaryRadius) / (secondaryRadius - primaryRadius));
-          targetScale = pulseScale + intensity * 0.8; // Scale up to 1.8x
-          targetEmissive = emissiveIntensity + intensity * 2;
-          targetColor = baseColor.clone().lerp(brightCyan, intensity * 0.3);
-          pushStrength = intensity * 0.15;
+          targetScale = pulseScale + intensity * 1.0; // Scale up to 2x
+          targetEmissive = emissiveIntensity + intensity * 2.5;
+          targetColor = originalColor.clone().lerp(whiteColor, intensity * 0.7);
+          pushStrength = intensity * 0.7;
+        } else {
+          // TERTIARY RIPPLE - Subtle effect
+          const intensity = 1 - ((distanceToMouse - secondaryRadius) / (tertiaryRadius - secondaryRadius));
+          targetScale = pulseScale + intensity * 0.3; // Scale up to 1.3x
+          targetEmissive = emissiveIntensity + intensity * 1.0;
+          targetColor = originalColor.clone().lerp(whiteColor, intensity * 0.3);
+          pushStrength = intensity * 0.3;
         }
       }
       
-      // Push away from mouse
+      // CRITICAL: Push OUTWARD from center (0,0,0), not toward mouse
       if (pushStrength > 0) {
-        const pushDirection = worldPosition.clone().sub(mousePosition).normalize();
-        const newPosition = originalPosition.clone().add(pushDirection.multiplyScalar(pushStrength));
-        meshRef.current.position.lerp(newPosition, 0.15);
+        const newPosition = originalPosition.clone().add(
+          directionFromCenter.clone().multiplyScalar(pushStrength)
+        );
+        meshRef.current.position.lerp(newPosition, 0.1);
       } else {
+        // Smooth return to original position
         meshRef.current.position.lerp(originalPosition, 0.1);
       }
       
@@ -79,9 +94,10 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
         0.15
       );
       
-      // Smooth color and emissive transitions
+      // Smooth color transitions
       const material = meshRef.current.material as THREE.MeshStandardMaterial;
-      material.emissive.lerp(targetColor, 0.15);
+      material.color.lerp(targetColor, 0.1);
+      material.emissive.lerp(targetColor, 0.1);
       material.emissiveIntensity = THREE.MathUtils.lerp(
         material.emissiveIntensity,
         targetEmissive,
@@ -124,7 +140,7 @@ const SphereGroup = () => {
     }> = [];
     
     const radius = 2.5;
-    const count = 100;
+    const count = 150; // Increased density from 100
     
     // Dark professional colors from auditor cards
     const colors = [
@@ -183,12 +199,12 @@ const SphereGroup = () => {
     return data;
   }, []);
 
-  // Track mouse movement
+  // Track mouse movement and rotate sphere
   useFrame((state) => {
     if (groupRef.current) {
-      // Slow rotation of entire group
-      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
-      groupRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.08) * 0.15;
+      // CONTINUOUS SLOW ROTATION - never stops
+      groupRef.current.rotation.y += 0.002;
+      groupRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
       
       // Update raycaster with mouse position
       raycaster.setFromCamera(mouse.current, camera);
