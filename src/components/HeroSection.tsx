@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Spline from "@splinetool/react-spline";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -124,17 +125,15 @@ const HeroSection = () => {
   return (
     <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Spline 3D Background Animation */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <iframe 
-          src='https://my.spline.design/reactiveorb-hpzUrs2oUoCafTMt0LiZLgzl/' 
-          frameBorder='0' 
-          width='100%' 
-          height='100%'
+      <div className="absolute inset-0 z-0">
+        <Spline
+          scene="https://prod.spline.design/bAnx0J0gAAbDBSNgALicfuXk/scene.splinecode"
           className="w-full h-full"
         />
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 pointer-events-none"></div>
       </div>
+      
+      {/* Dark overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-black/30 z-[1]"></div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-32 text-center">
