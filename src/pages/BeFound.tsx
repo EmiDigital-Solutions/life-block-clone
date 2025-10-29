@@ -123,7 +123,7 @@ const BeFound = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-base text-white/90 font-sans max-w-xl leading-relaxed"
               >
-                <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by YVOO: take over the account free of charge and control the content individually.
+                <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.
               </motion.p>
             </div>
           </div>
@@ -143,7 +143,7 @@ const BeFound = () => {
                 viewport={{ once: true }}
                 className="text-gray-600 text-sm font-medium"
               >
-                Reach thousands of market leaders via YVOO.io
+                Reach thousands of market leaders via Connectimus.io
               </motion.p>
               
               <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center max-w-5xl mx-auto">
@@ -232,7 +232,7 @@ const BeFound = () => {
 
                   <div className="space-y-3">
                     <div className="text-5xl font-bold text-green-600">5x</div>
-                    <div className="text-2xl font-semibold text-gray-900">More Visibility for YVOO Ad Customers</div>
+                    <div className="text-2xl font-semibold text-gray-900">More Visibility for Connectimus Ad Customers</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
                         <Check className="w-5 h-5 text-green-600" />
@@ -360,8 +360,8 @@ const BeFound = () => {
                 {
                   number: 1,
                   title: "Create / Claim your company profile",
-                  desc: "Take control of your supplier profile on YVOO",
-                  detail: "With your free supplier profile you can control how buyers see your profile on YVOO. Enrich your data, add relevant information and improve your overall presence.",
+                  desc: "Take control of your supplier profile on Connectimus",
+                  detail: "With your free supplier profile you can control how buyers see your profile on Connectimus. Enrich your data, add relevant information and improve your overall presence.",
                 },
                 {
                   number: 2,
@@ -371,9 +371,9 @@ const BeFound = () => {
                 },
                 {
                   number: 3,
-                  title: "YVOO Ads",
-                  desc: "Targeted advertising campaigns with YVOO Ads",
-                  detail: "Use YVOO Ads to boost visibility and generate leads. Secure a top ranking position on YVOO. Define relevant search queries and target groups.",
+                  title: "Connectimus Ads",
+                  desc: "Targeted advertising campaigns with Connectimus Ads",
+                  detail: "Use Connectimus Ads to boost visibility and generate leads. Secure a top ranking position on Connectimus. Define relevant search queries and target groups.",
                 },
               ].map((step, index) => (
                 <motion.div
@@ -420,13 +420,13 @@ const BeFound = () => {
                 className="text-white space-y-6"
               >
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight">
-                  <span className="text-white">Global Leads on Autopilot</span> with YVOO Ads
+                  <span className="text-white">Global Leads on Autopilot</span> with Connectimus Ads
                 </h2>
 
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-2xl font-bold mb-2">Ranking</h3>
-                    <p className="text-white/90">Secure a top ranking position at YVOO Search for more leads and greater visibility.</p>
+                    <p className="text-white/90">Secure a top ranking position at Connectimus Search for more leads and greater visibility.</p>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-2">Performance Reporting</h3>
@@ -439,7 +439,7 @@ const BeFound = () => {
                 </div>
 
                 <div className="pt-6">
-                  <p className="text-lg font-medium mb-4">Want more B2B leads? Learn how to generate them on autopilot with YVOO!</p>
+                  <p className="text-lg font-medium mb-4">Want more B2B leads? Learn how to generate them on autopilot with Connectimus!</p>
                   <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300">
                     Compare Plans
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -537,13 +537,13 @@ const BeFound = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {[
                 {
-                  quote: "With YVOO, we can reach exactly those who want to optimize their processes with real-time data in a completely new and simple way.",
+                  quote: "With Connectimus, we can reach exactly those who want to optimize their processes with real-time data in a completely new and simple way.",
                   name: "Nina Berger",
                   role: "Business Development Manager",
                   company: "Peakboard",
                 },
                 {
-                  quote: "As a start-up for intelligent process automation, digital and uncomplicated solutions are close to our hearts. The first match was made just two weeks after registering on the YVOO platform. YVOO connects companies simply, digitally and transparently!",
+                  quote: "As a start-up for intelligent process automation, digital and uncomplicated solutions are close to our hearts. The first match was made just two weeks after registering on the Connectimus platform. Connectimus connects companies simply, digitally and transparently!",
                   name: "Florian Poniewaß",
                   role: "Key Account Manager",
                   company: "Alphabots GmbH",
@@ -605,11 +605,11 @@ const BeFound = () => {
                 },
                 {
                   question: "Is the profile takeover free of charge?",
-                  answer: "Yes. It also doesn't matter whether you create a new profile or take one over from YVOO. Adding content such as contact details or product information is also free of charge. You can use all the free features as soon as you register.",
+                  answer: "Yes. It also doesn't matter whether you create a new profile or take one over from Connectimus. Adding content such as contact details or product information is also free of charge. You can use all the free features as soon as you register.",
                 },
                 {
                   question: "How can I increase my visibility?",
-                  answer: "You can buy YVOO ads to rank higher for specific keywords. Find out more on our platform (only available to registered users).",
+                  answer: "You can buy Connectimus ads to rank higher for specific keywords. Find out more on our platform (only available to registered users).",
                 },
                 {
                   question: "Is my data treated confidentially?",

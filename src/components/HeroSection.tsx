@@ -63,7 +63,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
-                Experience a YVOO Audit
+                Experience a Connectimus Audit
               </button>
             </motion.div>
           </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import connectimusLogo from "@/assets/connectimus-logo.png";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -114,23 +115,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div 
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-              style={{ backgroundColor: isLightBg ? 'rgba(31, 41, 55, 0.1)' : 'rgba(255, 255, 255, 0.1)' }}
-            >
-              <div 
-                className="w-6 h-6 border-2 rounded-full transition-all duration-300"
-                style={{ borderColor: textColor }}
-              ></div>
-            </div>
-            <div>
-              <div 
-                className="font-sans text-lg font-bold transition-all duration-300"
-                style={{ color: textColor }}
-              >
-                YVOO
-              </div>
-            </div>
+            <img 
+              src={connectimusLogo} 
+              alt="Connectimus Logo" 
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

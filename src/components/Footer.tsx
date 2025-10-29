@@ -10,7 +10,7 @@ const Footer = () => {
             
             {/* Column 1 - Company Info */}
             <div>
-              <h3 className="text-2xl font-bold mb-4 tracking-wide">YVOO</h3>
+              <h3 className="text-2xl font-bold mb-4 tracking-wide">Connectimus</h3>
               <address className="not-italic text-sm text-gray-400 leading-relaxed font-medium">
                 CONNECTIMUS PROJECT d.o.o.<br />
                 Novotnijeva 12<br />
