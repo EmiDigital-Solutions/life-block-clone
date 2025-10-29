@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
-import { ArrowRight, Users, Eye, BarChart3, TrendingUp, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, TrendingUp, BarChart3, Users, Target, LineChart, UserCheck } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -80,48 +80,57 @@ const BeFound = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
-          style={{ background: "linear-gradient(135deg, rgb(0, 0, 0), rgb(17, 24, 39), rgb(0, 0, 0))" }}
+          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-32"
+          style={{ background: "linear-gradient(135deg, rgb(79, 70, 229), rgb(99, 102, 241), rgb(139, 92, 246))" }}
         >
           <div className="container mx-auto">
-            <div className="flex flex-col items-center justify-center text-center space-y-8">
+            <div className="flex flex-col items-start justify-center space-y-8 max-w-2xl">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight tracking-tight max-w-4xl"
+                className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white leading-tight"
               >
-                Reach Your Target Clients, Showcase Verified Excellence
+                Become visible,{" "}
+                <span className="block mt-2">to over 7 million+</span>
+                <span className="block mt-2">B2B decision-makers.</span>
               </motion.h1>
 
-              <motion.h2 
+              <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl md:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide"
+                className="flex flex-col gap-3 text-white"
               >
-                Free Profile · Premium Visibility · Global Reach
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg text-white/70 font-sans font-medium max-w-3xl"
-              >
-                Create or claim your supplier profile in minutes. If your company is already listed on YVOO, take control of your profile for free and manage your content.
-              </motion.p>
+                <div className="flex items-center gap-3">
+                  <Check className="w-5 h-5" />
+                  <span className="text-lg font-medium">Free of Charge</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Check className="w-5 h-5" />
+                  <span className="text-lg font-medium">Paid Advertisement</span>
+                </div>
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
-                  Claim Your Profile
+                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg">
+                  Claim your company
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-base text-white/90 font-sans max-w-xl leading-relaxed"
+              >
+                <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by YVOO: take over the account free of charge and control the content individually.
+              </motion.p>
             </div>
           </div>
         </section>
@@ -129,8 +138,8 @@ const BeFound = () => {
         {/* Logo Section */}
         <section
           data-nav-theme="light"
-          className="relative min-h-[70vh] flex items-center justify-center px-6 md:px-12 lg:px-24 py-16"
-          style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246), rgb(249, 250, 251))" }}
+          className="relative py-20 px-6 md:px-12 lg:px-24"
+          style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
         >
           <div className="container mx-auto">
             <div className="text-center space-y-12">
@@ -138,13 +147,13 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-muted-foreground text-base font-sans"
+                className="text-gray-600 text-sm font-medium"
               >
-                Trusted by industry leaders worldwide
+                Reach thousands of market leaders via YVOO.io
               </motion.p>
               
               <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center max-w-5xl mx-auto">
-                {["REWE", "KNORR", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
+                {["REWE", "KNORR-BREMSE", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
                   <motion.div 
                     key={name} 
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -152,9 +161,9 @@ const BeFound = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center justify-center h-24 bg-white rounded-xl shadow-md hover:shadow-lg transition-all px-6"
+                    className="flex items-center justify-center h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-4"
                   >
-                    <span className="text-2xl md:text-3xl font-bold text-gray-800">{name}</span>
+                    <span className="text-lg md:text-xl font-bold text-gray-700">{name}</span>
                   </motion.div>
                 ))}
               </div>
@@ -212,8 +221,8 @@ const BeFound = () => {
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
                       { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"], gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-green-600 via-green-700 to-green-800" },
-                      { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
+                      { number: "12M+", title: "Suppliers viewed/month", items: ["Manage Supplier Profile Content", "Enrich Supplier Data", "Organic Analytics"], gradient: "from-green-600 via-green-700 to-green-800" },
+                      { number: "5x", title: "More Visibilty for ensun Ad Customers", items: ["Precise Targeting", "Advanced Analytics", "Buyer Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
                     ].map((stat, index) => {
                       const style = getCardStyle(index, 3);
                       
@@ -331,9 +340,9 @@ const BeFound = () => {
                   
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
-                      { number: 1, title: "Create Profile", desc: "Company profile with details", active: false, gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { number: 2, title: "Analytics", desc: "Get verified badge", active: true, gradient: "from-green-600 via-green-700 to-green-800" },
-                      { number: 3, title: "YVOO Ads", desc: "Connect with buyers", active: false, gradient: "from-gray-800 via-gray-900 to-black" },
+                      { number: 1, title: "Create Profile", desc: "Take control of your supplier profile on ensun", active: false, gradient: "from-blue-600 via-blue-700 to-blue-800" },
+                      { number: 2, title: "Analytics", desc: "Monitor your performance", active: true, gradient: "from-green-600 via-green-700 to-green-800" },
+                      { number: 3, title: "ensun Ads", desc: "Targeted advertising campaigns with ensun Ads", active: false, gradient: "from-gray-800 via-gray-900 to-black" },
                     ].map((step, index) => {
                       const style = getCardStyle(index, 3);
                       
@@ -451,8 +460,8 @@ const BeFound = () => {
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
                       { icon: TrendingUp, label: "Ranking", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { icon: BarChart3, label: "Performance", gradient: "from-green-600 via-green-700 to-green-800" },
-                      { icon: Users, label: "Intent Data", gradient: "from-gray-800 via-gray-900 to-black" },
+                      { icon: BarChart3, label: "Performance Reporting", gradient: "from-green-600 via-green-700 to-green-800" },
+                      { icon: Users, label: "Buyer Intent Data", gradient: "from-gray-800 via-gray-900 to-black" },
                     ].map((feature, index) => {
                       const style = getCardStyle(index, 3);
                       const IconComponent = feature.icon;
@@ -528,7 +537,7 @@ const BeFound = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold"
               >
-                Ready to Get Discovered?
+                Want more B2B leads?
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -537,7 +546,7 @@ const BeFound = () => {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-white/90 max-w-2xl mx-auto font-sans"
               >
-                Join thousands of verified suppliers connecting with global buyers on YVOO
+                Learn how to generate them on autopilot with ensun!
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -547,11 +556,8 @@ const BeFound = () => {
                 className="flex flex-wrap gap-4 justify-center"
               >
                 <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide hover:scale-105">
-                  Create Free Profile
+                  Compare Plans
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide hover:scale-105">
-                  View Pricing
                 </button>
               </motion.div>
             </div>
