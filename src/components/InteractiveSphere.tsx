@@ -126,12 +126,11 @@ const SphereGroup = () => {
     const radius = 2.5;
     const count = 100;
     
-    // Exact colors: bright cyan/lime, medium green, dark/black
+    // Blue, green, and dark tones - no yellow
     const colors = [
-      { color: new THREE.Color(0.0, 1.0, 0.8), weight: 0.3 },   // bright cyan
-      { color: new THREE.Color(0.5, 1.0, 0.0), weight: 0.25 },  // lime/yellow-green
-      { color: new THREE.Color(0.0, 0.7, 0.5), weight: 0.25 },  // medium teal
-      { color: new THREE.Color(0.05, 0.1, 0.1), weight: 0.2 },  // dark/black
+      { color: new THREE.Color(0.25, 0.41, 0.88), weight: 0.35 },  // blue
+      { color: new THREE.Color(0.18, 0.49, 0.2), weight: 0.35 },   // green
+      { color: new THREE.Color(0.08, 0.12, 0.16), weight: 0.30 },  // dark/black
     ];
     
     // Fibonacci sphere distribution
