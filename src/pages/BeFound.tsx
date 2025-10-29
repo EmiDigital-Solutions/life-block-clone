@@ -11,14 +11,14 @@ const BeFound = () => {
       
       {/* Hero Section with Aurora Effect */}
       <section className="relative pt-32 pb-32 overflow-hidden">
-        {/* Aurora Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a4e] via-[#2a1a6e] via-[#2a2a8e] to-[#1a4a5a] animate-[gradient_15s_ease_infinite]"></div>
+        {/* Aurora Gradient Background - Black to Blue to Violet to Cyan/Green */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#1a2470] via-[#4a1a70] via-[#2a4a8a] to-[#1a5a4a]" style={{ backgroundSize: '200% 100%', animation: 'gradient 15s ease infinite' }}></div>
         
-        {/* Animated Gradient Overlays */}
-        <div className="absolute inset-0 opacity-50">
-          <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-emerald-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        {/* Animated Gradient Overlays for Aurora Effect */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-violet-600/40 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-cyan-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-blue-600/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
