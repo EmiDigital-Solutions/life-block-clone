@@ -11,62 +11,35 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="text-white font-sans text-2xl font-bold">YVOO</div>
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <div className="w-6 h-6 border-2 border-white rounded-full"></div>
+            </div>
+            <div>
+              <div className="text-white font-sans text-sm font-light">Architect</div>
+              <div className="text-white font-serif text-lg font-semibold -mt-1">Nicolai</div>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="relative group">
-              <button className="text-white/80 hover:text-white transition-colors font-sans text-sm flex items-center gap-1">
-                Solutions
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-72 bg-navy-deep/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="p-4 space-y-3">
-                  <a href="#search-suppliers" className="block p-3 hover:bg-white/5 rounded-lg transition-colors">
-                    <div className="flex items-start gap-3">
-                      <span className="text-cyan-400">›</span>
-                      <div>
-                        <div className="text-white font-semibold text-sm">Search Suppliers</div>
-                        <div className="text-white/60 text-xs mt-1">Find relevant companies</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#ground-intelligence" className="block p-3 hover:bg-white/5 rounded-lg transition-colors">
-                    <div className="flex items-start gap-3">
-                      <span className="text-cyan-400">›</span>
-                      <div>
-                        <div className="text-white font-semibold text-sm">Ground Intelligence</div>
-                        <div className="text-white/60 text-xs mt-1">Qualify suppliers on-site</div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#be-found" className="block p-3 hover:bg-white/5 rounded-lg transition-colors">
-                    <div className="flex items-start gap-3">
-                      <span className="text-cyan-400">›</span>
-                      <div>
-                        <div className="text-white font-semibold text-sm">Be found</div>
-                        <div className="text-white/60 text-xs mt-1">Reach your target audience</div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <a href="#pricing" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Pricing
+            <a href="#services" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+              Services
             </a>
-            <a href="#auditors" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              For auditors
+            <a href="#projects" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+              Projects
             </a>
-            <a href="#blog" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Blog
+            <a href="#faq" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
+              FAQ
             </a>
             <a href="#about" className="text-white/80 hover:text-white transition-colors font-sans text-sm">
-              About us
+              About
             </a>
+            <Button 
+              variant="outline" 
+              className="bg-white text-navy-deep hover:bg-white/90 border-white font-sans text-sm px-6"
+            >
+              Estimate project
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,18 +54,24 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4">
-            <a href="#pricing" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Pricing
+            <a href="#services" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
+              Services
             </a>
-            <a href="#auditors" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              For auditors
+            <a href="#projects" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
+              Projects
             </a>
-            <a href="#blog" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              Blog
+            <a href="#faq" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
+              FAQ
             </a>
             <a href="#about" className="block text-white/80 hover:text-white transition-colors font-sans text-sm">
-              About us
+              About
             </a>
+            <Button 
+              variant="outline" 
+              className="w-full bg-white text-navy-deep hover:bg-white/90 border-white font-sans text-sm"
+            >
+              Estimate project
+            </Button>
           </div>
         )}
       </div>

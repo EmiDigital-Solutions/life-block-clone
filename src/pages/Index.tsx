@@ -1,13 +1,15 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import Footer from "@/components/Footer";
+import VideoSection from "@/components/VideoSection";
+import FullScreenProjects from "@/components/FullScreenProjects";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <Footer />
+      <VideoSection />
+      <FullScreenProjects />
     </div>
   );
 };

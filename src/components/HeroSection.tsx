@@ -138,7 +138,7 @@ const HeroSection = () => {
           >
             <div className="flex items-center gap-4 text-white/60 text-sm font-sans mb-8">
               <div className="h-px w-16 bg-cyan-400/40"></div>
-              <span>Verify supplier on-site</span>
+              <span>2,000+ Auditors · 90+ Countries · AI-Powered</span>
               <div className="h-px w-16 bg-cyan-400/40"></div>
             </div>
           </motion.div>
@@ -247,65 +247,42 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight max-w-5xl mx-auto"
+            className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-tight max-w-4xl mx-auto"
           >
-            <span className="bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">
-              On-Site Supplier Evaluations in Days,
-            </span>
-            {" "}
-            <span className="text-white">Not Weeks</span>
+            On-Site Supplier Audits in Days, Not Weeks
           </motion.h1>
+
+          {/* Subtitle */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl md:text-3xl font-sans text-cyan-400/90 mt-6"
+          >
+            70% Cost Reduction · 80% Time Savings · Global Coverage
+          </motion.h2>
 
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-white/70 font-sans max-w-3xl mx-auto mt-8"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg text-white/70 font-sans max-w-2xl mx-auto"
           >
-            Physical factory assessments (ISO, VDA, IATF, etc.) from 700 euros. Get actionable intelligence powered by AI and our global auditor network not desk audits.
+            Physical factory assessments (ISO, VDA, IATF) starting from €700. 
+            AI-powered intelligence with certified auditors across 90+ countries.
           </motion.p>
 
           {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-10"
-          >
-            <button className="bg-cyan-400 hover:bg-cyan-500 text-black px-12 py-5 rounded-full font-sans font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-2xl">
-              EXCLUSIVE OPPORTUNITY FOR NEW CLIENTS!
-            </button>
-            <p className="text-white/60 text-sm md:text-base mt-4 font-sans">
-              Benefit from a 50% introductory discount on your first YVOO supplier evaluation
-            </p>
-          </motion.div>
-
-          {/* Bottom Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mt-12"
+            className="mt-8"
           >
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-white/80 text-sm md:text-base font-sans">Your standards, your requirements</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-white/80 text-sm md:text-base font-sans">Certified auditors</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-white/80 text-sm md:text-base font-sans">OEM-grade quality</span>
-            </div>
+            <button className="bg-cyan-400 hover:bg-cyan-500 text-black px-8 py-4 rounded-full font-sans font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-xl">
+              Request 30-Minute Demo
+            </button>
           </motion.div>
         </div>
       </div>
