@@ -97,9 +97,10 @@ const SmallSphere = ({ position, index, size, baseColor, emissiveIntensity, mous
         color={baseColor}
         emissive={baseColor}
         emissiveIntensity={emissiveIntensity}
-        metalness={0.2}
-        roughness={0.3}
+        metalness={0.3}
+        roughness={0.4}
         toneMapped={false}
+        flatShading={false}
       />
     </mesh>
   );
@@ -246,10 +247,13 @@ const InteractiveSphere = () => {
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true }}
       >
-        {/* Enhanced Lighting for 3D depth */}
-        <hemisphereLight intensity={0.4} color="#ffffff" groundColor="#444444" />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[-3, 2, 4]} intensity={0.8} color="#00D9FF" />
+        {/* Enhanced Lighting for 3D depth and shading */}
+        <ambientLight intensity={0.3} />
+        <hemisphereLight intensity={0.6} color="#ffffff" groundColor="#111111" />
+        <directionalLight position={[10, 10, 5]} intensity={2.0} color="#ffffff" castShadow />
+        <directionalLight position={[-5, -5, -2]} intensity={0.5} color="#0099ff" />
+        <pointLight position={[5, 5, 5]} intensity={1.5} color="#ffffff" />
+        <pointLight position={[-5, 0, 3]} intensity={0.8} color="#00ffaa" />
         
         {/* Sphere Group */}
         <SphereGroup />
