@@ -118,7 +118,7 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-10 w-10 object-contain mix-blend-multiply dark:mix-blend-screen"
+              className="h-10 w-10 object-contain"
             />
             <div>
               <div 
