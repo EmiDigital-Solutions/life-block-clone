@@ -11,11 +11,11 @@ const BeFound = () => {
       
       {/* Hero Section with Diagonal Aurora Effect */}
       <section className="relative pt-32 pb-32 overflow-hidden">
-        {/* Diagonal Gradient: Black → Violet → Blue → Cyan */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#1a0a3e] via-[#2d1b69] via-[#1e3a8a] via-[#0e7490] to-[#0891b2]"></div>
+        {/* Diagonal Gradient: More Black → Violet → Blue → Cyan */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black from-40% via-[#1a0a3e] via-[#2d1b69] via-[#1e3a8a] via-[#0e7490] to-[#0891b2]"></div>
         
-        {/* Additional overlay for smoother transition */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-transparent to-transparent"></div>
+        {/* Additional overlay for smoother transition and more black */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 via-transparent to-transparent"></div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
