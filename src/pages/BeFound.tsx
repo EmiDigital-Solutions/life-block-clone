@@ -9,10 +9,16 @@ const BeFound = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section with Static Gradient */}
+      {/* Hero Section with Aurora Effect */}
       <section className="relative pt-32 pb-32 overflow-hidden">
-        {/* Static Gradient Background - Black to Blue to Cyan/Green */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#0a2463] via-[#1e3a8a] via-[#0e4c7a] to-[#0d7377]"></div>
+        {/* Base Black Background */}
+        <div className="absolute inset-0 bg-black"></div>
+        
+        {/* Aurora Effect - Top Right Corner (30% coverage) */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-br from-cyan-400/30 via-blue-600/40 via-blue-800/30 to-transparent"></div>
+          <div className="absolute top-0 right-0 w-[35%] h-[80%] bg-gradient-to-bl from-cyan-300/20 via-blue-500/25 to-transparent blur-2xl"></div>
+        </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
