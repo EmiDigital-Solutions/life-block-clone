@@ -20,34 +20,35 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Detect scroll position and section colors using Intersection Observer
+  // Detect scroll position and section colors
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-50px 0px -50% 0px', // Trigger when section is near the top
-      threshold: 0,
-    };
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('[data-nav-theme]');
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionTheme = entry.target.getAttribute('data-nav-theme') as 'dark' | 'green' | 'light' | null;
-          if (sectionTheme) {
-            setNavTheme(sectionTheme);
+      let currentTheme: 'dark' | 'green' | 'light' = 'dark';
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
+
+        // Check if current scroll position is within this section
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          const theme = section.getAttribute('data-nav-theme') as 'dark' | 'green' | 'light' | null;
+          if (theme) {
+            currentTheme = theme;
           }
         }
       });
+
+      setNavTheme(currentTheme);
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
 
-    // Observe all sections with data-nav-theme attribute
-    const sections = document.querySelectorAll('[data-nav-theme]');
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Dynamic navigation styles based on theme
@@ -83,16 +84,16 @@ const Navigation = () => {
   const styles = getNavStyles();
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 ${styles.bg} backdrop-blur-sm border-b ${styles.border} transition-all duration-500 ease-in-out`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 ${styles.bg} backdrop-blur-sm border-b ${styles.border} transition-all duration-300 ease-in-out`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-full ${navTheme === 'light' ? 'bg-gray-200' : 'bg-white/10'} flex items-center justify-center transition-colors duration-500`}>
-              <div className={`w-6 h-6 border-2 ${navTheme === 'light' ? 'border-navy-deep' : 'border-white'} rounded-full transition-colors duration-500`}></div>
+            <div className={`w-10 h-10 rounded-full ${navTheme === 'light' ? 'bg-gray-200' : 'bg-white/10'} flex items-center justify-center transition-all duration-300`}>
+              <div className={`w-6 h-6 border-2 ${navTheme === 'light' ? 'border-navy-deep' : 'border-white'} rounded-full transition-all duration-300`}></div>
             </div>
             <div>
-              <div className={`${styles.text} font-sans text-lg font-bold transition-colors duration-500`}>YVOO</div>
+              <div className={`${styles.text} font-sans text-lg font-bold transition-all duration-300`}>YVOO</div>
             </div>
           </div>
 
@@ -102,7 +103,7 @@ const Navigation = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`${styles.textHover} transition-all duration-500 font-sans text-sm flex items-center gap-1`}
+                className={`${styles.textHover} transition-all duration-300 font-sans text-sm flex items-center gap-1`}
               >
                 Solutions
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -135,21 +136,21 @@ const Navigation = () => {
               )}
             </div>
 
-            <a href="#pricing" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#pricing" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               Pricing
             </a>
-            <a href="#auditors" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#auditors" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               For auditors
             </a>
-            <a href="#blog" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#blog" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               Blog
             </a>
-            <a href="#about" className={`${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#about" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               About us
             </a>
             <Button 
               variant="outline" 
-              className={`${styles.button} font-sans text-sm px-6 transition-all duration-500`}
+              className={`${styles.button} font-sans text-sm px-6 transition-all duration-300`}
             >
               Estimate project
             </Button>
@@ -158,7 +159,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden ${styles.text} transition-colors duration-500`}
+            className={`md:hidden ${styles.text} transition-all duration-300`}
           >
             <Menu size={24} />
           </button>
@@ -169,33 +170,33 @@ const Navigation = () => {
           <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
             {/* Solutions Submenu */}
             <div className="space-y-2">
-              <div className={`${styles.text} font-sans text-sm font-semibold transition-colors duration-500`}>Solutions</div>
-              <a href="#search-suppliers" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              <div className={`${styles.text} font-sans text-sm font-semibold transition-all duration-300`}>Solutions</div>
+              <a href="#search-suppliers" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
                 Search Suppliers
               </a>
-              <a href="#ground-intelligence" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              <a href="#ground-intelligence" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
                 Ground Intelligence
               </a>
-              <a href="#be-found" className={`block pl-4 ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+              <a href="#be-found" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
                 Be found
               </a>
             </div>
             
-            <a href="#pricing" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#pricing" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               Pricing
             </a>
-            <a href="#auditors" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#auditors" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               For auditors
             </a>
-            <a href="#blog" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#blog" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               Blog
             </a>
-            <a href="#about" className={`block ${styles.textHover} transition-all duration-500 font-sans text-sm`}>
+            <a href="#about" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
               About us
             </a>
             <Button 
               variant="outline" 
-              className={`w-full ${styles.button} font-sans text-sm transition-all duration-500`}
+              className={`w-full ${styles.button} font-sans text-sm transition-all duration-300`}
             >
               Estimate project
             </Button>
