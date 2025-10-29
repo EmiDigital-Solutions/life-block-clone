@@ -5,7 +5,8 @@ import { useState, useEffect, useRef } from "react";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navTheme, setNavTheme] = useState<'dark' | 'green' | 'light'>('dark');
+  const [navBgColor, setNavBgColor] = useState('rgb(31, 41, 55)'); // Default dark navy
+  const [textColor, setTextColor] = useState('rgb(255, 255, 255)'); // Default white
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -20,29 +21,59 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Detect scroll position and section colors
+  // Helper function to calculate luminance and determine text color
+  const getContrastColor = (rgb: string): string => {
+    const match = rgb.match(/\d+/g);
+    if (!match || match.length < 3) return 'rgb(255, 255, 255)';
+    
+    const [r, g, b] = match.map(Number);
+    // Calculate relative luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    
+    // Return white for dark backgrounds, dark for light backgrounds
+    return luminance > 0.5 ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)';
+  };
+
+  // Detect scroll position and extract exact background colors
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('[data-nav-theme]');
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
-
-      let currentTheme: 'dark' | 'green' | 'light' = 'dark';
-
+      const scrollPosition = window.scrollY + 80; // Navbar position
+      
+      // Get all sections
+      const sections = document.querySelectorAll('section');
+      
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + window.scrollY;
         const sectionBottom = sectionTop + rect.height;
-
-        // Check if current scroll position is within this section
+        
+        // Check if navbar is within this section
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          const theme = section.getAttribute('data-nav-theme') as 'dark' | 'green' | 'light' | null;
-          if (theme) {
-            currentTheme = theme;
+          // Get computed background color
+          const computedStyle = window.getComputedStyle(section);
+          let bgColor = computedStyle.backgroundColor;
+          
+          // If background is transparent or has gradient, check background-image
+          if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
+            const bgImage = computedStyle.backgroundImage;
+            if (bgImage && bgImage !== 'none') {
+              // Extract first color from gradient
+              const colorMatch = bgImage.match(/rgb\([^)]+\)/);
+              if (colorMatch) {
+                bgColor = colorMatch[0];
+              }
+            }
+          }
+          
+          // Make the nav color slightly transparent
+          const rgbMatch = bgColor.match(/\d+/g);
+          if (rgbMatch && rgbMatch.length >= 3) {
+            const [r, g, b] = rgbMatch.map(Number);
+            setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+            setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
           }
         }
       });
-
-      setNavTheme(currentTheme);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -51,49 +82,40 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Dynamic navigation styles based on theme
-  const getNavStyles = () => {
-    switch (navTheme) {
-      case 'dark':
-        return {
-          bg: 'bg-navy-deep/95',
-          text: 'text-white',
-          textHover: 'text-white/80 hover:text-white',
-          border: 'border-white/10',
-          button: 'bg-white text-navy-deep hover:bg-white/90 border-white',
-        };
-      case 'green':
-        return {
-          bg: 'bg-green-600/80',
-          text: 'text-white',
-          textHover: 'text-white/80 hover:text-white',
-          border: 'border-white/20',
-          button: 'bg-white text-green-700 hover:bg-white/90 border-white',
-        };
-      case 'light':
-        return {
-          bg: 'bg-white/95',
-          text: 'text-gray-900',
-          textHover: 'text-gray-600 hover:text-gray-900',
-          border: 'border-gray-200',
-          button: 'bg-navy-deep text-white hover:bg-navy-deep/90 border-navy-deep',
-        };
-    }
-  };
-
-  const styles = getNavStyles();
+  // Determine if we're on a light or dark background
+  const isLightBg = textColor === 'rgb(31, 41, 55)';
+  
+  // Dynamic border color based on background
+  const borderColor = isLightBg ? 'rgba(31, 41, 55, 0.1)' : 'rgba(255, 255, 255, 0.1)';
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 ${styles.bg} backdrop-blur-sm border-b ${styles.border} transition-all duration-300 ease-in-out`}>
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-all duration-300 ease-in-out"
+      style={{ 
+        backgroundColor: navBgColor,
+        borderBottomColor: borderColor,
+      }}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-full ${navTheme === 'light' ? 'bg-gray-200' : 'bg-white/10'} flex items-center justify-center transition-all duration-300`}>
-              <div className={`w-6 h-6 border-2 ${navTheme === 'light' ? 'border-navy-deep' : 'border-white'} rounded-full transition-all duration-300`}></div>
+            <div 
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+              style={{ backgroundColor: isLightBg ? 'rgba(31, 41, 55, 0.1)' : 'rgba(255, 255, 255, 0.1)' }}
+            >
+              <div 
+                className="w-6 h-6 border-2 rounded-full transition-all duration-300"
+                style={{ borderColor: textColor }}
+              ></div>
             </div>
             <div>
-              <div className={`${styles.text} font-sans text-lg font-bold transition-all duration-300`}>YVOO</div>
+              <div 
+                className="font-sans text-lg font-bold transition-all duration-300"
+                style={{ color: textColor }}
+              >
+                YVOO
+              </div>
             </div>
           </div>
 
@@ -103,54 +125,91 @@ const Navigation = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`${styles.textHover} transition-all duration-300 font-sans text-sm flex items-center gap-1`}
+                className="transition-all duration-300 font-sans text-sm flex items-center gap-1 opacity-80 hover:opacity-100"
+                style={{ color: textColor }}
               >
                 Solutions
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className="w-4 h-4 transition-transform duration-300" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
               </button>
               
               {isDropdownOpen && (
-                <div className={`absolute top-full left-0 mt-2 w-72 ${navTheme === 'light' ? 'bg-white' : 'bg-navy-deep'} rounded-lg shadow-xl border ${styles.border} overflow-hidden transition-all duration-300 animate-fade-in`}>
+                <div 
+                  className="absolute top-full left-0 mt-2 w-72 rounded-lg shadow-xl border overflow-hidden transition-all duration-300 animate-fade-in"
+                  style={{ 
+                    backgroundColor: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
+                    borderColor: borderColor 
+                  }}
+                >
                   <a 
                     href="#search-suppliers" 
-                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'} border-b ${styles.border}`}
+                    className="block px-4 py-3 transition-colors duration-300 border-b"
+                    style={{ 
+                      color: textColor,
+                      borderBottomColor: borderColor 
+                    }}
                   >
                     <div className="font-semibold">Search Suppliers</div>
-                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Find relevant companies</div>
+                    <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
                   </a>
                   <a 
                     href="#ground-intelligence" 
-                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'} border-b ${styles.border}`}
+                    className="block px-4 py-3 transition-colors duration-300 border-b"
+                    style={{ 
+                      color: textColor,
+                      borderBottomColor: borderColor 
+                    }}
                   >
                     <div className="font-semibold">Ground Intelligence</div>
-                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Qualify suppliers on-site</div>
+                    <div className="text-xs opacity-60 mt-0.5">Qualify suppliers on-site</div>
                   </a>
                   <a 
                     href="#be-found" 
-                    className={`block px-4 py-3 ${styles.textHover} transition-colors duration-300 ${navTheme === 'light' ? 'hover:bg-gray-50' : 'hover:bg-white/5'}`}
+                    className="block px-4 py-3 transition-colors duration-300"
+                    style={{ color: textColor }}
                   >
                     <div className="font-semibold">Be found</div>
-                    <div className={`text-xs ${navTheme === 'light' ? 'text-gray-500' : 'text-white/60'} mt-0.5`}>Reach your target audience</div>
+                    <div className="text-xs opacity-60 mt-0.5">Reach your target audience</div>
                   </a>
                 </div>
               )}
             </div>
 
-            <a href="#pricing" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#pricing" 
+              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               Pricing
             </a>
-            <a href="#auditors" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#auditors" 
+              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               For auditors
             </a>
-            <a href="#blog" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#blog" 
+              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               Blog
             </a>
-            <a href="#about" className={`${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#about" 
+              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               About us
             </a>
             <Button 
               variant="outline" 
-              className={`${styles.button} font-sans text-sm px-6 transition-all duration-300`}
+              className="font-sans text-sm px-6 transition-all duration-300 border hover:opacity-90"
+              style={{
+                backgroundColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
+                color: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
+                borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
+              }}
             >
               Estimate project
             </Button>
@@ -159,7 +218,8 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden ${styles.text} transition-all duration-300`}
+            className="md:hidden transition-all duration-300"
+            style={{ color: textColor }}
           >
             <Menu size={24} />
           </button>
@@ -170,33 +230,71 @@ const Navigation = () => {
           <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
             {/* Solutions Submenu */}
             <div className="space-y-2">
-              <div className={`${styles.text} font-sans text-sm font-semibold transition-all duration-300`}>Solutions</div>
-              <a href="#search-suppliers" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+              <div 
+                className="font-sans text-sm font-semibold transition-all duration-300"
+                style={{ color: textColor }}
+              >
+                Solutions
+              </div>
+              <a 
+                href="#search-suppliers" 
+                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+                style={{ color: textColor }}
+              >
                 Search Suppliers
               </a>
-              <a href="#ground-intelligence" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+              <a 
+                href="#ground-intelligence" 
+                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+                style={{ color: textColor }}
+              >
                 Ground Intelligence
               </a>
-              <a href="#be-found" className={`block pl-4 ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+              <a 
+                href="#be-found" 
+                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+                style={{ color: textColor }}
+              >
                 Be found
               </a>
             </div>
             
-            <a href="#pricing" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#pricing" 
+              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               Pricing
             </a>
-            <a href="#auditors" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#auditors" 
+              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               For auditors
             </a>
-            <a href="#blog" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#blog" 
+              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               Blog
             </a>
-            <a href="#about" className={`block ${styles.textHover} transition-all duration-300 font-sans text-sm`}>
+            <a 
+              href="#about" 
+              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              style={{ color: textColor }}
+            >
               About us
             </a>
             <Button 
               variant="outline" 
-              className={`w-full ${styles.button} font-sans text-sm transition-all duration-300`}
+              className="w-full font-sans text-sm transition-all duration-300 border hover:opacity-90"
+              style={{
+                backgroundColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
+                color: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
+                borderColor: isLightBg ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)',
+              }}
             >
               Estimate project
             </Button>
