@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Spline from "@splinetool/react-spline";
 
 const HeroSection = () => {
 
@@ -73,17 +74,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="w-full h-[400px] md:h-[600px] lg:h-[700px] relative"
+              className="w-full lg:w-[60%] h-[400px] md:h-[600px] lg:h-[700px] relative"
             >
               <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
-              <iframe 
-                src='https://my.spline.design/reactiveorb-hpzUrs2oUoCafTMt0LiZLgzl/' 
-                frameBorder='0' 
-                width='100%' 
-                height='100%'
-                className="rounded-lg"
-                title="Interactive 3D Sphere Animation"
-              />
+              <Spline scene="https://prod.spline.design/hpzUrs2oUoCafTMt0LiZLgzl/scene.splinecode" />
             </motion.div>
           </div>
         </div>
