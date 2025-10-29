@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import InteractiveSphere from "./InteractiveSphere";
+import FlowingLines from "./FlowingLines";
 
 const HeroSection = () => {
 
@@ -71,7 +71,7 @@ const HeroSection = () => {
               </motion.div>
             </div>
 
-            {/* Right Column - Interactive Sphere */}
+            {/* Right Column - Flowing Lines Animation */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -81,7 +81,7 @@ const HeroSection = () => {
               {/* Atmospheric Glow */}
               <div className="absolute inset-0 blur-3xl bg-cyan-400/20 scale-150 -z-10"></div>
               
-              <InteractiveSphere />
+              <FlowingLines />
             </motion.div>
 
           </div>
