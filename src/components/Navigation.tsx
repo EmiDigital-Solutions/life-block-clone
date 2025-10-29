@@ -118,11 +118,11 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-10 w-10 object-contain"
+              className="h-12 w-12 object-contain"
             />
             <div>
               <div 
-                className="font-sans text-lg font-bold transition-all duration-300"
+                className="font-brand text-[22px] font-semibold tracking-tight transition-all duration-300"
                 style={{ color: textColor }}
               >
                 Connectimus
