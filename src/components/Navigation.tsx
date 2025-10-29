@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import connectimusLogo from "@/assets/connectimus-logo.png";
+import connectimusLogo from "@/assets/connectimus-o-logo.png";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -118,7 +118,7 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-10 w-10 object-contain mix-blend-multiply dark:mix-blend-screen"
+              className="h-10 w-10 object-contain"
             />
             <div>
               <div 
