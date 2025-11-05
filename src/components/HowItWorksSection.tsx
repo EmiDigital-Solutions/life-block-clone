@@ -430,32 +430,14 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline - Vertical */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative">
-              {/* Vertical Line - Behind circles, perfectly centered */}
+              {/* Vertical Line - Behind circles, perfectly centered through all 4 circles */}
               <div 
-                className="absolute w-0.5 bg-white/30 z-0"
-                style={{
-                  left: '40px', // Half of 80px (largest circle)
-                  top: '40px', // Half of 80px (start at center of first circle)
-                  height: `${(processedSteps.length - 1) * 120 + 30}px`,
-                }}
-              />
-
-              {/* Animated Progress Line - Fills based on active step */}
-              <motion.div 
                 className="absolute w-0.5 z-0"
                 style={{
-                  left: '40px', // Same center as the static line
-                  top: '40px',
-                  background: 'linear-gradient(180deg, #10b981 0%, #059669 100%)',
-                  boxShadow: '0 0 10px rgba(16, 185, 129, 0.5)',
-                }}
-                initial={{ height: 0 }}
-                animate={{ 
-                  height: `${activeStep * 120 + 40}px` 
-                }}
-                transition={{ 
-                  duration: 0.6, 
-                  ease: "easeInOut" 
+                  left: '40px', // Half of 80px (largest circle) for perfect centering
+                  top: '40px', // Half of 80px (center of first circle)
+                  height: `${(processedSteps.length - 1) * 120 + 30}px`, // Extended to center of last circle (30px = half of 60px small circle)
+                  background: 'rgba(255, 255, 255, 0.3)', // Higher contrast
                 }}
               />
 
