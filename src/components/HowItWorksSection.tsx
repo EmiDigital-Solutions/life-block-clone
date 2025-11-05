@@ -117,87 +117,9 @@ export const HowItWorksSection = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* LEFT SIDE - 40% - Timeline + Large Featured Screenshot */}
-          <div className="lg:col-span-2 flex flex-col justify-center space-y-6 lg:space-y-8">
-            {/* Section Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-2"
-            >
-              <p className="text-sm font-medium text-white/80 tracking-wider uppercase">The Process</p>
-              <div className="flex items-center gap-4">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-                  How It Works
-                </h2>
-                <div className="flex-1 h-0.5 bg-white/30" />
-              </div>
-            </motion.div>
-
-            {/* Vertical Timeline with Descriptions */}
-            <div className="relative flex flex-col gap-0">
-              {/* Connecting Line */}
-              <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-white/20">
-                <motion.div
-                  className="w-full bg-white"
-                  initial={{ height: 0 }}
-                  animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                />
-              </div>
-
-              {/* Timeline Steps */}
-              {steps.map((step, index) => {
-                const isActive = activeStep === index;
-                const isPast = index < activeStep;
-
-                return (
-                  <button
-                    key={step.number}
-                    onClick={() => handleStepClick(index)}
-                    className="relative flex items-start gap-4 py-4 group text-left"
-                    aria-label={`Go to step ${index + 1}: ${step.label}`}
-                  >
-                    {/* Dot */}
-                    <div
-                      className={`relative z-10 w-3 h-3 rounded-full flex-shrink-0 mt-1 transition-all duration-300 ${
-                        isActive
-                          ? "bg-white scale-150 shadow-lg shadow-white/50"
-                          : isPast
-                          ? "bg-white"
-                          : "bg-white/30 group-hover:bg-white/50"
-                      }`}
-                    />
-
-                    {/* Step Content */}
-                    <div className="flex-1 min-w-0">
-                      <h4
-                        className={`text-sm sm:text-base font-bold mb-1 transition-all duration-300 ${
-                          isActive
-                            ? "text-white"
-                            : "text-white/60 group-hover:text-white/80"
-                        }`}
-                      >
-                        {step.label}
-                      </h4>
-                      {isActive && (
-                        <motion.p
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="text-xs sm:text-sm text-white/70 leading-relaxed pr-4"
-                        >
-                          {step.description}
-                        </motion.p>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* LARGE Featured Screenshot - HERO */}
+          {/* LEFT SIDE - 40% - Featured Screenshot as BACKGROUND with Timeline OVERLAY */}
+          <div className="lg:col-span-2 relative min-h-[600px] lg:min-h-[800px]">
+            {/* LAYER 1: Large Featured Screenshot - BACKGROUND */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
@@ -205,7 +127,7 @@ export const HowItWorksSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="relative aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl"
+                className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl"
                 style={{
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.2)",
                 }}
@@ -215,15 +137,15 @@ export const HowItWorksSection = () => {
                 </div>
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6">
-                    <span className="text-5xl sm:text-6xl font-bold text-white">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6">
+                    <span className="text-6xl sm:text-7xl font-bold text-white">
                       {currentStep.number}
                     </span>
                   </div>
-                  <h4 className="text-white font-bold text-2xl sm:text-3xl mb-4">
+                  <h4 className="text-white font-bold text-3xl sm:text-4xl mb-4">
                     {currentStep.screenshots[0].label}
                   </h4>
-                  <p className="text-white/80 text-base sm:text-lg max-w-xs">
+                  <p className="text-white/80 text-lg sm:text-xl max-w-md">
                     {currentStep.screenshots[0].desc}
                   </p>
                 </div>
@@ -236,9 +158,92 @@ export const HowItWorksSection = () => {
                 />
               </motion.div>
             </AnimatePresence>
+
+            {/* LAYER 2: Timeline and Header - OVERLAY on top of featured screenshot */}
+            <div className="absolute inset-0 flex flex-col p-6 lg:p-8 pointer-events-none">
+              {/* Section Header */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-2 mb-8 pointer-events-auto"
+              >
+                <p className="text-sm font-medium text-white/90 tracking-wider uppercase backdrop-blur-sm bg-black/20 inline-block px-3 py-1 rounded">
+                  The Process
+                </p>
+                <div className="flex items-center gap-4">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    How It Works
+                  </h2>
+                  <div className="flex-1 h-0.5 bg-white/30" />
+                </div>
+              </motion.div>
+
+              {/* Vertical Timeline - OVERLAY */}
+              <div className="relative flex flex-col gap-0 pointer-events-auto">
+                {/* Connecting Line */}
+                <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-white/20">
+                  <motion.div
+                    className="w-full bg-white"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                </div>
+
+                {/* Timeline Steps */}
+                {steps.map((step, index) => {
+                  const isActive = activeStep === index;
+                  const isPast = index < activeStep;
+
+                  return (
+                    <button
+                      key={step.number}
+                      onClick={() => handleStepClick(index)}
+                      className="relative flex items-start gap-4 py-4 group text-left"
+                      aria-label={`Go to step ${index + 1}: ${step.label}`}
+                    >
+                      {/* Dot */}
+                      <div
+                        className={`relative z-10 w-3 h-3 rounded-full flex-shrink-0 mt-1 transition-all duration-300 ${
+                          isActive
+                            ? "bg-white scale-150 shadow-lg shadow-white/50"
+                            : isPast
+                            ? "bg-white"
+                            : "bg-white/30 group-hover:bg-white/50"
+                        }`}
+                      />
+
+                      {/* Step Content with Background */}
+                      <div className="flex-1 min-w-0 backdrop-blur-sm bg-black/20 rounded-lg px-3 py-2">
+                        <h4
+                          className={`text-sm sm:text-base font-bold mb-1 transition-all duration-300 ${
+                            isActive
+                              ? "text-white"
+                              : "text-white/60 group-hover:text-white/80"
+                          }`}
+                        >
+                          {step.label}
+                        </h4>
+                        {isActive && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="text-xs sm:text-sm text-white/80 leading-relaxed pr-4"
+                          >
+                            {step.description}
+                          </motion.p>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT SIDE - 60% - Screenshots Grid + Navigation */}
+          {/* RIGHT SIDE - 60% - Carousel + Navigation */}
           <div className="lg:col-span-3 flex flex-col justify-center space-y-6">
             {/* Active Step Title */}
             <AnimatePresence mode="wait">
@@ -254,58 +259,61 @@ export const HowItWorksSection = () => {
               </motion.h3>
             </AnimatePresence>
 
-            {/* Small Screenshots Grid - 2x2 */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl"
-              >
-                {currentStep.screenshots.slice(0, 4).map((screenshot, index) => (
-                  <motion.div
-                    key={`${activeStep}-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-                    style={{
-                      boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 197, 94, 0.25)",
-                    }}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    </div>
-
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3">
-                        <span className="text-base sm:text-lg font-bold text-white">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <h4 className="text-white font-bold text-xs sm:text-sm mb-1">
-                        {screenshot.label}
-                      </h4>
-                      <p className="text-white/70 text-[10px] sm:text-xs">
-                        {screenshot.desc}
-                      </p>
-                    </div>
-
-                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
-
-                    <div 
-                      className="absolute inset-0 pointer-events-none rounded-2xl"
+            {/* Carousel - Horizontal scroll of 4 screenshots */}
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex gap-3 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  {currentStep.screenshots.slice(0, 4).map((screenshot, index) => (
+                    <motion.div
+                      key={`${activeStep}-${index}`}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.08 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="group relative flex-shrink-0 w-64 sm:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl cursor-pointer snap-start"
                       style={{
-                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                        boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 197, 94, 0.25)",
                       }}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </div>
+
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3">
+                          <span className="text-lg sm:text-xl font-bold text-white">
+                            {index + 1}
+                          </span>
+                        </div>
+                        <h4 className="text-white font-bold text-sm sm:text-base mb-2">
+                          {screenshot.label}
+                        </h4>
+                        <p className="text-white/70 text-xs sm:text-sm">
+                          {screenshot.desc}
+                        </p>
+                      </div>
+
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
+
+                      <div 
+                        className="absolute inset-0 pointer-events-none rounded-2xl"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Navigation Arrows */}
             <div className="flex items-center justify-center gap-4">
