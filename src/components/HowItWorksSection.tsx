@@ -56,9 +56,9 @@ export const HowItWorksSection = () => {
 
   return (
     <section
-      data-nav-theme="dark"
+      data-nav-theme="green"
       className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-12 sm:py-16 lg:py-20"
-      style={{ background: "linear-gradient(135deg, rgb(88, 28, 135), rgb(147, 51, 234), rgb(168, 85, 247))" }}
+      style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
     >
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
@@ -72,11 +72,11 @@ export const HowItWorksSection = () => {
               className="mb-8 sm:mb-12"
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-white mb-2">
-                Choose
-              </h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-white/90">
                 How It Works
-              </h3>
+              </h2>
+              <p className="text-lg sm:text-xl text-white/90 font-medium">
+                From supplier search to certified audit in 4 simple steps
+              </p>
             </motion.div>
 
             {/* Timeline */}
@@ -110,7 +110,7 @@ export const HowItWorksSection = () => {
                     <div
                       className={`absolute left-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
                         isActive || isPast
-                          ? "bg-white text-purple-600 scale-110"
+                          ? "bg-white text-green-600 scale-110"
                           : "bg-white/20 text-white/60 group-hover:bg-white/30"
                       }`}
                     >
@@ -158,7 +158,10 @@ export const HowItWorksSection = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02, y: -5 }}
-                      className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
+                      className="group relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
+                      style={{
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)"
+                      }}
                     >
                       {/* Placeholder Background */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${placeholder.gradient}`}>
@@ -185,9 +188,9 @@ export const HowItWorksSection = () => {
 
                       {/* Edge Highlight */}
                       <div 
-                        className="absolute inset-0 pointer-events-none rounded-2xl"
+                        className="absolute inset-0 pointer-events-none rounded-3xl"
                         style={{
-                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                         }}
                       />
                     </motion.div>
@@ -228,14 +231,14 @@ export const HowItWorksSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="group min-w-[200px] bg-white/10 border-white/30 text-white hover:bg-white/20"
+              className="group min-w-[200px] bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white"
             >
               Try Free Search
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
-              className="group min-w-[200px] bg-white text-purple-600 hover:bg-white/90"
+              className="group min-w-[200px] bg-white text-green-600 hover:bg-white/90"
             >
               Book 30-Min Demo
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
