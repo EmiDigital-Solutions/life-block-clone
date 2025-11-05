@@ -242,8 +242,15 @@ export const HowItWorksSection = () => {
             className="flex justify-center mb-8"
           >
             <div className="relative">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent shadow-2xl flex flex-col items-center justify-center ring-4 ring-primary/30">
-                <span className="text-xs font-semibold text-white/80 uppercase tracking-wide">Step</span>
+              <div 
+                className="w-20 h-20 rounded-full shadow-2xl flex flex-col items-center justify-center ring-4"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  boxShadow: "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)",
+                  borderColor: "hsla(142, 76%, 45%, 0.3)"
+                }}
+              >
+                <span className="text-xs font-semibold text-white/90 uppercase tracking-wide">Step</span>
                 <span className="text-3xl font-black text-white">
                   {currentStep.number}
                 </span>
@@ -472,25 +479,24 @@ export const HowItWorksSection = () => {
                       aria-label={`Go to step ${index + 1}: ${step.label}`}
                     >
                       <motion.div
-                        className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
-                          isActive || isPast
-                            ? "bg-white shadow-2xl"
-                            : "bg-white/40 shadow-md"
-                        }`}
+                        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl"
+                        style={{
+                          background: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.2)",
+                        }}
                         animate={{
                           scale: isActive ? 1.15 : 1,
                           boxShadow: isActive
-                            ? "0 20px 40px -10px hsla(142, 76%, 36%, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
+                            ? "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)"
                             : isPast
-                            ? "0 10px 20px -5px rgba(0, 0, 0, 0.2)"
+                            ? "0 10px 20px -5px hsla(142, 76%, 45%, 0.3)"
                             : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
                         }}
                         transition={{ duration: 0.4 }}
                       >
                         <span
-                          className={`text-sm md:text-base lg:text-lg font-bold transition-colors duration-300`}
+                          className="text-sm md:text-base lg:text-lg font-bold transition-colors duration-300"
                           style={{
-                            color: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.4)"
+                            color: isActive || isPast ? "white" : "rgba(255, 255, 255, 0.5)"
                           }}
                         >
                           {step.number}
@@ -500,9 +506,10 @@ export const HowItWorksSection = () => {
 
                     {/* Connecting Line - Horizontal on mobile, Vertical on desktop */}
                     {!isLast && (
-                      <div className="lg:w-[2px] lg:h-20 w-12 h-[2px] md:w-16 bg-white/30 relative">
+                      <div className="lg:w-[2px] lg:h-20 w-12 h-[2px] md:w-16 bg-white/20 relative">
                         <motion.div
-                          className="lg:w-full lg:h-auto w-auto h-full bg-white"
+                          className="lg:w-full lg:h-auto w-auto h-full"
+                          style={{ background: "hsl(var(--content-accent))" }}
                           initial={{ height: 0, width: 0 }}
                           animate={{ 
                             height: isPast || (isActive && index < activeStep) ? "100%" : "0%",
@@ -584,10 +591,10 @@ export const HowItWorksSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.08 }}
                         whileHover={{ scale: 1.05, y: -8 }}
-                        className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer h-full bg-card border-2"
+                        className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer h-full bg-card border"
                         style={{
-                          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px hsla(142, 76%, 36%, 0.15)",
-                          borderColor: "hsl(var(--content-accent))"
+                          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.2)",
+                          borderColor: "hsl(var(--border))"
                         }}
                       >
                         {/* Display actual uploaded image or fallback to gradient */}

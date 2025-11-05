@@ -53,8 +53,8 @@ All colors MUST be HSL.
     
     /* How It Works section colors */
     --process-bg: 220 30% 15%;
-    --content-bg: 180 20% 85%;
-    --content-accent: 142 76% 36%;
+    --content-bg: 210 10% 90%;
+    --content-accent: 142 76% 45%;
   }
 
   .dark {
