@@ -1,125 +1,19 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ChevronLeft, ChevronRight, MapPin, Award, Clock, CheckCircle } from "lucide-react";
-
-// Import auditor images
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
-import auditorAsian from "@/assets/auditor-real-asian.jpg";
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import auditorLatin from "@/assets/auditor-real-latin.jpg";
-import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
-import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-
-const auditors = [
-  {
-    id: 1,
-    name: "Marcus Chen",
-    title: "Senior ISO Auditor",
-    location: "Shanghai, China",
-    certifications: "ISO 9001, IATF 16949",
-    experience: "12 years",
-    image: auditorAsian,
-    specialties: ["Automotive", "Electronics", "Quality Systems"]
-  },
-  {
-    id: 2,
-    name: "Amara Okonkwo",
-    title: "Lead VDA Specialist",
-    location: "Lagos, Nigeria",
-    certifications: "VDA 6.3, ISO 14001",
-    experience: "9 years",
-    image: auditorAfrican,
-    specialties: ["Manufacturing", "Supply Chain", "Process Audits"]
-  },
-  {
-    id: 3,
-    name: "Sofia Ramirez",
-    title: "Quality Expert",
-    location: "Mexico City, Mexico",
-    certifications: "IATF 16949, ISO 45001",
-    experience: "15 years",
-    image: auditorLatin,
-    specialties: ["Aerospace", "Medical Devices", "Compliance"]
-  },
-  {
-    id: 4,
-    name: "Klaus Bergmann",
-    title: "Certification Lead",
-    location: "Munich, Germany",
-    certifications: "ISO 9001, VDA 6.3",
-    experience: "18 years",
-    image: auditorEuropean,
-    specialties: ["Automotive", "Engineering", "Standards"]
-  },
-  {
-    id: 5,
-    name: "Fatima Al-Rashid",
-    title: "Compliance Director",
-    location: "Dubai, UAE",
-    certifications: "ISO 9001, ISO 27001",
-    experience: "11 years",
-    image: auditorMiddleEast,
-    specialties: ["Security", "Risk Management", "Compliance"]
-  },
-  {
-    id: 6,
-    name: "Raj Patel",
-    title: "Technical Auditor",
-    location: "Mumbai, India",
-    certifications: "IATF 16949, ISO 50001",
-    experience: "14 years",
-    image: auditorSouthAsian,
-    specialties: ["Energy", "Technology", "Process Excellence"]
-  }
-];
+import { Button } from "@/components/ui/button";
+import { MapPin, Award, Clock, CheckCircle2, TrendingDown, TrendingUp, Target } from "lucide-react";
 
 const GroundIntelligence = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  const nextSlide = () => {
-    setDirection(1);
-    setCurrentSlide((prev) => (prev + 1) % auditors.length);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
   };
-
-  const prevSlide = () => {
-    setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + auditors.length) % auditors.length);
-  };
-
-  const goToSlide = (index: number) => {
-    setDirection(index > currentSlide ? 1 : -1);
-    setCurrentSlide(index);
-  };
-
-  // Auto-advance slides
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentSlide]);
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  };
-
-  const currentAuditor = auditors[currentSlide];
 
   return (
     <div className="min-h-screen bg-background">
