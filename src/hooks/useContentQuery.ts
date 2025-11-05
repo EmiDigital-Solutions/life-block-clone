@@ -10,6 +10,10 @@ export interface ContentItem {
     content?: string;
     imageId?: string;
     description?: string;
+    tagline?: string;
+    subtitle?: string;
+    ctaText?: string;
+    [key: string]: any; // Allow for additional dynamic fields
   };
   status: string;
   order_index: number;
