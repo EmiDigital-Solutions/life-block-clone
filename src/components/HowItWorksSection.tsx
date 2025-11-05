@@ -730,9 +730,9 @@ export const HowItWorksSection = () => {
               <div 
                 className="absolute w-0.5 z-0"
                 style={{
-                  left: '15.75px', // Centered for smaller circles (16px - 0.25px)
-                  top: '0px',
-                  height: '400px', // Adjusted for smaller circles and gaps
+                  left: '15.75px', // Centered for 32px circles (16px - 0.25px for line width)
+                  top: '16px', // Start at center of first circle
+                  height: '300px', // From center of circle 1 to center of circle 4: 3 gaps * 100px
                   background: 'rgba(255, 255, 255, 0.6)',
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
