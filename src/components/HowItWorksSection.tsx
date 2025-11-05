@@ -705,9 +705,9 @@ export const HowItWorksSection = () => {
       </div>
 
       <div className="w-full relative z-10 flex flex-col lg:flex-row">
-        {/* LEFT SIDE - Expanded Card View - 60% width */}
+        {/* LEFT SIDE - Expanded Card View - 30% width */}
         <div 
-          className="w-full lg:w-3/5 relative min-h-[40vh] lg:min-h-0"
+          className="w-full lg:w-[30%] relative min-h-[40vh] lg:min-h-0"
           style={{ background: "hsl(var(--process-bg))" }}
         >
           <AnimatePresence mode="wait">
@@ -798,11 +798,11 @@ export const HowItWorksSection = () => {
 
                     {/* Content at the bottom */}
                     <div className="absolute bottom-8 left-8 right-8">
-                      <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-6">
-                        <p className="text-white font-bold text-3xl mb-3">
+                      <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4">
+                        <p className="text-white font-bold text-2xl mb-2">
                           {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].label}
                         </p>
-                        <p className="text-white/90 text-lg">
+                        <p className="text-white/90 text-sm line-clamp-2">
                           {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].desc}
                         </p>
                       </div>
@@ -897,8 +897,8 @@ export const HowItWorksSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* RIGHT SIDE - Small Cards - 40% width */}
-        <div className="w-full lg:w-2/5 flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
+        {/* RIGHT SIDE - Small Cards - 70% width */}
+        <div className="w-full lg:w-[70%] flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
           {/* Active Step Title */}
           <AnimatePresence mode="wait">
             <motion.h3
