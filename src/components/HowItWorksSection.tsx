@@ -107,7 +107,7 @@ export const HowItWorksSection = () => {
   return (
     <section
       data-nav-theme="green"
-      className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden"
+      className="relative h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
     >
       {/* Subtle background animation */}
@@ -118,32 +118,18 @@ export const HowItWorksSection = () => {
       <div className="w-full relative z-10 flex">
         {/* LEFT SIDE - 40% - Full-bleed Background Image with Timeline Overlay */}
         <div className="w-2/5 relative">
-          {/* LAYER 1: Large Background Screenshot - FULL BLEED, NO BORDER */}
+          {/* LAYER 1: Background Screenshot - CLEAN, NO CENTER CONTENT */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               className="absolute inset-0"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[activeStep]}`}>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-              </div>
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
-                <div className="w-48 h-48 bg-white/15 backdrop-blur-md rounded-3xl flex items-center justify-center mb-8">
-                  <span className="text-8xl font-bold text-white">
-                    {currentStep.number}
-                  </span>
-                </div>
-                <h4 className="text-white font-bold text-5xl mb-4">
-                  {currentStep.screenshots[0].label}
-                </h4>
-                <p className="text-white/90 text-2xl max-w-lg">
-                  {currentStep.screenshots[0].desc}
-                </p>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -219,7 +205,7 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* RIGHT SIDE - 60% - Content Area */}
-        <div className="w-3/5 flex flex-col justify-between py-16 px-16 space-y-10">
+        <div className="w-3/5 flex flex-col justify-between py-12 px-16">
           {/* Active Step Title */}
           <AnimatePresence mode="wait">
             <motion.h3
@@ -228,44 +214,13 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-6xl font-bold text-white drop-shadow-lg"
+              className="text-5xl font-bold text-white drop-shadow-lg mb-8"
             >
               {currentStep.title}
             </motion.h3>
           </AnimatePresence>
 
-          {/* Large Featured Card */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`featured-${activeStep}`}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.3 }}
-              className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl cursor-pointer group"
-              style={{
-                boxShadow: "0 25px 50px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 197, 94, 0.25)",
-              }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[0]}`}>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              </div>
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center">
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-5">
-                  <span className="text-3xl font-bold text-white">1</span>
-                </div>
-                <h4 className="text-white font-bold text-3xl mb-3">
-                  {currentStep.screenshots[0].label}
-                </h4>
-                <p className="text-white/80 text-lg">
-                  {currentStep.screenshots[0].desc}
-                </p>
-              </div>
-
-              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-300" />
-            </motion.div>
-          </AnimatePresence>
+          <div className="flex-1" />
 
           {/* Row of 4 Small Cards */}
           <AnimatePresence mode="wait">
