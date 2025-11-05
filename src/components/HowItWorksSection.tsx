@@ -239,16 +239,16 @@ export const HowItWorksSection = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="flex justify-center mb-8"
+            className="flex justify-center mb-4"
           >
             <div className="relative">
-              <div className="w-28 h-28 rounded-full bg-white shadow-2xl flex items-center justify-center ring-4 ring-white/20">
-                <span className="text-5xl font-black" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
+              <div className="w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center ring-2 ring-white/20">
+                <span className="text-2xl font-black" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
                   {currentStep.number}
                 </span>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-white border-4 border-white flex items-center justify-center shadow-xl">
-                <span className="text-base font-bold text-gray-600">{processedSteps.length}</span>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white border-2 border-white flex items-center justify-center shadow-lg">
+                <span className="text-xs font-bold text-gray-600">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -258,7 +258,7 @@ export const HowItWorksSection = () => {
             key={`label-${activeStep}`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xs font-medium text-white/80 tracking-widest uppercase text-center mb-2"
+            className="text-xs font-medium text-white/80 tracking-widest uppercase text-center mb-1"
           >
             {currentStep.label}
           </motion.p>
@@ -271,7 +271,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-3xl font-bold text-white drop-shadow-lg mb-3 text-center"
+              className="text-2xl font-bold text-white drop-shadow-lg mb-2 text-center"
             >
               {currentStep.title}
             </motion.h3>
@@ -284,7 +284,7 @@ export const HowItWorksSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-white/90 text-sm text-center mb-6 px-2"
+              className="text-white/90 text-sm text-center mb-4 px-2"
             >
               {currentStep.description}
             </motion.p>
@@ -298,7 +298,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="mb-6 flex-1 flex items-center"
+              className="mb-4 flex-1 flex items-center max-h-[45vh]"
             >
               <Carousel
                 opts={{
@@ -354,7 +354,7 @@ export const HowItWorksSection = () => {
           </AnimatePresence>
 
           {/* Step Indicators */}
-          <div className="flex justify-center gap-2 mb-6">
+          <div className="flex justify-center gap-2 mb-4">
             {processedSteps.map((_, index) => (
               <button
                 key={index}
