@@ -3,18 +3,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
+import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
+import { supabase } from "@/integrations/supabase/client";
 
-const steps = [
+// Fallback data in case CMS content is not available
+const fallbackSteps = [
   {
     number: 1,
     label: "Search Suppliers",
     title: "Find Your Suppliers",
     description: "Use free AI-powered search to find qualified manufacturers across 3 global databases in minutes",
     screenshots: [
-      { label: "Search Interface", desc: "AI-powered query input" },
-      { label: "Results List", desc: "Supplier matches with scores" },
-      { label: "Supplier Profile", desc: "Detailed view with certifications" },
-      { label: "Book Audit CTA", desc: "One-click audit booking" },
+      { label: "Search Interface", desc: "AI-powered query input", imageUrl: null },
+      { label: "Results List", desc: "Supplier matches with scores", imageUrl: null },
+      { label: "Supplier Profile", desc: "Detailed view with certifications", imageUrl: null },
+      { label: "Book Audit CTA", desc: "One-click audit booking", imageUrl: null },
     ],
   },
   {
@@ -23,10 +26,10 @@ const steps = [
     title: "Choose Your Expert",
     description: "Browse 2,000+ certified auditors. See credentials, ratings, availability, and transparent pricing from €700",
     screenshots: [
-      { label: "Auditor Map", desc: "Interactive global coverage" },
-      { label: "Auditor Profile", desc: "Credentials and ratings" },
-      { label: "Availability", desc: "Real-time calendar" },
-      { label: "Booking Confirmed", desc: "Instant confirmation" },
+      { label: "Auditor Map", desc: "Interactive global coverage", imageUrl: null },
+      { label: "Auditor Profile", desc: "Credentials and ratings", imageUrl: null },
+      { label: "Availability", desc: "Real-time calendar", imageUrl: null },
+      { label: "Booking Confirmed", desc: "Instant confirmation", imageUrl: null },
     ],
   },
   {
@@ -35,10 +38,10 @@ const steps = [
     title: "Audit in Progress",
     description: "Local expert conducts standardized audit using AI guidance. Track real-time progress and see photos as they're uploaded",
     screenshots: [
-      { label: "Mobile Checklist", desc: "AI-guided inspection" },
-      { label: "Equipment Recognition", desc: "Smart photo analysis" },
-      { label: "Photo Gallery", desc: "Real-time evidence" },
-      { label: "Live Dashboard", desc: "Progress tracking" },
+      { label: "Mobile Checklist", desc: "AI-guided inspection", imageUrl: null },
+      { label: "Equipment Recognition", desc: "Smart photo analysis", imageUrl: null },
+      { label: "Photo Gallery", desc: "Real-time evidence", imageUrl: null },
+      { label: "Live Dashboard", desc: "Progress tracking", imageUrl: null },
     ],
   },
   {
@@ -47,10 +50,10 @@ const steps = [
     title: "Actionable Intelligence",
     description: "Receive comprehensive scored report within 24-48 hours with photo evidence and corrective action plan",
     screenshots: [
-      { label: "Report Overview", desc: "Scored dashboard" },
-      { label: "Detailed Findings", desc: "Photo-linked insights" },
-      { label: "Comparison Chart", desc: "Multi-supplier analysis" },
-      { label: "Action Tracker", desc: "Corrective tasks" },
+      { label: "Report Overview", desc: "Scored dashboard", imageUrl: null },
+      { label: "Detailed Findings", desc: "Photo-linked insights", imageUrl: null },
+      { label: "Comparison Chart", desc: "Multi-supplier analysis", imageUrl: null },
+      { label: "Action Tracker", desc: "Corrective tasks", imageUrl: null },
     ],
   },
 ];
@@ -65,17 +68,95 @@ const screenshotGradients = [
 export const HowItWorksSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [processedSteps, setProcessedSteps] = useState(fallbackSteps);
   const isMobile = useIsMobile();
+
+  // Fetch feature cards from CMS
+  const { data: featureCards, isLoading } = useContentByType("feature_card");
+
+  // Process CMS data into steps format
+  useEffect(() => {
+    const processStepsData = async () => {
+      if (!featureCards || featureCards.length === 0) {
+        setProcessedSteps(fallbackSteps);
+        return;
+      }
+
+      // Group feature cards by their order_index (which represents the step number)
+      const stepGroups = featureCards.reduce((acc, card) => {
+        const stepIndex = Math.floor(card.order_index / 10); // Use order_index to group: 0-9 = step 0, 10-19 = step 1, etc.
+        if (!acc[stepIndex]) {
+          acc[stepIndex] = [];
+        }
+        acc[stepIndex].push(card);
+        return acc;
+      }, {} as Record<number, typeof featureCards>);
+
+      // Fetch media for all cards
+      const stepsWithMedia = await Promise.all(
+        Object.entries(stepGroups).map(async ([stepIndexStr, cards]) => {
+          const stepIndex = parseInt(stepIndexStr);
+          const fallbackStep = fallbackSteps[stepIndex] || fallbackSteps[0];
+
+          // Fetch media for each card in this step
+          const screenshotsWithMedia = await Promise.all(
+            cards.map(async (card) => {
+              let imageUrl = null;
+              if (card.body?.imageId) {
+                try {
+                  const { data: media } = await supabase
+                    .from("media")
+                    .select("storage_path")
+                    .eq("id", card.body.imageId)
+                    .single();
+
+                  if (media) {
+                    imageUrl = getMediaPublicUrl(media.storage_path);
+                  }
+                } catch (error) {
+                  console.error("Error fetching media:", error);
+                }
+              }
+
+              return {
+                label: card.title,
+                desc: card.body?.content || card.body?.description || "",
+                imageUrl,
+              };
+            })
+          );
+
+          return {
+            number: stepIndex + 1,
+            label: fallbackStep.label,
+            title: fallbackStep.title,
+            description: fallbackStep.description,
+            screenshots: screenshotsWithMedia,
+          };
+        })
+      );
+
+      // Sort by step number and fill in any missing steps with fallbacks
+      const completeSteps = fallbackSteps.map((fallback, index) => {
+        const cmsStep = stepsWithMedia.find(s => s.number === index + 1);
+        return cmsStep || fallback;
+      });
+
+      setProcessedSteps(completeSteps);
+    };
+
+    processStepsData();
+  }, [featureCards]);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
+      setActiveStep((prev) => (prev + 1) % processedSteps.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, processedSteps.length]);
 
   const handleStepClick = useCallback((index: number) => {
     setActiveStep(index);
@@ -83,14 +164,14 @@ export const HowItWorksSection = () => {
   }, []);
 
   const handlePrevious = useCallback(() => {
-    setActiveStep((prev) => (prev - 1 + steps.length) % steps.length);
+    setActiveStep((prev) => (prev - 1 + processedSteps.length) % processedSteps.length);
     setIsAutoPlaying(false);
-  }, []);
+  }, [processedSteps.length]);
 
   const handleNext = useCallback(() => {
-    setActiveStep((prev) => (prev + 1) % steps.length);
+    setActiveStep((prev) => (prev + 1) % processedSteps.length);
     setIsAutoPlaying(false);
-  }, []);
+  }, [processedSteps.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -102,7 +183,7 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  const currentStep = steps[activeStep];
+  const currentStep = processedSteps[activeStep];
 
   return (
     <section
@@ -138,10 +219,10 @@ export const HowItWorksSection = () => {
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
               {/* Timeline Steps with Clean Line Connections */}
-              {steps.map((step, index) => {
+              {processedSteps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
-                const isLast = index === steps.length - 1;
+                const isLast = index === processedSteps.length - 1;
 
                 return (
                   <motion.div
@@ -263,9 +344,21 @@ export const HowItWorksSection = () => {
                     boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.2)",
                   }}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                  </div>
+                  {/* Display actual uploaded image or fallback to gradient */}
+                  {screenshot.imageUrl ? (
+                    <img
+                      src={screenshot.imageUrl}
+                      alt={screenshot.label}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </div>
+                  )}
+
+                  {/* Overlay gradient for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
                     <h4 className="text-white font-bold text-sm mb-1">
