@@ -14,16 +14,188 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      content: {
+        Row: {
+          body: Json
+          created_at: string | null
+          created_by: string
+          id: string
+          meta_data: Json | null
+          order_index: number | null
+          slug: string
+          status: Database["public"]["Enums"]["content_status"] | null
+          title: string
+          type: Database["public"]["Enums"]["content_type"]
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          body?: Json
+          created_at?: string | null
+          created_by: string
+          id?: string
+          meta_data?: Json | null
+          order_index?: number | null
+          slug: string
+          status?: Database["public"]["Enums"]["content_status"] | null
+          title: string
+          type: Database["public"]["Enums"]["content_type"]
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          body?: Json
+          created_at?: string | null
+          created_by?: string
+          id?: string
+          meta_data?: Json | null
+          order_index?: number | null
+          slug?: string
+          status?: Database["public"]["Enums"]["content_status"] | null
+          title?: string
+          type?: Database["public"]["Enums"]["content_type"]
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      content_media: {
+        Row: {
+          content_id: string
+          created_at: string | null
+          id: string
+          media_id: string
+          position: number | null
+          role: string | null
+        }
+        Insert: {
+          content_id: string
+          created_at?: string | null
+          id?: string
+          media_id: string
+          position?: number | null
+          role?: string | null
+        }
+        Update: {
+          content_id?: string
+          created_at?: string | null
+          id?: string
+          media_id?: string
+          position?: number | null
+          role?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_media_content_id_fkey"
+            columns: ["content_id"]
+            isOneToOne: false
+            referencedRelation: "content"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "content_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      media: {
+        Row: {
+          alt_text: string | null
+          caption: string | null
+          filename: string
+          height: number | null
+          id: string
+          metadata: Json | null
+          mime_type: string
+          original_filename: string
+          size_bytes: number
+          storage_path: string
+          tags: string[] | null
+          uploaded_at: string | null
+          uploaded_by: string
+          width: number | null
+        }
+        Insert: {
+          alt_text?: string | null
+          caption?: string | null
+          filename: string
+          height?: number | null
+          id?: string
+          metadata?: Json | null
+          mime_type: string
+          original_filename: string
+          size_bytes: number
+          storage_path: string
+          tags?: string[] | null
+          uploaded_at?: string | null
+          uploaded_by: string
+          width?: number | null
+        }
+        Update: {
+          alt_text?: string | null
+          caption?: string | null
+          filename?: string
+          height?: number | null
+          id?: string
+          metadata?: Json | null
+          mime_type?: string
+          original_filename?: string
+          size_bytes?: number
+          storage_path?: string
+          tags?: string[] | null
+          uploaded_at?: string | null
+          uploaded_by?: string
+          width?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_manage_content: { Args: { _user_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "editor" | "viewer"
+      content_status: "draft" | "published" | "archived"
+      content_type:
+        | "hero_section"
+        | "feature_card"
+        | "testimonial"
+        | "page_section"
+        | "project"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +322,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "editor", "viewer"],
+      content_status: ["draft", "published", "archived"],
+      content_type: [
+        "hero_section",
+        "feature_card",
+        "testimonial",
+        "page_section",
+        "project",
+      ],
+    },
   },
 } as const

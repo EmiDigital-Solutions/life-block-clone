@@ -214,12 +214,14 @@ const Navigation = () => {
             >
               About us
             </a>
-            <Button 
-              variant="outline" 
-              className="font-sans text-xs sm:text-sm px-4 lg:px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
-            >
-              Sign In
-            </Button>
+            <Link to="/auth">
+              <Button 
+                variant="outline" 
+                className="font-sans text-xs sm:text-sm px-4 lg:px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
+              >
+                Admin Login
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -294,12 +296,14 @@ const Navigation = () => {
             >
               About us
             </a>
-            <Button 
-              variant="outline" 
-              className="w-full font-sans text-sm py-3 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md"
-            >
-              Sign In
-            </Button>
+            <Link to="/auth" className="block">
+              <Button 
+                variant="outline" 
+                className="w-full font-sans text-sm py-3 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md"
+              >
+                Admin Login
+              </Button>
+            </Link>
           </div>
         )}
       </div>
