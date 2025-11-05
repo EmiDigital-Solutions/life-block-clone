@@ -84,6 +84,18 @@ export const HowItWorksSection = () => {
   const [processedSteps, setProcessedSteps] = useState(fallbackSteps);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const isMobile = useIsMobile();
+  
+  // Use mobile layout for tablets/iPad too (up to 1024px)
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsTabletOrMobile(window.innerWidth < 1024);
+    };
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
 
   // Fetch feature cards from CMS
   const { data: featureCards, isLoading } = useContentByType("feature_card");
@@ -199,7 +211,7 @@ export const HowItWorksSection = () => {
 
   // Auto-advance carousel on mobile
   useEffect(() => {
-    if (!carouselApi || !isMobile) return;
+    if (!carouselApi || !isTabletOrMobile) return;
 
     const interval = setInterval(() => {
       if (carouselApi.canScrollNext()) {
@@ -210,12 +222,12 @@ export const HowItWorksSection = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [carouselApi, isMobile]);
+  }, [carouselApi, isTabletOrMobile]);
 
   const currentStep = processedSteps[activeStep];
 
-  // Mobile combined layout
-  if (isMobile) {
+  // Mobile/Tablet combined layout
+  if (isTabletOrMobile) {
     return (
       <section
         data-nav-theme="green"
