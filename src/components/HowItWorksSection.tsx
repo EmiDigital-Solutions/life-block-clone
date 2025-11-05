@@ -436,7 +436,7 @@ export const HowItWorksSection = () => {
                 style={{
                   left: '39.75px', // Perfectly centered (40px - 0.25px for 0.5px width)
                   top: '30px', // Center of first circle (60px / 2)
-                  height: `${(processedSteps.length - 1) * (120 + 60)}px`, // 3 gaps (120px) + 3 circles (60px) = 540px total
+                  height: '360px', // 3 gaps of 120px each (from center of circle 1 to center of circle 4)
                   background: 'rgba(255, 255, 255, 0.6)', // Higher contrast
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
