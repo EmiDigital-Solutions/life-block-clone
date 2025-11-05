@@ -197,7 +197,20 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  // Removed auto-advance carousel logic for mobile
+  // Auto-advance carousel on mobile
+  useEffect(() => {
+    if (!carouselApi || !isMobile) return;
+
+    const interval = setInterval(() => {
+      if (carouselApi.canScrollNext()) {
+        carouselApi.scrollNext();
+      } else {
+        carouselApi.scrollTo(0);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [carouselApi, isMobile]);
 
   const currentStep = processedSteps[activeStep];
 
@@ -279,58 +292,86 @@ export const HowItWorksSection = () => {
             </motion.p>
           </AnimatePresence>
 
-          {/* 4 Cards Grid - Mobile */}
-          <div className="w-full max-w-4xl mx-auto mb-6 grid grid-cols-2 gap-3">
-            {currentStep.screenshots.map((screenshot, index) => (
-              <motion.div
-                key={`${activeStep}-mobile-card-${index}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="h-[180px]"
-              >
-                <div 
-                  className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
-                  style={{
-                    boxShadow: `
-                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                      0 0 30px rgba(34, 197, 94, 0.2)
-                    `,
-                  }}
-                >
-                  {screenshot.imageUrl ? (
-                    <>
-                      <img
-                        src={screenshot.imageUrl}
-                        alt={screenshot.label}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    </>
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  )}
+          {/* Single Card Carousel - Mobile */}
+          <div className="w-full max-w-md mx-auto mb-6">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+              setApi={setCarouselApi}
+            >
+              <CarouselContent>
+                {currentStep.screenshots.map((screenshot, index) => (
+                  <CarouselItem key={`${activeStep}-mobile-card-${index}`}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="h-[400px]"
+                    >
+                      <div 
+                        className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                        style={{
+                          boxShadow: `
+                            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                            0 0 30px rgba(34, 197, 94, 0.2)
+                          `,
+                        }}
+                      >
+                        {screenshot.imageUrl ? (
+                          <>
+                            <img
+                              src={screenshot.imageUrl}
+                              alt={screenshot.label}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        )}
 
-                  <div className="absolute bottom-2 left-0 right-0 flex justify-center px-2">
-                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1 w-full">
-                      <p className="text-white font-bold text-xs text-center">
-                        {screenshot.label}
-                      </p>
-                      <p className="text-white/80 text-[10px] text-center">
-                        {screenshot.desc}
-                      </p>
-                    </div>
-                  </div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3">
+                            <p className="text-white font-bold text-base mb-1">
+                              {screenshot.label}
+                            </p>
+                            <p className="text-white/90 text-sm">
+                              {screenshot.desc}
+                            </p>
+                          </div>
+                        </div>
 
-                  <div 
-                    className="absolute inset-0 pointer-events-none rounded-2xl"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+                        <div 
+                          className="absolute inset-0 pointer-events-none rounded-2xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                          }}
+                        />
+                      </div>
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            
+            {/* Carousel Dots */}
+            <div className="flex justify-center gap-2 mt-4">
+              {currentStep.screenshots.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => carouselApi?.scrollTo(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    carouselApi?.selectedScrollSnap() === index
+                      ? "w-8 h-2 bg-white"
+                      : "w-2 h-2 bg-white/40"
+                  }`}
+                  aria-label={`Go to screenshot ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Step Indicators */}
