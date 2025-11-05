@@ -726,14 +726,28 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline - Vertical */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative">
-              {/* Vertical Line - Centered through all circles, ends at circle 4 center */}
+              {/* Vertical Line - Dynamically adapts to active circle */}
               <div 
-                className="absolute z-0"
+                className="absolute z-0 transition-all duration-200"
                 style={{
                   width: '2px',
                   left: '17px', // Centered for 36px circle: (36/2) - (2/2) = 17px
-                  top: '18px', // Center of first circle (36px / 2)
-                  height: '360px', // 3 gaps of 120px each (center to center)
+                  top: activeStep === 0 ? '18px' : '16px', // Adjust top based on first circle size
+                  height: (() => {
+                    // Calculate dynamic height based on active step
+                    // Base: 3 gaps of 120px = 360px
+                    // Adjust for different circle sizes
+                    const baseGaps = 360;
+                    const activeCircleExtra = 4; // 36px vs 32px = 4px extra
+                    
+                    if (activeStep === 0) {
+                      return `${baseGaps + 2}px`; // First circle larger
+                    } else if (activeStep === 3) {
+                      return `${baseGaps + 2}px`; // Last circle larger
+                    } else {
+                      return `${baseGaps + 4}px`; // Middle circles larger
+                    }
+                  })(),
                   background: 'rgba(255, 255, 255, 0.15)',
                 }}
               />
