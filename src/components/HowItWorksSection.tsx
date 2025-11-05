@@ -83,14 +83,16 @@ export const HowItWorksSection = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [processedSteps, setProcessedSteps] = useState(fallbackSteps);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const isMobile = useIsMobile();
   
-  // Use mobile layout for tablets/iPad too (up to 1024px)
-  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
+  // Separate tablet and mobile detection
+  const [isTablet, setIsTablet] = useState(false);
   
   useEffect(() => {
     const checkWidth = () => {
-      setIsTabletOrMobile(window.innerWidth < 1024);
+      const width = window.innerWidth;
+      setIsTablet(width >= 768 && width < 1024);
     };
     checkWidth();
     window.addEventListener('resize', checkWidth);
@@ -209,9 +211,9 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  // Auto-advance carousel on mobile
+  // Auto-advance carousel on mobile only
   useEffect(() => {
-    if (!carouselApi || !isTabletOrMobile) return;
+    if (!carouselApi || !isMobile) return;
 
     const interval = setInterval(() => {
       if (carouselApi.canScrollNext()) {
@@ -222,12 +224,12 @@ export const HowItWorksSection = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [carouselApi, isTabletOrMobile]);
+  }, [carouselApi, isMobile]);
 
   const currentStep = processedSteps[activeStep];
 
-  // Mobile/Tablet combined layout
-  if (isTabletOrMobile) {
+  // Mobile layout (phones)
+  if (isMobile) {
     return (
       <section
         data-nav-theme="green"
@@ -441,6 +443,276 @@ export const HowItWorksSection = () => {
               aria-label="Next step"
             >
               <ChevronRight className="w-5 h-5 text-white" />
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Tablet layout (iPad)
+  if (isTablet) {
+    return (
+      <section
+        data-nav-theme="green"
+        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700"
+        style={{ background: "hsl(var(--process-bg))" }}
+      >
+        {/* Background animation */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 animate-pulse" style={{ animationDuration: "15s" }} />
+        </div>
+
+        <div className="w-full relative z-10 flex flex-col py-8 px-6">
+          {/* Step Number Badge */}
+          <motion.div
+            key={`step-badge-${activeStep}`}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            className="flex justify-center mb-6"
+          >
+            <div className="relative">
+              <div 
+                className="w-24 h-24 rounded-full shadow-2xl flex items-center justify-center ring-4"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  boxShadow: "0 25px 50px -10px hsla(142, 76%, 45%, 0.7), 0 0 40px hsla(142, 76%, 45%, 0.5)",
+                  borderColor: "hsla(142, 76%, 45%, 0.3)"
+                }}
+              >
+                <span className="text-5xl font-black text-white">
+                  {currentStep.number}
+                </span>
+              </div>
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-white border-4 border-black flex items-center justify-center shadow-xl">
+                <span className="text-base font-bold text-gray-900">{processedSteps.length}</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Section Label */}
+          <motion.p
+            key={`label-${activeStep}`}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-lg font-semibold text-white tracking-wide text-center mb-2"
+          >
+            {currentStep.label}
+          </motion.p>
+
+          {/* Title */}
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={`title-${activeStep}`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+              className="text-3xl font-bold text-white drop-shadow-lg mb-3 text-center"
+            >
+              {currentStep.title}
+            </motion.h3>
+          </AnimatePresence>
+
+          {/* Description */}
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={`desc-${activeStep}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-white/90 text-base text-center mb-8 px-4"
+            >
+              {currentStep.description}
+            </motion.p>
+          </AnimatePresence>
+
+          {/* 4 Cards Grid - Tablet */}
+          <div className="w-full max-w-3xl mx-auto mb-8 grid grid-cols-2 gap-4 px-4">
+            {currentStep.screenshots.map((screenshot, index) => (
+              <motion.button
+                key={`${activeStep}-tablet-card-${index}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: expandedCard === index ? 1.05 : 1 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setExpandedCard(expandedCard === index ? null : index)}
+                className="h-[220px] cursor-pointer"
+              >
+                <div 
+                  className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]} transition-all duration-300`}
+                  style={{
+                    boxShadow: expandedCard === index 
+                      ? `0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 40px rgba(34, 197, 94, 0.4)`
+                      : `0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.2)`,
+                  }}
+                >
+                  {screenshot.imageUrl ? (
+                    <>
+                      <img
+                        src={screenshot.imageUrl}
+                        alt={screenshot.label}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  )}
+
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2">
+                      <p className="text-white font-bold text-sm">
+                        {screenshot.label}
+                      </p>
+                      <p className="text-white/90 text-xs">
+                        {screenshot.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                    }}
+                  />
+                </div>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Expanded Card Carousel Modal */}
+          <AnimatePresence>
+            {expandedCard !== null && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                onClick={() => setExpandedCard(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  className="w-full max-w-2xl mx-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: true,
+                      startIndex: expandedCard,
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent>
+                      {currentStep.screenshots.map((screenshot, index) => (
+                        <CarouselItem key={`expanded-${activeStep}-${index}`}>
+                          <div className="h-[500px]">
+                            <div 
+                              className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                              style={{
+                                boxShadow: `0 40px 80px -20px rgba(0, 0, 0, 0.7), 0 0 50px rgba(34, 197, 94, 0.3)`,
+                              }}
+                            >
+                              {screenshot.imageUrl ? (
+                                <>
+                                  <img
+                                    src={screenshot.imageUrl}
+                                    alt={screenshot.label}
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                                </>
+                              ) : (
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                              )}
+
+                              <div className="absolute bottom-6 left-6 right-6">
+                                <div className="bg-black/50 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4">
+                                  <p className="text-white font-bold text-2xl mb-2">
+                                    {screenshot.label}
+                                  </p>
+                                  <p className="text-white/90 text-base">
+                                    {screenshot.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                  
+                  <button
+                    onClick={() => setExpandedCard(null)}
+                    className="mt-6 w-full py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-white font-semibold transition-all duration-200"
+                  >
+                    Schließen
+                  </button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Step Indicators */}
+          <div className="flex justify-center gap-2 mb-6">
+            {processedSteps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleStepClick(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === activeStep
+                    ? "w-10 h-2.5 bg-white"
+                    : "w-2.5 h-2.5 bg-white/40"
+                }`}
+                aria-label={`Go to step ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between gap-4 px-4">
+            <button
+              onClick={handlePrevious}
+              className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+              aria-label="Previous step"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+
+            <div className="flex flex-col gap-3 flex-1">
+              <button 
+                className="w-full px-8 py-4 rounded-full text-base font-medium transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
+                Try Free Search
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button 
+                className="w-full px-8 py-4 rounded-full text-base font-semibold transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
+                Book Demo
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+              aria-label="Next step"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
             </button>
           </div>
         </div>
