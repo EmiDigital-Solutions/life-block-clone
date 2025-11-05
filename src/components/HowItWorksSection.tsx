@@ -623,119 +623,74 @@ export const HowItWorksSection = () => {
             </motion.h3>
           </AnimatePresence>
 
-          {/* Stacked 3D Cards Container */}
-          <div className="relative w-full max-w-md h-[500px] md:h-[600px] mb-8 md:mb-12">
-            <AnimatePresence mode="popLayout">
-              {currentStep.screenshots.map((screenshot, index) => {
-                // Calculate stacking order and rotation
-                const zIndex = 4 - index;
-                const rotations = [2, -3, 1, -2];
-                const rotation = rotations[index];
-                const offsetY = index * 8;
-                const offsetX = index * 4;
-                const scale = 1 - index * 0.03;
-                const opacity = 1 - index * 0.15;
+          {/* Carousel Cards Container */}
+          <div className="w-full max-w-2xl mb-8 md:mb-12">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {currentStep.screenshots.map((screenshot, index) => (
+                  <CarouselItem key={`${activeStep}-card-${index}`} className="md:basis-1/2">
+                    <div className="p-2 h-[500px] md:h-[600px]">
+                      <div 
+                        className="relative w-full h-full rounded-3xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+                        style={{
+                          background: stepBackgroundColors[index],
+                          boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(34, 197, 94, 0.3)",
+                          border: "1px solid rgba(255, 255, 255, 0.1)"
+                        }}
+                      >
+                        {/* Display actual uploaded image or use gradient background */}
+                        {screenshot.imageUrl ? (
+                          <>
+                            <img
+                              src={screenshot.imageUrl}
+                              alt={screenshot.label}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0">
+                            <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
+                            <div className="absolute inset-0 backdrop-blur-[0.5px]" />
+                          </div>
+                        )}
 
-                return (
-                  <motion.div
-                    key={`${activeStep}-card-${index}`}
-                    initial={{ 
-                      opacity: 0, 
-                      scale: 0.8,
-                      y: 50,
-                      rotateZ: rotation * 2
-                    }}
-                    animate={{ 
-                      opacity: opacity,
-                      scale: scale,
-                      y: offsetY,
-                      x: offsetX,
-                      rotateZ: rotation,
-                      filter: index > 0 ? "blur(1px)" : "blur(0px)"
-                    }}
-                    exit={{ 
-                      opacity: 0, 
-                      scale: 0.8,
-                      y: -50
-                    }}
-                    transition={{ 
-                      duration: 0.5,
-                      delay: index * 0.08,
-                      ease: "easeOut"
-                    }}
-                    whileHover={index === 0 ? { 
-                      scale: 1.05, 
-                      y: -10,
-                      rotateZ: 0,
-                      transition: { duration: 0.3 }
-                    } : {}}
-                    className="absolute inset-0 cursor-pointer"
-                    style={{
-                      zIndex: zIndex,
-                      perspective: "1000px",
-                      transformStyle: "preserve-3d"
-                    }}
-                  >
-                    <div 
-                      className="relative w-full h-full rounded-3xl overflow-hidden"
-                      style={{
-                        background: stepBackgroundColors[index],
-                        boxShadow: index === 0 
-                          ? "0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(34, 197, 94, 0.3)"
-                          : "0 20px 40px -15px rgba(0, 0, 0, 0.6)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)"
-                      }}
-                    >
-                      {/* Display actual uploaded image or use gradient background */}
-                      {screenshot.imageUrl ? (
-                        <>
-                          <img
-                            src={screenshot.imageUrl}
-                            alt={screenshot.label}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                        </>
-                      ) : (
-                        <div className="absolute inset-0">
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
-                          <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-                        </div>
-                      )}
+                        {/* Glass-morphism edge */}
+                        <div className="absolute inset-0 rounded-3xl border border-white/10" />
 
-                      {/* Glass-morphism edge */}
-                      <div className="absolute inset-0 rounded-3xl border border-white/10" />
-
-                      {/* Glow effect */}
-                      {index === 0 && (
+                        {/* Glow effect */}
                         <div className="absolute inset-0 rounded-3xl opacity-50" 
                           style={{
                             background: "radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.15), transparent 70%)"
                           }}
                         />
-                      )}
 
-                      {/* Content */}
-                      <div className="absolute inset-0 flex flex-col justify-end p-8">
-                        <div className="space-y-3">
-                          <h4 className="text-white font-bold text-2xl leading-tight">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/80 text-base font-medium leading-snug">
-                            {screenshot.desc}
-                          </p>
-                          {index === 0 && (
+                        {/* Content */}
+                        <div className="absolute inset-0 flex flex-col justify-end p-8">
+                          <div className="space-y-3">
+                            <h4 className="text-white font-bold text-2xl leading-tight">
+                              {screenshot.label}
+                            </h4>
+                            <p className="text-white/80 text-base font-medium leading-snug">
+                              {screenshot.desc}
+                            </p>
                             <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mt-4">
-                              <span className="text-sm font-semibold text-white">Active</span>
+                              <span className="text-sm font-semibold text-white">Feature {index + 1}</span>
                             </div>
-                          )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
 
           {/* Bottom Row: Navigation + CTAs */}
