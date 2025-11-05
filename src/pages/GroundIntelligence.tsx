@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
 
 const GroundIntelligence = () => {
@@ -183,10 +184,10 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* Capabilities Section - Light background */}
+      {/* Capabilities Section - Infinite Scrolling Gallery */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 px-6 md:px-12 lg:px-24"
+        className="relative py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         id="capabilities"
       >
@@ -202,31 +203,7 @@ const GroundIntelligence = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {[
-              { title: "Real-Time Monitoring", description: "Live dashboards of supplier operations and capacity" },
-              { title: "Predictive Analytics", description: "Forecast delays, quality issues, and capacity constraints" },
-              { title: "Risk Scoring", description: "Dynamic supplier risk assessment based on multiple data streams" },
-              { title: "Compliance Tracking", description: "Continuous verification of standards and certifications" },
-              { title: "Performance Benchmarking", description: "Compare suppliers across your network" },
-              { title: "Alert System", description: "Instant notifications for critical events or deviations" },
-              { title: "Capacity Intelligence", description: "Real-time visibility into production schedules and availability" },
-              { title: "Quality Signals", description: "Early detection of quality drift through process data" },
-              { title: "Integration Hub", description: "Connect with ERP, MES, QMS, and procurement systems" }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (index % 3) * 0.1 }}
-                className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-green-500 hover:shadow-lg transition-all group"
-              >
-                <h4 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h4>
-                <p className="text-gray-600 text-sm">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
+          <InfiniteScrollingGallery />
         </div>
       </section>
 
