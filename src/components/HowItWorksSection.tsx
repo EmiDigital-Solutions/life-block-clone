@@ -730,9 +730,9 @@ export const HowItWorksSection = () => {
               <div 
                 className="absolute w-0.5 z-0"
                 style={{
-                  left: '15.75px', // Centered for 32px circles (16px - 0.25px for line width)
-                  top: '0px',
-                  height: '432px', // 4 circles (avg 34px each) + 3 gaps (100px each) = 136 + 300 = 436px, use 432 for safety
+                  left: '17.75px', // Centered for active circle 36px (18px - 0.25px for line width)
+                  top: '18px', // Start at center of first circle (36px max / 2)
+                  height: '372px', // From center to center: 3 gaps (100px each) + 3 circles (36px + 32px + 32px) = 300 + 72 = 372px
                   background: 'rgba(255, 255, 255, 0.6)',
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
