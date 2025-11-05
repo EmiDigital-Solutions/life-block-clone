@@ -789,6 +789,19 @@ export const HowItWorksSection = () => {
                                     </span>
                                   </motion.div>
                                 </motion.button>
+
+                                {/* Text - Right of circle */}
+                                <div className="ml-4">
+                                  <motion.h4
+                                    className="font-bold transition-all duration-200"
+                                    style={{
+                                      color: isActive ? '#ffffff' : '#9ca3af',
+                                      fontSize: isActive ? '18px' : '16px',
+                                    }}
+                                  >
+                                    {step.label}
+                                  </motion.h4>
+                                </div>
                               </div>
                             );
                           })}
