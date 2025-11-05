@@ -432,11 +432,30 @@ export const HowItWorksSection = () => {
             <div className="relative">
               {/* Vertical Line - Behind circles, perfectly centered */}
               <div 
-                className="absolute w-0.5 bg-white/10 z-0"
+                className="absolute w-0.5 bg-white/30 z-0"
                 style={{
                   left: '40px', // Half of 80px (largest circle)
                   top: '40px', // Half of 80px (start at center of first circle)
-                  height: `${(processedSteps.length - 1) * 120}px`,
+                  height: `${(processedSteps.length - 1) * 120 + 30}px`,
+                }}
+              />
+
+              {/* Animated Progress Line - Fills based on active step */}
+              <motion.div 
+                className="absolute w-0.5 z-0"
+                style={{
+                  left: '40px', // Same center as the static line
+                  top: '40px',
+                  background: 'linear-gradient(180deg, #10b981 0%, #059669 100%)',
+                  boxShadow: '0 0 10px rgba(16, 185, 129, 0.5)',
+                }}
+                initial={{ height: 0 }}
+                animate={{ 
+                  height: `${activeStep * 120 + 40}px` 
+                }}
+                transition={{ 
+                  duration: 0.6, 
+                  ease: "easeInOut" 
                 }}
               />
 
