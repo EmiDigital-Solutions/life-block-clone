@@ -232,7 +232,7 @@ export const HowItWorksSection = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 animate-pulse" style={{ animationDuration: "15s" }} />
         </div>
 
-        <div className="w-full relative z-10 flex flex-col py-8 px-4">
+        <div className="w-full relative z-10 flex flex-col py-8 px-4 overflow-hidden">
           {/* Step Number Badge - Top Center */}
           <motion.div
             key={`step-badge-${activeStep}`}
@@ -260,7 +260,7 @@ export const HowItWorksSection = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-xs font-medium text-white/80 tracking-widest uppercase text-center mb-1"
           >
-            {currentStep.label}
+            STEP {currentStep.number} OF {processedSteps.length}: {currentStep.label}
           </motion.p>
 
           {/* Title */}
@@ -298,7 +298,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4 }}
-              className="mb-4 flex-1 flex items-center max-h-[45vh]"
+              className="mb-4 flex-1 flex items-center max-h-[45vh] w-full overflow-hidden"
             >
               <Carousel
                 opts={{
@@ -306,13 +306,13 @@ export const HowItWorksSection = () => {
                   loop: true,
                 }}
                 setApi={setCarouselApi}
-                className="w-full"
+                className="w-full max-w-full"
               >
-                <CarouselContent className="-ml-2">
+                <CarouselContent className="-ml-2 max-w-full">
                   {currentStep.screenshots.map((screenshot, index) => (
                     <CarouselItem
                       key={`${activeStep}-${index}`}
-                      className="pl-2 basis-[85%]"
+                      className="pl-2 basis-[85%] max-w-full"
                     >
                       <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
