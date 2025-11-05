@@ -911,7 +911,7 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* RIGHT SIDE - Small Cards - 70% width */}
-        <div className="w-full lg:w-[70%] flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
+        <div className="w-full lg:w-[70%] flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative rounded-l-3xl">
           {/* Active Step Title and Description */}
           <AnimatePresence mode="wait">
             <motion.div
