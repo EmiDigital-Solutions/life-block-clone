@@ -899,18 +899,23 @@ export const HowItWorksSection = () => {
 
         {/* RIGHT SIDE - Small Cards - 70% width */}
         <div className="w-full lg:w-[70%] flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
-          {/* Active Step Title */}
+          {/* Active Step Title and Description */}
           <AnimatePresence mode="wait">
-            <motion.h3
+            <motion.div
               key={activeStep}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-6 text-center text-white"
+              className="mb-6 text-center max-w-3xl"
             >
-              {currentStep.title}
-            </motion.h3>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-3 text-white">
+                {currentStep.title}
+              </h3>
+              <p className="text-sm md:text-base text-white/80 leading-relaxed">
+                {currentStep.description}
+              </p>
+            </motion.div>
           </AnimatePresence>
 
           {/* 4 Cards Grid */}
