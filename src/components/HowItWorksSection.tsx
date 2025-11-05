@@ -5,6 +5,11 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 // Fallback data in case CMS content is not available
 const fallbackSteps = [
@@ -326,53 +331,67 @@ export const HowItWorksSection = () => {
           {/* Grid of Cards - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={`row-${activeStep}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 lg:mb-12"
+              key={`carousel-${activeStep}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="mb-6 md:mb-8 lg:mb-12 px-2"
             >
-              {currentStep.screenshots.map((screenshot, index) => (
-                <motion.div
-                  key={`${activeStep}-${index}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.08 }}
-                  whileHover={{ scale: 1.05, y: -8 }}
-                  className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-                  style={{
-                    boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.2)",
-                  }}
-                >
-                  {/* Display actual uploaded image or fallback to gradient */}
-                  {screenshot.imageUrl ? (
-                    <img
-                      src={screenshot.imageUrl}
-                      alt={screenshot.label}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                    </div>
-                  )}
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {currentStep.screenshots.map((screenshot, index) => (
+                    <CarouselItem
+                      key={`${activeStep}-${index}`}
+                      className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.08 }}
+                        whileHover={{ scale: 1.05, y: -8 }}
+                        className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer h-full"
+                        style={{
+                          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.2)",
+                        }}
+                      >
+                        {/* Display actual uploaded image or fallback to gradient */}
+                        {screenshot.imageUrl ? (
+                          <img
+                            src={screenshot.imageUrl}
+                            alt={screenshot.label}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                          </div>
+                        )}
 
-                  {/* Overlay gradient for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                        {/* Overlay gradient for text readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-center">
-                    <h4 className="text-white font-bold text-xs md:text-sm mb-1">
-                      {screenshot.label}
-                    </h4>
-                    <p className="text-white/70 text-xs">
-                      {screenshot.desc}
-                    </p>
-                  </div>
+                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-center">
+                          <h4 className="text-white font-bold text-xs md:text-sm mb-1">
+                            {screenshot.label}
+                          </h4>
+                          <p className="text-white/70 text-xs">
+                            {screenshot.desc}
+                          </p>
+                        </div>
 
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
-                </motion.div>
-              ))}
+                        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
             </motion.div>
           </AnimatePresence>
 
