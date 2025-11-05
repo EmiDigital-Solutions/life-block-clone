@@ -53,7 +53,7 @@ All colors MUST be HSL.
     
     /* How It Works section colors */
     --process-bg: 220 30% 15%;
-    --content-bg: 210 10% 90%;
+    --content-bg: 0 0% 4%;
     --content-accent: 142 76% 45%;
   }
 
