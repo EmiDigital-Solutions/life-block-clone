@@ -70,6 +70,13 @@ const screenshotGradients = [
   "from-blue-500 via-green-600 to-teal-700",
 ];
 
+const stepBackgroundColors = [
+  "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue
+  "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green
+  "linear-gradient(135deg, rgb(71, 85, 105), rgb(51, 65, 85), rgb(30, 41, 59))", // Slate
+  "linear-gradient(135deg, rgb(20, 184, 166), rgb(13, 148, 136), rgb(15, 118, 110))", // Teal
+];
+
 export const HowItWorksSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -190,10 +197,194 @@ export const HowItWorksSection = () => {
 
   const currentStep = processedSteps[activeStep];
 
+  // Mobile combined layout
+  if (isMobile) {
+    return (
+      <section
+        data-nav-theme="green"
+        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700"
+        style={{ background: stepBackgroundColors[activeStep] }}
+      >
+        {/* Background animation */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 animate-pulse" style={{ animationDuration: "15s" }} />
+        </div>
+
+        <div className="w-full relative z-10 flex flex-col py-8 px-4">
+          {/* Step Number Badge - Top Center */}
+          <motion.div
+            key={`step-badge-${activeStep}`}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            className="flex justify-center mb-6"
+          >
+            <div className="relative">
+              <div className="w-20 h-20 rounded-full bg-white shadow-2xl flex items-center justify-center">
+                <span className="text-3xl font-bold" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
+                  {currentStep.number}
+                </span>
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white border-2 border-white flex items-center justify-center shadow-lg">
+                <span className="text-xs font-bold text-gray-600">{processedSteps.length}</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Section Label */}
+          <motion.p
+            key={`label-${activeStep}`}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-xs font-medium text-white/80 tracking-widest uppercase text-center mb-2"
+          >
+            {currentStep.label}
+          </motion.p>
+
+          {/* Title */}
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={`title-${activeStep}`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+              className="text-3xl font-bold text-white drop-shadow-lg mb-3 text-center"
+            >
+              {currentStep.title}
+            </motion.h3>
+          </AnimatePresence>
+
+          {/* Description */}
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={`desc-${activeStep}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-white/90 text-sm text-center mb-6 px-2"
+            >
+              {currentStep.description}
+            </motion.p>
+          </AnimatePresence>
+
+          {/* Carousel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`carousel-mobile-${activeStep}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="mb-6 flex-1 flex items-center"
+            >
+              <Carousel
+                opts={{
+                  align: "center",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2">
+                  {currentStep.screenshots.map((screenshot, index) => (
+                    <CarouselItem
+                      key={`${activeStep}-${index}`}
+                      className="pl-2 basis-[85%]"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.08 }}
+                        className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl"
+                        style={{
+                          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1)",
+                        }}
+                      >
+                        {screenshot.imageUrl ? (
+                          <img
+                            src={screenshot.imageUrl}
+                            alt={screenshot.label}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                          </div>
+                        )}
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                        <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+                          <h4 className="text-white font-bold text-sm mb-1">
+                            {screenshot.label}
+                          </h4>
+                          <p className="text-white/70 text-xs">
+                            {screenshot.desc}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Step Indicators */}
+          <div className="flex justify-center gap-2 mb-6">
+            {processedSteps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleStepClick(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === activeStep
+                    ? "w-8 h-2 bg-white"
+                    : "w-2 h-2 bg-white/40"
+                }`}
+                aria-label={`Go to step ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between gap-4">
+            <button
+              onClick={handlePrevious}
+              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+              aria-label="Previous step"
+            >
+              <ChevronLeft className="w-5 h-5 text-white" />
+            </button>
+
+            <div className="flex flex-col gap-2 flex-1">
+              <button className="w-full px-6 py-3 bg-white text-gray-900 rounded-full text-sm font-medium hover:bg-white/95 transition-all duration-200 shadow-lg flex items-center justify-center gap-2">
+                Try Free Search
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button className="w-full px-6 py-3 bg-white text-gray-900 rounded-full text-sm font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg flex items-center justify-center gap-2">
+                Book Demo
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+              aria-label="Next step"
+            >
+              <ChevronRight className="w-5 h-5 text-white" />
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop layout
   return (
     <section
       data-nav-theme="green"
-      className="relative min-h-screen lg:h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
+      className="relative h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
     >
       {/* Subtle background animation */}
