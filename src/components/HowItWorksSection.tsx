@@ -287,23 +287,10 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl font-bold text-white drop-shadow-lg mb-2 text-center"
+              className="text-2xl font-bold text-white drop-shadow-lg mb-6 text-center"
             >
               {currentStep.title}
             </motion.h3>
-          </AnimatePresence>
-
-          {/* Description */}
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={`desc-${activeStep}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="text-white/90 text-sm text-center mb-6 px-2"
-            >
-              {currentStep.description}
-            </motion.p>
           </AnimatePresence>
 
           {/* Single Card Carousel - Mobile */}
