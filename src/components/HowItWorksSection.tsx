@@ -116,39 +116,166 @@ export const HowItWorksSection = () => {
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* LEFT SIDE - 40% - Featured Screenshot as BACKGROUND with Timeline OVERLAY */}
-          <div className="lg:col-span-2 relative min-h-[600px] lg:min-h-[800px]">
-            {/* LAYER 1: Large Featured Screenshot - BACKGROUND */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
+          {/* LEFT SIDE - 40% - Large Background Image with Timeline Overlay */}
+          <div className="lg:col-span-2 relative min-h-[700px] lg:min-h-[85vh]">
+            {/* LAYER 1: Large Background Screenshot - Full Height */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 rounded-3xl overflow-hidden"
+                style={{
+                  boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 50px rgba(255, 255, 255, 0.15)",
+                }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[activeStep]}`}>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+                </div>
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                  <div className="w-40 h-40 sm:w-48 sm:h-48 bg-white/15 backdrop-blur-md rounded-3xl flex items-center justify-center mb-8">
+                    <span className="text-7xl sm:text-8xl font-bold text-white">
+                      {currentStep.number}
+                    </span>
+                  </div>
+                  <h4 className="text-white font-bold text-4xl sm:text-5xl mb-4">
+                    {currentStep.screenshots[0].label}
+                  </h4>
+                  <p className="text-white/90 text-xl sm:text-2xl max-w-lg">
+                    {currentStep.screenshots[0].desc}
+                  </p>
+                </div>
+
+                <div 
+                  className="absolute inset-0 pointer-events-none rounded-3xl"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
+                  }}
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* LAYER 2: Timeline Overlay - Top Left Corner */}
+            <div className="absolute top-0 left-0 p-8 lg:p-10 pointer-events-none z-10">
+              {/* Vertical Timeline */}
+              <div className="relative flex flex-col gap-0">
+                {/* Connecting Line */}
+                <div className="absolute left-[18px] top-[18px] bottom-0 w-0.5 bg-white/30">
+                  <motion.div
+                    className="w-full bg-white shadow-lg shadow-white/50"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                </div>
+
+                {/* Timeline Steps - Numbered Circles */}
+                {steps.map((step, index) => {
+                  const isActive = activeStep === index;
+                  const isPast = index < activeStep;
+
+                  return (
+                    <button
+                      key={step.number}
+                      onClick={() => handleStepClick(index)}
+                      className="relative flex items-center gap-0 mb-12 group text-left pointer-events-auto"
+                      aria-label={`Go to step ${index + 1}: ${step.label}`}
+                    >
+                      {/* Numbered Circle */}
+                      <div
+                        className={`relative z-10 w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 border-2 ${
+                          isActive
+                            ? "bg-white border-white scale-110 shadow-xl shadow-white/50"
+                            : isPast
+                            ? "bg-white/90 border-white"
+                            : "bg-white/20 border-white/40 backdrop-blur-sm group-hover:bg-white/30 group-hover:border-white/60"
+                        }`}
+                      >
+                        <span
+                          className={`text-sm font-bold transition-colors ${
+                            isActive || isPast ? "text-green-600" : "text-white"
+                          }`}
+                        >
+                          {step.number}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* LAYER 3: Section Header - Bottom Left */}
+            <div className="absolute bottom-0 left-0 p-8 lg:p-10 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-3"
+              >
+                <p className="text-xs font-semibold text-white/70 tracking-widest uppercase">
+                  The Process
+                </p>
+                <div className="flex items-center gap-4">
+                  <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
+                    How It Works
+                  </h2>
+                  <div className="h-1 w-24 bg-white/40" />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE - 60% - Large Featured Card + Row of Small Cards */}
+          <div className="lg:col-span-3 flex flex-col justify-between py-8 lg:py-12 space-y-8">
+            {/* Active Step Title */}
+            <AnimatePresence mode="wait">
+              <motion.h3
+                key={activeStep}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"
+              >
+                {currentStep.title}
+              </motion.h3>
+            </AnimatePresence>
+
+            {/* Large Featured Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`featured-${activeStep}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl"
+                className="relative aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group"
                 style={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                 }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[0]}`}>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 </div>
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                  <div className="w-32 h-32 sm:w-40 sm:h-40 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6">
-                    <span className="text-6xl sm:text-7xl font-bold text-white">
-                      {currentStep.number}
-                    </span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center">
+                  <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
+                    <span className="text-3xl font-bold text-white">1</span>
                   </div>
-                  <h4 className="text-white font-bold text-3xl sm:text-4xl mb-4">
+                  <h4 className="text-white font-bold text-3xl mb-3">
                     {currentStep.screenshots[0].label}
                   </h4>
-                  <p className="text-white/80 text-lg sm:text-xl max-w-md">
+                  <p className="text-white/80 text-lg max-w-md">
                     {currentStep.screenshots[0].desc}
                   </p>
                 </div>
+
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-300" />
 
                 <div 
                   className="absolute inset-0 pointer-events-none rounded-3xl"
@@ -159,213 +286,89 @@ export const HowItWorksSection = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* LAYER 2: Timeline and Header - OVERLAY on top of featured screenshot */}
-            <div className="absolute inset-0 flex flex-col p-6 lg:p-8 pointer-events-none">
-              {/* Section Header */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="space-y-2 mb-8 pointer-events-auto"
-              >
-                <p className="text-sm font-medium text-white/90 tracking-wider uppercase backdrop-blur-sm bg-black/20 inline-block px-3 py-1 rounded">
-                  The Process
-                </p>
-                <div className="flex items-center gap-4">
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-                    How It Works
-                  </h2>
-                  <div className="flex-1 h-0.5 bg-white/30" />
-                </div>
-              </motion.div>
-
-              {/* Vertical Timeline - OVERLAY */}
-              <div className="relative flex flex-col gap-0 pointer-events-auto">
-                {/* Connecting Line */}
-                <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-white/20">
-                  <motion.div
-                    className="w-full bg-white"
-                    initial={{ height: 0 }}
-                    animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  />
-                </div>
-
-                {/* Timeline Steps */}
-                {steps.map((step, index) => {
-                  const isActive = activeStep === index;
-                  const isPast = index < activeStep;
-
-                  return (
-                    <button
-                      key={step.number}
-                      onClick={() => handleStepClick(index)}
-                      className="relative flex items-start gap-4 py-4 group text-left"
-                      aria-label={`Go to step ${index + 1}: ${step.label}`}
-                    >
-                      {/* Dot */}
-                      <div
-                        className={`relative z-10 w-3 h-3 rounded-full flex-shrink-0 mt-1 transition-all duration-300 ${
-                          isActive
-                            ? "bg-white scale-150 shadow-lg shadow-white/50"
-                            : isPast
-                            ? "bg-white"
-                            : "bg-white/30 group-hover:bg-white/50"
-                        }`}
-                      />
-
-                      {/* Step Content with Background */}
-                      <div className="flex-1 min-w-0 backdrop-blur-sm bg-black/20 rounded-lg px-3 py-2">
-                        <h4
-                          className={`text-sm sm:text-base font-bold mb-1 transition-all duration-300 ${
-                            isActive
-                              ? "text-white"
-                              : "text-white/60 group-hover:text-white/80"
-                          }`}
-                        >
-                          {step.label}
-                        </h4>
-                        {isActive && (
-                          <motion.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="text-xs sm:text-sm text-white/80 leading-relaxed pr-4"
-                          >
-                            {step.description}
-                          </motion.p>
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT SIDE - 60% - Carousel + Navigation */}
-          <div className="lg:col-span-3 flex flex-col justify-center space-y-6">
-            {/* Active Step Title */}
+            {/* Row of 3 Small Cards */}
             <AnimatePresence mode="wait">
-              <motion.h3
-                key={activeStep}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+              <motion.div
+                key={`row-${activeStep}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-3 gap-4"
               >
-                {currentStep.title}
-              </motion.h3>
+                {currentStep.screenshots.slice(1, 4).map((screenshot, index) => (
+                  <motion.div
+                    key={`${activeStep}-${index + 1}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -8 }}
+                    className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                    style={{
+                      boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 197, 94, 0.2)",
+                    }}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index + 1]}`}>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </div>
+
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
+                        <span className="text-lg font-bold text-white">
+                          {index + 2}
+                        </span>
+                      </div>
+                      <h4 className="text-white font-bold text-sm mb-2">
+                        {screenshot.label}
+                      </h4>
+                      <p className="text-white/70 text-xs">
+                        {screenshot.desc}
+                      </p>
+                    </div>
+
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
+
+                    <div 
+                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
             </AnimatePresence>
 
-            {/* Carousel - Horizontal scroll of 4 screenshots */}
-            <div className="relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex gap-3 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            {/* Bottom Row: Navigation + CTAs */}
+            <div className="flex items-center justify-between pt-4">
+              {/* Navigation Arrows */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handlePrevious}
+                  className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                  aria-label="Previous step"
                 >
-                  {currentStep.screenshots.slice(0, 4).map((screenshot, index) => (
-                    <motion.div
-                      key={`${activeStep}-${index}`}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.08 }}
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className="group relative flex-shrink-0 w-64 sm:w-72 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl cursor-pointer snap-start"
-                      style={{
-                        boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 197, 94, 0.25)",
-                      }}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                      </div>
+                  <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
 
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3">
-                          <span className="text-lg sm:text-xl font-bold text-white">
-                            {index + 1}
-                          </span>
-                        </div>
-                        <h4 className="text-white font-bold text-sm sm:text-base mb-2">
-                          {screenshot.label}
-                        </h4>
-                        <p className="text-white/70 text-xs sm:text-sm">
-                          {screenshot.desc}
-                        </p>
-                      </div>
-
-                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
-
-                      <div 
-                        className="absolute inset-0 pointer-events-none rounded-2xl"
-                        style={{
-                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                        }}
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Navigation Arrows */}
-            <div className="flex items-center justify-center gap-4">
-              <button
-                onClick={handlePrevious}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/20"
-                aria-label="Previous step"
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </button>
-
-              <div className="flex gap-2">
-                {steps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleStepClick(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === activeStep
-                        ? "w-8 bg-white"
-                        : "w-2 bg-white/30 hover:bg-white/50"
-                    }`}
-                    aria-label={`Go to step ${index + 1}`}
-                  />
-                ))}
+                <button
+                  onClick={handleNext}
+                  className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                  aria-label="Next step"
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
               </div>
 
-              <button
-                onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/20"
-                aria-label="Next step"
-              >
-                <ChevronRight className="w-6 h-6 text-white" />
-              </button>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-end pt-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="group bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white"
-              >
-                Try Free Search
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                className="group bg-white text-green-600 hover:bg-white/90"
-              >
-                Book Demo
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              {/* CTAs - Text Links */}
+              <div className="flex items-center gap-6">
+                <button className="text-white/80 hover:text-white text-sm font-medium transition-colors">
+                  Try Free Search
+                </button>
+                <button className="text-white hover:text-white/90 text-sm font-bold transition-colors">
+                  Book Demo
+                </button>
+              </div>
             </div>
           </div>
         </div>
