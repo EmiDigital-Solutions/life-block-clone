@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 
@@ -9,46 +9,29 @@ const steps = [
     number: 1,
     title: "Search Suppliers",
     description: "Find qualified manufacturers in minutes using our free AI-powered search across 3 global databases",
-    screenshots: [
-      { label: "Search Interface", desc: "AI-powered query search" },
-      { label: "AI Results", desc: "Smart match scores & details" },
-      { label: "Supplier Profile", desc: "Certifications & ratings" },
-      { label: "Audit Integration", desc: "Book audit instantly" },
-    ],
   },
   {
     number: 2,
     title: "Select Auditor",
     description: "Browse 2,000+ certified auditors worldwide. See credentials, ratings, availability, and transparent pricing before booking",
-    screenshots: [
-      { label: "Auditor Map", desc: "Interactive availability map" },
-      { label: "Auditor Profile", desc: "Credentials & ratings" },
-      { label: "Availability Calendar", desc: "Real-time booking slots" },
-      { label: "Booking Confirmation", desc: "Instant confirmation" },
-    ],
   },
   {
     number: 3,
     title: "On-Site Audit",
     description: "Local expert conducts standardized audit using AI-guided checklist. Track live progress and see photos in real-time",
-    screenshots: [
-      { label: "Mobile Checklist", desc: "AI-guided progress tracking" },
-      { label: "Equipment Recognition", desc: "Smart photo analysis" },
-      { label: "Photo Evidence", desc: "Auto-categorized uploads" },
-      { label: "Live Dashboard", desc: "Real-time GPS tracking" },
-    ],
   },
   {
     number: 4,
     title: "Get Report",
     description: "Receive comprehensive scored report within 24-48 hours with photo evidence, findings, and corrective action plan",
-    screenshots: [
-      { label: "Report Overview", desc: "Scored dashboard & metrics" },
-      { label: "Findings Detail", desc: "Photo-linked insights" },
-      { label: "Comparison Chart", desc: "Multi-supplier analysis" },
-      { label: "Action Tracker", desc: "Task & deadline management" },
-    ],
   },
+];
+
+const screenshotPlaceholders = [
+  { gradient: "from-blue-600 via-blue-700 to-blue-800", label: "Screenshot 1" },
+  { gradient: "from-green-600 via-green-700 to-green-800", label: "Screenshot 2" },
+  { gradient: "from-purple-600 via-purple-700 to-purple-800", label: "Screenshot 3" },
+  { gradient: "from-pink-600 via-pink-700 to-pink-800", label: "Screenshot 4" },
 ];
 
 export const HowItWorksSection = () => {
@@ -73,151 +56,147 @@ export const HowItWorksSection = () => {
 
   return (
     <section
-      data-nav-theme="light"
-      className="relative py-24 px-6 md:px-12 lg:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      data-nav-theme="dark"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-12 sm:py-16 lg:py-20"
+      style={{ background: "linear-gradient(135deg, rgb(88, 28, 135), rgb(147, 51, 234), rgb(168, 85, 247))" }}
     >
       <div className="container mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            How <span className="text-green-600">YVOO</span> Works
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From supplier search to certified audit in 4 simple steps
-          </p>
-        </motion.div>
-
-        {/* Main Content - Split Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16">
           {/* LEFT SIDE - Vertical Timeline (40%) */}
-          <div className="lg:col-span-2 space-y-1">
-            {steps.map((step, index) => {
-              const isActive = activeStep === index;
-              const isPast = index < activeStep;
+          <div className="lg:col-span-2 flex flex-col justify-center space-y-0">
+            {/* Section Title */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-8 sm:mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-white mb-2">
+                Choose
+              </h2>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-white/90">
+                How It Works
+              </h3>
+            </motion.div>
 
-              return (
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical Line */}
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-white/20">
                 <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative"
-                >
-                  {/* Connector Line */}
-                  {index < steps.length - 1 && (
-                    <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gray-200">
-                      <motion.div
-                        className="w-full bg-green-600"
-                        initial={{ height: 0 }}
-                        animate={{ height: isPast || isActive ? "100%" : "0%" }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    </div>
-                  )}
+                  className="w-full bg-white"
+                  initial={{ height: 0 }}
+                  animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
+                  transition={{ duration: 0.5 }}
+                />
+              </div>
 
-                  {/* Step Card */}
-                  <button
+              {/* Steps */}
+              {steps.map((step, index) => {
+                const isActive = activeStep === index;
+                const isPast = index < activeStep;
+
+                return (
+                  <motion.button
+                    key={step.number}
                     onClick={() => handleStepClick(index)}
-                    className={`relative w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                      isActive
-                        ? "bg-green-50 border-2 border-green-600 shadow-lg"
-                        : "bg-white border-2 border-transparent hover:border-gray-200 hover:shadow-md"
-                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative w-full text-left pl-16 pr-4 py-6 sm:py-8 group"
                   >
-                    <div className="flex items-start gap-4">
-                      {/* Step Number Circle */}
-                      <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                          isActive
-                            ? "bg-green-600 text-white scale-110"
-                            : isPast
-                            ? "bg-green-600 text-white"
-                            : "bg-gray-200 text-gray-600"
-                        }`}
-                      >
-                        {isPast && !isActive ? (
-                          <Check className="w-6 h-6" />
-                        ) : (
-                          step.number
-                        )}
-                      </div>
+                    {/* Step Number Circle */}
+                    <div
+                      className={`absolute left-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
+                        isActive || isPast
+                          ? "bg-white text-purple-600 scale-110"
+                          : "bg-white/20 text-white/60 group-hover:bg-white/30"
+                      }`}
+                    >
+                      {step.number}
+                    </div>
 
-                      {/* Step Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3
-                            className={`text-xl font-bold transition-colors ${
-                              isActive ? "text-green-600" : "text-gray-900"
-                            }`}
-                          >
-                            {step.title}
-                          </h3>
-                        </div>
-                        <p
-                          className={`text-sm leading-relaxed transition-colors ${
-                            isActive ? "text-gray-700" : "text-gray-600"
-                          }`}
+                    {/* Step Content */}
+                    <div className={`transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-60 group-hover:opacity-80"}`}>
+                      <h4 className="text-lg sm:text-xl font-bold text-white mb-2">
+                        {step.title}
+                      </h4>
+                      {isActive && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="text-sm sm:text-base text-white/80 leading-relaxed"
                         >
                           {step.description}
-                        </p>
-                      </div>
+                        </motion.p>
+                      )}
                     </div>
-                  </button>
-                </motion.div>
-              );
-            })}
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
 
           {/* RIGHT SIDE - Screenshot Gallery (60%) */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="w-full max-w-4xl"
               >
-                {steps[activeStep].screenshots.map((screenshot, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="group relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300"
-                  >
-                    {/* Placeholder Screenshot */}
-                    <div className="aspect-[4/3] flex flex-col items-center justify-center p-8 bg-white/50">
-                      <div className="text-center space-y-3">
-                        <div className="w-16 h-16 mx-auto bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                          <span className="text-2xl font-bold text-green-600">
-                            {steps[activeStep].number}.{index + 1}
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  {screenshotPlaceholders.map((placeholder, index) => (
+                    <motion.div
+                      key={`${activeStep}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
+                    >
+                      {/* Placeholder Background */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${placeholder.gradient}`}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </div>
+
+                      {/* Placeholder Content */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4">
+                          <span className="text-2xl font-bold text-white">
+                            {activeStep + 1}.{index + 1}
                           </span>
                         </div>
-                        <h4 className="font-bold text-gray-900 text-lg">
-                          {screenshot.label}
-                        </h4>
-                        <p className="text-sm text-gray-600">{screenshot.desc}</p>
+                        <p className="text-white font-medium text-sm sm:text-base">
+                          {placeholder.label}
+                        </p>
+                        <p className="text-white/70 text-xs sm:text-sm mt-2">
+                          Software Screenshot
+                        </p>
                       </div>
-                    </div>
 
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-green-600/0 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </motion.div>
-                ))}
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300" />
+
+                      {/* Edge Highlight */}
+                      <div 
+                        className="absolute inset-0 pointer-events-none rounded-2xl"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Progress Indicator */}
+            {/* Step Indicators */}
             <div className="flex justify-center gap-2 mt-8">
               {steps.map((_, index) => (
                 <button
@@ -225,8 +204,8 @@ export const HowItWorksSection = () => {
                   onClick={() => handleStepClick(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === activeStep
-                      ? "w-8 bg-green-600"
-                      : "w-2 bg-gray-300 hover:bg-gray-400"
+                      ? "w-8 bg-white"
+                      : "w-2 bg-white/30 hover:bg-white/50"
                   }`}
                   aria-label={`Go to step ${index + 1}`}
                 />
@@ -240,23 +219,23 @@ export const HowItWorksSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-20 space-y-6"
+          className="text-center mt-16 sm:mt-20 space-y-6"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
             Ready to get started?
           </h3>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               variant="outline"
               size="lg"
-              className="group min-w-[200px]"
+              className="group min-w-[200px] bg-white/10 border-white/30 text-white hover:bg-white/20"
             >
               Try Free Search
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
-              className="group min-w-[200px] bg-green-600 hover:bg-green-700"
+              className="group min-w-[200px] bg-white text-purple-600 hover:bg-white/90"
             >
               Book 30-Min Demo
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

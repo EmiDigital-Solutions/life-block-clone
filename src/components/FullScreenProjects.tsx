@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Brain, Sparkles, Zap, Search, Target, Network, Workflow, Clock, CheckCircle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { HowItWorksSection } from "./HowItWorksSection";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -451,6 +452,9 @@ const FullScreenProjects = () => {
         </section>
         );
       })}
+
+      {/* How It Works Section - After Project 03 */}
+      <HowItWorksSection />
     </motion.div>
   );
 };
