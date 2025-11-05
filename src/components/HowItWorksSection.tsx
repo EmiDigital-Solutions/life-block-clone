@@ -338,21 +338,37 @@ export const HowItWorksSection = () => {
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                         ) : (
-                          <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-muted to-background flex items-center justify-center p-4">
+                            <div className="text-center">
+                              <div className="w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center"
+                                style={{ background: "hsl(var(--content-accent))" }}
+                              >
+                                <span className="text-xl font-bold text-white">{index + 1}</span>
+                              </div>
+                              <h4 className="font-bold text-xs mb-1.5" style={{ color: "hsl(var(--foreground))" }}>
+                                {screenshot.label}
+                              </h4>
+                              <p className="text-[10px]" style={{ color: "hsl(var(--muted-foreground))" }}>
+                                {screenshot.desc}
+                              </p>
+                            </div>
                           </div>
                         )}
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                        <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
-                          <h4 className="text-white font-bold text-sm mb-1">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/70 text-xs">
-                            {screenshot.desc}
-                          </p>
-                        </div>
+                        {/* Overlay only for images */}
+                        {screenshot.imageUrl && (
+                          <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+                              <h4 className="text-white font-bold text-sm mb-1">
+                                {screenshot.label}
+                              </h4>
+                              <p className="text-white/70 text-xs">
+                                {screenshot.desc}
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </motion.div>
                     </CarouselItem>
                   ))}
@@ -456,8 +472,8 @@ export const HowItWorksSection = () => {
           </AnimatePresence>
 
           {/* LAYER 2: Timeline - Horizontal on mobile, Vertical on desktop */}
-          <div className="absolute top-6 left-6 md:top-8 md:left-8 lg:top-12 lg:left-12 pointer-events-none z-10">
-            <div className="relative flex lg:flex-col flex-row">
+          <div className="absolute top-1/2 left-6 md:left-8 lg:left-12 -translate-y-1/2 pointer-events-none z-10">
+            <div className="relative flex lg:flex-col flex-row gap-1">
               {/* Timeline Steps */}
               {processedSteps.map((step, index) => {
                 const isActive = activeStep === index;
@@ -467,46 +483,63 @@ export const HowItWorksSection = () => {
                 return (
                   <motion.div
                     key={step.number}
-                    className="relative flex lg:flex-col flex-row items-center"
+                    className="relative flex lg:flex-row flex-col items-center lg:items-start"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Circle */}
-                    <motion.button
-                      onClick={() => handleStepClick(index)}
-                      className="relative z-10 group pointer-events-auto"
-                      aria-label={`Go to step ${index + 1}: ${step.label}`}
-                    >
-                      <motion.div
-                        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl"
-                        style={{
-                          background: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.2)",
-                        }}
-                        animate={{
-                          scale: isActive ? 1.15 : 1,
-                          boxShadow: isActive
-                            ? "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)"
-                            : isPast
-                            ? "0 10px 20px -5px hsla(142, 76%, 45%, 0.3)"
-                            : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
-                        }}
-                        transition={{ duration: 0.4 }}
+                    <div className="flex lg:flex-row flex-col items-center lg:items-center gap-3">
+                      {/* Circle */}
+                      <motion.button
+                        onClick={() => handleStepClick(index)}
+                        className="relative z-10 group pointer-events-auto"
+                        aria-label={`Go to step ${index + 1}: ${step.label}`}
                       >
-                        <span
-                          className="text-sm md:text-base lg:text-lg font-bold transition-colors duration-300"
+                        <motion.div
+                          className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl"
                           style={{
-                            color: isActive || isPast ? "white" : "rgba(255, 255, 255, 0.5)"
+                            background: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.2)",
                           }}
+                          animate={{
+                            scale: isActive ? 1.15 : 1,
+                            boxShadow: isActive
+                              ? "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)"
+                              : isPast
+                              ? "0 10px 20px -5px hsla(142, 76%, 45%, 0.3)"
+                              : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
+                          }}
+                          transition={{ duration: 0.4 }}
                         >
-                          {step.number}
-                        </span>
+                          <span
+                            className="text-sm md:text-base lg:text-lg font-bold transition-colors duration-300"
+                            style={{
+                              color: isActive || isPast ? "white" : "rgba(255, 255, 255, 0.5)"
+                            }}
+                          >
+                            {step.number}
+                          </span>
+                        </motion.div>
+                      </motion.button>
+                      
+                      {/* Step Label */}
+                      <motion.div
+                        className="hidden lg:block pointer-events-none"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ 
+                          opacity: isActive ? 1 : 0.6,
+                          x: 0 
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="text-white text-sm font-semibold whitespace-nowrap">
+                          {step.label}
+                        </p>
                       </motion.div>
-                    </motion.button>
+                    </div>
 
                     {/* Connecting Line - Horizontal on mobile, Vertical on desktop */}
                     {!isLast && (
-                      <div className="lg:w-[2px] lg:h-20 w-12 h-[2px] md:w-16 bg-white/20 relative">
+                      <div className="lg:w-[2px] lg:h-16 lg:ml-7 w-12 h-[2px] md:w-16 bg-white/20 relative">
                         <motion.div
                           className="lg:w-full lg:h-auto w-auto h-full"
                           style={{ background: "hsl(var(--content-accent))" }}
@@ -525,23 +558,18 @@ export const HowItWorksSection = () => {
             </div>
           </div>
 
-          {/* LAYER 3: Section Label and Title */}
-          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-6 lg:left-12 pointer-events-none">
+          {/* LAYER 3: Section Title - Better positioned */}
+          <div className="absolute bottom-12 left-6 md:bottom-16 md:left-8 lg:bottom-20 lg:left-12 pointer-events-none max-w-[280px] lg:max-w-md">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-2 md:space-y-4"
+              className="space-y-3"
             >
-              <p className="text-xs md:text-sm font-medium text-white/80 tracking-widest uppercase">
-                The Process
-              </p>
-              <div className="flex items-center gap-3 md:gap-6">
-                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
-                  How It Works
-                </h2>
-                <div className="h-1 w-16 md:w-24 lg:w-32 bg-white/50" />
-              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl leading-tight">
+                How It Works
+              </h2>
+              <div className="h-1 w-20 lg:w-24 bg-white/50" />
             </motion.div>
           </div>
         </div>
@@ -597,7 +625,6 @@ export const HowItWorksSection = () => {
                           borderColor: "hsl(var(--border))"
                         }}
                       >
-                        {/* Display actual uploaded image or fallback to gradient */}
                         {screenshot.imageUrl ? (
                           <img
                             src={screenshot.imageUrl}
@@ -605,22 +632,37 @@ export const HowItWorksSection = () => {
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                         ) : (
-                          <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-muted to-background flex items-center justify-center p-6">
+                            <div className="text-center">
+                              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
+                                style={{ background: "hsl(var(--content-accent))" }}
+                              >
+                                <span className="text-2xl font-bold text-white">{index + 1}</span>
+                              </div>
+                              <h4 className="font-bold text-sm mb-2" style={{ color: "hsl(var(--foreground))" }}>
+                                {screenshot.label}
+                              </h4>
+                              <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
+                                {screenshot.desc}
+                              </p>
+                            </div>
                           </div>
                         )}
 
-                        {/* Overlay gradient for text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-center">
-                          <h4 className="text-white font-bold text-xs md:text-sm mb-1">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/70 text-xs">
-                            {screenshot.desc}
-                          </p>
-                        </div>
+                        {/* Overlay only for images */}
+                        {screenshot.imageUrl && (
+                          <>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-center">
+                              <h4 className="text-white font-bold text-xs md:text-sm mb-1">
+                                {screenshot.label}
+                              </h4>
+                              <p className="text-white/70 text-xs">
+                                {screenshot.desc}
+                              </p>
+                            </div>
+                          </>
+                        )}
 
                         <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-200" />
                       </motion.div>
