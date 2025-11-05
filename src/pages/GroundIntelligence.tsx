@@ -187,20 +187,23 @@ const GroundIntelligence = () => {
       {/* Capabilities Section - Infinite Scrolling Gallery */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+        className="relative py-24 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         id="capabilities"
       >
-        <div className="container mx-auto">
+        <div className="w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 px-6 md:px-12 lg:px-24"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              <span className="text-green-600">Capabilities</span>
+              Capabilities that modernize supplier audits
             </h2>
+            <p className="text-lg text-gray-600">
+              Nine AI-driven features for consistent, actionable outcomes.
+            </p>
           </motion.div>
 
           <InfiniteScrollingGallery />

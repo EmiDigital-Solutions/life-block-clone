@@ -1,4 +1,4 @@
-import { Monitor, TrendingUp, Shield, CheckCircle2, BarChart3, Bell, Database, Activity, Workflow } from "lucide-react";
+import { FileText, Brain, Cog, Gauge, Camera, Clock, TrendingUp, ListChecks, Plug } from "lucide-react";
 
 interface Capability {
   title: string;
@@ -9,57 +9,57 @@ interface Capability {
 
 const capabilities: Capability[] = [
   { 
-    title: "Real-Time Monitoring", 
-    description: "Live dashboards of supplier operations",
-    icon: <Monitor className="w-12 h-12" />,
+    title: "Flexible Templates", 
+    description: "Create custom frameworks per industry, standard or customer requirement.",
+    icon: <FileText className="w-12 h-12" />,
     variant: 'dark'
   },
   { 
-    title: "Predictive Analytics", 
-    description: "Forecast delays and quality issues",
+    title: "AI Guidance", 
+    description: "Contextual hints during audits to ensure completeness and objectivity.",
+    icon: <Brain className="w-12 h-12" />,
+    variant: 'blue'
+  },
+  { 
+    title: "Equipment Intelligence", 
+    description: "Identify machines and assets from photos; assess condition and compliance.",
+    icon: <Cog className="w-12 h-12" />,
+    variant: 'dark'
+  },
+  { 
+    title: "Dynamic Scoring", 
+    description: "Configurable weightings and 1–5 scoring for transparent results.",
+    icon: <Gauge className="w-12 h-12" />,
+    variant: 'blue'
+  },
+  { 
+    title: "Evidence Handling", 
+    description: "Auto-categorize photos & files (quality, safety, environment) for traceability.",
+    icon: <Camera className="w-12 h-12" />,
+    variant: 'dark'
+  },
+  { 
+    title: "Real-Time Progress", 
+    description: "Live milestones and alerts during audits for fast course-corrections.",
+    icon: <Clock className="w-12 h-12" />,
+    variant: 'blue'
+  },
+  { 
+    title: "Predictive Risk Scoring", 
+    description: "Anticipate issues from historical patterns and equipment signals.",
     icon: <TrendingUp className="w-12 h-12" />,
-    variant: 'blue'
-  },
-  { 
-    title: "Risk Scoring", 
-    description: "Dynamic supplier risk assessment",
-    icon: <Shield className="w-12 h-12" />,
     variant: 'dark'
   },
   { 
-    title: "Compliance Tracking", 
-    description: "Continuous verification of standards",
-    icon: <CheckCircle2 className="w-12 h-12" />,
+    title: "Corrective Action Tracking", 
+    description: "Monitor improvements with reminders and due-dates.",
+    icon: <ListChecks className="w-12 h-12" />,
     variant: 'blue'
   },
   { 
-    title: "Performance Benchmarking", 
-    description: "Compare suppliers across network",
-    icon: <BarChart3 className="w-12 h-12" />,
-    variant: 'dark'
-  },
-  { 
-    title: "Alert System", 
-    description: "Instant notifications for critical events",
-    icon: <Bell className="w-12 h-12" />,
-    variant: 'blue'
-  },
-  { 
-    title: "Capacity Intelligence", 
-    description: "Real-time visibility into production",
-    icon: <Database className="w-12 h-12" />,
-    variant: 'dark'
-  },
-  { 
-    title: "Quality Signals", 
-    description: "Early detection of quality drift",
-    icon: <Activity className="w-12 h-12" />,
-    variant: 'blue'
-  },
-  { 
-    title: "Integration Hub", 
-    description: "Connect with ERP, MES, and QMS",
-    icon: <Workflow className="w-12 h-12" />,
+    title: "Integrations", 
+    description: "ERP/QMS connectors (SAP, Oracle, Dynamics, Trackwise, MasterControl, ETQ).",
+    icon: <Plug className="w-12 h-12" />,
     variant: 'dark'
   },
 ];
