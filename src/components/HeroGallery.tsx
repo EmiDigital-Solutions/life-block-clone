@@ -48,9 +48,15 @@ const galleryCards: GalleryCard[] = [
 
 export const HeroGallery = () => {
   const [activeCard, setActiveCard] = useState<GalleryCard>(galleryCards[0]);
+  const [expandedCard, setExpandedCard] = useState<GalleryCard | null>(null);
 
   const handleCardClick = (card: GalleryCard) => {
     setActiveCard(card);
+    setExpandedCard(card);
+  };
+
+  const handleCloseExpanded = () => {
+    setExpandedCard(null);
   };
 
   const handlePrevious = () => {
@@ -176,89 +182,177 @@ export const HeroGallery = () => {
           {activeCard.title}
         </motion.h3>
 
-        {/* Grid of Cards */}
-        <div className="grid grid-cols-2 gap-6 mb-8 flex-1">
-          {galleryCards.map((card, index) => (
-            <motion.button
-              key={card.id}
-              onClick={() => handleCardClick(card)}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ 
-                opacity: 1, 
-                scale: activeCard.id === card.id ? 1.05 : 1 
-              }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2, delay: index * 0.1 }}
-              className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
-              style={{
-                boxShadow: activeCard.id === card.id
-                  ? "0 0 30px hsla(142, 76%, 45%, 0.4), 0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-                  : "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              }}
-            >
-              {/* Card Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  backgroundImage: `url(${card.imageUrl})`,
-                }}
-              />
+        {/* Grid of Cards or Expanded View */}
+        <div className="relative mb-8 flex-1">
+          <AnimatePresence mode="wait">
+            {expandedCard ? (
+              // Expanded Card View
+              <motion.div
+                key="expanded"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="h-full flex flex-col"
+              >
+                <div className="relative h-full rounded-3xl overflow-hidden">
+                  {/* Expanded Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${expandedCard.imageUrl})`,
+                    }}
+                  />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-              {/* Active Indicator */}
-              {activeCard.id === card.id && (
-                <motion.div
-                  layoutId="activeIndicator"
-                  className="absolute inset-0 rounded-2xl"
-                  style={{
-                    border: "3px solid hsl(var(--content-accent))",
-                  }}
-                />
-              )}
+                  {/* Content */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-8">
+                    {/* Close Button */}
+                    <button
+                      onClick={handleCloseExpanded}
+                      className="self-end w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center transition-all"
+                    >
+                      <span className="text-white text-2xl">×</span>
+                    </button>
 
-              {/* Card Content */}
-              <div className="absolute bottom-4 left-4 right-4 text-left">
-                <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
-                  {card.subtitle}
-                </p>
-                <h4 className="text-white text-lg font-bold">
-                  {card.title}
-                </h4>
-              </div>
+                    {/* Bottom Content */}
+                    <div>
+                      <p 
+                        className="text-sm font-semibold uppercase tracking-wider mb-3"
+                        style={{ color: "hsl(var(--content-accent))" }}
+                      >
+                        {expandedCard.subtitle}
+                      </p>
+                      <h3 className="text-5xl font-bold text-white mb-4">
+                        {expandedCard.title}
+                      </h3>
+                      <p className="text-white/90 text-lg max-w-2xl mb-6">
+                        {expandedCard.description}
+                      </p>
 
-              {/* Glow Effect */}
-              <div 
-                className="absolute inset-0 pointer-events-none rounded-2xl"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                }}
-              />
-            </motion.button>
-          ))}
+                      {/* Timeline in expanded view */}
+                      <div className="flex gap-3">
+                        {[1, 2, 3, 4].map((step) => (
+                          <div
+                            key={step}
+                            className="w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-200"
+                            style={{
+                              background: expandedCard.timelineStep === step 
+                                ? "hsl(var(--content-accent))" 
+                                : "rgba(255, 255, 255, 0.2)",
+                              boxShadow: expandedCard.timelineStep === step 
+                                ? "0 0 20px hsla(142, 76%, 45%, 0.5)" 
+                                : "none",
+                            }}
+                          >
+                            {step}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              // Grid View
+              <motion.div
+                key="grid"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="grid grid-cols-2 gap-6 h-full"
+              >
+                {galleryCards.map((card, index) => (
+                  <motion.button
+                    key={card.id}
+                    onClick={() => handleCardClick(card)}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: activeCard.id === card.id ? 1.02 : 1 
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2, delay: index * 0.1 }}
+                    className="relative h-full rounded-2xl overflow-hidden cursor-pointer group"
+                    style={{
+                      boxShadow: activeCard.id === card.id
+                        ? "0 0 30px hsla(142, 76%, 45%, 0.4), 0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+                        : "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                    }}
+                  >
+                    {/* Card Image */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        backgroundImage: `url(${card.imageUrl})`,
+                      }}
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                    {/* Active Indicator */}
+                    {activeCard.id === card.id && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute inset-0 rounded-2xl"
+                        style={{
+                          border: "3px solid hsl(var(--content-accent))",
+                        }}
+                      />
+                    )}
+
+                    {/* Card Content */}
+                    <div className="absolute bottom-4 left-4 right-4 text-left">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
+                        {card.subtitle}
+                      </p>
+                      <h4 className="text-white text-lg font-bold">
+                        {card.title}
+                      </h4>
+                    </div>
+
+                    {/* Glow Effect */}
+                    <div 
+                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                      }}
+                    />
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Navigation & CTA */}
         <div className="flex items-center justify-between">
-          {/* Navigation Arrows */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handlePrevious}
-              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
-              aria-label="Previous"
-            >
-              <ChevronLeft className="w-5 h-5 text-white" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
-              aria-label="Next"
-            >
-              <ChevronRight className="w-5 h-5 text-white" />
-            </button>
-          </div>
+          {/* Navigation Arrows - nur im Grid-Mode */}
+          {!expandedCard && (
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handlePrevious}
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5 text-white" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30 backdrop-blur-sm"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5 text-white" />
+              </button>
+            </div>
+          )}
+
+          {/* Spacer wenn expanded */}
+          {expandedCard && <div />}
 
           {/* CTA Buttons */}
           <div className="flex gap-4">
