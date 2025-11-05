@@ -163,8 +163,8 @@ const Navigation = () => {
                     <div className="font-semibold">Search Suppliers</div>
                     <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
                   </a>
-                  <a 
-                    href="#ground-intelligence" 
+                  <Link 
+                    to="/ground-intelligence" 
                     className="block px-4 py-3 transition-colors duration-300 border-b"
                     style={{ 
                       color: textColor,
@@ -172,16 +172,16 @@ const Navigation = () => {
                     }}
                   >
                     <div className="font-semibold">Ground Intelligence</div>
-                    <div className="text-xs opacity-60 mt-0.5">Qualify suppliers on-site</div>
-                  </a>
-                  <a 
-                    href="/be-found" 
+                    <div className="text-xs opacity-60 mt-0.5">On-site supplier audits</div>
+                  </Link>
+                  <Link 
+                    to="/be-found" 
                     className="block px-4 py-3 transition-colors duration-300"
                     style={{ color: textColor }}
                   >
                     <div className="font-semibold">Be found</div>
                     <div className="text-xs opacity-60 mt-0.5">Reach your target audience</div>
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -250,20 +250,20 @@ const Navigation = () => {
               >
                 Search Suppliers
               </a>
-              <a 
-                href="#ground-intelligence" 
+              <Link 
+                to="/ground-intelligence" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
                 Ground Intelligence
-              </a>
-              <a 
-                href="/be-found" 
+              </Link>
+              <Link 
+                to="/be-found" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
                 Be found
-              </a>
+              </Link>
             </div>
             
             <a 
