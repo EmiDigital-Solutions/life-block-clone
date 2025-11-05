@@ -134,54 +134,63 @@ export const HowItWorksSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* LAYER 2: Timeline Overlay - Top Left */}
+          {/* LAYER 2: Timeline Overlay - Improved Animation */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
               {/* Connecting Line */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-[30px] w-0.5 h-[420px] bg-white/40">
+              <div className="absolute left-1/2 -translate-x-1/2 top-[40px] w-[2px] h-[450px] bg-white/30">
                 <motion.div
-                  className="w-full bg-white"
+                  className="w-full bg-white shadow-md"
                   initial={{ height: 0 }}
                   animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                 />
               </div>
 
-              {/* Timeline Steps - Large White Circles with Numbers */}
+              {/* Timeline Steps - Large White Circles with Green Numbers */}
               {steps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
+                const isFuture = index > activeStep;
 
                 return (
-                  <button
+                  <motion.button
                     key={step.number}
                     onClick={() => handleStepClick(index)}
-                    className="relative flex flex-col items-center mb-24 group pointer-events-auto"
+                    className="relative flex flex-col items-center mb-28 group pointer-events-auto"
                     aria-label={`Go to step ${index + 1}: ${step.label}`}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Large White Circle with Number */}
-                    <div
-                      className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                        isActive
-                          ? "bg-white scale-110 shadow-2xl shadow-white/60"
-                          : isPast
-                          ? "bg-white shadow-lg shadow-white/30"
-                          : "bg-white/90 shadow-md group-hover:bg-white group-hover:shadow-lg"
+                    {/* Large Circle with Number */}
+                    <motion.div
+                      className={`relative z-10 w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                        isActive || isPast
+                          ? "bg-white shadow-2xl"
+                          : "bg-white/40 shadow-md"
                       }`}
+                      animate={{
+                        scale: isActive ? 1.15 : 1,
+                        boxShadow: isActive
+                          ? "0 20px 40px -10px rgba(34, 197, 94, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
+                          : isPast
+                          ? "0 10px 20px -5px rgba(0, 0, 0, 0.2)"
+                          : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
+                      }}
+                      transition={{ duration: 0.4 }}
                     >
                       <span
-                        className={`text-2xl font-bold transition-colors ${
-                          isActive
+                        className={`text-3xl font-bold transition-colors duration-300 ${
+                          isActive || isPast
                             ? "text-green-600"
-                            : isPast
-                            ? "text-green-600"
-                            : "text-gray-400 group-hover:text-green-600"
+                            : "text-gray-400"
                         }`}
                       >
                         {step.number}
                       </span>
-                    </div>
-                  </button>
+                    </motion.div>
+                  </motion.button>
                 );
               })}
             </div>
@@ -286,23 +295,16 @@ export const HowItWorksSection = () => {
               </button>
             </div>
 
-            {/* CTAs - White Buttons with Black Text */}
+            {/* CTAs - Standard White Rounded Buttons */}
             <div className="flex items-center gap-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-white/90 border-0 font-medium"
-              >
+              <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2">
                 Try Free Search
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-white/90 font-semibold"
-              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2">
                 Book Demo
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
