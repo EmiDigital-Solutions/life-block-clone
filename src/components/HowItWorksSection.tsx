@@ -726,27 +726,21 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline - Vertical */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative">
-              {/* Vertical Line - Dynamically adapts to active circle */}
+              {/* Vertical Line - Fully flexible, adapts to active circle */}
               <div 
                 className="absolute z-0 transition-all duration-200"
                 style={{
                   width: '2px',
-                  left: '17px', // Centered for 36px circle: (36/2) - (2/2) = 17px
-                  top: activeStep === 0 ? '18px' : '16px', // Adjust top based on first circle size
+                  left: activeStep === 0 ? '17px' : '15px', // Adjust for circle size (36px active vs 32px inactive)
+                  top: activeStep === 0 ? '18px' : '16px', // Start at center of first circle
                   height: (() => {
-                    // Calculate dynamic height based on active step
-                    // Base: 3 gaps of 120px = 360px
-                    // Adjust for different circle sizes
-                    const baseGaps = 360;
-                    const activeCircleExtra = 4; // 36px vs 32px = 4px extra
+                    // Calculate height from center of circle 1 to center of circle 4
+                    const gap = 120; // Gap between circles (center to center)
+                    const circle1Center = activeStep === 0 ? 18 : 16;
+                    const circle4Center = activeStep === 3 ? 18 : 16;
                     
-                    if (activeStep === 0) {
-                      return `${baseGaps + 2}px`; // First circle larger
-                    } else if (activeStep === 3) {
-                      return `${baseGaps + 2}px`; // Last circle larger
-                    } else {
-                      return `${baseGaps + 4}px`; // Middle circles larger
-                    }
+                    // Total height: 3 gaps + adjustment for different circle sizes
+                    return `${3 * gap}px`;
                   })(),
                   background: 'rgba(255, 255, 255, 0.15)',
                 }}
