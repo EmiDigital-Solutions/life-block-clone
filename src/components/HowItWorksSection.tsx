@@ -137,8 +137,8 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline Overlay - Improved Animation */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
-              {/* Connecting Line */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-[40px] w-[2px] h-[450px] bg-white/30">
+              {/* Connecting Line - Extended to reach step 4 */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-[40px] w-[2px] h-[540px] bg-white/30">
                 <motion.div
                   className="w-full bg-white shadow-md"
                   initial={{ height: 0 }}
@@ -147,7 +147,7 @@ export const HowItWorksSection = () => {
                 />
               </div>
 
-              {/* Timeline Steps - Large White Circles with Green Numbers */}
+              {/* Timeline Steps - Circles with Smaller Numbers */}
               {steps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
@@ -163,7 +163,7 @@ export const HowItWorksSection = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Large Circle with Number */}
+                    {/* Circle with Smaller Number (25% reduction) */}
                     <motion.div
                       className={`relative z-10 w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
                         isActive || isPast
@@ -181,7 +181,7 @@ export const HowItWorksSection = () => {
                       transition={{ duration: 0.4 }}
                     >
                       <span
-                        className={`text-3xl font-bold transition-colors duration-300 ${
+                        className={`text-2xl font-bold transition-colors duration-300 ${
                           isActive || isPast
                             ? "text-green-600"
                             : "text-gray-400"
