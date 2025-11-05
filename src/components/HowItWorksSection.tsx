@@ -726,20 +726,20 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline - Vertical */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative">
-              {/* Vertical Line - Behind circles, perfectly centered through all 4 circles */}
+              {/* Vertical Line - Centered through all circles, ends at circle 4 center */}
               <div 
-                className="absolute w-0.5 z-0"
+                className="absolute z-0"
                 style={{
-                  left: '17.75px', // Centered for active circle 36px (18px - 0.25px for line width)
-                  top: '18px', // Start at center of first circle (36px max / 2)
-                  height: '372px', // From center to center: 3 gaps (100px each) + 3 circles (36px + 32px + 32px) = 300 + 72 = 372px
-                  background: 'rgba(255, 255, 255, 0.6)',
-                  boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
+                  width: '2px',
+                  left: '17px', // Centered for 36px circle: (36/2) - (2/2) = 17px
+                  top: '18px', // Center of first circle (36px / 2)
+                  height: '360px', // 3 gaps of 120px each (center to center)
+                  background: 'rgba(255, 255, 255, 0.15)',
                 }}
               />
 
               {/* Timeline Steps */}
-              <div className="relative flex flex-col" style={{ gap: '100px' }}>
+              <div className="relative flex flex-col" style={{ gap: '84px' }}>
                 {processedSteps.map((step, index) => {
                   const isActive = activeStep === index;
 
@@ -761,7 +761,7 @@ export const HowItWorksSection = () => {
                           }}
                           animate={{
                             boxShadow: isActive
-                              ? "0 0 30px rgba(16, 185, 129, 0.6), 0 0 15px rgba(16, 185, 129, 0.4)"
+                              ? "0 0 30px rgba(16, 185, 129, 0.6)"
                               : "none",
                           }}
                           transition={{ duration: 0.2 }}
