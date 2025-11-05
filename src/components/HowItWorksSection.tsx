@@ -432,13 +432,13 @@ export const HowItWorksSection = () => {
             <div className="relative">
               {/* Vertical Line - Behind circles, perfectly centered through all 4 circles */}
               <div 
-                className="absolute w-1 z-0"
+                className="absolute w-0.5 z-0"
                 style={{
-                  left: '39.5px', // Perfectly centered (40px - 0.5px for 1px width)
-                  top: '40px', // Center of first circle (80px / 2)
+                  left: '39.75px', // Perfectly centered (40px - 0.25px for 0.5px width)
+                  top: '30px', // Center of first circle (60px / 2, using inactive size as base)
                   height: `${(processedSteps.length - 1) * 120}px`, // Exactly 360px for 4 circles (3 gaps of 120px each)
-                  background: 'rgba(255, 255, 255, 0.6)', // Much higher contrast
-                  boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+                  background: 'rgba(255, 255, 255, 0.6)', // Higher contrast
+                  boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
               />
 
