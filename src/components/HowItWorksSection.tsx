@@ -224,8 +224,7 @@ export const HowItWorksSection = () => {
     return (
       <section
         data-nav-theme="green"
-        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700"
-        style={{ background: stepBackgroundColors[activeStep] }}
+        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700 bg-black"
       >
         {/* Background animation */}
         <div className="absolute inset-0 opacity-30">
@@ -242,13 +241,14 @@ export const HowItWorksSection = () => {
             className="flex justify-center mb-8"
           >
             <div className="relative">
-              <div className="w-28 h-28 rounded-full bg-white shadow-2xl flex items-center justify-center ring-4 ring-white/20">
-                <span className="text-5xl font-black" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent shadow-2xl flex flex-col items-center justify-center ring-4 ring-primary/30">
+                <span className="text-xs font-semibold text-white/80 uppercase tracking-wide">Step</span>
+                <span className="text-3xl font-black text-white">
                   {currentStep.number}
                 </span>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-white border-4 border-white flex items-center justify-center shadow-xl">
-                <span className="text-base font-bold text-gray-600">{processedSteps.length}</span>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-white border-4 border-black flex items-center justify-center shadow-xl">
+                <span className="text-sm font-bold text-gray-900">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -318,9 +318,9 @@ export const HowItWorksSection = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.08 }}
-                        className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl"
+                        className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-card to-card/80 border border-border/50"
                         style={{
-                          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1)",
+                          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.15)",
                         }}
                       >
                         {screenshot.imageUrl ? (
