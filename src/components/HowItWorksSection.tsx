@@ -705,170 +705,30 @@ export const HowItWorksSection = () => {
       </div>
 
       <div className="w-full relative z-10 flex flex-col lg:flex-row">
-        {/* LEFT SIDE - Timeline - Full width on mobile, 40% on desktop */}
+        {/* LEFT SIDE - Expanded Card View - 60% width */}
         <div 
-          className="w-full lg:w-2/5 relative min-h-[40vh] lg:min-h-0"
+          className="w-full lg:w-3/5 relative min-h-[40vh] lg:min-h-0"
           style={{ background: "hsl(var(--process-bg))" }}
         >
-          {/* LAYER 1: Background Screenshot */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeStep}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              key={expandedScreenshot ? `${expandedScreenshot.stepIndex}-${expandedScreenshot.screenshotIndex}` : `default-${activeStep}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4 }}
               className="absolute inset-0"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* LAYER 2: Timeline - Vertical */}
-          <div className="absolute top-12 left-12 pointer-events-none z-10">
-            <div className="relative">
-              {/* Vertical Line - Fully flexible, adapts to active circle */}
+              {/* Expanded Screenshot */}
               <div 
-                className="absolute z-0 transition-all duration-200"
-                style={{
-                  width: '2px',
-                  left: activeStep === 0 ? '17px' : '15px', // Adjust for circle size (36px active vs 32px inactive)
-                  top: activeStep === 0 ? '18px' : '16px', // Start at center of first circle
-                  height: (() => {
-                    // Calculate height from center of circle 1 to center of circle 4
-                    const gap = 120; // Gap between circles (center to center)
-                    const circle1Center = activeStep === 0 ? 18 : 16;
-                    const circle4Center = activeStep === 3 ? 18 : 16;
-                    
-                    // Total height: 3 gaps + adjustment for different circle sizes
-                    return `${3 * gap}px`;
-                  })(),
-                  background: 'rgba(255, 255, 255, 0.15)',
-                }}
-              />
-
-              {/* Timeline Steps */}
-              <div className="relative flex flex-col" style={{ gap: '84px' }}>
-                {processedSteps.map((step, index) => {
-                  const isActive = activeStep === index;
-
-                  return (
-                    <div key={step.number} className="relative flex items-center">
-                      {/* Circle */}
-                      <motion.button
-                        onClick={() => handleStepClick(index)}
-                        className="relative pointer-events-auto flex-shrink-0"
-                        aria-label={`Go to step ${index + 1}: ${step.label}`}
-                      >
-                        <motion.div
-                          className="rounded-full flex items-center justify-center transition-all duration-200"
-                          style={{
-                            width: isActive ? '36px' : '32px',
-                            height: isActive ? '36px' : '32px',
-                            background: isActive ? '#10b981' : '#4b5563',
-                            zIndex: 10,
-                          }}
-                          animate={{
-                            boxShadow: isActive
-                              ? "0 0 30px rgba(16, 185, 129, 0.6)"
-                              : "none",
-                          }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <span className="text-white font-bold text-sm">
-                            {step.number}
-                          </span>
-                        </motion.div>
-                      </motion.button>
-
-                      {/* Text - Right of circle, 16px gap */}
-                      <div className="ml-4 pointer-events-none">
-                        <motion.h4
-                          className="font-bold transition-all duration-200"
-                          style={{
-                            color: isActive ? '#ffffff' : '#6b7280',
-                            fontSize: isActive ? '20px' : '18px',
-                            fontWeight: isActive ? 'bold' : 'normal',
-                          }}
-                        >
-                          {step.label}
-                        </motion.h4>
-                        <AnimatePresence>
-                          {isActive && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="text-sm mt-1"
-                              style={{
-                                color: '#9ca3af',
-                                maxWidth: '300px',
-                              }}
-                            >
-                              {step.description}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* LAYER 3: Title */}
-          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-6 lg:left-12 pointer-events-none">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-2 md:space-y-4"
-            >
-              <div className="flex items-center gap-3 md:gap-6">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
-                  How It Works
-                </h2>
-                <div className="h-1 w-16 md:w-24 lg:w-32 rounded-full" style={{ background: "hsl(var(--content-accent))" }} />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE - Content Area with Stacked Cards - Full width on mobile, 60% on desktop */}
-        <div className="w-full lg:w-3/5 flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
-          {/* Active Step Title */}
-          <AnimatePresence mode="wait">
-            <motion.h3
-              key={activeStep}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
-              className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-6 text-center text-white"
-            >
-              {currentStep.title}
-            </motion.h3>
-          </AnimatePresence>
-
-          {/* 4 Cards Grid or Expanded View - Desktop */}
-          <div className="w-full max-w-5xl mx-auto mb-8 md:mb-12 relative">
-            <AnimatePresence mode="wait">
-              {expandedScreenshot ? (
-                // Expanded Screenshot View
-                <motion.div
-                  key="expanded"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative h-[600px] rounded-3xl overflow-hidden"
-                >
-                  {/* Expanded Image */}
-                  <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[expandedScreenshot.screenshotIndex]}`}
-                  >
+                className={`absolute inset-0 bg-gradient-to-br ${
+                  expandedScreenshot 
+                    ? screenshotGradients[expandedScreenshot.screenshotIndex]
+                    : screenshotGradients[0]
+                }`}
+              >
+                {expandedScreenshot ? (
+                  <>
                     {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].imageUrl ? (
                       <>
                         <img
@@ -882,16 +742,61 @@ export const HowItWorksSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
                     )}
 
-                    {/* Close Button */}
-                    <button
-                      onClick={() => setExpandedScreenshot(null)}
-                      className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all z-10"
-                      aria-label="Close"
-                    >
-                      <span className="text-white text-2xl font-light">×</span>
-                    </button>
+                    {/* Timeline on the left */}
+                    <div className="absolute top-12 left-12 z-10">
+                      <div className="relative">
+                        {/* Vertical Line */}
+                        <div 
+                          className="absolute z-0 transition-all duration-200"
+                          style={{
+                            width: '2px',
+                            left: '15px',
+                            top: '16px',
+                            height: `${3 * 120}px`,
+                            background: 'rgba(255, 255, 255, 0.15)',
+                          }}
+                        />
 
-                    {/* Content */}
+                        {/* Timeline Steps */}
+                        <div className="relative flex flex-col" style={{ gap: '84px' }}>
+                          {processedSteps.map((step, index) => {
+                            const isActive = activeStep === index;
+
+                            return (
+                              <div key={step.number} className="relative flex items-center">
+                                <motion.button
+                                  onClick={() => handleStepClick(index)}
+                                  className="relative flex-shrink-0"
+                                  aria-label={`Go to step ${index + 1}: ${step.label}`}
+                                >
+                                  <motion.div
+                                    className="rounded-full flex items-center justify-center transition-all duration-200"
+                                    style={{
+                                      width: isActive ? '36px' : '32px',
+                                      height: isActive ? '36px' : '32px',
+                                      background: isActive ? '#10b981' : '#4b5563',
+                                      zIndex: 10,
+                                    }}
+                                    animate={{
+                                      boxShadow: isActive
+                                        ? "0 0 30px rgba(16, 185, 129, 0.6)"
+                                        : "none",
+                                    }}
+                                    transition={{ duration: 0.2 }}
+                                  >
+                                    <span className="text-white font-bold text-sm">
+                                      {step.number}
+                                    </span>
+                                  </motion.div>
+                                </motion.button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content at the bottom */}
                     <div className="absolute bottom-8 left-8 right-8">
                       <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-6">
                         <p className="text-white font-bold text-3xl mb-3">
@@ -910,77 +815,175 @@ export const HowItWorksSection = () => {
                         background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                       }}
                     />
-                  </div>
-                </motion.div>
-              ) : (
-                // Grid View
-                <motion.div
-                  key="grid"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
-                >
-                  {currentStep.screenshots.map((screenshot, index) => (
-                    <motion.button
-                      key={`${activeStep}-desktop-card-${index}`}
-                      onClick={() => setExpandedScreenshot({ stepIndex: activeStep, screenshotIndex: index })}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="h-[200px] md:h-[280px] cursor-pointer"
-                    >
-                      <div 
-                        className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
-                        style={{
-                          boxShadow: `
-                            0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                            0 0 30px rgba(34, 197, 94, 0.2)
-                          `,
-                        }}
-                      >
-                        {screenshot.imageUrl ? (
-                          <>
-                            <img
-                              src={screenshot.imageUrl}
-                              alt={screenshot.label}
-                              className="absolute inset-0 w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                          </>
-                        ) : (
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                        )}
-
-                        <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
-                          <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
-                            <p className="text-white font-bold text-xs md:text-sm text-center">
-                              {screenshot.label}
-                            </p>
-                            <p className="text-white/80 text-[10px] md:text-xs text-center">
-                              {screenshot.desc}
-                            </p>
-                          </div>
-                        </div>
-
+                  </>
+                ) : (
+                  <>
+                    {/* Default view when no card is selected */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+                    
+                    {/* Timeline on the left */}
+                    <div className="absolute top-12 left-12 z-10">
+                      <div className="relative">
+                        {/* Vertical Line */}
                         <div 
-                          className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
+                          className="absolute z-0 transition-all duration-200"
                           style={{
-                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                            width: '2px',
+                            left: '15px',
+                            top: '16px',
+                            height: `${3 * 120}px`,
+                            background: 'rgba(255, 255, 255, 0.15)',
                           }}
                         />
+
+                        {/* Timeline Steps */}
+                        <div className="relative flex flex-col" style={{ gap: '84px' }}>
+                          {processedSteps.map((step, index) => {
+                            const isActive = activeStep === index;
+
+                            return (
+                              <div key={step.number} className="relative flex items-center">
+                                <motion.button
+                                  onClick={() => handleStepClick(index)}
+                                  className="relative flex-shrink-0"
+                                  aria-label={`Go to step ${index + 1}: ${step.label}`}
+                                >
+                                  <motion.div
+                                    className="rounded-full flex items-center justify-center transition-all duration-200"
+                                    style={{
+                                      width: isActive ? '36px' : '32px',
+                                      height: isActive ? '36px' : '32px',
+                                      background: isActive ? '#10b981' : '#4b5563',
+                                      zIndex: 10,
+                                    }}
+                                    animate={{
+                                      boxShadow: isActive
+                                        ? "0 0 30px rgba(16, 185, 129, 0.6)"
+                                        : "none",
+                                    }}
+                                    transition={{ duration: 0.2 }}
+                                  >
+                                    <span className="text-white font-bold text-sm">
+                                      {step.number}
+                                    </span>
+                                  </motion.div>
+                                </motion.button>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </motion.button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    </div>
+
+                    {/* Title at the bottom */}
+                    <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-6 lg:left-12">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-2 md:space-y-4"
+                      >
+                        <div className="flex items-center gap-3 md:gap-6">
+                          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
+                            How It Works
+                          </h2>
+                          <div className="h-1 w-16 md:w-24 lg:w-32 rounded-full" style={{ background: "hsl(var(--content-accent))" }} />
+                        </div>
+                      </motion.div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* RIGHT SIDE - Small Cards - 40% width */}
+        <div className="w-full lg:w-2/5 flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
+          {/* Active Step Title */}
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={activeStep}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+              className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-6 text-center text-white"
+            >
+              {currentStep.title}
+            </motion.h3>
+          </AnimatePresence>
+
+          {/* 4 Small Cards - Grid */}
+          <div className="w-full max-w-md mx-auto mb-8 md:mb-12">
+            <motion.div
+              key={`grid-${activeStep}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="grid grid-cols-2 gap-4"
+            >
+              {currentStep.screenshots.map((screenshot, index) => (
+                <motion.button
+                  key={`${activeStep}-desktop-card-${index}`}
+                  onClick={() => setExpandedScreenshot({ stepIndex: activeStep, screenshotIndex: index })}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`h-[160px] cursor-pointer ${
+                    expandedScreenshot?.screenshotIndex === index && expandedScreenshot?.stepIndex === activeStep
+                      ? 'ring-4 ring-white/50'
+                      : ''
+                  }`}
+                >
+                  <div 
+                    className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                    style={{
+                      boxShadow: `
+                        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                        0 0 30px rgba(34, 197, 94, 0.2)
+                      `,
+                    }}
+                  >
+                    {screenshot.imageUrl ? (
+                      <>
+                        <img
+                          src={screenshot.imageUrl}
+                          alt={screenshot.label}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    )}
+
+                    <div className="absolute bottom-2 left-0 right-0 flex justify-center px-2">
+                      <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1 w-full">
+                        <p className="text-white font-bold text-xs text-center">
+                          {screenshot.label}
+                        </p>
+                        <p className="text-white/80 text-[10px] text-center">
+                          {screenshot.desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div 
+                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                      }}
+                    />
+                  </div>
+                </motion.button>
+              ))}
+            </motion.div>
           </div>
 
           {/* Bottom Row: Navigation + CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-2xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-md">
             {/* Navigation Arrows */}
             <div className="flex items-center gap-3">
               <button
@@ -1001,26 +1004,26 @@ export const HowItWorksSection = () => {
             </div>
 
             {/* CTAs - Stack on mobile, side-by-side on larger screens */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
               <button 
-                className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                 style={{
                   background: "hsl(var(--content-accent))",
                   color: "white"
                 }}
               >
                 Try Free Search
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3 h-3" />
               </button>
               <button 
-                className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                 style={{
                   background: "hsl(var(--content-accent))",
                   color: "white"
                 }}
               >
                 Book Demo
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3 h-3" />
               </button>
             </div>
           </div>
