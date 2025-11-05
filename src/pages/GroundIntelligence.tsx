@@ -18,14 +18,14 @@ const GroundIntelligence = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Matching main page design */}
+      {/* Hero Section - Dark background */}
       <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black" id="hero">
         <div className="absolute inset-0 bg-black"></div>
         <div className="relative z-10 container mx-auto px-6 py-32">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col items-center justify-center text-center space-y-8">
               
-              {/* Tagline */}
+              {/* Eyebrow */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -33,328 +33,139 @@ const GroundIntelligence = () => {
               >
                 <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
                   <div className="h-px w-16 bg-cyan-400/40"></div>
-                  <span>On-site supplier evaluations · Global · Standardized</span>
+                  <span>Real-time supplier intelligence · AI-powered · Risk mitigation</span>
                   <div className="h-px w-16 bg-cyan-400/40"></div>
                 </div>
               </motion.div>
 
-              {/* Main Heading */}
+              {/* H1 with gradient */}
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight tracking-tight max-w-4xl"
               >
-                Less Risk, Faster Decisions: Objective Supplier Audits Guided by AI
+                Transform supplier data into <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">strategic advantage</span>
               </motion.h1>
 
-              {/* Subtitle */}
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl md:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide"
-              >
-                25+ Countries · 120+ Audits · 4.8/5 Rating
-              </motion.h2>
-
-              {/* Description */}
+              {/* Lede */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-lg text-white/70 font-sans font-medium max-w-3xl"
               >
-                Book, verify, decide: Local experts run audits using a unified framework. 
-                You get clear scores, photos & evidence — comparable across countries and plants.
+                Ground Intelligence combines on-site audits, IoT sensors, and AI analytics to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
               </motion.p>
 
-              {/* CTA Buttons */}
+              {/* Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-wrap gap-3 justify-center"
+              >
+                {["Real-time monitoring", "Predictive analytics", "Risk scoring"].map((badge, i) => (
+                  <span key={i} className="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm font-sans backdrop-blur-sm">
+                    • {badge}
+                  </span>
+                ))}
+              </motion.div>
+
+              {/* Hero Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex flex-wrap gap-4 justify-center"
+                className="mt-8 p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/20 max-w-2xl"
               >
-                <button 
-                  onClick={() => scrollToSection('cta')}
-                  className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl"
-                >
-                  Grab a 15-min demo
-                </button>
-                <button 
-                  onClick={() => scrollToSection('how')}
-                  className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-white/20 transition-all duration-300"
-                >
-                  See how it works
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <h3 className="text-2xl font-sans font-semibold text-white mb-6">What Ground Intelligence provides</h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
+                  {[
+                    "Live supplier metrics",
+                    "Capacity forecasting",
+                    "Risk alerts",
+                    "Compliance tracking",
+                    "Performance benchmarking"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-white/80 font-sans">
+                      <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pain Section - Green gradient background */}
+      {/* Problem Section - Light with pill */}
       <section 
-        data-nav-theme="green" 
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24" 
-        style={{ background: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))' }}
+        data-nav-theme="light" 
+        className="py-24 px-6 md:px-12 lg:px-24 bg-white" 
         id="pain"
       >
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: false, amount: 0.3 }}
-              className="text-white space-y-6"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-white rounded-full"></div>
-                <span className="text-sm font-sans tracking-wide font-medium">
-                  01 Challenge
-                </span>
-              </div>
-
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
-                The Reality in Procurement
-              </h2>
-
-              <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
-                Subjective audits, scattered evidence, little comparability — and decisions that stall.
-              </p>
-
-              <button 
-                onClick={() => scrollToSection('solution')}
-                className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide"
-              >
-                See the solution
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
-
-            {/* Right: Pain Points Cards */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: false, amount: 0.3 }}
-              className="grid gap-6"
-            >
-              {[
-                { icon: Clock, title: "Slow & costly", description: "Audits take weeks; travel and coordination burn budgets." },
-                { icon: Target, title: "Subjective", description: "Every auditor rates differently — results don't scale." },
-                { icon: Award, title: "Blind spots", description: "Missing evidence, weak traceability during escalations." }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-sans font-semibold text-white mb-2">{item.title}</h4>
-                      <p className="text-white/80 font-sans">{item.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section - Dark gradient background */}
-      <section 
-        data-nav-theme="dark" 
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24" 
-        style={{ background: 'linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))' }}
-        id="solution"
-      >
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: false, amount: 0.3 }}
-              className="text-white space-y-6"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
-                <span className="text-sm font-sans tracking-wide font-medium text-cyan-400">
-                  02 Solution
-                </span>
-              </div>
-
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
-                Standardized Quality — Everywhere
-              </h2>
-
-              <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
-                Network of certified experts + AI guidance for objective, verifiable results. 
-                One report, clear scores, solid evidence.
-              </p>
-
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-1 flex-shrink-0" />
-                  <span className="font-sans">Unified checklists and weightings (1–5 score)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-1 flex-shrink-0" />
-                  <span className="font-sans">Photo/video evidence & documents linked in-line</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-1 flex-shrink-0" />
-                  <span className="font-sans">Regional risks & compliance hints integrated</span>
-                </li>
-              </ul>
-
-              <button 
-                onClick={() => scrollToSection('how')}
-                className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide"
-              >
-                Learn more
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: false, amount: 0.3 }}
-              className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-cyan-400/5 border border-cyan-400/20 shadow-lg"
-            >
-              <p className="text-xs text-cyan-400 uppercase tracking-wider mb-4 font-sans">
-                ScanPro+ – AI-guided on-site audits
-              </p>
-              <h4 className="text-xl font-sans font-semibold text-white mb-4">Understand in 3 lines</h4>
-              <p className="text-white/80 leading-relaxed font-sans">
-                <strong className="text-white">What?</strong> Standardized audits.<br />
-                <strong className="text-white">How?</strong> Local experts + AI guidance.<br />
-                <strong className="text-white">Outcome?</strong> Faster, safer decisions.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works - Blue gradient background */}
-      <section 
-        data-nav-theme="dark" 
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24" 
-        style={{ background: 'linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))' }}
-        id="how"
-      >
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center gap-3 justify-center mb-6">
-                <div className="w-3 h-3 bg-white rounded-full"></div>
-                <span className="text-sm font-sans tracking-wide font-medium text-white">
-                  03 Process
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white mb-4 tracking-tight">
-                How it Works
-              </h2>
-              <p className="text-xl text-white/80 max-w-3xl mx-auto font-sans font-medium">
-                A clear flow reduces cognitive load and builds trust.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              { step: "1", title: "Request", description: "Define site & scope. We match the right auditor." },
-              { step: "2", title: "On-site audit", description: "Guided checklist, evidence photos, objective scores — same standard worldwide." },
-              { step: "3", title: "Report & decision", description: "Comparable results, highlighted risks, clear next steps." }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: index * 0.1 }}
-                className="relative p-8 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20"
-              >
-                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-white text-blue-600 flex items-center justify-center text-xl font-bold shadow-lg">
-                  {item.step}
-                </div>
-                <h4 className="text-xl font-sans font-semibold text-white mb-3 mt-2">{item.title}</h4>
-                <p className="text-white/80 font-sans">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
+        <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
-            className="text-center mt-12"
+            transition={{ duration: 0.8 }}
           >
-            <button 
-              onClick={() => scrollToSection('cases')}
-              className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide"
-            >
-              See results
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            {/* Pill */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-sans font-medium mb-6">
+              Ground Intelligence — Real-time supplier visibility
+            </div>
+
+            {/* Title */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-gray-900 mb-6 tracking-tight">
+              See beyond the surface
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg text-gray-600 font-sans max-w-3xl mx-auto">
+              Traditional supplier monitoring relies on quarterly reports and annual audits — by the time you spot a problem, it's already affecting production. Ground Intelligence provides continuous visibility.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Case Studies - Green gradient background */}
+      {/* How It Works - 3 Steps */}
       <section 
-        data-nav-theme="green" 
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24" 
-        style={{ background: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))' }}
-        id="cases"
+        data-nav-theme="light" 
+        className="py-24 px-6 md:px-12 lg:px-24 bg-gray-50" 
+        id="how"
       >
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <motion.div
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl font-sans font-semibold text-gray-900 mb-4 tracking-tight"
             >
-              <div className="flex items-center gap-3 justify-center mb-6">
-                <div className="w-3 h-3 bg-white rounded-full"></div>
-                <span className="text-sm font-sans tracking-wide font-medium text-white">
-                  04 Results
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white mb-4 tracking-tight">
-                Results from the Field
-              </h2>
-              <p className="text-xl text-white/80 max-w-3xl mx-auto font-sans font-medium">
-                Concrete numbers lower perceived risk.
-              </p>
-            </motion.div>
+              How It Works
+            </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { metric: "-72%", label: "Audit cycle time", description: "From 21 days to 6 days in a global sourcing program.", icon: TrendingDown },
-              { metric: "+38%", label: "Supplier hit rate", description: "Better selection driven by objective scores & evidence.", icon: TrendingUp },
-              { metric: "99%", label: "Report acceptance", description: "Audits recognized as evidence in escalations.", icon: CheckCircle2 }
+              { 
+                step: "1", 
+                title: "Deploy & Connect", 
+                description: "Install IoT sensors and integrate with existing systems" 
+              },
+              { 
+                step: "2", 
+                title: "Monitor & Analyze", 
+                description: "AI processes real-time data streams for patterns and anomalies" 
+              },
+              { 
+                step: "3", 
+                title: "Act & Optimize", 
+                description: "Receive alerts, insights, and recommendations instantly" 
+              }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -362,60 +173,195 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all"
+                className="relative p-8 rounded-3xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="text-5xl font-bold text-white">
-                    {item.metric}
-                  </div>
-                  <item.icon className="w-8 h-8 text-white" />
+                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 text-white flex items-center justify-center text-xl font-bold shadow-lg">
+                  {item.step}
                 </div>
-                <div className="text-sm text-white/70 uppercase tracking-wider mb-2 font-sans">
-                  {item.label}
-                </div>
-                <p className="text-white/90 font-sans">{item.description}</p>
+                <h4 className="text-xl font-sans font-semibold text-gray-900 mb-3 mt-2">{item.title}</h4>
+                <p className="text-gray-600 font-sans">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA - Black background */}
+      {/* Capabilities - 9 Cards in Light Band */}
       <section 
-        data-nav-theme="dark" 
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24 bg-black" 
-        id="cta"
+        data-nav-theme="light" 
+        className="py-24 px-6 md:px-12 lg:px-24 bg-white" 
+        id="capabilities"
       >
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              className="text-4xl md:text-5xl font-sans font-semibold text-gray-900 mb-4 tracking-tight"
+            >
+              Capabilities
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[
+              { title: "Real-Time Monitoring", description: "Live dashboards of supplier operations and capacity" },
+              { title: "Predictive Analytics", description: "Forecast delays, quality issues, and capacity constraints" },
+              { title: "Risk Scoring", description: "Dynamic supplier risk assessment based on multiple data streams" },
+              { title: "Compliance Tracking", description: "Continuous verification of standards and certifications" },
+              { title: "Performance Benchmarking", description: "Compare suppliers across your network" },
+              { title: "Alert System", description: "Instant notifications for critical events or deviations" },
+              { title: "Capacity Intelligence", description: "Real-time visibility into production schedules and availability" },
+              { title: "Quality Signals", description: "Early detection of quality drift through process data" },
+              { title: "Integration Hub", description: "Connect with ERP, MES, QMS, and procurement systems" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: (index % 3) * 0.1 }}
+                className="p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:border-cyan-400 hover:shadow-md transition-all"
+              >
+                <h4 className="text-lg font-sans font-semibold text-gray-900 mb-2">{item.title}</h4>
+                <p className="text-gray-600 font-sans text-sm">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results - 3 Metrics */}
+      <section 
+        data-nav-theme="light" 
+        className="py-24 px-6 md:px-12 lg:px-24 bg-gray-50" 
+        id="results"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              className="text-4xl md:text-5xl font-sans font-semibold text-gray-900 mb-4 tracking-tight"
+            >
+              Results
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              { metric: "−85%", label: "Lead time for issue detection" },
+              { metric: "92%", label: "Accuracy in delay prediction" },
+              { metric: "3.2x", label: "Faster response to supplier risks" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center p-8 rounded-3xl bg-white border border-gray-200 shadow-sm"
+              >
+                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-3">
+                  {item.metric}
+                </div>
+                <p className="text-gray-600 font-sans font-medium">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing - 3 Plans */}
+      <section 
+        data-nav-theme="light" 
+        className="py-24 px-6 md:px-12 lg:px-24 bg-white" 
+        id="pricing"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              className="text-4xl md:text-5xl font-sans font-semibold text-gray-900 mb-4 tracking-tight"
+            >
+              Pricing
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              { 
+                name: "Pilot", 
+                description: "Single-supplier deployment",
+                features: ["Monitor one critical supplier", "6-month engagement", "Training included"]
+              },
+              { 
+                name: "Network", 
+                description: "Multi-supplier program",
+                features: ["Up to 10 suppliers", "Comparative analytics", "Dedicated analyst"],
+                highlighted: true
+              },
+              { 
+                name: "Enterprise", 
+                description: "Organization-wide intelligence",
+                features: ["Unlimited suppliers", "Custom integrations", "Strategic advisory"]
+              }
+            ].map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: index * 0.1 }}
+                className={`p-8 rounded-3xl border-2 ${
+                  plan.highlighted 
+                    ? 'bg-gradient-to-br from-cyan-50 to-blue-50 border-cyan-400 shadow-lg scale-105' 
+                    : 'bg-white border-gray-200'
+                }`}
+              >
+                <h3 className="text-2xl font-sans font-semibold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-gray-600 font-sans mb-6">{plan.description}</p>
+                <ul className="space-y-3">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-gray-700 font-sans">
+                      <CheckCircle2 className="w-5 h-5 text-cyan-500 flex-shrink-0 mt-0.5" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section data-nav-theme="dark" className="py-24 px-6 md:px-12 lg:px-24 bg-black" id="cta">
+        <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
-            className="max-w-4xl mx-auto space-y-8"
+            className="space-y-8"
           >
-            <div className="flex items-center gap-4 text-white/60 text-sm font-sans justify-center">
-              <div className="h-px w-16 bg-cyan-400/40"></div>
-              <span>Ready to Start?</span>
-              <div className="h-px w-16 bg-cyan-400/40"></div>
-            </div>
-
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white tracking-tight">
-              Ready for Evidence-Driven Supplier Decisions?
+              Ready for real-time supplier intelligence?
             </h2>
 
             <p className="text-xl text-white/70 font-sans font-medium">
-              Short demo. Clear answers. Zero risk.
+              See how Ground Intelligence transforms supplier management.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
               <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
-                Book demo
+                Schedule consultation
               </button>
-              <button 
-                onClick={() => scrollToSection('cases')}
-                className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-white/20 transition-all duration-300"
-              >
-                See sample report
+              <button className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-white/20 transition-all duration-300">
+                View demo
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
