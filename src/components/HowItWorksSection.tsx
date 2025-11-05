@@ -730,16 +730,16 @@ export const HowItWorksSection = () => {
               <div 
                 className="absolute w-0.5 z-0"
                 style={{
-                  left: '29.75px', // Perfectly centered (30px - 0.25px for 0.5px width)
+                  left: '15.75px', // Centered for smaller circles (16px - 0.25px)
                   top: '0px',
-                  height: '600px', // Full height to connect all 4 circles: 60 + 120 + 60 + 120 + 60 + 120 + 60 = 600px
-                  background: 'rgba(255, 255, 255, 0.6)', // Higher contrast
+                  height: '400px', // Adjusted for smaller circles and gaps
+                  background: 'rgba(255, 255, 255, 0.6)',
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
               />
 
               {/* Timeline Steps */}
-              <div className="relative flex flex-col" style={{ gap: '120px' }}>
+              <div className="relative flex flex-col" style={{ gap: '100px' }}>
                 {processedSteps.map((step, index) => {
                   const isActive = activeStep === index;
 
@@ -754,26 +754,26 @@ export const HowItWorksSection = () => {
                         <motion.div
                           className="rounded-full flex items-center justify-center transition-all duration-200"
                           style={{
-                            width: isActive ? '80px' : '60px',
-                            height: isActive ? '80px' : '60px',
+                            width: isActive ? '36px' : '32px',
+                            height: isActive ? '36px' : '32px',
                             background: isActive ? '#10b981' : '#4b5563',
                             zIndex: 10,
                           }}
                           animate={{
                             boxShadow: isActive
-                              ? "0 0 40px rgba(16, 185, 129, 0.6), 0 0 20px rgba(16, 185, 129, 0.4)"
+                              ? "0 0 30px rgba(16, 185, 129, 0.6), 0 0 15px rgba(16, 185, 129, 0.4)"
                               : "none",
                           }}
                           transition={{ duration: 0.2 }}
                         >
-                          <span className="text-white font-bold text-xl">
+                          <span className="text-white font-bold text-sm">
                             {step.number}
                           </span>
                         </motion.div>
                       </motion.button>
 
-                      {/* Text - Right of circle, 24px gap */}
-                      <div className="ml-6 pointer-events-none">
+                      {/* Text - Right of circle, 16px gap */}
+                      <div className="ml-4 pointer-events-none">
                         <motion.h4
                           className="font-bold transition-all duration-200"
                           style={{
