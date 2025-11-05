@@ -239,16 +239,16 @@ export const HowItWorksSection = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="flex justify-center mb-6"
+            className="flex justify-center mb-8"
           >
             <div className="relative">
-              <div className="w-20 h-20 rounded-full bg-white shadow-2xl flex items-center justify-center">
-                <span className="text-3xl font-bold" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
+              <div className="w-28 h-28 rounded-full bg-white shadow-2xl flex items-center justify-center ring-4 ring-white/20">
+                <span className="text-5xl font-black" style={{ color: stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1] ? `rgb(${stepBackgroundColors[activeStep].match(/rgb\(([^)]+)\)/)?.[1]})` : '#000' }}>
                   {currentStep.number}
                 </span>
               </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white border-2 border-white flex items-center justify-center shadow-lg">
-                <span className="text-xs font-bold text-gray-600">{processedSteps.length}</span>
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-white border-4 border-white flex items-center justify-center shadow-xl">
+                <span className="text-base font-bold text-gray-600">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
