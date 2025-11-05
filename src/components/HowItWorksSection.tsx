@@ -913,14 +913,14 @@ export const HowItWorksSection = () => {
             </motion.h3>
           </AnimatePresence>
 
-          {/* 4 Small Cards - Grid */}
-          <div className="w-full max-w-md mx-auto mb-8 md:mb-12">
+          {/* 4 Cards Grid */}
+          <div className="w-full max-w-5xl mx-auto mb-8 md:mb-12">
             <motion.div
               key={`grid-${activeStep}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
             >
               {currentStep.screenshots.map((screenshot, index) => (
                 <motion.button
@@ -931,14 +931,14 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`h-[160px] cursor-pointer ${
+                  className={`h-[200px] md:h-[280px] cursor-pointer ${
                     expandedScreenshot?.screenshotIndex === index && expandedScreenshot?.stepIndex === activeStep
                       ? 'ring-4 ring-white/50'
                       : ''
                   }`}
                 >
                   <div 
-                    className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                    className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
                     style={{
                       boxShadow: `
                         0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -959,19 +959,19 @@ export const HowItWorksSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     )}
 
-                    <div className="absolute bottom-2 left-0 right-0 flex justify-center px-2">
-                      <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1 w-full">
-                        <p className="text-white font-bold text-xs text-center">
+                    <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
+                      <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
+                        <p className="text-white font-bold text-xs md:text-sm text-center">
                           {screenshot.label}
                         </p>
-                        <p className="text-white/80 text-[10px] text-center">
+                        <p className="text-white/80 text-[10px] md:text-xs text-center line-clamp-1">
                           {screenshot.desc}
                         </p>
                       </div>
                     </div>
 
                     <div 
-                      className="absolute inset-0 pointer-events-none rounded-2xl"
+                      className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
                       style={{
                         background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                       }}
