@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
+import type { CarouselApi } from "@/components/ui/carousel";
 import {
   Carousel,
   CarouselContent,
@@ -81,6 +82,7 @@ export const HowItWorksSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [processedSteps, setProcessedSteps] = useState(fallbackSteps);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const isMobile = useIsMobile();
 
   // Fetch feature cards from CMS
@@ -195,6 +197,26 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
+  // Auto-advance to next step when 4th carousel card is reached
+  useEffect(() => {
+    if (!carouselApi || !isMobile) return;
+
+    const handleSelect = () => {
+      const selectedIndex = carouselApi.selectedScrollSnap();
+      // When user reaches the 4th card (index 3), advance to next step
+      if (selectedIndex === 3) {
+        setTimeout(() => {
+          handleNext();
+        }, 500); // Small delay for smooth transition
+      }
+    };
+
+    carouselApi.on("select", handleSelect);
+    return () => {
+      carouselApi.off("select", handleSelect);
+    };
+  }, [carouselApi, isMobile, handleNext]);
+
   const currentStep = processedSteps[activeStep];
 
   // Mobile combined layout
@@ -283,6 +305,7 @@ export const HowItWorksSection = () => {
                   align: "center",
                   loop: true,
                 }}
+                setApi={setCarouselApi}
                 className="w-full"
               >
                 <CarouselContent className="-ml-2">
