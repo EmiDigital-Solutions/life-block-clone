@@ -279,66 +279,59 @@ export const HowItWorksSection = () => {
             </motion.p>
           </AnimatePresence>
 
-          {/* Carousel Cards Container - Mobile */}
-          <Carousel
-            setApi={setCarouselApi}
-            className="w-full max-w-sm mx-auto mb-6"
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {currentStep.screenshots.map((screenshot, index) => (
-                <CarouselItem key={`${activeStep}-mobile-card-${index}`}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="h-[270px]"
-                  >
-                    <div 
-                      className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
-                      style={{
-                        background: stepBackgroundColors[index],
-                        border: "1px solid rgba(255, 255, 255, 0.1)"
-                      }}
-                    >
-                      {screenshot.imageUrl ? (
-                        <>
-                          <img
-                            src={screenshot.imageUrl}
-                            alt={screenshot.label}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                        </>
-                      ) : (
-                        <div className="absolute inset-0">
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
-                        </div>
-                      )}
+          {/* 4 Cards Grid - Mobile */}
+          <div className="w-full max-w-4xl mx-auto mb-6 grid grid-cols-2 gap-3">
+            {currentStep.screenshots.map((screenshot, index) => (
+              <motion.div
+                key={`${activeStep}-mobile-card-${index}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="h-[180px]"
+              >
+                <div 
+                  className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                  style={{
+                    boxShadow: `
+                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                      0 0 30px rgba(34, 197, 94, 0.2)
+                    `,
+                  }}
+                >
+                  {screenshot.imageUrl ? (
+                    <>
+                      <img
+                        src={screenshot.imageUrl}
+                        alt={screenshot.label}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  )}
 
-                      {/* Glass-morphism edge */}
-                      <div className="absolute inset-0 rounded-2xl border border-white/10" />
-
-                      {/* Content */}
-                      <div className="absolute inset-0 flex flex-col justify-end p-4">
-                        <div className="space-y-1.5">
-                          <h4 className="text-white font-bold text-sm leading-tight">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/80 text-xs leading-snug">
-                            {screenshot.desc}
-                          </p>
-                        </div>
-                      </div>
+                  <div className="absolute bottom-2 left-0 right-0 flex justify-center px-2">
+                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1 w-full">
+                      <p className="text-white font-bold text-xs text-center">
+                        {screenshot.label}
+                      </p>
+                      <p className="text-white/80 text-[10px] text-center">
+                        {screenshot.desc}
+                      </p>
                     </div>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                  </div>
+
+                  <div 
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
           {/* Step Indicators */}
           <div className="flex justify-center gap-2 mb-6">
@@ -437,10 +430,12 @@ export const HowItWorksSection = () => {
           {/* LAYER 2: Timeline - Vertical */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative">
-              {/* Vertical Line - Behind circles */}
+              {/* Vertical Line - Behind circles, perfectly centered */}
               <div 
-                className="absolute left-10 top-10 w-0.5 bg-white/10 z-0"
+                className="absolute w-0.5 bg-white/10 z-0"
                 style={{
+                  left: '40px', // Half of 80px (largest circle)
+                  top: '40px', // Half of 80px (start at center of first circle)
                   height: `${(processedSteps.length - 1) * 120}px`,
                 }}
               />
@@ -544,72 +539,66 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-4 md:mb-6 lg:mb-8 text-center text-white"
+              className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-6 text-center text-white"
             >
               {currentStep.title}
             </motion.h3>
           </AnimatePresence>
 
-          {/* Carousel Cards Container - Desktop */}
-          <Carousel
-            className="w-full max-w-md mx-auto mb-8 md:mb-12"
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {currentStep.screenshots.map((screenshot, index) => (
-                <CarouselItem key={`${activeStep}-desktop-card-${index}`}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="h-[300px] md:h-[360px]"
-                  >
-                    <div 
-                      className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
-                      style={{
-                        background: stepBackgroundColors[index],
-                        border: "1px solid rgba(255, 255, 255, 0.1)"
-                      }}
-                    >
-                      {screenshot.imageUrl ? (
-                        <>
-                          <img
-                            src={screenshot.imageUrl}
-                            alt={screenshot.label}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                        </>
-                      ) : (
-                        <div className="absolute inset-0">
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
-                          <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-                        </div>
-                      )}
+          {/* 4 Cards Grid - Desktop */}
+          <div className="w-full max-w-5xl mx-auto mb-8 md:mb-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {currentStep.screenshots.map((screenshot, index) => (
+              <motion.div
+                key={`${activeStep}-desktop-card-${index}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="h-[200px] md:h-[280px]"
+              >
+                <div 
+                  className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                  style={{
+                    boxShadow: `
+                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                      0 0 30px rgba(34, 197, 94, 0.2)
+                    `,
+                  }}
+                >
+                  {screenshot.imageUrl ? (
+                    <>
+                      <img
+                        src={screenshot.imageUrl}
+                        alt={screenshot.label}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  )}
 
-                      {/* Glass-morphism edge */}
-                      <div className="absolute inset-0 rounded-2xl border border-white/10" />
-
-                      {/* Content */}
-                      <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
-                        <div className="space-y-1.5 md:space-y-2">
-                          <h4 className="text-white font-bold text-base md:text-lg leading-tight">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/80 text-xs md:text-sm font-medium leading-snug">
-                            {screenshot.desc}
-                          </p>
-                        </div>
-                      </div>
+                  <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
+                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
+                      <p className="text-white font-bold text-xs md:text-sm text-center">
+                        {screenshot.label}
+                      </p>
+                      <p className="text-white/80 text-[10px] md:text-xs text-center">
+                        {screenshot.desc}
+                      </p>
                     </div>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                  </div>
+
+                  <div 
+                    className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
           {/* Bottom Row: Navigation + CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-2xl">
