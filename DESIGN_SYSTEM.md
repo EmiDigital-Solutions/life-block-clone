@@ -1,84 +1,105 @@
 # Connectimus Design System
 
-## Overview
-This document outlines the unified design system for the Connectimus website, ensuring consistency across all pages and components.
+**Version:** 1.0  
+**Last Updated:** 2025  
+
+This document defines the complete design system for the Connectimus website. Follow these guidelines to ensure visual consistency across all pages.
 
 ---
 
 ## Color Palette
 
-### Primary Colors
+### Primary Colors (Use HSL via CSS Variables)
+All colors are defined as HSL in `src/index.css` and accessed via Tailwind:
+
 ```css
-/* Main Brand Colors */
---background: Black (#000000)
---foreground: White (#FFFFFF)
---accent: Cyan-400 (#22d3ee)
---accent-secondary: Cyan-300 (#67e8f9)
+/* Semantic color tokens - ALWAYS use these */
+--background: 0 0% 100%;          /* White backgrounds */
+--foreground: 220 13% 13%;        /* Dark text */
+--primary: 220 20% 25%;           /* Primary brand color */
+--secondary: 210 17% 95%;         /* Light gray backgrounds */
+--accent: 215 28% 17%;            /* Accent elements */
 ```
 
-### Gradient Colors
-```css
-/* Page Background Gradients (Full-screen sections) */
-Green: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))
-Dark Gray: linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))
-Blue: linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))
+### Gradient Backgrounds
+Use inline styles for complex gradients:
+
+**Dark Hero Sections:**
+```jsx
+style={{ background: 'linear-gradient(135deg, rgb(0, 0, 0), rgb(17, 24, 39), rgb(31, 41, 55))' }}
 ```
 
-### Card Gradients
-```css
-/* Auditor/Feature Cards */
-Blue: from-blue-600 via-blue-700 to-blue-800
-Green: from-green-600 via-green-700 to-green-800
-Dark: from-gray-800 via-gray-900 to-black
+**Green Sections:**
+```jsx
+style={{ background: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))' }}
 ```
 
-### Text Colors
-```css
-Primary Text: text-white
-Secondary Text: text-white/70 or text-white/60
-Muted Text: text-white/40
-Accent Text: text-cyan-400 or text-cyan-300
+**Blue Sections:**
+```jsx
+style={{ background: 'linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))' }}
 ```
+
+**Light Sections:**
+```jsx
+className="bg-white" 
+// or
+className="bg-gray-50"
+```
+
+### Page Background Patterns
+- **Hero sections:** Black with cyan accents
+- **Content sections:** Alternate white and gray-50
+- **Feature sections:** Gradient backgrounds (green, blue, dark)
+- **CTA sections:** Black background
 
 ---
 
 ## Typography
 
 ### Font Family
-```css
-Primary: font-sans (System fonts)
-All text uses: font-sans
+```jsx
+className="font-sans"  // Primary font (Inter) for all text
 ```
 
 ### Font Weights
-```css
-Headings: font-semibold (600)
-Body Text: font-medium (500)
-Labels: font-medium (500)
-```
+- **Headings:** `font-semibold` (600)
+- **Body text:** `font-medium` (500)
+- **CTAs:** `font-semibold` (600)
 
 ### Font Sizes
-```css
-/* Hero Heading */
-H1: text-4xl md:text-5xl lg:text-6xl
 
-/* Section Headings */
-H2: text-4xl md:text-5xl lg:text-6xl
-
-/* Subheadings */
-H3: text-xl md:text-2xl
-
-/* Body Text */
-Body: text-lg
-Small: text-sm
-Tiny: text-xs
+**Large Headings (Hero):**
+```jsx
+className="text-4xl md:text-5xl lg:text-6xl"
 ```
 
-### Letter Spacing
-```css
-Headings: tracking-tight
-Body: tracking-normal
-Labels: tracking-wide
+**Section Headings:**
+```jsx
+className="text-4xl md:text-5xl"
+```
+
+**Subheadings:**
+```jsx
+className="text-2xl md:text-3xl"
+```
+
+**Body Text:**
+```jsx
+className="text-base md:text-lg"  // 16px-18px
+```
+
+**Small Text:**
+```jsx
+className="text-sm"  // 14px
+```
+
+### Letter Spacing & Line Height
+```jsx
+className="tracking-tight"    // Headings
+className="tracking-normal"   // Body text
+className="tracking-wide"     // Small text/labels
+className="leading-tight"     // Headings (1.15)
+className="leading-relaxed"   // Body text
 ```
 
 ---
@@ -86,22 +107,35 @@ Labels: tracking-wide
 ## Layout & Spacing
 
 ### Container
-```css
-Max Width: max-w-7xl
-Padding: px-6 md:px-12 lg:px-24
-Margin: mx-auto
+```jsx
+<div className="container mx-auto px-6 md:px-12 lg:px-24">
+  {/* Content */}
+</div>
+```
+
+**Max Width:**
+```jsx
+className="max-w-7xl mx-auto"  // Large containers
+className="max-w-4xl mx-auto"  // Medium containers (text-heavy)
+className="max-w-6xl mx-auto"  // Cards/grids
 ```
 
 ### Section Padding
-```css
-Vertical: py-32 (hero), py-24 (sections)
-Horizontal: px-6 md:px-12 lg:px-24
+```jsx
+className="py-24 px-6 md:px-12 lg:px-24"  // Standard sections
+className="py-32"                          // Hero sections
 ```
 
 ### Grid Layouts
-```css
-Two Column: grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16
-Three Column: grid-cols-1 md:grid-cols-3 gap-6 md:gap-8
+
+**Two Columns:**
+```jsx
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+```
+
+**Three Columns:**
+```jsx
+<div className="grid md:grid-cols-3 gap-6 md:gap-8">
 ```
 
 ---
@@ -110,61 +144,77 @@ Three Column: grid-cols-1 md:grid-cols-3 gap-6 md:gap-8
 
 ### Buttons
 
-#### Primary CTA
-```tsx
+**Primary CTA (White on dark backgrounds):**
+```jsx
 <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
   Button Text
 </button>
 ```
 
-#### Secondary Button
-```tsx
-<button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300">
+**Secondary CTA (Outline on dark backgrounds):**
+```jsx
+<button className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-white/20 transition-all duration-300">
   Button Text
   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 </button>
 ```
 
+**On Light Backgrounds:**
+```jsx
+<button className="bg-gradient-to-br from-cyan-400 to-blue-500 text-white px-8 py-4 rounded-full font-sans font-medium hover:opacity-90 transition-all">
+  Button Text
+</button>
+```
+
 ### Cards
 
-#### Standard Card
-```tsx
-<div className="relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
-  {/* Card content */}
+**Standard Card (Light Background):**
+```jsx
+<div className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all">
+  <h4 className="text-xl font-sans font-semibold text-gray-900 mb-3">Title</h4>
+  <p className="text-gray-600 font-sans">Description</p>
 </div>
 ```
 
-#### Feature Card
-```tsx
-<div className="p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all group">
-  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-    {/* Icon */}
-  </div>
-  <h4 className="text-xl font-semibold mb-3">{title}</h4>
-  <p className="text-muted-foreground">{description}</p>
+**Feature Card (Dark Background):**
+```jsx
+<div className="p-8 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all">
+  <h4 className="text-xl font-sans font-semibold text-white mb-3">Title</h4>
+  <p className="text-white/80 font-sans">Description</p>
+</div>
+```
+
+**Highlighted Card (with gradient accent):**
+```jsx
+<div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-400 shadow-lg">
+  {/* Content */}
 </div>
 ```
 
 ### Badges/Pills
-```tsx
-<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-sm text-cyan-400">
-  Badge Text
+```jsx
+<span className="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm font-sans backdrop-blur-sm">
+  • Badge Text
+</span>
+```
+
+```jsx
+<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-sans font-medium">
+  Pill Text
 </div>
 ```
 
 ### Dividers
-```tsx
-<div className="h-px w-16 bg-cyan-400/40"></div>
+```jsx
+<div className="h-px w-16 bg-cyan-400/40"></div>  {/* Accent line */}
 ```
 
 ---
 
-## Animations
+## Animations (Framer Motion)
 
-### Framer Motion Patterns
-
-#### Fade In Up
-```tsx
+### Fade In Up (Standard)
+```jsx
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
@@ -172,82 +222,116 @@ Three Column: grid-cols-1 md:grid-cols-3 gap-6 md:gap-8
 >
 ```
 
-#### Fade In Side
-```tsx
+**With Viewport Trigger:**
+```jsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+  transition={{ duration: 0.8 }}
+>
+```
+
+### Fade In Side
+```jsx
 <motion.div
   initial={{ opacity: 0, x: -50 }}
   whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
-  viewport={{ once: false, amount: 0.3 }}
+  viewport={{ once: false }}
+  transition={{ duration: 0.8 }}
 >
 ```
 
-#### Scale In
-```tsx
+### Scale In
+```jsx
 <motion.div
   initial={{ opacity: 0, scale: 0.9 }}
   whileInView={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.8, delay: 0.4 }}
-  viewport={{ once: false, amount: 0.3 }}
+  viewport={{ once: false }}
+  transition={{ duration: 0.8 }}
 >
 ```
 
-#### Hover Scale
-```tsx
+### Hover Scale
+```jsx
 <motion.div
   whileHover={{ scale: 1.05 }}
-  transition={{ duration: 0.3 }}
+  className="transition-all"
 >
 ```
 
-### Timing
-```css
-Default: duration: 0.8
-Quick: duration: 0.3
-Slow: duration: 1.2
-Stagger Delay: delay: index * 0.1
+### Staggered Children
+```jsx
+{items.map((item, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: false }}
+    transition={{ delay: index * 0.1 }}
+  >
+))}
 ```
+
+### Animation Timing
+- **Duration:** 0.8s (standard), 0.3s (quick interactions)
+- **Delays:** Stagger by 0.1s for sequential items
+- **Easing:** Default Framer Motion easing
 
 ---
 
 ## Effects
 
 ### Shadows
-```css
-Button: shadow-xl
-Card: shadow-lg
-Custom: 0 25px 50px -12px rgba(0, 0, 0, 0.5)
+```jsx
+className="shadow-sm"      // Subtle cards
+className="shadow-md"      // Hover state
+className="shadow-lg"      // Important elements
+className="shadow-xl"      // Primary CTAs
 ```
 
 ### Blur Effects
-```css
-Backdrop: backdrop-blur-md
-Glow: blur-3xl
+```jsx
+className="backdrop-blur-sm"  // Glass effect
+className="blur-3xl"          // Background decorative blur
 ```
 
-### Opacity Levels
-```css
-Primary: opacity-100
-Secondary: opacity-90
-Tertiary: opacity-70
-Muted: opacity-60 or opacity-40
+### Opacity
+```jsx
+className="opacity-90"    // Slightly transparent
+className="text-white/70" // 70% opacity text
+className="bg-white/10"   // 10% opacity background
 ```
 
 ---
 
 ## Responsive Breakpoints
 
-```css
-Mobile: default (< 768px)
-Tablet: md: (768px+)
-Desktop: lg: (1024px+)
+### Mobile First Approach
+```jsx
+className="text-4xl md:text-5xl lg:text-6xl"
 ```
 
+### Breakpoints
+- **Mobile:** Default (< 768px)
+- **Tablet:** `md:` (≥ 768px)
+- **Desktop:** `lg:` (≥ 1024px)
+
 ### Responsive Patterns
-```tsx
-// Mobile-first approach
-className="text-4xl md:text-5xl lg:text-6xl"
+
+**Text Sizes:**
+```jsx
+className="text-base md:text-lg"
+```
+
+**Padding:**
+```jsx
 className="px-6 md:px-12 lg:px-24"
+className="py-24 md:py-32"
+```
+
+**Grid Columns:**
+```jsx
 className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 ```
 
@@ -255,121 +339,231 @@ className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 
 ## Navigation
 
-### Data Attributes for Theme Control
-```tsx
-// Dark sections (black background)
-<section data-nav-theme="dark">
+### Navigation Theme Attribute
+Use `data-nav-theme` to control navigation appearance:
 
-// Green sections
-<section data-nav-theme="green">
-
-// Light sections
-<section data-nav-theme="light">
+```jsx
+<section data-nav-theme="dark">    {/* White nav on dark background */}
+<section data-nav-theme="light">   {/* Dark nav on light background */}
+<section data-nav-theme="green">   {/* White nav on green background */}
 ```
 
-### Navigation Background Colors
-```css
-Dark Theme: bg-black/80
-Green Theme: bg-green-600/80
-Light Theme: bg-white/80
-```
+**Implementation in Navigation.tsx:**
+The navigation bar reads this attribute and adjusts its colors accordingly.
 
 ---
 
 ## Best Practices
 
-### 1. Always Use Semantic Tokens
-- Use HSL colors from design system
-- Avoid hardcoded color values in components
-- Reference colors from index.css variables
+### 1. **Use Semantic Tokens**
+❌ **Wrong:**
+```jsx
+className="text-white bg-black border-gray-200"
+```
 
-### 2. Maintain Consistent Spacing
-- Use Tailwind spacing scale (4, 6, 8, 12, 16, 24, 32)
-- Keep consistent gaps in grid layouts
-- Use same padding patterns for cards
+✅ **Correct:**
+```jsx
+className="text-foreground bg-background border-border"
+```
 
-### 3. Animation Consistency
-- Use framer-motion for all animations
-- Apply viewport={{ once: false }} for repeatable animations
-- Keep timing consistent (0.8s default)
+For gradients and specific design needs, inline styles are acceptable:
+```jsx
+style={{ background: 'linear-gradient(...)' }}
+```
 
-### 4. Component Structure
-- Hero sections: Full-screen with centered content
-- Feature sections: Two-column grid on desktop
-- Card grids: 3-column on desktop, single column on mobile
+### 2. **Consistent Spacing**
+Always use the 4px grid system:
+- Gaps: `gap-3`, `gap-4`, `gap-6`, `gap-8`, `gap-12`, `gap-16`
+- Padding: `p-6`, `p-8`, `px-8`, `py-4`
+- Margins: `mb-4`, `mb-6`, `mt-8`
 
-### 5. Accessibility
-- Maintain proper contrast ratios
-- Use semantic HTML elements
-- Include proper ARIA labels
-- Ensure keyboard navigation works
+### 3. **Framer Motion for Animations**
+Use consistent animation patterns:
+- Initial state → Animate state
+- `viewport={{ once: false }}` for repeatable animations
+- Stagger delays by 0.1s
+
+### 4. **Component Structure**
+```jsx
+<section data-nav-theme="dark" className="py-24 px-6 md:px-12 lg:px-24 bg-black">
+  <div className="container mx-auto">
+    <div className="max-w-4xl mx-auto text-center">
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        className="text-4xl md:text-5xl font-sans font-semibold text-white mb-6"
+      >
+        Section Title
+      </motion.h2>
+      {/* Content */}
+    </div>
+  </div>
+</section>
+```
+
+### 5. **Accessibility**
+- Use semantic HTML (`<section>`, `<header>`, `<nav>`, `<main>`)
+- Include descriptive alt text for images
+- Ensure sufficient color contrast
+- Add hover and focus states
 
 ---
 
 ## Implementation Checklist
 
 When creating a new page:
-- [ ] Use black background for hero sections
-- [ ] Apply cyan-400 for accent colors
-- [ ] Use font-sans for all text
-- [ ] Implement framer-motion animations
-- [ ] Use rounded-3xl for cards
-- [ ] Apply proper data-nav-theme attributes
-- [ ] Follow two-column grid pattern for features
-- [ ] Include white CTA buttons with hover effects
-- [ ] Use proper spacing (py-24 for sections)
-- [ ] Ensure mobile responsiveness
+
+- [ ] Import Navigation and Footer components
+- [ ] Use `data-nav-theme` on sections
+- [ ] Apply consistent spacing (`py-24`, `px-6 md:px-12 lg:px-24`)
+- [ ] Use semantic color tokens or gradient inline styles
+- [ ] Add Framer Motion animations
+- [ ] Implement responsive breakpoints
+- [ ] Use consistent button styles
+- [ ] Apply proper typography hierarchy
+- [ ] Add hover states and transitions
+- [ ] Test on mobile, tablet, and desktop
 
 ---
 
-## Examples
+## Example Implementations
 
-### Complete Hero Section Pattern
-```tsx
-<section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+### Hero Section Pattern
+```jsx
+<section 
+  data-nav-theme="dark" 
+  className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+>
   <div className="absolute inset-0 bg-black"></div>
   <div className="relative z-10 container mx-auto px-6 py-32">
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col items-center justify-center text-center space-y-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center gap-4 text-white/60 text-sm">
+        
+        {/* Eyebrow */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
             <div className="h-px w-16 bg-cyan-400/40"></div>
-            <span>Tagline</span>
+            <span>Tagline or category</span>
             <div className="h-px w-16 bg-cyan-400/40"></div>
           </div>
         </motion.div>
-        <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white">
-          Main Heading
+
+        {/* Main Heading */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-white leading-tight tracking-tight max-w-4xl"
+        >
+          Your Main Headline Here
         </motion.h1>
-        <motion.button className="bg-white text-gray-900 px-8 py-4 rounded-full">
-          CTA Text
-        </motion.button>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-lg text-white/70 font-sans font-medium max-w-3xl"
+        >
+          Your description text goes here
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-wrap gap-4 justify-center"
+        >
+          <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+            Primary CTA
+          </button>
+          <button className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-white/20 transition-all duration-300">
+            Secondary CTA
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
       </div>
     </div>
   </div>
 </section>
 ```
 
-### Complete Feature Section Pattern
-```tsx
-<section data-nav-theme="green" className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24" style={{ background: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))' }}>
+### Feature Section Pattern (Light Background)
+```jsx
+<section 
+  data-nav-theme="light" 
+  className="py-24 px-6 md:px-12 lg:px-24 bg-white"
+>
   <div className="container mx-auto">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <motion.div className="text-white space-y-6">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold">
-          Feature Title
-        </h2>
-        <p className="text-lg font-sans leading-relaxed opacity-90">
-          Description
-        </p>
-        <button className="bg-white text-gray-900 px-8 py-4 rounded-full">
-          Learn More
-        </button>
-      </motion.div>
-      <motion.div className="flex justify-center lg:justify-end">
-        {/* Feature visual */}
-      </motion.div>
+    <div className="text-center mb-16">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        className="text-4xl md:text-5xl font-sans font-semibold text-gray-900 mb-4 tracking-tight"
+      >
+        Section Title
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ delay: 0.2 }}
+        className="text-lg text-gray-600 font-sans max-w-3xl mx-auto"
+      >
+        Section description
+      </motion.p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {features.map((feature, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: index * 0.1 }}
+          className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all"
+        >
+          <h4 className="text-xl font-sans font-semibold text-gray-900 mb-3">
+            {feature.title}
+          </h4>
+          <p className="text-gray-600 font-sans">
+            {feature.description}
+          </p>
+        </motion.div>
+      ))}
     </div>
   </div>
 </section>
 ```
+
+---
+
+## Color Gradient Reference
+
+Use these exact gradient values for consistency:
+
+```jsx
+// Dark gradient
+style={{ background: 'linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))' }}
+
+// Green gradient
+style={{ background: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))' }}
+
+// Blue gradient  
+style={{ background: 'linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))' }}
+
+// Light gradient
+style={{ background: 'linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))' }}
+```
+
+---
+
+**Questions?** Refer to existing pages (`Index.tsx`, `GroundIntelligence.tsx`) for working examples of these patterns.
