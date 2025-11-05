@@ -4,6 +4,7 @@ import { ArrowRight, Check, ChevronDown, TrendingUp, BarChart3, Users } from "lu
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { HowItWorksSection } from "@/components/HowItWorksSection";
 
 const BeFound = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -404,6 +405,9 @@ const BeFound = () => {
             </div>
           </div>
         </section>
+
+        {/* How It Works Section */}
+        <HowItWorksSection />
 
         {/* Global Leads Section with Cards */}
         <section
