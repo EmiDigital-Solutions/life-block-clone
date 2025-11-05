@@ -434,9 +434,9 @@ export const HowItWorksSection = () => {
               <div 
                 className="absolute w-0.5 z-0"
                 style={{
-                  left: '39.75px', // Perfectly centered (40px - 0.25px for 0.5px width)
-                  top: '30px', // Center of first circle (60px / 2)
-                  height: '540px', // From center of circle 1 to center of circle 4: 60 + 120 + 60 + 120 + 60 + 120 = 540px
+                  left: '29.75px', // Perfectly centered through 60px circles (30px - 0.25px for line width)
+                  top: '0px', // Start at the top
+                  height: '540px', // From center of circle 1 to center of circle 4
                   background: 'rgba(255, 255, 255, 0.6)', // Higher contrast
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
