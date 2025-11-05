@@ -23,6 +23,7 @@ const fallbackSteps = [
       { label: "Search Interface", desc: "AI-powered query input", imageUrl: null },
       { label: "Results List", desc: "Supplier matches with scores", imageUrl: null },
       { label: "Supplier Profile", desc: "Detailed view with certifications", imageUrl: null },
+      { label: "Book Audit CTA", desc: "One-click audit booking", imageUrl: null },
     ],
   },
   {
@@ -34,6 +35,7 @@ const fallbackSteps = [
       { label: "Auditor Map", desc: "Interactive global coverage", imageUrl: null },
       { label: "Auditor Profile", desc: "Credentials and ratings", imageUrl: null },
       { label: "Availability", desc: "Real-time calendar", imageUrl: null },
+      { label: "Booking Confirmed", desc: "Instant confirmation", imageUrl: null },
     ],
   },
   {
@@ -45,6 +47,7 @@ const fallbackSteps = [
       { label: "Mobile Checklist", desc: "AI-guided inspection", imageUrl: null },
       { label: "Equipment Recognition", desc: "Smart photo analysis", imageUrl: null },
       { label: "Photo Gallery", desc: "Real-time evidence", imageUrl: null },
+      { label: "Live Dashboard", desc: "Progress tracking", imageUrl: null },
     ],
   },
   {
@@ -56,6 +59,7 @@ const fallbackSteps = [
       { label: "Report Overview", desc: "Scored dashboard", imageUrl: null },
       { label: "Detailed Findings", desc: "Photo-linked insights", imageUrl: null },
       { label: "Comparison Chart", desc: "Multi-supplier analysis", imageUrl: null },
+      { label: "Action Tracker", desc: "Corrective tasks", imageUrl: null },
     ],
   },
 ];
@@ -64,12 +68,14 @@ const screenshotGradients = [
   "from-blue-600 via-blue-700 to-blue-800",
   "from-green-600 via-green-700 to-green-800",
   "from-gray-800 via-gray-900 to-black",
+  "from-blue-500 via-green-600 to-teal-700",
 ];
 
 const stepBackgroundColors = [
   "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue
   "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green
   "linear-gradient(135deg, rgb(71, 85, 105), rgb(51, 65, 85), rgb(30, 41, 59))", // Slate
+  "linear-gradient(135deg, rgb(20, 184, 166), rgb(13, 148, 136), rgb(15, 118, 110))", // Teal
 ];
 
 export const HowItWorksSection = () => {
@@ -191,14 +197,14 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  // Auto-advance to next step when 3rd carousel card is reached
+  // Auto-advance to next step when 4th carousel card is reached
   useEffect(() => {
     if (!carouselApi || !isMobile) return;
 
     const handleSelect = () => {
       const selectedIndex = carouselApi.selectedScrollSnap();
-      // When user reaches the 3rd card (index 2), advance to next step
-      if (selectedIndex === 2) {
+      // When user reaches the 4th card (index 3), advance to next step
+      if (selectedIndex === 3) {
         setTimeout(() => {
           handleNext();
         }, 500); // Small delay for smooth transition
@@ -291,112 +297,70 @@ export const HowItWorksSection = () => {
             </motion.p>
           </AnimatePresence>
 
-          {/* Stacked 3D Cards Container - Mobile */}
-          <div className="relative w-full max-w-sm h-[340px] mb-6 mx-auto">
-            <AnimatePresence mode="popLayout">
-              {currentStep.screenshots.map((screenshot, index) => {
-                // Calculate stacking order and rotation
-                const zIndex = 3 - index;
-                const rotations = [2, -3, 1];
-                const rotation = rotations[index];
-                const offsetY = index * 6;
-                const offsetX = index * 3;
-                const scale = 1 - index * 0.04;
-                const opacity = 1 - index * 0.2;
-
-                return (
-                  <motion.div
-                    key={`${activeStep}-mobile-card-${index}`}
-                    initial={{ 
-                      opacity: 0, 
-                      scale: 0.8,
-                      y: 50,
-                      rotateZ: rotation * 2
-                    }}
-                    animate={{ 
-                      opacity: opacity,
-                      scale: scale,
-                      y: offsetY,
-                      x: offsetX,
-                      rotateZ: rotation,
-                      filter: index > 0 ? "blur(1px)" : "blur(0px)"
-                    }}
-                    exit={{ 
-                      opacity: 0, 
-                      scale: 0.8,
-                      y: -50
-                    }}
-                    transition={{ 
-                      duration: 0.5,
-                      delay: index * 0.08,
-                      ease: "easeOut"
-                    }}
-                    className="absolute inset-0"
-                    style={{
-                      zIndex: zIndex,
-                      perspective: "1000px",
-                      transformStyle: "preserve-3d"
-                    }}
-                  >
-                    <div 
-                      className="relative w-full h-full rounded-3xl overflow-hidden"
-                      style={{
-                        background: stepBackgroundColors[index],
-                        boxShadow: index === 0 
-                          ? "0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(34, 197, 94, 0.3)"
-                          : "0 20px 40px -15px rgba(0, 0, 0, 0.6)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)"
-                      }}
+          {/* Carousel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`carousel-mobile-${activeStep}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="mb-6 flex-1 flex items-center"
+            >
+              <Carousel
+                opts={{
+                  align: "center",
+                  loop: true,
+                }}
+                setApi={setCarouselApi}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2">
+                  {currentStep.screenshots.map((screenshot, index) => (
+                    <CarouselItem
+                      key={`${activeStep}-${index}`}
+                      className="pl-2 basis-[85%]"
                     >
-                      {screenshot.imageUrl ? (
-                        <>
-                          <img
-                            src={screenshot.imageUrl}
-                            alt={screenshot.label}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                        </>
-                      ) : (
-                        <div className="absolute inset-0">
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.08 }}
+                        className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl"
+                        style={{
+                          background: stepBackgroundColors[index],
+                          boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 10px 20px -10px rgba(0, 0, 0, 0.4)",
+                        }}
+                      >
+                        {screenshot.imageUrl ? (
+                          <>
+                            <img
+                              src={screenshot.imageUrl}
+                              alt={screenshot.label}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
+                        )}
+
+                        <div className="absolute inset-0 flex flex-col justify-end p-6">
+                          <div className="space-y-2">
+                            <h4 className="text-white font-bold text-base leading-tight">
+                              {screenshot.label}
+                            </h4>
+                            <p className="text-white/80 text-sm leading-snug">
+                              {screenshot.desc}
+                            </p>
+                          </div>
                         </div>
-                      )}
-
-                      {/* Glass-morphism edge */}
-                      <div className="absolute inset-0 rounded-3xl border border-white/10" />
-
-                      {/* Glow effect */}
-                      {index === 0 && (
-                        <div className="absolute inset-0 rounded-3xl opacity-50" 
-                          style={{
-                            background: "radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.15), transparent 70%)"
-                          }}
-                        />
-                      )}
-
-                      {/* Content */}
-                      <div className="absolute inset-0 flex flex-col justify-end p-6">
-                        <div className="space-y-2">
-                          <h4 className="text-white font-bold text-lg leading-tight">
-                            {screenshot.label}
-                          </h4>
-                          <p className="text-white/80 text-sm leading-snug">
-                            {screenshot.desc}
-                          </p>
-                          {index === 0 && (
-                            <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mt-3">
-                              <span className="text-xs font-semibold text-white">Active</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Step Indicators */}
           <div className="flex justify-center gap-2 mb-6">
@@ -601,8 +565,8 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* RIGHT SIDE - Content Area with Stacked Cards - Full width on mobile, 60% on desktop */}
-        <div className="w-full lg:w-3/5 flex flex-col justify-center items-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16 relative">
+        {/* RIGHT SIDE - Content Area - Full width on mobile, 60% on desktop */}
+        <div className="w-full lg:w-3/5 flex flex-col justify-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16">
           {/* Active Step Title */}
           <AnimatePresence mode="wait">
             <motion.h3
@@ -611,31 +575,44 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold drop-shadow-lg mb-6 md:mb-8 lg:mb-12 text-center text-white"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg mb-6 md:mb-8 lg:mb-12 text-center text-white"
             >
               {currentStep.title}
             </motion.h3>
           </AnimatePresence>
 
-          {/* Carousel Cards Container */}
-          <div className="w-full max-w-2xl mb-8 md:mb-12">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
+          {/* Carousel of Cards - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`carousel-${activeStep}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="mb-6 md:mb-8 lg:mb-12 px-2"
             >
-              <CarouselContent>
-                {currentStep.screenshots.map((screenshot, index) => (
-                  <CarouselItem key={`${activeStep}-card-${index}`} className="md:basis-1/3">
-                    <div className="p-2 h-[375px] md:h-[450px]">
-                      <div 
-                        className="relative w-full h-full rounded-3xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {currentStep.screenshots.map((screenshot, index) => (
+                    <CarouselItem
+                      key={`${activeStep}-${index}`}
+                      className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.08 }}
+                        whileHover={{ scale: 1.03, y: -5 }}
+                        className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer h-full"
                         style={{
                           background: stepBackgroundColors[index],
-                          boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(34, 197, 94, 0.3)",
-                          border: "1px solid rgba(255, 255, 255, 0.1)"
+                          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 8px 16px -8px rgba(0, 0, 0, 0.3)",
                         }}
                       >
                         {/* Display actual uploaded image or use gradient background */}
@@ -646,49 +623,36 @@ export const HowItWorksSection = () => {
                               alt={screenshot.label}
                               className="absolute inset-0 w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                           </>
                         ) : (
-                          <div className="absolute inset-0">
-                            <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
-                            <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/40" />
                         )}
 
-                        {/* Glass-morphism edge */}
-                        <div className="absolute inset-0 rounded-3xl border border-white/10" />
-
-                        {/* Glow effect */}
-                        <div className="absolute inset-0 rounded-3xl opacity-50" 
-                          style={{
-                            background: "radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.15), transparent 70%)"
-                          }}
-                        />
-
                         {/* Content */}
-                        <div className="absolute inset-0 flex flex-col justify-end p-8">
-                          <div className="space-y-3">
-                            <h4 className="text-white font-bold text-2xl leading-tight">
+                        <div className="absolute inset-0 flex flex-col justify-end p-6">
+                          <div className="space-y-2">
+                            <h4 className="text-white font-bold text-lg leading-tight">
                               {screenshot.label}
                             </h4>
-                            <p className="text-white/80 text-base font-medium leading-snug">
+                            <p className="text-white/80 text-sm font-medium leading-snug">
                               {screenshot.desc}
                             </p>
-                            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mt-4">
-                              <span className="text-sm font-semibold text-white">Feature {index + 1}</span>
-                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
+
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-300" />
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Bottom Row: Navigation + CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-2xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Navigation Arrows */}
             <div className="flex items-center gap-3">
               <button
@@ -713,27 +677,27 @@ export const HowItWorksSection = () => {
               <button 
                 className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                 style={{
-                  background: "hsl(var(--content-accent))",
-                  color: "white"
-                }}
-              >
-                Try Free Search
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button 
-                className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
-                style={{
-                  background: "hsl(var(--content-accent))",
-                  color: "white"
-                }}
-              >
-                Book Demo
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+                   background: "hsl(var(--content-accent))",
+                   color: "white"
+                 }}
+               >
+                 Try Free Search
+                 <ArrowRight className="w-4 h-4" />
+               </button>
+               <button 
+                 className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+                 style={{
+                   background: "hsl(var(--content-accent))",
+                   color: "white"
+                 }}
+               >
+                 Book Demo
+                 <ArrowRight className="w-4 h-4" />
+               </button>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+   );
+ };
