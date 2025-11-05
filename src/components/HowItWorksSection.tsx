@@ -357,22 +357,6 @@ export const HowItWorksSection = () => {
                 ))}
               </CarouselContent>
             </Carousel>
-            
-            {/* Carousel Dots */}
-            <div className="flex justify-center gap-2 mt-4">
-              {currentStep.screenshots.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => carouselApi?.scrollTo(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    carouselApi?.selectedScrollSnap() === index
-                      ? "w-8 h-2 bg-white"
-                      : "w-2 h-2 bg-white/40"
-                  }`}
-                  aria-label={`Go to screenshot ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* Step Indicators */}
