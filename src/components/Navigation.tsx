@@ -111,19 +111,19 @@ const Navigation = () => {
         borderBottomColor: borderColor,
       }}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center gap-1 sm:gap-1.5 hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-16 w-16 object-contain"
+              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 object-contain"
               style={{ filter: 'contrast(1.1) saturate(1.1)' }}
             />
-            <div>
+            <div className="hidden sm:block">
               <div 
-                className="font-brand text-[22px] font-semibold tracking-tight transition-all duration-300"
+                className="font-brand text-lg sm:text-xl lg:text-[22px] font-semibold tracking-tight transition-all duration-300"
                 style={{ color: textColor }}
               >
                 Connectimus
@@ -132,7 +132,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {/* Solutions Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -216,7 +216,7 @@ const Navigation = () => {
             </a>
             <Button 
               variant="outline" 
-              className="font-sans text-sm px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
+              className="font-sans text-xs sm:text-sm px-4 lg:px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
             >
               Sign In
             </Button>
@@ -225,16 +225,16 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden transition-all duration-300"
+            className="lg:hidden transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
             style={{ color: textColor }}
           >
-            <Menu size={24} />
+            <Menu className="w-6 h-6" />
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
+          <div className="lg:hidden mt-4 pb-4 space-y-3 sm:space-y-4 animate-fade-in">
             {/* Solutions Submenu */}
             <div className="space-y-2">
               <div 

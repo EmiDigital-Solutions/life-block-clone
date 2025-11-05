@@ -22,17 +22,17 @@ const GroundIntelligence = () => {
       {/* Hero Section - Green gradient like BeFound */}
       <section
         data-nav-theme="dark"
-        className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-32"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
         style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         id="hero"
       >
         <div className="container mx-auto">
-          <div className="flex flex-col items-start justify-center space-y-8 max-w-2xl">
+          <div className="flex flex-col items-start justify-center space-y-6 sm:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold text-white leading-tight"
             >
               Transform supplier data into{" "}
               <span className="block mt-2">strategic advantage</span>
@@ -42,19 +42,19 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col gap-3 text-white"
+              className="flex flex-col gap-2 sm:gap-3 text-white mx-auto sm:mx-0"
             >
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5" />
-                <span className="text-lg font-medium">Real-time monitoring</span>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-base sm:text-lg font-medium">Real-time monitoring</span>
               </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5" />
-                <span className="text-lg font-medium">Predictive analytics</span>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-base sm:text-lg font-medium">Predictive analytics</span>
               </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5" />
-                <span className="text-lg font-medium">Risk scoring</span>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-base sm:text-lg font-medium">Risk scoring</span>
               </div>
             </motion.div>
 
@@ -62,13 +62,14 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="w-full sm:w-auto"
             >
               <button 
                 onClick={() => scrollToSection('cta')}
-                className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg min-h-[48px]"
               >
                 Schedule consultation
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
 
@@ -76,7 +77,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base text-white/90 font-sans max-w-xl leading-relaxed"
+              className="text-sm sm:text-base text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
             >
               <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
             </motion.p>
@@ -87,16 +88,16 @@ const GroundIntelligence = () => {
       {/* Value Section */}
       <section
         data-nav-theme="light"
-        className="relative py-20 px-6 md:px-12 lg:px-24"
+        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
       >
         <div className="container mx-auto">
-          <div className="text-center space-y-4 mb-16">
+          <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-gray-600 text-sm font-medium"
+              className="text-gray-600 text-xs sm:text-sm font-medium"
             >
               Ground Intelligence — Real-time supplier visibility
             </motion.p>
@@ -104,7 +105,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-gray-900"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900"
             >
               See <span className="text-green-600">beyond the surface</span>
             </motion.h2>
@@ -112,7 +113,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-lg text-gray-600 max-w-3xl mx-auto"
+              className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4"
             >
               Traditional supplier monitoring relies on quarterly reports and annual audits — by the time you spot a problem, it's already affecting production.
             </motion.p>
@@ -123,7 +124,7 @@ const GroundIntelligence = () => {
       {/* Product Overview Section - Dark gradient like BeFound */}
       <section
         data-nav-theme="dark"
-        className="relative py-24 px-6 md:px-12 lg:px-24"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="how"
       >
@@ -132,14 +133,14 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
               <span className="text-green-400">How It</span> Works.
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {[
               {
                 number: 1,
@@ -168,15 +169,15 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.2 }}
                 className="relative group"
               >
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xl">
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                       {step.number}
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{step.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>
                   </div>
-                  <p className="text-lg text-white/90 mb-3 font-medium">{step.desc}</p>
-                  <p className="text-white/70">{step.detail}</p>
+                  <p className="text-base sm:text-lg text-white/90 mb-2 sm:mb-3 font-medium">{step.desc}</p>
+                  <p className="text-sm sm:text-base text-white/70">{step.detail}</p>
                 </div>
               </motion.div>
             ))}
@@ -187,7 +188,7 @@ const GroundIntelligence = () => {
       {/* Capabilities Section - Infinite Scrolling Gallery */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 overflow-hidden"
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         id="capabilities"
       >
@@ -196,12 +197,12 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 px-6 md:px-12 lg:px-24"
+            className="text-center mb-12 sm:mb-16 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
               Capabilities that modernize supplier audits
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               Nine AI-driven features for consistent, actionable outcomes.
             </p>
           </motion.div>
@@ -213,7 +214,7 @@ const GroundIntelligence = () => {
       {/* Results Section - Dark gradient */}
       <section 
         data-nav-theme="dark" 
-        className="relative py-24 px-6 md:px-12 lg:px-24"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="results"
       >
@@ -222,14 +223,14 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
               <span className="text-green-400">Results</span>
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {[
               { metric: "−85%", label: "Lead time for issue detection" },
               { metric: "92%", label: "Accuracy in delay prediction" },
@@ -241,12 +242,12 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all"
+                className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all"
               >
-                <div className="text-5xl md:text-6xl font-bold text-green-400 mb-3">
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-green-400 mb-2 sm:mb-3">
                   {item.metric}
                 </div>
-                <p className="text-white/90 font-medium">{item.label}</p>
+                <p className="text-sm sm:text-base text-white/90 font-medium">{item.label}</p>
               </motion.div>
             ))}
           </div>
@@ -256,7 +257,7 @@ const GroundIntelligence = () => {
       {/* Pricing - 3 Plans */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 px-6 md:px-12 lg:px-24"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         id="pricing"
       >
@@ -265,14 +266,14 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               <span className="text-green-600">Pricing</span>
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {[
               { 
                 name: "Pilot", 
@@ -297,18 +298,18 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-8 rounded-2xl border ${
+                className={`p-6 sm:p-8 rounded-xl sm:rounded-2xl border ${
                   plan.highlighted 
-                    ? 'bg-white border-green-500 shadow-lg transform scale-105 border-2' 
+                    ? 'bg-white border-green-500 shadow-lg sm:transform sm:scale-105 border-2' 
                     : 'bg-white/50 border-gray-200'
                 }`}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-                <ul className="space-y-3 mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{plan.description}</p>
+                <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-700">
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
                       {feature}
                     </li>
                   ))}
@@ -322,7 +323,7 @@ const GroundIntelligence = () => {
       {/* Final CTA */}
       <section 
         data-nav-theme="dark" 
-        className="relative py-24 px-6 md:px-12 lg:px-24"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="cta"
       >
@@ -331,23 +332,23 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
               Ready for <span className="text-green-400">real-time supplier intelligence?</span>
             </h2>
 
-            <p className="text-xl text-white/80">
+            <p className="text-base sm:text-lg lg:text-xl text-white/80">
               See how Ground Intelligence transforms supplier management.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center">
-              <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <button className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px]">
                 Schedule consultation
               </button>
-              <button className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300">
+              <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]">
                 View demo
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </motion.div>

@@ -211,36 +211,36 @@ const FullScreenProjects = () => {
           <section
             key={index}
             data-nav-theme={navTheme}
-            className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-8"
+            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-12 sm:py-16 lg:py-20"
           >
           <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               {/* Left: Text Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: false, amount: 0.3 }}
-                className="text-white space-y-6"
+                className="text-white space-y-4 sm:space-y-6 text-center lg:text-left"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
-                  <span className="text-sm font-sans tracking-wide font-medium">
+                <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
+                  <span className="text-xs sm:text-sm font-sans tracking-wide font-medium">
                     {project.number} Feature
                   </span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-sans font-semibold leading-tight tracking-tight">
                   {project.title}
                 </h2>
 
-                <p className="text-base md:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium">
+                <p className="text-sm sm:text-base lg:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
                   {project.description}
                 </p>
 
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px]">
                   Learn more
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
 
@@ -261,7 +261,7 @@ const FullScreenProjects = () => {
                     <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
                     {/* Cards Container */}
-                    <div className="relative h-[400px] flex items-center justify-center">
+                    <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
                       {visibleAuditors.map((auditor, auditorIndex) => {
                         const style = getCardStyle(auditorIndex, visibleAuditors.length);
                         
@@ -294,7 +294,7 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                               style={{
                                 boxShadow: `
                                   0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -306,8 +306,8 @@ const FullScreenProjects = () => {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                               
                               {/* Auditor Image */}
-                              <div className="absolute inset-0 flex items-center justify-center pt-6">
-                                <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-white/10">
+                              <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
+                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white/10">
                                   <img
                                     src={auditor.image}
                                     alt={`Professional auditor from ${auditor.location}`}
@@ -324,12 +324,12 @@ const FullScreenProjects = () => {
                               </div>
 
                               {/* Location Badge */}
-                              <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 w-full">
-                                  <p className="text-white font-sans font-bold text-sm text-center">
+                              <div className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-3 sm:px-4">
+                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 w-full">
+                                  <p className="text-white font-sans font-bold text-xs sm:text-sm text-center">
                                     {auditor.location}
                                   </p>
-                                  <p className="text-white/80 font-sans text-xs text-center">
+                                  <p className="text-white/80 font-sans text-[10px] sm:text-xs text-center">
                                     {auditor.region}
                                   </p>
                                 </div>

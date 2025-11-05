@@ -74,16 +74,16 @@ const BeFound = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-32"
+          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
           style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         >
           <div className="container mx-auto">
-            <div className="flex flex-col items-start justify-center space-y-8 max-w-2xl">
+            <div className="flex flex-col items-start justify-center space-y-6 sm:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold text-white leading-tight"
               >
                 Become visible,{" "}
                 <span className="block mt-2">to over 7 million+</span>
@@ -94,15 +94,15 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col gap-3 text-white"
+                className="flex flex-col gap-2 sm:gap-3 text-white mx-auto sm:mx-0"
               >
-                <div className="flex items-center gap-3">
-                  <Check className="w-5 h-5" />
-                  <span className="text-lg font-medium">Free of Charge</span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg font-medium">Free of Charge</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Check className="w-5 h-5" />
-                  <span className="text-lg font-medium">Paid Advertisement</span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg font-medium">Paid Advertisement</span>
                 </div>
               </motion.div>
 
@@ -110,10 +110,11 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
+                className="w-full sm:w-auto"
               >
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg min-h-[48px]">
                   Claim your company
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
 
@@ -121,7 +122,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base text-white/90 font-sans max-w-xl leading-relaxed"
+                className="text-sm sm:text-base text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
               >
                 <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.
               </motion.p>
@@ -132,21 +133,21 @@ const BeFound = () => {
         {/* Logo Section */}
         <section
           data-nav-theme="light"
-          className="relative py-20 px-6 md:px-12 lg:px-24"
+          className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
           style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
         >
           <div className="container mx-auto">
-            <div className="text-center space-y-12">
+            <div className="text-center space-y-8 sm:space-y-12">
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-gray-600 text-sm font-medium"
+                className="text-gray-600 text-xs sm:text-sm font-medium"
               >
                 Reach thousands of market leaders via Connectimus.io
               </motion.p>
               
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center max-w-5xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 items-center max-w-5xl mx-auto">
                 {["REWE", "KNORR-BREMSE", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
                   <motion.div 
                     key={name} 
@@ -155,9 +156,9 @@ const BeFound = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center justify-center h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-4"
+                    className="flex items-center justify-center h-16 sm:h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-3 sm:px-4"
                   >
-                    <span className="text-lg md:text-xl font-bold text-gray-700">{name}</span>
+                    <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-gray-700">{name}</span>
                   </motion.div>
                 ))}
               </div>

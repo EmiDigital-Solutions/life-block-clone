@@ -86,7 +86,7 @@ const InfiniteScrollingGallery = () => {
             <div
               key={`${rowIndex}-${index}`}
               className={`
-                flex-shrink-0 rounded-3xl p-8 flex flex-col items-center justify-center text-center
+                flex-shrink-0 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center
                 transition-transform duration-300 hover:scale-105 hover:shadow-2xl
                 ${item.variant === 'dark' 
                   ? 'bg-gray-900 text-white shadow-xl' 
@@ -94,15 +94,15 @@ const InfiniteScrollingGallery = () => {
                 }
               `}
               style={{
-                width: '300px',
-                height: '200px',
+                width: '280px',
+                height: '180px',
               }}
             >
-              <div className="mb-4 opacity-90">
+              <div className="mb-3 sm:mb-4 opacity-90 scale-90 sm:scale-100">
                 {item.icon}
               </div>
-              <h4 className="text-lg font-bold mb-2">{item.title}</h4>
-              <p className="text-sm opacity-80">{item.description}</p>
+              <h4 className="text-base sm:text-lg font-bold mb-1 sm:mb-2">{item.title}</h4>
+              <p className="text-xs sm:text-sm opacity-80 leading-tight">{item.description}</p>
             </div>
           ))}
         </div>
@@ -111,7 +111,7 @@ const InfiniteScrollingGallery = () => {
   };
 
   return (
-    <div className="space-y-5 py-8">
+    <div className="space-y-4 sm:space-y-5 py-6 sm:py-8">
       {renderRow(row1, 'left', 1)}
       {renderRow(row2, 'right', 2)}
       {renderRow(row3, 'left', 3)}
@@ -122,13 +122,13 @@ const InfiniteScrollingGallery = () => {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-320px * 3));
+            transform: translateX(calc(-300px * 3));
           }
         }
 
         @keyframes scroll-right {
           0% {
-            transform: translateX(calc(-320px * 3));
+            transform: translateX(calc(-300px * 3));
           }
           100% {
             transform: translateX(0);
