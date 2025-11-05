@@ -50,6 +50,11 @@ All colors MUST be HSL.
     --project-brown: 30 20% 50%;
     --project-teal: 175 50% 25%;
     --project-pink: 340 40% 70%;
+    
+    /* How It Works section colors */
+    --process-bg: 220 30% 15%;
+    --content-bg: 180 20% 85%;
+    --content-accent: 142 76% 36%;
   }
 
   .dark {

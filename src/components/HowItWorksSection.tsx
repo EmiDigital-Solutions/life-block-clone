@@ -224,7 +224,8 @@ export const HowItWorksSection = () => {
     return (
       <section
         data-nav-theme="green"
-        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700 bg-black"
+        className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden transition-all duration-700"
+        style={{ background: "hsl(var(--process-bg))" }}
       >
         {/* Background animation */}
         <div className="absolute inset-0 opacity-30">
@@ -380,11 +381,23 @@ export const HowItWorksSection = () => {
             </button>
 
             <div className="flex flex-col gap-2 flex-1">
-              <button className="w-full px-6 py-3 bg-white text-gray-900 rounded-full text-sm font-medium hover:bg-white/95 transition-all duration-200 shadow-lg flex items-center justify-center gap-2">
+              <button 
+                className="w-full px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
                 Try Free Search
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="w-full px-6 py-3 bg-white text-gray-900 rounded-full text-sm font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg flex items-center justify-center gap-2">
+              <button 
+                className="w-full px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                style={{ 
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
                 Book Demo
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -408,7 +421,7 @@ export const HowItWorksSection = () => {
     <section
       data-nav-theme="green"
       className="relative h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
+      style={{ background: "hsl(var(--content-bg))" }}
     >
       {/* Subtle background animation */}
       <div className="absolute inset-0 opacity-30">
@@ -417,7 +430,10 @@ export const HowItWorksSection = () => {
 
       <div className="w-full relative z-10 flex flex-col lg:flex-row">
         {/* LEFT SIDE - Timeline - Full width on mobile, 40% on desktop */}
-        <div className="w-full lg:w-2/5 relative min-h-[40vh] lg:min-h-0">
+        <div 
+          className="w-full lg:w-2/5 relative min-h-[40vh] lg:min-h-0"
+          style={{ background: "hsl(var(--process-bg))" }}
+        >
           {/* LAYER 1: Background Screenshot */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -428,9 +444,7 @@ export const HowItWorksSection = () => {
               transition={{ duration: 0.4 }}
               className="absolute inset-0"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[activeStep]}`}>
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
             </motion.div>
           </AnimatePresence>
 
@@ -466,7 +480,7 @@ export const HowItWorksSection = () => {
                         animate={{
                           scale: isActive ? 1.15 : 1,
                           boxShadow: isActive
-                            ? "0 20px 40px -10px rgba(34, 197, 94, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
+                            ? "0 20px 40px -10px hsla(142, 76%, 36%, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
                             : isPast
                             ? "0 10px 20px -5px rgba(0, 0, 0, 0.2)"
                             : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
@@ -474,11 +488,10 @@ export const HowItWorksSection = () => {
                         transition={{ duration: 0.4 }}
                       >
                         <span
-                          className={`text-sm md:text-base lg:text-lg font-bold transition-colors duration-300 ${
-                            isActive || isPast
-                              ? "text-green-600"
-                              : "text-gray-400"
-                          }`}
+                          className={`text-sm md:text-base lg:text-lg font-bold transition-colors duration-300`}
+                          style={{
+                            color: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.4)"
+                          }}
                         >
                           {step.number}
                         </span>
@@ -536,7 +549,8 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg mb-6 md:mb-8 lg:mb-12 text-center"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg mb-6 md:mb-8 lg:mb-12 text-center"
+              style={{ color: "hsl(var(--foreground))" }}
             >
               {currentStep.title}
             </motion.h3>
@@ -570,9 +584,10 @@ export const HowItWorksSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.08 }}
                         whileHover={{ scale: 1.05, y: -8 }}
-                        className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer h-full"
+                        className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer h-full bg-card border-2"
                         style={{
-                          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.2)",
+                          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px hsla(142, 76%, 36%, 0.15)",
+                          borderColor: "hsl(var(--content-accent))"
                         }}
                       >
                         {/* Display actual uploaded image or fallback to gradient */}
@@ -615,28 +630,50 @@ export const HowItWorksSection = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrevious}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-200 border-2"
+                style={{
+                  background: "hsl(var(--content-bg) / 0.1)",
+                  borderColor: "hsl(var(--foreground) / 0.3)",
+                  color: "hsl(var(--foreground))"
+                }}
                 aria-label="Previous step"
               >
-                <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
               </button>
 
               <button
                 onClick={handleNext}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-200 border-2"
+                style={{
+                  background: "hsl(var(--content-bg) / 0.1)",
+                  borderColor: "hsl(var(--foreground) / 0.3)",
+                  color: "hsl(var(--foreground))"
+                }}
                 aria-label="Next step"
               >
-                <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
 
             {/* CTAs - Stack on mobile, side-by-side on larger screens */}
             <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-white text-gray-900 rounded-full text-sm md:text-base font-medium hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+              <button 
+                className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                style={{
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
                 Try Free Search
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-white text-gray-900 rounded-full text-sm md:text-base font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+              <button 
+                className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                style={{
+                  background: "hsl(var(--content-accent))",
+                  color: "white"
+                }}
+              >
                 Book Demo
                 <ArrowRight className="w-4 h-4" />
               </button>
