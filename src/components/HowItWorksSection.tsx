@@ -731,8 +731,8 @@ export const HowItWorksSection = () => {
                 className="absolute w-0.5 z-0"
                 style={{
                   left: '15.75px', // Centered for 32px circles (16px - 0.25px for line width)
-                  top: '0px', // Start at top
-                  height: '332px', // Full height: 32px (first circle) + 100px + 32px + 100px + 32px + 100px + 36px (last active)
+                  top: '0px',
+                  height: '432px', // 4 circles (avg 34px each) + 3 gaps (100px each) = 136 + 300 = 436px, use 432 for safety
                   background: 'rgba(255, 255, 255, 0.6)',
                   boxShadow: '0 0 8px rgba(255, 255, 255, 0.25)',
                 }}
