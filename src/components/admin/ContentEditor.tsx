@@ -32,6 +32,19 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
     slug: "",
     body: "",
     status: "draft" as const,
+    imageId: "",
+  });
+
+  const { data: mediaList = [] } = useQuery({
+    queryKey: ["media-select"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("media")
+        .select("*")
+        .order("uploaded_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
   });
 
   const { data: content = [], isLoading } = useQuery({
@@ -68,7 +81,7 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
             type: data.type,
             title: data.title,
             slug: data.slug,
-            body: { content: data.body },
+            body: { content: data.body, imageId: data.imageId },
             status: data.status,
           })
           .eq("id", editingId);
@@ -81,7 +94,7 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
             type: data.type,
             title: data.title,
             slug: data.slug,
-            body: { content: data.body },
+            body: { content: data.body, imageId: data.imageId },
             status: data.status,
             created_by: user.id,
           }]);
@@ -125,6 +138,7 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
       slug: "",
       body: "",
       status: "draft",
+      imageId: "",
     });
   };
 
@@ -136,7 +150,15 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
       slug: item.slug,
       body: item.body?.content || "",
       status: item.status,
+      imageId: item.body?.imageId || "",
     });
+  };
+
+  const getPublicUrl = (storagePath: string) => {
+    const { data } = supabase.storage
+      .from("content-images")
+      .getPublicUrl(storagePath);
+    return data.publicUrl;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -201,6 +223,40 @@ const ContentEditor = ({ isAdmin }: ContentEditorProps) => {
                 rows={6}
                 required
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="image">Featured Image</Label>
+              <Select
+                value={formData.imageId}
+                onValueChange={(value) => setFormData({ ...formData, imageId: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select an image (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">No image</SelectItem>
+                  {mediaList.map((media) => (
+                    <SelectItem key={media.id} value={media.id}>
+                      {media.original_filename}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {formData.imageId && (
+                <div className="mt-2">
+                  {(() => {
+                    const selectedMedia = mediaList.find(m => m.id === formData.imageId);
+                    return selectedMedia ? (
+                      <img 
+                        src={getPublicUrl(selectedMedia.storage_path)} 
+                        alt="Preview" 
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                    ) : null;
+                  })()}
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
