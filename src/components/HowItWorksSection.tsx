@@ -58,8 +58,8 @@ const steps = [
 const screenshotGradients = [
   "from-blue-600 via-blue-700 to-blue-800",
   "from-green-600 via-green-700 to-green-800",
-  "from-purple-600 via-purple-700 to-purple-800",
-  "from-pink-600 via-pink-700 to-pink-800",
+  "from-gray-800 via-gray-900 to-black",
+  "from-blue-500 via-green-600 to-teal-700",
 ];
 
 export const HowItWorksSection = () => {
@@ -138,7 +138,7 @@ export const HowItWorksSection = () => {
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
               {/* Connecting Line */}
-              <div className="absolute left-[18px] top-[18px] w-0.5 h-64 bg-white/30">
+              <div className="absolute left-1/2 -translate-x-1/2 top-[30px] w-0.5 h-[420px] bg-white/40">
                 <motion.div
                   className="w-full bg-white"
                   initial={{ height: 0 }}
@@ -147,7 +147,7 @@ export const HowItWorksSection = () => {
                 />
               </div>
 
-              {/* Timeline Steps - Small Numbered Circles */}
+              {/* Timeline Steps - Large White Circles with Numbers */}
               {steps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
@@ -156,22 +156,26 @@ export const HowItWorksSection = () => {
                   <button
                     key={step.number}
                     onClick={() => handleStepClick(index)}
-                    className="relative flex items-center mb-16 group pointer-events-auto"
+                    className="relative flex flex-col items-center mb-24 group pointer-events-auto"
                     aria-label={`Go to step ${index + 1}: ${step.label}`}
                   >
-                    {/* Small Numbered Circle */}
+                    {/* Large White Circle with Number */}
                     <div
-                      className={`relative z-10 w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 border-2 ${
+                      className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                         isActive
-                          ? "bg-white border-white scale-125 shadow-2xl shadow-white/60"
+                          ? "bg-white scale-110 shadow-2xl shadow-white/60"
                           : isPast
-                          ? "bg-white/90 border-white"
-                          : "bg-white/15 border-white/30 backdrop-blur-sm group-hover:bg-white/25 group-hover:border-white/50"
+                          ? "bg-white shadow-lg shadow-white/30"
+                          : "bg-white/90 shadow-md group-hover:bg-white group-hover:shadow-lg"
                       }`}
                     >
                       <span
-                        className={`text-sm font-bold ${
-                          isActive || isPast ? "text-green-600" : "text-white"
+                        className={`text-2xl font-bold transition-colors ${
+                          isActive
+                            ? "text-green-600"
+                            : isPast
+                            ? "text-green-600"
+                            : "text-gray-400 group-hover:text-green-600"
                         }`}
                       >
                         {step.number}
@@ -205,7 +209,7 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* RIGHT SIDE - 60% - Content Area */}
-        <div className="w-3/5 flex flex-col justify-between py-12 px-16">
+        <div className="w-3/5 flex flex-col justify-center py-12 px-16">
           {/* Active Step Title */}
           <AnimatePresence mode="wait">
             <motion.h3
@@ -214,15 +218,13 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-5xl font-bold text-white drop-shadow-lg mb-8"
+              className="text-5xl font-bold text-white drop-shadow-lg mb-12 text-center"
             >
               {currentStep.title}
             </motion.h3>
           </AnimatePresence>
 
-          <div className="flex-1" />
-
-          {/* Row of 4 Small Cards */}
+          {/* Row of 4 Cards - Centered */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`row-${activeStep}`}
@@ -230,7 +232,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-4 gap-4"
+              className="grid grid-cols-4 gap-6 mb-12"
             >
               {currentStep.screenshots.map((screenshot, index) => (
                 <motion.div
@@ -239,20 +241,20 @@ export const HowItWorksSection = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.08 }}
                   whileHover={{ scale: 1.05, y: -8 }}
-                  className="group relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg cursor-pointer"
+                  className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl cursor-pointer"
                   style={{
-                    boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.4), 0 0 15px rgba(34, 197, 94, 0.2)",
+                    boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 197, 94, 0.2)",
                   }}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[index]}`}>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   </div>
 
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                    <h4 className="text-white font-bold text-xs mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+                    <h4 className="text-white font-bold text-sm mb-1">
                       {screenshot.label}
                     </h4>
-                    <p className="text-white/70 text-[10px]">
+                    <p className="text-white/70 text-xs">
                       {screenshot.desc}
                     </p>
                   </div>
@@ -269,7 +271,7 @@ export const HowItWorksSection = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrevious}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
                 aria-label="Previous step"
               >
                 <ChevronLeft className="w-5 h-5 text-white" />
@@ -277,21 +279,30 @@ export const HowItWorksSection = () => {
 
               <button
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
                 aria-label="Next step"
               >
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
             </div>
 
-            {/* CTAs - Text Links */}
-            <div className="flex items-center gap-8">
-              <button className="text-white/80 hover:text-white text-sm font-medium transition-colors">
+            {/* CTAs - White Buttons with Black Text */}
+            <div className="flex items-center gap-4">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-white/90 border-0 font-medium"
+              >
                 Try Free Search
-              </button>
-              <button className="text-white hover:text-white/90 text-sm font-bold transition-colors">
-                Book Demo →
-              </button>
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-white/90 font-semibold"
+              >
+                Book Demo
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
             </div>
           </div>
         </div>
