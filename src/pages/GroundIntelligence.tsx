@@ -19,314 +19,431 @@ const GroundIntelligence = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Split Screen Hero Section */}
-      <section data-nav-theme="dark" className="relative h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-purple-700 to-pink-600">
-        <div className="absolute inset-0 flex">
-          {/* Left Panel - Navigation & Title */}
-          <div className="w-full lg:w-1/2 relative flex flex-col justify-between p-8 lg:p-16 bg-gradient-to-br from-gray-900/95 to-black/95">
-            {/* Progress Indicators */}
-            <div className="flex flex-col gap-4">
-              {auditors.map((_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className="group flex items-center gap-3"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className={`h-0.5 transition-all duration-500 ${
-                    index === currentSlide ? 'w-16 bg-white' : 'w-8 bg-white/30'
-                  }`} />
-                  <span className={`text-xs font-medium transition-all duration-300 ${
-                    index === currentSlide ? 'text-white opacity-100' : 'text-white/40 opacity-0 group-hover:opacity-100'
-                  }`}>
-                    {index + 1}
-                  </span>
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Main Title */}
-            <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-5xl lg:text-7xl font-serif text-white leading-tight">
-                  Meet
-                  <br />
-                  Your
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
-                    Auditor
-                  </span>
-                </h1>
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-white/70 text-lg max-w-md"
-              >
-                2,000+ certified professionals across 90+ countries ready to assess your suppliers
-              </motion.p>
-            </div>
-
-            {/* Bottom Section */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <motion.button
-                  onClick={prevSlide}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </motion.button>
-                <motion.button
-                  onClick={nextSlide}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-all"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </motion.button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Panel - Auditor Display */}
-          <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center p-16">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={currentSlide}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
-                }}
-                className="absolute inset-0 flex items-center justify-center p-16"
-              >
-                <div className="w-full max-w-2xl">
-                  {/* Main Auditor Card */}
-                  <motion.div
-                    className="relative rounded-3xl overflow-hidden shadow-2xl"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="aspect-[3/4] relative">
-                      <img
-                        src={currentAuditor.image}
-                        alt={currentAuditor.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      
-                      {/* Auditor Info Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                        <h2 className="text-4xl font-serif mb-2">{currentAuditor.name}</h2>
-                        <p className="text-xl text-cyan-300 mb-4">{currentAuditor.title}</p>
-                        
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-cyan-400" />
-                            <span>{currentAuditor.location}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4 text-cyan-400" />
-                            <span>{currentAuditor.certifications}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-cyan-400" />
-                            <span>{currentAuditor.experience} experience</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {currentAuditor.specialties.map((specialty, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-xs border border-white/20"
-                            >
-                              {specialty}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Thumbnail Preview */}
-                  <div className="flex gap-4 mt-6 justify-center">
-                    {auditors.map((auditor, index) => (
-                      <motion.button
-                        key={auditor.id}
-                        onClick={() => goToSlide(index)}
-                        whileHover={{ scale: 1.1, y: -5 }}
-                        className={`relative w-20 h-24 rounded-lg overflow-hidden transition-all ${
-                          index === currentSlide ? 'ring-4 ring-cyan-400' : 'opacity-50 hover:opacity-100'
-                        }`}
-                      >
-                        <img
-                          src={auditor.image}
-                          alt={auditor.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Action Buttons */}
-            <div className="absolute bottom-8 right-8 flex gap-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all"
-              >
-                View Profile
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 rounded-full bg-cyan-500 text-white font-medium hover:bg-cyan-600 transition-all shadow-lg shadow-cyan-500/50"
-              >
-                Book Now
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl lg:text-5xl font-serif text-foreground mb-6">
-                Ground Intelligence Excellence
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Physical factory assessments with AI-powered intelligence and certified expertise
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Global Network",
-                  description: "2,000+ certified auditors across 90+ countries for complete coverage",
-                  icon: MapPin
-                },
-                {
-                  title: "Certified Expertise",
-                  description: "ISO 9001, VDA 6.3, IATF 16949 certified professionals",
-                  icon: Award
-                },
-                {
-                  title: "Fast Deployment",
-                  description: "On-site assessments in days, not weeks. 80% time savings",
-                  icon: Clock
-                }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all group"
-                >
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl lg:text-5xl font-serif text-foreground mb-6">
-                How It Works
-              </h2>
-            </motion.div>
-
-            <div className="grid md:grid-cols-4 gap-8">
-              {[
-                { step: "1", title: "Request Audit", desc: "Submit supplier details" },
-                { step: "2", title: "Match Auditor", desc: "AI-powered selection" },
-                { step: "3", title: "On-Site Visit", desc: "Physical assessment" },
-                { step: "4", title: "Detailed Report", desc: "Within 48 hours" }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 rounded-full bg-cyan-500 text-white flex items-center justify-center text-2xl font-bold mb-4 mx-auto">
-                    {item.step}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-cyan-500 to-purple-600">
-        <div className="container mx-auto px-6">
+      {/* Hero Section */}
+      <section className="container mx-auto px-6 pt-32 pb-16 lg:pt-40 lg:pb-24" id="hero">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-serif mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              Physical factory assessments starting from €700
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-6">
+              On-site supplier evaluations · Global · Standardized
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-serif mb-6 leading-tight">
+              Less risk, faster decisions:{" "}
+              <span className="block mt-2">
+                Objective supplier audits –{" "}
+                <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+                  guided by AI
+                </span>
+                .
+              </span>
+            </h1>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+              Book, verify, decide: Local experts run audits using a unified framework. 
+              You get clear scores, photos & evidence — comparable across countries and plants.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold text-lg hover:shadow-2xl transition-all"
-            >
-              Schedule Your Audit
-            </motion.button>
+            <div className="flex flex-wrap gap-4 mb-6">
+              <Button size="lg" onClick={() => scrollToSection('cta')}>
+                Grab a 15-min demo
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => scrollToSection('how')}>
+                See how it works
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm">
+                <span className="w-2 h-2 rounded-full bg-primary"></span> 25+ countries
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm">
+                <span className="w-2 h-2 rounded-full bg-primary"></span> 120+ audits
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm">
+                <span className="w-2 h-2 rounded-full bg-primary"></span> 4.8/5 rating
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="p-8 rounded-2xl bg-card border border-border shadow-lg"
+          >
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
+              Psychology: fast comprehension = lower bounce
+            </p>
+            <h3 className="text-xl font-semibold mb-4">What's instantly clear:</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 mt-2"></span>
+                <span>Crisp, value-focused headline</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 mt-2"></span>
+                <span>1 primary + 1 secondary CTA</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 mt-2"></span>
+                <span>Social proof above the fold</span>
+              </li>
+            </ul>
           </motion.div>
         </div>
+      </section>
+
+      {/* Social Proof */}
+      <section className="container mx-auto px-6 py-12" id="social">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+        >
+          {['Logo A', 'Logo B', 'Logo C', 'Logo D', 'Logo E', 'Logo F'].map((logo, index) => (
+            <div
+              key={index}
+              className="h-20 rounded-xl bg-muted/30 border border-border flex items-center justify-center text-sm text-muted-foreground"
+            >
+              {logo}
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Pain Section */}
+      <section className="container mx-auto px-6 py-24" id="pain">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-serif mb-4">The reality in procurement</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Subjective audits, scattered evidence, little comparability — and decisions that stall.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { icon: Clock, title: "Slow & costly", description: "Audits take weeks; travel and coordination burn budgets." },
+            { icon: Target, title: "Subjective", description: "Every auditor rates differently — results don't scale." },
+            { icon: Award, title: "Blind spots", description: "Missing evidence, weak traceability during escalations." }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all group"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all">
+                <item.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h4 className="text-xl font-semibold mb-3">{item.title}</h4>
+              <p className="text-muted-foreground">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Solution Section */}
+      <section className="container mx-auto px-6 py-24 bg-muted/30" id="solution">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary mb-6">
+              ScanPro+ – AI-guided on-site audits
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-serif mb-6">
+              Standardized quality — everywhere.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Network of certified experts + AI guidance for objective, verifiable results. 
+              One report, clear scores, solid evidence.
+            </p>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                <span>Unified checklists and weightings (1–5 score)</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                <span>Photo/video evidence & documents linked in-line</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                <span>Regional risks & compliance hints integrated</span>
+              </li>
+            </ul>
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" onClick={() => scrollToSection('cases')}>
+                View sample report
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => scrollToSection('how')}>
+                Process
+              </Button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="p-8 rounded-2xl bg-card border border-border shadow-lg"
+          >
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
+              Psychology: trigger the A-ha
+            </p>
+            <h4 className="text-xl font-semibold mb-4">Understand in 3 lines</h4>
+            <p className="text-muted-foreground leading-relaxed">
+              <strong>What?</strong> Standardized audits.<br />
+              <strong>How?</strong> Local experts + AI guidance.<br />
+              <strong>Outcome?</strong> Faster, safer decisions.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section className="container mx-auto px-6 py-24" id="how">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-serif mb-4">How it works</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            A clear flow reduces cognitive load and builds trust.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { step: "1", title: "Request", description: "Define site & scope. We match the right auditor." },
+            { step: "2", title: "On-site audit", description: "Guided checklist, evidence photos, objective scores — same standard worldwide." },
+            { step: "3", title: "Report & decision", description: "Comparable results, highlighted risks, clear next steps." }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative p-8 rounded-2xl bg-card border border-border"
+            >
+              <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 text-white flex items-center justify-center text-xl font-bold shadow-lg">
+                {item.step}
+              </div>
+              <h4 className="text-xl font-semibold mb-3 mt-2">{item.title}</h4>
+              <p className="text-muted-foreground">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="container mx-auto px-6 py-24 bg-muted/30" id="story">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl lg:text-5xl font-serif mb-6">
+              Why we're building this
+            </h2>
+            <blockquote className="text-xl text-foreground mb-6 leading-relaxed">
+              "After 25 years in procurement one thing is clear: decisions rarely fail due to 
+              a lack of data — but because of data quality. We deliver solid evidence — fast, 
+              comparable, scalable."
+            </blockquote>
+            <p className="text-muted-foreground">
+              Team of procurement leads, quality engineers, and AI specialists.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="p-8 rounded-2xl bg-card border border-border shadow-lg"
+          >
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
+              Psychology: story ≠ PR
+            </p>
+            <p className="text-muted-foreground">
+              Short, credible, no buzzwords. Place a founder photo/portrait here.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="container mx-auto px-6 py-24" id="cases">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-serif mb-4">Results from the field</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Concrete numbers lower perceived risk.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { metric: "-72%", label: "Audit cycle time", description: "From 21 days to 6 days in a global sourcing program.", icon: TrendingDown },
+            { metric: "+38%", label: "Supplier hit rate", description: "Better selection driven by objective scores & evidence.", icon: TrendingUp },
+            { metric: "99%", label: "Report acceptance", description: "Audits recognized as evidence in escalations.", icon: CheckCircle2 }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="text-4xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+                  {item.metric}
+                </div>
+                <item.icon className="w-8 h-8 text-primary" />
+              </div>
+              <div className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+                {item.label}
+              </div>
+              <p className="text-muted-foreground">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="container mx-auto px-6 py-24 bg-muted/30" id="pricing">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-serif mb-4">Pricing & plans</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Transparency builds trust. Enterprise frameworks available.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              tag: null,
+              label: "Single audit",
+              title: "Pay-per-audit",
+              description: "Ideal for ad-hoc checks",
+              features: [
+                "Fixed price per site",
+                "Standard report within 5 business days",
+                "Optional add-ons"
+              ],
+              cta: "Request"
+            },
+            {
+              tag: "Recommended",
+              label: "Program",
+              title: "Multi-site package",
+              description: "For sourcing waves & qualification",
+              features: [
+                "Volume discounts",
+                "Dedicated program lead",
+                "SLA: prioritized slots"
+              ],
+              cta: "Start program",
+              highlight: true
+            },
+            {
+              tag: null,
+              label: "Enterprise",
+              title: "Framework agreement",
+              description: "Integrated into your processes & tools",
+              features: [
+                "Custom checklists & integrations",
+                "Governance & compliance alignment",
+                "Account team & report templates"
+              ],
+              cta: "Talk to us"
+            }
+          ].map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`relative p-8 rounded-2xl bg-card border transition-all ${
+                plan.highlight ? 'border-primary shadow-lg shadow-primary/20' : 'border-border'
+              }`}
+            >
+              {plan.tag && (
+                <div className="absolute -top-3 right-6 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary font-medium">
+                  {plan.tag}
+                </div>
+              )}
+              <div className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+                {plan.label}
+              </div>
+              <h4 className="text-2xl font-semibold mb-2">{plan.title}</h4>
+              <p className="text-muted-foreground mb-6">{plan.description}</p>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 mt-2"></span>
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button 
+                className="w-full" 
+                variant={plan.highlight ? "default" : "outline"}
+                onClick={() => scrollToSection('cta')}
+              >
+                {plan.cta}
+              </Button>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="container mx-auto px-6 py-24 text-center" id="cta">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <h2 className="text-4xl lg:text-5xl font-serif mb-6">
+            Ready for evidence-driven supplier decisions?
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Short demo. Clear answers. Zero risk.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button size="lg">Book demo</Button>
+            <Button size="lg" variant="outline" onClick={() => scrollToSection('cases')}>
+              See sample report
+            </Button>
+          </div>
+        </motion.div>
       </section>
 
       <Footer />
