@@ -134,63 +134,71 @@ export const HowItWorksSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* LAYER 2: Timeline Overlay - Improved Animation */}
+          {/* LAYER 2: Timeline Overlay - Clean Line Design */}
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
-              {/* Connecting Line - Extended to reach step 4 */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-[30px] w-[2px] h-[420px] bg-white/30">
-                <motion.div
-                  className="w-full bg-white shadow-md"
-                  initial={{ height: 0 }}
-                  animate={{ height: `${(activeStep / (steps.length - 1)) * 100}%` }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-              </div>
-
-              {/* Timeline Steps - Circles with Smaller Numbers */}
+              {/* Timeline Steps with Clean Line Connections */}
               {steps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
-                const isFuture = index > activeStep;
+                const isLast = index === steps.length - 1;
 
                 return (
-                  <motion.button
+                  <motion.div
                     key={step.number}
-                    onClick={() => handleStepClick(index)}
-                    className="relative flex flex-col items-center mb-20 group pointer-events-auto"
-                    aria-label={`Go to step ${index + 1}: ${step.label}`}
+                    className="relative flex flex-col items-center"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Smaller Circle (30% reduction) with Number */}
-                    <motion.div
-                      className={`relative z-10 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
-                        isActive || isPast
-                          ? "bg-white shadow-2xl"
-                          : "bg-white/40 shadow-md"
-                      }`}
-                      animate={{
-                        scale: isActive ? 1.15 : 1,
-                        boxShadow: isActive
-                          ? "0 20px 40px -10px rgba(34, 197, 94, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
-                          : isPast
-                          ? "0 10px 20px -5px rgba(0, 0, 0, 0.2)"
-                          : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
-                      }}
-                      transition={{ duration: 0.4 }}
+                    {/* Circle */}
+                    <motion.button
+                      onClick={() => handleStepClick(index)}
+                      className="relative z-10 group pointer-events-auto"
+                      aria-label={`Go to step ${index + 1}: ${step.label}`}
                     >
-                      <span
-                        className={`text-lg font-bold transition-colors duration-300 ${
+                      <motion.div
+                        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
                           isActive || isPast
-                            ? "text-green-600"
-                            : "text-gray-400"
+                            ? "bg-white shadow-2xl"
+                            : "bg-white/40 shadow-md"
                         }`}
+                        animate={{
+                          scale: isActive ? 1.15 : 1,
+                          boxShadow: isActive
+                            ? "0 20px 40px -10px rgba(34, 197, 94, 0.5), 0 0 30px rgba(255, 255, 255, 0.4)"
+                            : isPast
+                            ? "0 10px 20px -5px rgba(0, 0, 0, 0.2)"
+                            : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
+                        }}
+                        transition={{ duration: 0.4 }}
                       >
-                        {step.number}
-                      </span>
-                    </motion.div>
-                  </motion.button>
+                        <span
+                          className={`text-lg font-bold transition-colors duration-300 ${
+                            isActive || isPast
+                              ? "text-green-600"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {step.number}
+                        </span>
+                      </motion.div>
+                    </motion.button>
+
+                    {/* Connecting Line - Only if not last item */}
+                    {!isLast && (
+                      <div className="w-[2px] h-20 bg-white/30 relative">
+                        <motion.div
+                          className="w-full bg-white"
+                          initial={{ height: 0 }}
+                          animate={{ 
+                            height: isPast || (isActive && index < activeStep) ? "100%" : "0%" 
+                          }}
+                          transition={{ duration: 0.6, ease: "easeInOut" }}
+                        />
+                      </div>
+                    )}
+                  </motion.div>
                 );
               })}
             </div>
