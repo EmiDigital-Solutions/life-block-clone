@@ -23,7 +23,6 @@ const fallbackSteps = [
       { label: "Search Interface", desc: "AI-powered query input", imageUrl: null },
       { label: "Results List", desc: "Supplier matches with scores", imageUrl: null },
       { label: "Supplier Profile", desc: "Detailed view with certifications", imageUrl: null },
-      { label: "Book Audit CTA", desc: "One-click audit booking", imageUrl: null },
     ],
   },
   {
@@ -35,7 +34,6 @@ const fallbackSteps = [
       { label: "Auditor Map", desc: "Interactive global coverage", imageUrl: null },
       { label: "Auditor Profile", desc: "Credentials and ratings", imageUrl: null },
       { label: "Availability", desc: "Real-time calendar", imageUrl: null },
-      { label: "Booking Confirmed", desc: "Instant confirmation", imageUrl: null },
     ],
   },
   {
@@ -47,7 +45,6 @@ const fallbackSteps = [
       { label: "Mobile Checklist", desc: "AI-guided inspection", imageUrl: null },
       { label: "Equipment Recognition", desc: "Smart photo analysis", imageUrl: null },
       { label: "Photo Gallery", desc: "Real-time evidence", imageUrl: null },
-      { label: "Live Dashboard", desc: "Progress tracking", imageUrl: null },
     ],
   },
   {
@@ -59,7 +56,6 @@ const fallbackSteps = [
       { label: "Report Overview", desc: "Scored dashboard", imageUrl: null },
       { label: "Detailed Findings", desc: "Photo-linked insights", imageUrl: null },
       { label: "Comparison Chart", desc: "Multi-supplier analysis", imageUrl: null },
-      { label: "Action Tracker", desc: "Corrective tasks", imageUrl: null },
     ],
   },
 ];
@@ -68,14 +64,12 @@ const screenshotGradients = [
   "from-blue-600 via-blue-700 to-blue-800",
   "from-green-600 via-green-700 to-green-800",
   "from-gray-800 via-gray-900 to-black",
-  "from-blue-500 via-green-600 to-teal-700",
 ];
 
 const stepBackgroundColors = [
   "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue
   "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green
   "linear-gradient(135deg, rgb(71, 85, 105), rgb(51, 65, 85), rgb(30, 41, 59))", // Slate
-  "linear-gradient(135deg, rgb(20, 184, 166), rgb(13, 148, 136), rgb(15, 118, 110))", // Teal
 ];
 
 export const HowItWorksSection = () => {
@@ -197,14 +191,14 @@ export const HowItWorksSection = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  // Auto-advance to next step when 4th carousel card is reached
+  // Auto-advance to next step when 3rd carousel card is reached
   useEffect(() => {
     if (!carouselApi || !isMobile) return;
 
     const handleSelect = () => {
       const selectedIndex = carouselApi.selectedScrollSnap();
-      // When user reaches the 4th card (index 3), advance to next step
-      if (selectedIndex === 3) {
+      // When user reaches the 3rd card (index 2), advance to next step
+      if (selectedIndex === 2) {
         setTimeout(() => {
           handleNext();
         }, 500); // Small delay for smooth transition
@@ -298,17 +292,17 @@ export const HowItWorksSection = () => {
           </AnimatePresence>
 
           {/* Stacked 3D Cards Container - Mobile */}
-          <div className="relative w-full max-w-sm h-[450px] mb-6 mx-auto">
+          <div className="relative w-full max-w-sm h-[340px] mb-6 mx-auto">
             <AnimatePresence mode="popLayout">
               {currentStep.screenshots.map((screenshot, index) => {
                 // Calculate stacking order and rotation
-                const zIndex = 4 - index;
-                const rotations = [2, -3, 1, -2];
+                const zIndex = 3 - index;
+                const rotations = [2, -3, 1];
                 const rotation = rotations[index];
                 const offsetY = index * 6;
                 const offsetX = index * 3;
-                const scale = 1 - index * 0.03;
-                const opacity = 1 - index * 0.15;
+                const scale = 1 - index * 0.04;
+                const opacity = 1 - index * 0.2;
 
                 return (
                   <motion.div
@@ -634,8 +628,8 @@ export const HowItWorksSection = () => {
             >
               <CarouselContent>
                 {currentStep.screenshots.map((screenshot, index) => (
-                  <CarouselItem key={`${activeStep}-card-${index}`} className="md:basis-1/2">
-                    <div className="p-2 h-[500px] md:h-[600px]">
+                  <CarouselItem key={`${activeStep}-card-${index}`} className="md:basis-1/3">
+                    <div className="p-2 h-[375px] md:h-[450px]">
                       <div 
                         className="relative w-full h-full rounded-3xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
                         style={{
