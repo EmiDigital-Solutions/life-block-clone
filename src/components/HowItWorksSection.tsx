@@ -188,7 +188,7 @@ export const HowItWorksSection = () => {
   return (
     <section
       data-nav-theme="green"
-      className="relative h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
+      className="relative min-h-screen lg:h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))" }}
     >
       {/* Subtle background animation */}
@@ -196,10 +196,10 @@ export const HowItWorksSection = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 animate-pulse" style={{ animationDuration: "15s" }} />
       </div>
 
-      <div className="w-full relative z-10 flex">
-        {/* LEFT SIDE - 40% - Full-bleed Background Image with Timeline Overlay */}
-        <div className="w-2/5 relative">
-          {/* LAYER 1: Background Screenshot - CLEAN, NO CENTER CONTENT */}
+      <div className="w-full relative z-10 flex flex-col lg:flex-row">
+        {/* LEFT SIDE - Timeline - Full width on mobile, 40% on desktop */}
+        <div className="w-full lg:w-2/5 relative min-h-[40vh] lg:min-h-0">
+          {/* LAYER 1: Background Screenshot */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -215,10 +215,10 @@ export const HowItWorksSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* LAYER 2: Timeline Overlay - Clean Line Design */}
-          <div className="absolute top-12 left-12 pointer-events-none z-10">
-            <div className="relative flex flex-col">
-              {/* Timeline Steps with Clean Line Connections */}
+          {/* LAYER 2: Timeline - Horizontal on mobile, Vertical on desktop */}
+          <div className="absolute top-6 left-6 md:top-8 md:left-8 lg:top-12 lg:left-12 pointer-events-none z-10">
+            <div className="relative flex lg:flex-col flex-row">
+              {/* Timeline Steps */}
               {processedSteps.map((step, index) => {
                 const isActive = activeStep === index;
                 const isPast = index < activeStep;
@@ -227,7 +227,7 @@ export const HowItWorksSection = () => {
                 return (
                   <motion.div
                     key={step.number}
-                    className="relative flex flex-col items-center"
+                    className="relative flex lg:flex-col flex-row items-center"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
@@ -239,7 +239,7 @@ export const HowItWorksSection = () => {
                       aria-label={`Go to step ${index + 1}: ${step.label}`}
                     >
                       <motion.div
-                        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
                           isActive || isPast
                             ? "bg-white shadow-2xl"
                             : "bg-white/40 shadow-md"
@@ -255,7 +255,7 @@ export const HowItWorksSection = () => {
                         transition={{ duration: 0.4 }}
                       >
                         <span
-                          className={`text-lg font-bold transition-colors duration-300 ${
+                          className={`text-sm md:text-base lg:text-lg font-bold transition-colors duration-300 ${
                             isActive || isPast
                               ? "text-green-600"
                               : "text-gray-400"
@@ -266,14 +266,15 @@ export const HowItWorksSection = () => {
                       </motion.div>
                     </motion.button>
 
-                    {/* Connecting Line - Only if not last item */}
+                    {/* Connecting Line - Horizontal on mobile, Vertical on desktop */}
                     {!isLast && (
-                      <div className="w-[2px] h-20 bg-white/30 relative">
+                      <div className="lg:w-[2px] lg:h-20 w-12 h-[2px] md:w-16 bg-white/30 relative">
                         <motion.div
-                          className="w-full bg-white"
-                          initial={{ height: 0 }}
+                          className="lg:w-full lg:h-auto w-auto h-full bg-white"
+                          initial={{ height: 0, width: 0 }}
                           animate={{ 
-                            height: isPast || (isActive && index < activeStep) ? "100%" : "0%" 
+                            height: isPast || (isActive && index < activeStep) ? "100%" : "0%",
+                            width: isPast || (isActive && index < activeStep) ? "100%" : "0%"
                           }}
                           transition={{ duration: 0.6, ease: "easeInOut" }}
                         />
@@ -285,29 +286,29 @@ export const HowItWorksSection = () => {
             </div>
           </div>
 
-          {/* LAYER 3: Section Label and Title - Bottom Left, Clear of Circles */}
-          <div className="absolute bottom-6 left-12 pointer-events-none">
+          {/* LAYER 3: Section Label and Title */}
+          <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-6 lg:left-12 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-4"
+              className="space-y-2 md:space-y-4"
             >
-              <p className="text-sm font-medium text-white/80 tracking-widest uppercase">
+              <p className="text-xs md:text-sm font-medium text-white/80 tracking-widest uppercase">
                 The Process
               </p>
-              <div className="flex items-center gap-6">
-                <h2 className="text-7xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
+              <div className="flex items-center gap-3 md:gap-6">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
                   How It Works
                 </h2>
-                <div className="h-1 w-32 bg-white/50" />
+                <div className="h-1 w-16 md:w-24 lg:w-32 bg-white/50" />
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* RIGHT SIDE - 60% - Content Area */}
-        <div className="w-3/5 flex flex-col justify-center py-12 px-16">
+        {/* RIGHT SIDE - Content Area - Full width on mobile, 60% on desktop */}
+        <div className="w-full lg:w-3/5 flex flex-col justify-center py-8 px-4 md:py-10 md:px-8 lg:py-12 lg:px-16">
           {/* Active Step Title */}
           <AnimatePresence mode="wait">
             <motion.h3
@@ -316,13 +317,13 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-5xl font-bold text-white drop-shadow-lg mb-12 text-center"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg mb-6 md:mb-8 lg:mb-12 text-center"
             >
               {currentStep.title}
             </motion.h3>
           </AnimatePresence>
 
-          {/* Row of 4 Cards - Centered */}
+          {/* Grid of Cards - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`row-${activeStep}`}
@@ -330,7 +331,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-4 gap-6 mb-12"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 lg:mb-12"
             >
               {currentStep.screenshots.map((screenshot, index) => (
                 <motion.div
@@ -360,8 +361,8 @@ export const HowItWorksSection = () => {
                   {/* Overlay gradient for text readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
-                    <h4 className="text-white font-bold text-sm mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-center">
+                    <h4 className="text-white font-bold text-xs md:text-sm mb-1">
                       {screenshot.label}
                     </h4>
                     <p className="text-white/70 text-xs">
@@ -376,33 +377,33 @@ export const HowItWorksSection = () => {
           </AnimatePresence>
 
           {/* Bottom Row: Navigation + CTAs */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Navigation Arrows */}
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrevious}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
                 aria-label="Previous step"
               >
-                <ChevronLeft className="w-5 h-5 text-white" />
+                <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </button>
 
               <button
                 onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-white/30"
                 aria-label="Next step"
               >
-                <ChevronRight className="w-5 h-5 text-white" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </button>
             </div>
 
-            {/* CTAs - Standard White Rounded Buttons */}
-            <div className="flex items-center gap-4">
-              <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2">
+            {/* CTAs - Stack on mobile, side-by-side on larger screens */}
+            <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-white text-gray-900 rounded-full text-sm md:text-base font-medium hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                 Try Free Search
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2">
+              <button className="w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-white text-gray-900 rounded-full text-sm md:text-base font-semibold hover:bg-white/95 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                 Book Demo
                 <ArrowRight className="w-4 h-4" />
               </button>
