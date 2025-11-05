@@ -18,7 +18,7 @@ const fallbackSteps = [
     number: 1,
     label: "Search Suppliers",
     title: "Find Your Suppliers",
-    description: "Use free AI-powered search to find qualified manufacturers across 3 global databases in minutes",
+    description: "Use free AI-powered search to find qualified manufacturers across 3 global databases in minutes. Smart matching algorithms connect you with verified suppliers that meet your exact requirements.",
     screenshots: [
       { label: "Search Interface", desc: "AI-powered query input", imageUrl: null },
       { label: "Results List", desc: "Supplier matches with scores", imageUrl: null },
@@ -30,7 +30,7 @@ const fallbackSteps = [
     number: 2,
     label: "Select Auditor",
     title: "Choose Your Expert",
-    description: "Browse 2,000+ certified auditors. See credentials, ratings, availability, and transparent pricing from €700",
+    description: "Browse 2,000+ certified auditors worldwide. Review credentials, ratings, and availability. Transparent pricing from €700. Book directly with real-time calendar integration.",
     screenshots: [
       { label: "Auditor Map", desc: "Interactive global coverage", imageUrl: null },
       { label: "Auditor Profile", desc: "Credentials and ratings", imageUrl: null },
@@ -42,7 +42,7 @@ const fallbackSteps = [
     number: 3,
     label: "On-Site Audit",
     title: "Audit in Progress",
-    description: "Local expert conducts standardized audit using AI guidance. Track real-time progress and see photos as they're uploaded",
+    description: "Local expert conducts standardized audit using AI-guided mobile app. Track real-time progress, view photos as they're uploaded, and receive instant alerts on critical findings.",
     screenshots: [
       { label: "Mobile Checklist", desc: "AI-guided inspection", imageUrl: null },
       { label: "Equipment Recognition", desc: "Smart photo analysis", imageUrl: null },
@@ -54,7 +54,7 @@ const fallbackSteps = [
     number: 4,
     label: "Get Report",
     title: "Actionable Intelligence",
-    description: "Receive comprehensive scored report within 24-48 hours with photo evidence and corrective action plan",
+    description: "Receive comprehensive scored report within 24-48 hours. Photo evidence for every finding. Risk scoring and benchmarking. Corrective action plan with priority tasks.",
     screenshots: [
       { label: "Report Overview", desc: "Scored dashboard", imageUrl: null },
       { label: "Detailed Findings", desc: "Photo-linked insights", imageUrl: null },
