@@ -261,15 +261,6 @@ export const HowItWorksSection = () => {
             </div>
           </motion.div>
 
-          {/* Section Label */}
-          <motion.p
-            key={`label-${activeStep}`}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-xs font-medium text-white/80 tracking-widest uppercase text-center mb-2"
-          >
-            {currentStep.label}
-          </motion.p>
 
           {/* Title */}
           <AnimatePresence mode="wait">
@@ -427,7 +418,7 @@ export const HowItWorksSection = () => {
   return (
     <section
       data-nav-theme="green"
-      className="relative h-[85vh] flex items-stretch px-0 py-0 overflow-hidden"
+      className="relative min-h-screen flex items-stretch px-0 py-0 overflow-hidden"
       style={{ background: "hsl(var(--content-bg))" }}
     >
       {/* Subtle background animation */}
@@ -467,42 +458,51 @@ export const HowItWorksSection = () => {
                 return (
                   <motion.div
                     key={step.number}
-                    className="relative flex lg:flex-col flex-row items-center"
+                    className="relative flex lg:flex-col flex-row items-center gap-3"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Circle */}
-                    <motion.button
-                      onClick={() => handleStepClick(index)}
-                      className="relative z-10 group pointer-events-auto"
-                      aria-label={`Go to step ${index + 1}: ${step.label}`}
-                    >
-                      <motion.div
-                        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl"
-                        style={{
-                          background: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.2)",
-                        }}
-                        animate={{
-                          scale: isActive ? 1.15 : 1,
-                          boxShadow: isActive
-                            ? "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)"
-                            : isPast
-                            ? "0 10px 20px -5px hsla(142, 76%, 45%, 0.3)"
-                            : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
-                        }}
-                        transition={{ duration: 0.4 }}
+                    {/* Circle and Label */}
+                    <div className="flex items-center gap-3">
+                      <motion.button
+                        onClick={() => handleStepClick(index)}
+                        className="relative z-10 group pointer-events-auto flex-shrink-0"
+                        aria-label={`Go to step ${index + 1}: ${step.label}`}
                       >
-                        <span
-                          className="text-sm md:text-base lg:text-lg font-bold transition-colors duration-300"
+                        <motion.div
+                          className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl"
                           style={{
-                            color: isActive || isPast ? "white" : "rgba(255, 255, 255, 0.5)"
+                            background: isActive || isPast ? "hsl(var(--content-accent))" : "rgba(255, 255, 255, 0.2)",
                           }}
+                          animate={{
+                            scale: isActive ? 1.15 : 1,
+                            boxShadow: isActive
+                              ? "0 20px 40px -10px hsla(142, 76%, 45%, 0.6), 0 0 30px hsla(142, 76%, 45%, 0.4)"
+                              : isPast
+                              ? "0 10px 20px -5px hsla(142, 76%, 45%, 0.3)"
+                              : "0 5px 10px -3px rgba(0, 0, 0, 0.1)",
+                          }}
+                          transition={{ duration: 0.4 }}
                         >
-                          {step.number}
-                        </span>
-                      </motion.div>
-                    </motion.button>
+                          <span
+                            className="text-sm md:text-base lg:text-lg font-bold transition-colors duration-300"
+                            style={{
+                              color: isActive || isPast ? "white" : "rgba(255, 255, 255, 0.5)"
+                            }}
+                          >
+                            {step.number}
+                          </span>
+                        </motion.div>
+                      </motion.button>
+                      <span 
+                        className={`hidden lg:block text-base font-semibold transition-all duration-300 ${
+                          isActive ? "text-white" : "text-white/70"
+                        }`}
+                      >
+                        {step.label}
+                      </span>
+                    </div>
 
                     {/* Connecting Line - Horizontal on mobile, Vertical on desktop */}
                     {!isLast && (
@@ -533,9 +533,6 @@ export const HowItWorksSection = () => {
               viewport={{ once: true }}
               className="space-y-2 md:space-y-4"
             >
-              <p className="text-xs md:text-sm font-medium text-white/80 tracking-widest uppercase">
-                The Process
-              </p>
               <div className="flex items-center gap-3 md:gap-6">
                 <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white drop-shadow-2xl whitespace-nowrap">
                   How It Works
