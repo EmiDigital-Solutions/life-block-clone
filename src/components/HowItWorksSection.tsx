@@ -138,7 +138,7 @@ export const HowItWorksSection = () => {
           <div className="absolute top-12 left-12 pointer-events-none z-10">
             <div className="relative flex flex-col">
               {/* Connecting Line - Extended to reach step 4 */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-[40px] w-[2px] h-[540px] bg-white/30">
+              <div className="absolute left-1/2 -translate-x-1/2 top-[30px] w-[2px] h-[420px] bg-white/30">
                 <motion.div
                   className="w-full bg-white shadow-md"
                   initial={{ height: 0 }}
@@ -157,15 +157,15 @@ export const HowItWorksSection = () => {
                   <motion.button
                     key={step.number}
                     onClick={() => handleStepClick(index)}
-                    className="relative flex flex-col items-center mb-28 group pointer-events-auto"
+                    className="relative flex flex-col items-center mb-20 group pointer-events-auto"
                     aria-label={`Go to step ${index + 1}: ${step.label}`}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.2, duration: 0.4 }}
                   >
-                    {/* Circle with Smaller Number (25% reduction) */}
+                    {/* Smaller Circle (30% reduction) with Number */}
                     <motion.div
-                      className={`relative z-10 w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                      className={`relative z-10 w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
                         isActive || isPast
                           ? "bg-white shadow-2xl"
                           : "bg-white/40 shadow-md"
@@ -181,7 +181,7 @@ export const HowItWorksSection = () => {
                       transition={{ duration: 0.4 }}
                     >
                       <span
-                        className={`text-2xl font-bold transition-colors duration-300 ${
+                        className={`text-lg font-bold transition-colors duration-300 ${
                           isActive || isPast
                             ? "text-green-600"
                             : "text-gray-400"
@@ -196,8 +196,8 @@ export const HowItWorksSection = () => {
             </div>
           </div>
 
-          {/* LAYER 3: Section Label and Title - Bottom Left */}
-          <div className="absolute bottom-12 left-12 pointer-events-none">
+          {/* LAYER 3: Section Label and Title - Bottom Left, Clear of Circles */}
+          <div className="absolute bottom-6 left-12 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
