@@ -84,6 +84,7 @@ export const HowItWorksSection = () => {
   const [processedSteps, setProcessedSteps] = useState(fallbackSteps);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [expandedScreenshot, setExpandedScreenshot] = useState<{ stepIndex: number; screenshotIndex: number } | null>(null);
   const isMobile = useIsMobile();
   
   // Separate tablet and mobile detection
@@ -851,59 +852,131 @@ export const HowItWorksSection = () => {
             </motion.h3>
           </AnimatePresence>
 
-          {/* 4 Cards Grid - Desktop */}
-          <div className="w-full max-w-5xl mx-auto mb-8 md:mb-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {currentStep.screenshots.map((screenshot, index) => (
-              <motion.div
-                key={`${activeStep}-desktop-card-${index}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="h-[200px] md:h-[280px]"
-              >
-                <div 
-                  className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
-                  style={{
-                    boxShadow: `
-                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                      0 0 30px rgba(34, 197, 94, 0.2)
-                    `,
-                  }}
+          {/* 4 Cards Grid or Expanded View - Desktop */}
+          <div className="w-full max-w-5xl mx-auto mb-8 md:mb-12 relative">
+            <AnimatePresence mode="wait">
+              {expandedScreenshot ? (
+                // Expanded Screenshot View
+                <motion.div
+                  key="expanded"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative h-[600px] rounded-3xl overflow-hidden"
                 >
-                  {screenshot.imageUrl ? (
-                    <>
-                      <img
-                        src={screenshot.imageUrl}
-                        alt={screenshot.label}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    </>
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  )}
-
-                  <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
-                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
-                      <p className="text-white font-bold text-xs md:text-sm text-center">
-                        {screenshot.label}
-                      </p>
-                      <p className="text-white/80 text-[10px] md:text-xs text-center">
-                        {screenshot.desc}
-                      </p>
-                    </div>
-                  </div>
-
+                  {/* Expanded Image */}
                   <div 
-                    className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+                    className={`absolute inset-0 bg-gradient-to-br ${screenshotGradients[expandedScreenshot.screenshotIndex]}`}
+                  >
+                    {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].imageUrl ? (
+                      <>
+                        <img
+                          src={processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].imageUrl!}
+                          alt={processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].label}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+                    )}
+
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setExpandedScreenshot(null)}
+                      className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all z-10"
+                      aria-label="Close"
+                    >
+                      <span className="text-white text-2xl font-light">×</span>
+                    </button>
+
+                    {/* Content */}
+                    <div className="absolute bottom-8 left-8 right-8">
+                      <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-6">
+                        <p className="text-white font-bold text-3xl mb-3">
+                          {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].label}
+                        </p>
+                        <p className="text-white/90 text-lg">
+                          {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Glow Effect */}
+                    <div 
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ) : (
+                // Grid View
+                <motion.div
+                  key="grid"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+                >
+                  {currentStep.screenshots.map((screenshot, index) => (
+                    <motion.button
+                      key={`${activeStep}-desktop-card-${index}`}
+                      onClick={() => setExpandedScreenshot({ stepIndex: activeStep, screenshotIndex: index })}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="h-[200px] md:h-[280px] cursor-pointer"
+                    >
+                      <div 
+                        className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                        style={{
+                          boxShadow: `
+                            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                            0 0 30px rgba(34, 197, 94, 0.2)
+                          `,
+                        }}
+                      >
+                        {screenshot.imageUrl ? (
+                          <>
+                            <img
+                              src={screenshot.imageUrl}
+                              alt={screenshot.label}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        )}
+
+                        <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
+                          <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
+                            <p className="text-white font-bold text-xs md:text-sm text-center">
+                              {screenshot.label}
+                            </p>
+                            <p className="text-white/80 text-[10px] md:text-xs text-center">
+                              {screenshot.desc}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                          }}
+                        />
+                      </div>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Bottom Row: Navigation + CTAs */}
