@@ -15,7 +15,7 @@ import {
   Zap,
   Laptop,
   CreditCard,
-  BarChart,
+  BarChart3,
   Lock,
   MessageCircle,
   X,
@@ -368,11 +368,11 @@ const Auditors = () => {
         {/* Qualifications Section */}
         <QualificationsSection />
 
-        {/* Technology Features */}
-        <TechnologyFeaturesSection />
-
         {/* Do vs Don't Toggle Section */}
         <DoVsDontSection />
+
+        {/* Technology Features - New Design */}
+        <TechnologyFeaturesSection />
 
         {/* Success Stories */}
         <SuccessStoriesSection />
@@ -720,14 +720,62 @@ const TechnologyFeaturesSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const features = [
-    { icon: Smartphone, title: "Mobile Platform", desc: "Manage audits on the go", gradient: "from-green-500 to-green-700" },
-    { icon: Zap, title: "AI Matching", desc: "Smart client connections", gradient: "from-blue-500 to-blue-700" },
-    { icon: Laptop, title: "Digital Tools", desc: "Enterprise-grade software", gradient: "from-purple-500 to-purple-700" },
-    { icon: CreditCard, title: "Secure Payments", desc: "Automated processing", gradient: "from-green-600 to-green-800" },
-    { icon: Calendar, title: "Smart Scheduling", desc: "Calendar integration", gradient: "from-teal-500 to-teal-700" },
-    { icon: BarChart, title: "Analytics Dashboard", desc: "Track performance metrics", gradient: "from-amber-500 to-amber-700" },
-    { icon: Lock, title: "Data Security", desc: "Bank-level encryption", gradient: "from-gray-600 to-gray-800" },
-    { icon: MessageCircle, title: "Direct Communication", desc: "Client messaging system", gradient: "from-blue-600 to-blue-800" },
+    { 
+      icon: Smartphone, 
+      title: "Mobile Platform", 
+      description: "Manage audits on the go",
+      gradient: "from-green-500 to-green-700",
+      image: auditorFemaleAfrican
+    },
+    { 
+      icon: Zap, 
+      title: "AI Matching", 
+      description: "Smart client connections",
+      gradient: "from-blue-500 to-blue-700",
+      image: auditorAsian
+    },
+    { 
+      icon: Laptop, 
+      title: "Digital Tools", 
+      description: "Enterprise-grade software",
+      gradient: "from-purple-500 to-purple-700",
+      image: auditorFemaleEuropean
+    },
+    { 
+      icon: CreditCard, 
+      title: "Secure Payments", 
+      description: "Automated processing",
+      gradient: "from-green-600 to-green-800",
+      image: auditorFemaleMiddleEast
+    },
+    { 
+      icon: Calendar, 
+      title: "Smart Scheduling", 
+      description: "Calendar integration",
+      gradient: "from-teal-500 to-teal-700",
+      image: auditorFemaleLatin
+    },
+    { 
+      icon: BarChart3, 
+      title: "Analytics Dashboard", 
+      description: "Track performance metrics",
+      gradient: "from-orange-500 to-orange-700",
+      image: auditorFemaleSouthAsian
+    },
+    { 
+      icon: Lock, 
+      title: "Data Security", 
+      description: "Bank-level encryption",
+      gradient: "from-slate-600 to-slate-800",
+      image: auditorFemaleAfrican
+    },
+    { 
+      icon: MessageCircle, 
+      title: "Direct Communication", 
+      description: "Client messaging system",
+      gradient: "from-blue-600 to-blue-800",
+      image: auditorMaleNorthAmerica
+    },
   ];
 
   return (
@@ -743,8 +791,8 @@ const TechnologyFeaturesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Enterprise Technology</span>
+          <h2 className="text-5xl font-bold text-green-600 mb-4">
+            Enterprise Technology
           </h2>
           <p className="text-xl text-gray-600">
             Professional tools that enhance your audit efficiency
@@ -755,18 +803,55 @@ const TechnologyFeaturesSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.4,
-                delay: Math.random() * 0.5,
+                duration: 0.5,
+                delay: index * 0.1,
               }}
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              className={`bg-gradient-to-br ${feature.gradient} rounded-2xl p-6 text-white shadow-lg`}
+              whileHover={{ 
+                y: -8, 
+                scale: 1.02,
+                boxShadow: "0 20px 40px rgba(0,0,0,0.25)"
+              }}
+              className="relative h-[200px] rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
             >
-              <feature.icon className="w-12 h-12 mb-4" />
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-white/90 text-sm">{feature.desc}</p>
+              {/* Background Image */}
+              <div className="absolute inset-0 w-full h-full">
+                <motion.img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
+
+              {/* Gradient Overlay */}
+              <div 
+                className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-85 group-hover:opacity-90 transition-opacity duration-300`}
+              />
+
+              {/* Shine Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+
+              {/* Content */}
+              <div className="relative z-10 p-6 h-full flex flex-col">
+                <feature.icon className="w-8 h-8 text-white mb-auto" />
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-1">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-white opacity-90">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
