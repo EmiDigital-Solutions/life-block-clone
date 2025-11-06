@@ -163,7 +163,7 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-4 xl:pl-8">
+            <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-4 xl:pl-8 lg:pr-8 xl:pr-12">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -219,7 +219,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center lg:justify-center order-first lg:order-last lg:pr-8 xl:pr-12"
+              className="flex justify-center lg:justify-end order-first lg:order-last lg:pr-0 xl:pr-0"
             >
               <div 
                 className="relative w-full"
