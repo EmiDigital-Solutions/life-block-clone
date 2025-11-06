@@ -46,25 +46,28 @@ const Auditors = () => {
       <Navigation />
 
       {/* 1. HERO SECTION */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4 pt-20">
+      <section 
+        className="min-h-screen flex items-center justify-center px-4 pt-20"
+        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+      >
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6"
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
           >
-            Join YVOO
+            Partner with YVOO
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto"
           >
-            Connect with clients seeking professional auditors. The leading
-            platform that brings auditors and businesses together.
+            Join a professional network where quality auditing meets fair compensation. 
+            Build your practice with enterprise clients who value your expertise.
           </motion.p>
 
           <motion.div
@@ -75,14 +78,14 @@ const Auditors = () => {
           >
             <Button
               size="lg"
-              className="px-8 py-6 text-lg bg-primary hover:bg-primary/90 hover:-translate-y-0.5 transition-all shadow-lg"
+              className="px-8 py-6 text-lg bg-white text-green-600 hover:bg-white/90 hover:-translate-y-0.5 transition-all shadow-lg font-semibold"
             >
-              Register as Auditor
+              Apply as Partner Auditor
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="px-8 py-6 text-lg hover:-translate-y-0.5 transition-all"
+              className="px-8 py-6 text-lg hover:-translate-y-0.5 transition-all border-white text-white hover:bg-white/10"
             >
               Learn More
             </Button>
@@ -95,35 +98,38 @@ const Auditors = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           >
             <div className="animate-count-up">
-              <div className="text-4xl font-bold text-primary mb-2">5,000+</div>
-              <div className="text-gray-600">Auditors</div>
+              <div className="text-4xl font-bold text-white mb-2">2,000+</div>
+              <div className="text-white/90">Professional Auditors</div>
             </div>
             <div className="animate-count-up">
-              <div className="text-4xl font-bold text-primary mb-2">$50M+</div>
-              <div className="text-gray-600">Earned</div>
+              <div className="text-4xl font-bold text-white mb-2">€850</div>
+              <div className="text-white/90">Avg. Audit Value</div>
             </div>
             <div className="animate-count-up">
-              <div className="text-4xl font-bold text-primary mb-2">4.9★</div>
-              <div className="text-gray-600">Rating</div>
+              <div className="text-4xl font-bold text-white mb-2">4.8★</div>
+              <div className="text-white/90">Client Satisfaction</div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* 2. INFINITE MARQUEE TICKER */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-4 overflow-hidden">
+      <section 
+        className="py-4 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94))" }}
+      >
         <div className="flex whitespace-nowrap">
           <div className="flex animate-marquee">
             {[...Array(3)].map((_, i) => (
               <div key={i} className="flex items-center text-white text-xl font-semibold">
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Professional Auditors</span>
+                <span className="text-white/90">Quality Over Quantity</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">AI-Powered Matching</span>
+                <span className="text-white/90">Fair Compensation</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Secure Payments</span>
+                <span className="text-white/90">Professional Growth</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Flexible Schedule</span>
+                <span className="text-white/90">Work-Life Balance</span>
               </div>
             ))}
           </div>
@@ -131,13 +137,13 @@ const Auditors = () => {
             {[...Array(3)].map((_, i) => (
               <div key={i} className="flex items-center text-white text-xl font-semibold">
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Professional Auditors</span>
+                <span className="text-white/90">Quality Over Quantity</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">AI-Powered Matching</span>
+                <span className="text-white/90">Fair Compensation</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Secure Payments</span>
+                <span className="text-white/90">Professional Growth</span>
                 <span className="mx-8">✦</span>
-                <span className="text-amber-400">Flexible Schedule</span>
+                <span className="text-white/90">Work-Life Balance</span>
               </div>
             ))}
           </div>
@@ -163,7 +169,10 @@ const Auditors = () => {
       <SuccessStoriesSection />
 
       {/* 9. FINAL CTA SECTION */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-20 px-4">
+      <section 
+        className="py-20 px-4"
+        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+      >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -171,7 +180,7 @@ const Auditors = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Ready to Transform Your Career?
+            Ready to Build Your Professional Practice?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -180,8 +189,8 @@ const Auditors = () => {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/90 mb-10"
           >
-            Join thousands of auditors who have discovered the freedom and
-            flexibility of YVOO
+            Join a network of certified auditors who prioritize quality, 
+            professional growth, and sustainable client relationships
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -191,23 +200,23 @@ const Auditors = () => {
           >
             <Button
               size="lg"
-              className="px-12 py-6 text-lg bg-white text-primary hover:bg-blue-50 animate-pulse-soft"
+              className="px-12 py-6 text-lg bg-white text-green-600 hover:bg-white/90 font-semibold"
             >
-              Register Now
+              Apply for Partnership
             </Button>
           </motion.div>
           <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center text-white">
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <span>No setup fees</span>
+              <CheckCircle className="w-5 h-5 text-white" />
+              <span>Premium compensation</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <span>Flexible schedule</span>
+              <CheckCircle className="w-5 h-5 text-white" />
+              <span>Sustainable workload</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <span>Instant approval</span>
+              <CheckCircle className="w-5 h-5 text-white" />
+              <span>Professional development</span>
             </div>
           </div>
         </div>
@@ -225,7 +234,7 @@ const Auditors = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all z-50"
+          className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition-all z-50"
         >
           <ArrowUp className="w-6 h-6" />
         </motion.button>
@@ -241,33 +250,37 @@ const ValuePropositionSection = () => {
 
   const features = [
     {
-      icon: Calendar,
-      title: "Flexible Work",
-      description: "Choose your schedule",
-      gradient: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: Users,
-      title: "Choose Clients",
-      description: "Match your expertise",
+      icon: Shield,
+      title: "Quality Standards",
+      description: "Work with enterprise clients who value thoroughness over speed",
       gradient: "from-green-500 to-green-600",
     },
     {
-      icon: DollarSign,
-      title: "Transparent Pricing",
-      description: "No hidden fees",
-      gradient: "from-amber-500 to-amber-600",
+      icon: Calendar,
+      title: "Balanced Workload",
+      description: "Manageable audit schedules that respect professional standards",
+      gradient: "from-green-600 to-green-700",
     },
     {
-      icon: Shield,
-      title: "Secure Payments",
-      description: "Guaranteed payment",
-      gradient: "from-purple-500 to-purple-600",
+      icon: DollarSign,
+      title: "Fair Compensation",
+      description: "Premium rates that reflect your expertise and certification",
+      gradient: "from-emerald-500 to-emerald-600",
+    },
+    {
+      icon: Users,
+      title: "Strategic Partnerships",
+      description: "Build long-term client relationships, not one-off gigs",
+      gradient: "from-teal-500 to-teal-600",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-white">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -276,12 +289,12 @@ const ValuePropositionSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The Uberization of Auditing
+            <span className="text-green-600">Professional Partnership</span> Platform
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            YVOO is a revolutionary platform that connects qualified auditors
-            with businesses needing audit services, transforming the industry by
-            making it more accessible, flexible, and efficient.
+            YVOO connects certified auditors with quality-focused enterprises. 
+            We prioritize professional standards, sustainable workloads, and fair compensation—
+            building careers, not just gigs.
           </p>
         </motion.div>
 
@@ -346,7 +359,11 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-gray-50">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -354,10 +371,10 @@ const TimelineSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            How It Works
+            <span className="text-green-600">Partnership Journey</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Start your journey with YVOO in five simple steps
+            Join YVOO's professional auditor network in five steps
           </p>
         </motion.div>
 
@@ -367,7 +384,7 @@ const TimelineSection = () => {
             initial={{ height: 0 }}
             animate={isInView ? { height: "100%" } : {}}
             transition={{ duration: 2 }}
-            className="absolute left-8 top-0 w-1 bg-blue-300 hidden md:block"
+            className="absolute left-8 top-0 w-1 bg-green-300 hidden md:block"
           />
 
           {steps.map((step, index) => (
@@ -386,7 +403,7 @@ const TimelineSection = () => {
                   stiffness: 200,
                   delay: index * 0.2,
                 }}
-                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
               >
                 {step.number}
               </motion.div>
@@ -454,7 +471,11 @@ const QualificationsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-white">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -462,10 +483,10 @@ const QualificationsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Qualifications Required
+            <span className="text-green-600">Professional Requirements</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Professional standards to join YVOO
+            Standards that ensure quality and client trust
           </p>
         </motion.div>
 
@@ -567,7 +588,11 @@ const TechnologyFeaturesSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-gray-50">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -575,10 +600,10 @@ const TechnologyFeaturesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Technology Features
+            <span className="text-green-600">Professional Tools</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Powerful tools to streamline your workflow
+            Technology that supports quality auditing
           </p>
         </motion.div>
 
@@ -622,25 +647,29 @@ const ProblemsSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const problems = [
-    "High Commission Fees",
-    "Inconsistent Client Flow",
-    "Limited Flexibility",
-    "Outdated Tools",
-    "Geographic Limitations",
-    "Lack of Transparency",
+    "Pressure to rush audits",
+    "Race-to-bottom pricing",
+    "Unpredictable income",
+    "Limited professional development",
+    "Transactional client relationships",
+    "No quality over quantity focus",
   ];
 
   const solutions = [
-    "Fair, transparent fees - keep more of what you earn",
-    "Steady stream of clients through AI-powered matching",
-    "Choose your projects, set your schedule",
-    "Modern, cloud-based audit software included",
-    "Connect with clients nationwide",
-    "Clear pricing and full visibility",
+    "Adequate time allocated for thorough audits",
+    "Premium rates reflecting your expertise and certifications",
+    "Stable project pipeline with recurring clients",
+    "Access to training, certifications, and peer network",
+    "Build long-term partnerships with enterprise clients",
+    "Quality metrics that reward thoroughness, not speed",
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-white">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -648,10 +677,10 @@ const ProblemsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Problems We Solve
+            <span className="text-green-600">Why Choose YVOO</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Say goodbye to traditional challenges
+            Moving beyond the gig economy model
           </p>
         </motion.div>
 
@@ -664,7 +693,7 @@ const ProblemsSection = () => {
             className="bg-red-50 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Traditional Problems
+              Gig Economy Challenges
             </h3>
             <div className="space-y-4">
               {problems.map((problem, index) => (
@@ -690,7 +719,7 @@ const ProblemsSection = () => {
             className="bg-green-50 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              YVOO Solutions
+              Professional Partnership Approach
             </h3>
             <div className="space-y-4">
               {solutions.map((solution, index) => (
@@ -722,34 +751,38 @@ const SuccessStoriesSection = () => {
     {
       name: "Sarah Chen",
       role: "CPA, 8 years experience",
-      earned: "$180K+",
-      audits: "127",
+      earned: "€180K+",
+      audits: "89",
       rating: "4.9",
       quote:
-        "YVOO transformed my career. I now work with diverse clients, earn 40% more, and have complete control over my schedule.",
+        "With YVOO, I built a sustainable practice with enterprise clients who respect audit timelines and professional standards. No more rushed audits.",
     },
     {
       name: "Michael Roberts",
       role: "Forensic Auditor, 12 years",
-      earned: "$250K+",
-      audits: "203",
+      earned: "€195K+",
+      audits: "76",
       rating: "5.0",
       quote:
-        "The platform's AI matching is incredible. I get clients that perfectly fit my expertise.",
+        "Finally, a platform that values quality over quantity. My clients are willing to pay premium rates because they trust the thoroughness of my work.",
     },
     {
       name: "Aisha Patel",
       role: "IT Auditor, 6 years",
-      earned: "$165K+",
-      audits: "94",
+      earned: "€142K+",
+      audits: "68",
       rating: "4.8",
       quote:
-        "From application to first client took just 5 days. The support team made everything seamless.",
+        "The professional development resources and peer network have been invaluable. This is true partnership, not just another gig platform.",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-gray-50">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -757,9 +790,9 @@ const SuccessStoriesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Success Stories
+            <span className="text-green-600">Partner Success Stories</span>
           </h2>
-          <p className="text-xl text-gray-600">Real auditors, real results</p>
+          <p className="text-xl text-gray-600">Building sustainable audit practices</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -822,39 +855,43 @@ const FAQSection = ({
 
   const faqs = [
     {
-      question: "What is YVOO's commission structure?",
+      question: "How is YVOO different from typical gig platforms?",
       answer:
-        "YVOO charges a transparent 15% service fee on completed audits. This is significantly lower than traditional audit firms and includes access to all platform features, client matching, and secure payment processing.",
+        "YVOO focuses on quality partnerships, not gig work. We prioritize sustainable workloads, premium compensation, long-term client relationships, and professional development. There's no race to the bottom on pricing or rushing through audits.",
     },
     {
-      question: "How quickly do I get paid?",
+      question: "What compensation can I expect?",
       answer:
-        "Payments are processed within 48 hours of audit completion and client approval. Funds are deposited directly to your bank account via secure ACH transfer.",
+        "Our partner auditors earn premium rates reflecting their certifications and expertise. Average audit fees range from €850-€2,500 depending on scope and complexity. We ensure adequate time is allocated for thorough work.",
     },
     {
-      question: "What insurance do I need?",
+      question: "How many audits will I be expected to complete?",
       answer:
-        "Professional liability insurance (E&O) is required with minimum coverage of $1 million per occurrence. We can connect you with preferred insurance providers who offer competitive rates for YVOO auditors.",
+        "We prioritize quality over quantity. Workload is balanced to maintain professional standards. Most partners complete 3-5 audits per month, allowing adequate time for thorough, high-quality work without burnout.",
     },
     {
-      question: "How does dispute resolution work?",
+      question: "What professional development is available?",
       answer:
-        "YVOO provides a structured dispute resolution process with a dedicated mediation team. Most disputes are resolved within 7-10 business days, ensuring fair outcomes for both auditors and clients.",
+        "Partners have access to continuing education resources, industry webinars, peer networking events, and mentorship programs. We invest in your growth as part of our commitment to long-term partnership.",
     },
     {
-      question: "Can I work with my existing clients?",
+      question: "How does client matching work?",
       answer:
-        "Yes! You can bring your existing clients to the platform. For clients you bring, YVOO charges a reduced 10% service fee instead of the standard 15%.",
+        "We match you with enterprise clients based on your expertise, certifications, and industry experience. Our focus is on building long-term relationships where clients value your specialized knowledge.",
     },
     {
-      question: "What are the platform fees?",
+      question: "What is the application process?",
       answer:
-        "There are no upfront fees or monthly subscriptions. YVOO only charges a service fee on completed audits. You keep 85% of your earnings (or 90% for clients you bring to the platform).",
+        "Submit your credentials and professional certifications for review. Our team conducts thorough verification (typically 5-7 business days) to maintain network quality. Once approved, you can start building your client portfolio.",
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-white">
+    <section 
+      ref={ref} 
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+    >
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -862,7 +899,7 @@ const FAQSection = ({
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            FAQ
+            <span className="text-green-600">Frequently Asked</span> Questions
           </h2>
           <p className="text-xl text-gray-600">Everything you need to know</p>
         </motion.div>
