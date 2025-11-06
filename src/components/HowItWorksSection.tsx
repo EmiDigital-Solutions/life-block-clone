@@ -836,16 +836,13 @@ export const HowItWorksSection = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -10 }}
                                     transition={{ duration: 0.2 }}
-                                  >
-                                    <h4
-                                      className="font-bold text-white text-lg"
-                                    >
-                                      {step.label}
-                                    </h4>
-                                    <p className="text-sm text-white/70 mt-1">
-                                      {step.description}
-                                    </p>
-                                  </motion.div>
+                                   >
+                                     <h4
+                                       className="font-bold text-white text-lg"
+                                     >
+                                       {step.label}
+                                     </h4>
+                                   </motion.div>
                                 )}
                               </div>
                             );
@@ -950,16 +947,13 @@ export const HowItWorksSection = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -10 }}
                                     transition={{ duration: 0.2 }}
-                                  >
-                                    <h4
-                                      className="font-bold text-white text-lg"
-                                    >
-                                      {step.label}
-                                    </h4>
-                                    <p className="text-sm text-white/70 mt-1">
-                                      {step.description}
-                                    </p>
-                                  </motion.div>
+                                   >
+                                     <h4
+                                       className="font-bold text-white text-lg"
+                                     >
+                                       {step.label}
+                                     </h4>
+                                   </motion.div>
                                 )}
                               </div>
                             );
