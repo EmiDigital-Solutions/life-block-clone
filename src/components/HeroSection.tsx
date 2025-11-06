@@ -9,11 +9,14 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
+import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 
 const fallbackAuditors = [
-  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-green-600 via-green-700 to-green-800" },
-  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
+  { image: auditorFemaleEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+  { image: auditorFemaleAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-green-600 via-green-700 to-green-800" },
+  { image: auditorFemaleAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
   { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-green-600 via-green-700 to-green-800" },
   { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent", gradient: "from-gray-800 via-gray-900 to-black" },
@@ -155,21 +158,20 @@ const HeroSection = () => {
     <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       <div className="absolute inset-0 bg-black"></div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-20 sm:py-24 lg:py-32">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-16 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 sm:space-y-8 text-center lg:text-left">
+            <div className="flex flex-col space-y-6 sm:space-y-8 text-left">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="flex flex-col sm:flex-row items-center lg:items-start gap-2 sm:gap-4 text-white/60 text-xs sm:text-sm font-sans justify-center lg:justify-start">
-                  <div className="hidden sm:block h-px w-12 lg:w-16 bg-cyan-400/40"></div>
-                  <span className="text-center lg:text-left">{heroContent.tagline}</span>
-                  <div className="hidden sm:block lg:hidden h-px w-12 bg-cyan-400/40"></div>
+                <div className="flex items-center gap-4 text-white/60 text-xs sm:text-sm font-sans">
+                  <div className="h-px w-12 lg:w-16 bg-cyan-400/40"></div>
+                  <span>{heroContent.tagline}</span>
                 </div>
               </motion.div>
 
@@ -177,7 +179,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-sans font-semibold text-white leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-sans font-semibold text-white leading-tight tracking-tight max-w-3xl"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -186,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl lg:text-xl font-sans font-medium text-cyan-400/90 tracking-wide"
+                className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide max-w-2xl"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -195,7 +197,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-sm sm:text-base lg:text-lg text-white/70 font-sans font-medium"
+                className="text-base sm:text-lg lg:text-xl text-white/70 font-sans font-medium max-w-2xl"
               >
                 {heroContent.description}
               </motion.p>
@@ -204,9 +206,9 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex justify-center lg:justify-start"
+                className="flex"
               >
-                <button className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-medium text-base sm:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl min-h-[48px]">
+                <button className="bg-white text-gray-900 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>
@@ -220,12 +222,12 @@ const HeroSection = () => {
               className="flex justify-center lg:justify-end order-first lg:order-last"
             >
               <div 
-                className="relative w-full max-w-2xl"
-                style={{ perspective: "1500px" }}
+                className="relative w-full"
+                style={{ perspective: "2000px" }}
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
+                <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] xl:h-[550px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -257,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-52 h-64 sm:w-60 sm:h-80 lg:w-72 lg:h-96 xl:w-80 xl:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -267,8 +269,8 @@ const HeroSection = () => {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
-                            <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-10">
+                            <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -283,12 +285,12 @@ const HeroSection = () => {
                             </div>
                           </div>
 
-                          <div className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-3 sm:px-4">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 w-full">
-                              <p className="text-white font-sans font-bold text-xs sm:text-sm text-center">
+                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 flex justify-center px-4 sm:px-6">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 w-full">
+                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-lg text-center">
                                 {auditor.location}
                               </p>
-                              <p className="text-white/80 font-sans text-[10px] sm:text-xs text-center">
+                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-base text-center">
                                 {auditor.region}
                               </p>
                             </div>
