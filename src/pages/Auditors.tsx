@@ -718,7 +718,7 @@ const QualificationsSection = () => {
 const TechnologyFeaturesSection = () => {
   const sectionRef = useRef(null);
   const isMobile = useIsMobile();
-  const [scrollDistance, setScrollDistance] = useState(-2400);
+  const [scrollDistance, setScrollDistance] = useState(-3000);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -726,18 +726,18 @@ const TechnologyFeaturesSection = () => {
   });
 
   useEffect(() => {
-    // Calculate exact scroll distance needed
-    const cardWidth = 400;
+    // Calculate exact distance so LAST card ends on LEFT side of viewport
+    const cardWidth = 350;
     const gap = 24;
     const numCards = 8;
-    const viewportWidth = window.innerWidth;
     
-    // Total width of all cards
-    const totalWidth = (cardWidth + gap) * numCards;
+    // Total width of all cards including gaps
+    const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
     
-    // Distance cards need to travel (with padding)
-    const distance = -(totalWidth - viewportWidth + 200);
+    // Distance needed: Move entire card row so last card is at left edge
+    const distance = -(totalCardsWidth - cardWidth - 100);
     
+    console.log('Scroll distance calculated:', distance);
     setScrollDistance(distance);
   }, []);
 
@@ -901,10 +901,10 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[400vh]"
+      className="relative h-[500vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
         
         {/* Header - Fixed position, always visible */}
         <div className="text-center mb-8 px-4 flex-shrink-0">
@@ -937,26 +937,32 @@ const TechnologyFeaturesSection = () => {
           </motion.button>
         </div>
 
-        {/* Horizontal Scrolling Cards Container */}
-        <div className="flex-1 overflow-hidden flex items-center">
-          <motion.div 
-            style={{ x }}
-            className="flex gap-6 px-8"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                whileHover={{ 
-                  y: -12,
-                  scale: 1.03,
-                  transition: { duration: 0.2 }
-                }}
-                className="relative w-[400px] h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
-              >
+        {/* Cards Container - Horizontal scroll area */}
+        <div className="flex-1 overflow-hidden relative">
+          {/* Background indicators */}
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-600/20 z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-1 bg-red-600/20 z-10" />
+          
+          {/* Scrolling cards */}
+          <div className="h-full flex items-center">
+            <motion.div 
+              style={{ x }}
+              className="flex gap-6 pl-8 pr-8"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-200px" }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  whileHover={{ 
+                    y: -12,
+                    scale: 1.03,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="relative w-[350px] h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+                >
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <img
@@ -966,8 +972,8 @@ const TechnologyFeaturesSection = () => {
                   />
                 </div>
 
-                {/* Dark gradient overlay - stronger at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
 
                 {/* Tags at top */}
                 <div className="absolute top-6 left-6 flex gap-2 flex-wrap z-20">
@@ -983,33 +989,53 @@ const TechnologyFeaturesSection = () => {
 
                 {/* Content at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                  {/* Icon with colored background */}
                   <div className={`w-14 h-14 flex items-center justify-center bg-gradient-to-br ${feature.gradient} rounded-2xl shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
                     <feature.icon className="w-8 h-8" strokeWidth={2.5} />
                   </div>
 
-                  {/* Text */}
                   <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
                   <p className="text-white/90 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
 
-                {/* Shine effect on hover */}
+                {/* Shine effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
               </motion.div>
             ))}
           </motion.div>
+          </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Progress indicator */}
         <motion.div 
-          className="text-center mt-6 text-sm text-gray-400 flex-shrink-0"
+          className="text-center mt-6 flex-shrink-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
-          <p>Scroll to explore all features →</p>
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+            <span>Scroll to explore</span>
+            <motion.span
+              animate={{ x: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              →
+            </motion.span>
+          </div>
+          
+          {/* Progress bar */}
+          <div className="max-w-md mx-auto mt-4">
+            <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+              <motion.div 
+                style={{ 
+                  scaleX: scrollYProgress,
+                  transformOrigin: 'left'
+                }}
+                className="h-full bg-green-600"
+              />
+            </div>
+          </div>
         </motion.div>
 
       </div>
