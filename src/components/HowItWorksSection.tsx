@@ -692,15 +692,7 @@ export const HowItWorksSection = () => {
           className="w-full lg:w-[30%] relative min-h-[40vh] lg:min-h-0 rounded-r-3xl"
           style={{ background: "hsl(var(--process-bg))" }}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={expandedScreenshot ? `${expandedScreenshot.stepIndex}-${expandedScreenshot.screenshotIndex}` : `default-${activeStep}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
+          <div className="absolute inset-0">
               {/* Expanded Screenshot */}
               <div 
                 className={`absolute inset-0 bg-gradient-to-br ${
@@ -798,17 +790,6 @@ export const HowItWorksSection = () => {
                       </div>
                     </div>
 
-                    {/* Content at the bottom */}
-                    <div className="absolute bottom-8 left-8 right-8">
-                      <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4">
-                        <p className="text-white font-bold text-2xl mb-2">
-                          {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].label}
-                        </p>
-                        <p className="text-white/90 text-sm line-clamp-2">
-                          {processedSteps[expandedScreenshot.stepIndex].screenshots[expandedScreenshot.screenshotIndex].desc}
-                        </p>
-                      </div>
-                    </div>
 
                     {/* Glow Effect */}
                     <div 
@@ -912,8 +893,7 @@ export const HowItWorksSection = () => {
                   </>
                 )}
               </div>
-            </motion.div>
-          </AnimatePresence>
+          </div>
         </div>
 
         {/* RIGHT SIDE - Small Cards - 70% width */}
