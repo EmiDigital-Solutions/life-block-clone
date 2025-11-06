@@ -1,4 +1,6 @@
 
+-- Migration: 20251106120024
+
 -- Migration: 20251105115821
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -222,3 +224,11 @@ ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'hero_content';
 ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'auditor_card';
 ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'full_screen_section';
 ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'feature_photo';
+
+
+-- Migration: 20251106121213
+-- Trigger types regeneration by adding a comment
+COMMENT ON TABLE public.media IS 'Media files and images storage';
+COMMENT ON TABLE public.content IS 'Content management system entries';
+COMMENT ON TABLE public.user_roles IS 'User role assignments';
+COMMENT ON TABLE public.content_media IS 'Relationship between content and media';
