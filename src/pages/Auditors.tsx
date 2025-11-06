@@ -302,6 +302,73 @@ const Auditors = () => {
           </div>
         </section>
 
+        {/* Animated Company Names Band */}
+        <section 
+          data-nav-theme="light"
+          className="relative py-6 overflow-hidden border-y border-gray-200"
+          style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        >
+          <div className="flex whitespace-nowrap">
+            <motion.div
+              animate={{ x: [0, -1920] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+              className="flex items-center gap-16 pr-16"
+            >
+              {[...Array(3)].map((_, index) => (
+                <div key={index} className="flex items-center gap-16">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 text-sm">Trusted by</span>
+                  </div>
+                  <span className="text-2xl font-bold text-gray-800">BMW</span>
+                  <span className="text-2xl font-bold text-gray-800">MERCEDES-BENZ</span>
+                  <span className="text-2xl font-bold text-gray-800">LINDE</span>
+                  <span className="text-2xl font-bold text-gray-800">BOSCH</span>
+                  <span className="text-2xl font-bold text-gray-800">SIEMENS</span>
+                  <span className="text-2xl font-bold text-gray-800">VOLKSWAGEN</span>
+                  <span className="text-2xl font-bold text-gray-800">AUDI</span>
+                  <span className="text-2xl font-bold text-gray-800">CONTINENTAL</span>
+                </div>
+              ))}
+            </motion.div>
+            <motion.div
+              animate={{ x: [0, -1920] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+              className="flex items-center gap-16 pr-16"
+              aria-hidden="true"
+            >
+              {[...Array(3)].map((_, index) => (
+                <div key={index} className="flex items-center gap-16">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 text-sm">Trusted by</span>
+                  </div>
+                  <span className="text-2xl font-bold text-gray-800">BMW</span>
+                  <span className="text-2xl font-bold text-gray-800">MERCEDES-BENZ</span>
+                  <span className="text-2xl font-bold text-gray-800">LINDE</span>
+                  <span className="text-2xl font-bold text-gray-800">BOSCH</span>
+                  <span className="text-2xl font-bold text-gray-800">SIEMENS</span>
+                  <span className="text-2xl font-bold text-gray-800">VOLKSWAGEN</span>
+                  <span className="text-2xl font-bold text-gray-800">AUDI</span>
+                  <span className="text-2xl font-bold text-gray-800">CONTINENTAL</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         {/* Scroll-Zoom Section */}
         <ScrollZoomSection />
 
