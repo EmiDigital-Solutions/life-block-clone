@@ -790,21 +790,21 @@ const TechnologyFeaturesSection = () => {
     },
   ];
 
-  // Calculate total width of cards and viewport
+  // Calculate total width of cards and scroll distance
   const cardWidth = 400;
   const gap = 24;
   const totalCardsWidth = features.length * (cardWidth + gap);
-  
-  // Calculate how far cards need to travel
-  // They need to move their full width + viewport width to fully disappear off screen
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
   
+  // Calculate scroll distance: cards must travel their full width plus viewport to disappear
+  const scrollDistance = totalCardsWidth + viewportWidth;
+  
   // Transform scroll progress to horizontal movement
-  // Cards start from right edge (viewportWidth) and move to completely off left edge (-totalCardsWidth)
+  // Cards start at x=0 (visible on screen) and move left to -scrollDistance (completely off screen)
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    [isMobile ? 0 : viewportWidth, isMobile ? 0 : -totalCardsWidth]
+    [isMobile ? 0 : 0, isMobile ? 0 : -scrollDistance]
   );
 
   // Mobile carousel - render differently
@@ -893,7 +893,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[500vh]"
+      className="relative h-[300vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
