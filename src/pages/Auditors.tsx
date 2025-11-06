@@ -896,7 +896,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[280vh]"
+      className="relative h-[160vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
