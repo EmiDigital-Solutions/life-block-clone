@@ -1,135 +1,323 @@
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import {
-  CheckCircle2,
-  Shield,
-  TrendingUp,
-  Users,
-  Award,
-  Clock,
-  DollarSign,
-  Globe,
-  Smartphone,
-  Bot,
-  BarChart3,
-  CreditCard,
   Calendar,
-  LineChart,
-  Lock,
-  MessageSquare,
-  GraduationCap,
-  FileCheck,
+  Users,
+  DollarSign,
+  Shield,
+  Award,
   Briefcase,
-  Target,
+  CheckCircle,
+  ShieldCheck,
+  Search,
+  BookOpen,
+  Smartphone,
   Zap,
-  ArrowRight,
+  Laptop,
+  CreditCard,
+  BarChart,
+  Lock,
+  MessageCircle,
+  X,
+  ChevronDown,
+  ArrowUp,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const Auditors = () => {
-  const [activeStep, setActiveStep] = useState(0);
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.7]);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 5);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // Handle scroll for back to top button
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", () => {
+      setShowBackToTop(window.scrollY > 500);
+    });
+  }
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const qualifications = [
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+
+      {/* 1. HERO SECTION */}
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4 pt-20">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6"
+          >
+            Join YVOO
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto"
+          >
+            Connect with clients seeking professional auditors. The leading
+            platform that brings auditors and businesses together.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          >
+            <Button
+              size="lg"
+              className="px-8 py-6 text-lg bg-primary hover:bg-primary/90 hover:-translate-y-0.5 transition-all shadow-lg"
+            >
+              Register as Auditor
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 text-lg hover:-translate-y-0.5 transition-all"
+            >
+              Learn More
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
+            <div className="animate-count-up">
+              <div className="text-4xl font-bold text-primary mb-2">5,000+</div>
+              <div className="text-gray-600">Auditors</div>
+            </div>
+            <div className="animate-count-up">
+              <div className="text-4xl font-bold text-primary mb-2">$50M+</div>
+              <div className="text-gray-600">Earned</div>
+            </div>
+            <div className="animate-count-up">
+              <div className="text-4xl font-bold text-primary mb-2">4.9★</div>
+              <div className="text-gray-600">Rating</div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. INFINITE MARQUEE TICKER */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-4 overflow-hidden">
+        <div className="flex whitespace-nowrap">
+          <div className="flex animate-marquee">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex items-center text-white text-xl font-semibold">
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Professional Auditors</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">AI-Powered Matching</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Secure Payments</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Flexible Schedule</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex animate-marquee" aria-hidden="true">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex items-center text-white text-xl font-semibold">
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Professional Auditors</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">AI-Powered Matching</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Secure Payments</span>
+                <span className="mx-8">✦</span>
+                <span className="text-amber-400">Flexible Schedule</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. VALUE PROPOSITION SECTION */}
+      <ValuePropositionSection />
+
+      {/* 4. HOW IT WORKS - TIMELINE */}
+      <TimelineSection />
+
+      {/* 5. QUALIFICATIONS SECTION */}
+      <QualificationsSection />
+
+      {/* 6. TECHNOLOGY FEATURES - BENTO GRID */}
+      <TechnologyFeaturesSection />
+
+      {/* 7. PROBLEMS WE SOLVE - SPLIT COMPARISON */}
+      <ProblemsSection />
+
+      {/* 8. SUCCESS STORIES - TESTIMONIALS */}
+      <SuccessStoriesSection />
+
+      {/* 9. FINAL CTA SECTION */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            Ready to Transform Your Career?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/90 mb-10"
+          >
+            Join thousands of auditors who have discovered the freedom and
+            flexibility of YVOO
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <Button
+              size="lg"
+              className="px-12 py-6 text-lg bg-white text-primary hover:bg-blue-50 animate-pulse-soft"
+            >
+              Register Now
+            </Button>
+          </motion.div>
+          <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center text-white">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span>No setup fees</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span>Flexible schedule</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-400" />
+              <span>Instant approval</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. FAQ ACCORDION */}
+      <FAQSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
+
+      {/* 11. FOOTER */}
+      <Footer />
+
+      {/* BACK TO TOP BUTTON */}
+      {showBackToTop && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all z-50"
+        >
+          <ArrowUp className="w-6 h-6" />
+        </motion.button>
+      )}
+    </div>
+  );
+};
+
+// VALUE PROPOSITION SECTION COMPONENT
+const ValuePropositionSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const features = [
     {
-      icon: Award,
-      title: "Professional Certification",
-      description: "CPA or equivalent certification required",
+      icon: Calendar,
+      title: "Flexible Work",
+      description: "Choose your schedule",
+      gradient: "from-blue-500 to-blue-600",
     },
     {
-      icon: Briefcase,
-      title: "Experience",
-      description: "Minimum 2-5 years of auditing experience",
+      icon: Users,
+      title: "Choose Clients",
+      description: "Match your expertise",
+      gradient: "from-green-500 to-green-600",
+    },
+    {
+      icon: DollarSign,
+      title: "Transparent Pricing",
+      description: "No hidden fees",
+      gradient: "from-amber-500 to-amber-600",
     },
     {
       icon: Shield,
-      title: "Clean Record",
-      description: "Clean professional record with no violations",
-    },
-    {
-      icon: FileCheck,
-      title: "Insurance",
-      description: "Professional liability insurance coverage",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Verification",
-      description: "Background verification and screening",
-    },
-    {
-      icon: GraduationCap,
-      title: "CPE Credits",
-      description: "Continuing professional education credits",
-    },
-  ];
-
-  const techFeatures = [
-    {
-      icon: Smartphone,
-      title: "Mobile App",
-      description: "Manage audits on the go",
-    },
-    {
-      icon: Bot,
-      title: "AI Matching",
-      description: "Smart client connections",
-    },
-    {
-      icon: BarChart3,
-      title: "Digital Tools",
-      description: "Cloud-based software",
-    },
-    {
-      icon: CreditCard,
       title: "Secure Payments",
-      description: "Automated processing",
-    },
-    {
-      icon: Calendar,
-      title: "Smart Scheduling",
-      description: "Calendar integration",
-    },
-    {
-      icon: LineChart,
-      title: "Analytics",
-      description: "Track performance",
-    },
-    {
-      icon: Lock,
-      title: "Data Security",
-      description: "Bank-level encryption",
-    },
-    {
-      icon: MessageSquare,
-      title: "Live Chat",
-      description: "Direct client messaging",
+      description: "Guaranteed payment",
+      gradient: "from-purple-500 to-purple-600",
     },
   ];
 
-  const processSteps = [
+  return (
+    <section ref={ref} className="py-20 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            The Uberization of Auditing
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            YVOO is a revolutionary platform that connects qualified auditors
+            with businesses needing audit services, transforming the industry by
+            making it more accessible, flexible, and efficient.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+              className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm transition-all"
+            >
+              <div
+                className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
+              >
+                <feature.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// TIMELINE SECTION COMPONENT
+const TimelineSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const steps = [
     {
       number: "01",
       title: "Register & Get Verified",
@@ -157,543 +345,567 @@ const Auditors = () => {
     },
   ];
 
-  const problems = [
-    {
-      icon: DollarSign,
-      problem: "High Commission Fees",
-      solution: "Fair, transparent fees - keep more of what you earn",
-    },
-    {
-      icon: Users,
-      problem: "Inconsistent Client Flow",
-      solution: "Steady stream of clients through AI-powered matching",
-    },
-    {
-      icon: Clock,
-      problem: "Limited Flexibility",
-      solution: "Choose your projects, set your schedule",
-    },
-    {
-      icon: Target,
-      problem: "Outdated Tools",
-      solution: "Modern, cloud-based audit software included",
-    },
-    {
-      icon: Globe,
-      problem: "Geographic Limitations",
-      solution: "Connect with clients nationwide",
-    },
-    {
-      icon: Zap,
-      problem: "Lack of Transparency",
-      solution: "Clear pricing and full visibility",
-    },
-  ];
+  return (
+    <section ref={ref} className="py-20 px-4 bg-gray-50">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            How It Works
+          </h2>
+          <p className="text-xl text-gray-600">
+            Start your journey with YVOO in five simple steps
+          </p>
+        </motion.div>
 
-  const successStories = [
-    {
-      name: "Sarah Chen",
-      role: "CPA, 8 years experience",
-      earnings: "$180K+",
-      audits: "127",
-      rating: "4.9",
-      testimonial:
-        "YVOO transformed my career. I now work with diverse clients, earn 40% more, and have complete control over my schedule.",
-    },
-    {
-      name: "Michael Roberts",
-      role: "Forensic Auditor, 12 years",
-      earnings: "$250K+",
-      audits: "203",
-      rating: "5.0",
-      testimonial:
-        "The platform's AI matching is incredible. I get clients that perfectly fit my expertise.",
-    },
-    {
-      name: "Aisha Patel",
-      role: "IT Auditor, 6 years",
-      earnings: "$165K+",
-      audits: "94",
-      rating: "4.8",
-      testimonial:
-        "From application to first client took just 5 days. The support team made everything seamless.",
-    },
-  ];
+        <div className="relative">
+          {/* Connecting line */}
+          <motion.div
+            initial={{ height: 0 }}
+            animate={isInView ? { height: "100%" } : {}}
+            transition={{ duration: 2 }}
+            className="absolute left-8 top-0 w-1 bg-blue-300 hidden md:block"
+          />
 
-  const faqs = [
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="flex items-start gap-6 mb-12 relative"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  delay: index * 0.2,
+                }}
+                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
+              >
+                {step.number}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
+                className="flex-1 bg-white rounded-xl p-6 shadow-sm border border-gray-200"
+              >
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600">{step.description}</p>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// QUALIFICATIONS SECTION COMPONENT
+const QualificationsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const qualifications = [
     {
-      question: "What is YVOO's commission structure?",
-      answer:
-        "YVOO charges a competitive 15% platform fee on completed audits. This covers payment processing, insurance, platform maintenance, and customer support. No hidden fees.",
+      icon: Award,
+      title: "Professional Certification",
+      description: "CPA or equivalent certification required",
+      gradient: "from-blue-500 to-blue-600",
     },
     {
-      question: "How quickly do I get paid?",
-      answer:
-        "Payments are processed within 3-5 business days after audit completion and client approval. Track all payments in real-time through your dashboard.",
+      icon: Briefcase,
+      title: "Experience",
+      description: "Minimum 2-5 years of auditing experience",
+      gradient: "from-green-500 to-green-600",
     },
     {
-      question: "What insurance do I need?",
-      answer:
-        "You must maintain professional liability insurance (E&O insurance) with minimum coverage of $1M per occurrence. We can help connect you with insurance providers.",
+      icon: CheckCircle,
+      title: "Clean Record",
+      description: "Clean professional record with no violations",
+      gradient: "from-amber-500 to-amber-600",
     },
     {
-      question: "How does dispute resolution work?",
-      answer:
-        "YVOO provides mediation services for any client disputes. Our team reviews audit documentation and communications to ensure fair resolution within 7-10 days.",
+      icon: ShieldCheck,
+      title: "Insurance",
+      description: "Professional liability insurance coverage",
+      gradient: "from-purple-500 to-purple-600",
     },
     {
-      question: "Can I work with my existing clients?",
-      answer:
-        "Yes! Bring existing clients onto the platform to benefit from our tools and payment processing. There's a reduced 10% fee for clients you bring.",
+      icon: Search,
+      title: "Verification",
+      description: "Background verification and screening",
+      gradient: "from-pink-500 to-pink-600",
     },
     {
-      question: "What are the platform fees?",
-      answer:
-        "The 15% commission covers everything: payment processing, client acquisition, platform tools, support, and insurance. No monthly fees or hidden charges.",
+      icon: BookOpen,
+      title: "CPE Credits",
+      description: "Continuing professional education credits",
+      gradient: "from-teal-500 to-teal-600",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-
-      {/* Hero Section - Bold & Minimal */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(142,76,45,0.03),transparent_50%)]" />
-        
+    <section ref={ref} className="py-20 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          style={{ scale, opacity }}
-          className="container mx-auto px-4 z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
         >
-          <div className="max-w-6xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
-            >
-              <span className="inline-block px-6 py-2 bg-foreground/5 rounded-full text-sm font-medium tracking-wide">
-                THE FUTURE OF AUDITING
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tight"
-            >
-              Join YVOO
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto font-normal"
-            >
-              Connect with clients seeking professional auditors. The leading platform
-              that brings auditors and businesses together.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-            >
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("registration")}
-                className="text-base px-10 py-7 rounded-full text-white bg-foreground hover:bg-foreground/90 transition-all shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Register as Auditor
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollToSection("how-it-works")}
-                className="text-base px-10 py-7 rounded-full border-2 hover:bg-foreground/5 transition-all"
-              >
-                Learn More
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-foreground" />
-                <span>5,000+ Auditors</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-foreground" />
-                <span>$50M+ Earned</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-foreground" />
-                <span>4.9★ Rating</span>
-              </div>
-            </motion.div>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Qualifications Required
+          </h2>
+          <p className="text-xl text-gray-600">
+            Professional standards to join YVOO
+          </p>
         </motion.div>
-      </section>
 
-      {/* Marquee Section */}
-      <section className="py-8 border-y border-border bg-muted/30 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-[scroll_20s_linear_infinite]">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="flex items-center gap-8 px-8">
-              <span className="text-2xl font-bold">✦</span>
-              <span className="text-lg font-medium">Professional Auditors</span>
-              <span className="text-2xl font-bold">✦</span>
-              <span className="text-lg font-medium">AI-Powered Matching</span>
-              <span className="text-2xl font-bold">✦</span>
-              <span className="text-lg font-medium">Secure Payments</span>
-              <span className="text-2xl font-bold">✦</span>
-              <span className="text-lg font-medium">Flexible Schedule</span>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {qualifications.map((qual, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}
+              }
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{
+                y: -8,
+                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+              }}
+              className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm transition-all"
+            >
+              <motion.div
+                whileHover={{ rotate: 5 }}
+                className={`w-16 h-16 rounded-full bg-gradient-to-br ${qual.gradient} flex items-center justify-center mb-6`}
+              >
+                <qual.icon className="w-8 h-8 text-white" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {qual.title}
+              </h3>
+              <p className="text-gray-600">{qual.description}</p>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* What is YVOO - Large Typography */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-4">
+// TECHNOLOGY FEATURES SECTION COMPONENT
+const TechnologyFeaturesSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const features = [
+    {
+      icon: Smartphone,
+      title: "Mobile App",
+      description: "Manage audits on the go",
+      gradient: "from-blue-500 to-purple-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: Zap,
+      title: "AI Matching",
+      description: "Smart client connections",
+      gradient: "from-green-500 to-teal-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: Laptop,
+      title: "Digital Tools",
+      description: "Cloud-based software",
+      gradient: "from-amber-500 to-orange-600",
+      span: "md:col-span-2 md:row-span-2",
+    },
+    {
+      icon: CreditCard,
+      title: "Secure Payments",
+      description: "Automated processing",
+      gradient: "from-purple-500 to-pink-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: Calendar,
+      title: "Smart Scheduling",
+      description: "Calendar integration",
+      gradient: "from-teal-500 to-cyan-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: BarChart,
+      title: "Analytics",
+      description: "Track performance",
+      gradient: "from-pink-500 to-rose-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: Lock,
+      title: "Data Security",
+      description: "Bank-level encryption",
+      gradient: "from-indigo-500 to-blue-600",
+      span: "md:col-span-1",
+    },
+    {
+      icon: MessageCircle,
+      title: "Live Chat",
+      description: "Direct client messaging",
+      gradient: "from-orange-500 to-red-600",
+      span: "md:col-span-2",
+    },
+  ];
+
+  return (
+    <section ref={ref} className="py-20 px-4 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Technology Features
+          </h2>
+          <p className="text-xl text-gray-600">
+            Powerful tools to streamline your workflow
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-fr">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8, rotate: Math.random() * 4 - 2 }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1, rotate: 0 }
+                  : {}
+              }
+              transition={{
+                duration: 0.5,
+                delay: Math.random() * 0.5,
+              }}
+              whileHover={{
+                scale: 1.05,
+                backgroundPosition: "100% 50%",
+              }}
+              className={`${feature.span} bg-gradient-to-br ${feature.gradient} rounded-2xl p-8 text-white flex flex-col justify-between min-h-[200px] transition-all cursor-pointer`}
+              style={{ backgroundSize: "200% 200%" }}
+            >
+              <feature.icon className="w-12 h-12 mb-4" />
+              <div>
+                <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-white/90">{feature.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// PROBLEMS SECTION COMPONENT
+const ProblemsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const problems = [
+    "High Commission Fees",
+    "Inconsistent Client Flow",
+    "Limited Flexibility",
+    "Outdated Tools",
+    "Geographic Limitations",
+    "Lack of Transparency",
+  ];
+
+  const solutions = [
+    "Fair, transparent fees - keep more of what you earn",
+    "Steady stream of clients through AI-powered matching",
+    "Choose your projects, set your schedule",
+    "Modern, cloud-based audit software included",
+    "Connect with clients nationwide",
+    "Clear pricing and full visibility",
+  ];
+
+  return (
+    <section ref={ref} className="py-20 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Problems We Solve
+          </h2>
+          <p className="text-xl text-gray-600">
+            Say goodbye to traditional challenges
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Problems Column */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="bg-red-50 rounded-2xl p-8"
           >
-            <h2 className="text-5xl md:text-7xl font-bold mb-12 leading-tight">
-              The Uberization of Auditing
-            </h2>
-            <p className="text-2xl md:text-3xl text-muted-foreground font-normal leading-relaxed mb-16">
-              YVOO is a revolutionary platform that connects qualified auditors
-              with businesses needing audit services, transforming the industry
-              by making it more accessible, flexible, and efficient.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { icon: Clock, title: "Flexible Work", description: "Choose your schedule" },
-                { icon: Users, title: "Choose Clients", description: "Match your expertise" },
-                { icon: TrendingUp, title: "Transparent Pricing", description: "No hidden fees" },
-                { icon: Shield, title: "Secure Payments", description: "Guaranteed payment" },
-              ].map((benefit, index) => (
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Traditional Problems
+            </h3>
+            <div className="space-y-4">
+              {problems.map((problem, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="p-8 rounded-3xl border-2 border-border hover:border-foreground/20 transition-all hover:shadow-lg group"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.15 }}
+                  className="flex items-start gap-3"
                 >
-                  <benefit.icon className="h-10 w-10 mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-2xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
+                  <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">{problem}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Solutions Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="bg-green-50 rounded-2xl p-8"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              YVOO Solutions
+            </h3>
+            <div className="space-y-4">
+              {solutions.map((solution, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.15 }}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">{solution}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* How It Works - Minimal Design */}
-      <section id="how-it-works" className="py-32 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              How It Works
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Start your journey with YVOO in five simple steps
-            </p>
-          </motion.div>
+// SUCCESS STORIES SECTION COMPONENT
+const SuccessStoriesSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="flex items-start gap-6 p-8 rounded-3xl bg-background border-2 border-border hover:border-foreground/20 transition-all group"
-              >
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-foreground text-background flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
-                  {step.number}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground text-lg">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+  const stories = [
+    {
+      name: "Sarah Chen",
+      role: "CPA, 8 years experience",
+      earned: "$180K+",
+      audits: "127",
+      rating: "4.9",
+      quote:
+        "YVOO transformed my career. I now work with diverse clients, earn 40% more, and have complete control over my schedule.",
+    },
+    {
+      name: "Michael Roberts",
+      role: "Forensic Auditor, 12 years",
+      earned: "$250K+",
+      audits: "203",
+      rating: "5.0",
+      quote:
+        "The platform's AI matching is incredible. I get clients that perfectly fit my expertise.",
+    },
+    {
+      name: "Aisha Patel",
+      role: "IT Auditor, 6 years",
+      earned: "$165K+",
+      audits: "94",
+      rating: "4.8",
+      quote:
+        "From application to first client took just 5 days. The support team made everything seamless.",
+    },
+  ];
 
-      {/* Qualifications - Grid Layout */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              Qualifications Required
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Professional standards to join YVOO
-            </p>
-          </motion.div>
+  return (
+    <section ref={ref} className="py-20 px-4 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Success Stories
+          </h2>
+          <p className="text-xl text-gray-600">Real auditors, real results</p>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {qualifications.map((qual, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.5 }}
-                className="p-8 rounded-3xl border-2 border-border hover:border-foreground/20 transition-all group text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-foreground/5 flex items-center justify-center mx-auto mb-6 group-hover:bg-foreground group-hover:text-background transition-all">
-                  <qual.icon className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{qual.title}</h3>
-                <p className="text-muted-foreground">{qual.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Features - Compact Grid */}
-      <section className="py-32 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              Technology Features
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Powerful tools to streamline your workflow
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {techFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.4 }}
-                className="p-6 rounded-2xl bg-background border border-border hover:border-foreground/20 transition-all group text-center"
-              >
-                <feature.icon className="h-8 w-8 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="font-bold mb-1 text-sm">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Problems We Solve */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              Problems We Solve
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Say goodbye to traditional challenges
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {problems.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className="p-8 rounded-3xl border-2 border-border hover:border-foreground/20 transition-all"
-              >
-                <item.icon className="h-10 w-10 mb-4 text-destructive" />
-                <h3 className="text-lg font-bold mb-3 text-destructive">
-                  {item.problem}
-                </h3>
-                <div className="w-full h-px bg-border my-4" />
-                <p className="text-muted-foreground">{item.solution}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
-      <section className="py-32 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              Success Stories
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Real auditors, real results
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {successStories.map((story, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="p-8 rounded-3xl bg-background border-2 border-border hover:border-foreground/20 transition-all"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full bg-foreground/10" />
-                  <div>
-                    <h3 className="font-bold text-lg">{story.name}</h3>
-                    <p className="text-sm text-muted-foreground">{story.role}</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div>
-                    <div className="text-2xl font-bold">{story.earnings}</div>
-                    <div className="text-xs text-muted-foreground">Earned</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold">{story.audits}</div>
-                    <div className="text-xs text-muted-foreground">Audits</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold">{story.rating}★</div>
-                    <div className="text-xs text-muted-foreground">Rating</div>
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground italic text-sm">
-                  "{story.testimonial}"
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Registration CTA */}
-      <section id="registration" className="py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-8">
-              Ready to Transform Your Career?
-            </h2>
-            <p className="text-2xl text-muted-foreground mb-12 font-normal">
-              Join thousands of auditors who have discovered the freedom and
-              flexibility of YVOO
-            </p>
-            <Button
-              size="lg"
-              className="text-base px-12 py-7 rounded-full text-white bg-foreground hover:bg-foreground/90 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {stories.map((story, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
+              className="bg-white rounded-2xl p-8 shadow-lg transition-all"
             >
-              Register Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <div className="flex items-center justify-center gap-6 mt-8 text-sm text-muted-foreground">
-              <span>✓ No setup fees</span>
-              <span>✓ Flexible schedule</span>
-              <span>✓ Instant approval</span>
-            </div>
-          </motion.div>
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mb-6" />
+              <h3 className="text-xl font-bold text-gray-900 mb-1">
+                {story.name}
+              </h3>
+              <p className="text-gray-600 mb-6">{story.role}</p>
+
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 animate-count-up">
+                    {story.earned}
+                  </div>
+                  <div className="text-sm text-gray-600">Earned</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 animate-count-up">
+                    {story.audits}
+                  </div>
+                  <div className="text-sm text-gray-600">Audits</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 animate-count-up flex items-center gap-1">
+                    {story.rating}
+                    <span className="text-amber-500">★</span>
+                  </div>
+                  <div className="text-sm text-gray-600">Rating</div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 italic">"{story.quote}"</p>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* FAQ Section */}
-      <section className="py-32 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold mb-6">
-              FAQ
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-normal">
-              Everything you need to know
-            </p>
-          </motion.div>
+// FAQ SECTION COMPONENT
+const FAQSection = ({
+  openFaq,
+  setOpenFaq,
+}: {
+  openFaq: number | null;
+  setOpenFaq: (val: number | null) => void;
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border-2 rounded-2xl px-6 bg-background"
+  const faqs = [
+    {
+      question: "What is YVOO's commission structure?",
+      answer:
+        "YVOO charges a transparent 15% service fee on completed audits. This is significantly lower than traditional audit firms and includes access to all platform features, client matching, and secure payment processing.",
+    },
+    {
+      question: "How quickly do I get paid?",
+      answer:
+        "Payments are processed within 48 hours of audit completion and client approval. Funds are deposited directly to your bank account via secure ACH transfer.",
+    },
+    {
+      question: "What insurance do I need?",
+      answer:
+        "Professional liability insurance (E&O) is required with minimum coverage of $1 million per occurrence. We can connect you with preferred insurance providers who offer competitive rates for YVOO auditors.",
+    },
+    {
+      question: "How does dispute resolution work?",
+      answer:
+        "YVOO provides a structured dispute resolution process with a dedicated mediation team. Most disputes are resolved within 7-10 business days, ensuring fair outcomes for both auditors and clients.",
+    },
+    {
+      question: "Can I work with my existing clients?",
+      answer:
+        "Yes! You can bring your existing clients to the platform. For clients you bring, YVOO charges a reduced 10% service fee instead of the standard 15%.",
+    },
+    {
+      question: "What are the platform fees?",
+      answer:
+        "There are no upfront fees or monthly subscriptions. YVOO only charges a service fee on completed audits. You keep 85% of your earnings (or 90% for clients you bring to the platform).",
+    },
+  ];
+
+  return (
+    <section ref={ref} className="py-20 px-4 bg-white">
+      <div className="max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            FAQ
+          </h2>
+          <p className="text-xl text-gray-600">Everything you need to know</p>
+        </motion.div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: index * 0.1 }}
+              className="border-b border-gray-200"
+            >
+              <button
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                className="w-full py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-lg font-semibold text-gray-900 pr-4">
+                  {faq.question}
+                </span>
+                <motion.div
+                  animate={{ rotate: openFaq === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <AccordionTrigger className="text-left hover:no-underline py-6">
-                    <span className="font-bold text-lg">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base pb-6">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
+                  <ChevronDown className="w-6 h-6 text-gray-500 flex-shrink-0" />
+                </motion.div>
+              </button>
+              <motion.div
+                initial={false}
+                animate={{
+                  height: openFaq === index ? "auto" : 0,
+                  opacity: openFaq === index ? 1 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <p className="pb-6 text-gray-600">{faq.answer}</p>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
-      </section>
-
-      <Footer />
-    </div>
+      </div>
+    </section>
   );
 };
 
