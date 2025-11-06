@@ -193,13 +193,13 @@ const Navigation = () => {
             >
               Pricing
             </a>
-            <a 
-              href="#auditors" 
+            <Link 
+              to="/auditors" 
               className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               For auditors
-            </a>
+            </Link>
             <a 
               href="#blog" 
               className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
@@ -275,13 +275,13 @@ const Navigation = () => {
             >
               Pricing
             </a>
-            <a 
-              href="#auditors" 
+            <Link 
+              to="/auditors" 
               className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               For auditors
-            </a>
+            </Link>
             <a 
               href="#blog" 
               className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
