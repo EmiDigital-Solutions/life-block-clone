@@ -252,20 +252,39 @@ export const HowItWorksSection = () => {
             className="flex justify-center mb-8"
           >
             <div className="relative">
+              {/* Outer ring with premium gradient */}
               <div 
-                className="w-20 h-20 rounded-full shadow-2xl flex items-center justify-center ring-4"
+                className="w-24 h-24 rounded-full flex items-center justify-center relative"
                 style={{ 
-                  background: "hsl(var(--content-accent))",
-                  boxShadow: "0 25px 50px -10px hsla(142, 76%, 45%, 0.7), 0 0 40px hsla(142, 76%, 45%, 0.5)",
-                  borderColor: "hsla(142, 76%, 45%, 0.3)"
+                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))',
+                  border: '2px solid rgba(16, 185, 129, 0.4)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
                 }}
               >
-                <span className="text-4xl font-black text-white">
-                  {currentStep.number}
-                </span>
+                {/* Inner circle */}
+                <div 
+                  className="w-20 h-20 rounded-full flex items-center justify-center"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                  }}
+                >
+                  <span className="text-5xl font-light text-white tracking-wide">
+                    {currentStep.number}
+                  </span>
+                </div>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-white border-4 border-black flex items-center justify-center shadow-xl">
-                <span className="text-sm font-bold text-gray-900">{processedSteps.length}</span>
+              {/* Premium badge counter */}
+              <div 
+                className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1)',
+                }}
+              >
+                <span className="text-sm font-light text-gray-800">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -435,20 +454,39 @@ export const HowItWorksSection = () => {
             className="flex justify-center mb-6"
           >
             <div className="relative">
+              {/* Outer ring with premium gradient */}
               <div 
-                className="w-24 h-24 rounded-full shadow-2xl flex items-center justify-center ring-4"
+                className="w-28 h-28 rounded-full flex items-center justify-center relative"
                 style={{ 
-                  background: "hsl(var(--content-accent))",
-                  boxShadow: "0 25px 50px -10px hsla(142, 76%, 45%, 0.7), 0 0 40px hsla(142, 76%, 45%, 0.5)",
-                  borderColor: "hsla(142, 76%, 45%, 0.3)"
+                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))',
+                  border: '2px solid rgba(16, 185, 129, 0.4)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
                 }}
               >
-                <span className="text-5xl font-black text-white">
-                  {currentStep.number}
-                </span>
+                {/* Inner circle */}
+                <div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                  }}
+                >
+                  <span className="text-6xl font-light text-white tracking-wide">
+                    {currentStep.number}
+                  </span>
+                </div>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-white border-4 border-black flex items-center justify-center shadow-xl">
-                <span className="text-base font-bold text-gray-900">{processedSteps.length}</span>
+              {/* Premium badge counter */}
+              <div 
+                className="absolute -bottom-2 -right-2 w-11 h-11 rounded-full flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1)',
+                }}
+              >
+                <span className="text-base font-light text-gray-800">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -721,11 +759,11 @@ export const HowItWorksSection = () => {
                         <div 
                           className="absolute z-0 transition-all duration-200"
                           style={{
-                            width: '2px',
-                            left: '15px',
-                            top: '16px',
+                            width: '1px',
+                            left: '23px',
+                            top: '24px',
                             height: `${3 * 120}px`,
-                            background: 'rgba(255, 255, 255, 0.15)',
+                            background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05))',
                           }}
                         />
 
@@ -736,29 +774,55 @@ export const HowItWorksSection = () => {
 
                             return (
                               <div key={step.number} className="relative flex items-center">
-                                <motion.button
+                                 <motion.button
                                   onClick={() => handleStepClick(index)}
-                                  className="relative flex-shrink-0"
+                                  className="relative flex-shrink-0 group"
                                   aria-label={`Go to step ${index + 1}: ${step.label}`}
                                 >
+                                  {/* Outer ring with premium gradient */}
                                   <motion.div
-                                    className="rounded-full flex items-center justify-center transition-all duration-200"
+                                    className="rounded-full flex items-center justify-center relative"
                                     style={{
-                                      width: isActive ? '36px' : '32px',
-                                      height: isActive ? '36px' : '32px',
-                                      background: isActive ? '#10b981' : '#4b5563',
+                                      width: isActive ? '48px' : '40px',
+                                      height: isActive ? '48px' : '40px',
+                                      background: isActive 
+                                        ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))'
+                                        : 'transparent',
+                                      border: isActive 
+                                        ? '1.5px solid rgba(16, 185, 129, 0.4)'
+                                        : '1px solid rgba(255, 255, 255, 0.2)',
+                                      backdropFilter: 'blur(10px)',
                                       zIndex: 10,
                                     }}
                                     animate={{
                                       boxShadow: isActive
-                                        ? "0 0 30px rgba(16, 185, 129, 0.6)"
-                                        : "none",
+                                        ? "0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.1)"
+                                        : "0 0 0px rgba(255, 255, 255, 0)",
                                     }}
-                                    transition={{ duration: 0.2 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
                                   >
-                                    <span className="text-white font-bold text-sm">
-                                      {step.number}
-                                    </span>
+                                    {/* Inner circle */}
+                                    <div 
+                                      className="rounded-full flex items-center justify-center"
+                                      style={{
+                                        width: isActive ? '36px' : '30px',
+                                        height: isActive ? '36px' : '30px',
+                                        background: isActive 
+                                          ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))'
+                                          : 'rgba(75, 85, 99, 0.4)',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                      }}
+                                    >
+                                      <span 
+                                        className="text-white font-light tracking-wide transition-all duration-300"
+                                        style={{
+                                          fontSize: isActive ? '16px' : '14px',
+                                          fontWeight: isActive ? '300' : '300',
+                                        }}
+                                      >
+                                        {step.number}
+                                      </span>
+                                    </div>
                                   </motion.div>
                                 </motion.button>
 
@@ -809,11 +873,11 @@ export const HowItWorksSection = () => {
                         <div 
                           className="absolute z-0 transition-all duration-200"
                           style={{
-                            width: '2px',
-                            left: '15px',
-                            top: '16px',
+                            width: '1px',
+                            left: '23px',
+                            top: '24px',
                             height: `${3 * 120}px`,
-                            background: 'rgba(255, 255, 255, 0.15)',
+                            background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05))',
                           }}
                         />
 
@@ -826,27 +890,53 @@ export const HowItWorksSection = () => {
                               <div key={step.number} className="relative flex items-center">
                                 <motion.button
                                   onClick={() => handleStepClick(index)}
-                                  className="relative flex-shrink-0"
+                                  className="relative flex-shrink-0 group"
                                   aria-label={`Go to step ${index + 1}: ${step.label}`}
                                 >
+                                  {/* Outer ring with premium gradient */}
                                   <motion.div
-                                    className="rounded-full flex items-center justify-center transition-all duration-200"
+                                    className="rounded-full flex items-center justify-center relative"
                                     style={{
-                                      width: isActive ? '36px' : '32px',
-                                      height: isActive ? '36px' : '32px',
-                                      background: isActive ? '#10b981' : '#4b5563',
+                                      width: isActive ? '48px' : '40px',
+                                      height: isActive ? '48px' : '40px',
+                                      background: isActive 
+                                        ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))'
+                                        : 'transparent',
+                                      border: isActive 
+                                        ? '1.5px solid rgba(16, 185, 129, 0.4)'
+                                        : '1px solid rgba(255, 255, 255, 0.2)',
+                                      backdropFilter: 'blur(10px)',
                                       zIndex: 10,
                                     }}
                                     animate={{
                                       boxShadow: isActive
-                                        ? "0 0 30px rgba(16, 185, 129, 0.6)"
-                                        : "none",
+                                        ? "0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.1)"
+                                        : "0 0 0px rgba(255, 255, 255, 0)",
                                     }}
-                                    transition={{ duration: 0.2 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
                                   >
-                                    <span className="text-white font-bold text-sm">
-                                      {step.number}
-                                    </span>
+                                    {/* Inner circle */}
+                                    <div 
+                                      className="rounded-full flex items-center justify-center"
+                                      style={{
+                                        width: isActive ? '36px' : '30px',
+                                        height: isActive ? '36px' : '30px',
+                                        background: isActive 
+                                          ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))'
+                                          : 'rgba(75, 85, 99, 0.4)',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                      }}
+                                    >
+                                      <span 
+                                        className="text-white font-light tracking-wide transition-all duration-300"
+                                        style={{
+                                          fontSize: isActive ? '16px' : '14px',
+                                          fontWeight: isActive ? '300' : '300',
+                                        }}
+                                      >
+                                        {step.number}
+                                      </span>
+                                    </div>
                                   </motion.div>
                                 </motion.button>
 
