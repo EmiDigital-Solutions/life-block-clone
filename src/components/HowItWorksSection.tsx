@@ -1049,13 +1049,6 @@ export const HowItWorksSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     )}
 
-                    {/* Step Badge */}
-                    <div className="absolute -top-2 -left-2 w-10 h-10 rounded-full bg-gradient-to-br from-[hsl(var(--content-accent))]/10 to-[hsl(var(--content-accent))]/20 backdrop-blur-sm border border-[hsl(var(--content-accent))]/30 flex items-center justify-center shadow-[0_0_15px_hsl(var(--content-accent)/0.15)] transition-all duration-300 ease-out">
-                      <span className="text-base font-light text-[hsl(var(--content-accent))]">
-                        {activeStep + 1}
-                      </span>
-                    </div>
-
                     <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
                       <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
                         <p className="text-white font-bold text-xs md:text-sm text-center">
