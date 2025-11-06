@@ -311,10 +311,10 @@ export const HowItWorksSection = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4 }}
-                      className="aspect-square"
+                      className="w-full aspect-[4/3]"
                     >
                       <div 
-                        className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                        className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
                         style={{
                           boxShadow: `
                             0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -499,10 +499,10 @@ export const HowItWorksSection = () => {
                 animate={{ opacity: 1, scale: expandedCard === index ? 1.05 : 1 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                className="aspect-square cursor-pointer focus:outline-none"
+                className="w-full aspect-[4/3] cursor-pointer focus:outline-none"
               >
                 <div 
-                  className={`relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]} transition-all duration-300`}
+                  className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]} transition-all duration-300`}
                   style={{
                     boxShadow: expandedCard === index 
                       ? `0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 40px rgba(34, 197, 94, 0.4)`
@@ -933,10 +933,10 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="aspect-square cursor-pointer focus:outline-none"
+                  className="w-full aspect-[4/3] cursor-pointer focus:outline-none"
                 >
                   <div 
-                    className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
+                    className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
                     style={{
                       boxShadow: `
                         0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -969,7 +969,7 @@ export const HowItWorksSection = () => {
                     </div>
 
                     <div 
-                      className="absolute inset-0 pointer-events-none rounded-2xl md:rounded-3xl"
+                      className="absolute inset-0 pointer-events-none rounded-3xl"
                       style={{
                         background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                       }}
