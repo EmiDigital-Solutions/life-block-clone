@@ -714,146 +714,274 @@ const QualificationsSection = () => {
   );
 };
 
-// TECHNOLOGY FEATURES SECTION
+// TECHNOLOGY FEATURES SECTION WITH HORIZONTAL SCROLL
 const TechnologyFeaturesSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const sectionRef = useRef(null);
+  const isMobile = useIsMobile();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
 
   const features = [
     { 
       icon: Smartphone, 
       title: "Mobile Platform", 
-      description: "Manage audits on the go",
+      description: "Manage audits on the go with our comprehensive mobile application. Access all features, documents, and client communication from anywhere.",
       gradient: "from-green-500 to-green-700",
-      image: auditorFemaleAfrican
+      image: auditorFemaleAfrican,
+      tags: ["iOS", "Android"]
     },
     { 
       icon: Zap, 
       title: "AI Matching", 
-      description: "Smart client connections",
+      description: "Smart client connections powered by advanced algorithms that match your expertise with the perfect audit opportunities.",
       gradient: "from-blue-500 to-blue-700",
-      image: auditorAsian
+      image: auditorAsian,
+      tags: ["AI Powered", "Smart Match"]
     },
     { 
       icon: Laptop, 
       title: "Digital Tools", 
-      description: "Enterprise-grade software",
+      description: "Enterprise-grade software suite designed specifically for modern auditors. Streamline your workflow with powerful features.",
       gradient: "from-purple-500 to-purple-700",
-      image: auditorFemaleEuropean
+      image: auditorFemaleEuropean,
+      tags: ["Cloud Based", "Secure"]
     },
     { 
       icon: CreditCard, 
       title: "Secure Payments", 
-      description: "Automated processing",
+      description: "Automated processing with bank-level security. Get paid quickly and reliably for every completed assignment.",
       gradient: "from-green-600 to-green-800",
-      image: auditorFemaleMiddleEast
+      image: auditorFemaleMiddleEast,
+      tags: ["Fast", "Secure"]
     },
     { 
       icon: Calendar, 
       title: "Smart Scheduling", 
-      description: "Calendar integration",
+      description: "Calendar integration that syncs seamlessly with your existing tools. Never miss an appointment or deadline.",
       gradient: "from-teal-500 to-teal-700",
-      image: auditorFemaleLatin
+      image: auditorFemaleLatin,
+      tags: ["Sync", "Automated"]
     },
     { 
       icon: BarChart3, 
       title: "Analytics Dashboard", 
-      description: "Track performance metrics",
+      description: "Track performance metrics, earnings, and client feedback in real-time. Make data-driven decisions for your practice.",
       gradient: "from-orange-500 to-orange-700",
-      image: auditorFemaleSouthAsian
+      image: auditorFemaleSouthAsian,
+      tags: ["Real-time", "Insights"]
     },
     { 
       icon: Lock, 
       title: "Data Security", 
-      description: "Bank-level encryption",
+      description: "Bank-level encryption protects all your sensitive audit data and client information. Compliance guaranteed.",
       gradient: "from-slate-600 to-slate-800",
-      image: auditorFemaleAfrican
+      image: auditorFemaleAfrican,
+      tags: ["Encrypted", "Compliant"]
     },
     { 
       icon: MessageCircle, 
       title: "Direct Communication", 
-      description: "Client messaging system",
+      description: "Client messaging system built for professionals. Secure, organized, and efficient communication channels.",
       gradient: "from-blue-600 to-blue-800",
-      image: auditorMaleNorthAmerica
+      image: auditorMaleNorthAmerica,
+      tags: ["Chat", "Secure"]
     },
   ];
 
+  // Calculate total width of cards (400px card + 24px gap) * number of cards
+  const cardWidth = 400;
+  const gap = 24;
+  const totalCardsWidth = features.length * (cardWidth + gap);
+  
+  // Transform scroll progress to horizontal movement
+  // On desktop only - mobile uses carousel
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, isMobile ? 0 : -(totalCardsWidth - (typeof window !== 'undefined' ? window.innerWidth * 0.6 : 800))]
+  );
+
+  // Mobile carousel - render differently
+  if (isMobile) {
+    return (
+      <section 
+        data-nav-theme="light"
+        className="py-24 px-6"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-green-600 mb-4">
+              Enterprise Technology
+            </h2>
+            <p className="text-lg text-gray-600">
+              Professional tools that enhance your audit efficiency
+            </p>
+          </motion.div>
+
+          <div className="overflow-x-auto pb-4 -mx-6 px-6">
+            <div className="flex gap-6" style={{ width: 'max-content' }}>
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="relative w-[320px] h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+                  {/* Content */}
+                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                    <div className="flex gap-2">
+                      {feature.tags.map((tag, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
+                          <feature.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white">
+                          {feature.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-white/90 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop scroll-jacking version
   return (
     <section 
-      ref={ref} 
+      ref={sectionRef}
       data-nav-theme="light"
-      className="py-24 px-6 lg:px-24"
+      className="relative h-[300vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl font-bold text-green-600 mb-4">
-            Enterprise Technology
-          </h2>
-          <p className="text-xl text-gray-600">
-            Professional tools that enhance your audit efficiency
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-              }}
-              whileHover={{ 
-                y: -8, 
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.25)"
-              }}
-              className="relative h-[200px] rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0 w-full h-full">
-                <motion.img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.4 }}
-                />
-              </div>
-
-              {/* Gradient Overlay */}
-              <div 
-                className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-85 group-hover:opacity-90 transition-opacity duration-300`}
-              />
-
-              {/* Shine Effect */}
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+        <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="flex gap-12">
+            {/* Left side - Fixed content (1/3) */}
+            <div className="w-full lg:w-1/3 flex flex-col justify-center">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-              />
+              >
+                <h2 className="text-5xl lg:text-6xl font-bold text-green-600 mb-6">
+                  Enterprise Technology
+                </h2>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
+                </p>
+                <button className="group inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all duration-300">
+                  Explore Features
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+            </div>
 
-              {/* Content */}
-              <div className="relative z-10 p-6 h-full flex flex-col">
-                <feature.icon className="w-8 h-8 text-white mb-auto" />
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-white opacity-90">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+            {/* Right side - Horizontal scrolling cards (2/3) */}
+            <div className="hidden lg:block w-2/3 relative overflow-hidden">
+              <motion.div 
+                style={{ x }}
+                className="flex gap-6 will-change-transform"
+              >
+                {features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    whileHover={{ 
+                      y: -8,
+                      transition: { duration: 0.2 }
+                    }}
+                    className="relative w-[400px] h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0 group cursor-pointer"
+                  >
+                    {/* Background Image */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <motion.img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    </div>
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+                    {/* Content */}
+                    <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                      {/* Tags */}
+                      <div className="flex gap-2">
+                        {feature.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Title and Description */}
+                      <div>
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
+                            <feature.icon className="w-6 h-6 text-white" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-sm text-white/90 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
