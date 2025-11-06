@@ -1,3 +1,5 @@
+
+-- Migration: 20251105115821
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -213,3 +215,10 @@ CREATE POLICY "Admins can delete content images"
     bucket_id = 'content-images' 
     AND public.has_role(auth.uid(), 'admin')
   );
+
+-- Migration: 20251105121433
+-- Add more content types for all website sections
+ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'hero_content';
+ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'auditor_card';
+ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'full_screen_section';
+ALTER TYPE content_type ADD VALUE IF NOT EXISTS 'feature_photo';
