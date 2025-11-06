@@ -406,7 +406,6 @@ export const HowItWorksSection = () => {
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
             </div>
-            <p className="text-white/70 text-sm">How it works</p>
           </div>
         </div>
       </section>
@@ -667,7 +666,6 @@ export const HowItWorksSection = () => {
                 <ChevronRight className="w-6 h-6 text-white" />
               </button>
             </div>
-            <p className="text-white/70 text-base">How it works</p>
           </div>
         </div>
       </section>
@@ -1015,7 +1013,6 @@ export const HowItWorksSection = () => {
                 Book Demo
                 <ArrowRight className="w-3 h-3" />
               </button>
-              <p className="text-white/70 text-xs">How it works</p>
             </div>
           </div>
         </div>
