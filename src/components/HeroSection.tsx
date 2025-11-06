@@ -158,8 +158,8 @@ const HeroSection = () => {
     <section data-nav-theme="dark" className="relative h-screen flex flex-col overflow-hidden bg-black">
       <div className="absolute inset-0 bg-black"></div>
 
-      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:pl-8">
-        <div className="w-full max-w-[1600px]">
+      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 xl:px-24">
+        <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
             
             {/* Left Column: Text Content */}
