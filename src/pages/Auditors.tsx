@@ -718,28 +718,11 @@ const QualificationsSection = () => {
 const TechnologyFeaturesSection = () => {
   const sectionRef = useRef(null);
   const isMobile = useIsMobile();
-  const [scrollDistance, setScrollDistance] = useState(-3000);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
   });
-
-  useEffect(() => {
-    // Calculate exact distance so LAST card ends on LEFT side of viewport
-    const cardWidth = 350;
-    const gap = 24;
-    const numCards = 8;
-    
-    // Total width of all cards including gaps
-    const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
-    
-    // Distance needed: Move entire card row so last card is at left edge
-    const distance = -(totalCardsWidth - cardWidth - 100);
-    
-    console.log('Scroll distance calculated:', distance);
-    setScrollDistance(distance);
-  }, []);
 
   const features = [
     { 
@@ -808,12 +791,23 @@ const TechnologyFeaturesSection = () => {
     },
   ];
 
+  // Calculate exact scroll distance so last card reaches left edge
+  const cardWidth = 350;
+  const gap = 24;
+  const numCards = features.length;
+  
+  // Total width of all cards
+  const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
+  
+  // Distance needed to move last card to left edge
+  const scrollDistance = -(totalCardsWidth - cardWidth - 50);
+  
   // Transform vertical scroll to horizontal movement
-  // Cards move during middle 60% of scroll to eliminate dead space
+  // Cards only move through the full scroll range to ensure complete journey
   const x = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 0, -2600, -2600]
+    [0, 1],
+    [0, scrollDistance]
   );
 
   // Mobile carousel - render differently
@@ -902,7 +896,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[300vh]"
+      className="relative h-[280vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
