@@ -310,6 +310,69 @@ const HeroSection = () => {
 
           </div>
         </div>
+
+        {/* Animated Company Names Band - Inside Hero */}
+        <div className="absolute bottom-0 left-0 right-0 py-6 overflow-hidden border-t border-cyan-400/20">
+          <div className="flex whitespace-nowrap">
+            <motion.div
+              animate={{ x: [0, -1920] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+              className="flex items-center gap-12 pr-12"
+            >
+              {[...Array(3)].map((_, index) => (
+                <div key={`band1-${index}`} className="flex items-center gap-12">
+                  <div className="flex items-center gap-3">
+                    <span className="text-white/60 text-xs font-medium">Trusted by</span>
+                  </div>
+                  <span className="text-lg font-bold text-white/90">BMW</span>
+                  <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
+                  <span className="text-lg font-bold text-white/90">LINDE</span>
+                  <span className="text-lg font-bold text-white/90">BOSCH</span>
+                  <span className="text-lg font-bold text-white/90">SIEMENS</span>
+                  <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
+                  <span className="text-lg font-bold text-white/90">AUDI</span>
+                  <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
+                </div>
+              ))}
+            </motion.div>
+            <motion.div
+              animate={{ x: [0, -1920] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+              className="flex items-center gap-12 pr-12"
+              aria-hidden="true"
+            >
+              {[...Array(3)].map((_, index) => (
+                <div key={`band2-${index}`} className="flex items-center gap-12">
+                  <div className="flex items-center gap-3">
+                    <span className="text-white/60 text-xs font-medium">Trusted by</span>
+                  </div>
+                  <span className="text-lg font-bold text-white/90">BMW</span>
+                  <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
+                  <span className="text-lg font-bold text-white/90">LINDE</span>
+                  <span className="text-lg font-bold text-white/90">BOSCH</span>
+                  <span className="text-lg font-bold text-white/90">SIEMENS</span>
+                  <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
+                  <span className="text-lg font-bold text-white/90">AUDI</span>
+                  <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
