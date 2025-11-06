@@ -798,14 +798,13 @@ const TechnologyFeaturesSection = () => {
   // Calculate how far cards need to travel
   // They need to move their full width + viewport width to fully disappear off screen
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
-  const scrollDistance = totalCardsWidth + viewportWidth;
   
   // Transform scroll progress to horizontal movement
-  // Cards start at x=0 (right edge) and end at x=-scrollDistance (fully off left edge)
+  // Cards start from right edge (viewportWidth) and move to completely off left edge (-totalCardsWidth)
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, isMobile ? 0 : -scrollDistance]
+    [isMobile ? 0 : viewportWidth, isMobile ? 0 : -totalCardsWidth]
   );
 
   // Mobile carousel - render differently
