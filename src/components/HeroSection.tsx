@@ -155,11 +155,11 @@ const HeroSection = () => {
   };
 
   return (
-    <section data-nav-theme="dark" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section data-nav-theme="dark" className="relative h-screen flex flex-col overflow-hidden bg-black">
       <div className="absolute inset-0 bg-black"></div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-20 sm:py-24 lg:py-32">
-        <div className="max-w-[1600px] mx-auto">
+      <div className="relative z-10 flex-1 flex items-center container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+        <div className="w-full max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-16 items-center">
             
             {/* Left Column: Text Content */}
@@ -312,9 +312,10 @@ const HeroSection = () => {
 
           </div>
         </div>
+      </div>
 
-        {/* Animated Company Names Band - White Background */}
-        <div className="absolute bottom-0 left-0 right-0 py-4 overflow-hidden bg-white border-t border-gray-200">
+      {/* Animated Company Names Band - White Background */}
+      <div className="relative bottom-0 left-0 right-0 py-4 sm:py-5 lg:py-6 overflow-hidden bg-white border-t border-gray-200 z-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-3">
               <span className="text-xs sm:text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
@@ -374,7 +375,6 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };
