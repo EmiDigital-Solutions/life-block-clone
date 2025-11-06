@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import {
   CheckCircle2,
   Shield,
@@ -33,7 +35,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const AuditorsSection = () => {
+const Auditors = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
@@ -252,22 +254,22 @@ const AuditorsSection = () => {
   ];
 
   return (
-    <div id="auditors" className="bg-background">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-background to-primary/5">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="container mx-auto px-4 z-10 text-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
@@ -916,8 +918,10 @@ const AuditorsSection = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
 
-export default AuditorsSection;
+export default Auditors;

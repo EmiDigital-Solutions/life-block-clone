@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BeFound from "./pages/BeFound";
 import GroundIntelligence from "./pages/GroundIntelligence";
+import Auditors from "./pages/Auditors";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/be-found" element={<BeFound />} />
             <Route path="/ground-intelligence" element={<GroundIntelligence />} />
+            <Route path="/auditors" element={<Auditors />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
