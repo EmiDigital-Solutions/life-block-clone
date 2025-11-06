@@ -795,15 +795,13 @@ const TechnologyFeaturesSection = () => {
   const gap = 24;
   const totalCardsWidth = features.length * (cardWidth + gap);
   
-  // Use full viewport width minus small padding
-  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth - 100 : 1200;
-  
-  // Calculate how far cards need to travel to show all of them
-  // Start: cards begin on the right side of screen
-  // End: last card reaches the left side of screen
-  const scrollDistance = totalCardsWidth;
+  // Calculate how far cards need to travel
+  // They need to move their full width + viewport width to fully disappear off screen
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+  const scrollDistance = totalCardsWidth + viewportWidth;
   
   // Transform scroll progress to horizontal movement
+  // Cards start at x=0 (right edge) and end at x=-scrollDistance (fully off left edge)
   const x = useTransform(
     scrollYProgress,
     [0, 1],
@@ -896,7 +894,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[300vh]"
+      className="relative h-[500vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
