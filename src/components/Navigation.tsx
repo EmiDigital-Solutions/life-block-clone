@@ -111,7 +111,7 @@ const Navigation = () => {
         borderBottomColor: borderColor,
       }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-1 sm:gap-1.5 hover:opacity-80 transition-opacity">

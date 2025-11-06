@@ -139,11 +139,11 @@ const Auditors = () => {
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20"
           style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         >
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
               
               {/* Left Column: Text Content */}
-              <div className="flex flex-col space-y-6 sm:space-y-8 text-center lg:text-left">
+              <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-4 xl:pl-8">
                 <motion.h1 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -187,9 +187,9 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="flex justify-center lg:justify-start"
+                  className="flex"
                 >
-                  <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg min-h-[48px]">
+                  <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg min-h-[48px]">
                     Apply as Partner Auditor
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -202,7 +202,7 @@ const Auditors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex justify-center lg:justify-end order-first lg:order-last"
+                className="flex justify-center lg:justify-center order-first lg:order-last lg:pr-8 xl:pr-12"
               >
                 <div 
                   className="relative w-full max-w-2xl"
