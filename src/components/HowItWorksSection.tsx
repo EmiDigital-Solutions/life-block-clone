@@ -311,7 +311,7 @@ export const HowItWorksSection = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4 }}
-                      className="w-full aspect-[4/3]"
+                      className="w-full aspect-[3/4]"
                     >
                       <div 
                         className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
@@ -499,7 +499,7 @@ export const HowItWorksSection = () => {
                 animate={{ opacity: 1, scale: expandedCard === index ? 1.05 : 1 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                className="w-full aspect-[4/3] cursor-pointer focus:outline-none"
+                className="w-full aspect-[3/4] cursor-pointer focus:outline-none"
               >
                 <div 
                   className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]} transition-all duration-300`}
@@ -933,7 +933,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full aspect-[4/3] cursor-pointer focus:outline-none"
+                  className="w-full aspect-[3/4] cursor-pointer focus:outline-none"
                 >
                   <div 
                     className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
