@@ -1,8 +1,5 @@
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import {
   Calendar,
   Users,
@@ -22,269 +19,454 @@ import {
   Lock,
   MessageCircle,
   X,
+  ArrowRight,
+  Check,
+  Star,
   ChevronDown,
-  ArrowUp,
+  TrendingUp,
+  Building2,
+  Target,
+  ArrowUp
 } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { useIsMobile } from "@/hooks/use-mobile";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
 const Auditors = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Handle scroll for back to top button
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
+  const auditorProfiles = [
+    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorAfrican, name: "Principal Auditor", specialty: "Quality Systems", gradient: "from-gray-800 via-gray-900 to-black" },
+  ];
+
+  useEffect(() => {
+    const cycle = () => {
+      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
+      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
+    };
+
+    cycle();
+    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  useEffect(() => {
+    const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
-    });
-  }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % 3);
+  };
+
+  const getCardStyle = (index: number, totalCards: number) => {
+    const centerIndex = (totalCards - 1) / 2;
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
+    
+    if (isFanned) {
+      if (isMobile) {
+        return {
+          x: offset * 110,
+          y: Math.abs(offset) * -20,
+          rotateY: offset * -8,
+          rotateZ: offset * 6,
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      } else {
+        return {
+          x: offset * 85,
+          y: Math.abs(offset) * -45,
+          rotateY: offset * -8,
+          rotateZ: offset * 8,
+          scale: 1,
+          opacity: 1,
+          zIndex: totalCards - Math.abs(offset),
+        };
+      }
+    } else {
+      return {
+        x: isMobile ? 0 : 180,
+        y: isMobile ? 0 : 80,
+        rotateY: 0,
+        rotateZ: isMobile ? 0 : -25,
+        scale: 0.98,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
+      };
+    }
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
+      
+      <div ref={containerRef}>
+        {/* Hero Section */}
+        <section
+          data-nav-theme="dark"
+          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20"
+          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+        >
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              
+              {/* Left Column: Text Content */}
+              <div className="flex flex-col space-y-6 sm:space-y-8 text-center lg:text-left">
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold text-white leading-tight"
+                >
+                  Join the Elite Auditor Network
+                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-5xl">for Global Industry Leaders</span>
+                </motion.h1>
 
-      {/* 1. HERO SECTION */}
-      <section 
-        className="min-h-screen flex items-center justify-center px-4 pt-20"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-          >
-            Partner with YVOO
-          </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-lg text-white/90 font-sans"
+                >
+                  Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
+                </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto"
-          >
-            Join a professional network where quality auditing meets fair compensation. 
-            Build your practice with enterprise clients who value your expertise.
-          </motion.p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="flex flex-col gap-3 text-white"
+                >
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5" />
+                    <span className="text-lg font-medium">Premium Enterprise Clients</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5" />
+                    <span className="text-lg font-medium">€2,500+ Average Assignment Value</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5" />
+                    <span className="text-lg font-medium">Professional Development Support</span>
+                  </div>
+                </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-          >
-            <Button
-              size="lg"
-              className="px-8 py-6 text-lg bg-white text-green-600 hover:bg-white/90 hover:-translate-y-0.5 transition-all shadow-lg font-semibold"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="flex justify-center lg:justify-start"
+                >
+                  <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg min-h-[48px]">
+                    Apply as Partner Auditor
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  className="grid grid-cols-3 gap-6 pt-4"
+                >
+                  <div className="text-center lg:text-left">
+                    <div className="text-3xl font-bold text-white">500+</div>
+                    <div className="text-sm text-white/80">Partner Auditors</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-3xl font-bold text-white">90+</div>
+                    <div className="text-sm text-white/80">Countries</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-3xl font-bold text-white">4.9★</div>
+                    <div className="text-sm text-white/80">Client Rating</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Animated Auditor Cards */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex justify-center lg:justify-end order-first lg:order-last"
+              >
+                <div 
+                  className="relative w-full max-w-2xl"
+                  style={{ perspective: "1500px" }}
+                >
+                  <div className="absolute inset-0 blur-3xl bg-white/10 scale-150 -z-10"></div>
+                  
+                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
+                    {auditorProfiles.map((auditor, index) => {
+                      const style = getCardStyle(index, 3);
+                      
+                      return (
+                        <motion.div
+                          key={auditor.name}
+                          className="absolute cursor-pointer"
+                          onClick={handleCardClick}
+                          initial={false}
+                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                          animate={{
+                            x: style.x,
+                            y: style.y,
+                            rotateY: style.rotateY,
+                            rotateZ: style.rotateZ,
+                            scale: style.scale,
+                            opacity: style.opacity,
+                            zIndex: style.zIndex,
+                          }}
+                          transition={{
+                            duration: isMobile ? 2.5 : 1.8,
+                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
+                            ease: [0.33, 1, 0.68, 1],
+                            type: "tween",
+                          }}
+                          style={{
+                            transformStyle: "preserve-3d",
+                            willChange: "transform, opacity",
+                          }}
+                        >
+                          <div
+                            className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            style={{
+                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
+                            }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            
+                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
+                              <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white/10">
+                                <img
+                                  src={auditor.image}
+                                  alt={auditor.name}
+                                  className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                                />
+                                <div 
+                                  className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                                  style={{
+                                    background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                                  }}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-3 sm:px-4">
+                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 w-full">
+                                <p className="text-white font-sans font-bold text-xs sm:text-sm text-center">
+                                  {auditor.name}
+                                </p>
+                                <p className="text-white/80 font-sans text-[10px] sm:text-xs text-center">
+                                  {auditor.specialty}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div 
+                              className="absolute inset-0 pointer-events-none rounded-3xl"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                              }}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* Client Logo Section */}
+        <section
+          data-nav-theme="light"
+          className="relative py-16 px-6 lg:px-24"
+          style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        >
+          <div className="container mx-auto">
+            <div className="text-center space-y-8">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-gray-600 text-sm font-medium"
+              >
+                Trusted by Global Industry Leaders
+              </motion.p>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8 items-center max-w-5xl mx-auto">
+                {["BMW", "MERCEDES-BENZ", "LINDE", "BOSCH", "SIEMENS"].map((name, index) => (
+                  <motion.div 
+                    key={name} 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center justify-center h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-4"
+                  >
+                    <span className="text-base lg:text-lg font-bold text-gray-700">{name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Value Proposition Section */}
+        <ValuePropositionSection />
+
+        {/* How It Works Timeline */}
+        <TimelineSection />
+
+        {/* Qualifications Section */}
+        <QualificationsSection />
+
+        {/* Technology Features */}
+        <TechnologyFeaturesSection />
+
+        {/* Problems We Solve */}
+        <ProblemsSection />
+
+        {/* Success Stories */}
+        <SuccessStoriesSection />
+
+        {/* Final CTA Section */}
+        <section 
+          data-nav-theme="dark"
+          className="py-20 px-4"
+          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
             >
-              Apply as Partner Auditor
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="px-8 py-6 text-lg hover:-translate-y-0.5 transition-all border-white text-white hover:bg-white/10"
+              Ready to Build Your Professional Practice?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-white/90 mb-10"
             >
-              Learn More
-            </Button>
-          </motion.div>
+              Join an elite network of certified auditors serving Fortune 500 companies with professional excellence and sustainable growth
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <button className="px-12 py-4 text-lg bg-white text-gray-900 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                Apply for Partnership
+              </button>
+            </motion.div>
+            <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center text-white">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-white" />
+                <span>Premium Compensation</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-white" />
+                <span>Strategic Partnerships</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-white" />
+                <span>Professional Development</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <motion.div
+        {/* FAQ Section */}
+        <FAQSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
+
+        {/* Footer */}
+        <Footer />
+
+        {/* Back to Top Button */}
+        {showBackToTop && (
+          <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition-all z-50"
           >
-            <div className="animate-count-up">
-              <div className="text-4xl font-bold text-white mb-2">2,000+</div>
-              <div className="text-white/90">Professional Auditors</div>
-            </div>
-            <div className="animate-count-up">
-              <div className="text-4xl font-bold text-white mb-2">€850</div>
-              <div className="text-white/90">Avg. Audit Value</div>
-            </div>
-            <div className="animate-count-up">
-              <div className="text-4xl font-bold text-white mb-2">4.8★</div>
-              <div className="text-white/90">Client Satisfaction</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. INFINITE MARQUEE TICKER */}
-      <section 
-        className="py-4 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94))" }}
-      >
-        <div className="flex whitespace-nowrap">
-          <div className="flex animate-marquee">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="flex items-center text-white text-xl font-semibold">
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Quality Over Quantity</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Fair Compensation</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Professional Growth</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Work-Life Balance</span>
-              </div>
-            ))}
-          </div>
-          <div className="flex animate-marquee" aria-hidden="true">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="flex items-center text-white text-xl font-semibold">
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Quality Over Quantity</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Fair Compensation</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Professional Growth</span>
-                <span className="mx-8">✦</span>
-                <span className="text-white/90">Work-Life Balance</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. VALUE PROPOSITION SECTION */}
-      <ValuePropositionSection />
-
-      {/* 4. HOW IT WORKS - TIMELINE */}
-      <TimelineSection />
-
-      {/* 5. QUALIFICATIONS SECTION */}
-      <QualificationsSection />
-
-      {/* 6. TECHNOLOGY FEATURES - BENTO GRID */}
-      <TechnologyFeaturesSection />
-
-      {/* 7. PROBLEMS WE SOLVE - SPLIT COMPARISON */}
-      <ProblemsSection />
-
-      {/* 8. SUCCESS STORIES - TESTIMONIALS */}
-      <SuccessStoriesSection />
-
-      {/* 9. FINAL CTA SECTION */}
-      <section 
-        className="py-20 px-4"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
-          >
-            Ready to Build Your Professional Practice?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-white/90 mb-10"
-          >
-            Join a network of certified auditors who prioritize quality, 
-            professional growth, and sustainable client relationships
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <Button
-              size="lg"
-              className="px-12 py-6 text-lg bg-white text-green-600 hover:bg-white/90 font-semibold"
-            >
-              Apply for Partnership
-            </Button>
-          </motion.div>
-          <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center text-white">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-white" />
-              <span>Premium compensation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-white" />
-              <span>Sustainable workload</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-white" />
-              <span>Professional development</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. FAQ ACCORDION */}
-      <FAQSection openFaq={openFaq} setOpenFaq={setOpenFaq} />
-
-      {/* 11. FOOTER */}
-      <Footer />
-
-      {/* BACK TO TOP BUTTON */}
-      {showBackToTop && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition-all z-50"
-        >
-          <ArrowUp className="w-6 h-6" />
-        </motion.button>
-      )}
+            <ArrowUp className="w-6 h-6" />
+          </motion.button>
+        )}
+      </div>
     </div>
   );
 };
 
-// VALUE PROPOSITION SECTION COMPONENT
+// VALUE PROPOSITION SECTION
 const ValuePropositionSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const features = [
     {
-      icon: Shield,
-      title: "Quality Standards",
-      description: "Work with enterprise clients who value thoroughness over speed",
-      gradient: "from-green-500 to-green-600",
+      icon: Building2,
+      title: "Enterprise Partnerships",
+      description: "Work with Fortune 500 companies and industry leaders who value audit quality and professional expertise",
+    },
+    {
+      icon: DollarSign,
+      title: "Premium Compensation",
+      description: "€2,500+ per assignment with transparent pricing—earn what your professional expertise deserves",
+    },
+    {
+      icon: Target,
+      title: "Strategic Assignments",
+      description: "Meaningful audit engagements that match your specialization and contribute to your professional growth",
     },
     {
       icon: Calendar,
       title: "Balanced Workload",
-      description: "Manageable audit schedules that respect professional standards",
-      gradient: "from-green-600 to-green-700",
-    },
-    {
-      icon: DollarSign,
-      title: "Fair Compensation",
-      description: "Premium rates that reflect your expertise and certification",
-      gradient: "from-emerald-500 to-emerald-600",
-    },
-    {
-      icon: Users,
-      title: "Strategic Partnerships",
-      description: "Build long-term client relationships, not one-off gigs",
-      gradient: "from-teal-500 to-teal-600",
+      description: "Sustainable scheduling that respects audit quality standards and your work-life balance",
     },
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -292,13 +474,12 @@ const ValuePropositionSection = () => {
             <span className="text-green-600">Professional Partnership</span> Platform
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            YVOO connects certified auditors with quality-focused enterprises. 
-            We prioritize professional standards, sustainable workloads, and fair compensation—
-            building careers, not just gigs.
+            Connectimus connects certified auditors with quality-focused enterprises. 
+            We prioritize professional standards, strategic partnerships, and career development.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -306,17 +487,15 @@ const ValuePropositionSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-              className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm transition-all"
+              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm transition-all"
             >
-              <div
-                className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6`}
-              >
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6">
                 <feature.icon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -325,7 +504,7 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION COMPONENT
+// TIMELINE SECTION
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -333,36 +512,37 @@ const TimelineSection = () => {
   const steps = [
     {
       number: "01",
-      title: "Register & Get Verified",
-      description: "Submit your credentials and professional certifications",
+      title: "Application & Verification",
+      description: "Submit your credentials, certifications, and professional background for review",
     },
     {
       number: "02",
-      title: "Complete Your Profile",
-      description: "Showcase your expertise and experience",
+      title: "Profile Excellence",
+      description: "Build a comprehensive profile showcasing your expertise, specializations, and achievements",
     },
     {
       number: "03",
-      title: "Receive Audit Requests",
-      description: "Get matched with clients needing your services",
+      title: "Smart Matching",
+      description: "AI-powered system matches your expertise with premium enterprise client requirements",
     },
     {
       number: "04",
-      title: "Conduct Audits",
-      description: "Use our platform tools to complete audits efficiently",
+      title: "Professional Auditing",
+      description: "Conduct audits with enterprise-grade tools, support, and quality assurance",
     },
     {
       number: "05",
-      title: "Get Paid Securely",
-      description: "Receive payments directly to your account",
+      title: "Secure Payment",
+      description: "Receive premium compensation directly with transparent terms and timely processing",
     },
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
@@ -374,12 +554,11 @@ const TimelineSection = () => {
             <span className="text-green-600">Partnership Journey</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Join YVOO's professional auditor network in five steps
+            Five steps to join the elite auditor network
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Connecting line */}
           <motion.div
             initial={{ height: 0 }}
             animate={isInView ? { height: "100%" } : {}}
@@ -411,7 +590,7 @@ const TimelineSection = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
-                className="flex-1 bg-white rounded-xl p-6 shadow-sm border border-gray-200"
+                className="flex-1 bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {step.title}
@@ -426,7 +605,7 @@ const TimelineSection = () => {
   );
 };
 
-// QUALIFICATIONS SECTION COMPONENT
+// QUALIFICATIONS SECTION
 const QualificationsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -435,46 +614,41 @@ const QualificationsSection = () => {
     {
       icon: Award,
       title: "Professional Certification",
-      description: "CPA or equivalent certification required",
-      gradient: "from-blue-500 to-blue-600",
+      description: "CPA, CIA, or equivalent international audit certification",
     },
     {
       icon: Briefcase,
-      title: "Experience",
-      description: "Minimum 2-5 years of auditing experience",
-      gradient: "from-green-500 to-green-600",
+      title: "Proven Experience",
+      description: "5+ years in professional auditing with enterprise clients",
     },
     {
       icon: CheckCircle,
-      title: "Clean Record",
-      description: "Clean professional record with no violations",
-      gradient: "from-amber-500 to-amber-600",
+      title: "Excellent Record",
+      description: "Clean professional standing with verified references",
     },
     {
       icon: ShieldCheck,
-      title: "Insurance",
-      description: "Professional liability insurance coverage",
-      gradient: "from-purple-500 to-purple-600",
+      title: "Insurance Coverage",
+      description: "Professional liability insurance with adequate coverage",
     },
     {
       icon: Search,
-      title: "Verification",
-      description: "Background verification and screening",
-      gradient: "from-pink-500 to-pink-600",
+      title: "Background Verification",
+      description: "Comprehensive screening and credential verification",
     },
     {
       icon: BookOpen,
-      title: "CPE Credits",
-      description: "Continuing professional education credits",
-      gradient: "from-teal-500 to-teal-600",
+      title: "Continuous Learning",
+      description: "Active CPE credits and professional development",
     },
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -483,10 +657,10 @@ const QualificationsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Professional Requirements</span>
+            <span className="text-green-600">Professional Standards</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Standards that ensure quality and client trust
+            Excellence requirements that ensure client trust and audit quality
           </p>
         </motion.div>
 
@@ -494,27 +668,22 @@ const QualificationsSection = () => {
           {qualifications.map((qual, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-              animate={
-                isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}
-              }
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{
-                y: -8,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
               }}
-              className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm transition-all"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm transition-all"
             >
-              <motion.div
-                whileHover={{ rotate: 5 }}
-                className={`w-16 h-16 rounded-full bg-gradient-to-br ${qual.gradient} flex items-center justify-center mb-6`}
-              >
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4">
                 <qual.icon className="w-8 h-8 text-white" />
-              </motion.div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
                 {qual.title}
               </h3>
-              <p className="text-gray-600">{qual.description}</p>
+              <p className="text-gray-600 text-sm">{qual.description}</p>
             </motion.div>
           ))}
         </div>
@@ -523,151 +692,27 @@ const QualificationsSection = () => {
   );
 };
 
-// TECHNOLOGY FEATURES SECTION COMPONENT
+// TECHNOLOGY FEATURES SECTION
 const TechnologyFeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const features = [
-    {
-      icon: Smartphone,
-      title: "Mobile App",
-      description: "Manage audits on the go",
-      gradient: "from-blue-500 to-purple-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: Zap,
-      title: "AI Matching",
-      description: "Smart client connections",
-      gradient: "from-green-500 to-teal-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: Laptop,
-      title: "Digital Tools",
-      description: "Cloud-based software",
-      gradient: "from-amber-500 to-orange-600",
-      span: "md:col-span-2 md:row-span-2",
-    },
-    {
-      icon: CreditCard,
-      title: "Secure Payments",
-      description: "Automated processing",
-      gradient: "from-purple-500 to-pink-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: Calendar,
-      title: "Smart Scheduling",
-      description: "Calendar integration",
-      gradient: "from-teal-500 to-cyan-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: BarChart,
-      title: "Analytics",
-      description: "Track performance",
-      gradient: "from-pink-500 to-rose-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: Lock,
-      title: "Data Security",
-      description: "Bank-level encryption",
-      gradient: "from-indigo-500 to-blue-600",
-      span: "md:col-span-1",
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      description: "Direct client messaging",
-      gradient: "from-orange-500 to-red-600",
-      span: "md:col-span-2",
-    },
+    { icon: Smartphone, title: "Mobile Platform", desc: "Manage audits on the go", gradient: "from-green-500 to-green-700" },
+    { icon: Zap, title: "AI Matching", desc: "Smart client connections", gradient: "from-blue-500 to-blue-700" },
+    { icon: Laptop, title: "Digital Tools", desc: "Enterprise-grade software", gradient: "from-purple-500 to-purple-700" },
+    { icon: CreditCard, title: "Secure Payments", desc: "Automated processing", gradient: "from-green-600 to-green-800" },
+    { icon: Calendar, title: "Smart Scheduling", desc: "Calendar integration", gradient: "from-teal-500 to-teal-700" },
+    { icon: BarChart, title: "Analytics Dashboard", desc: "Track performance metrics", gradient: "from-amber-500 to-amber-700" },
+    { icon: Lock, title: "Data Security", desc: "Bank-level encryption", gradient: "from-gray-600 to-gray-800" },
+    { icon: MessageCircle, title: "Direct Communication", desc: "Client messaging system", gradient: "from-blue-600 to-blue-800" },
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Professional Tools</span>
-          </h2>
-          <p className="text-xl text-gray-600">
-            Technology that supports quality auditing
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-fr">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8, rotate: Math.random() * 4 - 2 }}
-              animate={
-                isInView
-                  ? { opacity: 1, scale: 1, rotate: 0 }
-                  : {}
-              }
-              transition={{
-                duration: 0.5,
-                delay: Math.random() * 0.5,
-              }}
-              whileHover={{
-                scale: 1.05,
-                backgroundPosition: "100% 50%",
-              }}
-              className={`${feature.span} bg-gradient-to-br ${feature.gradient} rounded-2xl p-8 text-white flex flex-col justify-between min-h-[200px] transition-all cursor-pointer`}
-              style={{ backgroundSize: "200% 200%" }}
-            >
-              <feature.icon className="w-12 h-12 mb-4" />
-              <div>
-                <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-white/90">{feature.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// PROBLEMS SECTION COMPONENT
-const ProblemsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-  const problems = [
-    "Pressure to rush audits",
-    "Race-to-bottom pricing",
-    "Unpredictable income",
-    "Limited professional development",
-    "Transactional client relationships",
-    "No quality over quantity focus",
-  ];
-
-  const solutions = [
-    "Adequate time allocated for thorough audits",
-    "Premium rates reflecting your expertise and certifications",
-    "Stable project pipeline with recurring clients",
-    "Access to training, certifications, and peer network",
-    "Build long-term partnerships with enterprise clients",
-    "Quality metrics that reward thoroughness, not speed",
-  ];
-
-  return (
-    <section 
-      ref={ref} 
-      className="py-20 px-4"
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -677,64 +722,113 @@ const ProblemsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Why Choose YVOO</span>
+            <span className="text-green-600">Enterprise Technology</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Moving beyond the gig economy model
+            Professional tools that enhance your audit efficiency
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+              transition={{
+                duration: 0.4,
+                delay: Math.random() * 0.5,
+              }}
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              className={`bg-gradient-to-br ${feature.gradient} rounded-2xl p-6 text-white shadow-lg`}
+            >
+              <feature.icon className="w-12 h-12 mb-4" />
+              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <p className="text-white/90 text-sm">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// PROBLEMS SECTION
+const ProblemsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const comparisons = [
+    { problem: "Low audit fees and race-to-bottom pricing", solution: "Premium compensation reflecting your expertise (€2,500+ per assignment)" },
+    { problem: "Inconsistent workload and income instability", solution: "Steady flow of enterprise clients through strategic matching" },
+    { problem: "Time pressure compromising audit quality", solution: "Realistic timelines that maintain professional standards" },
+    { problem: "Administrative burden and outdated systems", solution: "Modern platform handling logistics, payments, and documentation" },
+    { problem: "Limited career growth and recognition", solution: "Professional development opportunities and industry visibility" },
+    { problem: "Isolation from professional community", solution: "Network with elite auditors serving Fortune 500 companies" },
+  ];
+
+  return (
+    <section 
+      ref={ref} 
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span className="text-green-600">Professional Challenges</span> We Address
+          </h2>
+          <p className="text-xl text-gray-600">
+            Moving beyond traditional audit industry problems
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Problems Column */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="bg-red-50 rounded-2xl p-8"
+            className="space-y-4"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Gig Economy Challenges
-            </h3>
-            <div className="space-y-4">
-              {problems.map((problem, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: index * 0.15 }}
-                  className="flex items-start gap-3"
-                >
-                  <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                  <p className="text-gray-700">{problem}</p>
-                </motion.div>
-              ))}
-            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Traditional Challenges</h3>
+            {comparisons.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-start gap-3 bg-red-50 p-4 rounded-lg border border-red-200"
+              >
+                <X className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <p className="text-gray-700">{item.problem}</p>
+              </motion.div>
+            ))}
           </motion.div>
 
-          {/* Solutions Column */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="bg-green-50 rounded-2xl p-8"
+            className="space-y-4"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Professional Partnership Approach
-            </h3>
-            <div className="space-y-4">
-              {solutions.map((solution, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: index * 0.15 }}
-                  className="flex items-start gap-3"
-                >
-                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                  <p className="text-gray-700">{solution}</p>
-                </motion.div>
-              ))}
-            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Solutions</h3>
+            {comparisons.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-start gap-3 bg-green-50 p-4 rounded-lg border border-green-200"
+              >
+                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <p className="text-gray-700">{item.solution}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
@@ -742,46 +836,44 @@ const ProblemsSection = () => {
   );
 };
 
-// SUCCESS STORIES SECTION COMPONENT
+// SUCCESS STORIES SECTION
 const SuccessStoriesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const stories = [
+  const testimonials = [
     {
-      name: "Sarah Chen",
-      role: "CPA, 8 years experience",
-      earned: "€180K+",
-      audits: "89",
-      rating: "4.9",
-      quote:
-        "With YVOO, I built a sustainable practice with enterprise clients who respect audit timelines and professional standards. No more rushed audits.",
+      name: "Dr. Michael Wagner",
+      role: "Lead Auditor, ISO & VDA",
+      years: "8 years experience",
+      stats: { revenue: "€320K+ Earned", audits: "85 Assignments", rating: "5.0★" },
+      quote: "Connectimus transformed my practice. Working with BMW and Mercedes-Benz has elevated my professional standing while providing premium compensation and meaningful work.",
+      image: auditorEuropean,
     },
     {
-      name: "Michael Roberts",
-      role: "Forensic Auditor, 12 years",
-      earned: "€195K+",
-      audits: "76",
-      rating: "5.0",
-      quote:
-        "Finally, a platform that values quality over quantity. My clients are willing to pay premium rates because they trust the thoroughness of my work.",
+      name: "Sarah Chen, CPA",
+      role: "Quality Systems Auditor",
+      years: "12 years experience",
+      stats: { revenue: "€450K+ Earned", audits: "127 Assignments", rating: "4.9★" },
+      quote: "The caliber of clients and the professional respect shown is unmatched. I finally have the sustainable practice I always wanted with work-life balance.",
+      image: auditorAsian,
     },
     {
-      name: "Aisha Patel",
-      role: "IT Auditor, 6 years",
-      earned: "€142K+",
-      audits: "68",
-      rating: "4.8",
-      quote:
-        "The professional development resources and peer network have been invaluable. This is true partnership, not just another gig platform.",
+      name: "James Okonkwo, CIA",
+      role: "Industrial Audit Specialist",
+      years: "10 years experience",
+      stats: { revenue: "€385K+ Earned", audits: "98 Assignments", rating: "5.0★" },
+      quote: "From application to first assignment with a Fortune 500 company took just one week. The professional development support is exceptional.",
+      image: auditorAfrican,
     },
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -792,48 +884,52 @@ const SuccessStoriesSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="text-green-600">Partner Success Stories</span>
           </h2>
-          <p className="text-xl text-gray-600">Building sustainable audit practices</p>
+          <p className="text-xl text-gray-600">
+            Real auditors, exceptional results
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stories.map((story, index) => (
+          {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
-              className="bg-white rounded-2xl p-8 shadow-lg transition-all"
+              transition={{ delay: index * 0.2 }}
+              whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
+              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
             >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mb-6" />
-              <h3 className="text-xl font-bold text-gray-900 mb-1">
-                {story.name}
-              </h3>
-              <p className="text-gray-600 mb-6">{story.role}</p>
-
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div>
-                  <div className="text-2xl font-bold text-gray-900 animate-count-up">
-                    {story.earned}
-                  </div>
-                  <div className="text-sm text-gray-600">Earned</div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-green-400 to-green-600">
+                  <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 animate-count-up">
-                    {story.audits}
-                  </div>
-                  <div className="text-sm text-gray-600">Audits</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-900 animate-count-up flex items-center gap-1">
-                    {story.rating}
-                    <span className="text-amber-500">★</span>
-                  </div>
-                  <div className="text-sm text-gray-600">Rating</div>
+                  <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
+                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  <p className="text-xs text-gray-500">{testimonial.years}</p>
                 </div>
               </div>
 
-              <p className="text-gray-600 italic">"{story.quote}"</p>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="text-center">
+                  <div className="text-xl font-bold text-green-600">{testimonial.stats.revenue.split(' ')[0]}</div>
+                  <div className="text-xs text-gray-500">{testimonial.stats.revenue.split(' ')[1]}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-green-600">{testimonial.stats.audits.split(' ')[0]}</div>
+                  <div className="text-xs text-gray-500">{testimonial.stats.audits.split(' ')[1]}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-amber-500 flex items-center justify-center gap-1">
+                    {testimonial.stats.rating}
+                  </div>
+                  <div className="text-xs text-gray-500">Rating</div>
+                </div>
+              </div>
+
+              <p className="text-gray-600 italic leading-relaxed">
+                "{testimonial.quote}"
+              </p>
             </motion.div>
           ))}
         </div>
@@ -842,55 +938,44 @@ const SuccessStoriesSection = () => {
   );
 };
 
-// FAQ SECTION COMPONENT
-const FAQSection = ({
-  openFaq,
-  setOpenFaq,
-}: {
-  openFaq: number | null;
-  setOpenFaq: (val: number | null) => void;
-}) => {
+// FAQ SECTION
+const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFaq: (index: number | null) => void }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const isInView = useInView(ref, { once: true });
 
   const faqs = [
     {
-      question: "How is YVOO different from typical gig platforms?",
-      answer:
-        "YVOO focuses on quality partnerships, not gig work. We prioritize sustainable workloads, premium compensation, long-term client relationships, and professional development. There's no race to the bottom on pricing or rushing through audits.",
+      q: "What is the compensation structure for partner auditors?",
+      a: "Partner auditors earn €2,500+ per assignment on average, with premium rates for specialized audits. Compensation is transparent, competitive, and reflects your professional expertise and certification level. Payments are processed securely within 14 days of completed audit submission."
     },
     {
-      question: "What compensation can I expect?",
-      answer:
-        "Our partner auditors earn premium rates reflecting their certifications and expertise. Average audit fees range from €850-€2,500 depending on scope and complexity. We ensure adequate time is allocated for thorough work.",
+      q: "How does Connectimus differ from gig economy platforms?",
+      a: "Unlike gig platforms that prioritize volume and speed, Connectimus focuses on quality partnerships with Fortune 500 clients. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
     },
     {
-      question: "How many audits will I be expected to complete?",
-      answer:
-        "We prioritize quality over quantity. Workload is balanced to maintain professional standards. Most partners complete 3-5 audits per month, allowing adequate time for thorough, high-quality work without burnout.",
+      q: "What types of clients will I work with?",
+      a: "Our partner auditors work with global industry leaders including BMW, Mercedes-Benz, Linde, Bosch, and Siemens. These enterprise clients value audit quality, professional standards, and long-term partnerships. All assignments are with established companies requiring certified professional auditors."
     },
     {
-      question: "What professional development is available?",
-      answer:
-        "Partners have access to continuing education resources, industry webinars, peer networking events, and mentorship programs. We invest in your growth as part of our commitment to long-term partnership.",
+      q: "What professional development support is provided?",
+      a: "Connectimus invests in partner development through CPE credit programs, specialized training workshops, industry certifications, and mentorship opportunities. We support your career growth with access to advanced audit methodologies, emerging standards, and networking with elite auditors."
     },
     {
-      question: "How does client matching work?",
-      answer:
-        "We match you with enterprise clients based on your expertise, certifications, and industry experience. Our focus is on building long-term relationships where clients value your specialized knowledge.",
+      q: "How many assignments can I expect per month?",
+      a: "Assignment frequency depends on your availability, specialization, and client demand. Most active partners complete 3-5 enterprise audits monthly, allowing for thorough work while maintaining quality standards. You have full control over accepting assignments that match your schedule and expertise."
     },
     {
-      question: "What is the application process?",
-      answer:
-        "Submit your credentials and professional certifications for review. Our team conducts thorough verification (typically 5-7 business days) to maintain network quality. Once approved, you can start building your client portfolio.",
-    },
+      q: "What is the application and verification process?",
+      a: "The partnership application involves credential verification, background screening, and professional reference checks. Most qualified candidates complete the process within 7-10 business days. We maintain high standards to ensure client trust and protect the integrity of our auditor network."
+    }
   ];
 
   return (
     <section 
       ref={ref} 
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      data-nav-theme="light"
+      className="py-24 px-6 lg:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-3xl mx-auto">
         <motion.div
@@ -899,9 +984,11 @@ const FAQSection = ({
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Frequently Asked</span> Questions
+            <span className="text-green-600">Frequently Asked Questions</span>
           </h2>
-          <p className="text-xl text-gray-600">Everything you need to know</p>
+          <p className="text-xl text-gray-600">
+            Everything you need to know about partner auditor program
+          </p>
         </motion.div>
 
         <div className="space-y-4">
@@ -911,21 +998,18 @@ const FAQSection = ({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
-              className="border-b border-gray-200"
+              className="bg-white rounded-lg border border-gray-200 overflow-hidden"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full py-6 flex justify-between items-center text-left hover:bg-gray-50 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
               >
-                <span className="text-lg font-semibold text-gray-900 pr-4">
-                  {faq.question}
-                </span>
-                <motion.div
-                  animate={{ rotate: openFaq === index ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="w-6 h-6 text-gray-500 flex-shrink-0" />
-                </motion.div>
+                <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
+                <ChevronDown
+                  className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${
+                    openFaq === index ? "rotate-180" : ""
+                  }`}
+                />
               </button>
               <motion.div
                 initial={false}
@@ -936,7 +1020,9 @@ const FAQSection = ({
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="pb-6 text-gray-600">{faq.answer}</p>
+                <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+                  {faq.a}
+                </div>
               </motion.div>
             </motion.div>
           ))}
