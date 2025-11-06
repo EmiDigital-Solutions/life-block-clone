@@ -790,20 +790,24 @@ const TechnologyFeaturesSection = () => {
     },
   ];
 
-  // Calculate total width of cards (400px card + 24px gap) * number of cards
+  // Calculate total width of cards and viewport
   const cardWidth = 400;
   const gap = 24;
-  const totalCardsWidth = features.length * (cardWidth + gap) - gap; // Remove last gap
+  const totalCardsWidth = features.length * (cardWidth + gap);
   
-  // Calculate viewport width (leaving some padding on right)
-  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth - 200 : 1000;
+  // Use full viewport width minus small padding
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth - 100 : 1200;
+  
+  // Calculate how far cards need to travel to show all of them
+  // Start: cards begin on the right side of screen
+  // End: last card reaches the left side of screen
+  const scrollDistance = totalCardsWidth;
   
   // Transform scroll progress to horizontal movement
-  // Ensure all cards scroll fully from right to left before moving to next section
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, isMobile ? 0 : -(totalCardsWidth - viewportWidth)]
+    [0, isMobile ? 0 : -scrollDistance]
   );
 
   // Mobile carousel - render differently
@@ -896,19 +900,19 @@ const TechnologyFeaturesSection = () => {
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
-        <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 lg:px-12">
           {/* Top - Fixed content (centered above cards) */}
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-16 max-w-5xl mx-auto"
           >
             <h2 className="text-5xl lg:text-6xl font-bold text-green-600 mb-6">
               Enterprise Technology
             </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
             </p>
             <button className="group inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all duration-300">
@@ -917,11 +921,11 @@ const TechnologyFeaturesSection = () => {
             </button>
           </motion.div>
 
-          {/* Bottom - Horizontal scrolling cards (full width) */}
-          <div className="hidden lg:block relative overflow-hidden">
+          {/* Bottom - Horizontal scrolling cards (full screen width) */}
+          <div className="hidden lg:block relative overflow-hidden -mx-6 lg:-mx-12">
             <motion.div 
               style={{ x }}
-              className="flex gap-6 will-change-transform"
+              className="flex gap-6 will-change-transform pl-6 lg:pl-12"
             >
               {features.map((feature, index) => (
                 <motion.div
