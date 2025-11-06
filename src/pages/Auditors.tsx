@@ -34,6 +34,14 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
+import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
+import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
+import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
+import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
+import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
+import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 
 const Auditors = () => {
@@ -45,9 +53,17 @@ const Auditors = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const auditorProfiles = [
-    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorAfrican, name: "Principal Auditor", specialty: "Quality Systems", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: auditorFemaleEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorFemaleAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: auditorEuropean, name: "Quality Auditor", specialty: "VDA 6.3", location: "Europe", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorAsian, name: "Technical Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: auditorAfrican, name: "Systems Auditor", specialty: "Quality Management", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: auditorFemaleSouthAsian, name: "Risk Auditor", specialty: "IATF Standards", location: "South Asia", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorMaleNorthAmerica, name: "Lead Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorFemaleOceania, name: "Senior Auditor", specialty: "ISO 9001", location: "Oceania", gradient: "from-green-600 via-green-700 to-green-800" },
   ];
 
   useEffect(() => {
@@ -70,7 +86,7 @@ const Auditors = () => {
   }, []);
 
   const handleCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % 3);
+    setActiveIndex((prev) => (prev + 1) % auditorProfiles.length);
   };
 
   const getCardStyle = (index: number, totalCards: number) => {
@@ -184,25 +200,6 @@ const Auditors = () => {
                   </button>
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="grid grid-cols-3 gap-6 pt-4"
-                >
-                  <div className="text-center lg:text-left">
-                    <div className="text-3xl font-bold text-white">500+</div>
-                    <div className="text-sm text-white/80">Partner Auditors</div>
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <div className="text-3xl font-bold text-white">90+</div>
-                    <div className="text-sm text-white/80">Countries</div>
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <div className="text-3xl font-bold text-white">4.9★</div>
-                    <div className="text-sm text-white/80">Client Rating</div>
-                  </div>
-                </motion.div>
               </div>
 
               {/* Right Column: Animated Auditor Cards */}
@@ -220,7 +217,7 @@ const Auditors = () => {
                   
                   <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
                     {auditorProfiles.map((auditor, index) => {
-                      const style = getCardStyle(index, 3);
+                      const style = getCardStyle(index, auditorProfiles.length);
                       
                       return (
                         <motion.div
@@ -240,7 +237,7 @@ const Auditors = () => {
                           }}
                           transition={{
                             duration: isMobile ? 2.5 : 1.8,
-                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
+                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (auditorProfiles.length - index) * 0.08,
                             ease: [0.33, 1, 0.68, 1],
                             type: "tween",
                           }}
@@ -1250,6 +1247,19 @@ const ScrollZoomSection = () => {
           {/* Text Content Overlay - Centered */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12">
             
+            {/* Section Title */}
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold text-white/90 border border-white/20">
+                Our Global Network
+              </span>
+            </motion.div>
+
             {/* Headline */}
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
@@ -1258,7 +1268,7 @@ const ScrollZoomSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight"
             >
-              Let's build excellence in auditing together
+              Elite Auditors Serving Fortune 500 Excellence
             </motion.h2>
             
             {/* Subheadline */}
