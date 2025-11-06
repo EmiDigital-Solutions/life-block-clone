@@ -227,7 +227,7 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[280px] sm:h-[360px] lg:h-[400px] xl:h-[440px] flex items-center justify-center">
+                <div className="relative h-[375px] sm:h-[438px] lg:h-[500px] xl:h-[500px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-42 h-51 sm:w-48 sm:h-64 lg:w-58 lg:h-77 xl:w-64 xl:h-[336px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[280px] lg:h-[360px] xl:w-[280px] xl:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -270,7 +270,7 @@ const HeroSection = () => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-10">
-                            <div className="relative w-26 h-26 sm:w-32 sm:h-32 lg:w-38 lg:h-38 xl:w-42 xl:h-42 rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[180px] lg:h-[180px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
