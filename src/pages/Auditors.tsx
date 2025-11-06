@@ -718,10 +718,28 @@ const QualificationsSection = () => {
 const TechnologyFeaturesSection = () => {
   const sectionRef = useRef(null);
   const isMobile = useIsMobile();
+  const [scrollDistance, setScrollDistance] = useState(-2400);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
   });
+
+  useEffect(() => {
+    // Calculate exact scroll distance needed
+    const cardWidth = 400;
+    const gap = 24;
+    const numCards = 8;
+    const viewportWidth = window.innerWidth;
+    
+    // Total width of all cards
+    const totalWidth = (cardWidth + gap) * numCards;
+    
+    // Distance cards need to travel (with padding)
+    const distance = -(totalWidth - viewportWidth + 200);
+    
+    setScrollDistance(distance);
+  }, []);
 
   const features = [
     { 
@@ -790,21 +808,11 @@ const TechnologyFeaturesSection = () => {
     },
   ];
 
-  // Calculate total width of cards and scroll distance
-  const cardWidth = 400;
-  const gap = 24;
-  const totalCardsWidth = features.length * (cardWidth + gap);
-  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
-  
-  // Calculate scroll distance: cards must travel their full width plus viewport to disappear
-  const scrollDistance = totalCardsWidth + viewportWidth;
-  
-  // Transform scroll progress to horizontal movement
-  // Cards start at x=0 (visible on screen) and move left to -scrollDistance (completely off screen)
+  // Transform vertical scroll to horizontal movement
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    [isMobile ? 0 : 0, isMobile ? 0 : -scrollDistance]
+    [isMobile ? 0 : 0, isMobile ? 0 : scrollDistance]
   );
 
   // Mobile carousel - render differently
@@ -893,97 +901,117 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[300vh]"
+      className="relative h-[400vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
-        <div className="w-full px-6 lg:px-12">
-          {/* Top - Fixed content (centered above cards) */}
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
+        
+        {/* Header - Fixed position, always visible */}
+        <div className="text-center mb-8 px-4 flex-shrink-0">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 max-w-5xl mx-auto"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-600 mb-3"
           >
-            <h2 className="text-5xl lg:text-6xl font-bold text-green-600 mb-6">
-              Enterprise Technology
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
-            </p>
-            <button className="group inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all duration-300">
-              Explore Features
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </motion.div>
-
-          {/* Bottom - Horizontal scrolling cards (full screen width) */}
-          <div className="hidden lg:block relative overflow-hidden -mx-6 lg:-mx-12">
-            <motion.div 
-              style={{ x }}
-              className="flex gap-6 will-change-transform pl-6 lg:pl-12"
-            >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.2 }
-                  }}
-                  className="relative w-[400px] h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0 group cursor-pointer"
-                >
-                  {/* Background Image */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <motion.img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                    />
-                  </div>
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-
-                  {/* Content */}
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
-                    {/* Tags */}
-                    <div className="flex gap-2">
-                      {feature.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title and Description */}
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
-                          <feature.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white">
-                          {feature.title}
-                        </h3>
-                      </div>
-                      <p className="text-sm text-white/90 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+            Enterprise Technology
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
+          >
+            Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+          >
+            Explore Features
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
         </div>
+
+        {/* Horizontal Scrolling Cards Container */}
+        <div className="flex-1 overflow-hidden flex items-center">
+          <motion.div 
+            style={{ x }}
+            className="flex gap-6 px-8"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                whileHover={{ 
+                  y: -12,
+                  scale: 1.03,
+                  transition: { duration: 0.2 }
+                }}
+                className="relative w-[400px] h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Dark gradient overlay - stronger at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
+
+                {/* Tags at top */}
+                <div className="absolute top-6 left-6 flex gap-2 flex-wrap z-20">
+                  {feature.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 rounded-full text-white text-xs font-semibold bg-white/20 backdrop-blur-md border border-white/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Content at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
+                  {/* Icon with colored background */}
+                  <div className={`w-14 h-14 flex items-center justify-center bg-gradient-to-br ${feature.gradient} rounded-2xl shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
+                    <feature.icon className="w-8 h-8" strokeWidth={2.5} />
+                  </div>
+
+                  {/* Text */}
+                  <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
+                  <p className="text-white/90 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="text-center mt-6 text-sm text-gray-400 flex-shrink-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          <p>Scroll to explore all features →</p>
+        </motion.div>
+
       </div>
     </section>
   );
