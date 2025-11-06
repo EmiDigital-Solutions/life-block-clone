@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import {
   CheckCircle2,
   Shield,
@@ -35,11 +33,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const Auditors = () => {
+const AuditorsSection = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -257,20 +252,22 @@ const Auditors = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-
+    <div id="auditors" className="bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-background to-primary/5">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         
         <motion.div
-          style={{ opacity, scale }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="container mx-auto px-4 z-10 text-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
@@ -919,10 +916,8 @@ const Auditors = () => {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };
 
-export default Auditors;
+export default AuditorsSection;
