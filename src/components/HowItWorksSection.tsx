@@ -1022,7 +1022,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full max-w-[220px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
+                  className="w-full max-w-[264px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
                 >
                   <div 
                     className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
