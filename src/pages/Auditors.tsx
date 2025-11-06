@@ -809,10 +809,11 @@ const TechnologyFeaturesSection = () => {
   ];
 
   // Transform vertical scroll to horizontal movement
+  // Cards move during middle 60% of scroll to eliminate dead space
   const x = useTransform(
     scrollYProgress,
-    [0, 1],
-    [isMobile ? 0 : 0, isMobile ? 0 : scrollDistance]
+    [0, 0.2, 0.8, 1],
+    [0, 0, -2600, -2600]
   );
 
   // Mobile carousel - render differently
@@ -901,7 +902,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[500vh]"
+      className="relative h-[300vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
