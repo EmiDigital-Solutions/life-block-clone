@@ -1193,25 +1193,25 @@ const ScrollZoomSection = () => {
     offset: ["start end", "end start"]
   });
   
-  // Transform scroll to scale: starts at 1.2 (zoomed in), ends at 1.0 (normal)
-  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+  // Scale the ENTIRE CARD from 50% to 100%
+  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
   
   return (
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="py-20 px-4 sm:px-6 lg:px-12"
+      className="py-20 px-4 sm:px-6 lg:px-12 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
-        {/* Image Container with extreme rounded corners */}
-        <div className="relative rounded-[48px] overflow-hidden h-[500px] md:h-[600px] lg:h-[700px]">
-          
-          {/* Animated Image Layer */}
-          <motion.div
-            style={{ scale }}
-            className="absolute inset-0"
-          >
+        
+        {/* ENTIRE CARD scales from 50% to 100% */}
+        <motion.div
+          style={{ scale }}
+          className="relative rounded-[48px] overflow-hidden h-[500px] md:h-[600px] lg:h-[700px]"
+        >
+          {/* Image Layer - Static, no animation */}
+          <div className="absolute inset-0">
             <img 
               src={digitalCollaboration}
               alt="Professional auditors collaborating"
@@ -1219,7 +1219,7 @@ const ScrollZoomSection = () => {
             />
             {/* Dark overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-          </motion.div>
+          </div>
           
           {/* Text Content Overlay - Centered */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12">
@@ -1253,14 +1253,15 @@ const ScrollZoomSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
               whileHover={{ scale: 1.05 }}
-              className="mt-8 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-white/90 transition-all duration-300 shadow-xl hover:shadow-2xl group"
+              className="mt-8 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl group"
             >
               Partner with us
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
             
           </div>
-        </div>
+        </motion.div>
+        
       </div>
     </section>
   );
