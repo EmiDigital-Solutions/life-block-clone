@@ -210,8 +210,8 @@ const Auditors = () => {
                 >
                   <div className="absolute inset-0 blur-3xl bg-white/10 scale-150 -z-10"></div>
                   
-                <div className="relative h-[240px] sm:h-[280px] lg:h-[320px] flex items-center justify-center">
-                  {auditorProfiles.map((auditor, index) => {
+                  <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
+                    {auditorProfiles.map((auditor, index) => {
                       const style = getCardStyle(index, auditorProfiles.length);
                       
                       return (
@@ -242,15 +242,15 @@ const Auditors = () => {
                           }}
                         >
                           <div
-                            className={`relative w-36 h-44 sm:w-42 sm:h-52 lg:w-44 lg:h-60 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
                               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                             }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                             
-                            <div className="absolute inset-0 flex items-center justify-center pt-3 sm:pt-4">
-                              <div className="relative w-22 h-22 sm:w-26 sm:h-26 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
+                              <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white/10">
                                 <img
                                   src={auditor.image}
                                   alt={auditor.name}

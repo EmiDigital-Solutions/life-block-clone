@@ -227,7 +227,7 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[280px] sm:h-[360px] lg:h-[400px] xl:h-[440px] flex items-center justify-center">
+                <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] xl:h-[550px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-42 h-52 sm:w-48 sm:h-64 lg:w-58 lg:h-80 xl:w-64 xl:h-[336px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-52 h-64 sm:w-60 sm:h-80 lg:w-72 lg:h-96 xl:w-80 xl:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -269,8 +269,8 @@ const HeroSection = () => {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-8">
-                            <div className="relative w-26 h-26 sm:w-32 sm:h-32 lg:w-38 lg:h-38 xl:w-42 xl:h-42 rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-10">
+                            <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -285,12 +285,12 @@ const HeroSection = () => {
                             </div>
                           </div>
 
-                          <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-0 right-0 flex justify-center px-3 sm:px-4">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 w-full">
-                              <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-base text-center">
+                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 flex justify-center px-4 sm:px-6">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 w-full">
+                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-lg text-center">
                                 {auditor.location}
                               </p>
-                              <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-sm text-center">
+                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-base text-center">
                                 {auditor.region}
                               </p>
                             </div>
