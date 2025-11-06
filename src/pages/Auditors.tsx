@@ -301,108 +301,71 @@ const Auditors = () => {
             </div>
           </div>
 
-          {/* Animated Company Names Band - Inside Hero */}
-          <div className="absolute bottom-0 left-0 right-0 py-6 overflow-hidden border-t border-white/20">
-            <div className="flex whitespace-nowrap">
-              <motion.div
-                animate={{ x: [0, -1920] }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 40,
-                    ease: "linear",
-                  },
-                }}
-                className="flex items-center gap-12 pr-12"
-              >
-                {[...Array(3)].map((_, index) => (
-                  <div key={`auditor-band1-${index}`} className="flex items-center gap-12">
-                    <div className="flex items-center gap-3">
-                      <span className="text-white/70 text-xs font-medium">Trusted by</span>
+          {/* Animated Company Names Band - White Background */}
+          <div className="absolute bottom-0 left-0 right-0 py-6 overflow-hidden bg-white border-t border-gray-200">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-4">
+                <span className="text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
+              </div>
+              <div className="flex whitespace-nowrap">
+                <motion.div
+                  animate={{ x: [0, -1920] }}
+                  transition={{
+                    x: {
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      duration: 40,
+                      ease: "linear",
+                    },
+                  }}
+                  className="flex items-center gap-12 pr-12"
+                >
+                  {[...Array(3)].map((_, index) => (
+                    <div key={`auditor-band1-${index}`} className="flex items-center gap-12">
+                      <span className="text-lg font-bold text-gray-800">BMW</span>
+                      <span className="text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
+                      <span className="text-lg font-bold text-gray-800">LINDE</span>
+                      <span className="text-lg font-bold text-gray-800">BOSCH</span>
+                      <span className="text-lg font-bold text-gray-800">SIEMENS</span>
+                      <span className="text-lg font-bold text-gray-800">VOLKSWAGEN</span>
+                      <span className="text-lg font-bold text-gray-800">AUDI</span>
+                      <span className="text-lg font-bold text-gray-800">CONTINENTAL</span>
                     </div>
-                    <span className="text-lg font-bold text-white/90">BMW</span>
-                    <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
-                    <span className="text-lg font-bold text-white/90">LINDE</span>
-                    <span className="text-lg font-bold text-white/90">BOSCH</span>
-                    <span className="text-lg font-bold text-white/90">SIEMENS</span>
-                    <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
-                    <span className="text-lg font-bold text-white/90">AUDI</span>
-                    <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
-                  </div>
-                ))}
-              </motion.div>
-              <motion.div
-                animate={{ x: [0, -1920] }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 40,
-                    ease: "linear",
-                  },
-                }}
-                className="flex items-center gap-12 pr-12"
-                aria-hidden="true"
-              >
-                {[...Array(3)].map((_, index) => (
-                  <div key={`auditor-band2-${index}`} className="flex items-center gap-12">
-                    <div className="flex items-center gap-3">
-                      <span className="text-white/70 text-xs font-medium">Trusted by</span>
+                  ))}
+                </motion.div>
+                <motion.div
+                  animate={{ x: [0, -1920] }}
+                  transition={{
+                    x: {
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      duration: 40,
+                      ease: "linear",
+                    },
+                  }}
+                  className="flex items-center gap-12 pr-12"
+                  aria-hidden="true"
+                >
+                  {[...Array(3)].map((_, index) => (
+                    <div key={`auditor-band2-${index}`} className="flex items-center gap-12">
+                      <span className="text-lg font-bold text-gray-800">BMW</span>
+                      <span className="text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
+                      <span className="text-lg font-bold text-gray-800">LINDE</span>
+                      <span className="text-lg font-bold text-gray-800">BOSCH</span>
+                      <span className="text-lg font-bold text-gray-800">SIEMENS</span>
+                      <span className="text-lg font-bold text-gray-800">VOLKSWAGEN</span>
+                      <span className="text-lg font-bold text-gray-800">AUDI</span>
+                      <span className="text-lg font-bold text-gray-800">CONTINENTAL</span>
                     </div>
-                    <span className="text-lg font-bold text-white/90">BMW</span>
-                    <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
-                    <span className="text-lg font-bold text-white/90">LINDE</span>
-                    <span className="text-lg font-bold text-white/90">BOSCH</span>
-                    <span className="text-lg font-bold text-white/90">SIEMENS</span>
-                    <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
-                    <span className="text-lg font-bold text-white/90">AUDI</span>
-                    <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
-                  </div>
-                ))}
-              </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Scroll-Zoom Section */}
         <ScrollZoomSection />
-
-        {/* Client Logo Section */}
-        <section
-          data-nav-theme="light"
-          className="relative py-16 px-6 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
-        >
-          <div className="container mx-auto">
-            <div className="text-center space-y-8">
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-gray-600 text-sm font-medium"
-              >
-                Trusted by Global Industry Leaders
-              </motion.p>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8 items-center max-w-5xl mx-auto">
-                {["BMW", "MERCEDES-BENZ", "LINDE", "BOSCH", "SIEMENS"].map((name, index) => (
-                  <motion.div 
-                    key={name} 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center justify-center h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-4"
-                  >
-                    <span className="text-base lg:text-lg font-bold text-gray-700">{name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Value Proposition Section */}
         <ValuePropositionSection />

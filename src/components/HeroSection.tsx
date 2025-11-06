@@ -311,66 +311,65 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Animated Company Names Band - Inside Hero */}
-        <div className="absolute bottom-0 left-0 right-0 py-6 overflow-hidden border-t border-cyan-400/20">
-          <div className="flex whitespace-nowrap">
-            <motion.div
-              animate={{ x: [0, -1920] }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 40,
-                  ease: "linear",
-                },
-              }}
-              className="flex items-center gap-12 pr-12"
-            >
-              {[...Array(3)].map((_, index) => (
-                <div key={`band1-${index}`} className="flex items-center gap-12">
-                  <div className="flex items-center gap-3">
-                    <span className="text-white/60 text-xs font-medium">Trusted by</span>
+        {/* Animated Company Names Band - White Background */}
+        <div className="absolute bottom-0 left-0 right-0 py-4 overflow-hidden bg-white border-t border-gray-200">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-3">
+              <span className="text-xs sm:text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
+            </div>
+            <div className="flex whitespace-nowrap">
+              <motion.div
+                animate={{ x: [0, -1920] }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 40,
+                    ease: "linear",
+                  },
+                }}
+                className="flex items-center gap-8 sm:gap-12 pr-8 sm:pr-12"
+              >
+                {[...Array(3)].map((_, index) => (
+                  <div key={`band1-${index}`} className="flex items-center gap-8 sm:gap-12">
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">BMW</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">LINDE</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">BOSCH</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">SIEMENS</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">VOLKSWAGEN</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">AUDI</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">CONTINENTAL</span>
                   </div>
-                  <span className="text-lg font-bold text-white/90">BMW</span>
-                  <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
-                  <span className="text-lg font-bold text-white/90">LINDE</span>
-                  <span className="text-lg font-bold text-white/90">BOSCH</span>
-                  <span className="text-lg font-bold text-white/90">SIEMENS</span>
-                  <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
-                  <span className="text-lg font-bold text-white/90">AUDI</span>
-                  <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
-                </div>
-              ))}
-            </motion.div>
-            <motion.div
-              animate={{ x: [0, -1920] }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 40,
-                  ease: "linear",
-                },
-              }}
-              className="flex items-center gap-12 pr-12"
-              aria-hidden="true"
-            >
-              {[...Array(3)].map((_, index) => (
-                <div key={`band2-${index}`} className="flex items-center gap-12">
-                  <div className="flex items-center gap-3">
-                    <span className="text-white/60 text-xs font-medium">Trusted by</span>
+                ))}
+              </motion.div>
+              <motion.div
+                animate={{ x: [0, -1920] }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 40,
+                    ease: "linear",
+                  },
+                }}
+                className="flex items-center gap-8 sm:gap-12 pr-8 sm:pr-12"
+                aria-hidden="true"
+              >
+                {[...Array(3)].map((_, index) => (
+                  <div key={`band2-${index}`} className="flex items-center gap-8 sm:gap-12">
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">BMW</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">LINDE</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">BOSCH</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">SIEMENS</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">VOLKSWAGEN</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">AUDI</span>
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-gray-800">CONTINENTAL</span>
                   </div>
-                  <span className="text-lg font-bold text-white/90">BMW</span>
-                  <span className="text-lg font-bold text-white/90">MERCEDES-BENZ</span>
-                  <span className="text-lg font-bold text-white/90">LINDE</span>
-                  <span className="text-lg font-bold text-white/90">BOSCH</span>
-                  <span className="text-lg font-bold text-white/90">SIEMENS</span>
-                  <span className="text-lg font-bold text-white/90">VOLKSWAGEN</span>
-                  <span className="text-lg font-bold text-white/90">AUDI</span>
-                  <span className="text-lg font-bold text-white/90">CONTINENTAL</span>
-                </div>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
