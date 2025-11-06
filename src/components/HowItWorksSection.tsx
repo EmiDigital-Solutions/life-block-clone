@@ -1011,7 +1011,7 @@ export const HowItWorksSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto"
             >
               {currentStep.screenshots.map((screenshot, index) => (
                 <motion.button
@@ -1022,7 +1022,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full max-w-[264px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
+                  className="w-full max-w-[300px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
                 >
                   <div 
                     className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
