@@ -256,17 +256,17 @@ export const HowItWorksSection = () => {
               <div 
                 className="w-24 h-24 rounded-full flex items-center justify-center relative"
                 style={{ 
-                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))',
-                  border: '2px solid rgba(16, 185, 129, 0.4)',
+                  background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.15), hsl(var(--content-accent) / 0.05))',
+                  border: '2px solid hsl(var(--content-accent) / 0.4)',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
+                  boxShadow: "0 0 30px hsl(var(--content-accent) / 0.3), inset 0 0 30px hsl(var(--content-accent) / 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
                 }}
               >
                 {/* Inner circle */}
                 <div 
                   className="w-20 h-20 rounded-full flex items-center justify-center"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))',
+                    background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.3), hsl(var(--content-accent) / 0.1))',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}
                 >
@@ -277,14 +277,15 @@ export const HowItWorksSection = () => {
               </div>
               {/* Premium badge counter */}
               <div 
-                className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full flex items-center justify-center"
+                className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
-                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1)',
+                  background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.2), hsl(var(--content-accent) / 0.1))',
+                  border: '1.5px solid hsl(var(--content-accent) / 0.5)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: "0 0 20px hsl(var(--content-accent) / 0.4), inset 0 0 15px hsl(var(--content-accent) / 0.15)",
                 }}
               >
-                <span className="text-sm font-light text-gray-800">{processedSteps.length}</span>
+                <span className="text-xs font-light text-white">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -458,17 +459,17 @@ export const HowItWorksSection = () => {
               <div 
                 className="w-28 h-28 rounded-full flex items-center justify-center relative"
                 style={{ 
-                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))',
-                  border: '2px solid rgba(16, 185, 129, 0.4)',
+                  background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.15), hsl(var(--content-accent) / 0.05))',
+                  border: '2px solid hsl(var(--content-accent) / 0.4)',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
+                  boxShadow: "0 0 30px hsl(var(--content-accent) / 0.3), inset 0 0 30px hsl(var(--content-accent) / 0.1), 0 10px 40px -10px rgba(0, 0, 0, 0.3)",
                 }}
               >
                 {/* Inner circle */}
                 <div 
                   className="w-24 h-24 rounded-full flex items-center justify-center"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))',
+                    background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.3), hsl(var(--content-accent) / 0.1))',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}
                 >
@@ -479,14 +480,15 @@ export const HowItWorksSection = () => {
               </div>
               {/* Premium badge counter */}
               <div 
-                className="absolute -bottom-2 -right-2 w-11 h-11 rounded-full flex items-center justify-center"
+                className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full flex items-center justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
-                  border: '1.5px solid rgba(16, 185, 129, 0.3)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1)',
+                  background: 'linear-gradient(135deg, hsl(var(--content-accent) / 0.2), hsl(var(--content-accent) / 0.1))',
+                  border: '1.5px solid hsl(var(--content-accent) / 0.5)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: "0 0 20px hsl(var(--content-accent) / 0.4), inset 0 0 15px hsl(var(--content-accent) / 0.15)",
                 }}
               >
-                <span className="text-base font-light text-gray-800">{processedSteps.length}</span>
+                <span className="text-sm font-light text-white">{processedSteps.length}</span>
               </div>
             </div>
           </motion.div>
@@ -785,18 +787,18 @@ export const HowItWorksSection = () => {
                                     style={{
                                       width: isActive ? '48px' : '40px',
                                       height: isActive ? '48px' : '40px',
-                                      background: isActive 
-                                        ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))'
+                                       background: isActive 
+                                        ? 'linear-gradient(135deg, hsl(var(--content-accent) / 0.15), hsl(var(--content-accent) / 0.05))'
                                         : 'transparent',
                                       border: isActive 
-                                        ? '1.5px solid rgba(16, 185, 129, 0.4)'
+                                        ? '1.5px solid hsl(var(--content-accent) / 0.4)'
                                         : '1px solid rgba(255, 255, 255, 0.2)',
                                       backdropFilter: 'blur(10px)',
                                       zIndex: 10,
                                     }}
                                     animate={{
                                       boxShadow: isActive
-                                        ? "0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.1)"
+                                        ? "0 0 20px hsl(var(--content-accent) / 0.3), inset 0 0 20px hsl(var(--content-accent) / 0.1)"
                                         : "0 0 0px rgba(255, 255, 255, 0)",
                                     }}
                                     transition={{ duration: 0.3, ease: "easeOut" }}
@@ -808,7 +810,7 @@ export const HowItWorksSection = () => {
                                         width: isActive ? '36px' : '30px',
                                         height: isActive ? '36px' : '30px',
                                         background: isActive 
-                                          ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))'
+                                          ? 'linear-gradient(135deg, hsl(var(--content-accent) / 0.3), hsl(var(--content-accent) / 0.1))'
                                           : 'rgba(75, 85, 99, 0.4)',
                                         border: '1px solid rgba(255, 255, 255, 0.1)',
                                       }}
@@ -899,18 +901,18 @@ export const HowItWorksSection = () => {
                                     style={{
                                       width: isActive ? '48px' : '40px',
                                       height: isActive ? '48px' : '40px',
-                                      background: isActive 
-                                        ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))'
+                                       background: isActive 
+                                        ? 'linear-gradient(135deg, hsl(var(--content-accent) / 0.15), hsl(var(--content-accent) / 0.05))'
                                         : 'transparent',
                                       border: isActive 
-                                        ? '1.5px solid rgba(16, 185, 129, 0.4)'
+                                        ? '1.5px solid hsl(var(--content-accent) / 0.4)'
                                         : '1px solid rgba(255, 255, 255, 0.2)',
                                       backdropFilter: 'blur(10px)',
                                       zIndex: 10,
                                     }}
                                     animate={{
                                       boxShadow: isActive
-                                        ? "0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.1)"
+                                        ? "0 0 20px hsl(var(--content-accent) / 0.3), inset 0 0 20px hsl(var(--content-accent) / 0.1)"
                                         : "0 0 0px rgba(255, 255, 255, 0)",
                                     }}
                                     transition={{ duration: 0.3, ease: "easeOut" }}
@@ -922,7 +924,7 @@ export const HowItWorksSection = () => {
                                         width: isActive ? '36px' : '30px',
                                         height: isActive ? '36px' : '30px',
                                         background: isActive 
-                                          ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1))'
+                                          ? 'linear-gradient(135deg, hsl(var(--content-accent) / 0.3), hsl(var(--content-accent) / 0.1))'
                                           : 'rgba(75, 85, 99, 0.4)',
                                         border: '1px solid rgba(255, 255, 255, 0.1)',
                                       }}
@@ -1046,6 +1048,13 @@ export const HowItWorksSection = () => {
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     )}
+
+                    {/* Step Badge */}
+                    <div className="absolute -top-2 -left-2 w-10 h-10 rounded-full bg-gradient-to-br from-[hsl(var(--content-accent))]/10 to-[hsl(var(--content-accent))]/20 backdrop-blur-sm border border-[hsl(var(--content-accent))]/30 flex items-center justify-center shadow-[0_0_15px_hsl(var(--content-accent)/0.15)] transition-all duration-300 ease-out">
+                      <span className="text-base font-light text-[hsl(var(--content-accent))]">
+                        {activeStep + 1}
+                      </span>
+                    </div>
 
                     <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex justify-center px-2 md:px-3">
                       <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 md:px-4 py-1 md:py-1.5 w-full">
