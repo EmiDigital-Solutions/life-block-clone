@@ -998,12 +998,9 @@ export const HowItWorksSection = () => {
               transition={{ duration: 0.3 }}
               className="mb-6 text-center max-w-3xl"
             >
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg mb-3 text-white">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg text-white">
                 {currentStep.title}
               </h3>
-              <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                {currentStep.description}
-              </p>
             </motion.div>
           </AnimatePresence>
 
@@ -1025,7 +1022,7 @@ export const HowItWorksSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full max-w-[200px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
+                  className="w-full max-w-[220px] mx-auto aspect-[3/4] cursor-pointer focus:outline-none"
                 >
                   <div 
                     className={`relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br ${screenshotGradients[index]}`}
