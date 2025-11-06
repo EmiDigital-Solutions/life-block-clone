@@ -56,14 +56,9 @@ const Auditors = () => {
     { image: auditorFemaleEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
     { image: auditorFemaleAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-green-600 via-green-700 to-green-800" },
     { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
-    { image: auditorEuropean, name: "Quality Auditor", specialty: "VDA 6.3", location: "Europe", gradient: "from-green-600 via-green-700 to-green-800" },
     { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorAsian, name: "Technical Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-gray-800 via-gray-900 to-black" },
-    { image: auditorAfrican, name: "Systems Auditor", specialty: "Quality Management", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
-    { image: auditorFemaleSouthAsian, name: "Risk Auditor", specialty: "IATF Standards", location: "South Asia", gradient: "from-green-600 via-green-700 to-green-800" },
-    { image: auditorMaleNorthAmerica, name: "Lead Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorFemaleOceania, name: "Senior Auditor", specialty: "ISO 9001", location: "Oceania", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: auditorMaleNorthAmerica, name: "Technical Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-gray-800 via-gray-900 to-black" },
   ];
 
   useEffect(() => {
