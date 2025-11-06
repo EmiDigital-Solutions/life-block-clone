@@ -759,7 +759,7 @@ const TechnologyFeaturesSection = () => {
 
 // DO/DON'T TOGGLE SECTION
 const DoVsDontSection = () => {
-  const [isDoState, setIsDoState] = useState(true);
+  const [isDoState, setIsDoState] = useState(false); // Start with "don't partner" state
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -847,8 +847,8 @@ const DoVsDontSection = () => {
           className="flex items-center gap-2 mb-6"
         >
           <div className="flex items-center gap-1">
-            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-green-600' : 'bg-gray-400'}`} />
-            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-gray-300' : 'bg-red-600'}`} />
+            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-gray-300' : 'bg-blue-600'}`} />
+            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-green-600' : 'bg-gray-300'}`} />
           </div>
           <span className="text-sm font-semibold text-gray-600">What Is The Difference?</span>
         </motion.div>
@@ -902,10 +902,12 @@ const DoVsDontSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
             whileHover={{ scale: 1.05 }}
-            className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-green-700 transition-all shadow-lg group"
+            className="bg-blue-600 text-white pl-8 pr-3 py-3 rounded-full font-semibold text-lg flex items-center gap-4 hover:bg-blue-700 transition-all shadow-lg group"
           >
-            Partner with us
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span>Partner with us</span>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+              <ArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+            </div>
           </motion.button>
         </div>
 
