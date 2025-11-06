@@ -227,7 +227,7 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] xl:h-[550px] flex items-center justify-center">
+                <div className="relative h-[280px] sm:h-[360px] lg:h-[400px] xl:h-[440px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-52 h-64 sm:w-60 sm:h-80 lg:w-72 lg:h-96 xl:w-80 xl:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-42 h-51 sm:w-48 sm:h-64 lg:w-58 lg:h-77 xl:w-64 xl:h-[336px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -270,7 +270,7 @@ const HeroSection = () => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-10">
-                            <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="relative w-26 h-26 sm:w-32 sm:h-32 lg:w-38 lg:h-38 xl:w-42 xl:h-42 rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
