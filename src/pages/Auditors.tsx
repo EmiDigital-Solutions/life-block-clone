@@ -353,8 +353,8 @@ const Auditors = () => {
         {/* Technology Features */}
         <TechnologyFeaturesSection />
 
-        {/* Problems We Solve */}
-        <ProblemsSection />
+        {/* Do vs Don't Toggle Section */}
+        <DoVsDontSection />
 
         {/* Success Stories */}
         <SuccessStoriesSection />
@@ -757,84 +757,229 @@ const TechnologyFeaturesSection = () => {
   );
 };
 
-// PROBLEMS SECTION
-const ProblemsSection = () => {
+// DO/DON'T TOGGLE SECTION
+const DoVsDontSection = () => {
+  const [isDoState, setIsDoState] = useState(true);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const comparisons = [
-    { problem: "Low audit fees and race-to-bottom pricing", solution: "Premium compensation reflecting your expertise (€2,500+ per assignment)" },
-    { problem: "Inconsistent workload and income instability", solution: "Steady flow of enterprise clients through strategic matching" },
-    { problem: "Time pressure compromising audit quality", solution: "Realistic timelines that maintain professional standards" },
-    { problem: "Administrative burden and outdated systems", solution: "Modern platform handling logistics, payments, and documentation" },
-    { problem: "Limited career growth and recognition", solution: "Professional development opportunities and industry visibility" },
-    { problem: "Isolation from professional community", solution: "Network with elite auditors serving Fortune 500 companies" },
+  const doContent = [
+    {
+      icon: TrendingUp,
+      title: "Premium Compensation",
+      description: "€2,500+ per assignment with transparent pricing that reflects your professional expertise and certification level"
+    },
+    {
+      icon: Target,
+      title: "Strategic Matching",
+      description: "AI-powered system connects you with Fortune 500 clients that perfectly match your specialization and experience"
+    },
+    {
+      icon: Shield,
+      title: "Quality Standards",
+      description: "Realistic timelines and workload that respect audit quality and professional standards without time pressure"
+    },
+    {
+      icon: Building2,
+      title: "Elite Client Network",
+      description: "Work with BMW, Mercedes-Benz, Linde and other global leaders who value professional excellence"
+    },
+    {
+      icon: BookOpen,
+      title: "Professional Growth",
+      description: "Continuous development opportunities, industry recognition, and mentorship from experienced auditors"
+    },
+    {
+      icon: Zap,
+      title: "Modern Platform",
+      description: "Enterprise-grade digital tools handling scheduling, documentation, payments, and client communication seamlessly"
+    },
   ];
+
+  const dontContent = [
+    {
+      icon: DollarSign,
+      title: "Race-to-Bottom Pricing",
+      description: "Traditional platforms and firms take significant cuts, leaving you with low fees that don't reflect your expertise"
+    },
+    {
+      icon: Calendar,
+      title: "Inconsistent Workload",
+      description: "Unpredictable client flow and income instability make it difficult to build a sustainable audit practice"
+    },
+    {
+      icon: X,
+      title: "Time Pressure",
+      description: "Unrealistic deadlines and high-volume expectations compromise audit quality and professional standards"
+    },
+    {
+      icon: Users,
+      title: "Limited Opportunities",
+      description: "Geographic constraints and lack of client diversity restrict your professional growth and earning potential"
+    },
+    {
+      icon: Search,
+      title: "No Career Support",
+      description: "Isolation from professional community with no mentorship, training, or development resources available"
+    },
+    {
+      icon: Lock,
+      title: "Outdated Systems",
+      description: "Manual processes, paperwork burden, and legacy software create inefficiency and administrative headaches"
+    },
+  ];
+
+  const currentContent = isDoState ? doContent : dontContent;
 
   return (
     <section 
-      ref={ref} 
+      ref={ref}
       data-nav-theme="light"
       className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.div
+        
+        {/* Label */}
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="flex items-center gap-2 mb-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-green-600">Professional Challenges</span> We Address
-          </h2>
-          <p className="text-xl text-gray-600">
-            Moving beyond traditional audit industry problems
-          </p>
+          <div className="flex items-center gap-1">
+            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-green-600' : 'bg-gray-400'}`} />
+            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-gray-300' : 'bg-red-600'}`} />
+          </div>
+          <span className="text-sm font-semibold text-gray-600">What Is The Difference?</span>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
+        {/* Main Headline with Toggle */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap items-center gap-4"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Traditional Challenges</h3>
-            {comparisons.map((item, index) => (
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+              When auditors
+            </h2>
+            
+            <motion.span
+              key={isDoState ? 'do' : 'dont'}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold ${
+                isDoState ? 'text-green-600' : 'text-red-600'
+              }`}
+            >
+              {isDoState ? 'partner' : "don't partner"}
+            </motion.span>
+
+            {/* Toggle Switch */}
+            <button
+              onClick={() => setIsDoState(!isDoState)}
+              className={`relative w-20 h-10 rounded-full transition-all duration-300 ${
+                isDoState ? 'bg-green-600' : 'bg-gray-400'
+              }`}
+              aria-label="Toggle between partner and don't partner"
+            >
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-3 bg-red-50 p-4 rounded-lg border border-red-200"
-              >
-                <X className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-gray-700">{item.problem}</p>
-              </motion.div>
-            ))}
+                className="absolute top-1 left-1 w-8 h-8 bg-white rounded-full shadow-lg"
+                animate={{ x: isDoState ? 40 : 0 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            </button>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+              with us.
+            </h2>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            whileHover={{ scale: 1.05 }}
+            className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-green-700 transition-all shadow-lg group"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Solutions</h3>
-            {comparisons.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start gap-3 bg-green-50 p-4 rounded-lg border border-green-200"
-              >
-                <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                <p className="text-gray-700">{item.solution}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+            Partner with us
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.button>
         </div>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
+          className="text-lg text-gray-600 mb-16 max-w-3xl lg:ml-auto"
+        >
+          {isDoState 
+            ? "Experience premium compensation, strategic partnerships, and professional growth when joining our elite auditor network."
+            : "Avoid the traditional challenges that limit your practice: low fees, inconsistent work, and lack of professional development."}
+        </motion.p>
+
+        {/* Animated Grid */}
+        <motion.div layout className="relative">
+          <motion.div
+            key={isDoState ? 'do' : 'dont'}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {currentContent.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={`${isDoState ? 'do' : 'dont'}-${item.title}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: index * 0.05, 
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ 
+                    y: -8, 
+                    boxShadow: isDoState 
+                      ? '0 12px 24px rgba(34, 197, 94, 0.2)' 
+                      : '0 12px 24px rgba(239, 68, 68, 0.2)'
+                  }}
+                  className="bg-white border border-gray-200 rounded-2xl p-8 transition-all"
+                >
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      delay: index * 0.05 + 0.2,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
+                      isDoState 
+                        ? 'bg-gradient-to-br from-green-500 to-green-600' 
+                        : 'bg-gradient-to-br from-red-500 to-red-600'
+                    }`}
+                  >
+                    <Icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </motion.div>
+
       </div>
     </section>
   );
