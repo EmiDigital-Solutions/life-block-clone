@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   Calendar,
   Users,
@@ -34,6 +34,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -300,6 +301,9 @@ const Auditors = () => {
             </div>
           </div>
         </section>
+
+        {/* Scroll-Zoom Section */}
+        <ScrollZoomSection />
 
         {/* Client Logo Section */}
         <section
@@ -1026,6 +1030,89 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
               </motion.div>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// SCROLL-ZOOM SECTION
+const ScrollZoomSection = () => {
+  const containerRef = useRef(null);
+  
+  // Track scroll progress of this section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Transform scroll to scale: starts at 1.2 (zoomed in), ends at 1.0 (normal)
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+  
+  return (
+    <section 
+      ref={containerRef} 
+      data-nav-theme="light"
+      className="py-20 px-4 sm:px-6 lg:px-12"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Image Container with extreme rounded corners */}
+        <div className="relative rounded-[48px] overflow-hidden h-[500px] md:h-[600px] lg:h-[700px]">
+          
+          {/* Animated Image Layer */}
+          <motion.div
+            style={{ scale }}
+            className="absolute inset-0"
+          >
+            <img 
+              src={digitalCollaboration}
+              alt="Professional auditors collaborating"
+              className="w-full h-full object-cover"
+            />
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+          </motion.div>
+          
+          {/* Text Content Overlay - Centered */}
+          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12">
+            
+            {/* Headline */}
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight"
+            >
+              Let's build excellence in auditing together
+            </motion.h2>
+            
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-6 text-base md:text-lg lg:text-xl text-white/95 max-w-3xl leading-relaxed"
+            >
+              We connect certified professional auditors with Fortune 500 companies that value quality and expertise. Through innovative technology and strategic partnerships, we're elevating the audit profession to new standards of excellence.
+            </motion.p>
+            
+            {/* CTA Button */}
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              className="mt-8 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-white/90 transition-all duration-300 shadow-xl hover:shadow-2xl group"
+            >
+              Partner with us
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </motion.button>
+            
+          </div>
         </div>
       </div>
     </section>
