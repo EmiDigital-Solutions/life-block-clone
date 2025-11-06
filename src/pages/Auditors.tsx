@@ -793,14 +793,17 @@ const TechnologyFeaturesSection = () => {
   // Calculate total width of cards (400px card + 24px gap) * number of cards
   const cardWidth = 400;
   const gap = 24;
-  const totalCardsWidth = features.length * (cardWidth + gap);
+  const totalCardsWidth = features.length * (cardWidth + gap) - gap; // Remove last gap
+  
+  // Calculate viewport width (leaving some padding on right)
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth - 200 : 1000;
   
   // Transform scroll progress to horizontal movement
-  // On desktop only - mobile uses carousel
+  // Ensure all cards scroll fully from right to left before moving to next section
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, isMobile ? 0 : -(totalCardsWidth - (typeof window !== 'undefined' ? window.innerWidth * 0.6 : 800))]
+    [0, isMobile ? 0 : -(totalCardsWidth - viewportWidth)]
   );
 
   // Mobile carousel - render differently
@@ -892,95 +895,92 @@ const TechnologyFeaturesSection = () => {
       className="relative h-[300vh]"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
         <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="flex gap-12">
-            {/* Left side - Fixed content (1/3) */}
-            <div className="w-full lg:w-1/3 flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="text-5xl lg:text-6xl font-bold text-green-600 mb-6">
-                  Enterprise Technology
-                </h2>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
-                </p>
-                <button className="group inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all duration-300">
-                  Explore Features
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-            </div>
+          {/* Top - Fixed content (centered above cards) */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl lg:text-6xl font-bold text-green-600 mb-6">
+              Enterprise Technology
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
+            </p>
+            <button className="group inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition-all duration-300">
+              Explore Features
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
 
-            {/* Right side - Horizontal scrolling cards (2/3) */}
-            <div className="hidden lg:block w-2/3 relative overflow-hidden">
-              <motion.div 
-                style={{ x }}
-                className="flex gap-6 will-change-transform"
-              >
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    whileHover={{ 
-                      y: -8,
-                      transition: { duration: 0.2 }
-                    }}
-                    className="relative w-[400px] h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0 group cursor-pointer"
-                  >
-                    {/* Background Image */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      <motion.img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.4 }}
-                      />
+          {/* Bottom - Horizontal scrolling cards (full width) */}
+          <div className="hidden lg:block relative overflow-hidden">
+            <motion.div 
+              style={{ x }}
+              className="flex gap-6 will-change-transform"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  whileHover={{ 
+                    y: -8,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="relative w-[400px] h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0 group cursor-pointer"
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <motion.img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  </div>
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+                  {/* Content */}
+                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                    {/* Tags */}
+                    <div className="flex gap-2">
+                      {feature.tags.map((tag, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-
-                    {/* Content */}
-                    <div className="relative z-10 p-6 h-full flex flex-col justify-between">
-                      {/* Tags */}
-                      <div className="flex gap-2">
-                        {feature.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Title and Description */}
-                      <div>
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
-                            <feature.icon className="w-6 h-6 text-white" />
-                          </div>
-                          <h3 className="text-2xl font-bold text-white">
-                            {feature.title}
-                          </h3>
+                    {/* Title and Description */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
+                          <feature.icon className="w-6 h-6 text-white" />
                         </div>
-                        <p className="text-sm text-white/90 leading-relaxed">
-                          {feature.description}
-                        </p>
+                        <h3 className="text-2xl font-bold text-white">
+                          {feature.title}
+                        </h3>
                       </div>
+                      <p className="text-sm text-white/90 leading-relaxed">
+                        {feature.description}
+                      </p>
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>
