@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import aiBadgeIllustration from "@/assets/ai-badge-illustration.png";
+import auditorImage from "@/assets/auditor-real-european.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
@@ -142,8 +142,8 @@ const AboutUs = () => {
                     }}
                   >
                     <img 
-                      src="/src/assets/about-hero-meeting.jpg" 
-                      alt="YVOO Team"
+                      src={auditorImage} 
+                      alt="YVOO Team Member"
                       className="w-full h-full object-cover"
                       style={{
                         transform: "scale(1.1)",
