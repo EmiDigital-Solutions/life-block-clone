@@ -226,8 +226,6 @@ const HeroSection = () => {
                 className="relative w-full"
                 style={{ perspective: "2000px" }}
               >
-                <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
-                
                 <div className="relative h-[375px] sm:h-[438px] lg:h-[210px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
