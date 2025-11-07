@@ -173,8 +173,7 @@ const AboutUs = () => {
                 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ color: "#1E2A3A" }}
               >
-                <span className="block">Scaling On-Site Audits</span>
-                <span className="block">Through Global Auditors Network and AI</span>
+                Scaling On-Site Audits
               </motion.h1>
             </motion.div>
             
