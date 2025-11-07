@@ -5,6 +5,9 @@ import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Pac
 import { useState } from "react";
 import { motion } from "framer-motion";
 import heroPersonImage from "@/assets/about-hero-person.png";
+import sustainabilityImage from "@/assets/about-sustainability.jpg";
+import timelineImage from "@/assets/about-timeline-2019.jpg";
+import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
@@ -454,7 +457,7 @@ const AboutUs = () => {
             >
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5]">
                 <img 
-                  src="/src/assets/about-sustainability.jpg" 
+                  src={sustainabilityImage} 
                   alt="Sustainable office building with green technology"
                   className="w-full h-full object-cover"
                 />
@@ -548,7 +551,7 @@ const AboutUs = () => {
                 <div className="grid md:grid-cols-5 gap-8">
                   <div className="md:col-span-3 relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video">
                     <img 
-                      src="/src/assets/about-timeline-2019.jpg" 
+                      src={timelineImage} 
                       alt={`Company milestone in ${selectedTimeline.year}`}
                       className="w-full h-full object-cover"
                     />
@@ -585,7 +588,7 @@ const AboutUs = () => {
             >
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3]">
                 <img 
-                  src="/src/assets/about-leadership-team.jpg" 
+                  src={leadershipTeamImage} 
                   alt="YVOO leadership team"
                   className="w-full h-full object-cover"
                 />
