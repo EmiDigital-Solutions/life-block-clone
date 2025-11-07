@@ -43,6 +43,7 @@ import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
+import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1480,7 +1481,7 @@ const ScrollZoomSection = () => {
     offset: ["start end", "end start"]
   });
   
-  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
   
   return (
     <section 
@@ -1491,36 +1492,37 @@ const ScrollZoomSection = () => {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* ENTIRE CARD scales from 50% to 100% */}
+        {/* ENTIRE CARD scales from 60% to 100% - zooms out to cover full section */}
         <motion.div
           style={{ scale }}
-          className="relative rounded-[48px] overflow-hidden h-[500px] md:h-[600px] lg:h-[700px]"
+          className="relative rounded-[48px] overflow-hidden h-[600px] md:h-[700px] lg:h-[800px]"
         >
           {/* Image Layer - Static, no animation */}
           <div className="absolute inset-0">
             <img 
-              src={digitalCollaboration}
-              alt="Professional auditors collaborating"
+              src={auditorFactoryTeam}
+              alt="Professional auditors working together in industrial setting"
               className="w-full h-full object-cover"
             />
             {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
           </div>
           
           {/* Text Content Overlay - Centered */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12">
             
-            {/* Section Title */}
+            {/* Logo/Icon */}
             <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-6"
+              className="mb-8"
             >
-              <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold text-white/90 border border-white/20">
-                Our Global Network
-              </span>
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-4 h-4 rounded-full bg-primary" />
+                <div className="w-4 h-4 rounded-full bg-white/40" />
+              </div>
             </motion.div>
 
             {/* Headline */}
@@ -1529,10 +1531,20 @@ const ScrollZoomSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4"
             >
-              Elite Auditors Serving Fortune 500 Excellence
+              We Develop Tech
             </motion.h2>
+
+            <motion.h3 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary max-w-4xl leading-tight"
+            >
+              Solutions That Matter
+            </motion.h3>
             
             {/* Subheadline */}
             <motion.p
@@ -1540,9 +1552,9 @@ const ScrollZoomSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 text-base md:text-lg lg:text-xl text-white/95 max-w-3xl leading-relaxed"
+              className="mt-8 text-base md:text-lg lg:text-xl text-white/95 max-w-3xl leading-relaxed"
             >
-              We connect certified professional auditors with Fortune 500 companies that value quality and expertise. Through innovative technology and strategic partnerships, we're elevating the audit profession to new standards of excellence.
+              We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
             </motion.p>
             
             {/* CTA Button */}
