@@ -486,7 +486,7 @@ const ValuePropositionSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
+      className="-mt-1 py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
