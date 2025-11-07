@@ -145,7 +145,7 @@ const AboutUs = () => {
                       alt="YVOO Professional"
                       className="w-full h-full object-cover"
                       style={{
-                        transform: "scale(0.85)",
+                        transform: "scale(1.25)",
                         objectPosition: "center center"
                       }}
                     />
