@@ -131,7 +131,7 @@ const AboutUs = () => {
                 >
                   {/* Circular Image Container */}
                   <div 
-                    className="relative overflow-hidden flex-shrink-0"
+                    className="relative overflow-visible flex-shrink-0"
                     style={{
                       width: "420px",
                       height: "420px",
@@ -147,7 +147,8 @@ const AboutUs = () => {
                       className="w-full h-full object-cover"
                       style={{
                         transform: "scale(1.13)",
-                        objectPosition: "58% 55%"
+                        objectPosition: "58% 55%",
+                        borderRadius: "50%"
                       }}
                     />
                     
@@ -159,7 +160,7 @@ const AboutUs = () => {
                       className="absolute"
                       style={{
                         bottom: "15%",
-                        right: "-15%",
+                        right: "-25%",
                         zIndex: 10
                       }}
                     >
@@ -209,7 +210,7 @@ const AboutUs = () => {
                       className="absolute"
                       style={{
                         top: "20%",
-                        right: "-10%",
+                        right: "-20%",
                         zIndex: 10
                       }}
                     >
