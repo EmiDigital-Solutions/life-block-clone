@@ -27,7 +27,7 @@ const GroundIntelligence = () => {
         id="hero"
       >
         <div className="container mx-auto">
-          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
+          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col space-y-4 text-white mx-auto sm:mx-0 mb-12"
+              className="flex flex-col space-y-4 text-white mx-0 mb-12"
             >
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
@@ -77,7 +77,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-auto sm:mx-0"
+              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-0"
             >
               <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
             </motion.p>
