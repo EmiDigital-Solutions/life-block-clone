@@ -101,34 +101,61 @@ const AboutUs = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div 
-                className="w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] rounded-[32px] md:rounded-[40px] p-8 sm:p-10 md:p-12"
+                className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[400px] h-[390px] sm:h-[460px] md:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
                 style={{
-                  background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
-                  boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
+                  boxShadow: `
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                    0 0 30px rgba(59, 130, 246, 0.2)
+                  `,
                 }}
                 whileHover={{
-                  scale: 1.02,
+                  scale: 1.05,
                   transition: { duration: 0.3 }
                 }}
               >
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                
                 {/* Circular Image */}
-                <div 
-                  className="relative w-full aspect-square rounded-full overflow-hidden"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.1)",
-                    border: "3px solid rgba(255, 255, 255, 0.2)",
-                  }}
-                >
-                  <img 
-                    src={heroPersonImage} 
-                    alt="YVOO Professional"
-                    className="w-full h-full object-cover"
-                    style={{
-                      transform: "scale(1.13)",
-                      objectPosition: "58% 55%",
-                    }}
-                  />
+                <div className="absolute inset-0 flex items-center justify-center pt-9 sm:pt-11 md:pt-14">
+                  <div className="relative w-[185px] h-[185px] sm:w-[215px] sm:h-[215px] md:w-[240px] md:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
+                    <img 
+                      src={heroPersonImage} 
+                      alt="YVOO Professional"
+                      className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                      style={{
+                        transform: "scale(1.13)",
+                        objectPosition: "58% 55%",
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                      style={{
+                        background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                      }}
+                    />
+                  </div>
                 </div>
+
+                {/* Bottom Label */}
+                <div className="absolute bottom-7 sm:bottom-9 md:bottom-14 left-0 right-0 flex justify-center px-8 sm:px-10">
+                  <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-8 sm:px-10 py-3.5 sm:py-4 w-full">
+                    <p className="text-white font-sans font-bold text-lg sm:text-2xl md:text-3xl text-center">
+                      Europe
+                    </p>
+                    <p className="text-white/80 font-sans text-base sm:text-xl md:text-2xl text-center">
+                      Central Europe
+                    </p>
+                  </div>
+                </div>
+
+                {/* Light gradient overlay */}
+                <div 
+                  className="absolute inset-0 pointer-events-none rounded-3xl"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                  }}
+                />
               </motion.div>
             </motion.div>
             
