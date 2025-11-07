@@ -156,8 +156,7 @@ const AboutUs = () => {
                 <div 
                   className="relative overflow-hidden aspect-[4/5] shadow-2xl"
                   style={{
-                    clipPath: "path('M 50,0 C 80,0 100,20 100,50 C 100,80 80,100 50,100 C 20,100 0,80 0,50 C 0,20 20,0 50,0 Z')",
-                    borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%"
+                    borderRadius: "63% 37% 54% 46% / 55% 48% 52% 45%"
                   }}
                 >
                   <img 
@@ -171,16 +170,16 @@ const AboutUs = () => {
                 <motion.div 
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-6 right-6 bg-blue-500 backdrop-blur-md rounded-2xl p-3 shadow-lg z-10"
+                  className="absolute top-12 right-8 bg-blue-500 backdrop-blur-md rounded-2xl p-3.5 shadow-lg z-10"
                 >
                   <Zap className="w-7 h-7 text-white" />
                 </motion.div>
                 
-                {/* Floating message badge */}
+                {/* Floating message badge left */}
                 <motion.div 
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute top-32 -left-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-gray-100 z-10"
+                  className="absolute top-40 -left-6 bg-white backdrop-blur-md rounded-2xl px-5 py-3 shadow-xl border border-gray-100 z-10"
                 >
                   <div className="flex items-center gap-2">
                     <MessageSquare className="w-5 h-5 text-blue-500" />
@@ -192,7 +191,7 @@ const AboutUs = () => {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-6 left-6 bg-green-500 backdrop-blur-md rounded-2xl p-3 shadow-lg z-10"
+                  className="absolute bottom-12 left-8 bg-green-500 backdrop-blur-md rounded-2xl p-3.5 shadow-lg z-10"
                 >
                   <Target className="w-7 h-7 text-white" />
                 </motion.div>
