@@ -88,14 +88,14 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section 
         data-nav-theme="light"
-        className="py-24 md:py-28 relative overflow-hidden bg-white"
+        className="py-12 sm:py-16 md:py-24 lg:py-28 relative overflow-hidden bg-white"
       >
-        <div className="container mx-auto px-6 md:px-20 max-w-[1400px]">
-          <div className="grid md:grid-cols-[45%_55%] gap-12 md:gap-16 items-center min-h-[600px]">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
+          <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-16 items-center">
             
             {/* Left - Image with Decorative Elements */}
             <motion.div 
-              className="relative flex justify-center items-center"
+              className="relative flex justify-center items-center order-1 md:order-1"
               initial={{ opacity: 0, x: -50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ 
@@ -104,15 +104,15 @@ const AboutUs = () => {
                 delay: 0.1
               }}
             >
-              <div className="relative w-full max-w-[550px] flex items-center justify-center" style={{ minHeight: "600px" }}>
+              <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[450px] lg:max-w-[550px] flex items-center justify-center mx-auto">
                 
                 {/* Gradient Glows - Behind with pulsing animation */}
                 <motion.div 
-                  className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full pointer-events-none -z-10"
+                  className="absolute bottom-0 left-0 w-[150px] sm:w-[200px] md:w-[280px] h-[150px] sm:h-[200px] md:h-[280px] rounded-full pointer-events-none -z-10"
                   style={{
                     background: "radial-gradient(circle, #4ECDC4 0%, transparent 70%)",
-                    filter: "blur(120px)",
-                    transform: "translate(-40%, 40%)",
+                    filter: "blur(60px) md:blur(120px)",
+                    transform: "translate(-30%, 30%)",
                   }}
                   animate={{
                     opacity: [0.3, 0.5, 0.3],
@@ -125,11 +125,11 @@ const AboutUs = () => {
                   }}
                 />
                 <motion.div 
-                  className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full pointer-events-none -z-10"
+                  className="absolute top-0 right-0 w-[180px] sm:w-[240px] md:w-[320px] h-[180px] sm:h-[240px] md:h-[320px] rounded-full pointer-events-none -z-10"
                   style={{
                     background: "radial-gradient(circle, #4A90E2 0%, transparent 70%)",
-                    filter: "blur(100px)",
-                    transform: "translate(40%, -40%)",
+                    filter: "blur(50px) md:blur(100px)",
+                    transform: "translate(30%, -30%)",
                   }}
                   animate={{
                     opacity: [0.25, 0.4, 0.25],
@@ -145,12 +145,11 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Enhanced Animation */}
                 <motion.div 
-                  className="relative w-full max-w-[500px] mx-auto flex items-center justify-center"
+                  className="relative w-full mx-auto flex items-center justify-center p-6 sm:p-8 md:p-12 lg:p-[60px]"
                   style={{
-                    borderRadius: "40px",
+                    borderRadius: "24px sm:32px md:40px",
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
-                    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-                    padding: "60px",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.2), 0 20px 60px rgba(0,0,0,0.3)",
                   }}
                   initial={{ opacity: 0, y: 30, rotateY: -15 }}
                   animate={{ opacity: 1, y: 0, rotateY: 0 }}
@@ -161,20 +160,17 @@ const AboutUs = () => {
                   }}
                   whileHover={{
                     scale: 1.02,
-                    boxShadow: "0 25px 70px rgba(0,0,0,0.35)",
+                    boxShadow: "0 15px 40px rgba(0,0,0,0.25), 0 25px 70px rgba(0,0,0,0.35)",
                     transition: { duration: 0.3 }
                   }}
                 >
                   {/* Circular Image Container */}
                   <motion.div 
-                    className="relative overflow-visible flex-shrink-0"
+                    className="relative overflow-visible flex-shrink-0 w-full aspect-square"
                     style={{
-                      width: "420px",
-                      height: "420px",
                       borderRadius: "50%",
                       background: "rgba(255, 255, 255, 0.1)",
-                      border: "4px solid rgba(255, 255, 255, 0.2)",
-                      aspectRatio: "1 / 1"
+                      border: "3px solid rgba(255, 255, 255, 0.2)",
                     }}
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -208,7 +204,7 @@ const AboutUs = () => {
             
             {/* Right - Text Content with staggered animation */}
             <motion.div
-              className="md:pl-16 flex flex-col space-y-6"
+              className="md:pl-8 lg:pl-16 flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -222,7 +218,7 @@ const AboutUs = () => {
                   delay: 0.6,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
                 style={{ color: "#1E2A3A" }}
               >
                 Scaling On-Site Audits
