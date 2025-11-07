@@ -127,18 +127,18 @@ const AboutUs = () => {
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
                     padding: "60px",
-                    minHeight: "540px"
                   }}
                 >
                   {/* Circular Image Container */}
                   <div 
-                    className="relative overflow-hidden"
+                    className="relative overflow-hidden flex-shrink-0"
                     style={{
                       width: "420px",
                       height: "420px",
                       borderRadius: "50%",
                       background: "rgba(255, 255, 255, 0.1)",
                       border: "4px solid rgba(255, 255, 255, 0.2)",
+                      aspectRatio: "1 / 1"
                     }}
                   >
                     <img 
