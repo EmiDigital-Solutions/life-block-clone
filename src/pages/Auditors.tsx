@@ -152,17 +152,17 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-lg xl:text-2xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[14px] xl:text-2xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
                 >
                   Join the Elite Auditor Network
-                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-base xl:text-xl 2xl:text-6xl 3xl:text-7xl">for Global Industry Leaders</span>
+                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-xs xl:text-xl 2xl:text-6xl 3xl:text-7xl">for Global Industry Leaders</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-base md:text-lg lg:text-[11px] xl:text-sm 2xl:text-2xl 3xl:text-3xl text-white/90 font-sans leading-relaxed lg:leading-snug"
+                  className="text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl text-white/90 font-sans leading-relaxed lg:leading-snug"
                 >
                   Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
                 </motion.p>
@@ -175,15 +175,15 @@ const Auditors = () => {
                 >
                   <div className="flex items-center gap-1.5">
                     <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Premium Enterprise Clients</span>
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Premium Enterprise Clients</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">€2,500+ Average Assignment Value</span>
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">€2,500+ Average Assignment Value</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Professional Development Support</span>
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Professional Development Support</span>
                   </div>
                 </motion.div>
 
@@ -193,7 +193,7 @@ const Auditors = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="flex relative z-10"
                 >
-                  <button className="group inline-flex items-center justify-center gap-1 bg-white text-gray-900 px-6 md:px-8 lg:px-4 xl:px-6 2xl:px-11 3xl:px-14 py-3 md:py-4 lg:py-2 xl:py-2.5 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base md:text-lg lg:text-[11px] xl:text-sm 2xl:text-2xl 3xl:text-3xl">
+                  <button className="group inline-flex items-center justify-center gap-1 bg-white text-gray-900 px-6 md:px-8 lg:px-3 xl:px-6 2xl:px-11 3xl:px-14 py-3 md:py-4 lg:py-1.5 xl:py-2.5 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl">
                     Apply as Partner Auditor
                     <ArrowRight className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -246,7 +246,7 @@ const Auditors = () => {
                           }}
                         >
                           <div
-                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[140px] lg:h-[180px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
                               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                             }}
