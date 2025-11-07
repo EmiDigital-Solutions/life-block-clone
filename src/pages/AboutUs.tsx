@@ -119,42 +119,48 @@ const AboutUs = () => {
                   }}
                 />
                 
-                {/* Main Organic Blob Frame - Similar to Homepage */}
+                {/* Card Container with Gradient Background */}
                 <div 
-                  className="relative w-full h-full overflow-hidden z-10"
+                  className="relative w-full h-full overflow-hidden z-10 flex flex-col items-center justify-center p-8"
                   style={{
-                    borderRadius: "45% 55% 60% 40% / 55% 45% 55% 45%",
+                    borderRadius: "40px",
+                    background: "linear-gradient(135deg, #2563EB 0%, #1E40AF 100%)",
                     boxShadow: "0 30px 80px rgba(0,0,0,0.12)",
+                    transform: "rotate(-5deg)",
                   }}
                 >
-                  <img 
-                    src="/src/assets/about-hero-meeting.jpg" 
-                    alt="YVOO team"
-                    className="w-full h-full object-cover"
-                  />
+                  {/* Circular Photo Cutout */}
+                  <div 
+                    className="relative mb-6 overflow-hidden bg-white/10 backdrop-blur-sm"
+                    style={{
+                      width: "280px",
+                      height: "280px",
+                      borderRadius: "50%",
+                      border: "4px solid rgba(255,255,255,0.2)",
+                    }}
+                  >
+                    <img 
+                      src="/src/assets/about-hero-meeting.jpg" 
+                      alt="YVOO team"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Bottom Label Badge */}
+                  <div 
+                    className="px-8 py-4 text-center"
+                    style={{
+                      background: "rgba(30, 58, 138, 0.9)",
+                      borderRadius: "50px",
+                      backdropFilter: "blur(10px)",
+                    }}
+                  >
+                    <h3 className="text-white font-bold text-xl mb-1">YVOO Team</h3>
+                    <p className="text-white/80 text-sm">Zagreb, Croatia HQ</p>
+                  </div>
                 </div>
                 
-                {/* Floating Badges with Glassmorphism */}
-                <motion.div
-                  className="absolute -bottom-8 -left-8 flex items-center justify-center z-20"
-                  style={{
-                    width: "56px",
-                    height: "56px",
-                    background: "white",
-                    borderRadius: "50%",
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-                  }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  whileHover={{ 
-                    y: -4,
-                    boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <Target className="w-5 h-5" style={{ color: "#2D9B5F" }} />
-                </motion.div>
+                {/* Target Icon Badge - Bottom-left */}
                 
               </div>
             </motion.div>
