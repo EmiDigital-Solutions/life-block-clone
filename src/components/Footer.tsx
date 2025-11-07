@@ -10,8 +10,8 @@ const Footer = () => {
             
             {/* Column 1 - Company Info */}
             <div>
-              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl font-bold mb-3 sm:mb-4 tracking-wide">Connectimus</h3>
-              <address className="not-italic text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
+              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold mb-3 sm:mb-4 tracking-wide">Connectimus</h3>
+              <address className="not-italic text-xs sm:text-sm xl:text-base 2xl:text-lg 3xl:text-xl text-gray-400 leading-relaxed font-medium">
                 CONNECTIMUS PROJECT d.o.o.<br />
                 Novotnijeva 12<br />
                 10000 Zagreb, Croatia
@@ -20,20 +20,20 @@ const Footer = () => {
 
             {/* Column 2 - Solutions */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Solutions</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Solutions</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
-                  <Link to="/search-companies" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/search-companies" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Search Companies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/audit-suppliers" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/audit-suppliers" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Audit Suppliers
                   </Link>
                 </li>
                 <li>
-                  <Link to="/become-visible" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/become-visible" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Become Visible
                   </Link>
                 </li>
@@ -42,20 +42,20 @@ const Footer = () => {
 
             {/* Column 3 - Resources */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Resources</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Resources</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
-                  <Link to="/technology" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/technology" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Technology
                   </Link>
                 </li>
                 <li>
-                  <Link to="/features" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/features" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faq" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/faq" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     FAQ
                   </Link>
                 </li>
@@ -64,20 +64,20 @@ const Footer = () => {
 
             {/* Column 4 - Company */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Company</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Company</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
-                  <Link to="/team" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/team" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Team
                   </Link>
                 </li>
                 <li>
-                  <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Jobs & Career
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
                     Contact
                   </Link>
                 </li>
@@ -87,7 +87,7 @@ const Footer = () => {
 
           {/* Footer Bottom - Legal & Copyright */}
           <div className="pt-6 sm:pt-8 border-t border-gray-800">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400 font-medium">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm xl:text-base 2xl:text-lg text-gray-400 font-medium">
               <div className="flex flex-wrap justify-center sm:justify-start gap-2 tracking-wide">
                 <Link to="/imprint" className="hover:text-white transition-colors">
                   Imprint

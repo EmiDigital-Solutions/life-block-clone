@@ -118,12 +118,12 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="Connectimus O" 
-              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 object-contain"
+              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 xl:h-18 xl:w-18 2xl:h-20 2xl:w-20 object-contain"
               style={{ filter: 'contrast(1.1) saturate(1.1)' }}
             />
             <div className="hidden sm:block">
               <div 
-                className="font-brand text-lg sm:text-xl lg:text-[22px] font-semibold tracking-tight transition-all duration-300"
+                className="font-brand text-lg sm:text-xl lg:text-[22px] xl:text-2xl 2xl:text-3xl font-semibold tracking-tight transition-all duration-300"
                 style={{ color: textColor }}
               >
                 Connectimus
@@ -137,11 +137,11 @@ const Navigation = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="transition-all duration-300 font-sans text-sm flex items-center gap-1 opacity-80 hover:opacity-100"
+                className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg flex items-center gap-1 opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
               >
                 Solutions
-                <ChevronDown className="w-4 h-4 transition-transform duration-300" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                <ChevronDown className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
               </button>
               
               {isDropdownOpen && (
@@ -188,28 +188,28 @@ const Navigation = () => {
 
             <a 
               href="#pricing" 
-              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               Pricing
             </a>
             <Link 
               to="/auditors" 
-              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               For auditors
             </Link>
             <a 
               href="#blog" 
-              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               Blog
             </a>
             <a 
               href="#about" 
-              className="transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               About us

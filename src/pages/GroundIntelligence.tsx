@@ -32,7 +32,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
             >
               Transform supplier data into{" "}
               <span className="block mt-2">strategic advantage</span>
@@ -45,16 +45,16 @@ const GroundIntelligence = () => {
               className="flex flex-col gap-2 sm:gap-3 text-white mx-auto sm:mx-0"
             >
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="text-base sm:text-lg font-medium">Real-time monitoring</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-medium">Real-time monitoring</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="text-base sm:text-lg font-medium">Predictive analytics</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-medium">Predictive analytics</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="text-base sm:text-lg font-medium">Risk scoring</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-medium">Risk scoring</span>
               </div>
             </motion.div>
 
@@ -66,10 +66,10 @@ const GroundIntelligence = () => {
             >
               <button 
                 onClick={() => scrollToSection('cta')}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg min-h-[48px]"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 xl:px-10 2xl:px-12 py-3 sm:py-4 xl:py-5 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl min-h-[48px]"
               >
                 Schedule consultation
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
 
@@ -77,7 +77,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-sm sm:text-base text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
+              className="text-sm sm:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
             >
               <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
             </motion.p>
@@ -105,7 +105,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
             >
               See <span className="text-green-600">beyond the surface</span>
             </motion.h2>
@@ -135,7 +135,7 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
               <span className="text-green-400">How It</span> Works.
             </h2>
           </motion.div>
@@ -199,7 +199,7 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-3 sm:mb-4">
               Capabilities that modernize supplier audits
             </h2>
             <p className="text-base sm:text-lg text-gray-600">
@@ -225,7 +225,7 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
               <span className="text-green-400">Results</span>
             </h2>
           </motion.div>
@@ -244,10 +244,10 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all"
               >
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-green-400 mb-2 sm:mb-3">
+                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-green-400 mb-2 sm:mb-3">
                   {item.metric}
                 </div>
-                <p className="text-sm sm:text-base text-white/90 font-medium">{item.label}</p>
+                <p className="text-sm sm:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-white/90 font-medium">{item.label}</p>
               </motion.div>
             ))}
           </div>
@@ -268,7 +268,7 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
               <span className="text-green-600">Pricing</span>
             </h2>
           </motion.div>
@@ -334,11 +334,11 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="space-y-6 sm:space-y-8"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white">
               Ready for <span className="text-green-400">real-time supplier intelligence?</span>
             </h2>
 
-            <p className="text-base sm:text-lg lg:text-xl text-white/80">
+            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl text-white/80">
               See how Ground Intelligence transforms supplier management.
             </p>
 
