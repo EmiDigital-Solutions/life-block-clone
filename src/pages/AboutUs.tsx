@@ -118,7 +118,7 @@ const AboutUs = () => {
                 
                 {/* Circular Image */}
                 <div className="absolute inset-0 flex items-center justify-center pt-9 sm:pt-11 md:pt-14">
-                  <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[290px] md:h-[290px] rounded-full overflow-hidden border-2 border-white/10">
+                  <div className="relative w-[185px] h-[185px] sm:w-[215px] sm:h-[215px] md:w-[240px] md:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
                     <img 
                       src={heroPersonImage} 
                       alt="YVOO Professional"
