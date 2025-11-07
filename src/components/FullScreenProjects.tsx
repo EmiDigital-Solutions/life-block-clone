@@ -214,8 +214,8 @@ const FullScreenProjects = () => {
             data-nav-theme={navTheme}
             className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-12 sm:py-16 lg:py-20"
           >
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-12 xl:gap-16 items-center">
+          <div className="container mx-auto max-w-[2000px]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-12 lg:gap-16 xl:gap-24 2xl:gap-32 items-center">
               {/* Left: Text Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -231,17 +231,17 @@ const FullScreenProjects = () => {
                   </span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-sans font-semibold leading-tight tracking-tight">
                   {project.title}
                 </h2>
 
-                <p className="text-sm sm:text-base lg:text-base xl:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
+                <p className="text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
                   {project.description}
                 </p>
 
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-7 xl:px-8 py-3 sm:py-4 lg:py-3.5 xl:py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px]">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-7 xl:px-8 2xl:px-10 3xl:px-12 py-3 sm:py-4 lg:py-3.5 xl:py-4 2xl:py-5 3xl:py-6 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px] text-base xl:text-lg 2xl:text-xl 3xl:text-2xl">
                   Learn more
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
 

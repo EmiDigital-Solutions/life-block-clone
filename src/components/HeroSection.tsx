@@ -159,11 +159,11 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black"></div>
 
       <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24">
-        <div className="px-4 sm:px-6 lg:px-8 xl:px-12 2xl:pl-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-10 xl:gap-16 2xl:gap-20 items-center">
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-2 xl:pl-4 2xl:pl-8 lg:pr-4 xl:pr-8 2xl:pr-12">
+            <div className="flex flex-col space-y-6 sm:space-y-8 text-left">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-sans font-semibold text-white leading-tight tracking-tight max-w-3xl"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -188,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide max-w-2xl"
+                className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 font-sans font-medium max-w-2xl"
+                className="text-base sm:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium"
               >
                 {heroContent.description}
               </motion.p>
@@ -208,7 +208,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex"
               >
-                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-9 xl:px-10 py-3 sm:py-4 lg:py-4 xl:py-5 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-lg xl:text-xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-9 xl:px-10 2xl:px-12 3xl:px-14 py-3 sm:py-4 lg:py-4 xl:py-5 2xl:py-6 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>
@@ -219,7 +219,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center lg:justify-end order-first lg:order-last lg:pr-0 xl:pr-0"
+              className="flex justify-center lg:justify-center order-first lg:order-last"
             >
               <div 
                 className="relative w-full"
@@ -227,7 +227,7 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[375px] sm:h-[438px] lg:h-[460px] xl:h-[500px] flex items-center justify-center">
+                <div className="relative h-[375px] sm:h-[438px] lg:h-[500px] xl:h-[580px] 2xl:h-[660px] 3xl:h-[740px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[260px] lg:h-[340px] xl:w-[280px] xl:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[280px] lg:h-[360px] xl:w-[320px] xl:h-[420px] 2xl:w-[360px] 2xl:h-[470px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -269,8 +269,8 @@ const HeroSection = () => {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-8 xl:pt-10">
-                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[160px] lg:h-[160px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-8 xl:pt-10 2xl:pt-12 3xl:pt-14">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[170px] lg:h-[170px] xl:w-[200px] xl:h-[200px] 2xl:w-[220px] 2xl:h-[220px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -285,12 +285,12 @@ const HeroSection = () => {
                             </div>
                           </div>
 
-                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 flex justify-center px-4 sm:px-6">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 w-full">
-                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-lg text-center">
+                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 xl:bottom-10 2xl:bottom-12 3xl:bottom-14 left-0 right-0 flex justify-center px-4 sm:px-6">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-2 sm:py-3 lg:py-4 xl:py-5 2xl:py-6 w-full">
+                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-center">
                                 {auditor.location}
                               </p>
-                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-base text-center">
+                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-center">
                                 {auditor.region}
                               </p>
                             </div>
