@@ -184,7 +184,7 @@ const AboutUs = () => {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  SCALING PREMIUM On-Site AUDITS
+                  Scaling Premium On-Site Audits
                 </span>
                 <span 
                   className="block font-bold"
@@ -194,7 +194,7 @@ const AboutUs = () => {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  THROUGH GLOBAL Auditors NETWORK and AI
+                  Through Global Auditors Network and AI
                 </span>
               </h1>
               
