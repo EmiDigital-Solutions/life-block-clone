@@ -88,14 +88,14 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section 
         data-nav-theme="light"
-        className="py-24 md:py-28 relative overflow-hidden bg-white"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden bg-white"
       >
-        <div className="container mx-auto px-6 md:px-20 max-w-[1400px]">
-          <div className="grid md:grid-cols-[45%_55%] gap-12 md:gap-16 items-center min-h-[600px]">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
+          <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
             
             {/* Left - Image with Decorative Elements */}
             <motion.div 
-              className="relative flex justify-center items-center"
+              className="relative flex justify-center items-center order-first"
               initial={{ opacity: 0, x: -50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ 
@@ -104,14 +104,14 @@ const AboutUs = () => {
                 delay: 0.1
               }}
             >
-              <div className="relative w-full max-w-[550px] flex items-center justify-center" style={{ minHeight: "600px" }}>
+              <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[450px] lg:max-w-[550px] flex items-center justify-center">
                 
                 {/* Gradient Glows - Behind with pulsing animation */}
                 <motion.div 
-                  className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full pointer-events-none -z-10"
+                  className="absolute bottom-0 left-0 w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px] rounded-full pointer-events-none -z-10"
                   style={{
                     background: "radial-gradient(circle, #4ECDC4 0%, transparent 70%)",
-                    filter: "blur(120px)",
+                    filter: "blur(80px) sm:blur(100px) md:blur(120px)",
                     transform: "translate(-40%, 40%)",
                   }}
                   animate={{
@@ -125,10 +125,10 @@ const AboutUs = () => {
                   }}
                 />
                 <motion.div 
-                  className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full pointer-events-none -z-10"
+                  className="absolute top-0 right-0 w-[160px] h-[160px] sm:w-[240px] sm:h-[240px] md:w-[320px] md:h-[320px] rounded-full pointer-events-none -z-10"
                   style={{
                     background: "radial-gradient(circle, #4A90E2 0%, transparent 70%)",
-                    filter: "blur(100px)",
+                    filter: "blur(70px) sm:blur(90px) md:blur(100px)",
                     transform: "translate(40%, -40%)",
                   }}
                   animate={{
@@ -145,11 +145,11 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Matching Home Design */}
                 <motion.div 
-                  className="relative w-full max-w-[460px] mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
+                  className="relative w-full aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
                   style={{
                     boxShadow: `
-                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                      0 0 30px rgba(236, 72, 153, 0.2)
+                      0 15px 30px -8px rgba(0, 0, 0, 0.4),
+                      0 0 20px rgba(236, 72, 153, 0.15)
                     `,
                   }}
                   initial={{ opacity: 0, y: 30, rotateY: -15 }}
@@ -162,8 +162,8 @@ const AboutUs = () => {
                   whileHover={{
                     scale: 1.02,
                     boxShadow: `
-                      0 30px 60px -12px rgba(0, 0, 0, 0.6),
-                      0 0 40px rgba(236, 72, 153, 0.3)
+                      0 20px 40px -8px rgba(0, 0, 0, 0.5),
+                      0 0 30px rgba(236, 72, 153, 0.2)
                     `,
                     transition: { duration: 0.3 }
                   }}
@@ -172,12 +172,12 @@ const AboutUs = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   
                   {/* Circular Image Container */}
-                  <div className="relative flex items-center justify-center pt-14 pb-4">
+                  <div className="relative flex items-center justify-center pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-4">
                     {/* Light blue circular background */}
-                    <div className="absolute w-[360px] h-[360px] rounded-full bg-blue-200/80" />
+                    <div className="absolute w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full bg-blue-200/80" />
                     
                     <motion.div 
-                      className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
+                      className="relative w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px] rounded-full overflow-hidden border-2 border-white/10"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{
@@ -202,12 +202,12 @@ const AboutUs = () => {
                   </div>
 
                   {/* Bottom Badge */}
-                  <div className="absolute bottom-9 left-0 right-0 flex justify-center px-6">
-                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-10 py-4 w-full max-w-[320px]">
-                      <p className="text-white font-sans font-bold text-2xl text-center">
+                  <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-9 left-0 right-0 flex justify-center px-4 sm:px-5 md:px-6">
+                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-6 sm:px-8 md:px-10 py-2 sm:py-3 md:py-4 w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px]">
+                      <p className="text-white font-sans font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-center">
                         Professional
                       </p>
-                      <p className="text-white/80 font-sans text-xl text-center">
+                      <p className="text-white/80 font-sans text-sm sm:text-base md:text-lg lg:text-xl text-center">
                         Global Expert
                       </p>
                     </div>
@@ -215,7 +215,7 @@ const AboutUs = () => {
 
                   {/* Shine effect */}
                   <div 
-                    className="absolute inset-0 pointer-events-none rounded-3xl"
+                    className="absolute inset-0 pointer-events-none rounded-2xl sm:rounded-3xl"
                     style={{
                       background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                     }}
@@ -226,7 +226,7 @@ const AboutUs = () => {
             
             {/* Right - Text Content with staggered animation */}
             <motion.div
-              className="md:pl-16 flex flex-col space-y-6"
+              className="md:pl-8 lg:pl-12 xl:pl-16 flex flex-col space-y-4 sm:space-y-6 order-last"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -240,7 +240,7 @@ const AboutUs = () => {
                   delay: 0.6,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
                 style={{ color: "#1E2A3A" }}
               >
                 Scaling On-Site Audits
