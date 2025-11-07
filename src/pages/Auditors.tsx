@@ -718,8 +718,13 @@ const QualificationsSection = () => {
 
 // TECHNOLOGY FEATURES SECTION WITH HORIZONTAL SCROLL
 const TechnologyFeaturesSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useIsMobile();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -892,6 +897,8 @@ const TechnologyFeaturesSection = () => {
       </section>
     );
   }
+
+  if (!isMounted) return null;
 
   // Desktop scroll-jacking version
   return (
@@ -1468,13 +1475,20 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // Track scroll progress of this section
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
+
+  if (!isMounted) return null;
   
   // Scale the ENTIRE CARD from 50% to 100%
   const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
