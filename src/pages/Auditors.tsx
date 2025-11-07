@@ -1481,7 +1481,7 @@ const ScrollZoomSection = () => {
     offset: ["start end", "end start"]
   });
   
-  const scale = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.3, 1]);
   
   return (
     <section 
