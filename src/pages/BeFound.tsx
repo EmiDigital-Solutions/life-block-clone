@@ -388,14 +388,14 @@ const BeFound = () => {
                 >
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                      <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-teal-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
                         {step.number}
                       </div>
                       <h3 className="text-xl font-semibold text-white">{step.title}</h3>
                     </div>
-                    <p className="text-green-300 font-medium mb-3">{step.desc}</p>
+                    <p className="text-teal-300 font-medium mb-3">{step.desc}</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{step.detail}</p>
-                    <button className="mt-6 text-green-400 hover:text-green-300 font-medium inline-flex items-center gap-2 group">
+                    <button className="mt-6 text-teal-400 hover:text-teal-300 font-medium inline-flex items-center gap-2 group">
                       Claim your company
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
@@ -468,7 +468,7 @@ const BeFound = () => {
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
                       { icon: TrendingUp, label: "Ranking", desc: "Top positions", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { icon: BarChart3, label: "Performance", desc: "Advanced insights", gradient: "from-green-600 via-green-700 to-green-800" },
+                      { icon: BarChart3, label: "Performance", desc: "Advanced insights", gradient: "from-teal-500 via-teal-600 to-teal-700" },
                       { icon: Users, label: "Intent Data", desc: "Buyer focus", gradient: "from-gray-800 via-gray-900 to-black" },
                     ].map((feature, index) => {
                       const style = getCardStyle(index, 3);
