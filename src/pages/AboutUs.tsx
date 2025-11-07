@@ -173,7 +173,7 @@ const AboutUs = () => {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.02em]"
                 style={{ color: "#1E2A3A" }}
               >
-                Scaling Premium On-Site Audits Through Global Auditors Network and AI
+                Scaling Premium <span className="whitespace-nowrap">On-Site Audits</span> Through Global Auditors Network and AI
               </motion.h1>
             </motion.div>
             
