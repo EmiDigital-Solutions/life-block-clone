@@ -170,10 +170,10 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ color: "#1E2A3A" }}
               >
-                <span className="block">Scaling Premium On-Site Audits</span>
+                <span className="block">Scaling On-Site Audits</span>
                 <span className="block">Through Global Auditors Network and AI</span>
               </motion.h1>
             </motion.div>
