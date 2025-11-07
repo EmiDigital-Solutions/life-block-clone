@@ -173,8 +173,8 @@ const AboutUs = () => {
                   
                   {/* Circular Image Container */}
                   <div className="relative flex items-center justify-center pt-14 pb-4">
-                    {/* Light circular background */}
-                    <div className="absolute w-[360px] h-[360px] rounded-full bg-white/90" />
+                    {/* Light blue circular background */}
+                    <div className="absolute w-[360px] h-[360px] rounded-full bg-blue-200/80" />
                     
                     <motion.div 
                       className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
