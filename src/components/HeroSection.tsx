@@ -179,7 +179,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-2xl xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-xl xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -188,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl md:text-xl lg:text-sm xl:text-base 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
+                className="text-lg sm:text-xl md:text-xl lg:text-xs xl:text-base 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium"
+                className="text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium"
               >
                 {heroContent.description}
               </motion.p>
@@ -208,7 +208,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex"
               >
-                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-6 xl:px-7 2xl:px-11 3xl:px-14 py-3 sm:py-4 lg:py-2.5 xl:py-3 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-5 xl:px-7 2xl:px-11 3xl:px-14 py-3 sm:py-4 lg:py-2 xl:py-3 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>
