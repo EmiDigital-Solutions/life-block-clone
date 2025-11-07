@@ -97,7 +97,7 @@ const AboutUs = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="relative w-full max-w-[500px] aspect-square">
+              <div className="relative w-full max-w-[550px] flex items-center justify-center" style={{ minHeight: "600px" }}>
                 
                 {/* Gradient Glows - Behind */}
                 <div 
@@ -121,20 +121,20 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Exact Homepage Style */}
                 <div 
-                  className="relative w-full max-w-[400px] mx-auto"
+                  className="relative w-full max-w-[500px] mx-auto"
                   style={{
-                    borderRadius: "32px",
+                    borderRadius: "40px",
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-                    padding: "40px",
+                    padding: "60px",
                   }}
                 >
                   {/* Circular Image Container */}
                   <div 
                     className="relative mx-auto overflow-hidden"
                     style={{
-                      width: "280px",
-                      height: "280px",
+                      width: "380px",
+                      height: "380px",
                       borderRadius: "50%",
                       background: "rgba(255, 255, 255, 0.1)",
                       border: "4px solid rgba(255, 255, 255, 0.2)",
