@@ -186,12 +186,10 @@ const AboutUs = () => {
               className="space-y-6"
             >
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                AI-Powered Solutions for <span className="text-blue-600">Global Procurement Excellence</span>
+                Technology and <span className="text-blue-600">Innovation</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                YVOO leads the AI revolution in procurement and supplier intelligence. With our award-winning technology, 
-                businesses get instant supplier discovery, on-site auditing in days (not weeks), and global supplier 
-                visibility—all powered by AI.
+                [Please provide the text content you'd like to add here]
               </p>
             </motion.div>
           </div>
