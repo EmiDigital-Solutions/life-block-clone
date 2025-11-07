@@ -152,43 +152,105 @@ const AboutUs = () => {
                       }}
                     />
                     
-                    {/* AI Badge - Simple Circle */}
+                    {/* AI Badge with Chat Icon and Line */}
                     <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6, delay: 0.8 }}
                       className="absolute"
                       style={{
-                        top: "15%",
-                        left: "5%",
+                        bottom: "15%",
+                        right: "-25%",
                         zIndex: 10
                       }}
                     >
-                      <div 
-                        className="rounded-full bg-white flex items-center justify-center"
+                      {/* Connecting Line */}
+                      <svg
+                        className="absolute"
                         style={{
-                          width: "90px",
-                          height: "90px",
-                          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)"
+                          width: "80px",
+                          height: "2px",
+                          top: "50%",
+                          right: "100%",
+                          transform: "translateY(-50%)"
                         }}
                       >
-                        <span 
-                          className="font-bold flex items-center gap-0.5"
-                          style={{
-                            fontSize: "36px",
-                            color: "#1e40af",
-                            letterSpacing: "0.02em",
-                            fontFamily: "system-ui, -apple-system, sans-serif"
-                          }}
-                        >
-                          <span style={{ 
-                            WebkitTextStroke: "2px #1e40af",
-                            WebkitTextFillColor: "transparent",
-                            color: "transparent"
-                          }}>A</span>
-                          <span>I</span>
-                        </span>
-                      </div>
+                        <line
+                          x1="0"
+                          y1="1"
+                          x2="80"
+                          y2="1"
+                          stroke="rgba(255, 255, 255, 0.5)"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                      
+                      {/* Chat Icon Badge */}
+                      <motion.div
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-2xl p-3 shadow-xl"
+                        style={{
+                          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)"
+                        }}
+                      >
+                        <MessageSquare className="w-8 h-8 text-white" strokeWidth={2} />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* AI Text Badge */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 1 }}
+                      className="absolute"
+                      style={{
+                        top: "20%",
+                        right: "-20%",
+                        zIndex: 10
+                      }}
+                    >
+                      {/* Connecting Line */}
+                      <svg
+                        className="absolute"
+                        style={{
+                          width: "60px",
+                          height: "2px",
+                          top: "50%",
+                          right: "100%",
+                          transform: "translateY(-50%)"
+                        }}
+                      >
+                        <line
+                          x1="0"
+                          y1="1"
+                          x2="60"
+                          y2="1"
+                          stroke="rgba(255, 255, 255, 0.5)"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                      
+                      {/* AI Text Badge */}
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5
+                        }}
+                        className="bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-full px-5 py-2 shadow-xl"
+                        style={{
+                          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)"
+                        }}
+                      >
+                        <span className="text-white font-bold text-xl tracking-wider">AI</span>
+                      </motion.div>
                     </motion.div>
                   </div>
                 </div>
