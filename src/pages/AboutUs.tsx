@@ -1,9 +1,10 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap, Brain } from "lucide-react";
+import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import aiBadgeIllustration from "@/assets/ai-badge-illustration.png";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
@@ -157,11 +158,10 @@ const AboutUs = () => {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -top-8 -right-8 flex items-center justify-center z-20"
+                  className="absolute -top-8 -right-8 flex items-center justify-center z-20 overflow-hidden"
                   style={{
                     width: "80px",
                     height: "80px",
-                    background: "linear-gradient(135deg, #4A90E2 0%, #6C63FF 100%)",
                     borderRadius: "20px",
                     boxShadow: "0 12px 40px rgba(74,144,226,0.4)",
                   }}
@@ -174,7 +174,11 @@ const AboutUs = () => {
                     transition: { duration: 0.3 }
                   }}
                 >
-                  <Brain className="w-10 h-10 text-white" strokeWidth={2} />
+                  <img 
+                    src={aiBadgeIllustration} 
+                    alt="AI" 
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
                 
                 <motion.div 
