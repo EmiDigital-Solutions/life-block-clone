@@ -84,7 +84,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl xl:text-4xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
               >
                 Become visible,{" "}
                 <span className="block mt-2">to over 7 million+</span>
@@ -98,12 +98,12 @@ const BeFound = () => {
                 className="flex flex-col gap-2 sm:gap-3 text-white mx-auto sm:mx-0"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" />
-                  <span className="text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-medium">Free of Charge</span>
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 xl:w-5 xl:h-5 2xl:w-7 2xl:h-7" />
+                  <span className="text-base sm:text-lg xl:text-lg 2xl:text-2xl 3xl:text-3xl font-medium">Free of Charge</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7" />
-                  <span className="text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-medium">Paid Advertisement</span>
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 xl:w-5 xl:h-5 2xl:w-7 2xl:h-7" />
+                  <span className="text-base sm:text-lg xl:text-lg 2xl:text-2xl 3xl:text-3xl font-medium">Paid Advertisement</span>
                 </div>
               </motion.div>
 
@@ -113,9 +113,9 @@ const BeFound = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="w-full sm:w-auto"
               >
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 xl:px-10 2xl:px-12 py-3 sm:py-4 xl:py-5 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl min-h-[48px]">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 xl:px-8 2xl:px-12 py-3 sm:py-4 xl:py-3.5 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg xl:text-lg 2xl:text-2xl 3xl:text-3xl min-h-[48px]">
                   Claim your company
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-5 xl:h-5 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
 
@@ -123,7 +123,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-sm sm:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
+                className="text-sm sm:text-base xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
               >
                 <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.
               </motion.p>
@@ -180,7 +180,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
                 <span className="text-green-600">Our Value</span>
               </h2>
             </motion.div>
@@ -195,8 +195,8 @@ const BeFound = () => {
               >
                 <div className="space-y-10">
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">7M+</div>
-                    <div className="text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Users per year</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">7M+</div>
+                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Users per year</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
                         <Check className="w-5 h-5 text-green-600" />
@@ -214,8 +214,8 @@ const BeFound = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">12M+</div>
-                    <div className="text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Suppliers are viewed per month</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">12M+</div>
+                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Suppliers are viewed per month</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
                         <Check className="w-5 h-5 text-green-600" />
@@ -233,8 +233,8 @@ const BeFound = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">5x</div>
-                    <div className="text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">More Visibility for Connectimus Ad Customers</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">5x</div>
+                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">More Visibility for Connectimus Ad Customers</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
                         <Check className="w-5 h-5 text-green-600" />
@@ -352,7 +352,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
                 <span className="text-green-400">Product</span> Overview.
               </h2>
             </motion.div>
