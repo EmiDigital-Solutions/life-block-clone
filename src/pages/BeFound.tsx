@@ -181,7 +181,7 @@ const BeFound = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-                <span className="text-green-600">Our Value</span>
+                <span className="text-[#14B8A6]">Our Value</span>
               </h2>
             </motion.div>
 
@@ -195,57 +195,57 @@ const BeFound = () => {
               >
                 <div className="space-y-10">
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">7M+</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">7M+</div>
                     <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Users per year</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Worldwide Audience
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         B2B driven
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         All industries
                       </li>
                     </ul>
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">12M+</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">12M+</div>
                     <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Suppliers are viewed per month</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Manage Supplier Profile Content
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Enrich Supplier Data
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Organic Analytics
                       </li>
                     </ul>
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-green-600">5x</div>
+                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">5x</div>
                     <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">More Visibility for Connectimus Ad Customers</div>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Precise Targeting
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Advanced Analytics
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-green-600" />
+                        <Check className="w-5 h-5 text-[#14B8A6]" />
                         Buyer Intent Data
                       </li>
                     </ul>
@@ -264,12 +264,12 @@ const BeFound = () => {
                   className="relative w-full max-w-2xl"
                   style={{ perspective: "1500px" }}
                 >
-                  <div className="absolute inset-0 blur-3xl bg-green-400/20 scale-150 -z-10"></div>
+                  <div className="absolute inset-0 blur-3xl bg-[#14B8A6]/20 scale-150 -z-10"></div>
                   
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
                       { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"], gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-green-600 via-green-700 to-green-800" },
+                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
                       { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
                     ].map((stat, index) => {
                       const style = getCardStyle(index, 3);
@@ -353,7 +353,7 @@ const BeFound = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-                <span className="text-green-400">Product</span> Overview.
+                <span className="text-[#14B8A6]">Product</span> Overview.
               </h2>
             </motion.div>
 

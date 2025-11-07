@@ -277,7 +277,7 @@ const AboutUs = () => {
                 transition={{ delay: 0.2 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-green-600">Customer-Oriented Approach</h3>
+                <h3 className="text-2xl font-bold text-[#14B8A6]">Customer-Oriented Approach</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
@@ -303,7 +303,7 @@ const AboutUs = () => {
                 transition={{ delay: 0.4 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-green-600">Ethical AI</h3>
+                <h3 className="text-2xl font-bold text-[#14B8A6]">Ethical AI</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
                 </p>
@@ -354,9 +354,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.4 }}
                   className="absolute top-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-600 to-green-700 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Users className="w-12 h-12 text-green-600" strokeWidth={1.5} />
+                      <Users className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -382,9 +382,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.6 }}
                   className="absolute bottom-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-600 to-green-700 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Shield className="w-12 h-12 text-green-600" strokeWidth={1.5} />
+                      <Shield className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -422,7 +422,7 @@ const AboutUs = () => {
                   transition={{ duration: 3, repeat: Infinity }}
                   className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
                 >
-                  <Package className="w-8 h-8 text-green-400" />
+                  <Package className="w-8 h-8 text-[#14B8A6]" />
                 </motion.div>
               </div>
             </motion.div>
@@ -434,7 +434,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="lg:col-span-3 space-y-6"
             >
-              <div className="text-sm font-semibold text-green-600 uppercase tracking-wider">
+              <div className="text-sm font-semibold text-[#14B8A6] uppercase tracking-wider">
                 Carbon Reduction Commitment
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -480,12 +480,12 @@ const AboutUs = () => {
                     whileHover={{ scale: 1.2 }}
                     className={`w-4 h-4 rounded-full transition-all ${
                       selectedYear === item.year 
-                        ? 'bg-green-600 ring-4 ring-green-200' 
+                        ? 'bg-[#14B8A6] ring-4 ring-[#14B8A6]/20' 
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                   />
                   <span className={`text-sm font-semibold ${
-                    selectedYear === item.year ? 'text-green-600' : 'text-gray-400'
+                    selectedYear === item.year ? 'text-[#14B8A6]' : 'text-gray-400'
                   }`}>
                     {item.year}
                   </span>
@@ -679,7 +679,7 @@ const AboutUs = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-white hover:bg-white/90 text-green-700 px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
+              <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
             </motion.div>
