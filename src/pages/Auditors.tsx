@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 import {
   Calendar,
   Users,
@@ -486,7 +485,7 @@ const ValuePropositionSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="-mt-[100vh] py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
+      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -1476,41 +1475,64 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
   return (
-    <ScrollPinnedZoom
-      imageSrc={auditorFactoryTeam}
-      imageAlt="Professional auditors working together in industrial setting"
-    >
-      {/* Logo/Icon */}
-      <div className="mb-8">
-        <div className="flex items-center justify-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-primary" />
-          <div className="w-4 h-4 rounded-full bg-white/40" />
+    <section className="py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading Text */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            We Develop Tech
+          </h2>
+          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
+            Solutions That Matter
+          </h3>
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
+          </p>
+        </div>
+
+        {/* Rounded Image Container with Overlay */}
+        <div className="relative w-full max-w-6xl mx-auto rounded-[60px] md:rounded-[80px] overflow-hidden shadow-2xl">
+          <img
+            src={auditorFactoryTeam}
+            alt="Professional auditors working together in industrial setting"
+            className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+          />
+          
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+          
+          {/* Content Overlay */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12">
+            {/* Navigation Dots */}
+            <div className="mb-8">
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-white" />
+                <div className="w-3 h-3 rounded-full bg-white/40" />
+              </div>
+            </div>
+
+            {/* Headline */}
+            <h4 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+              Let's code a better future together
+            </h4>
+            
+            {/* Description */}
+            <p className="text-sm md:text-base lg:text-lg text-white/90 max-w-2xl mb-8">
+              We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future.
+            </p>
+            
+            {/* CTA Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="bg-primary text-white px-8 py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl"
+            >
+              About us
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </div>
         </div>
       </div>
-
-      {/* Headline */}
-      <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
-        We Develop Tech
-      </h2>
-
-      <h3 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary max-w-4xl leading-tight">
-        Solutions That Matter
-      </h3>
-      
-      {/* Subheadline */}
-      <p className="mt-6 md:mt-8 text-sm md:text-base lg:text-lg xl:text-xl text-white/95 max-w-3xl leading-relaxed">
-        We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
-      </p>
-      
-      {/* CTA Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        className="mt-6 md:mt-8 bg-white text-gray-900 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl group"
-      >
-        Partner with us
-        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-      </motion.button>
-    </ScrollPinnedZoom>
+    </section>
   );
 };
 
