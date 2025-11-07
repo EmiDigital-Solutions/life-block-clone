@@ -173,8 +173,11 @@ const AboutUs = () => {
                   
                   {/* Circular Image Container */}
                   <div className="relative flex items-center justify-center pt-14 pb-4">
+                    {/* Light circular background */}
+                    <div className="absolute w-[360px] h-[360px] rounded-full bg-white/90" />
+                    
                     <motion.div 
-                      className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10 bg-blue-300"
+                      className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{
@@ -186,7 +189,7 @@ const AboutUs = () => {
                       <motion.img 
                         src={heroPersonImage} 
                         alt="YVOO Professional"
-                        className="relative w-full h-full object-cover"
+                        className="w-full h-full object-cover"
                         initial={{ opacity: 0, scale: 1.3 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{
