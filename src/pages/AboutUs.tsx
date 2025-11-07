@@ -151,45 +151,51 @@ const AboutUs = () => {
                 className="absolute -top-12 -right-12 w-56 h-56 bg-gradient-to-br from-blue-400/30 to-green-500/30 rounded-full blur-3xl"
               />
               
-              {/* Main image card with modern rounded design */}
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-white p-4">
-                <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5]">
+              {/* Main image card with organic blob shape */}
+              <div className="relative">
+                <div 
+                  className="relative overflow-hidden aspect-[4/5] shadow-2xl"
+                  style={{
+                    clipPath: "path('M 50,0 C 80,0 100,20 100,50 C 100,80 80,100 50,100 C 20,100 0,80 0,50 C 0,20 20,0 50,0 Z')",
+                    borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%"
+                  }}
+                >
                   <img 
                     src="/src/assets/about-hero-meeting.jpg" 
                     alt="Professional business meeting"
                     className="w-full h-full object-cover"
                   />
-                  
-                  {/* Floating AI badge top right */}
-                  <motion.div 
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-6 right-6 bg-blue-500/90 backdrop-blur-md rounded-2xl p-3 shadow-lg"
-                  >
-                    <Zap className="w-7 h-7 text-white" />
-                  </motion.div>
-                  
-                  {/* Floating message badge */}
-                  <motion.div 
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute top-32 -left-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-gray-100"
-                  >
-                    <div className="flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5 text-blue-500" />
-                      <span className="text-sm font-semibold text-gray-800">AI-Powered</span>
-                    </div>
-                  </motion.div>
-                  
-                  {/* Floating target badge bottom left */}
-                  <motion.div 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-6 left-6 bg-green-500/90 backdrop-blur-md rounded-2xl p-3 shadow-lg"
-                  >
-                    <Target className="w-7 h-7 text-white" />
-                  </motion.div>
                 </div>
+                
+                {/* Floating AI badge top right */}
+                <motion.div 
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-6 right-6 bg-blue-500 backdrop-blur-md rounded-2xl p-3 shadow-lg z-10"
+                >
+                  <Zap className="w-7 h-7 text-white" />
+                </motion.div>
+                
+                {/* Floating message badge */}
+                <motion.div 
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="absolute top-32 -left-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-gray-100 z-10"
+                >
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-blue-500" />
+                    <span className="text-sm font-semibold text-gray-800">AI-Powered</span>
+                  </div>
+                </motion.div>
+                
+                {/* Floating target badge bottom left */}
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="absolute bottom-6 left-6 bg-green-500 backdrop-blur-md rounded-2xl p-3 shadow-lg z-10"
+                >
+                  <Target className="w-7 h-7 text-white" />
+                </motion.div>
               </div>
             </motion.div>
             
