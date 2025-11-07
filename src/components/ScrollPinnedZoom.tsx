@@ -9,7 +9,6 @@ interface ScrollPinnedZoomProps {
 
 const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isPinned, setIsPinned] = useState(false);
   
   // Track scroll progress through this section
   const { scrollYProgress } = useScroll({
@@ -17,43 +16,27 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
     offset: ["start start", "end end"]
   });
 
-  // Scale from 0.3 (30%) to 1 (100%)
+  // Scale from 0.3 (30%) to 1 (100%) - smooth throughout entire scroll
   const scale = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
   
-  // Opacity for the overlay - starts high, fades out
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.4, 0.3]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Pin when section reaches top of viewport
-      // Unpin when animation is complete (section has scrolled through)
-      const shouldPin = rect.top <= 0 && rect.bottom > windowHeight;
-      setIsPinned(shouldPin);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Opacity for the overlay - fades as zoom progresses
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.4, 0.2]);
+  
+  // Text fades in gradually as zoom completes
+  const textOpacity = useTransform(scrollYProgress, [0.6, 1], [0, 1]);
 
   return (
     <section 
       ref={containerRef}
       className="relative w-full -mt-1"
-      style={{ height: '100vh' }} // Minimal height for scroll animation
+      style={{ height: '200vh' }} // Double viewport height for smooth scroll-through
     >
-      {/* Sticky container that stays in viewport */}
-      <div className={`sticky top-0 left-0 w-full h-screen overflow-hidden ${isPinned ? 'pointer-events-none' : ''}`}>
+      {/* Sticky container - this stays fixed in viewport while section scrolls */}
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
         
-        {/* Zooming Image Layer */}
+        {/* Zooming Image Layer - scales smoothly based on scroll */}
         <motion.div 
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center bg-black"
           style={{ scale }}
         >
           <img 
@@ -69,12 +52,10 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
           />
         </motion.div>
         
-        {/* Text Content Overlay - Fades in as zoom completes */}
+        {/* Text Content Overlay - Fades in during final part of zoom */}
         <motion.div 
           className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12"
-          style={{ 
-            opacity: useTransform(scrollYProgress, [0.5, 1], [0, 1])
-          }}
+          style={{ opacity: textOpacity }}
         >
           {children}
         </motion.div>
