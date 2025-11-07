@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 13%;
 
-    --primary: 217 91% 60%;
+    --primary: 217 91% 60%; /* #3B82F6 - Standard Blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96%;
@@ -26,10 +26,10 @@ All colors MUST be HSL.
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 26 83% 14%;
+    --accent: 173 80% 40%; /* #14B8A6 - Standard Green/Teal */
+    --accent-foreground: 0 0% 100%;
 
-    --success: 142 71% 45%;
+    --success: 173 80% 40%; /* #14B8A6 - Standard Green/Teal */
     --success-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
