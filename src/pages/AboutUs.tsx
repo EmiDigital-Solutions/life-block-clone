@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, Zap, Search, MessageSquare, Package } from "lucide-react";
+import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, Calendar, Star, MapPin, DollarSign, Package, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -84,138 +84,204 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION */}
       <section 
         data-nav-theme="light"
-        className="min-h-screen flex items-center pt-24 pb-20 md:pt-32 md:pb-32 px-4 sm:px-6 lg:px-12 bg-white relative overflow-hidden"
+        className="py-20 md:py-32 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(90deg, #FFFFFF 0%, #F0FDF4 100%)' }}
       >
-        {/* Background gradient blobs */}
-        <motion.div 
-          animate={{ 
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl"
-        />
-        <motion.div 
-          animate={{ 
-            y: [0, 40, 0],
-            x: [0, -20, 0],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute bottom-20 right-1/3 w-80 h-80 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full blur-3xl"
-        />
-        
-        <div className="container mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Image with floating elements */}
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left: Circular Image with Badges */}
             <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="order-2 lg:order-1 relative flex justify-center lg:justify-start"
             >
-              {/* Floating gradient blobs around image */}
+              {/* Gradient decorations behind image */}
               <motion.div 
                 animate={{ 
-                  y: [0, -20, 0],
-                  scale: [1, 1.15, 1]
+                  opacity: [0.2, 0.4, 0.2],
+                  scale: [1, 1.1, 1]
                 }}
                 transition={{ 
-                  duration: 5, 
+                  duration: 4, 
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="absolute -bottom-12 -left-12 w-48 h-48 bg-gradient-to-br from-green-400/40 to-blue-500/40 rounded-full blur-3xl"
+                className="absolute -top-10 -right-10 w-[200px] h-[200px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl -z-10"
               />
               <motion.div 
                 animate={{ 
-                  y: [0, 25, 0],
-                  scale: [1, 1.2, 1]
+                  opacity: [0.2, 0.4, 0.2],
+                  scale: [1, 1.15, 1]
                 }}
                 transition={{ 
-                  duration: 6, 
+                  duration: 4, 
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 1.5
+                  delay: 2
                 }}
-                className="absolute -top-12 -right-12 w-56 h-56 bg-gradient-to-br from-blue-400/30 to-green-500/30 rounded-full blur-3xl"
+                className="absolute -bottom-10 -left-10 w-[180px] h-[180px] bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full blur-3xl -z-10"
               />
               
-              {/* Main image card with organic blob shape */}
-              <div className="relative">
-                <div 
-                  className="relative overflow-hidden aspect-[4/5] shadow-2xl"
-                  style={{
-                    borderRadius: "63% 37% 54% 46% / 55% 48% 52% 45%"
-                  }}
+              <div className="relative w-full max-w-[550px]">
+                {/* Circular Image Frame */}
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative aspect-square rounded-full overflow-hidden border-[12px] border-white shadow-[0_20px_60px_rgba(0,0,0,0.18),0_0_100px_rgba(45,155,95,0.12)]"
                 >
                   <img 
                     src="/src/assets/about-hero-meeting.jpg" 
-                    alt="Professional business meeting"
+                    alt="YVOO leadership team in Zagreb office"
                     className="w-full h-full object-cover"
                   />
-                </div>
-                
-                {/* Floating AI badge top right */}
-                <motion.div 
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-12 right-8 bg-blue-500 backdrop-blur-md rounded-2xl p-3.5 shadow-lg z-10"
-                >
-                  <Zap className="w-7 h-7 text-white" />
                 </motion.div>
                 
-                {/* Floating message badge left */}
+                {/* Badge 1 - Top Left: Founded 2019 */}
                 <motion.div 
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute top-40 -left-6 bg-white backdrop-blur-md rounded-2xl px-5 py-3 shadow-xl border border-gray-100 z-10"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
+                  className="absolute -top-4 -left-8 md:-left-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
                 >
                   <div className="flex items-center gap-2">
-                    <MessageSquare className="w-5 h-5 text-blue-500" />
-                    <span className="text-sm font-semibold text-gray-800">AI-Powered</span>
+                    <Calendar className="w-5 h-5 text-[#2D9B5F]" />
+                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">Founded 2019</span>
                   </div>
                 </motion.div>
                 
-                {/* Floating target badge bottom left */}
+                {/* Badge 2 - Top Right: 90+ Countries */}
                 <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-12 left-8 bg-green-500 backdrop-blur-md rounded-2xl p-3.5 shadow-lg z-10"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
+                  className="absolute -top-4 -right-8 md:-right-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
                 >
-                  <Target className="w-7 h-7 text-white" />
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-5 h-5 text-[#2D9B5F]" />
+                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">90+ Countries</span>
+                  </div>
+                </motion.div>
+                
+                {/* Badge 3 - Bottom Left: 50+ Enterprise Clients */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
+                  className="absolute -bottom-4 -left-8 md:-left-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <Star className="w-5 h-5 text-[#2D9B5F]" />
+                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">50+ Enterprise Clients</span>
+                  </div>
+                </motion.div>
+                
+                {/* Badge 4 - Bottom Right: Zagreb HQ */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
+                  className="absolute -bottom-4 -right-8 md:-right-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-[#2D9B5F]" />
+                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">Zagreb HQ</span>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
             
-            {/* Right: Text */}
+            {/* Right: Text Content */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-1 lg:order-2 space-y-8"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2 space-y-6 lg:space-y-8 text-center lg:text-left"
             >
-              <div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] mb-6">
-                  <span className="text-gray-900">AI-Powered Solutions for</span>
-                  <br />
-                  <span className="text-blue-600">Global Procurement</span> Excellence
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                  Connectimus leads the AI revolution in procurement and supplier intelligence. With our award-winning technology, 
-                  businesses get instant supplier discovery, on-site auditing in days (not weeks), and global supplier 
-                  visibility—all powered by AI.
-                </p>
+              {/* Breadcrumb */}
+              <p className="text-xs md:text-sm uppercase font-semibold text-gray-400 tracking-[0.1em]">
+                About Us
+              </p>
+              
+              {/* Headline - Three Lines */}
+              <h1 className="leading-[1.1] space-y-1">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E2A3A]">
+                  Pioneering AI-Powered
+                </div>
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2D9B5F]">
+                  Procurement Intelligence
+                </div>
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E2A3A]">
+                  for Global Industry Leaders
+                </div>
+              </h1>
+              
+              {/* Tagline */}
+              <p className="text-xl md:text-2xl italic text-gray-500 max-w-[500px] mx-auto lg:mx-0">
+                Making global procurement accessible to every business
+              </p>
+              
+              {/* Body Text */}
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
+                Since 2019, YVOO has been on a mission to transform global procurement. Our AI-powered platform connects businesses with verified suppliers worldwide, delivering audits in days (not weeks) at 70% lower costs. Trusted by Mercedes, BMW, Bosch, and 50+ industry leaders.
+              </p>
+              
+              {/* Stats Row */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 md:gap-8 pt-4">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
+                  <span className="text-sm md:text-base font-semibold text-gray-600">Founded 2019</span>
+                </div>
+                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
+                
+                <div className="flex items-center gap-2">
+                  <Globe className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
+                  <span className="text-sm md:text-base font-semibold text-gray-600">90+ Countries</span>
+                </div>
+                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
+                
+                <div className="flex items-center gap-2">
+                  <Star className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
+                  <span className="text-sm md:text-base font-semibold text-gray-600">50+ Clients</span>
+                </div>
+                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
+                
+                <div className="flex items-center gap-2">
+                  <DollarSign className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
+                  <span className="text-sm md:text-base font-semibold text-gray-600">70% Cost Reduction</span>
+                </div>
+              </div>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button
+                  onClick={() => {
+                    document.getElementById('leadership-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-[#2D9B5F] text-[#2D9B5F] hover:bg-[#2D9B5F] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(45,155,95,0.25)] font-semibold"
+                  aria-label="Navigate to team section"
+                >
+                  Meet Our Team
+                </Button>
+                
+                <Button
+                  onClick={() => {
+                    document.getElementById('timeline-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-[#2D9B5F] text-[#2D9B5F] hover:bg-[#2D9B5F] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(45,155,95,0.25)] font-semibold"
+                  aria-label="Navigate to company timeline"
+                >
+                  Our Story
+                </Button>
               </div>
             </motion.div>
           </div>
@@ -488,6 +554,7 @@ const AboutUs = () => {
 
       {/* SECTION 6: COMPANY HISTORY TIMELINE */}
       <section 
+        id="timeline-section"
         data-nav-theme="light"
         className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
       >
@@ -561,6 +628,7 @@ const AboutUs = () => {
 
       {/* SECTION 7: LEADERSHIP TEAM */}
       <section 
+        id="leadership-section"
         data-nav-theme="light"
         className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
       >
