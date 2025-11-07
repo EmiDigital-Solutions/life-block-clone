@@ -594,7 +594,7 @@ const AboutUs = () => {
           
           <div className="grid lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12">
             {/* Location List */}
-            <div className="lg:col-span-2 space-y-3 max-w-xl mx-auto lg:mx-0 w-full">
+            <div className="lg:col-span-2 space-y-3 w-full">
               {Object.entries(locations).map(([key, location]) => (
                 <button
                   key={key}
@@ -616,7 +616,7 @@ const AboutUs = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-3 max-w-xl mx-auto lg:mx-0 w-full"
+              className="lg:col-span-3 w-full"
             >
               <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
