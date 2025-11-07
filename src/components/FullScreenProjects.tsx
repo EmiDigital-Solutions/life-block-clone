@@ -185,11 +185,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      "rgb(22, 163, 74)",
+      "rgb(20, 184, 166)",
       "rgb(17, 24, 39)",
       "rgb(29, 78, 216)",
-      "rgb(22, 163, 74)",
-      "rgb(22, 163, 74)",
+      "rgb(20, 184, 166)",
+      "rgb(20, 184, 166)",
     ]
   );
 
@@ -202,7 +202,7 @@ const FullScreenProjects = () => {
       {projects.map((project, index) => {
         // Determine nav theme based on project gradient
         let navTheme: 'dark' | 'green' | 'light' = 'dark';
-        if (project.gradient.includes('rgb(34, 197, 94)')) {
+        if (project.gradient.includes('rgb(20, 184, 166)')) {
           navTheme = 'green';
         } else if (project.gradient.includes('rgb(31, 41, 55)') || project.gradient.includes('rgb(37, 99, 235)')) {
           navTheme = 'dark';
