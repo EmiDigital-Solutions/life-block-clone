@@ -145,9 +145,8 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Enhanced Animation */}
                 <motion.div 
-                  className="relative w-full mx-auto flex items-center justify-center p-8 sm:p-10 md:p-12 lg:p-[60px]"
+                  className="relative w-full mx-auto flex items-center justify-center p-8 sm:p-10 md:p-12 lg:p-[60px] rounded-3xl sm:rounded-[32px] md:rounded-[40px]"
                   style={{
-                    borderRadius: "24px sm:32px md:40px",
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
                     boxShadow: "0 10px 40px rgba(0,0,0,0.2), 0 20px 60px rgba(0,0,0,0.3)",
                   }}
