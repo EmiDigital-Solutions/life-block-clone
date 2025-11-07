@@ -83,8 +83,8 @@ const AboutUs = () => {
       
       {/* SECTION 1: HERO SECTION */}
       <section 
-        data-nav-theme="dark"
-        className="pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-12 bg-white"
       >
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -156,11 +156,11 @@ const AboutUs = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="order-1 lg:order-2 space-y-6"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
                 AI-Powered Solutions for{" "}
-                <span className="text-cyan-400">Global Procurement</span> Excellence
+                <span className="text-blue-600">Global Procurement</span> Excellence
               </h1>
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 YVOO leads the AI revolution in procurement and supplier intelligence. With our award-winning technology, 
                 businesses get instant supplier discovery, on-site auditing in days (not weeks), and global supplier 
                 visibility—all powered by AI.
@@ -172,86 +172,24 @@ const AboutUs = () => {
 
       {/* SECTION 2: TECHNOLOGY & INNOVATION */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
       >
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left: Image with rounded card */}
+          <div className="max-w-4xl">
+            {/* Left: Text */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-square">
-                <img 
-                  src="/src/assets/about-technology.jpg" 
-                  alt="Modern industrial factory with AI technology"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                
-                {/* Floating product badges */}
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="absolute top-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
-                >
-                  <div className="flex flex-col items-center gap-1">
-                    <Search className="w-8 h-8 text-cyan-400" />
-                    <span className="text-xs font-bold text-white">SearchPro+</span>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="absolute top-8 right-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
-                >
-                  <div className="flex flex-col items-center gap-1">
-                    <Shield className="w-8 h-8 text-cyan-400" />
-                    <span className="text-xs font-bold text-white">ScanPro+</span>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
-                >
-                  <div className="flex flex-col items-center gap-1">
-                    <TrendingUp className="w-8 h-8 text-cyan-400" />
-                    <span className="text-xs font-bold text-white">SalesPro+</span>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-            
-            {/* Right: Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white">
-                Technology and <span className="text-cyan-400">Innovation</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+                Technology and <span className="text-blue-600">Innovation</span>
               </h2>
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-                With cutting-edge AI, YVOO's platforms deliver next-generation procurement intelligence. 
-                <strong className="text-white"> SearchPro+</strong> discovers suppliers globally in seconds, 
-                <strong className="text-white"> ScanPro+</strong> conducts on-site audits with certified auditors in 90+ countries, and 
-                <strong className="text-white"> SalesPro+</strong> gives suppliers visibility to 7 million+ B2B decision-makers. 
-                Our AI learns from every interaction and becomes a true partner in your supply chain team.
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                [Please provide the text content you'd like to add here]
               </p>
             </motion.div>
           </div>
@@ -262,7 +200,7 @@ const AboutUs = () => {
       <section 
         data-nav-theme="dark"
         className="py-24 md:py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(20, 184, 166), rgb(59, 130, 246), rgb(139, 92, 246))" }}
+        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(59, 130, 246))" }}
       >
         <div className="container mx-auto">
           <motion.div 
@@ -286,17 +224,17 @@ const AboutUs = () => {
 
       {/* SECTION 4: OUR PRINCIPLES */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-white text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
           >
-            Our <span className="text-cyan-400">Principles</span>
+            Our <span className="text-blue-600">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -309,8 +247,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.1 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-cyan-400">Innovation</h3>
-                <p className="text-white/70 leading-relaxed">
+                <h3 className="text-2xl font-bold text-blue-600">Innovation</h3>
+                <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
                 </p>
@@ -323,8 +261,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.2 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-cyan-400">Customer-Oriented Approach</h3>
-                <p className="text-white/70 leading-relaxed">
+                <h3 className="text-2xl font-bold text-green-600">Customer-Oriented Approach</h3>
+                <p className="text-gray-600 leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
               </motion.div>
@@ -336,8 +274,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.3 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-cyan-400">Global & Personalized</h3>
-                <p className="text-white/70 leading-relaxed">
+                <h3 className="text-2xl font-bold text-blue-600">Global & Personalized</h3>
+                <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
               </motion.div>
@@ -349,8 +287,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.4 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-cyan-400">Ethical AI</h3>
-                <p className="text-white/70 leading-relaxed">
+                <h3 className="text-2xl font-bold text-green-600">Ethical AI</h3>
+                <p className="text-gray-600 leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
                 </p>
               </motion.div>
@@ -367,10 +305,10 @@ const AboutUs = () => {
               <div className="relative w-full max-w-md mx-auto aspect-square">
                 {/* Connection lines */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                  <line x1="100" y1="100" x2="300" y2="100" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="2" />
-                  <line x1="300" y1="100" x2="300" y2="300" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="2" />
-                  <line x1="300" y1="300" x2="100" y2="300" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="2" />
-                  <line x1="100" y1="300" x2="100" y2="100" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="2" />
+                  <line x1="100" y1="100" x2="300" y2="100" stroke="#e5e7eb" strokeWidth="2" />
+                  <line x1="300" y1="100" x2="300" y2="300" stroke="#e5e7eb" strokeWidth="2" />
+                  <line x1="300" y1="300" x2="100" y2="300" stroke="#e5e7eb" strokeWidth="2" />
+                  <line x1="100" y1="300" x2="100" y2="100" stroke="#e5e7eb" strokeWidth="2" />
                 </svg>
                 
                 {/* Center text */}
@@ -442,8 +380,8 @@ const AboutUs = () => {
 
       {/* SECTION 5: SUSTAINABILITY COMMITMENT */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
       >
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -480,13 +418,13 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="lg:col-span-3 space-y-6"
             >
-              <div className="text-sm font-semibold text-cyan-400 uppercase tracking-wider">
+              <div className="text-sm font-semibold text-green-600 uppercase tracking-wider">
                 Carbon Reduction Commitment
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Committed to Reducing Our Carbon Footprint and Building a Sustainable Future
               </h2>
-              <p className="text-lg text-white/70 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed">
                 We pledge to minimize greenhouse gas emissions by increasing energy efficiency and using renewable 
                 energy sources whenever possible. We also reduce waste and promote environmentally friendly practices 
                 in all our operations.
@@ -498,15 +436,15 @@ const AboutUs = () => {
 
       {/* SECTION 6: COMPANY HISTORY TIMELINE */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-cyan-400 text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-blue-600 text-center mb-20"
           >
             Our History
           </motion.h2>
@@ -514,7 +452,7 @@ const AboutUs = () => {
           <div className="max-w-6xl mx-auto space-y-12">
             {/* Timeline dots */}
             <div className="flex items-center justify-between relative">
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/20 -z-10" />
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10" />
               {timelineData.map((item) => (
                 <button
                   key={item.year}
@@ -525,12 +463,12 @@ const AboutUs = () => {
                     whileHover={{ scale: 1.2 }}
                     className={`w-4 h-4 rounded-full transition-all ${
                       selectedYear === item.year 
-                        ? 'bg-cyan-400 ring-4 ring-cyan-400/30' 
-                        : 'bg-white/30 hover:bg-white/50'
+                        ? 'bg-green-600 ring-4 ring-green-200' 
+                        : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                   />
                   <span className={`text-sm font-semibold ${
-                    selectedYear === item.year ? 'text-cyan-400' : 'text-white/50'
+                    selectedYear === item.year ? 'text-green-600' : 'text-gray-400'
                   }`}>
                     {item.year}
                   </span>
@@ -558,9 +496,9 @@ const AboutUs = () => {
                       <span className="text-6xl font-bold text-white/30">{selectedTimeline.year}</span>
                     </div>
                   </div>
-                  <div className="md:col-span-2 bg-gradient-to-br from-gray-900 to-gray-800 border border-white/10 rounded-[2.5rem] p-8 text-white shadow-2xl flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-cyan-400">{selectedTimeline.title}</h3>
-                    <p className="text-white/70 leading-relaxed">{selectedTimeline.desc}</p>
+                  <div className="md:col-span-2 bg-white border border-gray-200 rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold mb-4 text-blue-600">{selectedTimeline.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -571,8 +509,8 @@ const AboutUs = () => {
 
       {/* SECTION 7: LEADERSHIP TEAM */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
       >
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -591,7 +529,7 @@ const AboutUs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
               </div>
-              <p className="text-center mt-4 text-white/60 text-sm">
+              <p className="text-center mt-4 text-gray-500 text-sm">
                 YVOO Leadership Team
               </p>
             </motion.div>
@@ -601,18 +539,18 @@ const AboutUs = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="order-1 lg:order-2 space-y-6 text-white"
+              className="order-1 lg:order-2 space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold">
-                YVOO <span className="text-cyan-400">Leadership</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
+                YVOO <span className="text-blue-600">Leadership</span>
               </h2>
-              <p className="text-xl md:text-2xl text-white/70 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
               <Button 
                 variant="outline" 
-                className="bg-white/10 text-white border-2 border-white/30 hover:bg-white/20 hover:text-white rounded-xl px-8 py-6 text-lg"
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-8 py-6 text-lg"
               >
                 Learn More
               </Button>
@@ -623,17 +561,17 @@ const AboutUs = () => {
 
       {/* SECTION 8: LOCATIONS */}
       <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-black"
+        data-nav-theme="light"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-white text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
           >
-            Our <span className="text-cyan-400">Locations</span>
+            Our <span className="text-blue-600">Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
@@ -645,8 +583,8 @@ const AboutUs = () => {
                   onClick={() => setSelectedLocation(key)}
                   className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${
                     selectedLocation === key
-                      ? 'bg-cyan-400 text-black shadow-lg shadow-cyan-400/20'
-                      : 'bg-white/5 text-white/70 hover:bg-white/10 border border-white/10'
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
                   <span className="font-semibold">{location.name}</span>
@@ -662,21 +600,21 @@ const AboutUs = () => {
               transition={{ duration: 0.6 }}
               className="lg:col-span-3"
             >
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-white/10 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-2xl">
-                <h3 className="text-3xl md:text-4xl font-bold text-white">
+              <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
                   {locations[selectedLocation as keyof typeof locations].name}
                 </h3>
                 <div className="space-y-4 text-lg md:text-xl">
-                  <p className="text-white/70">
-                    <strong className="text-cyan-400">Address:</strong><br />
+                  <p className="text-gray-600">
+                    <strong className="text-blue-600">Address:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].address}
                   </p>
-                  <p className="text-white/70">
-                    <strong className="text-cyan-400">Phone:</strong><br />
+                  <p className="text-gray-600">
+                    <strong className="text-blue-600">Phone:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].phone}
                   </p>
-                  <p className="text-white/70">
-                    <strong className="text-cyan-400">Email:</strong><br />
+                  <p className="text-gray-600">
+                    <strong className="text-blue-600">Email:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].email}
                   </p>
                 </div>
