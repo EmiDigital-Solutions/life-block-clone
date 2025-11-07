@@ -10,6 +10,7 @@ import Auditors from "./pages/Auditors";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AboutUs from "./pages/AboutUs";
+import BackgroundRemoval from "./pages/BackgroundRemoval";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/bg-removal" element={<BackgroundRemoval />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
