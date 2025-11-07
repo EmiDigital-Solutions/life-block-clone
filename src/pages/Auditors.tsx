@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 import {
   Calendar,
   Users,
@@ -1474,107 +1475,42 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
-  const containerRef = useRef<HTMLElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const scale = useTransform(scrollYProgress, [0, 1], [1.3, 1]);
-  
   return (
-    <section 
-      ref={containerRef} 
-      data-nav-theme="light"
-      className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    <ScrollPinnedZoom
+      imageSrc={auditorFactoryTeam}
+      imageAlt="Professional auditors working together in industrial setting"
     >
-      <div className="max-w-7xl mx-auto">
-        
-        {/* ENTIRE CARD scales from 60% to 100% - zooms out to cover full section */}
-        <motion.div
-          style={{ scale }}
-          className="relative rounded-[32px] md:rounded-[40px] lg:rounded-[48px] overflow-hidden h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
-        >
-          {/* Image Layer - Static, no animation */}
-          <div className="absolute inset-0">
-            <img 
-              src={auditorFactoryTeam}
-              alt="Professional auditors working together in industrial setting"
-              className="w-full h-full object-cover"
-            />
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
-          </div>
-          
-          {/* Text Content Overlay - Centered */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12">
-            
-            {/* Logo/Icon */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
-            >
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-primary" />
-                <div className="w-4 h-4 rounded-full bg-white/40" />
-              </div>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-4"
-            >
-              We Develop Tech
-            </motion.h2>
-
-            <motion.h3 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary max-w-4xl leading-tight"
-            >
-              Solutions That Matter
-            </motion.h3>
-            
-            {/* Subheadline */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 md:mt-8 text-sm md:text-base lg:text-lg xl:text-xl text-white/95 max-w-3xl leading-relaxed"
-            >
-              We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
-            </motion.p>
-            
-            {/* CTA Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              className="mt-6 md:mt-8 bg-white text-gray-900 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl group"
-            >
-              Partner with us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.button>
-            
-          </div>
-        </motion.div>
-        
+      {/* Logo/Icon */}
+      <div className="mb-8">
+        <div className="flex items-center justify-center gap-3">
+          <div className="w-4 h-4 rounded-full bg-primary" />
+          <div className="w-4 h-4 rounded-full bg-white/40" />
+        </div>
       </div>
-    </section>
+
+      {/* Headline */}
+      <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
+        We Develop Tech
+      </h2>
+
+      <h3 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary max-w-4xl leading-tight">
+        Solutions That Matter
+      </h3>
+      
+      {/* Subheadline */}
+      <p className="mt-6 md:mt-8 text-sm md:text-base lg:text-lg xl:text-xl text-white/95 max-w-3xl leading-relaxed">
+        We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
+      </p>
+      
+      {/* CTA Button */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        className="mt-6 md:mt-8 bg-white text-gray-900 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl group"
+      >
+        Partner with us
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+      </motion.button>
+    </ScrollPinnedZoom>
   );
 };
 
