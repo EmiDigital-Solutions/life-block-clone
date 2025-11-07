@@ -580,21 +580,21 @@ const AboutUs = () => {
       {/* SECTION 8: LOCATIONS */}
       <section 
         data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
+        className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 bg-gray-50"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-12 sm:mb-16 md:mb-20"
           >
             Our <span className="text-blue-600">Locations</span>
           </motion.h2>
           
-          <div className="grid lg:grid-cols-5 gap-12">
+          <div className="grid lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12">
             {/* Location List */}
-            <div className="lg:col-span-2 space-y-3">
+            <div className="lg:col-span-2 space-y-3 max-w-xl mx-auto lg:mx-0 w-full">
               {Object.entries(locations).map(([key, location]) => (
                 <button
                   key={key}
@@ -616,7 +616,7 @@ const AboutUs = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-3"
+              className="lg:col-span-3 max-w-xl mx-auto lg:mx-0 w-full"
             >
               <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
