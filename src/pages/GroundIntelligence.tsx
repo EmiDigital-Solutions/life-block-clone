@@ -31,7 +31,7 @@ const GroundIntelligence = () => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
+              transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
             >
               Transform supplier data into{" "}
@@ -41,7 +41,7 @@ const GroundIntelligence = () => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col space-y-4 text-white mx-auto sm:mx-0 mb-12"
             >
               <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ const GroundIntelligence = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="w-full sm:w-auto mb-10"
             >
               <button 
@@ -76,7 +76,7 @@ const GroundIntelligence = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-auto sm:mx-0"
             >
               <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.

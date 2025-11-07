@@ -150,7 +150,7 @@ const Auditors = () => {
                 <motion.h1 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  transition={{ duration: 0.8 }}
                   className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
                 >
                   Join the Elite Auditor Network
@@ -160,7 +160,7 @@ const Auditors = () => {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
                 >
                   Partner with Connectimus to serve companies with the highest quality standards and premium requirements. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
@@ -169,7 +169,7 @@ const Auditors = () => {
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
                   className="flex flex-col space-y-4 text-white mb-12"
                 >
                   <div className="flex items-center gap-3">
@@ -189,7 +189,7 @@ const Auditors = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
                   className="flex relative z-10"
                 >
                   <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
@@ -202,9 +202,9 @@ const Auditors = () => {
 
               {/* Right Column: Animated Auditor Cards */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex justify-center lg:justify-center order-first lg:order-last"
               >
                 <div 

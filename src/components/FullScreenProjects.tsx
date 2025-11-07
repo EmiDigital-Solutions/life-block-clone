@@ -220,7 +220,7 @@ const FullScreenProjects = () => {
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: false, amount: 0.3 }}
                 className="text-white space-y-4 sm:space-y-6 text-center lg:text-left"
               >
@@ -248,9 +248,9 @@ const FullScreenProjects = () => {
               {/* Right: Auditor Cards or Feature Cards */}
               {project.showAuditors ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
                   viewport={{ once: false, amount: 0.3 }}
                   className="flex justify-center lg:justify-end"
                 >
