@@ -86,9 +86,7 @@ const BeFound = () => {
                 transition={{ duration: 0.8 }}
                 className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
-                Become visible,{" "}
-                <span className="block mt-2">to over 7 million+</span>
-                <span className="block mt-2">B2B decision-makers.</span>
+                Become visible, to over 7 million+ B2B decision-makers.
               </motion.h1>
 
               <motion.div 

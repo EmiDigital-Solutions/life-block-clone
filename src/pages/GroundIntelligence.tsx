@@ -34,8 +34,7 @@ const GroundIntelligence = () => {
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
             >
-              Transform supplier data into{" "}
-              <span className="block mt-2">strategic advantage</span>
+              Transform supplier data into strategic advantage
             </motion.h1>
 
             <motion.div 
