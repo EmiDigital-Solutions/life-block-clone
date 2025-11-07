@@ -1478,13 +1478,15 @@ const ScrollZoomSection = () => {
     offset: ["start end", "end start"]
   });
 
-  // Image scale transforms based on scroll
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.05]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.8]);
+  // Image scale transforms based on scroll - stronger animations
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.4, 1, 1.1]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 1, 1, 0.7]);
+  const imageRotate = useTransform(scrollYProgress, [0, 0.5], [2, 0]);
   
-  // Content animations
-  const contentY = useTransform(scrollYProgress, [0.2, 0.5], [50, 0]);
-  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  // Content animations - more dramatic movement
+  const contentY = useTransform(scrollYProgress, [0.2, 0.5], [80, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0.15, 0.4], [0, 1]);
+  const contentScale = useTransform(scrollYProgress, [0.2, 0.5], [0.9, 1]);
 
   return (
     <section ref={sectionRef} className="py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
@@ -1508,10 +1510,10 @@ const ScrollZoomSection = () => {
           className="relative w-full max-w-6xl mx-auto rounded-[60px] md:rounded-[80px] overflow-hidden shadow-2xl"
         >
           <motion.img
-            style={{ scale: imageScale }}
+            style={{ scale: imageScale, rotate: imageRotate }}
             src={auditorFactoryTeam}
             alt="Professional auditors working together in industrial setting"
-            className="w-full h-[500px] md:h-[650px] lg:h-[750px] xl:h-[800px] object-cover"
+            className="w-full h-[460px] md:h-[610px] lg:h-[710px] xl:h-[760px] object-cover"
           />
           
           {/* Dark Overlay */}
@@ -1519,7 +1521,7 @@ const ScrollZoomSection = () => {
           
           {/* Content Overlay */}
           <motion.div 
-            style={{ y: contentY, opacity: contentOpacity }}
+            style={{ y: contentY, opacity: contentOpacity, scale: contentScale }}
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12"
           >
             {/* Navigation Dots */}
