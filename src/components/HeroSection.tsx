@@ -179,7 +179,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-[29px] xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-base xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -188,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl md:text-xl lg:text-[14px] xl:text-base 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
+                className="text-lg sm:text-xl md:text-xl lg:text-[10px] xl:text-base 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg lg:text-[13px] xl:text-base 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium"
+                className="text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium"
               >
                 {heroContent.description}
               </motion.p>
@@ -208,7 +208,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex"
               >
-                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-5 xl:px-7 2xl:px-11 3xl:px-14 py-3 sm:py-4 lg:py-2.5 xl:py-3 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-[13px] xl:text-base 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-4 xl:px-7 2xl:px-11 3xl:px-14 py-3 sm:py-4 lg:py-1.5 xl:py-3 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[176px] lg:h-[224px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[208px] lg:h-[272px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -269,8 +269,8 @@ const HeroSection = () => {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-4 xl:pt-9 2xl:pt-11 3xl:pt-14">
-                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[112px] lg:h-[112px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-5 xl:pt-9 2xl:pt-11 3xl:pt-14">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[128px] lg:h-[128px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
