@@ -227,16 +227,6 @@ const AboutUs = () => {
                   className="block font-bold"
                   style={{
                     fontSize: "clamp(36px, 5vw, 56px)",
-                    color: "#1E2A3A",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  Pioneering AI-Powered
-                </span>
-                <span 
-                  className="block font-bold"
-                  style={{
-                    fontSize: "clamp(36px, 5vw, 56px)",
                     color: "#2D9B5F",
                     letterSpacing: "-0.02em",
                   }}
@@ -255,20 +245,6 @@ const AboutUs = () => {
                 </span>
               </h1>
               
-              <p 
-                className="max-w-[580px]"
-                style={{
-                  fontSize: "18px",
-                  lineHeight: 1.65,
-                  color: "#6B7280",
-                  fontWeight: 400,
-                }}
-              >
-                Since 2019, YVOO has been on a mission to transform global procurement. 
-                Our AI-powered platform connects businesses with verified suppliers worldwide, 
-                delivering audits in days (not weeks) at 70% lower costs. Trusted by Mercedes, 
-                BMW, Bosch, and 50+ industry leaders.
-              </p>
               
             </motion.div>
             
