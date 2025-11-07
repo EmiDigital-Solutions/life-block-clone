@@ -366,7 +366,7 @@ const FullScreenProjects = () => {
                     <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
                     {/* Cards Container */}
-                    <div className="relative h-[380px] lg:h-[390px] xl:h-[400px] flex items-center justify-center">
+                    <div className="relative h-[532px] lg:h-[546px] xl:h-[560px] flex items-center justify-center">
                       {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, cardIndex) => {
                         const style = getCardStyle(cardIndex, 3);
                         
@@ -399,7 +399,7 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-52 h-66 lg:w-54 lg:h-69 xl:w-56 xl:h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
+                              className={`relative w-[291px] h-[370px] lg:w-[302px] lg:h-[386px] xl:w-[314px] xl:h-[403px] rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
                               style={{
                                 boxShadow: `
                                   0 25px 50px -12px rgba(0, 0, 0, 0.5),
