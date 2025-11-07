@@ -28,19 +28,17 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
   return (
     <section 
       ref={containerRef}
-      className="relative w-full -mt-1"
-      style={{ height: '250vh' }} // 2.5x viewport height for smooth zoom
+      className="relative h-[250vh]"
     >
-      {/* Sticky container - this stays fixed in viewport while section scrolls */}
-      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Sticky container - stays pinned in viewport while outer section scrolls */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-black">
         <motion.img 
           src={imageSrc}
           alt={imageAlt}
-          className="object-cover transition-all duration-100 ease-out"
+          className="object-cover"
           style={{ 
             width: imageWidth,
-            maxHeight: '100vh',
-            willChange: "width"
+            maxHeight: '100vh'
           }}
         />
         
