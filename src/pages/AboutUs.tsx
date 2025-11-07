@@ -121,17 +121,18 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Exact Homepage Style */}
                 <div 
-                  className="relative w-full max-w-[500px] mx-auto"
+                  className="relative w-full max-w-[500px] mx-auto flex items-center justify-center"
                   style={{
                     borderRadius: "40px",
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
                     padding: "60px",
+                    minHeight: "540px"
                   }}
                 >
                   {/* Circular Image Container */}
                   <div 
-                    className="relative mx-auto overflow-hidden"
+                    className="relative overflow-hidden"
                     style={{
                       width: "420px",
                       height: "420px",
@@ -145,7 +146,7 @@ const AboutUs = () => {
                       alt="YVOO Professional"
                       className="w-full h-full object-cover"
                       style={{
-                        transform: "scale(1.25)",
+                        transform: "scale(1.13)",
                         objectPosition: "58% 55%"
                       }}
                     />
