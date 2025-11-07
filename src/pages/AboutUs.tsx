@@ -173,9 +173,6 @@ const AboutUs = () => {
                   
                   {/* Circular Image Container */}
                   <div className="relative flex items-center justify-center pt-14 pb-4">
-                    {/* Light blue circular background */}
-                    <div className="absolute w-[360px] h-[360px] rounded-full bg-blue-200/80" />
-                    
                     <motion.div 
                       className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -189,13 +186,20 @@ const AboutUs = () => {
                       <motion.img 
                         src={heroPersonImage} 
                         alt="YVOO Professional"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover mix-blend-luminosity opacity-90"
                         initial={{ opacity: 0, scale: 1.3 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        animate={{ opacity: 0.9, scale: 1 }}
                         transition={{
                           duration: 1,
                           ease: [0.25, 0.46, 0.45, 0.94],
                           delay: 0.7
+                        }}
+                      />
+                      {/* Light overlay effect */}
+                      <div 
+                        className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                        style={{
+                          background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
                         }}
                       />
                     </motion.div>
