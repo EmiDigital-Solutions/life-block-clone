@@ -29,7 +29,7 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
     <section 
       ref={containerRef}
       className="relative w-full -mt-1"
-      style={{ height: '200vh' }} // Double viewport height for smooth scroll-through
+      style={{ height: '120vh' }} // Controlled height for smooth zoom
     >
       {/* Sticky container - this stays fixed in viewport while section scrolls */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
