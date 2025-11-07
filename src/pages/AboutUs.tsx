@@ -184,7 +184,7 @@ const AboutUs = () => {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  Procurement Intelligence
+                  SCALING PREMIUM On-Site AUDITS
                 </span>
                 <span 
                   className="block font-bold"
@@ -194,7 +194,7 @@ const AboutUs = () => {
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  for Global Industry Leaders
+                  THROUGH GLOBAL Auditors NETWORK and AI
                 </span>
               </h1>
               
