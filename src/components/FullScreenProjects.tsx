@@ -81,7 +81,7 @@ const projects = [
     number: "01",
     title: "Global On-Demand Auditor Network",
     description: "Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.",
-    gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
+    gradient: "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))",
     showAuditors: true,
   },
   {
@@ -102,7 +102,7 @@ const projects = [
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
-    gradient: "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))",
+    gradient: "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))",
     featureType: "workflow",
   },
 ];
