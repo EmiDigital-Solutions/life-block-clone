@@ -7,7 +7,7 @@ import connectimusLogo from "@/assets/connectimus-o-logo.png";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navBgColor, setNavBgColor] = useState('rgb(31, 41, 55)'); // Default dark navy
+  const [navBgColor, setNavBgColor] = useState('rgba(31, 41, 55, 0.95)'); // Default dark navy with opacity
   const [textColor, setTextColor] = useState('rgb(255, 255, 255)'); // Default white
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -105,10 +105,11 @@ const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-all duration-300 ease-in-out"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
       style={{ 
         backgroundColor: navBgColor,
         borderBottomColor: borderColor,
+        minHeight: '64px',
       }}
     >
       <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
