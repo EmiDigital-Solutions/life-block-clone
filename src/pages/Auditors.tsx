@@ -139,11 +139,11 @@ const Auditors = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
+          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
           style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         >
-          <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:pl-12 2xl:pl-16">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 md:gap-10 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
+          <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
               
               {/* Left Column: Text Content */}
               <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-4 xl:pl-8">
@@ -151,17 +151,17 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-sans font-bold text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold text-white leading-tight"
                 >
                   Join the Elite Auditor Network
-                  <span className="block mt-2 text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl">for Global Industry Leaders</span>
+                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-5xl">for Global Industry Leaders</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-base md:text-lg lg:text-lg xl:text-xl text-white/90 font-sans"
+                  className="text-lg text-white/90 font-sans"
                 >
                   Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
                 </motion.p>
@@ -205,7 +205,7 @@ const Auditors = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex justify-center lg:justify-center order-first lg:order-last lg:pr-6 xl:pr-8 2xl:pr-12"
+                className="flex justify-center lg:justify-center order-first lg:order-last lg:pr-8 xl:pr-12"
               >
                 <div 
                   className="relative w-full max-w-2xl"
@@ -213,7 +213,7 @@ const Auditors = () => {
                 >
                   <div className="absolute inset-0 blur-3xl bg-white/10 scale-150 -z-10"></div>
                   
-                  <div className="relative h-[375px] sm:h-[438px] md:h-[450px] lg:h-[480px] xl:h-[500px] 2xl:h-[520px] flex items-center justify-center">
+                  <div className="relative h-[375px] sm:h-[438px] lg:h-[500px] flex items-center justify-center">
                     {auditorProfiles.map((auditor, index) => {
                       const style = getCardStyle(index, auditorProfiles.length);
                       
@@ -245,7 +245,7 @@ const Auditors = () => {
                           }}
                         >
                           <div
-                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] md:w-[270px] md:h-[340px] lg:w-[280px] lg:h-[360px] xl:w-[290px] xl:h-[370px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[280px] lg:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
                               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                             }}
@@ -253,7 +253,7 @@ const Auditors = () => {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                             
                             <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
-                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] md:w-[165px] md:h-[165px] lg:w-[175px] lg:h-[175px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
+                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
                                 <img
                                   src={auditor.image}
                                   alt={auditor.name}
@@ -391,7 +391,7 @@ const Auditors = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-white mb-6"
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
             >
               Ready to Build Your Professional Practice?
             </motion.h2>
@@ -400,7 +400,7 @@ const Auditors = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl lg:text-xl xl:text-xl text-white/90 mb-10"
+              className="text-xl text-white/90 mb-10"
             >
               Join an elite network of certified auditors serving Fortune 500 companies with professional excellence and sustainable growth
             </motion.p>
@@ -485,7 +485,7 @@ const ValuePropositionSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -493,18 +493,18 @@ const ValuePropositionSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             <span className="text-green-600">Professional Partnership</span> Platform
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl xl:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Connectimus connects certified auditors with quality-focused enterprises. 
             We prioritize professional standards, strategic partnerships, and career development.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -566,19 +566,19 @@ const TimelineSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="text-green-600">Partnership Journey</span>
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl xl:text-xl text-gray-600">
+          <p className="text-xl text-gray-600">
             Five steps to join the elite auditor network
           </p>
         </motion.div>
@@ -672,24 +672,24 @@ const QualificationsSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="text-green-600">Professional Standards</span>
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl xl:text-xl text-gray-600">
+          <p className="text-xl text-gray-600">
             Excellence requirements that ensure client trust and audit quality
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 md:gap-6 lg:gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {qualifications.map((qual, index) => (
             <motion.div
               key={index}
@@ -909,32 +909,32 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
         
-          {/* Header - Fixed position, always visible */}
-          <div className="text-center mb-6 md:mb-8 px-4 flex-shrink-0">
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold text-green-600 mb-3"
-            >
-              Enterprise Technology
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
-            >
-              Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
-            </motion.p>
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-green-600 text-white px-6 md:px-7 lg:px-8 xl:px-9 py-3 md:py-3.5 lg:py-4 rounded-full font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
-            >
+        {/* Header - Fixed position, always visible */}
+        <div className="text-center mb-8 px-4 flex-shrink-0">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-600 mb-3"
+          >
+            Enterprise Technology
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
+          >
+            Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+          >
             Explore Features
             <ArrowRight className="w-5 h-5" />
           </motion.button>
@@ -964,7 +964,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
                     scale: 1.03,
                     transition: { duration: 0.2 }
                   }}
-                  className="relative w-[320px] md:w-[340px] lg:w-[350px] xl:w-[360px] 2xl:w-[380px] h-[400px] md:h-[410px] lg:h-[420px] xl:h-[430px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+                  className="relative w-[350px] h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
                 >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -1124,7 +1124,7 @@ const DoVsDontSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -1143,14 +1143,14 @@ const DoVsDontSection = () => {
         </motion.div>
 
         {/* Main Headline with Toggle */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 md:gap-8 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
               When auditors
             </h2>
             
@@ -1159,7 +1159,7 @@ const DoVsDontSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className={`text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold ${
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold ${
                 isDoState ? 'text-green-600' : 'text-red-600'
               }`}
             >
@@ -1181,7 +1181,7 @@ const DoVsDontSection = () => {
               />
             </button>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
               with us.
             </h2>
           </motion.div>
@@ -1205,7 +1205,7 @@ const DoVsDontSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="text-base md:text-lg lg:text-lg xl:text-xl text-gray-600 mb-12 md:mb-16 max-w-3xl lg:ml-auto"
+          className="text-lg text-gray-600 mb-16 max-w-3xl lg:ml-auto"
         >
           {isDoState 
             ? "Experience premium compensation, strategic partnerships, and professional growth when joining our elite auditor network."
@@ -1220,7 +1220,7 @@ const DoVsDontSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 md:gap-6 lg:gap-6 xl:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {currentContent.map((item, index) => {
               const Icon = item.icon;
@@ -1312,24 +1312,24 @@ const SuccessStoriesSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="text-green-600">Partner Success Stories</span>
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl xl:text-xl text-gray-600">
+          <p className="text-xl text-gray-600">
             Real auditors, exceptional results
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -1414,19 +1414,19 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-24"
+      className="py-24 px-6 lg:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span className="text-green-600">Frequently Asked Questions</span>
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl xl:text-xl text-gray-600">
+          <p className="text-xl text-gray-600">
             Everything you need to know about partner auditor program
           </p>
         </motion.div>
@@ -1487,7 +1487,7 @@ const ScrollZoomSection = () => {
     <section 
       ref={containerRef} 
       data-nav-theme="light"
-      className="py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden"
+      className="py-20 px-4 sm:px-6 lg:px-12 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -1495,7 +1495,7 @@ const ScrollZoomSection = () => {
         {/* ENTIRE CARD scales from 60% to 100% - zooms out to cover full section */}
         <motion.div
           style={{ scale }}
-          className="relative rounded-[32px] md:rounded-[40px] lg:rounded-[48px] overflow-hidden h-[500px] sm:h-[550px] md:h-[600px] lg:h-[700px] xl:h-[750px] 2xl:h-[800px]"
+          className="relative rounded-[48px] overflow-hidden h-[600px] md:h-[700px] lg:h-[800px]"
         >
           {/* Image Layer - Static, no animation */}
           <div className="absolute inset-0">
@@ -1531,7 +1531,7 @@ const ScrollZoomSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-4"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4"
             >
               We Develop Tech
             </motion.h2>
@@ -1541,7 +1541,7 @@ const ScrollZoomSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold text-primary max-w-4xl leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary max-w-4xl leading-tight"
             >
               Solutions That Matter
             </motion.h3>
@@ -1552,7 +1552,7 @@ const ScrollZoomSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 md:mt-8 text-sm sm:text-base md:text-base lg:text-lg xl:text-xl 2xl:text-xl text-white/95 max-w-3xl leading-relaxed"
+              className="mt-8 text-base md:text-lg lg:text-xl text-white/95 max-w-3xl leading-relaxed"
             >
               We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
             </motion.p>
