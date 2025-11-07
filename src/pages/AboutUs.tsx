@@ -210,29 +210,20 @@ const AboutUs = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {/* Main Heading with word-by-word reveal */}
-              <div className="overflow-hidden">
-                <motion.h1 
-                  className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
-                  style={{ color: "#1E2A3A" }}
-                >
-                  {["Scaling", "On-Site", "Audits"].map((word, index) => (
-                    <motion.span
-                      key={index}
-                      className="inline-block mr-4"
-                      initial={{ opacity: 0, y: 50, rotateX: -90 }}
-                      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                      transition={{
-                        duration: 0.8,
-                        delay: 0.5 + index * 0.15,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </motion.h1>
-              </div>
+              {/* Main Heading */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.6,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
+                style={{ color: "#1E2A3A" }}
+              >
+                Scaling On-Site Audits
+              </motion.h1>
             </motion.div>
             
           </div>
