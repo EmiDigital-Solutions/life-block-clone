@@ -158,12 +158,12 @@ const HeroSection = () => {
     <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-black pb-24 sm:pb-28 lg:pb-0">
       <div className="absolute inset-0 bg-black"></div>
 
-      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 xl:px-24">
-        <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
+      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24">
+        <div className="px-4 sm:px-6 lg:px-8 xl:px-12 2xl:pl-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-10 xl:gap-16 2xl:gap-20 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-4 xl:pl-8 lg:pr-8 xl:pr-12">
+            <div className="flex flex-col space-y-6 sm:space-y-8 text-left lg:pl-2 xl:pl-4 2xl:pl-8 lg:pr-4 xl:pr-8 2xl:pr-12">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-sans font-semibold text-white leading-tight tracking-tight max-w-3xl"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-sans font-semibold text-white leading-tight tracking-tight max-w-3xl"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -188,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide max-w-2xl"
+                className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl font-sans font-medium text-cyan-400/90 tracking-wide max-w-2xl"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg lg:text-xl text-white/70 font-sans font-medium max-w-2xl"
+                className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 font-sans font-medium max-w-2xl"
               >
                 {heroContent.description}
               </motion.p>
@@ -208,7 +208,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex"
               >
-                <button className="bg-white text-gray-900 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-9 xl:px-10 py-3 sm:py-4 lg:py-4 xl:py-5 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-lg xl:text-xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>
@@ -227,7 +227,7 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                 
-                <div className="relative h-[375px] sm:h-[438px] lg:h-[500px] xl:h-[500px] flex items-center justify-center">
+                <div className="relative h-[375px] sm:h-[438px] lg:h-[460px] xl:h-[500px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -259,7 +259,7 @@ const HeroSection = () => {
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[280px] lg:h-[360px] xl:w-[280px] xl:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[260px] lg:h-[340px] xl:w-[280px] xl:h-[360px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -269,8 +269,8 @@ const HeroSection = () => {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-10">
-                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[180px] lg:h-[180px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-8 xl:pt-10">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[160px] lg:h-[160px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}

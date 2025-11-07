@@ -212,10 +212,10 @@ const FullScreenProjects = () => {
           <section
             key={index}
             data-nav-theme={navTheme}
-            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-12 sm:py-16 lg:py-20"
+            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-12 sm:py-16 lg:py-20"
           >
           <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-12 xl:gap-16 items-center">
               {/* Left: Text Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -231,15 +231,15 @@ const FullScreenProjects = () => {
                   </span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-sans font-semibold leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-sans font-semibold leading-tight tracking-tight">
                   {project.title}
                 </h2>
 
-                <p className="text-sm sm:text-base lg:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
+                <p className="text-sm sm:text-base lg:text-base xl:text-lg font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
                   {project.description}
                 </p>
 
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px]">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-7 xl:px-8 py-3 sm:py-4 lg:py-3.5 xl:py-4 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px]">
                   Learn more
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -262,7 +262,7 @@ const FullScreenProjects = () => {
                     <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
                     {/* Cards Container */}
-                    <div className="relative h-[300px] sm:h-[350px] lg:h-[400px] flex items-center justify-center">
+                    <div className="relative h-[300px] sm:h-[350px] lg:h-[380px] xl:h-[400px] flex items-center justify-center">
                       {visibleAuditors.map((auditor, auditorIndex) => {
                         const style = getCardStyle(auditorIndex, visibleAuditors.length);
                         
@@ -295,7 +295,7 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-52 lg:h-66 xl:w-56 xl:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                               style={{
                                 boxShadow: `
                                   0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -308,7 +308,7 @@ const FullScreenProjects = () => {
                               
                               {/* Auditor Image */}
                               <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
-                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden border-2 border-white/10">
+                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-2 border-white/10">
                                   <img
                                     src={auditor.image}
                                     alt={`Professional auditor from ${auditor.location}`}
@@ -366,7 +366,7 @@ const FullScreenProjects = () => {
                     <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
                     {/* Cards Container */}
-                    <div className="relative h-[400px] flex items-center justify-center">
+                    <div className="relative h-[380px] lg:h-[390px] xl:h-[400px] flex items-center justify-center">
                       {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, cardIndex) => {
                         const style = getCardStyle(cardIndex, 3);
                         
@@ -399,7 +399,7 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
+                              className={`relative w-52 h-66 lg:w-54 lg:h-69 xl:w-56 xl:h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
                               style={{
                                 boxShadow: `
                                   0 25px 50px -12px rgba(0, 0, 0, 0.5),
