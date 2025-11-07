@@ -45,6 +45,8 @@ const Navigation = () => {
       // Get all section elements (these contain the background colors we want)
       const sections = document.querySelectorAll('section');
       
+      let colorFound = false;
+      
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + window.scrollY;
@@ -68,6 +70,14 @@ const Navigation = () => {
             }
           }
           
+          // Check inline style if computed style is transparent
+          if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.style.background) {
+            const styleMatch = section.style.background.match(/rgba?\([^)]+\)/);
+            if (styleMatch) {
+              bgColor = styleMatch[0];
+            }
+          }
+          
           // Also check the parent container if section is still transparent
           if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.parentElement) {
             const parentStyle = window.getComputedStyle(section.parentElement);
@@ -83,18 +93,56 @@ const Navigation = () => {
             const [r, g, b] = rgbMatch.map(Number);
             setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
             setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+            colorFound = true;
           }
         }
       });
+      
+      // Fallback to ensure navbar is always visible
+      if (!colorFound && sections.length > 0) {
+        const firstSection = sections[0];
+        const computedStyle = window.getComputedStyle(firstSection);
+        let bgColor = computedStyle.backgroundColor;
+        
+        if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
+          const bgImage = computedStyle.backgroundImage;
+          if (bgImage && bgImage !== 'none' && bgImage.includes('gradient')) {
+            const colorMatch = bgImage.match(/rgba?\([^)]+\)/);
+            if (colorMatch) {
+              bgColor = colorMatch[0];
+            }
+          }
+        }
+        
+        if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && firstSection.style.background) {
+          const styleMatch = firstSection.style.background.match(/rgba?\([^)]+\)/);
+          if (styleMatch) {
+            bgColor = styleMatch[0];
+          }
+        }
+        
+        const rgbMatch = bgColor.match(/\d+/g);
+        if (rgbMatch && rgbMatch.length >= 3) {
+          const [r, g, b] = rgbMatch.map(Number);
+          setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+          setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+        }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    // Call immediately and multiple times to ensure detection works
+    handleScroll();
+    setTimeout(handleScroll, 50);
+    setTimeout(handleScroll, 150);
+    setTimeout(handleScroll, 300);
     
-    // Also call after a short delay to ensure styles are loaded
-    setTimeout(handleScroll, 100);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   // Determine if we're on a light or dark background
