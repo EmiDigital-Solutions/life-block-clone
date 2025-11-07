@@ -163,7 +163,7 @@ const Auditors = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
                 >
-                  Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
+                  Partner with Connectimus to serve companies with the highest quality standards and premium requirements. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
                 </motion.p>
 
                 <motion.div 
@@ -317,14 +317,12 @@ const Auditors = () => {
                 >
                   {[...Array(3)].map((_, index) => (
                     <div key={`auditor-band1-${index}`} className="flex items-center gap-12">
-                      <span className="text-lg font-bold text-gray-800">BMW</span>
-                      <span className="text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
-                      <span className="text-lg font-bold text-gray-800">LINDE</span>
-                      <span className="text-lg font-bold text-gray-800">BOSCH</span>
-                      <span className="text-lg font-bold text-gray-800">SIEMENS</span>
-                      <span className="text-lg font-bold text-gray-800">VOLKSWAGEN</span>
-                      <span className="text-lg font-bold text-gray-800">AUDI</span>
-                      <span className="text-lg font-bold text-gray-800">CONTINENTAL</span>
+                      <span className="text-lg font-bold text-gray-800">AUTOMOTIVE</span>
+                      <span className="text-lg font-bold text-gray-800">AEROSPACE</span>
+                      <span className="text-lg font-bold text-gray-800">ENGINEERING</span>
+                      <span className="text-lg font-bold text-gray-800">MANUFACTURING</span>
+                      <span className="text-lg font-bold text-gray-800">INDUSTRIAL</span>
+                      <span className="text-lg font-bold text-gray-800">TECHNOLOGY</span>
                     </div>
                   ))}
                 </motion.div>
@@ -343,14 +341,12 @@ const Auditors = () => {
                 >
                   {[...Array(3)].map((_, index) => (
                     <div key={`auditor-band2-${index}`} className="flex items-center gap-12">
-                      <span className="text-lg font-bold text-gray-800">BMW</span>
-                      <span className="text-lg font-bold text-gray-800">MERCEDES-BENZ</span>
-                      <span className="text-lg font-bold text-gray-800">LINDE</span>
-                      <span className="text-lg font-bold text-gray-800">BOSCH</span>
-                      <span className="text-lg font-bold text-gray-800">SIEMENS</span>
-                      <span className="text-lg font-bold text-gray-800">VOLKSWAGEN</span>
-                      <span className="text-lg font-bold text-gray-800">AUDI</span>
-                      <span className="text-lg font-bold text-gray-800">CONTINENTAL</span>
+                      <span className="text-lg font-bold text-gray-800">AUTOMOTIVE</span>
+                      <span className="text-lg font-bold text-gray-800">AEROSPACE</span>
+                      <span className="text-lg font-bold text-gray-800">ENGINEERING</span>
+                      <span className="text-lg font-bold text-gray-800">MANUFACTURING</span>
+                      <span className="text-lg font-bold text-gray-800">INDUSTRIAL</span>
+                      <span className="text-lg font-bold text-gray-800">TECHNOLOGY</span>
                     </div>
                   ))}
                 </motion.div>
@@ -402,7 +398,7 @@ const Auditors = () => {
               transition={{ delay: 0.2 }}
               className="text-base md:text-lg lg:text-xl text-white/90 mb-8 lg:mb-10"
             >
-              Join an elite network of certified auditors serving Fortune 500 companies with professional excellence and sustainable growth
+              Join an elite network of certified auditors serving companies with the highest quality standards, professional excellence and sustainable growth
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -462,7 +458,7 @@ const ValuePropositionSection = () => {
     {
       icon: Building2,
       title: "Enterprise Partnerships",
-      description: "Work with Fortune 500 companies and industry leaders who value audit quality and professional expertise",
+      description: "Work with companies that demand the highest quality standards and value audit expertise and professional excellence",
     },
     {
       icon: DollarSign,
@@ -1061,7 +1057,7 @@ const DoVsDontSection = () => {
     {
       icon: Target,
       title: "Strategic Matching",
-      description: "AI-powered system connects you with Fortune 500 clients that perfectly match your specialization and experience"
+      description: "AI-powered system connects you with premium clients that perfectly match your specialization and experience"
     },
     {
       icon: Shield,
@@ -1071,7 +1067,7 @@ const DoVsDontSection = () => {
     {
       icon: Building2,
       title: "Elite Client Network",
-      description: "Work with BMW, Mercedes-Benz, Linde and other global leaders who value professional excellence"
+      description: "Work with global leaders who value professional excellence and maintain the highest quality standards"
     },
     {
       icon: BookOpen,
@@ -1287,7 +1283,7 @@ const SuccessStoriesSection = () => {
       role: "Lead Auditor, ISO & VDA",
       years: "8 years experience",
       stats: { revenue: "€320K+ Earned", audits: "85 Assignments", rating: "5.0★" },
-      quote: "Connectimus transformed my practice. Working with BMW and Mercedes-Benz has elevated my professional standing while providing premium compensation and meaningful work.",
+      quote: "Connectimus transformed my practice. Working with premium clients has elevated my professional standing while providing exceptional compensation and meaningful work.",
       image: auditorEuropean,
     },
     {
@@ -1303,7 +1299,7 @@ const SuccessStoriesSection = () => {
       role: "Industrial Audit Specialist",
       years: "10 years experience",
       stats: { revenue: "€385K+ Earned", audits: "98 Assignments", rating: "5.0★" },
-      quote: "From application to first assignment with a Fortune 500 company took just one week. The professional development support is exceptional.",
+      quote: "From application to first assignment with a premium enterprise client took just one week. The professional development support is exceptional.",
       image: auditorAfrican,
     },
   ];
@@ -1390,11 +1386,11 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
     },
     {
       q: "How does Connectimus differ from gig economy platforms?",
-      a: "Unlike gig platforms that prioritize volume and speed, Connectimus focuses on quality partnerships with Fortune 500 clients. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
+      a: "Unlike gig platforms that prioritize volume and speed, Connectimus focuses on quality partnerships with premium enterprise clients who demand the highest standards. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
     },
     {
       q: "What types of clients will I work with?",
-      a: "Our partner auditors work with global industry leaders including BMW, Mercedes-Benz, Linde, Bosch, and Siemens. These enterprise clients value audit quality, professional standards, and long-term partnerships. All assignments are with established companies requiring certified professional auditors."
+      a: "Our partner auditors work with global industry leaders across automotive, aerospace, engineering, and manufacturing sectors. These enterprise clients maintain the highest quality standards, value professional excellence, and seek long-term partnerships. All assignments are with established companies requiring certified professional auditors."
     },
     {
       q: "What professional development support is provided?",
@@ -1474,11 +1470,24 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const sectionRef = useRef(null);
+  
+  // Track scroll progress through this section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Image scale transforms based on scroll
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.05]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.8]);
+  
+  // Content animations
+  const contentY = useTransform(scrollYProgress, [0.2, 0.5], [50, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
+    <section ref={sectionRef} className="py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Heading Text */}
         <div className="text-center mb-12 md:mb-16">
@@ -1489,82 +1498,57 @@ const ScrollZoomSection = () => {
             Shape Industry Standards
           </h3>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Partner with Connectimus to serve Fortune 500 companies worldwide. Build your professional practice with meaningful assignments, premium compensation, and recognition from global industry leaders.
+            Partner with Connectimus to serve companies with the highest quality standards worldwide. Build your professional practice with meaningful assignments, premium compensation, and recognition from global industry leaders.
           </p>
         </div>
 
         {/* Rounded Image Container with Overlay */}
         <motion.div 
-          ref={ref}
-          initial={{ opacity: 0, scale: 0.95, y: 40 }}
-          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ opacity: imageOpacity }}
           className="relative w-full max-w-6xl mx-auto rounded-[60px] md:rounded-[80px] overflow-hidden shadow-2xl"
         >
           <motion.img
-            initial={{ scale: 1.2 }}
-            animate={isInView ? { scale: 1 } : {}}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            style={{ scale: imageScale }}
             src={auditorFactoryTeam}
             alt="Professional auditors working together in industrial setting"
             className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
           />
           
           {/* Dark Overlay */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" 
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
           
           {/* Content Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12">
+          <motion.div 
+            style={{ y: contentY, opacity: contentOpacity }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12"
+          >
             {/* Navigation Dots */}
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <div className="flex items-center justify-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-white" />
                 <div className="w-3 h-3 rounded-full bg-white/40" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <motion.h4 
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6"
-            >
+            <h4 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
               Audit Excellence Starts Here
-            </motion.h4>
+            </h4>
             
             {/* Description */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-sm md:text-base lg:text-lg text-white/90 max-w-2xl mb-8"
-            >
-              Access premium audit assignments from BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your reputation with quality-focused engagements and professional development support.
-            </motion.p>
+            <p className="text-sm md:text-base lg:text-lg text-white/90 max-w-2xl mb-8">
+              Access premium audit assignments from global leaders who maintain the highest quality standards. Build your reputation with quality-focused engagements and professional development support.
+            </p>
             
             {/* CTA Button */}
             <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
               className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-green-700 transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
               Apply as Partner Auditor
               <ArrowRight className="w-5 h-5" />
             </motion.button>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
