@@ -1513,7 +1513,7 @@ const ScrollZoomSection = () => {
             style={{ scale: imageScale, rotate: imageRotate }}
             src={auditorFactoryTeam}
             alt="Professional auditors working together in industrial setting"
-            className="w-full h-[460px] md:h-[610px] lg:h-[710px] xl:h-[760px] object-cover"
+            className="w-full h-[550px] md:h-[700px] lg:h-[850px] xl:h-[900px] object-cover"
           />
           
           {/* Dark Overlay */}
