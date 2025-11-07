@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12 sm:py-16 lg:py-20">
+    <footer className="bg-black text-white py-12 sm:py-14 lg:py-16 xl:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Main Footer Content - 4 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 mb-8 sm:mb-12">
             
             {/* Column 1 - Company Info */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 tracking-wide">Connectimus</h3>
+              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl font-bold mb-3 sm:mb-4 tracking-wide">Connectimus</h3>
               <address className="not-italic text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
                 CONNECTIMUS PROJECT d.o.o.<br />
                 Novotnijeva 12<br />
@@ -20,7 +20,7 @@ const Footer = () => {
 
             {/* Column 2 - Solutions */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Solutions</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Solutions</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
                   <Link to="/search-companies" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
@@ -42,7 +42,7 @@ const Footer = () => {
 
             {/* Column 3 - Resources */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Resources</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Resources</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
                   <Link to="/technology" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">
@@ -64,7 +64,7 @@ const Footer = () => {
 
             {/* Column 4 - Company */}
             <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Company</h4>
+              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">Company</h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
                   <Link to="/team" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm">

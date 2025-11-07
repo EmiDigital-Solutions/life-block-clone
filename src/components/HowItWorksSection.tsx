@@ -308,7 +308,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl font-bold text-white drop-shadow-lg mb-6 text-center"
+              className="text-2xl md:text-3xl lg:text-3xl xl:text-3xl font-bold text-white drop-shadow-lg mb-6 text-center"
             >
               {currentStep.title}
             </motion.h3>
@@ -511,7 +511,7 @@ export const HowItWorksSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="text-3xl font-bold text-white drop-shadow-lg mb-3 text-center"
+              className="text-3xl md:text-4xl lg:text-4xl xl:text-4xl font-bold text-white drop-shadow-lg mb-3 text-center"
             >
               {currentStep.title}
             </motion.h3>
@@ -992,7 +992,7 @@ export const HowItWorksSection = () => {
               transition={{ duration: 0.3 }}
               className="mb-6 text-center max-w-3xl"
             >
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold drop-shadow-lg text-white">
+              <h3 className="text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-bold drop-shadow-lg text-white">
                 {currentStep.title}
               </h3>
             </motion.div>

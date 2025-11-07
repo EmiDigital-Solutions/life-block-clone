@@ -133,10 +133,6 @@ const Auditors = () => {
 
   return (
     <div className="min-h-screen">
-      {/* DEBUG: Viewport Width Indicator - Remove after testing */}
-      <div className="fixed top-20 left-4 bg-black text-white px-3 py-2 rounded-lg z-[9999] text-xs font-mono shadow-lg">
-        Width: {typeof window !== 'undefined' ? window.innerWidth : 0}px
-      </div>
       <Navigation />
       
       <div ref={containerRef}>
