@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, Calendar, Star, MapPin, DollarSign, Package, Zap } from "lucide-react";
+import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -81,209 +81,196 @@ const AboutUs = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* SECTION 1: HERO SECTION */}
+      {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section 
         data-nav-theme="light"
-        className="py-20 md:py-32 px-4 sm:px-6 lg:px-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(90deg, #FFFFFF 0%, #F0FDF4 100%)' }}
+        className="py-24 md:py-28 relative overflow-hidden bg-white"
       >
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="container mx-auto px-6 md:px-20 max-w-[1400px]">
+          <div className="grid md:grid-cols-[45%_55%] gap-12 md:gap-16 items-center min-h-[600px]">
             
-            {/* Left: Circular Image with Badges */}
+            {/* Left - Image with Decorative Elements */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              className="relative flex justify-center items-center"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="order-2 lg:order-1 relative flex justify-center lg:justify-start"
             >
-              {/* Gradient decorations behind image */}
-              <motion.div 
-                animate={{ 
-                  opacity: [0.2, 0.4, 0.2],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute -top-10 -right-10 w-[200px] h-[200px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl -z-10"
-              />
-              <motion.div 
-                animate={{ 
-                  opacity: [0.2, 0.4, 0.2],
-                  scale: [1, 1.15, 1]
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2
-                }}
-                className="absolute -bottom-10 -left-10 w-[180px] h-[180px] bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full blur-3xl -z-10"
-              />
-              
-              <div className="relative w-full max-w-[550px]">
-                {/* Circular Image Frame */}
-                <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative aspect-square rounded-full overflow-hidden border-[12px] border-white shadow-[0_20px_60px_rgba(0,0,0,0.18),0_0_100px_rgba(45,155,95,0.12)]"
+              <div className="relative w-full max-w-[500px] aspect-square">
+                
+                {/* Gradient Glows - Behind */}
+                <div 
+                  className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full pointer-events-none -z-10"
+                  style={{
+                    background: "radial-gradient(circle, #4ECDC4 0%, transparent 70%)",
+                    filter: "blur(120px)",
+                    opacity: 0.4,
+                    transform: "translate(-40%, 40%)",
+                  }}
+                />
+                <div 
+                  className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full pointer-events-none -z-10"
+                  style={{
+                    background: "radial-gradient(circle, #4A90E2 0%, transparent 70%)",
+                    filter: "blur(100px)",
+                    opacity: 0.35,
+                    transform: "translate(40%, -40%)",
+                  }}
+                />
+                
+                {/* Main Rounded Square Frame */}
+                <div 
+                  className="relative w-full h-full overflow-hidden z-10"
+                  style={{
+                    borderRadius: "80px",
+                    border: "16px solid white",
+                    boxShadow: "0 30px 80px rgba(0,0,0,0.12)",
+                  }}
                 >
                   <img 
                     src="/src/assets/about-hero-meeting.jpg" 
-                    alt="YVOO leadership team in Zagreb office"
+                    alt="YVOO team"
                     className="w-full h-full object-cover"
                   />
-                </motion.div>
+                </div>
                 
-                {/* Badge 1 - Top Left: Founded 2019 */}
+                {/* Floating Badges with Glassmorphism */}
                 <motion.div 
+                  className="absolute -top-5 -left-5 flex items-center gap-2.5 px-5 py-3 z-20"
+                  style={{
+                    background: "rgba(255,255,255,0.95)",
+                    backdropFilter: "blur(10px)",
+                    borderRadius: "16px",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                  }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
-                  className="absolute -top-4 -left-8 md:-left-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  whileHover={{ 
+                    y: -4, 
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.18)",
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-[#2D9B5F]" />
-                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">Founded 2019</span>
-                  </div>
+                  <MessageCircle className="w-4 h-4" style={{ color: "#4A90E2" }} />
+                  <span className="font-semibold text-sm" style={{ color: "#1E2A3A" }}>AI-Powered</span>
                 </motion.div>
                 
-                {/* Badge 2 - Top Right: 90+ Countries */}
                 <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
-                  className="absolute -top-4 -right-8 md:-right-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
+                  className="absolute -top-8 -right-8 flex items-center justify-center z-20"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "linear-gradient(135deg, #4A90E2 0%, #6C63FF 100%)",
+                    borderRadius: "20px",
+                    boxShadow: "0 12px 40px rgba(74,144,226,0.4)",
+                    fontSize: "32px",
+                    fontWeight: 700,
+                    color: "white",
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  whileHover={{ 
+                    y: -4,
+                    boxShadow: "0 16px 48px rgba(74,144,226,0.5)",
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Globe className="w-5 h-5 text-[#2D9B5F]" />
-                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">90+ Countries</span>
-                  </div>
+                  AI
                 </motion.div>
                 
-                {/* Badge 3 - Bottom Left: 50+ Enterprise Clients */}
                 <motion.div 
+                  className="absolute -bottom-8 -left-8 flex items-center justify-center z-20"
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    background: "white",
+                    borderRadius: "50%",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                  }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
-                  className="absolute -bottom-4 -left-8 md:-left-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  whileHover={{ 
+                    y: -4,
+                    boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-[#2D9B5F]" />
-                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">50+ Enterprise Clients</span>
-                  </div>
+                  <Target className="w-5 h-5" style={{ color: "#2D9B5F" }} />
                 </motion.div>
                 
-                {/* Badge 4 - Bottom Right: Zagreb HQ */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
-                  className="absolute -bottom-4 -right-8 md:-right-12 bg-white border-2 border-[#2D9B5F] rounded-3xl px-4 md:px-6 py-3 shadow-lg cursor-pointer transition-all"
-                >
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-[#2D9B5F]" />
-                    <span className="text-sm md:text-base font-semibold text-[#1E2A3A]">Zagreb HQ</span>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
             
-            {/* Right: Text Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
+            {/* Right - Text Content */}
+            <motion.div
+              className="md:pl-16"
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="order-1 lg:order-2 space-y-6 lg:space-y-8 text-center lg:text-left"
             >
-              {/* Breadcrumb */}
-              <p className="text-xs md:text-sm uppercase font-semibold text-gray-400 tracking-[0.1em]">
-                About Us
+              <p 
+                className="text-xs font-semibold uppercase mb-8"
+                style={{
+                  color: "#9CA3AF",
+                  letterSpacing: "0.15em",
+                }}
+              >
+                ABOUT US
               </p>
               
-              {/* Headline - Three Lines */}
-              <h1 className="leading-[1.1] space-y-1">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E2A3A]">
+              <h1 className="mb-8" style={{ lineHeight: 1.1 }}>
+                <span 
+                  className="block font-bold"
+                  style={{
+                    fontSize: "clamp(36px, 5vw, 56px)",
+                    color: "#1E2A3A",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   Pioneering AI-Powered
-                </div>
-                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2D9B5F]">
+                </span>
+                <span 
+                  className="block font-bold"
+                  style={{
+                    fontSize: "clamp(36px, 5vw, 56px)",
+                    color: "#2D9B5F",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   Procurement Intelligence
-                </div>
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E2A3A]">
+                </span>
+                <span 
+                  className="block font-bold"
+                  style={{
+                    fontSize: "clamp(36px, 5vw, 56px)",
+                    color: "#1E2A3A",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   for Global Industry Leaders
-                </div>
+                </span>
               </h1>
               
-              {/* Tagline */}
-              <p className="text-xl md:text-2xl italic text-gray-500 max-w-[500px] mx-auto lg:mx-0">
-                Making global procurement accessible to every business
+              <p 
+                className="max-w-[580px]"
+                style={{
+                  fontSize: "18px",
+                  lineHeight: 1.65,
+                  color: "#6B7280",
+                  fontWeight: 400,
+                }}
+              >
+                Since 2019, YVOO has been on a mission to transform global procurement. 
+                Our AI-powered platform connects businesses with verified suppliers worldwide, 
+                delivering audits in days (not weeks) at 70% lower costs. Trusted by Mercedes, 
+                BMW, Bosch, and 50+ industry leaders.
               </p>
               
-              {/* Body Text */}
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
-                Since 2019, YVOO has been on a mission to transform global procurement. Our AI-powered platform connects businesses with verified suppliers worldwide, delivering audits in days (not weeks) at 70% lower costs. Trusted by Mercedes, BMW, Bosch, and 50+ industry leaders.
-              </p>
-              
-              {/* Stats Row */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 md:gap-8 pt-4">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
-                  <span className="text-sm md:text-base font-semibold text-gray-600">Founded 2019</span>
-                </div>
-                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
-                
-                <div className="flex items-center gap-2">
-                  <Globe className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
-                  <span className="text-sm md:text-base font-semibold text-gray-600">90+ Countries</span>
-                </div>
-                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
-                
-                <div className="flex items-center gap-2">
-                  <Star className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
-                  <span className="text-sm md:text-base font-semibold text-gray-600">50+ Clients</span>
-                </div>
-                <div className="hidden sm:block w-px h-5 bg-gray-300"></div>
-                
-                <div className="flex items-center gap-2">
-                  <DollarSign className="w-5 md:w-6 h-5 md:h-6 text-[#2D9B5F]" />
-                  <span className="text-sm md:text-base font-semibold text-gray-600">70% Cost Reduction</span>
-                </div>
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button
-                  onClick={() => {
-                    document.getElementById('leadership-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-[#2D9B5F] text-[#2D9B5F] hover:bg-[#2D9B5F] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(45,155,95,0.25)] font-semibold"
-                  aria-label="Navigate to team section"
-                >
-                  Meet Our Team
-                </Button>
-                
-                <Button
-                  onClick={() => {
-                    document.getElementById('timeline-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-[#2D9B5F] text-[#2D9B5F] hover:bg-[#2D9B5F] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(45,155,95,0.25)] font-semibold"
-                  aria-label="Navigate to company timeline"
-                >
-                  Our Story
-                </Button>
-              </div>
             </motion.div>
+            
           </div>
         </div>
       </section>
