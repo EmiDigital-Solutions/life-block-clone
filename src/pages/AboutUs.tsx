@@ -183,23 +183,19 @@ const AboutUs = () => {
                         delay: 0.5
                       }}
                     >
+                      {/* Light blue background */}
+                      <div className="absolute inset-0 bg-blue-300/90 rounded-full" />
+                      
                       <motion.img 
                         src={heroPersonImage} 
                         alt="YVOO Professional"
-                        className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                        className="relative w-full h-full object-cover"
                         initial={{ opacity: 0, scale: 1.3 }}
-                        animate={{ opacity: 0.9, scale: 1 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{
                           duration: 1,
                           ease: [0.25, 0.46, 0.45, 0.94],
                           delay: 0.7
-                        }}
-                      />
-                      {/* Light overlay effect */}
-                      <div 
-                        className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                        style={{
-                          background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
                         }}
                       />
                     </motion.div>
