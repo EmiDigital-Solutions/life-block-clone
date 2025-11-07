@@ -119,44 +119,49 @@ const AboutUs = () => {
                   }}
                 />
                 
-                {/* Card Container with Gradient Background */}
+                {/* Single Auditor Card - Exact Homepage Style */}
                 <div 
-                  className="relative w-full h-full overflow-hidden z-10 flex flex-col items-center justify-center p-8"
+                  className="relative w-full max-w-[400px] mx-auto"
                   style={{
-                    borderRadius: "40px",
-                    background: "linear-gradient(135deg, #2563EB 0%, #1E40AF 100%)",
-                    boxShadow: "0 30px 80px rgba(0,0,0,0.12)",
-                    transform: "rotate(-5deg)",
+                    borderRadius: "32px",
+                    background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+                    padding: "40px",
+                    transform: "rotate(-8deg)",
                   }}
                 >
-                  {/* Circular Photo Cutout */}
+                  {/* Circular Image Container */}
                   <div 
-                    className="relative mb-6 overflow-hidden bg-white/10 backdrop-blur-sm"
+                    className="relative mx-auto mb-6 overflow-hidden"
                     style={{
                       width: "280px",
                       height: "280px",
                       borderRadius: "50%",
-                      border: "4px solid rgba(255,255,255,0.2)",
+                      background: "rgba(255, 255, 255, 0.1)",
+                      border: "4px solid rgba(255, 255, 255, 0.2)",
                     }}
                   >
                     <img 
                       src="/src/assets/about-hero-meeting.jpg" 
-                      alt="YVOO team"
+                      alt="YVOO Team"
                       className="w-full h-full object-cover"
+                      style={{
+                        transform: "scale(1.1)",
+                      }}
                     />
                   </div>
                   
                   {/* Bottom Label Badge */}
                   <div 
-                    className="px-8 py-4 text-center"
+                    className="text-center px-6 py-4 mx-auto"
                     style={{
-                      background: "rgba(30, 58, 138, 0.9)",
+                      background: "rgba(30, 41, 59, 0.9)",
                       borderRadius: "50px",
-                      backdropFilter: "blur(10px)",
+                      maxWidth: "85%",
                     }}
                   >
                     <h3 className="text-white font-bold text-xl mb-1">YVOO Team</h3>
-                    <p className="text-white/80 text-sm">Zagreb, Croatia HQ</p>
+                    <p className="text-white/80 text-sm font-medium">Zagreb, Croatia</p>
                   </div>
                 </div>
                 
