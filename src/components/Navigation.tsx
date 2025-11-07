@@ -7,9 +7,8 @@ import connectimusLogo from "@/assets/connectimus-o-logo.png";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navBgColor, setNavBgColor] = useState('rgba(31, 41, 55, 0.95)'); // Default dark navy with opacity
+  const [navBgColor, setNavBgColor] = useState('rgb(31, 41, 55)'); // Default dark navy
   const [textColor, setTextColor] = useState('rgb(255, 255, 255)'); // Default white
-  const [isLoaded, setIsLoaded] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -46,8 +45,6 @@ const Navigation = () => {
       // Get all section elements (these contain the background colors we want)
       const sections = document.querySelectorAll('section');
       
-      let colorFound = false;
-      
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + window.scrollY;
@@ -71,14 +68,6 @@ const Navigation = () => {
             }
           }
           
-          // Check inline style if computed style is transparent
-          if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.style.background) {
-            const styleMatch = section.style.background.match(/rgba?\([^)]+\)/);
-            if (styleMatch) {
-              bgColor = styleMatch[0];
-            }
-          }
-          
           // Also check the parent container if section is still transparent
           if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.parentElement) {
             const parentStyle = window.getComputedStyle(section.parentElement);
@@ -94,62 +83,18 @@ const Navigation = () => {
             const [r, g, b] = rgbMatch.map(Number);
             setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
             setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-            colorFound = true;
           }
         }
       });
-      
-      // Fallback to ensure navbar is always visible
-      if (!colorFound && sections.length > 0) {
-        const firstSection = sections[0];
-        const computedStyle = window.getComputedStyle(firstSection);
-        let bgColor = computedStyle.backgroundColor;
-        
-        if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
-          const bgImage = computedStyle.backgroundImage;
-          if (bgImage && bgImage !== 'none' && bgImage.includes('gradient')) {
-            const colorMatch = bgImage.match(/rgba?\([^)]+\)/);
-            if (colorMatch) {
-              bgColor = colorMatch[0];
-            }
-          }
-        }
-        
-        if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && firstSection.style.background) {
-          const styleMatch = firstSection.style.background.match(/rgba?\([^)]+\)/);
-          if (styleMatch) {
-            bgColor = styleMatch[0];
-          }
-        }
-        
-        const rgbMatch = bgColor.match(/\d+/g);
-        if (rgbMatch && rgbMatch.length >= 3) {
-          const [r, g, b] = rgbMatch.map(Number);
-          setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-          setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-        }
-      }
     };
 
-    // Call immediately and multiple times to ensure detection works
-    handleScroll();
-    setTimeout(() => {
-      handleScroll();
-      setIsLoaded(true);
-    }, 50);
-    setTimeout(handleScroll, 150);
-    setTimeout(handleScroll, 300);
-    setTimeout(handleScroll, 500);
-    
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
-    window.addEventListener('load', handleScroll);
+    handleScroll(); // Initial call
+    
+    // Also call after a short delay to ensure styles are loaded
+    setTimeout(handleScroll, 100);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      window.removeEventListener('load', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Determine if we're on a light or dark background
@@ -160,11 +105,10 @@ const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-all duration-300 ease-in-out"
       style={{ 
-        backgroundColor: isLoaded ? navBgColor : 'rgba(31, 41, 55, 0.95)',
+        backgroundColor: navBgColor,
         borderBottomColor: borderColor,
-        minHeight: '64px',
       }}
     >
       <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
