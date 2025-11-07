@@ -119,12 +119,11 @@ const AboutUs = () => {
                   }}
                 />
                 
-                {/* Main Rounded Square Frame */}
+                {/* Main Organic Blob Frame - Similar to Homepage */}
                 <div 
                   className="relative w-full h-full overflow-hidden z-10"
                   style={{
-                    borderRadius: "80px",
-                    border: "16px solid white",
+                    borderRadius: "45% 55% 60% 40% / 55% 45% 55% 45%",
                     boxShadow: "0 30px 80px rgba(0,0,0,0.12)",
                   }}
                 >
@@ -158,26 +157,25 @@ const AboutUs = () => {
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute -top-8 -right-8 flex items-center justify-center z-20 overflow-hidden"
+                  className="absolute bottom-4 right-4 flex items-center justify-center z-20 overflow-hidden bg-white rounded-full shadow-lg"
                   style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "20px",
-                    boxShadow: "0 12px 40px rgba(74,144,226,0.4)",
+                    width: "100px",
+                    height: "100px",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
                   }}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                   whileHover={{ 
-                    y: -4,
-                    boxShadow: "0 16px 48px rgba(74,144,226,0.5)",
+                    scale: 1.05,
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
                     transition: { duration: 0.3 }
                   }}
                 >
                   <img 
                     src={aiBadgeIllustration} 
                     alt="AI" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </motion.div>
                 
