@@ -106,7 +106,7 @@ const AboutUs = () => {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full opacity-60 blur-3xl"
+                className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-green-500/30 to-green-600/30 rounded-full opacity-60 blur-3xl"
               />
               <motion.div 
                 animate={{ 
@@ -119,7 +119,7 @@ const AboutUs = () => {
                   ease: "easeInOut",
                   delay: 1
                 }}
-                className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full opacity-50 blur-3xl"
+                className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full opacity-50 blur-3xl"
               />
               
               {/* Main image card */}
@@ -137,14 +137,14 @@ const AboutUs = () => {
                   transition={{ duration: 3, repeat: Infinity }}
                   className="absolute top-8 right-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-lg"
                 >
-                  <MessageSquare className="w-6 h-6 text-cyan-400" />
+                  <MessageSquare className="w-6 h-6 text-green-400" />
                 </motion.div>
                 <motion.div 
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
                   className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-lg"
                 >
-                  <Target className="w-6 h-6 text-cyan-400" />
+                  <Target className="w-6 h-6 text-green-400" />
                 </motion.div>
               </div>
             </motion.div>
@@ -324,9 +324,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.3 }}
                   className="absolute top-0 left-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-purple-600" strokeWidth={1.5} />
+                      <Lightbulb className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -338,9 +338,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.4 }}
                   className="absolute top-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Users className="w-12 h-12 text-cyan-600" strokeWidth={1.5} />
+                      <Users className="w-12 h-12 text-green-600" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -366,9 +366,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.6 }}
                   className="absolute bottom-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Shield className="w-12 h-12 text-purple-600" strokeWidth={1.5} />
+                      <Shield className="w-12 h-12 text-green-600" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -406,7 +406,7 @@ const AboutUs = () => {
                   transition={{ duration: 3, repeat: Infinity }}
                   className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
                 >
-                  <Package className="w-8 h-8 text-cyan-400" />
+                  <Package className="w-8 h-8 text-green-400" />
                 </motion.div>
               </div>
             </motion.div>
