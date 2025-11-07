@@ -14,8 +14,8 @@ import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 
 const fallbackAuditors = [
-  { image: auditorFemaleEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorFemaleAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-green-600 via-green-700 to-green-800" },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-green-600 via-green-700 to-green-800" },
   { image: auditorFemaleAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
   { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-green-600 via-green-700 to-green-800" },
@@ -155,7 +155,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section data-nav-theme="dark" className="relative h-screen flex flex-col overflow-hidden bg-black">
+    <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-black pb-24 sm:pb-28 lg:pb-0">
       <div className="absolute inset-0 bg-black"></div>
 
       <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-12 xl:px-24">

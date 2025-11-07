@@ -52,14 +52,16 @@ const Auditors = () => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const auditorProfiles = [
-    { image: auditorFemaleEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorFemaleAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-green-600 via-green-700 to-green-800" },
+  const allAuditorProfiles = [
+    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-green-600 via-green-700 to-green-800" },
     { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
     { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
     { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-green-600 via-green-700 to-green-800" },
     { image: auditorMaleNorthAmerica, name: "Technical Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-gray-800 via-gray-900 to-black" },
   ];
+
+  const auditorProfiles = isMobile ? allAuditorProfiles.slice(0, 3) : allAuditorProfiles;
 
   useEffect(() => {
     const cycle = () => {
@@ -136,7 +138,7 @@ const Auditors = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20"
+          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
           style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         >
           <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
@@ -187,7 +189,7 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="flex"
+                  className="flex relative z-10"
                 >
                   <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-lg min-h-[48px]">
                     Apply as Partner Auditor
@@ -294,7 +296,7 @@ const Auditors = () => {
           </div>
 
           {/* Animated Company Names Band - White Background */}
-          <div className="absolute bottom-0 left-0 right-0 py-6 overflow-hidden bg-white border-t border-gray-200">
+          <div className="absolute bottom-0 left-0 right-0 py-4 sm:py-5 lg:py-6 overflow-hidden bg-white border-t border-gray-200 z-0">
             <div className="container mx-auto px-4">
               <div className="text-center mb-4">
                 <span className="text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
