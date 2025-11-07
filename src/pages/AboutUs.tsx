@@ -146,7 +146,7 @@ const AboutUs = () => {
                       className="w-full h-full object-cover"
                       style={{
                         transform: "scale(1.25)",
-                        objectPosition: "center center"
+                        objectPosition: "58% center"
                       }}
                     />
                   </div>
