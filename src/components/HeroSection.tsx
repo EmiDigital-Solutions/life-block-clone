@@ -292,7 +292,7 @@ const HeroSection = () => {
                                 Professional
                               </p>
                               <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-[8px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
-                                Local Auditor
+                                Global Expert
                               </p>
                             </div>
                           </div>
