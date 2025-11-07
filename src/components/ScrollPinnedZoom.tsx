@@ -28,34 +28,31 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
   return (
     <section 
       ref={containerRef}
-      className="relative w-full -mt-1 bg-background"
-      style={{ height: '350vh' }} // Extended scroll space for slower, gradual zoom (approx 20% per scroll)
+      className="relative w-full -mt-1"
+      style={{ height: '250vh' }} // 2.5x viewport height for smooth zoom
     >
       {/* Sticky container - this stays fixed in viewport while section scrolls */}
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
+      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+        <motion.img 
+          src={imageSrc}
+          alt={imageAlt}
+          className="object-cover transition-all duration-100 ease-out"
+          style={{ 
+            width: imageWidth,
+            maxHeight: '100vh',
+            willChange: "width"
+          }}
+        />
         
-        {/* Zooming Image Layer - width expands smoothly based on scroll */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.img 
-            src={imageSrc}
-            alt={imageAlt}
-            className="h-auto object-cover"
-            style={{ 
-              width: imageWidth,
-              willChange: "width"
-            }}
-          />
-          
-          {/* Dynamic dark overlay */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"
-            style={{ opacity: overlayOpacity }}
-          />
-        </div>
+        {/* Dynamic dark overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"
+          style={{ opacity: overlayOpacity }}
+        />
         
         {/* Text Content Overlay - Fades in during final part of zoom */}
         <motion.div 
-          className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 md:px-8 lg:px-12"
           style={{ opacity: textOpacity }}
         >
           {children}
