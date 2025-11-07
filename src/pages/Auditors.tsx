@@ -1474,63 +1474,98 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
     <section className="py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Heading Text */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-            We Develop Tech
+            Join Elite Auditors
           </h2>
-          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
-            Solutions That Matter
+          <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-600 mb-6">
+            Shape Industry Standards
           </h3>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future. Our mission is to create a lasting difference by shaping tomorrow with today's solutions.
+            Partner with Connectimus to serve Fortune 500 companies worldwide. Build your professional practice with meaningful assignments, premium compensation, and recognition from global industry leaders.
           </p>
         </div>
 
         {/* Rounded Image Container with Overlay */}
-        <div className="relative w-full max-w-6xl mx-auto rounded-[60px] md:rounded-[80px] overflow-hidden shadow-2xl">
-          <img
+        <motion.div 
+          ref={ref}
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative w-full max-w-6xl mx-auto rounded-[60px] md:rounded-[80px] overflow-hidden shadow-2xl"
+        >
+          <motion.img
+            initial={{ scale: 1.2 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             src={auditorFactoryTeam}
             alt="Professional auditors working together in industrial setting"
             className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
           />
           
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" 
+          />
           
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12">
             {/* Navigation Dots */}
-            <div className="mb-8">
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mb-8"
+            >
               <div className="flex items-center justify-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-white" />
                 <div className="w-3 h-3 rounded-full bg-white/40" />
               </div>
-            </div>
+            </motion.div>
 
             {/* Headline */}
-            <h4 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
-              Let's code a better future together
-            </h4>
+            <motion.h4 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6"
+            >
+              Audit Excellence Starts Here
+            </motion.h4>
             
             {/* Description */}
-            <p className="text-sm md:text-base lg:text-lg text-white/90 max-w-2xl mb-8">
-              We focus on creating impactful IT solutions that solve real-world challenges. Through innovative technology, we drive progress and build a brighter future.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="text-sm md:text-base lg:text-lg text-white/90 max-w-2xl mb-8"
+            >
+              Access premium audit assignments from BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your reputation with quality-focused engagements and professional development support.
+            </motion.p>
             
             {/* CTA Button */}
             <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
-              className="bg-primary text-white px-8 py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-2xl"
+              className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-base md:text-lg flex items-center gap-2 hover:bg-green-700 transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
-              About us
+              Apply as Partner Auditor
               <ArrowRight className="w-5 h-5" />
             </motion.button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
