@@ -94,7 +94,8 @@ const AboutUs = () => {
             <motion.div 
               className="relative flex justify-center items-center"
               initial={{ opacity: 0, x: -50, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ 
                 duration: 1, 
                 ease: [0.25, 0.46, 0.45, 0.94],
@@ -150,7 +151,8 @@ const AboutUs = () => {
                     padding: "60px",
                   }}
                   initial={{ opacity: 0, y: 30, rotateY: -15 }}
-                  animate={{ opacity: 1, y: 0, rotateY: 0 }}
+                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{
                     duration: 1.2,
                     ease: [0.25, 0.46, 0.45, 0.94],
@@ -174,7 +176,8 @@ const AboutUs = () => {
                       aspectRatio: "1 / 1"
                     }}
                     initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{
                       duration: 0.8,
                       ease: [0.25, 0.46, 0.45, 0.94],
@@ -191,7 +194,8 @@ const AboutUs = () => {
                         borderRadius: "50%"
                       }}
                       initial={{ opacity: 0, scale: 1.3 }}
-                      animate={{ opacity: 1, scale: 1.13 }}
+                      whileInView={{ opacity: 1, scale: 1.13 }}
+                      viewport={{ once: true, amount: 0.3 }}
                       transition={{
                         duration: 1,
                         ease: [0.25, 0.46, 0.45, 0.94],
@@ -207,13 +211,15 @@ const AboutUs = () => {
             <motion.div
               className="md:pl-16 flex flex-col space-y-6"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               {/* Main Heading */}
               <motion.h1 
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: 1,
                   delay: 0.6,
