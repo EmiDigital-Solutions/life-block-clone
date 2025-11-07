@@ -30,7 +30,7 @@ const auditors = [
     image: auditorAsian, 
     location: "Asia", 
     region: "East Asia Pacific",
-    gradient: "from-green-600 via-green-700 to-green-800"
+    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
   },
   { 
     image: auditorAfrican, 
@@ -48,7 +48,7 @@ const auditors = [
     image: auditorMiddleEast, 
     location: "Middle East", 
     region: "Gulf Region",
-    gradient: "from-green-600 via-green-700 to-green-800"
+    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
   },
   { 
     image: auditorSouthAsian, 
@@ -61,17 +61,17 @@ const auditors = [
 const featurePhotos = {
   ai: [
     { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
     { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
     { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
     { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   workflow: [
     { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-green-600 via-green-700 to-green-800" },
+    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
     { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
 };

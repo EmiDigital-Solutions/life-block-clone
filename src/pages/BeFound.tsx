@@ -76,7 +76,7 @@ const BeFound = () => {
         <section
           data-nav-theme="dark"
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
         >
           <div className="container mx-auto">
             <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0 pb-10">
@@ -646,7 +646,7 @@ const BeFound = () => {
         <section
           data-nav-theme="green"
           className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
         >
           <div className="container mx-auto text-center">
             <div className="text-white space-y-10 max-w-4xl mx-auto">

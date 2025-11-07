@@ -66,14 +66,14 @@ const fallbackSteps = [
 
 const screenshotGradients = [
   "from-blue-600 via-blue-700 to-blue-800",
-  "from-green-600 via-green-700 to-green-800",
+  "from-[#14B8A6] via-[#12A594] to-[#0F8775]",
   "from-gray-800 via-gray-900 to-black",
-  "from-blue-500 via-green-600 to-teal-700",
+  "from-blue-500 via-[#14B8A6] to-teal-700",
 ];
 
 const stepBackgroundColors = [
   "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue
-  "linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74), rgb(21, 128, 61))", // Green
+  "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))", // Teal
   "linear-gradient(135deg, rgb(71, 85, 105), rgb(51, 65, 85), rgb(30, 41, 59))", // Slate
   "linear-gradient(135deg, rgb(20, 184, 166), rgb(13, 148, 136), rgb(15, 118, 110))", // Teal
 ];

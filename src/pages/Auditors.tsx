@@ -140,7 +140,7 @@ const Auditors = () => {
         <section
           data-nav-theme="dark"
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
-          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
         >
           <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
@@ -380,7 +380,7 @@ const Auditors = () => {
         <section 
           data-nav-theme="dark"
           className="py-16 md:py-20 px-4 md:px-6 lg:px-8"
-          style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
         >
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2

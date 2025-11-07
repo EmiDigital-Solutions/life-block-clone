@@ -216,7 +216,7 @@ const AboutUs = () => {
       <section 
         data-nav-theme="dark"
         className="py-24 md:py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(59, 130, 246))" }}
+        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))" }}
       >
         <div className="container mx-auto">
           <motion.div 
@@ -646,7 +646,7 @@ const AboutUs = () => {
       <section 
         data-nav-theme="dark"
         className="py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
       >
         <div className="container mx-auto">
           <motion.div 
