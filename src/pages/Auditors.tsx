@@ -718,18 +718,7 @@ const QualificationsSection = () => {
 
 // TECHNOLOGY FEATURES SECTION WITH HORIZONTAL SCROLL
 const TechnologyFeaturesSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useIsMobile();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
 
   const features = [
     { 
@@ -797,25 +786,6 @@ const TechnologyFeaturesSection = () => {
       tags: ["Chat", "Secure"]
     },
   ];
-
-  // Calculate exact scroll distance so last card reaches left edge
-  const cardWidth = 350;
-  const gap = 24;
-  const numCards = features.length;
-  
-  // Total width of all cards
-  const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
-  
-  // Distance needed to move last card to left edge
-  const scrollDistance = -(totalCardsWidth - cardWidth - 50);
-  
-  // Transform vertical scroll to horizontal movement
-  // Cards only move through the full scroll range to ensure complete journey
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, scrollDistance]
-  );
 
   // Mobile carousel - render differently
   if (isMobile) {
@@ -898,9 +868,37 @@ const TechnologyFeaturesSection = () => {
     );
   }
 
-  if (!isMounted) return null;
+  // Desktop version without scroll-jacking
+  return <DesktopTechnologySection features={features} />;
+};
 
-  // Desktop scroll-jacking version
+// Desktop Technology Section with Scroll Effect
+const DesktopTechnologySection = ({ features }: { features: any[] }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate exact scroll distance so last card reaches left edge
+  const cardWidth = 350;
+  const gap = 24;
+  const numCards = features.length;
+  
+  // Total width of all cards
+  const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
+  
+  // Distance needed to move last card to left edge
+  const scrollDistance = -(totalCardsWidth - cardWidth - 50);
+  
+  // Transform vertical scroll to horizontal movement
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, scrollDistance]
+  );
+
   return (
     <section 
       ref={sectionRef}
@@ -1476,21 +1474,12 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 // SCROLL-ZOOM SECTION
 const ScrollZoomSection = () => {
   const containerRef = useRef<HTMLElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   
-  // Track scroll progress of this section
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
-
-  if (!isMounted) return null;
   
-  // Scale the ENTIRE CARD from 50% to 100%
   const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
   
   return (
