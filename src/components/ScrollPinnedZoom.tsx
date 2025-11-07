@@ -45,8 +45,8 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
   return (
     <section 
       ref={containerRef}
-      className="relative w-full"
-      style={{ height: '120vh' }} // Extra height for scroll-jacking effect
+      className="relative w-full -mt-1"
+      style={{ height: '100vh' }} // Minimal height for scroll animation
     >
       {/* Sticky container that stays in viewport */}
       <div className={`sticky top-0 left-0 w-full h-screen overflow-hidden ${isPinned ? 'pointer-events-none' : ''}`}>
