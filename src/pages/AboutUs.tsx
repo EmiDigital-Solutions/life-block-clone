@@ -165,64 +165,16 @@ const AboutUs = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {/* Badge/Tagline */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="mb-2"
-              >
-                <div className="flex items-center gap-4 text-gray-500 text-sm font-sans">
-                  <div className="h-px w-12 bg-primary/40"></div>
-                  <span>2,000+ Auditors · 90+ Countries · AI-Powered</span>
-                </div>
-              </motion.div>
-
               {/* Main Heading */}
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.02em] mb-4"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-[-0.02em]"
                 style={{ color: "#1E2A3A" }}
               >
                 Scaling Premium On-Site Audits Through Global Auditors Network and AI
               </motion.h1>
-
-              {/* Subtitle with stats */}
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-xl font-medium leading-[1.4] mb-6"
-                style={{ color: "#2D9B5F" }}
-              >
-                70% Cost Reduction · 80% Time Savings · Global Coverage
-              </motion.h2>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg font-normal leading-[1.6] max-w-[600px] mb-8"
-                style={{ color: "#6B7280" }}
-              >
-                Physical factory assessments (ISO, VDA, IATF) starting from €700. AI-powered intelligence with certified auditors across 90+ countries.
-              </motion.p>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex"
-              >
-                <button className="bg-gray-900 text-white px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-gray-800 hover:scale-105 shadow-xl">
-                  Experience a Connectimus Audit
-                </button>
-              </motion.div>
-              
             </motion.div>
             
           </div>
