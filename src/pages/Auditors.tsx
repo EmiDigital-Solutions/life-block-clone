@@ -133,6 +133,10 @@ const Auditors = () => {
 
   return (
     <div className="min-h-screen">
+      {/* DEBUG: Viewport Width Indicator - Remove after testing */}
+      <div className="fixed top-20 left-4 bg-black text-white px-3 py-2 rounded-lg z-[9999] text-xs font-mono shadow-lg">
+        Width: {typeof window !== 'undefined' ? window.innerWidth : 0}px
+      </div>
       <Navigation />
       
       <div ref={containerRef}>
@@ -391,7 +395,7 @@ const Auditors = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-6"
             >
               Ready to Build Your Professional Practice?
             </motion.h2>
