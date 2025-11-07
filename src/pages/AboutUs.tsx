@@ -175,7 +175,6 @@ const AboutUs = () => {
                   <div className="relative flex items-center justify-center pt-14 pb-4">
                     <motion.div 
                       className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
-                      style={{ backgroundColor: "#C8DCFF" }}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{
@@ -184,6 +183,9 @@ const AboutUs = () => {
                         delay: 0.5
                       }}
                     >
+                      {/* Light blue background */}
+                      <div className="absolute inset-0 bg-blue-300/90 rounded-full" />
+                      
                       <motion.img 
                         src={heroPersonImage} 
                         alt="YVOO Professional"
