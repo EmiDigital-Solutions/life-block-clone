@@ -135,51 +135,7 @@ const AboutUs = () => {
                 </div>
                 
                 {/* Floating Badges with Glassmorphism */}
-                <motion.div 
-                  className="absolute -top-5 -left-5 flex items-center gap-2.5 px-5 py-3 z-20"
-                  style={{
-                    background: "rgba(255,255,255,0.95)",
-                    backdropFilter: "blur(10px)",
-                    borderRadius: "16px",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
-                  }}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  whileHover={{ 
-                    y: -4, 
-                    boxShadow: "0 12px 40px rgba(0,0,0,0.18)",
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <MessageCircle className="w-4 h-4" style={{ color: "#4A90E2" }} />
-                  <span className="font-semibold text-sm" style={{ color: "#1E2A3A" }}>AI-Powered</span>
-                </motion.div>
-                
-                <motion.div 
-                  className="absolute bottom-4 right-4 flex items-center justify-center z-20 overflow-hidden bg-white rounded-full shadow-lg"
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                  }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <img 
-                    src={aiBadgeIllustration} 
-                    alt="AI" 
-                    className="w-full h-full object-contain"
-                  />
-                </motion.div>
-                
-                <motion.div 
+                <motion.div
                   className="absolute -bottom-8 -left-8 flex items-center justify-center z-20"
                   style={{
                     width: "56px",
