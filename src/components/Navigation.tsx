@@ -7,8 +7,9 @@ import connectimusLogo from "@/assets/connectimus-o-logo.png";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navBgColor, setNavBgColor] = useState('rgb(31, 41, 55)'); // Default dark navy
+  const [navBgColor, setNavBgColor] = useState('rgba(31, 41, 55, 0.95)'); // Default dark navy with opacity
   const [textColor, setTextColor] = useState('rgb(255, 255, 255)'); // Default white
+  const [isLoaded, setIsLoaded] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -132,16 +133,22 @@ const Navigation = () => {
 
     // Call immediately and multiple times to ensure detection works
     handleScroll();
-    setTimeout(handleScroll, 50);
+    setTimeout(() => {
+      handleScroll();
+      setIsLoaded(true);
+    }, 50);
     setTimeout(handleScroll, 150);
     setTimeout(handleScroll, 300);
+    setTimeout(handleScroll, 500);
     
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
+    window.addEventListener('load', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('load', handleScroll);
     };
   }, []);
 
@@ -153,10 +160,11 @@ const Navigation = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-all duration-300 ease-in-out"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
       style={{ 
-        backgroundColor: navBgColor,
+        backgroundColor: isLoaded ? navBgColor : 'rgba(31, 41, 55, 0.95)',
         borderBottomColor: borderColor,
+        minHeight: '64px',
       }}
     >
       <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
