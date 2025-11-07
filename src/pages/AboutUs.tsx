@@ -101,7 +101,7 @@ const AboutUs = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div 
-                className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[400px] h-[390px] sm:h-[460px] md:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
+                className="relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[340px] h-[330px] sm:h-[390px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
                 style={{
                   boxShadow: `
                     0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -118,7 +118,7 @@ const AboutUs = () => {
                 
                 {/* Circular Image */}
                 <div className="absolute inset-0 flex items-center justify-center pt-9 sm:pt-11 md:pt-14">
-                  <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[290px] md:h-[290px] rounded-full overflow-hidden border-2 border-white/10">
+                  <div className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[250px] md:h-[250px] rounded-full overflow-hidden border-2 border-white/10">
                     <img 
                       src={heroPersonImage} 
                       alt="YVOO Professional"
