@@ -88,7 +88,7 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section 
         data-nav-theme="light"
-        className="pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white"
+        className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white"
       >
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
