@@ -133,8 +133,8 @@ const AboutUs = () => {
                   <div 
                     className="relative mx-auto overflow-hidden"
                     style={{
-                      width: "380px",
-                      height: "380px",
+                      width: "418px",
+                      height: "418px",
                       borderRadius: "50%",
                       background: "rgba(255, 255, 255, 0.1)",
                       border: "4px solid rgba(255, 255, 255, 0.2)",
