@@ -202,7 +202,7 @@ const AboutUs = () => {
               className="space-y-6"
             >
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                Technology and <span className="text-blue-600">Innovation</span>
+                Technology and <span className="text-green-600">Innovation</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 [Please provide the text content you'd like to add here]
@@ -250,7 +250,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
           >
-            Our <span className="text-blue-600">Principles</span>
+            Our <span className="text-green-600">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -263,7 +263,7 @@ const AboutUs = () => {
                 transition={{ delay: 0.1 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-blue-600">Innovation</h3>
+                <h3 className="text-2xl font-bold text-green-600">Innovation</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
@@ -290,7 +290,7 @@ const AboutUs = () => {
                 transition={{ delay: 0.3 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-blue-600">Global & Personalized</h3>
+                <h3 className="text-2xl font-bold text-green-600">Global & Personalized</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
@@ -340,9 +340,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.3 }}
                   className="absolute top-0 left-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                      <Lightbulb className="w-12 h-12 text-green-600" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -368,9 +368,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.5 }}
                   className="absolute bottom-0 left-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                      <Globe className="w-12 h-12 text-green-600" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
