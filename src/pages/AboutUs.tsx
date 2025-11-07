@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import auditorImage from "@/assets/auditor-real-european.jpg";
+import heroPersonImage from "@/assets/about-hero-person.png";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
@@ -127,12 +127,11 @@ const AboutUs = () => {
                     background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
                     padding: "40px",
-                    transform: "rotate(-8deg)",
                   }}
                 >
                   {/* Circular Image Container */}
                   <div 
-                    className="relative mx-auto mb-6 overflow-hidden"
+                    className="relative mx-auto overflow-hidden"
                     style={{
                       width: "280px",
                       height: "280px",
@@ -142,26 +141,13 @@ const AboutUs = () => {
                     }}
                   >
                     <img 
-                      src={auditorImage} 
-                      alt="YVOO Team Member"
+                      src={heroPersonImage} 
+                      alt="YVOO Professional"
                       className="w-full h-full object-cover"
                       style={{
                         transform: "scale(1.1)",
                       }}
                     />
-                  </div>
-                  
-                  {/* Bottom Label Badge */}
-                  <div 
-                    className="text-center px-6 py-4 mx-auto"
-                    style={{
-                      background: "rgba(30, 41, 59, 0.9)",
-                      borderRadius: "50px",
-                      maxWidth: "85%",
-                    }}
-                  >
-                    <h3 className="text-white font-bold text-xl mb-1">YVOO Team</h3>
-                    <p className="text-white/80 text-sm font-medium">Zagreb, Croatia</p>
                   </div>
                 </div>
                 
