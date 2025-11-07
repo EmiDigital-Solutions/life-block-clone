@@ -85,7 +85,7 @@ const AboutUs = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* SECTION 1: HERO SECTION - Card Design */}
+      {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section 
         data-nav-theme="light"
         className="py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden bg-white"
@@ -93,46 +93,128 @@ const AboutUs = () => {
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
             
-            {/* Left - Image Card */}
+            {/* Left - Image with Decorative Elements */}
             <motion.div 
               className="relative flex justify-center items-center order-1 md:order-1"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ 
-                duration: 0.6, 
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 1, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.1
               }}
             >
-              {/* Card Container */}
-              <motion.div 
-                className="relative w-full max-w-[500px] overflow-hidden rounded-[32px] md:rounded-[40px] shadow-lg"
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <img 
-                  src={heroPersonImage} 
-                  alt="YVOO Professional"
-                  className="w-full h-auto object-cover"
+              <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[450px] lg:max-w-[550px] flex items-center justify-center py-8 sm:py-12 md:py-16">
+                
+                {/* Gradient Glows - Behind with pulsing animation */}
+                <motion.div 
+                  className="absolute bottom-0 left-0 w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px] lg:w-[280px] lg:h-[280px] rounded-full pointer-events-none -z-10"
+                  style={{
+                    background: "radial-gradient(circle, #4ECDC4 0%, transparent 70%)",
+                    filter: "blur(60px) sm:blur(80px) md:blur(100px) lg:blur(120px)",
+                    transform: "translate(-40%, 40%)",
+                  }}
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 />
-              </motion.div>
+                <motion.div 
+                  className="absolute top-0 right-0 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full pointer-events-none -z-10"
+                  style={{
+                    background: "radial-gradient(circle, #4A90E2 0%, transparent 70%)",
+                    filter: "blur(60px) sm:blur(80px) md:blur(100px)",
+                    transform: "translate(40%, -40%)",
+                  }}
+                  animate={{
+                    opacity: [0.25, 0.4, 0.25],
+                    scale: [1, 1.15, 1],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                />
+                
+                {/* Single Auditor Card - Enhanced Animation */}
+                <motion.div 
+                  className="relative w-full mx-auto flex items-center justify-center p-8 sm:p-10 md:p-12 lg:p-[60px] rounded-3xl sm:rounded-[32px] md:rounded-[40px]"
+                  style={{
+                    background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
+                    boxShadow: "0 10px 40px rgba(0,0,0,0.2), 0 20px 60px rgba(0,0,0,0.3)",
+                  }}
+                  initial={{ opacity: 0, y: 30, rotateY: -15 }}
+                  animate={{ opacity: 1, y: 0, rotateY: 0 }}
+                  transition={{
+                    duration: 1.2,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.3
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 15px 50px rgba(0,0,0,0.25), 0 25px 70px rgba(0,0,0,0.35)",
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Circular Image Container */}
+                  <motion.div 
+                    className="relative overflow-visible flex-shrink-0 w-full aspect-square"
+                    style={{
+                      borderRadius: "50%",
+                      background: "rgba(255, 255, 255, 0.1)",
+                      border: "3px solid rgba(255, 255, 255, 0.2)",
+                    }}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: 0.5
+                    }}
+                  >
+                    <motion.img 
+                      src={heroPersonImage} 
+                      alt="YVOO Professional"
+                      className="w-full h-full object-cover"
+                      style={{
+                        transform: "scale(1.13)",
+                        objectPosition: "58% 55%",
+                        borderRadius: "50%"
+                      }}
+                      initial={{ opacity: 0, scale: 1.3 }}
+                      animate={{ opacity: 1, scale: 1.13 }}
+                      transition={{
+                        duration: 1,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        delay: 0.7
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </div>
             </motion.div>
             
-            {/* Right - Text Content */}
+            {/* Right - Text Content with staggered animation */}
             <motion.div
               className="md:pl-8 lg:pl-16 flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               {/* Main Heading */}
               <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.6,
-                  delay: 0.3,
+                  duration: 1,
+                  delay: 0.6,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
