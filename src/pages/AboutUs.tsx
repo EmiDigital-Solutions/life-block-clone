@@ -84,10 +84,39 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION */}
       <section 
         data-nav-theme="light"
-        className="pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-12 bg-white"
+        className="min-h-screen flex items-center pt-24 pb-20 md:pt-32 md:pb-32 px-4 sm:px-6 lg:px-12 bg-white relative overflow-hidden"
       >
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Background gradient blobs */}
+        <motion.div 
+          animate={{ 
+            y: [0, -30, 0],
+            x: [0, 20, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{ 
+            y: [0, 40, 0],
+            x: [0, -20, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute bottom-20 right-1/3 w-80 h-80 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full blur-3xl"
+        />
+        
+        <div className="container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Image with floating elements */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
@@ -95,57 +124,72 @@ const AboutUs = () => {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1 relative"
             >
-              {/* Floating gradient blobs */}
+              {/* Floating gradient blobs around image */}
               <motion.div 
                 animate={{ 
                   y: [0, -20, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-green-500/30 to-green-600/30 rounded-full opacity-60 blur-3xl"
-              />
-              <motion.div 
-                animate={{ 
-                  y: [0, 20, 0],
-                  scale: [1, 1.2, 1]
+                  scale: [1, 1.15, 1]
                 }}
                 transition={{ 
                   duration: 5, 
                   repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
+                  ease: "easeInOut"
                 }}
-                className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-full opacity-50 blur-3xl"
+                className="absolute -bottom-12 -left-12 w-48 h-48 bg-gradient-to-br from-green-400/40 to-blue-500/40 rounded-full blur-3xl"
+              />
+              <motion.div 
+                animate={{ 
+                  y: [0, 25, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 6, 
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+                className="absolute -top-12 -right-12 w-56 h-56 bg-gradient-to-br from-blue-400/30 to-green-500/30 rounded-full blur-3xl"
               />
               
-              {/* Main image card */}
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-gray-900 to-gray-800 aspect-square">
-                <img 
-                  src="/src/assets/about-hero-meeting.jpg" 
-                  alt="Professional business meeting"
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                
-                {/* Floating badges */}
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute top-8 right-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-lg"
-                >
-                  <MessageSquare className="w-6 h-6 text-green-400" />
-                </motion.div>
-                <motion.div 
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                  className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-lg"
-                >
-                  <Target className="w-6 h-6 text-green-400" />
-                </motion.div>
+              {/* Main image card with modern rounded design */}
+              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-white p-4">
+                <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5]">
+                  <img 
+                    src="/src/assets/about-hero-meeting.jpg" 
+                    alt="Professional business meeting"
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Floating AI badge top right */}
+                  <motion.div 
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-6 right-6 bg-blue-500/90 backdrop-blur-md rounded-2xl p-3 shadow-lg"
+                  >
+                    <Zap className="w-7 h-7 text-white" />
+                  </motion.div>
+                  
+                  {/* Floating message badge */}
+                  <motion.div 
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    className="absolute top-32 -left-4 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-gray-100"
+                  >
+                    <div className="flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5 text-blue-500" />
+                      <span className="text-sm font-semibold text-gray-800">AI-Powered</span>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Floating target badge bottom left */}
+                  <motion.div 
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-6 left-6 bg-green-500/90 backdrop-blur-md rounded-2xl p-3 shadow-lg"
+                  >
+                    <Target className="w-7 h-7 text-white" />
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
             
@@ -154,17 +198,20 @@ const AboutUs = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-1 lg:order-2 space-y-6"
+              className="order-1 lg:order-2 space-y-8"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
-                AI-Powered Solutions for{" "}
-                <span className="text-blue-600">Global Procurement</span> Excellence
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                YVOO leads the AI revolution in procurement and supplier intelligence. With our award-winning technology, 
-                businesses get instant supplier discovery, on-site auditing in days (not weeks), and global supplier 
-                visibility—all powered by AI.
-              </p>
+              <div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] mb-6">
+                  <span className="text-gray-900">AI-Powered Solutions for</span>
+                  <br />
+                  <span className="text-blue-600">Global Procurement</span> Excellence
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+                  Connectimus leads the AI revolution in procurement and supplier intelligence. With our award-winning technology, 
+                  businesses get instant supplier discovery, on-site auditing in days (not weeks), and global supplier 
+                  visibility—all powered by AI.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
