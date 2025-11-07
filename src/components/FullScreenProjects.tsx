@@ -231,15 +231,15 @@ const FullScreenProjects = () => {
                   </span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-sans font-semibold leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-7xl font-sans font-semibold leading-tight tracking-tight">
                   {project.title}
                 </h2>
 
-                <p className="text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
+                <p className="text-sm sm:text-base lg:text-sm xl:text-base 2xl:text-lg 3xl:text-2xl font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
                   {project.description}
                 </p>
 
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-7 xl:px-8 2xl:px-10 3xl:px-12 py-3 sm:py-4 lg:py-3.5 xl:py-4 2xl:py-5 3xl:py-6 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px] text-base xl:text-lg 2xl:text-xl 3xl:text-2xl">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-6 xl:px-7 2xl:px-8 3xl:px-12 py-3 sm:py-4 lg:py-3 xl:py-3.5 2xl:py-4 3xl:py-6 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px] text-base lg:text-sm xl:text-base 2xl:text-lg 3xl:text-2xl">
                   Learn more
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -262,7 +262,7 @@ const FullScreenProjects = () => {
                     <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
                     
                     {/* Cards Container */}
-                    <div className="relative h-[300px] sm:h-[350px] lg:h-[380px] xl:h-[400px] flex items-center justify-center">
+                    <div className="relative h-[300px] sm:h-[350px] lg:h-[340px] xl:h-[360px] 2xl:h-[400px] flex items-center justify-center">
                       {visibleAuditors.map((auditor, auditorIndex) => {
                         const style = getCardStyle(auditorIndex, visibleAuditors.length);
                         
@@ -295,7 +295,7 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-52 lg:h-66 xl:w-56 xl:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-48 lg:h-60 xl:w-52 xl:h-66 2xl:w-56 2xl:h-72 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                               style={{
                                 boxShadow: `
                                   0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -307,8 +307,8 @@ const FullScreenProjects = () => {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                               
                               {/* Auditor Image */}
-                              <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6">
-                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-2 border-white/10">
+                              <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-5 xl:pt-6">
+                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-30 lg:h-30 xl:w-32 xl:h-32 2xl:w-36 2xl:h-36 rounded-full overflow-hidden border-2 border-white/10">
                                   <img
                                     src={auditor.image}
                                     alt={`Professional auditor from ${auditor.location}`}
@@ -325,12 +325,12 @@ const FullScreenProjects = () => {
                               </div>
 
                               {/* Location Badge */}
-                              <div className="absolute bottom-3 sm:bottom-4 lg:bottom-5 left-0 right-0 flex justify-center px-3 sm:px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 w-full">
-                                  <p className="text-white font-sans font-bold text-xs sm:text-sm text-center">
+                              <div className="absolute bottom-3 sm:bottom-4 lg:bottom-4 xl:bottom-5 left-0 right-0 flex justify-center px-3 sm:px-4">
+                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-4 xl:px-5 py-1.5 sm:py-2 lg:py-2 xl:py-2.5 w-full">
+                                  <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-xs xl:text-sm text-center">
                                     {auditor.location}
                                   </p>
-                                  <p className="text-white/80 font-sans text-[10px] sm:text-xs text-center">
+                                  <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[10px] xl:text-xs text-center">
                                     {auditor.region}
                                   </p>
                                 </div>
