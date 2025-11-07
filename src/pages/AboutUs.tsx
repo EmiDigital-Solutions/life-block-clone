@@ -159,28 +159,34 @@ const AboutUs = () => {
                       transition={{ duration: 0.6, delay: 0.8 }}
                       className="absolute"
                       style={{
-                        top: "10%",
-                        right: "-8%",
+                        top: "15%",
+                        left: "5%",
                         zIndex: 10
                       }}
                     >
                       <div 
                         className="rounded-full bg-white flex items-center justify-center"
                         style={{
-                          width: "80px",
-                          height: "80px",
+                          width: "90px",
+                          height: "90px",
                           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)"
                         }}
                       >
                         <span 
-                          className="font-bold"
+                          className="font-bold flex items-center gap-0.5"
                           style={{
-                            fontSize: "32px",
+                            fontSize: "36px",
                             color: "#1e40af",
-                            letterSpacing: "0.05em"
+                            letterSpacing: "0.02em",
+                            fontFamily: "system-ui, -apple-system, sans-serif"
                           }}
                         >
-                          AI
+                          <span style={{ 
+                            WebkitTextStroke: "2px #1e40af",
+                            WebkitTextFillColor: "transparent",
+                            color: "transparent"
+                          }}>A</span>
+                          <span>I</span>
                         </span>
                       </div>
                     </motion.div>
