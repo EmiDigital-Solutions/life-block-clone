@@ -9,6 +9,7 @@ import GroundIntelligence from "./pages/GroundIntelligence";
 import Auditors from "./pages/Auditors";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/auditors" element={<Auditors />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/about-us" element={<AboutUs />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

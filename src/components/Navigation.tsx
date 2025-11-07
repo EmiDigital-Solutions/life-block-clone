@@ -207,13 +207,13 @@ const Navigation = () => {
             >
               Blog
             </a>
-            <a 
-              href="#about" 
+            <Link 
+              to="/about-us" 
               className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               About us
-            </a>
+            </Link>
             <Link to="/auth">
               <Button 
                 variant="outline" 
@@ -289,13 +289,13 @@ const Navigation = () => {
             >
               Blog
             </a>
-            <a 
-              href="#about" 
+            <Link 
+              to="/about-us" 
               className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
               style={{ color: textColor }}
             >
               About us
-            </a>
+            </Link>
             <Link to="/auth" className="block">
               <Button 
                 variant="outline" 
