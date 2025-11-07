@@ -82,13 +82,13 @@ const AboutUs = () => {
   const selectedTimeline = timelineData.find(item => item.year === selectedYear);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-navy-deep">
       <Navigation />
       
-      {/* SECTION 1: HERO SECTION - Cognigy Style */}
+      {/* SECTION 1: HERO SECTION */}
       <section 
-        data-nav-theme="light"
-        className="py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden bg-white"
+        data-nav-theme="dark"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden bg-navy-deep"
       >
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
@@ -108,14 +108,13 @@ const AboutUs = () => {
                 
                 {/* Gradient Glows - Behind with pulsing animation */}
                 <motion.div 
-                  className="absolute bottom-0 left-0 w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px] lg:w-[280px] lg:h-[280px] rounded-full pointer-events-none -z-10"
+                  className="absolute bottom-0 left-0 w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px] lg:w-[280px] lg:h-[280px] rounded-full pointer-events-none -z-10 bg-accent/20"
                   style={{
-                    background: "radial-gradient(circle, #4ECDC4 0%, transparent 70%)",
-                    filter: "blur(60px) sm:blur(80px) md:blur(100px) lg:blur(120px)",
+                    filter: "blur(60px)",
                     transform: "translate(-40%, 40%)",
                   }}
                   animate={{
-                    opacity: [0.3, 0.5, 0.3],
+                    opacity: [0.2, 0.4, 0.2],
                     scale: [1, 1.1, 1],
                   }}
                   transition={{
@@ -125,14 +124,13 @@ const AboutUs = () => {
                   }}
                 />
                 <motion.div 
-                  className="absolute top-0 right-0 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full pointer-events-none -z-10"
+                  className="absolute top-0 right-0 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] rounded-full pointer-events-none -z-10 bg-primary/20"
                   style={{
-                    background: "radial-gradient(circle, #4A90E2 0%, transparent 70%)",
-                    filter: "blur(60px) sm:blur(80px) md:blur(100px)",
+                    filter: "blur(60px)",
                     transform: "translate(40%, -40%)",
                   }}
                   animate={{
-                    opacity: [0.25, 0.4, 0.25],
+                    opacity: [0.15, 0.3, 0.15],
                     scale: [1, 1.15, 1],
                   }}
                   transition={{
@@ -145,11 +143,7 @@ const AboutUs = () => {
                 
                 {/* Single Auditor Card - Enhanced Animation */}
                 <motion.div 
-                  className="relative w-full mx-auto flex items-center justify-center p-8 sm:p-10 md:p-12 lg:p-[60px] rounded-3xl sm:rounded-[32px] md:rounded-[40px]"
-                  style={{
-                    background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
-                    boxShadow: "0 10px 40px rgba(0,0,0,0.2), 0 20px 60px rgba(0,0,0,0.3)",
-                  }}
+                  className="relative w-full mx-auto flex items-center justify-center p-8 sm:p-10 md:p-12 lg:p-[60px] rounded-3xl sm:rounded-[32px] md:rounded-[40px] bg-gradient-to-br from-primary via-primary/90 to-primary/80 shadow-2xl"
                   initial={{ opacity: 0, y: 30, rotateY: -15 }}
                   animate={{ opacity: 1, y: 0, rotateY: 0 }}
                   transition={{
@@ -165,12 +159,7 @@ const AboutUs = () => {
                 >
                   {/* Circular Image Container */}
                   <motion.div 
-                    className="relative overflow-visible flex-shrink-0 w-full aspect-square"
-                    style={{
-                      borderRadius: "50%",
-                      background: "rgba(255, 255, 255, 0.1)",
-                      border: "3px solid rgba(255, 255, 255, 0.2)",
-                    }}
+                    className="relative overflow-visible flex-shrink-0 w-full aspect-square rounded-full bg-white/10 border-3 border-white/20"
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{
@@ -217,8 +206,7 @@ const AboutUs = () => {
                   delay: 0.6,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
-                style={{ color: "#1E2A3A" }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em] text-white"
               >
                 Scaling On-Site Audits
               </motion.h1>
@@ -230,8 +218,8 @@ const AboutUs = () => {
 
       {/* SECTION 2: TECHNOLOGY & INNOVATION */}
       <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-light"
       >
         <div className="container mx-auto">
           <div className="max-w-4xl">
@@ -243,10 +231,10 @@ const AboutUs = () => {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                Technology and <span className="text-blue-600">Innovation</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white">
+                Technology and <span className="text-accent">Innovation</span>
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-lg md:text-xl text-slate leading-relaxed">
                 [Please provide the text content you'd like to add here]
               </p>
             </motion.div>
@@ -257,8 +245,7 @@ const AboutUs = () => {
       {/* SECTION 3: MISSION & VALUES */}
       <section 
         data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(59, 130, 246))" }}
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-primary via-accent to-primary"
       >
         <div className="container mx-auto">
           <motion.div 
@@ -282,17 +269,17 @@ const AboutUs = () => {
 
       {/* SECTION 4: OUR PRINCIPLES */}
       <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-deep"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-white text-center mb-20"
           >
-            Our <span className="text-blue-600">Principles</span>
+            Our <span className="text-accent">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -305,8 +292,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.1 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-blue-600">Innovation</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl font-bold text-primary">Innovation</h3>
+                <p className="text-slate leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
                 </p>
@@ -319,8 +306,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.2 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-green-600">Customer-Oriented Approach</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl font-bold text-accent">Customer-Oriented Approach</h3>
+                <p className="text-slate leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
               </motion.div>
@@ -332,8 +319,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.3 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-blue-600">Global & Personalized</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl font-bold text-primary">Global & Personalized</h3>
+                <p className="text-slate leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
               </motion.div>
@@ -345,8 +332,8 @@ const AboutUs = () => {
                 transition={{ delay: 0.4 }}
                 className="space-y-3"
               >
-                <h3 className="text-2xl font-bold text-green-600">Ethical AI</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl font-bold text-accent">Ethical AI</h3>
+                <p className="text-slate leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
                 </p>
               </motion.div>
@@ -371,7 +358,7 @@ const AboutUs = () => {
                 
                 {/* Center text */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <span className="text-3xl font-bold text-gray-900">YVOO</span>
+                  <span className="text-3xl font-bold text-white">YVOO</span>
                 </div>
                 
                 {/* Circular badges */}
@@ -382,9 +369,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.3 }}
                   className="absolute top-0 left-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-1 shadow-xl">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                    <div className="w-full h-full rounded-full bg-navy-deep flex items-center justify-center">
+                      <Lightbulb className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -396,9 +383,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.4 }}
                   className="absolute top-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Users className="w-12 h-12 text-green-600" strokeWidth={1.5} />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent to-accent/80 p-1 shadow-xl">
+                    <div className="w-full h-full rounded-full bg-navy-deep flex items-center justify-center">
+                      <Users className="w-12 h-12 text-accent" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -410,9 +397,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.5 }}
                   className="absolute bottom-0 left-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-1 shadow-xl">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                    <div className="w-full h-full rounded-full bg-navy-deep flex items-center justify-center">
+                      <Globe className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -424,9 +411,9 @@ const AboutUs = () => {
                   transition={{ delay: 0.6 }}
                   className="absolute bottom-0 right-0"
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-1 shadow-xl">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Shield className="w-12 h-12 text-green-600" strokeWidth={1.5} />
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent to-accent/80 p-1 shadow-xl">
+                    <div className="w-full h-full rounded-full bg-navy-deep flex items-center justify-center">
+                      <Shield className="w-12 h-12 text-accent" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -438,8 +425,8 @@ const AboutUs = () => {
 
       {/* SECTION 5: SUSTAINABILITY COMMITMENT */}
       <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-light"
       >
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -462,9 +449,9 @@ const AboutUs = () => {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
+                  className="absolute bottom-8 left-8 bg-navy-deep/60 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
                 >
-                  <Package className="w-8 h-8 text-green-400" />
+                  <Package className="w-8 h-8 text-accent" />
                 </motion.div>
               </div>
             </motion.div>
@@ -476,13 +463,13 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="lg:col-span-3 space-y-6"
             >
-              <div className="text-sm font-semibold text-green-600 uppercase tracking-wider">
+              <div className="text-sm font-semibold text-accent uppercase tracking-wider">
                 Carbon Reduction Commitment
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Committed to Reducing Our Carbon Footprint and Building a Sustainable Future
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-slate leading-relaxed">
                 We pledge to minimize greenhouse gas emissions by increasing energy efficiency and using renewable 
                 energy sources whenever possible. We also reduce waste and promote environmentally friendly practices 
                 in all our operations.
@@ -495,15 +482,15 @@ const AboutUs = () => {
       {/* SECTION 6: COMPANY HISTORY TIMELINE */}
       <section 
         id="timeline-section"
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-deep"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-blue-600 text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-primary text-center mb-20"
           >
             Our History
           </motion.h2>
@@ -511,7 +498,7 @@ const AboutUs = () => {
           <div className="max-w-6xl mx-auto space-y-12">
             {/* Timeline dots */}
             <div className="flex items-center justify-between relative">
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10" />
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border -z-10" />
               {timelineData.map((item) => (
                 <button
                   key={item.year}
@@ -522,12 +509,12 @@ const AboutUs = () => {
                     whileHover={{ scale: 1.2 }}
                     className={`w-4 h-4 rounded-full transition-all ${
                       selectedYear === item.year 
-                        ? 'bg-green-600 ring-4 ring-green-200' 
-                        : 'bg-gray-300 hover:bg-gray-400'
+                        ? 'bg-accent ring-4 ring-accent/20' 
+                        : 'bg-border hover:bg-slate'
                     }`}
                   />
                   <span className={`text-sm font-semibold ${
-                    selectedYear === item.year ? 'text-green-600' : 'text-gray-400'
+                    selectedYear === item.year ? 'text-accent' : 'text-slate'
                   }`}>
                     {item.year}
                   </span>
@@ -555,9 +542,9 @@ const AboutUs = () => {
                       <span className="text-6xl font-bold text-white/30">{selectedTimeline.year}</span>
                     </div>
                   </div>
-                  <div className="md:col-span-2 bg-white border border-gray-200 rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-blue-600">{selectedTimeline.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
+                  <div className="md:col-span-2 bg-navy-light border border-border rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
+                    <h3 className="text-2xl font-bold mb-4 text-primary">{selectedTimeline.title}</h3>
+                    <p className="text-slate leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -569,8 +556,8 @@ const AboutUs = () => {
       {/* SECTION 7: LEADERSHIP TEAM */}
       <section 
         id="leadership-section"
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-light"
       >
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -589,7 +576,7 @@ const AboutUs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
               </div>
-              <p className="text-center mt-4 text-gray-500 text-sm">
+              <p className="text-center mt-4 text-slate text-sm">
                 YVOO Leadership Team
               </p>
             </motion.div>
@@ -601,16 +588,16 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="order-1 lg:order-2 space-y-6"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                YVOO <span className="text-blue-600">Leadership</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white">
+                YVOO <span className="text-primary">Leadership</span>
               </h2>
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+              <p className="text-xl md:text-2xl text-slate leading-relaxed">
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
               <Button 
                 variant="outline" 
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-8 py-6 text-lg"
+                className="border-2 border-primary text-primary hover:bg-primary/10 rounded-xl px-8 py-6 text-lg"
               >
                 Learn More
               </Button>
@@ -621,17 +608,17 @@ const AboutUs = () => {
 
       {/* SECTION 8: LOCATIONS */}
       <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
+        data-nav-theme="dark"
+        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-navy-deep"
       >
         <div className="container mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-white text-center mb-20"
           >
-            Our <span className="text-blue-600">Locations</span>
+            Our <span className="text-primary">Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
@@ -643,8 +630,8 @@ const AboutUs = () => {
                   onClick={() => setSelectedLocation(key)}
                   className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${
                     selectedLocation === key
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-primary text-white shadow-lg'
+                      : 'bg-navy-light text-white hover:bg-navy-light/80 border border-border'
                   }`}
                 >
                   <span className="font-semibold">{location.name}</span>
@@ -660,21 +647,21 @@ const AboutUs = () => {
               transition={{ duration: 0.6 }}
               className="lg:col-span-3"
             >
-              <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <div className="bg-navy-light border border-border rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
+                <h3 className="text-3xl md:text-4xl font-bold text-white">
                   {locations[selectedLocation as keyof typeof locations].name}
                 </h3>
                 <div className="space-y-4 text-lg md:text-xl">
-                  <p className="text-gray-600">
-                    <strong className="text-blue-600">Address:</strong><br />
+                  <p className="text-slate">
+                    <strong className="text-primary">Address:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].address}
                   </p>
-                  <p className="text-gray-600">
-                    <strong className="text-blue-600">Phone:</strong><br />
+                  <p className="text-slate">
+                    <strong className="text-primary">Phone:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].phone}
                   </p>
-                  <p className="text-gray-600">
-                    <strong className="text-blue-600">Email:</strong><br />
+                  <p className="text-slate">
+                    <strong className="text-primary">Email:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].email}
                   </p>
                 </div>
@@ -687,8 +674,7 @@ const AboutUs = () => {
       {/* SECTION 9: CTA FOOTER SECTION */}
       <section 
         data-nav-theme="dark"
-        className="py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
+        className="py-32 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-primary via-accent to-primary"
       >
         <div className="container mx-auto">
           <motion.div 
@@ -721,7 +707,7 @@ const AboutUs = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-white hover:bg-white/90 text-green-700 px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
+              <Button className="bg-white hover:bg-white/90 text-accent-foreground px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
             </motion.div>
