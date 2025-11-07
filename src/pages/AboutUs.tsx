@@ -93,18 +93,17 @@ const AboutUs = () => {
             {/* Left - Image with Decorative Elements */}
             <motion.div 
               className="relative flex justify-center items-center"
-              initial={{ opacity: 0, x: -50, scale: 0.9 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.3 }}
               transition={{ 
-                duration: 1, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.1
+                duration: 0.4, 
+                ease: [0.22, 0.61, 0.36, 1]
               }}
             >
               <div className="relative w-full max-w-[550px] flex items-center justify-center" style={{ minHeight: "600px" }}>
                 
-                {/* Gradient Glows - Behind with pulsing animation */}
+                {/* Gradient Glows - Behind with subtle pulsing */}
                 <motion.div 
                   className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full pointer-events-none -z-10"
                   style={{
@@ -113,11 +112,10 @@ const AboutUs = () => {
                     transform: "translate(-40%, 40%)",
                   }}
                   animate={{
-                    opacity: [0.3, 0.5, 0.3],
-                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.4, 0.3],
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -130,18 +128,17 @@ const AboutUs = () => {
                     transform: "translate(40%, -40%)",
                   }}
                   animate={{
-                    opacity: [0.25, 0.4, 0.25],
-                    scale: [1, 1.15, 1],
+                    opacity: [0.25, 0.35, 0.25],
                   }}
                   transition={{
-                    duration: 5,
+                    duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 0.5
+                    delay: 0.3
                   }}
                 />
                 
-                {/* Single Auditor Card - Enhanced Animation */}
+                {/* Single Auditor Card - Professional Animation */}
                 <motion.div 
                   className="relative w-full max-w-[500px] mx-auto flex items-center justify-center"
                   style={{
@@ -150,18 +147,17 @@ const AboutUs = () => {
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
                     padding: "60px",
                   }}
-                  initial={{ opacity: 0, y: 30, rotateY: -15 }}
-                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{
-                    duration: 1.2,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    delay: 0.3
+                    duration: 0.5,
+                    ease: [0.22, 0.61, 0.36, 1]
                   }}
                   whileHover={{
-                    scale: 1.02,
+                    scale: 1.01,
                     boxShadow: "0 25px 70px rgba(0,0,0,0.35)",
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.2 }
                   }}
                 >
                   {/* Circular Image Container */}
@@ -175,13 +171,13 @@ const AboutUs = () => {
                       border: "4px solid rgba(255, 255, 255, 0.2)",
                       aspectRatio: "1 / 1"
                     }}
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    initial={{ scale: 0.95, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                      delay: 0.5
+                      duration: 0.4,
+                      ease: [0.22, 0.61, 0.36, 1],
+                      delay: 0.1
                     }}
                   >
                     <motion.img 
@@ -193,13 +189,13 @@ const AboutUs = () => {
                         objectPosition: "58% 55%",
                         borderRadius: "50%"
                       }}
-                      initial={{ opacity: 0, scale: 1.3 }}
-                      whileInView={{ opacity: 1, scale: 1.13 }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
                       viewport={{ once: false, amount: 0.3 }}
                       transition={{
-                        duration: 1,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.7
+                        duration: 0.4,
+                        ease: [0.22, 0.61, 0.36, 1],
+                        delay: 0.15
                       }}
                     />
                   </motion.div>
@@ -207,23 +203,23 @@ const AboutUs = () => {
               </div>
             </motion.div>
             
-            {/* Right - Text Content with staggered animation */}
+            {/* Right - Text Content with professional animation */}
             <motion.div
               className="md:pl-16 flex flex-col space-y-6"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1], delay: 0.1 }}
             >
               {/* Main Heading */}
               <motion.h1 
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{
-                  duration: 1,
-                  delay: 0.6,
-                  ease: [0.25, 0.46, 0.45, 0.94]
+                  duration: 0.4,
+                  delay: 0.15,
+                  ease: [0.22, 0.61, 0.36, 1]
                 }}
                 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ color: "#1E2A3A" }}
