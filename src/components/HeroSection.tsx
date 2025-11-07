@@ -167,7 +167,7 @@ const HeroSection = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
                 className="mb-6"
               >
                 <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
@@ -179,7 +179,7 @@ const HeroSection = () => {
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
                 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
                 {heroContent.heading}
@@ -188,7 +188,7 @@ const HeroSection = () => {
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
                 className="text-lg md:text-xl lg:text-2xl font-medium text-cyan-400/90 leading-[1.4] mb-8"
               >
                 {heroContent.subtitle}
@@ -197,7 +197,7 @@ const HeroSection = () => {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
                 className="text-lg font-normal text-white/70 leading-[1.6] max-w-[600px] mb-12"
               >
                 {heroContent.description}
@@ -206,7 +206,7 @@ const HeroSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 1.2, delay: 0.9, ease: "easeOut" }}
                 className="flex"
               >
                 <button className="bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
@@ -217,9 +217,9 @@ const HeroSection = () => {
 
             {/* Right Column: Animated Auditor Cards */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
               className="flex justify-center lg:justify-center order-first lg:order-last"
             >
               <div 

@@ -83,7 +83,7 @@ const BeFound = () => {
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
                 className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
                 Become visible,{" "}
@@ -94,7 +94,7 @@ const BeFound = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
                 className="flex flex-col space-y-4 text-white mx-auto sm:mx-0 mb-12"
               >
                 <div className="flex items-center gap-3">
@@ -110,7 +110,7 @@ const BeFound = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
                 className="w-full sm:w-auto mb-9"
               >
                 <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
@@ -122,7 +122,7 @@ const BeFound = () => {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
                 className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-auto sm:mx-0"
               >
                 <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.

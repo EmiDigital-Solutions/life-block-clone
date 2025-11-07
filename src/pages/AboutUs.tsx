@@ -93,12 +93,12 @@ const AboutUs = () => {
             {/* Left - Image with Decorative Elements */}
             <motion.div 
               className="relative flex justify-center items-center"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
               transition={{ 
-                duration: 0.4, 
-                ease: [0.22, 0.61, 0.36, 1]
+                duration: 0.8, 
+                ease: "easeOut"
               }}
             >
               <div className="relative w-full max-w-[550px] flex items-center justify-center" style={{ minHeight: "600px" }}>
@@ -147,17 +147,16 @@ const AboutUs = () => {
                     boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
                     padding: "60px",
                   }}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{
-                    duration: 0.5,
-                    ease: [0.22, 0.61, 0.36, 1]
+                    duration: 0.8,
+                    ease: "easeOut"
                   }}
                   whileHover={{
                     scale: 1.01,
-                    boxShadow: "0 25px 70px rgba(0,0,0,0.35)",
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.3 }
                   }}
                 >
                   {/* Circular Image Container */}
@@ -175,9 +174,9 @@ const AboutUs = () => {
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: false, amount: 0.3 }}
                     transition={{
-                      duration: 0.4,
-                      ease: [0.22, 0.61, 0.36, 1],
-                      delay: 0.1
+                      duration: 0.8,
+                      ease: "easeOut",
+                      delay: 0.2
                     }}
                   >
                     <motion.img 
@@ -193,9 +192,9 @@ const AboutUs = () => {
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: false, amount: 0.3 }}
                       transition={{
-                        duration: 0.4,
-                        ease: [0.22, 0.61, 0.36, 1],
-                        delay: 0.15
+                        duration: 0.8,
+                        ease: "easeOut",
+                        delay: 0.3
                       }}
                     />
                   </motion.div>
@@ -206,20 +205,20 @@ const AboutUs = () => {
             {/* Right - Text Content with professional animation */}
             <motion.div
               className="md:pl-16 flex flex-col space-y-6"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1], delay: 0.1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               {/* Main Heading */}
               <motion.h1 
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{
-                  duration: 0.4,
-                  delay: 0.15,
-                  ease: [0.22, 0.61, 0.36, 1]
+                  duration: 0.8,
+                  delay: 0.3,
+                  ease: "easeOut"
                 }}
                 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-[-0.02em] mb-6"
                 style={{ color: "#1E2A3A" }}
