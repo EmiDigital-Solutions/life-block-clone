@@ -158,19 +158,20 @@ const HeroSection = () => {
     <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-black pb-24 sm:pb-28 lg:pb-0">
       <div className="absolute inset-0 bg-black"></div>
 
-      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24">
-        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 sm:space-y-8 lg:space-y-3 text-left">
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                className="mb-6"
               >
-                <div className="flex items-center gap-4 text-white/60 text-xs sm:text-sm lg:text-[10px] font-sans">
-                  <div className="h-px w-12 lg:w-10 bg-cyan-400/40"></div>
+                <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
+                  <div className="h-px w-12 bg-cyan-400/40"></div>
                   <span>{heroContent.tagline}</span>
                 </div>
               </motion.div>
@@ -179,7 +180,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-[15px] xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-semibold text-white leading-tight tracking-tight"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
                 {heroContent.heading}
               </motion.h1>
@@ -188,7 +189,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl md:text-xl lg:text-[9px] xl:text-base 2xl:text-3xl 3xl:text-4xl font-sans font-medium text-cyan-400/90 tracking-wide"
+                className="text-lg md:text-xl lg:text-2xl font-medium text-cyan-400/90 leading-[1.4] mb-8"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -197,7 +198,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg lg:text-[8px] xl:text-base 2xl:text-2xl 3xl:text-3xl text-white/70 font-sans font-medium lg:leading-snug"
+                className="text-lg font-normal text-white/70 leading-[1.6] max-w-[600px] mb-12"
               >
                 {heroContent.description}
               </motion.p>
@@ -208,7 +209,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex"
               >
-                <button className="bg-white text-gray-900 px-6 sm:px-8 lg:px-3 xl:px-7 2xl:px-11 3xl:px-14 py-3 sm:py-4 lg:py-1.5 xl:py-3 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold text-base sm:text-lg lg:text-[8px] xl:text-base 2xl:text-2xl 3xl:text-3xl transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
                   {heroContent.ctaText}
                 </button>
               </motion.div>

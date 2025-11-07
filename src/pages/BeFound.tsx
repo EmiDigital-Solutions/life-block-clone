@@ -79,12 +79,12 @@ const BeFound = () => {
           style={{ background: "linear-gradient(135deg, rgb(21, 128, 61), rgb(34, 197, 94), rgb(16, 185, 129))" }}
         >
           <div className="container mx-auto">
-            <div className="flex flex-col items-start justify-center space-y-6 sm:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0">
+            <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-center sm:text-left mx-auto sm:mx-0 pb-10">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[15px] xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+                className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
                 Become visible,{" "}
                 <span className="block mt-2">to over 7 million+</span>
@@ -95,15 +95,15 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col gap-2 sm:gap-3 lg:gap-1 text-white mx-auto sm:mx-0"
+                className="flex flex-col space-y-4 text-white mx-auto sm:mx-0 mb-12"
               >
-                <div className="flex items-center gap-2 sm:gap-3 lg:gap-1.5">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
-                  <span className="text-base sm:text-lg lg:text-[8px] xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Free of Charge</span>
+                <div className="flex items-center gap-3">
+                  <Check className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Free of Charge</span>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 lg:gap-1.5">
-                  <Check className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
-                  <span className="text-base sm:text-lg lg:text-[8px] xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Paid Advertisement</span>
+                <div className="flex items-center gap-3">
+                  <Check className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Paid Advertisement</span>
                 </div>
               </motion.div>
 
@@ -111,11 +111,11 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto mb-9"
               >
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-3 xl:px-7 2xl:px-12 py-3 sm:py-4 lg:py-1.5 xl:py-3 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg lg:text-[8px] xl:text-base 2xl:text-2xl 3xl:text-3xl min-h-[48px]">
+                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
                   Claim your company
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
 
@@ -123,7 +123,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-sm sm:text-base lg:text-[8px] xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed lg:leading-snug mx-auto sm:mx-0"
+                className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-auto sm:mx-0"
               >
                 <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.
               </motion.p>

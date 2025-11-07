@@ -147,22 +147,22 @@ const Auditors = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
               
               {/* Left Column: Text Content */}
-              <div className="flex flex-col space-y-6 sm:space-y-8 lg:space-y-3 text-left">
+              <div className="flex flex-col space-y-6 md:space-y-8 text-left">
                 <motion.h1 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[14px] xl:text-2xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+                  className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
                 >
                   Join the Elite Auditor Network
-                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-xs xl:text-xl 2xl:text-6xl 3xl:text-7xl">for Global Industry Leaders</span>
+                  <span className="block mt-2 text-3xl md:text-4xl lg:text-6xl">for Global Industry Leaders</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl text-white/90 font-sans leading-relaxed lg:leading-snug"
+                  className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
                 >
                   Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
                 </motion.p>
@@ -171,19 +171,19 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex flex-col gap-1 text-white"
+                  className="flex flex-col space-y-4 text-white mb-12"
                 >
-                  <div className="flex items-center gap-1.5">
-                    <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Premium Enterprise Clients</span>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">Premium Enterprise Clients</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">€2,500+ Average Assignment Value</span>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">€2,500+ Average Assignment Value</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <Check className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Professional Development Support</span>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">Professional Development Support</span>
                   </div>
                 </motion.div>
 
@@ -193,9 +193,9 @@ const Auditors = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="flex relative z-10"
                 >
-                  <button className="group inline-flex items-center justify-center gap-1 bg-white text-gray-900 px-6 md:px-8 lg:px-3 xl:px-6 2xl:px-11 3xl:px-14 py-3 md:py-4 lg:py-1.5 xl:py-2.5 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl">
+                  <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
                     Apply as Partner Auditor
-                    <ArrowRight className="w-5 h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
 
