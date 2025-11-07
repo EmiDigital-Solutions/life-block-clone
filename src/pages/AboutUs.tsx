@@ -143,14 +143,14 @@ const AboutUs = () => {
                   }}
                 />
                 
-                {/* Single Auditor Card - Matching Home Design */}
+                {/* Single Auditor Card - Enhanced Animation */}
                 <motion.div 
-                  className="relative w-full max-w-[460px] mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
+                  className="relative w-full max-w-[500px] mx-auto flex items-center justify-center"
                   style={{
-                    boxShadow: `
-                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                      0 0 30px rgba(236, 72, 153, 0.2)
-                    `,
+                    borderRadius: "40px",
+                    background: "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)",
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+                    padding: "60px",
                   }}
                   initial={{ opacity: 0, y: 30, rotateY: -15 }}
                   animate={{ opacity: 1, y: 0, rotateY: 0 }}
@@ -161,69 +161,47 @@ const AboutUs = () => {
                   }}
                   whileHover={{
                     scale: 1.02,
-                    boxShadow: `
-                      0 30px 60px -12px rgba(0, 0, 0, 0.6),
-                      0 0 40px rgba(236, 72, 153, 0.3)
-                    `,
+                    boxShadow: "0 25px 70px rgba(0,0,0,0.35)",
                     transition: { duration: 0.3 }
                   }}
                 >
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  
                   {/* Circular Image Container */}
-                  <div className="relative flex items-center justify-center pt-14 pb-4">
-                    <motion.div 
-                      className="relative w-[360px] h-[360px] rounded-full overflow-hidden border-2 border-white/10"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{
-                        duration: 0.8,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.5
-                      }}
-                    >
-                      <motion.img 
-                        src={heroPersonImage} 
-                        alt="YVOO Professional"
-                        className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                        initial={{ opacity: 0, scale: 1.3 }}
-                        animate={{ opacity: 0.9, scale: 1 }}
-                        transition={{
-                          duration: 1,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                          delay: 0.7
-                        }}
-                      />
-                      {/* Light overlay effect */}
-                      <div 
-                        className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                        style={{
-                          background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                        }}
-                      />
-                    </motion.div>
-                  </div>
-
-                  {/* Bottom Badge */}
-                  <div className="absolute bottom-9 left-0 right-0 flex justify-center px-6">
-                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-10 py-4 w-full max-w-[320px]">
-                      <p className="text-white font-sans font-bold text-2xl text-center">
-                        Professional
-                      </p>
-                      <p className="text-white/80 font-sans text-xl text-center">
-                        Global Expert
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Shine effect */}
-                  <div 
-                    className="absolute inset-0 pointer-events-none rounded-3xl"
+                  <motion.div 
+                    className="relative overflow-visible flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                      width: "420px",
+                      height: "420px",
+                      borderRadius: "50%",
+                      background: "rgba(255, 255, 255, 0.1)",
+                      border: "4px solid rgba(255, 255, 255, 0.2)",
+                      aspectRatio: "1 / 1"
                     }}
-                  />
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: 0.5
+                    }}
+                  >
+                    <motion.img 
+                      src={heroPersonImage} 
+                      alt="YVOO Professional"
+                      className="w-full h-full object-cover"
+                      style={{
+                        transform: "scale(1.13)",
+                        objectPosition: "58% 55%",
+                        borderRadius: "50%"
+                      }}
+                      initial={{ opacity: 0, scale: 1.3 }}
+                      animate={{ opacity: 1, scale: 1.13 }}
+                      transition={{
+                        duration: 1,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        delay: 0.7
+                      }}
+                    />
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>
