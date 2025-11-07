@@ -152,17 +152,17 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-base xl:text-2xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-sm xl:text-2xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
                 >
                   Join the Elite Auditor Network
-                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-sm xl:text-xl 2xl:text-6xl 3xl:text-7xl">for Global Industry Leaders</span>
+                  <span className="block mt-2 text-3xl sm:text-4xl lg:text-xs xl:text-xl 2xl:text-6xl 3xl:text-7xl">for Global Industry Leaders</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-base md:text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl text-white/90 font-sans leading-relaxed"
+                  className="text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl text-white/90 font-sans leading-relaxed"
                 >
                   Partner with Connectimus to serve BMW, Mercedes-Benz, Linde, and other Fortune 500 companies. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
                 </motion.p>
@@ -171,19 +171,19 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex flex-col gap-1.5 text-white"
+                  className="flex flex-col gap-1 text-white"
                 >
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 lg:w-2.5 lg:h-2.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Premium Enterprise Clients</span>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-5 h-5 lg:w-2 lg:h-2 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Premium Enterprise Clients</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 lg:w-2.5 lg:h-2.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">€2,500+ Average Assignment Value</span>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-5 h-5 lg:w-2 lg:h-2 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">€2,500+ Average Assignment Value</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-5 h-5 lg:w-2.5 lg:h-2.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
-                    <span className="text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Professional Development Support</span>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-5 h-5 lg:w-2 lg:h-2 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8" />
+                    <span className="text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl font-medium">Professional Development Support</span>
                   </div>
                 </motion.div>
 
@@ -193,9 +193,9 @@ const Auditors = () => {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="flex relative z-10"
                 >
-                  <button className="group inline-flex items-center justify-center gap-1.5 bg-white text-gray-900 px-6 md:px-8 lg:px-3.5 xl:px-6 2xl:px-11 3xl:px-14 py-3 md:py-4 lg:py-1.5 xl:py-2.5 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base md:text-lg lg:text-[10px] xl:text-sm 2xl:text-2xl 3xl:text-3xl">
+                  <button className="group inline-flex items-center justify-center gap-1 bg-white text-gray-900 px-6 md:px-8 lg:px-3 xl:px-6 2xl:px-11 3xl:px-14 py-3 md:py-4 lg:py-1 xl:py-2.5 2xl:py-5 3xl:py-7 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base md:text-lg lg:text-[8px] xl:text-sm 2xl:text-2xl 3xl:text-3xl">
                     Apply as Partner Auditor
-                    <ArrowRight className="w-5 h-5 lg:w-2.5 lg:h-2.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 lg:w-2 lg:h-2 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
 
@@ -214,7 +214,7 @@ const Auditors = () => {
                 >
                   <div className="absolute inset-0 blur-3xl bg-white/10 scale-150 -z-10"></div>
                   
-                  <div className="relative h-[375px] sm:h-[438px] lg:h-[470px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
+                  <div className="relative h-[375px] sm:h-[438px] lg:h-[376px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
                     {auditorProfiles.map((auditor, index) => {
                       const style = getCardStyle(index, auditorProfiles.length);
                       
@@ -246,15 +246,15 @@ const Auditors = () => {
                           }}
                         >
                           <div
-                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[260px] lg:h-[340px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[208px] lg:h-[272px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
                               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                             }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                             
-                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-7 xl:pt-9 2xl:pt-11 3xl:pt-12">
-                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[160px] lg:h-[160px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-5 xl:pt-9 2xl:pt-11 3xl:pt-12">
+                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[128px] lg:h-[128px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
                                 <img
                                   src={auditor.image}
                                   alt={auditor.name}
@@ -269,12 +269,12 @@ const Auditors = () => {
                               </div>
                             </div>
 
-                            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-5 xl:bottom-7 2xl:bottom-9 3xl:bottom-12 left-0 right-0 flex justify-center px-3 sm:px-4">
-                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-6 xl:px-7 2xl:px-9 py-1.5 sm:py-2 lg:py-2.5 xl:py-3 2xl:py-4 w-full">
-                                <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-xl 3xl:text-3xl text-center">
+                            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-3 xl:bottom-7 2xl:bottom-9 3xl:bottom-12 left-0 right-0 flex justify-center px-3 sm:px-4">
+                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-3 xl:px-7 2xl:px-9 py-1.5 sm:py-2 lg:py-1.5 xl:py-3 2xl:py-4 w-full">
+                                <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-[10px] xl:text-base 2xl:text-xl 3xl:text-3xl text-center">
                                   {auditor.name}
                                 </p>
-                                <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-lg 3xl:text-2xl text-center">
+                                <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[8px] xl:text-sm 2xl:text-lg 3xl:text-2xl text-center">
                                   {auditor.specialty}
                                 </p>
                               </div>

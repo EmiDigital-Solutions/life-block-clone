@@ -32,7 +32,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-xl xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-base xl:text-3xl 2xl:text-7xl 3xl:text-8xl font-sans font-bold text-white leading-tight"
             >
               Transform supplier data into{" "}
               <span className="block mt-2">strategic advantage</span>
@@ -45,16 +45,16 @@ const GroundIntelligence = () => {
               className="flex flex-col gap-2 sm:gap-3 text-white mx-auto sm:mx-0"
             >
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
-                <span className="text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Real-time monitoring</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Real-time monitoring</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
-                <span className="text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Predictive analytics</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Predictive analytics</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
-                <span className="text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Risk scoring</span>
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7" />
+                <span className="text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl font-medium">Risk scoring</span>
               </div>
             </motion.div>
 
@@ -66,10 +66,10 @@ const GroundIntelligence = () => {
             >
               <button 
                 onClick={() => scrollToSection('cta')}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-5 xl:px-7 2xl:px-12 py-3 sm:py-4 lg:py-2 xl:py-3 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg lg:text-xs xl:text-base 2xl:text-2xl 3xl:text-3xl min-h-[48px]"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-4 xl:px-7 2xl:px-12 py-3 sm:py-4 lg:py-1.5 xl:py-3 2xl:py-6 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 text-base sm:text-lg lg:text-[10px] xl:text-base 2xl:text-2xl 3xl:text-3xl min-h-[48px]"
               >
                 Schedule consultation
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
 
@@ -77,7 +77,7 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-sm sm:text-base lg:text-xs xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
+              className="text-sm sm:text-base lg:text-[10px] xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-sans max-w-xl leading-relaxed mx-auto sm:mx-0"
             >
               <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
             </motion.p>
