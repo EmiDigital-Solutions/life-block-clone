@@ -28,7 +28,7 @@ const ScrollPinnedZoom = ({ imageSrc, imageAlt, children }: ScrollPinnedZoomProp
   return (
     <section 
       ref={containerRef}
-      className="relative w-full -mt-1"
+      className="relative w-full -mt-1 bg-background"
       style={{ height: '350vh' }} // Extended scroll space for slower, gradual zoom (approx 20% per scroll)
     >
       {/* Sticky container - this stays fixed in viewport while section scrolls */}
