@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
-import { MessageSquare } from "lucide-react";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -270,54 +269,6 @@ const HeroSection = () => {
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                          
-                          {/* AI Badges */}
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.8 }}
-                            className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-2 lg:left-2 xl:top-6 xl:left-6 2xl:top-8 2xl:left-8 bg-sky-400/90 backdrop-blur-sm rounded-full p-2 sm:p-2.5 lg:p-1.5 xl:p-3 2xl:p-3.5 shadow-lg z-10"
-                          >
-                            <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3 lg:h-3 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-white" strokeWidth={2} />
-                          </motion.div>
-
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 1 }}
-                            className="absolute bottom-20 right-4 sm:bottom-24 sm:right-6 lg:bottom-12 lg:right-2 xl:bottom-28 xl:right-6 2xl:bottom-32 2xl:right-8 bg-white rounded-full p-2 sm:p-3 lg:p-1.5 xl:p-3.5 2xl:p-4 shadow-lg z-10"
-                          >
-                            <span className="text-lg sm:text-2xl lg:text-base xl:text-3xl 2xl:text-4xl font-bold text-blue-600">AI</span>
-                          </motion.div>
-
-                          {/* Connecting Lines */}
-                          <svg 
-                            className="absolute inset-0 w-full h-full pointer-events-none z-[5]"
-                            style={{ opacity: 0.3 }}
-                          >
-                            <motion.line
-                              initial={{ pathLength: 0 }}
-                              animate={{ pathLength: 1 }}
-                              transition={{ duration: 1, delay: 0.9 }}
-                              x1="25%" 
-                              y1="20%" 
-                              x2="50%" 
-                              y2="35%" 
-                              stroke="white" 
-                              strokeWidth="1"
-                            />
-                            <motion.line
-                              initial={{ pathLength: 0 }}
-                              animate={{ pathLength: 1 }}
-                              transition={{ duration: 1, delay: 1.1 }}
-                              x1="75%" 
-                              y1="65%" 
-                              x2="50%" 
-                              y2="50%" 
-                              stroke="white" 
-                              strokeWidth="1"
-                            />
-                          </svg>
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-14">
                             <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
