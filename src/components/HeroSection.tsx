@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
-import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -13,32 +12,6 @@ import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
-import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
-import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
-import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
-import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
-import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
-import auditorGen2 from "@/assets/auditor-gen-2.jpg";
-import auditorGen3 from "@/assets/auditor-gen-3.jpg";
-import auditorGen4 from "@/assets/auditor-gen-4.jpg";
-import auditorGen5 from "@/assets/auditor-gen-5.jpg";
-import auditorGen6 from "@/assets/auditor-gen-6.jpg";
-import auditorGen13 from "@/assets/auditor-gen-13.jpg";
-import auditorGen15 from "@/assets/auditor-gen-15.jpg";
-import auditorGen17 from "@/assets/auditor-gen-17.jpg";
-import auditorGen18 from "@/assets/auditor-gen-18.jpg";
-import auditorGen21 from "@/assets/auditor-gen-21.jpg";
-import auditorGen23 from "@/assets/auditor-gen-23.jpg";
-import auditorGen24 from "@/assets/auditor-gen-24.jpg";
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import auditorBlonde6 from "@/assets/auditor-blonde-6.jpg";
-import auditorBlonde7 from "@/assets/auditor-blonde-7.jpg";
-import auditorBlonde8 from "@/assets/auditor-blonde-8.jpg";
 
 const fallbackAuditors = [
   { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
@@ -61,79 +34,6 @@ const HeroSection = () => {
     description: "Physical factory assessments (ISO, VDA, IATF) starting from €700. AI-powered intelligence with certified auditors across 90+ countries.",
     ctaText: "Experience a Connectimus Audit"
   });
-
-  // Sphere images array
-  const sphereImages: ImageData[] = [{
-    id: '1', src: auditorBlonde1, alt: 'European Female Auditor', title: 'Europe'
-  }, {
-    id: '2', src: auditorBlonde2, alt: 'Scandinavian Inspector', title: 'Northern Europe'
-  }, {
-    id: '3', src: auditorBlonde3, alt: 'German Quality Manager', title: 'Europe'
-  }, {
-    id: '4', src: auditorBlonde4, alt: 'Dutch Auditor', title: 'Netherlands'
-  }, {
-    id: '5', src: auditorBlonde5, alt: 'Swedish Safety Inspector', title: 'Sweden'
-  }, {
-    id: '6', src: auditorBlonde6, alt: 'British Compliance Auditor', title: 'UK'
-  }, {
-    id: '7', src: auditorBlonde7, alt: 'Australian Operations Manager', title: 'Australia'
-  }, {
-    id: '8', src: auditorBlonde8, alt: 'Norwegian Site Manager', title: 'Norway'
-  }, {
-    id: '9', src: auditorEuropean, alt: 'European Auditor', title: 'Europe'
-  }, {
-    id: '10', src: auditorAsian, alt: 'Asian Auditor', title: 'East Asia'
-  }, {
-    id: '11', src: auditorFemaleEuropean, alt: 'European Female Auditor', title: 'Europe'
-  }, {
-    id: '12', src: auditorFemaleAsian, alt: 'Asian Female Auditor', title: 'East Asia'
-  }, {
-    id: '13', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas'
-  }, {
-    id: '14', src: auditorAfrican, alt: 'African Auditor', title: 'Africa'
-  }, {
-    id: '15', src: auditorMiddleEast, alt: 'Middle Eastern Auditor', title: 'Middle East'
-  }, {
-    id: '16', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia'
-  }, {
-    id: '17', src: auditorFemaleAfrican, alt: 'African Female Auditor', title: 'Africa'
-  }, {
-    id: '18', src: auditorFemaleLatin, alt: 'Latin American Female Auditor', title: 'Americas'
-  }, {
-    id: '19', src: auditorFemaleMiddleEast, alt: 'Middle Eastern Female Auditor', title: 'Middle East'
-  }, {
-    id: '20', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia'
-  }, {
-    id: '21', src: auditorFemaleOceania, alt: 'Oceanian Female Auditor', title: 'Oceania'
-  }, {
-    id: '22', src: auditorMaleNorthAmerica, alt: 'North American Auditor', title: 'North America'
-  }, {
-    id: '23', src: auditorGen1, alt: 'Quality Inspector', title: 'Global'
-  }, {
-    id: '24', src: auditorGen2, alt: 'Safety Auditor', title: 'Global'
-  }, {
-    id: '25', src: auditorGen3, alt: 'Compliance Officer', title: 'Global'
-  }, {
-    id: '26', src: auditorGen4, alt: 'Factory Inspector', title: 'Global'
-  }, {
-    id: '27', src: auditorGen5, alt: 'Operations Auditor', title: 'Global'
-  }, {
-    id: '28', src: auditorGen6, alt: 'Quality Manager', title: 'Global'
-  }, {
-    id: '29', src: auditorGen13, alt: 'Site Auditor', title: 'Global'
-  }, {
-    id: '30', src: auditorGen15, alt: 'Process Inspector', title: 'Global'
-  }, {
-    id: '31', src: auditorGen17, alt: 'Technical Auditor', title: 'Global'
-  }, {
-    id: '32', src: auditorGen18, alt: 'Manufacturing Inspector', title: 'Global'
-  }, {
-    id: '33', src: auditorGen21, alt: 'Supply Chain Auditor', title: 'Global'
-  }, {
-    id: '34', src: auditorGen23, alt: 'Facility Inspector', title: 'Global'
-  }, {
-    id: '35', src: auditorGen24, alt: 'Verification Auditor', title: 'Global'
-  }];
 
   // Fetch hero content from CMS
   const { data: heroData } = useContentByType("hero_content");
@@ -260,28 +160,10 @@ const HeroSection = () => {
 
       <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
         <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
-          <div className="flex flex-col lg:grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
-            {/* Sphere - Mobile First, Desktop Second */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full h-[400px] sm:h-[500px] lg:h-[600px] order-first lg:order-last"
-            >
-              <SphereImageGrid
-                images={sphereImages}
-                sphereRadius={isMobile ? 180 : 280}
-                baseImageScale={isMobile ? 0.8 : 1}
-                dragSensitivity={0.3}
-                autoRotateSpeed={0.0003}
-                momentumDecay={0.95}
-                autoRotate={true}
-              />
-            </motion.div>
-
-            {/* Text Content - Mobile Second, Desktop First */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left order-last lg:order-first">
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -332,6 +214,102 @@ const HeroSection = () => {
                 </button>
               </motion.div>
             </div>
+
+            {/* Right Column: Animated Auditor Cards */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex justify-center lg:justify-center order-first lg:order-last"
+            >
+              <div 
+                className="relative w-full"
+                style={{ perspective: "2000px" }}
+              >
+                <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                
+                <div className="relative h-[375px] sm:h-[438px] lg:h-[210px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
+                  {visibleAuditors.map((auditor, auditorIndex) => {
+                    const style = getCardStyle(auditorIndex, visibleAuditors.length);
+                    
+                    return (
+                      <motion.div
+                        key={auditor.location}
+                        className="absolute cursor-pointer"
+                        onClick={handleCardClick}
+                        initial={false}
+                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                        animate={{
+                          x: style.x,
+                          y: style.y,
+                          rotateY: style.rotateY,
+                          rotateZ: style.rotateZ,
+                          scale: style.scale,
+                          opacity: style.opacity,
+                          zIndex: style.zIndex,
+                        }}
+                        transition={{
+                          duration: isMobile ? 2.5 : 1.8,
+                          delay: isFanned ? auditorIndex * (isMobile ? 0.25 : 0.12) : (visibleAuditors.length - auditorIndex) * 0.08,
+                          ease: [0.33, 1, 0.68, 1],
+                          type: "tween",
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        <div
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          style={{
+                            boxShadow: `
+                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                              0 0 30px rgba(236, 72, 153, 0.2)
+                            `,
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                          
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-14">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
+                              <img
+                                src={auditor.image}
+                                alt={`Professional auditor from ${auditor.location}`}
+                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                              />
+                              <div 
+                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                                style={{
+                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-2 xl:bottom-7 2xl:bottom-9 3xl:bottom-14 left-0 right-0 flex justify-center px-4 sm:px-6 lg:px-2">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-2 xl:px-8 2xl:px-10 py-2 sm:py-3 lg:py-1 xl:py-3.5 2xl:py-4 w-full">
+                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-[9px] xl:text-lg 2xl:text-2xl 3xl:text-3xl text-center">
+                                {auditor.location}
+                              </p>
+                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-[8px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
+                                {auditor.region}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div 
+                            className="absolute inset-0 pointer-events-none rounded-3xl"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
 
           </div>
         </div>
