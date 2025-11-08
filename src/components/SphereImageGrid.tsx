@@ -89,6 +89,13 @@ interface VelocityState {
   y: number;
 }
 
+interface TouchState {
+  initialDistance: number | null;
+  initialAngle: number | null;
+  lastDistance: number | null;
+  lastAngle: number | null;
+}
+
 interface MousePosition {
   x: number;
   y: number;
@@ -152,6 +159,13 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
   const [imagePositions, setImagePositions] = useState<SphericalPosition[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
+  const [touchState, setTouchState] = useState<TouchState>({
+    initialDistance: null,
+    initialAngle: null,
+    lastDistance: null,
+    lastAngle: null
+  });
 
   const containerRef = useRef<HTMLDivElement>(null);
   const lastMousePos = useRef<MousePosition>({ x: 0, y: 0 });
@@ -408,41 +422,117 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     e.preventDefault();
-    const touch = e.touches[0];
-    setIsDragging(true);
-    setVelocity({ x: 0, y: 0 });
-    lastMousePos.current = { x: touch.clientX, y: touch.clientY };
+    
+    if (e.touches.length === 2) {
+      // Two-finger gesture: pinch-to-zoom and rotation
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      
+      const distance = Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+      );
+      
+      const angle = Math.atan2(
+        touch2.clientY - touch1.clientY,
+        touch2.clientX - touch1.clientX
+      );
+      
+      setTouchState({
+        initialDistance: distance,
+        initialAngle: angle,
+        lastDistance: distance,
+        lastAngle: angle
+      });
+      setIsDragging(false);
+    } else if (e.touches.length === 1) {
+      // Single finger: drag to rotate
+      const touch = e.touches[0];
+      setIsDragging(true);
+      setVelocity({ x: 0, y: 0 });
+      lastMousePos.current = { x: touch.clientX, y: touch.clientY };
+      setTouchState({
+        initialDistance: null,
+        initialAngle: null,
+        lastDistance: null,
+        lastAngle: null
+      });
+    }
   }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
-    if (!isDragging) return;
     e.preventDefault();
+    
+    if (e.touches.length === 2 && touchState.initialDistance !== null) {
+      // Two-finger gesture: handle pinch-to-zoom and rotation
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      
+      const currentDistance = Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+      );
+      
+      const currentAngle = Math.atan2(
+        touch2.clientY - touch1.clientY,
+        touch2.clientX - touch1.clientX
+      );
+      
+      // Pinch-to-zoom
+      if (touchState.lastDistance !== null) {
+        const scale = currentDistance / touchState.lastDistance;
+        setZoomLevel(prev => Math.max(0.5, Math.min(2, prev * scale)));
+      }
+      
+      // Two-finger rotation
+      if (touchState.lastAngle !== null) {
+        const angleDelta = (currentAngle - touchState.lastAngle) * (180 / Math.PI);
+        setRotation(prev => ({
+          x: prev.x,
+          y: SPHERE_MATH.normalizeAngle(prev.y + angleDelta * 0.5),
+          z: prev.z
+        }));
+      }
+      
+      setTouchState(prev => ({
+        ...prev,
+        lastDistance: currentDistance,
+        lastAngle: currentAngle
+      }));
+    } else if (e.touches.length === 1 && isDragging) {
+      // Single finger drag: rotate sphere
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lastMousePos.current.x;
+      const deltaY = touch.clientY - lastMousePos.current.y;
 
-    const touch = e.touches[0];
-    const deltaX = touch.clientX - lastMousePos.current.x;
-    const deltaY = touch.clientY - lastMousePos.current.y;
+      const rotationDelta = {
+        x: -deltaY * dragSensitivity,
+        y: deltaX * dragSensitivity
+      };
 
-    const rotationDelta = {
-      x: -deltaY * dragSensitivity,
-      y: deltaX * dragSensitivity
-    };
+      setRotation(prev => ({
+        x: SPHERE_MATH.normalizeAngle(prev.x + clampRotationSpeed(rotationDelta.x)),
+        y: SPHERE_MATH.normalizeAngle(prev.y + clampRotationSpeed(rotationDelta.y)),
+        z: prev.z
+      }));
 
-    setRotation(prev => ({
-      x: SPHERE_MATH.normalizeAngle(prev.x + clampRotationSpeed(rotationDelta.x)),
-      y: SPHERE_MATH.normalizeAngle(prev.y + clampRotationSpeed(rotationDelta.y)),
-      z: prev.z
-    }));
+      setVelocity({
+        x: clampRotationSpeed(rotationDelta.x),
+        y: clampRotationSpeed(rotationDelta.y)
+      });
 
-    setVelocity({
-      x: clampRotationSpeed(rotationDelta.x),
-      y: clampRotationSpeed(rotationDelta.y)
-    });
-
-    lastMousePos.current = { x: touch.clientX, y: touch.clientY };
-  }, [isDragging, dragSensitivity, clampRotationSpeed]);
+      lastMousePos.current = { x: touch.clientX, y: touch.clientY };
+    }
+  }, [isDragging, dragSensitivity, clampRotationSpeed, touchState]);
 
   const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
+    setTouchState({
+      initialDistance: null,
+      initialAngle: null,
+      lastDistance: null,
+      lastAngle: null
+    });
   }, []);
 
   // ==========================================
@@ -651,7 +741,13 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="relative w-full h-full" style={{ zIndex: 10 }}>
+        <div 
+          className="relative w-full h-full transition-transform duration-200" 
+          style={{ 
+            zIndex: 10,
+            transform: `scale(${zoomLevel})`
+          }}
+        >
           {images.map((image, index) => renderImageNode(image, index))}
         </div>
       </div>
