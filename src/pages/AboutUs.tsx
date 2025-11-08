@@ -181,7 +181,7 @@ const AboutUs = () => {
                 sphereRadius={220}
                 autoRotate={true}
                 autoRotateSpeed={0.15}
-                baseImageScale={0.572}
+                baseImageScale={0.88}
               />
             </motion.div>
             
