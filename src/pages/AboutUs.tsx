@@ -157,11 +157,11 @@ const AboutUs = () => {
       
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section data-nav-theme="light" className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
-          <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
+          <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12 sm:gap-16 md:gap-20 lg:gap-24 items-center">
             
             {/* Left - 3D Sphere */}
-            <motion.div className="relative flex justify-center items-center order-1 md:order-1" initial={{
+            <motion.div className="relative flex justify-start items-center order-1 md:order-1 -ml-4 md:-ml-8 lg:-ml-12" initial={{
             opacity: 0,
             scale: 0.8
           }} animate={{
@@ -182,7 +182,7 @@ const AboutUs = () => {
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}
-            <motion.div className="md:pl-8 lg:pl-16 flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2" initial={{
+            <motion.div className="flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2" initial={{
             opacity: 0
           }} animate={{
             opacity: 1
