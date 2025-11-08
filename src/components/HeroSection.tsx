@@ -271,12 +271,10 @@ const HeroSection = () => {
             >
               <SphereImageGrid
                 images={sphereImages}
-                sphereRadius={isMobile ? 180 : 280}
-                baseImageScale={isMobile ? 0.8 : 1}
-                dragSensitivity={0.3}
-                autoRotateSpeed={0.0003}
-                momentumDecay={0.95}
+                sphereRadius={isMobile ? 200 : 280}
+                baseImageScale={0.8}
                 autoRotate={true}
+                autoRotateSpeed={0.15}
               />
             </motion.div>
 
