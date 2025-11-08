@@ -197,16 +197,34 @@ const AboutUs = () => {
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
       <section data-nav-theme="light" className="pt-24 sm:pt-32 md:pt-40 lg:pt-44 pb-8 sm:pb-12 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
-          <div className="grid grid-cols-1 md:grid-cols-[52%_48%] gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center">
+          <div className="relative min-h-[600px] md:min-h-[500px]">
             
-            {/* Left - 3D Sphere */}
+            {/* Text Content */}
             <motion.div 
-              className="relative flex justify-center items-center order-2 md:order-1 md:justify-start" 
+              className="flex flex-col space-y-4 sm:space-y-6 max-w-3xl relative z-10" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {/* Main Heading */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 50 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }} 
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-[-0.02em] text-left" 
+                style={{ color: "#1E2A3A" }}
+              >
+                Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors
+              </motion.h1>
+            </motion.div>
+            
+            {/* 3D Sphere - Overlaying */}
+            <motion.div 
+              className="absolute top-0 right-0 md:top-1/2 md:-translate-y-1/2 z-20 pointer-events-auto" 
               initial={{ opacity: 0, scale: 0.8 }} 
               animate={{ opacity: 1, scale: 1 }} 
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="w-full flex justify-center md:justify-start">
               <SphereImageGrid
                 images={sphereImages}
                 containerSize={sphereConfig.containerSize}
@@ -215,30 +233,6 @@ const AboutUs = () => {
                 autoRotateSpeed={0.15}
                 baseImageScale={sphereConfig.baseImageScale}
               />
-              </div>
-            </motion.div>
-            
-            {/* Right - Text Content with staggered animation */}
-            <motion.div 
-              className="flex flex-col space-y-4 sm:space-y-6 order-1 md:order-2" 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {/* Main Heading */}
-              <motion.h1 initial={{
-              opacity: 0,
-              y: 50
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 1,
-              delay: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-[-0.02em] text-center md:text-left" style={{
-              color: "#1E2A3A"
-            }}>Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors </motion.h1>
             </motion.div>
             
           </div>
