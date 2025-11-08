@@ -512,6 +512,14 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
+    // Cycle through gradients: blue, green/teal, black
+    const gradients = [
+      'linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))', // blue
+      'linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))', // green/teal
+      'linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))', // black
+    ];
+    const gradientIndex = index % gradients.length;
+
     return (
       <div
         key={image.id}
@@ -536,6 +544,13 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
             className="w-full h-full object-cover"
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
+          />
+          {/* Gradient overlay */}
+          <div 
+            className="absolute inset-0 mix-blend-multiply opacity-40"
+            style={{
+              background: gradients[gradientIndex]
+            }}
           />
         </div>
       </div>
