@@ -541,13 +541,19 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           <img
             src={image.src}
             alt={image.alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale-[30%]"
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
           />
-          {/* Duotone overlay */}
+          {/* Strong duotone overlay effect */}
           <div 
-            className="absolute inset-0 mix-blend-multiply opacity-50"
+            className="absolute inset-0 mix-blend-color opacity-80"
+            style={{
+              background: duotoneColors[colorIndex]
+            }}
+          />
+          <div 
+            className="absolute inset-0 mix-blend-multiply opacity-40"
             style={{
               background: duotoneColors[colorIndex]
             }}
