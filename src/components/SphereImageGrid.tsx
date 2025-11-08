@@ -512,13 +512,13 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
-    // Cycle through gradients matching homepage: blue, teal, dark gray
-    const gradients = [
-      'linear-gradient(135deg, rgb(66, 99, 235), rgb(59, 130, 246), rgb(37, 99, 235))', // bright blue
-      'linear-gradient(135deg, rgb(45, 212, 191), rgb(20, 184, 166), rgb(15, 135, 117))', // teal/green
-      'linear-gradient(135deg, rgb(55, 65, 81), rgb(31, 41, 55), rgb(17, 24, 39))', // dark gray
+    // Cycle through duotone overlays: blue, green, black
+    const duotoneColors = [
+      '#4169E1', // blue
+      '#4CAF87', // green
+      '#1F1F1F', // black/dark
     ];
-    const gradientIndex = index % gradients.length;
+    const colorIndex = index % duotoneColors.length;
 
     return (
       <div
@@ -545,11 +545,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
           />
-          {/* Gradient overlay */}
+          {/* Duotone overlay */}
           <div 
-            className="absolute inset-0 mix-blend-multiply opacity-40"
+            className="absolute inset-0 mix-blend-multiply opacity-50"
             style={{
-              background: gradients[gradientIndex]
+              background: duotoneColors[colorIndex]
             }}
           />
         </div>

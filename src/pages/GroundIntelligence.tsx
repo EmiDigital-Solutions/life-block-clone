@@ -148,7 +148,7 @@ const GroundIntelligence = () => {
                 autoRotate={true}
                 autoRotateSpeed={0.2}
                 dragSensitivity={0.6}
-                baseImageScale={0.22}
+                baseImageScale={0.44}
               />
             </motion.div>
           </div>
