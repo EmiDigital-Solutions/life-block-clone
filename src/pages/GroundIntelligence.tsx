@@ -5,7 +5,7 @@ import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
 
-// Import auditor images from homepage
+// Import auditor images - 40 unique faces
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -20,7 +20,33 @@ import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-// Using only real person photos (no cartoons/illustrations)
+// Generated unique auditor faces
+import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+import auditorGen4 from "@/assets/auditor-gen-4.jpg";
+import auditorGen5 from "@/assets/auditor-gen-5.jpg";
+import auditorGen6 from "@/assets/auditor-gen-6.jpg";
+import auditorGen7 from "@/assets/auditor-gen-7.jpg";
+import auditorGen8 from "@/assets/auditor-gen-8.jpg";
+import auditorGen9 from "@/assets/auditor-gen-9.jpg";
+import auditorGen10 from "@/assets/auditor-gen-10.jpg";
+import auditorGen11 from "@/assets/auditor-gen-11.jpg";
+import auditorGen12 from "@/assets/auditor-gen-12.jpg";
+import auditorGen13 from "@/assets/auditor-gen-13.jpg";
+import auditorGen14 from "@/assets/auditor-gen-14.jpg";
+import auditorGen15 from "@/assets/auditor-gen-15.jpg";
+import auditorGen16 from "@/assets/auditor-gen-16.jpg";
+import auditorGen17 from "@/assets/auditor-gen-17.jpg";
+import auditorGen18 from "@/assets/auditor-gen-18.jpg";
+import auditorGen19 from "@/assets/auditor-gen-19.jpg";
+import auditorGen20 from "@/assets/auditor-gen-20.jpg";
+import auditorGen21 from "@/assets/auditor-gen-21.jpg";
+import auditorGen22 from "@/assets/auditor-gen-22.jpg";
+import auditorGen23 from "@/assets/auditor-gen-23.jpg";
+import auditorGen24 from "@/assets/auditor-gen-24.jpg";
+import auditorGen25 from "@/assets/auditor-gen-25.jpg";
+import auditorGen26 from "@/assets/auditor-gen-26.jpg";
 
 const GroundIntelligence = () => {
   const scrollToSection = (id: string) => {
@@ -33,7 +59,7 @@ const GroundIntelligence = () => {
     }
   };
 
-  // Sphere images data - Only real person photos (no cartoons/illustrations)
+  // 40 unique auditor faces for the sphere
   const sphereImages: ImageData[] = [
     { id: '1', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
     { id: '2', src: auditorAsian, alt: 'Asian Auditor', title: 'East Asia' },
@@ -49,32 +75,33 @@ const GroundIntelligence = () => {
     { id: '12', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
     { id: '13', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
     { id: '14', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
-    // Second rotation through unique faces
-    { id: '15', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
-    { id: '16', src: auditorAsian, alt: 'Asian Senior Auditor', title: 'Asia' },
-    { id: '17', src: auditorFemaleAfrican, alt: 'African Lead Auditor', title: 'Africa' },
-    { id: '18', src: auditorLatin, alt: 'Americas Regional Auditor', title: 'Americas' },
-    { id: '19', src: auditorMiddleEast, alt: 'Middle East Lead Auditor', title: 'Middle East' },
-    { id: '20', src: auditorSouthAsian, alt: 'South Asia Senior Auditor', title: 'South Asia' },
-    { id: '21', src: auditorFemaleEuropean, alt: 'European Regional Lead', title: 'Europe' },
-    { id: '22', src: auditorFemaleAsian, alt: 'Asian Regional Lead', title: 'East Asia' },
-    { id: '23', src: auditorAfrican, alt: 'African Regional Manager', title: 'Africa' },
-    { id: '24', src: auditorFemaleLatin, alt: 'Americas Quality Lead', title: 'Americas' },
-    { id: '25', src: auditorFemaleMiddleEast, alt: 'Middle East Quality Manager', title: 'Middle East' },
-    { id: '26', src: auditorMaleNorthAmerica, alt: 'North America Lead', title: 'North America' },
-    { id: '27', src: auditorFemaleSouthAsian, alt: 'South Asia Regional Director', title: 'South Asia' },
-    { id: '28', src: auditorFemaleOceania, alt: 'Oceania Quality Director', title: 'Oceania' },
-    // Third rotation for fuller sphere (10 more = 40 total)
-    { id: '29', src: auditorAsian, alt: 'Asia Quality Manager', title: 'East Asia' },
-    { id: '30', src: auditorFemaleEuropean, alt: 'Europe Compliance Lead', title: 'Europe' },
-    { id: '31', src: auditorEuropean, alt: 'Europe Operations Manager', title: 'Europe' },
-    { id: '32', src: auditorFemaleAsian, alt: 'Asia Operations Lead', title: 'East Asia' },
-    { id: '33', src: auditorAfrican, alt: 'Africa Compliance Director', title: 'Africa' },
-    { id: '34', src: auditorFemaleAfrican, alt: 'Africa Quality Lead', title: 'Africa' },
-    { id: '35', src: auditorLatin, alt: 'Americas Compliance Manager', title: 'Americas' },
-    { id: '36', src: auditorFemaleLatin, alt: 'Americas Operations Director', title: 'Americas' },
-    { id: '37', src: auditorMiddleEast, alt: 'Middle East Operations Manager', title: 'Middle East' },
-    { id: '38', src: auditorSouthAsian, alt: 'South Asia Quality Director', title: 'South Asia' },
+    // Additional 26 unique generated faces
+    { id: '15', src: auditorGen1, alt: 'Industrial Safety Auditor', title: 'Global' },
+    { id: '16', src: auditorGen2, alt: 'Factory Quality Inspector', title: 'Asia' },
+    { id: '17', src: auditorGen3, alt: 'Warehouse Quality Manager', title: 'Middle East' },
+    { id: '18', src: auditorGen4, alt: 'Industrial Site Inspector', title: 'Africa' },
+    { id: '19', src: auditorGen5, alt: 'Compliance Manager', title: 'Americas' },
+    { id: '20', src: auditorGen6, alt: 'Construction Safety Manager', title: 'Europe' },
+    { id: '21', src: auditorGen7, alt: 'Manufacturing Inspector', title: 'South Asia' },
+    { id: '22', src: auditorGen8, alt: 'Warehouse Operations Lead', title: 'Global' },
+    { id: '23', src: auditorGen9, alt: 'Plant Quality Auditor', title: 'Americas' },
+    { id: '24', src: auditorGen10, alt: 'Factory Compliance Officer', title: 'East Asia' },
+    { id: '25', src: auditorGen11, alt: 'Construction Safety Inspector', title: 'Americas' },
+    { id: '26', src: auditorGen12, alt: 'Warehouse Safety Auditor', title: 'Middle East' },
+    { id: '27', src: auditorGen13, alt: 'Facility Operations Manager', title: 'Europe' },
+    { id: '28', src: auditorGen14, alt: 'Factory Quality Specialist', title: 'South Asia' },
+    { id: '29', src: auditorGen15, alt: 'Site Operations Director', title: 'East Asia' },
+    { id: '30', src: auditorGen16, alt: 'Construction Site Manager', title: 'Africa' },
+    { id: '31', src: auditorGen17, alt: 'Plant Compliance Auditor', title: 'Pacific' },
+    { id: '32', src: auditorGen18, alt: 'Laboratory Quality Control', title: 'Americas' },
+    { id: '33', src: auditorGen19, alt: 'Warehouse Safety Manager', title: 'North Africa' },
+    { id: '34', src: auditorGen20, alt: 'Facility Operations Auditor', title: 'Southeast Asia' },
+    { id: '35', src: auditorGen21, alt: 'Factory Floor Inspector', title: 'Eastern Europe' },
+    { id: '36', src: auditorGen22, alt: 'Industrial Facility Manager', title: 'Middle East' },
+    { id: '37', src: auditorGen23, alt: 'Quality Operations Director', title: 'Africa' },
+    { id: '38', src: auditorGen24, alt: 'Construction Compliance Inspector', title: 'Americas' },
+    { id: '39', src: auditorGen25, alt: 'Plant Site Auditor', title: 'East Asia' },
+    { id: '40', src: auditorGen26, alt: 'Warehouse Safety Manager', title: 'South America' },
   ];
 
   return (
