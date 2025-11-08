@@ -49,7 +49,7 @@ const GroundIntelligence = () => {
     { id: '12', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
     { id: '13', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
     { id: '14', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
-    // Repeat some photos for fuller sphere
+    // Additional auditors for fuller sphere (8 more = 22 total + 8 = 30)
     { id: '15', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
     { id: '16', src: auditorAsian, alt: 'Asian Senior Auditor', title: 'Asia' },
     { id: '17', src: auditorFemaleAfrican, alt: 'African Lead Auditor', title: 'Africa' },
@@ -58,6 +58,14 @@ const GroundIntelligence = () => {
     { id: '20', src: auditorSouthAsian, alt: 'South Asia Senior Auditor', title: 'South Asia' },
     { id: '21', src: auditorFemaleEuropean, alt: 'European Regional Lead', title: 'Europe' },
     { id: '22', src: auditorFemaleAsian, alt: 'Asian Regional Lead', title: 'East Asia' },
+    { id: '23', src: auditorAfrican, alt: 'African Regional Manager', title: 'Africa' },
+    { id: '24', src: auditorFemaleLatin, alt: 'Americas Quality Lead', title: 'Americas' },
+    { id: '25', src: auditorFemaleMiddleEast, alt: 'Middle East Quality Manager', title: 'Middle East' },
+    { id: '26', src: auditorMaleNorthAmerica, alt: 'North America Lead', title: 'North America' },
+    { id: '27', src: auditorFemaleSouthAsian, alt: 'South Asia Regional Director', title: 'South Asia' },
+    { id: '28', src: auditorFemaleOceania, alt: 'Oceania Quality Director', title: 'Oceania' },
+    { id: '29', src: auditorAsian, alt: 'Asia Quality Manager', title: 'East Asia' },
+    { id: '30', src: auditorFemaleEuropean, alt: 'Europe Compliance Lead', title: 'Europe' },
   ];
 
   return (
