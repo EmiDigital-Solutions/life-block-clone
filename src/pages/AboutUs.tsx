@@ -155,7 +155,7 @@ const AboutUs = () => {
               ease: [0.25, 0.46, 0.45, 0.94]
             }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]" style={{
               color: "#1E2A3A"
-            }}> Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers & local Auditors </motion.h1>
+            }}>Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors </motion.h1>
             </motion.div>
             
           </div>
