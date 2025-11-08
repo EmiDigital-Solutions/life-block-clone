@@ -517,14 +517,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
-    // Cycle through duotone overlays: blue, teal, black
-    const duotoneColors = [
-      '#4169E1', // blue
-      '#14B8A6', // teal
-      '#1F1F1F', // black/dark
-    ];
-    const colorIndex = index % duotoneColors.length;
-
     return (
       <div
         key={image.id}
@@ -546,22 +538,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           <img
             src={image.src}
             alt={image.alt}
-            className="w-full h-full object-cover grayscale-[30%]"
+            className="w-full h-full object-cover"
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
-          />
-          {/* Strong duotone overlay effect */}
-          <div 
-            className="absolute inset-0 mix-blend-color opacity-80"
-            style={{
-              background: duotoneColors[colorIndex]
-            }}
-          />
-          <div 
-            className="absolute inset-0 mix-blend-multiply opacity-40"
-            style={{
-              background: duotoneColors[colorIndex]
-            }}
           />
         </div>
       </div>
