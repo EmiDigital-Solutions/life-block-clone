@@ -512,11 +512,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
-    // Cycle through gradients: blue, green/teal, black
+    // Cycle through gradients matching homepage: blue, teal, dark gray
     const gradients = [
-      'linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))', // blue
-      'linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))', // green/teal
-      'linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))', // black
+      'linear-gradient(135deg, rgb(66, 99, 235), rgb(59, 130, 246), rgb(37, 99, 235))', // bright blue
+      'linear-gradient(135deg, rgb(45, 212, 191), rgb(20, 184, 166), rgb(15, 135, 117))', // teal/green
+      'linear-gradient(135deg, rgb(55, 65, 81), rgb(31, 41, 55), rgb(17, 24, 39))', // dark gray
     ];
     const gradientIndex = index % gradients.length;
 

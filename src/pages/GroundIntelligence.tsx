@@ -20,6 +20,13 @@ import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
+import auditorAfrican2 from "@/assets/auditor-african.png";
+import auditorAsian2 from "@/assets/auditor-asian.png";
+import auditorEuropean2 from "@/assets/auditor-european.png";
+import auditorLatin2 from "@/assets/auditor-latin.png";
+import auditorMiddleEast2 from "@/assets/auditor-middle-east.png";
+import auditorSouthAsian2 from "@/assets/auditor-south-asian.png";
+import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 
 const GroundIntelligence = () => {
   const scrollToSection = (id: string) => {
@@ -48,6 +55,14 @@ const GroundIntelligence = () => {
     { id: '12', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
     { id: '13', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
     { id: '14', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
+    { id: '15', src: auditorAfrican2, alt: 'African Regional Auditor', title: 'Africa' },
+    { id: '16', src: auditorAsian2, alt: 'Asian Regional Auditor', title: 'Asia' },
+    { id: '17', src: auditorEuropean2, alt: 'European Regional Auditor', title: 'Europe' },
+    { id: '18', src: auditorLatin2, alt: 'Latin American Regional Auditor', title: 'Americas' },
+    { id: '19', src: auditorMiddleEast2, alt: 'Middle East Regional Auditor', title: 'Middle East' },
+    { id: '20', src: auditorSouthAsian2, alt: 'South Asian Regional Auditor', title: 'South Asia' },
+    { id: '21', src: auditorFactoryTeam, alt: 'Factory Audit Team', title: 'Global Team' },
+    { id: '22', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
   ];
 
   return (
