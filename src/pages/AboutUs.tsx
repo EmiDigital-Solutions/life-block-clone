@@ -49,51 +49,209 @@ import auditorBlonde8 from "@/assets/auditor-blonde-8.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
-  
+
   // 40 unique auditor faces for the sphere - balanced diversity
-  const sphereImages: ImageData[] = [
-    { id: '1', src: auditorBlonde1, alt: 'European Female Auditor', title: 'Europe' },
-    { id: '2', src: auditorBlonde2, alt: 'Scandinavian Inspector', title: 'Northern Europe' },
-    { id: '3', src: auditorBlonde3, alt: 'German Quality Manager', title: 'Europe' },
-    { id: '4', src: auditorBlonde4, alt: 'Dutch Auditor', title: 'Netherlands' },
-    { id: '5', src: auditorBlonde5, alt: 'Swedish Safety Inspector', title: 'Sweden' },
-    { id: '6', src: auditorBlonde6, alt: 'British Compliance Auditor', title: 'UK' },
-    { id: '7', src: auditorBlonde7, alt: 'Australian Operations Manager', title: 'Australia' },
-    { id: '8', src: auditorBlonde8, alt: 'Norwegian Site Manager', title: 'Norway' },
-    { id: '9', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
-    { id: '10', src: auditorAsian, alt: 'Asian Auditor', title: 'East Asia' },
-    { id: '11', src: auditorFemaleEuropean, alt: 'European Female Auditor', title: 'Europe' },
-    { id: '12', src: auditorFemaleAsian, alt: 'Asian Female Auditor', title: 'East Asia' },
-    { id: '13', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas' },
-    { id: '14', src: auditorGen1, alt: 'Industrial Safety Auditor', title: 'Global' },
-    { id: '15', src: auditorGen2, alt: 'Factory Quality Inspector', title: 'Asia' },
-    { id: '16', src: auditorGen3, alt: 'Warehouse Quality Manager', title: 'Middle East' },
-    { id: '17', src: auditorGen4, alt: 'Industrial Site Inspector', title: 'Africa' },
-    { id: '18', src: auditorGen5, alt: 'Compliance Manager', title: 'Americas' },
-    { id: '19', src: auditorGen6, alt: 'Construction Safety Manager', title: 'Europe' },
-    { id: '20', src: auditorFemaleAfrican, alt: 'African Female Auditor', title: 'Africa' },
-    { id: '21', src: auditorFemaleLatin, alt: 'Latin American Female Auditor', title: 'Americas' },
-    { id: '22', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
-    { id: '23', src: auditorGen13, alt: 'Facility Operations Manager', title: 'Europe' },
-    { id: '24', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
-    { id: '25', src: auditorGen15, alt: 'Site Operations Director', title: 'East Asia' },
-    { id: '26', src: auditorMiddleEast, alt: 'Middle East Auditor', title: 'Middle East' },
-    { id: '27', src: auditorGen17, alt: 'Plant Compliance Auditor', title: 'Pacific' },
-    { id: '28', src: auditorGen18, alt: 'Laboratory Quality Control', title: 'Americas' },
-    { id: '29', src: auditorFemaleMiddleEast, alt: 'Middle East Female Auditor', title: 'Middle East' },
-    { id: '30', src: auditorGen21, alt: 'Factory Floor Inspector', title: 'Eastern Europe' },
-    { id: '31', src: auditorAfrican, alt: 'African Male Auditor', title: 'Africa' },
-    { id: '32', src: auditorGen23, alt: 'Quality Operations Director', title: 'Africa' },
-    { id: '33', src: auditorGen24, alt: 'Construction Compliance Inspector', title: 'Americas' },
-    { id: '34', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia' },
-    { id: '35', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
-    { id: '36', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
-    { id: '37', src: auditorFemaleEuropean, alt: 'European Regional Lead', title: 'Europe' },
-    { id: '38', src: auditorAsian, alt: 'Asian Senior Auditor', title: 'Asia' },
-    { id: '39', src: auditorFemaleAsian, alt: 'Asian Regional Lead', title: 'East Asia' },
-    { id: '40', src: auditorLatin, alt: 'Americas Regional Auditor', title: 'Americas' },
-  ];
-  
+  const sphereImages: ImageData[] = [{
+    id: '1',
+    src: auditorBlonde1,
+    alt: 'European Female Auditor',
+    title: 'Europe'
+  }, {
+    id: '2',
+    src: auditorBlonde2,
+    alt: 'Scandinavian Inspector',
+    title: 'Northern Europe'
+  }, {
+    id: '3',
+    src: auditorBlonde3,
+    alt: 'German Quality Manager',
+    title: 'Europe'
+  }, {
+    id: '4',
+    src: auditorBlonde4,
+    alt: 'Dutch Auditor',
+    title: 'Netherlands'
+  }, {
+    id: '5',
+    src: auditorBlonde5,
+    alt: 'Swedish Safety Inspector',
+    title: 'Sweden'
+  }, {
+    id: '6',
+    src: auditorBlonde6,
+    alt: 'British Compliance Auditor',
+    title: 'UK'
+  }, {
+    id: '7',
+    src: auditorBlonde7,
+    alt: 'Australian Operations Manager',
+    title: 'Australia'
+  }, {
+    id: '8',
+    src: auditorBlonde8,
+    alt: 'Norwegian Site Manager',
+    title: 'Norway'
+  }, {
+    id: '9',
+    src: auditorEuropean,
+    alt: 'European Auditor',
+    title: 'Europe'
+  }, {
+    id: '10',
+    src: auditorAsian,
+    alt: 'Asian Auditor',
+    title: 'East Asia'
+  }, {
+    id: '11',
+    src: auditorFemaleEuropean,
+    alt: 'European Female Auditor',
+    title: 'Europe'
+  }, {
+    id: '12',
+    src: auditorFemaleAsian,
+    alt: 'Asian Female Auditor',
+    title: 'East Asia'
+  }, {
+    id: '13',
+    src: auditorLatin,
+    alt: 'Latin American Auditor',
+    title: 'Americas'
+  }, {
+    id: '14',
+    src: auditorGen1,
+    alt: 'Industrial Safety Auditor',
+    title: 'Global'
+  }, {
+    id: '15',
+    src: auditorGen2,
+    alt: 'Factory Quality Inspector',
+    title: 'Asia'
+  }, {
+    id: '16',
+    src: auditorGen3,
+    alt: 'Warehouse Quality Manager',
+    title: 'Middle East'
+  }, {
+    id: '17',
+    src: auditorGen4,
+    alt: 'Industrial Site Inspector',
+    title: 'Africa'
+  }, {
+    id: '18',
+    src: auditorGen5,
+    alt: 'Compliance Manager',
+    title: 'Americas'
+  }, {
+    id: '19',
+    src: auditorGen6,
+    alt: 'Construction Safety Manager',
+    title: 'Europe'
+  }, {
+    id: '20',
+    src: auditorFemaleAfrican,
+    alt: 'African Female Auditor',
+    title: 'Africa'
+  }, {
+    id: '21',
+    src: auditorFemaleLatin,
+    alt: 'Latin American Female Auditor',
+    title: 'Americas'
+  }, {
+    id: '22',
+    src: auditorMaleNorthAmerica,
+    alt: 'North American Male Auditor',
+    title: 'North America'
+  }, {
+    id: '23',
+    src: auditorGen13,
+    alt: 'Facility Operations Manager',
+    title: 'Europe'
+  }, {
+    id: '24',
+    src: auditorFemaleOceania,
+    alt: 'Oceania Female Auditor',
+    title: 'Oceania'
+  }, {
+    id: '25',
+    src: auditorGen15,
+    alt: 'Site Operations Director',
+    title: 'East Asia'
+  }, {
+    id: '26',
+    src: auditorMiddleEast,
+    alt: 'Middle East Auditor',
+    title: 'Middle East'
+  }, {
+    id: '27',
+    src: auditorGen17,
+    alt: 'Plant Compliance Auditor',
+    title: 'Pacific'
+  }, {
+    id: '28',
+    src: auditorGen18,
+    alt: 'Laboratory Quality Control',
+    title: 'Americas'
+  }, {
+    id: '29',
+    src: auditorFemaleMiddleEast,
+    alt: 'Middle East Female Auditor',
+    title: 'Middle East'
+  }, {
+    id: '30',
+    src: auditorGen21,
+    alt: 'Factory Floor Inspector',
+    title: 'Eastern Europe'
+  }, {
+    id: '31',
+    src: auditorAfrican,
+    alt: 'African Male Auditor',
+    title: 'Africa'
+  }, {
+    id: '32',
+    src: auditorGen23,
+    alt: 'Quality Operations Director',
+    title: 'Africa'
+  }, {
+    id: '33',
+    src: auditorGen24,
+    alt: 'Construction Compliance Inspector',
+    title: 'Americas'
+  }, {
+    id: '34',
+    src: auditorSouthAsian,
+    alt: 'South Asian Auditor',
+    title: 'South Asia'
+  }, {
+    id: '35',
+    src: auditorFemaleSouthAsian,
+    alt: 'South Asian Female Auditor',
+    title: 'South Asia'
+  }, {
+    id: '36',
+    src: auditorEuropean,
+    alt: 'European Senior Auditor',
+    title: 'Europe'
+  }, {
+    id: '37',
+    src: auditorFemaleEuropean,
+    alt: 'European Regional Lead',
+    title: 'Europe'
+  }, {
+    id: '38',
+    src: auditorAsian,
+    alt: 'Asian Senior Auditor',
+    title: 'Asia'
+  }, {
+    id: '39',
+    src: auditorFemaleAsian,
+    alt: 'Asian Regional Lead',
+    title: 'East Asia'
+  }, {
+    id: '40',
+    src: auditorLatin,
+    alt: 'Americas Regional Auditor',
+    title: 'Americas'
+  }];
   const locations = {
     zagreb: {
       name: "Zagreb (Headquarters)",
@@ -171,14 +329,7 @@ const AboutUs = () => {
             duration: 0.8,
             delay: 0.3
           }}>
-              <SphereImageGrid
-                images={sphereImages}
-                containerSize={550}
-                sphereRadius={280}
-                autoRotate={true}
-                autoRotateSpeed={0.15}
-                baseImageScale={0.8}
-              />
+              <SphereImageGrid images={sphereImages} containerSize={550} sphereRadius={280} autoRotate={true} autoRotateSpeed={0.15} baseImageScale={0.8} />
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}
@@ -203,7 +354,7 @@ const AboutUs = () => {
               ease: [0.25, 0.46, 0.45, 0.94]
             }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]" style={{
               color: "#1E2A3A"
-            }}>Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors </motion.h1>
+            }}>Building the Global B2B Platform linking Clients, Suppliers & local Experts </motion.h1>
             </motion.div>
             
           </div>
