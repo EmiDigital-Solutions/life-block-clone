@@ -2,46 +2,7 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
-import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
-
-// Import auditor images - 40 unique faces with balanced diversity
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import auditorAsian from "@/assets/auditor-real-asian.jpg";
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
-import auditorLatin from "@/assets/auditor-real-latin.jpg";
-import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
-import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
-import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
-import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
-import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
-import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
-import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
-import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
-import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
-import auditorGen2 from "@/assets/auditor-gen-2.jpg";
-import auditorGen3 from "@/assets/auditor-gen-3.jpg";
-import auditorGen4 from "@/assets/auditor-gen-4.jpg";
-import auditorGen5 from "@/assets/auditor-gen-5.jpg";
-import auditorGen6 from "@/assets/auditor-gen-6.jpg";
-import auditorGen13 from "@/assets/auditor-gen-13.jpg";
-import auditorGen15 from "@/assets/auditor-gen-15.jpg";
-import auditorGen17 from "@/assets/auditor-gen-17.jpg";
-import auditorGen18 from "@/assets/auditor-gen-18.jpg";
-import auditorGen21 from "@/assets/auditor-gen-21.jpg";
-import auditorGen23 from "@/assets/auditor-gen-23.jpg";
-import auditorGen24 from "@/assets/auditor-gen-24.jpg";
-// Blonde auditors for better diversity balance
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import auditorBlonde6 from "@/assets/auditor-blonde-6.jpg";
-import auditorBlonde7 from "@/assets/auditor-blonde-7.jpg";
-import auditorBlonde8 from "@/assets/auditor-blonde-8.jpg";
 
 const GroundIntelligence = () => {
   const scrollToSection = (id: string) => {
@@ -54,50 +15,6 @@ const GroundIntelligence = () => {
     }
   };
 
-  // 40 unique auditor faces for the sphere - balanced diversity
-  const sphereImages: ImageData[] = [
-    { id: '1', src: auditorBlonde1, alt: 'European Female Auditor', title: 'Europe' },
-    { id: '2', src: auditorBlonde2, alt: 'Scandinavian Inspector', title: 'Northern Europe' },
-    { id: '3', src: auditorBlonde3, alt: 'German Quality Manager', title: 'Europe' },
-    { id: '4', src: auditorBlonde4, alt: 'Dutch Auditor', title: 'Netherlands' },
-    { id: '5', src: auditorBlonde5, alt: 'Swedish Safety Inspector', title: 'Sweden' },
-    { id: '6', src: auditorBlonde6, alt: 'British Compliance Auditor', title: 'UK' },
-    { id: '7', src: auditorBlonde7, alt: 'Australian Operations Manager', title: 'Australia' },
-    { id: '8', src: auditorBlonde8, alt: 'Norwegian Site Manager', title: 'Norway' },
-    { id: '9', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
-    { id: '10', src: auditorAsian, alt: 'Asian Auditor', title: 'East Asia' },
-    { id: '11', src: auditorFemaleEuropean, alt: 'European Female Auditor', title: 'Europe' },
-    { id: '12', src: auditorFemaleAsian, alt: 'Asian Female Auditor', title: 'East Asia' },
-    { id: '13', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas' },
-    { id: '14', src: auditorGen1, alt: 'Industrial Safety Auditor', title: 'Global' },
-    { id: '15', src: auditorGen2, alt: 'Factory Quality Inspector', title: 'Asia' },
-    { id: '16', src: auditorGen3, alt: 'Warehouse Quality Manager', title: 'Middle East' },
-    { id: '17', src: auditorGen4, alt: 'Industrial Site Inspector', title: 'Africa' },
-    { id: '18', src: auditorGen5, alt: 'Compliance Manager', title: 'Americas' },
-    { id: '19', src: auditorGen6, alt: 'Construction Safety Manager', title: 'Europe' },
-    { id: '20', src: auditorFemaleAfrican, alt: 'African Female Auditor', title: 'Africa' },
-    { id: '21', src: auditorFemaleLatin, alt: 'Latin American Female Auditor', title: 'Americas' },
-    { id: '22', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
-    { id: '23', src: auditorGen13, alt: 'Facility Operations Manager', title: 'Europe' },
-    { id: '24', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
-    { id: '25', src: auditorGen15, alt: 'Site Operations Director', title: 'East Asia' },
-    { id: '26', src: auditorMiddleEast, alt: 'Middle East Auditor', title: 'Middle East' },
-    { id: '27', src: auditorGen17, alt: 'Plant Compliance Auditor', title: 'Pacific' },
-    { id: '28', src: auditorGen18, alt: 'Laboratory Quality Control', title: 'Americas' },
-    { id: '29', src: auditorFemaleMiddleEast, alt: 'Middle East Female Auditor', title: 'Middle East' },
-    { id: '30', src: auditorGen21, alt: 'Factory Floor Inspector', title: 'Eastern Europe' },
-    { id: '31', src: auditorAfrican, alt: 'African Male Auditor', title: 'Africa' },
-    { id: '32', src: auditorGen23, alt: 'Quality Operations Director', title: 'Africa' },
-    { id: '33', src: auditorGen24, alt: 'Construction Compliance Inspector', title: 'Americas' },
-    { id: '34', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia' },
-    { id: '35', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
-    { id: '36', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
-    { id: '37', src: auditorFemaleEuropean, alt: 'European Regional Lead', title: 'Europe' },
-    { id: '38', src: auditorAsian, alt: 'Asian Senior Auditor', title: 'Asia' },
-    { id: '39', src: auditorFemaleAsian, alt: 'Asian Regional Lead', title: 'East Asia' },
-    { id: '40', src: auditorLatin, alt: 'Americas Regional Auditor', title: 'Americas' },
-  ];
-
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -109,10 +26,8 @@ const GroundIntelligence = () => {
         style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
         id="hero"
       >
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Column - Text Content */}
-            <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -165,24 +80,6 @@ const GroundIntelligence = () => {
               >
                 <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
               </motion.p>
-            </div>
-
-            {/* Right Column - 3D Sphere */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:flex items-center justify-center"
-            >
-              <SphereImageGrid
-                images={sphereImages}
-                containerSize={550}
-                sphereRadius={264}
-                autoRotate={true}
-                autoRotateSpeed={0.2}
-                baseImageScale={0.44}
-              />
-            </motion.div>
           </div>
         </div>
       </section>
