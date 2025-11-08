@@ -49,7 +49,7 @@ const GroundIntelligence = () => {
     { id: '12', src: auditorFemaleSouthAsian, alt: 'South Asian Female Auditor', title: 'South Asia' },
     { id: '13', src: auditorFemaleOceania, alt: 'Oceania Female Auditor', title: 'Oceania' },
     { id: '14', src: auditorMaleNorthAmerica, alt: 'North American Male Auditor', title: 'North America' },
-    // Additional auditors for fuller sphere (8 more = 22 total + 8 = 30)
+    // Second rotation through unique faces
     { id: '15', src: auditorEuropean, alt: 'European Senior Auditor', title: 'Europe' },
     { id: '16', src: auditorAsian, alt: 'Asian Senior Auditor', title: 'Asia' },
     { id: '17', src: auditorFemaleAfrican, alt: 'African Lead Auditor', title: 'Africa' },
@@ -64,8 +64,17 @@ const GroundIntelligence = () => {
     { id: '26', src: auditorMaleNorthAmerica, alt: 'North America Lead', title: 'North America' },
     { id: '27', src: auditorFemaleSouthAsian, alt: 'South Asia Regional Director', title: 'South Asia' },
     { id: '28', src: auditorFemaleOceania, alt: 'Oceania Quality Director', title: 'Oceania' },
+    // Third rotation for fuller sphere (10 more = 40 total)
     { id: '29', src: auditorAsian, alt: 'Asia Quality Manager', title: 'East Asia' },
     { id: '30', src: auditorFemaleEuropean, alt: 'Europe Compliance Lead', title: 'Europe' },
+    { id: '31', src: auditorEuropean, alt: 'Europe Operations Manager', title: 'Europe' },
+    { id: '32', src: auditorFemaleAsian, alt: 'Asia Operations Lead', title: 'East Asia' },
+    { id: '33', src: auditorAfrican, alt: 'Africa Compliance Director', title: 'Africa' },
+    { id: '34', src: auditorFemaleAfrican, alt: 'Africa Quality Lead', title: 'Africa' },
+    { id: '35', src: auditorLatin, alt: 'Americas Compliance Manager', title: 'Americas' },
+    { id: '36', src: auditorFemaleLatin, alt: 'Americas Operations Director', title: 'Americas' },
+    { id: '37', src: auditorMiddleEast, alt: 'Middle East Operations Manager', title: 'Middle East' },
+    { id: '38', src: auditorSouthAsian, alt: 'South Asia Quality Director', title: 'South Asia' },
   ];
 
   return (
@@ -147,10 +156,9 @@ const GroundIntelligence = () => {
               <SphereImageGrid
                 images={sphereImages}
                 containerSize={550}
-                sphereRadius={220}
+                sphereRadius={264}
                 autoRotate={true}
                 autoRotateSpeed={0.2}
-                dragSensitivity={0.6}
                 baseImageScale={0.44}
               />
             </motion.div>

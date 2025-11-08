@@ -512,12 +512,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
-    // Cycle through duotone overlays: blue, green, black, teal
+    // Cycle through duotone overlays: blue, teal, black
     const duotoneColors = [
       '#4169E1', // blue
-      '#4CAF87', // green
-      '#1F1F1F', // black/dark
       '#14B8A6', // teal
+      '#1F1F1F', // black/dark
     ];
     const colorIndex = index % duotoneColors.length;
 
