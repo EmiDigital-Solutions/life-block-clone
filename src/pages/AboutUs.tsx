@@ -8,11 +8,9 @@ import heroPersonImage from "@/assets/about-hero-person.png";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
-
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
-
   const locations = {
     zagreb: {
       name: "Zagreb (Headquarters)",
@@ -39,101 +37,80 @@ const AboutUs = () => {
       email: "stuttgart@yvoo.com"
     }
   };
-
-  const timelineData = [
-    { 
-      year: 2019, 
-      title: "Company Founded", 
-      desc: "YVOO Technologies Ltd. founded in Zagreb, Croatia by Ivo and team. Mission: Create the ultimate AI-powered B2B procurement platform.",
-      image: "office"
-    },
-    { 
-      year: 2020, 
-      title: "Product Launch", 
-      desc: "SearchPro+ launched - AI supplier discovery platform with instant global supplier matching.",
-      image: "launch"
-    },
-    { 
-      year: 2021, 
-      title: "Expansion", 
-      desc: "ScanPro+ auditing platform goes live with global auditor network in 90+ countries.",
-      image: "expansion"
-    },
-    { 
-      year: 2022, 
-      title: "Growth", 
-      desc: "Expanded to major automotive and manufacturing clients including Mercedes, BMW, Bosch.",
-      image: "growth"
-    },
-    { 
-      year: 2023, 
-      title: "Innovation", 
-      desc: "SalesPro+ supplier visibility platform launched, reaching 7M+ B2B decision-makers.",
-      image: "innovation"
-    },
-    { 
-      year: 2024, 
-      title: "Scale", 
-      desc: "Serving enterprise clients across Europe, achieving 70% cost reduction and 80% time savings.",
-      image: "scale"
-    }
-  ];
-
+  const timelineData = [{
+    year: 2019,
+    title: "Company Founded",
+    desc: "YVOO Technologies Ltd. founded in Zagreb, Croatia by Ivo and team. Mission: Create the ultimate AI-powered B2B procurement platform.",
+    image: "office"
+  }, {
+    year: 2020,
+    title: "Product Launch",
+    desc: "SearchPro+ launched - AI supplier discovery platform with instant global supplier matching.",
+    image: "launch"
+  }, {
+    year: 2021,
+    title: "Expansion",
+    desc: "ScanPro+ auditing platform goes live with global auditor network in 90+ countries.",
+    image: "expansion"
+  }, {
+    year: 2022,
+    title: "Growth",
+    desc: "Expanded to major automotive and manufacturing clients including Mercedes, BMW, Bosch.",
+    image: "growth"
+  }, {
+    year: 2023,
+    title: "Innovation",
+    desc: "SalesPro+ supplier visibility platform launched, reaching 7M+ B2B decision-makers.",
+    image: "innovation"
+  }, {
+    year: 2024,
+    title: "Scale",
+    desc: "Serving enterprise clients across Europe, achieving 70% cost reduction and 80% time savings.",
+    image: "scale"
+  }];
   const selectedTimeline = timelineData.find(item => item.year === selectedYear);
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
-      <section 
-        data-nav-theme="light"
-        className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white"
-      >
+      <section data-nav-theme="light" className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
             
             {/* Left - Image Card */}
-            <motion.div 
-              className="relative flex justify-center items-center order-1 md:order-1"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <motion.div 
-                className="relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[340px] h-[330px] sm:h-[390px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800"
-                style={{
-                  boxShadow: `
+            <motion.div className="relative flex justify-center items-center order-1 md:order-1" initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.6
+          }}>
+              <motion.div className="relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[340px] h-[330px] sm:h-[390px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800" style={{
+              boxShadow: `
                     0 25px 50px -12px rgba(0, 0, 0, 0.5),
                     0 0 30px rgba(59, 130, 246, 0.2)
-                  `,
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              >
+                  `
+            }} whileHover={{
+              scale: 1.05,
+              transition: {
+                duration: 0.3
+              }
+            }}>
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 
                 {/* Circular Image */}
                 <div className="absolute inset-0 flex items-center justify-center pt-9 sm:pt-11 md:pt-14">
                   <div className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[250px] md:h-[250px] rounded-full overflow-hidden border-2 border-white/10">
-                    <img 
-                      src={heroPersonImage} 
-                      alt="YVOO Professional"
-                      className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                      style={{
-                        transform: "scale(1.13)",
-                        objectPosition: "58% 55%",
-                      }}
-                    />
-                    <div 
-                      className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                      style={{
-                        background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                      }}
-                    />
+                    <img src={heroPersonImage} alt="YVOO Professional" className="w-full h-full object-cover mix-blend-luminosity opacity-90" style={{
+                    transform: "scale(1.13)",
+                    objectPosition: "58% 55%"
+                  }} />
+                    <div className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay" style={{
+                    background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)"
+                  }} />
                   </div>
                 </div>
 
@@ -150,36 +127,35 @@ const AboutUs = () => {
                 </div>
 
                 {/* Light gradient overlay */}
-                <div 
-                  className="absolute inset-0 pointer-events-none rounded-3xl"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                  }}
-                />
+                <div className="absolute inset-0 pointer-events-none rounded-3xl" style={{
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)"
+              }} />
               </motion.div>
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}
-            <motion.div
-              className="md:pl-8 lg:pl-16 flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <motion.div className="md:pl-8 lg:pl-16 flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2" initial={{
+            opacity: 0
+          }} animate={{
+            opacity: 1
+          }} transition={{
+            duration: 0.6,
+            delay: 0.4
+          }}>
               {/* Main Heading */}
-              <motion.h1 
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.6,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]"
-                style={{ color: "#1E2A3A" }}
-              >
-                Scaling On-Site Audits
-              </motion.h1>
+              <motion.h1 initial={{
+              opacity: 0,
+              y: 50
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 1,
+              delay: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]" style={{
+              color: "#1E2A3A"
+            }}> Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers & local Auditors </motion.h1>
             </motion.div>
             
           </div>
@@ -187,20 +163,21 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 2: TECHNOLOGY & INNOVATION */}
-      <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
-      >
+      <section data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
           <div className="max-w-4xl">
             {/* Left: Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: -50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8
+          }} className="space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
                 Technology and <span className="text-blue-600">Innovation</span>
               </h2>
@@ -213,19 +190,21 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 3: MISSION & VALUES */}
-      <section 
-        data-nav-theme="dark"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))" }}
-      >
+      <section data-nav-theme="dark" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12" style={{
+      background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))"
+    }}>
         <div className="container mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center space-y-8 text-white"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8
+        }} className="max-w-4xl mx-auto text-center space-y-8 text-white">
             <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold">
               Our Mission and Values
             </h2>
@@ -239,30 +218,34 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 4: OUR PRINCIPLES */}
-      <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
-      >
+      <section data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50">
         <div className="container mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
-          >
+          <motion.h2 initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
             Our <span className="text-blue-600">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Text content */}
             <div className="space-y-8">
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="space-y-3"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: -30
+            }} whileInView={{
+              opacity: 1,
+              x: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              delay: 0.1
+            }} className="space-y-3">
                 <h3 className="text-2xl font-bold text-blue-600">Innovation</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
@@ -270,39 +253,51 @@ const AboutUs = () => {
                 </p>
               </motion.div>
               
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="space-y-3"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: -30
+            }} whileInView={{
+              opacity: 1,
+              x: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              delay: 0.2
+            }} className="space-y-3">
                 <h3 className="text-2xl font-bold text-[#14B8A6]">Customer-Oriented Approach</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
               </motion.div>
               
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="space-y-3"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: -30
+            }} whileInView={{
+              opacity: 1,
+              x: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              delay: 0.3
+            }} className="space-y-3">
                 <h3 className="text-2xl font-bold text-blue-600">Global & Personalized</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
               </motion.div>
               
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="space-y-3"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: -30
+            }} whileInView={{
+              opacity: 1,
+              x: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              delay: 0.4
+            }} className="space-y-3">
                 <h3 className="text-2xl font-bold text-[#14B8A6]">Ethical AI</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
@@ -311,13 +306,17 @@ const AboutUs = () => {
             </div>
             
             {/* Right: Connected circular badges */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            scale: 0.9
+          }} whileInView={{
+            opacity: 1,
+            scale: 1
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8
+          }} className="relative">
               <div className="relative w-full max-w-md mx-auto aspect-square">
                 {/* Connection lines */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
@@ -333,13 +332,15 @@ const AboutUs = () => {
                 </div>
                 
                 {/* Circular badges */}
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute top-0 left-0"
-                >
+                <motion.div initial={{
+                scale: 0
+              }} whileInView={{
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: 0.3
+              }} className="absolute top-0 left-0">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                       <Lightbulb className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
@@ -347,13 +348,15 @@ const AboutUs = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="absolute top-0 right-0"
-                >
+                <motion.div initial={{
+                scale: 0
+              }} whileInView={{
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: 0.4
+              }} className="absolute top-0 right-0">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                       <Users className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
@@ -361,13 +364,15 @@ const AboutUs = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute bottom-0 left-0"
-                >
+                <motion.div initial={{
+                scale: 0
+              }} whileInView={{
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: 0.5
+              }} className="absolute bottom-0 left-0">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                       <Globe className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
@@ -375,13 +380,15 @@ const AboutUs = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 }}
-                  className="absolute bottom-0 right-0"
-                >
+                <motion.div initial={{
+                scale: 0
+              }} whileInView={{
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: 0.6
+              }} className="absolute bottom-0 right-0">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                       <Shield className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
@@ -395,45 +402,45 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 5: SUSTAINABILITY COMMITMENT */}
-      <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
-      >
+      <section data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             {/* Left: Image */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: -50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} className="lg:col-span-2">
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5]">
-                <img 
-                  src={sustainabilityImage} 
-                  alt="Sustainable office building with green technology"
-                  className="w-full h-full object-cover"
-                />
+                <img src={sustainabilityImage} alt="Sustainable office building with green technology" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 
                 {/* Floating badge */}
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg"
-                >
+                <motion.div animate={{
+                y: [0, -10, 0]
+              }} transition={{
+                duration: 3,
+                repeat: Infinity
+              }} className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg">
                   <Package className="w-8 h-8 text-[#14B8A6]" />
                 </motion.div>
               </div>
             </motion.div>
             
             {/* Right: Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-3 space-y-6"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: 50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} className="lg:col-span-3 space-y-6">
               <div className="text-sm font-semibold text-[#14B8A6] uppercase tracking-wider">
                 Carbon Reduction Commitment
               </div>
@@ -451,18 +458,17 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 6: COMPANY HISTORY TIMELINE */}
-      <section 
-        id="timeline-section"
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
-      >
+      <section id="timeline-section" data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50">
         <div className="container mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-blue-600 text-center mb-20"
-          >
+          <motion.h2 initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-blue-600 text-center mb-20">
             Our History
           </motion.h2>
           
@@ -470,44 +476,27 @@ const AboutUs = () => {
             {/* Timeline dots */}
             <div className="flex items-center justify-between relative">
               <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10" />
-              {timelineData.map((item) => (
-                <button
-                  key={item.year}
-                  onClick={() => setSelectedYear(item.year)}
-                  className="flex flex-col items-center gap-2 group"
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className={`w-4 h-4 rounded-full transition-all ${
-                      selectedYear === item.year 
-                        ? 'bg-[#14B8A6] ring-4 ring-[#14B8A6]/20' 
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                  <span className={`text-sm font-semibold ${
-                    selectedYear === item.year ? 'text-[#14B8A6]' : 'text-gray-400'
-                  }`}>
+              {timelineData.map(item => <button key={item.year} onClick={() => setSelectedYear(item.year)} className="flex flex-col items-center gap-2 group">
+                  <motion.div whileHover={{
+                scale: 1.2
+              }} className={`w-4 h-4 rounded-full transition-all ${selectedYear === item.year ? 'bg-[#14B8A6] ring-4 ring-[#14B8A6]/20' : 'bg-gray-300 hover:bg-gray-400'}`} />
+                  <span className={`text-sm font-semibold ${selectedYear === item.year ? 'text-[#14B8A6]' : 'text-gray-400'}`}>
                     {item.year}
                   </span>
-                </button>
-              ))}
+                </button>)}
             </div>
             
             {/* Timeline content */}
-            {selectedTimeline && (
-              <motion.div 
-                key={selectedYear}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="relative"
-              >
+            {selectedTimeline && <motion.div key={selectedYear} initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} className="relative">
                 <div className="grid md:grid-cols-5 gap-8">
                   <div className="md:col-span-3 relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video">
-                    <img 
-                      src={timelineImage} 
-                      alt={`Company milestone in ${selectedTimeline.year}`}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={timelineImage} alt={`Company milestone in ${selectedTimeline.year}`} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     <div className="absolute bottom-8 left-8">
                       <span className="text-6xl font-bold text-white/30">{selectedTimeline.year}</span>
@@ -518,33 +507,27 @@ const AboutUs = () => {
                     <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
-              </motion.div>
-            )}
+              </motion.div>}
           </div>
         </div>
       </section>
 
       {/* SECTION 7: LEADERSHIP TEAM */}
-      <section 
-        id="leadership-section"
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white"
-      >
+      <section id="leadership-section" data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Team photo */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="order-2 lg:order-1"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: -50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} className="order-2 lg:order-1">
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3]">
-                <img 
-                  src={leadershipTeamImage} 
-                  alt="YVOO leadership team"
-                  className="w-full h-full object-cover"
-                />
+                <img src={leadershipTeamImage} alt="YVOO leadership team" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
               </div>
               <p className="text-center mt-4 text-gray-500 text-sm">
@@ -553,12 +536,15 @@ const AboutUs = () => {
             </motion.div>
             
             {/* Right: Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="order-1 lg:order-2 space-y-6"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: 50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} className="order-1 lg:order-2 space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
                 YVOO <span className="text-blue-600">Leadership</span>
               </h2>
@@ -566,10 +552,7 @@ const AboutUs = () => {
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
-              <Button 
-                variant="outline" 
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-8 py-6 text-lg"
-              >
+              <Button variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-8 py-6 text-lg">
                 Learn More
               </Button>
             </motion.div>
@@ -578,46 +561,40 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 8: LOCATIONS */}
-      <section 
-        data-nav-theme="light"
-        className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50"
-      >
+      <section data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-gray-50">
         <div className="container mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20"
-          >
+          <motion.h2 initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
             Our <span className="text-blue-600">Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Location List */}
             <div className="lg:col-span-2 space-y-3">
-              {Object.entries(locations).map(([key, location]) => (
-                <button
-                  key={key}
-                  onClick={() => setSelectedLocation(key)}
-                  className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${
-                    selectedLocation === key
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'
-                  }`}
-                >
+              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
                   <span className="font-semibold">{location.name}</span>
-                </button>
-              ))}
+                </button>)}
             </div>
             
             {/* Selected Location Details */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-3"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: 50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.6
+          }} className="lg:col-span-3">
               <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
                   {locations[selectedLocation as keyof typeof locations].name}
@@ -643,27 +620,28 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 9: CTA FOOTER SECTION */}
-      <section 
-        data-nav-theme="dark"
-        className="py-32 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
-      >
+      <section data-nav-theme="dark" className="py-32 px-4 sm:px-6 lg:px-12" style={{
+      background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))"
+    }}>
         <div className="container mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center space-y-10 text-white"
-          >
-            <motion.div 
-              animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="w-32 h-32 mx-auto rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl"
-            >
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8
+        }} className="max-w-4xl mx-auto text-center space-y-10 text-white">
+            <motion.div animate={{
+            y: [0, -10, 0],
+            rotate: [0, 5, -5, 0]
+          }} transition={{
+            duration: 4,
+            repeat: Infinity
+          }} className="w-32 h-32 mx-auto rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl">
               <Zap className="w-16 h-16 text-white" />
             </motion.div>
             
@@ -675,10 +653,11 @@ const AboutUs = () => {
               Discover how AI-powered platforms revolutionize your procurement and supplier management.
             </p>
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{
+            scale: 1.05
+          }} whileTap={{
+            scale: 0.95
+          }}>
               <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
@@ -688,8 +667,6 @@ const AboutUs = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default AboutUs;
