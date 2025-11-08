@@ -2,7 +2,26 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
+import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
+
+// Import sphere images
+import aiAuditInspection from "@/assets/ai-audit-inspection.jpg";
+import aiCopilotAnalysis from "@/assets/ai-copilot-analysis.jpg";
+import aiInspectorTech from "@/assets/ai-inspector-tech.jpg";
+import digitalCollaboration from "@/assets/digital-collaboration.jpg";
+import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
+import erpIntegrationSync from "@/assets/erp-integration-sync.jpg";
+import liveTrackingDashboard from "@/assets/live-tracking-dashboard.jpg";
+import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
+import realtimeAlerts from "@/assets/realtime-alerts.jpg";
+import riskScoringAI from "@/assets/risk-scoring-ai.jpg";
+import smartMatchSuppliers from "@/assets/smart-match-suppliers.jpg";
+import supplierNetworking from "@/assets/supplier-networking.jpg";
+import supplierPartnership from "@/assets/supplier-partnership.jpg";
+import supplierSearchInterface from "@/assets/supplier-search-interface.jpg";
+import tripleSourceVerified from "@/assets/triple-source-verified.jpg";
+import workflowDashboard from "@/assets/workflow-dashboard.jpg";
 
 const GroundIntelligence = () => {
   const scrollToSection = (id: string) => {
@@ -14,6 +33,26 @@ const GroundIntelligence = () => {
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
+
+  // Sphere images data
+  const sphereImages: ImageData[] = [
+    { id: '1', src: aiAuditInspection, alt: 'AI Audit Inspection', title: 'AI Audit' },
+    { id: '2', src: aiCopilotAnalysis, alt: 'AI Copilot Analysis', title: 'AI Analysis' },
+    { id: '3', src: aiInspectorTech, alt: 'AI Inspector Technology', title: 'AI Inspector' },
+    { id: '4', src: digitalCollaboration, alt: 'Digital Collaboration', title: 'Collaboration' },
+    { id: '5', src: digitalWorkflowTeam, alt: 'Digital Workflow', title: 'Workflow' },
+    { id: '6', src: erpIntegrationSync, alt: 'ERP Integration', title: 'ERP Sync' },
+    { id: '7', src: liveTrackingDashboard, alt: 'Live Tracking', title: 'Live Tracking' },
+    { id: '8', src: oneClickDispatch, alt: 'One-Click Dispatch', title: 'Quick Dispatch' },
+    { id: '9', src: realtimeAlerts, alt: 'Realtime Alerts', title: 'Real-time Alerts' },
+    { id: '10', src: riskScoringAI, alt: 'Risk Scoring AI', title: 'Risk Scoring' },
+    { id: '11', src: smartMatchSuppliers, alt: 'Smart Match', title: 'Smart Match' },
+    { id: '12', src: supplierNetworking, alt: 'Supplier Network', title: 'Networking' },
+    { id: '13', src: supplierPartnership, alt: 'Supplier Partnership', title: 'Partnership' },
+    { id: '14', src: supplierSearchInterface, alt: 'Supplier Search', title: 'Search' },
+    { id: '15', src: tripleSourceVerified, alt: 'Triple Source Verified', title: 'Verified' },
+    { id: '16', src: workflowDashboard, alt: 'Workflow Dashboard', title: 'Dashboard' },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -27,59 +66,80 @@ const GroundIntelligence = () => {
         id="hero"
       >
         <div className="container mx-auto">
-          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
-            >
-              Transform supplier data into strategic advantage
-            </motion.h1>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col space-y-4 text-white mx-0 mb-12"
-            >
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">Real-time monitoring</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">Predictive analytics</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">Risk scoring</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full sm:w-auto mb-10"
-            >
-              <button 
-                onClick={() => scrollToSection('cta')}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
               >
-                Schedule consultation
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
+                Transform supplier data into strategic advantage
+              </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-0"
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-col space-y-4 text-white mb-12"
+              >
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Real-time monitoring</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Predictive analytics</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Risk scoring</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="w-full sm:w-auto mb-10"
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+                >
+                  Schedule consultation
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90"
+              >
+                <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
+              </motion.p>
+            </div>
+
+            {/* Right Column - 3D Sphere */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:flex items-center justify-center"
             >
-              <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
-            </motion.p>
+              <SphereImageGrid
+                images={sphereImages}
+                containerSize={550}
+                sphereRadius={220}
+                autoRotate={true}
+                autoRotateSpeed={0.2}
+                dragSensitivity={0.6}
+                baseImageScale={0.13}
+              />
+            </motion.div>
           </div>
         </div>
       </section>
