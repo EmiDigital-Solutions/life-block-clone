@@ -508,7 +508,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
     if (!position || !position.isVisible) return null;
 
-    const imageSize = baseImageSize * position.scale;
+    // Add size variation: create different diameters for each ball
+    // Use index-based pseudo-random to keep sizes consistent
+    const sizeVariationSeed = (index * 7 + 13) % 100;
+    const sizeVariation = 0.7 + (sizeVariationSeed / 100) * 0.6; // Range: 0.7 to 1.3
+    
+    const imageSize = baseImageSize * position.scale * sizeVariation;
     const isHovered = hoveredIndex === index;
     const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
 
