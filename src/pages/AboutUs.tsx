@@ -180,8 +180,8 @@ const AboutUs = () => {
                 containerSize={450}
                 sphereRadius={220}
                 autoRotate={true}
-                autoRotateSpeed={0.2}
-                baseImageScale={0.44}
+                autoRotateSpeed={0.15}
+                baseImageScale={0.572}
               />
             </motion.div>
             
