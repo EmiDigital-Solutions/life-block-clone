@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap, MessageSquare } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
@@ -49,6 +49,45 @@ import auditorBlonde8 from "@/assets/auditor-blonde-8.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
+  
+  // Responsive sphere configuration
+  const [sphereConfig, setSphereConfig] = useState({
+    containerSize: 550,
+    sphereRadius: 280,
+    baseImageScale: 0.8
+  });
+
+  useEffect(() => {
+    const updateSphereConfig = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        // Mobile
+        setSphereConfig({
+          containerSize: 320,
+          sphereRadius: 160,
+          baseImageScale: 0.55
+        });
+      } else if (width < 1024) {
+        // Tablet
+        setSphereConfig({
+          containerSize: 420,
+          sphereRadius: 210,
+          baseImageScale: 0.65
+        });
+      } else {
+        // Desktop
+        setSphereConfig({
+          containerSize: 550,
+          sphereRadius: 280,
+          baseImageScale: 0.8
+        });
+      }
+    };
+
+    updateSphereConfig();
+    window.addEventListener('resize', updateSphereConfig);
+    return () => window.removeEventListener('resize', updateSphereConfig);
+  }, []);
   
   // 40 unique auditor faces for the sphere - balanced diversity
   const sphereImages: ImageData[] = [
@@ -156,40 +195,36 @@ const AboutUs = () => {
       <Navigation />
       
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
-      <section data-nav-theme="light" className="pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
+      <section data-nav-theme="light" className="pt-24 sm:pt-32 md:pt-40 lg:pt-44 pb-8 sm:pb-12 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
-          <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12 sm:gap-16 md:gap-20 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[52%_48%] gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center">
             
             {/* Left - 3D Sphere */}
-            <motion.div className="relative flex justify-center items-center order-1 md:order-1 md:ml-4 lg:ml-8" initial={{
-            opacity: 0,
-            scale: 0.8
-          }} animate={{
-            opacity: 1,
-            scale: 1
-          }} transition={{
-            duration: 0.8,
-            delay: 0.3
-          }}>
+            <motion.div 
+              className="relative flex justify-center items-center order-2 md:order-1 md:justify-start" 
+              initial={{ opacity: 0, scale: 0.8 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="w-full flex justify-center md:justify-start">
               <SphereImageGrid
                 images={sphereImages}
-                containerSize={550}
-                sphereRadius={280}
+                containerSize={sphereConfig.containerSize}
+                sphereRadius={sphereConfig.sphereRadius}
                 autoRotate={true}
                 autoRotateSpeed={0.15}
-                baseImageScale={0.8}
+                baseImageScale={sphereConfig.baseImageScale}
               />
+              </div>
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}
-            <motion.div className="flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2" initial={{
-            opacity: 0
-          }} animate={{
-            opacity: 1
-          }} transition={{
-            duration: 0.6,
-            delay: 0.4
-          }}>
+            <motion.div 
+              className="flex flex-col space-y-4 sm:space-y-6 order-1 md:order-2" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               {/* Main Heading */}
               <motion.h1 initial={{
               opacity: 0,
@@ -201,7 +236,7 @@ const AboutUs = () => {
               duration: 1,
               delay: 0.6,
               ease: [0.25, 0.46, 0.45, 0.94]
-            }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]" style={{
+            }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-[-0.02em] text-center md:text-left" style={{
               color: "#1E2A3A"
             }}>Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors </motion.h1>
             </motion.div>
