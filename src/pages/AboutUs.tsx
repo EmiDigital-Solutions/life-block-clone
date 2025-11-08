@@ -195,7 +195,7 @@ const AboutUs = () => {
       <Navigation />
       
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
-      <section data-nav-theme="light" className="pt-40 sm:pt-44 md:pt-48 lg:pt-52 pb-8 sm:pb-12 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
+      <section data-nav-theme="light" className="pt-24 sm:pt-32 md:pt-40 lg:pt-44 pb-8 sm:pb-12 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
           <div className="grid grid-cols-1 md:grid-cols-[52%_48%] gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center">
             
@@ -236,7 +236,7 @@ const AboutUs = () => {
               duration: 1,
               delay: 0.6,
               ease: [0.25, 0.46, 0.45, 0.94]
-            }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-[-0.02em] text-left" style={{
+            }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-[-0.02em] text-center md:text-left" style={{
               color: "#1E2A3A"
             }}>Scaling On-Site Audits by building the Global B2B platform linking Clients, Suppliers &amp; local Auditors </motion.h1>
             </motion.div>
