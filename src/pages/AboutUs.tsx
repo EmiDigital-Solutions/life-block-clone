@@ -156,12 +156,12 @@ const AboutUs = () => {
       <Navigation />
       
       {/* SECTION 1: HERO SECTION - Cognigy Style */}
-      <section data-nav-theme="light" className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
+      <section data-nav-theme="light" className="pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
           <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12 sm:gap-16 md:gap-20 lg:gap-24 items-center">
             
             {/* Left - 3D Sphere */}
-            <motion.div className="relative flex justify-start items-center order-1 md:order-1 -ml-4 md:-ml-8 lg:-ml-12" initial={{
+            <motion.div className="relative flex justify-center items-center order-1 md:order-1 md:ml-4 lg:ml-8" initial={{
             opacity: 0,
             scale: 0.8
           }} animate={{
