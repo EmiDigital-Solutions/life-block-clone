@@ -173,7 +173,7 @@ const AboutUs = () => {
           }}>
               <SphereImageGrid
                 images={sphereImages}
-                containerSize={600}
+                containerSize={550}
                 sphereRadius={280}
                 autoRotate={true}
                 autoRotateSpeed={0.15}
