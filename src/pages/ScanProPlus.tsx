@@ -128,15 +128,15 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
                   Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
                 </motion.h2>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-lg text-gray-600 leading-relaxed"
-                >
-                  Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.
-                </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-lg text-gray-600 leading-relaxed"
+              >
+                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
+              </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -408,7 +408,7 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
                 transition={{ delay: 0.2 }}
                 className="text-base md:text-lg text-gray-600 leading-relaxed"
               >
-                Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700.
+                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
 
               <motion.div
@@ -652,7 +652,7 @@ const ChallengeToggleSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
+      className="py-24 md:py-32 px-6 lg:px-12 xl:px-16 2xl:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       id="challenge"
     >
