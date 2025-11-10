@@ -435,44 +435,44 @@ const ScanProPlus = () => {
       image: scanProDashboard,
     },
     {
-      label: "AI Guidance",
-      title: "Contextual hints during audits to ensure completeness and objectivity.",
-      image: aiCopilot,
-    },
-    {
-      label: "Equipment Intelligence",
-      title: "Identify machines and assets from photos; assess condition and compliance.",
+      label: "AI Equipment Recognition",
+      title: "Point the camera at machines and get instant identification and analysis.",
       image: aiInspector,
     },
     {
-      label: "Dynamic Scoring",
-      title: "Configurable weightings and 1–5 scoring for transparent results.",
+      label: "Dynamic Rating Systems",
+      title: "Configurable evaluation criteria with industry-specific weighting.",
       image: riskScoring,
     },
     {
-      label: "Evidence Handling",
+      label: "Evidence Management",
       title: "Auto-categorize photos & files (quality, safety, environment) for traceability.",
       image: aiAudit,
     },
     {
       label: "Real-Time Progress",
-      title: "Live milestones and alerts during audits for fast course-corrections.",
+      title: "Live updates with milestone notifications during audits.",
       image: liveTracking,
     },
     {
-      label: "Predictive Risk Scoring",
-      title: "Anticipate issues from historical patterns and equipment signals.",
+      label: "Compliance & Certifications",
+      title: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
+      image: aiCopilot,
+    },
+    {
+      label: "ROI Calculation",
+      title: "Measurable cost savings through standardization. From €15,000-25,000 down to €700 fixed price.",
+      image: scanProDashboard,
+    },
+    {
+      label: "Risk Management",
+      title: "Early detection of critical compliance violations with automated red-flag alerts.",
       image: riskScoring,
     },
     {
-      label: "Corrective Action Tracking",
-      title: "Monitor improvements with reminders and due-dates.",
-      image: oneClickDispatch,
-    },
-    {
-      label: "Integrations",
-      title: "ERP/QMS connectors (SAP, Oracle, Dynamics, Trackwise, MasterControl, ETQ).",
-      image: scanProDashboard,
+      label: "Predictive Analytics",
+      title: "Anticipate future risks from historical patterns and benchmark against industry peers.",
+      image: aiCopilot,
     }
   ];
 
