@@ -9,48 +9,76 @@ const ScanProPlus = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION - Blue gradient */}
       <section
         data-nav-theme="dark"
-        className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))" }}
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
+        style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))" }}
+        id="hero"
       >
-        <div className="container mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center text-white space-y-6"
-          >
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-tight">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+            >
               YVOO ScanPro+
-            </h1>
-            <p className="text-2xl md:text-3xl font-medium opacity-95 max-w-4xl mx-auto">
-              AI-Powered Supplier Audit Platform for Professional Quality Management
-            </p>
-            <p className="text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto">
-              Imagine: <strong>On-site supplier audits in 3 days instead of 3 weeks</strong>, 
-              starting at <strong>€700 fixed price</strong> instead of €15,000-25,000, with <strong>actionable business intelligence</strong> 
-              instead of just checklists – YVOO ScanPro+ makes this possible with AI and our global auditor network.
-            </p>
-          </motion.div>
-        </div>
+            </motion.h1>
 
-        {/* Value Proposition Band */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-12 bg-[#10B981] text-white py-6 px-8 rounded-lg max-w-5xl mx-auto text-center"
-        >
-          <p className="text-2xl font-semibold">
-            🎯 <strong>Always ground truth</strong> – Reliable, precise data for informed business decisions
-          </p>
-        </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col space-y-4 text-white mb-12"
+            >
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                <span className="text-lg font-normal leading-[1.6]">70% time savings</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                <span className="text-lg font-normal leading-[1.6]">Fixed price from €700</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                <span className="text-lg font-normal leading-[1.6]">Real-time intelligence</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="w-full sm:w-auto mb-10"
+            >
+              <button 
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+              >
+                Get started
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90"
+            >
+              <strong>On-site supplier audits in 3 days instead of 3 weeks</strong>, starting at <strong>€700 fixed price</strong> instead of €15,000-25,000, with <strong>actionable business intelligence</strong> instead of just checklists – powered by AI and our global auditor network.
+            </motion.p>
+          </div>
+        </div>
       </section>
 
-      {/* CHALLENGE SECTION */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* CHALLENGE SECTION - Light gradient */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -109,8 +137,12 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* COMPARISON TABLE */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
+      {/* COMPARISON TABLE - Light gradient */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      >
         <div className="container mx-auto max-w-7xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -187,47 +219,51 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* ROI CALCULATOR */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* ROI CALCULATOR - Dark gradient */}
+      <section 
+        data-nav-theme="dark" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+      >
         <div className="container mx-auto max-w-5xl">
-          <div className="bg-gray-100 rounded-2xl p-8 md:p-12">
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold text-gray-900 mb-8"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8"
             >
               ROI Calculation: Your Savings with YVOO ScanPro+
             </motion.h2>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Assuming your company conducts <strong>20 supplier audits per year</strong>:
             </p>
 
             <div className="space-y-6">
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-300">
-                <div className="text-xl font-semibold">Traditional Audit Costs (20 × €20,000)</div>
-                <div className="text-3xl font-bold text-gray-900">€400,000</div>
+              <div className="flex justify-between items-center py-6 border-b-2 border-white/20">
+                <div className="text-xl font-semibold text-white">Traditional Audit Costs (20 × €20,000)</div>
+                <div className="text-3xl font-bold text-red-400">€400,000</div>
               </div>
               
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-300">
-                <div className="text-xl font-semibold">YVOO ScanPro+ Costs (20 × €700)</div>
-                <div className="text-3xl font-bold text-gray-900">€14,000</div>
+              <div className="flex justify-between items-center py-6 border-b-2 border-white/20">
+                <div className="text-xl font-semibold text-white">YVOO ScanPro+ Costs (20 × €700)</div>
+                <div className="text-3xl font-bold text-white">€14,000</div>
               </div>
               
-              <div className="bg-emerald-100 rounded-xl p-8 -mx-4 md:-mx-8">
+              <div className="bg-[#10B981]/20 border border-[#10B981]/30 rounded-xl p-8 -mx-4 md:-mx-8">
                 <div className="flex justify-between items-center">
-                  <div className="text-2xl font-bold text-gray-900">💰 Your Annual Cost Savings</div>
-                  <div className="text-5xl font-bold text-green-600">€386,000</div>
+                  <div className="text-2xl font-bold text-white">💰 Your Annual Cost Savings</div>
+                  <div className="text-5xl font-bold text-[#10B981]">€386,000</div>
                 </div>
               </div>
               
               <div className="flex justify-between items-center py-6">
-                <div className="text-xl font-semibold">Time Savings (70% of 2 weeks per audit)</div>
-                <div className="text-3xl font-bold text-green-600">280 Work Days</div>
+                <div className="text-xl font-semibold text-white">Time Savings (70% of 2 weeks per audit)</div>
+                <div className="text-3xl font-bold text-[#10B981]">280 Work Days</div>
               </div>
             </div>
 
-            <p className="text-gray-600 mt-8">
+            <p className="text-white/70 mt-8">
               <strong>Additional Savings:</strong> No travel costs for internal auditors, 
               reduced rework through standardized reports, faster supplier releases 
               enable shorter time-to-market.
@@ -236,17 +272,29 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* AI FEATURES */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
+      {/* AI FEATURES - Light gradient */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto max-w-7xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4 text-center"
           >
-            9 Innovative AI Features for Strategic Supplier Assessment
+            9 Innovative <span className="text-blue-600">AI Features</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12 text-center"
+          >
+            Strategic supplier assessment powered by artificial intelligence
+          </motion.p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -311,7 +359,7 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-500"
+                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-600 hover:shadow-xl transition-all"
               >
                 <div className="mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
@@ -323,19 +371,23 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* COMPLIANCE & STANDARDS */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* COMPLIANCE & STANDARDS - Dark gradient */}
+      <section 
+        data-nav-theme="dark" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gray-50 rounded-2xl p-12"
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               🏆 Compliance & Supported Standards
             </h2>
-            <p className="text-xl text-gray-700 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
             </p>
@@ -351,17 +403,29 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* INDUSTRY USE CASES */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
+      {/* INDUSTRY USE CASES - Light gradient */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4 text-center"
           >
-            Industry-Specific Use Cases
+            Industry-Specific <span className="text-blue-600">Use Cases</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12 text-center"
+          >
+            Tailored solutions for automotive, aerospace, pharma, and chemical industries
+          </motion.p>
 
           <div className="space-y-8">
             {[
@@ -417,7 +481,7 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all border border-gray-200"
               >
                 <h3 className="text-2xl font-bold text-blue-600 mb-4">
                   {industry.icon} {industry.title}
@@ -427,7 +491,7 @@ const ScanProPlus = () => {
                 <ul className="space-y-2 mb-4">
                   {industry.solution.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -441,24 +505,36 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* BUSINESS IMPACT */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* BUSINESS IMPACT - Light gradient */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4 text-center"
           >
-            Business Impact: Measurable Results for Your Quality Management
+            Business <span className="text-blue-600">Impact</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12 text-center"
+          >
+            Measurable results for your quality management
+          </motion.p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {[
-              { value: "60%", label: "Cost Reduction", desc: "through standardization and automation", color: "text-green-600" },
+              { value: "60%", label: "Cost Reduction", desc: "through standardization and automation", color: "text-[#10B981]" },
               { value: "70%", label: "Time Savings", desc: "from 2 weeks to 3 days turnaround", color: "text-blue-600" },
-              { value: "100%", label: "Consistency", desc: "uniform assessment through AI guidance", color: "text-red-600" },
-              { value: "24h", label: "Availability", desc: "Same-Day audits in 90+ countries", color: "text-amber-600" }
+              { value: "100%", label: "Consistency", desc: "uniform assessment through AI guidance", color: "text-blue-600" },
+              { value: "24h", label: "Availability", desc: "Same-Day audits in 90+ countries", color: "text-[#10B981]" }
             ].map((metric, idx) => (
               <motion.div
                 key={idx}
@@ -466,7 +542,7 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg text-center border border-gray-200"
+                className="bg-white p-8 rounded-lg shadow-lg text-center border-2 border-gray-100 hover:border-blue-200 transition-all"
               >
                 <div className={`text-5xl font-bold mb-3 ${metric.color}`}>{metric.value}</div>
                 <div className="text-xl font-semibold text-gray-900 mb-2">{metric.label}</div>
@@ -476,7 +552,7 @@ const ScanProPlus = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-blue-50 p-8 rounded-lg">
+            <div className="bg-blue-50/50 border border-blue-100 p-8 rounded-xl hover:shadow-lg transition-all">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">💡 Quality Improvement</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Uniform methodology for all supplier assessments</li>
@@ -487,7 +563,7 @@ const ScanProPlus = () => {
               </ul>
             </div>
 
-            <div className="bg-emerald-50 p-8 rounded-lg">
+            <div className="bg-[#10B981]/5 border border-[#10B981]/20 p-8 rounded-xl hover:shadow-lg transition-all">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">⚡ Efficiency Gains</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• 50% faster audit execution through template-based workflows</li>
@@ -501,67 +577,71 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* FINAL CTA - Dark gradient */}
       <section
         data-nav-theme="dark"
-        className="py-20 px-4 sm:px-6 lg:px-12 text-center text-white"
-        style={{ background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))" }}
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        id="cta"
       >
-        <div className="container mx-auto max-w-5xl">
-          <motion.h2
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="space-y-6 sm:space-y-8"
           >
-            Ready for the Future of Supplier Auditing?
-          </motion.h2>
-          <p className="text-xl md:text-2xl mb-12 opacity-95">
-            Join leading companies from Automotive, Aerospace, and Pharma 
-            who already trust YVOO ScanPro+.
-          </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white">
+              Ready for <span className="text-blue-400">the Future of Supplier Auditing?</span>
+            </h2>
 
-          <div className="space-y-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Schedule a Demo (30 minutes)</h4>
-              <p className="opacity-95">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Start Pilot Audit (2 weeks)</h4>
-              <p className="opacity-95">Test the platform with a real supplier audit – without risk, with measurable results.</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Plan Integration</h4>
-              <p className="opacity-95">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="mailto:ibrandic@yvoo.io"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all"
-            >
-              🗓️ Schedule Demo
-            </a>
-            <a
-              href="mailto:ibrandic@yvoo.io"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all"
-            >
-              🚀 Start Pilot Audit
-            </a>
-          </div>
-
-          <div className="pt-8 border-t border-white/30">
-            <h3 className="text-2xl font-bold mb-4">Contact</h3>
-            <p className="text-lg">
-              <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
-              📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline">ibrandic@yvoo.io</a><br />
-              📱 +49 (0)152 03095799<br />
-              💬 WhatsApp | Google Meet
+            <p className="text-base sm:text-lg lg:text-xl text-white/80">
+              Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
             </p>
-          </div>
+
+            <div className="space-y-6 mb-8">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-xl font-bold mb-2 text-white">✅ Schedule a Demo (30 minutes)</h4>
+                <p className="text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-xl font-bold mb-2 text-white">✅ Start Pilot Audit (2 weeks)</h4>
+                <p className="text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-xl font-bold mb-2 text-white">✅ Plan Integration</h4>
+                <p className="text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px] inline-flex items-center justify-center gap-2"
+              >
+                🗓️ Schedule Demo
+              </a>
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]"
+              >
+                🚀 Start Pilot Audit
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+
+            <div className="pt-8 border-t border-white/20">
+              <h3 className="text-2xl font-bold mb-4 text-white">Contact</h3>
+              <p className="text-lg text-white/90">
+                <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
+                📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline text-blue-300">ibrandic@yvoo.io</a><br />
+                📱 +49 (0)152 03095799<br />
+                💬 WhatsApp | Google Meet
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
