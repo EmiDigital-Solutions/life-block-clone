@@ -52,10 +52,6 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
     if (pointsRef.current) {
       const time = state.clock.getElapsedTime();
       
-      // Smooth zoom-out effect
-      const targetZ = 6 + Math.sin(time * 0.1) * 2;
-      camera.position.z += (targetZ - camera.position.z) * 0.02;
-      
       // Mouse interaction - rotate based on mouse position
       const targetRotationY = mousePosition.x * 0.5;
       const targetRotationX = mousePosition.y * 0.3;
