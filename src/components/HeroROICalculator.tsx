@@ -93,14 +93,14 @@ const HeroROICalculator = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
           className="rounded-xl p-4"
-          style={{ backgroundColor: 'rgba(20, 184, 166, 0.2)', border: '2px solid rgba(20, 184, 166, 0.4)' }}
+          style={{ backgroundColor: '#14B8A6', border: '2px solid #10a897' }}
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <DollarSign className="w-6 h-6" style={{ color: '#14B8A6' }} />
+              <DollarSign className="w-6 h-6 text-white" />
               <span className="text-sm font-semibold text-white">You Save</span>
             </div>
-            <div className="text-2xl lg:text-3xl font-bold" style={{ color: '#14B8A6' }}>
+            <div className="text-2xl lg:text-3xl font-bold text-white">
               {formatCurrency(annualSavings)}
             </div>
           </div>
