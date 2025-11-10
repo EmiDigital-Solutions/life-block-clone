@@ -1028,6 +1028,11 @@ const ScanProPlus = () => {
         </div>
       </section>
 
+      {/* ROI Calculator - Visible on Mobile */}
+      <div className="lg:hidden px-4 py-8 bg-gray-50">
+        <HeroROICalculator />
+      </div>
+
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
 
