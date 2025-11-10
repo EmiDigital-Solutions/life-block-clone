@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,6 +14,14 @@ import riskScoring from "@/assets/risk-scoring-ai.jpg";
 import liveTracking from "@/assets/live-tracking-dashboard.jpg";
 import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
+import { supabase } from "@/integrations/supabase/client";
 
 // Desktop Technology Section with Scroll Effect
 const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
@@ -417,8 +425,64 @@ const ChallengeToggleSection = () => {
   );
 };
 
+const fallbackAuditors = [
+  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
+  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+  { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent", gradient: "from-gray-800 via-gray-900 to-black" },
+];
+
 const ScanProPlus = () => {
   const isMobile = useIsMobile();
+  const [auditors, setAuditors] = useState(fallbackAuditors);
+  
+  // Fetch auditor cards from CMS
+  const { data: auditorCards } = useContentByType("auditor_card");
+  
+  // Process auditor cards
+  useEffect(() => {
+    const processAuditorCards = async () => {
+      if (!auditorCards || auditorCards.length === 0) {
+        setAuditors(fallbackAuditors);
+        return;
+      }
+
+      const processedAuditors = await Promise.all(
+        auditorCards.map(async (card, index) => {
+          let imageUrl = fallbackAuditors[index]?.image;
+          
+          if (card.body?.imageId) {
+            try {
+              const { data: media } = await supabase
+                .from("media")
+                .select("storage_path")
+                .eq("id", card.body.imageId)
+                .single();
+
+              if (media) {
+                imageUrl = getMediaPublicUrl(media.storage_path);
+              }
+            } catch (error) {
+              console.error("Error fetching auditor image:", error);
+            }
+          }
+
+          return {
+            image: imageUrl,
+            location: card.title || fallbackAuditors[index]?.location || "Location",
+            region: card.body?.content || fallbackAuditors[index]?.region || "Region",
+            gradient: fallbackAuditors[index % fallbackAuditors.length].gradient
+          };
+        })
+      );
+
+      setAuditors(processedAuditors.length > 0 ? processedAuditors : fallbackAuditors);
+    };
+
+    processAuditorCards();
+  }, [auditorCards]);
   
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -553,6 +617,87 @@ const ScanProPlus = () => {
               <HeroROICalculator />
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Global On-Demand Auditor Network Section */}
+      <section
+        data-nav-theme="light"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      >
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-6">
+              Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.
+            </p>
+          </motion.div>
+
+          {/* Auditor Cards Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6 max-w-6xl mx-auto">
+            {auditors.map((auditor, index) => (
+              <motion.div
+                key={auditor.location}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="relative"
+              >
+                <div
+                  className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                  style={{
+                    boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  
+                  <div className="absolute inset-0 flex items-center justify-center pt-6">
+                    <div className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-white/10">
+                      <img
+                        src={auditor.image}
+                        alt={`Professional auditor from ${auditor.location}`}
+                        className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                      />
+                      <div 
+                        className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                        style={{
+                          background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-center px-3">
+                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 w-full">
+                      <p className="text-white font-sans font-bold text-sm text-center">
+                        {auditor.location}
+                      </p>
+                      <p className="text-white/80 font-sans text-xs text-center">
+                        {auditor.region}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
