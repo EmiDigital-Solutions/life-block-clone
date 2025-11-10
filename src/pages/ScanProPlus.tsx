@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ROICalculator from "@/components/ROICalculator";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
@@ -767,52 +768,7 @@ const ScanProPlus = () => {
         style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
       >
         <div className="container mx-auto max-w-5xl">
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-200">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8"
-            >
-              <span style={{ color: '#2563EB' }}>ROI</span> Calculation
-            </motion.h2>
-            <p className="text-xl text-gray-700 mb-8">
-              Assuming your company conducts <strong>20 supplier audits per year</strong>:
-            </p>
-
-            <div className="space-y-6">
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-200">
-                <div className="text-xl font-semibold text-gray-900">Traditional Audit Costs (20 × €20,000)</div>
-                <div className="text-3xl font-bold text-gray-900">€400,000</div>
-              </div>
-              
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-200">
-                <div className="text-xl font-semibold text-gray-900">YVOO ScanPro+ Costs (20 × €700)</div>
-                <div className="text-3xl font-bold text-gray-900">€14,000</div>
-              </div>
-              
-              <div className="border-2 rounded-xl p-8" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.3)' }}>
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                    <DollarSign className="w-8 h-8" style={{ color: '#14B8A6' }} />
-                    Your Annual Cost Savings
-                  </div>
-                  <div className="text-5xl font-bold" style={{ color: '#14B8A6' }}>€386,000</div>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center py-6">
-                <div className="text-xl font-semibold text-gray-900">Time Savings (70% of 2 weeks per audit)</div>
-                <div className="text-3xl font-bold" style={{ color: '#2563EB' }}>280 Work Days</div>
-              </div>
-            </div>
-
-            <p className="text-gray-600 mt-8">
-              <strong>Additional Savings:</strong> No travel costs for internal auditors, 
-              reduced rework through standardized reports, faster supplier releases 
-              enable shorter time-to-market.
-            </p>
-          </div>
+          <ROICalculator />
         </div>
       </section>
 
