@@ -8,26 +8,6 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
-  // Create circular texture for round glowing points
-  const circleTexture = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 64;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d')!;
-    
-    // Create minimal glow with tight falloff
-    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.3)');
-    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
-    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-    
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 64, 64);
-    
-    return new THREE.CanvasTexture(canvas);
-  }, []);
-  
   const [positions, colors, sizes] = useMemo(() => {
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
@@ -48,20 +28,20 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
       // Random sizes for particles
       sizes[i] = Math.random() * 0.15 + 0.05;
       
-      // Blue and green colors with stronger intensity for glow
+      // Blue and green colors
       const isBlue = Math.random() > 0.5;
-      const colorIntensity = 0.8 + Math.random() * 0.2;
+      const colorIntensity = 0.6 + Math.random() * 0.4;
       
       if (isBlue) {
-        // Bright blue particles
-        colors[i3] = 0.2 * colorIntensity; // R
-        colors[i3 + 1] = 0.6 * colorIntensity; // G
+        // Blue particles
+        colors[i3] = 0.1 * colorIntensity; // R
+        colors[i3 + 1] = 0.5 * colorIntensity; // G
         colors[i3 + 2] = 1.0 * colorIntensity; // B
       } else {
-        // Bright green particles
-        colors[i3] = 0.2 * colorIntensity; // R
-        colors[i3 + 1] = 1.0 * colorIntensity; // G
-        colors[i3 + 2] = 0.5 * colorIntensity; // B
+        // Green particles
+        colors[i3] = 0.1 * colorIntensity; // R
+        colors[i3 + 1] = 0.9 * colorIntensity; // G
+        colors[i3 + 2] = 0.4 * colorIntensity; // B
       }
     }
     
@@ -129,14 +109,12 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.3}
+        size={0.1}
         vertexColors
         transparent
-        opacity={1}
+        opacity={0.9}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
-        map={circleTexture}
-        depthWrite={false}
       />
     </points>
   );
