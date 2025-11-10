@@ -503,21 +503,16 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate world positions once per render
   const worldPositions = calculateWorldPositions();
 
-  // Calculate connections between nearby nodes
+  // Calculate connections between nearby nodes - creating a network
   const calculateConnections = useCallback(() => {
     const connections: Array<{ from: number; to: number; distance: number }> = [];
-    const maxConnectionDistance = actualSphereRadius * 1.2; // Max distance to draw connection
-    const maxConnectionsPerNode = 3; // Limit connections per node
+    const maxConnectionDistance = actualSphereRadius * 2.0; // Increased for more network coverage
     
     for (let i = 0; i < worldPositions.length; i++) {
       const pos1 = worldPositions[i];
       if (!pos1.isVisible) continue;
       
-      let nodeConnections = 0;
-      
       for (let j = i + 1; j < worldPositions.length; j++) {
-        if (nodeConnections >= maxConnectionsPerNode) break;
-        
         const pos2 = worldPositions[j];
         if (!pos2.isVisible) continue;
         
@@ -529,7 +524,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         
         if (distance < maxConnectionDistance) {
           connections.push({ from: i, to: j, distance });
-          nodeConnections++;
         }
       }
     }
@@ -547,13 +541,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         height={containerSize}
         style={{ zIndex: 5 }}
       >
-        <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
-            <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.7 }} />
-            <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
-          </linearGradient>
-        </defs>
         {connections.map((connection, idx) => {
           const from = worldPositions[connection.from];
           const to = worldPositions[connection.to];
@@ -565,12 +552,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           const x2 = containerSize / 2 + to.x;
           const y2 = containerSize / 2 + to.y;
           
-          // Calculate average z-position for opacity
-          const avgZ = (from.z + to.z) / 2;
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.7;
-          
-          // Calculate line length for dash animation
-          const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+          // Calculate opacity based on fade
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.5;
           
           return (
             <line
@@ -579,14 +562,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
               y1={y1}
               x2={x2}
               y2={y2}
-              stroke="url(#lineGradient)"
-              strokeWidth="2.5"
-              strokeDasharray={`${length * 0.3} ${length * 0.7}`}
-              strokeDashoffset={length}
+              stroke="#14B8A6"
+              strokeWidth="1.5"
               opacity={opacity}
-              style={{
-                animation: `dashAnimation 8s linear infinite`
-              }}
             />
           );
         })}
