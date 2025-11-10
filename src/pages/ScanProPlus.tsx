@@ -50,7 +50,7 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
           >
-            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
+            <span className="text-[#14B8A6]">4 Innovative AI Features</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -130,7 +130,7 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
+            <span className="text-[#14B8A6]">4 Innovative AI Features</span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
             AI-powered tools that streamline supplier audits from start to finish.
@@ -448,31 +448,6 @@ const ScanProPlus = () => {
       label: "Evidence Management",
       title: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
       image: aiCopilot,
-    },
-    {
-      label: "Real-Time Tracking",
-      title: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
-      image: liveTracking,
-    },
-    {
-      label: "Full Compliance",
-      title: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
-      image: aiAudit,
-    },
-    {
-      label: "Risk Management",
-      title: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
-      image: riskScoring,
-    },
-    {
-      label: "Predictive Scoring",
-      title: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
-      image: aiCopilot,
-    },
-    {
-      label: "Benchmarking",
-      title: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
-      image: scanProDashboard,
     }
   ];
 
