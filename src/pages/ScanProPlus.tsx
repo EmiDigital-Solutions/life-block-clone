@@ -155,12 +155,12 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
               </div>
 
               {/* Right Column: Auditor Cards Animation */}
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center lg:justify-end items-end">
                 <div 
                   className="relative w-full max-w-lg"
                   style={{ perspective: "2000px" }}
                 >
-                  <div className="relative h-[550px] xl:h-[650px] flex items-center justify-center">
+                  <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12">
                     {auditors.map((auditor, auditorIndex) => {
                       const style = getCardStyle(auditorIndex, auditors.length);
                       

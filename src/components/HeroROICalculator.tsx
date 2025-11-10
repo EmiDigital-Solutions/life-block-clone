@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { DollarSign } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,16 @@ import { Label } from "@/components/ui/label";
 const HeroROICalculator = () => {
   const [auditsPerYear, setAuditsPerYear] = useState<string>("20");
   const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState<string>("20000");
+  const [showInputAnimation, setShowInputAnimation] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInputAnimation(true);
+      setTimeout(() => setShowInputAnimation(false), 2000);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
   
   const scanProCostPerAudit = 700;
   const weeksPerAudit = 2;
@@ -49,7 +59,18 @@ const HeroROICalculator = () => {
 
       {/* Input Fields */}
       <div className="space-y-4 mb-6">
-        <div className="space-y-2">
+        <motion.div 
+          className="space-y-2"
+          animate={showInputAnimation ? { 
+            scale: [1, 1.02, 1],
+            boxShadow: [
+              "0 0 0 0px rgba(20, 184, 166, 0)",
+              "0 0 0 4px rgba(20, 184, 166, 0.3)",
+              "0 0 0 0px rgba(20, 184, 166, 0)"
+            ]
+          } : {}}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        >
           <Label htmlFor="hero-audits" className="text-sm font-semibold text-gray-900">
             Audits per year
           </Label>
@@ -62,9 +83,20 @@ const HeroROICalculator = () => {
             placeholder="Enter number of audits (e.g., 20)"
             className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-        </div>
+        </motion.div>
 
-        <div className="space-y-2">
+        <motion.div 
+          className="space-y-2"
+          animate={showInputAnimation ? { 
+            scale: [1, 1.02, 1],
+            boxShadow: [
+              "0 0 0 0px rgba(20, 184, 166, 0)",
+              "0 0 0 4px rgba(20, 184, 166, 0.3)",
+              "0 0 0 0px rgba(20, 184, 166, 0)"
+            ]
+          } : {}}
+          transition={{ duration: 1, ease: "easeInOut", delay: 0.3 }}
+        >
           <Label htmlFor="hero-traditional-cost" className="text-sm font-semibold text-gray-900">
             Traditional cost (€)
           </Label>
@@ -77,7 +109,7 @@ const HeroROICalculator = () => {
             placeholder="Enter cost in € (e.g., 20000)"
             className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Results */}
