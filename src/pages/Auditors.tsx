@@ -54,12 +54,12 @@ const Auditors = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const allAuditorProfiles = [
-    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe" },
-    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia" },
-    { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa" },
-    { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America" },
-    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East" },
-    { image: auditorMaleNorthAmerica, name: "Technical Auditor", specialty: "VDA 6.3", location: "North America" },
+    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+    { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+    { image: auditorMaleNorthAmerica, name: "Technical Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-gray-800 via-gray-900 to-black" },
   ];
 
   const auditorProfiles = isMobile ? allAuditorProfiles.slice(0, 3) : allAuditorProfiles;
@@ -245,38 +245,46 @@ const Auditors = () => {
                           }}
                         >
                           <div
-                            className="relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-xl overflow-hidden bg-white border border-gray-200"
+                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
-                              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
                             }}
                           >
-                            {/* Professional header bar */}
-                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F8775] to-[#14B8A6]" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                             
-                            <div className="absolute inset-0 flex flex-col items-center justify-start pt-6 sm:pt-8 lg:pt-4 xl:pt-12 2xl:pt-14 3xl:pt-16">
-                              <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[60px] lg:h-[60px] xl:w-[140px] xl:h-[140px] 2xl:w-[160px] 2xl:h-[160px] 3xl:w-[180px] 3xl:h-[180px] rounded-full overflow-hidden border-4 border-gray-100 shadow-md">
+                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-12">
+                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
                                 <img
                                   src={auditor.image}
                                   alt={auditor.name}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                                />
+                                <div 
+                                  className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                                  style={{
+                                    background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                                  }}
                                 />
                               </div>
                             </div>
 
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white to-transparent pt-16 sm:pt-20 lg:pt-10 xl:pt-24 2xl:pt-28 3xl:pt-32 pb-4 sm:pb-5 lg:pb-3 xl:pb-6 2xl:pb-8 3xl:pb-10 px-4 sm:px-5 lg:px-3 xl:px-6 2xl:px-7 3xl:px-8">
-                              <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-0.5 xl:space-y-2 2xl:space-y-2.5">
-                                <p className="text-gray-900 font-semibold text-sm sm:text-base lg:text-[10px] xl:text-lg 2xl:text-xl 3xl:text-2xl leading-tight">
+                            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-2 xl:bottom-7 2xl:bottom-9 3xl:bottom-12 left-0 right-0 flex justify-center px-3 sm:px-4 lg:px-2">
+                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-2 xl:px-7 2xl:px-9 py-1.5 sm:py-2 lg:py-1 xl:py-3 2xl:py-4 w-full">
+                                <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-[9px] xl:text-base 2xl:text-xl 3xl:text-3xl text-center">
                                   {auditor.name}
                                 </p>
-                                <p className="text-gray-600 font-medium text-xs sm:text-sm lg:text-[8px] xl:text-base 2xl:text-lg 3xl:text-xl leading-tight">
+                                <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[7px] xl:text-sm 2xl:text-lg 3xl:text-2xl text-center">
                                   {auditor.specialty}
-                                </p>
-                                <p className="text-gray-400 text-xs sm:text-xs lg:text-[7px] xl:text-sm 2xl:text-base 3xl:text-lg flex items-center justify-center gap-1">
-                                  <Building2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-2 lg:h-2 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5" />
-                                  {auditor.location}
                                 </p>
                               </div>
                             </div>
+
+                            <div 
+                              className="absolute inset-0 pointer-events-none rounded-3xl"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                              }}
+                            />
                           </div>
                         </motion.div>
                       );
