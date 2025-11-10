@@ -8,20 +8,23 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
-  // Create circular texture for round points
+  // Create circular texture for round points with glow
   const circleTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = 64;
+    canvas.height = 64;
     const ctx = canvas.getContext('2d')!;
     
-    const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    // Create strong glow effect
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)');
+    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.9)');
+    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.6)');
+    gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.3)');
     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 32, 32);
+    ctx.fillRect(0, 0, 64, 64);
     
     return new THREE.CanvasTexture(canvas);
   }, []);
@@ -127,13 +130,14 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.1}
+        size={0.3}
         vertexColors
         transparent
-        opacity={0.9}
+        opacity={1}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
         map={circleTexture}
+        depthWrite={false}
       />
     </points>
   );
