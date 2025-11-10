@@ -78,13 +78,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
       className="relative py-20"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="mb-24">
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 text-left">
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -383,13 +383,13 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
       className="relative py-20 px-4 sm:px-6"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 text-left">
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
