@@ -503,6 +503,97 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate world positions once per render
   const worldPositions = calculateWorldPositions();
 
+  // Calculate connections between nearby nodes
+  const calculateConnections = useCallback(() => {
+    const connections: Array<{ from: number; to: number; distance: number }> = [];
+    const maxConnectionDistance = actualSphereRadius * 1.2; // Max distance to draw connection
+    const maxConnectionsPerNode = 3; // Limit connections per node
+    
+    for (let i = 0; i < worldPositions.length; i++) {
+      const pos1 = worldPositions[i];
+      if (!pos1.isVisible) continue;
+      
+      let nodeConnections = 0;
+      
+      for (let j = i + 1; j < worldPositions.length; j++) {
+        if (nodeConnections >= maxConnectionsPerNode) break;
+        
+        const pos2 = worldPositions[j];
+        if (!pos2.isVisible) continue;
+        
+        // Calculate 3D distance
+        const dx = pos1.x - pos2.x;
+        const dy = pos1.y - pos2.y;
+        const dz = pos1.z - pos2.z;
+        const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        
+        if (distance < maxConnectionDistance) {
+          connections.push({ from: i, to: j, distance });
+          nodeConnections++;
+        }
+      }
+    }
+    
+    return connections;
+  }, [worldPositions, actualSphereRadius]);
+
+  const connections = calculateConnections();
+
+  const renderConnectionLines = useCallback(() => {
+    return (
+      <svg
+        className="absolute inset-0 pointer-events-none"
+        width={containerSize}
+        height={containerSize}
+        style={{ zIndex: 5 }}
+      >
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
+            <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.3 }} />
+            <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
+          </linearGradient>
+        </defs>
+        {connections.map((connection, idx) => {
+          const from = worldPositions[connection.from];
+          const to = worldPositions[connection.to];
+          
+          if (!from || !to || !from.isVisible || !to.isVisible) return null;
+          
+          const x1 = containerSize / 2 + from.x;
+          const y1 = containerSize / 2 + from.y;
+          const x2 = containerSize / 2 + to.x;
+          const y2 = containerSize / 2 + to.y;
+          
+          // Calculate average z-position for opacity
+          const avgZ = (from.z + to.z) / 2;
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.4;
+          
+          // Calculate line length for dash animation
+          const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+          
+          return (
+            <line
+              key={`connection-${idx}`}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="url(#lineGradient)"
+              strokeWidth="1.5"
+              strokeDasharray={`${length * 0.3} ${length * 0.7}`}
+              strokeDashoffset={length}
+              opacity={opacity}
+              style={{
+                animation: `dashAnimation 3s linear infinite`
+              }}
+            />
+          );
+        })}
+      </svg>
+    );
+  }, [connections, worldPositions, containerSize]);
+
   const renderImageNode = useCallback((image: ImageData, index: number) => {
     const position = worldPositions[index];
 
@@ -638,6 +729,10 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           from { transform: scale(0.8); opacity: 0; }
           to { transform: scale(1); opacity: 1; }
         }
+        @keyframes dashAnimation {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -1000; }
+        }
       `}</style>
 
       <div
@@ -651,6 +746,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
+        {renderConnectionLines()}
         <div className="relative w-full h-full" style={{ zIndex: 10 }}>
           {images.map((image, index) => renderImageNode(image, index))}
         </div>
