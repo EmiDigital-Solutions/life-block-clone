@@ -8,19 +8,18 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
-  // Create circular texture for round points with glow
+  // Create circular texture for round points with subtle glow
   const circleTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext('2d')!;
     
-    // Create strong glow effect
+    // Create subtle glow effect
     const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.9)');
-    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.6)');
-    gradient.addColorStop(0.7, 'rgba(255, 255, 255, 0.3)');
+    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.5)');
+    gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.1)');
     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
     ctx.fillStyle = gradient;
