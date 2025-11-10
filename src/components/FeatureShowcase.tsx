@@ -18,19 +18,40 @@ const FeatureShowcase = () => {
             className="space-y-8 z-10"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Superintelligence: for future‑ready supply chains
+              AI-guided on-site audits by certified local experts
             </h2>
             
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Efficient, future-ready supply chains are key to your business' long-term success.
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Standardized templates and 1–5 scoring ensure consistent, reliable quality assessments across all your suppliers and manufacturing sites.
+              </p>
 
-            <p className="text-base text-gray-300 leading-relaxed">
-              That's why YVOO not only provides concrete ROI today: it scales long into the future. Our platform uses AI and predictive analytics to provide real-time insights on supplier risk, helping you create cost-effective supply chains that turn exposure into opportunity.
-            </p>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                  <p className="text-base text-gray-300">
+                    <span className="font-semibold text-white">Evidence-linked findings:</span> Photos, documents, and video documentation
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                  <p className="text-base text-gray-300">
+                    <span className="font-semibold text-white">Compliance support:</span> ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, and more
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
+                  <p className="text-base text-gray-300">
+                    <span className="font-semibold text-white">Benchmarkable data:</span> Compare performance across plants and suppliers
+                  </p>
+                </div>
+              </div>
+            </div>
 
             <p className="text-sm text-gray-400 italic">
-              Take the right risks. Eliminate the wrong ones.
+              Professional audits. Real insights. Measurable improvement.
             </p>
 
             <div className="pt-4">
@@ -65,7 +86,7 @@ const FeatureShowcase = () => {
                   <div className="bg-black rounded-lg overflow-hidden">
                     <img 
                       src={dashboardImage} 
-                      alt="ScanPro+ AI Dashboard showing audit analytics and compliance metrics"
+                      alt="YVOO supplier intelligence dashboard with risk analytics and compliance metrics"
                       className="w-full h-auto"
                     />
                   </div>
