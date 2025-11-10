@@ -43,12 +43,12 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
       id="features"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
-        <div className="text-center mb-12 px-4 flex-shrink-0">
+        <div className="text-center mb-6 px-4 flex-shrink-0">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
           >
             <span className="text-[#14B8A6]">9 Innovative AI Features</span>
           </motion.h2>
@@ -127,9 +127,9 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             <span className="text-[#14B8A6]">9 Innovative AI Features</span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
