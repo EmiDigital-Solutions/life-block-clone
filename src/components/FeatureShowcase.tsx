@@ -64,40 +64,50 @@ const FeatureShowcase = () => {
             </div>
           </motion.div>
 
-          {/* Right: Dashboard Mockup */}
+          {/* Right: Dashboard Mockup - Larger and More Prominent */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative z-10"
+            className="relative z-10 lg:scale-110 lg:translate-x-12"
           >
             <div className="relative">
-              {/* Laptop Frame Effect */}
+              {/* Laptop Device with 3D Effect */}
               <div 
-                className="relative rounded-xl overflow-hidden shadow-2xl"
+                className="relative"
                 style={{
-                  transform: "perspective(1200px) rotateY(-15deg) rotateX(5deg)",
+                  transform: "perspective(1500px) rotateY(-12deg) rotateX(3deg)",
                   transformStyle: "preserve-3d"
                 }}
               >
-                {/* Screen Border */}
-                <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-xl">
-                  <div className="bg-black rounded-lg overflow-hidden">
+                {/* Laptop Screen Frame */}
+                <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-3 rounded-2xl shadow-2xl">
+                  {/* Screen Bezel */}
+                  <div className="relative bg-black rounded-xl overflow-hidden border border-gray-700/50">
                     <img 
                       src={dashboardImage} 
                       alt="YVOO supplier intelligence dashboard with risk analytics and compliance metrics"
                       className="w-full h-auto"
                     />
                   </div>
+                  
+                  {/* Laptop Base/Bottom */}
+                  <div 
+                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[102%] h-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-lg"
+                    style={{
+                      transform: "perspective(1500px) rotateX(-45deg)",
+                      transformOrigin: "top center"
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Glow Effect */}
+              {/* Glow Effect Behind */}
               <div 
-                className="absolute inset-0 -z-10 blur-3xl opacity-20"
+                className="absolute inset-0 -z-10 blur-3xl opacity-30"
                 style={{
-                  background: "radial-gradient(circle at center, hsl(var(--accent)) 0%, transparent 70%)"
+                  background: "radial-gradient(circle at center, hsl(var(--accent)) 0%, transparent 60%)"
                 }}
               />
             </div>
