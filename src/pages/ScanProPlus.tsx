@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
+import HeroROICalculator from "@/components/HeroROICalculator";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
@@ -562,8 +563,10 @@ const ScanProPlus = () => {
               </motion.div>
             </div>
 
-            {/* Right Column: Placeholder for future visual element */}
-            <div className="hidden lg:block"></div>
+            {/* Right Column: ROI Calculator */}
+            <div className="hidden lg:block">
+              <HeroROICalculator />
+            </div>
 
           </div>
         </div>
