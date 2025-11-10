@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const HeroROICalculator = () => {
-  const [auditsPerYear, setAuditsPerYear] = useState(20);
-  const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState(20000);
+  const [auditsPerYear, setAuditsPerYear] = useState<string>("");
+  const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState<string>("");
   
   const scanProCostPerAudit = 700;
   const weeksPerAudit = 2;
@@ -14,11 +14,14 @@ const HeroROICalculator = () => {
   const timeSavingsPercent = 0.7;
 
   // Calculations
-  const traditionalTotalCost = auditsPerYear * traditionalCostPerAudit;
-  const scanProTotalCost = auditsPerYear * scanProCostPerAudit;
+  const auditsNum = parseInt(auditsPerYear) || 0;
+  const traditionalCostNum = parseInt(traditionalCostPerAudit) || 0;
+  
+  const traditionalTotalCost = auditsNum * traditionalCostNum;
+  const scanProTotalCost = auditsNum * scanProCostPerAudit;
   const annualSavings = traditionalTotalCost - scanProTotalCost;
   const timeSavingsInDays = Math.round(
-    auditsPerYear * weeksPerAudit * workDaysPerWeek * timeSavingsPercent
+    auditsNum * weeksPerAudit * workDaysPerWeek * timeSavingsPercent
   );
 
   const formatCurrency = (value: number) => {
@@ -55,8 +58,8 @@ const HeroROICalculator = () => {
             type="number"
             min="1"
             value={auditsPerYear}
-            onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
-            placeholder="e.g., 20"
+            onChange={(e) => setAuditsPerYear(e.target.value)}
+            placeholder="Enter number of audits (e.g., 20)"
             className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
@@ -70,8 +73,8 @@ const HeroROICalculator = () => {
             type="number"
             min="1"
             value={traditionalCostPerAudit}
-            onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
-            placeholder="e.g., 20000"
+            onChange={(e) => setTraditionalCostPerAudit(e.target.value)}
+            placeholder="Enter cost in € (e.g., 20000)"
             className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
