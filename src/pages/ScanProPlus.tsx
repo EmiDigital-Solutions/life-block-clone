@@ -47,7 +47,8 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-blue-600 mb-3"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
+            style={{ color: '#2563EB' }}
           >
             9 Innovative AI Features
           </motion.h2>
@@ -96,7 +97,7 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
                       {/* Icon badge - clean and modern */}
                       <div className="absolute top-4 right-4">
                         <div className={`w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-md`}>
-                          <feature.icon className="w-6 h-6 text-blue-600" strokeWidth={2} />
+                          <feature.icon className="w-6 h-6" style={{ color: '#2563EB' }} strokeWidth={2} />
                         </div>
                       </div>
                     </div>
@@ -108,7 +109,8 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
                         {feature.tags.map((tag: string, i: number) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100"
+                            className="px-2.5 py-1 rounded-md text-xs font-medium bg-blue-50 border"
+                            style={{ color: '#2563EB', borderColor: '#BFDBFE' }}
                           >
                             {tag}
                           </span>
@@ -126,7 +128,7 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
                       </p>
 
                       {/* Hover indicator */}
-                      <div className="mt-4 flex items-center gap-2 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#2563EB' }}>
                         <span className="text-sm font-medium">Learn more</span>
                         <ArrowRight className="w-4 h-4" />
                       </div>
@@ -158,7 +160,7 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2563EB' }}>
             9 Innovative AI Features
           </h2>
           <p className="text-base md:text-lg text-gray-600">
@@ -191,7 +193,7 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
                     {/* Icon badge */}
                     <div className="absolute top-3 right-3">
                       <div className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-md">
-                        <feature.icon className="w-5 h-5 text-blue-600" strokeWidth={2} />
+                        <feature.icon className="w-5 h-5" style={{ color: '#2563EB' }} strokeWidth={2} />
                       </div>
                     </div>
                   </div>
@@ -203,7 +205,8 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
                       {feature.tags.map((tag: string, i: number) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded-md text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100"
+                          className="px-2 py-0.5 rounded-md text-xs font-medium bg-blue-50 border"
+                          style={{ color: '#2563EB', borderColor: '#BFDBFE' }}
                         >
                           {tag}
                         </span>
@@ -250,7 +253,7 @@ const ScanProPlus = () => {
       description: "Create custom audit structures for specific industries, standards, or customer requirements. ISO 9001 templates with TS16949-specific additions.",
       image: scanProDashboard,
       tags: ["Customizable", "Industry-Specific"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: Camera,
@@ -258,7 +261,7 @@ const ScanProPlus = () => {
       description: "Point the camera at machines and get instant identification and analysis. Automatic identification of type, year, and maintenance status.",
       image: aiInspector,
       tags: ["AI Vision", "Automation"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: BarChart3,
@@ -266,7 +269,7 @@ const ScanProPlus = () => {
       description: "Configurable evaluation criteria with industry-specific weighting. CleanRoom standards at 40% for Pharma, Quality systems at 35% for Automotive.",
       image: riskScoring,
       tags: ["Configurable", "Weighted"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: Shield,
@@ -274,7 +277,7 @@ const ScanProPlus = () => {
       description: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
       image: aiCopilot,
       tags: ["Automated", "Secure"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: Zap,
@@ -282,7 +285,7 @@ const ScanProPlus = () => {
       description: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
       image: liveTracking,
       tags: ["Live", "Instant"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: CheckCircle2,
@@ -290,7 +293,7 @@ const ScanProPlus = () => {
       description: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
       image: aiAudit,
       tags: ["Certified", "Compliant"],
-      gradient: "from-blue-600 to-blue-400"
+      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
       icon: AlertTriangle,
@@ -298,7 +301,7 @@ const ScanProPlus = () => {
       description: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
       image: riskScoring,
       tags: ["Critical", "Proactive"],
-      gradient: "from-red-600 to-red-400"
+      gradient: "from-red-600 to-red-500"
     },
     {
       icon: TrendingUp,
@@ -306,7 +309,7 @@ const ScanProPlus = () => {
       description: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
       image: aiCopilot,
       tags: ["AI Powered", "Predictive"],
-      gradient: "from-purple-600 to-purple-400"
+      gradient: "from-purple-600 to-purple-500"
     },
     {
       icon: BarChart3,
@@ -314,7 +317,7 @@ const ScanProPlus = () => {
       description: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
       image: scanProDashboard,
       tags: ["Analytics", "Insights"],
-      gradient: "from-[#10B981] to-[#0F8775]"
+      gradient: "from-[#14B8A6] to-[#0F8775]"
     }
   ];
 
@@ -409,7 +412,7 @@ const ScanProPlus = () => {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
             >
-              <span className="text-blue-600">Always ground truth</span> – Reliable data
+              <span style={{ color: '#2563EB' }}>Always ground truth</span> – Reliable data
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -437,7 +440,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-8 sm:mb-12"
           >
-            The <span className="text-blue-400">Challenge</span> You Know
+            The <span style={{ color: '#2563EB' }}>Challenge</span> You Know
           </motion.h2>
 
           {/* Pain Point */}
@@ -490,10 +493,11 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#10B981]/10 border border-[#10B981]/20 backdrop-blur-sm rounded-xl p-6 sm:p-8"
+            className="border backdrop-blur-sm rounded-xl p-6 sm:p-8"
+            style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.2)' }}
           >
             <div className="flex items-start gap-3 mb-4">
-              <CheckCircle2 className="w-6 h-6 text-[#10B981] flex-shrink-0 mt-1" />
+              <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#14B8A6' }} />
               <h3 className="text-2xl font-bold text-white">
                 The YVOO ScanPro+ Solution: Modern AI Platform Meets Global Expert Network
               </h3>
@@ -503,23 +507,23 @@ const ScanProPlus = () => {
             </p>
             <ul className="space-y-2 text-white/80">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                 <span><strong>Standardization through AI</strong> – every audit follows your specifications exactly</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                 <span><strong>Speed</strong> – 70% time savings compared to traditional methods</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                 <span><strong>Cost transparency</strong> – Fixed prices from €700, no hidden costs</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                 <span><strong>Real-time Intelligence</strong> – Live updates during the audit</span>
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                 <span><strong>Full Compliance</strong> – GDPR-compliant, SOC2-certified</span>
               </li>
             </ul>
@@ -537,46 +541,144 @@ const ScanProPlus = () => {
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
       >
         <div className="container mx-auto max-w-7xl">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-8 sm:mb-12 text-center"
+            className="text-center mb-12"
           >
-            Direct <span className="text-blue-400">Comparison</span>
-          </motion.h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-4">
+              Direct <span style={{ color: '#2563EB' }}>Comparison</span>
+            </h2>
+            <p className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
+              See how ScanPro+ transforms supplier audits with better pricing, speed, and quality
+            </p>
+          </motion.div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10">
-              <thead className="bg-white/10">
-                <tr>
-                  <th className="px-6 py-4 text-left text-white font-semibold">Criteria</th>
-                  <th className="px-6 py-4 text-left text-white font-semibold">Traditional Providers</th>
-                  <th className="px-6 py-4 text-left text-white font-semibold">YVOO ScanPro+</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {[
-                  { label: "Cost per Audit", traditional: "€15,000 - €25,000", yvoo: "From €700 (Fixed Price)" },
-                  { label: "Time until Audit", traditional: "2-3 weeks lead time", yvoo: "Same-Day / Next-Day possible" },
-                  { label: "Audit Duration", traditional: "3-5 days on-site", yvoo: "1-3 days (structured)" },
-                  { label: "Time to Report", traditional: "5-10 days after audit", yvoo: "Real-time + Final Report in 24h" },
-                  { label: "Consistency", traditional: "Depends on auditor", yvoo: "AI-supported, 100% standardized" },
-                  { label: "Equipment Recognition", traditional: "Manual recording, often incomplete", yvoo: "AI Computer Vision – automatic" },
-                  { label: "Traceability", traditional: "Static PDF reports", yvoo: "Digital platform with audit trail" },
-                  { label: "Benchmarking", traditional: "Manual, labor-intensive", yvoo: "Automatic against industry standards" },
-                  { label: "Price Transparency", traditional: "Quote on request", yvoo: "Fixed prices, no hidden costs" },
-                  { label: "Global Availability", traditional: "Slow coordination", yvoo: "On-Demand in 47 countries" }
-                ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-white">{row.label}</td>
-                    <td className="px-6 py-4 text-red-400">{row.traditional}</td>
-                    <td className="px-6 py-4 text-[#10B981] font-semibold">{row.yvoo}</td>
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2 border-gray-100">
+                    <th className="px-6 py-5 text-left text-sm font-semibold text-gray-500 uppercase tracking-wide bg-gray-50">
+                      Criteria
+                    </th>
+                    <th className="px-6 py-5 text-left text-sm font-semibold text-gray-500 uppercase tracking-wide bg-gray-50">
+                      Traditional Providers
+                    </th>
+                    <th className="px-6 py-5 text-left text-sm font-semibold text-white uppercase tracking-wide" style={{ backgroundColor: '#2563EB' }}>
+                      YVOO ScanPro+
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    { 
+                      label: "Cost per Audit", 
+                      traditional: "€15,000 - €25,000", 
+                      yvoo: "From €700 (Fixed Price)",
+                      icon: "💰"
+                    },
+                    { 
+                      label: "Time until Audit", 
+                      traditional: "2-3 weeks lead time", 
+                      yvoo: "Same-Day / Next-Day",
+                      icon: "⚡"
+                    },
+                    { 
+                      label: "Audit Duration", 
+                      traditional: "3-5 days on-site", 
+                      yvoo: "1-3 days (structured)",
+                      icon: "📅"
+                    },
+                    { 
+                      label: "Time to Report", 
+                      traditional: "5-10 days after audit", 
+                      yvoo: "Real-time + Report in 24h",
+                      icon: "📊"
+                    },
+                    { 
+                      label: "Consistency", 
+                      traditional: "Depends on auditor", 
+                      yvoo: "AI-supported, 100% standardized",
+                      icon: "✓"
+                    },
+                    { 
+                      label: "Equipment Recognition", 
+                      traditional: "Manual, often incomplete", 
+                      yvoo: "AI Computer Vision",
+                      icon: "🤖"
+                    },
+                    { 
+                      label: "Traceability", 
+                      traditional: "Static PDF reports", 
+                      yvoo: "Digital platform with audit trail",
+                      icon: "🔍"
+                    },
+                    { 
+                      label: "Benchmarking", 
+                      traditional: "Manual, labor-intensive", 
+                      yvoo: "Automatic vs industry standards",
+                      icon: "📈"
+                    },
+                    { 
+                      label: "Price Transparency", 
+                      traditional: "Quote on request", 
+                      yvoo: "Fixed prices, no hidden costs",
+                      icon: "💎"
+                    },
+                    { 
+                      label: "Global Availability", 
+                      traditional: "Slow coordination", 
+                      yvoo: "On-Demand in 47 countries",
+                      icon: "🌍"
+                    }
+                  ].map((row, idx) => (
+                    <motion.tr 
+                      key={idx} 
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.05 }}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">{row.icon}</span>
+                          <span className="font-semibold text-gray-900">{row.label}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-red-500 text-lg">✕</span>
+                          <span className="text-gray-600">{row.traditional}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4" style={{ backgroundColor: '#EFF6FF' }}>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-5 h-5" style={{ color: '#14B8A6' }} />
+                          <span className="font-semibold" style={{ color: '#2563EB' }}>{row.yvoo}</span>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
+
+          {/* Summary card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 bg-white rounded-xl p-8 shadow-lg text-center"
+          >
+            <p className="text-xl font-semibold text-gray-900 mb-2">
+              Up to <span style={{ color: '#14B8A6' }} className="text-3xl font-bold">96% cost savings</span> compared to traditional providers
+            </p>
+            <p className="text-gray-600">With faster delivery and consistent quality across all audits</p>
+          </motion.div>
         </div>
       </section>
 
@@ -594,7 +696,7 @@ const ScanProPlus = () => {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8"
             >
-              <span className="text-blue-600">ROI</span> Calculation
+              <span style={{ color: '#2563EB' }}>ROI</span> Calculation
             </motion.h2>
             <p className="text-xl text-gray-700 mb-8">
               Assuming your company conducts <strong>20 supplier audits per year</strong>:
@@ -611,16 +713,16 @@ const ScanProPlus = () => {
                 <div className="text-3xl font-bold text-gray-900">€14,000</div>
               </div>
               
-              <div className="bg-[#10B981]/10 border-2 border-[#10B981]/30 rounded-xl p-8">
+              <div className="border-2 rounded-xl p-8" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.3)' }}>
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <div className="text-2xl font-bold text-gray-900">💰 Your Annual Cost Savings</div>
-                  <div className="text-5xl font-bold text-[#10B981]">€386,000</div>
+                  <div className="text-5xl font-bold" style={{ color: '#14B8A6' }}>€386,000</div>
                 </div>
               </div>
               
               <div className="flex justify-between items-center py-6">
                 <div className="text-xl font-semibold text-gray-900">Time Savings (70% of 2 weeks per audit)</div>
-                <div className="text-3xl font-bold text-blue-600">280 Work Days</div>
+                <div className="text-3xl font-bold" style={{ color: '#2563EB' }}>280 Work Days</div>
               </div>
             </div>
 
@@ -648,16 +750,16 @@ const ScanProPlus = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-4">
-              Business <span className="text-blue-400">Impact</span>
+              Business <span style={{ color: '#2563EB' }}>Impact</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-12">
             {[
-              { metric: "60%", label: "Cost Reduction", color: "text-[#10B981]" },
-              { metric: "70%", label: "Time Savings", color: "text-blue-400" },
-              { metric: "100%", label: "Consistency", color: "text-blue-400" },
-              { metric: "24h", label: "Availability", color: "text-[#10B981]" }
+              { metric: "60%", label: "Cost Reduction", color: '#14B8A6' },
+              { metric: "70%", label: "Time Savings", color: '#2563EB' },
+              { metric: "100%", label: "Consistency", color: '#2563EB' },
+              { metric: "24h", label: "Availability", color: '#14B8A6' }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -667,7 +769,7 @@ const ScanProPlus = () => {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all text-center"
               >
-                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold ${item.color} mb-2 sm:mb-3`}>
+                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3`} style={{ color: item.color }}>
                   {item.metric}
                 </div>
                 <p className="text-sm sm:text-base text-white/90 font-medium">{item.label}</p>
@@ -676,14 +778,14 @@ const ScanProPlus = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="bg-blue-500/10 border border-blue-500/20 p-8 rounded-xl">
+            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'rgba(37, 99, 235, 0.05)', borderColor: 'rgba(37, 99, 235, 0.2)' }}>
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Target className="w-6 h-6 text-blue-400" />
+                <Target className="w-6 h-6" style={{ color: '#2563EB' }} />
                 Quality Improvement
               </h3>
               <ul className="space-y-2 text-white/80">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
                   <span>Uniform methodology for all supplier assessments</span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -701,14 +803,14 @@ const ScanProPlus = () => {
               </ul>
             </div>
 
-            <div className="bg-[#10B981]/10 border border-[#10B981]/20 p-8 rounded-xl">
+            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'rgba(20, 184, 166, 0.05)', borderColor: 'rgba(20, 184, 166, 0.2)' }}>
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Zap className="w-6 h-6 text-[#10B981]" />
+                <Zap className="w-6 h-6" style={{ color: '#14B8A6' }} />
                 Efficiency Gains
               </h3>
               <ul className="space-y-2 text-white/80">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                   <span>50% faster audit execution through template-based workflows</span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -742,7 +844,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center"
           >
-            Industry-Specific <span className="text-blue-600">Use Cases</span>
+            Industry-Specific <span style={{ color: '#2563EB' }}>Use Cases</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -809,7 +911,7 @@ const ScanProPlus = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all"
               >
-                <h3 className="text-2xl font-bold text-blue-600 mb-4 flex items-center gap-2">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: '#2563EB' }}>
                   <span>{industry.icon}</span>
                   <span>{industry.title}</span>
                 </h3>
@@ -818,13 +920,13 @@ const ScanProPlus = () => {
                 <ul className="space-y-2 mb-4">
                   {industry.solutions.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 {industry.result && (
-                  <p className="text-gray-700 font-semibold bg-[#10B981]/10 p-4 rounded-lg border border-[#10B981]/20">{industry.result}</p>
+                  <p className="text-gray-700 font-semibold p-4 rounded-lg border" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.2)' }}>{industry.result}</p>
                 )}
               </motion.div>
             ))}
@@ -846,7 +948,7 @@ const ScanProPlus = () => {
             className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 flex items-center gap-3">
-              <Shield className="w-10 h-10 text-blue-400" />
+              <Shield className="w-10 h-10" style={{ color: '#2563EB' }} />
               Compliance & Supported Standards
             </h2>
             <p className="text-xl text-white/90 mb-8">
@@ -878,20 +980,20 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-12 text-center"
           >
-            Global <span className="text-blue-600">Network</span> & Integration
+            Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
               <div className="flex items-center gap-3 mb-4">
-                <LinkIcon className="w-8 h-8 text-blue-600" />
+                <LinkIcon className="w-8 h-8" style={{ color: '#2563EB' }} />
                 <h3 className="text-2xl font-bold text-gray-900">ERP Connectors</h3>
               </div>
               <p className="text-gray-700 mb-4">Seamless integration into your existing enterprise systems:</p>
               <ul className="space-y-2">
                 {['SAP (Supplier Evaluation & Release)', 'Oracle', 'Microsoft Dynamics', 'Infor', 'Epicor'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -900,14 +1002,14 @@ const ScanProPlus = () => {
 
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
               <div className="flex items-center gap-3 mb-4">
-                <Globe className="w-8 h-8 text-[#10B981]" />
+                <Globe className="w-8 h-8" style={{ color: '#14B8A6' }} />
                 <h3 className="text-2xl font-bold text-gray-900">Global Auditor Network</h3>
               </div>
               <p className="text-gray-700 mb-4">Direct access to our worldwide network of certified auditors:</p>
               <ul className="space-y-2">
                 {['On-Demand Availability – Same-Day audits', 'Smart Matching – Optimal auditor selection', 'Transparent Prices – Fixed pricing', 'Real-time Tracking – GPS and status updates', 'Rating System – Quality assured'].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -915,7 +1017,7 @@ const ScanProPlus = () => {
             </div>
           </div>
 
-          <div className="mt-8 bg-gradient-to-r from-blue-600 to-blue-400 p-8 rounded-xl text-white">
+          <div className="mt-8 p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
             <h3 className="text-2xl font-bold mb-4">🌍 Available in 47 Countries</h3>
             <p className="text-lg text-white/90">
               Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
@@ -939,7 +1041,7 @@ const ScanProPlus = () => {
             className="space-y-6 sm:space-y-8"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white">
-              Ready for <span className="text-blue-400">the Future of Supplier Auditing?</span>
+              Ready for <span style={{ color: '#60A5FA' }}>the Future of Supplier Auditing?</span>
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl text-white/80">
@@ -949,7 +1051,7 @@ const ScanProPlus = () => {
             <div className="space-y-6 mb-8">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
+                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
                   Schedule a Demo (30 minutes)
                 </h4>
                 <p className="text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
@@ -992,7 +1094,7 @@ const ScanProPlus = () => {
               <h3 className="text-2xl font-bold mb-4 text-white">Contact</h3>
               <p className="text-lg text-white/90">
                 <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
-                📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline text-blue-300">ibrandic@yvoo.io</a><br />
+                📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a><br />
                 📱 +49 (0)152 03095799<br />
                 💬 WhatsApp | Google Meet
               </p>
