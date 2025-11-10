@@ -482,27 +482,13 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Factory Background */}
+      {/* Hero Section */}
       <section
         data-nav-theme="dark"
         className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, rgb(30, 58, 138), rgb(29, 78, 216), rgb(30, 58, 138))" }}
         id="hero"
       >
-        {/* Background Image with Animation */}
-        <motion.div 
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0 z-0"
-        >
-          <img 
-            src={factoryHero} 
-            alt="Modern manufacturing facility"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-800/90 to-blue-900/80"></div>
-        </motion.div>
 
         <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
