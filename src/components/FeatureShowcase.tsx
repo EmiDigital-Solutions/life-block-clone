@@ -5,18 +5,16 @@ import laptopMockup from "@/assets/laptop-mockup.png";
 
 const FeatureShowcase = () => {
   return (
-    <section className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden bg-navy-deep">
-      <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-[1400px] mx-auto">
-          
-          {/* Left: Text Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-8 z-10"
-          >
+    <section className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 relative overflow-hidden bg-navy-deep min-h-screen flex items-center">
+      {/* Text Content - Left Side */}
+      <div className="container mx-auto relative z-20">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-2xl space-y-8"
+        >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               AI-guided on-site audits by certified local experts
             </h2>
@@ -61,36 +59,32 @@ const FeatureShowcase = () => {
               >
                 Request a demo
               </Button>
-            </div>
-          </motion.div>
-
-          {/* Right: Dashboard Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative z-10"
-          >
-            <div className="relative">
-              <img 
-                src={laptopMockup} 
-                alt="YVOO supplier intelligence dashboard with risk analytics and compliance metrics"
-                className="w-full h-auto"
-              />
-
-              {/* Glow Effect Behind */}
-              <div 
-                className="absolute inset-0 -z-10 blur-3xl opacity-30"
-                style={{
-                  background: "radial-gradient(circle at center, hsl(var(--accent)) 0%, transparent 60%)"
-                }}
-              />
-            </div>
-          </motion.div>
-
-        </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Laptop Mockup - Bottom Right Corner */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute bottom-0 right-0 w-[65%] lg:w-[55%] z-10"
+      >
+        <img 
+          src={laptopMockup} 
+          alt="YVOO supplier intelligence dashboard with risk analytics and compliance metrics"
+          className="w-full h-auto"
+        />
+
+        {/* Glow Effect Behind */}
+        <div 
+          className="absolute inset-0 -z-10 blur-3xl opacity-40"
+          style={{
+            background: "radial-gradient(circle at center, hsl(var(--accent)) 0%, transparent 60%)"
+          }}
+        />
+      </motion.div>
 
       {/* Background Gradient Overlay */}
       <div 
