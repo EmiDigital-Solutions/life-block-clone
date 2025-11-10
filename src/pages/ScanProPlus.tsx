@@ -13,140 +13,149 @@ import liveTracking from "@/assets/live-tracking-dashboard.jpg";
 import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
 
-// Desktop Technology Section with Scroll Effect
-const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
-  const sectionRef = useRef<HTMLElement>(null);
+// Desktop Technology Section
+const DesktopFeaturesSection = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
-
-  const cardWidth = 340;
-  const gap = 20;
-  const numCards = features.length;
-  const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
-  const scrollDistance = -(totalCardsWidth - cardWidth - 50);
-  
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, scrollDistance]
-  );
+  const technologies = [
+    {
+      label: "Company Data Extraction",
+      title: "ensun Bot",
+      description: "continuously crawls key technology vendors around the world.",
+      image: aiInspector,
+    },
+    {
+      label: "Company Data Enrichment",
+      title: "ensun DaP creates",
+      description: "informative supplier profiles worldwide.",
+      image: aiCopilot,
+    },
+    {
+      label: "AI-based Ranking System",
+      title: "ERA-S sorts the",
+      description: "results for each search query according to relevance.",
+      image: scanProDashboard,
+    }
+  ];
 
   return (
     <section 
-      ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[120vh]"
+      className="relative py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       id="features"
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
-        <div className="text-center mb-8 px-4 flex-shrink-0">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
+      <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
-            style={{ color: '#2563EB' }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
           >
-            9 Innovative AI Features
+            <span className="text-[#14B8A6]">Our technology</span>
+            <br />
+            <span className="text-gray-900">for global supplier</span>
+            <br />
+            <span className="text-gray-900">identification.</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-base md:text-lg lg:text-lg xl:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
-          >
-            Strategic supplier assessment powered by artificial intelligence
-          </motion.p>
         </div>
 
-        <div className="flex-1 overflow-hidden relative">
-          <div className="h-full flex items-center">
-            <motion.div 
-              style={{ x }}
-              className="flex gap-5 lg:gap-5 xl:gap-6 pl-8 pr-8"
+        {/* Three Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {technologies.map((tech, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white rounded-3xl p-8 shadow-sm"
             >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.3 }
-                  }}
-                  className="relative w-[320px] lg:w-[330px] xl:w-[340px] h-[420px] lg:h-[430px] xl:h-[440px] flex-shrink-0 group cursor-pointer"
-                >
-                  {/* Clean white card */}
-                  <div className="h-full bg-white rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
-                    
-                    {/* Image section - cleaner with subtle overlay */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20" />
-                      
-                      {/* Icon badge - clean and modern */}
-                      <div className="absolute top-4 right-4">
-                        <div className={`w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-md`}>
-                          <feature.icon className="w-6 h-6" style={{ color: '#2563EB' }} strokeWidth={2} />
-                        </div>
-                      </div>
-                    </div>
+              {/* Label */}
+              <div className="text-[#14B8A6] text-sm font-medium mb-4">
+                {tech.label}
+              </div>
+              
+              {/* Title and Description */}
+              <h3 className="text-xl font-bold text-gray-900 mb-1">
+                {tech.title}
+              </h3>
+              <p className="text-lg text-gray-900 mb-8">
+                {tech.description}
+              </p>
 
-                    {/* Content section - clean typography */}
-                    <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
-                      {/* Tags - minimal design */}
-                      <div className="flex gap-2 mb-4 flex-wrap">
-                        {feature.tags.map((tag: string, i: number) => (
-                          <span
-                            key={i}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium bg-blue-50 border"
-                            style={{ color: '#2563EB', borderColor: '#BFDBFE' }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Title - bold and clear */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
-                        {feature.title}
-                      </h3>
-
-                      {/* Description - readable and clean */}
-                      <p className="text-sm text-gray-600 leading-relaxed flex-1">
-                        {feature.description}
-                      </p>
-
-                      {/* Hover indicator */}
-                      <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#2563EB' }}>
-                        <span className="text-sm font-medium">Learn more</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              {/* Image */}
+              <div className="rounded-3xl overflow-hidden">
+                <img 
+                  src={tech.image} 
+                  alt={tech.title}
+                  className="w-full h-64 object-cover"
+                />
+              </div>
             </motion.div>
-          </div>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-4"
+        >
+          <span className="text-gray-900 text-base">
+            You want to learn more about our Plans?
+          </span>
+          <button
+            onClick={() => scrollToSection('cta')}
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-6 py-3 rounded-full font-semibold text-base flex items-center gap-2 transition-all"
+          >
+            Pricing
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 // Mobile Features Section
-const MobileFeaturesSection = ({ features }: { features: any[] }) => {
+const MobileFeaturesSection = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const technologies = [
+    {
+      label: "Company Data Extraction",
+      title: "ensun Bot",
+      description: "continuously crawls key technology vendors around the world.",
+      image: aiInspector,
+    },
+    {
+      label: "Company Data Enrichment",
+      title: "ensun DaP creates",
+      description: "informative supplier profiles worldwide.",
+      image: aiCopilot,
+    },
+    {
+      label: "AI-based Ranking System",
+      title: "ERA-S sorts the",
+      description: "results for each search query according to relevance.",
+      image: scanProDashboard,
+    }
+  ];
+
   return (
     <section
       data-nav-theme="light"
@@ -155,80 +164,76 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
       id="features"
     >
       <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
+            <span className="text-[#14B8A6]">Our technology</span>
+            <br />
+            <span className="text-gray-900">for global supplier</span>
+            <br />
+            <span className="text-gray-900">identification.</span>
+          </motion.h2>
+        </div>
+
+        {/* Three Cards */}
+        <div className="space-y-6 mb-12">
+          {technologies.map((tech, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white rounded-3xl p-6 shadow-sm"
+            >
+              {/* Label */}
+              <div className="text-[#14B8A6] text-sm font-medium mb-3">
+                {tech.label}
+              </div>
+              
+              {/* Title and Description */}
+              <h3 className="text-lg font-bold text-gray-900 mb-1">
+                {tech.title}
+              </h3>
+              <p className="text-base text-gray-900 mb-6">
+                {tech.description}
+              </p>
+
+              {/* Image */}
+              <div className="rounded-2xl overflow-hidden">
+                <img 
+                  src={tech.image} 
+                  alt={tech.title}
+                  className="w-full h-48 object-cover"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2563EB' }}>
-            9 Innovative AI Features
-          </h2>
-          <p className="text-base md:text-lg text-gray-600">
-            Strategic supplier assessment powered by artificial intelligence
-          </p>
+          <span className="text-gray-900 text-base text-center">
+            You want to learn more about our Plans?
+          </span>
+          <button
+            onClick={() => scrollToSection('cta')}
+            className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-6 py-3 rounded-full font-semibold text-base flex items-center gap-2 transition-all"
+          >
+            Pricing
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </motion.div>
-
-        <div className="overflow-x-auto pb-4 -mx-6 px-6">
-          <div className="flex gap-5 md:gap-6" style={{ width: 'max-content' }}>
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative w-[300px] md:w-[320px] h-[380px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
-              >
-                {/* Clean white card */}
-                <div className="h-full bg-white">
-                  
-                  {/* Image section */}
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10" />
-                    
-                    {/* Icon badge */}
-                    <div className="absolute top-3 right-3">
-                      <div className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-md">
-                        <feature.icon className="w-5 h-5" style={{ color: '#2563EB' }} strokeWidth={2} />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content section */}
-                  <div className="p-5 flex flex-col h-[calc(100%-10rem)]">
-                    {/* Tags */}
-                    <div className="flex gap-2 mb-3 flex-wrap">
-                      {feature.tags.map((tag: string, i: number) => (
-                        <span
-                          key={i}
-                          className="px-2 py-0.5 rounded-md text-xs font-medium bg-blue-50 border"
-                          style={{ color: '#2563EB', borderColor: '#BFDBFE' }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
-                      {feature.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -481,81 +486,6 @@ const ScanProPlus = () => {
     }
   };
 
-  const features = [
-    {
-      icon: Target,
-      title: "Flexible Templates",
-      description: "Create custom audit structures for specific industries, standards, or customer requirements. ISO 9001 templates with TS16949-specific additions.",
-      image: scanProDashboard,
-      tags: ["Customizable", "Industry-Specific"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: Camera,
-      title: "AI Equipment Recognition",
-      description: "Point the camera at machines and get instant identification and analysis. Automatic identification of type, year, and maintenance status.",
-      image: aiInspector,
-      tags: ["AI Vision", "Automation"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: BarChart3,
-      title: "Dynamic Rating",
-      description: "Configurable evaluation criteria with industry-specific weighting. CleanRoom standards at 40% for Pharma, Quality systems at 35% for Automotive.",
-      image: riskScoring,
-      tags: ["Configurable", "Weighted"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: Shield,
-      title: "Evidence Management",
-      description: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
-      image: aiCopilot,
-      tags: ["Automated", "Secure"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: Zap,
-      title: "Real-Time Tracking",
-      description: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
-      image: liveTracking,
-      tags: ["Live", "Instant"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: CheckCircle2,
-      title: "Full Compliance",
-      description: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
-      image: aiAudit,
-      tags: ["Certified", "Compliant"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Management",
-      description: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
-      image: riskScoring,
-      tags: ["Critical", "Proactive"],
-      gradient: "from-red-600 to-red-500"
-    },
-    {
-      icon: TrendingUp,
-      title: "Predictive Scoring",
-      description: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
-      image: aiCopilot,
-      tags: ["AI Powered", "Predictive"],
-      gradient: "from-purple-600 to-purple-500"
-    },
-    {
-      icon: BarChart3,
-      title: "Benchmarking",
-      description: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
-      image: scanProDashboard,
-      tags: ["Analytics", "Insights"],
-      gradient: "from-[#14B8A6] to-[#0F8775]"
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -687,8 +617,8 @@ const ScanProPlus = () => {
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
 
-      {/* Features Section - Animated Cards */}
-      {isMobile ? <MobileFeaturesSection features={features} /> : <DesktopFeaturesSection features={features} />}
+      {/* Features Section - Technology Cards */}
+      {isMobile ? <MobileFeaturesSection /> : <DesktopFeaturesSection />}
 
       {/* Comparison Table - Dark gradient */}
       <section
