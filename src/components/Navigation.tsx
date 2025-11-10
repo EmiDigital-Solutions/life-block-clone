@@ -52,6 +52,22 @@ const Navigation = () => {
         
         // Check if navbar is within this section
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          // First check for data-nav-theme attribute
+          const navTheme = section.getAttribute('data-nav-theme');
+          
+          if (navTheme === 'dark') {
+            // Dark section - use dark background with light text
+            setNavBgColor('rgba(31, 41, 55, 0.95)');
+            setTextColor('rgb(255, 255, 255)');
+            return;
+          } else if (navTheme === 'light') {
+            // Light section - use light background with dark text
+            setNavBgColor('rgba(249, 250, 251, 0.95)');
+            setTextColor('rgb(31, 41, 55)');
+            return;
+          }
+          
+          // If no data-nav-theme, fall back to color detection
           // Get the computed style directly from the section (not its children)
           const computedStyle = window.getComputedStyle(section);
           let bgColor = computedStyle.backgroundColor;
