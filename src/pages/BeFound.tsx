@@ -266,9 +266,9 @@ const BeFound = () => {
                   
                   <div className="relative h-[400px] flex items-center justify-center">
                     {[
-                      { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"], gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-                      { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
+                      { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"] },
+                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"] },
+                      { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"] },
                     ].map((stat, index) => {
                       const style = getCardStyle(index, 3);
                       
@@ -300,32 +300,25 @@ const BeFound = () => {
                           }}
                         >
                           <div
-                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${stat.gradient}`}
+                            className="relative w-56 h-72 rounded-xl overflow-hidden bg-white border border-gray-200"
                             style={{
-                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
+                              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                             }}
                           >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F8775] to-[#14B8A6]" />
                             
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                              <div className="text-5xl font-bold text-white mb-3">{stat.number}</div>
-                              <div className="text-lg font-semibold text-white mb-4">{stat.title}</div>
+                              <div className="text-5xl font-bold text-[#14B8A6] mb-3">{stat.number}</div>
+                              <div className="text-lg font-semibold text-gray-900 mb-4">{stat.title}</div>
                               <div className="space-y-2">
                                 {stat.items.map((item, i) => (
-                                  <div key={i} className="text-sm text-white/90 flex items-center gap-2">
-                                    <Check className="w-4 h-4" />
+                                  <div key={i} className="text-sm text-gray-600 flex items-center gap-2">
+                                    <Check className="w-4 h-4 text-[#14B8A6]" />
                                     {item}
                                   </div>
                                 ))}
                               </div>
                             </div>
-
-                            <div 
-                              className="absolute inset-0 pointer-events-none rounded-3xl"
-                              style={{
-                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                              }}
-                            />
                           </div>
                         </motion.div>
                       );

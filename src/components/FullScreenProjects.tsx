@@ -23,56 +23,50 @@ const auditors = [
   { 
     image: auditorEuropean, 
     location: "Europe", 
-    region: "Central Europe",
-    gradient: "from-blue-600 via-blue-700 to-blue-800"
+    region: "Central Europe"
   },
   { 
     image: auditorAsian, 
     location: "Asia", 
-    region: "East Asia Pacific",
-    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
+    region: "East Asia Pacific"
   },
   { 
     image: auditorAfrican, 
     location: "Africa", 
-    region: "Sub-Saharan",
-    gradient: "from-gray-800 via-gray-900 to-black"
+    region: "Sub-Saharan"
   },
   { 
     image: auditorLatin, 
     location: "Americas", 
-    region: "North & South",
-    gradient: "from-blue-600 via-blue-700 to-blue-800"
+    region: "North & South"
   },
   { 
     image: auditorMiddleEast, 
     location: "Middle East", 
-    region: "Gulf Region",
-    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
+    region: "Gulf Region"
   },
   { 
     image: auditorSouthAsian, 
     location: "South Asia", 
-    region: "Indian Subcontinent",
-    gradient: "from-gray-800 via-gray-900 to-black"
+    region: "Indian Subcontinent"
   },
 ];
 
 const featurePhotos = {
   ai: [
-    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-    { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis" },
+    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI" },
+    { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts" },
   ],
   supplier: [
-    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-    { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery" },
+    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data" },
+    { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers" },
   ],
   workflow: [
-    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-    { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch" },
+    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking" },
+    { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration" },
   ],
 };
 
@@ -295,54 +289,36 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-50 lg:h-62 xl:w-54 xl:h-68 2xl:w-58 2xl:h-74 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                              className="relative w-44 h-56 sm:w-52 sm:h-64 lg:w-50 lg:h-62 xl:w-54 xl:h-68 2xl:w-58 2xl:h-74 rounded-xl overflow-hidden bg-white border border-gray-200"
                               style={{
-                                boxShadow: `
-                                  0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                                  0 0 30px rgba(236, 72, 153, 0.2)
-                                `,
+                                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                               }}
                             >
-                              {/* Gradient Overlay for depth */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                              {/* Professional header bar */}
+                              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F8775] to-[#14B8A6]" />
                               
                               {/* Auditor Image */}
                               <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-5 xl:pt-6 2xl:pt-7">
-                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-30 lg:h-30 xl:w-34 xl:h-34 2xl:w-38 2xl:h-38 rounded-full overflow-hidden border-2 border-white/10">
+                                <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-28 lg:h-28 xl:w-32 xl:h-32 2xl:w-36 2xl:h-36 rounded-full overflow-hidden border-4 border-gray-100 shadow-md">
                                   <img
                                     src={auditor.image}
                                     alt={`Professional auditor from ${auditor.location}`}
-                                    className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                                  />
-                                  {/* Dramatic colored lighting effect */}
-                                  <div 
-                                    className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                    style={{
-                                      background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                    }}
+                                    className="w-full h-full object-cover"
                                   />
                                 </div>
                               </div>
 
                               {/* Location Badge */}
-                              <div className="absolute bottom-3 sm:bottom-4 lg:bottom-4 xl:bottom-5 2xl:bottom-6 left-0 right-0 flex justify-center px-3 sm:px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-4 xl:px-5 2xl:px-6 py-1.5 sm:py-2 lg:py-2 xl:py-2.5 2xl:py-3 w-full">
-                                  <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base text-center">
+                              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white to-transparent pt-14 sm:pt-16 lg:pt-16 xl:pt-20 2xl:pt-24 pb-3 sm:pb-4 lg:pb-4 xl:pb-5 2xl:pb-6 px-3 sm:px-4">
+                                <div className="text-center space-y-1">
+                                  <p className="text-gray-900 font-semibold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base leading-tight">
                                     {auditor.location}
                                   </p>
-                                  <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-xs xl:text-xs 2xl:text-sm text-center">
+                                  <p className="text-gray-600 font-medium text-[10px] sm:text-xs lg:text-xs xl:text-xs 2xl:text-sm leading-tight">
                                     {auditor.region}
                                   </p>
                                 </div>
                               </div>
-
-                              {/* Edge Highlight */}
-                              <div 
-                                className="absolute inset-0 pointer-events-none rounded-3xl"
-                                style={{
-                                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                                }}
-                              />
                             </div>
                           </motion.div>
                         );
@@ -399,46 +375,30 @@ const FullScreenProjects = () => {
                           >
                             {/* Card */}
                             <div
-                              className={`relative w-[291px] h-[370px] lg:w-[302px] lg:h-[386px] xl:w-[314px] xl:h-[403px] rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
+                              className="relative w-[291px] h-[370px] lg:w-[302px] lg:h-[386px] xl:w-[314px] xl:h-[403px] rounded-xl overflow-hidden bg-white border border-gray-200"
                               style={{
-                                boxShadow: `
-                                  0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                                  0 0 30px rgba(236, 72, 153, 0.2)
-                                `,
+                                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                               }}
                             >
-                              {/* Gradient Overlay for depth */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                              {/* Professional header bar */}
+                              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F8775] to-[#14B8A6]" />
                               
                               {/* Feature Photo */}
                               <img
                                 src={card.image}
                                 alt={`${card.label} feature visualization`}
-                                className="absolute inset-0 w-full h-full object-cover"
+                                className="w-full h-[240px] object-cover"
                               />
                               
-                              {/* Gradient Overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                              {/* Label Badge */}
-                              <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 w-full">
-                                  <p className="text-white font-sans font-bold text-sm text-center">
-                                    {card.label}
-                                  </p>
-                                  <p className="text-white/80 font-sans text-xs text-center">
-                                    {card.sublabel}
-                                  </p>
-                                </div>
+                              {/* Content */}
+                              <div className="absolute bottom-0 left-0 right-0 bg-white p-4 lg:p-5 xl:p-6">
+                                <p className="text-gray-900 font-semibold text-base lg:text-lg xl:text-xl mb-1">
+                                  {card.label}
+                                </p>
+                                <p className="text-gray-600 text-sm lg:text-base font-medium">
+                                  {card.sublabel}
+                                </p>
                               </div>
-
-                              {/* Edge Highlight */}
-                              <div 
-                                className="absolute inset-0 pointer-events-none rounded-3xl"
-                                style={{
-                                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                                }}
-                              />
                             </div>
                           </motion.div>
                         );
