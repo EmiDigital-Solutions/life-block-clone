@@ -56,7 +56,8 @@ const HeroROICalculator = () => {
             min="1"
             value={auditsPerYear}
             onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
-            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6]"
+            placeholder="e.g., 20"
+            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
 
@@ -70,7 +71,8 @@ const HeroROICalculator = () => {
             min="1"
             value={traditionalCostPerAudit}
             onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
-            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6]"
+            placeholder="e.g., 20000"
+            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
