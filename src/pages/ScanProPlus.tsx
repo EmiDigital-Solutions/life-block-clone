@@ -132,7 +132,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center lg:justify-center order-first lg:order-last">
+            <div className="flex justify-center lg:justify-end order-first lg:order-last lg:-ml-8">
               <div 
                 className="relative w-full max-w-lg"
                 style={{ perspective: "2000px" }}
@@ -169,7 +169,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         }}
                       >
                         <div
-                          className={`relative w-[260px] h-[340px] xl:w-[300px] xl:h-[380px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[234px] h-[306px] xl:w-[270px] xl:h-[342px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -179,8 +179,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-8">
-                            <div className="relative w-[160px] h-[160px] xl:w-[190px] xl:h-[190px] rounded-full overflow-hidden border-2 border-white/10">
+                           <div className="absolute inset-0 flex items-center justify-center pt-8">
+                            <div className="relative w-[144px] h-[144px] xl:w-[171px] xl:h-[171px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -471,7 +471,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                         }}
                       >
                         <div
-                          className={`relative w-[240px] h-[310px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[216px] h-[279px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -482,7 +482,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6">
-                            <div className="relative w-[150px] h-[150px] rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="relative w-[135px] h-[135px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
