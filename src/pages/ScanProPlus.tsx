@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
@@ -717,7 +717,10 @@ const ScanProPlus = () => {
               
               <div className="border-2 rounded-xl p-8" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.3)' }}>
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div className="text-2xl font-bold text-gray-900">💰 Your Annual Cost Savings</div>
+                  <div className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                    <DollarSign className="w-8 h-8" style={{ color: '#14B8A6' }} />
+                    Your Annual Cost Savings
+                  </div>
                   <div className="text-5xl font-bold" style={{ color: '#14B8A6' }}>€386,000</div>
                 </div>
               </div>
@@ -791,15 +794,15 @@ const ScanProPlus = () => {
                   <span>Uniform methodology for all supplier assessments</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
                   <span>AI-supported detection of critical risks</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
                   <span>Continuous improvement tracking over time</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
                   <span>Data-based supplier decisions</span>
                 </li>
               </ul>
@@ -816,15 +819,15 @@ const ScanProPlus = () => {
                   <span>50% faster audit execution through template-based workflows</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                   <span>Automatic report generation in real-time</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                   <span>Integrated tracking of corrective actions</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#10B981] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                   <span>Shorter time-to-market through faster supplier releases</span>
                 </li>
               </ul>
@@ -860,7 +863,7 @@ const ScanProPlus = () => {
           <div className="space-y-8">
             {[
               {
-                icon: "🚗",
+                Icon: Car,
                 title: "Automotive: PPAP Validation & Tool Audits",
                 useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
                 solutions: [
@@ -872,7 +875,7 @@ const ScanProPlus = () => {
                 result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
               },
               {
-                icon: "✈️",
+                Icon: Plane,
                 title: "Aerospace: AS9100 Compliance & Critical Process Validation",
                 useCase: "Validate welding processes at suppliers of critical aircraft components.",
                 solutions: [
@@ -883,7 +886,7 @@ const ScanProPlus = () => {
                 ]
               },
               {
-                icon: "💊",
+                Icon: Pill,
                 title: "Pharma: GMP Audits & Clean Room Assessments",
                 useCase: "GMP audit of an API manufacturer before contract signing.",
                 solutions: [
@@ -894,7 +897,7 @@ const ScanProPlus = () => {
                 ]
               },
               {
-                icon: "🏭",
+                Icon: Factory,
                 title: "Chemical & Process Industry: REACH Compliance & Process Safety",
                 useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
                 solutions: [
@@ -914,7 +917,9 @@ const ScanProPlus = () => {
                 className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all"
               >
                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: '#2563EB' }}>
-                  <span>{industry.icon}</span>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#EFF6FF' }}>
+                    <industry.Icon className="w-6 h-6" style={{ color: '#2563EB' }} />
+                  </div>
                   <span>{industry.title}</span>
                 </h3>
                 <p className="text-lg font-semibold text-gray-900 mb-4">{industry.useCase}</p>
@@ -1020,7 +1025,10 @@ const ScanProPlus = () => {
           </div>
 
           <div className="mt-8 p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
-            <h3 className="text-2xl font-bold mb-4">🌍 Available in 47 Countries</h3>
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+              <Globe className="w-7 h-7" />
+              Available in 47 Countries
+            </h3>
             <p className="text-lg text-white/90">
               Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
             </p>
@@ -1061,7 +1069,7 @@ const ScanProPlus = () => {
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
+                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
                   Start Pilot Audit (2 weeks)
                 </h4>
                 <p className="text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
@@ -1069,7 +1077,7 @@ const ScanProPlus = () => {
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
+                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
                   Plan Integration
                 </h4>
                 <p className="text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
@@ -1081,13 +1089,15 @@ const ScanProPlus = () => {
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px] inline-flex items-center justify-center gap-2"
               >
-                🗓️ Schedule Demo
+                <Calendar className="w-5 h-5" />
+                Schedule Demo
               </a>
               <a
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]"
               >
-                🚀 Start Pilot Audit
+                <Rocket className="w-5 h-5" />
+                Start Pilot Audit
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -1096,9 +1106,18 @@ const ScanProPlus = () => {
               <h3 className="text-2xl font-bold mb-4 text-white">Contact</h3>
               <p className="text-lg text-white/90">
                 <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
-                📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a><br />
-                📱 +49 (0)152 03095799<br />
-                💬 WhatsApp | Google Meet
+                <span className="inline-flex items-center gap-2 mt-2">
+                  <Mail className="w-5 h-5" />
+                  <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a>
+                </span><br />
+                <span className="inline-flex items-center gap-2 mt-2">
+                  <Phone className="w-5 h-5" />
+                  +49 (0)152 03095799
+                </span><br />
+                <span className="inline-flex items-center gap-2 mt-2">
+                  <MessageCircle className="w-5 h-5" />
+                  WhatsApp | Google Meet
+                </span>
               </p>
             </div>
           </motion.div>
