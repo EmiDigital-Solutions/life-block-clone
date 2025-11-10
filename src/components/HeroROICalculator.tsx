@@ -37,20 +37,20 @@ const HeroROICalculator = () => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 lg:p-8 border border-white/20 shadow-2xl"
+      className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl"
     >
-      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
         <span style={{ color: '#14B8A6' }}>ROI</span> Calculator
       </h3>
       
-      <p className="text-sm text-white/70 mb-6">
+      <p className="text-sm text-gray-600 mb-6">
         Calculate your savings
       </p>
 
       {/* Input Fields */}
       <div className="space-y-4 mb-6">
         <div className="space-y-2">
-          <Label htmlFor="hero-audits" className="text-sm font-semibold text-white">
+          <Label htmlFor="hero-audits" className="text-sm font-semibold text-gray-900">
             Audits per year
           </Label>
           <Input
@@ -60,12 +60,12 @@ const HeroROICalculator = () => {
             value={auditsPerYear}
             onChange={(e) => setAuditsPerYear(e.target.value)}
             placeholder="Enter number of audits (e.g., 20)"
-            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="hero-traditional-cost" className="text-sm font-semibold text-white">
+          <Label htmlFor="hero-traditional-cost" className="text-sm font-semibold text-gray-900">
             Traditional cost (€)
           </Label>
           <Input
@@ -75,21 +75,21 @@ const HeroROICalculator = () => {
             value={traditionalCostPerAudit}
             onChange={(e) => setTraditionalCostPerAudit(e.target.value)}
             placeholder="Enter cost in € (e.g., 20000)"
-            className="h-11 bg-white/20 border-white/30 text-white placeholder:text-white/50 focus:bg-white/30 focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
 
       {/* Results */}
       <div className="space-y-4">
-        <div className="flex justify-between items-center py-3 border-b border-white/20">
-          <span className="text-sm text-white/80">Traditional</span>
-          <span className="text-lg font-bold text-white">{formatCurrency(traditionalTotalCost)}</span>
+        <div className="flex justify-between items-center py-3 border-b border-gray-200">
+          <span className="text-sm text-gray-600">Traditional</span>
+          <span className="text-lg font-bold text-gray-900">{formatCurrency(traditionalTotalCost)}</span>
         </div>
         
-        <div className="flex justify-between items-center py-3 border-b border-white/20">
-          <span className="text-sm text-white/80">ScanPro+</span>
-          <span className="text-lg font-bold text-white">{formatCurrency(scanProTotalCost)}</span>
+        <div className="flex justify-between items-center py-3 border-b border-gray-200">
+          <span className="text-sm text-gray-600">ScanPro+</span>
+          <span className="text-lg font-bold text-gray-900">{formatCurrency(scanProTotalCost)}</span>
         </div>
         
         <motion.div
