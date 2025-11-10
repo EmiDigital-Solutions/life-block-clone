@@ -8,18 +8,18 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
-  // Create circular texture for round points with subtle glow
+  // Create circular texture for round glowing points
   const circleTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext('2d')!;
     
-    // Create subtle glow effect
+    // Create glow that will use vertex colors
     const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.5)');
-    gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.1)');
+    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
+    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)');
     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
     ctx.fillStyle = gradient;
@@ -48,20 +48,20 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
       // Random sizes for particles
       sizes[i] = Math.random() * 0.15 + 0.05;
       
-      // Blue and green colors
+      // Blue and green colors with stronger intensity for glow
       const isBlue = Math.random() > 0.5;
-      const colorIntensity = 0.6 + Math.random() * 0.4;
+      const colorIntensity = 0.8 + Math.random() * 0.2;
       
       if (isBlue) {
-        // Blue particles
-        colors[i3] = 0.1 * colorIntensity; // R
-        colors[i3 + 1] = 0.5 * colorIntensity; // G
+        // Bright blue particles
+        colors[i3] = 0.2 * colorIntensity; // R
+        colors[i3 + 1] = 0.6 * colorIntensity; // G
         colors[i3 + 2] = 1.0 * colorIntensity; // B
       } else {
-        // Green particles
-        colors[i3] = 0.1 * colorIntensity; // R
-        colors[i3 + 1] = 0.9 * colorIntensity; // G
-        colors[i3 + 2] = 0.4 * colorIntensity; // B
+        // Bright green particles
+        colors[i3] = 0.2 * colorIntensity; // R
+        colors[i3 + 1] = 1.0 * colorIntensity; // G
+        colors[i3 + 2] = 0.5 * colorIntensity; // B
       }
     }
     
