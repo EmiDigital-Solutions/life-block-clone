@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
@@ -577,61 +577,61 @@ const ScanProPlus = () => {
                       label: "Cost per Audit", 
                       traditional: "€15,000 - €25,000", 
                       yvoo: "From €700 (Fixed Price)",
-                      icon: "💰"
+                      Icon: DollarSign
                     },
                     { 
                       label: "Time until Audit", 
                       traditional: "2-3 weeks lead time", 
                       yvoo: "Same-Day / Next-Day",
-                      icon: "⚡"
+                      Icon: Zap
                     },
                     { 
                       label: "Audit Duration", 
                       traditional: "3-5 days on-site", 
                       yvoo: "1-3 days (structured)",
-                      icon: "📅"
+                      Icon: Calendar
                     },
                     { 
                       label: "Time to Report", 
                       traditional: "5-10 days after audit", 
                       yvoo: "Real-time + Report in 24h",
-                      icon: "📊"
+                      Icon: BarChart3
                     },
                     { 
                       label: "Consistency", 
                       traditional: "Depends on auditor", 
                       yvoo: "AI-supported, 100% standardized",
-                      icon: "✓"
+                      Icon: CheckCheck
                     },
                     { 
                       label: "Equipment Recognition", 
                       traditional: "Manual, often incomplete", 
                       yvoo: "AI Computer Vision",
-                      icon: "🤖"
+                      Icon: Camera
                     },
                     { 
                       label: "Traceability", 
                       traditional: "Static PDF reports", 
                       yvoo: "Digital platform with audit trail",
-                      icon: "🔍"
+                      Icon: Search
                     },
                     { 
                       label: "Benchmarking", 
                       traditional: "Manual, labor-intensive", 
                       yvoo: "Automatic vs industry standards",
-                      icon: "📈"
+                      Icon: TrendingUp
                     },
                     { 
                       label: "Price Transparency", 
                       traditional: "Quote on request", 
                       yvoo: "Fixed prices, no hidden costs",
-                      icon: "💎"
+                      Icon: Eye
                     },
                     { 
                       label: "Global Availability", 
                       traditional: "Slow coordination", 
                       yvoo: "On-Demand in 47 countries",
-                      icon: "🌍"
+                      Icon: Globe
                     }
                   ].map((row, idx) => (
                     <motion.tr 
@@ -644,7 +644,9 @@ const ScanProPlus = () => {
                     >
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-xl">{row.icon}</span>
+                          <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#EFF6FF' }}>
+                            <row.Icon className="w-5 h-5" style={{ color: '#2563EB' }} />
+                          </div>
                           <span className="font-semibold text-gray-900">{row.label}</span>
                         </div>
                       </td>
