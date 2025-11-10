@@ -569,42 +569,6 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Value Section - Light gradient */}
-      <section
-        data-nav-theme="light"
-        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
-      >
-        <div className="container mx-auto">
-          <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-gray-600 text-xs sm:text-sm font-medium"
-            >
-              ScanPro+ — AI-powered supplier audits
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
-            >
-              <span style={{ color: '#2563EB' }}>Always ground truth</span> – Reliable data
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4"
-            >
-              Reliable, precise data for informed business decisions in automotive, aerospace, pharma, and manufacturing.
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
 
