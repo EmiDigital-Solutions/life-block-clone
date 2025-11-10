@@ -59,10 +59,7 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             transition={{ delay: 0.1 }}
             className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
           >
-            Our AI-powered platform combines cutting-edge technology with practical audit solutions. 
-            From flexible templates and real-time equipment recognition to predictive scoring and automated compliance, 
-            these features transform traditional supplier audits into intelligent, data-driven processes that save time, 
-            reduce costs, and deliver actionable insights.
+            AI-powered tools that streamline supplier audits from start to finish.
           </motion.p>
         </div>
 
@@ -136,9 +133,7 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
             <span className="text-[#14B8A6]">9 Innovative AI Features</span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-            Our AI-powered platform combines cutting-edge technology with practical audit solutions. 
-            From flexible templates and real-time equipment recognition to predictive scoring and automated compliance, 
-            these features transform traditional supplier audits into intelligent, data-driven processes.
+            AI-powered tools that streamline supplier audits from start to finish.
           </p>
         </motion.div>
 
