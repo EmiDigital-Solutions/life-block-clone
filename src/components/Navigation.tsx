@@ -176,6 +176,17 @@ const Navigation = () => {
                     <div className="text-xs opacity-60 mt-0.5">On-site supplier audits</div>
                   </Link>
                   <Link 
+                    to="/scanpro-plus" 
+                    className="block px-4 py-3 transition-colors duration-300 border-b"
+                    style={{ 
+                      color: textColor,
+                      borderBottomColor: borderColor 
+                    }}
+                  >
+                    <div className="font-semibold">ScanPro+</div>
+                    <div className="text-xs opacity-60 mt-0.5">On-Site Supplier Audits</div>
+                  </Link>
+                  <Link 
                     to="/be-found" 
                     className="block px-4 py-3 transition-colors duration-300"
                     style={{ color: textColor }}
