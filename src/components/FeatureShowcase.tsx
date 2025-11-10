@@ -69,7 +69,7 @@ const FeatureShowcase = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute bottom-0 right-0 w-[65%] lg:w-[55%] z-10"
+        className="absolute bottom-0 right-0 w-[50%] lg:w-[45%] z-10"
       >
         <img 
           src={laptopMockup} 
