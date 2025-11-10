@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import dashboardImage from "@/assets/dashboard-hands-tablet.jpg";
+import laptopMockup from "@/assets/laptop-mockup.png";
 
 const FeatureShowcase = () => {
   return (
@@ -74,9 +74,9 @@ const FeatureShowcase = () => {
           >
             <div className="relative">
               <img 
-                src={dashboardImage} 
+                src={laptopMockup} 
                 alt="YVOO supplier intelligence dashboard with risk analytics and compliance metrics"
-                className="w-full h-auto drop-shadow-2xl"
+                className="w-full h-auto"
               />
 
               {/* Glow Effect Behind */}
