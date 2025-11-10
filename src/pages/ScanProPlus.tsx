@@ -485,8 +485,7 @@ const ScanProPlus = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="dark"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
-        style={{ backgroundColor: '#1e3a8a' }}
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden bg-primary"
         id="hero"
       >
 
