@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const HeroROICalculator = () => {
-  const [auditsPerYear, setAuditsPerYear] = useState<string>("");
-  const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState<string>("");
+  const [auditsPerYear, setAuditsPerYear] = useState<string>("20");
+  const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState<string>("20000");
   
   const scanProCostPerAudit = 700;
   const weeksPerAudit = 2;
