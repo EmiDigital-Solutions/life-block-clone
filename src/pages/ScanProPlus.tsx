@@ -20,17 +20,65 @@ import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
 // Desktop Technology Section with Scroll Effect
-const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
+const DesktopFeaturesSection = ({ features, auditors }: { features: any[], auditors: any[] }) => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
   });
+
+  useEffect(() => {
+    const cycle = () => {
+      setTimeout(() => setIsFanned(true), 1500);
+      setTimeout(() => setIsFanned(false), 9000);
+    };
+
+    cycle();
+    const interval = setInterval(cycle, 12000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % auditors.length);
+  };
+
+  const getCardStyle = (index: number, totalCards: number) => {
+    const centerIndex = (totalCards - 1) / 2;
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
+    
+    if (isFanned) {
+      return {
+        x: offset * 85,
+        y: Math.abs(offset) * -45,
+        rotateY: offset * -8,
+        rotateZ: offset * 8,
+        scale: 1,
+        opacity: 1,
+        zIndex: totalCards - Math.abs(offset),
+      };
+    } else {
+      return {
+        x: 0,
+        y: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        scale: 0.98,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
+      };
+    }
+  };
 
   const cardWidth = 340;
   const gap = 20;
@@ -53,6 +101,113 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
       id="features"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
+        {/* Auditor Network Header */}
+        <div className="text-center mb-8 px-4 flex-shrink-0">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4">
+              Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+              Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700.
+            </p>
+          </motion.div>
+
+          {/* Auditor Cards Animation */}
+          <div className="flex justify-center mb-12">
+            <div 
+              className="relative w-full max-w-2xl"
+              style={{ perspective: "2000px" }}
+            >
+              <div className="relative h-[400px] flex items-center justify-center">
+                {auditors.map((auditor, auditorIndex) => {
+                  const style = getCardStyle(auditorIndex, auditors.length);
+                  
+                  return (
+                    <motion.div
+                      key={auditor.location + auditor.region}
+                      className="absolute cursor-pointer"
+                      onClick={handleCardClick}
+                      initial={false}
+                      whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                      animate={{
+                        x: style.x,
+                        y: style.y,
+                        rotateY: style.rotateY,
+                        rotateZ: style.rotateZ,
+                        scale: style.scale,
+                        opacity: style.opacity,
+                        zIndex: style.zIndex,
+                      }}
+                      transition={{
+                        duration: 1.8,
+                        delay: isFanned ? auditorIndex * 0.12 : (auditors.length - auditorIndex) * 0.08,
+                        ease: [0.33, 1, 0.68, 1],
+                        type: "tween",
+                      }}
+                      style={{
+                        transformStyle: "preserve-3d",
+                        willChange: "transform, opacity",
+                      }}
+                    >
+                      <div
+                        className={`relative w-[240px] h-[310px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                        style={{
+                          boxShadow: `
+                            0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                            0 0 30px rgba(20, 184, 166, 0.2)
+                          `,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        
+                        <div className="absolute inset-0 flex items-center justify-center pt-8">
+                          <div className="relative w-[150px] h-[150px] rounded-full overflow-hidden border-2 border-white/10">
+                            <img
+                              src={auditor.image}
+                              alt={`Professional auditor from ${auditor.location}`}
+                              className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                            />
+                            <div 
+                              className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                              style={{
+                                background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
+                          <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 w-full">
+                            <p className="text-white font-sans font-bold text-base text-center">
+                              {auditor.location}
+                            </p>
+                            <p className="text-white/80 font-sans text-sm text-center">
+                              {auditor.region}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div 
+                          className="absolute inset-0 pointer-events-none rounded-2xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                          }}
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Header */}
         <div className="text-center mb-6 px-4 flex-shrink-0">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -124,7 +279,56 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
 };
 
 // Mobile Features Section
-const MobileFeaturesSection = ({ features }: { features: any[] }) => {
+const MobileFeaturesSection = ({ features, auditors }: { features: any[], auditors: any[] }) => {
+  const [isFanned, setIsFanned] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const cycle = () => {
+      setTimeout(() => setIsFanned(true), 2000);
+      setTimeout(() => setIsFanned(false), 12000);
+    };
+
+    cycle();
+    const interval = setInterval(cycle, 16000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleCardClick = () => {
+    setActiveIndex((prev) => (prev + 1) % auditors.slice(0, 3).length);
+  };
+
+  const getCardStyle = (index: number, totalCards: number) => {
+    const centerIndex = (totalCards - 1) / 2;
+    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
+    const offset = adjustedIndex - centerIndex;
+    
+    if (isFanned) {
+      return {
+        x: offset * 110,
+        y: Math.abs(offset) * -20,
+        rotateY: offset * -8,
+        rotateZ: offset * 6,
+        scale: 1,
+        opacity: 1,
+        zIndex: totalCards - Math.abs(offset),
+      };
+    } else {
+      return {
+        x: 0,
+        y: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        scale: 0.98,
+        opacity: adjustedIndex === 0 ? 1 : 0,
+        zIndex: totalCards - adjustedIndex,
+      };
+    }
+  };
+
+  const visibleAuditors = auditors.slice(0, 3);
+
   return (
     <section
       data-nav-theme="light"
@@ -133,6 +337,111 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
       id="features"
     >
       <div className="max-w-7xl mx-auto">
+        {/* Auditor Network Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+          </h2>
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700.
+          </p>
+        </motion.div>
+
+        {/* Auditor Cards Animation */}
+        <div className="flex justify-center mb-12">
+          <div 
+            className="relative w-full"
+            style={{ perspective: "2000px" }}
+          >
+            <div className="relative h-[375px] flex items-center justify-center">
+              {visibleAuditors.map((auditor, auditorIndex) => {
+                const style = getCardStyle(auditorIndex, visibleAuditors.length);
+                
+                return (
+                  <motion.div
+                    key={auditor.location + auditor.region}
+                    className="absolute cursor-pointer"
+                    onClick={handleCardClick}
+                    initial={false}
+                    whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                    animate={{
+                      x: style.x,
+                      y: style.y,
+                      rotateY: style.rotateY,
+                      rotateZ: style.rotateZ,
+                      scale: style.scale,
+                      opacity: style.opacity,
+                      zIndex: style.zIndex,
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      delay: isFanned ? auditorIndex * 0.25 : (visibleAuditors.length - auditorIndex) * 0.08,
+                      ease: [0.33, 1, 0.68, 1],
+                      type: "tween",
+                    }}
+                    style={{
+                      transformStyle: "preserve-3d",
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    <div
+                      className={`relative w-[220px] h-[280px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                      style={{
+                        boxShadow: `
+                          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                          0 0 30px rgba(20, 184, 166, 0.2)
+                        `,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      
+                      <div className="absolute inset-0 flex items-center justify-center pt-6">
+                        <div className="relative w-[140px] h-[140px] rounded-full overflow-hidden border-2 border-white/10">
+                          <img
+                            src={auditor.image}
+                            alt={`Professional auditor from ${auditor.location}`}
+                            className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                          />
+                          <div 
+                            className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                            style={{
+                              background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
+                        <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 w-full">
+                          <p className="text-white font-sans font-bold text-sm text-center">
+                            {auditor.location}
+                          </p>
+                          <p className="text-white/80 font-sans text-xs text-center">
+                            {auditor.region}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div 
+                        className="absolute inset-0 pointer-events-none rounded-2xl"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Features Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -432,6 +741,8 @@ const fallbackAuditors = [
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
   { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
   { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent", gradient: "from-gray-800 via-gray-900 to-black" },
+  { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
+  { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
 ];
 
 const ScanProPlus = () => {
@@ -621,92 +932,11 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Global On-Demand Auditor Network Section */}
-      <section
-        data-nav-theme="light"
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-      >
-        <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-6">
-              Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
-            </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.
-            </p>
-          </motion.div>
-
-          {/* Auditor Cards Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6 max-w-6xl mx-auto">
-            {auditors.map((auditor, index) => (
-              <motion.div
-                key={auditor.location}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.05 }}
-                className="relative"
-              >
-                <div
-                  className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                  style={{
-                    boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  
-                  <div className="absolute inset-0 flex items-center justify-center pt-6">
-                    <div className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-white/10">
-                      <img
-                        src={auditor.image}
-                        alt={`Professional auditor from ${auditor.location}`}
-                        className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                      />
-                      <div 
-                        className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                        style={{
-                          background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center px-3">
-                    <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 w-full">
-                      <p className="text-white font-sans font-bold text-sm text-center">
-                        {auditor.location}
-                      </p>
-                      <p className="text-white/80 font-sans text-xs text-center">
-                        {auditor.region}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div 
-                    className="absolute inset-0 pointer-events-none rounded-2xl"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
 
       {/* Features Section - Animated Cards */}
-      {isMobile ? <MobileFeaturesSection features={features} /> : <DesktopFeaturesSection features={features} />}
+      {isMobile ? <MobileFeaturesSection features={features} auditors={auditors} /> : <DesktopFeaturesSection features={features} auditors={auditors} />}
 
       {/* Comparison Table - Dark gradient */}
       <section
