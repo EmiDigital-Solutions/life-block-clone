@@ -8,17 +8,18 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
-  // Create circular texture for solid round points
+  // Create circular texture for round glowing points
   const circleTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext('2d')!;
     
-    // Create solid circle with sharp edges
-    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 28);
+    // Create minimal glow with tight falloff
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.9, 'rgba(255, 255, 255, 1)');
+    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.3)');
+    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
     ctx.fillStyle = gradient;
@@ -128,7 +129,7 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.9}
+        size={0.3}
         vertexColors
         transparent
         opacity={1}
