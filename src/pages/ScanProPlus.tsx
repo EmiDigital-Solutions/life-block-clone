@@ -48,9 +48,9 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 text-gray-900"
           >
-            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
+            Capabilities that modernize supplier audits
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             transition={{ delay: 0.1 }}
             className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
           >
-            AI-powered tools that streamline supplier audits from start to finish.
+            Nine AI-driven features for consistent, actionable outcomes.
           </motion.p>
         </div>
 
@@ -129,11 +129,11 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">
+            Capabilities that modernize supplier audits
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-            AI-powered tools that streamline supplier audits from start to finish.
+            Nine AI-driven features for consistent, actionable outcomes.
           </p>
         </motion.div>
 
@@ -431,47 +431,47 @@ const ScanProPlus = () => {
   const features = [
     {
       label: "Flexible Templates",
-      title: "Create custom audit structures for specific industries, standards, or customer requirements. ISO 9001 templates with TS16949-specific additions.",
+      title: "Create custom frameworks per industry, standard or customer requirement.",
       image: scanProDashboard,
     },
     {
-      label: "AI Equipment Recognition",
-      title: "Point the camera at machines and get instant identification and analysis. Automatic identification of type, year, and maintenance status.",
+      label: "AI Guidance",
+      title: "Contextual hints during audits to ensure completeness and objectivity.",
+      image: aiCopilot,
+    },
+    {
+      label: "Equipment Intelligence",
+      title: "Identify machines and assets from photos; assess condition and compliance.",
       image: aiInspector,
     },
     {
-      label: "Dynamic Rating",
-      title: "Configurable evaluation criteria with industry-specific weighting. CleanRoom standards at 40% for Pharma, Quality systems at 35% for Automotive.",
+      label: "Dynamic Scoring",
+      title: "Configurable weightings and 1–5 scoring for transparent results.",
       image: riskScoring,
     },
     {
-      label: "Evidence Management",
-      title: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
-      image: aiCopilot,
-    },
-    {
-      label: "Real-Time Tracking",
-      title: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
-      image: liveTracking,
-    },
-    {
-      label: "Full Compliance",
-      title: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
+      label: "Evidence Handling",
+      title: "Auto-categorize photos & files (quality, safety, environment) for traceability.",
       image: aiAudit,
     },
     {
-      label: "Risk Management",
-      title: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
+      label: "Real-Time Progress",
+      title: "Live milestones and alerts during audits for fast course-corrections.",
+      image: liveTracking,
+    },
+    {
+      label: "Predictive Risk Scoring",
+      title: "Anticipate issues from historical patterns and equipment signals.",
       image: riskScoring,
     },
     {
-      label: "Predictive Scoring",
-      title: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
-      image: aiCopilot,
+      label: "Corrective Action Tracking",
+      title: "Monitor improvements with reminders and due-dates.",
+      image: oneClickDispatch,
     },
     {
-      label: "Benchmarking",
-      title: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
+      label: "Integrations",
+      title: "ERP/QMS connectors (SAP, Oracle, Dynamics, Trackwise, MasterControl, ETQ).",
       image: scanProDashboard,
     }
   ];
