@@ -26,7 +26,7 @@ const FeatureShowcase = () => {
             </p>
 
             <p className="text-base text-gray-300 leading-relaxed">
-              That's why Prewave not only provides concrete ROI today: it scales long into the future. Our platform uses AI and predictive analytics to provide real-time insights on supplier risk, helping you create cost-effective supply chains that turn exposure into opportunity.
+              That's why YVOO not only provides concrete ROI today: it scales long into the future. Our platform uses AI and predictive analytics to provide real-time insights on supplier risk, helping you create cost-effective supply chains that turn exposure into opportunity.
             </p>
 
             <p className="text-sm text-gray-400 italic">
