@@ -52,6 +52,10 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
     if (pointsRef.current) {
       const time = state.clock.getElapsedTime();
       
+      // Smooth zoom-out effect
+      const targetZ = 6 + Math.sin(time * 0.1) * 2;
+      camera.position.z += (targetZ - camera.position.z) * 0.02;
+      
       // Mouse interaction - rotate based on mouse position
       const targetRotationY = mousePosition.x * 0.5;
       const targetRotationX = mousePosition.y * 0.3;
@@ -62,16 +66,8 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
       // Add slow auto-rotation
       pointsRef.current.rotation.y += 0.002;
       
-      // Convert mouse position to 3D space
-      const mouse3D = new THREE.Vector3(
-        mousePosition.x * 3,
-        mousePosition.y * 3,
-        2
-      );
-      
-      // Animate particles with wave effect and mouse interaction
+      // Animate particles with wave effect
       const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
-      const sizesAttr = pointsRef.current.geometry.attributes.size.array as Float32Array;
       
       for (let i = 0; i < particlesCount; i++) {
         const i3 = i * 3;
@@ -88,34 +84,9 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
         positions[i3] = x * (1 + (scale - 1) * 0.1);
         positions[i3 + 1] = y * (1 + (scale - 1) * 0.1);
         positions[i3 + 2] = z * (1 + (scale - 1) * 0.1);
-        
-        // Calculate distance to mouse in 3D space
-        const particlePos = new THREE.Vector3(positions[i3], positions[i3 + 1], positions[i3 + 2]);
-        const distance = particlePos.distanceTo(mouse3D);
-        
-        // Pulsating size effect
-        const basePulse = Math.sin(time * 2 + i * 0.1) * 0.02 + 1;
-        
-        // Mouse proximity effect - particles zoom out when mouse is near
-        const maxDistance = 2;
-        const mouseInfluence = Math.max(0, 1 - distance / maxDistance);
-        const zoomEffect = 1 + mouseInfluence * 2; // Particles grow up to 3x when mouse is close
-        
-        // Apply both effects to size
-        sizesAttr[i] = sizes[i] * basePulse * zoomEffect;
-        
-        // Push particles away from mouse
-        if (mouseInfluence > 0) {
-          const pushStrength = mouseInfluence * 0.3;
-          const direction = particlePos.sub(mouse3D).normalize();
-          positions[i3] += direction.x * pushStrength;
-          positions[i3 + 1] += direction.y * pushStrength;
-          positions[i3 + 2] += direction.z * pushStrength;
-        }
       }
       
       pointsRef.current.geometry.attributes.position.needsUpdate = true;
-      pointsRef.current.geometry.attributes.size.needsUpdate = true;
     }
   });
   
