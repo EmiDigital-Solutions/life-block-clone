@@ -550,7 +550,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
-            <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.3 }} />
+            <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.7 }} />
             <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
           </linearGradient>
         </defs>
@@ -567,7 +567,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           
           // Calculate average z-position for opacity
           const avgZ = (from.z + to.z) / 2;
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.4;
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.7;
           
           // Calculate line length for dash animation
           const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
@@ -580,12 +580,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
               x2={x2}
               y2={y2}
               stroke="url(#lineGradient)"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
               strokeDasharray={`${length * 0.3} ${length * 0.7}`}
               strokeDashoffset={length}
               opacity={opacity}
               style={{
-                animation: `dashAnimation 3s linear infinite`
+                animation: `dashAnimation 8s linear infinite`
               }}
             />
           );
