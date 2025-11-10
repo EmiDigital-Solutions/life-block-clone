@@ -566,19 +566,11 @@ const ScanProPlus = () => {
         className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
         id="hero"
       >
-        {/* Background Image with Continuous Animation */}
+        {/* Background Image with Animation */}
         <motion.div 
-          animate={{ 
-            scale: [1, 1.1, 1],
-            x: [0, -20, 0],
-            y: [0, -10, 0]
-          }}
-          transition={{ 
-            duration: 20,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatType: "loop"
-          }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0 z-0"
         >
           <img 
