@@ -8,6 +8,24 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
   
   const particlesCount = 3000;
   
+  // Create circular texture for round points
+  const circleTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext('2d')!;
+    
+    const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)');
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 32, 32);
+    
+    return new THREE.CanvasTexture(canvas);
+  }, []);
+  
   const [positions, colors, sizes] = useMemo(() => {
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
@@ -115,6 +133,7 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
         opacity={0.9}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
+        map={circleTexture}
       />
     </points>
   );
