@@ -44,23 +44,26 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
         <div className="text-center mb-12 px-4 flex-shrink-0">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[#14B8A6] text-base font-semibold mb-2"
-          >
-            9 Innovative AI Features
-          </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6"
           >
-            <span className="text-[#14B8A6]">Our technology</span>{" "}
-            <span className="text-gray-900">for global supplier identification.</span>
+            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
+          >
+            Our AI-powered platform combines cutting-edge technology with practical audit solutions. 
+            From flexible templates and real-time equipment recognition to predictive scoring and automated compliance, 
+            these features transform traditional supplier audits into intelligent, data-driven processes that save time, 
+            reduce costs, and deliver actionable insights.
+          </motion.p>
         </div>
 
         <div className="flex-1 overflow-hidden relative">
@@ -129,13 +132,14 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-[#14B8A6] text-sm font-semibold mb-2">
-            9 Innovative AI Features
-          </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-[#14B8A6]">Our technology</span>{" "}
-            <span className="text-gray-900">for global supplier identification.</span>
+            <span className="text-[#14B8A6]">9 Innovative AI Features</span>
           </h2>
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+            Our AI-powered platform combines cutting-edge technology with practical audit solutions. 
+            From flexible templates and real-time equipment recognition to predictive scoring and automated compliance, 
+            these features transform traditional supplier audits into intelligent, data-driven processes.
+          </p>
         </motion.div>
 
         <div className="overflow-x-auto pb-4 -mx-6 px-6">
