@@ -16,10 +16,8 @@ import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
-import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
@@ -809,14 +807,12 @@ const ChallengeToggleSection = () => {
 };
 
 const fallbackAuditors = [
-  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
-  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-  { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent", gradient: "from-gray-800 via-gray-900 to-black" },
-  { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800", gender: "male" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]", gender: "male" },
+  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800", gender: "male" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]", gender: "male" },
+  { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
+  { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
 const ScanProPlus = () => {
@@ -858,7 +854,8 @@ const ScanProPlus = () => {
             image: imageUrl,
             location: card.title || fallbackAuditors[index]?.location || "Location",
             region: card.body?.content || fallbackAuditors[index]?.region || "Region",
-            gradient: fallbackAuditors[index % fallbackAuditors.length].gradient
+            gradient: fallbackAuditors[index % fallbackAuditors.length].gradient,
+            gender: fallbackAuditors[index % fallbackAuditors.length].gender
           };
         })
       );

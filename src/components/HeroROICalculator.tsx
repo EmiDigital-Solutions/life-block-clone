@@ -7,13 +7,38 @@ import { Label } from "@/components/ui/label";
 const HeroROICalculator = () => {
   const [auditsPerYear, setAuditsPerYear] = useState<string>("20");
   const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState<string>("20000");
-  const [showInputAnimation, setShowInputAnimation] = useState(false);
+  const [displayAudits, setDisplayAudits] = useState<string>("20");
+  const [displayCost, setDisplayCost] = useState<string>("20000");
+  const [isTypingAnimation, setIsTypingAnimation] = useState(false);
   
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowInputAnimation(true);
-      setTimeout(() => setShowInputAnimation(false), 2000);
-    }, 3000);
+    const startTypingAnimation = () => {
+      setIsTypingAnimation(true);
+      
+      // Clear values first
+      setDisplayAudits("");
+      setDisplayCost("");
+      
+      // Type "20" for audits (character by character)
+      setTimeout(() => setDisplayAudits("2"), 3200);
+      setTimeout(() => setDisplayAudits("20"), 3400);
+      
+      // Type "20000" for cost (character by character)
+      setTimeout(() => setDisplayCost("2"), 4000);
+      setTimeout(() => setDisplayCost("20"), 4200);
+      setTimeout(() => setDisplayCost("200"), 4400);
+      setTimeout(() => setDisplayCost("2000"), 4600);
+      setTimeout(() => setDisplayCost("20000"), 4800);
+      
+      // End animation
+      setTimeout(() => {
+        setIsTypingAnimation(false);
+        setAuditsPerYear("20");
+        setTraditionalCostPerAudit("20000");
+      }, 5500);
+    };
+    
+    const timer = setTimeout(startTypingAnimation, 3000);
     
     return () => clearTimeout(timer);
   }, []);
@@ -24,8 +49,8 @@ const HeroROICalculator = () => {
   const timeSavingsPercent = 0.7;
 
   // Calculations
-  const auditsNum = parseInt(auditsPerYear) || 0;
-  const traditionalCostNum = parseInt(traditionalCostPerAudit) || 0;
+  const auditsNum = parseInt(isTypingAnimation ? displayAudits : auditsPerYear) || 0;
+  const traditionalCostNum = parseInt(isTypingAnimation ? displayCost : traditionalCostPerAudit) || 0;
   
   const traditionalTotalCost = auditsNum * traditionalCostNum;
   const scanProTotalCost = auditsNum * scanProCostPerAudit;
@@ -59,57 +84,65 @@ const HeroROICalculator = () => {
 
       {/* Input Fields */}
       <div className="space-y-4 mb-6">
-        <motion.div 
-          className="space-y-2"
-          animate={showInputAnimation ? { 
-            scale: [1, 1.02, 1],
-            boxShadow: [
-              "0 0 0 0px rgba(20, 184, 166, 0)",
-              "0 0 0 4px rgba(20, 184, 166, 0.3)",
-              "0 0 0 0px rgba(20, 184, 166, 0)"
-            ]
-          } : {}}
-          transition={{ duration: 1, ease: "easeInOut" }}
-        >
+        <div className="space-y-2">
           <Label htmlFor="hero-audits" className="text-sm font-semibold text-gray-900">
             Audits per year
           </Label>
-          <Input
-            id="hero-audits"
-            type="number"
-            min="1"
-            value={auditsPerYear}
-            onChange={(e) => setAuditsPerYear(e.target.value)}
-            placeholder="Enter number of audits (e.g., 20)"
-            className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
-        </motion.div>
+          <div className="relative">
+            <Input
+              id="hero-audits"
+              type="number"
+              min="1"
+              value={isTypingAnimation ? displayAudits : auditsPerYear}
+              onChange={(e) => {
+                setAuditsPerYear(e.target.value);
+                setDisplayAudits(e.target.value);
+              }}
+              placeholder="Type your number of audits here"
+              disabled={isTypingAnimation}
+              className={`h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                isTypingAnimation ? 'cursor-wait' : ''
+              }`}
+            />
+            {isTypingAnimation && displayAudits && (
+              <motion.div
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#14B8A6]"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+              />
+            )}
+          </div>
+        </div>
 
-        <motion.div 
-          className="space-y-2"
-          animate={showInputAnimation ? { 
-            scale: [1, 1.02, 1],
-            boxShadow: [
-              "0 0 0 0px rgba(20, 184, 166, 0)",
-              "0 0 0 4px rgba(20, 184, 166, 0.3)",
-              "0 0 0 0px rgba(20, 184, 166, 0)"
-            ]
-          } : {}}
-          transition={{ duration: 1, ease: "easeInOut", delay: 0.3 }}
-        >
+        <div className="space-y-2">
           <Label htmlFor="hero-traditional-cost" className="text-sm font-semibold text-gray-900">
             Traditional cost (€)
           </Label>
-          <Input
-            id="hero-traditional-cost"
-            type="number"
-            min="1"
-            value={traditionalCostPerAudit}
-            onChange={(e) => setTraditionalCostPerAudit(e.target.value)}
-            placeholder="Enter cost in € (e.g., 20000)"
-            className="h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
-        </motion.div>
+          <div className="relative">
+            <Input
+              id="hero-traditional-cost"
+              type="number"
+              min="1"
+              value={isTypingAnimation ? displayCost : traditionalCostPerAudit}
+              onChange={(e) => {
+                setTraditionalCostPerAudit(e.target.value);
+                setDisplayCost(e.target.value);
+              }}
+              placeholder="Type your usual costs"
+              disabled={isTypingAnimation}
+              className={`h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                isTypingAnimation ? 'cursor-wait' : ''
+              }`}
+            />
+            {isTypingAnimation && displayCost && (
+              <motion.div
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#14B8A6]"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+              />
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Results */}
