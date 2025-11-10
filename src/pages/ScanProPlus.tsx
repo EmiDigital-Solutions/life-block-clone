@@ -562,65 +562,72 @@ const ScanProPlus = () => {
       {/* Hero Section - Blue gradient */}
       <section
         data-nav-theme="dark"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))" }}
         id="hero"
       >
-        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-[900px]">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
-            >
-              YVOO ScanPro+
-              <span className="block mt-2 text-3xl md:text-4xl lg:text-6xl">AI-Powered Supplier Audits</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
-            >
-              On-site supplier audits in 3 days instead of 3 weeks, starting at €700 fixed price instead of €15,000-25,000, with actionable business intelligence instead of just checklists – powered by AI and our global auditor network.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col space-y-4 text-white mb-12"
-            >
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">70% time savings</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">Fixed price from €700</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                <span className="text-lg font-normal leading-[1.6]">Real-time intelligence</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex relative z-10"
-            >
-              <button 
-                onClick={() => scrollToSection('cta')}
-                className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
+            
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mb-6"
               >
-                Get started
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
+                <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
+                  <div className="h-px w-12 bg-white/40"></div>
+                  <span>ScanPro+ — AI-powered supplier audits</span>
+                </div>
+              </motion.div>
+
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+              >
+                Supplier Audits in Days, Not Weeks
+              </motion.h1>
+
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg md:text-xl lg:text-2xl font-medium text-white/90 leading-[1.4] mb-8"
+              >
+                70% Cost Reduction · 80% Time Savings · Global Coverage
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-lg font-normal text-white/70 leading-[1.6] max-w-[600px] mb-12"
+              >
+                On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex"
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl"
+                >
+                  Get Started
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Placeholder for future visual element */}
+            <div className="hidden lg:block"></div>
+
           </div>
         </div>
       </section>
