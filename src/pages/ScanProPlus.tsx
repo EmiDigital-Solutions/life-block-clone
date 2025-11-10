@@ -559,29 +559,39 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Blue gradient matching GroundIntelligence */}
+      {/* Hero Section - Blue gradient */}
       <section
         data-nav-theme="dark"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
         style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))" }}
         id="hero"
       >
-        <div className="container mx-auto">
-          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0 pb-10">
+        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-[900px]">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
             >
               YVOO ScanPro+
+              <span className="block mt-2 text-3xl md:text-4xl lg:text-6xl">AI-Powered Supplier Audits</span>
             </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
+            >
+              On-site supplier audits in 3 days instead of 3 weeks, starting at €700 fixed price instead of €15,000-25,000, with actionable business intelligence instead of just checklists – powered by AI and our global auditor network.
+            </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col space-y-4 text-white mx-0 mb-12"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col space-y-4 text-white mb-12"
             >
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
@@ -600,26 +610,17 @@ const ScanProPlus = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full sm:w-auto mb-9"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex relative z-10"
             >
               <button 
                 onClick={() => scrollToSection('cta')}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
               >
                 Get started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-0"
-            >
-              <strong>On-site supplier audits in 3 days instead of 3 weeks</strong>, starting at <strong>€700 fixed price</strong> instead of €15,000-25,000, with <strong>actionable business intelligence</strong> instead of just checklists – powered by AI and our global auditor network.
-            </motion.p>
           </div>
         </div>
       </section>
