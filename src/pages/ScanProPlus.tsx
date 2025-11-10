@@ -71,47 +71,66 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-200px" }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   whileHover={{ 
-                    y: -12,
-                    scale: 1.03,
-                    transition: { duration: 0.2 }
+                    y: -8,
+                    transition: { duration: 0.3 }
                   }}
-                  className="relative w-[320px] lg:w-[330px] xl:w-[340px] h-[400px] lg:h-[410px] xl:h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+                  className="relative w-[320px] lg:w-[330px] xl:w-[340px] h-[420px] lg:h-[430px] xl:h-[440px] flex-shrink-0 group cursor-pointer"
                 >
-                  <div className="absolute inset-0">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
-
-                  <div className="absolute top-6 left-6 flex gap-2 flex-wrap z-20">
-                    {feature.tags.map((tag: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1.5 rounded-full text-white text-xs font-semibold bg-white/20 backdrop-blur-md border border-white/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                    <div className={`w-14 h-14 flex items-center justify-center bg-gradient-to-br ${feature.gradient} rounded-2xl shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
-                      <feature.icon className="w-8 h-8" strokeWidth={2.5} />
+                  {/* Clean white card */}
+                  <div className="h-full bg-white rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+                    
+                    {/* Image section - cleaner with subtle overlay */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20" />
+                      
+                      {/* Icon badge - clean and modern */}
+                      <div className="absolute top-4 right-4">
+                        <div className={`w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-md`}>
+                          <feature.icon className="w-6 h-6 text-blue-600" strokeWidth={2} />
+                        </div>
+                      </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
-                    <p className="text-white/90 text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
+                    {/* Content section - clean typography */}
+                    <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
+                      {/* Tags - minimal design */}
+                      <div className="flex gap-2 mb-4 flex-wrap">
+                        {feature.tags.map((tag: string, i: number) => (
+                          <span
+                            key={i}
+                            className="px-2.5 py-1 rounded-md text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Title - bold and clear */}
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.title}
+                      </h3>
+
+                      {/* Description - readable and clean */}
+                      <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                        {feature.description}
+                      </p>
+
+                      {/* Hover indicator */}
+                      <div className="mt-4 flex items-center gap-2 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-sm font-medium">Learn more</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -152,43 +171,52 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative w-[300px] md:w-[320px] h-[340px] md:h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
+                className="relative w-[300px] md:w-[320px] h-[380px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
               >
-                <div className="absolute inset-0">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-
-                <div className="relative z-10 p-6 h-full flex flex-col justify-between">
-                  <div className="flex gap-2">
-                    {feature.tags.map((tag: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                {/* Clean white card */}
+                <div className="h-full bg-white">
+                  
+                  {/* Image section */}
+                  <div className="relative h-40 overflow-hidden">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10" />
+                    
+                    {/* Icon badge */}
+                    <div className="absolute top-3 right-3">
+                      <div className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-md">
+                        <feature.icon className="w-5 h-5 text-blue-600" strokeWidth={2} />
+                      </div>
+                    </div>
                   </div>
 
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
-                        <feature.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">
-                        {feature.title}
-                      </h3>
+                  {/* Content section */}
+                  <div className="p-5 flex flex-col h-[calc(100%-10rem)]">
+                    {/* Tags */}
+                    <div className="flex gap-2 mb-3 flex-wrap">
+                      {feature.tags.map((tag: string, i: number) => (
+                        <span
+                          key={i}
+                          className="px-2 py-0.5 rounded-md text-xs font-medium text-blue-700 bg-blue-50 border border-blue-100"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                    <p className="text-sm text-white/90 leading-relaxed">
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
+                      {feature.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-600 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
