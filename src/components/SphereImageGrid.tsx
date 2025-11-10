@@ -506,8 +506,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate connections between nearby nodes
   const calculateConnections = useCallback(() => {
     const connections: Array<{ from: number; to: number; distance: number }> = [];
-    const maxConnectionDistance = actualSphereRadius * 1.5; // Max distance to draw connection
-    const maxConnectionsPerNode = 6; // Limit connections per node
+    const maxConnectionDistance = actualSphereRadius * 1.2; // Max distance to draw connection
+    const maxConnectionsPerNode = 3; // Limit connections per node
     
     for (let i = 0; i < worldPositions.length; i++) {
       const pos1 = worldPositions[i];
