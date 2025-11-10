@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useContentByType } from "@/hooks/useContentQuery";
-import AnimatedParticleSphere from "./AnimatedParticleSphere";
+import heroSphereImage from "@/assets/hero-particle-sphere.png";
 
 
 const HeroSection = () => {
@@ -93,15 +93,19 @@ const HeroSection = () => {
               </motion.div>
             </div>
 
-            {/* Right Column: Animated Particle Sphere - 25% bigger */}
+            {/* Right Column: Particle Sphere Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex justify-center lg:justify-center order-first lg:order-last"
             >
-              <div className="relative w-full h-[500px] sm:h-[625px] lg:h-[750px] flex items-center justify-center">
-                <AnimatedParticleSphere />
+              <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center">
+                <img 
+                  src={heroSphereImage} 
+                  alt="Particle Sphere Visualization" 
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
             </motion.div>
 
