@@ -486,7 +486,7 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="dark"
         className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(30, 58, 138), rgb(29, 78, 216), rgb(30, 58, 138))" }}
+        style={{ backgroundColor: '#1e3a8a' }}
         id="hero"
       >
 
@@ -501,8 +501,8 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-6"
               >
-                <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
-                  <div className="h-px w-12 bg-white/40"></div>
+                <div className="flex items-center gap-4 text-white text-sm font-sans">
+                  <div className="h-px w-12 bg-white"></div>
                   <span>ScanPro+ — AI-powered supplier audits</span>
                 </div>
               </motion.div>
@@ -520,7 +520,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-xl lg:text-2xl font-medium text-white/90 leading-[1.4] mb-8"
+                className="text-lg md:text-xl lg:text-2xl font-medium text-white leading-[1.4] mb-8"
               >
                 70% Cost Reduction · 80% Time Savings · Global Coverage
               </motion.h2>
@@ -529,7 +529,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg font-normal text-white/70 leading-[1.6] max-w-[600px] mb-12"
+                className="text-lg font-normal text-white leading-[1.6] max-w-[600px] mb-12"
               >
                 On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
               </motion.p>
