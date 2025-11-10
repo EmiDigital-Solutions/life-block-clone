@@ -15,11 +15,11 @@ function Particles({ mousePosition }: { mousePosition: { x: number; y: number } 
     canvas.height = 64;
     const ctx = canvas.getContext('2d')!;
     
-    // Create glow that will use vertex colors
+    // Create minimal glow with tight falloff
     const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
-    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)');
+    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.3)');
+    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
     ctx.fillStyle = gradient;
