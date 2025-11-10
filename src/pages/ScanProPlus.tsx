@@ -132,7 +132,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center lg:justify-end items-end">
+            <div className="flex justify-center lg:justify-center items-end lg:pl-12 xl:pl-20">
               <div 
                 className="relative w-full max-w-lg"
                 style={{ perspective: "2000px" }}
