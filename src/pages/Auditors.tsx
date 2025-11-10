@@ -31,7 +31,6 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import SphereImageGrid from "@/components/SphereImageGrid";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -45,32 +44,6 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
-import auditorGen2 from "@/assets/auditor-gen-2.jpg";
-import auditorGen3 from "@/assets/auditor-gen-3.jpg";
-import auditorGen4 from "@/assets/auditor-gen-4.jpg";
-import auditorGen5 from "@/assets/auditor-gen-5.jpg";
-import auditorGen6 from "@/assets/auditor-gen-6.jpg";
-import auditorGen7 from "@/assets/auditor-gen-7.jpg";
-import auditorGen8 from "@/assets/auditor-gen-8.jpg";
-import auditorGen9 from "@/assets/auditor-gen-9.jpg";
-import auditorGen10 from "@/assets/auditor-gen-10.jpg";
-import auditorGen11 from "@/assets/auditor-gen-11.jpg";
-import auditorGen12 from "@/assets/auditor-gen-12.jpg";
-import auditorGen13 from "@/assets/auditor-gen-13.jpg";
-import auditorGen14 from "@/assets/auditor-gen-14.jpg";
-import auditorGen15 from "@/assets/auditor-gen-15.jpg";
-import auditorGen16 from "@/assets/auditor-gen-16.jpg";
-import auditorGen17 from "@/assets/auditor-gen-17.jpg";
-import auditorGen18 from "@/assets/auditor-gen-18.jpg";
-import auditorGen19 from "@/assets/auditor-gen-19.jpg";
-import auditorGen20 from "@/assets/auditor-gen-20.jpg";
-import auditorGen21 from "@/assets/auditor-gen-21.jpg";
-import auditorGen22 from "@/assets/auditor-gen-22.jpg";
-import auditorGen23 from "@/assets/auditor-gen-23.jpg";
-import auditorGen24 from "@/assets/auditor-gen-24.jpg";
-import auditorGen25 from "@/assets/auditor-gen-25.jpg";
-import auditorGen26 from "@/assets/auditor-gen-26.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -90,35 +63,6 @@ const Auditors = () => {
   ];
 
   const auditorProfiles = isMobile ? allAuditorProfiles.slice(0, 3) : allAuditorProfiles;
-
-  const sphereImages = [
-    { id: "1", src: auditorGen1, alt: "Professional auditor conducting quality inspection" },
-    { id: "2", src: auditorGen2, alt: "Certified auditor reviewing manufacturing processes" },
-    { id: "3", src: auditorGen3, alt: "Expert auditor in industrial facility" },
-    { id: "4", src: auditorGen4, alt: "Quality assurance professional on-site" },
-    { id: "5", src: auditorGen5, alt: "Experienced auditor with technical documentation" },
-    { id: "6", src: auditorGen6, alt: "Senior auditor performing compliance check" },
-    { id: "7", src: auditorGen7, alt: "Professional auditor with quality standards" },
-    { id: "8", src: auditorGen8, alt: "Certified quality inspector in action" },
-    { id: "9", src: auditorGen9, alt: "Auditor specialist conducting review" },
-    { id: "10", src: auditorGen10, alt: "Quality management auditor on location" },
-    { id: "11", src: auditorGen11, alt: "Professional auditor with certification" },
-    { id: "12", src: auditorGen12, alt: "Expert quality auditor at work" },
-    { id: "13", src: auditorGen13, alt: "Certified auditor in production environment" },
-    { id: "14", src: auditorGen14, alt: "Quality assurance expert conducting audit" },
-    { id: "15", src: auditorGen15, alt: "Professional auditor reviewing standards" },
-    { id: "16", src: auditorGen16, alt: "Senior quality inspector on-site" },
-    { id: "17", src: auditorGen17, alt: "Experienced auditor with checklist" },
-    { id: "18", src: auditorGen18, alt: "Quality auditor performing inspection" },
-    { id: "19", src: auditorGen19, alt: "Certified professional conducting assessment" },
-    { id: "20", src: auditorGen20, alt: "Expert auditor in manufacturing facility" },
-    { id: "21", src: auditorGen21, alt: "Quality specialist reviewing processes" },
-    { id: "22", src: auditorGen22, alt: "Professional auditor with documentation" },
-    { id: "23", src: auditorGen23, alt: "Senior quality auditor on assignment" },
-    { id: "24", src: auditorGen24, alt: "Certified auditor conducting evaluation" },
-    { id: "25", src: auditorGen25, alt: "Quality management professional at work" },
-    { id: "26", src: auditorGen26, alt: "Expert auditor performing quality check" },
-  ];
 
   useEffect(() => {
     const cycle = () => {
@@ -419,38 +363,6 @@ const Auditors = () => {
 
         {/* How It Works Timeline */}
         <TimelineSection />
-
-        {/* Global Auditor Network Sphere */}
-        <section className="py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                <span className="text-[#14B8A6]">Global Auditor</span> Network
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                Join our elite network of certified professionals spanning 90+ countries
-              </p>
-            </motion.div>
-            
-            <div className="flex justify-center items-center min-h-[500px] md:min-h-[600px]">
-              <SphereImageGrid
-                images={sphereImages}
-                sphereRadius={2.5}
-                baseImageScale={1}
-                autoRotate={true}
-                autoRotateSpeed={0.15}
-                dragSensitivity={0.5}
-                momentumDecay={0.95}
-              />
-            </div>
-          </div>
-        </section>
 
         {/* Qualifications Section */}
         <QualificationsSection />
