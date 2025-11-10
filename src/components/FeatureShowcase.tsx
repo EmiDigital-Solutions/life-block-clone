@@ -36,7 +36,7 @@ const FeatureShowcase = () => {
             <div className="pt-4">
               <Button 
                 size="lg"
-                className="text-lg px-8 py-6 font-semibold bg-warning text-warning-foreground hover:bg-warning/90 rounded-full"
+                className="text-lg px-8 py-6 font-semibold bg-accent text-accent-foreground hover:bg-accent/90 rounded-full"
               >
                 Request a demo
               </Button>
@@ -74,9 +74,9 @@ const FeatureShowcase = () => {
 
               {/* Glow Effect */}
               <div 
-                className="absolute inset-0 -z-10 blur-3xl opacity-30"
+                className="absolute inset-0 -z-10 blur-3xl opacity-20"
                 style={{
-                  background: "radial-gradient(circle at center, hsl(var(--warning)) 0%, transparent 70%)"
+                  background: "radial-gradient(circle at center, hsl(var(--accent)) 0%, transparent 70%)"
                 }}
               />
             </div>
