@@ -1,8 +1,8 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
@@ -233,6 +233,240 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
   );
 };
 
+// Challenge Toggle Section
+const ChallengeToggleSection = () => {
+  const [isWithScanPro, setIsWithScanPro] = useState(false); // Start with "Traditional" state
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const withScanProContent = [
+    {
+      icon: CheckCircle2,
+      title: "Fixed Price from €700",
+      description: "Transparent pricing with no hidden costs - know exactly what you pay before you commit"
+    },
+    {
+      icon: Zap,
+      title: "Same-Day / Next-Day",
+      description: "Ultra-fast deployment with audits starting within 24 hours of your request"
+    },
+    {
+      icon: Calendar,
+      title: "1-3 Days Structured",
+      description: "Efficient on-site audits with AI-powered workflows that respect quality standards"
+    },
+    {
+      icon: BarChart3,
+      title: "Real-time + Report in 24h",
+      description: "Live insights during audit with complete documentation delivered within one day"
+    },
+    {
+      icon: CheckCheck,
+      title: "100% Standardized",
+      description: "AI-supported consistency ensures every audit follows the same professional standards"
+    },
+    {
+      icon: Camera,
+      title: "AI Computer Vision",
+      description: "Advanced equipment recognition with complete photographic documentation"
+    },
+  ];
+
+  const traditionalContent = [
+    {
+      icon: DollarSign,
+      title: "€15,000 - €25,000",
+      description: "Unpredictable costs with quotes on request and hidden fees that inflate final price"
+    },
+    {
+      icon: Clock,
+      title: "2-3 Weeks Lead Time",
+      description: "Long coordination delays mean critical supplier issues remain undiscovered for weeks"
+    },
+    {
+      icon: X,
+      title: "3-5 Days On-site",
+      description: "Extended audit duration disrupts supplier operations and delays critical decisions"
+    },
+    {
+      icon: AlertTriangle,
+      title: "5-10 Days After Audit",
+      description: "Delayed reporting means production issues continue while you wait for documentation"
+    },
+    {
+      icon: X,
+      title: "Depends on Auditor",
+      description: "Quality varies between auditors making supplier comparisons unreliable"
+    },
+    {
+      icon: AlertTriangle,
+      title: "Manual, Often Incomplete",
+      description: "Missing photos and incomplete documentation create gaps in evidence"
+    },
+  ];
+
+  const currentContent = isWithScanPro ? withScanProContent : traditionalContent;
+
+  return (
+    <section 
+      ref={ref}
+      data-nav-theme="light"
+      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      id="challenge"
+    >
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Label */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="flex items-center gap-2 mb-6"
+        >
+          <div className="flex items-center gap-1">
+            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-gray-300' : 'bg-red-600'}`} />
+            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-300'}`} />
+          </div>
+          <span className="text-sm font-semibold text-gray-600">The Challenge You Know</span>
+        </motion.div>
+
+        {/* Main Headline with Toggle */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap items-center gap-4"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
+              {isWithScanPro ? 'With' : 'Traditional'}
+            </h2>
+            
+            <motion.span
+              key={isWithScanPro ? 'with' : 'traditional'}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
+                isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
+              }`}
+            >
+              {isWithScanPro ? 'ScanPro+' : 'Providers'}
+            </motion.span>
+
+            {/* Toggle Switch */}
+            <button
+              onClick={() => setIsWithScanPro(!isWithScanPro)}
+              className={`relative w-20 h-10 rounded-full transition-all duration-300 ${
+                isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-400'
+              }`}
+              aria-label="Toggle between ScanPro+ and Traditional Providers"
+            >
+              <motion.div
+                className="absolute top-1 left-1 w-8 h-8 bg-white rounded-full shadow-lg"
+                animate={{ x: isWithScanPro ? 40 : 0 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            </button>
+          </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => {
+              const element = document.getElementById('cta');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="pl-8 pr-3 py-3 rounded-full font-semibold text-lg flex items-center gap-4 transition-all shadow-lg group"
+            style={{ backgroundColor: '#2563EB', color: 'white' }}
+          >
+            <span>Get Started</span>
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" style={{ color: '#2563EB' }} />
+            </div>
+          </motion.button>
+        </div>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
+          className="text-lg text-gray-600 mb-16 max-w-3xl lg:ml-auto"
+        >
+          {isWithScanPro 
+            ? "Experience transparent pricing, rapid deployment, and AI-powered standardization with YVOO ScanPro+."
+            : "Traditional supplier audits are inefficient and expensive with unpredictable costs, long delays, and inconsistent quality."}
+        </motion.p>
+
+        {/* Animated Grid */}
+        <motion.div layout className="relative">
+          <motion.div
+            key={isWithScanPro ? 'with' : 'traditional'}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 lg:gap-6"
+          >
+            {currentContent.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={`${isWithScanPro ? 'with' : 'traditional'}-${item.title}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: index * 0.05, 
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ 
+                    y: -8, 
+                    boxShadow: isWithScanPro 
+                      ? '0 12px 24px rgba(20, 184, 166, 0.2)' 
+                      : '0 12px 24px rgba(239, 68, 68, 0.2)'
+                  }}
+                  className="bg-white border border-gray-200 rounded-2xl p-8 transition-all"
+                >
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      delay: index * 0.05 + 0.2,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
+                      isWithScanPro 
+                        ? 'bg-gradient-to-br from-[#14B8A6] to-[#0F8775]' 
+                        : 'bg-gradient-to-br from-red-500 to-red-600'
+                    }`}
+                  >
+                    <Icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
 const ScanProPlus = () => {
   const isMobile = useIsMobile();
   
@@ -426,110 +660,8 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Challenge & Solution - Dark gradient */}
-      <section
-        data-nav-theme="dark"
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
-        id="challenge"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-8 sm:mb-12"
-          >
-            The <span style={{ color: '#2563EB' }}>Challenge</span> You Know
-          </motion.h2>
-
-          {/* Pain Point */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-amber-500/10 border border-amber-500/20 backdrop-blur-sm rounded-xl p-6 sm:p-8 mb-8"
-          >
-            <div className="flex items-start gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
-              <h3 className="text-2xl font-bold text-white">
-                Traditional Supplier Audits are Inefficient and Expensive
-              </h3>
-            </div>
-            <p className="text-white/90 mb-4 text-lg">
-              You know the problem: A standard supplier audit through TÜV or other traditional providers costs between <strong>€15,000 and €25,000</strong> per audit. Coordination takes weeks. Between request and audit appointment, 2-3 weeks often pass, the audit itself takes several days, and then you wait additional days for the report.
-            </p>
-            <p className="text-white/90 font-semibold mb-3 text-lg">The real problems for you as decision-maker:</p>
-            <ul className="space-y-2 text-white/80">
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>Inconsistent assessments – each auditor has their own style</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>Delayed insights – when the report arrives, the production situation has already changed</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>Incomplete documentation – missing photos, gaps in evidence</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>High internal coordination costs – your employees constantly need to follow up</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>No comparability – how does your Supplier A compare to Supplier B?</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400 mt-1">•</span>
-                <span>Difficult remote assessment – a real challenge in times of global supply chains</span>
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Solution */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="border backdrop-blur-sm rounded-xl p-6 sm:p-8"
-            style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.2)' }}
-          >
-            <div className="flex items-start gap-3 mb-4">
-              <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#14B8A6' }} />
-              <h3 className="text-2xl font-bold text-white">
-                The YVOO ScanPro+ Solution: Modern AI Platform Meets Global Expert Network
-              </h3>
-            </div>
-            <p className="text-white/90 mb-4 text-lg">
-              We've reimagined supplier auditing – <strong>specifically for demanding quality managers</strong> in the automotive, aerospace, pharma, and manufacturing industries. Our platform combines:
-            </p>
-            <ul className="space-y-2 text-white/80">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                <span><strong>Standardization through AI</strong> – every audit follows your specifications exactly</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                <span><strong>Speed</strong> – 70% time savings compared to traditional methods</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                <span><strong>Cost transparency</strong> – Fixed prices from €700, no hidden costs</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                <span><strong>Real-time Intelligence</strong> – Live updates during the audit</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                <span><strong>Full Compliance</strong> – GDPR-compliant, SOC2-certified</span>
-              </li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
+      {/* Challenge & Solution - Toggle Section */}
+      <ChallengeToggleSection />
 
       {/* Features Section - Animated Cards */}
       {isMobile ? <MobileFeaturesSection features={features} /> : <DesktopFeaturesSection features={features} />}
