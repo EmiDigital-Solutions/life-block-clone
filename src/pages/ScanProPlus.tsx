@@ -68,25 +68,25 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-200px" }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="relative w-[320px] lg:w-[340px] xl:w-[360px] flex-shrink-0"
+                  className="relative w-[320px] lg:w-[340px] xl:w-[360px] h-[480px] flex-shrink-0"
                 >
                   {/* Clean white card matching reference */}
-                  <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-8">
+                  <div className="h-full bg-white rounded-3xl shadow-lg overflow-hidden p-8 flex flex-col">
                     
                     {/* Teal label */}
-                    <div className="mb-4">
+                    <div className="mb-4 flex-shrink-0">
                       <span className="text-[#14B8A6] text-sm font-semibold">
                         {feature.label}
                       </span>
                     </div>
 
                     {/* Bold title/description */}
-                    <h3 className="text-gray-900 text-xl font-bold mb-8 leading-tight">
+                    <h3 className="text-gray-900 text-xl font-bold mb-8 leading-tight flex-shrink-0 min-h-[120px]">
                       {feature.title}
                     </h3>
 
                     {/* Large image with rounded corners */}
-                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                    <div className="relative w-full flex-1 rounded-2xl overflow-hidden">
                       <img
                         src={feature.image}
                         alt={feature.title}
@@ -160,25 +160,25 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative w-[300px] md:w-[320px] flex-shrink-0"
+                className="relative w-[300px] md:w-[320px] h-[420px] flex-shrink-0"
               >
                 {/* Clean white card matching reference */}
-                <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-6">
+                <div className="h-full bg-white rounded-3xl shadow-lg overflow-hidden p-6 flex flex-col">
                   
                   {/* Teal label */}
-                  <div className="mb-3">
+                  <div className="mb-3 flex-shrink-0">
                     <span className="text-[#14B8A6] text-sm font-semibold">
                       {feature.label}
                     </span>
                   </div>
 
                   {/* Bold title/description */}
-                  <h3 className="text-gray-900 text-lg font-bold mb-6 leading-tight">
+                  <h3 className="text-gray-900 text-lg font-bold mb-6 leading-tight flex-shrink-0 min-h-[100px]">
                     {feature.title}
                   </h3>
 
                   {/* Large image with rounded corners */}
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                  <div className="relative w-full flex-1 rounded-2xl overflow-hidden">
                     <img
                       src={feature.image}
                       alt={feature.title}
