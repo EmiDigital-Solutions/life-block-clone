@@ -23,16 +23,10 @@ import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
-// Desktop Technology Section with Scroll Effect
-const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { features: any[], auditors: any[], scrollToSection: (id: string) => void }) => {
-  const sectionRef = useRef<HTMLElement>(null);
+// Desktop Technology Section with Scroll Effect - Auditor Network Only
+const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
 
   useEffect(() => {
     const cycle = () => {
@@ -78,6 +72,169 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
     }
   };
 
+  return (
+    <section 
+      data-nav-theme="light"
+      className="relative py-20"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Auditor Network Section - Horizontal Layout */}
+        <div className="mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+            
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
+              </motion.div>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+              >
+                Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-lg text-gray-600 leading-relaxed"
+              >
+                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right Column: Auditor Cards Animation */}
+            <div className="flex justify-center lg:justify-end items-end">
+              <div 
+                className="relative w-full max-w-lg"
+                style={{ perspective: "2000px" }}
+              >
+                <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12">
+                  {auditors.map((auditor, auditorIndex) => {
+                    const style = getCardStyle(auditorIndex, auditors.length);
+                    
+                    return (
+                      <motion.div
+                        key={auditor.location + auditor.region}
+                        className="absolute cursor-pointer"
+                        onClick={handleCardClick}
+                        initial={false}
+                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                        animate={{
+                          x: style.x,
+                          y: style.y,
+                          rotateY: style.rotateY,
+                          rotateZ: style.rotateZ,
+                          scale: style.scale,
+                          opacity: style.opacity,
+                          zIndex: style.zIndex,
+                        }}
+                        transition={{
+                          duration: 1.8,
+                          delay: isFanned ? auditorIndex * 0.12 : (auditors.length - auditorIndex) * 0.08,
+                          ease: [0.33, 1, 0.68, 1],
+                          type: "tween",
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        <div
+                          className={`relative w-[260px] h-[340px] xl:w-[300px] xl:h-[380px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          style={{
+                            boxShadow: `
+                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                              0 0 30px rgba(20, 184, 166, 0.2)
+                            `,
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                          
+                          <div className="absolute inset-0 flex items-center justify-center pt-8">
+                            <div className="relative w-[160px] h-[160px] xl:w-[190px] xl:h-[190px] rounded-full overflow-hidden border-2 border-white/10">
+                              <img
+                                src={auditor.image}
+                                alt={`Professional auditor from ${auditor.location}`}
+                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                              />
+                              <div 
+                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                                style={{
+                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 w-full">
+                              <p className="text-white font-sans font-bold text-base text-center">
+                                {auditor.location}
+                              </p>
+                              <p className="text-white/80 font-sans text-sm text-center">
+                                {auditor.region}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div 
+                            className="absolute inset-0 pointer-events-none rounded-2xl"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Desktop Capabilities Section with Scroll Effect
+const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
   const cardWidth = 340;
   const gap = 20;
   const numCards = features.length;
@@ -96,154 +253,9 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
       data-nav-theme="light"
       className="relative h-[120vh]"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-      id="features"
+      id="capabilities"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
-        {/* Auditor Network Section - Horizontal Layout */}
-        <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mb-24">
-          <div className="max-w-[2000px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
-              
-              {/* Left Column: Text Content */}
-              <div className="flex flex-col space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-                  <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
-                </motion.div>
-
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
-                >
-                  Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
-                </motion.h2>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-lg text-gray-600 leading-relaxed"
-                >
-                  Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <button 
-                    onClick={() => scrollToSection('cta')}
-                    className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group"
-                  >
-                    <span>Learn more</span>
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </motion.div>
-              </div>
-
-              {/* Right Column: Auditor Cards Animation */}
-              <div className="flex justify-center lg:justify-end items-end">
-                <div 
-                  className="relative w-full max-w-lg"
-                  style={{ perspective: "2000px" }}
-                >
-                  <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12">
-                    {auditors.map((auditor, auditorIndex) => {
-                      const style = getCardStyle(auditorIndex, auditors.length);
-                      
-                      return (
-                        <motion.div
-                          key={auditor.location + auditor.region}
-                          className="absolute cursor-pointer"
-                          onClick={handleCardClick}
-                          initial={false}
-                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                          animate={{
-                            x: style.x,
-                            y: style.y,
-                            rotateY: style.rotateY,
-                            rotateZ: style.rotateZ,
-                            scale: style.scale,
-                            opacity: style.opacity,
-                            zIndex: style.zIndex,
-                          }}
-                          transition={{
-                            duration: 1.8,
-                            delay: isFanned ? auditorIndex * 0.12 : (auditors.length - auditorIndex) * 0.08,
-                            ease: [0.33, 1, 0.68, 1],
-                            type: "tween",
-                          }}
-                          style={{
-                            transformStyle: "preserve-3d",
-                            willChange: "transform, opacity",
-                          }}
-                        >
-                          <div
-                            className={`relative w-[260px] h-[340px] xl:w-[300px] xl:h-[380px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                            style={{
-                              boxShadow: `
-                                0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                                0 0 30px rgba(20, 184, 166, 0.2)
-                              `,
-                            }}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            
-                            <div className="absolute inset-0 flex items-center justify-center pt-8">
-                              <div className="relative w-[160px] h-[160px] xl:w-[190px] xl:h-[190px] rounded-full overflow-hidden border-2 border-white/10">
-                                <img
-                                  src={auditor.image}
-                                  alt={`Professional auditor from ${auditor.location}`}
-                                  className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                                />
-                                <div 
-                                  className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                  style={{
-                                    background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
-                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 w-full">
-                                <p className="text-white font-sans font-bold text-base text-center">
-                                  {auditor.location}
-                                </p>
-                                <p className="text-white/80 font-sans text-sm text-center">
-                                  {auditor.region}
-                                </p>
-                              </div>
-                            </div>
-
-                            <div 
-                              className="absolute inset-0 pointer-events-none rounded-2xl"
-                              style={{
-                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Features Header */}
         <div className="text-center mb-6 px-4 flex-shrink-0">
           <motion.h2 
@@ -315,8 +327,8 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
   );
 };
 
-// Mobile Features Section
-const MobileFeaturesSection = ({ features, auditors }: { features: any[], auditors: any[] }) => {
+// Mobile Features Section - Auditor Network Only
+const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const visibleAuditors = auditors.slice(0, 3);
@@ -368,9 +380,8 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
   return (
     <section
       data-nav-theme="light"
-      className="relative py-16 px-4 sm:px-6"
+      className="relative py-20 px-4 sm:px-6"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-      id="features"
     >
       <div className="max-w-7xl mx-auto">
         {/* Auditor Network Section - Horizontal Layout */}
@@ -512,7 +523,21 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+};
 
+// Mobile Capabilities Section
+const MobileCapabilitiesSection = ({ features }: { features: any[] }) => {
+  return (
+    <section
+      data-nav-theme="light"
+      className="relative py-16 px-4 sm:px-6"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      id="capabilities"
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Features Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1006,8 +1031,11 @@ const ScanProPlus = () => {
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
 
-      {/* Features Section - Animated Cards */}
-      {isMobile ? <MobileFeaturesSection features={features} auditors={auditors} /> : <DesktopFeaturesSection features={features} auditors={auditors} scrollToSection={scrollToSection} />}
+      {/* Auditor Network Section */}
+      {isMobile ? <MobileFeaturesSection auditors={auditors} /> : <DesktopFeaturesSection auditors={auditors} scrollToSection={scrollToSection} />}
+
+      {/* Capabilities Section */}
+      {isMobile ? <MobileCapabilitiesSection features={features} /> : <DesktopCapabilitiesSection features={features} />}
 
       {/* Comparison Table - Dark gradient */}
       <section
