@@ -84,7 +84,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6">
+            <div className="flex flex-col space-y-6 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center lg:justify-center items-end lg:pl-12 xl:pl-20">
+            <div className="flex justify-center lg:justify-center order-first lg:order-last">
               <div 
                 className="relative w-full max-w-lg"
                 style={{ perspective: "2000px" }}
@@ -389,7 +389,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6">
+            <div className="flex flex-col space-y-6 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
