@@ -470,18 +470,48 @@ const ScanProPlus = () => {
 
   const features = [
     {
-      label: "Company Data Extraction",
-      title: "ensun Bot continuously crawls key technology vendors around the world.",
+      label: "Flexible Templates",
+      title: "Create custom audit structures for specific industries, standards, or customer requirements. ISO 9001 templates with TS16949-specific additions.",
+      image: scanProDashboard,
+    },
+    {
+      label: "AI Equipment Recognition",
+      title: "Point the camera at machines and get instant identification and analysis. Automatic identification of type, year, and maintenance status.",
       image: aiInspector,
     },
     {
-      label: "Company Data Enrichment",
-      title: "ensun DaP creates informative supplier profiles worldwide.",
+      label: "Dynamic Rating",
+      title: "Configurable evaluation criteria with industry-specific weighting. CleanRoom standards at 40% for Pharma, Quality systems at 35% for Automotive.",
+      image: riskScoring,
+    },
+    {
+      label: "Evidence Management",
+      title: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
       image: aiCopilot,
     },
     {
-      label: "AI-based Ranking System",
-      title: "ERA-S sorts the results for each search query according to relevance.",
+      label: "Real-Time Tracking",
+      title: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
+      image: liveTracking,
+    },
+    {
+      label: "Full Compliance",
+      title: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
+      image: aiAudit,
+    },
+    {
+      label: "Risk Management",
+      title: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
+      image: riskScoring,
+    },
+    {
+      label: "Predictive Scoring",
+      title: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
+      image: aiCopilot,
+    },
+    {
+      label: "Benchmarking",
+      title: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
       image: scanProDashboard,
     }
   ];
