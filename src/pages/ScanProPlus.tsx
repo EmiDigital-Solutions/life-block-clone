@@ -59,10 +59,10 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
     
     if (isFanned) {
       return {
-        x: offset * 85,
-        y: Math.abs(offset) * -45,
+        x: offset * 110,
+        y: Math.abs(offset) * -55,
         rotateY: offset * -8,
-        rotateZ: offset * 8,
+        rotateZ: offset * 10,
         scale: 1,
         opacity: 1,
         zIndex: totalCards - Math.abs(offset),
@@ -102,7 +102,7 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mb-16">
+        <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mb-24">
           <div className="max-w-[2000px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
               
@@ -128,15 +128,15 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
                   Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
                 </motion.h2>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-lg text-gray-600 leading-relaxed"
-              >
-                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
-              </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-lg text-gray-600 leading-relaxed"
+                >
+                  Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
+                </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -160,7 +160,7 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
                   className="relative w-full max-w-lg"
                   style={{ perspective: "2000px" }}
                 >
-                  <div className="relative h-[400px] xl:h-[500px] flex items-center justify-center">
+                  <div className="relative h-[550px] xl:h-[650px] flex items-center justify-center">
                     {auditors.map((auditor, auditorIndex) => {
                       const style = getCardStyle(auditorIndex, auditors.length);
                       
@@ -192,7 +192,7 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
                           }}
                         >
                           <div
-                            className={`relative w-[240px] h-[310px] xl:w-[280px] xl:h-[360px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                            className={`relative w-[260px] h-[340px] xl:w-[300px] xl:h-[380px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                             style={{
                               boxShadow: `
                                 0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -203,7 +203,7 @@ const DesktopFeaturesSection = ({ features, auditors, scrollToSection }: { featu
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                             
                             <div className="absolute inset-0 flex items-center justify-center pt-8">
-                              <div className="relative w-[150px] h-[150px] xl:w-[180px] xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
+                              <div className="relative w-[160px] h-[160px] xl:w-[190px] xl:h-[190px] rounded-full overflow-hidden border-2 border-white/10">
                                 <img
                                   src={auditor.image}
                                   alt={`Professional auditor from ${auditor.location}`}
@@ -376,7 +376,7 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
     >
       <div className="max-w-7xl mx-auto">
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="mb-16">
+        <div className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             
             {/* Left Column: Text Content */}
@@ -430,7 +430,7 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
                 className="relative w-full max-w-md"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[375px] flex items-center justify-center">
+                <div className="relative h-[450px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
@@ -462,7 +462,7 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[240px] h-[310px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -473,7 +473,7 @@ const MobileFeaturesSection = ({ features, auditors }: { features: any[], audito
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6">
-                            <div className="relative w-[140px] h-[140px] rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="relative w-[150px] h-[150px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
