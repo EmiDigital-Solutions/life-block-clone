@@ -566,8 +566,8 @@ const ScanProPlus = () => {
         style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))" }}
         id="hero"
       >
-        <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0 pb-10">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -581,7 +581,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col space-y-4 text-white mb-12"
+              className="flex flex-col space-y-4 text-white mx-0 mb-12"
             >
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
@@ -601,7 +601,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full sm:w-auto mb-10"
+              className="w-full sm:w-auto mb-9"
             >
               <button 
                 onClick={() => scrollToSection('cta')}
@@ -616,7 +616,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90"
+              className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-0"
             >
               <strong>On-site supplier audits in 3 days instead of 3 weeks</strong>, starting at <strong>€700 fixed price</strong> instead of €15,000-25,000, with <strong>actionable business intelligence</strong> instead of just checklists – powered by AI and our global auditor network.
             </motion.p>
