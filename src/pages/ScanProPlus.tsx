@@ -44,6 +44,14 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
         <div className="text-center mb-12 px-4 flex-shrink-0">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[#14B8A6] text-base font-semibold mb-2"
+          >
+            9 Innovative AI Features
+          </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -100,31 +108,6 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-8 px-4 flex-shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <p className="text-gray-900 text-base font-medium">
-              You want to learn more about our Plans?
-            </p>
-            <button
-              onClick={() => {
-                const element = document.getElementById('cta');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="px-6 py-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-lg font-semibold text-sm transition-colors flex items-center gap-2"
-            >
-              Pricing
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
@@ -146,6 +129,9 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
+          <p className="text-[#14B8A6] text-sm font-semibold mb-2">
+            9 Innovative AI Features
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-[#14B8A6]">Our technology</span>{" "}
             <span className="text-gray-900">for global supplier identification.</span>
@@ -191,31 +177,6 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center gap-4"
-          >
-            <p className="text-gray-900 text-base font-medium">
-              You want to learn more about our Plans?
-            </p>
-            <button
-              onClick={() => {
-                const element = document.getElementById('cta');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="px-6 py-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-lg font-semibold text-sm transition-colors flex items-center gap-2"
-            >
-              Pricing
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
