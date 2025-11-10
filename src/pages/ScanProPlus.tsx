@@ -81,7 +81,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
             <div className="flex flex-col space-y-6">
@@ -386,7 +386,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
       <div className="max-w-7xl mx-auto">
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
             <div className="flex flex-col space-y-6">
