@@ -1,567 +1,625 @@
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { Check, ArrowRight, CheckCircle, Zap, Shield, BarChart3, Award, TrendingUp } from "lucide-react";
-import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
+import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
+import { ArrowRight, CheckCircle2, Shield, Zap, BarChart3, Award, TrendingDown, Clock, Target } from "lucide-react";
 
 const ScanProPlus = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  };
 
-      {/* HERO SECTION */}
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      
+      {/* Hero Section - Green gradient */}
       <section
         data-nav-theme="dark"
-        className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-12"
-        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))" }}
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
+        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
+        id="hero"
       >
-        <div className="container mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center text-white space-y-6"
-          >
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-tight">
-              YVOO ScanPro+
-            </h1>
-            <p className="text-2xl md:text-3xl font-medium opacity-95 max-w-4xl mx-auto">
-              AI-Powered Supplier Audit Platform for Professional Quality Management
-            </p>
-            <p className="text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto">
-              Imagine: <strong>On-site supplier audits in 3 days instead of 3 weeks</strong>, 
-              starting at <strong>€700 fixed price</strong> instead of €15,000-25,000, with <strong>actionable business intelligence</strong> 
-              instead of just checklists – YVOO ScanPro+ makes this possible with AI and our global auditor network.
-            </p>
-          </motion.div>
-        </div>
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+              >
+                AI-powered supplier audits in days, not weeks
+              </motion.h1>
 
-        {/* Value Proposition Band */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-12 bg-[#10B981] text-white py-6 px-8 rounded-lg max-w-5xl mx-auto text-center"
-        >
-          <p className="text-2xl font-semibold">
-            🎯 <strong>Always ground truth</strong> – Reliable, precise data for informed business decisions
-          </p>
-        </motion.div>
-      </section>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-col space-y-4 text-white mb-12"
+              >
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">Fixed price from €700</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">3 days instead of 3 weeks</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <span className="text-lg font-normal leading-[1.6]">70% cost reduction</span>
+                </div>
+              </motion.div>
 
-      {/* CHALLENGE SECTION */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12"
-          >
-            The Challenge You Know as Quality Manager
-          </motion.h2>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="w-full sm:w-auto mb-10"
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+                >
+                  Schedule demo
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
 
-          {/* Pain Point */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-amber-50 border-l-4 border-amber-400 p-8 rounded-lg mb-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              ❌ Traditional Supplier Audits are Inefficient and Expensive
-            </h3>
-            <p className="text-lg text-gray-700 mb-4">
-              You know the problem: A standard supplier audit through TÜV or other traditional providers costs between <strong>€15,000 and €25,000</strong> per audit. Coordination takes weeks. Between request and audit appointment, 2-3 weeks often pass, the audit itself takes several days, and then you wait additional days for the report.
-            </p>
-            <p className="text-lg font-semibold text-gray-900 mb-3">The real problems for you as decision-maker:</p>
-            <ul className="space-y-2 text-gray-700 ml-6">
-              <li>• Inconsistent assessments – each auditor has their own style</li>
-              <li>• Delayed insights – when the report arrives, the production situation has already changed</li>
-              <li>• Incomplete documentation – missing photos, gaps in evidence</li>
-              <li>• High internal coordination costs – your employees constantly need to follow up</li>
-              <li>• No comparability – how does your Supplier A compare to Supplier B?</li>
-              <li>• Difficult remote assessment – a real challenge in times of global supply chains</li>
-            </ul>
-          </motion.div>
-
-          {/* Solution */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-emerald-50 border-l-4 border-emerald-500 p-8 rounded-lg"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              ✅ The YVOO ScanPro+ Solution: Modern AI Platform Meets Global Expert Network
-            </h3>
-            <p className="text-lg text-gray-700 mb-4">
-              We've reimagined supplier auditing – <strong>specifically for demanding quality managers</strong> in the automotive, aerospace, pharma, and manufacturing industries. Our platform combines:
-            </p>
-            <ul className="space-y-2 text-gray-700 ml-6">
-              <li>• <strong>Standardization through AI</strong> – every audit follows your specifications exactly</li>
-              <li>• <strong>Speed</strong> – 70% time savings compared to traditional methods</li>
-              <li>• <strong>Cost transparency</strong> – Fixed prices from €700, no hidden costs</li>
-              <li>• <strong>Real-time Intelligence</strong> – Live updates during the audit</li>
-              <li>• <strong>Full Compliance</strong> – GDPR-compliant, SOC2-certified</li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* COMPARISON TABLE */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
-        <div className="container mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center"
-          >
-            Direct Comparison: YVOO ScanPro+ vs. Traditional Providers
-          </motion.h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
-              <thead className="bg-gray-800 text-white">
-                <tr>
-                  <th className="px-6 py-4 text-left">Criteria</th>
-                  <th className="px-6 py-4 text-left">Traditional Providers (TÜV, etc.)</th>
-                  <th className="px-6 py-4 text-left">YVOO ScanPro+</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Cost per Audit</td>
-                  <td className="px-6 py-4 text-red-600">€15,000 - €25,000</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">From €700 (Fixed Price)</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Time until Audit Execution</td>
-                  <td className="px-6 py-4 text-red-600">2-3 weeks lead time</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">Same-Day / Next-Day possible</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Audit Duration</td>
-                  <td className="px-6 py-4 text-red-600">3-5 days on-site</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">1-3 days (structured)</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Time to Report</td>
-                  <td className="px-6 py-4 text-red-600">5-10 days after audit</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">Real-time + Final Report in 24h</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Consistency</td>
-                  <td className="px-6 py-4 text-red-600">Depends on auditor</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">AI-supported, 100% standardized</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Equipment Recognition</td>
-                  <td className="px-6 py-4 text-red-600">Manual recording, often incomplete</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">AI Computer Vision – automatic identification</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Traceability</td>
-                  <td className="px-6 py-4 text-red-600">Static PDF reports</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">Digital platform with audit trail</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Benchmarking</td>
-                  <td className="px-6 py-4 text-red-600">Manual, labor-intensive</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">Automatic against industry standards</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Price Transparency</td>
-                  <td className="px-6 py-4 text-red-600">Quote on request, often renegotiations</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">Fixed prices, no hidden costs</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 font-semibold">Global Availability</td>
-                  <td className="px-6 py-4 text-red-600">Network available, but slow coordination</td>
-                  <td className="px-6 py-4 text-green-600 font-semibold">On-Demand in 90+ countries, Uber principle</td>
-                </tr>
-              </tbody>
-            </table>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90"
+              >
+                <strong>ScanPro+ combines AI, computer vision, and a global auditor network</strong> to deliver standardized, comprehensive supplier audits at a fraction of traditional costs — with actionable business intelligence instead of just checklists.
+              </motion.p>
           </div>
         </div>
       </section>
 
-      {/* ROI CALCULATOR */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
-        <div className="container mx-auto max-w-5xl">
-          <div className="bg-gray-100 rounded-2xl p-8 md:p-12">
+      {/* Value Section */}
+      <section
+        data-nav-theme="light"
+        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
+        <div className="container mx-auto">
+          <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-gray-600 text-xs sm:text-sm font-medium"
+            >
+              ScanPro+ — AI-Powered Supplier Audits
+            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold text-gray-900 mb-8"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
             >
-              ROI Calculation: Your Savings with YVOO ScanPro+
+              <span className="text-[#14B8A6]">Always ground truth</span> — Reliable data for informed decisions
             </motion.h2>
-            <p className="text-xl text-gray-700 mb-8">
-              Assuming your company conducts <strong>20 supplier audits per year</strong>:
-            </p>
-
-            <div className="space-y-6">
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-300">
-                <div className="text-xl font-semibold">Traditional Audit Costs (20 × €20,000)</div>
-                <div className="text-3xl font-bold text-gray-900">€400,000</div>
-              </div>
-              
-              <div className="flex justify-between items-center py-6 border-b-2 border-gray-300">
-                <div className="text-xl font-semibold">YVOO ScanPro+ Costs (20 × €700)</div>
-                <div className="text-3xl font-bold text-gray-900">€14,000</div>
-              </div>
-              
-              <div className="bg-emerald-100 rounded-xl p-8 -mx-4 md:-mx-8">
-                <div className="flex justify-between items-center">
-                  <div className="text-2xl font-bold text-gray-900">💰 Your Annual Cost Savings</div>
-                  <div className="text-5xl font-bold text-green-600">€386,000</div>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center py-6">
-                <div className="text-xl font-semibold">Time Savings (70% of 2 weeks per audit)</div>
-                <div className="text-3xl font-bold text-green-600">280 Work Days</div>
-              </div>
-            </div>
-
-            <p className="text-gray-600 mt-8">
-              <strong>Additional Savings:</strong> No travel costs for internal auditors, 
-              reduced rework through standardized reports, faster supplier releases 
-              enable shorter time-to-market.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4"
+            >
+              Traditional supplier audits cost €15,000-25,000 and take weeks. You get inconsistent assessments, delayed insights, and incomplete documentation — all while your team wastes time on coordination.
+            </motion.p>
           </div>
         </div>
       </section>
 
-      {/* AI FEATURES */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
-        <div className="container mx-auto max-w-7xl">
-          <motion.h2
+      {/* Product Overview Section - Dark gradient */}
+      <section
+        data-nav-theme="dark"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        id="how"
+      >
+        <div className="container mx-auto">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center"
+            className="text-center mb-12 sm:mb-16"
           >
-            9 Innovative AI Features for Strategic Supplier Assessment
-          </motion.h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
+              <span className="text-[#14B8A6]">How It</span> Works.
+            </h2>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {[
               {
-                icon: <CheckCircle className="w-8 h-8 text-blue-600" />,
-                title: "Flexible Template Creation",
-                desc: "Create custom audit structures for specific industries, standards, or customer requirements.",
-                example: "Example for Automotive: ISO 9001 template for automotive suppliers with TS16949-specific additions and industry-specific KPIs."
+                number: 1,
+                title: "Book Auditor",
+                desc: "AI matches you with certified auditor in 90+ countries",
+                detail: "Same-day or next-day availability. Fixed transparent pricing from €700. Smart matching based on industry expertise and location.",
               },
               {
-                icon: <Zap className="w-8 h-8 text-blue-600" />,
-                title: "AI-Powered Equipment Recognition",
-                desc: "Point the camera at machines and get instant identification and analysis.",
-                example: "Example: 'CNC Milling Machine DMG Mori' → AI automatically identifies all technical details."
+                number: 2,
+                title: "AI-Guided Audit",
+                desc: "Standardized execution with computer vision and real-time updates",
+                detail: "AI-powered equipment recognition. Live progress tracking. Automatic photo categorization. Consistent evaluation framework across all audits.",
               },
               {
-                icon: <BarChart3 className="w-8 h-8 text-blue-600" />,
-                title: "Dynamic Rating Systems",
-                desc: "Configurable evaluation criteria with industry-specific weighting.",
-                example: "Pharma Example: CleanRoom standards weighted at 40%. Automotive Example: Quality systems rated at 35%."
+                number: 3,
+                title: "Instant Intelligence",
+                desc: "Receive comprehensive report in 24h with actionable insights",
+                detail: "Real-time findings during audit. Final report with benchmarking, risk scoring, and corrective action plans. Full audit trail and compliance documentation.",
               },
-              {
-                icon: <Shield className="w-8 h-8 text-blue-600" />,
-                title: "Intelligent Evidence Management",
-                desc: "Automatic categorization and analysis of audit evidence.",
-                example: "Automatic photo categorization for quality control, workplace safety, environmental standards."
-              },
-              {
-                icon: <TrendingUp className="w-8 h-8 text-blue-600" />,
-                title: "Real-Time Progress Tracking",
-                desc: "Live updates with milestone notifications during the audit.",
-                example: "Example: 'Production area completed (75% of total points achieved), next step: Quality lab'"
-              },
-              {
-                icon: <Award className="w-8 h-8 text-blue-600" />,
-                title: "Compliance & Certifications",
-                desc: "GDPR-compliant, SOC2-certified with complete audit trail.",
-                example: "Supported standards: ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF"
-              },
-              {
-                icon: <Shield className="w-8 h-8 text-red-600" />,
-                title: "Real-Time Risk Management",
-                desc: "Early detection of critical compliance violations during the audit.",
-                example: "CRITICAL Example: 'Missing calibration on 3 measuring devices detected – production release stopped'"
-              },
-              {
-                icon: <TrendingUp className="w-8 h-8 text-purple-600" />,
-                title: "Predictive Risk Scoring",
-                desc: "Risk prediction based on historical audit data.",
-                example: "Example: 'Supplier shows 15% higher quality risk due to outdated testing equipment and missing maintenance protocol'"
-              },
-              {
-                icon: <BarChart3 className="w-8 h-8 text-green-600" />,
-                title: "Comparative Benchmarking",
-                desc: "Comparative analysis against industry peers.",
-                example: "Example: 'Your supplier achieves 87% of industry benchmarks in quality systems, but is 12% below average in environmental standards'"
-              }
-            ].map((feature, idx) => (
+            ].map((step, index) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                key={step.number}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-500"
+                transition={{ delay: index * 0.2 }}
+                className="relative group"
               >
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-700 mb-3">{feature.desc}</p>
-                <p className="text-sm text-gray-600 italic">{feature.example}</p>
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                      {step.number}
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-base sm:text-lg text-white/90 mb-2 sm:mb-3 font-medium">{step.desc}</p>
+                  <p className="text-sm sm:text-base text-white/70">{step.detail}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* COMPLIANCE & STANDARDS */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* Capabilities Section - Infinite Scrolling Gallery */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        id="capabilities"
+      >
+        <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16 px-4 sm:px-6 lg:px-12 xl:px-24"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
+              <span className="text-[#14B8A6]">9 AI Features</span> for Strategic Assessment
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto">
+              From flexible templates to predictive risk scoring — everything you need for modern quality management
+            </p>
+          </motion.div>
+          
+          <InfiniteScrollingGallery />
+        </div>
+      </section>
+
+      {/* Results Section - Dark gradient */}
+      <section
+        data-nav-theme="dark"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        id="results"
+      >
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
+              <span className="text-[#14B8A6]">Measurable</span> Impact.
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-white/80 max-w-3xl mx-auto">
+              ROI calculation for 20 supplier audits per year
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-12">
+            {[
+              {
+                icon: <TrendingDown className="w-8 h-8" />,
+                value: "70%",
+                label: "Cost Reduction",
+                desc: "€400,000 → €14,000 annually",
+                color: "text-green-400",
+              },
+              {
+                icon: <Clock className="w-8 h-8" />,
+                value: "80%",
+                label: "Time Savings",
+                desc: "280 work days saved per year",
+                color: "text-blue-400",
+              },
+              {
+                icon: <Target className="w-8 h-8" />,
+                value: "100%",
+                label: "Consistency",
+                desc: "AI-standardized evaluations",
+                color: "text-purple-400",
+              },
+              {
+                icon: <Zap className="w-8 h-8" />,
+                value: "24h",
+                label: "Final Report",
+                desc: "Same-day audits available",
+                color: "text-amber-400",
+              },
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 text-center hover:bg-white/10 transition-all duration-300"
+              >
+                <div className={`flex justify-center mb-4 ${stat.color}`}>
+                  {stat.icon}
+                </div>
+                <div className={`text-4xl sm:text-5xl font-bold mb-2 ${stat.color}`}>
+                  {stat.value}
+                </div>
+                <div className="text-lg sm:text-xl font-semibold text-white mb-2">
+                  {stat.label}
+                </div>
+                <div className="text-sm text-white/70">
+                  {stat.desc}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional Benefits */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10"
+            >
+              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Shield className="w-6 h-6 text-[#14B8A6]" />
+                Quality Improvement
+              </h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Uniform methodology for all assessments</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>AI-powered critical risk detection</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Continuous improvement tracking</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Data-driven supplier decisions</span>
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10"
+            >
+              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <BarChart3 className="w-6 h-6 text-[#14B8A6]" />
+                Efficiency Gains
+              </h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>50% faster audit execution</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Automatic real-time report generation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Integrated corrective action tracking</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0 mt-0.5" />
+                  <span>Shorter time-to-market for suppliers</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Use Cases - Light gradient */}
+      <section
+        data-nav-theme="light"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gray-50 rounded-2xl p-12"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              🏆 Compliance & Supported Standards
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
+              Industry-Specific <span className="text-[#14B8A6]">Use Cases</span>
             </h2>
-            <p className="text-xl text-gray-700 mb-8">
-              YVOO ScanPro+ meets the highest international quality and safety standards. 
-              Your audits are legally secure and comply with all industry-specific requirements.
-            </p>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {['ISO 9001', 'IATF 16949', 'AS9100', 'ISO 14001', 'GMP', 'API Q1', 'SQF', 'VDA 6.3', 'TS16949', 'GDPR-compliant', 'SOC2-certified', 'FDA-compliant'].map((standard, idx) => (
-                <div key={idx} className="bg-white px-4 py-3 rounded-lg text-center font-semibold text-gray-800 shadow">
-                  {standard}
-                </div>
-              ))}
-            </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* INDUSTRY USE CASES */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12"
-          >
-            Industry-Specific Use Cases
-          </motion.h2>
-
-          <div className="space-y-8">
+          <div className="grid gap-8">
             {[
               {
                 icon: "🚗",
                 title: "Automotive: PPAP Validation & Tool Audits",
-                useCase: "Your use case: You need to qualify a new Tier-2 supplier for precision parts.",
-                solution: [
-                  "Complete First Article Inspection with automatic document creation",
-                  "Supplier development according to IATF 16949",
-                  "Automatic release process with ERP integration",
-                  "VDA 6.3 compliant process assessment"
-                ],
-                result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
+                challenge: "Qualify new Tier-2 supplier for precision parts",
+                solution: "Complete First Article Inspection • IATF 16949 development • VDA 6.3 process assessment • ERP integration",
+                result: "Qualification in 3 days instead of 3 weeks"
               },
               {
                 icon: "✈️",
-                title: "Aerospace: AS9100 Compliance & Critical Process Validation",
-                useCase: "Your use case: Validation of a welding process at a supplier of critical aircraft components.",
-                solution: [
-                  "Welding process qualification with complete documentation",
-                  "Material tracking and certificate tracking",
-                  "AS9100-compliant reporting",
-                  "Critical process parameter monitoring"
-                ]
+                title: "Aerospace: AS9100 Compliance & Process Validation",
+                challenge: "Validate welding process for critical aircraft components",
+                solution: "Welding qualification • Material tracking • AS9100 reporting • Critical parameter monitoring",
+                result: "Complete documentation with full traceability"
               },
               {
                 icon: "💊",
                 title: "Pharma: GMP Audits & Clean Room Assessments",
-                useCase: "Your use case: GMP audit of an API manufacturer in India before contract signing.",
-                solution: [
-                  "Sterilization process validation with FDA-compliant documentation",
-                  "Clean Room assessment with automatic classification",
-                  "Change Control and deviation management",
-                  "Validation processes fully documented"
-                ]
+                challenge: "GMP audit of API manufacturer before contract",
+                solution: "Sterilization validation • Clean Room classification • FDA-compliant documentation • Change Control",
+                result: "Complete compliance documentation in 24h"
               },
               {
                 icon: "🏭",
-                title: "Chemical & Process Industry: REACH Compliance & Process Safety",
-                useCase: "Your use case: Safety assessment of a chemical plant in China.",
-                solution: [
-                  "Plant safety inspection with automatic risk assessment",
-                  "Environmental audits and REACH compliance check",
-                  "Action tracking with deadline monitoring",
-                  "Process safety according to COMAH/Seveso"
-                ]
+                title: "Chemical: REACH Compliance & Process Safety",
+                challenge: "Safety assessment of chemical plant",
+                solution: "Plant safety inspection • REACH compliance check • Risk assessment • COMAH/Seveso documentation",
+                result: "Comprehensive risk analysis with action plans"
               }
-            ].map((industry, idx) => (
+            ].map((useCase, index) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg"
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
               >
-                <h3 className="text-2xl font-bold text-blue-600 mb-4">
-                  {industry.icon} {industry.title}
-                </h3>
-                <p className="text-lg font-semibold text-gray-900 mb-2">{industry.useCase}</p>
-                <p className="text-lg font-semibold text-gray-900 mb-3">ScanPro+ Solution:</p>
-                <ul className="space-y-2 mb-4">
-                  {industry.solution.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                {industry.result && (
-                  <p className="text-gray-700 font-semibold">{industry.result}</p>
-                )}
+                <div className="flex items-start gap-6">
+                  <div className="text-5xl flex-shrink-0">{useCase.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{useCase.title}</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Challenge</span>
+                        <p className="text-gray-700 mt-1">{useCase.challenge}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide">ScanPro+ Solution</span>
+                        <p className="text-gray-700 mt-1">{useCase.solution}</p>
+                      </div>
+                      <div className="pt-3 border-t border-gray-200">
+                        <span className="text-sm font-semibold text-[#14B8A6] uppercase tracking-wide">Result</span>
+                        <p className="text-gray-900 font-semibold mt-1">{useCase.result}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* BUSINESS IMPACT */}
-      <section data-nav-theme="light" className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* Compliance & Standards - Dark */}
+      <section
+        data-nav-theme="dark"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+      >
         <div className="container mx-auto max-w-6xl">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center"
+            className="text-center mb-12"
           >
-            Business Impact: Measurable Results for Your Quality Management
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {[
-              { value: "60%", label: "Cost Reduction", desc: "through standardization and automation", color: "text-green-600" },
-              { value: "70%", label: "Time Savings", desc: "from 2 weeks to 3 days turnaround", color: "text-blue-600" },
-              { value: "100%", label: "Consistency", desc: "uniform assessment through AI guidance", color: "text-red-600" },
-              { value: "24h", label: "Availability", desc: "Same-Day audits in 90+ countries", color: "text-amber-600" }
-            ].map((metric, idx) => (
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-white mb-6">
+              🏆 <span className="text-[#14B8A6]">Compliance</span> & Standards
+            </h2>
+            <p className="text-lg text-white/80 max-w-3xl mx-auto">
+              Meets highest international quality and safety standards. Your audits are legally secure and comply with all industry-specific requirements.
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {['ISO 9001', 'IATF 16949', 'AS9100', 'ISO 14001', 'GMP', 'API Q1', 'SQF', 'VDA 6.3', 'TS16949', 'GDPR', 'SOC2', 'FDA'].map((standard, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-lg shadow-lg text-center border border-gray-200"
+                transition={{ delay: idx * 0.05 }}
+                className="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg text-center font-semibold text-white border border-white/20 hover:bg-white/20 transition-all"
               >
-                <div className={`text-5xl font-bold mb-3 ${metric.color}`}>{metric.value}</div>
-                <div className="text-xl font-semibold text-gray-900 mb-2">{metric.label}</div>
-                <p className="text-gray-600">{metric.desc}</p>
+                {standard}
               </motion.div>
             ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-blue-50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">💡 Quality Improvement</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• Uniform methodology for all supplier assessments</li>
-                <li>• AI-supported detection of critical risks</li>
-                <li>• Continuous improvement tracking over time</li>
-                <li>• Data-based supplier decisions</li>
-                <li>• Elimination of inconsistent assessments between auditors</li>
-              </ul>
-            </div>
-
-            <div className="bg-emerald-50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">⚡ Efficiency Gains</h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>• 50% faster audit execution through template-based workflows</li>
-                <li>• Automatic report generation in real-time</li>
-                <li>• Integrated tracking of corrective actions</li>
-                <li>• Reduced travel costs through efficient audit planning</li>
-                <li>• Shorter time-to-market through faster supplier releases</li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* Pricing Section - Light gradient */}
       <section
-        data-nav-theme="dark"
-        className="py-20 px-4 sm:px-6 lg:px-12 text-center text-white"
-        style={{ background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))" }}
+        data-nav-theme="light"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        id="pricing"
       >
-        <div className="container mx-auto max-w-5xl">
-          <motion.h2
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
+            className="text-center mb-12 sm:mb-16"
           >
-            Ready for the Future of Supplier Auditing?
-          </motion.h2>
-          <p className="text-xl md:text-2xl mb-12 opacity-95">
-            Join leading companies from Automotive, Aerospace, and Pharma 
-            who already trust YVOO ScanPro+.
-          </p>
-
-          <div className="space-y-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Schedule a Demo (30 minutes)</h4>
-              <p className="opacity-95">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Start Pilot Audit (2 weeks)</h4>
-              <p className="opacity-95">Test the platform with a real supplier audit – without risk, with measurable results.</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-left">
-              <h4 className="text-xl font-bold mb-2">✅ Plan Integration</h4>
-              <p className="opacity-95">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="mailto:ibrandic@yvoo.io"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all"
-            >
-              🗓️ Schedule Demo
-            </a>
-            <a
-              href="mailto:ibrandic@yvoo.io"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all"
-            >
-              🚀 Start Pilot Audit
-            </a>
-          </div>
-
-          <div className="pt-8 border-t border-white/30">
-            <h3 className="text-2xl font-bold mb-4">Contact</h3>
-            <p className="text-lg">
-              <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
-              📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline">ibrandic@yvoo.io</a><br />
-              📱 +49 (0)152 03095799<br />
-              💬 WhatsApp | Google Meet
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
+              <span className="text-[#14B8A6]">Transparent</span> Pricing.
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+              Fixed prices, no hidden costs. Pay only for what you need.
             </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Essential",
+                price: "€700",
+                desc: "Basic supplier audit",
+                features: [
+                  "1-day on-site audit",
+                  "Standard template",
+                  "Basic report",
+                  "Photo documentation",
+                  "Digital delivery"
+                ]
+              },
+              {
+                name: "Professional",
+                price: "€1,500",
+                desc: "Comprehensive assessment",
+                features: [
+                  "2-3 day audit",
+                  "Custom templates",
+                  "AI equipment recognition",
+                  "Risk scoring",
+                  "Benchmarking",
+                  "24h report delivery"
+                ],
+                highlighted: true
+              },
+              {
+                name: "Enterprise",
+                price: "Custom",
+                desc: "Full integration",
+                features: [
+                  "Multi-site audits",
+                  "ERP integration",
+                  "Dedicated support",
+                  "Template marketplace",
+                  "API access",
+                  "Volume discounts"
+                ]
+              }
+            ].map((plan, index) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`rounded-2xl p-8 ${
+                  plan.highlighted 
+                    ? 'bg-[#14B8A6] text-white shadow-2xl scale-105' 
+                    : 'bg-white text-gray-900 shadow-lg'
+                } border-2 ${plan.highlighted ? 'border-[#14B8A6]' : 'border-gray-200'}`}
+              >
+                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                <div className="text-4xl font-bold mb-3">{plan.price}</div>
+                <p className={`text-sm mb-6 ${plan.highlighted ? 'text-white/90' : 'text-gray-600'}`}>
+                  {plan.desc}
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-white' : 'text-[#14B8A6]'}`} />
+                      <span className="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button className={`w-full py-3 rounded-full font-semibold transition-all ${
+                  plan.highlighted
+                    ? 'bg-white text-[#14B8A6] hover:bg-gray-100'
+                    : 'bg-[#14B8A6] text-white hover:bg-[#0F8775]'
+                }`}>
+                  Get Started
+                </button>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section
+        data-nav-theme="dark"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
+        id="cta"
+      >
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
+              Ready for the Future of Supplier Auditing?
+            </h2>
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
+              Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all group"
+              >
+                Schedule Demo
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold text-lg border-2 border-white hover:bg-white/20 transition-all"
+              >
+                Start Pilot Audit
+              </a>
+            </div>
+
+            <div className="pt-12 mt-12 border-t border-white/30">
+              <p className="text-white/90 mb-2"><strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.</p>
+              <p className="text-white/80">
+                📧 <a href="mailto:ibrandic@yvoo.io" className="hover:underline">ibrandic@yvoo.io</a> • 
+                📱 +49 (0)152 03095799
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
