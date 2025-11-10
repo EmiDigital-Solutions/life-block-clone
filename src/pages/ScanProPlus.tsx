@@ -11,6 +11,7 @@ import aiInspector from "@/assets/ai-inspector-tech.jpg";
 import riskScoring from "@/assets/risk-scoring-ai.jpg";
 import liveTracking from "@/assets/live-tracking-dashboard.jpg";
 import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
+import factoryHero from "@/assets/factory-hero-background.jpg";
 
 // Desktop Technology Section with Scroll Effect
 const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
@@ -559,14 +560,24 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Blue gradient */}
+      {/* Hero Section - Factory Background */}
       <section
         data-nav-theme="dark"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))" }}
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
         id="hero"
       >
-        <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={factoryHero} 
+            alt="Modern manufacturing facility"
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-800/90 to-blue-900/80"></div>
+        </div>
+
+        <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
