@@ -293,6 +293,13 @@ const Navigation = () => {
                 Ground Intelligence
               </Link>
               <Link 
+                to="/scanpro-plus" 
+                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
+                style={{ color: textColor }}
+              >
+                ScanPro+
+              </Link>
+              <Link 
                 to="/be-found" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
