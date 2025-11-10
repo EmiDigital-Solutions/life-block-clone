@@ -100,9 +100,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+                Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -405,9 +405,9 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#14B8A6' }}>Auditor Network</span>
+                Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
