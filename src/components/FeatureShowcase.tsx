@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import dashboardImage from "@/assets/scanpro-ai-dashboard.jpg";
+import dashboardImage from "@/assets/dashboard-hands-tablet.jpg";
 
 const FeatureShowcase = () => {
   return (
