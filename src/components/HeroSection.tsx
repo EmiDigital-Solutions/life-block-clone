@@ -100,20 +100,11 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex justify-center lg:justify-center order-first lg:order-last"
             >
-              <div className="relative w-full h-[1200px] sm:h-[1500px] lg:h-[1800px] flex items-center justify-center overflow-visible">
-                <motion.img 
+              <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center">
+                <img 
                   src={heroSphereImage} 
                   alt="Particle Sphere Visualization" 
                   className="max-w-full max-h-full object-contain"
-                  animate={{
-                    y: [0, -20, 0],
-                    scale: [1, 1.02, 1],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
                 />
               </div>
             </motion.div>
