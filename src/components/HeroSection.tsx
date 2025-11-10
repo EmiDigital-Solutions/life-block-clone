@@ -155,8 +155,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background pb-24 sm:pb-28 lg:pb-0">
-      <div className="absolute inset-0 bg-hero-background"></div>
+    <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-black pb-24 sm:pb-28 lg:pb-0">
+      <div className="absolute inset-0 bg-black"></div>
 
       <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
         <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
