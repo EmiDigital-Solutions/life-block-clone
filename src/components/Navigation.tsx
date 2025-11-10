@@ -44,27 +44,32 @@ const Navigation = () => {
       
       // Get all section elements (these contain the background colors we want)
       const sections = document.querySelectorAll('section');
+      let foundSection = false;
       
-      sections.forEach((section) => {
+      for (const section of sections) {
+        if (foundSection) break;
+        
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + window.scrollY;
         const sectionBottom = sectionTop + rect.height;
         
         // Check if navbar is within this section
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          // First check for data-nav-theme attribute
+          foundSection = true;
+          
+          // First check for data-nav-theme attribute (highest priority)
           const navTheme = section.getAttribute('data-nav-theme');
           
           if (navTheme === 'dark') {
             // Dark section - use dark background with light text
             setNavBgColor('rgba(31, 41, 55, 0.95)');
             setTextColor('rgb(255, 255, 255)');
-            return;
+            break;
           } else if (navTheme === 'light') {
             // Light section - use light background with dark text
             setNavBgColor('rgba(249, 250, 251, 0.95)');
             setTextColor('rgb(31, 41, 55)');
-            return;
+            break;
           }
           
           // If no data-nav-theme, fall back to color detection
@@ -101,7 +106,7 @@ const Navigation = () => {
             setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
           }
         }
-      });
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
