@@ -42,8 +42,8 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       id="features"
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
-        <div className="text-center mb-8 px-4 flex-shrink-0">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
+        <div className="text-center mb-12 px-4 flex-shrink-0">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,15 +53,6 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
             <span className="text-[#14B8A6]">Our technology</span>{" "}
             <span className="text-gray-900">for global supplier identification.</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-base md:text-lg lg:text-lg xl:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
-          >
-            Strategic supplier assessment powered by artificial intelligence
-          </motion.p>
         </div>
 
         <div className="flex-1 overflow-hidden relative">
@@ -77,67 +68,62 @@ const DesktopFeaturesSection = ({ features }: { features: any[] }) => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-200px" }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.3 }
-                  }}
-                  className="relative w-[320px] lg:w-[330px] xl:w-[340px] h-[420px] lg:h-[430px] xl:h-[440px] flex-shrink-0 group cursor-pointer"
+                  className="relative w-[320px] lg:w-[340px] xl:w-[360px] flex-shrink-0"
                 >
-                  {/* Clean white card */}
-                  <div className="h-full bg-white rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+                  {/* Clean white card matching reference */}
+                  <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-8">
                     
-                    {/* Image section */}
-                    <div className="relative h-48 overflow-hidden">
+                    {/* Teal label */}
+                    <div className="mb-4">
+                      <span className="text-[#14B8A6] text-sm font-semibold">
+                        {feature.label}
+                      </span>
+                    </div>
+
+                    {/* Bold title/description */}
+                    <h3 className="text-gray-900 text-xl font-bold mb-8 leading-tight">
+                      {feature.title}
+                    </h3>
+
+                    {/* Large image with rounded corners */}
+                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
                       <img
                         src={feature.image}
                         alt={feature.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20" />
-                      
-                      {/* Icon badge */}
-                      <div className="absolute top-4 right-4">
-                        <div className={`w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-md`}>
-                          <feature.icon className="w-6 h-6 text-[#14B8A6]" strokeWidth={2} />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content section */}
-                    <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
-                      {/* Tags */}
-                      <div className="flex gap-2 mb-4 flex-wrap">
-                        {feature.tags.map((tag: string, i: number) => (
-                          <span
-                            key={i}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#14B8A6]/10 text-[#14B8A6] border border-[#14B8A6]/20"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
-                        {feature.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-sm text-gray-600 leading-relaxed flex-1">
-                        {feature.description}
-                      </p>
-
-                      {/* Hover indicator */}
-                      <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#14B8A6]">
-                        <span className="text-sm font-medium">Learn more</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
           </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center mt-8 px-4 flex-shrink-0">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <p className="text-gray-900 text-base font-medium">
+              You want to learn more about our Plans?
+            </p>
+            <button
+              onClick={() => {
+                const element = document.getElementById('cta');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="px-6 py-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-lg font-semibold text-sm transition-colors flex items-center gap-2"
+            >
+              Pricing
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -164,9 +150,6 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
             <span className="text-[#14B8A6]">Our technology</span>{" "}
             <span className="text-gray-900">for global supplier identification.</span>
           </h2>
-          <p className="text-base md:text-lg text-gray-600">
-            Strategic supplier assessment powered by artificial intelligence
-          </p>
         </motion.div>
 
         <div className="overflow-x-auto pb-4 -mx-6 px-6">
@@ -177,56 +160,61 @@ const MobileFeaturesSection = ({ features }: { features: any[] }) => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative w-[300px] md:w-[320px] h-[380px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0"
+                className="relative w-[300px] md:w-[320px] flex-shrink-0"
               >
-                {/* Clean white card */}
-                <div className="h-full bg-white">
+                {/* Clean white card matching reference */}
+                <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-6">
                   
-                  {/* Image section */}
-                  <div className="relative h-40 overflow-hidden">
+                  {/* Teal label */}
+                  <div className="mb-3">
+                    <span className="text-[#14B8A6] text-sm font-semibold">
+                      {feature.label}
+                    </span>
+                  </div>
+
+                  {/* Bold title/description */}
+                  <h3 className="text-gray-900 text-lg font-bold mb-6 leading-tight">
+                    {feature.title}
+                  </h3>
+
+                  {/* Large image with rounded corners */}
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
                     <img
                       src={feature.image}
                       alt={feature.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10" />
-                    
-                    {/* Icon badge */}
-                    <div className="absolute top-3 right-3">
-                      <div className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-md">
-                        <feature.icon className="w-5 h-5 text-[#14B8A6]" strokeWidth={2} />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content section */}
-                  <div className="p-5 flex flex-col h-[calc(100%-10rem)]">
-                    {/* Tags */}
-                    <div className="flex gap-2 mb-3 flex-wrap">
-                      {feature.tags.map((tag: string, i: number) => (
-                        <span
-                          key={i}
-                          className="px-2 py-0.5 rounded-md text-xs font-medium bg-[#14B8A6]/10 text-[#14B8A6] border border-[#14B8A6]/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
-                      {feature.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center gap-4"
+          >
+            <p className="text-gray-900 text-base font-medium">
+              You want to learn more about our Plans?
+            </p>
+            <button
+              onClick={() => {
+                const element = document.getElementById('cta');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="px-6 py-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-lg font-semibold text-sm transition-colors flex items-center gap-2"
+            >
+              Pricing
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -482,76 +470,19 @@ const ScanProPlus = () => {
 
   const features = [
     {
-      icon: Target,
-      title: "Flexible Templates",
-      description: "Create custom audit structures for specific industries, standards, or customer requirements. ISO 9001 templates with TS16949-specific additions.",
-      image: scanProDashboard,
-      tags: ["Customizable", "Industry-Specific"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: Camera,
-      title: "AI Equipment Recognition",
-      description: "Point the camera at machines and get instant identification and analysis. Automatic identification of type, year, and maintenance status.",
+      label: "Company Data Extraction",
+      title: "ensun Bot continuously crawls key technology vendors around the world.",
       image: aiInspector,
-      tags: ["AI Vision", "Automation"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
-      icon: BarChart3,
-      title: "Dynamic Rating",
-      description: "Configurable evaluation criteria with industry-specific weighting. CleanRoom standards at 40% for Pharma, Quality systems at 35% for Automotive.",
-      image: riskScoring,
-      tags: ["Configurable", "Weighted"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: Shield,
-      title: "Evidence Management",
-      description: "Automatic categorization and analysis of audit evidence. Photo categorization for quality control, workplace safety, and environmental standards.",
+      label: "Company Data Enrichment",
+      title: "ensun DaP creates informative supplier profiles worldwide.",
       image: aiCopilot,
-      tags: ["Automated", "Secure"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
     },
     {
-      icon: Zap,
-      title: "Real-Time Tracking",
-      description: "Live updates with milestone notifications during the audit. Production area completed (75%), next step: Quality lab.",
-      image: liveTracking,
-      tags: ["Live", "Instant"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: CheckCircle2,
-      title: "Full Compliance",
-      description: "GDPR-compliant, SOC2-certified with complete audit trail. Supports ISO 9001, IATF 16949, AS9100, ISO 14001, GMP, API Q1, SQF.",
-      image: aiAudit,
-      tags: ["Certified", "Compliant"],
-      gradient: "from-[#2563EB] to-[#1D4ED8]"
-    },
-    {
-      icon: AlertTriangle,
-      title: "Risk Management",
-      description: "Early detection of critical compliance violations during the audit. Missing calibration detected – production release stopped.",
-      image: riskScoring,
-      tags: ["Critical", "Proactive"],
-      gradient: "from-red-600 to-red-500"
-    },
-    {
-      icon: TrendingUp,
-      title: "Predictive Scoring",
-      description: "Risk prediction based on historical audit data. Supplier shows 15% higher quality risk due to outdated testing equipment.",
-      image: aiCopilot,
-      tags: ["AI Powered", "Predictive"],
-      gradient: "from-purple-600 to-purple-500"
-    },
-    {
-      icon: BarChart3,
-      title: "Benchmarking",
-      description: "Comparative analysis against industry peers. Supplier achieves 87% of industry benchmarks in quality systems.",
+      label: "AI-based Ranking System",
+      title: "ERA-S sorts the results for each search query according to relevance.",
       image: scanProDashboard,
-      tags: ["Analytics", "Insights"],
-      gradient: "from-[#14B8A6] to-[#0F8775]"
     }
   ];
 
