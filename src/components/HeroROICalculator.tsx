@@ -106,11 +106,13 @@ const HeroROICalculator = () => {
           </div>
         </motion.div>
         
-        <div className="flex justify-between items-center py-3">
-          <span className="text-sm text-white/80">Time Saved</span>
-          <span className="text-lg font-bold" style={{ color: '#2563EB' }}>
-            {timeSavingsInDays} Days
-          </span>
+        <div className="rounded-xl p-4" style={{ backgroundColor: '#2563EB', border: '2px solid #1d4ed8' }}>
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-semibold text-white">Time Saved</span>
+            <span className="text-lg font-bold text-white">
+              {timeSavingsInDays} Days
+            </span>
+          </div>
         </div>
       </div>
     </motion.div>
