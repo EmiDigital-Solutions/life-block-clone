@@ -2337,6 +2337,26 @@ const ScanProPlus = () => {
               👆 Click on any standard to learn more
             </p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 mt-8"
+          >
+            <p className="text-lg font-semibold text-gray-700 mb-3">
+              Our auditor network includes professionals certified by:
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-gray-600">
+              <span className="text-base">TÜV SÜD</span>
+              <span className="text-gray-300">•</span>
+              <span className="text-base">Bureau Veritas</span>
+              <span className="text-gray-300">•</span>
+              <span className="text-base">SGS</span>
+              <span className="text-gray-300">•</span>
+              <span className="text-base">DNV</span>
+            </div>
+          </motion.div>
           
           <ComplianceStandardsGrid />
         </div>
