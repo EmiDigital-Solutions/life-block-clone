@@ -10,7 +10,7 @@ const TimeEfficiencyChart = () => {
     { name: 'Auditor Search', traditional: 14, scanpro: 1, color: '#3B82F6' },
     { name: 'Preparation', traditional: 7, scanpro: 2, color: '#14B8A6' },
     { name: 'On-site Audit', traditional: 3, scanpro: 2, color: '#6B7280' },
-    { name: 'Report & Docs', traditional: 10, scanpro: 0.5, color: '#3B82F6' },
+    { name: 'Report', traditional: 10, scanpro: 0.5, color: '#3B82F6' },
   ];
 
   const totalTraditional = phases.reduce((sum, p) => sum + p.traditional, 0);
@@ -65,7 +65,7 @@ const TimeEfficiencyChart = () => {
             </h4>
           </div>
           <div className="relative flex items-center gap-4">
-            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalScanPro / maxTotal) * 100, 35)}%`, minWidth: '35%' }}>
+            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalScanPro / maxTotal) * 100, 45)}%`, minWidth: '45%' }}>
               {phases.map((phase, idx) => {
                 const width = (phase.scanpro / totalScanPro) * 100;
                 return (

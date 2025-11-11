@@ -2116,7 +2116,7 @@ const ScanProPlus = () => {
               { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
               { value: 70, suffix: '%', label: 'Time Savings', color: '#2563EB', delay: 0.1 },
               { value: 96, suffix: '%', label: 'Price Transparency', color: '#14B8A6', delay: 0.2 },
-              { value: 24, suffix: 'h', label: 'Rapid Deployment', color: '#2563EB', delay: 0.3 }
+              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#2563EB', delay: 0.3 }
             ].map((metric, idx) => (
               <motion.div
                 key={idx}
@@ -2188,7 +2188,7 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
                 <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-3xl" />
@@ -2214,7 +2214,7 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
                 <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-3xl" />
