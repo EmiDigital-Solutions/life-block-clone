@@ -7,10 +7,10 @@ const TimeEfficiencyChart = () => {
   const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const phases = [
-    { name: 'Auditor Search', traditional: 14, scanpro: 1, visualScanpro: 0.4, color: '#3B82F6' },
-    { name: 'Preparation', traditional: 7, scanpro: 2, visualScanpro: 0.8, color: '#14B8A6' },
-    { name: 'On-site Audit', traditional: 3, scanpro: 2, visualScanpro: 0.8, color: '#6B7280' },
-    { name: 'Report', traditional: 10, scanpro: 0.5, visualScanpro: 0.4, color: '#3B82F6' },
+    { name: 'Auditor Search', traditional: 14, scanpro: 1, visualScanpro: 0.8, color: '#3B82F6' },
+    { name: 'Preparation', traditional: 7, scanpro: 2, visualScanpro: 1.5, color: '#14B8A6' },
+    { name: 'On-site Audit', traditional: 3, scanpro: 2, visualScanpro: 1.5, color: '#6B7280' },
+    { name: 'Report', traditional: 10, scanpro: 0.5, visualScanpro: 0.5, color: '#3B82F6' },
   ];
 
   const totalTraditional = phases.reduce((sum, p) => sum + p.traditional, 0);
