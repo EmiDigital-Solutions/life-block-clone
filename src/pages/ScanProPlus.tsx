@@ -948,7 +948,7 @@ const ComplianceStandardsGrid = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-fr">
         {standards.map((standard, idx) => {
           const Icon = standard.icon;
           return (
@@ -959,7 +959,7 @@ const ComplianceStandardsGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedStandard(standard)}
-              className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer w-full aspect-square flex flex-col items-center justify-center"
+              className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer aspect-square flex flex-col items-center justify-center"
             >
               {/* Icon with gradient background */}
               <div className={`mb-2 sm:mb-4 mx-auto w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${standard.colorClass}`}>
