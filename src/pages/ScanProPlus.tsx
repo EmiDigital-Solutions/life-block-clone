@@ -18,6 +18,7 @@ import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
 import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
@@ -130,7 +131,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               delay: 0.2 
             },
             { 
-              name: "Elena Popov", 
+              name: "Anna Schmidt", 
               location: "Berlin, Germany", 
               availability: "Available Now",
               image: auditorFemaleEuropean,
@@ -160,7 +161,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               name: "Priya Sharma", 
               location: "Mumbai, India", 
               availability: "Available in 24h",
-              image: auditorAsian,
+              image: auditorSouthAsian,
               top: "38%", 
               left: "65%", 
               delay: 0.7 
@@ -180,15 +181,15 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 bounce: 0.4
               }}
             >
-              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[200px]">
-                <div className="relative h-[120px] overflow-hidden">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[160px]">
+                <div className="relative h-[96px] overflow-hidden">
                   <img 
                     src={auditor.image} 
                     alt={auditor.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-2 right-2">
-                    <span className={`px-2 py-1 rounded-full text-[10px] font-semibold ${
+                  <div className="absolute top-1.5 right-1.5">
+                    <span className={`px-1.5 py-0.5 rounded-full text-[9px] font-semibold ${
                       auditor.availability === "Available Now" 
                         ? "bg-green-500 text-white" 
                         : "bg-yellow-500 text-white"
@@ -197,9 +198,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                     </span>
                   </div>
                 </div>
-                <div className="p-3 bg-white">
-                  <h4 className="font-bold text-sm text-gray-900 mb-1">{auditor.name}</h4>
-                  <p className="text-xs text-gray-600">{auditor.location}</p>
+                <div className="p-2.5 bg-white">
+                  <h4 className="font-bold text-xs text-gray-900 mb-0.5">{auditor.name}</h4>
+                  <p className="text-[10px] text-gray-600">{auditor.location}</p>
                 </div>
               </div>
             </motion.div>
