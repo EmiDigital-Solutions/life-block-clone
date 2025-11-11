@@ -465,7 +465,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
       id="auditor-network"
       data-nav-theme="light"
       className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
-      style={{ background: "linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%)" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
