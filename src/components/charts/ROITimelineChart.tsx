@@ -90,7 +90,8 @@ const ROITimelineChart = () => {
               strokeWidth={4}
               dot={{ fill: '#9CA3AF', r: 5 }}
               activeDot={{ r: 7 }}
-              animationDuration={1500}
+              animationDuration={2000}
+              animationEasing="ease-in-out"
             />
             <Line
               type="monotone"
@@ -99,8 +100,9 @@ const ROITimelineChart = () => {
               strokeWidth={5}
               dot={{ fill: '#10B981', r: 6 }}
               activeDot={{ r: 8 }}
-              animationDuration={1500}
-              animationBegin={200}
+              animationDuration={2000}
+              animationBegin={300}
+              animationEasing="ease-in-out"
             />
           </LineChart>
         </ResponsiveContainer>

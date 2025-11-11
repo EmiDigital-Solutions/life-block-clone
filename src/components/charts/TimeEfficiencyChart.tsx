@@ -41,7 +41,11 @@ const TimeEfficiencyChart = () => {
                   key={idx}
                   initial={{ width: 0 }}
                   animate={{ width: isVisible ? `${width}%` : 0 }}
-                  transition={{ delay: idx * 0.1, duration: 0.8 }}
+                  transition={{ 
+                    delay: idx * 0.15, 
+                    duration: 1.2,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
                   className="relative group cursor-pointer"
                   style={{ backgroundColor: phase.color }}
                 >
@@ -73,7 +77,11 @@ const TimeEfficiencyChart = () => {
                   key={idx}
                   initial={{ width: 0 }}
                   animate={{ width: isVisible ? `${width}%` : 0 }}
-                  transition={{ delay: idx * 0.1 + 0.4, duration: 0.8 }}
+                  transition={{ 
+                    delay: idx * 0.15 + 0.6, 
+                    duration: 1.2,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
                   className="relative group cursor-pointer"
                   style={{ backgroundColor: phase.color }}
                 >

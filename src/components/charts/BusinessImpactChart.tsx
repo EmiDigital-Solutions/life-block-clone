@@ -52,7 +52,11 @@ const BusinessImpactChart = () => {
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: isVisible ? `${metric.percentage}%` : 0 }}
-                transition={{ delay: idx * 0.2 + 0.3, duration: 1.2 }}
+                transition={{ 
+                  delay: idx * 0.3, 
+                  duration: 1.5, 
+                  ease: [0.16, 1, 0.3, 1]
+                }}
                 className={`h-full bg-gradient-to-r ${metric.bgColor}`}
               />
             </div>
