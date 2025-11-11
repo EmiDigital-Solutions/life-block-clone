@@ -54,10 +54,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     
     if (isFanned) {
       return {
-        x: offset * 110,
-        y: Math.abs(offset) * -55,
+        x: offset * 85,
+        y: Math.abs(offset) * -45,
         rotateY: offset * -8,
-        rotateZ: offset * 10,
+        rotateZ: offset * 8,
         scale: 1,
         opacity: 1,
         zIndex: totalCards - Math.abs(offset),
@@ -135,12 +135,14 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center lg:justify-start order-first lg:order-last">
+            <div className="flex justify-center lg:justify-center order-first lg:order-last">
               <div 
-                className="relative w-full max-w-lg lg:max-w-md xl:max-w-lg"
+                className="relative w-full"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12 lg:justify-start lg:pl-12 xl:pl-20">
+                <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                
+                <div className="relative h-[375px] sm:h-[438px] lg:h-[530px] xl:h-[530px] 2xl:h-[630px] flex items-center justify-center">
                   {auditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, auditors.length);
                     
@@ -172,7 +174,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         }}
                       >
                         <div
-                          className={`relative w-[234px] h-[306px] xl:w-[270px] xl:h-[342px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[300px] lg:h-[390px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -182,8 +184,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                           <div className="absolute inset-0 flex items-center justify-center pt-8">
-                            <div className="relative w-[144px] h-[144px] xl:w-[171px] xl:h-[171px] rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-9 xl:pt-9 2xl:pt-11">
+                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[185px] lg:h-[185px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -198,19 +200,19 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                             </div>
                           </div>
 
-                          <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 w-full">
-                              <p className="text-white font-sans font-bold text-base text-center">
+                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-7 xl:bottom-7 2xl:bottom-9 left-0 right-0 flex justify-center px-4 sm:px-6 lg:px-8 xl:px-8 2xl:px-10">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-8 xl:px-8 2xl:px-10 py-2 sm:py-3 lg:py-3.5 xl:py-3.5 2xl:py-4 w-full">
+                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-2xl text-center">
                                 {auditor.location}
                               </p>
-                              <p className="text-white/80 font-sans text-sm text-center">
+                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-base xl:text-base 2xl:text-xl text-center">
                                 {auditor.region}
                               </p>
                             </div>
                           </div>
 
                           <div 
-                            className="absolute inset-0 pointer-events-none rounded-2xl"
+                            className="absolute inset-0 pointer-events-none rounded-3xl"
                             style={{
                               background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                             }}
