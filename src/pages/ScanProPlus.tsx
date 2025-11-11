@@ -132,12 +132,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center lg:justify-end order-first lg:order-last lg:-ml-8">
+            <div className="flex justify-center lg:justify-start order-first lg:order-last">
               <div 
-                className="relative w-full max-w-lg"
+                className="relative w-full max-w-lg lg:max-w-md xl:max-w-lg"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12">
+                <div className="relative h-[550px] xl:h-[650px] flex items-end justify-center pb-12 lg:justify-start lg:pl-12 xl:pl-20">
                   {auditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, auditors.length);
                     
@@ -434,12 +434,12 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
             </div>
 
             {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-center">
+            <div className="flex justify-start">
               <div 
                 className="relative w-full max-w-md"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[450px] flex items-center justify-center">
+                <div className="relative h-[450px] flex items-center justify-start pl-8">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
