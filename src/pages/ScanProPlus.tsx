@@ -625,6 +625,48 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
   );
 };
 
+// Global Network Map Section
+const GlobalNetworkMapSection = () => {
+  return (
+    <section
+      data-nav-theme="light"
+      className="relative py-32 px-4 sm:px-6 overflow-hidden"
+      style={{ background: "linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%)" }}
+    >
+      <div className="max-w-[1400px] mx-auto">
+        <div className="relative w-full" style={{ minHeight: '600px' }}>
+          {/* Dotted World Map - Prominent Display */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
+              opacity: 0.6,
+            }}
+          />
+          
+          {/* Optional overlay content */}
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center"
+            >
+              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Worldwide Coverage
+              </h3>
+              <p className="text-lg md:text-xl text-gray-600">
+                Auditors available in 90+ countries
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Mobile Capabilities Section
 const MobileCapabilitiesSection = ({ features }: { features: any[] }) => {
   return (
@@ -1544,6 +1586,9 @@ const ScanProPlus = () => {
 
       {/* Auditor Network Section */}
       {isMobile ? <MobileFeaturesSection auditors={auditors} /> : <DesktopFeaturesSection auditors={auditors} scrollToSection={scrollToSection} />}
+
+      {/* Global Network Map Section */}
+      <GlobalNetworkMapSection />
 
       {/* Capabilities Section */}
       {isMobile ? <MobileCapabilitiesSection features={features} /> : <DesktopCapabilitiesSection features={features} />}
