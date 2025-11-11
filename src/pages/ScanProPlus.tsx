@@ -2110,7 +2110,7 @@ const ScanProPlus = () => {
             </p>
           </motion.div>
 
-          {/* Multi-layer Transparent Metric Cards */}
+          {/* Multi-layer Transparent Metric Cards with Enhanced Glass-Morphism */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
@@ -2126,13 +2126,23 @@ const ScanProPlus = () => {
                 transition={{ delay: metric.delay, duration: 0.5 }}
                 className="relative group"
               >
-                {/* Outer glow layer */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
+                {/* Triple-layer outer glow */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-white/10 via-transparent to-transparent rounded-3xl blur-2xl opacity-50 group-hover:opacity-100 transition-all duration-500" />
+                <div className="absolute -inset-1 bg-gradient-to-tl from-white/5 to-transparent rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-all duration-500" />
                 
-                {/* Main glass card */}
-                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all shadow-2xl">
-                  {/* Inner glow overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl" />
+                {/* Main glass card with multiple layers */}
+                <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_48px_0_rgba(0,0,0,0.5)]">
+                  {/* Multi-layer frosted glass overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-transparent rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.05] via-transparent to-white/[0.03] rounded-2xl" />
+                  
+                  {/* Shimmer effect on hover */}
+                  <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                    <div className="absolute top-0 -left-full h-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1000" />
+                  </div>
+                  
+                  {/* Inner border highlight */}
+                  <div className="absolute inset-[1px] rounded-2xl border border-white/5 pointer-events-none" />
                   
                   <div className="relative z-10">
                     <motion.div
@@ -2140,31 +2150,51 @@ const ScanProPlus = () => {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
-                      className="text-5xl font-bold mb-2"
+                      className="text-5xl font-bold mb-2 relative"
                       style={{ color: metric.color }}
                     >
+                      {/* Text glow effect */}
+                      <div className="absolute inset-0 blur-xl opacity-30" style={{ color: metric.color }}>
+                        {metric.value}{metric.suffix}
+                      </div>
                       <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: metric.delay + 0.4 }}
+                        className="relative"
                       >
                         {metric.value}{metric.suffix}
                       </motion.span>
                     </motion.div>
-                    <p className="text-white/90 font-medium mb-3">{metric.label}</p>
+                    <p className="text-white/95 font-medium mb-3">{metric.label}</p>
                     
-                    {/* Animated Progress Bar with glass effect */}
-                    <div className="h-1.5 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden border border-white/10">
+                    {/* Enhanced Progress Bar with triple-layer glass effect */}
+                    <div className="relative h-2 bg-black/20 backdrop-blur-sm rounded-full overflow-hidden border border-white/10 shadow-inner">
+                      {/* Inner glow in track */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent" />
+                      
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${metric.value}%` }}
                         viewport={{ once: true }}
                         transition={{ delay: metric.delay + 0.5, duration: 1.2, ease: "easeOut" }}
-                        className="h-full rounded-full relative"
+                        className="h-full rounded-full relative shadow-lg"
                         style={{ background: `linear-gradient(90deg, ${metric.color}, ${metric.color}dd)` }}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
+                        {/* Triple-layer progress bar overlays */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/10 to-transparent rounded-full" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent rounded-full" />
+                        <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-full" />
+                        
+                        {/* Animated shimmer on progress bar */}
+                        <div className="absolute inset-0 rounded-full overflow-hidden">
+                          <motion.div
+                            animate={{ x: ['0%', '200%'] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="absolute top-0 -left-1/2 h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          />
+                        </div>
                       </motion.div>
                     </div>
                   </div>
@@ -2184,18 +2214,30 @@ const ScanProPlus = () => {
               transition={{ duration: 0.6 }}
               className="relative group"
             >
-              {/* Outer glow */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
+              {/* Multiple outer glow layers */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-blue-500/20 via-blue-400/10 to-transparent rounded-[2rem] blur-3xl opacity-40 group-hover:opacity-100 transition-all duration-700" />
+              <div className="absolute -inset-2 bg-gradient-to-tl from-teal-500/15 to-transparent rounded-[2rem] blur-2xl opacity-30 group-hover:opacity-80 transition-all duration-700" />
+              <div className="absolute -inset-1 bg-white/5 rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500" />
               
-              {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
-                {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-3xl" />
+              {/* Main glass container with enhanced depth */}
+              <div className="relative bg-white/[0.01] backdrop-blur-3xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:shadow-[0_8px_48px_0_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)]">
+                {/* Multi-layer frosted glass overlays */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.05] via-transparent to-white/[0.03] rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-teal-500/[0.03] rounded-3xl" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                  <div className="absolute top-0 -left-full h-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1500 ease-out" />
+                </div>
+                
+                {/* Inner border highlight */}
+                <div className="absolute inset-[1px] rounded-3xl border border-white/10 pointer-events-none" />
+                <div className="absolute inset-[2px] rounded-3xl border border-white/5 pointer-events-none" />
                 
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold text-white mb-2">Cost Comparison</h3>
-                  <p className="text-white/60 mb-6">Traditional vs ScanPro+ per audit</p>
+                  <p className="text-white/70 mb-6">Traditional vs ScanPro+ per audit</p>
                   
                   <BusinessImpactChart />
                 </div>
@@ -2210,18 +2252,30 @@ const ScanProPlus = () => {
               transition={{ duration: 0.6 }}
               className="relative group"
             >
-              {/* Outer glow */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
+              {/* Multiple outer glow layers */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-teal-500/20 via-teal-400/10 to-transparent rounded-[2rem] blur-3xl opacity-40 group-hover:opacity-100 transition-all duration-700" />
+              <div className="absolute -inset-2 bg-gradient-to-tl from-blue-500/15 to-transparent rounded-[2rem] blur-2xl opacity-30 group-hover:opacity-80 transition-all duration-700" />
+              <div className="absolute -inset-1 bg-white/5 rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500" />
               
-              {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
-                {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-3xl" />
+              {/* Main glass container with enhanced depth */}
+              <div className="relative bg-white/[0.01] backdrop-blur-3xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:shadow-[0_8px_48px_0_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)]">
+                {/* Multi-layer frosted glass overlays */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.05] via-transparent to-white/[0.03] rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-blue-500/[0.03] rounded-3xl" />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                  <div className="absolute top-0 -left-full h-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1500 ease-out" />
+                </div>
+                
+                {/* Inner border highlight */}
+                <div className="absolute inset-[1px] rounded-3xl border border-white/10 pointer-events-none" />
+                <div className="absolute inset-[2px] rounded-3xl border border-white/5 pointer-events-none" />
                 
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
-                  <p className="text-white/60 mb-6">12-month projection (20 audits/year)</p>
+                  <p className="text-white/70 mb-6">12-month projection (20 audits/year)</p>
                   
                   <ROITimelineChart />
                 </div>
@@ -2237,18 +2291,37 @@ const ScanProPlus = () => {
             transition={{ duration: 0.6 }}
             className="relative group"
           >
-            {/* Outer glow */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
+            {/* Multiple outer glow layers with color transitions */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-teal-500/20 to-blue-500/20 rounded-[2rem] blur-3xl opacity-30 group-hover:opacity-100 transition-all duration-700" />
+            <div className="absolute -inset-3 bg-gradient-to-l from-teal-400/15 via-blue-400/15 to-teal-400/15 rounded-[2rem] blur-2xl opacity-25 group-hover:opacity-80 transition-all duration-700" />
+            <div className="absolute -inset-1 bg-white/5 rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-all duration-500" />
             
-            {/* Main glass container */}
-            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
-              {/* Multi-layer gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-3xl" />
+            {/* Main glass container with maximum depth */}
+            <div className="relative bg-white/[0.01] backdrop-blur-3xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.1),0_0_60px_0_rgba(59,130,246,0.1)] hover:shadow-[0_8px_48px_0_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15),0_0_80px_0_rgba(20,184,166,0.15)]">
+              {/* Multi-layer frosted glass overlays */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-white/[0.02] to-transparent rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.05] via-transparent to-teal-500/[0.05] rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/[0.02] to-blue-500/[0.03] rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-white/[0.03] rounded-3xl" />
+              
+              {/* Double shimmer effect */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                <div className="absolute top-0 -left-full h-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1500 ease-out" />
+                <div className="absolute bottom-0 -right-full h-full w-1/3 bg-gradient-to-l from-transparent via-teal-400/10 to-transparent -skew-x-12 group-hover:right-full transition-all duration-2000 ease-out" />
+              </div>
+              
+              {/* Triple inner border highlight */}
+              <div className="absolute inset-[1px] rounded-3xl border border-white/10 pointer-events-none" />
+              <div className="absolute inset-[2px] rounded-3xl border border-white/5 pointer-events-none" />
+              <div className="absolute inset-[3px] rounded-3xl border border-blue-400/5 pointer-events-none" />
+              
+              {/* Corner accent highlights */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-white/10 to-transparent rounded-tl-3xl" />
+              <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-teal-500/10 to-transparent rounded-br-3xl" />
               
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
-                <p className="text-white/60 mb-6">End-to-end audit process duration</p>
+                <p className="text-white/70 mb-6">End-to-end audit process duration</p>
                 
                 <TimeEfficiencyChart />
               </div>
