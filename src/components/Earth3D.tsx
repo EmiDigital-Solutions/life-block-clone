@@ -27,6 +27,26 @@ const locationPins3D = [
   { id: 18, lat: 25, lon: 55, visible: true },   // UAE - Dubai
   { id: 19, lat: 13, lon: 100, visible: true },  // Thailand - Bangkok
   { id: 20, lat: 60, lon: 25, visible: true },   // Finland
+  { id: 21, lat: 48, lon: 2, visible: true },    // France - Paris
+  { id: 22, lat: 40, lon: -4, visible: true },   // Spain - Madrid
+  { id: 23, lat: 52, lon: 21, visible: true },   // Poland - Warsaw
+  { id: 24, lat: 59, lon: 18, visible: true },   // Sweden - Stockholm
+  { id: 25, lat: 55, lon: -3, visible: true },   // Scotland - Edinburgh
+  { id: 26, lat: 47, lon: 8, visible: true },    // Switzerland - Zurich
+  { id: 27, lat: 50, lon: 14, visible: true },   // Czech Republic - Prague
+  { id: 28, lat: 47, lon: 19, visible: true },   // Hungary - Budapest
+  { id: 29, lat: 38, lon: 23, visible: true },   // Greece - Athens
+  { id: 30, lat: 41, lon: 29, visible: true },   // Turkey - Istanbul
+  { id: 31, lat: 37, lon: -122, visible: true }, // USA - San Francisco
+  { id: 32, lat: 34, lon: -118, visible: true }, // USA - Los Angeles
+  { id: 33, lat: 41, lon: -87, visible: true },  // USA - Chicago
+  { id: 34, lat: 30, lon: -95, visible: true },  // USA - Houston
+  { id: 35, lat: 49, lon: -123, visible: true }, // Canada - Vancouver
+  { id: 36, lat: 43, lon: -79, visible: true },  // Canada - Toronto
+  { id: 37, lat: 31, lon: 121, visible: true },  // China - Shanghai
+  { id: 38, lat: 22, lon: 114, visible: true },  // China - Hong Kong
+  { id: 39, lat: 1, lon: 103, visible: true },   // Singapore
+  { id: 40, lat: -6, lon: 106, visible: true },  // Indonesia - Jakarta
 ];
 
 // Convert lat/lon to 3D coordinates
@@ -192,7 +212,7 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
           currentIndex = 0;
         }
       }
-    }, 2500); // Show/hide one pin every 2.5 seconds (slower motion)
+    }, 800); // Show/hide one pin every 0.8 seconds (faster animation)
 
     return () => clearInterval(interval);
   }, [showPins]);
