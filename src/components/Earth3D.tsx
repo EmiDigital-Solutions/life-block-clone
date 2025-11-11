@@ -95,7 +95,7 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
           currentIndex = 0;
         }
       }
-    }, 1500); // Show/hide one pin every 1.5 seconds
+    }, 2500); // Show/hide one pin every 2.5 seconds (slower motion)
 
     return () => clearInterval(interval);
   }, [showPins]);
@@ -154,21 +154,21 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
               visiblePins.includes(pin.id) && (
                 <motion.div
                   key={pin.id}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "backOut" }}
+                  initial={{ scale: 0, opacity: 0, y: 20 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0, opacity: 0, y: 20 }}
+                  transition={{ duration: 0.8, ease: "backOut" }}
                   className="absolute"
                   style={{ top: pin.top, left: pin.left, transform: 'translate(-50%, -100%)' }}
                 >
-                  {/* Green location pin */}
+                  {/* Green location pin - responsive size */}
                   <div className="relative">
                     {/* Pin body */}
-                    <div className="w-12 h-16 bg-gradient-to-b from-[#14B8A6] to-[#0D9488] rounded-t-full rounded-b-full relative shadow-lg border-2 border-white">
+                    <div className="w-7 h-10 sm:w-12 sm:h-16 bg-gradient-to-b from-[#14B8A6] to-[#0D9488] rounded-t-full rounded-b-full relative shadow-lg border border-white sm:border-2">
                       {/* User icon circle */}
-                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                      <div className="absolute top-1 sm:top-2 left-1/2 -translate-x-1/2 w-5 h-5 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center">
                         <svg
-                          className="w-5 h-5 text-[#14B8A6]"
+                          className="w-3 h-3 sm:w-5 sm:h-5 text-[#14B8A6]"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -176,7 +176,7 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
                         </svg>
                       </div>
                       {/* Pin pointer */}
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[12px] border-l-transparent border-r-transparent border-t-[#0D9488]" />
+                      <div className="absolute -bottom-1 sm:-bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] sm:border-l-[8px] border-r-[5px] sm:border-r-[8px] border-t-[8px] sm:border-t-[12px] border-l-transparent border-r-transparent border-t-[#0D9488]" />
                     </div>
                   </div>
                 </motion.div>
