@@ -1,14 +1,10 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Clock, Zap } from 'lucide-react';
 
 const TimeEfficiencyChart = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const ref = useRef(null);
+  const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const phases = [
     { name: 'Auditor Search', traditional: 14, scanpro: 0.5, color: '#3B82F6' },
@@ -22,7 +18,7 @@ const TimeEfficiencyChart = () => {
   const maxTotal = Math.max(totalTraditional, totalScanPro);
 
   return (
-    <div className="w-full">
+    <div ref={ref} className="w-full">
       <div className="space-y-10 mb-10">
         {/* Traditional Timeline */}
         <div>
@@ -69,7 +65,7 @@ const TimeEfficiencyChart = () => {
             </h4>
             <span className="text-3xl font-black text-emerald-400">{totalScanPro} days</span>
           </div>
-          <div className="relative">
+          <div className="relative flex items-center gap-4">
             <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalScanPro / maxTotal) * 100}%` }}>
               {phases.map((phase, idx) => {
                 const width = (phase.scanpro / totalScanPro) * 100;
@@ -99,9 +95,8 @@ const TimeEfficiencyChart = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ delay: 1.5, duration: 0.5 }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             >
-              <span className="text-white font-black text-xl drop-shadow-lg">{totalScanPro} days</span>
+              <span className="text-2xl font-black text-emerald-400">{totalScanPro} days</span>
             </motion.div>
           </div>
         </div>

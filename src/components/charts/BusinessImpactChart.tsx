@@ -1,14 +1,10 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { TrendingDown } from 'lucide-react';
 
 const BusinessImpactChart = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const ref = useRef(null);
+  const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const metrics = [
     {
@@ -30,7 +26,7 @@ const BusinessImpactChart = () => {
   const savings = ((20000 - 700) / 20000 * 100).toFixed(0);
 
   return (
-    <div className="w-full">
+    <div ref={ref} className="w-full">
       <div className="space-y-10">
         {metrics.map((metric, idx) => (
           <motion.div

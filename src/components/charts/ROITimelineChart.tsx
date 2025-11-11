@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
 
 const ROITimelineChart = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const ref = useRef(null);
+  const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const data = [
     { month: 1, traditional: 33400, scanpro: 1400, label: 'M1' },
@@ -57,7 +53,7 @@ const ROITimelineChart = () => {
   const totalSavings = 400000 - 16800;
 
   return (
-    <div className="w-full">
+    <div ref={ref} className="w-full">
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 20 }}>
