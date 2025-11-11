@@ -1616,7 +1616,7 @@ const HowItWorksCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Cards Display */}
-          <div className="overflow-x-hidden overflow-y-visible pb-16 sm:pb-20 md:pb-24">
+          <div className="overflow-x-hidden overflow-y-visible pb-4 sm:pb-20 md:pb-24">
             <motion.div 
               className="flex transition-transform duration-500 ease-out"
               animate={{ x: `-${currentStep * 100}%` }}
@@ -1687,7 +1687,7 @@ const HowItWorksCarousel = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12">
+          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-10 md:mt-12">
             {/* Arrow Buttons */}
             <button
               onClick={prevStep}
