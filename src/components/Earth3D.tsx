@@ -7,11 +7,26 @@ import worldMapGlobe from '@/assets/world-map-globe.png';
 
 // Location pins data with lat/long coordinates
 const locationPins3D = [
-  { id: 1, lat: 40, lon: -100, visible: true },  // North America
-  { id: 2, lat: 50, lon: 10, visible: true },    // Europe
-  { id: 3, lat: 35, lon: 105, visible: true },   // Asia
-  { id: 4, lat: -15, lon: -60, visible: true },  // South America
-  { id: 5, lat: 0, lon: 20, visible: true },     // Africa
+  { id: 1, lat: 40, lon: -100, visible: true },  // USA - Central
+  { id: 2, lat: 50, lon: 10, visible: true },    // Germany
+  { id: 3, lat: 35, lon: 105, visible: true },   // China - Central
+  { id: 4, lat: -15, lon: -60, visible: true },  // Brazil
+  { id: 5, lat: 0, lon: 20, visible: true },     // Central Africa
+  { id: 6, lat: 55, lon: 38, visible: true },    // Russia - Moscow
+  { id: 7, lat: 28, lon: 77, visible: true },    // India - Delhi
+  { id: 8, lat: 35, lon: 139, visible: true },   // Japan - Tokyo
+  { id: 9, lat: -25, lon: 135, visible: true },  // Australia - Central
+  { id: 10, lat: 19, lon: -99, visible: true },  // Mexico
+  { id: 11, lat: -34, lon: -64, visible: true }, // Argentina
+  { id: 12, lat: 51, lon: -0.1, visible: true }, // UK - London
+  { id: 13, lat: 41, lon: 12, visible: true },   // Italy - Rome
+  { id: 14, lat: 30, lon: 31, visible: true },   // Egypt - Cairo
+  { id: 15, lat: -1, lon: 37, visible: true },   // Kenya
+  { id: 16, lat: -33, lon: 18, visible: true },  // South Africa
+  { id: 17, lat: 45, lon: -75, visible: true },  // Canada - Ottawa
+  { id: 18, lat: 25, lon: 55, visible: true },   // UAE - Dubai
+  { id: 19, lat: 13, lon: 100, visible: true },  // Thailand - Bangkok
+  { id: 20, lat: 60, lon: 25, visible: true },   // Finland
 ];
 
 // Convert lat/lon to 3D coordinates
