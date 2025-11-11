@@ -1062,7 +1062,7 @@ const ChallengeToggleSection = () => {
             : "Traditional supplier audits are inefficient and expensive with unpredictable costs, long delays, and inconsistent quality."}
         </motion.p>
 
-        {/* Animated Grid */}
+        {/* Modern Card Grid */}
         <motion.div layout className="relative">
           <motion.div
             key={isWithScanPro ? 'with' : 'traditional'}
@@ -1070,7 +1070,7 @@ const ChallengeToggleSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 lg:gap-6"
+            className="space-y-8"
           >
             {currentContent.map((item, index) => {
               const Icon = item.icon;
@@ -1081,40 +1081,47 @@ const ChallengeToggleSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
                     delay: index * 0.05, 
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 100
+                    duration: 0.4
                   }}
-                  whileHover={{ 
-                    y: -8, 
-                    boxShadow: isWithScanPro 
-                      ? '0 12px 24px rgba(20, 184, 166, 0.2)' 
-                      : '0 12px 24px rgba(239, 68, 68, 0.2)'
-                  }}
-                  className="bg-white border border-gray-200 rounded-2xl p-8 transition-all"
+                  className="bg-white rounded-3xl shadow-xl overflow-hidden mx-auto max-w-6xl hover:shadow-2xl transition-all"
                 >
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ 
-                      delay: index * 0.05 + 0.2,
-                      type: "spring",
-                      stiffness: 200
-                    }}
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
-                      isWithScanPro 
-                        ? 'bg-gradient-to-br from-[#14B8A6] to-[#0F8775]' 
-                        : 'bg-gradient-to-br from-red-500 to-red-600'
-                    }`}
-                  >
-                    <Icon className="w-8 h-8 text-white" />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="grid md:grid-cols-2 gap-0 items-center">
+                    {/* Left Side - Icon/Visual */}
+                    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[300px] flex items-center justify-center">
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ 
+                          delay: index * 0.05 + 0.2,
+                          duration: 0.5,
+                          type: "spring"
+                        }}
+                        className={`w-32 h-32 rounded-2xl flex items-center justify-center ${
+                          isWithScanPro ? 'bg-gradient-to-br from-[#14B8A6] to-[#0D9488]' : 'bg-gradient-to-br from-red-600 to-red-700'
+                        }`}
+                      >
+                        <Icon className="w-16 h-16 text-white" />
+                      </motion.div>
+                    </div>
+
+                    {/* Right Side - Content */}
+                    <div className="p-8 md:p-12">
+                      <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 ${
+                        isWithScanPro 
+                          ? 'bg-[#14B8A6]/10 text-[#14B8A6]' 
+                          : 'bg-red-600/10 text-red-600'
+                      }`}>
+                        {isWithScanPro ? 'ScanPro+' : 'Traditional'}
+                      </span>
+                      
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-lg text-gray-600 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
@@ -1915,55 +1922,89 @@ const ScanProPlus = () => {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'rgba(37, 99, 235, 0.05)', borderColor: 'rgba(37, 99, 235, 0.2)' }}>
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Target className="w-6 h-6" style={{ color: '#2563EB' }} />
-                Quality Improvement
-              </h3>
-              <ul className="space-y-2 text-white/80">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                  <span>Uniform methodology for all supplier assessments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                  <span>AI-supported detection of critical risks</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                  <span>Continuous improvement tracking over time</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                  <span>Data-based supplier decisions</span>
-                </li>
-              </ul>
+          <div className="space-y-8 max-w-6xl mx-auto">
+            {/* Quality Improvement Card */}
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-0 items-center">
+                {/* Left Side - Visual */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
+                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
+                    <Target className="w-20 h-20 text-white" />
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="p-8 md:p-12">
+                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
+                    Quality Focus
+                  </span>
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    Quality Improvement
+                  </h3>
+                  
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
+                      <span className="text-lg">Uniform methodology for all supplier assessments</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
+                      <span className="text-lg">AI-supported detection of critical risks</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
+                      <span className="text-lg">Continuous improvement tracking over time</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
+                      <span className="text-lg">Data-based supplier decisions</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'rgba(20, 184, 166, 0.05)', borderColor: 'rgba(20, 184, 166, 0.2)' }}>
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Zap className="w-6 h-6" style={{ color: '#14B8A6' }} />
-                Efficiency Gains
-              </h3>
-              <ul className="space-y-2 text-white/80">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                  <span>50% faster audit execution through template-based workflows</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                  <span>Automatic report generation in real-time</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                  <span>Integrated tracking of corrective actions</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                  <span>Shorter time-to-market through faster supplier releases</span>
-                </li>
-              </ul>
+            {/* Efficiency Gains Card */}
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-0 items-center">
+                {/* Left Side - Visual */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
+                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                    <Zap className="w-20 h-20 text-white" />
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="p-8 md:p-12">
+                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
+                    Performance
+                  </span>
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    Efficiency Gains
+                  </h3>
+                  
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                      <span className="text-lg">50% faster audit execution through template-based workflows</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                      <span className="text-lg">Automatic report generation in real-time</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                      <span className="text-lg">Integrated tracking of corrective actions</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-gray-700">
+                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                      <span className="text-lg">Shorter time-to-market through faster supplier releases</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2047,27 +2088,45 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all"
+                className="bg-white rounded-3xl shadow-xl overflow-hidden"
               >
-                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2" style={{ color: '#2563EB' }}>
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#EFF6FF' }}>
-                    <industry.Icon className="w-6 h-6" style={{ color: '#2563EB' }} />
+                <div className="grid md:grid-cols-2 gap-0 items-center">
+                  {/* Left Side - Icon */}
+                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
+                      <industry.Icon className="w-20 h-20 text-white" />
+                    </div>
                   </div>
-                  <span>{industry.title}</span>
-                </h3>
-                <p className="text-lg font-semibold text-gray-900 mb-4">{industry.useCase}</p>
-                <p className="text-lg font-semibold text-gray-900 mb-3">ScanPro+ Solution:</p>
-                <ul className="space-y-2 mb-4">
-                  {industry.solutions.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-700">
-                      <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                {industry.result && (
-                  <p className="text-gray-700 font-semibold p-4 rounded-lg border" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.2)' }}>{industry.result}</p>
-                )}
+
+                  {/* Right Side - Content */}
+                  <div className="p-8 md:p-12">
+                    <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
+                      Industry Solution
+                    </span>
+                    
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                      {industry.title}
+                    </h3>
+                    
+                    <p className="text-lg text-gray-600 mb-6">{industry.useCase}</p>
+                    
+                    <p className="text-sm font-semibold text-gray-900 mb-3">ScanPro+ Solution:</p>
+                    <ul className="space-y-3 mb-6">
+                      {industry.solutions.map((item, i) => (
+                        <li key={i} className="flex items-start gap-3 text-gray-700">
+                          <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    {industry.result && (
+                      <div className="p-4 rounded-lg" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)' }}>
+                        <p className="text-gray-900 font-semibold">{industry.result}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -2123,37 +2182,73 @@ const ScanProPlus = () => {
             Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <LinkIcon className="w-8 h-8" style={{ color: '#2563EB' }} />
-                <h3 className="text-2xl font-bold text-gray-900">ERP Connectors</h3>
+          <div className="space-y-8">
+            {/* ERP Connectors Card */}
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-0 items-center">
+                {/* Left Side - Visual */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
+                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
+                    <LinkIcon className="w-20 h-20 text-white" />
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="p-8 md:p-12">
+                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
+                    Integration
+                  </span>
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    ERP Connectors
+                  </h3>
+                  
+                  <p className="text-lg text-gray-600 mb-6">Seamless integration into your existing enterprise systems:</p>
+                  
+                  <ul className="space-y-3">
+                    {['SAP (Supplier Evaluation & Release)', 'Oracle', 'Microsoft Dynamics', 'Infor', 'Epicor'].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-700">
+                        <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
+                        <span className="text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <p className="text-gray-700 mb-4">Seamless integration into your existing enterprise systems:</p>
-              <ul className="space-y-2">
-                {['SAP (Supplier Evaluation & Release)', 'Oracle', 'Microsoft Dynamics', 'Infor', 'Epicor'].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <Globe className="w-8 h-8" style={{ color: '#14B8A6' }} />
-                <h3 className="text-2xl font-bold text-gray-900">Global Auditor Network</h3>
+            {/* Global Auditor Network Card */}
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-0 items-center">
+                {/* Left Side - Visual */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
+                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                    <Globe className="w-20 h-20 text-white" />
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="p-8 md:p-12">
+                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
+                    Network
+                  </span>
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    Global Auditor Network
+                  </h3>
+                  
+                  <p className="text-lg text-gray-600 mb-6">Direct access to our worldwide network of certified auditors:</p>
+                  
+                  <ul className="space-y-3">
+                    {['On-Demand Availability – Same-Day audits', 'Smart Matching – Optimal auditor selection', 'Transparent Prices – Fixed pricing', 'Real-time Tracking – GPS and status updates', 'Rating System – Quality assured'].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-700">
+                        <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                        <span className="text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <p className="text-gray-700 mb-4">Direct access to our worldwide network of certified auditors:</p>
-              <ul className="space-y-2">
-                {['On-Demand Availability – Same-Day audits', 'Smart Matching – Optimal auditor selection', 'Transparent Prices – Fixed pricing', 'Real-time Tracking – GPS and status updates', 'Rating System – Quality assured'].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
