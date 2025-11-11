@@ -1062,7 +1062,7 @@ const ChallengeToggleSection = () => {
             : "Traditional supplier audits are inefficient and expensive with unpredictable costs, long delays, and inconsistent quality."}
         </motion.p>
 
-        {/* Modern Card Grid */}
+        {/* Modern Card Grid - 3x2 Grid Layout */}
         <motion.div layout className="relative">
           <motion.div
             key={isWithScanPro ? 'with' : 'traditional'}
@@ -1070,7 +1070,7 @@ const ChallengeToggleSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
-            className="space-y-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {currentContent.map((item, index) => {
               const Icon = item.icon;
@@ -1083,44 +1083,42 @@ const ChallengeToggleSection = () => {
                     delay: index * 0.05, 
                     duration: 0.4
                   }}
-                  className="bg-white rounded-3xl shadow-xl overflow-hidden mx-auto max-w-6xl hover:shadow-2xl transition-all"
+                  className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all flex flex-col"
                 >
-                  <div className="grid md:grid-cols-2 gap-0 items-center">
-                    {/* Left Side - Icon/Visual */}
-                    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[300px] flex items-center justify-center">
-                      <motion.div
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ 
-                          delay: index * 0.05 + 0.2,
-                          duration: 0.5,
-                          type: "spring"
-                        }}
-                        className={`w-32 h-32 rounded-2xl flex items-center justify-center ${
-                          isWithScanPro ? 'bg-gradient-to-br from-[#14B8A6] to-[#0D9488]' : 'bg-gradient-to-br from-red-600 to-red-700'
-                        }`}
-                      >
-                        <Icon className="w-16 h-16 text-white" />
-                      </motion.div>
-                    </div>
+                  {/* Top - Icon/Visual */}
+                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center">
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ 
+                        delay: index * 0.05 + 0.2,
+                        duration: 0.5,
+                        type: "spring"
+                      }}
+                      className={`w-20 h-20 rounded-2xl flex items-center justify-center ${
+                        isWithScanPro ? 'bg-gradient-to-br from-[#14B8A6] to-[#0D9488]' : 'bg-gradient-to-br from-red-600 to-red-700'
+                      }`}
+                    >
+                      <Icon className="w-10 h-10 text-white" />
+                    </motion.div>
+                  </div>
 
-                    {/* Right Side - Content */}
-                    <div className="p-8 md:p-12">
-                      <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 ${
-                        isWithScanPro 
-                          ? 'bg-[#14B8A6]/10 text-[#14B8A6]' 
-                          : 'bg-red-600/10 text-red-600'
-                      }`}>
-                        {isWithScanPro ? 'ScanPro+' : 'Traditional'}
-                      </span>
-                      
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-lg text-gray-600 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
+                  {/* Bottom - Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start ${
+                      isWithScanPro 
+                        ? 'bg-[#14B8A6]/10 text-[#14B8A6]' 
+                        : 'bg-red-600/10 text-red-600'
+                    }`}>
+                      {isWithScanPro ? 'ScanPro+' : 'Traditional'}
+                    </span>
+                    
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </motion.div>
               );
