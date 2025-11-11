@@ -2182,74 +2182,60 @@ const ScanProPlus = () => {
             Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
           </motion.h2>
 
-          <div className="space-y-8">
-            {/* ERP Connectors Card */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-0 items-center">
-                {/* Left Side - Visual */}
-                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
-                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
-                    <LinkIcon className="w-20 h-20 text-white" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* ERP Integration Cards */}
+            {[
+              { icon: LinkIcon, title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB' },
+              { icon: LinkIcon, title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#2563EB' },
+              { icon: LinkIcon, title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#2563EB' },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center mb-6">
+                    <item.icon className="w-12 h-12 text-white" />
                   </div>
-                </div>
-
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-12">
-                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
+                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-4">
                     Integration
                   </span>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    ERP Connectors
-                  </h3>
-                  
-                  <p className="text-lg text-gray-600 mb-6">Seamless integration into your existing enterprise systems:</p>
-                  
-                  <ul className="space-y-3">
-                    {['SAP (Supplier Evaluation & Release)', 'Oracle', 'Microsoft Dynamics', 'Infor', 'Epicor'].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-gray-700">
-                        <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                        <span className="text-lg">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-gray-600">{item.desc}</p>
                 </div>
-              </div>
-            </div>
-
-            {/* Global Auditor Network Card */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-0 items-center">
-                {/* Left Side - Visual */}
-                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
-                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                    <Globe className="w-20 h-20 text-white" />
+              </motion.div>
+            ))}
+            
+            {/* Network Cards */}
+            {[
+              { icon: Globe, title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#14B8A6' },
+              { icon: UserCheck, title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#14B8A6' },
+              { icon: Star, title: 'Quality Assured', desc: 'Rating system & tracking', color: '#14B8A6' },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (idx + 3) * 0.1 }}
+                className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center mb-6">
+                    <item.icon className="w-12 h-12 text-white" />
                   </div>
-                </div>
-
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-12">
-                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
+                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-4">
                     Network
                   </span>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Global Auditor Network
-                  </h3>
-                  
-                  <p className="text-lg text-gray-600 mb-6">Direct access to our worldwide network of certified auditors:</p>
-                  
-                  <ul className="space-y-3">
-                    {['On-Demand Availability – Same-Day audits', 'Smart Matching – Optimal auditor selection', 'Transparent Prices – Fixed pricing', 'Real-time Tracking – GPS and status updates', 'Rating System – Quality assured'].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-gray-700">
-                        <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                        <span className="text-lg">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-gray-600">{item.desc}</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
 
           <div className="mt-8 p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
