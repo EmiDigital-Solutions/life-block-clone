@@ -49,8 +49,8 @@ const BusinessImpactChart = () => {
                 initial={{ width: 0 }}
                 animate={{ width: isVisible ? `${metric.percentage}%` : 0 }}
                 transition={{ 
-                  delay: idx * 0.3, 
-                  duration: 1.5, 
+                  delay: idx * 0.4, 
+                  duration: 2.5, 
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 className={`h-full bg-gradient-to-r ${metric.bgColor}`}
@@ -63,7 +63,7 @@ const BusinessImpactChart = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
         className="mt-10 flex items-center gap-6 p-8 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 rounded-2xl"
       >
         <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
