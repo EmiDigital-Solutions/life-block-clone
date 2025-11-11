@@ -104,13 +104,11 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[700px]">
           
-          {/* Dotted World Map Background - ANIMATED - Moved 20% Down */}
+          {/* Modern 3D Globe with Enhanced Effects */}
           <motion.div 
             className="absolute flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
-              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-              opacity: 0.4,
               width: '100%',
               height: '100%',
               top: '20%',
@@ -118,16 +116,167 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               right: 0,
               bottom: '-20%'
             }}
-            animate={{ 
-              rotateY: [0, 5, 0, -5, 0],
-              scale: [1, 1.02, 1, 1.02, 1]
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+          >
+            {/* Globe with gradient and depth */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Glow effect behind globe */}
+              <motion.div
+                className="absolute w-[600px] h-[600px] rounded-full"
+                style={{
+                  background: 'radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%)',
+                  filter: 'blur(40px)'
+                }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Main dotted map with enhanced opacity */}
+              <motion.div
+                className="absolute w-full h-full"
+                style={{ 
+                  background: `url(${dottedWorldMap}) center center / contain no-repeat`,
+                  opacity: 0.6,
+                }}
+                animate={{ 
+                  rotateY: [0, 5, 0, -5, 0],
+                  scale: [1, 1.02, 1, 1.02, 1]
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Animated connection lines overlay */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.3 }}>
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
+                    <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.8 }} />
+                    <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
+                  </linearGradient>
+                </defs>
+                
+                {/* Animated pulse lines across globe */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.line
+                    key={i}
+                    x1="20%"
+                    y1={`${20 + i * 12}%`}
+                    x2="80%"
+                    y2={`${25 + i * 12}%`}
+                    stroke="url(#lineGradient)"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ 
+                      pathLength: [0, 1, 0],
+                      opacity: [0, 0.6, 0]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+              </svg>
+              
+              {/* Enhanced glowing location markers */}
+              {[
+                { top: "30%", left: "72%", delay: 0 }, // Asia
+                { top: "70%", left: "25%", delay: 0.3 }, // South America
+                { top: "28%", left: "46%", delay: 0.6 }, // Europe
+                { top: "38%", left: "15%", delay: 0.9 }, // North America
+                { top: "58%", left: "52%", delay: 1.2 }, // Middle East
+                { top: "60%", left: "68%", delay: 1.5 }, // South Asia
+              ].map((marker, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute"
+                  style={{ top: marker.top, left: marker.left }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: marker.delay, duration: 0.5 }}
+                >
+                  {/* Outer glow ring - animated pulse */}
+                  <motion.div
+                    className="absolute w-12 h-12 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(20, 184, 166, 0.6) 0%, transparent 70%)',
+                      transform: 'translate(-50%, -50%)',
+                      left: '50%',
+                      top: '50%'
+                    }}
+                    animate={{
+                      scale: [1, 2.5, 1],
+                      opacity: [0.8, 0, 0.8]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: marker.delay,
+                      ease: "easeOut"
+                    }}
+                  />
+                  
+                  {/* Middle glow ring */}
+                  <motion.div
+                    className="absolute w-8 h-8 rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(20, 184, 166, 0.8) 0%, rgba(20, 184, 166, 0.3) 100%)',
+                      transform: 'translate(-50%, -50%)',
+                      left: '50%',
+                      top: '50%',
+                      boxShadow: '0 0 20px rgba(20, 184, 166, 0.8), 0 0 40px rgba(20, 184, 166, 0.4)'
+                    }}
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: marker.delay,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Core dot - bright and solid */}
+                  <div
+                    className="absolute w-4 h-4 rounded-full"
+                    style={{
+                      background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)',
+                      transform: 'translate(-50%, -50%)',
+                      left: '50%',
+                      top: '50%',
+                      boxShadow: '0 0 15px rgba(20, 184, 166, 1), 0 0 30px rgba(20, 184, 166, 0.6), inset 0 0 5px rgba(255, 255, 255, 0.5)'
+                    }}
+                  />
+                  
+                  {/* Highlight dot for extra shine */}
+                  <div
+                    className="absolute w-2 h-2 rounded-full"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      transform: 'translate(-50%, -50%)',
+                      left: '40%',
+                      top: '40%',
+                      filter: 'blur(1px)'
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Auditor Cards - Professional Sequential Animation */}
           <AnimatePresence>
