@@ -352,7 +352,7 @@ const MapLocationMarker = ({
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.4, type: "spring" }}
-      className="absolute cursor-pointer group"
+      className="absolute cursor-pointer group z-20"
       style={{ left, top, transform: 'translate(-50%, -50%)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -361,22 +361,25 @@ const MapLocationMarker = ({
       <motion.div
         className="absolute inset-0 rounded-full bg-[#14B8A6]"
         animate={{
-          scale: [1, 1.8, 1],
-          opacity: [0.6, 0, 0.6],
+          scale: [1, 2.2, 1],
+          opacity: [0.7, 0, 0.7],
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        style={{ width: '20px', height: '20px', left: '-10px', top: '-10px' }}
+        style={{ width: '32px', height: '32px', left: '-16px', top: '-16px' }}
       />
       
       {/* Main marker dot */}
       <motion.div
-        className="w-3 h-3 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg relative z-10"
-        whileHover={{ scale: 1.3 }}
+        className="w-5 h-5 rounded-full bg-[#14B8A6] border-3 border-white shadow-xl relative z-10"
+        whileHover={{ scale: 1.4 }}
         transition={{ duration: 0.2 }}
+        style={{
+          boxShadow: '0 4px 12px rgba(20, 184, 166, 0.6)'
+        }}
       />
 
       {/* Tooltip */}
@@ -387,18 +390,18 @@ const MapLocationMarker = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 pointer-events-none z-20"
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 pointer-events-none z-30"
           >
-            <div className="bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl min-w-[160px]">
-              <p className="font-semibold text-sm whitespace-nowrap">{name}</p>
-              <div className="flex items-center gap-2 mt-1">
+            <div className="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-gray-700">
+              <p className="font-bold text-sm whitespace-nowrap">{name}</p>
+              <div className="flex items-center gap-2 mt-1.5">
                 <div className="w-2 h-2 rounded-full bg-[#2ECC71] animate-pulse" />
-                <p className="text-xs text-gray-300">{availability}</p>
+                <p className="text-xs text-gray-300 font-medium">{availability}</p>
               </div>
             </div>
             {/* Tooltip arrow */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px]">
-              <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900" />
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-gray-900" />
             </div>
           </motion.div>
         )}
@@ -603,24 +606,19 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
             </div>
           </div>
           
-          {/* Dotted World Map at bottom with interactive markers */}
+          {/* Dotted World Map below cards with interactive markers */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="absolute bottom-0 pointer-events-none"
-            style={{ 
-              left: '10.52%', 
-              right: '10.52%',
-              width: '79%'
-            }}
+            className="mt-16 relative w-full max-w-5xl mx-auto"
           >
-            <div className="relative pointer-events-auto">
+            <div className="relative">
               <img 
                 src={dottedWorldMap} 
                 alt="Global Network Map" 
-                className="w-full h-auto opacity-30"
+                className="w-full h-auto opacity-60"
               />
               
               {/* Interactive Location Markers */}
