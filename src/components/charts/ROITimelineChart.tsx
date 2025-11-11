@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
 
@@ -26,25 +26,25 @@ const ROITimelineChart = () => {
     { month: 12, traditional: 400000, scanpro: 16800, label: 'M12' },
   ];
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const savings = payload[0].value - payload[1].value;
       return (
-        <div className="bg-white p-4 rounded-xl shadow-2xl border-2 border-gray-200">
-          <p className="font-bold text-gray-900 mb-3">{`Month ${payload[0].payload.month}`}</p>
+        <div className="bg-gray-900/95 backdrop-blur-sm p-4 rounded-xl border border-gray-700">
+          <p className="font-bold text-white mb-3">{`Month ${payload[0].payload.month}`}</p>
           <div className="space-y-2">
             <div className="flex justify-between gap-6">
-              <span className="text-sm text-gray-600">Traditional:</span>
-              <span className="font-semibold text-red-600">€{payload[0].value.toLocaleString()}</span>
+              <span className="text-sm text-gray-400">Traditional:</span>
+              <span className="font-semibold text-gray-300">€{payload[0].value.toLocaleString()}</span>
             </div>
             <div className="flex justify-between gap-6">
-              <span className="text-sm text-gray-600">ScanPro+:</span>
-              <span className="font-semibold text-teal-600">€{payload[1].value.toLocaleString()}</span>
+              <span className="text-sm text-gray-400">ScanPro+:</span>
+              <span className="font-semibold text-teal-400">€{payload[1].value.toLocaleString()}</span>
             </div>
-            <div className="pt-2 border-t border-gray-200">
+            <div className="pt-2 border-t border-gray-700">
               <div className="flex justify-between gap-6">
-                <span className="text-sm font-semibold text-gray-900">Saved:</span>
-                <span className="font-bold text-green-600">€{savings.toLocaleString()}</span>
+                <span className="text-sm font-semibold text-white">Saved:</span>
+                <span className="font-bold text-teal-400">€{savings.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -64,34 +64,24 @@ const ROITimelineChart = () => {
             data={data}
             margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
           >
-            <defs>
-              <linearGradient id="traditionalGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#DC2626" stopOpacity={0.1}/>
-                <stop offset="100%" stopColor="#DC2626" stopOpacity={0}/>
-              </linearGradient>
-              <linearGradient id="scanproGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#14B8A6" stopOpacity={0.2}/>
-                <stop offset="100%" stopColor="#14B8A6" stopOpacity={0}/>
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} />
             <XAxis 
               dataKey="label" 
-              tick={{ fill: '#6B7280', fontSize: 11 }}
-              axisLine={{ stroke: '#E5E7EB' }}
+              tick={{ fill: '#9CA3AF', fontSize: 11 }}
+              axisLine={{ stroke: '#4B5563' }}
             />
             <YAxis 
-              tick={{ fill: '#6B7280', fontSize: 11 }}
+              tick={{ fill: '#9CA3AF', fontSize: 11 }}
               tickFormatter={(value) => `€${(value / 1000).toFixed(0)}k`}
-              axisLine={{ stroke: '#E5E7EB' }}
+              axisLine={{ stroke: '#4B5563' }}
             />
             <Tooltip content={<CustomTooltip />} />
             <Line
               type="monotone"
               dataKey="traditional"
-              stroke="#DC2626"
+              stroke="#6B7280"
               strokeWidth={3}
-              dot={{ fill: '#DC2626', r: 4 }}
+              dot={{ fill: '#6B7280', r: 4 }}
               activeDot={{ r: 6 }}
               animationDuration={1500}
               name="Traditional"
@@ -117,20 +107,20 @@ const ROITimelineChart = () => {
         transition={{ delay: 0.8, duration: 0.5 }}
         className="mt-6 grid grid-cols-3 gap-4"
       >
-        <div className="text-center p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200">
-          <p className="text-xs text-gray-600 mb-1">Traditional Cost</p>
-          <p className="text-lg font-bold text-red-600">€400k</p>
+        <div className="p-4 bg-white/5 rounded-xl border border-gray-600">
+          <p className="text-xs text-gray-400 mb-1">Traditional</p>
+          <p className="text-xl font-bold text-gray-300">€400k</p>
         </div>
-        <div className="text-center p-4 bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl border border-teal-200">
-          <p className="text-xs text-gray-600 mb-1">ScanPro+ Cost</p>
-          <p className="text-lg font-bold text-teal-600">€17k</p>
+        <div className="p-4 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-xl border border-teal-500/50">
+          <p className="text-xs text-gray-300 mb-1">ScanPro+</p>
+          <p className="text-xl font-bold text-teal-400">€17k</p>
         </div>
-        <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border-2 border-green-300">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <TrendingUp className="w-4 h-4 text-green-600" />
-            <p className="text-xs text-gray-600">Total Savings</p>
+        <div className="p-4 bg-gradient-to-br from-teal-500/30 to-blue-500/30 rounded-xl border border-teal-400">
+          <div className="flex items-center gap-2 mb-1">
+            <TrendingUp className="w-4 h-4 text-teal-400" />
+            <p className="text-xs text-gray-300">Savings</p>
           </div>
-          <p className="text-lg font-bold text-green-600">€{(totalSavings / 1000).toFixed(0)}k</p>
+          <p className="text-xl font-bold text-teal-400">€{(totalSavings / 1000).toFixed(0)}k</p>
         </div>
       </motion.div>
     </div>

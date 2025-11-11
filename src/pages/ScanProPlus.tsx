@@ -2162,10 +2162,10 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-3xl p-8 shadow-2xl"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Cost Comparison</h3>
-              <p className="text-gray-600 mb-6">Traditional vs ScanPro+ per audit</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Cost Comparison</h3>
+              <p className="text-gray-400 mb-6">Traditional vs ScanPro+ per audit</p>
               
               <BusinessImpactChart />
             </motion.div>
@@ -2176,10 +2176,10 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-3xl p-8 shadow-2xl"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Cumulative Savings</h3>
-              <p className="text-gray-600 mb-6">12-month projection (20 audits/year)</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
+              <p className="text-gray-400 mb-6">12-month projection (20 audits/year)</p>
               
               <ROITimelineChart />
             </motion.div>
@@ -2191,10 +2191,10 @@ const ScanProPlus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl p-8 shadow-2xl"
+            className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-700"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Time-to-Audit Comparison</h3>
-            <p className="text-gray-600 mb-6">End-to-end audit process duration</p>
+            <h3 className="text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
+            <p className="text-gray-400 mb-6">End-to-end audit process duration</p>
             
             <TimeEfficiencyChart />
           </motion.div>
