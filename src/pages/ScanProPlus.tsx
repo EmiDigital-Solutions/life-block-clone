@@ -88,15 +88,15 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[700px]">
           
-          {/* Dotted World Map Background - ANIMATED - Lower Part */}
+          {/* Dotted World Map Background - ANIMATED */}
           <motion.div 
-            className="absolute bottom-0 left-0 right-0 flex items-end justify-center pointer-events-none" 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
-              background: `url(${dottedWorldMap}) center bottom / contain no-repeat`,
+              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
               opacity: 0.4,
               width: '100%',
-              height: '70%'
+              height: '100%'
             }}
             animate={{ 
               rotateY: [0, 5, 0, -5, 0],
