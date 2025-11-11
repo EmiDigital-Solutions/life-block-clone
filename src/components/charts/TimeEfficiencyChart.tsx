@@ -68,7 +68,7 @@ const TimeEfficiencyChart = () => {
             </h4>
           </div>
           <div className="relative flex items-center gap-2 sm:gap-4">
-            <div className="flex gap-0.5 sm:gap-1 h-12 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-black/30" style={{ width: '70%' }}>
+            <div className="flex gap-0.5 sm:gap-1 h-12 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-black/30" style={{ width: '18%' }}>
               {phases.map((phase, idx) => {
                 const width = ((phase.visualScanpro || phase.scanpro) / totalVisualScanPro) * 100;
                 return (
