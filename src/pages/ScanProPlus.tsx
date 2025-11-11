@@ -472,19 +472,16 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
         <div className="relative min-h-[700px]">
           
           {/* Dotted World Map Background - HIGHLY VISIBLE */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none" style={{ zIndex: 0, top: '-10%' }}>
-            <img 
-              src={dottedWorldMap} 
-              alt="Global Network Map" 
-              className="w-full h-auto"
-              style={{ 
-                opacity: 1,
-                minWidth: '100%',
-                maxWidth: 'none',
-                objectFit: 'contain'
-              }}
-            />
-          </div>
+          <div 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
+            style={{ 
+              zIndex: 0,
+              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
+              opacity: 0.4,
+              width: '100%',
+              height: '100%'
+            }}
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
