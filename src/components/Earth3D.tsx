@@ -11,14 +11,14 @@ const EarthSphere = () => {
   // Rotate the earth realistically
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.002; // Realistic slow rotation
+      meshRef.current.rotation.y += 0.0008; // Slower realistic rotation
     }
   });
 
   return (
     <>
       {/* Main Earth with dotted map texture */}
-      <Sphere ref={meshRef} args={[2.5, 64, 64]}>
+      <Sphere ref={meshRef} args={[2.875, 64, 64]}>
         <meshStandardMaterial
           map={texture}
           emissive="#3b82f6"
@@ -29,7 +29,7 @@ const EarthSphere = () => {
       </Sphere>
       
       {/* Outer glow sphere */}
-      <Sphere args={[2.7, 32, 32]}>
+      <Sphere args={[3.1, 32, 32]}>
         <meshBasicMaterial
           color="#60a5fa"
           transparent
@@ -43,7 +43,7 @@ const EarthSphere = () => {
 
 const Earth3D = ({ width = "100%", height = "400px" }: { width?: string; height?: string }) => {
   return (
-    <div style={{ width, height, position: 'relative' }}>
+    <div style={{ width, height, position: 'relative', overflow: 'visible' }}>
       {/* Animated background glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div 
@@ -74,7 +74,7 @@ const Earth3D = ({ width = "100%", height = "400px" }: { width?: string; height?
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.3}
+          autoRotateSpeed={0.15}
         />
       </Canvas>
     </div>
