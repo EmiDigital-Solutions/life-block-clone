@@ -631,12 +631,12 @@ const GlobalNetworkMapSection = ({ auditors }: { auditors: any[] }) => {
   
   // Define marker locations on the map (approximate positions)
   const markerLocations = [
-    { top: '30%', left: '20%', delay: 0 },      // North America
-    { top: '40%', left: '48%', delay: 0.2 },    // Europe
-    { top: '35%', left: '68%', delay: 0.4 },    // Asia
-    { top: '55%', left: '15%', delay: 0.6 },    // South America
-    { top: '60%', left: '50%', delay: 0.8 },    // Africa
-    { top: '65%', left: '75%', delay: 1 },      // Australia
+    { top: '35%', left: '18%', delay: 0 },      // North America
+    { top: '30%', left: '50%', delay: 0.2 },    // Europe
+    { top: '40%', left: '72%', delay: 0.4 },    // Asia
+    { top: '65%', left: '25%', delay: 0.6 },    // South America
+    { top: '58%', left: '52%', delay: 0.8 },    // Africa
+    { top: '70%', left: '78%', delay: 1 },      // Australia
   ];
 
   return (
@@ -646,10 +646,10 @@ const GlobalNetworkMapSection = ({ auditors }: { auditors: any[] }) => {
       style={{ background: "transparent" }}
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-end relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative">
           
           {/* Left Column: Text Content */}
-          <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+          <div className="flex flex-col space-y-6 md:space-y-8 text-left relative z-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -693,24 +693,30 @@ const GlobalNetworkMapSection = ({ auditors }: { auditors: any[] }) => {
             </motion.div>
           </div>
 
-          {/* Right Column: World Map with Animated Markers and Auditor Cards */}
-          <div className="relative w-full" style={{ minHeight: '500px' }}>
-            {/* Dotted World Map Background */}
+          {/* Right Column: Placeholder for layout */}
+          <div className="relative" style={{ minHeight: '400px' }}></div>
+        </div>
+
+        {/* Full Width World Map with Animated Markers and Floating Auditor Cards */}
+        <div className="absolute inset-0 pointer-events-none" style={{ top: '20%' }}>
+          <div className="relative w-full h-full max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+            {/* Dotted World Map Background - Full Width */}
             <div 
-              className="absolute inset-0 flex items-end justify-center pb-12"
+              className="absolute inset-0"
               style={{
-                background: `url(${dottedWorldMap}) center bottom / contain no-repeat`,
-                opacity: 0.6,
+                background: `url(${dottedWorldMap}) center center / contain no-repeat`,
+                opacity: 0.5,
               }}
             >
-              {/* Animated Blue Markers on Map */}
+              {/* Animated Cyan Markers on Map */}
               {markerLocations.map((location, index) => (
                 <motion.div
                   key={index}
-                  className="absolute w-3 h-3 rounded-full bg-[#14B8A6]"
+                  className="absolute w-2.5 h-2.5 rounded-full"
                   style={{
                     top: location.top,
                     left: location.left,
+                    backgroundColor: '#14B8A6',
                     boxShadow: '0 0 20px rgba(20, 184, 166, 0.8)',
                   }}
                   initial={{ scale: 0, opacity: 0 }}
@@ -731,33 +737,59 @@ const GlobalNetworkMapSection = ({ auditors }: { auditors: any[] }) => {
               ))}
             </div>
 
-            {/* Auditor Cards Overlay */}
-            <div className="absolute top-0 right-0 flex gap-4">
-              {visibleAuditors.slice(0, 3).map((auditor, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="w-32 h-40 rounded-2xl overflow-hidden shadow-lg"
-                  style={{
-                    background: `linear-gradient(135deg, ${['#2563eb', '#14b8a6', '#6366f1'][index]}, ${['#1e40af', '#0d9488', '#4f46e5'][index]})`,
-                  }}
-                >
-                  <div className="relative w-full h-full p-3 flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 rounded-full overflow-hidden mb-2 border-2 border-white/30">
-                      <img
-                        src={auditor.image}
-                        alt={auditor.location}
-                        className="w-full h-full object-cover"
+            {/* Floating Auditor Cards - Top Right */}
+            <div className="absolute top-0 right-0 flex gap-3 pointer-events-auto" style={{ transform: 'perspective(1000px)', transformStyle: 'preserve-3d' }}>
+              {visibleAuditors.slice(0, 4).map((auditor, index) => {
+                const colors = [
+                  { from: '#2563eb', to: '#1e40af' },  // Blue
+                  { from: '#14b8a6', to: '#0d9488' },  // Cyan
+                  { from: '#6b7280', to: '#374151' },  // Gray/Black
+                  { from: '#2563eb', to: '#1e40af' },  // Blue
+                ];
+                const rotation = [5, -3, 4, -2][index];
+                const translateZ = [0, 20, 40, 60][index];
+                
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20, rotateY: -20 }}
+                    whileInView={{ opacity: 1, y: 0, rotateY: rotation }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.15, duration: 0.6 }}
+                    className="w-36 h-48 rounded-2xl overflow-hidden shadow-2xl relative"
+                    style={{
+                      background: `linear-gradient(135deg, ${colors[index].from}, ${colors[index].to})`,
+                      transform: `translateZ(${translateZ}px) rotateY(${rotation}deg)`,
+                      transformStyle: 'preserve-3d',
+                    }}
+                  >
+                    <div className="relative w-full h-full p-4 flex flex-col items-center justify-center">
+                      {/* Auditor Image */}
+                      <div className="w-20 h-20 rounded-full overflow-hidden mb-3 border-2 border-white/30 relative z-10">
+                        <img
+                          src={auditor.image}
+                          alt={auditor.location}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      {/* Location Info */}
+                      <div className="relative z-10 text-center">
+                        <p className="text-white font-bold text-sm mb-0.5">{auditor.location}</p>
+                        <p className="text-white/80 text-xs">{auditor.region}</p>
+                      </div>
+
+                      {/* Gradient Overlay */}
+                      <div 
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                        }}
                       />
                     </div>
-                    <p className="text-white font-bold text-xs text-center">{auditor.location}</p>
-                    <p className="text-white/80 text-[10px] text-center">{auditor.region}</p>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
