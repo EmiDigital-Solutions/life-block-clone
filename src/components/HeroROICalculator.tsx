@@ -72,15 +72,23 @@ const HeroROICalculator = () => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl"
+      className="bg-white rounded-3xl p-6 lg:p-8 shadow-2xl"
     >
-      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-        <span style={{ color: '#14B8A6' }}>ROI</span> Calculator
-      </h3>
-      
-      <p className="text-sm text-gray-600 mb-6">
-        Calculate your savings
-      </p>
+      {/* Header with Interactive Badge */}
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-3">
+          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
+            <span style={{ color: '#14B8A6' }}>ROI</span> Calculator
+          </h3>
+          <span className="px-3 py-1 bg-[#14B8A6]/10 text-[#14B8A6] text-xs font-semibold rounded-full">
+            Interactive
+          </span>
+        </div>
+        
+        <p className="text-sm text-gray-600">
+          Try it yourself! Enter your numbers to calculate your business case
+        </p>
+      </div>
 
       {/* Input Fields */}
       <div className="space-y-4 mb-6">
@@ -98,10 +106,10 @@ const HeroROICalculator = () => {
                 setAuditsPerYear(e.target.value);
                 setDisplayAudits(e.target.value);
               }}
-              placeholder="Type your number of audits here"
+              placeholder="e.g., 20"
               disabled={isTypingAnimation}
-              className={`h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
-                isTypingAnimation ? 'cursor-wait' : ''
+              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                isTypingAnimation ? 'cursor-wait' : 'cursor-text'
               }`}
             />
             {isTypingAnimation && displayAudits && (
@@ -128,10 +136,10 @@ const HeroROICalculator = () => {
                 setTraditionalCostPerAudit(e.target.value);
                 setDisplayCost(e.target.value);
               }}
-              placeholder="Type your usual costs"
+              placeholder="e.g., 20000"
               disabled={isTypingAnimation}
-              className={`h-11 bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-[#14B8A6] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
-                isTypingAnimation ? 'cursor-wait' : ''
+              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                isTypingAnimation ? 'cursor-wait' : 'cursor-text'
               }`}
             />
             {isTypingAnimation && displayCost && (

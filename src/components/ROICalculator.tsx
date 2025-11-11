@@ -30,50 +30,87 @@ const ROICalculator = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-200">
-      <motion.h2
+    <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
+      {/* Header Section */}
+      <div className="mb-8">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900"
+          >
+            Calculate Your <span style={{ color: '#14B8A6' }}>Business Case</span>
+          </motion.h2>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="px-4 py-2 bg-[#14B8A6]/10 text-[#14B8A6] text-sm font-semibold rounded-full"
+          >
+            Interactive Calculator
+          </motion.span>
+        </div>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-lg text-gray-600"
+        >
+          Enter your specific numbers below to see how much you can save with YVOO ScanPro+
+        </motion.p>
+      </div>
+
+      {/* Input Fields with Visual Cues */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+        transition={{ delay: 0.2 }}
+        className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 md:p-8 mb-8"
       >
-        <span style={{ color: '#2563EB' }}>ROI</span> Calculation
-      </motion.h2>
-      
-      <p className="text-lg text-gray-600 mb-8">
-        Calculate your potential savings with YVOO ScanPro+
-      </p>
-
-      {/* Input Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="space-y-2">
-          <Label htmlFor="audits" className="text-base font-semibold text-gray-900">
-            Number of supplier audits per year
-          </Label>
-          <Input
-            id="audits"
-            type="number"
-            min="1"
-            value={auditsPerYear}
-            onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
-            className="text-lg h-12 border-2 border-gray-300 focus:border-[#2563EB]"
-          />
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
+          <span className="text-sm font-semibold text-gray-700">
+            👇 Adjust these values to match your situation
+          </span>
         </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="audits" className="text-base font-semibold text-gray-900">
+              Number of supplier audits per year
+            </Label>
+            <Input
+              id="audits"
+              type="number"
+              min="1"
+              value={auditsPerYear}
+              onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
+              placeholder="e.g., 20"
+              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all"
+            />
+          </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="traditional-cost" className="text-base font-semibold text-gray-900">
-            Traditional audit cost per audit (€)
-          </Label>
-          <Input
-            id="traditional-cost"
-            type="number"
-            min="1"
-            value={traditionalCostPerAudit}
-            onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
-            className="text-lg h-12 border-2 border-gray-300 focus:border-[#2563EB]"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="traditional-cost" className="text-base font-semibold text-gray-900">
+              Traditional audit cost per audit (€)
+            </Label>
+            <Input
+              id="traditional-cost"
+              type="number"
+              min="1"
+              value={traditionalCostPerAudit}
+              onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
+              placeholder="e.g., 20000"
+              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all"
+            />
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Results */}
       <div className="space-y-6">
@@ -100,12 +137,14 @@ const ROICalculator = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="border-2 rounded-xl p-6 sm:p-8"
-          style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)', borderColor: 'rgba(20, 184, 166, 0.3)' }}
+          className="border-2 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-[#14B8A6]/10 to-[#14B8A6]/5"
+          style={{ borderColor: '#14B8A6' }}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <DollarSign className="w-8 h-8" style={{ color: '#14B8A6' }} />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                <DollarSign className="w-6 h-6 text-white" />
+              </div>
               Your Annual Cost Savings
             </div>
             <div className="text-4xl sm:text-5xl font-bold" style={{ color: '#14B8A6' }}>
@@ -114,21 +153,25 @@ const ROICalculator = () => {
           </div>
         </motion.div>
         
-        <div className="flex justify-between items-center py-6">
-          <div className="text-base sm:text-lg font-semibold text-gray-900">
-            Time Savings ({timeSavingsPercent * 100}% of {weeksPerAudit} weeks per audit)
-          </div>
-          <div className="text-2xl sm:text-3xl font-bold" style={{ color: '#2563EB' }}>
-            {timeSavingsInDays} Work Days
+        <div className="rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
+          <div className="flex justify-between items-center">
+            <div className="text-base sm:text-lg font-semibold text-gray-900">
+              Time Savings ({timeSavingsPercent * 100}% of {weeksPerAudit} weeks per audit)
+            </div>
+            <div className="text-2xl sm:text-3xl font-bold" style={{ color: '#2563EB' }}>
+              {timeSavingsInDays} Work Days
+            </div>
           </div>
         </div>
       </div>
 
-      <p className="text-gray-600 mt-8">
-        <strong>Additional Savings:</strong> No travel costs for internal auditors, 
-        reduced rework through standardized reports, faster supplier releases 
-        enable shorter time-to-market.
-      </p>
+      <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <p className="text-gray-700 text-sm">
+          <strong className="text-gray-900">💡 Additional Benefits:</strong> No travel costs for internal auditors, 
+          reduced rework through standardized reports, faster supplier releases 
+          enable shorter time-to-market, and improved supplier relationship management.
+        </p>
+      </div>
     </div>
   );
 };
