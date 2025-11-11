@@ -1620,17 +1620,17 @@ const HowItWorksCarousel = () => {
               animate={{ x: `-${currentStep * 100}%` }}
             >
               {steps.map((step, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-2 sm:px-4">
+                <div key={index} className="w-full flex-shrink-0 px-0 md:px-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
+                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 sm:p-8 md:p-8 min-h-[350px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         {/* Decorative element */}
@@ -1641,20 +1641,20 @@ const HowItWorksCarousel = () => {
 
                       {/* Right Side - Content */}
                       <div className="p-6 sm:p-8 md:p-12">
-                        <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+                        <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 md:mb-6">
                           Step {step.number}
                         </span>
                         
-                        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight">
                           {step.title}
                         </h3>
                         
-                        <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
+                        <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 md:mb-8">
                           {step.description}
                         </p>
 
                         {/* Features list */}
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           {[
                             index === 0 && "Quick integration with ERP systems",
                             index === 1 && "Global network of certified auditors",
@@ -1667,12 +1667,12 @@ const HowItWorksCarousel = () => {
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
                               transition={{ delay: 0.2 + i * 0.1 }}
-                              className="flex items-center gap-3"
+                              className="flex items-center gap-2 sm:gap-3"
                             >
-                              <div className="w-6 h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                <CheckCircle2 className="w-4 h-4 text-[#14B8A6]" />
+                              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
                               </div>
-                              <span className="text-gray-700">{feature}</span>
+                              <span className="text-sm sm:text-base text-gray-700">{feature}</span>
                             </motion.div>
                           ))}
                         </div>
@@ -2025,7 +2025,7 @@ const ScanProPlus = () => {
           </div>
 
           {/* Chart Grid with Enhanced Glass-Morphism */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 md:gap-8 mb-6 sm:mb-7 md:mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 mb-4 sm:mb-5 md:mb-6 lg:gap-7 xl:mb-8">
             
             {/* Cost Comparison Bar Chart */}
             <motion.div
@@ -2039,14 +2039,14 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-xl sm:rounded-2xl md:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-xl sm:rounded-2xl md:rounded-3xl" />
                 
                 <div className="relative z-10">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Cost Comparison</h3>
-                  <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">Traditional vs ScanPro+ per audit</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">Cost Comparison</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-white/60 mb-3 sm:mb-4 md:mb-6">Traditional vs ScanPro+ per audit</p>
                   
                   <BusinessImpactChart />
                 </div>
@@ -2065,14 +2065,14 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-xl sm:rounded-2xl md:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-xl sm:rounded-2xl md:rounded-3xl" />
                 
                 <div className="relative z-10">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
-                  <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">12-month projection (20 audits/year)</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">Cumulative Savings</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-white/60 mb-3 sm:mb-4 md:mb-6">12-month projection (20 audits/year)</p>
                   
                   <ROITimelineChart />
                 </div>
@@ -2092,14 +2092,14 @@ const ScanProPlus = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
             
             {/* Main glass container */}
-            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-2xl">
               {/* Multi-layer gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-2xl sm:rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-xl sm:rounded-2xl md:rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-xl sm:rounded-2xl md:rounded-3xl" />
               
               <div className="relative z-10">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
-                <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">End-to-end audit process duration</p>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">Time-to-Audit Comparison</h3>
+                <p className="text-xs sm:text-sm md:text-base text-white/60 mb-3 sm:mb-4 md:mb-6">End-to-end audit process duration</p>
                 
                 <TimeEfficiencyChart />
               </div>
