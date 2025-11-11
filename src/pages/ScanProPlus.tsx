@@ -852,33 +852,73 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center">
           {/* World Map with 1-Click Button */}
-          <div className="relative">
-            {/* Dotted World Map Pattern */}
-            <svg className="w-[400px] h-[400px] opacity-40" viewBox="0 0 400 400">
-              {/* Simplified dot pattern */}
-              {[...Array(50)].map((_, i) => (
-                <circle
-                  key={i}
-                  cx={100 + (i % 10) * 20}
-                  cy={100 + Math.floor(i / 10) * 20}
-                  r="2"
-                  fill="white"
-                  opacity="0.6"
-                />
-              ))}
+          <div className="relative w-[650px] h-[500px]">
+            {/* Dotted World Map Pattern - Proper world continents */}
+            <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
+              {/* Create dotted world map pattern */}
+              <defs>
+                <pattern id="worldDots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.8" />
+                </pattern>
+              </defs>
+              
+              {/* North America */}
+              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots)" />
+              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots)" />
+              
+              {/* South America */}
+              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots)" />
+              
+              {/* Europe */}
+              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots)" />
+              <path d="M 340 125 L 365 120 L 380 140 L 370 155 L 345 150 Z" fill="url(#worldDots)" />
+              
+              {/* Africa */}
+              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots)" />
+              
+              {/* Asia */}
+              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots)" />
+              <path d="M 480 145 Q 510 140 540 150 L 560 170 Q 550 185 530 180 Q 500 175 480 165 Z" fill="url(#worldDots)" />
+              
+              {/* Middle East */}
+              <path d="M 390 180 Q 410 170 430 180 Q 440 195 435 215 Q 425 230 410 225 Q 395 215 390 200 Z" fill="url(#worldDots)" />
+              
+              {/* India */}
+              <path d="M 480 200 Q 500 190 520 205 Q 530 230 520 255 Q 505 270 490 260 Q 480 240 480 220 Z" fill="url(#worldDots)" />
+              
+              {/* Southeast Asia */}
+              <path d="M 530 240 Q 550 235 565 245 Q 570 260 560 275 Q 545 285 535 275 Q 528 260 530 245 Z" fill="url(#worldDots)" />
+              <path d="M 540 280 Q 550 275 560 285 L 565 300 Q 555 310 545 305 Z" fill="url(#worldDots)" />
+              
+              {/* Australia */}
+              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots)" />
+              
+              {/* Japan/East Asia Islands */}
+              <path d="M 600 180 Q 610 175 620 185 L 622 205 Q 615 215 605 210 Z" fill="url(#worldDots)" />
+              <ellipse cx="615" cy="220" rx="8" ry="15" fill="url(#worldDots)" />
             </svg>
+            
+            {/* Green Location Marker */}
+            <motion.div
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="absolute"
+              style={{ top: '30%', left: '70%' }}
+            >
+              <div className="w-4 h-4 rounded-full bg-[#2ECC71] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#2ECC71] animate-ping opacity-40" />
+            </motion.div>
             
             {/* 1-Click Button */}
             <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
+              animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute"
+              style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#22C55E] text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-2xl">
-                <div className="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <span className="font-bold text-xl">1-Click</span>
+              <div className="bg-[#2ECC71] text-white px-6 py-3 rounded-[30px] flex items-center gap-2 shadow-[0_8px_15px_rgba(35,37,45,0.3)]">
+                <Mouse className="w-5 h-5" />
+                <span className="font-semibold text-lg whitespace-nowrap">1-Click</span>
               </div>
             </motion.div>
           </div>
@@ -891,57 +931,85 @@ const HowItWorksCarousel = () => {
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center">
-          <div className="relative">
-            {/* Search Bar */}
-            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full px-6 py-3 shadow-lg flex items-center gap-3 w-[280px] z-10">
-              <Search className="w-5 h-5 text-[#00D4FF]" />
-              <span className="text-gray-700 font-medium">Auditors</span>
-            </div>
-            
-            {/* Dotted World Map */}
-            <svg className="w-[400px] h-[400px] opacity-40 mt-16" viewBox="0 0 400 400">
-              {[...Array(60)].map((_, i) => (
-                <circle
-                  key={i}
-                  cx={80 + (i % 12) * 25}
-                  cy={100 + Math.floor(i / 12) * 25}
-                  r="2"
-                  fill="white"
-                  opacity="0.6"
-                />
-              ))}
+          <div className="relative w-[650px] h-[500px]">
+            {/* Dotted World Map Pattern - Proper world continents */}
+            <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
+              <defs>
+                <pattern id="worldDots2" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.8" />
+                </pattern>
+              </defs>
+              
+              {/* North America */}
+              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots2)" />
+              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots2)" />
+              
+              {/* South America */}
+              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots2)" />
+              
+              {/* Europe */}
+              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots2)" />
+              <path d="M 340 125 L 365 120 L 380 140 L 370 155 L 345 150 Z" fill="url(#worldDots2)" />
+              
+              {/* Africa */}
+              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots2)" />
+              
+              {/* Asia */}
+              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots2)" />
+              <path d="M 480 145 Q 510 140 540 150 L 560 170 Q 550 185 530 180 Q 500 175 480 165 Z" fill="url(#worldDots2)" />
+              
+              {/* Middle East */}
+              <path d="M 390 180 Q 410 170 430 180 Q 440 195 435 215 Q 425 230 410 225 Q 395 215 390 200 Z" fill="url(#worldDots2)" />
+              
+              {/* India */}
+              <path d="M 480 200 Q 500 190 520 205 Q 530 230 520 255 Q 505 270 490 260 Q 480 240 480 220 Z" fill="url(#worldDots2)" />
+              
+              {/* Southeast Asia */}
+              <path d="M 530 240 Q 550 235 565 245 Q 570 260 560 275 Q 545 285 535 275 Q 528 260 530 245 Z" fill="url(#worldDots2)" />
+              <path d="M 540 280 Q 550 275 560 285 L 565 300 Q 555 310 545 305 Z" fill="url(#worldDots2)" />
+              
+              {/* Australia */}
+              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots2)" />
+              
+              {/* Japan/East Asia Islands */}
+              <path d="M 600 180 Q 610 175 620 185 L 622 205 Q 615 215 605 210 Z" fill="url(#worldDots2)" />
+              <ellipse cx="615" cy="220" rx="8" ry="15" fill="url(#worldDots2)" />
             </svg>
             
-            {/* Main Auditor Pin */}
+            {/* Main Auditor Pin with animation */}
             <motion.div
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute top-[45%] left-[55%] transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute"
+              style={{ top: '40%', left: '60%' }}
             >
               <div className="relative">
-                <div className="w-14 h-14 rounded-full bg-[#22C55E] flex items-center justify-center shadow-xl border-4 border-white">
-                  <Globe className="w-7 h-7 text-white" />
+                <div className="w-16 h-16 rounded-full bg-[#2ECC71] flex items-center justify-center shadow-xl border-4 border-white">
+                  <UserCheck className="w-8 h-8 text-white" />
                 </div>
-                <div className="absolute top-0 right-0 w-6 h-6 rounded-full bg-[#22C55E] border-2 border-white flex items-center justify-center">
+                <div className="absolute top-0 right-0 w-6 h-6 rounded-full bg-[#2ECC71] border-2 border-white flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4 text-white" />
                 </div>
               </div>
             </motion.div>
             
-            {/* Additional Pins */}
+            {/* Additional Auditor Pins */}
             {[
-              { top: "30%", left: "35%" },
-              { top: "60%", left: "40%" },
-              { top: "35%", left: "70%" },
-              { top: "55%", left: "65%" }
+              { top: '25%', left: '20%' },
+              { top: '50%', left: '25%' },
+              { top: '28%', left: '70%' },
+              { top: '48%', left: '75%' }
             ].map((pos, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="absolute w-8 h-8 rounded-full bg-[#22C55E]/70 flex items-center justify-center shadow-lg border-2 border-white"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2 * i, duration: 0.3 }}
+                className="absolute w-10 h-10 rounded-full bg-[#2ECC71]/80 flex items-center justify-center shadow-lg border-2 border-white"
                 style={{ top: pos.top, left: pos.left }}
               >
-                <Globe className="w-4 h-4 text-white" />
-              </div>
+                <UserCheck className="w-5 h-5 text-white" />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -953,7 +1021,38 @@ const HowItWorksCarousel = () => {
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl w-[400px]">
+          {/* Background Dotted Map */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-20">
+            <svg className="w-[600px] h-[450px]" viewBox="0 0 743 656" fill="none">
+              <defs>
+                <pattern id="worldDots3" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.6" />
+                </pattern>
+              </defs>
+              
+              {/* North America */}
+              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots3)" />
+              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots3)" />
+              
+              {/* South America */}
+              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots3)" />
+              
+              {/* Europe */}
+              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots3)" />
+              
+              {/* Africa */}
+              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots3)" />
+              
+              {/* Asia */}
+              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots3)" />
+              
+              {/* Australia */}
+              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots3)" />
+            </svg>
+          </div>
+          
+          {/* Chat Interface in foreground */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl w-[400px] relative z-10">
             {/* User Message */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -962,7 +1061,7 @@ const HowItWorksCarousel = () => {
               className="flex items-start gap-3 mb-4"
             >
               <div className="w-12 h-12 rounded-full bg-[#00D4FF] flex items-center justify-center flex-shrink-0">
-                <Globe className="w-6 h-6 text-white" />
+                <MessageCircle className="w-6 h-6 text-white" />
               </div>
               <div className="bg-[#00D4FF] text-white px-5 py-3 rounded-2xl rounded-tl-none flex-1">
                 <p className="text-sm font-bold mb-2">You</p>
@@ -988,7 +1087,7 @@ const HowItWorksCarousel = () => {
                 </div>
               </div>
               <div className="w-12 h-12 rounded-full bg-[#22C55E] flex items-center justify-center flex-shrink-0">
-                <Globe className="w-6 h-6 text-white" />
+                <UserCheck className="w-6 h-6 text-white" />
               </div>
             </motion.div>
             
@@ -1000,7 +1099,7 @@ const HowItWorksCarousel = () => {
               className="flex items-start gap-3 mb-6"
             >
               <div className="w-12 h-12 rounded-full bg-[#00D4FF] flex items-center justify-center flex-shrink-0">
-                <Globe className="w-6 h-6 text-white" />
+                <MessageCircle className="w-6 h-6 text-white" />
               </div>
               <div className="bg-[#00D4FF] text-white px-5 py-3 rounded-2xl rounded-tl-none">
                 <p className="text-sm font-bold mb-2">You</p>
@@ -1031,7 +1130,7 @@ const HowItWorksCarousel = () => {
           <motion.div
             animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-[15%] right-[10%] w-14 h-14 rounded-full bg-[#22C55E] flex items-center justify-center shadow-xl border-4 border-white"
+            className="absolute top-[15%] right-[10%] w-14 h-14 rounded-full bg-[#22C55E] flex items-center justify-center shadow-xl border-4 border-white z-20"
           >
             <Globe className="w-7 h-7 text-white" />
           </motion.div>
