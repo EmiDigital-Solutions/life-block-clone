@@ -8,35 +8,53 @@ import worldMapGlobe from '@/assets/world-map-globe.png';
 
 const EarthSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null);
+  const glowRef = useRef<THREE.Mesh>(null);
   const texture = useLoader(THREE.TextureLoader, worldMapGlobe);
 
-  // Rotate the earth realistically
-  useFrame(() => {
+  // Rotate the earth with pulsing glow animation
+  useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.0008; // Slower realistic rotation
+      meshRef.current.rotation.y += 0.001; // Smooth rotation
+    }
+    if (glowRef.current) {
+      // Subtle pulsing glow effect
+      const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.05 + 0.25;
+      (glowRef.current.material as THREE.MeshBasicMaterial).opacity = pulse;
     }
   });
 
   return (
     <>
-      {/* Main Earth with dotted map texture */}
-      <Sphere ref={meshRef} args={[2.875, 64, 64]}>
+      {/* Main Earth with high-contrast dotted map texture */}
+      <Sphere ref={meshRef} args={[2.875, 128, 128]}>
         <meshStandardMaterial
           map={texture}
-          emissive="#3b82f6"
-          emissiveIntensity={0.4}
-          roughness={0.8}
-          metalness={0.1}
+          emissive="#2563eb"
+          emissiveIntensity={0.7}
+          roughness={0.6}
+          metalness={0.3}
+          toneMapped={false}
         />
       </Sphere>
       
-      {/* Outer glow sphere */}
-      <Sphere args={[3.1, 32, 32]}>
+      {/* Animated outer glow sphere */}
+      <Sphere ref={glowRef} args={[3.15, 64, 64]}>
+        <meshBasicMaterial
+          color="#3b82f6"
+          transparent
+          opacity={0.25}
+          side={THREE.BackSide}
+          toneMapped={false}
+        />
+      </Sphere>
+
+      {/* Inner subtle glow */}
+      <Sphere args={[2.95, 64, 64]}>
         <meshBasicMaterial
           color="#60a5fa"
           transparent
-          opacity={0.15}
-          side={THREE.BackSide}
+          opacity={0.1}
+          side={THREE.FrontSide}
         />
       </Sphere>
     </>
@@ -84,27 +102,37 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
 
   return (
     <div style={{ width, height, position: 'relative', overflow: 'visible' }}>
-      {/* Animated background glow */}
+      {/* Enhanced animated background glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div 
-          className="w-[80%] h-[80%] rounded-full bg-blue-500/20 blur-3xl animate-pulse"
-          style={{ animationDuration: '3s' }}
+          className="w-[90%] h-[90%] rounded-full bg-blue-600/30 blur-3xl animate-pulse"
+          style={{ animationDuration: '4s' }}
+        />
+        <div 
+          className="absolute w-[70%] h-[70%] rounded-full bg-blue-400/20 blur-2xl animate-pulse"
+          style={{ animationDuration: '3s', animationDelay: '1s' }}
         />
       </div>
       
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        gl={{ alpha: true, antialias: true }}
+        gl={{ 
+          alpha: true, 
+          antialias: true,
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.2
+        }}
       >
-        {/* Ambient light for overall illumination */}
-        <ambientLight intensity={0.8} />
+        {/* Enhanced lighting for better contrast */}
+        <ambientLight intensity={1.2} />
         
-        {/* Directional light to simulate sun */}
-        <directionalLight position={[5, 3, 5]} intensity={2} color="#ffffff" />
+        {/* Strong directional light to simulate sun */}
+        <directionalLight position={[5, 3, 5]} intensity={3} color="#ffffff" />
         
-        {/* Blue accent lights */}
-        <pointLight position={[-5, 0, 5]} intensity={1.5} color="#3b82f6" />
-        <pointLight position={[5, 0, 5]} intensity={1.5} color="#60a5fa" />
+        {/* High-contrast blue accent lights */}
+        <pointLight position={[-5, 0, 5]} intensity={2.5} color="#2563eb" />
+        <pointLight position={[5, 0, 5]} intensity={2.5} color="#3b82f6" />
+        <pointLight position={[0, 5, 0]} intensity={1.5} color="#60a5fa" />
         
         {/* The Earth with dotted map */}
         <EarthSphere />
