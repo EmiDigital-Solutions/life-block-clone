@@ -856,47 +856,11 @@ const HowItWorksCarousel = () => {
           <div className="relative w-[650px] h-[500px]">
             {/* Dotted World Map Pattern - Proper world continents */}
             <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
-              {/* Create dotted world map pattern */}
-              <defs>
-                <pattern id="worldDots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.8" />
-                </pattern>
-              </defs>
+              {/* White globe background */}
+              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
               
-              {/* North America */}
-              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots)" />
-              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots)" />
-              
-              {/* South America */}
-              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots)" />
-              
-              {/* Europe */}
-              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots)" />
-              <path d="M 340 125 L 365 120 L 380 140 L 370 155 L 345 150 Z" fill="url(#worldDots)" />
-              
-              {/* Africa */}
-              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots)" />
-              
-              {/* Asia */}
-              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots)" />
-              <path d="M 480 145 Q 510 140 540 150 L 560 170 Q 550 185 530 180 Q 500 175 480 165 Z" fill="url(#worldDots)" />
-              
-              {/* Middle East */}
-              <path d="M 390 180 Q 410 170 430 180 Q 440 195 435 215 Q 425 230 410 225 Q 395 215 390 200 Z" fill="url(#worldDots)" />
-              
-              {/* India */}
-              <path d="M 480 200 Q 500 190 520 205 Q 530 230 520 255 Q 505 270 490 260 Q 480 240 480 220 Z" fill="url(#worldDots)" />
-              
-              {/* Southeast Asia */}
-              <path d="M 530 240 Q 550 235 565 245 Q 570 260 560 275 Q 545 285 535 275 Q 528 260 530 245 Z" fill="url(#worldDots)" />
-              <path d="M 540 280 Q 550 275 560 285 L 565 300 Q 555 310 545 305 Z" fill="url(#worldDots)" />
-              
-              {/* Australia */}
-              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots)" />
-              
-              {/* Japan/East Asia Islands */}
-              <path d="M 600 180 Q 610 175 620 185 L 622 205 Q 615 215 605 210 Z" fill="url(#worldDots)" />
-              <ellipse cx="615" cy="220" rx="8" ry="15" fill="url(#worldDots)" />
+              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
+              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
             </svg>
             
             {/* Green Location Marker */}
@@ -935,46 +899,11 @@ const HowItWorksCarousel = () => {
           <div className="relative w-[650px] h-[500px]">
             {/* Dotted World Map Pattern - Proper world continents */}
             <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
-              <defs>
-                <pattern id="worldDots2" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.8" />
-                </pattern>
-              </defs>
+              {/* White globe background */}
+              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
               
-              {/* North America */}
-              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots2)" />
-              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots2)" />
-              
-              {/* South America */}
-              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots2)" />
-              
-              {/* Europe */}
-              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots2)" />
-              <path d="M 340 125 L 365 120 L 380 140 L 370 155 L 345 150 Z" fill="url(#worldDots2)" />
-              
-              {/* Africa */}
-              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots2)" />
-              
-              {/* Asia */}
-              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots2)" />
-              <path d="M 480 145 Q 510 140 540 150 L 560 170 Q 550 185 530 180 Q 500 175 480 165 Z" fill="url(#worldDots2)" />
-              
-              {/* Middle East */}
-              <path d="M 390 180 Q 410 170 430 180 Q 440 195 435 215 Q 425 230 410 225 Q 395 215 390 200 Z" fill="url(#worldDots2)" />
-              
-              {/* India */}
-              <path d="M 480 200 Q 500 190 520 205 Q 530 230 520 255 Q 505 270 490 260 Q 480 240 480 220 Z" fill="url(#worldDots2)" />
-              
-              {/* Southeast Asia */}
-              <path d="M 530 240 Q 550 235 565 245 Q 570 260 560 275 Q 545 285 535 275 Q 528 260 530 245 Z" fill="url(#worldDots2)" />
-              <path d="M 540 280 Q 550 275 560 285 L 565 300 Q 555 310 545 305 Z" fill="url(#worldDots2)" />
-              
-              {/* Australia */}
-              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots2)" />
-              
-              {/* Japan/East Asia Islands */}
-              <path d="M 600 180 Q 610 175 620 185 L 622 205 Q 615 215 605 210 Z" fill="url(#worldDots2)" />
-              <ellipse cx="615" cy="220" rx="8" ry="15" fill="url(#worldDots2)" />
+              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
+              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
             </svg>
             
             {/* Main Auditor Pin with animation */}
@@ -1028,30 +957,11 @@ const HowItWorksCarousel = () => {
           {/* Background Dotted Map */}
           <div className="absolute inset-0 flex items-center justify-center opacity-20">
             <svg className="w-[600px] h-[450px]" viewBox="0 0 743 656" fill="none">
-              <defs>
-                <pattern id="worldDots3" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                  <circle cx="4" cy="4" r="1.5" fill="white" opacity="0.6" />
-                </pattern>
-              </defs>
+              {/* White globe background */}
+              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
               
-              {/* North America */}
-              <path d="M 50 150 Q 70 120 100 130 Q 130 135 140 160 Q 145 190 130 210 Q 110 230 90 220 Q 65 200 50 180 Z" fill="url(#worldDots3)" />
-              <path d="M 80 140 Q 100 130 120 140 L 130 150 Q 125 165 115 160 Q 100 155 80 150 Z" fill="url(#worldDots3)" />
-              
-              {/* South America */}
-              <path d="M 110 260 Q 125 250 140 265 Q 145 290 140 320 Q 130 350 115 360 Q 100 365 90 350 Q 85 320 95 290 Q 100 270 110 260 Z" fill="url(#worldDots3)" />
-              
-              {/* Europe */}
-              <path d="M 320 120 Q 340 110 360 120 Q 375 135 370 155 Q 360 170 345 165 Q 325 160 320 145 Z" fill="url(#worldDots3)" />
-              
-              {/* Africa */}
-              <path d="M 330 180 Q 350 170 375 185 Q 390 210 385 250 Q 380 290 365 320 Q 350 340 335 335 Q 320 320 320 290 Q 315 250 325 220 Q 328 200 330 180 Z" fill="url(#worldDots3)" />
-              
-              {/* Asia */}
-              <path d="M 400 130 Q 430 120 470 135 Q 510 145 540 160 Q 560 175 570 200 Q 575 230 560 250 Q 540 265 510 260 Q 480 255 450 245 Q 420 230 400 210 Q 390 180 395 155 Q 398 140 400 130 Z" fill="url(#worldDots3)" />
-              
-              {/* Australia */}
-              <path d="M 570 340 Q 595 330 620 345 Q 635 365 630 390 Q 620 410 595 415 Q 570 410 560 390 Q 555 365 565 350 Z" fill="url(#worldDots3)" />
+              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
+              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
             </svg>
           </div>
           
