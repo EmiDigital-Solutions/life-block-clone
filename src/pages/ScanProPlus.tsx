@@ -109,7 +109,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             }}
           />
 
-          {/* Continent Popup Cards */}
+          {/* Continent Popup Cards - Minimalistic */}
           {[
             { continent: "North America", top: "25%", left: "18%", delay: 0 },
             { continent: "South America", top: "55%", left: "28%", delay: 0.2 },
@@ -132,14 +132,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 bounce: 0.5
               }}
             >
-              <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-[#14B8A6]/20 flex items-center gap-2 min-w-[140px]">
-                <div className="w-8 h-8 rounded-full bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
-                  <UserCheck className="w-4 h-4 text-[#14B8A6]" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-gray-900">{location.continent}</span>
-                  <span className="text-[10px] text-gray-600">Auditors Active</span>
-                </div>
+              <div className="bg-white rounded-md px-3 py-1.5 shadow-md border-2 border-gray-900">
+                <span className="text-xs font-bold text-gray-900">{location.continent}</span>
               </div>
             </motion.div>
           ))}
@@ -229,7 +223,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         }}
                       >
                         <div
-                          className={`relative w-[165px] h-[210px] sm:w-[195px] sm:h-[240px] lg:w-[79px] lg:h-[101px] xl:w-[225px] xl:h-[293px] 2xl:w-[270px] 2xl:h-[345px] 3xl:w-[300px] 3xl:h-[390px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[132px] h-[168px] sm:w-[156px] sm:h-[192px] lg:w-[63px] lg:h-[81px] xl:w-[180px] xl:h-[234px] 2xl:w-[216px] 2xl:h-[276px] 3xl:w-[240px] 3xl:h-[312px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -239,8 +233,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
-                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-14">
-                            <div className="relative w-[105px] h-[105px] sm:w-[120px] sm:h-[120px] lg:w-[68px] lg:h-[68px] xl:w-[139px] xl:h-[139px] 2xl:w-[161px] 2xl:h-[161px] 3xl:w-[180px] 3xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
+                          <div className="absolute inset-0 flex items-center justify-center pt-5 sm:pt-6 lg:pt-2 xl:pt-7 2xl:pt-9 3xl:pt-11">
+                            <div className="relative w-[84px] h-[84px] sm:w-[96px] sm:h-[96px] lg:w-[54px] lg:h-[54px] xl:w-[111px] xl:h-[111px] 2xl:w-[129px] 2xl:h-[129px] 3xl:w-[144px] 3xl:h-[144px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
@@ -255,12 +249,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                             </div>
                           </div>
 
-                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-2 xl:bottom-7 2xl:bottom-9 3xl:bottom-14 left-0 right-0 flex justify-center px-4 sm:px-6 lg:px-2">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-2 xl:px-8 2xl:px-10 py-2 sm:py-3 lg:py-1 xl:py-3.5 2xl:py-4 w-full">
-                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-[9px] xl:text-lg 2xl:text-2xl 3xl:text-3xl text-center">
+                          <div className="absolute bottom-3 sm:bottom-5 lg:bottom-1.5 xl:bottom-5 2xl:bottom-7 3xl:bottom-11 left-0 right-0 flex justify-center px-3 sm:px-5 lg:px-1.5">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-5 lg:px-1.5 xl:px-6 2xl:px-8 py-1.5 sm:py-2.5 lg:py-1 xl:py-3 2xl:py-3.5 w-full">
+                              <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-[7px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
                                 {auditor.location}
                               </p>
-                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-[8px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
+                              <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[6px] xl:text-sm 2xl:text-lg 3xl:text-xl text-center">
                                 {auditor.region}
                               </p>
                             </div>
