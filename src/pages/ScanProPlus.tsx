@@ -339,12 +339,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   onClick={() => handleCardClick(index)}
                 >
                   <motion.div 
-                    className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[140px]"
+                    className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 overflow-hidden w-[150px]"
                     whileHover={{
-                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                      boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
                     }}
                   >
-                    <div className="relative h-[120px] overflow-hidden">
+                    <div className="relative h-[130px] overflow-hidden bg-gray-50">
                       <motion.img 
                         src={auditor.image} 
                         alt={auditor.name}
@@ -352,12 +352,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.4 }}
                       />
-                      <div className="absolute top-1.5 right-1.5">
+                      <div className="absolute top-2 right-2">
                         <motion.span 
-                          className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold ${
+                          className={`px-2 py-1 rounded-md text-[9px] font-medium backdrop-blur-sm ${
                             auditor.availability === "Available Now" 
-                              ? "bg-green-500 text-white" 
-                              : "bg-yellow-500 text-white"
+                              ? "bg-green-500/90 text-white" 
+                              : "bg-yellow-500/90 text-white"
                           }`}
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
@@ -367,13 +367,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         </motion.span>
                       </div>
                     </div>
-                    <div className="p-2.5 bg-white">
-                      <h4 className="font-bold text-xs text-gray-900 mb-0.5 leading-tight">{auditor.name}</h4>
-                      <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
-                      <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
+                    <div className="p-3 bg-white">
+                      <h4 className="font-semibold text-xs text-gray-900 mb-1 leading-tight">{auditor.name}</h4>
+                      <p className="text-[10px] text-gray-500 mb-1.5 leading-tight font-light">{auditor.title}</p>
+                      <p className="text-[10px] text-gray-600 mb-2 font-light">{auditor.location}</p>
                       <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
+                        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                        <span className="text-[10px] font-medium text-gray-900">{auditor.rating}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -384,16 +384,16 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
 
           <div className="relative z-30">
 
-            {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+            {/* Left Column: Text Content - Modernized Enterprise Design */}
+            <div className="flex flex-col space-y-8 text-left max-w-xl bg-white p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div>
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">ScanPro+</span>
               </motion.div>
 
               <motion.h2
@@ -401,7 +401,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1]"
               >
                 Global On-Demand<br /><span style={{ color: '#14B8A6' }}>Auditor Network</span>
               </motion.h2>
@@ -411,7 +411,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-lg text-gray-600 leading-relaxed font-light"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -421,19 +421,19 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.25 }}
-                className="text-left mb-4"
+                className="pt-2 border-t border-gray-100"
               >
-                <p className="text-base font-semibold text-gray-700 mb-2">
-                  Our auditor network includes professionals certified by:
+                <p className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-wide">
+                  Certified by leading bodies
                 </p>
-                <div className="flex flex-wrap items-center gap-3 text-gray-600">
-                  <span className="text-sm">TÜV SÜD</span>
+                <div className="flex flex-wrap items-center gap-4 text-gray-700">
+                  <span className="text-sm font-medium">TÜV SÜD</span>
                   <span className="text-gray-300">•</span>
-                  <span className="text-sm">Bureau Veritas</span>
+                  <span className="text-sm font-medium">Bureau Veritas</span>
                   <span className="text-gray-300">•</span>
-                  <span className="text-sm">SGS</span>
+                  <span className="text-sm font-medium">SGS</span>
                   <span className="text-gray-300">•</span>
-                  <span className="text-sm">DNV</span>
+                  <span className="text-sm font-medium">DNV</span>
                 </div>
               </motion.div>
 
@@ -442,10 +442,11 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
+                className="pt-2"
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
+                <button className="bg-gray-900 text-white px-7 py-3.5 rounded-lg font-medium text-sm transition-all duration-300 hover:bg-gray-800 hover:shadow-lg flex items-center gap-2.5 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>
             </div>
@@ -714,16 +715,16 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
-            {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+            {/* Left Column: Text Content - Modernized Enterprise Design */}
+            <div className="flex flex-col space-y-8 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div>
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">01 Feature</span>
               </motion.div>
 
               <motion.h2
@@ -731,7 +732,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1]"
               >
                 Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
@@ -741,7 +742,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-lg text-gray-600 leading-relaxed font-light"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -752,9 +753,9 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
+                <button className="bg-gray-900 text-white px-7 py-3.5 rounded-lg font-medium text-sm transition-all duration-300 hover:bg-gray-800 hover:shadow-lg flex items-center gap-2.5 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>
             </div>
