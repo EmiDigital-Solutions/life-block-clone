@@ -1587,6 +1587,30 @@ const HowItWorksCarousel = () => {
     setCurrentStep((prev) => (prev - 1 + steps.length) % steps.length);
   };
 
+  // Touch swipe handlers
+  const [touchStart, setTouchStart] = React.useState(0);
+  const [touchEnd, setTouchEnd] = React.useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swiped left, go to next
+      nextStep();
+    }
+
+    if (touchStart - touchEnd < -75) {
+      // Swiped right, go to previous
+      prevStep();
+    }
+  };
+
   return (
     <section 
       data-nav-theme="light"
@@ -1616,7 +1640,12 @@ const HowItWorksCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Cards Display */}
-          <div className="overflow-x-hidden overflow-y-visible pb-0 sm:pb-20 md:pb-24">
+          <div 
+            className="overflow-x-hidden overflow-y-visible pb-0 sm:pb-20 md:pb-24"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <motion.div 
               className="flex transition-transform duration-500 ease-out"
               animate={{ x: `-${currentStep * 100}%` }}
