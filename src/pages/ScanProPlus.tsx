@@ -631,7 +631,7 @@ const GlobalNetworkMapSection = () => {
     <section
       data-nav-theme="light"
       className="relative py-32 px-4 sm:px-6 overflow-hidden"
-      style={{ background: "linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%)" }}
+      style={{ background: "transparent" }}
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="relative w-full" style={{ minHeight: '600px' }}>
