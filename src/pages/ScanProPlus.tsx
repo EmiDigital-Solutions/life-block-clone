@@ -1164,19 +1164,19 @@ const HowItWorksCarousel = () => {
             </div>
             
             {/* Dotted World Map Pattern with blue pixel effect */}
-            <div className="relative w-full h-full z-10">
+            <div className="relative w-full h-full z-10" style={{ perspective: '1000px' }}>
               <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
-                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+                className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.9)]"
                 style={{
-                  filter: 'hue-rotate(180deg) saturate(1.8) brightness(1.3)'
+                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
                 }}
                 animate={{ 
-                  rotate: [0, 360]
+                  rotateY: [0, 360]
                 }}
                 transition={{ 
-                  duration: 30, 
+                  duration: 20, 
                   repeat: Infinity,
                   ease: "linear"
                 }}
@@ -1234,19 +1234,19 @@ const HowItWorksCarousel = () => {
             </div>
             
             {/* Dotted World Map Pattern with blue pixel effect */}
-            <div className="relative w-full h-full z-10">
+            <div className="relative w-full h-full z-10" style={{ perspective: '1000px' }}>
               <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
-                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+                className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.9)]"
                 style={{
-                  filter: 'hue-rotate(180deg) saturate(1.8) brightness(1.3)'
+                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
                 }}
                 animate={{ 
-                  rotate: [0, 360]
+                  rotateY: [0, 360]
                 }}
                 transition={{ 
-                  duration: 30, 
+                  duration: 20, 
                   repeat: Infinity,
                   ease: "linear"
                 }}
@@ -1316,19 +1316,19 @@ const HowItWorksCarousel = () => {
                 ease: "easeInOut"
               }}
             />
-            <div className="relative w-[450px] h-[350px] opacity-15">
+            <div className="relative w-[450px] h-[350px] opacity-20" style={{ perspective: '1000px' }}>
               <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
                 className="w-full h-full object-contain"
                 style={{
-                  filter: 'hue-rotate(180deg) saturate(1.6) brightness(1.2)'
+                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
                 }}
                 animate={{ 
-                  rotate: [0, 360]
+                  rotateY: [0, 360]
                 }}
                 transition={{ 
-                  duration: 40, 
+                  duration: 25, 
                   repeat: Infinity,
                   ease: "linear"
                 }}
