@@ -117,8 +117,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "Shanghai, China", 
               availability: "Available Now",
               image: auditorFemaleAsian,
-              top: "28%", 
-              left: "68%", 
+              top: "20%", 
+              left: "72%", 
               delay: 0.8 
             },
             { 
@@ -126,8 +126,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "São Paulo, Brazil", 
               availability: "Available in 24h",
               image: auditorLatin,
-              top: "55%", 
-              left: "28%", 
+              top: "60%", 
+              left: "25%", 
               delay: 0.2 
             },
             { 
@@ -135,8 +135,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "Berlin, Germany", 
               availability: "Available Now",
               image: auditorFemaleEuropean,
-              top: "22%", 
-              left: "48%", 
+              top: "18%", 
+              left: "46%", 
               delay: 0.4 
             },
             { 
@@ -144,8 +144,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "Chicago, USA", 
               availability: "Available in 48h",
               image: auditorEuropean,
-              top: "25%", 
-              left: "18%", 
+              top: "28%", 
+              left: "15%", 
               delay: 0 
             },
             { 
@@ -153,8 +153,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "Dubai, UAE", 
               availability: "Available Now",
               image: auditorMiddleEast,
-              top: "35%", 
-              left: "56%", 
+              top: "48%", 
+              left: "52%", 
               delay: 0.6 
             },
             { 
@@ -162,8 +162,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               location: "Mumbai, India", 
               availability: "Available in 24h",
               image: auditorSouthAsian,
-              top: "38%", 
-              left: "65%", 
+              top: "50%", 
+              left: "68%", 
               delay: 0.7 
             },
           ].map((auditor, index) => (
