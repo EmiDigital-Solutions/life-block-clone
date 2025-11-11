@@ -19,6 +19,7 @@ import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
+import worldMapGlobe from "@/assets/world-map-globe.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
@@ -855,13 +856,15 @@ const HowItWorksCarousel = () => {
           {/* World Map with 1-Click Button */}
           <div className="relative w-[650px] h-[500px]">
             {/* Dotted World Map Pattern - Proper world continents */}
-            <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
-              {/* White globe background */}
-              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
-              
+            <div className="relative w-full h-full">
+              <img 
+                src={worldMapGlobe} 
+                alt="World Map" 
+                className="w-full h-full object-contain"
+              />
               {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
-            </svg>
+              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
+            </div>
             
             {/* Green Location Marker */}
             <motion.div
@@ -898,13 +901,15 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center">
           <div className="relative w-[650px] h-[500px]">
             {/* Dotted World Map Pattern - Proper world continents */}
-            <svg className="w-full h-full" viewBox="0 0 743 656" fill="none">
-              {/* White globe background */}
-              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
-              
+            <div className="relative w-full h-full">
+              <img 
+                src={worldMapGlobe} 
+                alt="World Map" 
+                className="w-full h-full object-contain"
+              />
               {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
-            </svg>
+              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
+            </div>
             
             {/* Main Auditor Pin with animation */}
             <motion.div
@@ -956,13 +961,15 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center">
           {/* Background Dotted Map */}
           <div className="absolute inset-0 flex items-center justify-center opacity-20">
-            <svg className="w-[600px] h-[450px]" viewBox="0 0 743 656" fill="none">
-              {/* White globe background */}
-              <ellipse cx="371.5" cy="328" rx="371.5" ry="328" fill="#FFFFFF"/>
-              
+            <div className="relative w-[600px] h-[450px]">
+              <img 
+                src={worldMapGlobe} 
+                alt="World Map" 
+                className="w-full h-full object-contain"
+              />
               {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <ellipse cx="622.6" cy="320.7" rx="24" ry="24" fill="#2ECC71"/>
-            </svg>
+              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
+            </div>
           </div>
           
           {/* Chat Interface in foreground */}
