@@ -503,6 +503,41 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
+              
+              {/* WORLD MAP HERE - VERY VISIBLE */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="relative w-full max-w-xl bg-white/80 p-6 rounded-2xl shadow-lg"
+              >
+                <img 
+                  src={dottedWorldMap} 
+                  alt="Global Network Map" 
+                  className="w-full h-auto"
+                />
+                
+                {/* Interactive Location Markers */}
+                {[
+                  { name: 'North America', availability: '24/7', left: '15%', top: '30%', delay: 0.1 },
+                  { name: 'South America', availability: 'Next Day', left: '25%', top: '65%', delay: 0.2 },
+                  { name: 'Europe', availability: '24/7', left: '48%', top: '25%', delay: 0.3 },
+                  { name: 'Middle East', availability: 'Same Day', left: '58%', top: '45%', delay: 0.4 },
+                  { name: 'Africa', availability: 'Next Day', left: '52%', top: '60%', delay: 0.5 },
+                  { name: 'Asia', availability: '24/7', left: '75%', top: '35%', delay: 0.6 },
+                  { name: 'Oceania', availability: 'Same Day', left: '85%', top: '70%', delay: 0.7 },
+                ].map((location) => (
+                  <MapLocationMarker
+                    key={location.name}
+                    name={location.name}
+                    availability={location.availability}
+                    left={location.left}
+                    top={location.top}
+                    delay={location.delay}
+                  />
+                ))}
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -604,38 +639,6 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                   })}
                 </div>
               </div>
-            </div>
-          </div>
-          
-          {/* SIMPLE MAP DISPLAY - TESTING */}
-          <div className="mt-16 w-full max-w-4xl mx-auto bg-blue-100 p-8 border-4 border-blue-500">
-            <h3 className="text-2xl font-bold text-center mb-4">World Map Below</h3>
-            <div className="relative w-full">
-              <img 
-                src={dottedWorldMap} 
-                alt="Global Network Map" 
-                className="w-full h-auto"
-              />
-              
-              {/* Interactive Location Markers */}
-              {[
-                { name: 'North America', availability: '24/7', left: '15%', top: '30%', delay: 0.1 },
-                { name: 'South America', availability: 'Next Day', left: '25%', top: '65%', delay: 0.2 },
-                { name: 'Europe', availability: '24/7', left: '48%', top: '25%', delay: 0.3 },
-                { name: 'Middle East', availability: 'Same Day', left: '58%', top: '45%', delay: 0.4 },
-                { name: 'Africa', availability: 'Next Day', left: '52%', top: '60%', delay: 0.5 },
-                { name: 'Asia', availability: '24/7', left: '75%', top: '35%', delay: 0.6 },
-                { name: 'Oceania', availability: 'Same Day', left: '85%', top: '70%', delay: 0.7 },
-              ].map((location) => (
-                <MapLocationMarker
-                  key={location.name}
-                  name={location.name}
-                  availability={location.availability}
-                  left={location.left}
-                  top={location.top}
-                  delay={location.delay}
-                />
-              ))}
             </div>
           </div>
         </div>
