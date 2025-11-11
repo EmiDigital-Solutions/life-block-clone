@@ -2182,14 +2182,15 @@ const ScanProPlus = () => {
             Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
           </motion.h2>
 
-          <div className="space-y-4 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* ERP Integration Cards */}
             {[
-              { icon: LinkIcon, title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB', badge: 'Integration' },
-              { icon: LinkIcon, title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#2563EB', badge: 'Integration' },
-              { icon: LinkIcon, title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#2563EB', badge: 'Integration' },
-              { icon: Globe, title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#14B8A6', badge: 'Network' },
-              { icon: UserCheck, title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#14B8A6', badge: 'Network' },
-              { icon: Star, title: 'Quality Assured', desc: 'Rating system & tracking', color: '#14B8A6', badge: 'Network' },
+              { icon: LinkIcon, title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB' },
+              { icon: LinkIcon, title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#2563EB' },
+              { icon: LinkIcon, title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#2563EB' },
+              { icon: Globe, title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#14B8A6' },
+              { icon: UserCheck, title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#14B8A6' },
+              { icon: Star, title: 'Quality Assured', desc: 'Rating system & tracking', color: '#14B8A6' },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -2199,31 +2200,20 @@ const ScanProPlus = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="bg-white rounded-3xl shadow-lg p-8 hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col items-start">
                   <div 
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0"
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
                     style={{ 
                       background: idx < 3 
                         ? 'linear-gradient(135deg, #2563EB, #1e40af)' 
                         : 'linear-gradient(135deg, #14B8A6, #0D9488)'
                     }}
                   >
-                    <item.icon className="w-10 h-10 text-white" />
+                    <item.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <div className="flex-1">
-                    <span 
-                      className="inline-block px-3 py-1 rounded-full text-sm font-semibold mb-3"
-                      style={{ 
-                        backgroundColor: idx < 3 ? '#2563EB15' : '#14B8A615',
-                        color: item.color
-                      }}
-                    >
-                      {item.badge}
-                    </span>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
