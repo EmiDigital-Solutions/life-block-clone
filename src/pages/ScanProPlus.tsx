@@ -18,6 +18,7 @@ import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorMapPin from "@/assets/auditor-map-pin.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
@@ -983,13 +984,12 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '40%', left: '60%' }}
             >
-              <div className="relative">
-                <div className="w-16 h-16 rounded-full bg-[#2ECC71] flex items-center justify-center shadow-xl border-4 border-white">
-                  <UserCheck className="w-8 h-8 text-white" />
-                </div>
-                <div className="absolute top-0 right-0 w-6 h-6 rounded-full bg-[#2ECC71] border-2 border-white flex items-center justify-center">
-                  <CheckCircle2 className="w-4 h-4 text-white" />
-                </div>
+              <div className="relative w-24 h-28">
+                <img 
+                  src={auditorMapPin} 
+                  alt="Auditor location" 
+                  className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
+                />
               </div>
             </motion.div>
             
@@ -1005,10 +1005,14 @@ const HowItWorksCarousel = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2 * i, duration: 0.3 }}
-                className="absolute w-10 h-10 rounded-full bg-[#2ECC71]/80 flex items-center justify-center shadow-lg border-2 border-white"
+                className="absolute w-16 h-20"
                 style={{ top: pos.top, left: pos.left }}
               >
-                <UserCheck className="w-5 h-5 text-white" />
+                <img 
+                  src={auditorMapPin} 
+                  alt="Auditor location" 
+                  className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)] opacity-80"
+                />
               </motion.div>
             ))}
           </div>
