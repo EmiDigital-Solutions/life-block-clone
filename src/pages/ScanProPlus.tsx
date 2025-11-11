@@ -1355,8 +1355,8 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* 3D Earth */}
-          <div className="relative w-[500px] h-[400px]">
-            <Earth3D width="500px" height="400px" showPins={false} />
+          <div className="relative w-[450px] h-[360px]">
+            <Earth3D width="450px" height="360px" showPins={false} />
             
             {/* Green Location Marker */}
             <motion.div
@@ -1391,8 +1391,8 @@ const HowItWorksCarousel = () => {
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
-          <div className="relative w-[500px] h-[400px]">
-            <Earth3D width="500px" height="400px" showPins={true} />
+          <div className="relative w-[450px] h-[360px]">
+            <Earth3D width="450px" height="360px" showPins={true} />
           </div>
         </div>
       )
@@ -1405,7 +1405,7 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* Background 3D Earth */}
           <div className="absolute inset-0 flex items-center justify-center opacity-25">
-            <Earth3D width="450px" height="350px" />
+            <Earth3D width="405px" height="315px" />
           </div>
           
           {/* Chat Interface in foreground */}
