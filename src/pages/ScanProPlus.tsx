@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
 import Earth3D from "@/components/Earth3D";
+import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
+import ROITimelineChart from "@/components/charts/ROITimelineChart";
+import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import {
   Dialog,
   DialogContent,
@@ -2078,14 +2081,14 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Results Section - Dark gradient */}
+      {/* Results Section - Dark gradient with Modern Animated Charts */}
       <section 
         data-nav-theme="dark" 
         className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="results"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2095,116 +2098,107 @@ const ScanProPlus = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-4">
               Business <span style={{ color: '#2563EB' }}>Impact</span>
             </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              Data-driven insights showing measurable ROI and operational improvements
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-12">
+          {/* Animated Metric Cards with Progress Bars */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { metric: "60%", label: "Cost Reduction", color: '#14B8A6' },
-              { metric: "70%", label: "Time Savings", color: '#2563EB' },
-              { metric: "100%", label: "Consistency", color: '#2563EB' },
-              { metric: "24h", label: "Availability", color: '#14B8A6' }
-            ].map((item, index) => (
+              { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
+              { value: 70, suffix: '%', label: 'Time Savings', color: '#2563EB', delay: 0.1 },
+              { value: 96, suffix: '%', label: 'Price Transparency', color: '#14B8A6', delay: 0.2 },
+              { value: 24, suffix: 'h', label: 'Rapid Deployment', color: '#2563EB', delay: 0.3 }
+            ].map((metric, idx) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all text-center"
+                transition={{ delay: metric.delay, duration: 0.5 }}
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all group"
               >
-                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3`} style={{ color: item.color }}>
-                  {item.metric}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
+                  className="text-5xl font-bold mb-2"
+                  style={{ color: metric.color }}
+                >
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: metric.delay + 0.4 }}
+                  >
+                    {metric.value}{metric.suffix}
+                  </motion.span>
+                </motion.div>
+                <p className="text-white/80 font-medium mb-3">{metric.label}</p>
+                
+                {/* Animated Progress Bar */}
+                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${metric.value}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: metric.delay + 0.5, duration: 1.2, ease: "easeOut" }}
+                    className="h-full rounded-full"
+                    style={{ background: `linear-gradient(90deg, ${metric.color}, ${metric.color}dd)` }}
+                  />
                 </div>
-                <p className="text-sm sm:text-base text-white/90 font-medium">{item.label}</p>
               </motion.div>
             ))}
           </div>
 
-          <div className="space-y-8 max-w-6xl mx-auto">
-            {/* Quality Improvement Card */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-0 items-center">
-                {/* Left Side - Visual */}
-                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
-                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
-                    <Target className="w-20 h-20 text-white" />
-                  </div>
-                </div>
+          {/* Chart Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            
+            {/* Cost Comparison Bar Chart */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-3xl p-8 shadow-2xl"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Cost Comparison</h3>
+              <p className="text-gray-600 mb-6">Traditional vs ScanPro+ per audit</p>
+              
+              <BusinessImpactChart />
+            </motion.div>
 
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-12">
-                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
-                    Quality Focus
-                  </span>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Quality Improvement
-                  </h3>
-                  
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                      <span className="text-lg">Uniform methodology for all supplier assessments</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                      <span className="text-lg">AI-supported detection of critical risks</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                      <span className="text-lg">Continuous improvement tracking over time</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#2563EB' }} />
-                      <span className="text-lg">Data-based supplier decisions</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Efficiency Gains Card */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-0 items-center">
-                {/* Left Side - Visual */}
-                <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
-                  <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                    <Zap className="w-20 h-20 text-white" />
-                  </div>
-                </div>
-
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-12">
-                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
-                    Performance
-                  </span>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    Efficiency Gains
-                  </h3>
-                  
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                      <span className="text-lg">50% faster audit execution through template-based workflows</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                      <span className="text-lg">Automatic report generation in real-time</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                      <span className="text-lg">Integrated tracking of corrective actions</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-gray-700">
-                      <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-                      <span className="text-lg">Shorter time-to-market through faster supplier releases</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            {/* ROI Timeline Chart */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-3xl p-8 shadow-2xl"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Cumulative Savings</h3>
+              <p className="text-gray-600 mb-6">12-month projection (20 audits/year)</p>
+              
+              <ROITimelineChart />
+            </motion.div>
           </div>
+
+          {/* Full-width Time Efficiency Chart */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-white rounded-3xl p-8 shadow-2xl"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Time-to-Audit Comparison</h3>
+            <p className="text-gray-600 mb-6">End-to-end audit process duration</p>
+            
+            <TimeEfficiencyChart />
+          </motion.div>
+
         </div>
       </section>
 
