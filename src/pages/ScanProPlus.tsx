@@ -1,11 +1,19 @@
 import { useRef, useState, useEffect } from "react";
+import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
 import Earth3D from "@/components/Earth3D";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
@@ -819,6 +827,177 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
         </div>
       </div>
     </section>
+  );
+};
+
+
+// Compliance Standards Grid with Modal
+const ComplianceStandardsGrid = () => {
+  const [selectedStandard, setSelectedStandard] = useState<any>(null);
+
+  const standards = [
+    {
+      name: "ISO 9001",
+      icon: Award,
+      color: "from-blue-500 to-blue-600",
+      description: "Quality Management System",
+      details: "ISO 9001 is the international standard for quality management systems (QMS). It helps organizations ensure they meet customer and regulatory requirements while continuously improving processes and efficiency."
+    },
+    {
+      name: "IATF 16949",
+      icon: Car,
+      color: "from-red-500 to-red-600",
+      description: "Automotive Quality Standard",
+      details: "IATF 16949 defines quality management system requirements for the automotive industry. It emphasizes defect prevention, reduction of variation and waste in the supply chain, and continuous improvement."
+    },
+    {
+      name: "AS9100",
+      icon: Plane,
+      color: "from-sky-500 to-sky-600",
+      description: "Aerospace Quality Standard",
+      details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
+    },
+    {
+      name: "ISO 14001",
+      icon: Leaf,
+      color: "from-green-500 to-green-600",
+      description: "Environmental Management",
+      details: "ISO 14001 provides a framework for environmental management systems. It helps organizations minimize their environmental impact, comply with regulations, and achieve sustainability goals."
+    },
+    {
+      name: "GMP",
+      icon: Pill,
+      color: "from-purple-500 to-purple-600",
+      description: "Good Manufacturing Practice",
+      details: "GMP ensures products are consistently produced and controlled according to quality standards. Critical for pharmaceutical, food, and medical device industries to ensure product safety and efficacy."
+    },
+    {
+      name: "API Q1",
+      icon: Factory,
+      color: "from-orange-500 to-orange-600",
+      description: "Petroleum Quality Standard",
+      details: "API Q1 is a quality management system specification for manufacturing organizations in the petroleum and natural gas industry, ensuring product integrity and safety throughout the supply chain."
+    },
+    {
+      name: "SQF",
+      icon: CheckCircle2,
+      color: "from-teal-500 to-teal-600",
+      description: "Food Safety Quality",
+      details: "Safe Quality Food (SQF) is a rigorous food safety and quality program recognized by retailers and food service providers worldwide, ensuring products meet the highest safety standards."
+    },
+    {
+      name: "VDA 6.3",
+      icon: Target,
+      color: "from-indigo-500 to-indigo-600",
+      description: "Automotive Process Audit",
+      details: "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production."
+    },
+    {
+      name: "TS16949",
+      icon: Car,
+      color: "from-rose-500 to-rose-600",
+      description: "Technical Specification",
+      details: "TS16949 (now IATF 16949) was the technical specification for quality management in the automotive supply chain, focusing on continuous improvement and defect prevention."
+    },
+    {
+      name: "GDPR",
+      icon: Lock,
+      color: "from-gray-600 to-gray-700",
+      description: "Data Protection Regulation",
+      details: "GDPR is the EU's comprehensive data protection law that ensures personal data privacy and security. It mandates strict requirements for data collection, processing, and storage."
+    },
+    {
+      name: "SOC 2",
+      icon: ShieldCheck,
+      color: "from-cyan-500 to-cyan-600",
+      description: "Security & Compliance",
+      details: "SOC 2 is an auditing standard for service organizations that store customer data in the cloud. It ensures proper security, availability, processing integrity, confidentiality, and privacy controls."
+    },
+    {
+      name: "FDA",
+      icon: Building2,
+      color: "from-blue-600 to-blue-700",
+      description: "FDA Compliance",
+      details: "FDA compliance ensures products meet US Food and Drug Administration regulations for safety, efficacy, and quality. Critical for pharmaceutical, medical device, and food industries."
+    },
+  ];
+
+  return (
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {standards.map((standard, idx) => {
+          const Icon = standard.icon;
+          return (
+            <motion.button
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
+              onClick={() => setSelectedStandard(standard)}
+              className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+            >
+              {/* Icon with gradient background */}
+              <div className={`mb-4 mx-auto w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${standard.color}`}>
+                <Icon className="w-8 h-8 text-white" />
+              </div>
+
+              {/* Standard name */}
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                {standard.name}
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs text-gray-600 mb-3">
+                {standard.description}
+              </p>
+
+              {/* Click indicator */}
+              <div className="text-xs font-semibold text-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+                Click to learn more
+                <ArrowRight className="w-3 h-3" />
+              </div>
+
+              {/* Hover effect overlay */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+            </motion.button>
+          );
+        })}
+      </div>
+
+      {/* Modal */}
+      <Dialog open={!!selectedStandard} onOpenChange={() => setSelectedStandard(null)}>
+        <DialogContent className="sm:max-w-[600px] rounded-3xl">
+          {selectedStandard && (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${selectedStandard.color} flex items-center justify-center flex-shrink-0`}>
+                    {React.createElement(selectedStandard.icon, { className: "w-8 h-8 text-white" })}
+                  </div>
+                  <div className="flex-1">
+                    <DialogTitle className="text-2xl font-bold text-gray-900">
+                      {selectedStandard.name}
+                    </DialogTitle>
+                    <p className="text-sm font-semibold text-[#14B8A6] mt-1">
+                      {selectedStandard.description}
+                    </p>
+                  </div>
+                </div>
+              </DialogHeader>
+              <DialogDescription className="text-base text-gray-700 leading-relaxed">
+                {selectedStandard.details}
+              </DialogDescription>
+              <div className="mt-6 p-4 bg-[#14B8A6]/5 rounded-xl border border-[#14B8A6]/20">
+                <p className="text-sm text-gray-700">
+                  <strong className="text-gray-900">✓ YVOO ScanPro+</strong> ensures full compliance with {selectedStandard.name} through our standardized audit processes, comprehensive documentation, and AI-powered verification systems.
+                </p>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
@@ -2131,36 +2310,35 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Compliance Standards - Dark gradient */}
+      {/* Compliance Standards - Modern Interactive Cards */}
       <section 
-        data-nav-theme="dark" 
+        data-nav-theme="light" 
         className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10"
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 flex items-center gap-3">
-              <Shield className="w-10 h-10" style={{ color: '#2563EB' }} />
-              Compliance & Supported Standards
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Shield className="w-12 h-12" style={{ color: '#14B8A6' }} />
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+                Compliance & Supported Standards
+              </h2>
+            </div>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
             </p>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {['ISO 9001', 'IATF 16949', 'AS9100', 'ISO 14001', 'GMP', 'API Q1', 'SQF', 'VDA 6.3', 'TS16949', 'GDPR-compliant', 'SOC2-certified', 'FDA-compliant'].map((standard, idx) => (
-                <div key={idx} className="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg text-center font-semibold text-white border border-white/20 hover:bg-white/20 transition-all">
-                  {standard}
-                </div>
-              ))}
-            </div>
+            <p className="text-sm font-semibold text-[#14B8A6] mt-4">
+              👆 Click on any standard to learn more
+            </p>
           </motion.div>
+          
+          <ComplianceStandardsGrid />
         </div>
       </section>
 
