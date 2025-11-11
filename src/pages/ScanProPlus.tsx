@@ -468,29 +468,27 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative">
+        <div className="relative min-h-[800px]">
           
           {/* Dotted World Map as Background with interactive markers */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1400px] pointer-events-none"
             style={{ 
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '100%',
-              maxWidth: '1400px',
-              zIndex: 0
+              zIndex: 1
             }}
           >
-            <div className="relative w-full pointer-events-auto">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="relative w-full pointer-events-auto"
+            >
               <img 
                 src={dottedWorldMap} 
                 alt="Global Network Map" 
-                className="w-full h-auto opacity-70"
+                className="w-full h-auto"
+                style={{ opacity: 0.7 }}
               />
               
               {/* Interactive Location Markers */}
@@ -512,8 +510,8 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                   delay={location.delay}
                 />
               ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
