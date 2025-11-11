@@ -63,7 +63,6 @@ const TimeEfficiencyChart = () => {
               <Zap className="w-5 h-5 text-emerald-400" />
               ScanPro+ Approach
             </h4>
-            <span className="text-3xl font-black text-emerald-400">{totalScanPro} days</span>
           </div>
           <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalScanPro / maxTotal) * 100}%` }}>
             {phases.map((phase, idx) => {
