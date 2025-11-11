@@ -250,8 +250,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 48h",
                 rating: 4.7,
                 image: auditorEuropean,
-                top: "32%", 
-                left: "28%", 
+                top: "68%", 
+                left: "18%", 
               },
               { 
                 name: "Omar Hassan", 
