@@ -1134,7 +1134,7 @@ const fallbackAuditors = [
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
-// How Does YVOO Work Carousel
+// How Does YVOO Work Carousel - Refactored to Card Design
 const HowItWorksCarousel = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
@@ -1143,293 +1143,29 @@ const HowItWorksCarousel = () => {
       number: "01",
       title: "Place an Audit Request with 1 Click",
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* World Map with 1-Click Button */}
-          <div className="relative w-[650px] h-[500px]">
-            {/* Dotted World Map Pattern - Proper world continents */}
-            <div className="relative w-full h-full">
-              <img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain"
-              />
-              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
-            </div>
-            
-            {/* Green Location Marker */}
-            <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '30%', left: '70%' }}
-            >
-              <div className="w-4 h-4 rounded-full bg-[#2ECC71] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#2ECC71] animate-ping opacity-40" />
-            </motion.div>
-            
-            {/* 1-Click Button */}
-            <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '32%', left: '73%' }}
-            >
-              <div className="bg-[#2ECC71] text-white px-6 py-3 rounded-[30px] flex items-center gap-2 shadow-[0_8px_15px_rgba(35,37,45,0.3)]">
-                <Mouse className="w-5 h-5" />
-                <span className="font-semibold text-lg whitespace-nowrap">1-Click</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      )
+      icon: <Mouse className="w-8 h-8" />,
+      color: "from-[#14B8A6] to-[#0D9488]"
     },
     {
       number: "02",
       title: "Auto-Dispatch to Local Auditors",
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="relative w-[650px] h-[500px]">
-            {/* Dotted World Map Pattern - Proper world continents */}
-            <div className="relative w-full h-full">
-              <img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain"
-              />
-              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
-            </div>
-            
-            {/* Main Auditor Pin with animation */}
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '40%', left: '60%' }}
-            >
-              <div className="relative w-24 h-28">
-                <img 
-                  src={auditorMapPin} 
-                  alt="Auditor location" 
-                  className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
-                />
-              </div>
-            </motion.div>
-            
-            {/* Additional Auditor Pins */}
-            {[
-              { top: '25%', left: '20%' },
-              { top: '50%', left: '25%' },
-              { top: '28%', left: '70%' },
-              { top: '48%', left: '75%' }
-            ].map((pos, i) => (
-              <motion.div
-                key={i}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2 * i, duration: 0.3 }}
-                className="absolute w-16 h-20"
-                style={{ top: pos.top, left: pos.left }}
-              >
-                <img 
-                  src={auditorMapPin} 
-                  alt="Auditor location" 
-                  className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.25)] opacity-80"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      )
+      icon: <Globe className="w-8 h-8" />,
+      color: "from-[#14B8A6] to-[#0F8775]"
     },
     {
       number: "03",
       title: "Monitor Audits in Real-Time",
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Background Dotted Map */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-20">
-            <div className="relative w-[600px] h-[450px]">
-              <img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain"
-              />
-              {/* Green marker dot - positioned at 83.85% left, 48.93% top */}
-              <div className="absolute w-6 h-6 rounded-full bg-[#2ECC71]" style={{ top: '48.93%', left: '83.85%', transform: 'translate(-50%, -50%)' }} />
-            </div>
-          </div>
-          
-          {/* Chat Interface in foreground */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl w-[400px] relative z-10">
-            {/* User Message */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-start gap-3 mb-4"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#00D4FF] flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-6 h-6 text-white" />
-              </div>
-              <div className="bg-[#00D4FF] text-white px-5 py-3 rounded-2xl rounded-tl-none flex-1">
-                <p className="text-sm font-bold mb-2">You</p>
-                <div className="space-y-1.5">
-                  <div className="h-2 bg-white/50 rounded w-28"></div>
-                  <div className="h-2 bg-white/50 rounded w-36"></div>
-                </div>
-              </div>
-            </motion.div>
-            
-            {/* Auditor Message */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-start gap-3 mb-4 justify-end"
-            >
-              <div className="bg-[#22C55E] text-white px-5 py-3 rounded-2xl rounded-tr-none flex-1">
-                <p className="text-sm font-bold mb-2">Auditor</p>
-                <div className="space-y-1.5">
-                  <div className="h-2 bg-white/50 rounded w-32"></div>
-                  <div className="h-2 bg-white/50 rounded w-40"></div>
-                </div>
-              </div>
-              <div className="w-12 h-12 rounded-full bg-[#22C55E] flex items-center justify-center flex-shrink-0">
-                <UserCheck className="w-6 h-6 text-white" />
-              </div>
-            </motion.div>
-            
-            {/* User Message 2 */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex items-start gap-3 mb-6"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#00D4FF] flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-6 h-6 text-white" />
-              </div>
-              <div className="bg-[#00D4FF] text-white px-5 py-3 rounded-2xl rounded-tl-none">
-                <p className="text-sm font-bold mb-2">You</p>
-                <div className="h-2 bg-white/50 rounded w-24"></div>
-              </div>
-            </motion.div>
-            
-            {/* Status Icons */}
-            <div className="flex items-center justify-center gap-6 pt-6 border-t border-gray-200">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-14 h-14 rounded-full bg-[#22C55E]/20 flex items-center justify-center"
-              >
-                <CheckCircle2 className="w-7 h-7 text-[#22C55E]" />
-              </motion.div>
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-16 h-16 rounded-full bg-[#22C55E] flex items-center justify-center shadow-lg"
-              >
-                <MessageCircle className="w-8 h-8 text-white" />
-              </motion.div>
-            </div>
-          </div>
-          
-          {/* Floating Map Pin */}
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-[15%] right-[10%] w-14 h-14 rounded-full bg-[#22C55E] flex items-center justify-center shadow-xl border-4 border-white z-20"
-          >
-            <Globe className="w-7 h-7 text-white" />
-          </motion.div>
-        </div>
-      )
+      icon: <MessageCircle className="w-8 h-8" />,
+      color: "from-[#14B8A6] to-[#12A594]"
     },
     {
       number: "04",
       title: "Receive Complete Reports",
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl w-[400px]">
-            {/* Report Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 rounded-full bg-[#2563EB] flex items-center justify-center">
-                  <BarChart3 className="w-7 h-7 text-white" />
-                </div>
-                <div className="w-20 h-20 rounded-full bg-[#22C55E]/20 flex items-center justify-center">
-                  <CheckCircle2 className="w-10 h-10 text-[#22C55E]" />
-                </div>
-              </div>
-              
-              {/* Report Lines */}
-              <div className="space-y-2.5">
-                <div className="h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-3 bg-gray-200 rounded w-4/6"></div>
-              </div>
-            </motion.div>
-            
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="bg-[#00D4FF]/10 rounded-xl p-4 text-center"
-              >
-                <div className="text-3xl font-bold text-[#00D4FF] mb-2">95%</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-14"></div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-                className="bg-[#22C55E]/10 rounded-xl p-4 text-center"
-              >
-                <div className="text-3xl font-bold text-[#22C55E] mb-2">A+</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-14"></div>
-              </motion.div>
-            </div>
-            
-            {/* Chart Bars */}
-            <div className="flex items-end gap-3 h-24 mb-6">
-              {[60, 80, 95, 70].map((height, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${height}%` }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                  className={`rounded-t flex-1 ${
-                    i === 0 || i === 3 ? 'bg-[#2563EB]' : i === 1 ? 'bg-[#22C55E]' : 'bg-[#00D4FF]'
-                  }`}
-                ></motion.div>
-              ))}
-            </div>
-            
-            {/* Download Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#2563EB] to-[#00D4FF] text-white px-6 py-4 rounded-xl text-center font-bold flex items-center justify-center gap-3 shadow-lg"
-            >
-              <Shield className="w-6 h-6" />
-              <span className="text-lg">Report Ready</span>
-            </motion.div>
-          </div>
-        </div>
-      )
+      icon: <BarChart3 className="w-8 h-8" />,
+      color: "from-[#14B8A6] to-[#0D9488]"
     }
   ];
 
@@ -1441,101 +1177,166 @@ const HowItWorksCarousel = () => {
     setCurrentStep((prev) => (prev - 1 + steps.length) % steps.length);
   };
 
-  const goToStep = (index: number) => {
-    setCurrentStep(index);
-  };
-
   return (
     <section 
-      data-nav-theme="dark"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #00D4FF, #00B8E6)" }}
+      data-nav-theme="light"
+      className="relative py-20 px-4 sm:px-6 lg:px-12"
+      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
-      <div className="w-full max-w-[2000px] mx-auto px-8 lg:px-16 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left Column: Visual */}
-          <motion.div
-            key={`visual-${currentStep}`}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-center min-h-[500px]"
-          >
-            {steps[currentStep].visual}
-          </motion.div>
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+            <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            How does YVOO Work
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Four simple steps to transform your supplier audit process
+          </p>
+        </motion.div>
 
-          {/* Right Column: Content */}
-          <div className="text-left space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-12"
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Cards Display */}
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex transition-transform duration-500 ease-out"
+              animate={{ x: `-${currentStep * 100}%` }}
             >
-              How does YVOO Work
-            </motion.h2>
-
-            <motion.div
-              key={`content-${currentStep}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6"
-            >
-              {/* Step Number */}
-              <div className="text-[120px] lg:text-[140px] font-bold text-white/30 leading-none">
-                {steps[currentStep].number}
-              </div>
-
-              {/* Step Title */}
-              <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-black">
-                {steps[currentStep].title}
-              </h3>
-
-              {/* Step Description */}
-              <p className="text-lg lg:text-xl text-black/80 leading-relaxed max-w-lg">
-                {steps[currentStep].description}
-              </p>
-            </motion.div>
-
-            {/* Navigation */}
-            <div className="flex items-center gap-8 pt-8">
-              {/* Step Indicators */}
-              <div className="flex items-center gap-4">
-                {steps.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToStep(index)}
-                    className={`text-2xl font-bold transition-all ${
-                      index === currentStep
-                        ? 'text-white scale-110'
-                        : 'text-white/40 hover:text-white/70'
-                    }`}
+              {steps.map((step, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white rounded-3xl shadow-xl overflow-hidden mx-auto max-w-4xl"
                   >
-                    0{index + 1}
-                  </button>
-                ))}
-              </div>
+                    <div className="grid md:grid-cols-2 gap-8 items-center">
+                      {/* Left Side - Icon and Number */}
+                      <div className={`relative bg-gradient-to-br ${step.color} p-12 h-full flex flex-col items-center justify-center text-center`}>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          className="mb-6"
+                        >
+                          <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white mb-6">
+                            {step.icon}
+                          </div>
+                        </motion.div>
+                        
+                        <div className="text-[120px] font-bold text-white/20 leading-none mb-4">
+                          {step.number}
+                        </div>
+                        
+                        {/* Decorative dots */}
+                        <div className="flex gap-2 mt-6">
+                          {[...Array(3)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              animate={{ 
+                                scale: [1, 1.2, 1],
+                                opacity: [0.5, 1, 0.5]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: i * 0.2
+                              }}
+                              className="w-2 h-2 bg-white/60 rounded-full"
+                            />
+                          ))}
+                        </div>
+                      </div>
 
-              {/* Arrow Navigation */}
-              <div className="flex items-center gap-4 ml-auto">
+                      {/* Right Side - Content */}
+                      <div className="p-8 md:p-12">
+                        <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
+                          Step {step.number}
+                        </span>
+                        
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                          {step.title}
+                        </h3>
+                        
+                        <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                          {step.description}
+                        </p>
+
+                        {/* Features list */}
+                        <div className="space-y-3">
+                          {[
+                            index === 0 && "Quick integration with ERP systems",
+                            index === 1 && "Global network of certified auditors",
+                            index === 2 && "Direct communication channel",
+                            index === 3 && "AI-powered insights and analytics"
+                          ].filter(Boolean).map((feature, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.2 + i * 0.1 }}
+                              className="flex items-center gap-3"
+                            >
+                              <div className="w-6 h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <CheckCircle2 className="w-4 h-4 text-[#14B8A6]" />
+                              </div>
+                              <span className="text-gray-700">{feature}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-center gap-8 mt-12">
+            {/* Arrow Buttons */}
+            <button
+              onClick={prevStep}
+              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6] disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Previous step"
+            >
+              <ArrowRight className="w-6 h-6 rotate-180" />
+            </button>
+
+            {/* Step Indicators */}
+            <div className="flex items-center gap-3">
+              {steps.map((_, index) => (
                 <button
-                  onClick={prevStep}
-                  className="text-white hover:text-black transition-colors p-2"
-                  aria-label="Previous step"
+                  key={index}
+                  onClick={() => setCurrentStep(index)}
+                  className="group"
+                  aria-label={`Go to step ${index + 1}`}
                 >
-                  <ArrowRight className="w-10 h-10 rotate-180" />
+                  <div className={`transition-all ${
+                    index === currentStep
+                      ? 'w-12 h-3 bg-[#14B8A6] rounded-full'
+                      : 'w-3 h-3 bg-gray-300 rounded-full hover:bg-[#14B8A6]/50'
+                  }`} />
                 </button>
-                <button
-                  onClick={nextStep}
-                  className="text-white hover:text-black transition-colors p-2"
-                  aria-label="Next step"
-                >
-                  <ArrowRight className="w-10 h-10" />
-                </button>
-              </div>
+              ))}
             </div>
+
+            <button
+              onClick={nextStep}
+              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6] disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Next step"
+            >
+              <ArrowRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
