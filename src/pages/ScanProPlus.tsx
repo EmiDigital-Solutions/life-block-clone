@@ -417,6 +417,27 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.25 }}
+                className="text-left mb-4"
+              >
+                <p className="text-base font-semibold text-gray-700 mb-2">
+                  Our auditor network includes professionals certified by:
+                </p>
+                <div className="flex flex-wrap items-center gap-3 text-gray-600">
+                  <span className="text-sm">TÜV SÜD</span>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-sm">Bureau Veritas</span>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-sm">SGS</span>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-sm">DNV</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
                 <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
