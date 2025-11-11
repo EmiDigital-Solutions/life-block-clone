@@ -463,12 +463,12 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
   return (
     <section
       data-nav-theme="light"
-      className="relative py-20 px-4 sm:px-6 overflow-hidden"
+      className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="mb-20 relative">
+        <div className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
