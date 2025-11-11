@@ -20,17 +20,18 @@ const TimeEfficiencyChart = () => {
 
   return (
     <div ref={ref} className="w-full">
-      <div className="space-y-10 mb-10">
+      <div className="space-y-6 sm:space-y-10 mb-6 sm:mb-10">
         {/* Traditional Timeline */}
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <h4 className="text-base font-bold text-gray-300 flex items-center gap-3">
-              <Clock className="w-5 h-5 text-gray-400" />
-              Traditional Approach
+          <div className="flex items-center justify-between mb-3 sm:mb-5">
+            <h4 className="text-xs sm:text-sm md:text-base font-bold text-gray-300 flex items-center gap-2 sm:gap-3">
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+              <span className="hidden sm:inline">Traditional Approach</span>
+              <span className="sm:hidden">Traditional</span>
             </h4>
-            <span className="text-3xl font-black text-gray-300">{totalTraditional} days</span>
+            <span className="text-xl sm:text-2xl md:text-3xl font-black text-gray-300">{totalTraditional} days</span>
           </div>
-          <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalTraditional / maxTotal) * 100}%` }}>
+          <div className="flex gap-0.5 sm:gap-1 h-12 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-black/30" style={{ width: '100%' }}>
             {phases.map((phase, idx) => {
               const width = (phase.traditional / totalTraditional) * 100;
               return (
@@ -47,8 +48,8 @@ const TimeEfficiencyChart = () => {
                   style={{ backgroundColor: phase.color }}
                 >
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1 transition-opacity duration-200">
-                      {phase.name}<br />{phase.traditional}d
+                    <span className="text-white font-bold text-[10px] sm:text-xs text-center px-1 leading-tight">
+                      <span className="hidden sm:inline">{phase.name}<br /></span>{phase.traditional}d
                     </span>
                   </div>
                 </motion.div>
@@ -59,14 +60,15 @@ const TimeEfficiencyChart = () => {
 
         {/* ScanPro+ Timeline */}
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <h4 className="text-base font-bold text-gray-200 flex items-center gap-3">
-              <Zap className="w-5 h-5 text-emerald-400" />
-              ScanPro+ Approach
+          <div className="flex items-center justify-between mb-3 sm:mb-5">
+            <h4 className="text-xs sm:text-sm md:text-base font-bold text-gray-200 flex items-center gap-2 sm:gap-3">
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+              <span className="hidden sm:inline">ScanPro+ Approach</span>
+              <span className="sm:hidden">ScanPro+</span>
             </h4>
           </div>
-          <div className="relative flex items-center gap-4">
-            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalVisualScanPro / maxTotal) * 100, 45)}%`, minWidth: '45%' }}>
+          <div className="relative flex items-center gap-2 sm:gap-4">
+            <div className="flex gap-0.5 sm:gap-1 h-12 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-black/30" style={{ width: '70%' }}>
               {phases.map((phase, idx) => {
                 const width = ((phase.visualScanpro || phase.scanpro) / totalVisualScanPro) * 100;
                 return (
@@ -83,8 +85,8 @@ const TimeEfficiencyChart = () => {
                     style={{ backgroundColor: phase.color }}
                   >
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1 transition-opacity duration-200">
-                        {phase.name}<br />{phase.scanpro}d
+                      <span className="text-white font-bold text-[10px] sm:text-xs text-center px-1 leading-tight">
+                        <span className="hidden sm:inline">{phase.name}<br /></span>{phase.scanpro}d
                       </span>
                     </div>
                   </motion.div>
@@ -96,34 +98,34 @@ const TimeEfficiencyChart = () => {
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ delay: 1.5, duration: 0.5 }}
             >
-              <span className="text-2xl font-black text-emerald-400">{totalScanPro} days</span>
+              <span className="text-lg sm:text-xl md:text-2xl font-black text-emerald-400">{totalScanPro} days</span>
             </motion.div>
           </div>
         </div>
       </div>
 
       {/* Phase Legend - Simple Text */}
-      <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+      <div className="grid grid-cols-2 gap-x-3 sm:gap-x-6 gap-y-2 sm:gap-y-3 mb-6 sm:mb-8">
         {phases.map((phase, idx) => (
-          <div key={idx} className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded" style={{ backgroundColor: phase.color }} />
-            <p className="text-sm text-gray-300">{phase.name}</p>
+          <div key={idx} className="flex items-center gap-2 sm:gap-3">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded flex-shrink-0" style={{ backgroundColor: phase.color }} />
+            <p className="text-xs sm:text-sm text-gray-300">{phase.name}</p>
           </div>
         ))}
       </div>
 
       {/* Summary */}
-      <div className="p-8 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-2xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-gray-200 mb-2 font-semibold uppercase">Time Reduction</p>
-            <p className="text-5xl font-black text-emerald-300">
+      <div className="p-4 sm:p-6 md:p-8 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-xl sm:rounded-2xl">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex-1">
+            <p className="text-[10px] sm:text-xs md:text-sm text-gray-200 mb-1 sm:mb-2 font-semibold uppercase">Time Reduction</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-emerald-300">
               {Math.round((1 - totalScanPro / totalTraditional) * 100)}%
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-sm text-gray-200 mb-2 font-semibold uppercase">Days Saved</p>
-            <p className="text-5xl font-black text-emerald-300">
+          <div className="flex-1 text-right">
+            <p className="text-[10px] sm:text-xs md:text-sm text-gray-200 mb-1 sm:mb-2 font-semibold uppercase">Days Saved</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-emerald-300">
               {totalTraditional - totalScanPro}
             </p>
           </div>

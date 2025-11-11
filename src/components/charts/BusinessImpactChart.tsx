@@ -27,7 +27,7 @@ const BusinessImpactChart = () => {
 
   return (
     <div ref={ref} className="w-full">
-      <div className="space-y-10">
+      <div className="space-y-6 sm:space-y-8 md:space-y-10">
         {metrics.map((metric, idx) => (
           <motion.div
             key={idx}
@@ -35,16 +35,16 @@ const BusinessImpactChart = () => {
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -20 }}
             transition={{ delay: idx * 0.2, duration: 0.5 }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-base font-bold" style={{ color: metric.color }}>
+            <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+              <span className="text-xs sm:text-sm md:text-base font-bold truncate" style={{ color: metric.color }}>
                 {metric.label}
               </span>
-              <span className="text-4xl font-black" style={{ color: metric.color }}>
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black flex-shrink-0" style={{ color: metric.color }}>
                 €{metric.value.toLocaleString()}
               </span>
             </div>
             
-            <div className="relative h-20 bg-black/30 rounded-xl overflow-hidden">
+            <div className="relative h-14 sm:h-16 md:h-20 bg-black/30 rounded-lg sm:rounded-xl overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: isVisible ? `${metric.percentage}%` : 0 }}
@@ -64,14 +64,14 @@ const BusinessImpactChart = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="mt-10 flex items-center gap-6 p-8 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 rounded-2xl"
+        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 rounded-xl sm:rounded-2xl"
       >
-        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
-          <TrendingDown className="w-8 h-8 text-white" />
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
+          <TrendingDown className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
         </div>
-        <div>
-          <p className="text-sm text-gray-200 mb-1 font-medium">Cost Reduction per Audit</p>
-          <p className="text-5xl font-black text-teal-300">-{savings}%</p>
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] sm:text-xs md:text-sm text-gray-200 mb-1 font-medium">Cost Reduction per Audit</p>
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-teal-300">-{savings}%</p>
         </div>
       </motion.div>
     </div>

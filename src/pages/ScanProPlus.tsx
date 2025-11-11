@@ -1353,10 +1353,10 @@ const HowItWorksCarousel = () => {
       title: "Place an Audit Request with 1 Click",
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-8">
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
           {/* 3D Earth */}
-          <div className="relative w-[450px] h-[360px]">
-            <Earth3D width="450px" height="360px" showPins={false} />
+          <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[450px] h-[240px] sm:h-[280px] md:h-[360px]">
+            <Earth3D width="100%" height="100%" showPins={false} />
             
             {/* Green Location Marker */}
             <motion.div
@@ -1365,8 +1365,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-4 h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
+              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1376,9 +1376,9 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#14B8A6] text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-xl">
-                <Mouse className="w-5 h-5" />
-                <span className="font-semibold text-lg whitespace-nowrap">1-Click</span>
+              <div className="bg-[#14B8A6] text-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+                <Mouse className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <span className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
             </motion.div>
           </div>
@@ -1390,9 +1390,9 @@ const HowItWorksCarousel = () => {
       title: "Auto-Dispatch to Local Auditors",
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-8">
-          <div className="relative w-[450px] h-[360px]">
-            <Earth3D width="450px" height="360px" showPins={true} />
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
+          <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[450px] h-[240px] sm:h-[280px] md:h-[360px]">
+            <Earth3D width="100%" height="100%" showPins={true} />
           </div>
         </div>
       )
@@ -1402,14 +1402,16 @@ const HowItWorksCarousel = () => {
       title: "Monitor Audits in Real-Time",
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-8">
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
           {/* Background 3D Earth */}
           <div className="absolute inset-0 flex items-center justify-center opacity-25">
-            <Earth3D width="405px" height="315px" />
+            <div className="w-full max-w-[250px] sm:max-w-[320px] md:max-w-[405px] h-[200px] sm:h-[250px] md:h-[315px]">
+              <Earth3D width="100%" height="100%" />
+            </div>
           </div>
           
           {/* Chat Interface in foreground */}
-          <div className="bg-white rounded-3xl p-6 shadow-2xl w-[350px] relative z-10">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-2xl w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] relative z-10">
             {/* User Message */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -1499,8 +1501,8 @@ const HowItWorksCarousel = () => {
       title: "Receive Complete Reports",
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-8">
-          <div className="bg-white rounded-3xl p-6 shadow-2xl w-[350px]">
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-2xl w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px]">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
