@@ -138,10 +138,99 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             </motion.div>
           ))}
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
+          <div className="relative z-10">
             
+            {/* Auditor Cards - Top Right Corner */}
+            <div className="absolute top-0 right-0 z-30">
+              <div 
+                className="relative w-full"
+                style={{ perspective: "2000px" }}
+              >
+                <div className="relative h-[350px] w-[350px] flex items-center justify-center">
+                  {visibleAuditors.map((auditor, auditorIndex) => {
+                    const style = getCardStyle(auditorIndex, visibleAuditors.length);
+                    
+                    return (
+                      <motion.div
+                        key={auditor.location + auditor.region}
+                        className="absolute cursor-pointer"
+                        onClick={handleCardClick}
+                        initial={false}
+                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
+                        animate={{
+                          x: style.x,
+                          y: style.y,
+                          rotateY: style.rotateY,
+                          rotateZ: style.rotateZ,
+                          scale: style.scale,
+                          opacity: style.opacity,
+                          zIndex: style.zIndex,
+                        }}
+                        transition={{
+                          duration: 1.8,
+                          delay: isFanned ? auditorIndex * 0.12 : (visibleAuditors.length - auditorIndex) * 0.08,
+                          ease: [0.33, 1, 0.68, 1],
+                          type: "tween",
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        <div
+                          className={`relative w-[132px] h-[168px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          style={{
+                            boxShadow: `
+                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                              0 0 30px rgba(236, 72, 153, 0.2)
+                            `,
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                          
+                          <div className="absolute inset-0 flex items-center justify-center pt-5">
+                            <div className="relative w-[84px] h-[84px] rounded-full overflow-hidden border-2 border-white/10">
+                              <img
+                                src={auditor.image}
+                                alt={`Professional auditor from ${auditor.location}`}
+                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
+                              />
+                              <div 
+                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                                style={{
+                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="absolute bottom-3 left-0 right-0 flex justify-center px-3">
+                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 w-full">
+                              <p className="text-white font-sans font-bold text-xs text-center">
+                                {auditor.location}
+                              </p>
+                              <p className="text-white/80 font-sans text-[10px] text-center">
+                                {auditor.region}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div 
+                            className="absolute inset-0 pointer-events-none rounded-3xl"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
+                            }}
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -183,95 +272,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>
-            </div>
-
-            {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-start">
-              <div 
-                className="relative w-full"
-                style={{ perspective: "2000px" }}
-              >
-                <div className="relative h-[530px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center pt-56">
-                  {visibleAuditors.map((auditor, auditorIndex) => {
-                    const style = getCardStyle(auditorIndex, visibleAuditors.length);
-                    
-                    return (
-                      <motion.div
-                        key={auditor.location + auditor.region}
-                        className="absolute cursor-pointer"
-                        onClick={handleCardClick}
-                        initial={false}
-                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                        animate={{
-                          x: style.x,
-                          y: style.y,
-                          rotateY: style.rotateY,
-                          rotateZ: style.rotateZ,
-                          scale: style.scale,
-                          opacity: style.opacity,
-                          zIndex: style.zIndex,
-                        }}
-                        transition={{
-                          duration: 1.8,
-                          delay: isFanned ? auditorIndex * 0.12 : (visibleAuditors.length - auditorIndex) * 0.08,
-                          ease: [0.33, 1, 0.68, 1],
-                          type: "tween",
-                        }}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          willChange: "transform, opacity",
-                        }}
-                      >
-                        <div
-                          className={`relative w-[132px] h-[168px] sm:w-[156px] sm:h-[192px] lg:w-[63px] lg:h-[81px] xl:w-[180px] xl:h-[234px] 2xl:w-[216px] 2xl:h-[276px] 3xl:w-[240px] 3xl:h-[312px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                          style={{
-                            boxShadow: `
-                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                              0 0 30px rgba(236, 72, 153, 0.2)
-                            `,
-                          }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                          
-                          <div className="absolute inset-0 flex items-center justify-center pt-5 sm:pt-6 lg:pt-2 xl:pt-7 2xl:pt-9 3xl:pt-11">
-                            <div className="relative w-[84px] h-[84px] sm:w-[96px] sm:h-[96px] lg:w-[54px] lg:h-[54px] xl:w-[111px] xl:h-[111px] 2xl:w-[129px] 2xl:h-[129px] 3xl:w-[144px] 3xl:h-[144px] rounded-full overflow-hidden border-2 border-white/10">
-                              <img
-                                src={auditor.image}
-                                alt={`Professional auditor from ${auditor.location}`}
-                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                              />
-                              <div 
-                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                style={{
-                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                }}
-                              />
-                            </div>
-                          </div>
-
-                          <div className="absolute bottom-3 sm:bottom-5 lg:bottom-1.5 xl:bottom-5 2xl:bottom-7 3xl:bottom-11 left-0 right-0 flex justify-center px-3 sm:px-5 lg:px-1.5">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-5 lg:px-1.5 xl:px-6 2xl:px-8 py-1.5 sm:py-2.5 lg:py-1 xl:py-3 2xl:py-3.5 w-full">
-                              <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-[7px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
-                                {auditor.location}
-                              </p>
-                              <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[6px] xl:text-sm 2xl:text-lg 3xl:text-xl text-center">
-                                {auditor.region}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div 
-                            className="absolute inset-0 pointer-events-none rounded-3xl"
-                            style={{
-                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                            }}
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
             </div>
 
           </div>
