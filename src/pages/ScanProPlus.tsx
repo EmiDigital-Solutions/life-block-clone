@@ -251,7 +251,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 rating: 4.7,
                 image: auditorEuropean,
                 top: "32%", 
-                left: "14%", 
+                left: "28%", 
               },
               { 
                 name: "Omar Hassan", 
