@@ -1353,9 +1353,9 @@ const HowItWorksCarousel = () => {
       title: "Place an Audit Request with 1 Click",
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* 3D Earth */}
-          <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[450px] h-[240px] sm:h-[280px] md:h-[360px]">
+          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
             <Earth3D width="100%" height="100%" showPins={false} />
             
             {/* Green Location Marker */}
@@ -1365,8 +1365,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1376,9 +1376,9 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#14B8A6] text-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <Mouse className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                <span className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
+              <div className="bg-[#14B8A6] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+                <Mouse className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
             </motion.div>
           </div>
@@ -1390,8 +1390,8 @@ const HowItWorksCarousel = () => {
       title: "Auto-Dispatch to Local Auditors",
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
-          <div className="relative w-full max-w-[300px] sm:max-w-[350px] md:max-w-[450px] h-[240px] sm:h-[280px] md:h-[360px]">
+        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
+          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
             <Earth3D width="100%" height="100%" showPins={true} />
           </div>
         </div>
@@ -1402,31 +1402,31 @@ const HowItWorksCarousel = () => {
       title: "Monitor Audits in Real-Time",
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Background 3D Earth */}
           <div className="absolute inset-0 flex items-center justify-center opacity-25">
-            <div className="w-full max-w-[250px] sm:max-w-[320px] md:max-w-[405px] h-[200px] sm:h-[250px] md:h-[315px]">
+            <div className="w-full max-w-[140px] sm:max-w-[320px] md:max-w-[405px] h-[110px] sm:h-[250px] md:h-[315px]">
               <Earth3D width="100%" height="100%" />
             </div>
           </div>
           
           {/* Chat Interface in foreground */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-2xl w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] relative z-10">
+          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[160px] sm:max-w-[320px] md:max-w-[350px] relative z-10">
             {/* User Message */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex items-start gap-3 mb-4"
+              className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4"
             >
-              <div className="w-10 h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-5 h-5 text-white" />
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
               </div>
-              <div className="bg-[#14B8A6] text-white px-4 py-3 rounded-2xl rounded-tl-none flex-1">
-                <p className="text-xs font-bold mb-2">You</p>
-                <div className="space-y-1.5">
-                  <div className="h-2 bg-white/50 rounded w-24"></div>
-                  <div className="h-2 bg-white/50 rounded w-32"></div>
+              <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
+                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <div className="h-1 sm:h-2 bg-white/50 rounded w-12 sm:w-24"></div>
+                  <div className="h-1 sm:h-2 bg-white/50 rounded w-16 sm:w-32"></div>
                 </div>
               </div>
             </motion.div>
@@ -1436,17 +1436,17 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex items-start gap-3 mb-4 justify-end"
+              className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4 justify-end"
             >
-              <div className="bg-[#0D9488] text-white px-4 py-3 rounded-2xl rounded-tr-none flex-1">
-                <p className="text-xs font-bold mb-2">Auditor</p>
-                <div className="space-y-1.5">
-                  <div className="h-2 bg-white/50 rounded w-28"></div>
-                  <div className="h-2 bg-white/50 rounded w-36"></div>
+              <div className="bg-[#0D9488] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
+                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">Auditor</p>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <div className="h-1 sm:h-2 bg-white/50 rounded w-14 sm:w-28"></div>
+                  <div className="h-1 sm:h-2 bg-white/50 rounded w-18 sm:w-36"></div>
                 </div>
               </div>
-              <div className="w-10 h-10 rounded-full bg-[#0D9488] flex items-center justify-center flex-shrink-0">
-                <UserCheck className="w-5 h-5 text-white" />
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#0D9488] flex items-center justify-center flex-shrink-0">
+                <UserCheck className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
               </div>
             </motion.div>
             
@@ -1455,32 +1455,32 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex items-start gap-3 mb-6"
+              className="flex items-start gap-1.5 sm:gap-3 mb-3 sm:mb-6"
             >
-              <div className="w-10 h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-5 h-5 text-white" />
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
               </div>
-              <div className="bg-[#14B8A6] text-white px-4 py-3 rounded-2xl rounded-tl-none">
-                <p className="text-xs font-bold mb-2">You</p>
-                <div className="h-2 bg-white/50 rounded w-20"></div>
+              <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
+                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
+                <div className="h-1 sm:h-2 bg-white/50 rounded w-10 sm:w-20"></div>
               </div>
             </motion.div>
             
             {/* Status Icons */}
-            <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center gap-2 sm:gap-4 pt-2 sm:pt-4 border-t border-gray-200">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-12 h-12 rounded-full bg-[#14B8A6]/20 flex items-center justify-center"
+                className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6]/20 flex items-center justify-center"
               >
-                <CheckCircle2 className="w-6 h-6 text-[#14B8A6]" />
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-[#14B8A6]" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-14 h-14 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-lg"
+                className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-lg"
               >
-                <MessageCircle className="w-7 h-7 text-white" />
+                <MessageCircle className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
               </motion.div>
             </div>
           </div>
@@ -1489,9 +1489,9 @@ const HowItWorksCarousel = () => {
           <motion.div
             animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-[10%] right-[5%] w-12 h-12 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-xl border-4 border-white z-20"
+            className="absolute top-[10%] right-[5%] w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-xl border-2 sm:border-4 border-white z-20"
           >
-            <Globe className="w-6 h-6 text-white" />
+            <Globe className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-white" />
           </motion.div>
         </div>
       )
@@ -1501,55 +1501,55 @@ const HowItWorksCarousel = () => {
       title: "Receive Complete Reports",
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 md:p-8">
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-2xl w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px]">
+        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
+          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[160px] sm:max-w-[320px] md:max-w-[350px]">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6"
+              className="mb-3 sm:mb-6"
             >
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#14B8A6] flex items-center justify-center">
-                  <BarChart3 className="w-6 h-6 text-white" />
+              <div className="flex items-center justify-between mb-3 sm:mb-6">
+                <div className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center">
+                  <BarChart3 className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <div className="w-16 h-16 rounded-full bg-[#14B8A6]/20 flex items-center justify-center">
-                  <CheckCircle2 className="w-8 h-8 text-[#14B8A6]" />
+                <div className="w-9 h-9 sm:w-16 sm:h-16 rounded-full bg-[#14B8A6]/20 flex items-center justify-center">
+                  <CheckCircle2 className="w-4.5 h-4.5 sm:w-8 sm:h-8 text-[#14B8A6]" />
                 </div>
               </div>
               
               {/* Report Lines */}
-              <div className="space-y-2">
-                <div className="h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-3 bg-gray-200 rounded w-4/6"></div>
+              <div className="space-y-1 sm:space-y-2">
+                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-full"></div>
+                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-4/6"></div>
               </div>
             </motion.div>
             
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-3 sm:mb-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-[#14B8A6]/10 rounded-xl p-4 text-center"
+                className="bg-[#14B8A6]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
               >
-                <div className="text-2xl font-bold text-[#14B8A6] mb-2">95%</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
+                <div className="text-base sm:text-2xl font-bold text-[#14B8A6] mb-1 sm:mb-2">95%</div>
+                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#0D9488]/10 rounded-xl p-4 text-center"
+                className="bg-[#0D9488]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
               >
-                <div className="text-2xl font-bold text-[#0D9488] mb-2">A+</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
+                <div className="text-base sm:text-2xl font-bold text-[#0D9488] mb-1 sm:mb-2">A+</div>
+                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
               </motion.div>
             </div>
             
             {/* Chart Bars */}
-            <div className="flex items-end gap-2 h-20 mb-6">
+            <div className="flex items-end gap-1 sm:gap-2 h-12 sm:h-20 mb-3 sm:mb-6">
               {[60, 80, 95, 70].map((height, i) => (
                 <motion.div
                   key={i}
@@ -1568,10 +1568,10 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white px-6 py-3 rounded-xl text-center font-bold flex items-center justify-center gap-3 shadow-lg"
+              className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
             >
-              <Shield className="w-5 h-5" />
-              <span className="text-base">Report Ready</span>
+              <Shield className="w-3 h-3 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-base">Report Ready</span>
             </motion.div>
           </div>
         </div>
@@ -1614,7 +1614,7 @@ const HowItWorksCarousel = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-12"
+      className="relative py-6 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-12"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -1623,16 +1623,16 @@ const HowItWorksCarousel = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-6 sm:mb-12 md:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-            <span className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+          <div className="flex items-center justify-center gap-3 mb-2 sm:mb-4">
+            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#14B8A6]"></div>
+            <span className="text-[10px] sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4">
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-4">
             How does YVOO Work
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Four simple steps to transform your supplier audit process
           </p>
         </motion.div>
@@ -1657,35 +1657,35 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[600px] sm:h-auto"
+                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible h-full">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 sm:p-8 md:p-8 min-h-[350px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         {/* Decorative element */}
-                        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 text-[60px] sm:text-[80px] font-bold text-[#14B8A6]/10 leading-none">
+                        <div className="absolute top-1 sm:top-4 left-1 sm:left-4 text-[40px] sm:text-[80px] font-bold text-[#14B8A6]/10 leading-none">
                           {step.number}
                         </div>
                       </div>
 
                       {/* Right Side - Content */}
-                      <div className="p-6 sm:p-8 md:p-12">
-                        <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 md:mb-6">
+                      <div className="p-4 sm:p-8 md:p-12">
+                        <span className="inline-block px-2 sm:px-4 py-0.5 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-[10px] sm:text-sm font-semibold mb-2 sm:mb-4 md:mb-6">
                           Step {step.number}
                         </span>
                         
-                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight">
+                        <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 md:mb-6 leading-tight">
                           {step.title}
                         </h3>
                         
-                        <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6 md:mb-8">
+                        <p className="text-xs sm:text-base md:text-lg text-gray-600 leading-snug sm:leading-relaxed mb-3 sm:mb-6 md:mb-8">
                           {step.description}
                         </p>
 
                         {/* Features list */}
-                        <div className="space-y-2 sm:space-y-3">
+                        <div className="space-y-1.5 sm:space-y-3">
                           {[
                             index === 0 && "Quick integration with ERP systems",
                             index === 1 && "Global network of certified auditors",
@@ -1698,12 +1698,12 @@ const HowItWorksCarousel = () => {
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
                               transition={{ delay: 0.2 + i * 0.1 }}
-                              className="flex items-center gap-2 sm:gap-3"
+                              className="flex items-center gap-1.5 sm:gap-3"
                             >
-                              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
+                              <div className="w-4 h-4 sm:w-6 sm:h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <CheckCircle2 className="w-2.5 h-2.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
                               </div>
-                              <span className="text-sm sm:text-base text-gray-700">{feature}</span>
+                              <span className="text-xs sm:text-base text-gray-700">{feature}</span>
                             </motion.div>
                           ))}
                         </div>
