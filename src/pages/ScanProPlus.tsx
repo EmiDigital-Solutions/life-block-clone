@@ -462,6 +462,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
 
   return (
     <section
+      id="auditor-network"
       data-nav-theme="light"
       className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
       style={{ background: "linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%)" }}
