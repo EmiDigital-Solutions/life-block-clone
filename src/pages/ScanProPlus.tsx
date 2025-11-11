@@ -2130,7 +2130,7 @@ const ScanProPlus = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
                 
                 {/* Main glass card */}
-                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all shadow-2xl">
+                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 transition-all shadow-2xl">
                   {/* Inner glow overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl" />
                   
@@ -2155,7 +2155,7 @@ const ScanProPlus = () => {
                     <p className="text-white/90 font-medium mb-3">{metric.label}</p>
                     
                     {/* Animated Progress Bar with glass effect */}
-                    <div className="h-1.5 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden border border-white/10">
+                    <div className="h-1.5 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${metric.value}%` }}
@@ -2188,7 +2188,7 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
                 {/* Multi-layer gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
                 <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-3xl" />
@@ -2214,7 +2214,7 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
                 {/* Multi-layer gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
                 <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-3xl" />
@@ -2241,7 +2241,7 @@ const ScanProPlus = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
             
             {/* Main glass container */}
-            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
               {/* Multi-layer gradient overlays */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-3xl" />
