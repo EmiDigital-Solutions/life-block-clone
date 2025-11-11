@@ -606,19 +606,19 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
             </div>
           </div>
           
-          {/* Dotted World Map below cards with interactive markers */}
+          {/* Dotted World Map below cards with interactive markers - More visible */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ delay: 0.4 }}
-            className="mt-16 relative w-full max-w-5xl mx-auto"
+            className="mt-24 mb-12 relative w-full max-w-6xl mx-auto"
           >
-            <div className="relative">
+            <div className="relative bg-white/50 p-8 rounded-3xl">
               <img 
                 src={dottedWorldMap} 
                 alt="Global Network Map" 
-                className="w-full h-auto opacity-60"
+                className="w-full h-auto opacity-90"
               />
               
               {/* Interactive Location Markers */}
