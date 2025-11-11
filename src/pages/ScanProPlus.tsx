@@ -1147,12 +1147,39 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* World Map with 1-Click Button */}
           <div className="relative w-[500px] h-[400px]">
-            {/* Dotted World Map Pattern */}
-            <div className="relative w-full h-full">
-              <img 
+            {/* Animated glow effect behind globe */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div 
+                className="w-[400px] h-[350px] rounded-full bg-blue-500/20 blur-3xl"
+                animate={{ 
+                  scale: [1, 1.15, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </div>
+            
+            {/* Dotted World Map Pattern with blue pixel effect */}
+            <div className="relative w-full h-full z-10">
+              <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+                style={{
+                  filter: 'hue-rotate(180deg) saturate(1.8) brightness(1.3)'
+                }}
+                animate={{ 
+                  rotate: [0, 360]
+                }}
+                transition={{ 
+                  duration: 30, 
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
               />
             </div>
             
@@ -1190,12 +1217,39 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           <div className="relative w-[500px] h-[400px]">
-            {/* Dotted World Map Pattern */}
-            <div className="relative w-full h-full">
-              <img 
+            {/* Animated glow effect behind globe */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div 
+                className="w-[400px] h-[350px] rounded-full bg-blue-500/20 blur-3xl"
+                animate={{ 
+                  scale: [1, 1.15, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </div>
+            
+            {/* Dotted World Map Pattern with blue pixel effect */}
+            <div className="relative w-full h-full z-10">
+              <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+                style={{
+                  filter: 'hue-rotate(180deg) saturate(1.8) brightness(1.3)'
+                }}
+                animate={{ 
+                  rotate: [0, 360]
+                }}
+                transition={{ 
+                  duration: 30, 
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
               />
             </div>
             
@@ -1247,13 +1301,37 @@ const HowItWorksCarousel = () => {
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
-          {/* Background Dotted Map */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-15">
-            <div className="relative w-[450px] h-[350px]">
-              <img 
+          {/* Background Dotted Map with glow */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Animated glow */}
+            <motion.div 
+              className="absolute w-[350px] h-[300px] rounded-full bg-blue-500/15 blur-3xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.2, 0.4, 0.2]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <div className="relative w-[450px] h-[350px] opacity-15">
+              <motion.img 
                 src={worldMapGlobe} 
                 alt="World Map" 
                 className="w-full h-full object-contain"
+                style={{
+                  filter: 'hue-rotate(180deg) saturate(1.6) brightness(1.2)'
+                }}
+                animate={{ 
+                  rotate: [0, 360]
+                }}
+                transition={{ 
+                  duration: 40, 
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
               />
             </div>
           </div>
