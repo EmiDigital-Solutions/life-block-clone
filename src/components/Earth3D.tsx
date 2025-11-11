@@ -54,13 +54,13 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
     }
   }, [visible]);
 
-  useFrame(() => {
+  useEffect(() => {
+    // Orient pin to point outward from globe center (once, not every frame)
     if (pinRef.current) {
-      // Make pin always face camera
       pinRef.current.lookAt(0, 0, 0);
       pinRef.current.rotateY(Math.PI);
     }
-  });
+  }, []);
 
   return (
     <group ref={pinRef} position={position} scale={scale}>
