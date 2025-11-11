@@ -109,13 +109,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-20"
+      className="relative py-12 sm:py-16 md:py-20"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
-      <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative min-h-[700px]">
+        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
           
           {/* Modern 3D Globe with Enhanced Effects */}
           <motion.div 
@@ -385,7 +385,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           <div className="relative z-30">
 
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-white/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -401,7 +401,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
                 Global On-Demand<br /><span style={{ color: '#14B8A6' }}>Auditor Network</span>
               </motion.h2>
@@ -411,7 +411,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -443,9 +443,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
+                <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>
             </div>
@@ -483,18 +483,18 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[120vh]"
+      className="relative h-auto lg:h-[120vh]"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       id="capabilities"
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-12">
+      <div className="lg:sticky top-0 h-auto lg:h-screen overflow-hidden flex flex-col justify-center py-8 sm:py-10 md:py-12">
         {/* Features Header */}
-        <div className="text-center mb-6 px-4 flex-shrink-0">
+        <div className="text-center mb-4 sm:mb-5 md:mb-6 px-4 flex-shrink-0">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 text-gray-900"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 text-gray-900"
           >
             Capabilities that modernize supplier audits
           </motion.h2>
@@ -503,17 +503,17 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
           >
             Nine AI-driven features for consistent, actionable outcomes.
           </motion.p>
         </div>
 
-        <div className="flex-1 overflow-hidden relative">
+        <div className="flex-1 overflow-x-auto lg:overflow-hidden relative">
           <div className="h-full flex items-center">
             <motion.div 
               style={{ x }}
-              className="flex gap-5 lg:gap-5 xl:gap-6 pl-8 pr-8"
+              className="flex gap-4 sm:gap-5 lg:gap-5 xl:gap-6 pl-4 sm:pl-6 md:pl-8 pr-4 sm:pr-6 md:pr-8"
             >
               {features.map((feature, index) => (
                 <motion.div
@@ -522,10 +522,10 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-200px" }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="relative w-[320px] lg:w-[340px] xl:w-[360px] h-[480px] flex-shrink-0"
+                  className="relative w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] h-[420px] sm:h-[450px] md:h-[480px] flex-shrink-0"
                 >
                   {/* Clean white card matching reference */}
-                  <div className="h-full bg-white rounded-3xl shadow-lg overflow-hidden p-8 flex flex-col">
+                  <div className="h-full bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden p-5 sm:p-6 md:p-8 flex flex-col">
                     
                     {/* Teal label */}
                     <div className="mb-4 flex-shrink-0">
@@ -535,7 +535,7 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
                     </div>
 
                     {/* Bold title/description */}
-                    <h3 className="text-gray-900 text-xl font-bold mb-8 leading-tight flex-shrink-0 min-h-[120px]">
+                    <h3 className="text-gray-900 text-base sm:text-lg md:text-xl font-bold mb-5 sm:mb-6 md:mb-8 leading-tight flex-shrink-0 min-h-[100px] sm:min-h-[110px] md:min-h-[120px]">
                       {feature.title}
                     </h3>
 
@@ -693,12 +693,12 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
     <section
       id="auditor-network"
       data-nav-theme="light"
-      className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
+      className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 pb-20 sm:pb-24 md:pb-32 overflow-visible"
       style={{ background: "transparent" }}
     >
-      <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative min-h-[700px]">
+        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
           
           {/* Dotted World Map Background - HIGHLY VISIBLE */}
           <div 
@@ -712,10 +712,10 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
             }}
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 sm:gap-10 md:gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -731,7 +731,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
                 Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
@@ -741,7 +741,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -752,9 +752,9 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
+                <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>
             </div>
@@ -1173,7 +1173,7 @@ const ChallengeToggleSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-24 md:py-32 px-6 lg:px-12 xl:px-16 2xl:px-24"
+      className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-24"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       id="challenge"
     >
@@ -1183,7 +1183,7 @@ const ChallengeToggleSection = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="flex items-center gap-2 mb-6"
+          className="flex items-center gap-2 mb-4 sm:mb-6"
         >
           <div className="flex items-center gap-1">
             <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-gray-300' : 'bg-red-600'}`} />
@@ -1193,14 +1193,14 @@ const ChallengeToggleSection = () => {
         </motion.div>
 
         {/* Main Headline with Toggle */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-wrap items-center gap-3 sm:gap-4"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
               {isWithScanPro ? 'With' : 'Traditional'}
             </h2>
             
@@ -1209,7 +1209,7 @@ const ChallengeToggleSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
+              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
                 isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
               }`}
             >
@@ -1219,14 +1219,14 @@ const ChallengeToggleSection = () => {
             {/* Toggle Switch */}
             <button
               onClick={() => setIsWithScanPro(!isWithScanPro)}
-              className={`relative w-20 h-10 rounded-full transition-all duration-300 ${
+              className={`relative w-16 h-8 sm:w-20 sm:h-10 rounded-full transition-all duration-300 ${
                 isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-400'
               }`}
               aria-label="Toggle between ScanPro+ and Traditional Providers"
             >
               <motion.div
-                className="absolute top-1 left-1 w-8 h-8 bg-white rounded-full shadow-lg"
-                animate={{ x: isWithScanPro ? 40 : 0 }}
+                className="absolute top-0.5 sm:top-1 left-0.5 sm:left-1 w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full shadow-lg"
+                animate={{ x: isWithScanPro ? 32 : 0 }}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             </button>
@@ -1243,12 +1243,12 @@ const ChallengeToggleSection = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="pl-8 pr-3 py-3 rounded-full font-semibold text-lg flex items-center gap-4 transition-all shadow-lg group"
+            className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg flex items-center gap-3 sm:gap-4 transition-all shadow-lg group"
             style={{ backgroundColor: '#2563EB', color: 'white' }}
           >
             <span>Get Started</span>
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" style={{ color: '#2563EB' }} />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" style={{ color: '#2563EB' }} />
             </div>
           </motion.button>
         </div>
@@ -1258,7 +1258,7 @@ const ChallengeToggleSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="text-lg text-gray-600 mb-16 max-w-3xl lg:ml-auto"
+          className="text-base sm:text-lg text-gray-600 mb-10 sm:mb-12 md:mb-16 max-w-3xl lg:ml-auto"
         >
           {isWithScanPro 
             ? "Experience transparent pricing, rapid deployment, and AI-powered standardization with YVOO ScanPro+."
@@ -1273,7 +1273,7 @@ const ChallengeToggleSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
           >
             {currentContent.map((item, index) => {
               const Icon = item.icon;
@@ -1286,10 +1286,10 @@ const ChallengeToggleSection = () => {
                     delay: index * 0.05, 
                     duration: 0.4
                   }}
-                  className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all flex flex-col"
+                  className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all flex flex-col"
                 >
                   {/* Top - Icon/Visual */}
-                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center">
+                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 sm:p-8 flex items-center justify-center">
                     <motion.div
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
@@ -1298,17 +1298,17 @@ const ChallengeToggleSection = () => {
                         duration: 0.5,
                         type: "spring"
                       }}
-                      className={`w-20 h-20 rounded-2xl flex items-center justify-center ${
+                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center ${
                         isWithScanPro ? 'bg-gradient-to-br from-[#14B8A6] to-[#0D9488]' : 'bg-gradient-to-br from-red-600 to-red-700'
                       }`}
                     >
-                      <Icon className="w-10 h-10 text-white" />
+                      <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     </motion.div>
                   </div>
 
                   {/* Bottom - Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 self-start ${
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col">
+                    <span className={`inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-semibold mb-3 sm:mb-4 self-start ${
                       isWithScanPro 
                         ? 'bg-[#14B8A6]/10 text-[#14B8A6]' 
                         : 'bg-red-600/10 text-red-600'
@@ -1316,7 +1316,7 @@ const ChallengeToggleSection = () => {
                       {isWithScanPro ? 'ScanPro+' : 'Traditional'}
                     </span>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">
                       {item.title}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed">
@@ -1588,7 +1588,7 @@ const HowItWorksCarousel = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative py-20 px-4 sm:px-6 lg:px-12"
+      className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-12"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -1597,16 +1597,16 @@ const HowItWorksCarousel = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-            <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+            <span className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4">
             How does YVOO Work
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Four simple steps to transform your supplier audit process
           </p>
         </motion.div>
@@ -1614,42 +1614,42 @@ const HowItWorksCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Cards Display */}
-          <div className="overflow-x-hidden overflow-y-visible pb-24">
+          <div className="overflow-x-hidden overflow-y-visible pb-16 sm:pb-20 md:pb-24">
             <motion.div 
               className="flex transition-transform duration-500 ease-out"
               animate={{ x: `-${currentStep * 100}%` }}
             >
               {steps.map((step, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
+                <div key={index} className="w-full flex-shrink-0 px-2 sm:px-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
+                    className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
                   >
-                    <div className="grid md:grid-cols-2 gap-0 items-center overflow-visible">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         {/* Decorative element */}
-                        <div className="absolute top-4 left-4 text-[80px] font-bold text-[#14B8A6]/10 leading-none">
+                        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 text-[60px] sm:text-[80px] font-bold text-[#14B8A6]/10 leading-none">
                           {step.number}
                         </div>
                       </div>
 
                       {/* Right Side - Content */}
-                      <div className="p-8 md:p-12">
-                        <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-6">
+                      <div className="p-6 sm:p-8 md:p-12">
+                        <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
                           Step {step.number}
                         </span>
                         
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                           {step.title}
                         </h3>
                         
-                        <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                        <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
                           {step.description}
                         </p>
 
@@ -1685,18 +1685,18 @@ const HowItWorksCarousel = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-8 mt-12">
+          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12">
             {/* Arrow Buttons */}
             <button
               onClick={prevStep}
-              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
               aria-label="Previous step"
             >
-              <ArrowRight className="w-6 h-6 rotate-180" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
             </button>
 
             {/* Step Indicators */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               {steps.map((_, index) => (
                 <button
                   key={index}
@@ -1705,8 +1705,8 @@ const HowItWorksCarousel = () => {
                 >
                   <div className={`transition-all ${
                     index === currentStep
-                      ? 'w-12 h-3 bg-[#14B8A6] rounded-full'
-                      : 'w-3 h-3 bg-gray-300 rounded-full hover:bg-[#14B8A6]/50'
+                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-[#14B8A6] rounded-full'
+                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-[#14B8A6]/50'
                   }`} />
                 </button>
               ))}
@@ -1714,10 +1714,10 @@ const HowItWorksCarousel = () => {
 
             <button
               onClick={nextStep}
-              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
               aria-label="Next step"
             >
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
@@ -1847,18 +1847,18 @@ const ScanProPlus = () => {
       >
 
         <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="mb-6"
+                className="mb-4 sm:mb-6"
               >
-                <div className="flex items-center gap-4 text-white text-sm font-sans">
-                  <div className="h-px w-12 bg-white"></div>
+                <div className="flex items-center gap-3 sm:gap-4 text-white text-xs sm:text-sm font-sans">
+                  <div className="h-px w-8 sm:w-12 bg-white"></div>
                   <span>ScanPro+ — AI-powered supplier audits</span>
                 </div>
               </motion.div>
@@ -1867,7 +1867,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
               >
                 Supplier Audits in Days, Not Weeks
               </motion.h1>
@@ -1876,7 +1876,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-xl lg:text-2xl font-medium text-white leading-[1.4] mb-8"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-white leading-[1.4] mb-6 sm:mb-8"
               >
                 70% Cost Reduction · 80% Time Savings · Global Coverage
               </motion.h2>
@@ -1885,7 +1885,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg font-normal text-white leading-[1.6] max-w-[600px] mb-12"
+                className="text-base sm:text-lg font-normal text-white leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
               >
                 On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
               </motion.p>
@@ -1898,7 +1898,7 @@ const ScanProPlus = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl"
+                  className="bg-white text-gray-900 px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl"
                 >
                   Get Started
                 </button>
@@ -1915,7 +1915,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 py-8 bg-gray-50">
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-gray-50">
         <HeroROICalculator />
       </div>
 
@@ -1935,7 +1935,7 @@ const ScanProPlus = () => {
       {/* Results Section - Transparent Multi-Layer Glass-Morphism Design */}
       <section 
         data-nav-theme="dark" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24 overflow-hidden"
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="results"
       >
@@ -1951,18 +1951,18 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
               Business <span style={{ color: '#2563EB' }}>Impact</span>
             </h2>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
               Data-driven insights showing measurable ROI and operational improvements
             </p>
           </motion.div>
 
           {/* Multi-layer Transparent Metric Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
             {[
               { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
               { value: 70, suffix: '%', label: 'Time Savings', color: '#2563EB', delay: 0.1 },
@@ -1981,9 +1981,9 @@ const ScanProPlus = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
                 
                 {/* Main glass card */}
-                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 transition-all shadow-2xl">
+                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-xl sm:rounded-2xl p-5 sm:p-6 transition-all shadow-2xl">
                   {/* Inner glow overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-xl sm:rounded-2xl" />
                   
                   <div className="relative z-10">
                     <motion.div
@@ -1991,7 +1991,7 @@ const ScanProPlus = () => {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
-                      className="text-5xl font-bold mb-2"
+                      className="text-4xl sm:text-5xl font-bold mb-2"
                       style={{ color: metric.color }}
                     >
                       <motion.span
@@ -2025,7 +2025,7 @@ const ScanProPlus = () => {
           </div>
 
           {/* Chart Grid with Enhanced Glass-Morphism */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 md:gap-8 mb-6 sm:mb-7 md:mb-8">
             
             {/* Cost Comparison Bar Chart */}
             <motion.div
@@ -2039,14 +2039,14 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl h-full">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
                 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-2">Cost Comparison</h3>
-                  <p className="text-white/60 mb-6">Traditional vs ScanPro+ per audit</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Cost Comparison</h3>
+                  <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">Traditional vs ScanPro+ per audit</p>
                   
                   <BusinessImpactChart />
                 </div>
@@ -2065,14 +2065,14 @@ const ScanProPlus = () => {
               <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
               {/* Main glass container */}
-              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl h-full">
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
                 {/* Multi-layer gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
                 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
-                  <p className="text-white/60 mb-6">12-month projection (20 audits/year)</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
+                  <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">12-month projection (20 audits/year)</p>
                   
                   <ROITimelineChart />
                 </div>
@@ -2092,14 +2092,14 @@ const ScanProPlus = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
             
             {/* Main glass container */}
-            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
+            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl">
               {/* Multi-layer gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl sm:rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-2xl sm:rounded-3xl" />
               
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
-                <p className="text-white/60 mb-6">End-to-end audit process duration</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
+                <p className="text-sm sm:text-base text-white/60 mb-4 sm:mb-6">End-to-end audit process duration</p>
                 
                 <TimeEfficiencyChart />
               </div>
@@ -2112,7 +2112,7 @@ const ScanProPlus = () => {
       {/* Industry Use Cases - Light gradient */}
       <section 
         data-nav-theme="light" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        className="relative py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       >
         <div className="container mx-auto max-w-6xl">
@@ -2120,7 +2120,7 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center"
           >
             Industry-Specific <span style={{ color: '#2563EB' }}>Use Cases</span>
           </motion.h2>
@@ -2128,12 +2128,12 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-12 text-center"
+            className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 text-center"
           >
             Tailored solutions for automotive, aerospace, pharma, and chemical industries
           </motion.p>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {[
               {
                 Icon: Car,
@@ -2187,41 +2187,41 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl shadow-xl overflow-hidden"
+                className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden"
               >
-                <div className="grid md:grid-cols-2 gap-0 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
                   {/* Left Side - Icon */}
-                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 h-full min-h-[350px] flex items-center justify-center">
-                    <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
-                      <industry.Icon className="w-20 h-20 text-white" />
+                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 sm:p-10 md:p-12 h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center">
+                    <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
+                      <industry.Icon className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 text-white" />
                     </div>
                   </div>
 
                   {/* Right Side - Content */}
-                  <div className="p-8 md:p-12">
-                    <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-6">
+                  <div className="p-6 sm:p-8 md:p-12">
+                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
                       Industry Solution
                     </span>
                     
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
                       {industry.title}
                     </h3>
                     
-                    <p className="text-lg text-gray-600 mb-6">{industry.useCase}</p>
+                    <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">{industry.useCase}</p>
                     
-                    <p className="text-sm font-semibold text-gray-900 mb-3">ScanPro+ Solution:</p>
-                    <ul className="space-y-3 mb-6">
+                    <p className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 sm:mb-3">ScanPro+ Solution:</p>
+                    <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                       {industry.solutions.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 text-gray-700">
-                          <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                        <li key={i} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                     
                     {industry.result && (
-                      <div className="p-4 rounded-lg" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)' }}>
-                        <p className="text-gray-900 font-semibold">{industry.result}</p>
+                      <div className="p-3 sm:p-4 rounded-lg" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)' }}>
+                        <p className="text-sm sm:text-base text-gray-900 font-semibold">{industry.result}</p>
                       </div>
                     )}
                   </div>
@@ -2235,7 +2235,7 @@ const ScanProPlus = () => {
       {/* Compliance Standards - Modern Interactive Cards */}
       <section 
         data-nav-theme="light" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
       >
         <div className="container mx-auto max-w-7xl">
@@ -2243,19 +2243,19 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-10 md:mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Shield className="w-12 h-12" style={{ color: '#14B8A6' }} />
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <Shield className="w-10 h-10 sm:w-12 sm:h-12" style={{ color: '#14B8A6' }} />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Compliance & Supported Standards
               </h2>
             </div>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto px-4">
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
             </p>
-            <p className="text-sm font-semibold text-[#14B8A6] mt-4">
+            <p className="text-xs sm:text-sm font-semibold text-[#14B8A6] mt-3 sm:mt-4">
               👆 Click on any standard to learn more
             </p>
           </motion.div>
@@ -2264,19 +2264,19 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-10 mt-8"
+            className="text-center mb-8 sm:mb-10 mt-6 sm:mt-8"
           >
-            <p className="text-lg font-semibold text-gray-700 mb-3">
+            <p className="text-base sm:text-lg font-semibold text-gray-700 mb-2 sm:mb-3">
               Our auditor network includes professionals certified by:
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-gray-600">
-              <span className="text-base">TÜV SÜD</span>
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-gray-600 px-4">
+              <span className="text-sm sm:text-base">TÜV SÜD</span>
               <span className="text-gray-300">•</span>
-              <span className="text-base">Bureau Veritas</span>
+              <span className="text-sm sm:text-base">Bureau Veritas</span>
               <span className="text-gray-300">•</span>
-              <span className="text-base">SGS</span>
+              <span className="text-sm sm:text-base">SGS</span>
               <span className="text-gray-300">•</span>
-              <span className="text-base">DNV</span>
+              <span className="text-sm sm:text-base">DNV</span>
             </div>
           </motion.div>
           
@@ -2287,7 +2287,7 @@ const ScanProPlus = () => {
       {/* Global Network - Light gradient with image */}
       <section 
         data-nav-theme="light" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
       >
         <div className="container mx-auto max-w-6xl">
@@ -2295,12 +2295,12 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-12 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
             Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {/* ERP Integration Cards */}
             {[
               { icon: LinkIcon, title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB' },
@@ -2316,33 +2316,33 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl shadow-lg p-8 hover:shadow-xl transition-all border border-gray-100"
+                className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all border border-gray-100"
               >
                 <div className="flex flex-col items-start">
                   <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-6"
                     style={{ 
                       background: idx < 3 
                         ? 'linear-gradient(135deg, #2563EB, #1e40af)' 
                         : 'linear-gradient(135deg, #14B8A6, #0D9488)'
                     }}
                   >
-                    <item.icon className="w-8 h-8 text-white" />
+                    <item.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-8 p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-              <Globe className="w-7 h-7" />
+          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-white">
+              <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
               Available in 47 Countries
             </h3>
-            <p className="text-lg text-white/90">
+            <p className="text-base sm:text-lg text-white/90">
               Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
             </p>
           </div>
@@ -2352,7 +2352,7 @@ const ScanProPlus = () => {
       {/* Final CTA - Dark gradient */}
       <section 
         data-nav-theme="dark" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="cta"
       >
@@ -2361,39 +2361,39 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6 sm:space-y-8"
+            className="space-y-5 sm:space-y-6 md:space-y-8"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white">
               Ready for <span style={{ color: '#60A5FA' }}>the Future of Supplier Auditing?</span>
             </h2>
 
-            <p className="text-base sm:text-lg lg:text-xl text-white/80">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80">
               Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
             </p>
 
-            <div className="space-y-6 mb-8">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 mb-6 sm:mb-8">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
                   Schedule a Demo (30 minutes)
                 </h4>
-                <p className="text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
+                <p className="text-sm sm:text-base text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
                   Start Pilot Audit (2 weeks)
                 </h4>
-                <p className="text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
+                <p className="text-sm sm:text-base text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6" style={{ color: '#14B8A6' }} />
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
                   Plan Integration
                 </h4>
-                <p className="text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
+                <p className="text-sm sm:text-base text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
               </div>
             </div>
 
