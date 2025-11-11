@@ -90,13 +90,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           
           {/* Dotted World Map Background - ANIMATED */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
+            className="absolute bottom-0 left-0 right-0 flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
-              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
+              background: `url(${dottedWorldMap}) center bottom / contain no-repeat`,
               opacity: 0.4,
               width: '100%',
-              height: '100%'
+              height: '70%'
             }}
             animate={{ 
               rotateY: [0, 5, 0, -5, 0],
