@@ -1192,17 +1192,6 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* ROI Calculator - Light gradient */}
-      <section
-        data-nav-theme="light"
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
-      >
-        <div className="container mx-auto max-w-5xl">
-          <ROICalculator />
-        </div>
-      </section>
-
       {/* Results Section - Dark gradient */}
       <section 
         data-nav-theme="dark" 
