@@ -2339,49 +2339,6 @@ const ScanProPlus = () => {
           </motion.div>
           
           <ComplianceStandardsGrid />
-
-          {/* Certifying Bodies Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-16 text-center"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-              Our auditor network includes professionals certified by:
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {[
-                { name: 'TÜV SÜD', icon: ShieldCheck },
-                { name: 'Bureau Veritas', icon: Award },
-                { name: 'SGS', icon: FileCheck },
-                { name: 'DNV', icon: CircleCheck },
-              ].map((certifier, idx) => {
-                const Icon = certifier.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-gray-200 hover:border-[#14B8A6]"
-                  >
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                        <Icon className="w-7 h-7 text-white" />
-                      </div>
-                      <span className="text-lg font-bold text-gray-900">
-                        {certifier.name}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
         </div>
       </section>
 
