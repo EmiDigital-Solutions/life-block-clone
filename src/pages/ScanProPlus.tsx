@@ -191,15 +191,15 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 ))}
               </svg>
               
-              {/* Enhanced glowing location markers */}
+              {/* Enhanced glowing location markers - Corrected positions */}
               {[
-                { top: "35%", left: "70%", delay: 0 }, // Asia (China)
-                { top: "65%", left: "28%", delay: 0.3 }, // South America (Brazil)
-                { top: "25%", left: "48%", delay: 0.6 }, // Europe (Germany)
-                { top: "30%", left: "20%", delay: 0.9 }, // North America (USA)
-                { top: "40%", left: "54%", delay: 1.2 }, // Middle East (UAE)
-                { top: "42%", left: "68%", delay: 1.5 }, // South Asia (India)
-                { top: "52%", left: "48%", delay: 1.8 }, // Africa
+                { top: "32%", left: "68%", delay: 0 }, // Asia - China (Shanghai)
+                { top: "62%", left: "30%", delay: 0.3 }, // South America - Brazil (São Paulo)
+                { top: "22%", left: "50%", delay: 0.6 }, // Europe - Germany (Berlin)
+                { top: "28%", left: "22%", delay: 0.9 }, // North America - USA (Chicago)
+                { top: "36%", left: "56%", delay: 1.2 }, // Middle East - UAE (Dubai)
+                { top: "38%", left: "66%", delay: 1.5 }, // South Asia - India (Mumbai)
+                { top: "48%", left: "52%", delay: 1.8 }, // Africa - Nigeria (Lagos)
               ].map((marker, index) => (
                 <motion.div
                   key={index}
@@ -292,8 +292,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorFemaleAsian,
-                top: "35%", 
-                left: "70%", 
+                top: "18%", 
+                left: "72%", 
               },
               { 
                 name: "Marcus Silva", 
@@ -304,8 +304,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 24h",
                 rating: 4.8,
                 image: auditorLatin,
-                top: "65%", 
-                left: "28%", 
+                top: "70%", 
+                left: "34%", 
               },
               { 
                 name: "Anna Schmidt", 
@@ -316,8 +316,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 5.0,
                 image: auditorFemaleEuropean,
-                top: "25%", 
-                left: "48%", 
+                top: "12%", 
+                left: "54%", 
               },
               { 
                 name: "James Wilson", 
@@ -328,8 +328,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 48h",
                 rating: 4.7,
                 image: auditorEuropean,
-                top: "30%", 
-                left: "20%", 
+                top: "18%", 
+                left: "18%", 
               },
               { 
                 name: "Omar Hassan", 
@@ -340,8 +340,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorMiddleEast,
-                top: "40%", 
-                left: "54%", 
+                top: "30%", 
+                left: "60%", 
               },
               { 
                 name: "Priya Sharma", 
@@ -352,8 +352,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 24h",
                 rating: 4.8,
                 image: auditorSouthAsian,
-                top: "42%", 
-                left: "68%", 
+                top: "46%", 
+                left: "70%", 
               },
               { 
                 name: "Kwame Mensah", 
@@ -364,7 +364,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorAfrican,
-                top: "52%", 
+                top: "56%", 
                 left: "48%", 
               },
             ].map((auditor, index) => {
