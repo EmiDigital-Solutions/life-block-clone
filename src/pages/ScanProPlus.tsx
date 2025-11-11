@@ -88,8 +88,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[700px]">
           
-          {/* Dotted World Map Background - HIGHLY VISIBLE */}
-          <div 
+          {/* Dotted World Map Background - ANIMATED */}
+          <motion.div 
             className="absolute inset-0 flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
@@ -98,7 +98,51 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               width: '100%',
               height: '100%'
             }}
+            animate={{ 
+              rotateY: [0, 5, 0, -5, 0],
+              scale: [1, 1.02, 1, 1.02, 1]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
+
+          {/* Continent Popup Cards */}
+          {[
+            { continent: "North America", top: "25%", left: "18%", delay: 0 },
+            { continent: "South America", top: "55%", left: "28%", delay: 0.2 },
+            { continent: "Europe", top: "22%", left: "48%", delay: 0.4 },
+            { continent: "Africa", top: "45%", left: "50%", delay: 0.6 },
+            { continent: "Asia", top: "28%", left: "68%", delay: 0.8 },
+            { continent: "Oceania", top: "58%", left: "78%", delay: 1.0 },
+          ].map((location, index) => (
+            <motion.div
+              key={location.continent}
+              className="absolute z-20 pointer-events-none"
+              style={{ top: location.top, left: location.left }}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                delay: location.delay,
+                duration: 0.5,
+                type: "spring",
+                bounce: 0.5
+              }}
+            >
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border border-[#14B8A6]/20 flex items-center gap-2 min-w-[140px]">
+                <div className="w-8 h-8 rounded-full bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
+                  <UserCheck className="w-4 h-4 text-[#14B8A6]" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-semibold text-gray-900">{location.continent}</span>
+                  <span className="text-[10px] text-gray-600">Auditors Active</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
