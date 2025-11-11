@@ -20,6 +20,7 @@ import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
 import worldMapGlobe from "@/assets/world-map-globe.png";
+import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
@@ -382,12 +383,12 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
   return (
     <section
       data-nav-theme="light"
-      className="relative py-20 px-4 sm:px-6"
+      className="relative py-20 px-4 sm:px-6 overflow-hidden"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="mb-20">
+        <div className="mb-20 relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
@@ -524,6 +525,26 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               </div>
             </div>
           </div>
+          
+          {/* Dotted World Map at bottom */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="absolute bottom-0"
+            style={{ 
+              left: '10.52%', 
+              right: '10.52%',
+              width: '79%'
+            }}
+          >
+            <img 
+              src={dottedWorldMap} 
+              alt="Global Network Map" 
+              className="w-full h-auto opacity-30"
+            />
+          </motion.div>
         </div>
       </div>
     </section>
