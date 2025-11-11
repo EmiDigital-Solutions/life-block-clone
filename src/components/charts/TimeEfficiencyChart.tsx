@@ -45,8 +45,8 @@ const TimeEfficiencyChart = () => {
                   className="relative group cursor-pointer"
                   style={{ backgroundColor: phase.color }}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1">
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1 transition-opacity duration-200">
                       {phase.name}<br />{phase.traditional}d
                     </span>
                   </div>
@@ -65,7 +65,7 @@ const TimeEfficiencyChart = () => {
             </h4>
           </div>
           <div className="relative flex items-center gap-4">
-            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalScanPro / maxTotal) * 100}%` }}>
+            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalScanPro / maxTotal) * 100, 35)}%`, minWidth: '35%' }}>
               {phases.map((phase, idx) => {
                 const width = (phase.scanpro / totalScanPro) * 100;
                 return (
@@ -81,8 +81,8 @@ const TimeEfficiencyChart = () => {
                     className="relative group cursor-pointer"
                     style={{ backgroundColor: phase.color }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1">
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <span className="text-white font-bold text-xs text-center opacity-0 group-hover:opacity-100 px-1 transition-opacity duration-200">
                         {phase.name}<br />{phase.scanpro}d
                       </span>
                     </div>
