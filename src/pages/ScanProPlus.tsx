@@ -19,6 +19,7 @@ import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
 import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
 import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
@@ -42,7 +43,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
       return;
     }
 
-    const totalCards = 6;
+    const totalCards = 7; // Updated to 7 cards
     const showDelay = 1200; // Slower, more professional timing
     const displayTime = 4000; // How long all cards stay visible
     const hideDelay = 800;
@@ -192,12 +193,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               
               {/* Enhanced glowing location markers */}
               {[
-                { top: "30%", left: "72%", delay: 0 }, // Asia
-                { top: "70%", left: "25%", delay: 0.3 }, // South America
-                { top: "28%", left: "46%", delay: 0.6 }, // Europe
-                { top: "38%", left: "15%", delay: 0.9 }, // North America
-                { top: "58%", left: "52%", delay: 1.2 }, // Middle East
-                { top: "60%", left: "68%", delay: 1.5 }, // South Asia
+                { top: "35%", left: "70%", delay: 0 }, // Asia (China)
+                { top: "65%", left: "28%", delay: 0.3 }, // South America (Brazil)
+                { top: "25%", left: "48%", delay: 0.6 }, // Europe (Germany)
+                { top: "30%", left: "20%", delay: 0.9 }, // North America (USA)
+                { top: "40%", left: "54%", delay: 1.2 }, // Middle East (UAE)
+                { top: "42%", left: "68%", delay: 1.5 }, // South Asia (India)
+                { top: "52%", left: "48%", delay: 1.8 }, // Africa
               ].map((marker, index) => (
                 <motion.div
                   key={index}
@@ -290,8 +292,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorFemaleAsian,
-                top: "30%", 
-                left: "72%", 
+                top: "35%", 
+                left: "70%", 
               },
               { 
                 name: "Marcus Silva", 
@@ -302,8 +304,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 24h",
                 rating: 4.8,
                 image: auditorLatin,
-                top: "70%", 
-                left: "25%", 
+                top: "65%", 
+                left: "28%", 
               },
               { 
                 name: "Anna Schmidt", 
@@ -314,8 +316,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 5.0,
                 image: auditorFemaleEuropean,
-                top: "28%", 
-                left: "46%", 
+                top: "25%", 
+                left: "48%", 
               },
               { 
                 name: "James Wilson", 
@@ -326,8 +328,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 48h",
                 rating: 4.7,
                 image: auditorEuropean,
-                top: "38%", 
-                left: "15%", 
+                top: "30%", 
+                left: "20%", 
               },
               { 
                 name: "Omar Hassan", 
@@ -338,8 +340,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorMiddleEast,
-                top: "58%", 
-                left: "52%", 
+                top: "40%", 
+                left: "54%", 
               },
               { 
                 name: "Priya Sharma", 
@@ -350,8 +352,20 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 24h",
                 rating: 4.8,
                 image: auditorSouthAsian,
-                top: "60%", 
+                top: "42%", 
                 left: "68%", 
+              },
+              { 
+                name: "Kwame Mensah", 
+                title: "Lead Auditor ISO 9001",
+                location: "Lagos, Nigeria",
+                continent: "Africa",
+                region: "West Africa",
+                availability: "Available Now",
+                rating: 4.9,
+                image: auditorAfrican,
+                top: "52%", 
+                left: "48%", 
               },
             ].map((auditor, index) => {
               const isVisible = visibleCards.includes(index);
