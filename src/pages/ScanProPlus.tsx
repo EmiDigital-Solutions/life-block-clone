@@ -481,8 +481,8 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: '1200px',
+              width: '100%',
+              maxWidth: '1400px',
               zIndex: 0
             }}
           >
@@ -490,7 +490,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               <img 
                 src={dottedWorldMap} 
                 alt="Global Network Map" 
-                className="w-full h-auto opacity-40"
+                className="w-full h-auto opacity-70"
               />
               
               {/* Interactive Location Markers */}
