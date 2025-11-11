@@ -7,14 +7,15 @@ const TimeEfficiencyChart = () => {
   const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const phases = [
-    { name: 'Auditor Search', traditional: 14, scanpro: 0.5, color: '#3B82F6' },
-    { name: 'Preparation', traditional: 7, scanpro: 0.5, color: '#14B8A6' },
-    { name: 'On-site Audit', traditional: 3, scanpro: 1, color: '#6B7280' },
-    { name: 'Report', traditional: 10, scanpro: 0.5, color: '#3B82F6' },
+    { name: 'Auditor Search', traditional: 14, scanpro: 1, visualScanpro: 0.7, color: '#3B82F6' },
+    { name: 'Preparation', traditional: 7, scanpro: 2, visualScanpro: 1.3, color: '#14B8A6' },
+    { name: 'On-site Audit', traditional: 3, scanpro: 2, visualScanpro: 1.3, color: '#6B7280' },
+    { name: 'Report', traditional: 10, scanpro: 0.5, visualScanpro: 0.5, color: '#3B82F6' },
   ];
 
   const totalTraditional = phases.reduce((sum, p) => sum + p.traditional, 0);
   const totalScanPro = phases.reduce((sum, p) => sum + p.scanpro, 0);
+  const totalVisualScanPro = phases.reduce((sum, p) => sum + (p.visualScanpro || p.scanpro), 0);
   const maxTotal = Math.max(totalTraditional, totalScanPro);
 
   return (
@@ -65,9 +66,9 @@ const TimeEfficiencyChart = () => {
             </h4>
           </div>
           <div className="relative flex items-center gap-4">
-            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalScanPro / maxTotal) * 100, 45)}%`, minWidth: '45%' }}>
+            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${Math.max((totalVisualScanPro / maxTotal) * 100, 45)}%`, minWidth: '45%' }}>
               {phases.map((phase, idx) => {
-                const width = (phase.scanpro / totalScanPro) * 100;
+                const width = ((phase.visualScanpro || phase.scanpro) / totalVisualScanPro) * 100;
                 return (
                   <motion.div
                     key={idx}
