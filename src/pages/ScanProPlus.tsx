@@ -469,7 +469,53 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center">
+          
+          {/* Dotted World Map as Background with interactive markers */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style={{ 
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '90%',
+              maxWidth: '1200px',
+              zIndex: 0
+            }}
+          >
+            <div className="relative w-full pointer-events-auto">
+              <img 
+                src={dottedWorldMap} 
+                alt="Global Network Map" 
+                className="w-full h-auto opacity-40"
+              />
+              
+              {/* Interactive Location Markers */}
+              {[
+                { name: 'North America', availability: '24/7', left: '15%', top: '30%', delay: 0.6 },
+                { name: 'South America', availability: 'Next Day', left: '25%', top: '65%', delay: 0.7 },
+                { name: 'Europe', availability: '24/7', left: '48%', top: '25%', delay: 0.8 },
+                { name: 'Middle East', availability: 'Same Day', left: '58%', top: '45%', delay: 0.9 },
+                { name: 'Africa', availability: 'Next Day', left: '52%', top: '60%', delay: 1.0 },
+                { name: 'Asia', availability: '24/7', left: '75%', top: '35%', delay: 1.1 },
+                { name: 'Oceania', availability: 'Same Day', left: '85%', top: '70%', delay: 1.2 },
+              ].map((location, index) => (
+                <MapLocationMarker
+                  key={location.name}
+                  name={location.name}
+                  availability={location.availability}
+                  left={location.left}
+                  top={location.top}
+                  delay={location.delay}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
             
             {/* Left Column: Text Content */}
             <div className="flex flex-col space-y-6 md:space-y-8 text-left">
@@ -605,43 +651,6 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               </div>
             </div>
           </div>
-          
-          {/* Dotted World Map below cards with interactive markers - More visible */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px" }}
-            transition={{ delay: 0.4 }}
-            className="mt-24 mb-12 relative w-full max-w-6xl mx-auto"
-          >
-            <div className="relative bg-white/50 p-8 rounded-3xl">
-              <img 
-                src={dottedWorldMap} 
-                alt="Global Network Map" 
-                className="w-full h-auto opacity-90"
-              />
-              
-              {/* Interactive Location Markers */}
-              {[
-                { name: 'North America', availability: '24/7', left: '15%', top: '30%', delay: 0.5 },
-                { name: 'South America', availability: 'Next Day', left: '25%', top: '65%', delay: 0.6 },
-                { name: 'Europe', availability: '24/7', left: '48%', top: '25%', delay: 0.7 },
-                { name: 'Middle East', availability: 'Same Day', left: '58%', top: '45%', delay: 0.8 },
-                { name: 'Africa', availability: 'Next Day', left: '52%', top: '60%', delay: 0.9 },
-                { name: 'Asia', availability: '24/7', left: '75%', top: '35%', delay: 1.0 },
-                { name: 'Oceania', availability: 'Same Day', left: '85%', top: '70%', delay: 1.1 },
-              ].map((location, index) => (
-                <MapLocationMarker
-                  key={location.name}
-                  name={location.name}
-                  availability={location.availability}
-                  left={location.left}
-                  top={location.top}
-                  delay={location.delay}
-                />
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
