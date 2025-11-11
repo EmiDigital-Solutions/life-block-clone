@@ -185,7 +185,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[165px] h-[210px] sm:w-[195px] sm:h-[240px] lg:w-[79px] lg:h-[101px] xl:w-[225px] xl:h-[293px] 2xl:w-[270px] 2xl:h-[345px] 3xl:w-[300px] 3xl:h-[390px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -196,7 +196,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                           
                           <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-14">
-                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
+                            <div className="relative w-[105px] h-[105px] sm:w-[120px] sm:h-[120px] lg:w-[68px] lg:h-[68px] xl:w-[139px] xl:h-[139px] 2xl:w-[161px] 2xl:h-[161px] 3xl:w-[180px] 3xl:h-[180px] rounded-full overflow-hidden border-2 border-white/10">
                               <img
                                 src={auditor.image}
                                 alt={`Professional auditor from ${auditor.location}`}
