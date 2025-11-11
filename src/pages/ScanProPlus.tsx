@@ -1626,11 +1626,11 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden mx-auto max-w-6xl"
+                    className="bg-white rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
                   >
-                    <div className="grid md:grid-cols-2 gap-0 items-center">
+                    <div className="grid md:grid-cols-2 gap-0 items-center overflow-visible">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 h-[500px] flex items-center justify-center">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         {/* Decorative element */}
