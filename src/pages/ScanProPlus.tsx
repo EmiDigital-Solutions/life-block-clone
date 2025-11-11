@@ -190,93 +190,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   />
                 ))}
               </svg>
-              
-              {/* Enhanced glowing location markers - Corrected positions */}
-              {[
-                { top: "32%", left: "68%", delay: 0 }, // Asia - China (Shanghai)
-                { top: "62%", left: "30%", delay: 0.3 }, // South America - Brazil (São Paulo)
-                { top: "22%", left: "50%", delay: 0.6 }, // Europe - Germany (Berlin)
-                { top: "28%", left: "22%", delay: 0.9 }, // North America - USA (Chicago)
-                { top: "36%", left: "56%", delay: 1.2 }, // Middle East - UAE (Dubai)
-                { top: "38%", left: "66%", delay: 1.5 }, // South Asia - India (Mumbai)
-                { top: "48%", left: "52%", delay: 1.8 }, // Africa - Nigeria (Lagos)
-              ].map((marker, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute"
-                  style={{ top: marker.top, left: marker.left }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: marker.delay, duration: 0.5 }}
-                >
-                  {/* Outer glow ring - animated pulse */}
-                  <motion.div
-                    className="absolute w-12 h-12 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(20, 184, 166, 0.6) 0%, transparent 70%)',
-                      transform: 'translate(-50%, -50%)',
-                      left: '50%',
-                      top: '50%'
-                    }}
-                    animate={{
-                      scale: [1, 2.5, 1],
-                      opacity: [0.8, 0, 0.8]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: marker.delay,
-                      ease: "easeOut"
-                    }}
-                  />
-                  
-                  {/* Middle glow ring */}
-                  <motion.div
-                    className="absolute w-8 h-8 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(20, 184, 166, 0.8) 0%, rgba(20, 184, 166, 0.3) 100%)',
-                      transform: 'translate(-50%, -50%)',
-                      left: '50%',
-                      top: '50%',
-                      boxShadow: '0 0 20px rgba(20, 184, 166, 0.8), 0 0 40px rgba(20, 184, 166, 0.4)'
-                    }}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.6, 1, 0.6]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: marker.delay,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {/* Core dot - bright and solid */}
-                  <div
-                    className="absolute w-4 h-4 rounded-full"
-                    style={{
-                      background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)',
-                      transform: 'translate(-50%, -50%)',
-                      left: '50%',
-                      top: '50%',
-                      boxShadow: '0 0 15px rgba(20, 184, 166, 1), 0 0 30px rgba(20, 184, 166, 0.6), inset 0 0 5px rgba(255, 255, 255, 0.5)'
-                    }}
-                  />
-                  
-                  {/* Highlight dot for extra shine */}
-                  <div
-                    className="absolute w-2 h-2 rounded-full"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.9)',
-                      transform: 'translate(-50%, -50%)',
-                      left: '40%',
-                      top: '40%',
-                      filter: 'blur(1px)'
-                    }}
-                  />
-                </motion.div>
-              ))}
             </div>
           </motion.div>
 
@@ -292,8 +205,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available Now",
                 rating: 4.9,
                 image: auditorFemaleAsian,
-                top: "18%", 
-                left: "72%", 
+                top: "38%", 
+                left: "78%", 
               },
               { 
                 name: "Marcus Silva", 
@@ -328,8 +241,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 availability: "Available in 48h",
                 rating: 4.7,
                 image: auditorEuropean,
-                top: "18%", 
-                left: "18%", 
+                top: "32%", 
+                left: "14%", 
               },
               { 
                 name: "Omar Hassan", 
