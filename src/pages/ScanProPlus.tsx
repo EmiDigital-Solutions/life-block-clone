@@ -468,18 +468,15 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative">
+        <div className="relative min-h-[700px]">
           
-          {/* Dotted World Map Background */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden" style={{ zIndex: 0 }}>
-            <motion.img 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+          {/* Dotted World Map Background - HIGHLY VISIBLE */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none" style={{ zIndex: 0 }}>
+            <img 
               src={dottedWorldMap} 
               alt="Global Network Map" 
-              className="w-full max-w-[1400px] h-auto opacity-30"
+              className="w-full max-w-[1200px] h-auto"
+              style={{ opacity: 0.8 }}
             />
           </div>
 
