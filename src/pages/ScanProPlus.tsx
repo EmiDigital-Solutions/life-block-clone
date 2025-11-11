@@ -1355,8 +1355,8 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* 3D Earth */}
-          <div className="relative w-[500px] h-[600px] -my-24">
-            <Earth3D width="500px" height="600px" showPins={false} />
+          <div className="relative w-[500px] h-[400px]">
+            <Earth3D width="500px" height="400px" showPins={false} />
             
             {/* Green Location Marker */}
             <motion.div
@@ -1391,8 +1391,8 @@ const HowItWorksCarousel = () => {
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
-          <div className="relative w-[500px] h-[600px] -my-24">
-            <Earth3D width="500px" height="600px" showPins={true} />
+          <div className="relative w-[500px] h-[400px]">
+            <Earth3D width="500px" height="400px" showPins={true} />
           </div>
         </div>
       )
@@ -1409,7 +1409,7 @@ const HowItWorksCarousel = () => {
           </div>
           
           {/* Chat Interface in foreground */}
-          <div className="bg-white rounded-3xl p-6 shadow-2xl w-[350px] relative z-10 -my-8">
+          <div className="bg-white rounded-3xl p-6 shadow-2xl w-[350px] relative z-10">
             {/* User Message */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -1614,7 +1614,7 @@ const HowItWorksCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Cards Display */}
-          <div className="overflow-x-hidden overflow-y-visible pb-24 pt-24">
+          <div className="overflow-x-hidden overflow-y-visible pb-24">
             <motion.div 
               className="flex transition-transform duration-500 ease-out"
               animate={{ x: `-${currentStep * 100}%` }}
@@ -1626,11 +1626,11 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
+                    className="bg-white rounded-3xl shadow-xl overflow-hidden mx-auto max-w-6xl"
                   >
                     <div className="grid md:grid-cols-2 gap-0 items-center">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 h-[500px] flex items-center justify-center">
                         {step.visual}
                         
                         {/* Decorative element */}
