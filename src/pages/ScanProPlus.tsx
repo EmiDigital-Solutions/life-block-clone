@@ -1148,7 +1148,31 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* 3D Earth */}
           <div className="relative w-[500px] h-[400px]">
-            <Earth3D width="500px" height="400px" showPins={true} />
+            <Earth3D width="500px" height="400px" showPins={false} />
+            
+            {/* Green Location Marker */}
+            <motion.div
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="absolute"
+              style={{ top: '30%', left: '70%' }}
+            >
+              <div className="w-4 h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
+            </motion.div>
+            
+            {/* 1-Click Button */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute"
+              style={{ top: '32%', left: '73%' }}
+            >
+              <div className="bg-[#14B8A6] text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-xl">
+                <Mouse className="w-5 h-5" />
+                <span className="font-semibold text-lg whitespace-nowrap">1-Click</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       )

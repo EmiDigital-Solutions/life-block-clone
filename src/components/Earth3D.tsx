@@ -150,12 +150,6 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
                       {/* Pin pointer */}
                       <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[12px] border-l-transparent border-r-transparent border-t-[#0D9488]" />
                     </div>
-                    {/* Pulsing ring */}
-                    <motion.div
-                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-[#14B8A6]"
-                    />
                   </div>
                 </motion.div>
               )
