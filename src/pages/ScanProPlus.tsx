@@ -959,25 +959,25 @@ const ComplianceStandardsGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedStandard(standard)}
-              className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer aspect-square md:aspect-auto flex flex-col items-center justify-center"
             >
               {/* Icon with gradient background */}
-              <div className={`mb-4 mx-auto w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${standard.colorClass}`}>
-                <Icon className="w-8 h-8 text-white" />
+              <div className={`mb-2 sm:mb-4 mx-auto w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${standard.colorClass}`}>
+                <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
 
               {/* Standard name */}
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2 text-center">
                 {standard.name}
               </h3>
 
               {/* Description */}
-              <p className="text-xs text-gray-600 mb-3">
+              <p className="text-[10px] sm:text-xs text-gray-600 mb-2 sm:mb-3 text-center line-clamp-2">
                 {standard.description}
               </p>
 
               {/* Click indicator */}
-              <div className="text-xs font-semibold text-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+              <div className="text-[10px] sm:text-xs font-semibold text-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
                 Click to learn more
                 <ArrowRight className="w-3 h-3" />
               </div>
