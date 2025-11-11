@@ -839,42 +839,42 @@ const ComplianceStandardsGrid = () => {
     {
       name: "ISO 9001",
       icon: Award,
-      colorClass: "from-blue-500 to-blue-600",
+      colorClass: "from-blue-600 to-blue-700",
       description: "Quality Management System",
       details: "ISO 9001 is the international standard for quality management systems (QMS). It helps organizations ensure they meet customer and regulatory requirements while continuously improving processes and efficiency."
     },
     {
       name: "IATF 16949",
       icon: Car,
-      colorClass: "from-red-500 to-red-600",
+      colorClass: "from-gray-700 to-gray-800",
       description: "Automotive Quality Standard",
       details: "IATF 16949 defines quality management system requirements for the automotive industry. It emphasizes defect prevention, reduction of variation and waste in the supply chain, and continuous improvement."
     },
     {
       name: "AS9100",
       icon: Plane,
-      colorClass: "from-sky-500 to-sky-600",
+      colorClass: "from-blue-500 to-blue-600",
       description: "Aerospace Quality Standard",
       details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
     },
     {
       name: "ISO 14001",
       icon: Leaf,
-      colorClass: "from-green-500 to-green-600",
+      colorClass: "from-[#14B8A6] to-[#0D9488]",
       description: "Environmental Management",
       details: "ISO 14001 provides a framework for environmental management systems. It helps organizations minimize their environmental impact, comply with regulations, and achieve sustainability goals."
     },
     {
       name: "GMP",
       icon: Pill,
-      colorClass: "from-purple-500 to-purple-600",
+      colorClass: "from-gray-600 to-gray-700",
       description: "Good Manufacturing Practice",
       details: "GMP ensures products are consistently produced and controlled according to quality standards. Critical for pharmaceutical, food, and medical device industries to ensure product safety and efficacy."
     },
     {
       name: "API Q1",
       icon: Factory,
-      colorClass: "from-orange-500 to-orange-600",
+      colorClass: "from-blue-700 to-blue-800",
       description: "Petroleum Quality Standard",
       details: "API Q1 is a quality management system specification for manufacturing organizations in the petroleum and natural gas industry, ensuring product integrity and safety throughout the supply chain."
     },
@@ -888,35 +888,35 @@ const ComplianceStandardsGrid = () => {
     {
       name: "VDA 6.3",
       icon: Target,
-      colorClass: "from-indigo-500 to-indigo-600",
+      colorClass: "from-gray-800 to-gray-900",
       description: "Automotive Process Audit",
       details: "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production."
     },
     {
       name: "TS16949",
       icon: Car,
-      colorClass: "from-rose-500 to-rose-600",
+      colorClass: "from-blue-600 to-blue-700",
       description: "Technical Specification",
       details: "TS16949 (now IATF 16949) was the technical specification for quality management in the automotive supply chain, focusing on continuous improvement and defect prevention."
     },
     {
       name: "GDPR",
       icon: Lock,
-      colorClass: "from-slate-600 to-slate-700",
+      colorClass: "from-gray-700 to-gray-900",
       description: "Data Protection Regulation",
       details: "GDPR is the EU's comprehensive data protection law that ensures personal data privacy and security. It mandates strict requirements for data collection, processing, and storage."
     },
     {
       name: "SOC 2",
       icon: ShieldCheck,
-      colorClass: "from-cyan-500 to-cyan-600",
+      colorClass: "from-[#14B8A6] to-[#0D9488]",
       description: "Security & Compliance",
       details: "SOC 2 is an auditing standard for service organizations that store customer data in the cloud. It ensures proper security, availability, processing integrity, confidentiality, and privacy controls."
     },
     {
       name: "FDA",
       icon: Building2,
-      colorClass: "from-blue-600 to-blue-700",
+      colorClass: "from-blue-500 to-blue-700",
       description: "FDA Compliance",
       details: "FDA compliance ensures products meet US Food and Drug Administration regulations for safety, efficacy, and quality. Critical for pharmaceutical, medical device, and food industries."
     },
