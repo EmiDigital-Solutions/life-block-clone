@@ -90,13 +90,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           
           {/* Dotted World Map Background - ANIMATED */}
           <motion.div 
-            className="absolute bottom-0 left-0 right-0 flex items-center justify-center pointer-events-none" 
+            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
-              background: `url(${dottedWorldMap}) center bottom / contain no-repeat`,
+              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
               opacity: 0.4,
               width: '100%',
-              height: '70%'
+              height: '100%'
             }}
             animate={{ 
               rotateY: [0, 5, 0, -5, 0],
@@ -109,31 +109,98 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             }}
           />
 
-          {/* Continent Popup Cards - Minimalistic */}
+          {/* Auditor Popup Cards with Photos */}
           {[
-            { continent: "North America", top: "25%", left: "18%", delay: 0 },
-            { continent: "South America", top: "55%", left: "28%", delay: 0.2 },
-            { continent: "Europe", top: "22%", left: "48%", delay: 0.4 },
-            { continent: "Africa", top: "45%", left: "50%", delay: 0.6 },
-            { continent: "Asia", top: "28%", left: "68%", delay: 0.8 },
-            { continent: "Oceania", top: "58%", left: "78%", delay: 1.0 },
-          ].map((location, index) => (
+            { 
+              name: "Sarah Chen", 
+              location: "Shanghai, China", 
+              availability: "Available Now",
+              image: auditorFemaleAsian,
+              top: "28%", 
+              left: "68%", 
+              delay: 0.8 
+            },
+            { 
+              name: "Marcus Silva", 
+              location: "São Paulo, Brazil", 
+              availability: "Available in 24h",
+              image: auditorLatin,
+              top: "55%", 
+              left: "28%", 
+              delay: 0.2 
+            },
+            { 
+              name: "Elena Popov", 
+              location: "Berlin, Germany", 
+              availability: "Available Now",
+              image: auditorFemaleEuropean,
+              top: "22%", 
+              left: "48%", 
+              delay: 0.4 
+            },
+            { 
+              name: "James Wilson", 
+              location: "Chicago, USA", 
+              availability: "Available in 48h",
+              image: auditorEuropean,
+              top: "25%", 
+              left: "18%", 
+              delay: 0 
+            },
+            { 
+              name: "Omar Hassan", 
+              location: "Dubai, UAE", 
+              availability: "Available Now",
+              image: auditorMiddleEast,
+              top: "35%", 
+              left: "56%", 
+              delay: 0.6 
+            },
+            { 
+              name: "Priya Sharma", 
+              location: "Mumbai, India", 
+              availability: "Available in 24h",
+              image: auditorAsian,
+              top: "38%", 
+              left: "65%", 
+              delay: 0.7 
+            },
+          ].map((auditor, index) => (
             <motion.div
-              key={location.continent}
+              key={auditor.name}
               className="absolute z-20 pointer-events-none"
-              style={{ top: location.top, left: location.left }}
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+              style={{ top: auditor.top, left: auditor.left }}
+              initial={{ scale: 0, opacity: 0, y: 20 }}
+              whileInView={{ scale: 1, opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
-                delay: location.delay,
-                duration: 0.5,
+                delay: auditor.delay,
+                duration: 0.6,
                 type: "spring",
-                bounce: 0.5
+                bounce: 0.4
               }}
             >
-              <div className="bg-white rounded-md px-3 py-1.5 shadow-md border-2 border-gray-900">
-                <span className="text-xs font-bold text-gray-900">{location.continent}</span>
+              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[200px]">
+                <div className="relative h-[120px] overflow-hidden">
+                  <img 
+                    src={auditor.image} 
+                    alt={auditor.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-2 right-2">
+                    <span className={`px-2 py-1 rounded-full text-[10px] font-semibold ${
+                      auditor.availability === "Available Now" 
+                        ? "bg-green-500 text-white" 
+                        : "bg-yellow-500 text-white"
+                    }`}>
+                      {auditor.availability}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-3 bg-white">
+                  <h4 className="font-bold text-sm text-gray-900 mb-1">{auditor.name}</h4>
+                  <p className="text-xs text-gray-600">{auditor.location}</p>
+                </div>
               </div>
             </motion.div>
           ))}
