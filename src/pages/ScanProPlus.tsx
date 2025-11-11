@@ -1149,30 +1149,6 @@ const HowItWorksCarousel = () => {
           {/* 3D Earth */}
           <div className="relative w-[500px] h-[400px]">
             <Earth3D width="500px" height="400px" showPins={true} />
-            
-            {/* Green Location Marker */}
-            <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '30%', left: '70%' }}
-            >
-              <div className="w-4 h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-4 h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
-            </motion.div>
-            
-            {/* 1-Click Button */}
-            <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '32%', left: '73%' }}
-            >
-              <div className="bg-[#14B8A6] text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-xl">
-                <Mouse className="w-5 h-5" />
-                <span className="font-semibold text-lg whitespace-nowrap">1-Click</span>
-              </div>
-            </motion.div>
           </div>
         </div>
       )
@@ -1185,45 +1161,6 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-8">
           <div className="relative w-[500px] h-[400px]">
             <Earth3D width="500px" height="400px" showPins={true} />
-            
-            {/* Main Auditor Pin with animation */}
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '40%', left: '60%' }}
-            >
-              <div className="relative w-20 h-24">
-                <img 
-                  src={auditorMapPin} 
-                  alt="Auditor location" 
-                  className="w-full h-full object-contain drop-shadow-xl"
-                />
-              </div>
-            </motion.div>
-            
-            {/* Additional Auditor Pins */}
-            {[
-              { top: '25%', left: '20%' },
-              { top: '50%', left: '25%' },
-              { top: '28%', left: '70%' },
-              { top: '48%', left: '75%' }
-            ].map((pos, i) => (
-              <motion.div
-                key={i}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2 * i, duration: 0.3 }}
-                className="absolute w-14 h-18"
-                style={{ top: pos.top, left: pos.left }}
-              >
-                <img 
-                  src={auditorMapPin} 
-                  alt="Auditor location" 
-                  className="w-full h-full object-contain drop-shadow-lg opacity-80"
-                />
-              </motion.div>
-            ))}
           </div>
         </div>
       )
