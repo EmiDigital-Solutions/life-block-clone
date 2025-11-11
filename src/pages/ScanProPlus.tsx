@@ -110,7 +110,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             }}
           />
 
-          {/* Auditor Continent Cards - Always Visible */}
+          {/* Auditor Cards - Portrait Style */}
           {[
             { 
               name: "Sarah Chen", 
@@ -121,7 +121,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available Now",
               rating: 4.9,
               image: auditorFemaleAsian,
-              gradient: "from-teal-500 to-cyan-600",
               top: "20%", 
               left: "72%", 
               delay: 0 
@@ -135,7 +134,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available in 24h",
               rating: 4.8,
               image: auditorLatin,
-              gradient: "from-emerald-500 to-teal-600",
               top: "60%", 
               left: "25%", 
               delay: 0.1 
@@ -149,7 +147,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available Now",
               rating: 5.0,
               image: auditorFemaleEuropean,
-              gradient: "from-blue-500 to-indigo-600",
               top: "18%", 
               left: "46%", 
               delay: 0.2 
@@ -163,7 +160,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available in 48h",
               rating: 4.7,
               image: auditorEuropean,
-              gradient: "from-violet-500 to-purple-600",
               top: "28%", 
               left: "15%", 
               delay: 0.3 
@@ -177,7 +173,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available Now",
               rating: 4.9,
               image: auditorMiddleEast,
-              gradient: "from-teal-500 to-emerald-600",
               top: "48%", 
               left: "52%", 
               delay: 0.4 
@@ -191,7 +186,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               availability: "Available in 24h",
               rating: 4.8,
               image: auditorSouthAsian,
-              gradient: "from-cyan-500 to-blue-600",
               top: "50%", 
               left: "68%", 
               delay: 0.5 
@@ -211,38 +205,30 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 bounce: 0.4
               }}
             >
-              <div className="relative w-[140px] h-[180px] rounded-2xl overflow-hidden shadow-2xl">
-                {/* Background Image */}
-                <img 
-                  src={auditor.image} 
-                  alt={auditor.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${auditor.gradient} mix-blend-multiply opacity-80`} />
-                
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-between p-3">
-                  {/* Top: Availability Badge */}
-                  <div className="flex justify-end">
-                    <span className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold backdrop-blur-sm ${
+              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[140px]">
+                <div className="relative h-[120px] overflow-hidden">
+                  <img 
+                    src={auditor.image} 
+                    alt={auditor.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-1.5 right-1.5">
+                    <span className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold ${
                       auditor.availability === "Available Now" 
-                        ? "bg-green-500/90 text-white" 
-                        : "bg-yellow-500/90 text-white"
+                        ? "bg-green-500 text-white" 
+                        : "bg-yellow-500 text-white"
                     }`}>
                       {auditor.availability}
                     </span>
                   </div>
-                  
-                  {/* Bottom: Text Content */}
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Star className="w-3 h-3 fill-yellow-300 text-yellow-300" />
-                      <span className="text-[10px] font-bold text-white">{auditor.rating}</span>
-                    </div>
-                    <h4 className="font-bold text-sm text-white leading-tight">{auditor.continent}</h4>
-                    <p className="text-[10px] text-white/90 font-medium">{auditor.region}</p>
+                </div>
+                <div className="p-2.5 bg-white">
+                  <h4 className="font-bold text-xs text-gray-900 mb-0.5 leading-tight">{auditor.name}</h4>
+                  <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
+                  <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
                   </div>
                 </div>
               </div>
