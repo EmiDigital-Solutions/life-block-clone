@@ -2188,30 +2188,6 @@ const ScanProPlus = () => {
               { icon: LinkIcon, title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB' },
               { icon: LinkIcon, title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#2563EB' },
               { icon: LinkIcon, title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#2563EB' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center mb-6">
-                    <item.icon className="w-12 h-12 text-white" />
-                  </div>
-                  <span className="inline-block px-4 py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-sm font-semibold mb-4">
-                    Integration
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-            
-            {/* Network Cards */}
-            {[
               { icon: Globe, title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#14B8A6' },
               { icon: UserCheck, title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#14B8A6' },
               { icon: Star, title: 'Quality Assured', desc: 'Rating system & tracking', color: '#14B8A6' },
@@ -2221,18 +2197,23 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (idx + 3) * 0.1 }}
-                className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all"
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-3xl shadow-lg p-8 hover:shadow-xl transition-all border border-gray-100"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center mb-6">
-                    <item.icon className="w-12 h-12 text-white" />
+                <div className="flex flex-col items-start">
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
+                    style={{ 
+                      background: idx < 3 
+                        ? 'linear-gradient(135deg, #2563EB, #1e40af)' 
+                        : 'linear-gradient(135deg, #14B8A6, #0D9488)'
+                    }}
+                  >
+                    <item.icon className="w-8 h-8 text-white" />
                   </div>
-                  <span className="inline-block px-4 py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-sm font-semibold mb-4">
-                    Network
-                  </span>
+                  
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
+                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
