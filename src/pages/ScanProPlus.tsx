@@ -1628,7 +1628,7 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl"
+                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[600px] sm:h-auto"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible">
                       {/* Left Side - Visual */}
