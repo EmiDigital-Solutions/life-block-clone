@@ -47,21 +47,27 @@ const ROICalculator = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="px-4 py-2 bg-[#14B8A6]/10 text-[#14B8A6] text-sm font-semibold rounded-full"
+            animate={{ scale: [1, 1.1, 1] }}
+            className="px-4 py-2 bg-[#14B8A6] text-white text-sm font-bold rounded-full shadow-lg"
           >
-            Interactive Calculator
+            ✏️ Interactive Tool
           </motion.span>
         </div>
         
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-gray-600"
+          className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-[#14B8A6] p-4 rounded-lg"
         >
-          Enter your specific numbers below to see how much you can save with YVOO ScanPro+
-        </motion.p>
+          <p className="text-lg font-bold text-gray-900 mb-2">
+            👇 This calculator is fully interactive - adjust the values to match your situation
+          </p>
+          <p className="text-sm text-gray-600">
+            See real-time results as you type your own numbers below
+          </p>
+        </motion.div>
       </div>
 
       {/* Input Fields with Visual Cues */}
@@ -70,19 +76,32 @@ const ROICalculator = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 md:p-8 mb-8"
+        className="bg-gradient-to-br from-[#14B8A6]/5 to-blue-50 rounded-2xl p-6 md:p-8 mb-8 border-2 border-[#14B8A6]/30 relative"
       >
-        <div className="flex items-center gap-2 mb-6">
-          <div className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
-          <span className="text-sm font-semibold text-gray-700">
-            👇 Adjust these values to match your situation
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="bg-[#14B8A6] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+          >
+            ✏️ EDIT THESE VALUES
+          </motion.div>
+        </div>
+        
+        <div className="flex items-center gap-2 mb-6 mt-4">
+          <div className="w-3 h-3 rounded-full bg-[#14B8A6] animate-pulse" />
+          <span className="text-base font-bold text-gray-900">
+            Click on the input fields below and type your own numbers
           </span>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label htmlFor="audits" className="text-base font-semibold text-gray-900">
-              Number of supplier audits per year
+          <div className="space-y-2 relative">
+            <div className="absolute -left-3 top-8 text-2xl">
+              👉
+            </div>
+            <Label htmlFor="audits" className="text-base font-bold text-gray-900">
+              Step 1: Your audits per year
             </Label>
             <Input
               id="audits"
@@ -95,9 +114,12 @@ const ROICalculator = () => {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="traditional-cost" className="text-base font-semibold text-gray-900">
-              Traditional audit cost per audit (€)
+          <div className="space-y-2 relative">
+            <div className="absolute -left-3 top-8 text-2xl">
+              👉
+            </div>
+            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900">
+              Step 2: Your current cost per audit (€)
             </Label>
             <Input
               id="traditional-cost"
@@ -111,6 +133,17 @@ const ROICalculator = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Results Header */}
+      <div className="text-center mb-6">
+        <motion.div
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="inline-block bg-gradient-to-r from-[#14B8A6] to-blue-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
+        >
+          ⚡ Your Results Update Instantly Below ⚡
+        </motion.div>
+      </div>
 
       {/* Results */}
       <div className="space-y-6">

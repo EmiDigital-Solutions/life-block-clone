@@ -80,22 +80,29 @@ const HeroROICalculator = () => {
           <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
             <span style={{ color: '#14B8A6' }}>ROI</span> Calculator
           </h3>
-          <span className="px-3 py-1 bg-[#14B8A6]/10 text-[#14B8A6] text-xs font-semibold rounded-full">
-            Interactive
-          </span>
+          <motion.span
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="px-3 py-1 bg-[#14B8A6] text-white text-xs font-semibold rounded-full flex items-center gap-1"
+          >
+            <span>👆 Try it now</span>
+          </motion.span>
         </div>
         
-        <p className="text-sm text-gray-600">
-          Try it yourself! Enter your numbers to calculate your business case
+        <p className="text-sm font-semibold text-gray-900 bg-yellow-50 border-2 border-yellow-300 rounded-lg px-3 py-2">
+          ✏️ Change the numbers below to see YOUR savings instantly
         </p>
       </div>
 
       {/* Input Fields */}
       <div className="space-y-4 mb-6">
-        <div className="space-y-2">
-          <Label htmlFor="hero-audits" className="text-sm font-semibold text-gray-900">
-            Audits per year
-          </Label>
+        <div className="space-y-2 relative">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="hero-audits" className="text-sm font-bold text-gray-900">
+              👉 Step 1: Enter your audits per year
+            </Label>
+            <span className="text-xs text-[#14B8A6] font-semibold">Click to edit</span>
+          </div>
           <div className="relative">
             <Input
               id="hero-audits"
@@ -122,10 +129,13 @@ const HeroROICalculator = () => {
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="hero-traditional-cost" className="text-sm font-semibold text-gray-900">
-            Traditional cost (€)
-          </Label>
+        <div className="space-y-2 relative">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="hero-traditional-cost" className="text-sm font-bold text-gray-900">
+              👉 Step 2: Enter your current audit cost (€)
+            </Label>
+            <span className="text-xs text-[#14B8A6] font-semibold">Click to edit</span>
+          </div>
           <div className="relative">
             <Input
               id="hero-traditional-cost"
@@ -154,7 +164,14 @@ const HeroROICalculator = () => {
       </div>
 
       {/* Results */}
-      <div className="space-y-4">
+      <div className="relative">
+        <div className="absolute -top-3 left-0 right-0 flex justify-center">
+          <span className="bg-white px-3 py-1 rounded-full text-xs font-bold text-[#14B8A6] border-2 border-[#14B8A6]">
+            📊 Your Results Update Live
+          </span>
+        </div>
+      </div>
+      <div className="space-y-4 mt-4">
         <div className="flex justify-between items-center py-3 border-b border-gray-200">
           <span className="text-sm text-gray-600">Traditional</span>
           <span className="text-lg font-bold text-gray-900">{formatCurrency(traditionalTotalCost)}</span>
