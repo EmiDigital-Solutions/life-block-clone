@@ -86,7 +86,7 @@ const ROITimelineChart = () => {
               strokeWidth={4}
               dot={{ fill: '#9CA3AF', r: 5 }}
               activeDot={{ r: 7 }}
-              animationDuration={2500}
+              animationDuration={2000}
               animationEasing="ease-in-out"
             />
             <Line
@@ -96,8 +96,8 @@ const ROITimelineChart = () => {
               strokeWidth={5}
               dot={{ fill: '#10B981', r: 6 }}
               activeDot={{ r: 8 }}
-              animationDuration={2500}
-              animationBegin={400}
+              animationDuration={2000}
+              animationBegin={300}
               animationEasing="ease-in-out"
             />
           </LineChart>
@@ -107,7 +107,7 @@ const ROITimelineChart = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
         className="mt-8 grid grid-cols-3 gap-5"
       >
         <div className="p-5 bg-black/30 rounded-xl">
