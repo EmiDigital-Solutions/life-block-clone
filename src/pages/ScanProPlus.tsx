@@ -31,6 +31,10 @@ import { supabase } from "@/integrations/supabase/client";
 const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [hidingCards, setHidingCards] = useState<number[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { amount: 0.3 });
 
   useEffect(() => {
     const cycle = () => {
@@ -44,7 +48,62 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     return () => clearInterval(interval);
   }, []);
 
-  const handleCardClick = () => {
+  // Professional sequential card animation
+  useEffect(() => {
+    if (!isInView) {
+      setVisibleCards([]);
+      setHidingCards([]);
+      return;
+    }
+
+    const totalCards = 6;
+    const showDelay = 1200; // Slower, more professional timing
+    const displayTime = 4000; // How long all cards stay visible
+    const hideDelay = 800;
+
+    const runSequence = () => {
+      // Show cards one by one
+      for (let i = 0; i < totalCards; i++) {
+        setTimeout(() => {
+          setVisibleCards(prev => [...prev, i]);
+        }, i * showDelay);
+      }
+
+      // After display time, hide cards one by one
+      setTimeout(() => {
+        for (let i = 0; i < totalCards; i++) {
+          setTimeout(() => {
+            setHidingCards(prev => [...prev, i]);
+          }, i * hideDelay);
+        }
+
+        // Clear all after hiding
+        setTimeout(() => {
+          setVisibleCards([]);
+          setHidingCards([]);
+        }, totalCards * hideDelay + 500);
+      }, totalCards * showDelay + displayTime);
+    };
+
+    // Initial run
+    runSequence();
+
+    // Repeat the sequence
+    const cycleTime = (totalCards * showDelay) + displayTime + (totalCards * hideDelay) + 1000;
+    const interval = setInterval(runSequence, cycleTime);
+
+    return () => clearInterval(interval);
+  }, [isInView]);
+
+  const handleCardClick = (index: number) => {
+    // Remove from hiding list and add to visible if not already visible
+    setHidingCards(prev => prev.filter(i => i !== index));
+    if (!visibleCards.includes(index)) {
+      setVisibleCards(prev => [...prev, index]);
+    }
+  };
+
+  const handleFannedCardClick = () => {
     setActiveIndex((prev) => (prev + 1) % auditors.length);
   };
 
@@ -80,6 +139,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
 
   return (
     <section 
+      ref={sectionRef}
       data-nav-theme="light"
       className="relative py-20"
       style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
@@ -89,15 +149,19 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[700px]">
           
-          {/* Dotted World Map Background - ANIMATED */}
+          {/* Dotted World Map Background - ANIMATED - Moved 20% Down */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
+            className="absolute flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
               background: `url(${dottedWorldMap}) center center / contain no-repeat`,
               opacity: 0.4,
               width: '100%',
-              height: '100%'
+              height: '100%',
+              top: '20%',
+              left: 0,
+              right: 0,
+              bottom: '-20%'
             }}
             animate={{ 
               rotateY: [0, 5, 0, -5, 0],
@@ -110,130 +174,170 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             }}
           />
 
-          {/* Auditor Cards - Portrait Style */}
-          {[
-            { 
-              name: "Sarah Chen", 
-              title: "Lead Auditor VDA 6.3",
-              location: "Shanghai, China",
-              continent: "Asia",
-              region: "East Asia",
-              availability: "Available Now",
-              rating: 4.9,
-              image: auditorFemaleAsian,
-              top: "20%", 
-              left: "72%", 
-              delay: 0 
-            },
-            { 
-              name: "Marcus Silva", 
-              title: "ISO 9001 Specialist",
-              location: "São Paulo, Brazil",
-              continent: "South America",
-              region: "Latin America",
-              availability: "Available in 24h",
-              rating: 4.8,
-              image: auditorLatin,
-              top: "60%", 
-              left: "25%", 
-              delay: 0.1 
-            },
-            { 
-              name: "Anna Schmidt", 
-              title: "Lead Auditor IATF 16949",
-              location: "Berlin, Germany",
-              continent: "Europe",
-              region: "Central Europe",
-              availability: "Available Now",
-              rating: 5.0,
-              image: auditorFemaleEuropean,
-              top: "18%", 
-              left: "46%", 
-              delay: 0.2 
-            },
-            { 
-              name: "James Wilson", 
-              title: "Quality Systems Expert",
-              location: "Chicago, USA",
-              continent: "North America",
-              region: "United States",
-              availability: "Available in 48h",
-              rating: 4.7,
-              image: auditorEuropean,
-              top: "28%", 
-              left: "15%", 
-              delay: 0.3 
-            },
-            { 
-              name: "Omar Hassan", 
-              title: "Lead Auditor ISO 14001",
-              location: "Dubai, UAE",
-              continent: "Middle East",
-              region: "Gulf Region",
-              availability: "Available Now",
-              rating: 4.9,
-              image: auditorMiddleEast,
-              top: "48%", 
-              left: "52%", 
-              delay: 0.4 
-            },
-            { 
-              name: "Priya Sharma", 
-              title: "Automotive QA Specialist",
-              location: "Mumbai, India",
-              continent: "Asia",
-              region: "South Asia",
-              availability: "Available in 24h",
-              rating: 4.8,
-              image: auditorSouthAsian,
-              top: "50%", 
-              left: "68%", 
-              delay: 0.5 
-            },
-          ].map((auditor, index) => (
-            <motion.div
-              key={auditor.name}
-              className="absolute z-20 pointer-events-none"
-              style={{ top: auditor.top, left: auditor.left }}
-              initial={{ scale: 0, opacity: 0, y: 20 }}
-              whileInView={{ scale: 1, opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: auditor.delay,
-                duration: 0.6,
-                type: "spring",
-                bounce: 0.4
-              }}
-            >
-              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[140px]">
-                <div className="relative h-[120px] overflow-hidden">
-                  <img 
-                    src={auditor.image} 
-                    alt={auditor.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-1.5 right-1.5">
-                    <span className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold ${
-                      auditor.availability === "Available Now" 
-                        ? "bg-green-500 text-white" 
-                        : "bg-yellow-500 text-white"
-                    }`}>
-                      {auditor.availability}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-2.5 bg-white">
-                  <h4 className="font-bold text-xs text-gray-900 mb-0.5 leading-tight">{auditor.name}</h4>
-                  <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
-                  <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                    <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {/* Auditor Cards - Professional Sequential Animation */}
+          <AnimatePresence>
+            {[
+              { 
+                name: "Sarah Chen", 
+                title: "Lead Auditor VDA 6.3",
+                location: "Shanghai, China",
+                continent: "Asia",
+                region: "East Asia",
+                availability: "Available Now",
+                rating: 4.9,
+                image: auditorFemaleAsian,
+                top: "30%", 
+                left: "72%", 
+              },
+              { 
+                name: "Marcus Silva", 
+                title: "ISO 9001 Specialist",
+                location: "São Paulo, Brazil",
+                continent: "South America",
+                region: "Latin America",
+                availability: "Available in 24h",
+                rating: 4.8,
+                image: auditorLatin,
+                top: "70%", 
+                left: "25%", 
+              },
+              { 
+                name: "Anna Schmidt", 
+                title: "Lead Auditor IATF 16949",
+                location: "Berlin, Germany",
+                continent: "Europe",
+                region: "Central Europe",
+                availability: "Available Now",
+                rating: 5.0,
+                image: auditorFemaleEuropean,
+                top: "28%", 
+                left: "46%", 
+              },
+              { 
+                name: "James Wilson", 
+                title: "Quality Systems Expert",
+                location: "Chicago, USA",
+                continent: "North America",
+                region: "United States",
+                availability: "Available in 48h",
+                rating: 4.7,
+                image: auditorEuropean,
+                top: "38%", 
+                left: "15%", 
+              },
+              { 
+                name: "Omar Hassan", 
+                title: "Lead Auditor ISO 14001",
+                location: "Dubai, UAE",
+                continent: "Middle East",
+                region: "Gulf Region",
+                availability: "Available Now",
+                rating: 4.9,
+                image: auditorMiddleEast,
+                top: "58%", 
+                left: "52%", 
+              },
+              { 
+                name: "Priya Sharma", 
+                title: "Automotive QA Specialist",
+                location: "Mumbai, India",
+                continent: "Asia",
+                region: "South Asia",
+                availability: "Available in 24h",
+                rating: 4.8,
+                image: auditorSouthAsian,
+                top: "60%", 
+                left: "68%", 
+              },
+            ].map((auditor, index) => {
+              const isVisible = visibleCards.includes(index);
+              const isHiding = hidingCards.includes(index);
+              const shouldShow = isVisible && !isHiding;
+              
+              return shouldShow ? (
+                <motion.div
+                  key={auditor.name}
+                  className="absolute z-20 cursor-pointer"
+                  style={{ top: auditor.top, left: auditor.left }}
+                  initial={{ 
+                    scale: 0, 
+                    opacity: 0, 
+                    y: 40,
+                    rotateX: -15 
+                  }}
+                  animate={{ 
+                    scale: 1, 
+                    opacity: 1, 
+                    y: 0,
+                    rotateX: 0
+                  }}
+                  exit={{ 
+                    scale: 0.8, 
+                    opacity: 0, 
+                    y: -20,
+                    rotateX: 15,
+                    transition: {
+                      duration: 0.6,
+                      ease: [0.43, 0.13, 0.23, 0.96]
+                    }
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -5,
+                    transition: { duration: 0.3 }
+                  }}
+                  onClick={() => handleCardClick(index)}
+                >
+                  <motion.div 
+                    className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[140px]"
+                    whileHover={{
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                    }}
+                  >
+                    <div className="relative h-[120px] overflow-hidden">
+                      <motion.img 
+                        src={auditor.image} 
+                        alt={auditor.name}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                      <div className="absolute top-1.5 right-1.5">
+                        <motion.span 
+                          className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold ${
+                            auditor.availability === "Available Now" 
+                              ? "bg-green-500 text-white" 
+                              : "bg-yellow-500 text-white"
+                          }`}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.3, type: "spring" }}
+                        >
+                          {auditor.availability}
+                        </motion.span>
+                      </div>
+                    </div>
+                    <div className="p-2.5 bg-white">
+                      <h4 className="font-bold text-xs text-gray-900 mb-0.5 leading-tight">{auditor.name}</h4>
+                      <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
+                      <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
+                      <div className="flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ) : null;
+            })}
+          </AnimatePresence>
 
           <div className="relative z-10">
             
@@ -251,7 +355,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                       <motion.div
                         key={auditor.location + auditor.region}
                         className="absolute cursor-pointer"
-                        onClick={handleCardClick}
+                        onClick={handleFannedCardClick}
                         initial={false}
                         whileHover={{ scale: isFanned ? 1.05 : 1 }}
                         animate={{
