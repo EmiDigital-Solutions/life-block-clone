@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
@@ -114,8 +114,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           {[
             { 
               name: "Sarah Chen", 
+              title: "Lead Auditor VDA 6.3",
               location: "Shanghai, China", 
               availability: "Available Now",
+              rating: 4.9,
               image: auditorFemaleAsian,
               top: "20%", 
               left: "72%", 
@@ -123,8 +125,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             },
             { 
               name: "Marcus Silva", 
+              title: "ISO 9001 Specialist",
               location: "São Paulo, Brazil", 
               availability: "Available in 24h",
+              rating: 4.8,
               image: auditorLatin,
               top: "60%", 
               left: "25%", 
@@ -132,8 +136,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             },
             { 
               name: "Anna Schmidt", 
+              title: "Lead Auditor IATF 16949",
               location: "Berlin, Germany", 
               availability: "Available Now",
+              rating: 5.0,
               image: auditorFemaleEuropean,
               top: "18%", 
               left: "46%", 
@@ -141,8 +147,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             },
             { 
               name: "James Wilson", 
+              title: "Quality Systems Expert",
               location: "Chicago, USA", 
               availability: "Available in 48h",
+              rating: 4.7,
               image: auditorEuropean,
               top: "28%", 
               left: "15%", 
@@ -150,8 +158,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             },
             { 
               name: "Omar Hassan", 
+              title: "Lead Auditor ISO 14001",
               location: "Dubai, UAE", 
               availability: "Available Now",
+              rating: 4.9,
               image: auditorMiddleEast,
               top: "48%", 
               left: "52%", 
@@ -159,8 +169,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             },
             { 
               name: "Priya Sharma", 
+              title: "Automotive QA Specialist",
               location: "Mumbai, India", 
               availability: "Available in 24h",
+              rating: 4.8,
               image: auditorSouthAsian,
               top: "50%", 
               left: "68%", 
@@ -181,8 +193,8 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 bounce: 0.4
               }}
             >
-              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[160px]">
-                <div className="relative h-[96px] overflow-hidden">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[180px]">
+                <div className="relative h-[100px] overflow-hidden">
                   <img 
                     src={auditor.image} 
                     alt={auditor.name}
@@ -200,7 +212,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 </div>
                 <div className="p-2.5 bg-white">
                   <h4 className="font-bold text-xs text-gray-900 mb-0.5">{auditor.name}</h4>
-                  <p className="text-[10px] text-gray-600">{auditor.location}</p>
+                  <p className="text-[9px] text-gray-500 mb-1">{auditor.title}</p>
+                  <p className="text-[10px] text-gray-600 mb-1.5">{auditor.location}</p>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <span className="text-[10px] font-semibold text-gray-900">{auditor.rating}</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
