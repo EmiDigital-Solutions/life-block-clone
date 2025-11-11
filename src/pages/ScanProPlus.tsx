@@ -121,7 +121,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span style={{ color: '#14B8A6' }}>Auditor Network</span>
+                Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -153,7 +153,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 className="relative w-full"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[530px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center pt-32">
+                <div className="relative h-[530px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
