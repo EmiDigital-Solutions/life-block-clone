@@ -29,29 +29,15 @@ import { supabase } from "@/integrations/supabase/client";
 
 // Desktop Technology Section with Scroll Effect - Auditor Network Only
 const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
-  const [isFanned, setIsFanned] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [visibleCards, setVisibleCards] = useState<number[]>([0, 1]);
   const [hidingCards, setHidingCards] = useState<number[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.3 });
 
-  useEffect(() => {
-    const cycle = () => {
-      setTimeout(() => setIsFanned(true), 1500);
-      setTimeout(() => setIsFanned(false), 9000);
-    };
-
-    cycle();
-    const interval = setInterval(cycle, 12000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Professional sequential card animation
+  // Professional sequential card animation - Always keep 2 cards visible
   useEffect(() => {
     if (!isInView) {
-      setVisibleCards([]);
+      setVisibleCards([0, 1]); // Keep first 2 cards visible
       setHidingCards([]);
       return;
     }
@@ -61,35 +47,38 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     const displayTime = 4000; // How long all cards stay visible
     const hideDelay = 800;
 
+    // Initialize with first 2 cards visible
+    setVisibleCards([0, 1]);
+
     const runSequence = () => {
-      // Show cards one by one
-      for (let i = 0; i < totalCards; i++) {
+      // Show remaining cards one by one (starting from card 2)
+      for (let i = 2; i < totalCards; i++) {
         setTimeout(() => {
           setVisibleCards(prev => [...prev, i]);
-        }, i * showDelay);
+        }, (i - 2) * showDelay);
       }
 
-      // After display time, hide cards one by one
+      // After display time, hide cards one by one, but keep first 2
       setTimeout(() => {
-        for (let i = 0; i < totalCards; i++) {
+        for (let i = totalCards - 1; i >= 2; i--) {
           setTimeout(() => {
             setHidingCards(prev => [...prev, i]);
-          }, i * hideDelay);
+          }, (totalCards - 1 - i) * hideDelay);
         }
 
-        // Clear all after hiding
+        // Clear hiding cards and reset to show first 2
         setTimeout(() => {
-          setVisibleCards([]);
+          setVisibleCards([0, 1]);
           setHidingCards([]);
-        }, totalCards * hideDelay + 500);
-      }, totalCards * showDelay + displayTime);
+        }, (totalCards - 2) * hideDelay + 500);
+      }, (totalCards - 2) * showDelay + displayTime);
     };
 
     // Initial run
-    runSequence();
+    setTimeout(runSequence, 1000);
 
     // Repeat the sequence
-    const cycleTime = (totalCards * showDelay) + displayTime + (totalCards * hideDelay) + 1000;
+    const cycleTime = ((totalCards - 2) * showDelay) + displayTime + ((totalCards - 2) * hideDelay) + 2000;
     const interval = setInterval(runSequence, cycleTime);
 
     return () => clearInterval(interval);
@@ -102,40 +91,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
       setVisibleCards(prev => [...prev, index]);
     }
   };
-
-  const handleFannedCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % auditors.length);
-  };
-
-  const getCardStyle = (index: number, totalCards: number) => {
-    const centerIndex = (totalCards - 1) / 2;
-    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
-    const offset = adjustedIndex - centerIndex;
-    
-    if (isFanned) {
-      return {
-        x: offset * 85,
-        y: Math.abs(offset) * -45,
-        rotateY: offset * -8,
-        rotateZ: offset * 8,
-        scale: 1,
-        opacity: 1,
-        zIndex: totalCards - Math.abs(offset),
-      };
-    } else {
-      return {
-        x: 180,
-        y: 80,
-        rotateY: 0,
-        rotateZ: -25,
-        scale: 0.98,
-        opacity: adjustedIndex === 0 ? 1 : 0,
-        zIndex: totalCards - adjustedIndex,
-      };
-    }
-  };
-
-  const visibleAuditors = auditors;
 
   return (
     <section 
@@ -340,95 +295,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           </AnimatePresence>
 
           <div className="relative z-10">
-            
-            {/* Auditor Cards - Top Right Corner */}
-            <div className="absolute top-0 right-0 z-30">
-              <div 
-                className="relative w-full"
-                style={{ perspective: "2000px" }}
-              >
-                <div className="relative h-[350px] w-[350px] flex items-center justify-center">
-                  {visibleAuditors.map((auditor, auditorIndex) => {
-                    const style = getCardStyle(auditorIndex, visibleAuditors.length);
-                    
-                    return (
-                      <motion.div
-                        key={auditor.location + auditor.region}
-                        className="absolute cursor-pointer"
-                        onClick={handleFannedCardClick}
-                        initial={false}
-                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                        animate={{
-                          x: style.x,
-                          y: style.y,
-                          rotateY: style.rotateY,
-                          rotateZ: style.rotateZ,
-                          scale: style.scale,
-                          opacity: style.opacity,
-                          zIndex: style.zIndex,
-                        }}
-                        transition={{
-                          duration: 1.8,
-                          delay: isFanned ? auditorIndex * 0.12 : (visibleAuditors.length - auditorIndex) * 0.08,
-                          ease: [0.33, 1, 0.68, 1],
-                          type: "tween",
-                        }}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          willChange: "transform, opacity",
-                        }}
-                      >
-                        <div
-                          className={`relative w-[132px] h-[168px] rounded-2xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                          style={{
-                            boxShadow: `
-                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                              0 0 30px rgba(236, 72, 153, 0.2)
-                            `,
-                          }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                          
-                          <div className="absolute inset-0 flex items-center justify-center pt-5">
-                            <div className="relative w-[84px] h-[84px] rounded-full overflow-hidden border-2 border-white/10">
-                              <img
-                                src={auditor.image}
-                                alt={`Professional auditor from ${auditor.location}`}
-                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                              />
-                              <div 
-                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                style={{
-                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                }}
-                              />
-                            </div>
-                          </div>
-
-                          <div className="absolute bottom-3 left-0 right-0 flex justify-center px-3">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 w-full">
-                              <p className="text-white font-sans font-bold text-xs text-center">
-                                {auditor.location}
-                              </p>
-                              <p className="text-white/80 font-sans text-[10px] text-center">
-                                {auditor.region}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div 
-                            className="absolute inset-0 pointer-events-none rounded-3xl"
-                            style={{
-                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                            }}
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
 
             {/* Left Column: Text Content */}
             <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl">
