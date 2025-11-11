@@ -626,40 +626,139 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
 };
 
 // Global Network Map Section
-const GlobalNetworkMapSection = () => {
+const GlobalNetworkMapSection = ({ auditors }: { auditors: any[] }) => {
+  const [visibleAuditors] = useState(auditors.slice(0, 6));
+  
+  // Define marker locations on the map (approximate positions)
+  const markerLocations = [
+    { top: '30%', left: '20%', delay: 0 },      // North America
+    { top: '40%', left: '48%', delay: 0.2 },    // Europe
+    { top: '35%', left: '68%', delay: 0.4 },    // Asia
+    { top: '55%', left: '15%', delay: 0.6 },    // South America
+    { top: '60%', left: '50%', delay: 0.8 },    // Africa
+    { top: '65%', left: '75%', delay: 1 },      // Australia
+  ];
+
   return (
     <section
       data-nav-theme="light"
-      className="relative py-32 px-4 sm:px-6 overflow-hidden"
+      className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
       style={{ background: "transparent" }}
     >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="relative w-full" style={{ minHeight: '600px' }}>
-          {/* Dotted World Map - Prominent Display */}
-          <div 
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-              opacity: 0.6,
-            }}
-          />
+      <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 xl:gap-20 2xl:gap-28 items-end relative">
           
-          {/* Optional overlay content */}
-          <div className="relative z-10 flex items-center justify-center h-full">
+          {/* Left Column: Text Content */}
+          <div className="flex flex-col space-y-6 md:space-y-8 text-left">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
+              className="flex items-center gap-3"
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Worldwide Coverage
-              </h3>
-              <p className="text-lg md:text-xl text-gray-600">
-                Auditors available in 90+ countries
-              </p>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
             </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+            >
+              Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-base md:text-lg text-gray-600 leading-relaxed"
+            >
+              Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-3 group">
+                <span>Learn more</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Right Column: World Map with Animated Markers and Auditor Cards */}
+          <div className="relative w-full" style={{ minHeight: '500px' }}>
+            {/* Dotted World Map Background */}
+            <div 
+              className="absolute inset-0 flex items-end justify-center pb-12"
+              style={{
+                background: `url(${dottedWorldMap}) center bottom / contain no-repeat`,
+                opacity: 0.6,
+              }}
+            >
+              {/* Animated Blue Markers on Map */}
+              {markerLocations.map((location, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute w-3 h-3 rounded-full bg-[#14B8A6]"
+                  style={{
+                    top: location.top,
+                    left: location.left,
+                    boxShadow: '0 0 20px rgba(20, 184, 166, 0.8)',
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [1, 0.5, 1],
+                  }}
+                  transition={{
+                    delay: location.delay,
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Auditor Cards Overlay */}
+            <div className="absolute top-0 right-0 flex gap-4">
+              {visibleAuditors.slice(0, 3).map((auditor, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="w-32 h-40 rounded-2xl overflow-hidden shadow-lg"
+                  style={{
+                    background: `linear-gradient(135deg, ${['#2563eb', '#14b8a6', '#6366f1'][index]}, ${['#1e40af', '#0d9488', '#4f46e5'][index]})`,
+                  }}
+                >
+                  <div className="relative w-full h-full p-3 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 rounded-full overflow-hidden mb-2 border-2 border-white/30">
+                      <img
+                        src={auditor.image}
+                        alt={auditor.location}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-white font-bold text-xs text-center">{auditor.location}</p>
+                    <p className="text-white/80 text-[10px] text-center">{auditor.region}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -1588,7 +1687,7 @@ const ScanProPlus = () => {
       {isMobile ? <MobileFeaturesSection auditors={auditors} /> : <DesktopFeaturesSection auditors={auditors} scrollToSection={scrollToSection} />}
 
       {/* Global Network Map Section */}
-      <GlobalNetworkMapSection />
+      <GlobalNetworkMapSection auditors={auditors} />
 
       {/* Capabilities Section */}
       {isMobile ? <MobileCapabilitiesSection features={features} /> : <DesktopCapabilitiesSection features={features} />}
