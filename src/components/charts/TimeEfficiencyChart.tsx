@@ -7,9 +7,9 @@ const TimeEfficiencyChart = () => {
   const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const phases = [
-    { name: 'Auditor Search', traditional: 14, scanpro: 1, color: '#3B82F6' },
-    { name: 'Preparation', traditional: 7, scanpro: 1, color: '#14B8A6' },
-    { name: 'On-site Audit', traditional: 3, scanpro: 1, color: '#6B7280' },
+    { name: 'Auditor Search', traditional: 14, scanpro: 0.7, color: '#3B82F6' },
+    { name: 'Preparation', traditional: 7, scanpro: 0.7, color: '#14B8A6' },
+    { name: 'On-site Audit', traditional: 3, scanpro: 0.7, color: '#6B7280' },
     { name: 'Report', traditional: 10, scanpro: 0.5, color: '#3B82F6' },
   ];
 
