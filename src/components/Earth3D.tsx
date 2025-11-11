@@ -3,18 +3,98 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin } from 'lucide-react';
 import worldMapGlobe from '@/assets/world-map-globe.png';
 
-const EarthSphere = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
+// Location pins data with lat/long coordinates
+const locationPins3D = [
+  { id: 1, lat: 40, lon: -100, visible: true },  // North America
+  { id: 2, lat: 50, lon: 10, visible: true },    // Europe
+  { id: 3, lat: 35, lon: 105, visible: true },   // Asia
+  { id: 4, lat: -15, lon: -60, visible: true },  // South America
+  { id: 5, lat: 0, lon: 20, visible: true },     // Africa
+];
+
+// Convert lat/lon to 3D coordinates
+const latLonToVector3 = (lat: number, lon: number, radius: number) => {
+  const phi = (90 - lat) * (Math.PI / 180);
+  const theta = (lon + 180) * (Math.PI / 180);
+
+  const x = -(radius * Math.sin(phi) * Math.cos(theta));
+  const z = radius * Math.sin(phi) * Math.sin(theta);
+  const y = radius * Math.cos(phi);
+
+  return new THREE.Vector3(x, y, z);
+};
+
+// 3D Pin Component
+const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolean }) => {
+  const pinRef = useRef<THREE.Group>(null);
+  const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    if (visible) {
+      setScale(1);
+    } else {
+      setScale(0);
+    }
+  }, [visible]);
+
+  useFrame(() => {
+    if (pinRef.current) {
+      // Make pin always face camera
+      pinRef.current.lookAt(0, 0, 0);
+      pinRef.current.rotateY(Math.PI);
+    }
+  });
+
+  return (
+    <group ref={pinRef} position={position} scale={scale}>
+      {/* Pin body */}
+      <mesh position={[0, 0.15, 0]}>
+        <cylinderGeometry args={[0.08, 0.08, 0.3, 16]} />
+        <meshStandardMaterial color="#14B8A6" />
+      </mesh>
+      
+      {/* Pin head */}
+      <mesh position={[0, 0.35, 0]}>
+        <sphereGeometry args={[0.12, 16, 16]} />
+        <meshStandardMaterial color="#14B8A6" emissive="#14B8A6" emissiveIntensity={0.3} />
+      </mesh>
+
+      {/* White circle inside pin head */}
+      <mesh position={[0, 0.35, 0.11]}>
+        <circleGeometry args={[0.08, 16]} />
+        <meshBasicMaterial color="#ffffff" />
+      </mesh>
+
+      {/* User icon (simplified) */}
+      <mesh position={[0, 0.4, 0.12]}>
+        <sphereGeometry args={[0.03, 16, 16]} />
+        <meshBasicMaterial color="#14B8A6" />
+      </mesh>
+      <mesh position={[0, 0.32, 0.12]}>
+        <cylinderGeometry args={[0.04, 0.05, 0.06, 16]} />
+        <meshBasicMaterial color="#14B8A6" />
+      </mesh>
+
+      {/* Pin pointer */}
+      <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
+        <coneGeometry args={[0.08, 0.15, 16]} />
+        <meshStandardMaterial color="#0D9488" />
+      </mesh>
+    </group>
+  );
+};
+
+const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins: number[] }) => {
+  const groupRef = useRef<THREE.Group>(null);
   const glowRef = useRef<THREE.Mesh>(null);
   const texture = useLoader(THREE.TextureLoader, worldMapGlobe);
 
   // Rotate the earth with pulsing glow animation
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.001; // Smooth rotation
+    if (groupRef.current) {
+      groupRef.current.rotation.y += 0.001; // Smooth rotation
     }
     if (glowRef.current) {
       // Subtle pulsing glow effect
@@ -25,17 +105,28 @@ const EarthSphere = () => {
 
   return (
     <>
-      {/* Main Earth with high-contrast dotted map texture */}
-      <Sphere ref={meshRef} args={[2.875, 128, 128]}>
-        <meshStandardMaterial
-          map={texture}
-          emissive="#2563eb"
-          emissiveIntensity={0.7}
-          roughness={0.6}
-          metalness={0.3}
-          toneMapped={false}
-        />
-      </Sphere>
+      <group ref={groupRef}>
+        {/* Main Earth with high-contrast dotted map texture */}
+        <Sphere args={[2.875, 128, 128]}>
+          <meshStandardMaterial
+            map={texture}
+            emissive="#2563eb"
+            emissiveIntensity={0.7}
+            roughness={0.6}
+            metalness={0.3}
+            toneMapped={false}
+          />
+        </Sphere>
+
+        {/* 3D Pins attached to globe */}
+        {showPins && locationPins3D.map((pin) => (
+          <Pin3D
+            key={pin.id}
+            position={latLonToVector3(pin.lat, pin.lon, 2.875)}
+            visible={visiblePins.includes(pin.id)}
+          />
+        ))}
+      </group>
       
       {/* Animated outer glow sphere */}
       <Sphere ref={glowRef} args={[3.15, 64, 64]}>
@@ -61,15 +152,6 @@ const EarthSphere = () => {
   );
 };
 
-// Location pins data - positioned around the globe
-const locationPins = [
-  { id: 1, top: '25%', left: '20%' },  // North America
-  { id: 2, top: '35%', left: '50%' },  // Europe
-  { id: 3, top: '45%', left: '75%' },  // Asia
-  { id: 4, top: '60%', left: '30%' },  // South America
-  { id: 5, top: '55%', left: '55%' },  // Africa
-];
-
 const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width?: string; height?: string; showPins?: boolean }) => {
   const [visiblePins, setVisiblePins] = useState<number[]>([]);
 
@@ -80,9 +162,9 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
     const pinSequence: number[] = [];
 
     const interval = setInterval(() => {
-      if (pinSequence.length < locationPins.length) {
+      if (pinSequence.length < locationPins3D.length) {
         // Add a new pin
-        pinSequence.push(locationPins[currentIndex].id);
+        pinSequence.push(locationPins3D[currentIndex].id);
         setVisiblePins([...pinSequence]);
         currentIndex++;
       } else {
@@ -134,8 +216,8 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
         <pointLight position={[5, 0, 5]} intensity={2.5} color="#3b82f6" />
         <pointLight position={[0, 5, 0]} intensity={1.5} color="#60a5fa" />
         
-        {/* The Earth with dotted map */}
-        <EarthSphere />
+        {/* The Earth with dotted map and 3D pins */}
+        <EarthSphere showPins={showPins} visiblePins={visiblePins} />
         
         {/* Allow manual rotation */}
         <OrbitControls
@@ -145,46 +227,6 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
           autoRotateSpeed={0.15}
         />
       </Canvas>
-
-      {/* Location Pins Overlay */}
-      {showPins && (
-        <div className="absolute inset-0 pointer-events-none">
-          <AnimatePresence>
-            {locationPins.map((pin) => 
-              visiblePins.includes(pin.id) && (
-                <motion.div
-                  key={pin.id}
-                  initial={{ scale: 0, opacity: 0, y: 20 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0, opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8, ease: "backOut" }}
-                  className="absolute"
-                  style={{ top: pin.top, left: pin.left, transform: 'translate(-50%, -100%)' }}
-                >
-                  {/* Green location pin - responsive size */}
-                  <div className="relative">
-                    {/* Pin body */}
-                    <div className="w-7 h-10 sm:w-12 sm:h-16 bg-gradient-to-b from-[#14B8A6] to-[#0D9488] rounded-t-full rounded-b-full relative shadow-lg border border-white sm:border-2">
-                      {/* User icon circle */}
-                      <div className="absolute top-1 sm:top-2 left-1/2 -translate-x-1/2 w-5 h-5 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-3 h-3 sm:w-5 sm:h-5 text-[#14B8A6]"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                      </div>
-                      {/* Pin pointer */}
-                      <div className="absolute -bottom-1 sm:-bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] sm:border-l-[8px] border-r-[5px] sm:border-r-[8px] border-t-[8px] sm:border-t-[12px] border-l-transparent border-r-transparent border-t-[#0D9488]" />
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            )}
-          </AnimatePresence>
-        </div>
-      )}
     </div>
   );
 };
