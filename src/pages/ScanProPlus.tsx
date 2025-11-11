@@ -111,7 +111,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 className="flex items-center gap-3"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
+                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
               <motion.h2
@@ -153,7 +153,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 className="relative w-full"
                 style={{ perspective: "2000px" }}
               >
-                <div className="relative h-[530px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center pt-32">
+                <div className="relative h-[530px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center pt-56">
                   {visibleAuditors.map((auditor, auditorIndex) => {
                     const style = getCardStyle(auditorIndex, visibleAuditors.length);
                     
