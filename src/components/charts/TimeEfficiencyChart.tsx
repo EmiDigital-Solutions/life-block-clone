@@ -64,30 +64,39 @@ const TimeEfficiencyChart = () => {
               ScanPro+ Approach
             </h4>
           </div>
-          <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalScanPro / maxTotal) * 100}%` }}>
-            {phases.map((phase, idx) => {
-              const width = (phase.scanpro / totalScanPro) * 100;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ width: 0 }}
-                  animate={{ width: isVisible ? `${width}%` : 0 }}
-                  transition={{ 
-                    delay: idx * 0.15 + 0.6, 
-                    duration: 1.2,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  className="relative group cursor-pointer"
-                  style={{ backgroundColor: phase.color }}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white font-bold text-sm opacity-0 group-hover:opacity-100">
-                      {phase.scanpro}d
-                    </span>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div className="relative flex items-center gap-4">
+            <div className="flex gap-1 h-16 rounded-xl overflow-hidden bg-black/30" style={{ width: `${(totalScanPro / maxTotal) * 100}%` }}>
+              {phases.map((phase, idx) => {
+                const width = (phase.scanpro / totalScanPro) * 100;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ width: 0 }}
+                    animate={{ width: isVisible ? `${width}%` : 0 }}
+                    transition={{ 
+                      delay: idx * 0.15 + 0.6, 
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    className="relative group cursor-pointer"
+                    style={{ backgroundColor: phase.color }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm opacity-0 group-hover:opacity-100">
+                        {phase.scanpro}d
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            >
+              <span className="text-2xl font-black text-emerald-400">{totalScanPro} days</span>
+            </motion.div>
           </div>
         </div>
       </div>
