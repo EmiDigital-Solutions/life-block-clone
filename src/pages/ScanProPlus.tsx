@@ -95,7 +95,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 className="flex items-center gap-3"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
+                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
               <motion.h2
