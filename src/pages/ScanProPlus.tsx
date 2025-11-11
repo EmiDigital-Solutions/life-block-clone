@@ -2081,14 +2081,21 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Results Section - Dark gradient with Modern Animated Charts */}
+      {/* Results Section - Transparent Multi-Layer Glass-Morphism Design */}
       <section 
         data-nav-theme="dark" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
+        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
         id="results"
       >
-        <div className="container mx-auto max-w-7xl">
+        {/* Background decorative layers */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 -right-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto max-w-7xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2103,7 +2110,7 @@ const ScanProPlus = () => {
             </p>
           </motion.div>
 
-          {/* Animated Metric Cards with Progress Bars */}
+          {/* Multi-layer Transparent Metric Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
@@ -2117,43 +2124,56 @@ const ScanProPlus = () => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: metric.delay, duration: 0.5 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all group"
+                className="relative group"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
-                  className="text-5xl font-bold mb-2"
-                  style={{ color: metric.color }}
-                >
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: metric.delay + 0.4 }}
-                  >
-                    {metric.value}{metric.suffix}
-                  </motion.span>
-                </motion.div>
-                <p className="text-white/80 font-medium mb-3">{metric.label}</p>
+                {/* Outer glow layer */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
                 
-                {/* Animated Progress Bar */}
-                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${metric.value}%` }}
-                    viewport={{ once: true }}
-                    transition={{ delay: metric.delay + 0.5, duration: 1.2, ease: "easeOut" }}
-                    className="h-full rounded-full"
-                    style={{ background: `linear-gradient(90deg, ${metric.color}, ${metric.color}dd)` }}
-                  />
+                {/* Main glass card */}
+                <div className="relative bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all shadow-2xl">
+                  {/* Inner glow overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-2xl" />
+                  
+                  <div className="relative z-10">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
+                      className="text-5xl font-bold mb-2"
+                      style={{ color: metric.color }}
+                    >
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: metric.delay + 0.4 }}
+                      >
+                        {metric.value}{metric.suffix}
+                      </motion.span>
+                    </motion.div>
+                    <p className="text-white/90 font-medium mb-3">{metric.label}</p>
+                    
+                    {/* Animated Progress Bar with glass effect */}
+                    <div className="h-1.5 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden border border-white/10">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${metric.value}%` }}
+                        viewport={{ once: true }}
+                        transition={{ delay: metric.delay + 0.5, duration: 1.2, ease: "easeOut" }}
+                        className="h-full rounded-full relative"
+                        style={{ background: `linear-gradient(90deg, ${metric.color}, ${metric.color}dd)` }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Chart Grid */}
+          {/* Chart Grid with Enhanced Glass-Morphism */}
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             
             {/* Cost Comparison Bar Chart */}
@@ -2162,12 +2182,24 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-black/20 backdrop-blur-sm rounded-3xl p-8"
+              className="relative group"
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Cost Comparison</h3>
-              <p className="text-gray-400 mb-6">Traditional vs ScanPro+ per audit</p>
+              {/* Outer glow */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
-              <BusinessImpactChart />
+              {/* Main glass container */}
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+                {/* Multi-layer gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-blue-500/[0.03] via-transparent to-transparent rounded-3xl" />
+                
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-white mb-2">Cost Comparison</h3>
+                  <p className="text-white/60 mb-6">Traditional vs ScanPro+ per audit</p>
+                  
+                  <BusinessImpactChart />
+                </div>
+              </div>
             </motion.div>
 
             {/* ROI Timeline Chart */}
@@ -2176,27 +2208,51 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-black/20 backdrop-blur-sm rounded-3xl p-8"
+              className="relative group"
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
-              <p className="text-gray-400 mb-6">12-month projection (20 audits/year)</p>
+              {/* Outer glow */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
               
-              <ROITimelineChart />
+              {/* Main glass container */}
+              <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+                {/* Multi-layer gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-teal-500/[0.03] via-transparent to-transparent rounded-3xl" />
+                
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-white mb-2">Cumulative Savings</h3>
+                  <p className="text-white/60 mb-6">12-month projection (20 audits/year)</p>
+                  
+                  <ROITimelineChart />
+                </div>
+              </div>
             </motion.div>
           </div>
 
-          {/* Full-width Time Efficiency Chart */}
+          {/* Full-width Time Efficiency Chart with Premium Glass Effect */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-black/20 backdrop-blur-sm rounded-3xl p-8"
+            className="relative group"
           >
-            <h3 className="text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
-            <p className="text-gray-400 mb-6">End-to-end audit process duration</p>
+            {/* Outer glow */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-blue-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all" />
             
-            <TimeEfficiencyChart />
+            {/* Main glass container */}
+            <div className="relative bg-white/[0.02] backdrop-blur-2xl rounded-3xl p-8 border border-white/10 shadow-2xl">
+              {/* Multi-layer gradient overlays */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/[0.02] via-transparent to-teal-500/[0.02] rounded-3xl" />
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-2">Time-to-Audit Comparison</h3>
+                <p className="text-white/60 mb-6">End-to-end audit process duration</p>
+                
+                <TimeEfficiencyChart />
+              </div>
+            </div>
           </motion.div>
 
         </div>
