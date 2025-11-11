@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
@@ -330,6 +330,83 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
   );
 };
 
+// Map Location Marker Component with Tooltip
+const MapLocationMarker = ({ 
+  name, 
+  availability, 
+  left, 
+  top, 
+  delay 
+}: { 
+  name: string; 
+  availability: string; 
+  left: string; 
+  top: string; 
+  delay: number;
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ scale: 0, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.4, type: "spring" }}
+      className="absolute cursor-pointer group"
+      style={{ left, top, transform: 'translate(-50%, -50%)' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Pulsing ring animation */}
+      <motion.div
+        className="absolute inset-0 rounded-full bg-[#14B8A6]"
+        animate={{
+          scale: [1, 1.8, 1],
+          opacity: [0.6, 0, 0.6],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{ width: '20px', height: '20px', left: '-10px', top: '-10px' }}
+      />
+      
+      {/* Main marker dot */}
+      <motion.div
+        className="w-3 h-3 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg relative z-10"
+        whileHover={{ scale: 1.3 }}
+        transition={{ duration: 0.2 }}
+      />
+
+      {/* Tooltip */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 pointer-events-none z-20"
+          >
+            <div className="bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl min-w-[160px]">
+              <p className="font-semibold text-sm whitespace-nowrap">{name}</p>
+              <div className="flex items-center gap-2 mt-1">
+                <div className="w-2 h-2 rounded-full bg-[#2ECC71] animate-pulse" />
+                <p className="text-xs text-gray-300">{availability}</p>
+              </div>
+            </div>
+            {/* Tooltip arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px]">
+              <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-gray-900" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 // Mobile Features Section - Auditor Network Only
 const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
   const [isFanned, setIsFanned] = useState(false);
@@ -526,24 +603,46 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
             </div>
           </div>
           
-          {/* Dotted World Map at bottom */}
+          {/* Dotted World Map at bottom with interactive markers */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="absolute bottom-0"
+            className="absolute bottom-0 pointer-events-none"
             style={{ 
               left: '10.52%', 
               right: '10.52%',
               width: '79%'
             }}
           >
-            <img 
-              src={dottedWorldMap} 
-              alt="Global Network Map" 
-              className="w-full h-auto opacity-30"
-            />
+            <div className="relative pointer-events-auto">
+              <img 
+                src={dottedWorldMap} 
+                alt="Global Network Map" 
+                className="w-full h-auto opacity-30"
+              />
+              
+              {/* Interactive Location Markers */}
+              {[
+                { name: 'North America', availability: '24/7', left: '15%', top: '30%', delay: 0.5 },
+                { name: 'South America', availability: 'Next Day', left: '25%', top: '65%', delay: 0.6 },
+                { name: 'Europe', availability: '24/7', left: '48%', top: '25%', delay: 0.7 },
+                { name: 'Middle East', availability: 'Same Day', left: '58%', top: '45%', delay: 0.8 },
+                { name: 'Africa', availability: 'Next Day', left: '52%', top: '60%', delay: 0.9 },
+                { name: 'Asia', availability: '24/7', left: '75%', top: '35%', delay: 1.0 },
+                { name: 'Oceania', availability: 'Same Day', left: '85%', top: '70%', delay: 1.1 },
+              ].map((location, index) => (
+                <MapLocationMarker
+                  key={location.name}
+                  name={location.name}
+                  availability={location.availability}
+                  left={location.left}
+                  top={location.top}
+                  delay={location.delay}
+                />
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
