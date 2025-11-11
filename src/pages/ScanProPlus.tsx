@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
+import Earth3D from "@/components/Earth3D";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
@@ -1145,43 +1146,9 @@ const HowItWorksCarousel = () => {
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
-          {/* World Map with 1-Click Button */}
+          {/* 3D Earth */}
           <div className="relative w-[500px] h-[400px]">
-            {/* Animated glow effect behind globe */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div 
-                className="w-[400px] h-[350px] rounded-full bg-blue-500/20 blur-3xl"
-                animate={{ 
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </div>
-            
-            {/* Dotted World Map Pattern with blue pixel effect */}
-            <div className="relative w-full h-full z-10" style={{ perspective: '1000px' }}>
-              <motion.img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.9)]"
-                style={{
-                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
-                }}
-                animate={{ 
-                  rotateY: [0, 360]
-                }}
-                transition={{ 
-                  duration: 20, 
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            </div>
+            <Earth3D width="500px" height="400px" />
             
             {/* Green Location Marker */}
             <motion.div
@@ -1217,41 +1184,7 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           <div className="relative w-[500px] h-[400px]">
-            {/* Animated glow effect behind globe */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div 
-                className="w-[400px] h-[350px] rounded-full bg-blue-500/20 blur-3xl"
-                animate={{ 
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.6, 0.3]
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </div>
-            
-            {/* Dotted World Map Pattern with blue pixel effect */}
-            <div className="relative w-full h-full z-10" style={{ perspective: '1000px' }}>
-              <motion.img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.9)]"
-                style={{
-                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
-                }}
-                animate={{ 
-                  rotateY: [0, 360]
-                }}
-                transition={{ 
-                  duration: 20, 
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            </div>
+            <Earth3D width="500px" height="400px" />
             
             {/* Main Auditor Pin with animation */}
             <motion.div
@@ -1301,39 +1234,9 @@ const HowItWorksCarousel = () => {
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
-          {/* Background Dotted Map with glow */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            {/* Animated glow */}
-            <motion.div 
-              className="absolute w-[350px] h-[300px] rounded-full bg-blue-500/15 blur-3xl"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.2, 0.4, 0.2]
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <div className="relative w-[450px] h-[350px] opacity-20" style={{ perspective: '1000px' }}>
-              <motion.img 
-                src={worldMapGlobe} 
-                alt="World Map" 
-                className="w-full h-full object-contain"
-                style={{
-                  filter: 'hue-rotate(180deg) saturate(2.5) brightness(1.6) contrast(1.4)'
-                }}
-                animate={{ 
-                  rotateY: [0, 360]
-                }}
-                transition={{ 
-                  duration: 25, 
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            </div>
+          {/* Background 3D Earth */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-25">
+            <Earth3D width="450px" height="350px" />
           </div>
           
           {/* Chat Interface in foreground */}
