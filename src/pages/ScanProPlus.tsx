@@ -133,12 +133,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               <motion.div
                 className="absolute w-[600px] h-[600px] rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%)',
                   filter: 'blur(40px)'
                 }}
                 animate={{
                   scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.5, 0.3]
+                  opacity: [0.2, 0.4, 0.2]
                 }}
                 transition={{
                   duration: 4,
@@ -147,12 +147,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 }}
               />
               
-              {/* Main dotted map with enhanced opacity */}
+              {/* Main dotted map with reduced opacity */}
               <motion.div
                 className="absolute w-full h-full"
                 style={{ 
                   background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-                  opacity: 0.6,
+                  opacity: 0.35,
                 }}
                 animate={{ 
                   rotateY: [0, 5, 0, -5, 0],
@@ -166,7 +166,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               />
               
               {/* Animated connection lines overlay */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.3 }}>
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.2 }}>
                 <defs>
                   <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
@@ -379,10 +379,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             })}
           </AnimatePresence>
 
-          <div className="relative z-10">
+          <div className="relative z-30">
 
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl">
+            <div className="flex flex-col space-y-6 md:space-y-8 text-left max-w-2xl bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
