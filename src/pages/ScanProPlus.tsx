@@ -464,19 +464,24 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
     <section
       data-nav-theme="light"
       className="relative py-20 px-4 sm:px-6 pb-32 overflow-visible"
-      style={{ background: "transparent" }}
+      style={{ background: "linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%)" }}
     >
       <div className="max-w-[2000px] mx-auto" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[700px]">
           
           {/* Dotted World Map Background - HIGHLY VISIBLE */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none" style={{ zIndex: 0 }}>
+          <div className="absolute inset-0 flex items-center justify-center overflow-visible pointer-events-none" style={{ zIndex: 0, top: '-10%' }}>
             <img 
               src={dottedWorldMap} 
               alt="Global Network Map" 
-              className="w-full max-w-[1200px] h-auto"
-              style={{ opacity: 0.8 }}
+              className="w-full h-auto"
+              style={{ 
+                opacity: 1,
+                minWidth: '100%',
+                maxWidth: 'none',
+                objectFit: 'contain'
+              }}
             />
           </div>
 
