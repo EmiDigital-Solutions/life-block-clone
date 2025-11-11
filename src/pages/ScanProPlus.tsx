@@ -1148,7 +1148,7 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* 3D Earth */}
           <div className="relative w-[500px] h-[400px]">
-            <Earth3D width="500px" height="400px" />
+            <Earth3D width="500px" height="400px" showPins={true} />
             
             {/* Green Location Marker */}
             <motion.div
@@ -1184,7 +1184,7 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           <div className="relative w-[500px] h-[400px]">
-            <Earth3D width="500px" height="400px" />
+            <Earth3D width="500px" height="400px" showPins={true} />
             
             {/* Main Auditor Pin with animation */}
             <motion.div
@@ -1445,7 +1445,7 @@ const HowItWorksCarousel = () => {
         {/* Carousel Container */}
         <div className="relative">
           {/* Cards Display */}
-          <div className="overflow-hidden">
+          <div className="overflow-x-hidden overflow-y-visible pb-24">
             <motion.div 
               className="flex transition-transform duration-500 ease-out"
               animate={{ x: `-${currentStep * 100}%` }}

@@ -1,7 +1,9 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Sphere, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 import worldMapGlobe from '@/assets/world-map-globe.png';
 
 const EarthSphere = () => {
@@ -41,7 +43,45 @@ const EarthSphere = () => {
   );
 };
 
-const Earth3D = ({ width = "100%", height = "400px" }: { width?: string; height?: string }) => {
+// Location pins data - positioned around the globe
+const locationPins = [
+  { id: 1, top: '25%', left: '20%' },  // North America
+  { id: 2, top: '35%', left: '50%' },  // Europe
+  { id: 3, top: '45%', left: '75%' },  // Asia
+  { id: 4, top: '60%', left: '30%' },  // South America
+  { id: 5, top: '55%', left: '55%' },  // Africa
+];
+
+const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width?: string; height?: string; showPins?: boolean }) => {
+  const [visiblePins, setVisiblePins] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!showPins) return;
+
+    let currentIndex = 0;
+    const pinSequence: number[] = [];
+
+    const interval = setInterval(() => {
+      if (pinSequence.length < locationPins.length) {
+        // Add a new pin
+        pinSequence.push(locationPins[currentIndex].id);
+        setVisiblePins([...pinSequence]);
+        currentIndex++;
+      } else {
+        // Start removing pins one by one
+        pinSequence.shift();
+        setVisiblePins([...pinSequence]);
+        
+        // Reset when all pins are removed
+        if (pinSequence.length === 0) {
+          currentIndex = 0;
+        }
+      }
+    }, 1500); // Show/hide one pin every 1.5 seconds
+
+    return () => clearInterval(interval);
+  }, [showPins]);
+
   return (
     <div style={{ width, height, position: 'relative', overflow: 'visible' }}>
       {/* Animated background glow */}
@@ -77,6 +117,52 @@ const Earth3D = ({ width = "100%", height = "400px" }: { width?: string; height?
           autoRotateSpeed={0.15}
         />
       </Canvas>
+
+      {/* Location Pins Overlay */}
+      {showPins && (
+        <div className="absolute inset-0 pointer-events-none">
+          <AnimatePresence>
+            {locationPins.map((pin) => 
+              visiblePins.includes(pin.id) && (
+                <motion.div
+                  key={pin.id}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "backOut" }}
+                  className="absolute"
+                  style={{ top: pin.top, left: pin.left, transform: 'translate(-50%, -100%)' }}
+                >
+                  {/* Green location pin */}
+                  <div className="relative">
+                    {/* Pin body */}
+                    <div className="w-12 h-16 bg-gradient-to-b from-[#14B8A6] to-[#0D9488] rounded-t-full rounded-b-full relative shadow-lg border-2 border-white">
+                      {/* User icon circle */}
+                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-[#14B8A6]"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                      </div>
+                      {/* Pin pointer */}
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[12px] border-l-transparent border-r-transparent border-t-[#0D9488]" />
+                    </div>
+                    {/* Pulsing ring */}
+                    <motion.div
+                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-[#14B8A6]"
+                    />
+                  </div>
+                </motion.div>
+              )
+            )}
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 };
