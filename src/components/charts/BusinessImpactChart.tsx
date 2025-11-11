@@ -1,98 +1,80 @@
 import { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { motion } from 'framer-motion';
+import { TrendingDown, DollarSign } from 'lucide-react';
 
 const BusinessImpactChart = () => {
-  const [animationComplete, setAnimationComplete] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setAnimationComplete(true), 1500);
+    const timer = setTimeout(() => setIsVisible(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
-  const data = [
+  const metrics = [
     {
-      category: 'Cost per Audit',
-      Traditional: 20000,
-      'ScanPro+': 700,
+      label: 'Traditional Provider',
+      value: 20000,
+      color: '#DC2626',
+      bgColor: 'from-red-500 to-red-600'
     },
     {
-      category: 'Annual Cost (20 audits)',
-      Traditional: 400000,
-      'ScanPro+': 14000,
-    },
+      label: 'ScanPro+',
+      value: 700,
+      color: '#14B8A6',
+      bgColor: 'from-teal-500 to-teal-600'
+    }
   ];
 
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white p-4 rounded-lg shadow-xl border border-gray-200">
-          <p className="font-semibold text-gray-900 mb-2">{payload[0].payload.category}</p>
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-sm" style={{ color: entry.color }}>
-              {entry.name}: €{entry.value.toLocaleString()}
-            </p>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
+  const savings = ((20000 - 700) / 20000 * 100).toFixed(0);
+  const maxValue = 20000;
 
   return (
-    <div className="w-full h-80">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-          barGap={8}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis 
-            dataKey="category" 
-            angle={-15}
-            textAnchor="end"
-            height={80}
-            tick={{ fill: '#6B7280', fontSize: 12 }}
-          />
-          <YAxis 
-            tick={{ fill: '#6B7280', fontSize: 12 }}
-            tickFormatter={(value) => `€${(value / 1000).toFixed(0)}k`}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend 
-            wrapperStyle={{ paddingTop: '20px' }}
-            iconType="circle"
-          />
-          <Bar 
-            dataKey="Traditional" 
-            fill="#DC2626" 
-            radius={[8, 8, 0, 0]}
-            animationDuration={1200}
-            animationBegin={0}
-          />
-          <Bar 
-            dataKey="ScanPro+" 
-            fill="#14B8A6" 
-            radius={[8, 8, 0, 0]}
-            animationDuration={1200}
-            animationBegin={200}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-      
-      {animationComplete && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-4 text-center"
-        >
-          <p className="text-sm text-gray-600">
-            <span className="font-bold text-green-600">96% cost savings</span> with ScanPro+
-          </p>
-        </motion.div>
-      )}
+    <div className="w-full">
+      <div className="space-y-8">
+        {metrics.map((metric, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -20 }}
+            transition={{ delay: idx * 0.2, duration: 0.5 }}
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-semibold text-gray-700">{metric.label}</span>
+              <span className="text-2xl font-bold" style={{ color: metric.color }}>
+                €{metric.value.toLocaleString()}
+              </span>
+            </div>
+            
+            <div className="relative h-16 bg-gray-100 rounded-xl overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: isVisible ? `${(metric.value / maxValue) * 100}%` : 0 }}
+                transition={{ delay: idx * 0.2 + 0.3, duration: 1.2, ease: "easeOut" }}
+                className={`h-full bg-gradient-to-r ${metric.bgColor} rounded-xl relative`}
+              >
+                <div className="absolute inset-0 bg-white/10"></div>
+              </motion.div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="mt-8 p-6 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl border-2 border-green-200"
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+            <TrendingDown className="w-7 h-7 text-white" />
+          </div>
+          <div>
+            <p className="text-sm text-gray-600 mb-1">Cost Reduction per Audit</p>
+            <p className="text-3xl font-bold text-green-600">-{savings}%</p>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
