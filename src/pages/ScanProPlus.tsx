@@ -977,7 +977,7 @@ const ComplianceStandardsGrid = () => {
               </p>
 
               {/* Click indicator */}
-              <div className="text-[10px] sm:text-xs font-semibold text-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+              <div className="text-[10px] sm:text-xs font-semibold text-[#14B8A6] transition-opacity flex items-center justify-center gap-1">
                 Click to learn more
                 <ArrowRight className="w-3 h-3" />
               </div>
