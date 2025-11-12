@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Brain, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X } from "lucide-react";
+import { Check, Search, Save, FileText, Globe, Brain, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, MessageSquare, Tags, FileCheck } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -8,108 +8,56 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { useState, useRef, useEffect } from "react";
+import Earth3D from "@/components/Earth3D";
 
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
   const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [userInput, setUserInput] = useState("");
-  const [aiResponse, setAiResponse] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [showSynonyms, setShowSynonyms] = useState(false);
+  const [showStandards, setShowStandards] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [selectedSynonym, setSelectedSynonym] = useState("");
+  const [selectedStandards, setSelectedStandards] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'ai', message: string}>>([]);
 
-  // Simulated conversation steps
-  const steps = [
-    {
-      step: 1,
-      aiPrompt: "What type of product or service are you looking for?",
-      userResponse: "CNC machining",
-      aiFollowUp: "I understand you're looking for CNC machining. Let me help you refine this. Are you specifically interested in: • Precision CNC machining • Multi-axis CNC operations • High-volume CNC production • Or general CNC machining services?"
-    },
-    {
-      step: 2,
-      aiPrompt: "Great! For precision CNC machining, what industry standards or certifications are important for your project?",
-      userResponse: "ISO 9001 for automotive",
-      aiFollowUp: "Perfect! For automotive applications with ISO 9001, I also recommend considering: • IATF 16949 (automotive quality standard) • TS 16949 (technical specification) • AS9100 (if aerospace crossover) Would you like suppliers with any of these additional certifications?"
-    },
-    {
-      step: 3,
-      aiPrompt: "Excellent! Now let me find suppliers matching your requirements: Precision CNC machining + ISO 9001 + Automotive sector + Optional IATF 16949",
-      userResponse: "Yes, show me the results",
-      aiFollowUp: ""
-    }
+  const productSynonyms = [
+    "Precision CNC Machining",
+    "Multi-axis CNC Operations", 
+    "High-volume CNC Production",
+    "General CNC Machining Services"
   ];
 
-  useEffect(() => {
-    // Initialize first AI message
-    setTimeout(() => {
-      typeAiMessage(steps[0].aiPrompt, () => {
-        setTimeout(() => {
-          typeUserMessage(steps[0].userResponse, () => {
-            setTimeout(() => {
-              typeAiMessage(steps[0].aiFollowUp, () => {
-                setTimeout(() => {
-                  setCurrentStep(2);
-                  typeAiMessage(steps[1].aiPrompt, () => {
-                    setTimeout(() => {
-                      typeUserMessage(steps[1].userResponse, () => {
-                        setTimeout(() => {
-                          typeAiMessage(steps[1].aiFollowUp, () => {
-                            setTimeout(() => {
-                              setCurrentStep(3);
-                              typeAiMessage(steps[2].aiPrompt, () => {
-                                setTimeout(() => {
-                                  setShowResults(true);
-                                }, 1000);
-                              });
-                            }, 1500);
-                          });
-                        }, 1000);
-                      });
-                    }, 1500);
-                  });
-                }, 1000);
-              });
-            }, 1500);
-          });
-        }, 1000);
-      });
-    }, 500);
-  }, []);
+  const industryStandards = [
+    { code: "ISO 9001", name: "Quality Management" },
+    { code: "IATF 16949", name: "Automotive Quality" },
+    { code: "AS9100", name: "Aerospace Quality" },
+    { code: "ISO 13485", name: "Medical Devices" }
+  ];
 
-  const typeAiMessage = (message: string, onComplete: () => void) => {
-    setIsTyping(true);
-    let currentIndex = 0;
-    
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= message.length) {
-        setAiResponse(message.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-        setIsTyping(false);
-        setConversationHistory(prev => [...prev, { role: 'ai', message }]);
-        setAiResponse("");
-        onComplete();
-      }
-    }, 20);
+  const handleProductInput = (product: string) => {
+    setSelectedProduct(product);
+    setCurrentStep(1);
+    setShowSynonyms(true);
   };
 
-  const typeUserMessage = (message: string, onComplete: () => void) => {
-    let currentIndex = 0;
-    
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= message.length) {
-        setUserInput(message.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-        setConversationHistory(prev => [...prev, { role: 'user', message }]);
-        setUserInput("");
-        onComplete();
-      }
-    }, 40);
+  const handleSynonymSelect = (synonym: string) => {
+    setSelectedSynonym(synonym);
+    setCurrentStep(2);
+    setShowStandards(true);
+  };
+
+  const handleStandardToggle = (standard: string) => {
+    setSelectedStandards(prev => 
+      prev.includes(standard) 
+        ? prev.filter(s => s !== standard)
+        : [...prev, standard]
+    );
+  };
+
+  const handleFindSuppliers = () => {
+    setCurrentStep(3);
+    setShowResults(true);
   };
 
   const suppliers = [
@@ -275,129 +223,277 @@ const SearchSuppliers = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 bg-white rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm border border-gray-100"
+              className="lg:col-span-3"
             >
-              {/* Demo Header */}
-              <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-6 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-white/80"></div>
-                  <span className="text-white text-sm font-semibold">SearchPro+ Demo</span>
-                </div>
-                {showResults && <span className="text-white/80 text-xs">4 companies found</span>}
-              </div>
-              
-              <div className="p-6">
-                {/* 3-Step AI Guidance Header */}
-                <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-[#14B8A6]/10 to-[#0D9488]/10 rounded-xl border border-[#14B8A6]/20">
-                  <div className="flex items-center gap-3">
-                    <Brain className="w-5 h-5 text-[#14B8A6]" />
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">AI-Powered Conversational Search</p>
-                      <p className="text-xs text-gray-600">Step-by-step guidance to find your perfect supplier</p>
+              {/* Step Cards with Globe Design */}
+              <div className="space-y-6">
+                {/* Step 1: Product Identification */}
+                <motion.div 
+                  className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="grid grid-cols-12 gap-6 p-8">
+                    {/* Large Step Number */}
+                    <div className="col-span-2 flex items-start justify-center">
+                      <span className="text-8xl font-bold text-gray-100">01</span>
+                    </div>
+
+                    {/* Globe Visualization */}
+                    <div className="col-span-4 flex items-center justify-center">
+                      <div className="relative w-64 h-64">
+                        <Earth3D />
+                        <motion.div
+                          className="absolute top-1/2 right-0 transform translate-x-4 -translate-y-1/2 bg-[#14B8A6] text-white px-4 py-2 rounded-full shadow-lg"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.5, type: "spring" }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <MessageSquare className="w-4 h-4" />
+                            <span className="font-semibold text-sm">AI Guided</span>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="col-span-6 flex flex-col justify-center">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-2 h-2 rounded-full bg-[#14B8A6]"></div>
+                        <span className="text-xs font-semibold text-[#14B8A6] uppercase tracking-wider">Intelligence Step</span>
+                      </div>
+                      
+                      <Badge className="w-fit mb-4 bg-[#14B8A6]/10 text-[#14B8A6] hover:bg-[#14B8A6]/20 border-[#14B8A6]/20">
+                        Step 01
+                      </Badge>
+
+                      <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                        Product Identification
+                      </h3>
+
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        Tell us what product or service you're looking for. Our AI understands natural language and helps refine your search with intelligent suggestions.
+                      </p>
+
+                      {currentStep === 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="space-y-3"
+                        >
+                          <input
+                            type="text"
+                            placeholder="e.g., CNC machining, injection molding..."
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 outline-none transition-all"
+                            onKeyPress={(e) => {
+                              if (e.key === 'Enter' && e.currentTarget.value) {
+                                handleProductInput(e.currentTarget.value);
+                              }
+                            }}
+                          />
+                          <Button
+                            onClick={() => handleProductInput("CNC machining")}
+                            className="w-full bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white"
+                          >
+                            <MessageSquare className="w-4 h-4 mr-2" />
+                            Try Demo: CNC Machining
+                          </Button>
+                        </motion.div>
+                      )}
+
+                      {currentStep >= 1 && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                          <span className="text-gray-700">Product: <strong>{selectedProduct}</strong></span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    {[1, 2, 3].map((step) => (
-                      <div
-                        key={step}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                          step <= currentStep
-                            ? 'bg-[#14B8A6] text-white'
-                            : 'bg-gray-200 text-gray-400'
-                        }`}
-                      >
-                        {step}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                </motion.div>
 
-                {/* Conversation Thread */}
-                <div className="space-y-4 mb-6 max-h-96 overflow-y-auto">
-                  {conversationHistory.map((msg, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[80%] p-4 rounded-2xl ${
-                          msg.role === 'user'
-                            ? 'bg-[#14B8A6] text-white rounded-br-none'
-                            : 'bg-gray-100 text-gray-900 rounded-bl-none'
-                        }`}
-                      >
-                        {msg.role === 'ai' && (
-                          <div className="flex items-center gap-2 mb-2">
-                            <Sparkles className="w-3 h-3 text-[#14B8A6]" />
-                            <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
-                          </div>
-                        )}
-                        <p className="text-sm whitespace-pre-line">{msg.message}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-
-                  {/* Active AI Response (Typing) */}
-                  {aiResponse && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex justify-start"
-                    >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-gray-100 text-gray-900 rounded-bl-none">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Sparkles className="w-3 h-3 text-[#14B8A6]" />
-                          <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
-                          {isTyping && (
-                            <div className="flex gap-1 ml-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                            </div>
-                          )}
-                        </div>
-                        <p className="text-sm whitespace-pre-line">{aiResponse}</p>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Active User Input (Typing) */}
-                  {userInput && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex justify-end"
-                    >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
-                        <p className="text-sm">{userInput}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-
-                {showResults && (
-                  <motion.div
+                {/* Step 2: Synonym Suggestions */}
+                {showSynonyms && (
+                  <motion.div 
+                    className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="space-y-4"
+                    transition={{ delay: 0.2 }}
                   >
+                    <div className="grid grid-cols-12 gap-6 p-8">
+                      <div className="col-span-2 flex items-start justify-center">
+                        <span className="text-8xl font-bold text-gray-100">02</span>
+                      </div>
+
+                      <div className="col-span-4 flex items-center justify-center">
+                        <div className="relative w-48 h-48 bg-gradient-to-br from-[#14B8A6]/20 to-[#0D9488]/20 rounded-3xl flex items-center justify-center">
+                          <Tags className="w-24 h-24 text-[#14B8A6]" />
+                        </div>
+                      </div>
+
+                      <div className="col-span-6 flex flex-col justify-center">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="w-2 h-2 rounded-full bg-[#14B8A6]"></div>
+                          <span className="text-xs font-semibold text-[#14B8A6] uppercase tracking-wider">Intelligence Step</span>
+                        </div>
+                        
+                        <Badge className="w-fit mb-4 bg-[#14B8A6]/10 text-[#14B8A6] hover:bg-[#14B8A6]/20 border-[#14B8A6]/20">
+                          Step 02
+                        </Badge>
+
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                          Refine with Synonyms
+                        </h3>
+
+                        <p className="text-gray-600 mb-6">
+                          Select the most specific term that matches your needs. This helps us find the right suppliers.
+                        </p>
+
+                        {currentStep === 1 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="grid grid-cols-1 gap-3"
+                          >
+                            {productSynonyms.map((synonym, index) => (
+                              <Button
+                                key={index}
+                                variant="outline"
+                                onClick={() => handleSynonymSelect(synonym)}
+                                className="justify-start text-left hover:bg-[#14B8A6]/10 hover:border-[#14B8A6] transition-all"
+                              >
+                                <Tags className="w-4 h-4 mr-2 text-[#14B8A6]" />
+                                {synonym}
+                              </Button>
+                            ))}
+                          </motion.div>
+                        )}
+
+                        {currentStep >= 2 && (
+                          <div className="flex items-center gap-2 text-sm">
+                            <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                            <span className="text-gray-700">Selected: <strong>{selectedSynonym}</strong></span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Step 3: Standards Selection */}
+                {showStandards && (
+                  <motion.div 
+                    className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="grid grid-cols-12 gap-6 p-8">
+                      <div className="col-span-2 flex items-start justify-center">
+                        <span className="text-8xl font-bold text-gray-100">03</span>
+                      </div>
+
+                      <div className="col-span-4 flex items-center justify-center">
+                        <div className="relative w-48 h-48 bg-gradient-to-br from-[#14B8A6]/20 to-[#0D9488]/20 rounded-3xl flex items-center justify-center">
+                          <FileCheck className="w-24 h-24 text-[#14B8A6]" />
+                        </div>
+                      </div>
+
+                      <div className="col-span-6 flex flex-col justify-center">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="w-2 h-2 rounded-full bg-[#14B8A6]"></div>
+                          <span className="text-xs font-semibold text-[#14B8A6] uppercase tracking-wider">Intelligence Step</span>
+                        </div>
+                        
+                        <Badge className="w-fit mb-4 bg-[#14B8A6]/10 text-[#14B8A6] hover:bg-[#14B8A6]/20 border-[#14B8A6]/20">
+                          Step 03
+                        </Badge>
+
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                          Select Standards & Certifications
+                        </h3>
+
+                        <p className="text-gray-600 mb-6">
+                          Choose industry standards and certifications required for your suppliers. Select multiple if needed.
+                        </p>
+
+                        {currentStep === 2 && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="space-y-4"
+                          >
+                            <div className="grid grid-cols-2 gap-3">
+                              {industryStandards.map((standard, index) => (
+                                <Button
+                                  key={index}
+                                  variant={selectedStandards.includes(standard.code) ? "default" : "outline"}
+                                  onClick={() => handleStandardToggle(standard.code)}
+                                  className={`justify-start text-left ${
+                                    selectedStandards.includes(standard.code)
+                                      ? 'bg-[#14B8A6] hover:bg-[#0D9488]'
+                                      : 'hover:bg-[#14B8A6]/10 hover:border-[#14B8A6]'
+                                  }`}
+                                >
+                                  <FileCheck className="w-4 h-4 mr-2" />
+                                  <div>
+                                    <div className="font-semibold">{standard.code}</div>
+                                    <div className="text-xs opacity-80">{standard.name}</div>
+                                  </div>
+                                </Button>
+                              ))}
+                            </div>
+
+                            {selectedStandards.length > 0 && (
+                              <Button
+                                onClick={handleFindSuppliers}
+                                className="w-full bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white"
+                              >
+                                <Search className="w-4 h-4 mr-2" />
+                                Find Suppliers ({selectedStandards.length} {selectedStandards.length === 1 ? 'standard' : 'standards'} selected)
+                              </Button>
+                            )}
+                          </motion.div>
+                        )}
+
+                        {currentStep >= 3 && selectedStandards.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {selectedStandards.map((std, index) => (
+                              <Badge key={index} className="bg-[#14B8A6] text-white">
+                                <FileCheck className="w-3 h-3 mr-1" />
+                                {std}
+                              </Badge>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Results Section */}
+              {showResults && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="mt-8 bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
+                >
+                  <div className="p-8">
                     {/* AI Final Analysis */}
-                    <div className="p-4 bg-gradient-to-r from-blue-50 to-[#14B8A6]/10 border border-[#14B8A6]/30 rounded-xl">
+                    <div className="p-4 mb-6 bg-gradient-to-r from-blue-50 to-[#14B8A6]/10 border border-[#14B8A6]/30 rounded-xl">
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-[#14B8A6] mt-0.5 flex-shrink-0" />
                         <div className="text-sm">
                           <p className="font-semibold text-gray-900 mb-2">✓ Search Complete - Found 4 Perfect Matches</p>
-                          <p className="text-gray-700 text-xs">Based on your requirements: Precision CNC machining • ISO 9001 • Automotive • IATF 16949</p>
+                          <p className="text-gray-700 text-xs">Based on your requirements: {selectedSynonym} • {selectedStandards.join(' • ')}</p>
                         </div>
                       </div>
                     </div>
 
                     {/* Table Headers */}
-                    <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b-2 border-[#14B8A6]/30">
+                    <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b-2 border-[#14B8A6]/30 mb-4">
                       <div>Company Name</div>
                       <div>Location</div>
                       <div>Size</div>
@@ -425,10 +521,9 @@ const SearchSuppliers = () => {
                         </motion.div>
                       ))}
                     </div>
-                  </motion.div>
-                )}
-
-              </div>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           </div>
           
