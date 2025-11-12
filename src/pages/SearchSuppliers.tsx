@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X } from "lucide-react";
+import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -895,11 +895,11 @@ const SearchSuppliers = () => {
                 title: "Intelligent Requirement Capture",
                 description: "AI automatically extracts specifications from natural language or uploaded documents. Upload CAD drawings or datasheets, and AI extracts dimensions, materials, and standards.",
                 detailedExplanation: {
-                  overview: "Transform unstructured information—whether typed descriptions, uploaded PDFs, or technical drawings—into precise, searchable supplier requirements automatically.",
-                  forEngineers: "Upload technical drawings (PDF, DWG, STEP files) and the AI extracts tolerances, material specifications (e.g., 'AISI 316L stainless steel'), surface finish requirements (Ra values), and geometric tolerances (GD&T symbols). Natural language processing converts phrases like 'high-strength aluminum alloy' into specific standards (e.g., 6061-T6, 7075-T651).",
-                  forBuyers: "Eliminate hours of manual RFQ preparation. Simply describe what you need in plain language or forward a technical email from engineering, and the system structures all requirements automatically. This accelerates RFQ cycles from days to minutes.",
-                  forAuditors: "Automatically identify compliance requirements embedded in technical documents. The system flags certifications, testing standards (e.g., 'ASTM E8 tensile testing'), and regulatory references (e.g., 'FDA 21 CFR Part 820'), ensuring nothing is overlooked in supplier qualification.",
-                  example: "A Linde engineer uploads a valve assembly drawing with German annotations. The AI extracts: '316L stainless steel, pressure rating PN40, DIN EN 12516-2 compliance, helium leak test to 1×10⁻⁹ mbar·l/s' and immediately searches for suppliers with these exact capabilities."
+      overview: "Transform unstructured information—whether typed descriptions, uploaded PDFs, or technical drawings—into precise, searchable supplier requirements automatically.",
+      forEngineers: "Upload technical drawings (PDF, DWG, STEP files) and the AI extracts tolerances, material specifications (e.g., 'AISI 316L stainless steel'), surface finish requirements (Ra values), and geometric tolerances (GD&T symbols). Natural language processing converts phrases like 'high-strength aluminum alloy' into specific standards (e.g., 6061-T6, 7075-T651).",
+      forBuyers: "Eliminate hours of manual RFQ preparation. Simply describe what you need in plain language or forward a technical email from engineering, and the system structures all requirements automatically. This accelerates RFQ cycles significantly.",
+      forAuditors: "Automatically identify compliance requirements embedded in technical documents. The system flags certifications, testing standards (e.g., 'ASTM E8 tensile testing'), and regulatory references (e.g., 'FDA 21 CFR Part 820'), ensuring nothing is overlooked in supplier qualification.",
+      example: "Example: Uploading a valve assembly drawing with technical annotations, the AI extracts: '316L stainless steel, pressure rating PN40, DIN EN 12516-2 compliance, helium leak test to 1×10⁻⁹ mbar·l/s' and immediately searches for suppliers with these exact capabilities."
                 }
               },
               {
@@ -907,11 +907,11 @@ const SearchSuppliers = () => {
                 title: "Multi-Factor Matching",
                 description: "Evaluation based on industry, location, certifications, and capacity. Example: LNG plant supplier with PED/ASME certification, max 200km to port, min 500 tons/year steel processing.",
                 detailedExplanation: {
-                  overview: "Simultaneous evaluation across 20+ criteria including technical capabilities, certifications, geographic proximity, production capacity, and industry experience to identify optimal supplier matches.",
-                  forEngineers: "Technical matching evaluates: material processing capabilities (e.g., 'titanium machining'), tolerance capabilities (±0.005mm), surface treatments (anodizing, passivation), testing equipment (CMM, X-ray, ultrasonic), and process certifications (welding qualifications, heat treatment procedures). Weight factors can be adjusted for critical vs. desirable capabilities.",
-                  forBuyers: "Strategic sourcing criteria include: lead time capabilities, minimum order quantities (MOQs), payment terms, Incoterms preferences, and multi-site production capacity. Location-based matching considers logistics costs, trade compliance, and supply chain risk diversification (e.g., 'two qualified suppliers minimum 500km apart').",
-                  forAuditors: "Compliance matching cross-references: industry certifications (automotive, aerospace, medical device), environmental standards (ISO 14001, RoHS, REACH), social responsibility audits (SMETA, SA8000), and customer-specific approvals. The system flags suppliers with recent certification renewals and clean audit histories.",
-                  example: "Mercedes sources a complex stamped part requiring: automotive steel (HSLA), 8,000 tons press capacity, TS16949 + ISO 14001, within 300km of Stuttgart plant, capable of 50,000 units/month. The system returns only 3 suppliers meeting ALL criteria, not 200 partial matches."
+      overview: "Simultaneous evaluation across 20+ criteria including technical capabilities, certifications, geographic proximity, production capacity, and industry experience to identify optimal supplier matches.",
+      forEngineers: "Technical matching evaluates: material processing capabilities (e.g., 'titanium machining'), tolerance capabilities (±0.005mm), surface treatments (anodizing, passivation), testing equipment (CMM, X-ray, ultrasonic), and process certifications (welding qualifications, heat treatment procedures). Weight factors can be adjusted for critical vs. desirable capabilities.",
+      forBuyers: "Strategic sourcing criteria include: minimum order quantities (MOQs), payment terms, Incoterms preferences, and multi-site production capacity. Location-based matching considers logistics costs, trade compliance, and supply chain risk diversification (e.g., 'two qualified suppliers minimum 500km apart').",
+      forAuditors: "Compliance matching cross-references: industry certifications (automotive, aerospace, medical device), environmental standards (ISO 14001, RoHS, REACH), social responsibility audits (SMETA, SA8000), and customer-specific approvals. The system flags suppliers with recent certification renewals and clean audit histories.",
+      example: "Example: Sourcing a complex stamped part requiring: automotive steel (HSLA), 8,000 tons press capacity, TS16949 + ISO 14001, within 300km of assembly plant, capable of 50,000 units/month. The system returns only 3 suppliers meeting ALL criteria, not 200 partial matches."
                 }
               },
               {
@@ -919,11 +919,11 @@ const SearchSuppliers = () => {
                 title: "Explainable AI",
                 description: "Transparent reasoning for supplier recommendations. Example: 'Supplier A recommended because: ISO14001 certification (90% match), 2 years experience with similar projects, local presence.'",
                 detailedExplanation: {
-                  overview: "Every supplier recommendation includes a detailed justification showing exactly why the AI selected that supplier, with transparency into matching scores, strengths, and potential gaps.",
-                  forEngineers: "See technical match percentages for each requirement: '95% capability match—has 5-axis CNC (required), titanium experience (required), but lacks NADCAP heat treatment (optional)'. This allows informed decisions about whether gaps are acceptable or deal-breakers. No black box recommendations.",
-                  forBuyers: "Understand cost-benefit trade-offs clearly: 'Supplier A: 95% match, premium pricing, 3-week lead time vs. Supplier B: 85% match, competitive pricing, 5-week lead time'. Explanations highlight which requirements are not met in lower-scored options, enabling strategic sourcing decisions rather than just picking the top score.",
-                  forAuditors: "Compliance transparency shows certification status, audit dates, and gaps: 'ISO 9001 valid until 2026, IATF audit passed March 2024 with zero major findings, ISO 14001 pending renewal (expires June 2025)'. This enables risk assessment and pre-qualification prioritization.",
-                  example: "Why Supplier X for BMW brake component: Technical match 94% (has required friction testing per ECE R90), Location +15 points (within 200km Munich), Certification +20 points (IATF 16949:2016 current), Experience +10 points (5 years automotive brake systems), Capacity verified for 100K units/month. Gap: No in-house coating, uses qualified subcontractor."
+      overview: "Every supplier recommendation includes a detailed justification showing exactly why the AI selected that supplier, with transparency into matching scores, strengths, and potential gaps.",
+      forEngineers: "See technical match percentages for each requirement: '95% capability match—has 5-axis CNC (required), titanium experience (required), but lacks NADCAP heat treatment (optional)'. This allows informed decisions about whether gaps are acceptable or deal-breakers. No black box recommendations.",
+      forBuyers: "Understand trade-offs clearly: 'Supplier A: 95% match, 3-week delivery vs. Supplier B: 85% match, 5-week delivery'. Explanations highlight which requirements are not met in lower-scored options, enabling strategic sourcing decisions rather than just picking the top score.",
+      forAuditors: "Compliance transparency shows certification status, audit dates, and gaps: 'ISO 9001 valid until 2026, IATF audit passed March 2024 with zero major findings, ISO 14001 pending renewal (expires June 2025)'. This enables risk assessment and pre-qualification prioritization.",
+      example: "Example: Why Supplier X recommended for brake component: Technical match 94% (has required friction testing per ECE R90), Location +15 points (within 200km of assembly plant), Certification +20 points (IATF 16949:2016 current), Experience +10 points (5 years automotive brake systems), Capacity verified for 100K units/month. Gap: No in-house coating, uses qualified subcontractor."
                 }
               },
               {
@@ -931,11 +931,11 @@ const SearchSuppliers = () => {
                 title: "Smart Deduplication",
                 description: "Automatic recognition and merging of identical suppliers. 'Müller GmbH', 'Mueller Group' and 'Müller Precision' are recognized as one company.",
                 detailedExplanation: {
-                  overview: "Advanced entity resolution technology identifies when different company names, addresses, or records refer to the same supplier, preventing duplicate outreach and consolidating supplier information.",
-                  forEngineers: "Consolidates technical data from multiple sources: if 'Müller GmbH' appears in your ERP, 'Mueller Precision Engineering' in a certification database, and 'Müller Group' on their website, the system merges all capability data into one complete profile. This ensures you see all equipment, certifications, and technical capabilities in a single view.",
-                  forBuyers: "Prevents embarrassing duplicate RFQs to the same supplier under different names. Consolidates pricing history, past performance data, and contract terms across all name variations. Also identifies subsidiary relationships—knowing that 'ABC Components' is owned by 'XYZ Corporation' helps with spend consolidation and negotiating leverage.",
-                  forAuditors: "Links certification records across name variations, ensuring audit histories aren't fragmented. Identifies when a supplier operates multiple facilities under different names, allowing proper audit planning for all locations. Also flags company name changes due to acquisitions or restructuring that might affect certification validity.",
-                  example: "A Linde procurement team has interacted with: 'Müller GmbH' (2019 contract), 'J. Müller Metallverarbeitung' (2021 quote), and 'Mueller Group' (2023 capability inquiry). The system recognizes these as the same entity, merges all interaction history, and shows: one consolidated supplier profile with complete history, avoiding duplicate outreach."
+      overview: "Advanced entity resolution technology identifies when different company names, addresses, or records refer to the same supplier, preventing duplicate outreach and consolidating supplier information.",
+      forEngineers: "Consolidates technical data from multiple sources: if 'Müller GmbH' appears in your ERP, 'Mueller Precision Engineering' in a certification database, and 'Müller Group' on their website, the system merges all capability data into one complete profile. This ensures you see all equipment, certifications, and technical capabilities in a single view.",
+      forBuyers: "Prevents embarrassing duplicate RFQs to the same supplier under different names. Consolidates past performance data and contract terms across all name variations. Also identifies subsidiary relationships—knowing that 'ABC Components' is owned by 'XYZ Corporation' helps with spend consolidation and negotiating leverage.",
+      forAuditors: "Links certification records across name variations, ensuring audit histories aren't fragmented. Identifies when a supplier operates multiple facilities under different names, allowing proper audit planning for all locations. Also flags company name changes due to acquisitions or restructuring that might affect certification validity.",
+      example: "Example: A procurement team has interacted with: 'Müller GmbH' (2019 contract), 'J. Müller Metallverarbeitung' (2021 quote), and 'Mueller Group' (2023 capability inquiry). The system recognizes these as the same entity, merges all interaction history, and shows: one consolidated supplier profile with complete history, avoiding duplicate outreach."
                 }
               },
               {
@@ -943,11 +943,11 @@ const SearchSuppliers = () => {
                 title: "Dynamic Results",
                 description: "Delivers only truly relevant matches, no filler results. With specific queries, only the 7 actually matching suppliers are displayed instead of padding the list with less relevant ones.",
                 detailedExplanation: {
-                  overview: "Quality over quantity: the system returns only suppliers that genuinely meet your requirements, even if that's just 3 suppliers instead of padding results to 50 with poor matches.",
-                  forEngineers: "No more sifting through 100+ irrelevant suppliers to find 5 qualified ones. If you need 'titanium investment casting with NADCAP approval', and only 8 suppliers globally meet this, you get those 8—not 92 steel casting companies to hit a 100-result quota. This respects your technical judgment and time.",
-                  forBuyers: "Dramatically reduces qualification effort. Instead of reviewing 50+ suppliers to shortlist 5, you receive a pre-qualified list of 5-12 that actually meet requirements. For highly specialized needs (e.g., 'aerospace honeycomb panel fabrication'), seeing '4 suppliers match your criteria' is more valuable than artificially inflating to 40 poor matches.",
-                  forAuditors: "Only audit-ready suppliers appear in results. If you require ISO 13485 + FDA registration + cleanroom manufacturing, and only 6 suppliers meet this, you audit 6 qualified candidates—not waste resources pre-qualifying 30 companies missing critical certifications. This optimizes audit scheduling and resource allocation.",
-                  example: "Search: 'LNG cryogenic valves, -196°C rated, EN 1626 certified, ASME VIII Div 1, minimum DN50, European manufacturing'. Result: 3 suppliers shown. Because only 3 suppliers globally meet ALL criteria. Not 47 results with footnotes like '*DN25 maximum' or '*ASME certification pending' just to show more names."
+      overview: "Quality over quantity: the system returns only suppliers that genuinely meet your requirements, even if that's just 3 suppliers instead of padding results to 50 with poor matches.",
+      forEngineers: "No more sifting through 100+ irrelevant suppliers to find 5 qualified ones. If you need 'titanium investment casting with NADCAP approval', and only 8 suppliers globally meet this, you get those 8—not 92 steel casting companies to hit a 100-result quota. This respects your technical judgment and time.",
+      forBuyers: "Dramatically reduces qualification effort. Instead of reviewing 50+ suppliers to shortlist 5, you receive a pre-qualified list of 5-12 that actually meet requirements. For highly specialized needs (e.g., 'aerospace honeycomb panel fabrication'), seeing '4 suppliers match your criteria' is more valuable than artificially inflating to 40 poor matches.",
+      forAuditors: "Only audit-ready suppliers appear in results. If you require ISO 13485 + FDA registration + cleanroom manufacturing, and only 6 suppliers meet this, you audit 6 qualified candidates—not waste resources pre-qualifying 30 companies missing critical certifications. This optimizes audit scheduling and resource allocation.",
+      example: "Example: Search 'LNG cryogenic valves, -196°C rated, EN 1626 certified, ASME VIII Div 1, minimum DN50, European manufacturing'. Result: 3 suppliers shown. Because only 3 suppliers globally meet ALL criteria. Not 47 results with footnotes like '*DN25 maximum' or '*ASME certification pending' just to show more names."
                 }
               },
               {
@@ -955,11 +955,11 @@ const SearchSuppliers = () => {
                 title: "Real-Time Data Enrichment",
                 description: "Continuous updating of supplier data. New certifications, location expansions, or insolvency proceedings are automatically detected and integrated.",
                 detailedExplanation: {
-                  overview: "Supplier data is continuously updated through web monitoring, official registry checks, and certification database integration—ensuring you always have current information without manual research.",
-                  forEngineers: "Automatically notified when suppliers gain new technical capabilities: 'Supplier X acquired a 5-axis Hermle C42 (installed March 2024)', 'New material certification added: PEEK machining'. Also alerts to capability losses: 'Heat treatment furnace decommissioned' or 'NADCAP special process approval suspended', preventing specification of unavailable processes.",
-                  forBuyers: "Critical business intelligence updates: 'Supplier Y opened new facility in Poland (operational August 2024, 50% lower labor cost)', 'Credit rating downgraded from A to BBB', or 'Acquired by Competitor Z (potential IP exposure risk)'. Early warning of insolvency proceedings, major leadership changes, or facility closures enables proactive risk mitigation.",
-                  forAuditors: "Real-time certification status tracking: 'ISO 9001 renewed June 2024 (valid to 2027)', 'IATF surveillance audit scheduled September 2024', or 'ISO 14001 expired—renewal pending'. Automatically flags suppliers requiring audit priority due to upcoming certification renewals or recent major non-conformances reported in certification databases.",
-                  example: "A Mercedes supplier of stamped parts: January 2024—system shows 'IATF 16949:2016 certified'. April 2024—automatic update detects facility expansion: '+5,000 sq meters, two new press lines 1,200-ton capacity'. June 2024—alert: 'Major fire in Building C reported, production capacity reduced 30% estimated 3 months'. October 2024—update: 'Production restored, ISO 14001 environmental certification renewed post-incident'."
+      overview: "YVOO maintains a continuously updated database of supplier capabilities, certifications, and performance metrics. After audits and site visits, supplier profiles are enriched with verified ground truth data.",
+      forEngineers: "Engineers need confidence that supplier certifications and capabilities are current. YVOO updates supplier profiles after site visits with verified equipment details, actual production capabilities, and real facility observations. When capabilities are verified through on-site inspection, this validated information is reflected in search results.",
+      forBuyers: "Procurement teams can access supplier data that has been verified through actual site visits and audits. YVOO enriches profiles with real-world observations about capacity, financial stability indicators, and facility conditions. This reduces supplier qualification time and minimizes the risk of engaging with suppliers whose claimed capabilities don't match reality.",
+      forAuditors: "Quality assurance teams contribute to and benefit from a growing database of verified supplier information. After completing audits, findings are used to update supplier profiles with actual compliance status, facility conditions, and quality system maturity. Full audit reports are only available after audits are completed. This creates a knowledge base of verified supplier intelligence that improves over time.",
+      example: "Example: After completing a facility audit, YVOO updates the supplier profile to reflect the actual production equipment observed, verified certifications seen on-site, and real facility conditions. Future searches benefit from this ground truth data rather than relying solely on supplier-provided claims."
                 }
               },
               {
@@ -967,11 +967,11 @@ const SearchSuppliers = () => {
                 title: "Alternative Term Discovery",
                 description: "Identifies related terms for complete market coverage. 'Die casting' automatically expands to 'Pressure Die Casting', 'Permanent Mold Casting', etc.",
                 detailedExplanation: {
-                  overview: "Manufacturing processes and materials are described differently across regions, industries, and languages. The AI automatically searches all equivalent terms to ensure no qualified suppliers are missed due to terminology differences.",
-                  forEngineers: "Technical synonym expansion ensures comprehensive results: 'CNC milling' also searches 'machining center', 'Fraesen' (German), 'fraisage' (French). Material variations: 'aluminum' finds 'aluminium' (UK/EU), '6061-T6' also searches 'AlMgSi1 T6' (European designation). Process equivalents: 'anodizing' includes 'anodising', 'eloxal' (German), 'sulfuric anodize Type II', ensuring global supplier coverage.",
-                  forBuyers: "Prevents missed sourcing opportunities due to regional naming: 'sheet metal fabrication' automatically includes 'metal stamping', 'presswork', 'panel beating'. Industry-specific terms: 'aerospace machining' also searches 'aviation components', 'flight hardware manufacturing'. This maximizes competitive bidding and finds niche specialists using non-standard terminology.",
-                  forAuditors: "Certification name variations: 'ISO 9001' search includes 'ISO 9001:2015', 'ISO 9001:2008 (transition)', 'EN ISO 9001', ensuring suppliers with equivalent certifications aren't excluded. Process audit coverage: 'welding qualification' includes 'EN 1090', 'AWS D1.1', 'ISO 3834', capturing all relevant welding certification schemes.",
-                  example: "Search: 'investment casting'. System automatically expands to search: 'Investment casting', 'Lost wax casting', 'Precision casting', 'Feinguss' (German), 'Microfusione' (Italian), 'Cire perdue' (French), 'Vacuum casting', 'Ceramic mold casting'. Result: finds 47 qualified suppliers globally instead of 12 using only 'investment casting', including a specialized Japanese foundry listing services as '精密鋳造' (precision casting)."
+      overview: "Manufacturing processes and materials are described differently across regions, industries, and languages. The AI automatically searches all equivalent terms to ensure no qualified suppliers are missed due to terminology differences.",
+      forEngineers: "Technical synonym expansion ensures comprehensive results: 'CNC milling' also searches 'machining center', 'Fraesen' (German), 'fraisage' (French). Material variations: 'aluminum' finds 'aluminium' (UK/EU), '6061-T6' also searches 'AlMgSi1 T6' (European designation). Process equivalents: 'anodizing' includes 'anodising', 'eloxal' (German), 'sulfuric anodize Type II', ensuring global supplier coverage.",
+      forBuyers: "Prevents missed sourcing opportunities due to regional naming: 'sheet metal fabrication' automatically includes 'metal stamping', 'presswork', 'panel beating'. Industry-specific terms: 'aerospace machining' also searches 'aviation components', 'flight hardware manufacturing'. This maximizes competitive bidding and finds niche specialists using non-standard terminology.",
+      forAuditors: "Certification name variations: 'ISO 9001' search includes 'ISO 9001:2015', 'ISO 9001:2008 (transition)', 'EN ISO 9001', ensuring suppliers with equivalent certifications aren't excluded. Process audit coverage: 'welding qualification' includes 'EN 1090', 'AWS D1.1', 'ISO 3834', capturing all relevant welding certification schemes.",
+      example: "Example: Search 'investment casting'. System automatically expands to search: 'Investment casting', 'Lost wax casting', 'Precision casting', 'Feinguss' (German), 'Microfusione' (Italian), 'Cire perdue' (French), 'Vacuum casting', 'Ceramic mold casting'. Result: finds 47 qualified suppliers globally instead of 12 using only 'investment casting', including a specialized foundry listing services as '精密鋳造' (precision casting)."
                 }
               }
             ].map((benefit, index) => (
@@ -1171,7 +1171,7 @@ const SearchSuppliers = () => {
 
       {/* AI Feature Detail Modal */}
       <Dialog open={selectedAIFeature !== null} onOpenChange={() => setSelectedAIFeature(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-background via-background to-muted/20 backdrop-blur-xl border border-border/50">
           {selectedAIFeature !== null && (() => {
             const features = [
               {
@@ -1268,71 +1268,64 @@ const SearchSuppliers = () => {
             
             return (
               <div className="space-y-6">
-                <DialogHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-lg flex-shrink-0">
-                      <FeatureIcon className="w-8 h-8 text-white" />
-                    </div>
-                    <div>
-                      <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">
-                        {feature.title}
-                      </DialogTitle>
-                      <p className="text-gray-600 leading-relaxed">
-                        {feature.detailedExplanation.overview}
-                      </p>
-                    </div>
-                  </div>
+                <DialogHeader className="pb-6 border-b border-border/30">
+                  <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-[#14B8A6] to-[#0D9488] bg-clip-text text-transparent">
+                    {feature.title}
+                  </DialogTitle>
+                  <p className="text-base text-muted-foreground mt-2 leading-relaxed">
+                    {feature.detailedExplanation.overview}
+                  </p>
                 </DialogHeader>
 
-                <div className="space-y-6">
+                <div className="space-y-4 mt-6">
                   {/* For Engineers */}
-                  <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                        <Target className="w-6 h-6 text-white" />
+                  <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-600/5 p-6 rounded-2xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                        <Target className="w-5 h-5 text-blue-600" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900">For Engineers</h3>
+                      <h3 className="font-semibold text-lg text-foreground">For Engineers</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.detailedExplanation.forEngineers}
                     </p>
                   </div>
 
-                  {/* For Buyers */}
-                  <div className="bg-gradient-to-br from-[#14B8A6]/10 to-white p-6 rounded-2xl border border-[#14B8A6]/20">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 bg-[#14B8A6] rounded-lg flex items-center justify-center">
-                        <TrendingUp className="w-6 h-6 text-white" />
+                  {/* For Procurement & Buyers */}
+                  <div className="group relative bg-gradient-to-br from-[#14B8A6]/5 to-[#0D9488]/5 p-6 rounded-2xl border border-[#14B8A6]/20 hover:border-[#14B8A6]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#14B8A6]/10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-[#14B8A6]/10 rounded-lg group-hover:bg-[#14B8A6]/20 transition-colors">
+                        <TrendingUp className="w-5 h-5 text-[#14B8A6]" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900">For Procurement & Buyers</h3>
+                      <h3 className="font-semibold text-lg text-foreground">For Procurement & Buyers</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.detailedExplanation.forBuyers}
                     </p>
                   </div>
 
-                  {/* For Auditors */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border border-gray-200">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center">
-                        <Shield className="w-6 h-6 text-white" />
+                  {/* For Quality & Auditors */}
+                  <div className="group relative bg-gradient-to-br from-gray-500/5 to-gray-600/5 p-6 rounded-2xl border border-gray-500/20 hover:border-gray-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-gray-500/10 rounded-lg group-hover:bg-gray-500/20 transition-colors">
+                        <Shield className="w-5 h-5 text-gray-600" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900">For Quality & Auditors</h3>
+                      <h3 className="font-semibold text-lg text-foreground">For Quality & Auditors</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.detailedExplanation.forAuditors}
                     </p>
                   </div>
 
-                  {/* Real-World Example */}
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-2xl">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 bg-[#14B8A6] rounded-lg flex items-center justify-center">
-                        <CheckCircle2 className="w-6 h-6 text-white" />
+                  {/* Real-World Application */}
+                  <div className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/80 p-6 rounded-2xl border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 hover:shadow-lg hover:shadow-gray-900/30">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-yellow-500/10 rounded-lg group-hover:bg-yellow-500/20 transition-colors">
+                        <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                       </div>
-                      <h3 className="text-lg font-bold text-white">Real-World Example</h3>
+                      <h3 className="font-semibold text-lg text-white">Real-World Application</h3>
                     </div>
-                    <p className="text-gray-200 leading-relaxed">
+                    <p className="text-gray-300 leading-relaxed">
                       {feature.detailedExplanation.example}
                     </p>
                   </div>
