@@ -1193,33 +1193,35 @@ const ChallengeToggleSection = () => {
         </motion.div>
 
         {/* Main Headline with Toggle */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="flex flex-wrap items-center gap-3 sm:gap-4"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
-              {isWithScanPro ? 'With' : 'Traditional'}
-            </h2>
-            
-            <motion.span
-              key={isWithScanPro ? 'with' : 'traditional'}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
-                isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
-              }`}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 mb-6 sm:mb-8">
+          <div className="flex items-center justify-between w-full">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 }}
+              className="flex flex-wrap items-center gap-3 sm:gap-4"
             >
-              {isWithScanPro ? 'ScanPro+' : 'Providers'}
-            </motion.span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
+                {isWithScanPro ? 'With' : 'Traditional'}
+              </h2>
+              
+              <motion.span
+                key={isWithScanPro ? 'with' : 'traditional'}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
+                  isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
+                }`}
+              >
+                {isWithScanPro ? 'ScanPro+' : 'Providers'}
+              </motion.span>
+            </motion.div>
 
-            {/* Toggle Switch */}
+            {/* Toggle Switch - Positioned at far right */}
             <button
               onClick={() => setIsWithScanPro(!isWithScanPro)}
-              className={`relative w-16 h-8 sm:w-20 sm:h-10 rounded-full transition-all duration-300 ${
+              className={`relative w-16 h-8 sm:w-20 sm:h-10 rounded-full transition-all duration-300 flex-shrink-0 ${
                 isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-400'
               }`}
               aria-label="Toggle between ScanPro+ and Traditional Providers"
@@ -1230,7 +1232,7 @@ const ChallengeToggleSection = () => {
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             </button>
-          </motion.div>
+          </div>
 
           <motion.button
             initial={{ opacity: 0, y: 20 }}
