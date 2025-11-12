@@ -48,8 +48,8 @@ const TimeEfficiencyChart = () => {
                   style={{ backgroundColor: phase.color }}
                 >
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <span className="text-white font-bold text-xs sm:text-sm text-center px-1 leading-tight bg-black/60 py-1 px-2 rounded">
-                      {phase.name}<br />{phase.traditional}d
+                    <span className="text-white font-bold text-sm sm:text-base">
+                      {phase.traditional}d
                     </span>
                   </div>
                 </motion.div>
@@ -85,8 +85,8 @@ const TimeEfficiencyChart = () => {
                     style={{ backgroundColor: phase.color }}
                   >
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <span className="text-white font-bold text-xs sm:text-sm text-center px-1 leading-tight bg-black/60 py-1 px-2 rounded">
-                        {phase.name}<br />{phase.scanpro}d
+                      <span className="text-white font-bold text-sm sm:text-base">
+                        {phase.scanpro}d
                       </span>
                     </div>
                   </motion.div>
