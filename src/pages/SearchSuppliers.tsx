@@ -362,10 +362,10 @@ const SearchSuppliers = () => {
               }}
             >
               {/* Modern white card matching YVOO design */}
-              <div className="bg-white rounded-3xl shadow-lg overflow-visible">
+              <div className="bg-white shadow-lg overflow-visible">
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+                <div className="bg-gray-900 px-6 py-4 flex items-center justify-between">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
                     <Cpu className="w-5 h-5 text-[#14B8A6]" />
@@ -408,7 +408,7 @@ const SearchSuppliers = () => {
                 {/* Conversation Thread - Enhanced rounded corners */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-3xl bg-gray-50 p-4 scroll-smooth"
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -534,15 +534,8 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Curved Section Divider */}
-      <div className="relative -mt-1">
-        <svg className="w-full h-24" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 0C480 80 960 80 1440 0V120H0V0Z" fill="rgb(249, 250, 251)"/>
-        </svg>
-      </div>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-white" data-nav-theme="light">
+      {/* Stats Section - Extra padding to prevent overlap */}
+      <section className="pt-96 pb-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -629,8 +622,7 @@ const SearchSuppliers = () => {
 
       {/* Product Overview Section */}
       <section 
-        className="py-20"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        className="py-20 bg-white"
         data-nav-theme="light"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
@@ -870,7 +862,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
