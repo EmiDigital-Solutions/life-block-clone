@@ -1493,14 +1493,14 @@ const HowItWorksCarousel = () => {
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[160px] sm:max-w-[320px] md:max-w-[350px]">
+          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] flex flex-col justify-center">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-3 sm:mb-6"
+              className="mb-2 sm:mb-4"
             >
-              <div className="flex items-center justify-between mb-3 sm:mb-6">
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
                 <div className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center">
                   <BarChart3 className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-white" />
                 </div>
@@ -1518,7 +1518,7 @@ const HowItWorksCarousel = () => {
             </motion.div>
             
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-3 sm:mb-6">
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-2 sm:mb-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -1540,7 +1540,7 @@ const HowItWorksCarousel = () => {
             </div>
             
             {/* Chart Bars */}
-            <div className="flex items-end gap-1 sm:gap-2 h-12 sm:h-20 mb-3 sm:mb-6">
+            <div className="flex items-end gap-1 sm:gap-2 h-10 sm:h-16 mb-2 sm:mb-4">
               {[60, 80, 95, 70].map((height, i) => (
                 <motion.div
                   key={i}
@@ -1648,11 +1648,11 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-none sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
+                    className="bg-white rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible h-full">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-l-2xl sm:rounded-l-2xl md:rounded-l-3xl p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         {/* Decorative element */}
