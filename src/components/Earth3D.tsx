@@ -26,12 +26,10 @@ const locationPins3D = [
   { id: 17, lat: 45, lon: -75, visible: true },  // Canada - Ottawa
   { id: 18, lat: 25, lon: 55, visible: true },   // UAE - Dubai
   { id: 19, lat: 13, lon: 100, visible: true },  // Thailand - Bangkok
-  { id: 20, lat: 60, lon: 25, visible: true },   // Finland
   { id: 21, lat: 48, lon: 2, visible: true },    // France - Paris
   { id: 22, lat: 40, lon: -4, visible: true },   // Spain - Madrid
   { id: 23, lat: 52, lon: 21, visible: true },   // Poland - Warsaw
   { id: 24, lat: 59, lon: 18, visible: true },   // Sweden - Stockholm
-  { id: 25, lat: 55, lon: -3, visible: true },   // Scotland - Edinburgh
   { id: 26, lat: 47, lon: 8, visible: true },    // Switzerland - Zurich
   { id: 27, lat: 50, lon: 14, visible: true },   // Czech Republic - Prague
   { id: 28, lat: 47, lon: 19, visible: true },   // Hungary - Budapest
@@ -85,36 +83,36 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
   return (
     <group ref={pinRef} position={position} scale={scale}>
       {/* Pin body */}
-      <mesh position={[0, 0.15, 0]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.3, 16]} />
+      <mesh position={[0, 0.1, 0]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.2, 16]} />
         <meshStandardMaterial color="#14B8A6" />
       </mesh>
       
       {/* Pin head */}
-      <mesh position={[0, 0.35, 0]}>
-        <sphereGeometry args={[0.12, 16, 16]} />
+      <mesh position={[0, 0.22, 0]}>
+        <sphereGeometry args={[0.08, 16, 16]} />
         <meshStandardMaterial color="#14B8A6" emissive="#14B8A6" emissiveIntensity={0.3} />
       </mesh>
 
       {/* White circle inside pin head */}
-      <mesh position={[0, 0.35, 0.11]}>
-        <circleGeometry args={[0.08, 16]} />
+      <mesh position={[0, 0.22, 0.075]}>
+        <circleGeometry args={[0.05, 16]} />
         <meshBasicMaterial color="#ffffff" />
       </mesh>
 
       {/* User icon (simplified) */}
-      <mesh position={[0, 0.4, 0.12]}>
-        <sphereGeometry args={[0.03, 16, 16]} />
+      <mesh position={[0, 0.26, 0.08]}>
+        <sphereGeometry args={[0.02, 16, 16]} />
         <meshBasicMaterial color="#14B8A6" />
       </mesh>
-      <mesh position={[0, 0.32, 0.12]}>
-        <cylinderGeometry args={[0.04, 0.05, 0.06, 16]} />
+      <mesh position={[0, 0.2, 0.08]}>
+        <cylinderGeometry args={[0.03, 0.035, 0.04, 16]} />
         <meshBasicMaterial color="#14B8A6" />
       </mesh>
 
       {/* Pin pointer */}
       <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
-        <coneGeometry args={[0.08, 0.15, 16]} />
+        <coneGeometry args={[0.05, 0.1, 16]} />
         <meshStandardMaterial color="#0D9488" />
       </mesh>
     </group>
