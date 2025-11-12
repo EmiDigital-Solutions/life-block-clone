@@ -183,10 +183,13 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section */}
+      {/* Hero Section - Reduced height by 30% */}
       <section 
-        className="relative min-h-screen pt-32 pb-20 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}
+        className="relative pt-32 pb-20 overflow-visible"
+        style={{ 
+          background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
+          minHeight: "70vh"
+        }}
       >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -270,50 +273,52 @@ const SearchSuppliers = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Content - Interactive Demo Search - Takes 3 columns */}
+            {/* Right Content - Interactive Demo Search - Takes 3 columns - YVOO Card Style */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 bg-white rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm border border-gray-100"
+              className="lg:col-span-3 relative"
+              style={{ 
+                transform: 'translateY(40%)',
+                zIndex: 10
+              }}
             >
-              {/* Demo Header */}
-              <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-6 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-white/80"></div>
-                  <span className="text-white text-sm font-semibold">SearchPro+ Demo</span>
+              {/* Modern white card matching YVOO design */}
+              <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-6">
+                
+                {/* Teal label */}
+                <div className="mb-3 flex-shrink-0">
+                  <span className="text-[#14B8A6] text-sm font-semibold">
+                    Interactive Demo
+                  </span>
                 </div>
-                {showResults && <span className="text-white/80 text-xs">4 companies found</span>}
-              </div>
-              
-              <div className="p-6">
-                {/* 3-Step AI Guidance Header */}
-                <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-[#14B8A6]/10 to-[#0D9488]/10 rounded-xl border border-[#14B8A6]/20">
-                  <div className="flex items-center gap-3">
-                    <Brain className="w-5 h-5 text-[#14B8A6]" />
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">AI-Powered Conversational Search</p>
-                      <p className="text-xs text-gray-600">Step-by-step guidance to find your perfect supplier</p>
+                {/* Bold title/description */}
+                <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
+                  AI-Powered Conversational Search
+                  <span className="block text-sm font-normal text-gray-600 mt-2">
+                    Step-by-step guidance to find your perfect supplier
+                  </span>
+                </h3>
+
+                {/* Step indicators */}
+                <div className="flex items-center justify-center gap-2 mb-6">
+                  {[1, 2, 3].map((step) => (
+                    <div
+                      key={step}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                        step <= currentStep
+                          ? 'bg-[#14B8A6] text-white'
+                          : 'bg-gray-200 text-gray-400'
+                      }`}
+                    >
+                      {step}
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {[1, 2, 3].map((step) => (
-                      <div
-                        key={step}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                          step <= currentStep
-                            ? 'bg-[#14B8A6] text-white'
-                            : 'bg-gray-200 text-gray-400'
-                        }`}
-                      >
-                        {step}
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
 
-                {/* Conversation Thread */}
-                <div className="space-y-4 mb-6 max-h-96 overflow-y-auto">
+                {/* Conversation Thread - Rounded corners like YVOO image container */}
+                <div className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4">
                   {conversationHistory.map((msg, index) => (
                     <motion.div
                       key={index}
@@ -383,51 +388,45 @@ const SearchSuppliers = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="space-y-4"
+                    className="mt-6"
                   >
-                    {/* AI Final Analysis */}
-                    <div className="p-4 bg-gradient-to-r from-blue-50 to-[#14B8A6]/10 border border-[#14B8A6]/30 rounded-xl">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#14B8A6] mt-0.5 flex-shrink-0" />
-                        <div className="text-sm">
-                          <p className="font-semibold text-gray-900 mb-2">✓ Search Complete - Found 4 Perfect Matches</p>
-                          <p className="text-gray-700 text-xs">Based on your requirements: Precision CNC machining • ISO 9001 • Automotive • IATF 16949</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Table Headers */}
-                    <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b-2 border-[#14B8A6]/30">
-                      <div>Company Name</div>
-                      <div>Location</div>
-                      <div>Size</div>
-                      <div>Certifications</div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                      <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                     </div>
                     
-                    {/* Supplier Results */}
-                    <div className="space-y-2">
-                      {suppliers.map((supplier, index) => (
-                        <motion.div
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {suppliers.map((supplier) => (
+                        <button
                           key={supplier.id}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 * index, duration: 0.3 }}
                           onClick={() => setSelectedSupplier(supplier)}
-                          className="grid grid-cols-4 gap-2 py-3 border border-gray-200 hover:border-[#14B8A6] hover:bg-[#14B8A6]/5 rounded-xl px-4 transition-all cursor-pointer group"
+                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
                         >
-                          <div className="text-sm font-semibold text-gray-900 group-hover:text-[#14B8A6]">{supplier.name}</div>
-                          <div className="text-sm text-gray-600 flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
-                            {supplier.location}
+                          <div className="flex items-start justify-between mb-2">
+                            <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
+                              {supplier.name}
+                            </h4>
+                            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#14B8A6] group-hover:translate-x-1 transition-all" />
                           </div>
-                          <div className="text-sm text-gray-600">{supplier.size}</div>
-                          <div className="text-xs text-gray-600 truncate">{supplier.specialties}</div>
-                        </motion.div>
+                          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                            <MapPin className="w-4 h-4" />
+                            <span>{supplier.location}</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {supplier.certifications.slice(0, 2).map((cert, idx) => (
+                              <span
+                                key={idx}
+                                className="px-2 py-0.5 bg-[#14B8A6]/10 text-[#14B8A6] text-xs rounded-full font-medium"
+                              >
+                                {cert}
+                              </span>
+                            ))}
+                          </div>
+                        </button>
                       ))}
                     </div>
                   </motion.div>
                 )}
-
               </div>
             </motion.div>
           </div>
