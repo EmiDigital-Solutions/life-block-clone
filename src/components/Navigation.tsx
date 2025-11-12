@@ -174,17 +174,18 @@ const Navigation = () => {
                     borderColor: borderColor 
                   }}
                 >
-                  <a 
-                    href="#search-suppliers" 
+                  <Link 
+                    to="/search-suppliers" 
                     className="block px-4 py-3 transition-colors duration-300 border-b"
                     style={{ 
                       color: textColor,
                       borderBottomColor: borderColor 
                     }}
+                    onClick={() => setIsDropdownOpen(false)}
                   >
                     <div className="font-semibold">Search Suppliers</div>
                     <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
-                  </a>
+                  </Link>
                   <Link 
                     to="/ground-intelligence" 
                     className="block px-4 py-3 transition-colors duration-300 border-b"
@@ -278,13 +279,14 @@ const Navigation = () => {
               >
                 Solutions
               </div>
-              <a 
-                href="#search-suppliers" 
+              <Link 
+                to="/search-suppliers" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
                 style={{ color: textColor }}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Search Suppliers
-              </a>
+              </Link>
               <Link 
                 to="/ground-intelligence" 
                 className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
