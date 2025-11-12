@@ -261,11 +261,10 @@ const SearchSuppliers = () => {
       
       {/* Hero Section - Fixed height, doesn't expand */}
       <section 
-        className="relative pt-20 md:pt-32 pb-12 md:pb-20 overflow-visible"
+        className="relative pt-32 pb-20 overflow-visible"
         style={{ 
           background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
-          height: "auto",
-          minHeight: "100vh"
+          height: "70vh"
         }}
       >
         {/* Animated background elements */}
@@ -293,13 +292,13 @@ const SearchSuppliers = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
             {/* Left Content - Takes 2 columns */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-2 mb-8 lg:mb-0"
+              className="lg:col-span-2"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -311,7 +310,7 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-semibold text-[#14B8A6]">AI-Powered Supplier Discovery</span>
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-8 leading-tight">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span className="text-[#14B8A6]">Find suppliers</span>
                 <br />
                 <span className="text-white">worldwide in real-time.</span>
@@ -356,25 +355,25 @@ const SearchSuppliers = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative w-full"
+              className="lg:col-span-3 relative"
               style={{ 
-                transform: window.innerWidth >= 1024 ? 'translateY(calc(40% + 4cm))' : 'none',
+                transform: 'translateY(calc(40% + 4cm))',
                 zIndex: 10
               }}
             >
               {/* Modern white card matching YVOO design */}
-              <div className="bg-white rounded-2xl md:rounded-3xl shadow-lg overflow-visible">
+              <div className="bg-white rounded-3xl shadow-lg overflow-visible">
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-4 md:px-6 py-3 md:py-4 rounded-t-2xl md:rounded-t-3xl flex items-center justify-between">
-                  <h2 className="text-white text-lg md:text-xl font-bold">SearchPro+</h2>
-                  <div className="flex items-center gap-1.5 md:gap-2">
-                    <Cpu className="w-4 h-4 md:w-5 md:h-5 text-[#14B8A6]" />
-                    <span className="text-white text-xs md:text-sm">AI-Powered</span>
+                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+                  <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                  <div className="flex items-center gap-2">
+                    <Cpu className="w-5 h-5 text-[#14B8A6]" />
+                    <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
 
-                <div className="p-4 md:p-6">
+                <div className="p-6">
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
@@ -383,19 +382,19 @@ const SearchSuppliers = () => {
                   </span>
                 </div>
                 {/* Bold title/description */}
-                <h3 className="text-gray-900 text-lg md:text-xl font-bold mb-4 md:mb-6 leading-tight">
+                <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
                   AI-Powered Conversational Search
-                  <span className="block text-xs md:text-sm font-normal text-gray-600 mt-1 md:mt-2">
+                  <span className="block text-sm font-normal text-gray-600 mt-2">
                     Step-by-step guidance to find your perfect supplier
                   </span>
                 </h3>
 
                 {/* Step indicators */}
-                <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
+                <div className="flex items-center justify-center gap-2 mb-6">
                   {[1, 2, 3].map((step) => (
                     <div
                       key={step}
-                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-bold transition-all ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                         step <= currentStep
                           ? 'bg-[#14B8A6] text-white'
                           : 'bg-gray-200 text-gray-400'
@@ -409,7 +408,7 @@ const SearchSuppliers = () => {
                 {/* Conversation Thread - Enhanced rounded corners */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-3 md:space-y-4 mb-4 md:mb-6 max-h-64 md:max-h-96 overflow-y-auto rounded-2xl md:rounded-3xl bg-gray-50 p-3 md:p-4 scroll-smooth"
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-3xl bg-gray-50 p-4 scroll-smooth"
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -422,21 +421,21 @@ const SearchSuppliers = () => {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[85%] md:max-w-[80%] p-3 md:p-4 rounded-xl md:rounded-2xl text-xs md:text-sm ${
+                        className={`max-w-[80%] p-4 rounded-2xl ${
                           msg.role === 'user'
                             ? 'bg-[#14B8A6] text-white rounded-br-none'
                             : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
                         }`}
                       >
                         {msg.role === 'ai' && (
-                          <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
-                            <div className="w-4 h-4 md:w-5 md:h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                              <Cpu className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                              <Cpu className="w-3 h-3 text-white" />
                             </div>
-                            <span className="text-[10px] md:text-xs font-bold text-[#14B8A6]">YVOO</span>
+                            <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
                           </div>
                         )}
-                        <p className="text-xs md:text-sm whitespace-pre-line font-medium">{msg.message}</p>
+                        <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -448,12 +447,12 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-start"
                     >
-                      <div className="max-w-[85%] md:max-w-[80%] p-3 md:p-4 rounded-xl md:rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
-                        <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
-                          <div className="w-4 h-4 md:w-5 md:h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                            <Cpu className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                            <Cpu className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-[10px] md:text-xs font-bold text-[#14B8A6]">YVOO</span>
+                          <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
@@ -462,7 +461,7 @@ const SearchSuppliers = () => {
                             </div>
                           )}
                         </div>
-                        <p className="text-xs md:text-sm whitespace-pre-line font-medium">{aiResponse}</p>
+                        <p className="text-sm whitespace-pre-line font-medium">{aiResponse}</p>
                       </div>
                     </motion.div>
                   )}
@@ -474,8 +473,8 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-end"
                     >
-                      <div className="max-w-[85%] md:max-w-[80%] p-3 md:p-4 rounded-xl md:rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
-                        <p className="text-xs md:text-sm font-medium">{userInput}</p>
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
+                        <p className="text-sm font-medium">{userInput}</p>
                       </div>
                     </motion.div>
                   )}
@@ -489,17 +488,17 @@ const SearchSuppliers = () => {
                     transition={{ duration: 0.5 }}
                     className="mt-6"
                   >
-                    <div className="flex items-center gap-2 mb-3 md:mb-4">
-                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-[#14B8A6]" />
-                      <span className="font-semibold text-gray-900 text-sm md:text-base">4 Matching Suppliers Found</span>
+                    <div className="flex items-center gap-2 mb-4">
+                      <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                      <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                     </div>
                     
-                    <div className="grid grid-cols-1 gap-3 md:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {suppliers.map((supplier) => (
                         <button
                           key={supplier.id}
                           onClick={() => setSelectedSupplier(supplier)}
-                          className="text-left p-3 md:p-4 bg-white border border-gray-200 rounded-xl md:rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
+                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
                         >
                           <div className="flex items-start justify-between mb-2">
                             <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
@@ -555,14 +554,14 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">Your next supplier,</span>
               <br />
               <span className="text-black">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 stat: "10x",
@@ -630,7 +629,7 @@ const SearchSuppliers = () => {
 
       {/* Product Overview Section */}
       <section 
-        className="py-12 md:py-20"
+        className="py-20"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         data-nav-theme="light"
       >
@@ -645,7 +644,7 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h2 className="text-4xl sm:text-5xl font-bold">
               <span className="text-[#14B8A6]">Product</span>
               <br />
               <span className="text-black">Overview.</span>
@@ -653,7 +652,7 @@ const SearchSuppliers = () => {
           </motion.div>
 
           {/* Tabs */}
-          <div className="flex gap-2 md:gap-4 mb-6 md:mb-8 flex-wrap">
+          <div className="flex gap-4 mb-8 flex-wrap">
             {[
               { id: "search", label: "1 Search", icon: Search },
               { id: "save", label: "2 Save", icon: Save },
@@ -666,16 +665,16 @@ const SearchSuppliers = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-3 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-semibold transition-all flex items-center gap-1.5 md:gap-2 text-sm md:text-base ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
                     ? "bg-white text-[#14B8A6] shadow-lg border-2 border-[#14B8A6]/20 scale-105"
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
-                <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                   activeTab === tab.id ? "bg-[#14B8A6]/10" : "bg-gray-100"
                 }`}>
-                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
+                  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
                 </div>
                 {tab.label}
               </motion.button>
@@ -683,13 +682,13 @@ const SearchSuppliers = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100"
+              className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100"
             >
               {activeTab === "search" && (
                 <div className="space-y-6">
@@ -768,8 +767,8 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-gray-900">Key suppliers always in sight</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed">
+              <h3 className="text-3xl font-bold mb-4 text-gray-900">Key suppliers always in sight</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
               <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-8 py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
@@ -782,7 +781,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Technology Section */}
-      <section className="py-12 md:py-20 bg-white" data-nav-theme="light">
+      <section className="py-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -794,14 +793,14 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Technology</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h2 className="text-4xl sm:text-5xl font-bold">
               <span className="text-[#14B8A6]">Our technology</span>
               <br />
               <span className="text-black">for global supplier identification.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: "AI-Powered Conversational Workflow",
@@ -874,14 +873,14 @@ const SearchSuppliers = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">7 AI Features</span>
               <br />
               <span className="text-black">that will change your procurement forever</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 icon: Cpu,
@@ -990,9 +989,9 @@ const SearchSuppliers = () => {
                 className="cursor-pointer"
               >
                 <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
-                  <div className="flex flex-col md:flex-row items-start gap-0">
+                  <div className="flex items-start gap-0">
                     {/* Left side - Icon area with gradient background */}
-                    <div className="w-full md:w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 md:p-8 flex items-center justify-center relative overflow-hidden">
+                    <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
                       {/* Large watermark number in background - single digit */}
                       <div className="absolute -top-4 -left-2 opacity-15">
                         <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none">
@@ -1007,7 +1006,7 @@ const SearchSuppliers = () => {
                     </div>
                     
                     {/* Right side - Content */}
-                    <div className="flex-1 p-6 md:p-8">
+                    <div className="flex-1 p-8">
                       <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-4">
                         <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide">Feature {String(index + 1).padStart(2, '0')}</span>
                       </div>
@@ -1030,7 +1029,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 md:py-20 bg-white" data-nav-theme="light">
+      <section className="py-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1042,7 +1041,7 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">FAQ</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">We answer all questions</span>
               <br />
               <span className="text-black">about SearchPro+.</span>
@@ -1083,11 +1082,11 @@ const SearchSuppliers = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <AccordionItem value={`item-${index}`} className="bg-gradient-to-r from-gray-50 to-white rounded-xl md:rounded-2xl px-4 md:px-6 border-0 shadow-sm hover:shadow-md transition-all">
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline text-gray-900 py-4 md:py-6 text-sm md:text-base">
+                <AccordionItem value={`item-${index}`} className="bg-gradient-to-r from-gray-50 to-white rounded-2xl px-6 border-0 shadow-sm hover:shadow-md transition-all">
+                  <AccordionTrigger className="text-left font-semibold hover:no-underline text-gray-900 py-6">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 leading-relaxed pb-4 md:pb-6 text-sm md:text-base">
+                  <AccordionContent className="text-gray-600 leading-relaxed pb-6">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -1098,7 +1097,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}>
+      <section className="py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}>
         {/* Animated gradient orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -1140,7 +1139,7 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 md:mb-8"
+              className="text-4xl sm:text-5xl font-bold text-white mb-8"
             >
               Start searching today
             </motion.h2>
@@ -1168,9 +1167,9 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex gap-2 md:gap-3 justify-center flex-wrap"
+              className="flex gap-3 justify-center flex-wrap"
             >
-              <span className="text-gray-400 text-xs md:text-sm">Popular:</span>
+              <span className="text-gray-400 text-sm">Popular:</span>
               {["Quantum Chips", "Quantum Simulations", "Precision Farming", "3D Bin Picking"].map((tag, index) => (
                 <motion.button
                   key={tag}
@@ -1179,7 +1178,7 @@ const SearchSuppliers = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + index * 0.05 }}
                   whileHover={{ scale: 1.05 }}
-                  className="px-3 md:px-4 py-1.5 md:py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-xs md:text-sm transition-all border border-white/10 hover:border-[#14B8A6]/30"
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-all border border-white/10 hover:border-[#14B8A6]/30"
                 >
                   {tag}
                 </motion.button>
@@ -1193,7 +1192,7 @@ const SearchSuppliers = () => {
 
       {/* AI Feature Detail Modal */}
       <Dialog open={selectedAIFeature !== null} onOpenChange={() => setSelectedAIFeature(null)}>
-        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl md:rounded-3xl border-0 shadow-2xl w-[95vw] md:w-full">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
           {selectedAIFeature !== null && (() => {
             const features = [
               {
@@ -1309,19 +1308,19 @@ const SearchSuppliers = () => {
                 </div>
 
                 <div className="space-y-5 mt-8">
-                   {/* For Engineers */}
-                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex flex-col md:flex-row items-start gap-0">
-                      <div className="w-full md:w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 md:p-6 flex items-center justify-center">
-                        <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Target className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                  {/* For Engineers */}
+                  <div className="group relative bg-white rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Target className="w-8 h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-4 md:p-6">
+                      <div className="flex-1 p-6">
                         <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
                           <span className="text-blue-600 text-xs font-bold uppercase">For Engineers</span>
                         </div>
-                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forEngineers}
                         </p>
                       </div>
@@ -1329,18 +1328,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex flex-col md:flex-row items-start gap-0">
-                      <div className="w-full md:w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-4 md:p-6 flex items-center justify-center">
-                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                  <div className="group relative bg-white rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <TrendingUp className="w-8 h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-4 md:p-6">
+                      <div className="flex-1 p-6">
                         <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">For Procurement & Buyers</span>
                         </div>
-                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forBuyers}
                         </p>
                       </div>
@@ -1348,18 +1347,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* For Quality & Auditors */}
-                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex flex-col md:flex-row items-start gap-0">
-                      <div className="w-full md:w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-6 flex items-center justify-center">
-                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Shield className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                  <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Shield className="w-8 h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-4 md:p-6">
+                      <div className="flex-1 p-6">
                         <div className="inline-block px-3 py-1 bg-gray-100 rounded-full mb-3">
                           <span className="text-gray-700 text-xs font-bold uppercase">For Quality & Auditors</span>
                         </div>
-                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forAuditors}
                         </p>
                       </div>
@@ -1367,18 +1366,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* Real-World Application */}
-                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-                    <div className="flex flex-col md:flex-row items-start gap-0">
-                      <div className="w-full md:w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-4 md:p-6 flex items-center justify-center">
-                        <div className="w-12 h-12 md:w-16 md:h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-8 h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-4 md:p-6">
+                      <div className="flex-1 p-6">
                         <div className="inline-block px-3 py-1 bg-white/10 rounded-full mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">Real-World Application</span>
                         </div>
-                        <p className="text-sm md:text-base text-gray-200 leading-relaxed">
+                        <p className="text-gray-200 leading-relaxed">
                           {feature.detailedExplanation.example}
                         </p>
                       </div>
@@ -1402,7 +1401,7 @@ const SearchSuppliers = () => {
 
       {/* Supplier Detail Modal */}
       <Dialog open={!!selectedSupplier} onOpenChange={() => setSelectedSupplier(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto w-[95vw] md:w-full">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedSupplier && (
             <div className="space-y-6">
               <DialogHeader>
@@ -1435,7 +1434,7 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <Card className="rounded-2xl border-[#14B8A6]/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
@@ -1477,7 +1476,7 @@ const SearchSuppliers = () => {
                   <Target className="w-5 h-5 text-[#14B8A6]" />
                   Core Capabilities
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   {selectedSupplier.capabilities.map((capability: string) => (
                     <div key={capability} className="flex items-center gap-2 text-sm text-gray-700">
                       <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0" />
@@ -1504,7 +1503,7 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 pt-4 border-t border-gray-200">
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
                 <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-xl">
                   Request Quote
                 </Button>
