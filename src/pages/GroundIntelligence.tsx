@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
-import { CurvedSection } from "@/components/CurvedSection";
 import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
 
 const GroundIntelligence = () => {
@@ -21,12 +20,12 @@ const GroundIntelligence = () => {
       <Navigation />
       
       {/* Hero Section - Green gradient like BeFound */}
-      <CurvedSection variant="gradient-teal" curvePosition="bottom" curveIntensity="large">
-        <section
-          data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-          id="hero"
-        >
+      <section
+        data-nav-theme="dark"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
+        style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
+        id="hero"
+      >
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
               <motion.h1 
@@ -83,15 +82,14 @@ const GroundIntelligence = () => {
               </motion.p>
           </div>
         </div>
-        </section>
-      </CurvedSection>
+      </section>
 
       {/* Value Section */}
-      <CurvedSection variant="light" curvePosition="bottom" curveIntensity="large">
-        <section
-          data-nav-theme="light"
-          className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
-        >
+      <section
+        data-nav-theme="light"
+        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto">
           <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
             <motion.p 
@@ -120,8 +118,7 @@ const GroundIntelligence = () => {
             </motion.p>
           </div>
         </div>
-        </section>
-      </CurvedSection>
+      </section>
 
       {/* Product Overview Section - Dark gradient like BeFound */}
       <section
@@ -254,8 +251,7 @@ const GroundIntelligence = () => {
             ))}
           </div>
         </div>
-        </section>
-      </CurvedSection>
+      </section>
 
       {/* Pricing - 3 Plans */}
       <section 
