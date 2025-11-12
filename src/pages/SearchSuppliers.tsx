@@ -992,10 +992,10 @@ const SearchSuppliers = () => {
                   <div className="flex items-start gap-0">
                     {/* Left side - Icon area with gradient background */}
                     <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
-                      {/* Large watermark number in background - like reference image */}
+                      {/* Large watermark number in background - single digit */}
                       <div className="absolute -top-4 -left-2 opacity-15">
                         <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none">
-                          {String(index + 1).padStart(2, '0')}
+                          {index + 1}
                         </span>
                       </div>
                       
