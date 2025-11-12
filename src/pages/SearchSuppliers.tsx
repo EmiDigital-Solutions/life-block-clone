@@ -429,8 +429,10 @@ const SearchSuppliers = () => {
                       >
                         {msg.role === 'ai' && (
                           <div className="flex items-center gap-2 mb-2">
-                            <Cpu className="w-3 h-3 text-[#14B8A6]" />
-                            <span className="text-xs font-semibold text-[#14B8A6]">YVOO</span>
+                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                              <Cpu className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
                           </div>
                         )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -447,8 +449,10 @@ const SearchSuppliers = () => {
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <Cpu className="w-3 h-3 text-[#14B8A6]" />
-                          <span className="text-xs font-semibold text-[#14B8A6]">YVOO</span>
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                            <Cpu className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
