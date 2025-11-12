@@ -56,8 +56,7 @@ const ROICalculator = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="audits" className="text-base font-bold text-gray-900 flex items-center gap-2">
-              <Edit3 className="w-4 h-4" style={{ color: '#14B8A6' }} />
+            <Label htmlFor="audits" className="text-base font-bold text-gray-900">
               Step 1: Your audits per year
             </Label>
             <Input
@@ -72,8 +71,7 @@ const ROICalculator = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900 flex items-center gap-2">
-              <Edit3 className="w-4 h-4" style={{ color: '#14B8A6' }} />
+            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900">
               Step 2: Your current cost per audit (€)
             </Label>
             <Input
