@@ -114,7 +114,7 @@ const SearchSuppliers = () => {
                   <div className="w-3 h-3 rounded-full bg-white/80"></div>
                   <span className="text-white text-sm font-semibold">SearchPro+ Demo</span>
                 </div>
-                <span className="text-white/80 text-xs">0 companies found</span>
+                <span className="text-white/80 text-xs">4 companies found</span>
               </div>
               
               <div className="p-6">
@@ -129,7 +129,7 @@ const SearchSuppliers = () => {
                     <textarea
                       className="w-full h-24 p-4 border-2 border-gray-200 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm"
                       placeholder="Describe what you're looking for..."
-                      defaultValue="I am looking for companies that work on autonomous driving technologies"
+                      defaultValue="I am looking for CNC machining suppliers with ISO 9001 certification for automotive components"
                       readOnly
                     />
                   </div>
@@ -142,16 +142,55 @@ const SearchSuppliers = () => {
                     <div>Specialized Areas</div>
                   </div>
                   
-                  {/* Empty Results Placeholders */}
+                  {/* Supplier Results */}
                   <div className="space-y-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100">
-                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
-                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
-                      </div>
-                    ))}
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
+                    >
+                      <div className="text-sm font-medium text-gray-900">Precision CNC Solutions</div>
+                      <div className="text-sm text-gray-600">Stuttgart, Germany</div>
+                      <div className="text-sm text-gray-600">250-500</div>
+                      <div className="text-sm text-gray-600">Automotive, ISO 9001, TS16949</div>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.4 }}
+                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
+                    >
+                      <div className="text-sm font-medium text-gray-900">TechMold Industries</div>
+                      <div className="text-sm text-gray-600">Shanghai, China</div>
+                      <div className="text-sm text-gray-600">500-1000</div>
+                      <div className="text-sm text-gray-600">Injection Molding, IATF 16949</div>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.0, duration: 0.4 }}
+                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
+                    >
+                      <div className="text-sm font-medium text-gray-900">MediParts GmbH</div>
+                      <div className="text-sm text-gray-600">Munich, Germany</div>
+                      <div className="text-sm text-gray-600">100-250</div>
+                      <div className="text-sm text-gray-600">Medical Devices, GMP, ISO 13485</div>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2, duration: 0.4 }}
+                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
+                    >
+                      <div className="text-sm font-medium text-gray-900">AeroTech Components</div>
+                      <div className="text-sm text-gray-600">Toulouse, France</div>
+                      <div className="text-sm text-gray-600">500-1000</div>
+                      <div className="text-sm text-gray-600">Aerospace, AS9100, NADCAP</div>
+                    </motion.div>
                   </div>
                   
                   {/* Filters Section */}
@@ -160,9 +199,11 @@ const SearchSuppliers = () => {
                       <div>
                         <label className="text-xs font-semibold text-gray-600 mb-1 block">Industry</label>
                         <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6] bg-white">
-                          <option>Select Industry</option>
                           <option>Automotive</option>
-                          <option>Technology</option>
+                          <option>Aerospace</option>
+                          <option>Medical Devices</option>
+                          <option>Chemical</option>
+                          <option>Electronics</option>
                         </select>
                       </div>
                       
@@ -170,10 +211,14 @@ const SearchSuppliers = () => {
                         <label className="text-xs font-semibold text-gray-600 mb-1 block">Employee range</label>
                         <div className="flex gap-1">
                           <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>Min</option>
+                            <option>100</option>
+                            <option>250</option>
+                            <option>500</option>
                           </select>
                           <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>Max</option>
+                            <option>1000</option>
+                            <option>5000</option>
+                            <option>10000+</option>
                           </select>
                         </div>
                       </div>
@@ -182,10 +227,14 @@ const SearchSuppliers = () => {
                         <label className="text-xs font-semibold text-gray-600 mb-1 block">Founding year</label>
                         <div className="flex gap-1">
                           <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>Min</option>
+                            <option>1990</option>
+                            <option>2000</option>
+                            <option>2010</option>
                           </select>
                           <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>Max</option>
+                            <option>2024</option>
+                            <option>2020</option>
+                            <option>2015</option>
                           </select>
                         </div>
                       </div>
