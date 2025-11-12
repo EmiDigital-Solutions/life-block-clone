@@ -1,14 +1,107 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Brain, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { Check, Search, Save, FileText, Globe, Brain, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useState, useRef } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { useState, useRef, useEffect } from "react";
 
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
+  const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
+  const [typedText, setTypedText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+
+  const fullText = "I need CNC machining suppliers with ISO 9001 certification for automotive components. Requirements: 5-axis machining capability, experience with aluminum and steel, and capacity for medium-volume production runs.";
+
+  useEffect(() => {
+    setIsTyping(true);
+    let currentIndex = 0;
+    
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setTypedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTyping(false);
+        setTimeout(() => setShowResults(true), 500);
+      }
+    }, 30);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  const suppliers = [
+    {
+      id: 1,
+      name: "Precision CNC Solutions",
+      location: "Stuttgart, Germany",
+      size: "250-500",
+      specialties: "Automotive, ISO 9001, TS16949",
+      description: "Leading CNC machining specialist with 25+ years experience in automotive precision components",
+      certifications: ["ISO 9001:2015", "IATF 16949:2016", "ISO 14001"],
+      capabilities: ["5-axis CNC machining", "Aluminum & Steel processing", "Medium to high-volume production", "Quality inspection", "Surface treatment"],
+      experience: "25+ years in automotive sector",
+      capacity: "Medium to high-volume production (10,000-100,000 units/month)",
+      equipment: ["DMG Mori 5-axis machines", "Mazak CNC centers", "CMM inspection systems"],
+      founded: 1998,
+      employees: 380,
+      revenue: "€45-50M annually"
+    },
+    {
+      id: 2,
+      name: "TechMold Industries",
+      location: "Shanghai, China",
+      size: "500-1000",
+      specialties: "Injection Molding, IATF 16949",
+      description: "Advanced manufacturing facility specializing in precision injection molding and CNC machining",
+      certifications: ["IATF 16949:2016", "ISO 9001:2015", "ISO 13485"],
+      capabilities: ["CNC machining", "Injection molding", "Tool & die making", "Assembly services", "Quality control"],
+      experience: "18+ years in automotive and medical sectors",
+      capacity: "High-volume production (100,000+ units/month)",
+      equipment: ["Haas CNC machines", "Injection molding presses", "Automated inspection"],
+      founded: 2005,
+      employees: 720,
+      revenue: "¥280-300M annually"
+    },
+    {
+      id: 3,
+      name: "MediParts GmbH",
+      location: "Munich, Germany",
+      size: "100-250",
+      specialties: "Medical Devices, GMP, ISO 13485",
+      description: "Specialized in medical-grade precision components with cleanroom manufacturing",
+      certifications: ["ISO 13485:2016", "ISO 9001:2015", "GMP", "FDA Registered"],
+      capabilities: ["Precision CNC machining", "Medical-grade materials", "Cleanroom production", "Validation services", "Regulatory compliance"],
+      experience: "15+ years in medical device manufacturing",
+      capacity: "Low to medium-volume production (5,000-50,000 units/month)",
+      equipment: ["5-axis CNC machines", "Cleanroom facilities Class 7", "Validation equipment"],
+      founded: 2008,
+      employees: 185,
+      revenue: "€18-22M annually"
+    },
+    {
+      id: 4,
+      name: "AeroTech Components",
+      location: "Toulouse, France",
+      size: "500-1000",
+      specialties: "Aerospace, AS9100, NADCAP",
+      description: "Aerospace components manufacturer with advanced materials expertise",
+      certifications: ["AS9100D", "NADCAP", "ISO 9001:2015", "EN 9100"],
+      capabilities: ["5-axis CNC machining", "Titanium & exotic materials", "Heat treatment", "Non-destructive testing", "Special processes"],
+      experience: "30+ years in aerospace industry",
+      capacity: "Low to medium-volume production (2,000-25,000 units/month)",
+      equipment: ["Advanced 5-axis machines", "Aerospace-grade inspection", "Heat treatment facilities"],
+      founded: 1993,
+      employees: 650,
+      revenue: "€85-95M annually"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,84 +207,96 @@ const SearchSuppliers = () => {
                   <div className="w-3 h-3 rounded-full bg-white/80"></div>
                   <span className="text-white text-sm font-semibold">SearchPro+ Demo</span>
                 </div>
-                <span className="text-white/80 text-xs">4 companies found</span>
+                {showResults && <span className="text-white/80 text-xs">4 companies found</span>}
               </div>
               
               <div className="p-6">
-                {/* Search Query Input */}
+                {/* AI-Powered 7-Step Intelligence Header */}
+                <div className="flex items-center gap-3 mb-4 p-3 bg-gradient-to-r from-[#14B8A6]/10 to-[#0D9488]/10 rounded-xl border border-[#14B8A6]/20">
+                  <Brain className="w-5 h-5 text-[#14B8A6]" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">7-Step AI Intelligence</p>
+                    <p className="text-xs text-gray-600">Converting your requirements into precise specifications</p>
+                  </div>
+                </div>
+
+                {/* Search Query Input with Typing Animation */}
                 <div className="space-y-4 mb-6">
-                  {/* Search Input */}
                   <div className="space-y-3">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Search className="w-4 h-4 text-[#14B8A6]" />
-                      <span className="text-sm font-semibold text-gray-700">SearchPro+</span>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <Search className="w-4 h-4 text-[#14B8A6]" />
+                        <span className="text-sm font-semibold text-gray-700">SearchPro+ Conversational AI</span>
+                      </div>
+                      {isTyping && (
+                        <div className="flex items-center gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse"></div>
+                          <span className="text-xs text-gray-500">AI analyzing...</span>
+                        </div>
+                      )}
                     </div>
-                    <textarea
-                      className="w-full h-24 p-4 border-2 border-gray-200 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm"
-                      placeholder="Describe what you're looking for..."
-                      defaultValue="I am looking for CNC machining suppliers with ISO 9001 certification for automotive components"
-                      readOnly
-                    />
+                    <div className="relative">
+                      <textarea
+                        className="w-full h-32 p-4 border-2 border-[#14B8A6]/30 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm bg-white"
+                        placeholder="Describe what you're looking for..."
+                        value={typedText}
+                        readOnly
+                      />
+                      {isTyping && (
+                        <div className="absolute bottom-4 right-4 flex gap-1">
+                          <div className="w-2 h-2 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
+                          <div className="w-2 h-2 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
-                  {/* Table Headers */}
-                  <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b border-gray-200">
-                    <div>Description</div>
-                    <div>Headquarter</div>
-                    <div>Size</div>
-                    <div>Specialized Areas</div>
-                  </div>
-                  
-                  {/* Supplier Results */}
-                  <div className="space-y-2">
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6, duration: 0.4 }}
-                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
-                    >
-                      <div className="text-sm font-medium text-gray-900">Precision CNC Solutions</div>
-                      <div className="text-sm text-gray-600">Stuttgart, Germany</div>
-                      <div className="text-sm text-gray-600">250-500</div>
-                      <div className="text-sm text-gray-600">Automotive, ISO 9001, TS16949</div>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.8, duration: 0.4 }}
-                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
-                    >
-                      <div className="text-sm font-medium text-gray-900">TechMold Industries</div>
-                      <div className="text-sm text-gray-600">Shanghai, China</div>
-                      <div className="text-sm text-gray-600">500-1000</div>
-                      <div className="text-sm text-gray-600">Injection Molding, IATF 16949</div>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.0, duration: 0.4 }}
-                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
-                    >
-                      <div className="text-sm font-medium text-gray-900">MediParts GmbH</div>
-                      <div className="text-sm text-gray-600">Munich, Germany</div>
-                      <div className="text-sm text-gray-600">100-250</div>
-                      <div className="text-sm text-gray-600">Medical Devices, GMP, ISO 13485</div>
-                    </motion.div>
-                    
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.2, duration: 0.4 }}
-                      className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-gray-50 rounded-lg px-2 transition-colors cursor-pointer"
-                    >
-                      <div className="text-sm font-medium text-gray-900">AeroTech Components</div>
-                      <div className="text-sm text-gray-600">Toulouse, France</div>
-                      <div className="text-sm text-gray-600">500-1000</div>
-                      <div className="text-sm text-gray-600">Aerospace, AS9100, NADCAP</div>
-                    </motion.div>
-                  </div>
+                  {showResults && (
+                    <>
+                      {/* AI Insights */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-3 bg-blue-50 border border-blue-200 rounded-xl"
+                      >
+                        <div className="flex items-start gap-2">
+                          <Sparkles className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <div className="text-xs text-blue-900">
+                            <p className="font-semibold mb-1">AI extracted specifications:</p>
+                            <p>• Industry: Automotive • Certification: ISO 9001 • Capability: 5-axis CNC • Materials: Aluminum, Steel • Volume: Medium production</p>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Table Headers */}
+                      <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b border-gray-200">
+                        <div>Company Name</div>
+                        <div>Location</div>
+                        <div>Size</div>
+                        <div>Certifications</div>
+                      </div>
+                      
+                      {/* Supplier Results */}
+                      <div className="space-y-2">
+                        {suppliers.map((supplier, index) => (
+                          <motion.div
+                            key={supplier.id}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 * index, duration: 0.3 }}
+                            onClick={() => setSelectedSupplier(supplier)}
+                            className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100 hover:bg-[#14B8A6]/5 rounded-lg px-2 transition-all cursor-pointer group"
+                          >
+                            <div className="text-sm font-medium text-gray-900 group-hover:text-[#14B8A6]">{supplier.name}</div>
+                            <div className="text-sm text-gray-600">{supplier.location}</div>
+                            <div className="text-sm text-gray-600">{supplier.size} employees</div>
+                            <div className="text-sm text-gray-600 truncate">{supplier.specialties}</div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </>
+                  )}
                   
                   {/* Filters Section */}
                   <div className="mt-4 pt-4 border-t border-gray-200">
@@ -208,35 +313,22 @@ const SearchSuppliers = () => {
                       </div>
                       
                       <div>
-                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Employee range</label>
-                        <div className="flex gap-1">
-                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>100</option>
-                            <option>250</option>
-                            <option>500</option>
-                          </select>
-                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>1000</option>
-                            <option>5000</option>
-                            <option>10000+</option>
-                          </select>
-                        </div>
+                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Certifications</label>
+                        <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6] bg-white">
+                          <option>ISO 9001</option>
+                          <option>IATF 16949</option>
+                          <option>AS9100</option>
+                          <option>ISO 13485</option>
+                        </select>
                       </div>
                       
                       <div>
-                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Founding year</label>
-                        <div className="flex gap-1">
-                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>1990</option>
-                            <option>2000</option>
-                            <option>2010</option>
-                          </select>
-                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
-                            <option>2024</option>
-                            <option>2020</option>
-                            <option>2015</option>
-                          </select>
-                        </div>
+                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Capabilities</label>
+                        <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6] bg-white">
+                          <option>5-axis CNC</option>
+                          <option>Injection Molding</option>
+                          <option>Surface Treatment</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -868,6 +960,126 @@ const SearchSuppliers = () => {
       </section>
 
       <Footer />
+
+      {/* Supplier Detail Modal */}
+      <Dialog open={!!selectedSupplier} onOpenChange={() => setSelectedSupplier(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          {selectedSupplier && (
+            <div className="space-y-6">
+              <DialogHeader>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">
+                      {selectedSupplier.name}
+                    </DialogTitle>
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4 text-[#14B8A6]" />
+                        <span>{selectedSupplier.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-4 h-4 text-[#14B8A6]" />
+                        <span>{selectedSupplier.employees} employees</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Factory className="w-4 h-4 text-[#14B8A6]" />
+                        <span>Founded {selectedSupplier.founded}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DialogHeader>
+
+              {/* Description */}
+              <div>
+                <p className="text-gray-700 leading-relaxed">{selectedSupplier.description}</p>
+              </div>
+
+              {/* Key Metrics */}
+              <div className="grid grid-cols-3 gap-4">
+                <Card className="rounded-2xl border-[#14B8A6]/20">
+                  <CardContent className="p-4">
+                    <p className="text-xs text-gray-600 mb-1">Experience</p>
+                    <p className="text-lg font-bold text-[#14B8A6]">{selectedSupplier.experience}</p>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-2xl border-blue-500/20">
+                  <CardContent className="p-4">
+                    <p className="text-xs text-gray-600 mb-1">Production Capacity</p>
+                    <p className="text-sm font-semibold text-blue-600">{selectedSupplier.capacity}</p>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-2xl border-purple-500/20">
+                  <CardContent className="p-4">
+                    <p className="text-xs text-gray-600 mb-1">Annual Revenue</p>
+                    <p className="text-lg font-bold text-purple-600">{selectedSupplier.revenue}</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Certifications */}
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-[#14B8A6]" />
+                  Certifications & Standards
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedSupplier.certifications.map((cert: string) => (
+                    <Badge key={cert} className="bg-[#14B8A6]/10 text-[#14B8A6] hover:bg-[#14B8A6]/20 border-[#14B8A6]/30">
+                      {cert}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Capabilities */}
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-[#14B8A6]" />
+                  Core Capabilities
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {selectedSupplier.capabilities.map((capability: string) => (
+                    <div key={capability} className="flex items-center gap-2 text-sm text-gray-700">
+                      <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0" />
+                      <span>{capability}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Equipment */}
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-[#14B8A6]" />
+                  Equipment & Technology
+                </h3>
+                <div className="space-y-2">
+                  {selectedSupplier.equipment.map((equip: string) => (
+                    <div key={equip} className="flex items-center gap-2 text-sm text-gray-700 p-2 bg-gray-50 rounded-lg">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div>
+                      <span>{equip}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-xl">
+                  Request Quote
+                </Button>
+                <Button variant="outline" className="flex-1 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-xl">
+                  Schedule Audit
+                </Button>
+                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl">
+                  <Save className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
