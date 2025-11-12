@@ -115,7 +115,7 @@ const SearchSuppliers = () => {
                                 typeAiMessage(steps[2].aiPrompt, () => {
                                   setTimeout(() => {
                                     setShowResults(true);
-                                    // Wait 3 seconds after results, then fade out and restart
+                                    // Wait 5 seconds after results, then fade out and restart
                                     setTimeout(() => {
                                       setIsFading(true);
                                       setTimeout(() => {
@@ -125,7 +125,7 @@ const SearchSuppliers = () => {
                                         setIsFading(false);
                                         setCurrentScenario((prev) => (prev + 1) % scenarios.length);
                                       }, 500);
-                                    }, 3000);
+                                    }, 5000);
                                   }, 1000);
                                 });
                               }, 1500);
