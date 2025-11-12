@@ -44,12 +44,13 @@ const SearchSuppliers = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+            {/* Left Content - Takes 2 columns */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="lg:col-span-2"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -100,12 +101,12 @@ const SearchSuppliers = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Content - Interactive Demo Search */}
+            {/* Right Content - Interactive Demo Search - Takes 3 columns */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm border border-gray-100"
+              className="lg:col-span-3 bg-white rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm border border-gray-100"
             >
               {/* Demo Header */}
               <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-6 py-3 flex items-center justify-between">
@@ -118,107 +119,95 @@ const SearchSuppliers = () => {
               
               <div className="p-6">
                 {/* Search Query Input */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                  {/* Left: Search Input */}
-                  <div className="space-y-4">
+                <div className="space-y-4 mb-6">
+                  {/* Search Input */}
+                  <div className="space-y-3">
                     <div className="flex items-center gap-2 mb-2">
                       <Search className="w-4 h-4 text-[#14B8A6]" />
                       <span className="text-sm font-semibold text-gray-700">SearchPro+</span>
                     </div>
                     <textarea
-                      className="w-full h-32 p-4 border-2 border-gray-200 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm"
+                      className="w-full h-24 p-4 border-2 border-gray-200 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm"
                       placeholder="Describe what you're looking for..."
                       defaultValue="I am looking for companies that work on autonomous driving technologies"
                       readOnly
                     />
-                    
-                    {/* Filters */}
-                    <div className="space-y-3">
+                  </div>
+                  
+                  {/* Table Headers */}
+                  <div className="grid grid-cols-4 gap-2 text-xs font-semibold text-gray-600 pb-2 border-b border-gray-200">
+                    <div>Description</div>
+                    <div>Headquarter</div>
+                    <div>Size</div>
+                    <div>Specialized Areas</div>
+                  </div>
+                  
+                  {/* Empty Results Placeholders */}
+                  <div className="space-y-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="grid grid-cols-4 gap-2 py-3 border-b border-gray-100">
+                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
+                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
+                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
+                        <div className="h-4 bg-gray-100 rounded animate-pulse"></div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Filters Section */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="grid grid-cols-3 gap-4">
                       <div>
                         <label className="text-xs font-semibold text-gray-600 mb-1 block">Industry</label>
-                        <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6]">
+                        <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6] bg-white">
                           <option>Select Industry</option>
                           <option>Automotive</option>
                           <option>Technology</option>
                         </select>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-2">
-                        <div>
-                          <label className="text-xs font-semibold text-gray-600 mb-1 block">Employee range</label>
-                          <div className="flex gap-1">
-                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
-                              <option>Min</option>
-                            </select>
-                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
-                              <option>Max</option>
-                            </select>
-                          </div>
+                      <div>
+                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Employee range</label>
+                        <div className="flex gap-1">
+                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
+                            <option>Min</option>
+                          </select>
+                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
+                            <option>Max</option>
+                          </select>
                         </div>
-                        
-                        <div>
-                          <label className="text-xs font-semibold text-gray-600 mb-1 block">Founding year</label>
-                          <div className="flex gap-1">
-                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
-                              <option>Min</option>
-                            </select>
-                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
-                              <option>Max</option>
-                            </select>
-                          </div>
+                      </div>
+                      
+                      <div>
+                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Founding year</label>
+                        <div className="flex gap-1">
+                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
+                            <option>Min</option>
+                          </select>
+                          <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6] bg-white">
+                            <option>Max</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Right: Results Preview */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-semibold text-gray-600 uppercase">Results Preview</span>
-                      <span className="text-xs text-gray-400">3 companies</span>
-                    </div>
-                    
-                    {[
-                      { name: "Aventro Mobility", desc: "Sensor fusion tech", country: "🇬🇧" },
-                      { name: "StratoSensor", desc: "LiDAR platform", country: "🇬🇧" },
-                      { name: "Quanteer Drive", desc: "Predictive behavior", country: "🇬🇧" }
-                    ].map((company, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 + index * 0.1 }}
-                        className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
-                      >
-                        <input type="checkbox" className="w-3 h-3 accent-[#14B8A6]" checked={index === 0} readOnly />
-                        <div className={`w-8 h-8 bg-gradient-to-br ${index === 0 ? 'from-[#14B8A6] to-[#0D9488]' : 'from-gray-400 to-gray-500'} rounded-lg flex items-center justify-center text-white text-xs font-bold`}>
-                          {company.name[0]}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-xs text-gray-900 truncate">{company.name}</p>
-                          <p className="text-[10px] text-gray-500 truncate">{company.desc}</p>
-                        </div>
-                        <span className="text-sm">{company.country}</span>
-                      </motion.div>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Divider */}
-                <div className="border-t border-gray-200 my-4"></div>
-                
-                {/* Bottom CTA */}
-                <div className="flex items-center justify-between">
-                  <p className="text-xs text-gray-500">
-                    <span className="font-semibold text-[#14B8A6]">AI-powered</span> supplier matching
-                  </p>
-                  <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white rounded-full px-6 py-2 text-sm hover:scale-105 transition-all">
-                    Try Demo
-                  </Button>
-                </div>
               </div>
             </motion.div>
           </div>
+          
+          {/* Left side text overlay */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="absolute left-8 lg:left-20 bottom-32 max-w-md z-20"
+          >
+            <p className="text-white text-lg leading-relaxed">
+              <span className="font-bold">Gain market transparency in seconds.</span> We spotlight the most relevant suppliers – <span className="font-bold">across all industries.</span>
+            </p>
+          </motion.div>
         </div>
       </section>
 
