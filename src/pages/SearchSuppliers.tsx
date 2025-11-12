@@ -404,10 +404,10 @@ const SearchSuppliers = () => {
                   ))}
                 </div>
 
-                {/* Conversation Thread - Rounded corners like YVOO image container */}
+                {/* Conversation Thread - Enhanced rounded corners */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4 scroll-smooth"
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-3xl bg-gray-50 p-4 scroll-smooth"
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -428,8 +428,8 @@ const SearchSuppliers = () => {
                       >
                         {msg.role === 'ai' && (
                           <div className="flex items-center gap-2 mb-2">
-                            <Sparkles className="w-3 h-3 text-[#14B8A6]" />
-                            <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
+                            <Cpu className="w-3 h-3 text-[#14B8A6]" />
+                            <span className="text-xs font-semibold text-[#14B8A6]">YVOO</span>
                           </div>
                         )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -446,8 +446,8 @@ const SearchSuppliers = () => {
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <Sparkles className="w-3 h-3 text-[#14B8A6]" />
-                          <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
+                          <Cpu className="w-3 h-3 text-[#14B8A6]" />
+                          <span className="text-xs font-semibold text-[#14B8A6]">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
@@ -802,7 +802,7 @@ const SearchSuppliers = () => {
                 subtitle: "7-Step Intelligence",
                 description: "Our AI agent guides you through a structured dialogue, converting vague requirements into precise specifications with technical details, materials, and certifications.",
                 icon: Cpu,
-                gradient: "from-purple-500 to-pink-500"
+                gradient: "from-[#14B8A6] to-[#0D9488]"
               },
               {
                 title: "Triple-Source Search Architecture",
@@ -928,7 +928,7 @@ const SearchSuppliers = () => {
                 <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all h-full border-0 p-6">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0F9B8E] flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-lg">
                         <benefit.icon className="w-6 h-6 text-white" />
                       </div>
                     </div>
@@ -1154,10 +1154,10 @@ const SearchSuppliers = () => {
                     <p className="text-sm font-semibold text-blue-600">{selectedSupplier.capacity}</p>
                   </CardContent>
                 </Card>
-                <Card className="rounded-2xl border-purple-500/20">
+                <Card className="rounded-2xl border-gray-500/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Annual Revenue</p>
-                    <p className="text-lg font-bold text-purple-600">{selectedSupplier.revenue}</p>
+                    <p className="text-lg font-bold text-gray-700">{selectedSupplier.revenue}</p>
                   </CardContent>
                 </Card>
               </div>
