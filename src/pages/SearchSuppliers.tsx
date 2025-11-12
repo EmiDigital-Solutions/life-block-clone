@@ -876,7 +876,7 @@ const SearchSuppliers = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 icon: Cpu,
@@ -984,20 +984,34 @@ const SearchSuppliers = () => {
                 onClick={() => setSelectedAIFeature(index)}
                 className="cursor-pointer"
               >
-                <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all h-full border-0 p-6 hover:scale-105">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-lg">
-                        <benefit.icon className="w-6 h-6 text-white" />
+                <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
+                  <div className="flex items-start gap-0">
+                    {/* Left side - Icon area with gradient background */}
+                    <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
+                      {/* Decorative circles */}
+                      <div className="absolute top-0 left-0 w-32 h-32 bg-[#14B8A6]/5 rounded-full -translate-x-8 -translate-y-8"></div>
+                      <div className="absolute bottom-0 right-0 w-24 h-24 bg-[#0D9488]/5 rounded-full translate-x-6 translate-y-6"></div>
+                      
+                      {/* Icon */}
+                      <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                        <benefit.icon className="w-10 h-10 text-white" />
                       </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">{benefit.title}</h3>
-                      <p className="text-gray-600 text-sm mb-3">{benefit.description}</p>
-                      <button className="text-[#14B8A6] text-sm font-semibold hover:text-[#0D9488] flex items-center gap-1">
-                        Click to learn more
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                    
+                    {/* Right side - Content */}
+                    <div className="flex-1 p-8">
+                      <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-4">
+                        <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide">Feature {String(index + 1).padStart(2, '0')}</span>
+                      </div>
+                      
+                      <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#14B8A6] transition-colors">{benefit.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{benefit.description}</p>
+                      
+                      <div className="flex items-center gap-2 text-[#14B8A6] text-sm font-semibold group-hover:gap-3 transition-all">
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Click to learn more</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -1171,7 +1185,7 @@ const SearchSuppliers = () => {
 
       {/* AI Feature Detail Modal */}
       <Dialog open={selectedAIFeature !== null} onOpenChange={() => setSelectedAIFeature(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-background via-background to-muted/20 backdrop-blur-xl border border-border/50">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
           {selectedAIFeature !== null && (() => {
             const features = [
               {
@@ -1268,66 +1282,99 @@ const SearchSuppliers = () => {
             
             return (
               <div className="space-y-6">
-                <DialogHeader className="pb-6 border-b border-border/30">
-                  <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-[#14B8A6] to-[#0D9488] bg-clip-text text-transparent">
-                    {feature.title}
-                  </DialogTitle>
-                  <p className="text-base text-muted-foreground mt-2 leading-relaxed">
-                    {feature.detailedExplanation.overview}
-                  </p>
-                </DialogHeader>
-
-                <div className="space-y-4 mt-6">
-                  {/* For Engineers */}
-                  <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-600/5 p-6 rounded-2xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
-                        <Target className="w-5 h-5 text-blue-600" />
-                      </div>
-                      <h3 className="font-semibold text-lg text-foreground">For Engineers</h3>
+                {/* Header with Icon */}
+                <div className="flex items-start gap-6 pb-6 border-b border-gray-100">
+                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl flex-shrink-0">
+                    <FeatureIcon className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
+                      <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide">AI Feature</span>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.detailedExplanation.forEngineers}
+                    <DialogTitle className="text-3xl font-bold text-gray-900 mb-3">
+                      {feature.title}
+                    </DialogTitle>
+                    <p className="text-gray-600 leading-relaxed text-base">
+                      {feature.detailedExplanation.overview}
                     </p>
+                  </div>
+                </div>
+
+                <div className="space-y-5 mt-8">
+                  {/* For Engineers */}
+                  <div className="group relative bg-white rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Target className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1 p-6">
+                        <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
+                          <span className="text-blue-600 text-xs font-bold uppercase">For Engineers</span>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">
+                          {feature.detailedExplanation.forEngineers}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="group relative bg-gradient-to-br from-[#14B8A6]/5 to-[#0D9488]/5 p-6 rounded-2xl border border-[#14B8A6]/20 hover:border-[#14B8A6]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#14B8A6]/10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-[#14B8A6]/10 rounded-lg group-hover:bg-[#14B8A6]/20 transition-colors">
-                        <TrendingUp className="w-5 h-5 text-[#14B8A6]" />
+                  <div className="group relative bg-white rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <TrendingUp className="w-8 h-8 text-white" />
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-foreground">For Procurement & Buyers</h3>
+                      <div className="flex-1 p-6">
+                        <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
+                          <span className="text-[#14B8A6] text-xs font-bold uppercase">For Procurement & Buyers</span>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">
+                          {feature.detailedExplanation.forBuyers}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.detailedExplanation.forBuyers}
-                    </p>
                   </div>
 
                   {/* For Quality & Auditors */}
-                  <div className="group relative bg-gradient-to-br from-gray-500/5 to-gray-600/5 p-6 rounded-2xl border border-gray-500/20 hover:border-gray-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-gray-500/10 rounded-lg group-hover:bg-gray-500/20 transition-colors">
-                        <Shield className="w-5 h-5 text-gray-600" />
+                  <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Shield className="w-8 h-8 text-white" />
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-foreground">For Quality & Auditors</h3>
+                      <div className="flex-1 p-6">
+                        <div className="inline-block px-3 py-1 bg-gray-100 rounded-full mb-3">
+                          <span className="text-gray-700 text-xs font-bold uppercase">For Quality & Auditors</span>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">
+                          {feature.detailedExplanation.forAuditors}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.detailedExplanation.forAuditors}
-                    </p>
                   </div>
 
                   {/* Real-World Application */}
-                  <div className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/80 p-6 rounded-2xl border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 hover:shadow-lg hover:shadow-gray-900/30">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-yellow-500/10 rounded-lg group-hover:bg-yellow-500/20 transition-colors">
-                        <CheckCircle2 className="w-5 h-5 text-yellow-400" />
+                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="flex items-start gap-0">
+                      <div className="w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-6 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-8 h-8 text-white" />
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-lg text-white">Real-World Application</h3>
+                      <div className="flex-1 p-6">
+                        <div className="inline-block px-3 py-1 bg-white/10 rounded-full mb-3">
+                          <span className="text-[#14B8A6] text-xs font-bold uppercase">Real-World Application</span>
+                        </div>
+                        <p className="text-gray-200 leading-relaxed">
+                          {feature.detailedExplanation.example}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-gray-300 leading-relaxed">
-                      {feature.detailedExplanation.example}
-                    </p>
                   </div>
                 </div>
 
