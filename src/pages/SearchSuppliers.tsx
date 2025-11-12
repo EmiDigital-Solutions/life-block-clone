@@ -20,6 +20,7 @@ const SearchSuppliers = () => {
   const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'ai', message: string}>>([]);
   const [currentScenario, setCurrentScenario] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -152,6 +153,10 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
         currentIndex++;
+        // Auto-scroll to bottom
+        if (chatContainerRef.current) {
+          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
       } else {
         clearInterval(typingInterval);
         setIsTyping(false);
@@ -169,6 +174,10 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
         currentIndex++;
+        // Auto-scroll to bottom
+        if (chatContainerRef.current) {
+          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
       } else {
         clearInterval(typingInterval);
         setConversationHistory(prev => [...prev, { role: 'user', message }]);
@@ -331,6 +340,7 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
+                className="hidden"
               >
                 <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
                   Get Started
@@ -396,7 +406,8 @@ const SearchSuppliers = () => {
 
                 {/* Conversation Thread - Rounded corners like YVOO image container */}
                 <motion.div 
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4"
+                  ref={chatContainerRef}
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4 scroll-smooth"
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -514,17 +525,7 @@ const SearchSuppliers = () => {
             </motion.div>
           </div>
           
-          {/* Left side text overlay */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute left-8 lg:left-20 bottom-32 max-w-md z-20"
-          >
-            <p className="text-white text-lg leading-relaxed">
-              <span className="font-bold">Gain market transparency in seconds.</span> We spotlight the most relevant suppliers – <span className="font-bold">across all industries.</span>
-            </p>
-          </motion.div>
+          {/* Left side text overlay - removed to prevent overlap */}
         </div>
       </section>
 
