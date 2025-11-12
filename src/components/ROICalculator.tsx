@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { DollarSign } from "lucide-react";
+import { DollarSign, ChevronRight, Zap, Lightbulb } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -42,32 +42,7 @@ const ROICalculator = () => {
           >
             Calculate Your <span style={{ color: '#14B8A6' }}>Business Case</span>
           </motion.h2>
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            animate={{ scale: [1, 1.1, 1] }}
-            className="px-4 py-2 bg-[#14B8A6] text-white text-sm font-bold rounded-full shadow-lg"
-          >
-            ✏️ Interactive Tool
-          </motion.span>
         </div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-[#14B8A6] p-4 rounded-lg"
-        >
-          <p className="text-lg font-bold text-gray-900 mb-2">
-            👇 This calculator is fully interactive - adjust the values to match your situation
-          </p>
-          <p className="text-sm text-gray-600">
-            See real-time results as you type your own numbers below
-          </p>
-        </motion.div>
       </div>
 
       {/* Input Fields with Visual Cues */}
@@ -78,29 +53,11 @@ const ROICalculator = () => {
         transition={{ delay: 0.2 }}
         className="bg-gradient-to-br from-[#14B8A6]/5 to-blue-50 rounded-2xl p-6 md:p-8 mb-8 border-2 border-[#14B8A6]/30 relative"
       >
-        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="bg-[#14B8A6] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
-          >
-            ✏️ EDIT THESE VALUES
-          </motion.div>
-        </div>
-        
-        <div className="flex items-center gap-2 mb-6 mt-4">
-          <div className="w-3 h-3 rounded-full bg-[#14B8A6] animate-pulse" />
-          <span className="text-base font-bold text-gray-900">
-            Click on the input fields below and type your own numbers
-          </span>
-        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2 relative">
-            <div className="absolute -left-3 top-8 text-2xl">
-              👉
-            </div>
-            <Label htmlFor="audits" className="text-base font-bold text-gray-900">
+          <div className="space-y-2">
+            <Label htmlFor="audits" className="text-base font-bold text-gray-900 flex items-center gap-2">
+              <ChevronRight className="w-5 h-5" style={{ color: '#14B8A6' }} />
               Step 1: Your audits per year
             </Label>
             <Input
@@ -114,11 +71,9 @@ const ROICalculator = () => {
             />
           </div>
 
-          <div className="space-y-2 relative">
-            <div className="absolute -left-3 top-8 text-2xl">
-              👉
-            </div>
-            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900">
+          <div className="space-y-2">
+            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900 flex items-center gap-2">
+              <ChevronRight className="w-5 h-5" style={{ color: '#14B8A6' }} />
               Step 2: Your current cost per audit (€)
             </Label>
             <Input
@@ -139,9 +94,11 @@ const ROICalculator = () => {
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="inline-block bg-gradient-to-r from-[#14B8A6] to-blue-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14B8A6] to-blue-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
         >
-          ⚡ Your Results Update Instantly Below ⚡
+          <Zap className="w-5 h-5" />
+          Your Results Update Instantly
+          <Zap className="w-5 h-5" />
         </motion.div>
       </div>
 
@@ -199,10 +156,13 @@ const ROICalculator = () => {
       </div>
 
       <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
-        <p className="text-gray-700 text-sm">
-          <strong className="text-gray-900">💡 Additional Benefits:</strong> No travel costs for internal auditors, 
-          reduced rework through standardized reports, faster supplier releases 
-          enable shorter time-to-market, and improved supplier relationship management.
+        <p className="text-gray-700 text-sm flex items-start gap-2">
+          <Lightbulb className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+          <span>
+            <strong className="text-gray-900">Additional Benefits:</strong> No travel costs for internal auditors, 
+            reduced rework through standardized reports, faster supplier releases 
+            enable shorter time-to-market, and improved supplier relationship management.
+          </span>
         </p>
       </div>
     </div>
