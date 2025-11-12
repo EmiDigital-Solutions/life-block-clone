@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Brain, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X } from "lucide-react";
+import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -18,65 +18,126 @@ const SearchSuppliers = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'ai', message: string}>>([]);
+  const [currentScenario, setCurrentScenario] = useState(0);
 
-  // Simulated conversation steps
-  const steps = [
+  // Three different search scenarios - rotating industries
+  const scenarios = [
     {
-      step: 1,
-      aiPrompt: "What type of product or service are you looking for?",
-      userResponse: "CNC machining",
-      aiFollowUp: "I understand you're looking for CNC machining. Let me help you refine this. Are you specifically interested in: • Precision CNC machining • Multi-axis CNC operations • High-volume CNC production • Or general CNC machining services?"
+      steps: [
+        {
+          step: 1,
+          aiPrompt: "What type of product or service are you looking for?",
+          userResponse: "CNC machining",
+          aiFollowUp: "I understand you're looking for CNC machining. Let me help you refine this. Are you specifically interested in: • Precision CNC machining • Multi-axis CNC operations • High-volume CNC production • Or general CNC machining services?"
+        },
+        {
+          step: 2,
+          aiPrompt: "Great! For precision CNC machining, what industry standards or certifications are important for your project?",
+          userResponse: "ISO 9001 for automotive",
+          aiFollowUp: "Perfect! For automotive applications with ISO 9001, I also recommend considering: • IATF 16949 (automotive quality standard) • TS 16949 (technical specification) • AS9100 (if aerospace crossover) Would you like suppliers with any of these additional certifications?"
+        },
+        {
+          step: 3,
+          aiPrompt: "Excellent! Now let me find suppliers matching your requirements: Precision CNC machining + ISO 9001 + Automotive sector + Optional IATF 16949",
+          userResponse: "Yes, show me the results",
+          aiFollowUp: ""
+        }
+      ]
     },
     {
-      step: 2,
-      aiPrompt: "Great! For precision CNC machining, what industry standards or certifications are important for your project?",
-      userResponse: "ISO 9001 for automotive",
-      aiFollowUp: "Perfect! For automotive applications with ISO 9001, I also recommend considering: • IATF 16949 (automotive quality standard) • TS 16949 (technical specification) • AS9100 (if aerospace crossover) Would you like suppliers with any of these additional certifications?"
+      steps: [
+        {
+          step: 1,
+          aiPrompt: "What type of product or service are you looking for?",
+          userResponse: "Medical device components",
+          aiFollowUp: "I see you need medical device components. Let me help narrow this down. Are you looking for: • Surgical instruments • Implantable components • Diagnostic equipment parts • Or general medical-grade components?"
+        },
+        {
+          step: 2,
+          aiPrompt: "Perfect! For implantable components, what certifications and regulatory requirements do you need?",
+          userResponse: "ISO 13485 and FDA registered",
+          aiFollowUp: "Excellent choice! For medical implants, I also suggest: • GMP compliance • Cleanroom manufacturing (Class 7 or better) • Biocompatibility testing • Material traceability Would you like suppliers with these capabilities?"
+        },
+        {
+          step: 3,
+          aiPrompt: "Great! Let me find suppliers with: Implantable medical components + ISO 13485 + FDA registered + Cleanroom facilities",
+          userResponse: "Show me the options",
+          aiFollowUp: ""
+        }
+      ]
     },
     {
-      step: 3,
-      aiPrompt: "Excellent! Now let me find suppliers matching your requirements: Precision CNC machining + ISO 9001 + Automotive sector + Optional IATF 16949",
-      userResponse: "Yes, show me the results",
-      aiFollowUp: ""
+      steps: [
+        {
+          step: 1,
+          aiPrompt: "What type of product or service are you looking for?",
+          userResponse: "Electronics assembly",
+          aiFollowUp: "I understand you need electronics assembly. Let me help specify this. Are you interested in: • PCB assembly (SMT/THT) • Box build assembly • Cable & wire harness • Or complete system integration?"
+        },
+        {
+          step: 2,
+          aiPrompt: "Excellent! For PCB assembly, what quality standards and capabilities do you require?",
+          userResponse: "IPC-A-610 Class 3 for aerospace",
+          aiFollowUp: "Perfect for aerospace! For IPC-A-610 Class 3, I recommend also considering: • AS9100 certification • Conformal coating • X-ray inspection • ESD protected environment Would these additional capabilities be valuable?"
+        },
+        {
+          step: 3,
+          aiPrompt: "Outstanding! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Aerospace capabilities",
+          userResponse: "Yes, find them",
+          aiFollowUp: ""
+        }
+      ]
     }
   ];
 
   useEffect(() => {
-    // Initialize first AI message
-    setTimeout(() => {
-      typeAiMessage(steps[0].aiPrompt, () => {
-        setTimeout(() => {
-          typeUserMessage(steps[0].userResponse, () => {
-            setTimeout(() => {
-              typeAiMessage(steps[0].aiFollowUp, () => {
-                setTimeout(() => {
-                  setCurrentStep(2);
-                  typeAiMessage(steps[1].aiPrompt, () => {
-                    setTimeout(() => {
-                      typeUserMessage(steps[1].userResponse, () => {
-                        setTimeout(() => {
-                          typeAiMessage(steps[1].aiFollowUp, () => {
-                            setTimeout(() => {
-                              setCurrentStep(3);
-                              typeAiMessage(steps[2].aiPrompt, () => {
-                                setTimeout(() => {
-                                  setShowResults(true);
-                                }, 1000);
-                              });
-                            }, 1500);
-                          });
-                        }, 1000);
-                      });
-                    }, 1500);
-                  });
-                }, 1000);
-              });
-            }, 1500);
-          });
-        }, 1000);
-      });
-    }, 500);
-  }, []);
+    const runConversation = () => {
+      const steps = scenarios[currentScenario].steps;
+      
+      setTimeout(() => {
+        typeAiMessage(steps[0].aiPrompt, () => {
+          setTimeout(() => {
+            typeUserMessage(steps[0].userResponse, () => {
+              setTimeout(() => {
+                typeAiMessage(steps[0].aiFollowUp, () => {
+                  setTimeout(() => {
+                    setCurrentStep(2);
+                    typeAiMessage(steps[1].aiPrompt, () => {
+                      setTimeout(() => {
+                        typeUserMessage(steps[1].userResponse, () => {
+                          setTimeout(() => {
+                            typeAiMessage(steps[1].aiFollowUp, () => {
+                              setTimeout(() => {
+                                setCurrentStep(3);
+                                typeAiMessage(steps[2].aiPrompt, () => {
+                                  setTimeout(() => {
+                                    setShowResults(true);
+                                    // Wait 3 seconds after results, then restart with next scenario
+                                    setTimeout(() => {
+                                      setShowResults(false);
+                                      setConversationHistory([]);
+                                      setCurrentStep(1);
+                                      setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                                    }, 3000);
+                                  }, 1000);
+                                });
+                              }, 1500);
+                            });
+                          }, 1000);
+                        });
+                      }, 1500);
+                    });
+                  }, 1000);
+                });
+              }, 1500);
+            });
+          }, 1000);
+        });
+      }, 500);
+    };
+
+    runConversation();
+  }, [currentScenario]);
 
   const typeAiMessage = (message: string, onComplete: () => void) => {
     setIsTyping(true);
@@ -280,7 +341,7 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-3 relative"
               style={{ 
-                transform: 'translateY(40%)',
+                transform: 'translateY(calc(40% + 4cm))',
                 zIndex: 10
               }}
             >
@@ -291,7 +352,7 @@ const SearchSuppliers = () => {
                 <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Brain className="w-5 h-5 text-[#14B8A6]" />
+                    <Cpu className="w-5 h-5 text-[#14B8A6]" />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -464,38 +525,6 @@ const SearchSuppliers = () => {
           <path d="M0 0C480 80 960 80 1440 0V120H0V0Z" fill="rgb(249, 250, 251)"/>
         </svg>
       </div>
-
-      {/* Trusted By Section */}
-      <section 
-        className="py-16 -mt-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-        data-nav-theme="light"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center text-gray-500 mb-8 text-sm uppercase tracking-wider font-semibold"
-          >
-            Trusted by world leading companies
-          </motion.p>
-          <div className="flex justify-center items-center gap-12 flex-wrap">
-            {["AVL", "IFAM", "REWE", "KNORR-BREMSE", "Krombacher", "SAP"].map((company, index) => (
-              <motion.div
-                key={company}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-2xl font-bold text-gray-400 hover:text-gray-600 transition-colors cursor-default"
-              >
-                {company}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Stats Section */}
       <section className="py-20 bg-white" data-nav-theme="light">
@@ -762,7 +791,7 @@ const SearchSuppliers = () => {
                 title: "AI-Powered Conversational Workflow",
                 subtitle: "7-Step Intelligence",
                 description: "Our AI agent guides you through a structured dialogue, converting vague requirements into precise specifications with technical details, materials, and certifications.",
-                icon: Brain,
+                icon: Cpu,
                 gradient: "from-purple-500 to-pink-500"
               },
               {
@@ -839,7 +868,7 @@ const SearchSuppliers = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: Brain,
+                icon: Cpu,
                 title: "AI Preference Engine",
                 description: "AI automatically recognizes your requirements and preferences based on your profile. For example, if you mainly work in automotive, the system automatically prefers TS16949-certified suppliers."
               },
