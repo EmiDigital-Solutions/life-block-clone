@@ -362,10 +362,10 @@ const SearchSuppliers = () => {
               }}
             >
               {/* Modern white card matching YVOO design */}
-              <div className="bg-white shadow-lg overflow-visible">
+              <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-6 py-4 flex items-center justify-between">
+                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
                     <Cpu className="w-5 h-5 text-[#14B8A6]" />
