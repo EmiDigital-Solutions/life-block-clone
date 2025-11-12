@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { CurvedSection } from "@/components/CurvedSection";
 
 const BeFound = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,11 +74,11 @@ const BeFound = () => {
       
       <motion.div ref={containerRef} className="relative">
         {/* Hero Section */}
-        <section
-          data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
-        >
+        <CurvedSection variant="gradient-teal" curvePosition="bottom" curveIntensity="large">
+          <section
+            data-nav-theme="dark"
+            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
+          >
           <div className="container mx-auto">
             <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0 pb-10">
               <motion.h1 
@@ -127,7 +128,8 @@ const BeFound = () => {
               </motion.p>
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
 
         {/* Logo Section */}
         <section
@@ -335,7 +337,8 @@ const BeFound = () => {
               </motion.div>
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
 
         {/* Product Overview Section */}
         <section
@@ -402,7 +405,8 @@ const BeFound = () => {
               ))}
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
 
         {/* How It Works Section */}
         <HowItWorksSection />
@@ -528,7 +532,8 @@ const BeFound = () => {
               </motion.div>
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
 
         {/* Testimonials Section */}
         <section
@@ -638,7 +643,8 @@ const BeFound = () => {
               ))}
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
 
         {/* Final CTA Section */}
         <section
@@ -693,7 +699,8 @@ const BeFound = () => {
               </motion.div>
             </div>
           </div>
-        </section>
+          </section>
+        </CurvedSection>
       </motion.div>
 
       <Footer />

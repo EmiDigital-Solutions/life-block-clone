@@ -443,7 +443,8 @@ const SearchSuppliers = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+        </section>
+      </CurvedSection>
 
       {/* Curved Section Divider */}
       <div className="relative -mt-1">
@@ -482,7 +483,9 @@ const SearchSuppliers = () => {
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </CurvedSection>
+      </CurvedSection>
 
       {/* Stats Section */}
       <section className="py-20 bg-white" data-nav-theme="light">
