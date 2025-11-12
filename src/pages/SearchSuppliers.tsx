@@ -19,6 +19,7 @@ const SearchSuppliers = () => {
   const [showResults, setShowResults] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'ai', message: string}>>([]);
   const [currentScenario, setCurrentScenario] = useState(0);
+  const [isFading, setIsFading] = useState(false);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -112,12 +113,16 @@ const SearchSuppliers = () => {
                                 typeAiMessage(steps[2].aiPrompt, () => {
                                   setTimeout(() => {
                                     setShowResults(true);
-                                    // Wait 3 seconds after results, then restart with next scenario
+                                    // Wait 3 seconds after results, then fade out and restart
                                     setTimeout(() => {
-                                      setShowResults(false);
-                                      setConversationHistory([]);
-                                      setCurrentStep(1);
-                                      setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                                      setIsFading(true);
+                                      setTimeout(() => {
+                                        setShowResults(false);
+                                        setConversationHistory([]);
+                                        setCurrentStep(1);
+                                        setIsFading(false);
+                                        setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                                      }, 500);
                                     }, 3000);
                                   }, 1000);
                                 });
@@ -390,7 +395,11 @@ const SearchSuppliers = () => {
                 </div>
 
                 {/* Conversation Thread - Rounded corners like YVOO image container */}
-                <div className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4">
+                <motion.div 
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto rounded-2xl bg-gray-50 p-4"
+                  animate={{ opacity: isFading ? 0 : 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   {conversationHistory.map((msg, index) => (
                     <motion.div
                       key={index}
@@ -453,13 +462,13 @@ const SearchSuppliers = () => {
                       </div>
                     </motion.div>
                   )}
-                </div>
+                </motion.div>
 
                 {/* Results section that overlays next page */}
                 {showResults && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
                     transition={{ duration: 0.5 }}
                     className="mt-6"
                   >
