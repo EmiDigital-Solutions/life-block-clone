@@ -24,14 +24,14 @@ const FounderMissionSection = () => {
   }, []);
 
   const listItems = [
-    "Is the production floor actually organized—or chaotic?",
-    "Does their quality system work in practice—or just on paper?",
-    "Are certifications current and properly implemented?",
-    "Can they really handle your volume requirements?",
-    "Is management competent, experienced, reliable?",
-    "What's their actual lead time under pressure?",
-    "How do they handle quality issues with current clients?",
-    "Is their equipment modern or outdated?",
+    "Production floor organization",
+    "Quality system effectiveness",
+    "Certification validity",
+    "Volume capacity",
+    "Management competence",
+    "Actual lead times",
+    "Quality issue handling",
+    "Equipment modernity",
   ];
 
   return (
