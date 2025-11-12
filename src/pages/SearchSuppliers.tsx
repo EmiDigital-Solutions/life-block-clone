@@ -986,15 +986,16 @@ const SearchSuppliers = () => {
               >
                 <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                   <div className="flex items-start gap-0">
-                    {/* Left side - Number area with gradient background */}
+                    {/* Left side - Icon area with gradient background */}
                     <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
-                      {/* Decorative circles */}
-                      <div className="absolute top-0 left-0 w-32 h-32 bg-[#14B8A6]/5 rounded-full -translate-x-8 -translate-y-8"></div>
-                      <div className="absolute bottom-0 right-0 w-24 h-24 bg-[#0D9488]/5 rounded-full translate-x-6 translate-y-6"></div>
+                      {/* Watermark number in background */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                        <span className="text-[120px] font-bold text-[#14B8A6] leading-none">{index + 1}</span>
+                      </div>
                       
-                      {/* Number */}
+                      {/* Icon */}
                       <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-4xl font-bold text-white">{index + 1}</span>
+                        <benefit.icon className="w-10 h-10 text-white" />
                       </div>
                     </div>
                     
