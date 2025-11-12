@@ -259,9 +259,67 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Fixed height, doesn't expand */}
+      {/* Hero Section - Mobile: Split into Headlines + Benefits */}
+      
+      {/* Mobile Sub-Section 1: Headlines Only */}
       <section 
-        className="relative pt-32 pb-20 overflow-visible"
+        className="block md:hidden relative px-6 bg-[#0A0E27]"
+        style={{ paddingTop: "60px", paddingBottom: "40px" }}
+      >
+        <h1 className="text-4xl font-bold mb-6 leading-tight">
+          <span className="text-[#14B8A6]">Find and audit</span>{" "}
+          <span className="text-white">suppliers</span>
+        </h1>
+        
+        <p className="text-lg text-white opacity-80">
+          Worldwide in real-time with AI
+        </p>
+
+        {/* Small curved bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#111827]" style={{ 
+          clipPath: "ellipse(100% 100% at 50% 0%)" 
+        }}></div>
+      </section>
+
+      {/* Mobile Sub-Section 2: Benefits & CTA */}
+      <section 
+        className="block md:hidden relative px-6 bg-[#111827]"
+        style={{ paddingTop: "40px", paddingBottom: "60px" }}
+      >
+        {/* Benefit badges */}
+        <div className="space-y-4 mb-8">
+          {[
+            "AI-powered supplier discovery",
+            "On-site auditing in 3 days",
+            "Cost reduction up to 97%"
+          ].map((text, index) => (
+            <div key={index} className="flex items-center gap-3 text-white">
+              <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0" />
+              <span className="text-base">{text}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="space-y-3">
+          <Button className="w-full h-14 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full shadow-lg text-base font-semibold">
+            Start Free Search
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+          <Button variant="outline" className="w-full h-14 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full text-base font-semibold">
+            See How It Works
+          </Button>
+        </div>
+
+        {/* Curved bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-white" style={{ 
+          clipPath: "ellipse(100% 100% at 50% 0%)" 
+        }}></div>
+      </section>
+
+      {/* Desktop Hero - Unchanged */}
+      <section 
+        className="hidden md:block relative pt-32 pb-20 overflow-visible"
         style={{ 
           background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
           height: "70vh"
@@ -534,27 +592,27 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Stats Section - Extra padding to prevent overlap */}
-      <section className="pt-96 pb-20 bg-white" data-nav-theme="light">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+      {/* Stats Section - Mobile: pt-60, Desktop: pt-96 */}
+      <section className="pt-60 md:pt-96 pb-12 md:pb-20 bg-white" data-nav-theme="light">
+        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
+              <span className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl sm:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">Your next supplier,</span>
               <br />
               <span className="text-black">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 stat: "10x",
@@ -622,21 +680,21 @@ const SearchSuppliers = () => {
 
       {/* Product Overview Section */}
       <section 
-        className="py-20 bg-white"
+        className="py-12 md:py-20 bg-white"
         data-nav-theme="light"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-8 md:mb-12"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+              <span className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold">
+            <h2 className="text-2xl md:text-4xl sm:text-5xl font-bold">
               <span className="text-[#14B8A6]">Product</span>
               <br />
               <span className="text-black">Overview.</span>
@@ -644,7 +702,7 @@ const SearchSuppliers = () => {
           </motion.div>
 
           {/* Tabs */}
-          <div className="flex gap-4 mb-8 flex-wrap">
+          <div className="flex gap-3 md:gap-4 mb-6 md:mb-8 flex-wrap">
             {[
               { id: "search", label: "1 Search", icon: Search },
               { id: "save", label: "2 Save", icon: Save },
@@ -657,16 +715,16 @@ const SearchSuppliers = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-6 py-3 rounded-2xl font-semibold transition-all flex items-center gap-2 ${
+                className={`px-4 md:px-6 py-2 md:py-3 rounded-2xl font-semibold transition-all flex items-center gap-2 text-sm md:text-base ${
                   activeTab === tab.id
                     ? "bg-white text-[#14B8A6] shadow-lg border-2 border-[#14B8A6]/20 scale-105"
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
                   activeTab === tab.id ? "bg-[#14B8A6]/10" : "bg-gray-100"
                 }`}>
-                  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
+                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
                 </div>
                 {tab.label}
               </motion.button>
@@ -674,13 +732,13 @@ const SearchSuppliers = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100"
+              className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100"
             >
               {activeTab === "search" && (
                 <div className="space-y-6">
@@ -861,18 +919,171 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
+      {/* NEW SECTION: Interactive Demo Chat - YVOO in Action */}
+      <section 
+        className="py-12 md:py-20 relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #0A0E27 0%, #1a1f3a 100%)"
+        }}
+      >
+        {/* Curved top transition */}
+        <div className="absolute top-0 left-0 right-0 h-12 bg-white" style={{ 
+          clipPath: "ellipse(100% 100% at 50% 100%)" 
+        }}></div>
+
+        <div className="container mx-auto px-6 md:px-20 relative z-10" style={{ paddingTop: "40px" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+            
+            {/* LEFT COLUMN: Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-white space-y-6 md:space-y-8"
+            >
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+                See YVOO in action
+              </h2>
+              
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+                Try our AI supplier search. Type any product or component you're looking for.
+              </p>
+
+              {/* Feature list with checkmarks */}
+              <div className="space-y-3 md:space-y-4">
+                {[
+                  "Instant global search",
+                  "85%+ data accuracy",
+                  "Export & compare",
+                  "No registration needed"
+                ].map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    className="flex items-center gap-3"
+                  >
+                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#14B8A6] flex-shrink-0" />
+                    <span className="text-base md:text-lg">{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* RIGHT COLUMN: Chat Interface Mockup */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              {/* White chat card */}
+              <div 
+                className="bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden h-[400px] md:h-[500px]"
+                style={{ 
+                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)"
+                }}
+              >
+                {/* Header bar */}
+                <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2 md:gap-3">
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                      <Cpu className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-sm md:text-base">SearchPro+ Demo</h3>
+                      <div className="flex items-center gap-1">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                        <span className="text-white/80 text-xs">YVOO Active</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Chat messages */}
+                <div className="p-4 md:p-6 space-y-4 overflow-y-auto h-[calc(100%-120px)]">
+                  
+                  {/* User bubble (right, teal) */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="flex justify-end"
+                  >
+                    <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white p-3 md:p-4 rounded-2xl rounded-br-none max-w-[85%] md:max-w-[80%] shadow-md">
+                      <p className="text-sm md:text-base">I'm looking for CNC machining suppliers in Germany</p>
+                    </div>
+                  </motion.div>
+
+                  {/* YVOO response (left, gray) */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-gray-100 text-gray-900 p-3 md:p-4 rounded-2xl rounded-bl-none max-w-[85%] md:max-w-[80%] shadow-sm">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                          <Cpu className="w-3 h-3 text-white" />
+                        </div>
+                        <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                      </div>
+                      <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
+                        {`Found 247 verified suppliers. Top matches:
+
+• Precision CNC Solutions - Munich
+• TechMold Industries - Stuttgart
+• MediParts GmbH - Hamburg
+
+Would you like to filter by certifications?`}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                </div>
+
+                {/* Input field at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-white border-t border-gray-200">
+                  <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2 md:py-3">
+                    <Search className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
+                    <input 
+                      type="text" 
+                      placeholder="Try searching for any component..."
+                      className="bg-transparent flex-1 outline-none text-sm md:text-base text-gray-600 placeholder-gray-400"
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Curved bottom transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 md:h-16 bg-white" style={{ 
+          clipPath: "ellipse(100% 100% at 50% 0%)" 
+        }}></div>
+      </section>
+
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-4xl sm:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">7 AI Features</span>
               <br />
               <span className="text-black">that will change your procurement forever</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {[
               {
                 icon: Cpu,
