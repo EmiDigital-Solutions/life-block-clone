@@ -94,9 +94,7 @@ const ROICalculator = () => {
           transition={{ duration: 2, repeat: Infinity }}
           className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14B8A6] to-blue-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
         >
-          <Zap className="w-5 h-5" />
           Your Results Update Instantly
-          <Zap className="w-5 h-5" />
         </motion.div>
       </div>
 
@@ -154,13 +152,10 @@ const ROICalculator = () => {
       </div>
 
       <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
-        <p className="text-gray-700 text-sm flex items-start gap-2">
-          <Lightbulb className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
-          <span>
-            <strong className="text-gray-900">Additional Benefits:</strong> No travel costs for internal auditors, 
-            reduced rework through standardized reports, faster supplier releases 
-            enable shorter time-to-market, and improved supplier relationship management.
-          </span>
+        <p className="text-gray-700 text-sm">
+          <strong className="text-gray-900">Additional Benefits:</strong> No travel costs for internal auditors, 
+          reduced rework through standardized reports, faster supplier releases 
+          enable shorter time-to-market, and improved supplier relationship management.
         </p>
       </div>
     </div>
