@@ -531,15 +531,15 @@ const BeFound = () => {
                 </div>
               </motion.div>
             </div>
-        </div>
-        </section>
-      </CurvedSection>
+          </div>
+          </section>
+        </CurvedSection>
 
-      {/* Testimonials Section */}
-      <CurvedSection variant="light" curvePosition="bottom" curveIntensity="large">
+        {/* Testimonials Section */}
         <section
           data-nav-theme="light"
           className="relative py-24 px-6 md:px-12 lg:px-24"
+          style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(255, 255, 255))" }}
         >
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -581,16 +581,15 @@ const BeFound = () => {
                   </div>
                 </motion.div>
               ))}
+            </div>
           </div>
-        </div>
         </section>
-      </CurvedSection>
 
-      {/* FAQ Section */}
-      <CurvedSection variant="dark" curvePosition="bottom" curveIntensity="large">
+        {/* FAQ Section */}
         <section
           data-nav-theme="dark"
           className="relative py-24 px-6 md:px-12 lg:px-24"
+          style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55))" }}
         >
           <div className="container mx-auto max-w-4xl">
             <motion.h2
@@ -648,11 +647,11 @@ const BeFound = () => {
         </CurvedSection>
 
         {/* Final CTA Section */}
-        <CurvedSection variant="gradient-teal" curvePosition="none">
-          <section
-            data-nav-theme="green"
-            className="relative py-24 px-6 md:px-12 lg:px-24"
-          >
+        <section
+          data-nav-theme="green"
+          className="relative py-24 px-6 md:px-12 lg:px-24"
+          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
+        >
           <div className="container mx-auto text-center">
             <div className="text-white space-y-10 max-w-4xl mx-auto">
               <motion.h2 

@@ -446,37 +446,45 @@ const SearchSuppliers = () => {
         </section>
       </CurvedSection>
 
+      {/* Curved Section Divider */}
+      <div className="relative -mt-1">
+        <svg className="w-full h-24" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 0C480 80 960 80 1440 0V120H0V0Z" fill="rgb(249, 250, 251)"/>
+        </svg>
+      </div>
+
       {/* Trusted By Section */}
-      <CurvedSection variant="light" curvePosition="bottom" curveIntensity="large">
-        <section 
-          className="py-16"
-          data-nav-theme="light"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-20">
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center text-gray-500 mb-8 text-sm uppercase tracking-wider font-semibold"
-            >
-              Trusted by world leading companies
-            </motion.p>
-            <div className="flex justify-center items-center gap-12 flex-wrap">
-              {["AVL", "IFAM", "REWE", "KNORR-BREMSE", "Krombacher", "SAP"].map((company, index) => (
-                <motion.div
-                  key={company}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-2xl font-bold text-gray-400 hover:text-gray-600 transition-colors cursor-default"
-                >
-                  {company}
-                </motion.div>
-              ))}
-            </div>
+      <section 
+        className="py-16 -mt-24"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        data-nav-theme="light"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center text-gray-500 mb-8 text-sm uppercase tracking-wider font-semibold"
+          >
+            Trusted by world leading companies
+          </motion.p>
+          <div className="flex justify-center items-center gap-12 flex-wrap">
+            {["AVL", "IFAM", "REWE", "KNORR-BREMSE", "Krombacher", "SAP"].map((company, index) => (
+              <motion.div
+                key={company}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-2xl font-bold text-gray-400 hover:text-gray-600 transition-colors cursor-default"
+              >
+                {company}
+              </motion.div>
+            ))}
           </div>
+        </div>
         </section>
+      </CurvedSection>
       </CurvedSection>
 
       {/* Stats Section */}
