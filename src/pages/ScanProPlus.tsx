@@ -1412,8 +1412,8 @@ const HowItWorksCarousel = () => {
             </div>
           </div>
           
-          {/* Chat Interface in foreground */}
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[160px] sm:max-w-[320px] md:max-w-[350px] relative z-10">
+          {/* Chat Interface in foreground - Made smaller and repositioned */}
+          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] relative z-10 ml-6 sm:ml-12">
             {/* User Message */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -1427,8 +1427,18 @@ const HowItWorksCarousel = () => {
               <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
                 <div className="space-y-1 sm:space-y-1.5">
-                  <div className="h-1 sm:h-2 bg-white/50 rounded w-12 sm:w-24"></div>
-                  <div className="h-1 sm:h-2 bg-white/50 rounded w-16 sm:w-32"></div>
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "3rem" }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    className="h-1 sm:h-2 bg-white/50 rounded"
+                  />
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "4rem" }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-32"
+                  />
                 </div>
               </div>
             </motion.div>
@@ -1437,14 +1447,24 @@ const HowItWorksCarousel = () => {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.8 }}
               className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4 justify-end"
             >
               <div className="bg-[#0D9488] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">Auditor</p>
                 <div className="space-y-1 sm:space-y-1.5">
-                  <div className="h-1 sm:h-2 bg-white/50 rounded w-14 sm:w-28"></div>
-                  <div className="h-1 sm:h-2 bg-white/50 rounded w-18 sm:w-36"></div>
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "3.5rem" }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                    className="h-1 sm:h-2 bg-white/50 rounded"
+                  />
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: "4.5rem" }}
+                    transition={{ delay: 1.2, duration: 0.5 }}
+                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-36"
+                  />
                 </div>
               </div>
               <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#0D9488] flex items-center justify-center flex-shrink-0">
@@ -1456,7 +1476,7 @@ const HowItWorksCarousel = () => {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 1.4 }}
               className="flex items-start gap-1.5 sm:gap-3 mb-3 sm:mb-6"
             >
               <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
@@ -1464,7 +1484,12 @@ const HowItWorksCarousel = () => {
               </div>
               <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
-                <div className="h-1 sm:h-2 bg-white/50 rounded w-10 sm:w-20"></div>
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: "2.5rem" }}
+                  transition={{ delay: 1.6, duration: 0.5 }}
+                  className="h-1 sm:h-2 bg-white/50 rounded sm:w-20"
+                />
               </div>
             </motion.div>
             
@@ -1472,29 +1497,20 @@ const HowItWorksCarousel = () => {
             <div className="flex items-center justify-center gap-2 sm:gap-4 pt-2 sm:pt-4 border-t border-gray-200">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1.8 }}
                 className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6]/20 flex items-center justify-center"
               >
                 <CheckCircle2 className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-[#14B8A6]" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 1.8 }}
                 className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-lg"
               >
                 <MessageCircle className="w-4 h-4 sm:w-7 sm:h-7 text-white" />
               </motion.div>
             </div>
           </div>
-          
-          {/* Floating Globe Icon */}
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-[10%] right-[5%] w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-xl border-2 sm:border-4 border-white z-20"
-          >
-            <Globe className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-white" />
-          </motion.div>
         </div>
       )
     },
