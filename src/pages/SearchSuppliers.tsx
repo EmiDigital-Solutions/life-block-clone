@@ -183,12 +183,12 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Reduced height by 30% */}
+      {/* Hero Section - Fixed height, doesn't expand */}
       <section 
         className="relative pt-32 pb-20 overflow-visible"
         style={{ 
           background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
-          minHeight: "70vh"
+          height: "70vh"
         }}
       >
         {/* Animated background elements */}
@@ -285,7 +285,18 @@ const SearchSuppliers = () => {
               }}
             >
               {/* Modern white card matching YVOO design */}
-              <div className="bg-white rounded-3xl shadow-lg overflow-hidden p-6">
+              <div className="bg-white rounded-3xl shadow-lg overflow-visible">
+                
+                {/* Black Navigation Bar - SearchPro+ */}
+                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+                  <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                  <div className="flex items-center gap-2">
+                    <Brain className="w-5 h-5 text-[#14B8A6]" />
+                    <span className="text-white text-sm">AI-Powered</span>
+                  </div>
+                </div>
+
+                <div className="p-6">
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
@@ -331,7 +342,7 @@ const SearchSuppliers = () => {
                         className={`max-w-[80%] p-4 rounded-2xl ${
                           msg.role === 'user'
                             ? 'bg-[#14B8A6] text-white rounded-br-none'
-                            : 'bg-gray-100 text-gray-900 rounded-bl-none'
+                            : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
                         }`}
                       >
                         {msg.role === 'ai' && (
@@ -340,7 +351,7 @@ const SearchSuppliers = () => {
                             <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
                           </div>
                         )}
-                        <p className="text-sm whitespace-pre-line">{msg.message}</p>
+                        <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -352,7 +363,7 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-start"
                     >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-gray-100 text-gray-900 rounded-bl-none">
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
                           <Sparkles className="w-3 h-3 text-[#14B8A6]" />
                           <span className="text-xs font-semibold text-[#14B8A6]">AI Assistant</span>
@@ -364,7 +375,7 @@ const SearchSuppliers = () => {
                             </div>
                           )}
                         </div>
-                        <p className="text-sm whitespace-pre-line">{aiResponse}</p>
+                        <p className="text-sm whitespace-pre-line font-medium">{aiResponse}</p>
                       </div>
                     </motion.div>
                   )}
@@ -377,12 +388,13 @@ const SearchSuppliers = () => {
                       className="flex justify-end"
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
-                        <p className="text-sm">{userInput}</p>
+                        <p className="text-sm font-medium">{userInput}</p>
                       </div>
                     </motion.div>
                   )}
                 </div>
 
+                {/* Results section that overlays next page */}
                 {showResults && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -427,6 +439,7 @@ const SearchSuppliers = () => {
                     </div>
                   </motion.div>
                 )}
+                </div>
               </div>
             </motion.div>
           </div>
