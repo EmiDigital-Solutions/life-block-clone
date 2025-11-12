@@ -259,70 +259,12 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Mobile: Split into Headlines + Benefits */}
-      
-      {/* Mobile Sub-Section 1: Headlines Only */}
+      {/* Hero Section - Fixed height, doesn't expand */}
       <section 
-        className="block md:hidden relative px-6 bg-[#0A0E27]"
-        style={{ paddingTop: "60px", paddingBottom: "40px" }}
-      >
-        <h1 className="text-4xl font-bold mb-6 leading-tight">
-          <span className="text-[#14B8A6]">Find and audit</span>{" "}
-          <span className="text-white">suppliers</span>
-        </h1>
-        
-        <p className="text-lg text-white opacity-80">
-          Worldwide in real-time with AI
-        </p>
-
-        {/* Small curved bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#111827]" style={{ 
-          clipPath: "ellipse(100% 100% at 50% 0%)" 
-        }}></div>
-      </section>
-
-      {/* Mobile Sub-Section 2: Benefits & CTA */}
-      <section 
-        className="block md:hidden relative px-6 bg-[#111827]"
-        style={{ paddingTop: "40px", paddingBottom: "60px" }}
-      >
-        {/* Benefit badges */}
-        <div className="space-y-4 mb-8">
-          {[
-            "AI-powered supplier discovery",
-            "On-site auditing in 3 days",
-            "Cost reduction up to 97%"
-          ].map((text, index) => (
-            <div key={index} className="flex items-center gap-3 text-white">
-              <CheckCircle2 className="w-5 h-5 text-[#14B8A6] flex-shrink-0" />
-              <span className="text-base">{text}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="space-y-3">
-          <Button className="w-full h-14 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full shadow-lg text-base font-semibold">
-            Start Free Search
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-          <Button variant="outline" className="w-full h-14 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full text-base font-semibold">
-            See How It Works
-          </Button>
-        </div>
-
-        {/* Curved bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-12 bg-white" style={{ 
-          clipPath: "ellipse(100% 100% at 50% 0%)" 
-        }}></div>
-      </section>
-
-      {/* Desktop Hero - Unchanged */}
-      <section 
-        className="hidden md:block relative pt-32 pb-20 overflow-visible"
+        className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 sm:pb-12 md:pb-16 lg:pb-20 overflow-visible"
         style={{ 
           background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
-          height: "70vh"
+          height: "auto"
         }}
       >
         {/* Animated background elements */}
@@ -350,7 +292,7 @@ const SearchSuppliers = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-12 items-start">
             {/* Left Content - Takes 2 columns */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -368,13 +310,13 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-semibold text-[#14B8A6]">AI-Powered Supplier Discovery</span>
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight">
                 <span className="text-[#14B8A6]">Find suppliers</span>
                 <br />
                 <span className="text-white">worldwide in real-time.</span>
               </h1>
               
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 {[
                   "25+ million supplier profiles",
                   "Relevant supplier data",
@@ -387,10 +329,10 @@ const SearchSuppliers = () => {
                     transition={{ delay: 0.4 + index * 0.1 }}
                     className="flex items-center gap-3 text-white group"
                   >
-                    <div className="w-6 h-6 bg-[#14B8A6]/20 rounded-full flex items-center justify-center group-hover:bg-[#14B8A6]/30 transition-colors">
-                      <CheckCircle2 className="w-4 h-4 text-[#14B8A6]" />
+                    <div className="w-5 h-5 md:w-6 md:h-6 bg-[#14B8A6]/20 rounded-full flex items-center justify-center group-hover:bg-[#14B8A6]/30 transition-colors">
+                      <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
                     </div>
-                    <span className="text-lg">{text}</span>
+                    <span className="text-base md:text-lg">{text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -413,9 +355,8 @@ const SearchSuppliers = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative"
+              className="lg:col-span-3 relative mt-8 md:mt-12 lg:mt-0 lg:translate-y-[calc(40%+4cm)]"
               style={{ 
-                transform: 'translateY(calc(40% + 4cm))',
                 zIndex: 10
               }}
             >
@@ -423,36 +364,36 @@ const SearchSuppliers = () => {
               <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
-                  <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                <div className="bg-gray-900 px-4 sm:px-6 py-3 sm:py-4 rounded-t-3xl flex items-center justify-between">
+                  <h2 className="text-white text-lg sm:text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-[#14B8A6]" />
-                    <span className="text-white text-sm">AI-Powered</span>
+                    <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-[#14B8A6]" />
+                    <span className="text-white text-xs sm:text-sm">AI-Powered</span>
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                 
                 {/* Teal label */}
-                <div className="mb-3 flex-shrink-0">
-                  <span className="text-[#14B8A6] text-sm font-semibold">
+                <div className="mb-2 sm:mb-3 flex-shrink-0">
+                  <span className="text-[#14B8A6] text-xs sm:text-sm font-semibold">
                     Interactive Demo
                   </span>
                 </div>
                 {/* Bold title/description */}
-                <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
+                <h3 className="text-gray-900 text-lg sm:text-xl font-bold mb-4 sm:mb-6 leading-tight">
                   AI-Powered Conversational Search
-                  <span className="block text-sm font-normal text-gray-600 mt-2">
+                  <span className="block text-xs sm:text-sm font-normal text-gray-600 mt-2">
                     Step-by-step guidance to find your perfect supplier
                   </span>
                 </h3>
 
                 {/* Step indicators */}
-                <div className="flex items-center justify-center gap-2 mb-6">
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {[1, 2, 3].map((step) => (
                     <div
                       key={step}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all ${
                         step <= currentStep
                           ? 'bg-[#14B8A6] text-white'
                           : 'bg-gray-200 text-gray-400'
@@ -466,7 +407,7 @@ const SearchSuppliers = () => {
                 {/* Conversation Thread - Enhanced rounded corners */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                  className="space-y-3 sm:space-y-4 mb-4 sm:mb-6 max-h-64 sm:max-h-80 md:max-h-96 overflow-y-auto bg-white p-3 sm:p-4 scroll-smooth"
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -479,7 +420,7 @@ const SearchSuppliers = () => {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-4 rounded-2xl ${
+                        className={`max-w-[85%] sm:max-w-[80%] p-3 sm:p-4 rounded-xl sm:rounded-2xl ${
                           msg.role === 'user'
                             ? 'bg-[#14B8A6] text-white rounded-br-none'
                             : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
@@ -493,7 +434,7 @@ const SearchSuppliers = () => {
                             <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
                           </div>
                         )}
-                        <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
+                        <p className="text-xs sm:text-sm whitespace-pre-line font-medium">{msg.message}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -551,12 +492,12 @@ const SearchSuppliers = () => {
                       <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                     </div>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-3 sm:gap-4">
                       {suppliers.map((supplier) => (
                         <button
                           key={supplier.id}
                           onClick={() => setSelectedSupplier(supplier)}
-                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
+                          className="text-left p-3 sm:p-4 bg-white border border-gray-200 rounded-xl sm:rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
                         >
                           <div className="flex items-start justify-between mb-2">
                             <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
@@ -592,27 +533,27 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Stats Section - Mobile: pt-60, Desktop: pt-96 */}
-      <section className="pt-60 md:pt-96 pb-12 md:pb-20 bg-white" data-nav-theme="light">
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+      {/* Stats Section - Extra padding to prevent overlap */}
+      <section className="pt-12 md:pt-20 lg:pt-96 pb-12 md:pb-16 lg:pb-20 bg-white" data-nav-theme="light">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-              <span className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
+              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-3xl md:text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">Your next supplier,</span>
               <br />
               <span className="text-black">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 stat: "10x",
@@ -680,21 +621,21 @@ const SearchSuppliers = () => {
 
       {/* Product Overview Section */}
       <section 
-        className="py-12 md:py-20 bg-white"
+        className="py-12 md:py-16 lg:py-20 bg-white"
         data-nav-theme="light"
       >
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 md:mb-12"
+            className="mb-12"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
-              <span className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
             </div>
-            <h2 className="text-2xl md:text-4xl sm:text-5xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               <span className="text-[#14B8A6]">Product</span>
               <br />
               <span className="text-black">Overview.</span>
@@ -702,7 +643,7 @@ const SearchSuppliers = () => {
           </motion.div>
 
           {/* Tabs */}
-          <div className="flex gap-3 md:gap-4 mb-6 md:mb-8 flex-wrap">
+          <div className="flex gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 flex-wrap">
             {[
               { id: "search", label: "1 Search", icon: Search },
               { id: "save", label: "2 Save", icon: Save },
@@ -715,16 +656,16 @@ const SearchSuppliers = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-2xl font-semibold transition-all flex items-center gap-2 text-sm md:text-base ${
+                className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
                     ? "bg-white text-[#14B8A6] shadow-lg border-2 border-[#14B8A6]/20 scale-105"
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
-                <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                   activeTab === tab.id ? "bg-[#14B8A6]/10" : "bg-gray-100"
                 }`}>
-                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
+                  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
                 </div>
                 {tab.label}
               </motion.button>
@@ -732,13 +673,13 @@ const SearchSuppliers = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-gray-100"
+              className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-100"
             >
               {activeTab === "search" && (
                 <div className="space-y-6">
@@ -817,8 +758,8 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold mb-4 text-gray-900">Key suppliers always in sight</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">Key suppliers always in sight</h3>
+              <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
               <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-8 py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
@@ -831,7 +772,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Technology Section */}
-      <section className="py-20 bg-white" data-nav-theme="light">
+      <section className="py-12 md:py-16 lg:py-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -843,14 +784,14 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Technology</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               <span className="text-[#14B8A6]">Our technology</span>
               <br />
               <span className="text-black">for global supplier identification.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: "AI-Powered Conversational Workflow",
@@ -919,171 +860,18 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* NEW SECTION: Interactive Demo Chat - YVOO in Action */}
-      <section 
-        className="py-12 md:py-20 relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #0A0E27 0%, #1a1f3a 100%)"
-        }}
-      >
-        {/* Curved top transition */}
-        <div className="absolute top-0 left-0 right-0 h-12 bg-white" style={{ 
-          clipPath: "ellipse(100% 100% at 50% 100%)" 
-        }}></div>
-
-        <div className="container mx-auto px-6 md:px-20 relative z-10" style={{ paddingTop: "40px" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
-            
-            {/* LEFT COLUMN: Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-white space-y-6 md:space-y-8"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-                See YVOO in action
-              </h2>
-              
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-                Try our AI supplier search. Type any product or component you're looking for.
-              </p>
-
-              {/* Feature list with checkmarks */}
-              <div className="space-y-3 md:space-y-4">
-                {[
-                  "Instant global search",
-                  "85%+ data accuracy",
-                  "Export & compare",
-                  "No registration needed"
-                ].map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#14B8A6] flex-shrink-0" />
-                    <span className="text-base md:text-lg">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* RIGHT COLUMN: Chat Interface Mockup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              {/* White chat card */}
-              <div 
-                className="bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden h-[400px] md:h-[500px]"
-                style={{ 
-                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)"
-                }}
-              >
-                {/* Header bar */}
-                <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center">
-                      <Cpu className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold text-sm md:text-base">SearchPro+ Demo</h3>
-                      <div className="flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
-                        <span className="text-white/80 text-xs">YVOO Active</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chat messages */}
-                <div className="p-4 md:p-6 space-y-4 overflow-y-auto h-[calc(100%-120px)]">
-                  
-                  {/* User bubble (right, teal) */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="flex justify-end"
-                  >
-                    <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white p-3 md:p-4 rounded-2xl rounded-br-none max-w-[85%] md:max-w-[80%] shadow-md">
-                      <p className="text-sm md:text-base">I'm looking for CNC machining suppliers in Germany</p>
-                    </div>
-                  </motion.div>
-
-                  {/* YVOO response (left, gray) */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.7 }}
-                    className="flex justify-start"
-                  >
-                    <div className="bg-gray-100 text-gray-900 p-3 md:p-4 rounded-2xl rounded-bl-none max-w-[85%] md:max-w-[80%] shadow-sm">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
-                          <Cpu className="w-3 h-3 text-white" />
-                        </div>
-                        <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
-                      </div>
-                      <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
-                        {`Found 247 verified suppliers. Top matches:
-
-• Precision CNC Solutions - Munich
-• TechMold Industries - Stuttgart
-• MediParts GmbH - Hamburg
-
-Would you like to filter by certifications?`}
-                      </p>
-                    </div>
-                  </motion.div>
-
-                </div>
-
-                {/* Input field at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-white border-t border-gray-200">
-                  <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2 md:py-3">
-                    <Search className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
-                    <input 
-                      type="text" 
-                      placeholder="Try searching for any component..."
-                      className="bg-transparent flex-1 outline-none text-sm md:text-base text-gray-600 placeholder-gray-400"
-                      disabled
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Curved bottom transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-12 md:h-16 bg-white" style={{ 
-          clipPath: "ellipse(100% 100% at 50% 0%)" 
-        }}></div>
-      </section>
-
       {/* Benefits Section */}
-      <section className="py-12 md:py-20 bg-white">
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+      <section className="py-12 md:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">7 AI Features</span>
               <br />
               <span className="text-black">that will change your procurement forever</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
             {[
               {
                 icon: Cpu,
@@ -1191,36 +979,36 @@ Would you like to filter by certifications?`}
                 onClick={() => setSelectedAIFeature(index)}
                 className="cursor-pointer"
               >
-                <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
-                  <div className="flex items-start gap-0">
+                <Card className="bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
+                  <div className="flex flex-col sm:flex-row items-start gap-0">
                     {/* Left side - Icon area with gradient background */}
-                    <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
+                    <div className="w-full sm:w-40 md:w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 sm:p-8 flex items-center justify-center relative overflow-hidden">
                       {/* Large watermark number in background - single digit */}
                       <div className="absolute -top-4 -left-2 opacity-15">
-                        <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none">
+                        <span className="text-[120px] sm:text-[140px] md:text-[180px] font-black text-[#14B8A6] leading-none select-none">
                           {index + 1}
                         </span>
                       </div>
                       
                       {/* Icon */}
-                      <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                        <benefit.icon className="w-10 h-10 text-white" />
+                      <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                        <benefit.icon className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 text-white" />
                       </div>
                     </div>
                     
                     {/* Right side - Content */}
-                    <div className="flex-1 p-8">
-                      <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-4">
+                    <div className="flex-1 p-6 sm:p-8">
+                      <div className="inline-block px-2.5 sm:px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3 sm:mb-4">
                         <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide">Feature {String(index + 1).padStart(2, '0')}</span>
                       </div>
                       
-                      <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#14B8A6] transition-colors">{benefit.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{benefit.description}</p>
+                      <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-[#14B8A6] transition-colors">{benefit.title}</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">{benefit.description}</p>
                       
-                      <div className="flex items-center gap-2 text-[#14B8A6] text-sm font-semibold group-hover:gap-3 transition-all">
-                        <CheckCircle2 className="w-4 h-4" />
+                      <div className="flex items-center gap-2 text-[#14B8A6] text-xs sm:text-sm font-semibold group-hover:gap-3 transition-all">
+                        <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         <span>Click to learn more</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </div>
@@ -1232,26 +1020,26 @@ Would you like to filter by certifications?`}
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white" data-nav-theme="light">
+      <section className="py-12 md:py-16 lg:py-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">FAQ</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">We answer all questions</span>
               <br />
               <span className="text-black">about SearchPro+.</span>
             </h2>
           </motion.div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
             {[
               {
                 q: "How does YVOO's search engine work?",
@@ -1285,11 +1073,11 @@ Would you like to filter by certifications?`}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <AccordionItem value={`item-${index}`} className="bg-gradient-to-r from-gray-50 to-white rounded-2xl px-6 border-0 shadow-sm hover:shadow-md transition-all">
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline text-gray-900 py-6">
+                <AccordionItem value={`item-${index}`} className="bg-gradient-to-r from-gray-50 to-white rounded-xl sm:rounded-2xl px-4 sm:px-6 border-0 shadow-sm hover:shadow-md transition-all">
+                  <AccordionTrigger className="text-left text-sm sm:text-base font-semibold hover:no-underline text-gray-900 py-4 sm:py-6">
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                  <AccordionContent className="text-xs sm:text-sm text-gray-600 leading-relaxed pb-4 sm:pb-6">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -1300,7 +1088,7 @@ Would you like to filter by certifications?`}
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}>
+      <section className="py-12 md:py-16 lg:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}>
         {/* Animated gradient orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -1342,7 +1130,7 @@ Would you like to filter by certifications?`}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-5xl font-bold text-white mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 md:mb-8"
             >
               Start searching today
             </motion.h2>
@@ -1352,15 +1140,17 @@ Would you like to filter by certifications?`}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-3xl p-2 flex items-center gap-4 max-w-2xl mx-auto mb-8 shadow-2xl"
+              className="bg-white rounded-2xl sm:rounded-3xl p-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-6 md:mb-8 shadow-2xl"
             >
-              <Search className="w-6 h-6 text-gray-400 ml-4" />
-              <input
-                type="text"
-                placeholder="Ask our AI to find the right companies"
-                className="flex-1 outline-none text-gray-600 bg-transparent py-2"
-              />
-              <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-8 py-6 shadow-lg hover:scale-105 transition-all">
+              <div className="flex items-center gap-3 flex-1 px-2">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Ask our AI to find the right companies"
+                  className="flex-1 outline-none text-sm sm:text-base text-gray-600 bg-transparent py-2"
+                />
+              </div>
+              <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-6 sm:px-8 py-4 sm:py-6 shadow-lg hover:scale-105 transition-all">
                 Search
               </Button>
             </motion.div>
@@ -1370,9 +1160,9 @@ Would you like to filter by certifications?`}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex gap-3 justify-center flex-wrap"
+              className="flex gap-2 sm:gap-3 justify-center flex-wrap"
             >
-              <span className="text-gray-400 text-sm">Popular:</span>
+              <span className="text-gray-400 text-xs sm:text-sm">Popular:</span>
               {["Quantum Chips", "Quantum Simulations", "Precision Farming", "3D Bin Picking"].map((tag, index) => (
                 <motion.button
                   key={tag}
@@ -1381,7 +1171,7 @@ Would you like to filter by certifications?`}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + index * 0.05 }}
                   whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-all border border-white/10 hover:border-[#14B8A6]/30"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-xs sm:text-sm transition-all border border-white/10 hover:border-[#14B8A6]/30"
                 >
                   {tag}
                 </motion.button>
@@ -1395,7 +1185,7 @@ Would you like to filter by certifications?`}
 
       {/* AI Feature Detail Modal */}
       <Dialog open={selectedAIFeature !== null} onOpenChange={() => setSelectedAIFeature(null)}>
-        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
+        <DialogContent className="max-w-[95vw] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl sm:rounded-3xl border-0 shadow-2xl">
           {selectedAIFeature !== null && (() => {
             const features = [
               {
@@ -1510,20 +1300,20 @@ Would you like to filter by certifications?`}
                   </div>
                 </div>
 
-                <div className="space-y-5 mt-8">
+                <div className="space-y-4 md:space-y-5 mt-6 md:mt-8">
                   {/* For Engineers */}
-                  <div className="group relative bg-white rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Target className="w-8 h-8 text-white" />
+                  <div className="group relative bg-white rounded-2xl sm:rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row items-start gap-0">
+                      <div className="w-full sm:w-24 md:w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 sm:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Target className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
-                        <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
+                      <div className="flex-1 p-4 sm:p-6">
+                        <div className="inline-block px-2.5 sm:px-3 py-1 bg-blue-50 rounded-full mb-2 sm:mb-3">
                           <span className="text-blue-600 text-xs font-bold uppercase">For Engineers</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forEngineers}
                         </p>
                       </div>
@@ -1531,18 +1321,18 @@ Would you like to filter by certifications?`}
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="group relative bg-white rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <TrendingUp className="w-8 h-8 text-white" />
+                  <div className="group relative bg-white rounded-2xl sm:rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row items-start gap-0">
+                      <div className="w-full sm:w-24 md:w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-4 sm:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
-                        <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
+                      <div className="flex-1 p-4 sm:p-6">
+                        <div className="inline-block px-2.5 sm:px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-2 sm:mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">For Procurement & Buyers</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forBuyers}
                         </p>
                       </div>
@@ -1550,18 +1340,18 @@ Would you like to filter by certifications?`}
                   </div>
 
                   {/* For Quality & Auditors */}
-                  <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Shield className="w-8 h-8 text-white" />
+                  <div className="group relative bg-white rounded-2xl sm:rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row items-start gap-0">
+                      <div className="w-full sm:w-24 md:w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 sm:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gray-700 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Shield className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
-                        <div className="inline-block px-3 py-1 bg-gray-100 rounded-full mb-3">
+                      <div className="flex-1 p-4 sm:p-6">
+                        <div className="inline-block px-2.5 sm:px-3 py-1 bg-gray-100 rounded-full mb-2 sm:mb-3">
                           <span className="text-gray-700 text-xs font-bold uppercase">For Quality & Auditors</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forAuditors}
                         </p>
                       </div>
@@ -1569,18 +1359,18 @@ Would you like to filter by certifications?`}
                   </div>
 
                   {/* Real-World Application */}
-                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-8 h-8 text-white" />
+                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row items-start gap-0">
+                      <div className="w-full sm:w-24 md:w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-4 sm:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#14B8A6] rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
-                        <div className="inline-block px-3 py-1 bg-white/10 rounded-full mb-3">
+                      <div className="flex-1 p-4 sm:p-6">
+                        <div className="inline-block px-2.5 sm:px-3 py-1 bg-white/10 rounded-full mb-2 sm:mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">Real-World Application</span>
                         </div>
-                        <p className="text-gray-200 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
                           {feature.detailedExplanation.example}
                         </p>
                       </div>
@@ -1604,26 +1394,26 @@ Would you like to filter by certifications?`}
 
       {/* Supplier Detail Modal */}
       <Dialog open={!!selectedSupplier} onOpenChange={() => setSelectedSupplier(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-[95vw] sm:max-w-3xl md:max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedSupplier && (
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <DialogHeader>
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
                   <div>
-                    <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">
+                    <DialogTitle className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
                       {selectedSupplier.name}
                     </DialogTitle>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
                       <div className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4 text-[#14B8A6]" />
+                        <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
                         <span>{selectedSupplier.location}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4 text-[#14B8A6]" />
+                        <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
                         <span>{selectedSupplier.employees} employees</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Factory className="w-4 h-4 text-[#14B8A6]" />
+                        <Factory className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
                         <span>Founded {selectedSupplier.founded}</span>
                       </div>
                     </div>
@@ -1633,11 +1423,11 @@ Would you like to filter by certifications?`}
 
               {/* Description */}
               <div>
-                <p className="text-gray-700 leading-relaxed">{selectedSupplier.description}</p>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{selectedSupplier.description}</p>
               </div>
 
               {/* Key Metrics */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <Card className="rounded-2xl border-[#14B8A6]/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
