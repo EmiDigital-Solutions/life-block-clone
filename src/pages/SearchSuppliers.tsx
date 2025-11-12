@@ -100,77 +100,138 @@ const SearchSuppliers = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Content - Data Table Preview */}
+            {/* Right Content - Interactive Demo Search */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-3xl shadow-2xl p-6 backdrop-blur-sm border border-gray-100"
+              className="bg-white rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm border border-gray-100"
             >
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#14B8A6] rounded-full animate-pulse-soft"></div>
-                  9823 companies found
-                </span>
-                <Button variant="outline" size="sm" className="rounded-full border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10">
-                  Save to list
-                </Button>
+              {/* Demo Header */}
+              <div className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] px-6 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-white/80"></div>
+                  <span className="text-white text-sm font-semibold">SearchPro+ Demo</span>
+                </div>
+                <span className="text-white/80 text-xs">0 companies found</span>
               </div>
               
-              <div className="space-y-3">
-                {[
-                  { name: "Aventro Mobility", desc: "Develops modular sensor-fusion...", country: "🇬🇧", year: "1973", color: "from-blue-500 to-blue-600" },
-                  { name: "StratoSensor", desc: "Develops scalable LiDAR platform...", country: "🇬🇧", year: "2019", color: "from-purple-500 to-purple-600" },
-                  { name: "Quanteer Drive", desc: "Conducts research on predictive...", country: "🇬🇧", year: "2021", color: "from-[#14B8A6] to-[#0D9488]" }
-                ].map((company, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-4 p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl hover:shadow-md transition-all cursor-pointer border border-gray-200 hover:border-[#14B8A6]/30 group"
-                  >
-                    <input type="checkbox" className="w-4 h-4 accent-[#14B8A6]" checked={index < 2} readOnly />
-                    <div className={`w-12 h-12 bg-gradient-to-br ${company.color} rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform`}>
-                      {company.name[0]}
+              <div className="p-6">
+                {/* Search Query Input */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                  {/* Left: Search Input */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Search className="w-4 h-4 text-[#14B8A6]" />
+                      <span className="text-sm font-semibold text-gray-700">SearchPro+</span>
                     </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-sm text-gray-900">{company.name}</p>
-                      <p className="text-xs text-gray-500 mt-0.5">{company.desc}</p>
+                    <textarea
+                      className="w-full h-32 p-4 border-2 border-gray-200 rounded-xl resize-none focus:outline-none focus:border-[#14B8A6] transition-colors text-sm"
+                      placeholder="Describe what you're looking for..."
+                      defaultValue="I am looking for companies that work on autonomous driving technologies"
+                      readOnly
+                    />
+                    
+                    {/* Filters */}
+                    <div className="space-y-3">
+                      <div>
+                        <label className="text-xs font-semibold text-gray-600 mb-1 block">Industry</label>
+                        <select className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#14B8A6]">
+                          <option>Select Industry</option>
+                          <option>Automotive</option>
+                          <option>Technology</option>
+                        </select>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="text-xs font-semibold text-gray-600 mb-1 block">Employee range</label>
+                          <div className="flex gap-1">
+                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
+                              <option>Min</option>
+                            </select>
+                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
+                              <option>Max</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label className="text-xs font-semibold text-gray-600 mb-1 block">Founding year</label>
+                          <div className="flex gap-1">
+                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
+                              <option>Min</option>
+                            </select>
+                            <select className="flex-1 p-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#14B8A6]">
+                              <option>Max</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{company.country}</span>
-                      <span className="text-xs text-gray-400 font-mono">{company.year}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Market transparency text */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="mt-8 pt-6 border-t border-gray-200"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-4 h-4 text-[#14B8A6]" />
                   </div>
-                  <p className="text-gray-600 text-sm">
-                    <span className="font-semibold text-gray-900">Gain market transparency in seconds.</span>{" "}
-                    We spotlight the most relevant suppliers – <span className="font-semibold text-[#14B8A6]">across all industries.</span>
-                  </p>
+                  
+                  {/* Right: Results Preview */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-semibold text-gray-600 uppercase">Results Preview</span>
+                      <span className="text-xs text-gray-400">3 companies</span>
+                    </div>
+                    
+                    {[
+                      { name: "Aventro Mobility", desc: "Sensor fusion tech", country: "🇬🇧" },
+                      { name: "StratoSensor", desc: "LiDAR platform", country: "🇬🇧" },
+                      { name: "Quanteer Drive", desc: "Predictive behavior", country: "🇬🇧" }
+                    ].map((company, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                        className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
+                      >
+                        <input type="checkbox" className="w-3 h-3 accent-[#14B8A6]" checked={index === 0} readOnly />
+                        <div className={`w-8 h-8 bg-gradient-to-br ${index === 0 ? 'from-[#14B8A6] to-[#0D9488]' : 'from-gray-400 to-gray-500'} rounded-lg flex items-center justify-center text-white text-xs font-bold`}>
+                          {company.name[0]}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-xs text-gray-900 truncate">{company.name}</p>
+                          <p className="text-[10px] text-gray-500 truncate">{company.desc}</p>
+                        </div>
+                        <span className="text-sm">{company.country}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
+
+                {/* Divider */}
+                <div className="border-t border-gray-200 my-4"></div>
+                
+                {/* Bottom CTA */}
+                <div className="flex items-center justify-between">
+                  <p className="text-xs text-gray-500">
+                    <span className="font-semibold text-[#14B8A6]">AI-powered</span> supplier matching
+                  </p>
+                  <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white rounded-full px-6 py-2 text-sm hover:scale-105 transition-all">
+                    Try Demo
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Curved Section Divider */}
+      <div className="relative -mt-1">
+        <svg className="w-full h-24" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 0C480 80 960 80 1440 0V120H0V0Z" fill="rgb(249, 250, 251)"/>
+        </svg>
+      </div>
+
       {/* Trusted By Section */}
       <section 
-        className="py-16"
+        className="py-16 -mt-24"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         data-nav-theme="light"
       >
