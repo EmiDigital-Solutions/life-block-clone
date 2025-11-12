@@ -145,10 +145,10 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
         <Sphere args={[2.875, 128, 128]}>
           <meshStandardMaterial
             map={texture}
-            emissive="#2563eb"
-            emissiveIntensity={0.7}
-            roughness={0.6}
-            metalness={0.3}
+            emissive="#1e40af"
+            emissiveIntensity={1.5}
+            roughness={0.4}
+            metalness={0.5}
             toneMapped={false}
           />
         </Sphere>
@@ -237,19 +237,19 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
           alpha: true, 
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.2
+          toneMappingExposure: 1.8
         }}
       >
         {/* Enhanced lighting for better contrast */}
-        <ambientLight intensity={1.2} />
+        <ambientLight intensity={2} />
         
         {/* Strong directional light to simulate sun */}
-        <directionalLight position={[5, 3, 5]} intensity={3} color="#ffffff" />
+        <directionalLight position={[5, 3, 5]} intensity={5} color="#ffffff" />
         
         {/* High-contrast blue accent lights */}
-        <pointLight position={[-5, 0, 5]} intensity={2.5} color="#2563eb" />
-        <pointLight position={[5, 0, 5]} intensity={2.5} color="#3b82f6" />
-        <pointLight position={[0, 5, 0]} intensity={1.5} color="#60a5fa" />
+        <pointLight position={[-5, 0, 5]} intensity={4} color="#1e40af" />
+        <pointLight position={[5, 0, 5]} intensity={4} color="#2563eb" />
+        <pointLight position={[0, 5, 0]} intensity={3} color="#3b82f6" />
         
         {/* The Earth with dotted map and 3D pins */}
         <EarthSphere showPins={showPins} visiblePins={visiblePins} />
