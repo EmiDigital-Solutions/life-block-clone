@@ -311,7 +311,7 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-semibold text-[#14B8A6]">AI-Powered Supplier Discovery</span>
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-8 leading-tight">
                 <span className="text-[#14B8A6]">Find suppliers</span>
                 <br />
                 <span className="text-white">worldwide in real-time.</span>
@@ -555,14 +555,14 @@ const SearchSuppliers = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">Your next supplier,</span>
               <br />
               <span className="text-black">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 stat: "10x",
@@ -801,7 +801,7 @@ const SearchSuppliers = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: "AI-Powered Conversational Workflow",
@@ -874,14 +874,14 @@ const SearchSuppliers = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-[#14B8A6]">7 AI Features</span>
               <br />
               <span className="text-black">that will change your procurement forever</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-6">
             {[
               {
                 icon: Cpu,
@@ -1309,19 +1309,19 @@ const SearchSuppliers = () => {
                 </div>
 
                 <div className="space-y-5 mt-8">
-                  {/* For Engineers */}
-                  <div className="group relative bg-white rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Target className="w-8 h-8 text-white" />
+                   {/* For Engineers */}
+                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col md:flex-row items-start gap-0">
+                      <div className="w-full md:w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 md:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Target className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
+                      <div className="flex-1 p-4 md:p-6">
                         <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
                           <span className="text-blue-600 text-xs font-bold uppercase">For Engineers</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forEngineers}
                         </p>
                       </div>
@@ -1329,18 +1329,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="group relative bg-white rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <TrendingUp className="w-8 h-8 text-white" />
+                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-[#14B8A6]/20 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col md:flex-row items-start gap-0">
+                      <div className="w-full md:w-32 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-4 md:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#14B8A6] to-[#0D9488] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
+                      <div className="flex-1 p-4 md:p-6">
                         <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">For Procurement & Buyers</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forBuyers}
                         </p>
                       </div>
@@ -1348,18 +1348,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* For Quality & Auditors */}
-                  <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Shield className="w-8 h-8 text-white" />
+                  <div className="group relative bg-white rounded-2xl md:rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col md:flex-row items-start gap-0">
+                      <div className="w-full md:w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-4 md:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <Shield className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
+                      <div className="flex-1 p-4 md:p-6">
                         <div className="inline-block px-3 py-1 bg-gray-100 rounded-full mb-3">
                           <span className="text-gray-700 text-xs font-bold uppercase">For Quality & Auditors</span>
                         </div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                           {feature.detailedExplanation.forAuditors}
                         </p>
                       </div>
@@ -1367,18 +1367,18 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* Real-World Application */}
-                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-                    <div className="flex items-start gap-0">
-                      <div className="w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-6 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-8 h-8 text-white" />
+                  <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="flex flex-col md:flex-row items-start gap-0">
+                      <div className="w-full md:w-32 bg-gradient-to-br from-gray-800 to-gray-900 p-4 md:p-6 flex items-center justify-center">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-[#14B8A6] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
                       </div>
-                      <div className="flex-1 p-6">
+                      <div className="flex-1 p-4 md:p-6">
                         <div className="inline-block px-3 py-1 bg-white/10 rounded-full mb-3">
                           <span className="text-[#14B8A6] text-xs font-bold uppercase">Real-World Application</span>
                         </div>
-                        <p className="text-gray-200 leading-relaxed">
+                        <p className="text-sm md:text-base text-gray-200 leading-relaxed">
                           {feature.detailedExplanation.example}
                         </p>
                       </div>
@@ -1435,7 +1435,7 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Card className="rounded-2xl border-[#14B8A6]/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
@@ -1477,7 +1477,7 @@ const SearchSuppliers = () => {
                   <Target className="w-5 h-5 text-[#14B8A6]" />
                   Core Capabilities
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-3">
                   {selectedSupplier.capabilities.map((capability: string) => (
                     <div key={capability} className="flex items-center gap-2 text-sm text-gray-700">
                       <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0" />
@@ -1504,7 +1504,7 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col md:flex-row gap-3 pt-4 border-t border-gray-200">
+              <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 pt-4 border-t border-gray-200">
                 <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-xl">
                   Request Quote
                 </Button>
