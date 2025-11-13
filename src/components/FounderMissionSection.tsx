@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import founderPortrait from "@/assets/founder-portrait.jpg";
-import { Factory, CheckCircle, Award, Package, Users, Clock, AlertCircle, Cog, Flag } from "lucide-react";
+import { Factory, CheckCircle, Award, Package, Users, Clock, AlertTriangle, Cog, Flag } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -78,7 +78,7 @@ const FounderMissionSection = () => {
     },
     {
       title: "Quality Issue Handling",
-      icon: AlertCircle,
+      icon: AlertTriangle,
       description: "Problem resolution and customer responsiveness",
       details: "How suppliers handle quality issues reveals their true capabilities. Our auditors investigate complaint handling procedures, corrective action effectiveness, customer communication practices, and problem-solving approaches. We speak with current customers about their experiences with quality issues. A supplier's response to problems often matters more than avoiding them entirely."
     },
@@ -142,12 +142,12 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-              <div className="relative backdrop-blur-xl bg-white/20 border border-white/30 rounded-3xl p-6 md:p-8 shadow-2xl">
-                <p className="text-xl md:text-2xl text-white leading-relaxed font-semibold mb-4">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-blue-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
+                <p className="text-xl md:text-2xl text-gray-900 leading-relaxed font-semibold mb-4">
                   "I built my career on supplier decisions. I'm not gambling yours on AI guesses."
                 </p>
-                <p className="text-base md:text-lg text-white leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                   25 years in procurement taught me one thing: The best supplier
                   data comes from being there. AI is brilliant at finding needles
                   in haystacks—but here's what it will never tell you about a supplier:
@@ -180,15 +180,15 @@ const FounderMissionSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
                     {/* Card with Light Background */}
-                    <div className="relative bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden min-h-[100px]">
+                    <div className="relative bg-white border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden min-h-[100px]">
                       {/* Large Watermark Background */}
                       <div className="absolute top-1/2 right-4 -translate-y-1/2 opacity-[0.04] pointer-events-none">
                         <IconComponent className="w-24 h-24 text-blue-500" />
                       </div>
                       
-                      {/* Professional Risk Indicator */}
-                      <div className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white z-10">
-                        <AlertCircle className="w-4 h-4 text-white" />
+                      {/* Clean Flat Alert Triangle */}
+                      <div className="absolute top-3 right-3 z-10">
+                        <AlertTriangle className="w-5 h-5 text-red-500 fill-red-50" strokeWidth={2} />
                       </div>
                       
                       <div className="relative">
@@ -213,21 +213,21 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative group mt-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-              <div className="relative backdrop-blur-xl bg-white/25 border border-white/40 rounded-3xl p-6 md:p-8 shadow-2xl">
-                <p className="text-base md:text-lg font-bold text-white mb-4">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-blue-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
+                <p className="text-base md:text-lg font-bold text-gray-900 mb-4">
                   These aren't details. These are deal-breakers.
                 </p>
-                <p className="text-xl md:text-2xl font-bold text-white mb-6">
+                <p className="text-xl md:text-2xl font-bold text-blue-600 mb-6">
                   That's why we built YVOO: AI finds them. Humans verify what matters.
                 </p>
-                <div className="mt-6 pt-6 border-t border-white/40 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-500/30 border border-blue-300/50 flex items-center justify-center shadow-lg">
-                    <CheckCircle className="w-6 h-6 text-white" />
+                <div className="mt-6 pt-6 border-t border-gray-200 flex items-start gap-4">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shadow-sm">
+                    <CheckCircle className="w-6 h-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-base md:text-lg text-white leading-relaxed font-medium">
-                      We make professional on-site audits <span className="font-bold">affordable and effortless</span> for every procurement team—regardless of company size or budget.
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
+                      We make professional on-site audits <span className="font-bold text-gray-900">affordable and effortless</span> for every procurement team—regardless of company size or budget.
                     </p>
                   </div>
                 </div>
