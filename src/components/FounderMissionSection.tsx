@@ -180,15 +180,15 @@ const FounderMissionSection = () => {
                     <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02]">
                       <div className="flex items-stretch gap-0">
                         {/* Left side - Icon area with gradient background */}
-                        <div className="w-48 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-8 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                        <div className="w-48 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-6 relative overflow-hidden flex-shrink-0">
                           {/* Large red ! watermark in top-left background */}
-                          <div className="absolute top-2 left-2 opacity-15">
-                            <span className="text-[120px] font-black text-red-500 leading-none select-none">
+                          <div className="absolute top-0 left-0 opacity-15">
+                            <span className="text-[140px] font-black text-red-500 leading-none select-none">
                               !
                             </span>
                           </div>
                           
-                          {/* Icon */}
+                          {/* Icon in top-left */}
                           <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
                             <IconComponent className="w-10 h-10 text-white" strokeWidth={2} />
                           </div>
