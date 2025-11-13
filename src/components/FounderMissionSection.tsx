@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import founderPortrait from "@/assets/founder-portrait.jpg";
-import { Factory, CheckCircle, Award, Package, Users, Clock, AlertTriangle, Cog, Flag } from "lucide-react";
+import { Factory, CheckCircle, Award, Package, Users, Clock, AlertTriangle, Cog, ArrowRight } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -155,8 +156,8 @@ const FounderMissionSection = () => {
               </div>
             </motion.div>
 
-            {/* Modern Interactive Cards Grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-5 mt-8">
+            {/* Cards Grid - Exact 7 AI Features Style */}
+            <div className="grid sm:grid-cols-2 gap-6 mt-8">
               {detailItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
@@ -174,54 +175,42 @@ const FounderMissionSection = () => {
                       ease: "easeOut",
                     }}
                     onClick={() => setSelectedDetail(item)}
-                    className="group relative text-left"
+                    className="group relative text-left w-full"
                   >
-                    {/* Card - Exact Reference Clone */}
-                    <div className="relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-                      
-                      {/* Large Red "!" Watermark */}
-                      <div className="absolute top-1/2 left-8 -translate-y-1/2 opacity-[0.08] pointer-events-none select-none">
-                        <span className="text-[140px] font-bold text-red-500 leading-none">!</span>
-                      </div>
-
-                      <div className="relative flex gap-5 items-start">
-                        {/* Left Side - Icon with Background */}
-                        <div className="flex-shrink-0 relative">
-                          {/* Soft Background Shape */}
-                          <div className="absolute -inset-4 bg-gradient-to-br from-blue-50 to-blue-100/40 rounded-3xl -z-10" />
+                    <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02]">
+                      <div className="flex items-stretch gap-0">
+                        {/* Left side - Icon area with gradient background */}
+                        <div className="w-48 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-8 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                          {/* Large red ! watermark in top-left background */}
+                          <div className="absolute top-2 left-2 opacity-15">
+                            <span className="text-[120px] font-black text-red-500 leading-none select-none">
+                              !
+                            </span>
+                          </div>
                           
-                          {/* Icon Container */}
-                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
-                            <IconComponent className="w-8 h-8 text-white" strokeWidth={2} />
+                          {/* Icon */}
+                          <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                            <IconComponent className="w-10 h-10 text-white" strokeWidth={2} />
                           </div>
                         </div>
-
-                        {/* Right Side - Content */}
-                        <div className="flex-1 min-w-0 pt-1">
-                          {/* Feature Label */}
-                          <p className="text-xs uppercase tracking-wider text-[#14B8A6] font-bold mb-2">
-                            FEATURE {String(index + 1).padStart(2, '0')}
-                          </p>
-                          
-                          {/* Title */}
-                          <h4 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                        
+                        {/* Right side - Content */}
+                        <div className="flex-1 p-8">
+                          <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
                             {item.title}
-                          </h4>
-                          
-                          {/* Description */}
-                          <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                          </h3>
+                          <p className="text-gray-600 text-sm leading-relaxed mb-4">
                             {item.description}
                           </p>
-
-                          {/* Click to Learn More */}
-                          <div className="flex items-center gap-2 text-[#14B8A6] group-hover:text-[#0D9488] transition-colors font-medium text-sm">
+                          
+                          <div className="flex items-center gap-2 text-blue-500 text-sm font-semibold group-hover:gap-3 transition-all">
                             <CheckCircle className="w-4 h-4" strokeWidth={2.5} />
                             <span>Click to learn more</span>
-                            <span className="text-base transition-transform group-hover:translate-x-1">→</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Card>
                   </motion.button>
                 );
               })}
