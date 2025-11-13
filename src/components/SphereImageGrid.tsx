@@ -760,39 +760,39 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           height: containerSize,
           perspective: `${perspective}px`,
           background: `
-            radial-gradient(circle at center, hsl(220, 70%, 50%) 0%, hsl(220, 80%, 45%) 35%, hsl(220, 90%, 40%) 70%, hsl(220, 50%, 25%) 100%)
+            radial-gradient(2px 2px at 20% 30%, white, transparent),
+            radial-gradient(2px 2px at 60% 70%, white, transparent),
+            radial-gradient(1px 1px at 50% 50%, white, transparent),
+            radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.5), transparent),
+            radial-gradient(2px 2px at 90% 60%, white, transparent),
+            radial-gradient(1px 1px at 15% 80%, rgba(255, 255, 255, 0.5), transparent),
+            radial-gradient(circle at center, hsl(173, 80%, 50%) 0%, hsl(173, 70%, 40%) 35%, hsl(173, 60%, 30%) 70%, hsl(220, 30%, 15%) 100%)
           `,
-          border: '2px solid hsl(220, 70%, 60%)',
+          backgroundSize: '200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 100% 100%',
+          backgroundPosition: 'random',
+          border: '2px solid hsl(173, 80%, 50%)',
           boxShadow: `
-            0 0 80px hsl(220, 70%, 50%, 0.4),
-            0 0 40px hsl(220, 80%, 45%, 0.3),
-            inset 0 0 60px hsl(220, 70%, 50%, 0.1),
-            inset 0 0 30px hsl(220, 60%, 40%, 0.15)
+            0 0 80px hsl(173, 80%, 50%, 0.4),
+            0 0 40px hsl(173, 80%, 40%, 0.3),
+            inset 0 0 60px hsl(173, 80%, 50%, 0.1),
+            inset 0 0 30px hsl(173, 70%, 40%, 0.15)
           `,
           backdropFilter: 'blur(8px)'
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Continent map pattern overlay */}
+        {/* Dotted pattern overlay */}
         <div 
-          className="absolute inset-0 rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background: `
-              radial-gradient(circle at 35% 45%, transparent 8%, white 8.5%, white 9%, transparent 9.5%),
-              radial-gradient(circle at 38% 47%, transparent 5%, white 5.5%, white 6%, transparent 6.5%),
-              radial-gradient(circle at 32% 43%, transparent 6%, white 6.5%, white 7%, transparent 7.5%),
-              radial-gradient(circle at 70% 35%, transparent 12%, white 12.5%, white 13.5%, transparent 14%),
-              radial-gradient(circle at 75% 38%, transparent 8%, white 8.5%, white 9.5%, transparent 10%),
-              radial-gradient(circle at 65% 40%, transparent 7%, white 7.5%, white 8.5%, transparent 9%),
-              radial-gradient(circle at 50% 60%, transparent 10%, white 10.5%, white 11.5%, transparent 12%),
-              radial-gradient(circle at 45% 65%, transparent 8%, white 8.5%, white 9.5%, transparent 10%),
-              radial-gradient(circle at 55% 55%, transparent 6%, white 6.5%, white 7.5%, transparent 8%),
-              radial-gradient(circle, white 0.8px, transparent 0.8px)
+              radial-gradient(circle, white 1px, transparent 1px),
+              radial-gradient(circle, white 0.5px, transparent 0.5px)
             `,
-            backgroundSize: '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 25px 25px',
-            backgroundPosition: 'center, center, center, center, center, center, center, center, center, 0 0',
-            opacity: 0.25,
+            backgroundSize: '40px 40px, 20px 20px',
+            backgroundPosition: '0 0, 10px 10px',
+            opacity: 0.15,
             zIndex: 1
           }}
         />
