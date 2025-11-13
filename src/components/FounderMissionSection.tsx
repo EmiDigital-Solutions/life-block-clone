@@ -176,48 +176,48 @@ const FounderMissionSection = () => {
                     onClick={() => setSelectedDetail(item)}
                     className="group relative text-left"
                   >
-                    {/* Card with Reference Design */}
-                    <div className="relative bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.01] hover:border-blue-300 overflow-hidden">
+                    {/* Card - Exact Reference Clone */}
+                    <div className="relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
                       
-                      {/* Clean Flat Alert Triangle */}
-                      <div className="absolute top-4 right-4 z-10">
-                        <AlertTriangle className="w-5 h-5 text-red-500 fill-red-50" strokeWidth={2} />
+                      {/* Large Red "!" Watermark */}
+                      <div className="absolute top-1/2 left-8 -translate-y-1/2 opacity-[0.08] pointer-events-none select-none">
+                        <span className="text-[140px] font-bold text-red-500 leading-none">!</span>
                       </div>
 
-                      <div className="flex gap-5 items-start">
+                      <div className="relative flex gap-5 items-start">
                         {/* Left Side - Icon with Background */}
                         <div className="flex-shrink-0 relative">
-                          {/* Watermark Background Shape */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl scale-125 -z-10 opacity-60" />
+                          {/* Soft Background Shape */}
+                          <div className="absolute -inset-4 bg-gradient-to-br from-blue-50 to-blue-100/40 rounded-3xl -z-10" />
                           
                           {/* Icon Container */}
-                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
                             <IconComponent className="w-8 h-8 text-white" strokeWidth={2} />
                           </div>
                         </div>
 
                         {/* Right Side - Content */}
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 pt-1">
                           {/* Feature Label */}
-                          <p className="text-xs uppercase tracking-wider text-blue-500 font-bold mb-2">
-                            Critical Factor {String(index + 1).padStart(2, '0')}
+                          <p className="text-xs uppercase tracking-wider text-[#14B8A6] font-bold mb-2">
+                            FEATURE {String(index + 1).padStart(2, '0')}
                           </p>
                           
                           {/* Title */}
-                          <h4 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-tight">
+                          <h4 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
                             {item.title}
                           </h4>
                           
                           {/* Description */}
-                          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                          <p className="text-sm text-gray-600 leading-relaxed mb-4">
                             {item.description}
                           </p>
 
                           {/* Click to Learn More */}
-                          <div className="flex items-center gap-2 text-blue-500 group-hover:text-blue-600 transition-colors font-medium text-sm">
-                            <CheckCircle className="w-4 h-4" />
+                          <div className="flex items-center gap-2 text-[#14B8A6] group-hover:text-[#0D9488] transition-colors font-medium text-sm">
+                            <CheckCircle className="w-4 h-4" strokeWidth={2.5} />
                             <span>Click to learn more</span>
-                            <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
+                            <span className="text-base transition-transform group-hover:translate-x-1">→</span>
                           </div>
                         </div>
                       </div>
@@ -259,29 +259,40 @@ const FounderMissionSection = () => {
         </div>
       </div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal - White Background */}
       <Dialog open={!!selectedDetail} onOpenChange={() => setSelectedDetail(null)}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white border-gray-200">
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto bg-white border-gray-200 shadow-2xl">
           {selectedDetail && (
             <>
-              <DialogHeader>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <selectedDetail.icon className="w-6 h-6 text-white" />
+              <DialogHeader className="space-y-4">
+                <div className="flex items-start gap-5">
+                  {/* Icon with Background - Same as Card */}
+                  <div className="flex-shrink-0 relative">
+                    <div className="absolute -inset-4 bg-gradient-to-br from-blue-50 to-blue-100/40 rounded-3xl -z-10" />
+                    <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                      <selectedDetail.icon className="w-8 h-8 text-white" strokeWidth={2} />
+                    </div>
                   </div>
-                  <div>
-                    <DialogTitle className="text-2xl font-bold text-gray-900">
+                  
+                  <div className="flex-1">
+                    <p className="text-xs uppercase tracking-wider text-[#14B8A6] font-bold mb-2">
+                      FEATURE DETAILS
+                    </p>
+                    <DialogTitle className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
                       {selectedDetail.title}
                     </DialogTitle>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 mt-2 font-medium">
                       {selectedDetail.description}
                     </p>
                   </div>
                 </div>
               </DialogHeader>
-              <DialogDescription className="text-base text-gray-700 leading-relaxed mt-4">
-                {selectedDetail.details}
-              </DialogDescription>
+              
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <DialogDescription className="text-base text-gray-700 leading-relaxed">
+                  {selectedDetail.details}
+                </DialogDescription>
+              </div>
             </>
           )}
         </DialogContent>
