@@ -558,9 +558,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.3
               }} className="absolute top-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                      <Lightbulb className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -590,9 +590,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.5
               }} className="absolute bottom-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-blue-600" strokeWidth={1.5} />
+                      <Globe className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -769,7 +769,7 @@ const AboutUs = () => {
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
-              <Button variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl px-8 py-6 text-lg">
+              <Button variant="outline" className="border-2 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-xl px-8 py-6 text-lg">
                 Learn More
               </Button>
             </motion.div>
@@ -795,7 +795,7 @@ const AboutUs = () => {
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Location List */}
             <div className="lg:col-span-2 space-y-3">
-              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
+              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-[#14B8A6] text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
                   <span className="font-semibold">{location.name}</span>
                 </button>)}
             </div>
@@ -876,7 +876,7 @@ const AboutUs = () => {
               <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
+              <Button asChild className="bg-[#14B8A6] hover:bg-[#14B8A6]/90 text-white px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
                 <a href="/auditors">
                   ONBOARD AS EXPERT
                 </a>
