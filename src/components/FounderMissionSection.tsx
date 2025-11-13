@@ -180,10 +180,10 @@ const FounderMissionSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
                     {/* Card with Light Background */}
-                    <div className="relative bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden">
-                      {/* Watermark Background */}
-                      <div className="absolute top-1/2 right-0 -translate-y-1/2 opacity-[0.03] pointer-events-none">
-                        <IconComponent className="w-32 h-32 text-blue-500" />
+                    <div className="relative bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden min-h-[100px]">
+                      {/* Large Watermark Background */}
+                      <div className="absolute top-1/2 right-4 -translate-y-1/2 opacity-[0.04] pointer-events-none">
+                        <IconComponent className="w-24 h-24 text-blue-500" />
                       </div>
                       
                       {/* Professional Risk Indicator */}
@@ -191,18 +191,13 @@ const FounderMissionSection = () => {
                         <AlertCircle className="w-4 h-4 text-white" />
                       </div>
                       
-                      <div className="relative flex items-start gap-3">
-                        <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
-                          <IconComponent className="w-5 h-5 text-white" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-sm md:text-base font-bold text-gray-900 mb-1 line-clamp-2">
-                            {item.title}
-                          </h4>
-                          <p className="text-xs text-gray-600 group-hover:text-blue-600 transition-colors font-medium">
-                            Click to learn more
-                          </p>
-                        </div>
+                      <div className="relative">
+                        <h4 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-gray-600 group-hover:text-blue-600 transition-colors font-medium">
+                          Click to learn more
+                        </p>
                       </div>
                     </div>
                   </motion.button>
