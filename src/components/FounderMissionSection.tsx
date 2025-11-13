@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import founderPortrait from "@/assets/founder-portrait.jpg";
-import { Factory, CheckCircle, Award, Package, Users, Clock, AlertCircle, Cog } from "lucide-react";
+import { Factory, CheckCircle, Award, Package, Users, Clock, AlertCircle, Cog, Flag } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -144,9 +144,19 @@ const FounderMissionSection = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl">
-                <p className="text-lg md:text-xl text-white leading-relaxed font-semibold mb-4">
-                  "I built my career on supplier decisions. I'm not gambling yours on AI guesses."
-                </p>
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+                    <Flag className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs uppercase tracking-wider text-red-400 font-bold mb-2">
+                      ⚠️ Critical Limitations of AI-Only Supplier Data
+                    </p>
+                    <p className="text-lg md:text-xl text-white leading-relaxed font-semibold">
+                      "I built my career on supplier decisions. I'm not gambling yours on AI guesses."
+                    </p>
+                  </div>
+                </div>
                 <p className="text-base md:text-lg text-white/80 leading-relaxed">
                   25 years in procurement taught me one thing: The best supplier
                   data comes from being there. AI is brilliant at finding needles
@@ -181,8 +191,13 @@ const FounderMissionSection = () => {
                     
                     {/* Card */}
                     <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-white/40">
+                      {/* Red Flag Badge */}
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-white text-lg">🚩</span>
+                      </div>
+                      
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[#14B8A6] to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <IconComponent className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -208,14 +223,19 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative group mt-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#14B8A6]/20 to-blue-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-6 shadow-xl">
                 <p className="text-base md:text-lg font-bold text-white mb-3">
                   These aren't details. These are deal-breakers.
                 </p>
-                <p className="text-lg md:text-xl font-semibold text-[#14B8A6]">
+                <p className="text-lg md:text-xl font-semibold text-blue-300 mb-3">
                   That's why we built YVOO: AI finds them. Humans verify what matters.
                 </p>
+                <div className="mt-4 pt-4 border-t border-white/20">
+                  <p className="text-sm md:text-base text-white/90 font-medium">
+                    💡 We make professional on-site audits <span className="text-blue-300 font-bold">affordable and effortless</span> for every procurement team—no matter your company size or budget.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -229,7 +249,7 @@ const FounderMissionSection = () => {
             <>
               <DialogHeader>
                 <div className="flex items-center gap-4 mb-2">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-blue-500 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
                     <selectedDetail.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>

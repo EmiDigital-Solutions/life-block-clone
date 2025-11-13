@@ -397,7 +397,7 @@ const AboutUs = () => {
 
       {/* SECTION 3: MISSION & VALUES */}
       <section data-nav-theme="dark" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12" style={{
-      background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(59, 130, 246))"
+      background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))"
     }}>
         <div className="container mx-auto">
           <motion.div initial={{
