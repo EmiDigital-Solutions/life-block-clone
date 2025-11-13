@@ -586,7 +586,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 strokeWidth="2"
                 opacity={opacity}
                 style={{
-                  filter: 'drop-shadow(0 0 3px rgba(59, 130, 246, 0.6))'
+                  filter: 'drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))'
                 }}
               />
             </React.Fragment>
@@ -629,8 +629,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
       >
         <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2 border-blue-500/40" style={{
           boxShadow: isHovered 
-            ? '0 8px 32px rgba(59, 130, 246, 0.5), 0 0 24px rgba(96, 165, 250, 0.7)' 
-            : '0 4px 16px rgba(59, 130, 246, 0.3), 0 0 12px rgba(59, 130, 246, 0.2)'
+            ? '0 8px 32px rgba(59, 130, 246, 0.4), 0 0 20px rgba(96, 165, 250, 0.6)' 
+            : '0 4px 12px rgba(59, 130, 246, 0.2), 0 0 8px rgba(59, 130, 246, 0.15)'
         }}>
           <img
             src={image.src}
@@ -639,7 +639,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
             style={{
-              filter: isHovered ? 'brightness(1.15)' : 'brightness(1.05)'
+              filter: isHovered ? 'brightness(1.1)' : 'brightness(1)'
             }}
           />
         </div>

@@ -10,7 +10,7 @@ import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import FounderMissionSection from "@/components/FounderMissionSection";
 
-// Import 40 unique faces for sphere
+// Import 40 unique faces for sphere - mix of auditors and procurement professionals
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
@@ -21,24 +21,244 @@ import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
-
+import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
+import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
+import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
+import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
+import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+import auditorGen4 from "@/assets/auditor-gen-4.jpg";
+import auditorGen13 from "@/assets/auditor-gen-13.jpg";
+import auditorGen15 from "@/assets/auditor-gen-15.jpg";
+import auditorGen17 from "@/assets/auditor-gen-17.jpg";
+import auditorGen18 from "@/assets/auditor-gen-18.jpg";
+import auditorGen21 from "@/assets/auditor-gen-21.jpg";
+import auditorGen23 from "@/assets/auditor-gen-23.jpg";
+import auditorGen24 from "@/assets/auditor-gen-24.jpg";
+// Blonde auditors for better diversity balance
+import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
+import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
+import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
+import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
+import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
+// Procurement professionals
+import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
+import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
+import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
+import procurementFemaleMiddleEast from "@/assets/procurement-female-middle-east.jpg";
+import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
+import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
+import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
+import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
+import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
 
-  const sphereImages: ImageData[] = [
-    { id: '1', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
-    { id: '2', src: auditorAsian, alt: 'Asian Auditor', title: 'Asia' },
-    { id: '3', src: auditorAfrican, alt: 'African Auditor', title: 'Africa' },
-    { id: '4', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas' },
-    { id: '5', src: auditorMiddleEast, alt: 'Middle East Auditor', title: 'Middle East' },
-    { id: '6', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia' },
-    { id: '7', src: auditorFemaleEuropean, alt: 'European Female Auditor', title: 'Europe' },
-    { id: '8', src: auditorFemaleAsian, alt: 'Asian Female Auditor', title: 'Asia' },
-    { id: '9', src: auditorFemaleAfrican, alt: 'African Female Auditor', title: 'Africa' },
-    { id: '10', src: auditorFemaleLatin, alt: 'Latin Female Auditor', title: 'Americas' }
-  ];
-
+  // 40 unique auditor faces for the sphere - balanced diversity
+  const sphereImages: ImageData[] = [{
+    id: '1',
+    src: auditorBlonde1,
+    alt: 'European Female Auditor',
+    title: 'Europe'
+  }, {
+    id: '2',
+    src: auditorBlonde2,
+    alt: 'Scandinavian Inspector',
+    title: 'Northern Europe'
+  }, {
+    id: '3',
+    src: auditorBlonde3,
+    alt: 'German Quality Manager',
+    title: 'Europe'
+  }, {
+    id: '4',
+    src: auditorBlonde4,
+    alt: 'Dutch Auditor',
+    title: 'Netherlands'
+  }, {
+    id: '5',
+    src: auditorBlonde5,
+    alt: 'Swedish Safety Inspector',
+    title: 'Sweden'
+  }, {
+    id: '6',
+    src: procurementFemaleBlonde,
+    alt: 'Procurement Coordinator',
+    title: 'UK'
+  }, {
+    id: '7',
+    src: procurementMaleOceania,
+    alt: 'Procurement Officer',
+    title: 'Australia'
+  }, {
+    id: '8',
+    src: procurementFemaleEuropean,
+    alt: 'Procurement Manager',
+    title: 'Norway'
+  }, {
+    id: '9',
+    src: auditorEuropean,
+    alt: 'European Auditor',
+    title: 'Europe'
+  }, {
+    id: '10',
+    src: procurementMaleAsian,
+    alt: 'Procurement Specialist',
+    title: 'East Asia'
+  }, {
+    id: '11',
+    src: auditorFemaleEuropean,
+    alt: 'European Female Auditor',
+    title: 'Europe'
+  }, {
+    id: '12',
+    src: procurementFemaleAsian,
+    alt: 'Vendor Relations Manager',
+    title: 'East Asia'
+  }, {
+    id: '13',
+    src: procurementMaleLatin,
+    alt: 'Procurement Director',
+    title: 'Americas'
+  }, {
+    id: '14',
+    src: auditorGen1,
+    alt: 'Industrial Safety Auditor',
+    title: 'Global'
+  }, {
+    id: '15',
+    src: auditorGen2,
+    alt: 'Factory Quality Inspector',
+    title: 'Asia'
+  }, {
+    id: '16',
+    src: auditorGen3,
+    alt: 'Warehouse Quality Manager',
+    title: 'Middle East'
+  }, {
+    id: '17',
+    src: auditorGen4,
+    alt: 'Industrial Site Inspector',
+    title: 'Africa'
+  }, {
+    id: '18',
+    src: procurementMaleSouthAsian,
+    alt: 'Supply Chain Analyst',
+    title: 'Americas'
+  }, {
+    id: '19',
+    src: procurementMaleEuropean,
+    alt: 'Strategic Sourcing Manager',
+    title: 'Europe'
+  }, {
+    id: '20',
+    src: procurementFemaleAfrican,
+    alt: 'Supply Chain Manager',
+    title: 'Africa'
+  }, {
+    id: '21',
+    src: procurementFemaleMiddleEast,
+    alt: 'Purchasing Manager',
+    title: 'Americas'
+  }, {
+    id: '22',
+    src: auditorMaleNorthAmerica,
+    alt: 'North American Male Auditor',
+    title: 'North America'
+  }, {
+    id: '23',
+    src: auditorGen13,
+    alt: 'Facility Operations Manager',
+    title: 'Europe'
+  }, {
+    id: '24',
+    src: auditorFemaleOceania,
+    alt: 'Oceania Female Auditor',
+    title: 'Oceania'
+  }, {
+    id: '25',
+    src: auditorGen15,
+    alt: 'Site Operations Director',
+    title: 'East Asia'
+  }, {
+    id: '26',
+    src: auditorMiddleEast,
+    alt: 'Middle East Auditor',
+    title: 'Middle East'
+  }, {
+    id: '27',
+    src: auditorGen17,
+    alt: 'Plant Compliance Auditor',
+    title: 'Pacific'
+  }, {
+    id: '28',
+    src: auditorGen18,
+    alt: 'Laboratory Quality Control',
+    title: 'Americas'
+  }, {
+    id: '29',
+    src: auditorFemaleMiddleEast,
+    alt: 'Middle East Female Auditor',
+    title: 'Middle East'
+  }, {
+    id: '30',
+    src: auditorGen21,
+    alt: 'Factory Floor Inspector',
+    title: 'Eastern Europe'
+  }, {
+    id: '31',
+    src: auditorAfrican,
+    alt: 'African Male Auditor',
+    title: 'Africa'
+  }, {
+    id: '32',
+    src: auditorGen23,
+    alt: 'Quality Operations Director',
+    title: 'Africa'
+  }, {
+    id: '33',
+    src: auditorGen24,
+    alt: 'Construction Compliance Inspector',
+    title: 'Americas'
+  }, {
+    id: '34',
+    src: auditorSouthAsian,
+    alt: 'South Asian Auditor',
+    title: 'South Asia'
+  }, {
+    id: '35',
+    src: auditorFemaleSouthAsian,
+    alt: 'South Asian Female Auditor',
+    title: 'South Asia'
+  }, {
+    id: '36',
+    src: auditorEuropean,
+    alt: 'European Senior Auditor',
+    title: 'Europe'
+  }, {
+    id: '37',
+    src: auditorFemaleEuropean,
+    alt: 'European Regional Lead',
+    title: 'Europe'
+  }, {
+    id: '38',
+    src: auditorAsian,
+    alt: 'Asian Senior Auditor',
+    title: 'Asia'
+  }, {
+    id: '39',
+    src: auditorFemaleAsian,
+    alt: 'Asian Regional Lead',
+    title: 'East Asia'
+  }, {
+    id: '40',
+    src: auditorLatin,
+    alt: 'Americas Regional Auditor',
+    title: 'Americas'
+  }];
   const locations = {
     zagreb: {
       name: "Zagreb (Headquarters)",
