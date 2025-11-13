@@ -395,7 +395,7 @@ const AboutUs = () => {
             duration: 0.8
           }} className="space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                Technology and <span className="text-blue-600">Innovation</span>
+                Technology and <span className="text-[#2563EB]">Innovation</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 [Please provide the text content you'd like to add here]
@@ -446,7 +446,7 @@ const AboutUs = () => {
         }} viewport={{
           once: true
         }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-blue-600">Principles</span>
+            Our <span className="text-[#2563EB]">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -463,7 +463,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.1
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-blue-600">Innovation</h3>
+                <h3 className="text-2xl font-bold text-[#2563EB]">Innovation</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
@@ -498,7 +498,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.3
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-blue-600">Global & Personalized</h3>
+                <h3 className="text-2xl font-bold text-[#2563EB]">Global & Personalized</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
@@ -685,7 +685,7 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-blue-600 text-center mb-20">
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-[#2563EB] text-center mb-20">
             Our History
           </motion.h2>
           
@@ -720,7 +720,7 @@ const AboutUs = () => {
                     </div>
                   </div>
                   <div className="md:col-span-2 bg-white border border-gray-200 rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-blue-600">{selectedTimeline.title}</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-[#2563EB]">{selectedTimeline.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
@@ -763,7 +763,7 @@ const AboutUs = () => {
             once: true
           }} className="order-1 lg:order-2 space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                YVOO <span className="text-blue-600">Leadership</span>
+                YVOO <span className="text-[#2563EB]">Leadership</span>
               </h2>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
@@ -789,7 +789,7 @@ const AboutUs = () => {
         }} viewport={{
           once: true
         }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-blue-600">Locations</span>
+            Our <span className="text-[#2563EB]">Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
@@ -818,15 +818,15 @@ const AboutUs = () => {
                 </h3>
                 <div className="space-y-4 text-lg md:text-xl">
                   <p className="text-gray-600">
-                    <strong className="text-blue-600">Address:</strong><br />
+                    <strong className="text-[#2563EB]">Address:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].address}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-blue-600">Phone:</strong><br />
+                    <strong className="text-[#2563EB]">Phone:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].phone}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-blue-600">Email:</strong><br />
+                    <strong className="text-[#2563EB]">Email:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].email}
                   </p>
                 </div>
@@ -870,9 +870,7 @@ const AboutUs = () => {
               Discover how AI-powered platforms revolutionize your procurement and supplier management.
             </p>
             
-            <motion.div className="flex flex-col sm:flex-row gap-6 justify-center items-center" whileHover={{
-            scale: 1.02
-          }}>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
@@ -881,7 +879,7 @@ const AboutUs = () => {
                   ONBOARD AS EXPERT
                 </a>
               </Button>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
