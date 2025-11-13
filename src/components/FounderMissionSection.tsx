@@ -142,10 +142,9 @@ const FounderMissionSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative group"
+              className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#14B8A6]/10 to-[#14B8A6]/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-              <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
+              <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-xl md:text-2xl text-gray-900 leading-relaxed font-semibold mb-4">
                   "I built my career on supplier decisions. I'm not gambling yours on <strong>AI guesses</strong>."
                 </p>
