@@ -10,20 +10,33 @@ import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import FounderMissionSection from "@/components/FounderMissionSection";
 
-// Import auditor images
+// Import 40 unique faces for sphere
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
+import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
+import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
 
-  // Simple sphere images array
   const sphereImages: ImageData[] = [
     { id: '1', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
     { id: '2', src: auditorAsian, alt: 'Asian Auditor', title: 'Asia' },
-    { id: '3', src: auditorAfrican, alt: 'African Auditor', title: 'Africa' }
+    { id: '3', src: auditorAfrican, alt: 'African Auditor', title: 'Africa' },
+    { id: '4', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas' },
+    { id: '5', src: auditorMiddleEast, alt: 'Middle East Auditor', title: 'Middle East' },
+    { id: '6', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia' },
+    { id: '7', src: auditorFemaleEuropean, alt: 'European Female Auditor', title: 'Europe' },
+    { id: '8', src: auditorFemaleAsian, alt: 'Asian Female Auditor', title: 'Asia' },
+    { id: '9', src: auditorFemaleAfrican, alt: 'African Female Auditor', title: 'Africa' },
+    { id: '10', src: auditorFemaleLatin, alt: 'Latin Female Auditor', title: 'Americas' }
   ];
 
   const locations = {
@@ -108,7 +121,10 @@ const AboutUs = () => {
                 containerSize={550} 
                 sphereRadius={280} 
                 autoRotate={true} 
-                autoRotateSpeed={0.15}
+                autoRotateSpeed={0.03}
+                dragSensitivity={0.25}
+                momentumDecay={0.98}
+                maxRotationSpeed={2}
                 baseImageScale={0.8} 
               />
             </motion.div>
