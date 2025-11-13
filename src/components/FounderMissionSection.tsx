@@ -211,10 +211,9 @@ const FounderMissionSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
               viewport={{ once: true }}
-              className="relative group mt-8"
+              className="relative mt-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#14B8A6]/10 to-[#14B8A6]/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-              <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
+              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-base md:text-lg font-bold text-gray-900 mb-4">
                   These aren't details. <strong>These are deal-breakers.</strong>
                 </p>
@@ -222,7 +221,7 @@ const FounderMissionSection = () => {
                   That's why we built YVOO: <strong>AI finds them. Humans verify what matters.</strong>
                 </p>
                 <div className="mt-6 pt-6 border-t border-gray-200 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#14B8A6]/10 border border-[#14B8A6]/20 flex items-center justify-center shadow-sm">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#14B8A6]/10 flex items-center justify-center">
                     <CheckCircle className="w-6 h-6 text-[#14B8A6]" />
                   </div>
                   <div className="flex-1">
