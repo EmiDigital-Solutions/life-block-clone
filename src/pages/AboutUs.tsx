@@ -8,6 +8,7 @@ import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
+import FounderMissionSection from "@/components/FounderMissionSection";
 
 // Import 40 unique faces for sphere - mix of auditors and procurement professionals
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -419,6 +420,9 @@ const AboutUs = () => {
               mutual respect and trust.
             </p>
           </motion.div>
+          
+          {/* Founder Mission Section */}
+          <FounderMissionSection />
         </div>
       </section>
 
