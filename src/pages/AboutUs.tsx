@@ -870,13 +870,16 @@ const AboutUs = () => {
               Discover how AI-powered platforms revolutionize your procurement and supplier management.
             </p>
             
-            <motion.div whileHover={{
-            scale: 1.05
-          }} whileTap={{
-            scale: 0.95
+            <motion.div className="flex flex-col sm:flex-row gap-6 justify-center items-center" whileHover={{
+            scale: 1.02
           }}>
               <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
+              </Button>
+              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
+                <a href="/auditors">
+                  ONBOARD AS EXPERT
+                </a>
               </Button>
             </motion.div>
           </motion.div>
