@@ -548,18 +548,17 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         style={{ zIndex: 5 }}
       >
         <defs>
-          <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0.9 }} />
-            <stop offset="50%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0.7 }} />
+          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.5 }} />
+            <stop offset="100%" style={{ stopColor: '#60a5fa', stopOpacity: 0.9 }} />
           </linearGradient>
           <radialGradient id="nodeGlow">
-            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0 }} />
+            <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 0 }} />
           </radialGradient>
-          <filter id="greenGlow">
+          <filter id="blueGlow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="hsl(173, 80%, 50%)"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#3b82f6"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -590,11 +589,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 y1={y1}
                 x2={x2}
                 y2={y2}
-              stroke="url(#greenGradient)"
+              stroke="url(#blueGradient)"
               strokeWidth="2"
                 opacity={opacity}
                 style={{
-                  filter: 'drop-shadow(0 0 6px hsl(173, 80%, 50%))'
+                  filter: 'drop-shadow(0 0 6px rgba(59, 130, 246, 0.6))'
                 }}
               />
             </React.Fragment>
@@ -759,23 +758,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          background: `
-            radial-gradient(2px 2px at 20% 30%, white, transparent),
-            radial-gradient(2px 2px at 60% 70%, white, transparent),
-            radial-gradient(1px 1px at 50% 50%, white, transparent),
-            radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.5), transparent),
-            radial-gradient(2px 2px at 90% 60%, white, transparent),
-            radial-gradient(1px 1px at 15% 80%, rgba(255, 255, 255, 0.5), transparent),
-            radial-gradient(circle at center, hsl(173, 80%, 50%) 0%, hsl(173, 70%, 40%) 35%, hsl(173, 60%, 30%) 70%, hsl(220, 30%, 15%) 100%)
-          `,
-          backgroundSize: '200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 100% 100%',
-          backgroundPosition: 'random',
-          border: '2px solid hsl(173, 80%, 50%)',
+          background: `linear-gradient(135deg, rgb(10, 25, 47), rgb(15, 30, 60), rgb(10, 25, 47))`,
+          border: '2px solid rgba(59, 130, 246, 0.3)',
           boxShadow: `
-            0 0 80px hsl(173, 80%, 50%, 0.4),
-            0 0 40px hsl(173, 80%, 40%, 0.3),
-            inset 0 0 60px hsl(173, 80%, 50%, 0.1),
-            inset 0 0 30px hsl(173, 70%, 40%, 0.15)
+            0 0 40px rgba(59, 130, 246, 0.2),
+            0 0 80px rgba(59, 130, 246, 0.15),
+            inset 0 0 60px rgba(59, 130, 246, 0.05)
           `,
           backdropFilter: 'blur(8px)'
         }}
@@ -787,12 +775,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background: `
-              radial-gradient(circle, white 1px, transparent 1px),
-              radial-gradient(circle, white 0.5px, transparent 0.5px)
+              radial-gradient(circle, rgba(96, 165, 250, 0.4) 1px, transparent 1px),
+              radial-gradient(circle, rgba(96, 165, 250, 0.3) 0.5px, transparent 0.5px)
             `,
             backgroundSize: '40px 40px, 20px 20px',
             backgroundPosition: '0 0, 10px 10px',
-            opacity: 0.15,
+            opacity: 0.25,
             zIndex: 1
           }}
         />
