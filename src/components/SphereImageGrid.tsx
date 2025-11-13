@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
+import worldMapGlobe from '@/assets/world-map-globe.png';
 
 /**
  * SphereImageGrid - Interactive 3D Image Sphere Component
@@ -759,75 +760,29 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           height: containerSize,
           perspective: `${perspective}px`,
           background: `
-            radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.95) 0%, rgba(59, 130, 246, 1) 40%, rgba(37, 99, 235, 1) 80%, rgba(29, 78, 216, 1) 100%)
+            radial-gradient(ellipse at 35% 35%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
+            url(${worldMapGlobe}) center center / cover no-repeat,
+            radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.95) 0%, rgba(59, 130, 246, 1) 40%, rgba(37, 99, 235, 1) 80%, rgba(30, 64, 175, 1) 100%)
           `,
-          border: '4px solid rgba(191, 219, 254, 0.5)',
+          border: '4px solid rgba(147, 197, 253, 0.5)',
           boxShadow: `
-            0 0 80px rgba(96, 165, 250, 0.5),
-            0 0 120px rgba(59, 130, 246, 0.3),
-            inset 0 -40px 80px rgba(29, 78, 216, 0.3)
+            0 0 80px rgba(59, 130, 246, 0.5),
+            0 0 120px rgba(96, 165, 250, 0.3),
+            inset 0 0 100px rgba(30, 64, 175, 0.3)
           `,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* World Map Dotted Pattern Overlay - Curved white dots forming continents */}
+        {/* Blue overlay to enhance the world map visibility */}
         <div 
-          className="absolute inset-0 rounded-full pointer-events-none overflow-hidden"
+          className="absolute inset-0 rounded-full pointer-events-none"
           style={{
+            background: `radial-gradient(ellipse at 35% 35%, rgba(30, 64, 175, 0.2) 0%, rgba(37, 99, 235, 0.4) 50%, rgba(30, 64, 175, 0.6) 100%)`,
             zIndex: 1,
+            mixBlendMode: 'multiply'
           }}
-        >
-          <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ opacity: 0.9 }}>
-            <defs>
-              <pattern id="dotPattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-                <circle cx="4" cy="4" r="1.5" fill="white" />
-              </pattern>
-            </defs>
-            
-            {/* North America - curved arc */}
-            <path d="M 80 120 Q 120 100, 160 110 Q 180 115, 200 130 Q 210 140, 215 160" 
-              stroke="url(#dotPattern)" strokeWidth="25" fill="none" opacity="0.9"/>
-            
-            {/* Europe - diagonal curve */}
-            <path d="M 180 90 Q 210 85, 240 95 Q 260 105, 270 125" 
-              stroke="url(#dotPattern)" strokeWidth="20" fill="none" opacity="0.85"/>
-            
-            {/* Asia - large sweeping curve */}
-            <path d="M 240 80 Q 280 75, 320 90 Q 340 100, 350 130 Q 355 160, 345 190" 
-              stroke="url(#dotPattern)" strokeWidth="30" fill="none" opacity="0.9"/>
-            
-            {/* Africa - vertical curve */}
-            <path d="M 200 160 Q 210 180, 215 210 Q 218 240, 210 270" 
-              stroke="url(#dotPattern)" strokeWidth="25" fill="none" opacity="0.85"/>
-            
-            {/* South America - angled curve */}
-            <path d="M 140 220 Q 150 250, 145 280 Q 140 310, 135 340" 
-              stroke="url(#dotPattern)" strokeWidth="20" fill="none" opacity="0.8"/>
-            
-            {/* Australia - small curve bottom right */}
-            <path d="M 290 280 Q 310 285, 330 295 Q 340 305, 345 320" 
-              stroke="url(#dotPattern)" strokeWidth="18" fill="none" opacity="0.8"/>
-            
-            {/* Additional horizontal latitude-like lines */}
-            <path d="M 60 200 Q 200 190, 340 200" 
-              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.6"/>
-            
-            <path d="M 70 240 Q 200 235, 330 245" 
-              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.55"/>
-            
-            {/* Vertical longitude-like curves */}
-            <path d="M 200 60 Q 205 200, 200 340" 
-              stroke="url(#dotPattern)" strokeWidth="12" fill="none" opacity="0.5"/>
-            
-            {/* Additional continent details */}
-            <path d="M 120 140 Q 135 145, 150 155 Q 160 165, 165 180" 
-              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.75"/>
-            
-            <path d="M 260 140 Q 275 150, 285 165 Q 290 180, 288 200" 
-              stroke="url(#dotPattern)" strokeWidth="18" fill="none" opacity="0.8"/>
-          </svg>
-        </div>
+        />
         
         {renderConnectionLines()}
         <div className="relative w-full h-full" style={{ zIndex: 10 }}>
