@@ -549,17 +549,17 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         style={{ zIndex: 5 }}
       >
         <defs>
-          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.5 }} />
-            <stop offset="100%" style={{ stopColor: '#60a5fa', stopOpacity: 0.9 }} />
+          <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.9 }} />
+            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 60%)', stopOpacity: 1 }} />
           </linearGradient>
           <radialGradient id="nodeGlow">
-            <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 0 }} />
+            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.9 }} />
+            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0 }} />
           </radialGradient>
-          <filter id="blueGlow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#3b82f6"/>
+          <filter id="greenGlow">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="hsl(173, 80%, 50%)"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -590,11 +590,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 y1={y1}
                 x2={x2}
                 y2={y2}
-              stroke="url(#blueGradient)"
-              strokeWidth="2"
-                opacity={opacity}
+              stroke="url(#greenGradient)"
+              strokeWidth="4"
+                opacity={opacity * 2.5}
                 style={{
-                  filter: 'drop-shadow(0 0 6px rgba(59, 130, 246, 0.6))'
+                  filter: 'drop-shadow(0 0 12px hsla(173, 80%, 50%, 1)) drop-shadow(0 0 20px hsla(173, 80%, 50%, 0.6))'
                 }}
               />
             </React.Fragment>
@@ -750,6 +750,14 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           from { stroke-dashoffset: 0; }
           to { stroke-dashoffset: -1000; }
         }
+        @keyframes rotateGlobe {
+          from {
+            background-position: center center, 0% center, center center;
+          }
+          to {
+            background-position: center center, 100% center, center center;
+          }
+        }
       `}</style>
 
       <div
@@ -759,26 +767,30 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          background: `
-            radial-gradient(ellipse at 35% 35%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
-            url(${worldMapGlobe}) center center / cover no-repeat,
-            radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.95) 0%, rgba(59, 130, 246, 1) 40%, rgba(37, 99, 235, 1) 80%, rgba(30, 64, 175, 1) 100%)
+          backgroundImage: `
+            radial-gradient(ellipse at 35% 35%, hsla(173, 80%, 50%, 0.3) 0%, transparent 50%),
+            url(${worldMapGlobe}),
+            radial-gradient(ellipse at 30% 30%, hsla(173, 70%, 45%, 0.95) 0%, hsla(173, 75%, 40%, 1) 40%, hsla(173, 80%, 35%, 1) 80%, hsla(173, 85%, 25%, 1) 100%)
           `,
-          border: '4px solid rgba(147, 197, 253, 0.5)',
+          backgroundPosition: 'center center, center center, center center',
+          backgroundSize: 'cover, cover, cover',
+          backgroundRepeat: 'no-repeat',
+          animation: 'rotateGlobe 120s linear infinite',
+          border: '4px solid hsla(173, 80%, 60%, 0.6)',
           boxShadow: `
-            0 0 80px rgba(59, 130, 246, 0.5),
-            0 0 120px rgba(96, 165, 250, 0.3),
-            inset 0 0 100px rgba(30, 64, 175, 0.3)
+            0 0 80px hsla(173, 80%, 50%, 0.6),
+            0 0 120px hsla(173, 80%, 50%, 0.4),
+            inset 0 0 100px hsla(173, 80%, 30%, 0.4)
           `,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Blue overlay to enhance the world map visibility */}
+        {/* Green overlay to enhance the world map visibility */}
         <div 
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 35% 35%, rgba(30, 64, 175, 0.2) 0%, rgba(37, 99, 235, 0.4) 50%, rgba(30, 64, 175, 0.6) 100%)`,
+            background: `radial-gradient(ellipse at 35% 35%, hsla(173, 80%, 35%, 0.15) 0%, hsla(173, 75%, 40%, 0.3) 50%, hsla(173, 80%, 30%, 0.5) 100%)`,
             zIndex: 1,
             mixBlendMode: 'multiply'
           }}
