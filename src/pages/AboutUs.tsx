@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
-import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
+import Earth3D from "@/components/Earth3D";
 import FounderMissionSection from "@/components/FounderMissionSection";
 
 // Import 40 unique faces for sphere - mix of auditors and procurement professionals
@@ -56,9 +56,6 @@ import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
-
-  // 40 unique auditor faces for the sphere - balanced diversity
-  const sphereImages: ImageData[] = [{
     id: '1',
     src: auditorBlonde1,
     alt: 'European Female Auditor',
