@@ -506,8 +506,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate connections between nearby nodes - creating a network
   const calculateConnections = useCallback(() => {
     const connections: Array<{ from: number; to: number; distance: number }> = [];
-    const maxConnectionDistance = actualSphereRadius * 0.7; // More selective connections
-    const maxConnectionsPerNode = 1; // Minimal connections for clean look
+    const maxConnectionDistance = actualSphereRadius * 1.3; // More connections for network effect
+    const maxConnectionsPerNode = 4; // More connections per node for network look
     
     for (let i = 0; i < worldPositions.length; i++) {
       const pos1 = worldPositions[i];
@@ -558,8 +558,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           const x2 = containerSize / 2 + to.x;
           const y2 = containerSize / 2 + to.y;
           
-          // Calculate opacity based on fade - more subtle for enterprise look
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.15;
+          // Calculate opacity based on fade - visible network effect
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.3;
           
           return (
             <line
@@ -569,9 +569,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
               x2={x2}
               y2={y2}
               stroke="#14B8A6"
-              strokeWidth="1"
+              strokeWidth="1.5"
               opacity={opacity}
-              strokeDasharray="4 4"
             />
           );
         })}
@@ -722,11 +721,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
       <div
         ref={containerRef}
-        className={`relative select-none cursor-grab active:cursor-grabbing ${className}`}
+        className={`relative select-none cursor-grab active:cursor-grabbing rounded-full bg-gradient-to-br from-slate-900/40 via-slate-800/30 to-slate-900/40 border border-accent/20 shadow-2xl backdrop-blur-sm ${className}`}
         style={{
           width: containerSize,
           height: containerSize,
-          perspective: `${perspective}px`
+          perspective: `${perspective}px`,
+          boxShadow: '0 0 60px rgba(20, 184, 166, 0.15), inset 0 0 60px rgba(20, 184, 166, 0.05)'
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
