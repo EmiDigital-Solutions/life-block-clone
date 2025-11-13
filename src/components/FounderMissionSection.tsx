@@ -177,24 +177,29 @@ const FounderMissionSection = () => {
                     className="group relative text-left"
                   >
                     {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     
-                    {/* Card */}
-                    <div className="relative backdrop-blur-xl bg-white/25 border border-white/40 rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-white/60 hover:bg-white/30">
+                    {/* Card with Light Background */}
+                    <div className="relative bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden">
+                      {/* Watermark Background */}
+                      <div className="absolute top-1/2 right-0 -translate-y-1/2 opacity-[0.03] pointer-events-none">
+                        <IconComponent className="w-32 h-32 text-blue-500" />
+                      </div>
+                      
                       {/* Professional Risk Indicator */}
-                      <div className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-xl border-2 border-white/40">
+                      <div className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white z-10">
                         <AlertCircle className="w-4 h-4 text-white" />
                       </div>
                       
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <div className="relative flex items-start gap-3">
+                        <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
                           <IconComponent className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm md:text-base font-bold text-white mb-1 line-clamp-2">
+                          <h4 className="text-sm md:text-base font-bold text-gray-900 mb-1 line-clamp-2">
                             {item.title}
                           </h4>
-                          <p className="text-xs text-white/80 group-hover:text-white transition-colors font-medium">
+                          <p className="text-xs text-gray-600 group-hover:text-blue-600 transition-colors font-medium">
                             Click to learn more
                           </p>
                         </div>
@@ -239,25 +244,25 @@ const FounderMissionSection = () => {
 
       {/* Detail Modal */}
       <Dialog open={!!selectedDetail} onOpenChange={() => setSelectedDetail(null)}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white border-gray-200">
           {selectedDetail && (
             <>
               <DialogHeader>
                 <div className="flex items-center gap-4 mb-2">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-lg">
                     <selectedDetail.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <DialogTitle className="text-2xl font-bold text-white">
+                    <DialogTitle className="text-2xl font-bold text-gray-900">
                       {selectedDetail.title}
                     </DialogTitle>
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="text-sm text-gray-600 mt-1">
                       {selectedDetail.description}
                     </p>
                   </div>
                 </div>
               </DialogHeader>
-              <DialogDescription className="text-base text-gray-300 leading-relaxed mt-4">
+              <DialogDescription className="text-base text-gray-700 leading-relaxed mt-4">
                 {selectedDetail.details}
               </DialogDescription>
             </>
