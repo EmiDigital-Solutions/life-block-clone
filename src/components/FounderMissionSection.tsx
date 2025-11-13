@@ -181,10 +181,10 @@ const FounderMissionSection = () => {
                     <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                       <div className="flex items-start gap-0">
                         {/* Left side - Watermark area */}
-                        <div className="w-28 bg-gradient-to-br from-red-50 to-red-100/30 p-6 flex items-center justify-center relative overflow-hidden">
+                        <div className="w-36 bg-gradient-to-br from-red-50 to-red-100/30 p-6 flex items-center justify-center relative overflow-hidden">
                           {/* Large red ! watermark */}
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-[96px] font-black text-red-500/40 leading-none select-none">
+                            <span className="text-[80px] font-black text-red-500/40 leading-none select-none">
                               !
                             </span>
                           </div>
