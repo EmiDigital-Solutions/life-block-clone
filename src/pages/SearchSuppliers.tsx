@@ -1496,13 +1496,13 @@ const SearchSuppliers = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4 border-t border-gray-200">
-                <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-xl">
+                <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full">
                   Request Quote
                 </Button>
-                <Button variant="outline" className="flex-1 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-xl">
+                <Button variant="outline" className="flex-1 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full">
                   Schedule Audit
                 </Button>
-                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl">
+                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-full">
                   <Save className="w-4 h-4" />
                 </Button>
               </div>

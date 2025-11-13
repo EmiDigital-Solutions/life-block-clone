@@ -769,7 +769,7 @@ const AboutUs = () => {
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
-              <Button variant="outline" className="border-2 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-xl px-8 py-6 text-lg">
+              <Button variant="outline" className="border-2 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full px-8 py-6 text-lg">
                 Learn More
               </Button>
             </motion.div>
