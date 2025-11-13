@@ -396,9 +396,7 @@ const AboutUs = () => {
       </section>
 
       {/* SECTION 3: MISSION & VALUES */}
-      <section data-nav-theme="dark" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12" style={{
-      background: "linear-gradient(135deg, rgb(37, 99, 235), rgb(59, 130, 246), rgb(96, 165, 250))"
-    }}>
+      <section data-nav-theme="light" className="py-24 md:py-32 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
           <motion.div initial={{
           opacity: 0,
@@ -410,11 +408,11 @@ const AboutUs = () => {
           once: true
         }} transition={{
           duration: 0.8
-        }} className="max-w-4xl mx-auto text-center space-y-8 text-white">
+        }} className="max-w-4xl mx-auto text-center space-y-8 text-gray-900">
             <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold">
               Our Mission and Values
             </h2>
-            <p className="text-xl md:text-2xl leading-relaxed opacity-90">
+            <p className="text-xl md:text-2xl leading-relaxed text-gray-700">
               Exceptional supplier relationships with every interaction. Our values guide everything we do. 
               We empower customers, partners, and employees, fostering continuous growth in a culture of 
               mutual respect and trust.

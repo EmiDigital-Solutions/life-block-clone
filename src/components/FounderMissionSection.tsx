@@ -181,10 +181,10 @@ const FounderMissionSection = () => {
                     <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                       <div className="flex items-start gap-0">
                         {/* Left side - Watermark area */}
-                        <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center relative overflow-hidden">
+                        <div className="w-28 bg-gradient-to-br from-red-50 to-red-100/30 p-6 flex items-center justify-center relative overflow-hidden">
                           {/* Large red ! watermark */}
-                          <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                            <span className="text-[84px] font-black text-red-500 leading-none select-none">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-[96px] font-black text-red-500/40 leading-none select-none">
                               !
                             </span>
                           </div>
@@ -192,7 +192,7 @@ const FounderMissionSection = () => {
                         
                         {/* Right side - Content */}
                         <div className="flex-1 p-6">
-                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors whitespace-nowrap">{item.title}</h3>
                           <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.description}</p>
                           
                           <div className="flex items-center gap-2 text-blue-500 text-sm font-semibold group-hover:gap-3 transition-all">
