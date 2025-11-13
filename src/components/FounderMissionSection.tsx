@@ -93,7 +93,7 @@ const FounderMissionSection = () => {
 
   return (
     <div ref={sectionRef} className="mt-16 md:mt-20 bg-white py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 bg-white">
         <div className="grid lg:grid-cols-[300px_1fr] gap-8 md:gap-12 lg:gap-16 items-start">
           
           {/* Left Side - Smaller Image */}
@@ -104,24 +104,25 @@ const FounderMissionSection = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center lg:items-start"
           >
-            <div className="relative group w-full max-w-[250px] lg:max-w-none">
+            <div className="relative group w-full max-w-[250px] lg:max-w-none bg-white p-4 rounded-2xl">
               <img
                 src={founderPortrait}
                 alt="Ivo Karaula, CEO YVOO"
-                className="w-full rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-[1.02]"
+                className="w-full rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-[1.02] bg-white"
+                style={{ backgroundColor: 'white' }}
               />
             </div>
             <div className="mt-4 text-center lg:text-left space-y-1">
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-gray-900">
                 Ivo Karaula
               </p>
-              <p className="text-sm text-white/80">
+              <p className="text-sm text-gray-700">
                 CEO YVOO
               </p>
-              <p className="text-xs text-white/60 mt-2">
+              <p className="text-xs text-gray-600 mt-2">
                 Former Global Procurement Leader
               </p>
-              <p className="text-xs text-white/60">
+              <p className="text-xs text-gray-600">
                 Linde • BSH • SANYO
               </p>
             </div>
@@ -179,18 +180,13 @@ const FounderMissionSection = () => {
                   >
                     <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                       <div className="flex items-start gap-0">
-                        {/* Left side - Icon area with gradient background */}
-                        <div className="w-40 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-6 flex items-center justify-center relative overflow-hidden">
-                          {/* Large red ! watermark in background */}
-                          <div className="absolute top-3 left-3 opacity-15">
+                        {/* Left side - Watermark area */}
+                        <div className="w-32 bg-gradient-to-br from-gray-50 to-gray-100/50 p-6 flex items-center justify-center relative overflow-hidden">
+                          {/* Large red ! watermark */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-20">
                             <span className="text-[84px] font-black text-red-500 leading-none select-none">
                               !
                             </span>
-                          </div>
-                          
-                          {/* Icon centered */}
-                          <div className="relative z-10 w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                            <IconComponent className="w-6 h-6 text-white" />
                           </div>
                         </div>
                         
