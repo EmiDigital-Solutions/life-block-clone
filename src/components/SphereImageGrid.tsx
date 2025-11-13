@@ -506,8 +506,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate connections between nearby nodes - creating a network
   const calculateConnections = useCallback(() => {
     const connections: Array<{ from: number; to: number; distance: number }> = [];
-    const maxConnectionDistance = actualSphereRadius * 1.3; // More connections for network effect
-    const maxConnectionsPerNode = 4; // More connections per node for network look
+    const maxConnectionDistance = actualSphereRadius * 0.7; // Reduced for cleaner look
+    const maxConnectionsPerNode = 1; // Minimal connections for clean network
     
     for (let i = 0; i < worldPositions.length; i++) {
       const pos1 = worldPositions[i];
@@ -548,15 +548,23 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         style={{ zIndex: 5 }}
       >
         <defs>
-          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 1 }} />
-            <stop offset="50%" style={{ stopColor: '#60A5FA', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#2563EB', stopOpacity: 1 }} />
+          <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.5 }} />
+            <stop offset="50%" style={{ stopColor: '#059669', stopOpacity: 0.4 }} />
+            <stop offset="100%" style={{ stopColor: '#047857', stopOpacity: 0.3 }} />
           </linearGradient>
           <radialGradient id="nodeGlow">
-            <stop offset="0%" style={{ stopColor: '#60A5FA', stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: '#3B82F6', stopOpacity: 0 }} />
+            <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.6 }} />
+            <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 0 }} />
           </radialGradient>
+          <filter id="greenGlow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="rgba(16, 185, 129, 0.6)"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
         {connections.map((connection, idx) => {
           const from = worldPositions[connection.from];
@@ -582,11 +590,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="url(#blueGradient)"
-                strokeWidth="2"
+              stroke="url(#greenGradient)"
+              strokeWidth="1.5"
                 opacity={opacity}
                 style={{
-                  filter: 'drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))'
+                  filter: 'drop-shadow(0 0 3px rgba(16, 185, 129, 0.6))'
                 }}
               />
             </React.Fragment>
@@ -751,13 +759,13 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          background: 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, rgba(30, 58, 138, 0.25) 50%, rgba(15, 23, 42, 0.4) 100%)',
-          border: '2px solid rgba(59, 130, 246, 0.3)',
+          background: 'radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.12) 0%, rgba(6, 78, 59, 0.18) 50%, rgba(15, 23, 42, 0.4) 100%)',
+          border: '2px solid rgba(16, 185, 129, 0.25)',
           boxShadow: `
-            0 0 80px rgba(59, 130, 246, 0.25),
-            0 0 40px rgba(96, 165, 250, 0.2),
-            inset 0 0 80px rgba(59, 130, 246, 0.08),
-            inset 0 0 40px rgba(37, 99, 235, 0.1)
+            0 0 60px rgba(16, 185, 129, 0.2),
+            0 0 30px rgba(5, 150, 105, 0.15),
+            inset 0 0 50px rgba(16, 185, 129, 0.06),
+            inset 0 0 25px rgba(4, 120, 87, 0.08)
           `,
           backdropFilter: 'blur(8px)'
         }}
