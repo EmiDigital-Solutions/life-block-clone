@@ -144,15 +144,15 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-blue-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-green-100/50 to-green-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
                 <p className="text-xl md:text-2xl text-gray-900 leading-relaxed font-semibold mb-4">
-                  "I built my career on supplier decisions. I'm not gambling yours on AI guesses."
+                  "I built my career on supplier decisions. I'm not gambling yours on <strong>AI guesses</strong>."
                 </p>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  25 years in procurement taught me one thing: The best supplier
-                  data comes from being there. AI is brilliant at finding needles
-                  in haystacks—but here's what it will never tell you about a supplier:
+                  <strong>25 years in procurement</strong> taught me one thing: The <strong>best supplier
+                  data comes from being there</strong>. AI is brilliant at finding needles
+                  in haystacks—but here's what it will <strong>never tell you</strong> about a supplier:
                 </p>
               </div>
             </motion.div>
@@ -190,10 +190,10 @@ const FounderMissionSection = () => {
                         
                         {/* Right side - Content */}
                         <div className="flex-1 p-6">
-                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors whitespace-nowrap">{item.title}</h3>
+                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-green-600 transition-colors whitespace-nowrap">{item.title}</h3>
                           <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.description}</p>
                           
-                          <div className="flex items-center gap-2 text-blue-500 text-sm font-semibold group-hover:gap-3 transition-all">
+                          <div className="flex items-center gap-2 text-green-600 text-sm font-semibold group-hover:gap-3 transition-all">
                             <CheckCircle className="w-4 h-4" />
                             <span>Click to learn more</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -214,22 +214,29 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative group mt-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-blue-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-green-100/50 to-green-50/50 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300" />
               <div className="relative bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-xl">
                 <p className="text-base md:text-lg font-bold text-gray-900 mb-4">
-                  These aren't details. These are deal-breakers.
+                  These aren't details. <strong>These are deal-breakers.</strong>
                 </p>
-                <p className="text-xl md:text-2xl font-bold text-blue-600 mb-6">
-                  That's why we built YVOO: AI finds them. Humans verify what matters.
+                <p className="text-xl md:text-2xl font-bold text-green-600 mb-6">
+                  That's why we built YVOO: <strong>AI finds them. Humans verify what matters.</strong>
                 </p>
                 <div className="mt-6 pt-6 border-t border-gray-200 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shadow-sm">
-                    <CheckCircle className="w-6 h-6 text-blue-600" />
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-green-50 border border-green-200 flex items-center justify-center shadow-sm">
+                    <CheckCircle className="w-6 h-6 text-green-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
-                      We make professional on-site audits <span className="font-bold text-gray-900">affordable and effortless</span> for every procurement team—regardless of company size or budget.
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium mb-4">
+                      We make <strong>professional on-site audits affordable and effortless</strong> for every procurement team—regardless of company size or budget.
                     </p>
+                    <a 
+                      href="/scanpro-plus#roi-calculator"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                    >
+                      Calculate Your ROI
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -245,7 +252,7 @@ const FounderMissionSection = () => {
             <div className="space-y-6">
               {/* Header with Icon */}
               <DialogHeader className="flex flex-row items-start gap-6 pb-6 border-b border-gray-100">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl flex-shrink-0">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-xl flex-shrink-0">
                   <selectedDetail.icon className="w-10 h-10 text-white" />
                 </div>
                 <div className="flex-1">
@@ -265,8 +272,8 @@ const FounderMissionSection = () => {
               <div className="space-y-5 mt-8">
                 <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
                   <div className="p-6">
-                    <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
-                      <span className="text-blue-600 text-xs font-bold uppercase">Why This Matters</span>
+                    <div className="inline-block px-3 py-1 bg-green-50 rounded-full mb-3">
+                      <span className="text-green-600 text-xs font-bold uppercase">Why This Matters</span>
                     </div>
                     <DialogDescription className="text-gray-700 leading-relaxed text-base">
                       {selectedDetail.details}
