@@ -156,7 +156,7 @@ const FounderMissionSection = () => {
             </motion.div>
 
             {/* Modern Interactive Cards Grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-5 mt-8">
               {detailItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
@@ -176,28 +176,50 @@ const FounderMissionSection = () => {
                     onClick={() => setSelectedDetail(item)}
                     className="group relative text-left"
                   >
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Card with Light Background */}
-                    <div className="relative bg-white border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-300 overflow-hidden min-h-[100px]">
-                      {/* Large Watermark Background */}
-                      <div className="absolute top-1/2 right-4 -translate-y-1/2 opacity-[0.04] pointer-events-none">
-                        <IconComponent className="w-24 h-24 text-blue-500" />
-                      </div>
+                    {/* Card with Reference Design */}
+                    <div className="relative bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.01] hover:border-blue-300 overflow-hidden">
                       
                       {/* Clean Flat Alert Triangle */}
-                      <div className="absolute top-3 right-3 z-10">
+                      <div className="absolute top-4 right-4 z-10">
                         <AlertTriangle className="w-5 h-5 text-red-500 fill-red-50" strokeWidth={2} />
                       </div>
-                      
-                      <div className="relative">
-                        <h4 className="text-base md:text-lg font-bold text-gray-900 mb-2">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-gray-600 group-hover:text-blue-600 transition-colors font-medium">
-                          Click to learn more
-                        </p>
+
+                      <div className="flex gap-5 items-start">
+                        {/* Left Side - Icon with Background */}
+                        <div className="flex-shrink-0 relative">
+                          {/* Watermark Background Shape */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl scale-125 -z-10 opacity-60" />
+                          
+                          {/* Icon Container */}
+                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                            <IconComponent className="w-8 h-8 text-white" strokeWidth={2} />
+                          </div>
+                        </div>
+
+                        {/* Right Side - Content */}
+                        <div className="flex-1 min-w-0">
+                          {/* Feature Label */}
+                          <p className="text-xs uppercase tracking-wider text-blue-500 font-bold mb-2">
+                            Critical Factor {String(index + 1).padStart(2, '0')}
+                          </p>
+                          
+                          {/* Title */}
+                          <h4 className="text-base md:text-lg font-bold text-gray-900 mb-2 leading-tight">
+                            {item.title}
+                          </h4>
+                          
+                          {/* Description */}
+                          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                            {item.description}
+                          </p>
+
+                          {/* Click to Learn More */}
+                          <div className="flex items-center gap-2 text-blue-500 group-hover:text-blue-600 transition-colors font-medium text-sm">
+                            <CheckCircle className="w-4 h-4" />
+                            <span>Click to learn more</span>
+                            <span className="text-lg transition-transform group-hover:translate-x-1">→</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </motion.button>
