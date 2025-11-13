@@ -549,17 +549,17 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
       >
         <defs>
           <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.5 }} />
-            <stop offset="50%" style={{ stopColor: '#059669', stopOpacity: 0.4 }} />
-            <stop offset="100%" style={{ stopColor: '#047857', stopOpacity: 0.3 }} />
+            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0.9 }} />
+            <stop offset="50%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0.7 }} />
           </linearGradient>
           <radialGradient id="nodeGlow">
-            <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.6 }} />
-            <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 0 }} />
+            <stop offset="0%" style={{ stopColor: 'hsl(173, 80%, 50%)', stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: 'hsl(173, 80%, 40%)', stopOpacity: 0 }} />
           </radialGradient>
           <filter id="greenGlow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="rgba(16, 185, 129, 0.6)"/>
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="hsl(173, 80%, 50%)"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -591,10 +591,10 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 x2={x2}
                 y2={y2}
               stroke="url(#greenGradient)"
-              strokeWidth="1.5"
+              strokeWidth="2"
                 opacity={opacity}
                 style={{
-                  filter: 'drop-shadow(0 0 3px rgba(16, 185, 129, 0.6))'
+                  filter: 'drop-shadow(0 0 6px hsl(173, 80%, 50%))'
                 }}
               />
             </React.Fragment>
@@ -759,19 +759,44 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          background: 'radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.12) 0%, rgba(6, 78, 59, 0.18) 50%, rgba(15, 23, 42, 0.4) 100%)',
-          border: '2px solid rgba(16, 185, 129, 0.25)',
+          background: `
+            radial-gradient(2px 2px at 20% 30%, white, transparent),
+            radial-gradient(2px 2px at 60% 70%, white, transparent),
+            radial-gradient(1px 1px at 50% 50%, white, transparent),
+            radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.5), transparent),
+            radial-gradient(2px 2px at 90% 60%, white, transparent),
+            radial-gradient(1px 1px at 15% 80%, rgba(255, 255, 255, 0.5), transparent),
+            radial-gradient(circle at center, hsl(173, 80%, 50%) 0%, hsl(173, 70%, 40%) 35%, hsl(173, 60%, 30%) 70%, hsl(220, 30%, 15%) 100%)
+          `,
+          backgroundSize: '200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 100% 100%',
+          backgroundPosition: 'random',
+          border: '2px solid hsl(173, 80%, 50%)',
           boxShadow: `
-            0 0 60px rgba(16, 185, 129, 0.2),
-            0 0 30px rgba(5, 150, 105, 0.15),
-            inset 0 0 50px rgba(16, 185, 129, 0.06),
-            inset 0 0 25px rgba(4, 120, 87, 0.08)
+            0 0 80px hsl(173, 80%, 50%, 0.4),
+            0 0 40px hsl(173, 80%, 40%, 0.3),
+            inset 0 0 60px hsl(173, 80%, 50%, 0.1),
+            inset 0 0 30px hsl(173, 70%, 40%, 0.15)
           `,
           backdropFilter: 'blur(8px)'
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
+        {/* Dotted pattern overlay */}
+        <div 
+          className="absolute inset-0 rounded-full pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(circle, white 1px, transparent 1px),
+              radial-gradient(circle, white 0.5px, transparent 0.5px)
+            `,
+            backgroundSize: '40px 40px, 20px 20px',
+            backgroundPosition: '0 0, 10px 10px',
+            opacity: 0.15,
+            zIndex: 1
+          }}
+        />
+        
         {renderConnectionLines()}
         <div className="relative w-full h-full" style={{ zIndex: 10 }}>
           {images.map((image, index) => renderImageNode(image, index))}
