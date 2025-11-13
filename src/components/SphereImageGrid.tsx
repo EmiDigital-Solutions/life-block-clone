@@ -759,56 +759,75 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           height: containerSize,
           perspective: `${perspective}px`,
           background: `
-            radial-gradient(circle at 35% 35%, rgba(91, 156, 246, 0.9) 0%, rgba(59, 130, 246, 0.95) 35%, rgba(37, 99, 235, 1) 70%, rgba(29, 78, 216, 1) 100%)
+            radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.95) 0%, rgba(59, 130, 246, 1) 40%, rgba(37, 99, 235, 1) 80%, rgba(29, 78, 216, 1) 100%)
           `,
-          border: '3px solid rgba(147, 197, 253, 0.4)',
+          border: '4px solid rgba(191, 219, 254, 0.5)',
           boxShadow: `
-            0 0 60px rgba(59, 130, 246, 0.4),
-            0 0 100px rgba(96, 165, 250, 0.25),
-            0 0 140px rgba(147, 197, 253, 0.15),
-            inset 0 0 80px rgba(147, 197, 253, 0.15)
+            0 0 80px rgba(96, 165, 250, 0.5),
+            0 0 120px rgba(59, 130, 246, 0.3),
+            inset 0 -40px 80px rgba(29, 78, 216, 0.3)
           `,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* World Map Dotted Pattern Overlay */}
+        {/* World Map Dotted Pattern Overlay - Curved white dots forming continents */}
         <div 
           className="absolute inset-0 rounded-full pointer-events-none overflow-hidden"
           style={{
-            background: `
-              radial-gradient(circle at 25% 35%, transparent 30%, white 30.5%, transparent 31%),
-              radial-gradient(circle at 27% 37%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 30% 40%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 33% 43%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 25% 40%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 28% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 31% 48%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 35% 35%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 38% 38%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 40% 42%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 43% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 45% 50%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 48% 52%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 50% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 52% 48%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 55% 50%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 20% 55%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 22% 58%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 25% 60%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 28% 63%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 30% 65%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 33% 68%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              radial-gradient(circle at 35% 70%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
-              repeating-radial-gradient(circle at 30% 45%, transparent 0px, transparent 4px, white 4px, white 4.5px, transparent 4.5px, transparent 8px),
-              repeating-radial-gradient(circle at 45% 55%, transparent 0px, transparent 5px, white 5px, white 5.5px, transparent 5.5px, transparent 10px)
-            `,
-            backgroundSize: '100% 100%',
-            opacity: 0.9,
             zIndex: 1,
-            mixBlendMode: 'screen'
           }}
-        />
+        >
+          <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ opacity: 0.9 }}>
+            <defs>
+              <pattern id="dotPattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="1.5" fill="white" />
+              </pattern>
+            </defs>
+            
+            {/* North America - curved arc */}
+            <path d="M 80 120 Q 120 100, 160 110 Q 180 115, 200 130 Q 210 140, 215 160" 
+              stroke="url(#dotPattern)" strokeWidth="25" fill="none" opacity="0.9"/>
+            
+            {/* Europe - diagonal curve */}
+            <path d="M 180 90 Q 210 85, 240 95 Q 260 105, 270 125" 
+              stroke="url(#dotPattern)" strokeWidth="20" fill="none" opacity="0.85"/>
+            
+            {/* Asia - large sweeping curve */}
+            <path d="M 240 80 Q 280 75, 320 90 Q 340 100, 350 130 Q 355 160, 345 190" 
+              stroke="url(#dotPattern)" strokeWidth="30" fill="none" opacity="0.9"/>
+            
+            {/* Africa - vertical curve */}
+            <path d="M 200 160 Q 210 180, 215 210 Q 218 240, 210 270" 
+              stroke="url(#dotPattern)" strokeWidth="25" fill="none" opacity="0.85"/>
+            
+            {/* South America - angled curve */}
+            <path d="M 140 220 Q 150 250, 145 280 Q 140 310, 135 340" 
+              stroke="url(#dotPattern)" strokeWidth="20" fill="none" opacity="0.8"/>
+            
+            {/* Australia - small curve bottom right */}
+            <path d="M 290 280 Q 310 285, 330 295 Q 340 305, 345 320" 
+              stroke="url(#dotPattern)" strokeWidth="18" fill="none" opacity="0.8"/>
+            
+            {/* Additional horizontal latitude-like lines */}
+            <path d="M 60 200 Q 200 190, 340 200" 
+              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.6"/>
+            
+            <path d="M 70 240 Q 200 235, 330 245" 
+              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.55"/>
+            
+            {/* Vertical longitude-like curves */}
+            <path d="M 200 60 Q 205 200, 200 340" 
+              stroke="url(#dotPattern)" strokeWidth="12" fill="none" opacity="0.5"/>
+            
+            {/* Additional continent details */}
+            <path d="M 120 140 Q 135 145, 150 155 Q 160 165, 165 180" 
+              stroke="url(#dotPattern)" strokeWidth="15" fill="none" opacity="0.75"/>
+            
+            <path d="M 260 140 Q 275 150, 285 165 Q 290 180, 288 200" 
+              stroke="url(#dotPattern)" strokeWidth="18" fill="none" opacity="0.8"/>
+          </svg>
+        </div>
         
         {renderConnectionLines()}
         <div className="relative w-full h-full" style={{ zIndex: 10 }}>
