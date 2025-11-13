@@ -758,30 +758,55 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          background: `linear-gradient(135deg, rgb(10, 25, 47), rgb(15, 30, 60), rgb(10, 25, 47))`,
-          border: '2px solid rgba(59, 130, 246, 0.3)',
-          boxShadow: `
-            0 0 40px rgba(59, 130, 246, 0.2),
-            0 0 80px rgba(59, 130, 246, 0.15),
-            inset 0 0 60px rgba(59, 130, 246, 0.05)
+          background: `
+            radial-gradient(circle at 35% 35%, rgba(91, 156, 246, 0.9) 0%, rgba(59, 130, 246, 0.95) 35%, rgba(37, 99, 235, 1) 70%, rgba(29, 78, 216, 1) 100%)
           `,
-          backdropFilter: 'blur(8px)'
+          border: '3px solid rgba(147, 197, 253, 0.4)',
+          boxShadow: `
+            0 0 60px rgba(59, 130, 246, 0.4),
+            0 0 100px rgba(96, 165, 250, 0.25),
+            0 0 140px rgba(147, 197, 253, 0.15),
+            inset 0 0 80px rgba(147, 197, 253, 0.15)
+          `,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Dotted pattern overlay */}
+        {/* World Map Dotted Pattern Overlay */}
         <div 
-          className="absolute inset-0 rounded-full pointer-events-none"
+          className="absolute inset-0 rounded-full pointer-events-none overflow-hidden"
           style={{
             background: `
-              radial-gradient(circle, rgba(96, 165, 250, 0.4) 1px, transparent 1px),
-              radial-gradient(circle, rgba(96, 165, 250, 0.3) 0.5px, transparent 0.5px)
+              radial-gradient(circle at 25% 35%, transparent 30%, white 30.5%, transparent 31%),
+              radial-gradient(circle at 27% 37%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 30% 40%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 33% 43%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 25% 40%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 28% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 31% 48%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 35% 35%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 38% 38%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 40% 42%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 43% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 45% 50%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 48% 52%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 50% 45%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 52% 48%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 55% 50%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 20% 55%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 22% 58%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 25% 60%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 28% 63%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 30% 65%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 33% 68%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              radial-gradient(circle at 35% 70%, transparent 1.5px, white 1.5px, white 2px, transparent 2.5px),
+              repeating-radial-gradient(circle at 30% 45%, transparent 0px, transparent 4px, white 4px, white 4.5px, transparent 4.5px, transparent 8px),
+              repeating-radial-gradient(circle at 45% 55%, transparent 0px, transparent 5px, white 5px, white 5.5px, transparent 5.5px, transparent 10px)
             `,
-            backgroundSize: '40px 40px, 20px 20px',
-            backgroundPosition: '0 0, 10px 10px',
-            opacity: 0.25,
-            zIndex: 1
+            backgroundSize: '100% 100%',
+            opacity: 0.9,
+            zIndex: 1,
+            mixBlendMode: 'screen'
           }}
         />
         
