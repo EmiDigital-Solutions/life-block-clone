@@ -144,7 +144,7 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-xl md:text-2xl text-gray-900 leading-relaxed font-semibold mb-4">
                   "I built my career on supplier decisions. I'm not gambling yours on <strong>AI guesses</strong>."
                 </p>
