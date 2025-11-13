@@ -768,29 +768,29 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           height: containerSize,
           perspective: `${perspective}px`,
           backgroundImage: `
-            radial-gradient(ellipse at 35% 35%, hsla(173, 80%, 50%, 0.3) 0%, transparent 50%),
+            radial-gradient(ellipse at 35% 35%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
             url(${worldMapGlobe}),
-            radial-gradient(ellipse at 30% 30%, hsla(173, 70%, 45%, 0.95) 0%, hsla(173, 75%, 40%, 1) 40%, hsla(173, 80%, 35%, 1) 80%, hsla(173, 85%, 25%, 1) 100%)
+            radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.95) 0%, rgba(59, 130, 246, 1) 40%, rgba(37, 99, 235, 1) 80%, rgba(30, 64, 175, 1) 100%)
           `,
           backgroundPosition: 'center center, center center, center center',
           backgroundSize: 'cover, cover, cover',
           backgroundRepeat: 'no-repeat',
           animation: 'rotateGlobe 120s linear infinite',
-          border: '4px solid hsla(173, 80%, 60%, 0.6)',
+          border: '4px solid rgba(147, 197, 253, 0.6)',
           boxShadow: `
-            0 0 80px hsla(173, 80%, 50%, 0.6),
-            0 0 120px hsla(173, 80%, 50%, 0.4),
-            inset 0 0 100px hsla(173, 80%, 30%, 0.4)
+            0 0 80px rgba(59, 130, 246, 0.6),
+            0 0 120px rgba(96, 165, 250, 0.4),
+            inset 0 0 100px rgba(30, 64, 175, 0.4)
           `,
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Green overlay to enhance the world map visibility */}
+        {/* Blue overlay to enhance the world map visibility */}
         <div 
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 35% 35%, hsla(173, 80%, 35%, 0.15) 0%, hsla(173, 75%, 40%, 0.3) 50%, hsla(173, 80%, 30%, 0.5) 100%)`,
+            background: `radial-gradient(ellipse at 35% 35%, rgba(30, 64, 175, 0.15) 0%, rgba(37, 99, 235, 0.3) 50%, rgba(30, 64, 175, 0.5) 100%)`,
             zIndex: 1,
             mixBlendMode: 'multiply'
           }}
