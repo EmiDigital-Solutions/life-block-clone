@@ -336,7 +336,17 @@ const AboutUs = () => {
             duration: 0.8,
             delay: 0.3
           }}>
-              <SphereImageGrid images={sphereImages} containerSize={550} sphereRadius={280} autoRotate={true} autoRotateSpeed={0.15} baseImageScale={0.8} />
+              <SphereImageGrid 
+                images={sphereImages} 
+                containerSize={550} 
+                sphereRadius={280} 
+                autoRotate={true} 
+                autoRotateSpeed={0.03}
+                dragSensitivity={0.25}
+                momentumDecay={0.98}
+                maxRotationSpeed={2}
+                baseImageScale={0.8} 
+              />
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}

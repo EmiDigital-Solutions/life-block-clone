@@ -506,8 +506,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // Calculate connections between nearby nodes - creating a network
   const calculateConnections = useCallback(() => {
     const connections: Array<{ from: number; to: number; distance: number }> = [];
-    const maxConnectionDistance = actualSphereRadius * 1.0; // Reduced for fewer connections
-    const maxConnectionsPerNode = 2; // Limit connections per node
+    const maxConnectionDistance = actualSphereRadius * 0.7; // More selective connections
+    const maxConnectionsPerNode = 1; // Minimal connections for clean look
     
     for (let i = 0; i < worldPositions.length; i++) {
       const pos1 = worldPositions[i];
@@ -558,8 +558,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           const x2 = containerSize / 2 + to.x;
           const y2 = containerSize / 2 + to.y;
           
-          // Calculate opacity based on fade
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.5;
+          // Calculate opacity based on fade - more subtle for enterprise look
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.15;
           
           return (
             <line
@@ -569,8 +569,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
               x2={x2}
               y2={y2}
               stroke="#14B8A6"
-              strokeWidth="1.5"
+              strokeWidth="1"
               opacity={opacity}
+              strokeDasharray="4 4"
             />
           );
         })}
