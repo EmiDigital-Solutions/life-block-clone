@@ -15,19 +15,19 @@ const GlobeWithNetwork = () => {
       <div className="absolute inset-0 rounded-full overflow-hidden opacity-20">
         <svg width="100%" height="100%" className="absolute inset-0">
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <pattern id="globe-grid" width="40" height="40" patternUnits="userSpaceOnUse">
               <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34, 197, 94, 0.3)" strokeWidth="0.5"/>
             </pattern>
-            <radialGradient id="fadeGradient">
+            <radialGradient id="globe-fadeGradient">
               <stop offset="0%" stopColor="white" stopOpacity="1"/>
               <stop offset="70%" stopColor="white" stopOpacity="0.5"/>
               <stop offset="100%" stopColor="white" stopOpacity="0"/>
             </radialGradient>
-            <mask id="circleMask">
-              <circle cx="250" cy="250" r="250" fill="url(#fadeGradient)"/>
+            <mask id="globe-circleMask">
+              <circle cx="250" cy="250" r="250" fill="url(#globe-fadeGradient)"/>
             </mask>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" mask="url(#circleMask)"/>
+          <rect width="100%" height="100%" fill="url(#globe-grid)" mask="url(#globe-circleMask)"/>
         </svg>
       </div>
 
@@ -46,12 +46,12 @@ const GlobeWithNetwork = () => {
       {/* Rotating Network Lines */}
       <svg className="absolute inset-0 pointer-events-none" width="500" height="500">
         <defs>
-          <linearGradient id="greenLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="globe-greenLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#22C55E" stopOpacity="0.6"/>
             <stop offset="50%" stopColor="#4ADE80" stopOpacity="0.8"/>
             <stop offset="100%" stopColor="#16A34A" stopOpacity="0.6"/>
           </linearGradient>
-          <filter id="glow">
+          <filter id="globe-glow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
@@ -76,9 +76,9 @@ const GlobeWithNetwork = () => {
             y1={line.y1}
             x2={line.x2}
             y2={line.y2}
-            stroke="url(#greenLineGradient)"
+            stroke="url(#globe-greenLineGradient)"
             strokeWidth="2"
-            filter="url(#glow)"
+            filter="url(#globe-glow)"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.7 }}
             transition={{
@@ -104,7 +104,7 @@ const GlobeWithNetwork = () => {
             cy={node.cy}
             r="4"
             fill="#22C55E"
-            filter="url(#glow)"
+            filter="url(#globe-glow)"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{
