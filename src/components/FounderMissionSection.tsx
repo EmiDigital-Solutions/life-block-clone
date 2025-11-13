@@ -92,7 +92,7 @@ const FounderMissionSection = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="mt-16 md:mt-20">
+    <div ref={sectionRef} className="mt-16 md:mt-20 bg-white py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-[300px_1fr] gap-8 md:gap-12 lg:gap-16 items-start">
           
@@ -180,24 +180,24 @@ const FounderMissionSection = () => {
                     <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                       <div className="flex items-start gap-0">
                         {/* Left side - Icon area with gradient background */}
-                        <div className="w-48 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-8 flex items-center justify-center relative overflow-hidden">
+                        <div className="w-40 bg-gradient-to-br from-blue-500/10 to-blue-600/5 p-6 flex items-center justify-center relative overflow-hidden">
                           {/* Large red ! watermark in background */}
-                          <div className="absolute -top-4 -left-2 opacity-15">
-                            <span className="text-[180px] font-black text-red-500 leading-none select-none">
+                          <div className="absolute top-3 left-3 opacity-15">
+                            <span className="text-[84px] font-black text-red-500 leading-none select-none">
                               !
                             </span>
                           </div>
                           
                           {/* Icon centered */}
-                          <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                            <IconComponent className="w-10 h-10 text-white" />
+                          <div className="relative z-10 w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                            <IconComponent className="w-6 h-6 text-white" />
                           </div>
                         </div>
                         
                         {/* Right side - Content */}
-                        <div className="flex-1 p-8">
-                          <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">{item.title}</h3>
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.description}</p>
+                        <div className="flex-1 p-6">
+                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                          <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.description}</p>
                           
                           <div className="flex items-center gap-2 text-blue-500 text-sm font-semibold group-hover:gap-3 transition-all">
                             <CheckCircle className="w-4 h-4" />
@@ -251,8 +251,8 @@ const FounderMissionSection = () => {
             <div className="space-y-6">
               {/* Header with Icon */}
               <DialogHeader className="flex flex-row items-start gap-6 pb-6 border-b border-gray-100">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl flex-shrink-0">
-                  <selectedDetail.icon className="w-12 h-12 text-white" />
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-xl flex-shrink-0">
+                  <selectedDetail.icon className="w-10 h-10 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="inline-block px-3 py-1 bg-red-50 rounded-full mb-3">
@@ -270,20 +270,13 @@ const FounderMissionSection = () => {
               {/* Detailed Content */}
               <div className="space-y-5 mt-8">
                 <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start gap-0">
-                    <div className="w-32 bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <selectedDetail.icon className="w-8 h-8 text-white" />
-                      </div>
+                  <div className="p-6">
+                    <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
+                      <span className="text-blue-600 text-xs font-bold uppercase">Why This Matters</span>
                     </div>
-                    <div className="flex-1 p-6">
-                      <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-3">
-                        <span className="text-blue-600 text-xs font-bold uppercase">Why This Matters</span>
-                      </div>
-                      <DialogDescription className="text-gray-700 leading-relaxed text-base">
-                        {selectedDetail.details}
-                      </DialogDescription>
-                    </div>
+                    <DialogDescription className="text-gray-700 leading-relaxed text-base">
+                      {selectedDetail.details}
+                    </DialogDescription>
                   </div>
                 </div>
               </div>
