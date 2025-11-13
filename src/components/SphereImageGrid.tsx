@@ -547,6 +547,17 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         height={containerSize}
         style={{ zIndex: 5 }}
       >
+        <defs>
+          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#3B82F6', stopOpacity: 1 }} />
+            <stop offset="50%" style={{ stopColor: '#60A5FA', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#2563EB', stopOpacity: 1 }} />
+          </linearGradient>
+          <radialGradient id="nodeGlow">
+            <stop offset="0%" style={{ stopColor: '#60A5FA', stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: '#3B82F6', stopOpacity: 0 }} />
+          </radialGradient>
+        </defs>
         {connections.map((connection, idx) => {
           const from = worldPositions[connection.from];
           const to = worldPositions[connection.to];
@@ -559,19 +570,26 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           const y2 = containerSize / 2 + to.y;
           
           // Calculate opacity based on fade - visible network effect
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.3;
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.35;
+          
+          // Calculate gradient for depth effect
+          const midOpacity = opacity * 0.6;
           
           return (
-            <line
-              key={`connection-${idx}`}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke="#14B8A6"
-              strokeWidth="1.5"
-              opacity={opacity}
-            />
+            <React.Fragment key={`connection-${idx}`}>
+              <line
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="url(#blueGradient)"
+                strokeWidth="2"
+                opacity={opacity}
+                style={{
+                  filter: 'drop-shadow(0 0 2px rgba(59, 130, 246, 0.5))'
+                }}
+              />
+            </React.Fragment>
           );
         })}
       </svg>
@@ -609,13 +627,20 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         onMouseLeave={() => setHoveredIndex(null)}
         onClick={() => setSelectedImage(image)}
       >
-        <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
+        <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2 border-blue-500/40" style={{
+          boxShadow: isHovered 
+            ? '0 8px 32px rgba(59, 130, 246, 0.4), 0 0 20px rgba(96, 165, 250, 0.6)' 
+            : '0 4px 12px rgba(59, 130, 246, 0.2), 0 0 8px rgba(59, 130, 246, 0.15)'
+        }}>
           <img
             src={image.src}
             alt={image.alt}
             className="w-full h-full object-cover"
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
+            style={{
+              filter: isHovered ? 'brightness(1.1)' : 'brightness(1)'
+            }}
           />
         </div>
       </div>
@@ -721,12 +746,20 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
       <div
         ref={containerRef}
-        className={`relative select-none cursor-grab active:cursor-grabbing rounded-full bg-gradient-to-br from-slate-900/40 via-slate-800/30 to-slate-900/40 border border-accent/20 shadow-2xl backdrop-blur-sm ${className}`}
+        className={`relative select-none cursor-grab active:cursor-grabbing rounded-full ${className}`}
         style={{
           width: containerSize,
           height: containerSize,
           perspective: `${perspective}px`,
-          boxShadow: '0 0 60px rgba(20, 184, 166, 0.15), inset 0 0 60px rgba(20, 184, 166, 0.05)'
+          background: 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, rgba(30, 58, 138, 0.25) 50%, rgba(15, 23, 42, 0.4) 100%)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          boxShadow: `
+            0 0 80px rgba(59, 130, 246, 0.25),
+            0 0 40px rgba(96, 165, 250, 0.2),
+            inset 0 0 80px rgba(59, 130, 246, 0.08),
+            inset 0 0 40px rgba(37, 99, 235, 0.1)
+          `,
+          backdropFilter: 'blur(8px)'
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
