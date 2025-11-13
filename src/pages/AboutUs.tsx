@@ -7,12 +7,24 @@ import { motion } from "framer-motion";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
-import GlobeWithNetwork from "@/components/GlobeWithNetwork";
+import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import FounderMissionSection from "@/components/FounderMissionSection";
+
+// Import auditor images
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
+
+  // Simple sphere images array
+  const sphereImages: ImageData[] = [
+    { id: '1', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
+    { id: '2', src: auditorAsian, alt: 'Asian Auditor', title: 'Asia' },
+    { id: '3', src: auditorAfrican, alt: 'African Auditor', title: 'Africa' }
+  ];
 
   const locations = {
     zagreb: {
@@ -91,7 +103,14 @@ const AboutUs = () => {
             duration: 0.8,
             delay: 0.3
           }}>
-              <GlobeWithNetwork />
+              <SphereImageGrid 
+                images={sphereImages} 
+                containerSize={550} 
+                sphereRadius={280} 
+                autoRotate={true} 
+                autoRotateSpeed={0.15}
+                baseImageScale={0.8} 
+              />
             </motion.div>
             
             {/* Right - Text Content with staggered animation */}
