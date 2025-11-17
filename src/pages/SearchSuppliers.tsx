@@ -986,8 +986,8 @@ const SearchSuppliers = () => {
                     <div className="w-32 p-6 flex items-start justify-start relative">
                       {/* Large watermark number in background - single digit */}
                       <div className="absolute -top-2 -left-1">
-                        <div className="bg-[#14B8A6]/15 rounded-2xl w-24 h-28 flex items-center justify-center">
-                          <span className="text-[101px] font-black text-[#14B8A6] leading-none select-none opacity-40">
+                        <div className="bg-[#2563EB]/15 rounded-2xl w-24 h-28 flex items-center justify-center">
+                          <span className="text-[101px] font-black text-[#2563EB] leading-none select-none opacity-40">
                             {index + 1}
                           </span>
                         </div>
