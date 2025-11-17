@@ -980,12 +980,12 @@ const SearchSuppliers = () => {
                 onClick={() => setSelectedAIFeature(index)}
                 className="cursor-pointer"
               >
-                <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
-                  <div className="flex items-start gap-0">
+                <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 hover:scale-[1.02] group">
+                  <div className="flex items-start gap-0 overflow-hidden rounded-3xl">
                     {/* Left side - Icon area with gradient background */}
-                    <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative overflow-hidden">
+                    <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-center justify-center relative">
                       {/* Large watermark number in background - single digit */}
-                      <div className="absolute -top-4 -left-2 opacity-15">
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15">
                         <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none">
                           {index + 1}
                         </span>
