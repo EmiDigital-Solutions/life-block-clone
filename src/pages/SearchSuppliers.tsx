@@ -985,10 +985,12 @@ const SearchSuppliers = () => {
                     {/* Left side - Icon area with gradient background */}
                     <div className="w-48 bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/5 p-8 flex items-start justify-start relative">
                       {/* Large watermark number in background - single digit */}
-                      <div className="absolute -top-2 -left-1 opacity-15">
-                        <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none">
-                          {index + 1}
-                        </span>
+                      <div className="absolute -top-2 -left-1">
+                        <div className="bg-[#14B8A6]/15 rounded-2xl p-4">
+                          <span className="text-[180px] font-black text-[#14B8A6] leading-none select-none opacity-40">
+                            {index + 1}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     
