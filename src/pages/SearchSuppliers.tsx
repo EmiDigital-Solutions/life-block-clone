@@ -983,10 +983,10 @@ const SearchSuppliers = () => {
                 <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 hover:scale-[1.02] group">
                   <div className="flex items-start gap-0 overflow-hidden rounded-3xl">
                     {/* Left side - Icon area with gradient background */}
-                    <div className="w-48 p-8 flex items-start justify-start relative">
+                    <div className="w-32 p-6 flex items-start justify-start relative">
                       {/* Large watermark number in background - single digit */}
                       <div className="absolute -top-2 -left-1">
-                        <div className="bg-[#14B8A6]/15 rounded-2xl px-6 py-2">
+                        <div className="bg-[#14B8A6]/15 rounded-2xl px-4 py-2">
                           <span className="text-[101px] font-black text-[#14B8A6] leading-none select-none opacity-40">
                             {index + 1}
                           </span>
