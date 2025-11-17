@@ -990,11 +990,6 @@ const SearchSuppliers = () => {
                           {index + 1}
                         </span>
                       </div>
-                      
-                      {/* Icon */}
-                      <div className="relative z-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                        <benefit.icon className="w-10 h-10 text-white" />
-                      </div>
                     </div>
                     
                     {/* Right side - Content */}
