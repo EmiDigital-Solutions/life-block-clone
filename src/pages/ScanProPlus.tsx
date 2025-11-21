@@ -1397,81 +1397,66 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Chat Interface */}
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] relative z-10 ml-6 sm:ml-12 flex flex-col justify-center">
+          <div className="bg-white rounded-xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
             {/* User Message */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
+            <div className="flex items-start gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
+                <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
-                <div className="space-y-1 sm:space-y-1.5">
+              <div className="bg-[#A8C5B8] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
+                <p className="text-xs sm:text-sm font-bold mb-2">You</p>
+                <div className="space-y-2">
                   <motion.div 
-                    animate={{ width: ["0rem", "3rem", "3rem", "0rem"] }}
+                    animate={{ width: ["0%", "80%", "80%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1] }}
-                    className="h-1 sm:h-2 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-white/50 rounded"
                   />
                   <motion.div 
-                    animate={{ width: ["0rem", "4rem", "4rem", "0rem"] }}
+                    animate={{ width: ["0%", "100%", "100%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.2 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-32"
+                    className="h-2 sm:h-3 bg-white/50 rounded"
                   />
                 </div>
               </div>
             </div>
             
             {/* Auditor Message */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4 justify-end">
-              <div className="bg-[#96B8AD] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">Auditor</p>
-                <div className="space-y-1 sm:space-y-1.5">
+            <div className="flex items-start gap-2 sm:gap-3 justify-end">
+              <div className="bg-[#96B8AD] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
+                <p className="text-xs sm:text-sm font-bold mb-2">Auditor</p>
+                <div className="space-y-2">
                   <motion.div 
-                    animate={{ width: ["0rem", "3.5rem", "3.5rem", "0rem"] }}
+                    animate={{ width: ["0%", "90%", "90%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 0.5 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-white/50 rounded"
                   />
                   <motion.div 
-                    animate={{ width: ["0rem", "4.5rem", "4.5rem", "0rem"] }}
+                    animate={{ width: ["0%", "100%", "100%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.7 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-36"
+                    className="h-2 sm:h-3 bg-white/50 rounded"
                   />
                 </div>
               </div>
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="user" className="w-3 h-3 sm:w-5 sm:h-5" />
-              </div>
-            </div>
-            
-            {/* User Message 2 */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-3 sm:mb-6">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
-              </div>
-              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
-                <motion.div 
-                  animate={{ width: ["0rem", "2.5rem", "2.5rem", "0rem"] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 1 }}
-                  className="h-1 sm:h-2 bg-white/50 rounded sm:w-20"
-                />
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
+                <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
             </div>
             
             {/* Status Icons */}
-            <div className="flex items-center justify-center gap-2 sm:gap-4 pt-2 sm:pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-200">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8]/20 flex items-center justify-center"
+                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#A8C5B8]/20 flex items-center justify-center"
               >
-                <PixelIcon name="checkbox-on" className="w-3.5 h-3.5 sm:w-6 sm:h-6" color="#A8C5B8" />
+                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="#A8C5B8" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#A8C5B8] flex items-center justify-center shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#A8C5B8] flex items-center justify-center shadow-lg"
               >
-                <PixelIcon name="message" className="w-4 h-4 sm:w-7 sm:h-7" />
+                <PixelIcon name="message" className="w-6 h-6 sm:w-8 sm:h-8" />
               </motion.div>
             </div>
           </div>
@@ -1484,54 +1469,54 @@ const HowItWorksCarousel = () => {
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] flex flex-col justify-center">
+          <div className="bg-white rounded-xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-2 sm:mb-4"
+              className="mb-3"
             >
-              <div className="flex items-center justify-between mb-2 sm:mb-4">
-              <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-7 h-7 sm:w-12 sm:h-12" color="#A8C5B8" />
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className="flex items-center justify-center">
+                  <PixelIcon name="analytics" className="w-10 h-10 sm:w-14 sm:h-14" color="#A8C5B8" />
                 </div>
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-9 h-9 sm:w-16 sm:h-16" color="#A8C5B8" />
+                  <PixelIcon name="checkbox-on" className="w-12 h-12 sm:w-18 sm:h-18" color="#A8C5B8" />
                 </div>
               </div>
               
               {/* Report Lines */}
-              <div className="space-y-1 sm:space-y-2">
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-4/6"></div>
+              <div className="space-y-2">
+                <div className="h-2 sm:h-3 bg-gray-200 rounded w-full"></div>
+                <div className="h-2 sm:h-3 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-2 sm:h-3 bg-gray-200 rounded w-4/6"></div>
               </div>
             </motion.div>
             
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-2 sm:mb-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-[#A8C5B8]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
+                className="bg-[#A8C5B8]/10 rounded-xl p-3 sm:p-4 text-center"
               >
-                <div className="text-base sm:text-2xl font-bold text-[#A8C5B8] mb-1 sm:mb-2">95%</div>
-                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
+                <div className="text-2xl sm:text-3xl font-bold text-[#A8C5B8] mb-2">95%</div>
+                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#96B8AD]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
+                className="bg-[#96B8AD]/10 rounded-xl p-3 sm:p-4 text-center"
               >
-                <div className="text-base sm:text-2xl font-bold text-[#96B8AD] mb-1 sm:mb-2">A+</div>
-                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
+                <div className="text-2xl sm:text-3xl font-bold text-[#96B8AD] mb-2">A+</div>
+                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
               </motion.div>
             </div>
             
             {/* Chart Bars */}
-            <div className="flex items-end gap-1 sm:gap-2 h-10 sm:h-16 mb-2 sm:mb-4">
+            <div className="flex items-end gap-2 h-12 sm:h-20 mb-3">
               {[60, 80, 95, 70].map((height, i) => (
                 <motion.div
                   key={i}
@@ -1550,10 +1535,10 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
+              className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3 shadow-lg"
             >
-              <PixelIcon name="shield" className="w-3 h-3 sm:w-5 sm:h-5" />
-              <span className="text-xs sm:text-base">Report Ready</span>
+              <PixelIcon name="shield" className="w-4 h-4 sm:w-6 sm:h-6" />
+              <span className="text-sm sm:text-base">Report Ready</span>
             </motion.div>
           </div>
         </div>
