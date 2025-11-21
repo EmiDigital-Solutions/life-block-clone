@@ -66,17 +66,17 @@ const fallbackSteps = [
 ];
 
 const screenshotGradients = [
-  "from-blue-600 via-blue-700 to-blue-800",
-  "from-[#14B8A6] via-[#12A594] to-[#0F8775]",
+  "from-secondary via-secondary/90 to-secondary/80",
+  "from-primary via-primary/90 to-primary/80",
   "from-gray-800 via-gray-900 to-black",
-  "from-blue-500 via-[#14B8A6] to-teal-700",
+  "from-secondary via-primary to-primary/90",
 ];
 
 const stepBackgroundColors = [
-  "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))", // Blue
-  "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))", // Teal
+  "linear-gradient(135deg, rgb(168, 191, 197), rgb(158, 181, 187), rgb(148, 171, 177))", // Muted Blue
+  "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))", // Muted Green
   "linear-gradient(135deg, rgb(71, 85, 105), rgb(51, 65, 85), rgb(30, 41, 59))", // Slate
-  "linear-gradient(135deg, rgb(20, 184, 166), rgb(13, 148, 136), rgb(15, 118, 110))", // Teal
+  "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))", // Muted Green
 ];
 
 export const HowItWorksSection = () => {

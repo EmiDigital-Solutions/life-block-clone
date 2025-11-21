@@ -40,7 +40,7 @@ const ROICalculator = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900"
           >
-            Calculate Your <span style={{ color: '#14B8A6' }}>Business Case</span>
+            Calculate Your <span className="text-primary">Business Case</span>
           </motion.h2>
         </div>
       </div>
@@ -51,7 +51,7 @@ const ROICalculator = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-[#14B8A6]/5 to-blue-50 rounded-2xl p-6 md:p-8 mb-8 border-2 border-[#14B8A6]/30 relative"
+        className="bg-gradient-to-br from-primary/5 to-secondary/10 rounded-2xl p-6 md:p-8 mb-8 border-2 border-primary/30 relative"
       >
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -66,7 +66,7 @@ const ROICalculator = () => {
               value={auditsPerYear}
               onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
               placeholder="e.g., 20"
-              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all"
+              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
 
@@ -81,7 +81,7 @@ const ROICalculator = () => {
               value={traditionalCostPerAudit}
               onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
               placeholder="e.g., 20000"
-              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all"
+              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
         </div>
@@ -92,7 +92,7 @@ const ROICalculator = () => {
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14B8A6] to-blue-500 text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
         >
           Your Results Update Instantly
         </motion.div>
@@ -123,17 +123,16 @@ const ROICalculator = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="border-2 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-[#14B8A6]/10 to-[#14B8A6]/5"
-          style={{ borderColor: '#14B8A6' }}
+          className="border-2 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-primary/10 to-primary/5 border-primary"
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               Your Annual Cost Savings
             </div>
-            <div className="text-4xl sm:text-5xl font-bold" style={{ color: '#14B8A6' }}>
+            <div className="text-4xl sm:text-5xl font-bold text-primary">
               {formatCurrency(annualSavings)}
             </div>
           </div>
@@ -144,7 +143,7 @@ const ROICalculator = () => {
             <div className="text-base sm:text-lg font-semibold text-gray-900">
               Time Savings ({timeSavingsPercent * 100}% of {weeksPerAudit} weeks per audit)
             </div>
-            <div className="text-2xl sm:text-3xl font-bold" style={{ color: '#2563EB' }}>
+            <div className="text-2xl sm:text-3xl font-bold text-secondary">
               {timeSavingsInDays} Work Days
             </div>
           </div>
