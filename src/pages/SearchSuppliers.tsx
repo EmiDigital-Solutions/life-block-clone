@@ -1311,13 +1311,13 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#14B8A6]/10 rounded-full mb-6 border border-[#14B8A6]/20">
-                <Sparkles className="w-4 h-4 text-[#14B8A6]" />
-                <span className="text-sm font-medium text-[#14B8A6]">Start Your Search</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#A8C5B8]/10 rounded-full mb-6 border border-[#A8C5B8]/20">
+                <Sparkles className="w-4 h-4 text-[#A8C5B8]" />
+                <span className="text-sm font-medium text-[#A8C5B8]">Start Your Search</span>
               </div>
               
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Find your next <span style={{ color: '#14B8A6' }}>supplier partner</span>
+                Find your next <span style={{ color: '#A8C5B8' }}>supplier partner</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
                 Join thousands of procurement professionals discovering and verifying suppliers with AI
