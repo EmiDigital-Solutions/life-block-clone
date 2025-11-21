@@ -121,33 +121,24 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
 
 const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins: number[] }) => {
   const groupRef = useRef<THREE.Group>(null);
-  const glowRef = useRef<THREE.Mesh>(null);
   const texture = useLoader(THREE.TextureLoader, worldMapGlobe);
 
-  // Rotate the earth with pulsing glow animation
-  useFrame((state) => {
+  // Rotate the earth smoothly
+  useFrame(() => {
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.001; // Smooth rotation
-    }
-    if (glowRef.current) {
-      // Subtle pulsing glow effect
-      const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.05 + 0.25;
-      (glowRef.current.material as THREE.MeshBasicMaterial).opacity = pulse;
     }
   });
 
   return (
     <>
       <group ref={groupRef}>
-        {/* Main Earth with high-contrast dotted map texture */}
+        {/* Main Earth with clean dotted map texture */}
         <Sphere args={[2.875, 128, 128]}>
           <meshStandardMaterial
             map={texture}
-            emissive="#9fe0e0"
-            emissiveIntensity={1.5}
-            roughness={0.4}
-            metalness={0.5}
-            toneMapped={false}
+            roughness={0.6}
+            metalness={0.2}
           />
         </Sphere>
 
@@ -160,27 +151,6 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
           />
         ))}
       </group>
-      
-      {/* Animated outer glow sphere */}
-      <Sphere ref={glowRef} args={[3.15, 64, 64]}>
-        <meshBasicMaterial
-          color="#9fe0e0"
-          transparent
-          opacity={0.25}
-          side={THREE.BackSide}
-          toneMapped={false}
-        />
-      </Sphere>
-
-      {/* Inner subtle glow */}
-      <Sphere args={[2.95, 64, 64]}>
-        <meshBasicMaterial
-          color="#9fe0e0"
-          transparent
-          opacity={0.1}
-          side={THREE.FrontSide}
-        />
-      </Sphere>
     </>
   );
 };
@@ -217,37 +187,16 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
 
   return (
     <div style={{ width, height, position: 'relative', overflow: 'visible' }}>
-      {/* Enhanced animated background glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div 
-          className="w-[90%] h-[90%] rounded-full blur-3xl animate-pulse"
-          style={{ backgroundColor: 'rgba(159, 224, 224, 0.3)', animationDuration: '4s' }}
-        />
-        <div 
-          className="absolute w-[70%] h-[70%] rounded-full blur-2xl animate-pulse"
-          style={{ backgroundColor: 'rgba(159, 224, 224, 0.2)', animationDuration: '3s', animationDelay: '1s' }}
-        />
-      </div>
-      
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
         gl={{ 
           alpha: true, 
-          antialias: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.8
+          antialias: true
         }}
       >
-        {/* Enhanced lighting for better contrast */}
-        <ambientLight intensity={2} />
-        
-        {/* Strong directional light to simulate sun */}
-        <directionalLight position={[5, 3, 5]} intensity={5} color="#ffffff" />
-        
-        {/* High-contrast muted blue accent lights */}
-        <pointLight position={[-5, 0, 5]} intensity={4} color="#9fe0e0" />
-        <pointLight position={[5, 0, 5]} intensity={4} color="#9fe0e0" />
-        <pointLight position={[0, 5, 0]} intensity={3} color="#9fe0e0" />
+        {/* Clean lighting setup */}
+        <ambientLight intensity={1.2} />
+        <directionalLight position={[5, 3, 5]} intensity={2} color="#ffffff" />
         
         {/* The Earth with dotted map and 3D pins */}
         <EarthSphere showPins={showPins} visiblePins={visiblePins} />
