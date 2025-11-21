@@ -396,7 +396,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
                 <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
@@ -407,7 +407,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span className="text-primary">Auditor Network</span>
+                Global On-Demand<br /><span className="text-[#A8C5B8]">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -533,7 +533,7 @@ const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
                     
                     {/* Teal label */}
                     <div className="mb-4 flex-shrink-0">
-                      <span className="text-[#14B8A6] text-sm font-semibold">
+                      <span className="text-[#A8C5B8] text-sm font-semibold">
                         {feature.label}
                       </span>
                     </div>
@@ -592,7 +592,7 @@ const MapLocationMarker = ({
     >
       {/* Pulsing ring animation */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-[#14B8A6]"
+        className="absolute inset-0 rounded-full bg-[#A8C5B8]"
         animate={{
           scale: [1, 2.2, 1],
           opacity: [0.7, 0, 0.7],
@@ -607,11 +607,11 @@ const MapLocationMarker = ({
       
       {/* Main marker dot */}
       <motion.div
-        className="w-5 h-5 rounded-full bg-[#14B8A6] border-3 border-white shadow-xl relative z-10"
+        className="w-5 h-5 rounded-full bg-[#A8C5B8] border-3 border-white shadow-xl relative z-10"
         whileHover={{ scale: 1.4 }}
         transition={{ duration: 0.2 }}
         style={{
-          boxShadow: '0 4px 12px rgba(20, 184, 166, 0.6)'
+          boxShadow: '0 4px 12px rgba(168, 197, 184, 0.6)'
         }}
       />
 
@@ -726,7 +726,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
                 <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
               </motion.div>
 
@@ -737,7 +737,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#14B8A6' }} className="whitespace-nowrap">Auditor Network</span>
+                Global On-Demand <span style={{ color: '#A8C5B8' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -1178,7 +1178,7 @@ const ChallengeToggleSection = () => {
         >
           <div className="flex items-center gap-1">
             <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-gray-300' : 'bg-red-600'}`} />
-            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-300'}`} />
+            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-300'}`} />
           </div>
           <span className="text-sm font-semibold text-gray-600">The Challenge You Know</span>
         </motion.div>
@@ -1202,7 +1202,7 @@ const ChallengeToggleSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
                 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
-                  isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
+                  isWithScanPro ? 'text-[#A8C5B8]' : 'text-red-600'
                 }`}
               >
                 {isWithScanPro ? 'ScanPro+' : 'Providers'}
@@ -1213,7 +1213,7 @@ const ChallengeToggleSection = () => {
             <button
               onClick={() => setIsWithScanPro(!isWithScanPro)}
               className={`relative w-16 h-8 sm:w-20 sm:h-10 rounded-full transition-all duration-300 flex-shrink-0 ${
-                isWithScanPro ? 'bg-[#14B8A6]' : 'bg-gray-400'
+                isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-400'
               }`}
               aria-label="Toggle between ScanPro+ and Traditional Providers"
             >
@@ -1236,12 +1236,11 @@ const ChallengeToggleSection = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg flex items-center gap-3 sm:gap-4 transition-all shadow-lg group"
-            style={{ backgroundColor: '#2563EB', color: 'white' }}
+            className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg flex items-center gap-3 sm:gap-4 transition-all shadow-lg group bg-gray-900 text-white"
           >
             <span>Get Started</span>
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" color="#2563EB" />
+              <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
             </div>
           </motion.button>
         </div>
@@ -1295,7 +1294,7 @@ const ChallengeToggleSection = () => {
                       <PixelIcon 
                         name={item.icon} 
                         className={`w-16 h-16 sm:w-20 sm:h-20`}
-                        color={isWithScanPro ? '#14B8A6' : '#EF4444'}
+                        color={isWithScanPro ? '#A8C5B8' : '#EF4444'}
                       />
                     </motion.div>
                   </div>
@@ -1304,7 +1303,7 @@ const ChallengeToggleSection = () => {
                   <div className="p-5 sm:p-6 flex-1 flex flex-col">
                     <span className={`inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-semibold mb-3 sm:mb-4 self-start ${
                       isWithScanPro 
-                        ? 'bg-[#14B8A6]/10 text-[#14B8A6]' 
+                        ? 'bg-[#A8C5B8]/10 text-[#A8C5B8]' 
                         : 'bg-red-600/10 text-red-600'
                     }`}>
                       {isWithScanPro ? 'ScanPro+' : 'Traditional'}
@@ -1329,10 +1328,10 @@ const ChallengeToggleSection = () => {
 };
 
 const fallbackAuditors = [
-  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800", gender: "male" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]", gender: "male" },
-  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800", gender: "male" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]", gender: "male" },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#A8C5B8] via-[#96B8AD] to-[#8AA7A0]", gender: "male" },
+  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#A8C5B8] via-[#96B8AD] to-[#8AA7A0]", gender: "male" },
   { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
@@ -1401,10 +1400,10 @@ const HowItWorksCarousel = () => {
           <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] relative z-10 ml-6 sm:ml-12 flex flex-col justify-center">
             {/* User Message with looping typing animation */}
             <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
               </div>
-              <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
+              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
                 <div className="space-y-1 sm:space-y-1.5">
                   <motion.div 
@@ -1423,7 +1422,7 @@ const HowItWorksCarousel = () => {
             
             {/* Auditor Message with looping typing animation */}
             <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4 justify-end">
-              <div className="bg-[#0D9488] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
+              <div className="bg-[#96B8AD] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">Auditor</p>
                 <div className="space-y-1 sm:space-y-1.5">
                   <motion.div 
@@ -1438,17 +1437,18 @@ const HowItWorksCarousel = () => {
                   />
                 </div>
               </div>
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#0D9488] flex items-center justify-center flex-shrink-0">
+              </div>
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="user" className="w-3 h-3 sm:w-5 sm:h-5" />
               </div>
             </div>
             
             {/* User Message 2 with looping typing animation */}
             <div className="flex items-start gap-1.5 sm:gap-3 mb-3 sm:mb-6">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
               </div>
-              <div className="bg-[#14B8A6] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
+              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
                 <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
                 <motion.div 
                   animate={{ width: ["0rem", "2.5rem", "2.5rem", "0rem"] }}
@@ -1463,14 +1463,14 @@ const HowItWorksCarousel = () => {
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6]/20 flex items-center justify-center"
+                className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8]/20 flex items-center justify-center"
               >
-                <PixelIcon name="checkbox-on" className="w-3.5 h-3.5 sm:w-6 sm:h-6" color="#14B8A6" />
+                <PixelIcon name="checkbox-on" className="w-3.5 h-3.5 sm:w-6 sm:h-6" color="#A8C5B8" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#14B8A6] flex items-center justify-center shadow-lg"
+                className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#A8C5B8] flex items-center justify-center shadow-lg"
               >
                 <PixelIcon name="message" className="w-4 h-4 sm:w-7 sm:h-7" />
               </motion.div>
@@ -1515,18 +1515,18 @@ const HowItWorksCarousel = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-[#14B8A6]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
+                className="bg-[#A8C5B8]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
               >
-                <div className="text-base sm:text-2xl font-bold text-[#14B8A6] mb-1 sm:mb-2">95%</div>
+                <div className="text-base sm:text-2xl font-bold text-[#A8C5B8] mb-1 sm:mb-2">95%</div>
                 <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#0D9488]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
+                className="bg-[#96B8AD]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
               >
-                <div className="text-base sm:text-2xl font-bold text-[#0D9488] mb-1 sm:mb-2">A+</div>
+                <div className="text-base sm:text-2xl font-bold text-[#96B8AD] mb-1 sm:mb-2">A+</div>
                 <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
               </motion.div>
             </div>
@@ -1540,7 +1540,7 @@ const HowItWorksCarousel = () => {
                   animate={{ height: `${height}%` }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
                   className={`rounded-t flex-1 ${
-                    i % 2 === 0 ? 'bg-[#14B8A6]' : 'bg-[#0D9488]'
+                    i % 2 === 0 ? 'bg-[#A8C5B8]' : 'bg-[#96B8AD]'
                   }`}
                 ></motion.div>
               ))}
@@ -1551,7 +1551,7 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
+              className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
             >
               <PixelIcon name="shield" className="w-3 h-3 sm:w-5 sm:h-5" />
               <span className="text-xs sm:text-base">Report Ready</span>
