@@ -257,16 +257,15 @@ const SearchSuppliers = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Minimalist Design */}
+      {/* Hero Section - Light Design */}
       <section 
-        data-nav-theme="dark"
-        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible"
+        data-nav-theme="light"
+        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible bg-gray-50"
         style={{ 
-          minHeight: "60vh",
-          background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))"
+          minHeight: "60vh"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
@@ -289,7 +288,7 @@ const SearchSuppliers = () => {
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
-                <span className="text-white">Find suppliers</span>
+                <span className="text-gray-900">Find suppliers</span>
                 <br />
                 <span className="text-primary">worldwide.</span>
               </h1>
@@ -305,7 +304,7 @@ const SearchSuppliers = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                    className="flex items-center gap-2 md:gap-3 text-gray-300"
+                    className="flex items-center gap-2 md:gap-3 text-gray-600"
                   >
                     <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                     <span className="text-sm md:text-base lg:text-lg">{text}</span>
@@ -499,7 +498,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Interactive Demo Chat Section - Mobile & Tablet Only */}
-      <section className="lg:hidden py-12 bg-gradient-to-br from-[#0A0E27] to-[#111827]" data-nav-theme="dark">
+      <section className="lg:hidden py-12 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -514,7 +513,7 @@ const SearchSuppliers = () => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               <span className="text-[#14B8A6]">Try SearchPro+</span>
               <br />
-              <span className="text-white">in Action</span>
+              <span className="text-gray-900">in Action</span>
             </h2>
             <p className="text-gray-400 text-lg">
               Experience AI-powered conversational search
