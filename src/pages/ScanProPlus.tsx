@@ -961,9 +961,9 @@ const ComplianceStandardsGrid = () => {
               onClick={() => setSelectedStandard(standard)}
               className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer w-full h-full aspect-square flex flex-col items-center justify-center"
             >
-              {/* Icon with gradient background */}
-              <div className={`mb-2 sm:mb-4 mx-auto w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${standard.colorClass}`}>
-                <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              {/* Icon - simple black pixelated style */}
+              <div className="mb-2 sm:mb-4 mx-auto flex items-center justify-center">
+                <Icon className="w-12 h-12 sm:w-16 sm:h-16 text-gray-900" />
               </div>
 
               {/* Standard name */}
@@ -996,8 +996,8 @@ const ComplianceStandardsGrid = () => {
             <>
               <DialogHeader>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${selectedStandard.colorClass}`}>
-                    {React.createElement(selectedStandard.icon, { className: "w-8 h-8 text-white" })}
+                  <div className="flex items-center justify-center flex-shrink-0">
+                    {React.createElement(selectedStandard.icon, { className: "w-16 h-16 text-gray-900" })}
                   </div>
                   <div className="flex-1">
                     <DialogTitle className="text-2xl font-bold text-gray-900">
@@ -2340,12 +2340,7 @@ const ScanProPlus = () => {
               >
                 <div className="flex flex-col items-start">
                   <item.icon 
-                    className="w-14 h-14 sm:w-16 sm:h-16 mb-5 sm:mb-6" 
-                    style={{ 
-                      color: idx < 3 ? '#2563EB' : '#14B8A6',
-                      imageRendering: 'pixelated',
-                      filter: 'contrast(1.2)'
-                    }}
+                    className="w-14 h-14 sm:w-16 sm:h-16 mb-5 sm:mb-6 text-gray-900"
                   />
                   
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
