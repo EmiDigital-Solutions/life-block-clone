@@ -26,9 +26,9 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-gray-50"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-20">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-8">
         {/* Centered Content */}
         <div className="max-w-5xl mx-auto text-center space-y-8">
           {/* Main Heading */}
@@ -72,13 +72,15 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Scrolling Client Band */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-6 overflow-hidden"
-        >
+      </div>
+
+      {/* Scrolling Client Band */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="bg-white border-t border-gray-200 py-6 overflow-hidden mt-auto"
+      >
           <p className="text-center text-sm text-gray-500 mb-4">
             Trusted by world's most exciting brands
           </p>
@@ -121,7 +123,6 @@ const HeroSection = () => {
             </motion.div>
           </div>
         </motion.div>
-      </div>
     </section>
   );
 };
