@@ -95,6 +95,28 @@ All colors MUST be HSL.
   }
 }
 
+/* Pixelated icon styles - applies to ALL lucide-react icons globally */
+.lucide, 
+[class*="lucide-"],
+svg[class*="lucide"] {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: crispEdges;
+  stroke-width: 3;
+}
+
+.pixel-icon {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: crispEdges;
+}
+
 @layer base {
   * {
     @apply border-border;
