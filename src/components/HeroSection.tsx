@@ -14,11 +14,11 @@ import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 
 const fallbackAuditors = [
-  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-secondary via-secondary/90 to-secondary/80" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-primary via-primary/90 to-primary/80" },
   { image: auditorFemaleAfrican, location: "Africa", region: "Sub-Saharan", gradient: "from-gray-800 via-gray-900 to-black" },
-  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+  { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-secondary via-secondary/90 to-secondary/80" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-primary via-primary/90 to-primary/80" },
   { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent", gradient: "from-gray-800 via-gray-900 to-black" },
 ];
 
