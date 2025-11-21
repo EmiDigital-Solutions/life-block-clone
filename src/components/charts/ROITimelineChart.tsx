@@ -26,21 +26,21 @@ const ROITimelineChart = () => {
     if (active && payload && payload.length) {
       const savings = payload[0].value - payload[1].value;
       return (
-        <div className="bg-black/90 backdrop-blur-sm p-5 rounded-xl">
-          <p className="font-bold text-white mb-3 text-base">{`Month ${payload[0].payload.month}`}</p>
+        <div className="bg-white border border-gray-200 shadow-lg p-5 rounded-xl">
+          <p className="font-bold text-gray-900 mb-3 text-base">{`Month ${payload[0].payload.month}`}</p>
           <div className="space-y-2">
             <div className="flex justify-between gap-8">
-              <span className="text-sm text-gray-400">Traditional:</span>
-              <span className="font-bold text-gray-300">€{payload[0].value.toLocaleString()}</span>
+              <span className="text-sm text-gray-600">Traditional:</span>
+              <span className="font-bold text-gray-900">€{payload[0].value.toLocaleString()}</span>
             </div>
             <div className="flex justify-between gap-8">
-              <span className="text-sm text-gray-400">ScanPro+:</span>
-              <span className="font-bold text-teal-300">€{payload[1].value.toLocaleString()}</span>
+              <span className="text-sm text-gray-600">ScanPro+:</span>
+              <span className="font-bold" style={{ color: '#A8C5B8' }}>€{payload[1].value.toLocaleString()}</span>
             </div>
-            <div className="pt-3 border-t border-gray-700">
+            <div className="pt-3 border-t border-gray-200">
               <div className="flex justify-between gap-8">
-                <span className="text-sm font-bold text-white">Saved:</span>
-                <span className="font-black text-emerald-400">€{savings.toLocaleString()}</span>
+                <span className="text-sm font-bold text-gray-900">Saved:</span>
+                <span className="font-black" style={{ color: '#A8C5B8' }}>€{savings.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -67,16 +67,16 @@ const ROITimelineChart = () => {
                 <stop offset="100%" stopColor="#A8C5B8" />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
             <XAxis 
               dataKey="label" 
-              tick={{ fill: '#9CA3AF', fontSize: 10, fontWeight: 600 }}
-              axisLine={{ stroke: '#4B5563', strokeWidth: 2 }}
+              tick={{ fill: '#6B7280', fontSize: 10, fontWeight: 600 }}
+              axisLine={{ stroke: '#D1D5DB', strokeWidth: 2 }}
             />
             <YAxis 
-              tick={{ fill: '#9CA3AF', fontSize: 10, fontWeight: 600 }}
+              tick={{ fill: '#6B7280', fontSize: 10, fontWeight: 600 }}
               tickFormatter={(value) => `€${(value / 1000).toFixed(0)}k`}
-              axisLine={{ stroke: '#4B5563', strokeWidth: 2 }}
+              axisLine={{ stroke: '#D1D5DB', strokeWidth: 2 }}
             />
             <Tooltip content={<CustomTooltip />} />
             <Line
@@ -84,7 +84,7 @@ const ROITimelineChart = () => {
               dataKey="traditional"
               stroke="url(#traditionalLine)"
               strokeWidth={3}
-              dot={{ fill: '#9CA3AF', r: 4 }}
+              dot={{ fill: '#6B7280', r: 4 }}
               activeDot={{ r: 6 }}
               animationDuration={2000}
               animationEasing="ease-in-out"
@@ -94,7 +94,7 @@ const ROITimelineChart = () => {
               dataKey="scanpro"
               stroke="url(#scanproLine)"
               strokeWidth={4}
-              dot={{ fill: '#10B981', r: 5 }}
+              dot={{ fill: '#A8C5B8', r: 5 }}
               activeDot={{ r: 7 }}
               animationDuration={2000}
               animationBegin={300}
@@ -110,22 +110,22 @@ const ROITimelineChart = () => {
         transition={{ delay: 0.8, duration: 0.5 }}
         className="mt-4 sm:mt-6 md:mt-8 grid grid-cols-3 gap-2 sm:gap-3 md:gap-5"
       >
-        <div className="p-3 sm:p-4 md:p-5 bg-black/30 rounded-lg sm:rounded-xl">
-          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-400 mb-1 sm:mb-2 font-semibold uppercase">Traditional</p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-300">€400k</p>
+        <div className="p-3 sm:p-4 md:p-5 bg-gray-100 rounded-lg sm:rounded-xl">
+          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">Traditional</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€400k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-gradient-to-br from-teal-500/30 to-emerald-500/30 rounded-lg sm:rounded-xl">
-          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-200 mb-1 sm:mb-2 font-semibold uppercase">ScanPro+</p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-teal-300">€17k</p>
+        <div className="p-3 sm:p-4 md:p-5 bg-[#A8C5B8]/10 rounded-lg sm:rounded-xl">
+          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">ScanPro+</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black" style={{ color: '#A8C5B8' }}>€17k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-gradient-to-br from-emerald-500/40 to-teal-500/40 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-[#A8C5B8]/20 rounded-lg sm:rounded-xl">
           <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-300" />
-            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-100 font-bold uppercase">Savings</p>
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" style={{ color: '#A8C5B8' }} />
+            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-700 font-bold uppercase">Savings</p>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-emerald-300">€{(totalSavings / 1000).toFixed(0)}k</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€{(totalSavings / 1000).toFixed(0)}k</p>
         </div>
       </motion.div>
     </div>

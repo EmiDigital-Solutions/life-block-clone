@@ -10,15 +10,15 @@ const BusinessImpactChart = () => {
     {
       label: 'Traditional Provider',
       value: 20000,
-      color: '#9CA3AF',
+      color: '#6B7280',
       bgColor: 'from-gray-400 to-gray-500',
       percentage: 100
     },
     {
       label: 'ScanPro+',
       value: 700,
-      color: '#10B981',
-      bgColor: 'from-teal-400 to-emerald-500',
+      color: '#A8C5B8',
+      bgColor: 'from-[#A8C5B8] to-[#96B8AD]',
       percentage: 3.5
     }
   ];
@@ -44,7 +44,7 @@ const BusinessImpactChart = () => {
               </span>
             </div>
             
-            <div className="relative h-14 sm:h-16 md:h-20 bg-black/30 rounded-lg sm:rounded-xl overflow-hidden">
+            <div className="relative h-14 sm:h-16 md:h-20 bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: isVisible ? `${metric.percentage}%` : 0 }}
@@ -64,14 +64,14 @@ const BusinessImpactChart = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 rounded-xl sm:rounded-2xl"
+        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-[#A8C5B8]/10 rounded-xl sm:rounded-2xl"
       >
-        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
           <TrendingDown className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] sm:text-xs md:text-sm text-gray-200 mb-1 font-medium">Cost Reduction per Audit</p>
-          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-teal-300">-{savings}%</p>
+          <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-1 font-semibold">Cost Reduction per Audit</p>
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900">-{savings}%</p>
         </div>
       </motion.div>
     </div>
