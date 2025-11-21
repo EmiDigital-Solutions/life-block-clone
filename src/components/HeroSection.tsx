@@ -72,34 +72,53 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Trusted By Section */}
+        {/* Scrolling Client Band */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-12 left-0 right-0"
+          className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-6 overflow-hidden"
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm text-gray-500 mb-6">
-              Trusted by world's most exciting brands
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 opacity-40">
-              {[
-                "Siemens",
-                "Bosch",
-                "Schneider",
-                "ABB",
-                "Honeywell",
-                "Emerson",
-              ].map((company, idx) => (
-                <span
-                  key={idx}
-                  className="text-sm sm:text-base font-medium text-gray-900 tracking-wide"
-                >
-                  {company}
-                </span>
+          <p className="text-center text-sm text-gray-500 mb-4">
+            Trusted by world's most exciting brands
+          </p>
+          <div className="relative flex">
+            <motion.div
+              className="flex gap-12 whitespace-nowrap"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...Array(3)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-12 items-center">
+                  {[
+                    "Siemens",
+                    "Bosch",
+                    "Schneider Electric",
+                    "ABB",
+                    "Honeywell",
+                    "Emerson",
+                    "Rockwell Automation",
+                    "Mitsubishi Electric",
+                  ].map((company, idx) => (
+                    <span
+                      key={idx}
+                      className="text-base font-medium text-gray-400 tracking-wide"
+                    >
+                      {company}
+                    </span>
+                  ))}
+                </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

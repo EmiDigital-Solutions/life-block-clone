@@ -149,38 +149,47 @@ const FullScreenProjects = () => {
                   </motion.button>
                 </motion.div>
 
-                {/* Visual Content */}
+                {/* Visual Content with 3D Effects */}
                 {project.showAuditors ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                     transition={{ 
-                      duration: 1,
+                      duration: 1.2,
                       ease: [0.22, 1, 0.36, 1],
                       delay: 0.2
                     }}
                     viewport={{ once: true, amount: 0.3 }}
+                    style={{ perspective: "1500px" }}
                     className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                   >
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-4" style={{ transformStyle: "preserve-3d" }}>
                       {visibleAuditors.map((auditor, idx) => (
                         <motion.div 
                           key={auditor.location}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
+                          initial={{ opacity: 0, y: 50, rotateX: 20 }}
+                          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                           transition={{ 
-                            duration: 0.6,
-                            delay: 0.3 + (idx * 0.1),
+                            duration: 0.8,
+                            delay: 0.3 + (idx * 0.15),
                             ease: [0.22, 1, 0.36, 1]
                           }}
                           viewport={{ once: true }}
-                          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
+                          whileHover={{ 
+                            scale: 1.08,
+                            rotateY: 5,
+                            z: 50,
+                            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                          }}
+                          style={{ transformStyle: "preserve-3d" }}
+                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow"
                         >
-                          <img
+                          <motion.img
                             src={auditor.image}
                             alt={`Professional from ${auditor.location}`}
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                            className="w-full h-full object-cover grayscale"
+                            whileHover={{ scale: 1.1, filter: "grayscale(0%)" }}
+                            transition={{ duration: 0.6 }}
                           />
                         </motion.div>
                       ))}
@@ -188,35 +197,44 @@ const FullScreenProjects = () => {
                   </motion.div>
                 ) : project.featureType ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                     transition={{ 
-                      duration: 1,
+                      duration: 1.2,
                       ease: [0.22, 1, 0.36, 1],
                       delay: 0.2
                     }}
                     viewport={{ once: true, amount: 0.3 }}
+                    style={{ perspective: "1500px" }}
                     className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                   >
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-4" style={{ transformStyle: "preserve-3d" }}>
                       {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, idx) => (
                         <motion.div 
                           key={card.label}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
+                          initial={{ opacity: 0, y: 50, rotateX: -20 }}
+                          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                           transition={{ 
-                            duration: 0.6,
-                            delay: 0.3 + (idx * 0.1),
+                            duration: 0.8,
+                            delay: 0.3 + (idx * 0.15),
                             ease: [0.22, 1, 0.36, 1]
                           }}
                           viewport={{ once: true }}
-                          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                          className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
+                          whileHover={{ 
+                            scale: 1.08,
+                            rotateY: -5,
+                            z: 50,
+                            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                          }}
+                          style={{ transformStyle: "preserve-3d" }}
+                          className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow"
                         >
-                          <img
+                          <motion.img
                             src={card.image}
                             alt={card.label}
-                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                            className="w-full h-full object-cover"
+                            whileHover={{ scale: 1.15 }}
+                            transition={{ duration: 0.7 }}
                           />
                         </motion.div>
                       ))}
