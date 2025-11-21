@@ -114,8 +114,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="relative py-12 sm:py-16 md:py-20 bg-gray-50"
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
