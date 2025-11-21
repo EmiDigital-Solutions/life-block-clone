@@ -77,7 +77,7 @@ const HeroROICalculator = () => {
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
-          <span style={{ color: '#14B8A6' }}>ROI</span> Calculator
+          <span className="text-primary">ROI</span> Calculator
         </h3>
       </div>
 
@@ -99,13 +99,13 @@ const HeroROICalculator = () => {
               }}
               placeholder="e.g., 20"
               disabled={isTypingAnimation}
-              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                 isTypingAnimation ? 'cursor-wait' : 'cursor-text'
               }`}
             />
             {isTypingAnimation && displayAudits && (
               <motion.div
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#14B8A6]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-primary"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
               />
@@ -129,13 +129,13 @@ const HeroROICalculator = () => {
               }}
               placeholder="e.g., 20000"
               disabled={isTypingAnimation}
-              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+              className={`h-11 bg-gray-50 border-2 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
                 isTypingAnimation ? 'cursor-wait' : 'cursor-text'
               }`}
             />
             {isTypingAnimation && displayCost && (
               <motion.div
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#14B8A6]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-primary"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
               />
@@ -161,8 +161,7 @@ const HeroROICalculator = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="rounded-xl p-4"
-          style={{ backgroundColor: '#14B8A6', border: '2px solid #10a897' }}
+          className="rounded-xl p-4 bg-primary border-2 border-primary/80"
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
@@ -175,7 +174,7 @@ const HeroROICalculator = () => {
           </div>
         </motion.div>
         
-        <div className="rounded-xl p-4" style={{ backgroundColor: '#2563EB', border: '2px solid #1d4ed8' }}>
+        <div className="rounded-xl p-4 bg-secondary border-2 border-secondary/80">
           <div className="flex justify-between items-center">
             <span className="text-sm font-semibold text-white">Time Saved</span>
             <span className="text-lg font-bold text-white">

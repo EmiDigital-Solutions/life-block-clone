@@ -85,13 +85,13 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
       {/* Pin body */}
       <mesh position={[0, 0.1, 0]}>
         <cylinderGeometry args={[0.05, 0.05, 0.2, 16]} />
-        <meshStandardMaterial color="#14B8A6" />
+        <meshStandardMaterial color="#A8C5B8" />
       </mesh>
       
       {/* Pin head */}
       <mesh position={[0, 0.22, 0]}>
         <sphereGeometry args={[0.08, 16, 16]} />
-        <meshStandardMaterial color="#14B8A6" emissive="#14B8A6" emissiveIntensity={0.3} />
+        <meshStandardMaterial color="#A8C5B8" emissive="#A8C5B8" emissiveIntensity={0.3} />
       </mesh>
 
       {/* White circle inside pin head */}
@@ -103,17 +103,17 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
       {/* User icon (simplified) */}
       <mesh position={[0, 0.26, 0.08]}>
         <sphereGeometry args={[0.02, 16, 16]} />
-        <meshBasicMaterial color="#14B8A6" />
+        <meshBasicMaterial color="#A8C5B8" />
       </mesh>
       <mesh position={[0, 0.2, 0.08]}>
         <cylinderGeometry args={[0.03, 0.035, 0.04, 16]} />
-        <meshBasicMaterial color="#14B8A6" />
+        <meshBasicMaterial color="#A8C5B8" />
       </mesh>
 
       {/* Pin pointer */}
       <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
         <coneGeometry args={[0.05, 0.1, 16]} />
-        <meshStandardMaterial color="#0D9488" />
+        <meshStandardMaterial color="#96B5AD" />
       </mesh>
     </group>
   );
@@ -244,10 +244,10 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
         {/* Strong directional light to simulate sun */}
         <directionalLight position={[5, 3, 5]} intensity={5} color="#ffffff" />
         
-        {/* High-contrast blue accent lights */}
-        <pointLight position={[-5, 0, 5]} intensity={4} color="#1e40af" />
-        <pointLight position={[5, 0, 5]} intensity={4} color="#2563eb" />
-        <pointLight position={[0, 5, 0]} intensity={3} color="#3b82f6" />
+        {/* High-contrast muted blue accent lights */}
+        <pointLight position={[-5, 0, 5]} intensity={4} color="#A8BFC5" />
+        <pointLight position={[5, 0, 5]} intensity={4} color="#A8BFC5" />
+        <pointLight position={[0, 5, 0]} intensity={3} color="#B8CDD1" />
         
         {/* The Earth with dotted map and 3D pins */}
         <EarthSphere showPins={showPins} visiblePins={visiblePins} />
