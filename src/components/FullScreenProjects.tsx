@@ -31,7 +31,7 @@ const auditors = [
     image: auditorAsian, 
     location: "Asia", 
     region: "East Asia Pacific",
-    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
+    gradient: "from-primary via-primary/90 to-primary/80"
   },
   { 
     image: auditorAfrican, 
@@ -49,7 +49,7 @@ const auditors = [
     image: auditorMiddleEast, 
     location: "Middle East", 
     region: "Gulf Region",
-    gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]"
+    gradient: "from-primary via-primary/90 to-primary/80"
   },
   { 
     image: auditorSouthAsian, 
@@ -61,18 +61,18 @@ const auditors = [
 
 const featurePhotos = {
   ai: [
-    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-secondary via-secondary/90 to-secondary/80" },
+    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-primary via-primary/90 to-primary/80" },
     { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   supplier: [
-    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-secondary via-secondary/90 to-secondary/80" },
+    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-primary via-primary/90 to-primary/80" },
     { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
   workflow: [
-    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
+    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-secondary via-secondary/90 to-secondary/80" },
+    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-primary via-primary/90 to-primary/80" },
     { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
   ],
 };
@@ -82,7 +82,7 @@ const projects = [
     number: "01",
     title: "Global On-Demand Auditor Network",
     description: "Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.",
-    gradient: "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))",
+    gradient: "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))",
     showAuditors: true,
   },
   {
@@ -96,14 +96,14 @@ const projects = [
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
-    gradient: "linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216), rgb(30, 64, 175))",
+    gradient: "linear-gradient(135deg, rgb(168, 191, 197), rgb(158, 181, 187), rgb(148, 171, 177))",
     featureType: "supplier",
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
-    gradient: "linear-gradient(135deg, rgb(20, 184, 166), rgb(18, 165, 148), rgb(15, 135, 117))",
+    gradient: "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))",
     featureType: "workflow",
   },
 ];
@@ -186,11 +186,11 @@ const FullScreenProjects = () => {
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
     [
-      "rgb(20, 184, 166)",
+      "rgb(168, 197, 184)",
       "rgb(17, 24, 39)",
-      "rgb(29, 78, 216)",
-      "rgb(20, 184, 166)",
-      "rgb(20, 184, 166)",
+      "rgb(168, 191, 197)",
+      "rgb(168, 197, 184)",
+      "rgb(168, 197, 184)",
     ]
   );
 
@@ -203,9 +203,9 @@ const FullScreenProjects = () => {
       {projects.map((project, index) => {
         // Determine nav theme based on project gradient
         let navTheme: 'dark' | 'green' | 'light' = 'dark';
-        if (project.gradient.includes('rgb(20, 184, 166)')) {
+        if (project.gradient.includes('rgb(168, 197, 184)')) {
           navTheme = 'green';
-        } else if (project.gradient.includes('rgb(31, 41, 55)') || project.gradient.includes('rgb(37, 99, 235)')) {
+        } else if (project.gradient.includes('rgb(31, 41, 55)') || project.gradient.includes('rgb(168, 191, 197)')) {
           navTheme = 'dark';
         }
 

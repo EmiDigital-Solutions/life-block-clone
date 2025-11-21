@@ -190,10 +190,10 @@ const FounderMissionSection = () => {
                         
                         {/* Right side - Content */}
                         <div className="flex-1 p-6">
-                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-[#14B8A6] transition-colors whitespace-nowrap">{item.title}</h3>
+                          <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-primary transition-colors whitespace-nowrap">{item.title}</h3>
                           <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.description}</p>
                           
-                          <div className="flex items-center gap-2 text-[#14B8A6] text-sm font-semibold group-hover:gap-3 transition-all">
+                          <div className="flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
                             <CheckCircle className="w-4 h-4" />
                             <span>Click to learn more</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -218,12 +218,12 @@ const FounderMissionSection = () => {
                 <p className="text-base md:text-lg font-bold text-gray-900 mb-4">
                   These aren't details. <strong>These are deal-breakers.</strong>
                 </p>
-                <p className="text-xl md:text-2xl font-bold text-[#14B8A6] mb-6">
+                <p className="text-xl md:text-2xl font-bold text-primary mb-6">
                   That's why we built YVOO: <strong>AI finds them. Humans verify what matters.</strong>
                 </p>
                 <div className="mt-6 pt-6 border-t border-gray-200 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#14B8A6]/10 flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-[#14B8A6]" />
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <CheckCircle className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium mb-4">
@@ -231,7 +231,7 @@ const FounderMissionSection = () => {
                     </p>
                     <a 
                       href="/scanpro-plus#roi-calculator"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#14B8A6] hover:bg-[#14B8A6]/90 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                       Calculate Your ROI
                       <ArrowRight className="w-5 h-5" />
@@ -271,8 +271,8 @@ const FounderMissionSection = () => {
               <div className="space-y-5 mt-8">
                 <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
                   <div className="p-6">
-                    <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-3">
-                      <span className="text-[#14B8A6] text-xs font-bold uppercase">Why This Matters</span>
+                    <div className="inline-block px-3 py-1 bg-primary/10 rounded-full mb-3">
+                      <span className="text-primary text-xs font-bold uppercase">Why This Matters</span>
                     </div>
                     <DialogDescription className="text-gray-700 leading-relaxed text-base">
                       {selectedDetail.details}
