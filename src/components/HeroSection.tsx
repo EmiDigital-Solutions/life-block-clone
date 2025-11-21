@@ -155,8 +155,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section data-nav-theme="dark" className="relative min-h-screen flex flex-col overflow-hidden bg-black pb-24 sm:pb-28 lg:pb-0">
-      <div className="absolute inset-0 bg-black"></div>
+    <section data-nav-theme="light" className="relative min-h-screen flex flex-col overflow-hidden bg-gray-50 pb-24 sm:pb-28 lg:pb-0">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200"></div>
 
       <div className="relative z-10 flex-1 flex items-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
         <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
@@ -170,8 +170,8 @@ const HeroSection = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-6"
               >
-                <div className="flex items-center gap-4 text-white/60 text-sm font-sans">
-                  <div className="h-px w-12 bg-cyan-400/40"></div>
+                <div className="flex items-center gap-4 text-gray-600 text-sm font-sans">
+                  <div className="h-px w-12 bg-primary/40"></div>
                   <span>{heroContent.tagline}</span>
                 </div>
               </motion.div>
@@ -180,16 +180,17 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] mb-6"
               >
-                {heroContent.heading}
+                <span className="text-gray-900">{heroContent.heading.split(' ').slice(0, -3).join(' ')} </span>
+                <span className="text-primary">{heroContent.heading.split(' ').slice(-3).join(' ')}</span>
               </motion.h1>
 
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-xl lg:text-2xl font-medium text-cyan-400/90 leading-[1.4] mb-8"
+                className="text-lg md:text-xl lg:text-2xl font-medium text-gray-700 leading-[1.4] mb-8"
               >
                 {heroContent.subtitle}
               </motion.h2>
@@ -198,7 +199,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg font-normal text-white/70 leading-[1.6] max-w-[600px] mb-12"
+                className="text-lg font-normal text-gray-600 leading-[1.6] max-w-[600px] mb-12"
               >
                 {heroContent.description}
               </motion.p>
@@ -207,10 +208,13 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex"
+                className="flex gap-4"
               >
-                <button className="bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl">
+                <button className="bg-gray-900 text-white px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-gray-800 hover:scale-105 shadow-lg">
                   {heroContent.ctaText}
+                </button>
+                <button className="bg-white text-gray-900 border-2 border-gray-300 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:bg-gray-50 hover:scale-105 shadow-sm">
+                  View Pricing
                 </button>
               </motion.div>
             </div>
@@ -226,7 +230,7 @@ const HeroSection = () => {
                 className="relative w-full"
                 style={{ perspective: "2000px" }}
               >
-                <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
+                <div className="absolute inset-0 blur-3xl bg-primary/20 scale-150 -z-10"></div>
                 
                 <div className="relative h-[375px] sm:h-[438px] lg:h-[210px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
                   {visibleAuditors.map((auditor, auditorIndex) => {
@@ -315,11 +319,11 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Animated Company Names Band - White Background */}
-      <div className="relative bottom-0 left-0 right-0 py-4 sm:py-5 lg:py-6 overflow-hidden bg-white border-t border-gray-200 z-20">
+      {/* Animated Company Names Band - Light Background */}
+      <div className="relative bottom-0 left-0 right-0 py-4 sm:py-5 lg:py-6 overflow-hidden bg-white/80 backdrop-blur-sm border-t border-gray-300 z-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-3">
-              <span className="text-xs sm:text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
+              <span className="text-xs sm:text-sm font-semibold text-gray-500">Trusted by world's most exciting brands</span>
             </div>
             <div className="flex whitespace-nowrap">
               <motion.div
