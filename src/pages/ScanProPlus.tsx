@@ -372,7 +372,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                       <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
                       <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
                       <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                         <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
                       </div>
                     </div>
@@ -445,7 +445,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               >
                 <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 </button>
               </motion.div>
             </div>
@@ -754,7 +754,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               >
                 <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 </button>
               </motion.div>
             </div>
@@ -1250,7 +1250,7 @@ const ChallengeToggleSection = () => {
           >
             <span>Get Started</span>
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" style={{ color: '#2563EB' }} />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" style={{ color: '#2563EB', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
             </div>
           </motion.button>
         </div>
@@ -1300,11 +1300,11 @@ const ChallengeToggleSection = () => {
                         duration: 0.5,
                         type: "spring"
                       }}
-                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center ${
-                        isWithScanPro ? 'bg-gradient-to-br from-[#14B8A6] to-[#0D9488]' : 'bg-gradient-to-br from-red-600 to-red-700'
-                      }`}
+                      className="flex items-center justify-center"
                     >
-                      <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                      <Icon className={`w-16 h-16 sm:w-20 sm:h-20 ${
+                        isWithScanPro ? 'text-[#14B8A6]' : 'text-red-600'
+                      }`} style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                     </motion.div>
                   </div>
 
@@ -1379,7 +1379,7 @@ const HowItWorksCarousel = () => {
               style={{ top: '32%', left: '73%' }}
             >
               <div className="bg-[#14B8A6] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <Mouse className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <Mouse className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
             </motion.div>
@@ -1501,11 +1501,11 @@ const HowItWorksCarousel = () => {
               className="mb-2 sm:mb-4"
             >
               <div className="flex items-center justify-between mb-2 sm:mb-4">
-                <div className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#14B8A6] flex items-center justify-center">
-                  <BarChart3 className="w-3.5 h-3.5 sm:w-6 sm:h-6 text-white" />
+              <div className="flex items-center justify-center">
+                  <BarChart3 className="w-7 h-7 sm:w-12 sm:h-12 text-[#14B8A6]" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 </div>
-                <div className="w-9 h-9 sm:w-16 sm:h-16 rounded-full bg-[#14B8A6]/20 flex items-center justify-center">
-                  <CheckCircle2 className="w-4.5 h-4.5 sm:w-8 sm:h-8 text-[#14B8A6]" />
+                <div className="flex items-center justify-center">
+                  <CheckCircle2 className="w-9 h-9 sm:w-16 sm:h-16 text-[#14B8A6]" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 </div>
               </div>
               
@@ -1561,7 +1561,7 @@ const HowItWorksCarousel = () => {
               transition={{ delay: 0.8 }}
               className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
             >
-              <Shield className="w-3 h-3 sm:w-5 sm:h-5" />
+              <Shield className="w-3 h-3 sm:w-5 sm:h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
               <span className="text-xs sm:text-base">Report Ready</span>
             </motion.div>
           </div>
@@ -1691,8 +1691,8 @@ const HowItWorksCarousel = () => {
                               transition={{ delay: 0.2 + i * 0.1 }}
                               className="flex items-center gap-1.5 sm:gap-3"
                             >
-                              <div className="w-4 h-4 sm:w-6 sm:h-6 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                <CheckCircle2 className="w-2.5 h-2.5 sm:w-4 sm:h-4 text-[#14B8A6]" />
+                              <div className="flex items-center justify-center flex-shrink-0">
+                                <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-[#14B8A6]" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                               </div>
                               <span className="text-xs sm:text-base text-gray-700">{feature}</span>
                             </motion.div>
@@ -1714,7 +1714,7 @@ const HowItWorksCarousel = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
               aria-label="Previous step"
             >
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
             </button>
 
             {/* Step Indicators */}
@@ -1739,7 +1739,7 @@ const HowItWorksCarousel = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
               aria-label="Next step"
             >
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
             </button>
           </div>
         </div>
@@ -2214,9 +2214,7 @@ const ScanProPlus = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
                   {/* Left Side - Icon */}
                   <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 sm:p-10 md:p-12 h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center">
-                    <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1e40af] flex items-center justify-center">
-                      <industry.Icon className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 text-white" />
-                    </div>
+                    <industry.Icon className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 text-gray-900" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   </div>
 
                   {/* Right Side - Content */}
@@ -2235,7 +2233,7 @@ const ScanProPlus = () => {
                     <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                       {industry.solutions.map((item, i) => (
                         <li key={i} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6' }} />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" style={{ color: '#14B8A6', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -2268,7 +2266,7 @@ const ScanProPlus = () => {
             className="text-center mb-8 sm:mb-10 md:mb-12"
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <Shield className="w-10 h-10 sm:w-12 sm:h-12" style={{ color: '#14B8A6' }} />
+              <Shield className="w-10 h-10 sm:w-12 sm:h-12" style={{ color: '#14B8A6', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Compliance & Supported Standards
               </h2>
@@ -2341,16 +2339,14 @@ const ScanProPlus = () => {
                 className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all border border-gray-100"
               >
                 <div className="flex flex-col items-start">
-                  <div 
-                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-6"
+                  <item.icon 
+                    className="w-14 h-14 sm:w-16 sm:h-16 mb-5 sm:mb-6" 
                     style={{ 
-                      background: idx < 3 
-                        ? 'linear-gradient(135deg, #2563EB, #1e40af)' 
-                        : 'linear-gradient(135deg, #14B8A6, #0D9488)'
+                      color: idx < 3 ? '#2563EB' : '#14B8A6',
+                      imageRendering: 'pixelated',
+                      filter: 'contrast(1.2)'
                     }}
-                  >
-                    <item.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
-                  </div>
+                  />
                   
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
@@ -2361,7 +2357,7 @@ const ScanProPlus = () => {
 
           <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-white">
-              <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
+              <Globe className="w-6 h-6 sm:w-7 sm:h-7" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
               Available in 47 Countries
             </h3>
             <p className="text-base sm:text-lg text-white/90">
@@ -2396,7 +2392,7 @@ const ScanProPlus = () => {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 mb-6 sm:mb-8">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   Schedule a Demo (30 minutes)
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
@@ -2404,7 +2400,7 @@ const ScanProPlus = () => {
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   Start Pilot Audit (2 weeks)
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
@@ -2412,7 +2408,7 @@ const ScanProPlus = () => {
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
                 <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6' }} />
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#14B8A6', imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   Plan Integration
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
@@ -2424,16 +2420,16 @@ const ScanProPlus = () => {
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px] inline-flex items-center justify-center gap-2"
               >
-                <Calendar className="w-5 h-5" />
+                <Calendar className="w-5 h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 Schedule Demo
               </a>
               <a
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]"
               >
-                <Rocket className="w-5 h-5" />
+                <Rocket className="w-5 h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                 Start Pilot Audit
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
               </a>
             </div>
 
@@ -2442,15 +2438,15 @@ const ScanProPlus = () => {
               <p className="text-lg text-white/90">
                 <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-5 h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a>
                 </span><br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <Phone className="w-5 h-5" />
+                  <Phone className="w-5 h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   +49 (0)152 03095799
                 </span><br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="w-5 h-5" style={{ imageRendering: 'pixelated', filter: 'contrast(1.2)' }} />
                   WhatsApp | Google Meet
                 </span>
               </p>
