@@ -143,7 +143,7 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
         <Sphere args={[2.875, 128, 128]}>
           <meshStandardMaterial
             map={texture}
-            emissive="#1e40af"
+            emissive="#9fe0e0"
             emissiveIntensity={1.5}
             roughness={0.4}
             metalness={0.5}
@@ -164,7 +164,7 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
       {/* Animated outer glow sphere */}
       <Sphere ref={glowRef} args={[3.15, 64, 64]}>
         <meshBasicMaterial
-          color="#3b82f6"
+          color="#9fe0e0"
           transparent
           opacity={0.25}
           side={THREE.BackSide}
@@ -175,7 +175,7 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
       {/* Inner subtle glow */}
       <Sphere args={[2.95, 64, 64]}>
         <meshBasicMaterial
-          color="#60a5fa"
+          color="#9fe0e0"
           transparent
           opacity={0.1}
           side={THREE.FrontSide}
@@ -220,12 +220,12 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
       {/* Enhanced animated background glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div 
-          className="w-[90%] h-[90%] rounded-full bg-blue-600/30 blur-3xl animate-pulse"
-          style={{ animationDuration: '4s' }}
+          className="w-[90%] h-[90%] rounded-full blur-3xl animate-pulse"
+          style={{ backgroundColor: 'rgba(159, 224, 224, 0.3)', animationDuration: '4s' }}
         />
         <div 
-          className="absolute w-[70%] h-[70%] rounded-full bg-blue-400/20 blur-2xl animate-pulse"
-          style={{ animationDuration: '3s', animationDelay: '1s' }}
+          className="absolute w-[70%] h-[70%] rounded-full blur-2xl animate-pulse"
+          style={{ backgroundColor: 'rgba(159, 224, 224, 0.2)', animationDuration: '3s', animationDelay: '1s' }}
         />
       </div>
       
@@ -245,9 +245,9 @@ const Earth3D = ({ width = "100%", height = "400px", showPins = false }: { width
         <directionalLight position={[5, 3, 5]} intensity={5} color="#ffffff" />
         
         {/* High-contrast muted blue accent lights */}
-        <pointLight position={[-5, 0, 5]} intensity={4} color="#A8BFC5" />
-        <pointLight position={[5, 0, 5]} intensity={4} color="#A8BFC5" />
-        <pointLight position={[0, 5, 0]} intensity={3} color="#B8CDD1" />
+        <pointLight position={[-5, 0, 5]} intensity={4} color="#9fe0e0" />
+        <pointLight position={[5, 0, 5]} intensity={4} color="#9fe0e0" />
+        <pointLight position={[0, 5, 0]} intensity={3} color="#9fe0e0" />
         
         {/* The Earth with dotted map and 3D pins */}
         <EarthSphere showPins={showPins} visiblePins={visiblePins} />
