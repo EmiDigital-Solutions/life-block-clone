@@ -971,162 +971,137 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Technology Section - Network Diagram Style */}
-      <section className="py-8 md:py-20 bg-white relative overflow-hidden" data-nav-theme="light">
+      {/* Technology Section - Minimalist Design */}
+      <section className="py-16 md:py-32 bg-white relative" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
+          
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 md:mb-12 text-center"
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mb-16 md:mb-24"
           >
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#14B8A6]"></div>
-              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Technology</span>
-            </div>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
-              <span className="text-[#14B8A6]">Our technology</span>
-              <br />
-              <span className="text-black">for global supplier identification.</span>
+            <p className="text-sm font-medium text-[#14B8A6] mb-4 tracking-wide uppercase">Technology Stack</p>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              Built for precision, <br />powered by AI
             </h2>
           </motion.div>
 
-          {/* Interactive Network Diagram */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative bg-gradient-to-br from-gray-50/50 to-white rounded-3xl p-6 md:p-12 lg:p-16"
-          >
-            {/* Central Hub - YVOO Platform */}
-            <div className="relative flex flex-col items-center justify-center min-h-[500px] md:min-h-[600px]">
+          {/* Technology Flow */}
+          <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
+            
+            {/* Feature 1 - AI Conversational Workflow */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group relative"
+            >
+              {/* Number Badge */}
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+                01
+              </div>
               
-              {/* Center Node */}
+              {/* Icon */}
+              <div className="mb-6">
+                <MessageSquare className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+              </div>
+              
+              {/* Content */}
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                AI Conversational Workflow
+              </h3>
+              <p className="text-base text-gray-600 leading-relaxed">
+                7-step intelligent dialogue that transforms vague requirements into precise technical specifications with materials and certifications.
+              </p>
+              
+              {/* Hover Arrow */}
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                className="relative z-20 bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 0 }}
+                whileHover={{ opacity: 1, x: 0 }}
+                className="hidden md:block absolute -right-6 top-20 text-gray-300"
               >
-                <Cpu className="w-12 h-12 md:w-20 md:h-20 text-white mb-3 md:mb-4 mx-auto" />
-                <h3 className="text-xl md:text-3xl font-bold text-white text-center">YVOO AI</h3>
-                <p className="text-sm md:text-base text-white/90 text-center mt-2">Supplier Intelligence Core</p>
+                <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
               </motion.div>
+            </motion.div>
 
-              {/* Connection Lines SVG */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
-                <defs>
-                  <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.3" />
-                    <stop offset="50%" stopColor="#14B8A6" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.3" />
-                  </linearGradient>
-                </defs>
-                
-                {/* Top Left Line */}
-                <motion.path
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 1 }}
-                  d="M 50% 50% Q 30% 25% 15% 15%"
-                  stroke="url(#line-gradient)"
-                  strokeWidth="3"
-                  fill="none"
-                />
-                
-                {/* Top Right Line */}
-                <motion.path
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 1 }}
-                  d="M 50% 50% Q 70% 25% 85% 15%"
-                  stroke="url(#line-gradient)"
-                  strokeWidth="3"
-                  fill="none"
-                />
-                
-                {/* Bottom Line */}
-                <motion.path
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6, duration: 1 }}
-                  d="M 50% 50% L 50% 85%"
-                  stroke="url(#line-gradient)"
-                  strokeWidth="3"
-                  fill="none"
-                />
-              </svg>
-
-              {/* Top Left Node - AI Conversational Workflow */}
+            {/* Feature 2 - Triple-Source Search */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="group relative"
+            >
+              {/* Number Badge */}
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+                02
+              </div>
+              
+              {/* Icon */}
+              <div className="mb-6">
+                <Globe className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+              </div>
+              
+              {/* Content */}
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                Triple-Source Architecture
+              </h3>
+              <p className="text-base text-gray-600 leading-relaxed">
+                Simultaneous search across verified databases, research platforms, and real-time web discovery for comprehensive market coverage.
+              </p>
+              
+              {/* Hover Arrow */}
               <motion.div
-                initial={{ opacity: 0, x: -30, y: -30 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="absolute top-0 left-0 md:left-[5%] bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 0 }}
+                whileHover={{ opacity: 1, x: 0 }}
+                className="hidden md:block absolute -right-6 top-20 text-gray-300"
               >
-                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
-                  <MessageSquare className="w-5 h-5 md:w-8 md:h-8 text-white" />
-                </div>
-                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">AI Conversational Workflow</h4>
-                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">7-step intelligence that converts vague requirements into precise specifications</p>
+                <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
               </motion.div>
+            </motion.div>
 
-              {/* Top Right Node - Triple-Source Search */}
-              <motion.div
-                initial={{ opacity: 0, x: 30, y: -30 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="absolute top-0 right-0 md:right-[5%] bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
-              >
-                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
-                  <Globe className="w-5 h-5 md:w-8 md:h-8 text-white" />
-                </div>
-                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">Triple-Source Search</h4>
-                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">Simultaneous search across verified databases and real-time web discovery</p>
-              </motion.div>
+            {/* Feature 3 - Smart Preference Engine */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="group"
+            >
+              {/* Number Badge */}
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+                03
+              </div>
+              
+              {/* Icon */}
+              <div className="mb-6">
+                <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+              </div>
+              
+              {/* Content */}
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                Smart Preference Engine
+              </h3>
+              <p className="text-base text-gray-600 leading-relaxed">
+                AI learns your industry requirements and automatically prioritizes suppliers with relevant certifications and experience.
+              </p>
+            </motion.div>
+          </div>
 
-              {/* Bottom Node - Smart AI Preference Engine */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
-              >
-                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
-                  <TrendingUp className="w-5 h-5 md:w-8 md:h-8 text-white" />
-                </div>
-                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">Smart Preference Engine</h4>
-                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">AI learns your requirements and prioritizes relevant suppliers automatically</p>
-              </motion.div>
-
-              {/* Animated Pulse Dots */}
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute top-[12%] left-[12%] w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
-                style={{ zIndex: 15 }}
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-                className="absolute top-[12%] right-[12%] w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
-                style={{ zIndex: 15 }}
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                className="absolute bottom-[12%] left-1/2 w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
-                style={{ zIndex: 15 }}
-              />
-            </div>
-          </motion.div>
+          {/* Bottom Accent Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="mt-16 md:mt-24 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent origin-left"
+          />
         </div>
       </section>
 
