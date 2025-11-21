@@ -39,7 +39,7 @@ const HeroSection = () => {
             className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900"
           >
             {heroContent.heading.split(' ').slice(0, -3).join(' ')}{' '}
-            <span className="text-gray-400">
+            <span className="text-primary">
               {heroContent.heading.split(' ').slice(-3).join(' ')}
             </span>
           </motion.h1>
