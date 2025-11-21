@@ -262,8 +262,11 @@ const SearchSuppliers = () => {
       {/* Hero Section - Minimalist Design */}
       <section 
         data-nav-theme="dark"
-        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible bg-gray-900"
-        style={{ minHeight: "60vh" }}
+        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible"
+        style={{ 
+          minHeight: "60vh",
+          background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))"
+        }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start">
@@ -1293,8 +1296,11 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* CTA Section - Minimalist Design */}
-      <section className="py-20 md:py-32 bg-white">
+      {/* CTA Section - Compromise Design */}
+      <section 
+        className="relative py-20 md:py-32 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
             
@@ -1305,12 +1311,16 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <p className="text-sm font-medium text-[#14B8A6] mb-4 uppercase tracking-wide">Get Started</p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#14B8A6]/10 rounded-full mb-6 border border-[#14B8A6]/20">
+                <Sparkles className="w-4 h-4 text-[#14B8A6]" />
+                <span className="text-sm font-medium text-[#14B8A6]">Start Your Search</span>
+              </div>
+              
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Start discovering suppliers
+                Find your next <span style={{ color: '#14B8A6' }}>supplier partner</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join leading procurement teams using AI to find and verify suppliers globally
+              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                Join thousands of procurement professionals discovering and verifying suppliers with AI
               </p>
             </motion.div>
             
@@ -1319,18 +1329,23 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="bg-gray-50 rounded-2xl border border-gray-200 p-2 flex flex-col md:flex-row items-stretch md:items-center gap-2 max-w-2xl mx-auto mb-8"
+              className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
             >
               <div className="flex items-center gap-3 flex-1 px-4">
-                <Search className="w-5 h-5 text-gray-400" />
+                <Search className="w-5 h-5 text-[#14B8A6]" />
                 <input
                   type="text"
-                  placeholder="What are you looking for?"
-                  className="flex-1 outline-none text-base text-gray-900 bg-transparent py-3"
+                  placeholder="What are you looking for? (e.g., CNC machining, ISO 9001...)"
+                  className="flex-1 outline-none text-base text-gray-900 bg-transparent py-3 placeholder:text-gray-400"
                 />
               </div>
-              <Button className="bg-gray-900 hover:bg-gray-800 text-white rounded-xl px-8 py-4 text-base transition-all">
-                Search
+              <Button 
+                className="text-white rounded-full px-8 py-6 text-base font-semibold transition-all hover:shadow-lg"
+                style={{ 
+                  background: "linear-gradient(135deg, #14B8A6, #0D9488)",
+                }}
+              >
+                Start Search
               </Button>
             </motion.div>
 
