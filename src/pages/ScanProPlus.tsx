@@ -866,7 +866,7 @@ const ComplianceStandardsGrid = () => {
   const standards = [
     {
       name: "ISO 9001",
-      iconName: "award",
+      iconName: "trophy",
       description: "Quality Management System",
       details: "ISO 9001 is the international standard for quality management systems (QMS). It helps organizations ensure they meet customer and regulatory requirements while continuously improving processes and efficiency."
     },
@@ -878,7 +878,7 @@ const ComplianceStandardsGrid = () => {
     },
     {
       name: "AS9100",
-      iconName: "airplane",
+      iconName: "rocket",
       description: "Aerospace Quality Standard",
       details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
     },
@@ -890,25 +890,25 @@ const ComplianceStandardsGrid = () => {
     },
     {
       name: "GMP",
-      iconName: "pill",
+      iconName: "heart",
       description: "Good Manufacturing Practice",
       details: "GMP ensures products are consistently produced and controlled according to quality standards. Critical for pharmaceutical, food, and medical device industries to ensure product safety and efficacy."
     },
     {
       name: "API Q1",
-      iconName: "factory",
+      iconName: "building",
       description: "Petroleum Quality Standard",
       details: "API Q1 is a quality management system specification for manufacturing organizations in the petroleum and natural gas industry, ensuring product integrity and safety throughout the supply chain."
     },
     {
       name: "SQF",
-      iconName: "check",
+      iconName: "checkbox-on",
       description: "Food Safety Quality",
       details: "Safe Quality Food (SQF) is a rigorous food safety and quality program recognized by retailers and food service providers worldwide, ensuring products meet the highest safety standards."
     },
     {
       name: "VDA 6.3",
-      iconName: "bullseye",
+      iconName: "target",
       description: "Automotive Process Audit",
       details: "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production."
     },
@@ -2209,36 +2209,74 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
-            Global <span style={{ color: '#A8BFC5' }}>Network</span> & Integration
+            Global <span style={{ color: '#A8B8CA' }}>Network</span> & Integration
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {/* ERP Integration Cards */}
-            {[
-              { icon: "link", title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#A8BFC5' },
-              { icon: "link", title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#A8BFC5' },
-              { icon: "link", title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#A8BFC5' },
-              { icon: "globe", title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#A8C5B8' },
-              { icon: "user", title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#A8C5B8' },
-              { icon: "star", title: 'Quality Assured', desc: 'Rating system & tracking', color: '#A8C5B8' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all border border-gray-100"
-              >
-                <div className="flex flex-col items-start">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* ERP Integration Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 sm:mb-12"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">ERP Integration</h3>
+            <div className="space-y-3 sm:space-y-4">
+              {[
+                { title: 'SAP Integration', desc: 'Supplier Evaluation & Release' },
+                { title: 'Oracle', desc: 'Seamless ERP connectivity' },
+                { title: 'Microsoft Dynamics', desc: 'Full system integration' },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-start gap-3 sm:gap-4"
+                >
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
+                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8BFC5, #A8C5B8)' }}>
+          {/* Global Network Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 sm:mb-12"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Global Network</h3>
+            <div className="space-y-3 sm:space-y-4">
+              {[
+                { title: 'On-Demand Availability', desc: 'Same-Day audits worldwide' },
+                { title: 'Smart Matching', desc: 'Optimal auditor selection' },
+                { title: 'Quality Assured', desc: 'Rating system & tracking' },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-start gap-3 sm:gap-4"
+                >
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
+                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8B8CA, #A8C5B8)' }}>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
               Available in 47 Countries
             </h3>
