@@ -1664,29 +1664,13 @@ const HowItWorksCarousel = () => {
                           {step.description}
                         </p>
 
-                        {/* Features list */}
-                        <div className="space-y-1.5 sm:space-y-3">
-                          {[
-                            index === 0 && "Quick integration with ERP systems",
-                            index === 1 && "Global network of certified auditors",
-                            index === 2 && "Direct communication channel",
-                            index === 3 && "AI-powered insights and analytics"
-                          ].filter(Boolean).map((feature, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.2 + i * 0.1 }}
-                              className="flex items-center gap-1.5 sm:gap-3"
-                            >
-                              <div className="flex items-center justify-center flex-shrink-0">
-                                <PixelIcon name="checkbox-on" className="w-4 h-4 sm:w-6 sm:h-6" color="#14B8A6" />
-                              </div>
-                              <span className="text-xs sm:text-base text-gray-700">{feature}</span>
-                            </motion.div>
-                          ))}
-                        </div>
+                        {/* Features list - Clean minimal design without icons */}
+                        <p className="text-xs sm:text-base text-gray-700">
+                          {index === 0 && "Quick integration with ERP systems"}
+                          {index === 1 && "Global network of certified auditors"}
+                          {index === 2 && "Direct communication channel"}
+                          {index === 3 && "AI-powered insights and analytics"}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -2221,9 +2205,8 @@ const ScanProPlus = () => {
                     <p className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 sm:mb-3">ScanPro+ Solution:</p>
                     <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                       {industry.solutions.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
-                          <PixelIcon name="checkbox-on" className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" color="#14B8A6" />
-                          <span>{item}</span>
+                        <li key={i} className="text-sm sm:text-base text-gray-700">
+                          • {item}
                         </li>
                       ))}
                     </ul>
@@ -2255,7 +2238,6 @@ const ScanProPlus = () => {
             className="text-center mb-8 sm:mb-10 md:mb-12"
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <PixelIcon name="shield" className="w-10 h-10 sm:w-12 sm:h-12" color="#14B8A6" />
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
                 Compliance & Supported Standards
               </h2>
@@ -2328,8 +2310,6 @@ const ScanProPlus = () => {
                 className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all border border-gray-100"
               >
                 <div className="flex flex-col items-start">
-                  <PixelIcon name={item.icon} className="w-14 h-14 sm:w-16 sm:h-16 mb-5 sm:mb-6" />
-                  
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -2338,8 +2318,7 @@ const ScanProPlus = () => {
           </div>
 
           <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 flex items-center gap-2 text-white">
-              <PixelIcon name="globe" className="w-6 h-6 sm:w-7 sm:h-7" />
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
               Available in 47 Countries
             </h3>
             <p className="text-base sm:text-lg text-white/90">
@@ -2373,24 +2352,21 @@ const ScanProPlus = () => {
 
             <div className="space-y-4 sm:space-y-5 md:space-y-6 mb-6 sm:mb-8">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-6 sm:h-6" color="#14B8A6" />
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
                   Schedule a Demo (30 minutes)
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
               </div>
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-6 sm:h-6" color="#14B8A6" />
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
                   Start Pilot Audit (2 weeks)
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
               </div>
               
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white flex items-center gap-2">
-                  <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-6 sm:h-6" color="#14B8A6" />
+                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
                   Plan Integration
                 </h4>
                 <p className="text-sm sm:text-base text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
@@ -2402,16 +2378,13 @@ const ScanProPlus = () => {
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px] inline-flex items-center justify-center gap-2"
               >
-                <PixelIcon name="calendar" className="w-5 h-5" />
                 Schedule Demo
               </a>
               <a
                 href="mailto:ibrandic@yvoo.io"
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]"
               >
-                <PixelIcon name="rocket" className="w-5 h-5" />
-                Start Pilot Audit
-                <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" />
+                Start Pilot Audit →
               </a>
             </div>
 
@@ -2420,15 +2393,12 @@ const ScanProPlus = () => {
               <p className="text-lg text-white/90">
                 <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <PixelIcon name="mail" className="w-5 h-5" />
                   <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a>
                 </span><br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <PixelIcon name="phone" className="w-5 h-5" />
                   +49 (0)152 03095799
                 </span><br />
                 <span className="inline-flex items-center gap-2 mt-2">
-                  <PixelIcon name="message" className="w-5 h-5" />
                   WhatsApp | Google Meet
                 </span>
               </p>
