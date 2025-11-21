@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb } from "lucide-react";
+import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb, MessageSquare } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -971,16 +971,16 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Technology Section */}
-      <section className="py-8 md:py-20 bg-white" data-nav-theme="light">
+      {/* Technology Section - Network Diagram Style */}
+      <section className="py-8 md:py-20 bg-white relative overflow-hidden" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 md:mb-12"
+            className="mb-6 md:mb-12 text-center"
           >
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center justify-center gap-2 mb-3">
               <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#14B8A6]"></div>
               <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Technology</span>
             </div>
@@ -991,72 +991,142 @@ const SearchSuppliers = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-            {[
-              {
-                title: "AI-Powered Conversational Workflow",
-                subtitle: "7-Step Intelligence",
-                description: "Our AI agent guides you through a structured dialogue, converting vague requirements into precise specifications with technical details, materials, and certifications.",
-                icon: Cpu,
-                gradient: "from-[#14B8A6] to-[#0D9488]"
-              },
-              {
-                title: "Triple-Source Search Architecture",
-                subtitle: "Complete Market Coverage",
-                description: "Simultaneous search across verified supplier database, company research database, and real-time web discovery to find both established suppliers and newest startups.",
-                icon: Globe,
-                gradient: "from-blue-500 to-cyan-500"
-              },
-              {
-                title: "Smart AI Preference Engine",
-                subtitle: "Learns Your Requirements",
-                description: "AI automatically recognizes your profile and preferences, prioritizing suppliers with relevant certifications and experience based on your industry and past searches.",
-                icon: TrendingUp,
-                gradient: "from-[#14B8A6] to-[#0D9488]"
-              }
-            ].map((item, index) => (
+          {/* Interactive Network Diagram */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative bg-gradient-to-br from-gray-50/50 to-white rounded-3xl p-6 md:p-12 lg:p-16"
+          >
+            {/* Central Hub - YVOO Platform */}
+            <div className="relative flex flex-col items-center justify-center min-h-[500px] md:min-h-[600px]">
+              
+              {/* Center Node */}
               <motion.div
-                key={index}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                className="relative z-20 bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl"
+              >
+                <Cpu className="w-12 h-12 md:w-20 md:h-20 text-white mb-3 md:mb-4 mx-auto" />
+                <h3 className="text-xl md:text-3xl font-bold text-white text-center">YVOO AI</h3>
+                <p className="text-sm md:text-base text-white/90 text-center mt-2">Supplier Intelligence Core</p>
+              </motion.div>
+
+              {/* Connection Lines SVG */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+                <defs>
+                  <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="#14B8A6" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+                
+                {/* Top Left Line */}
+                <motion.path
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 1 }}
+                  d="M 50% 50% Q 30% 25% 15% 15%"
+                  stroke="url(#line-gradient)"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                
+                {/* Top Right Line */}
+                <motion.path
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 1 }}
+                  d="M 50% 50% Q 70% 25% 85% 15%"
+                  stroke="url(#line-gradient)"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                
+                {/* Bottom Line */}
+                <motion.path
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, duration: 1 }}
+                  d="M 50% 50% L 50% 85%"
+                  stroke="url(#line-gradient)"
+                  strokeWidth="3"
+                  fill="none"
+                />
+              </svg>
+
+              {/* Top Left Node - AI Conversational Workflow */}
+              <motion.div
+                initial={{ opacity: 0, x: -30, y: -30 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="absolute top-0 left-0 md:left-[5%] bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
+              >
+                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
+                  <MessageSquare className="w-5 h-5 md:w-8 md:h-8 text-white" />
+                </div>
+                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">AI Conversational Workflow</h4>
+                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">7-step intelligence that converts vague requirements into precise specifications</p>
+              </motion.div>
+
+              {/* Top Right Node - Triple-Source Search */}
+              <motion.div
+                initial={{ opacity: 0, x: 30, y: -30 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="absolute top-0 right-0 md:right-[5%] bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
+              >
+                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
+                  <Globe className="w-5 h-5 md:w-8 md:h-8 text-white" />
+                </div>
+                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">Triple-Source Search</h4>
+                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">Simultaneous search across verified databases and real-time web discovery</p>
+              </motion.div>
+
+              {/* Bottom Node - Smart AI Preference Engine */}
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+                transition={{ delay: 0.6 }}
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl max-w-[160px] md:max-w-[280px]"
               >
-                <Card className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden">
-                  <div className={`h-32 md:h-56 bg-gradient-to-br ${item.gradient} flex items-center justify-center relative overflow-hidden`}>
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute inset-0" style={{
-                        backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                        backgroundSize: '40px 40px'
-                      }}></div>
-                    </div>
-                    
-                    {/* Icon with glow */}
-                    <motion.div
-                      className="relative z-10"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="w-12 h-12 md:w-24 md:h-24 bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl flex items-center justify-center">
-                        <item.icon className="w-7 h-7 md:w-14 md:h-14 text-white" />
-                      </div>
-                    </motion.div>
-                  </div>
-                  <CardHeader className="p-4 md:p-6">
-                    <CardDescription className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide mb-1 md:mb-2">
-                      {item.subtitle}
-                    </CardDescription>
-                    <CardTitle className="text-base md:text-xl font-bold text-gray-900 leading-tight">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 md:p-6 pt-0">
-                    <p className="text-xs md:text-base text-gray-600 leading-relaxed">{item.description}</p>
-                  </CardContent>
-                </Card>
+                <div className="bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-2.5 md:p-4 rounded-xl w-10 h-10 md:w-16 md:h-16 flex items-center justify-center mb-3">
+                  <TrendingUp className="w-5 h-5 md:w-8 md:h-8 text-white" />
+                </div>
+                <h4 className="text-xs md:text-lg font-bold mb-1.5 md:mb-2 text-gray-900">Smart Preference Engine</h4>
+                <p className="text-[10px] md:text-sm text-gray-600 leading-relaxed">AI learns your requirements and prioritizes relevant suppliers automatically</p>
               </motion.div>
-            ))}
-          </div>
+
+              {/* Animated Pulse Dots */}
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute top-[12%] left-[12%] w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
+                style={{ zIndex: 15 }}
+              />
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+                className="absolute top-[12%] right-[12%] w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
+                style={{ zIndex: 15 }}
+              />
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+                className="absolute bottom-[12%] left-1/2 w-2 h-2 md:w-3 md:h-3 bg-[#14B8A6] rounded-full"
+                style={{ zIndex: 15 }}
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
