@@ -284,14 +284,14 @@ const SearchSuppliers = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-[#14B8A6]/10 rounded-full mb-4 md:mb-6 border border-[#14B8A6]/20"
               >
-                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
-                <span className="text-xs md:text-sm font-medium text-[#14B8A6]">AI-Powered Discovery</span>
+                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-primary" />
+                <span className="text-xs md:text-sm font-medium text-primary">AI-Powered Discovery</span>
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
                 <span className="text-white">Find suppliers</span>
                 <br />
-                <span className="text-[#14B8A6]">worldwide.</span>
+                <span className="text-primary">worldwide.</span>
               </h1>
               
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
@@ -307,7 +307,7 @@ const SearchSuppliers = () => {
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
                     className="flex items-center gap-2 md:gap-3 text-gray-300"
                   >
-                    <div className="w-1.5 h-1.5 bg-[#14B8A6] rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                     <span className="text-sm md:text-base lg:text-lg">{text}</span>
                   </motion.div>
                 ))}
@@ -332,7 +332,7 @@ const SearchSuppliers = () => {
                 <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-[#14B8A6]" />
+                    <Cpu className="w-5 h-5 text-primary" />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -341,7 +341,7 @@ const SearchSuppliers = () => {
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
-                  <span className="text-[#14B8A6] text-sm font-semibold">
+                  <span className="text-primary text-sm font-semibold">
                     Interactive Demo
                   </span>
                 </div>
@@ -360,7 +360,7 @@ const SearchSuppliers = () => {
                       key={step}
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                         step <= currentStep
-                          ? 'bg-[#14B8A6] text-white'
+                          ? 'bg-primary text-white'
                           : 'bg-gray-200 text-gray-400'
                       }`}
                     >

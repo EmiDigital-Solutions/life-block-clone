@@ -76,7 +76,7 @@ const BeFound = () => {
         <section
           data-nav-theme="dark"
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-          style={{ background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))" }}
+          style={{ background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))" }}
         >
           <div className="container mx-auto">
             <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0 pb-10">
@@ -179,7 +179,7 @@ const BeFound = () => {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-                <span className="text-[#14B8A6]">Our Value</span>
+                <span className="text-primary">Our Value</span>
               </h2>
             </motion.div>
 
