@@ -1929,13 +1929,13 @@ const ScanProPlus = () => {
             </p>
           </motion.div>
 
-          {/* Clean Metric Cards - Testing New Blue */}
+          {/* Clean Metric Cards - Testing Bluer Color */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
             {[
               { value: 60, suffix: '%', label: 'Cost Reduction', color: '#A8C5B8', delay: 0 },
-              { value: 70, suffix: '%', label: 'Time Savings', color: '#A8B8C5', delay: 0.1 },
+              { value: 70, suffix: '%', label: 'Time Savings', color: '#A8B8CA', delay: 0.1 },
               { value: 96, suffix: '%', label: 'Price Transparency', color: '#A8C5B8', delay: 0.2 },
-              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#A8B8C5', delay: 0.3 }
+              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#A8B8CA', delay: 0.3 }
             ].map((metric, idx) => (
               <motion.div
                 key={idx}
