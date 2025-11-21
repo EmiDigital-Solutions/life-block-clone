@@ -1,7 +1,6 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Brain, Sparkles, Zap, Search, Target, Network, Workflow, Clock, CheckCircle } from "lucide-react";
-import { PixelIcon } from "@/components/PixelIcon";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { HowItWorksSection } from "./HowItWorksSection";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -21,59 +20,29 @@ import illustrationLiveTracking from "@/assets/illustration-live-tracking.jpg";
 import illustrationErpSync from "@/assets/illustration-erp-sync.jpg";
 
 const auditors = [
-  { 
-    image: auditorEuropean, 
-    location: "Europe", 
-    region: "Central Europe",
-    gradient: "from-blue-600 via-blue-700 to-blue-800"
-  },
-  { 
-    image: auditorAsian, 
-    location: "Asia", 
-    region: "East Asia Pacific",
-    gradient: "from-primary via-primary/90 to-primary/80"
-  },
-  { 
-    image: auditorAfrican, 
-    location: "Africa", 
-    region: "Sub-Saharan",
-    gradient: "from-gray-800 via-gray-900 to-black"
-  },
-  { 
-    image: auditorLatin, 
-    location: "Americas", 
-    region: "North & South",
-    gradient: "from-blue-600 via-blue-700 to-blue-800"
-  },
-  { 
-    image: auditorMiddleEast, 
-    location: "Middle East", 
-    region: "Gulf Region",
-    gradient: "from-primary via-primary/90 to-primary/80"
-  },
-  { 
-    image: auditorSouthAsian, 
-    location: "South Asia", 
-    region: "Indian Subcontinent",
-    gradient: "from-gray-800 via-gray-900 to-black"
-  },
+  { image: auditorEuropean, location: "Europe", region: "Central Europe" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific" },
+  { image: auditorAfrican, location: "Africa", region: "Sub-Saharan" },
+  { image: auditorLatin, location: "Americas", region: "North & South" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region" },
+  { image: auditorSouthAsian, location: "South Asia", region: "Indian Subcontinent" },
 ];
 
 const featurePhotos = {
   ai: [
-    { image: illustrationAiCopilot, label: "AI Co-Pilot", sublabel: "Smart Analysis", gradient: "from-secondary via-secondary/90 to-secondary/80" },
-    { image: illustrationRiskScoring, label: "Risk Scoring", sublabel: "Predictive AI", gradient: "from-primary via-primary/90 to-primary/80" },
-    { image: illustrationRealtimeAlerts, label: "Real-Time", sublabel: "Instant Alerts", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationAiCopilot, label: "AI Co-Pilot" },
+    { image: illustrationRiskScoring, label: "Risk Scoring" },
+    { image: illustrationRealtimeAlerts, label: "Real-Time Alerts" },
   ],
   supplier: [
-    { image: illustrationSupplierSearch, label: "SearchPro+", sublabel: "AI Discovery", gradient: "from-secondary via-secondary/90 to-secondary/80" },
-    { image: illustrationTripleSource, label: "Triple Source", sublabel: "Verified Data", gradient: "from-primary via-primary/90 to-primary/80" },
-    { image: illustrationSmartMatch, label: "Smart Match", sublabel: "Best Suppliers", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationSupplierSearch, label: "SearchPro+" },
+    { image: illustrationTripleSource, label: "Triple Source" },
+    { image: illustrationSmartMatch, label: "Smart Match" },
   ],
   workflow: [
-    { image: illustrationOneClick, label: "One Click", sublabel: "Auto Dispatch", gradient: "from-secondary via-secondary/90 to-secondary/80" },
-    { image: illustrationLiveTracking, label: "Real-Time", sublabel: "Live Tracking", gradient: "from-primary via-primary/90 to-primary/80" },
-    { image: illustrationErpSync, label: "ERP Sync", sublabel: "Full Integration", gradient: "from-gray-800 via-gray-900 to-black" },
+    { image: illustrationOneClick, label: "One Click" },
+    { image: illustrationLiveTracking, label: "Real-Time Tracking" },
+    { image: illustrationErpSync, label: "ERP Sync" },
   ],
 };
 
@@ -82,28 +51,24 @@ const projects = [
     number: "01",
     title: "Global On-Demand Auditor Network",
     description: "Access 2,000+ certified auditors across 90+ countries. Same-day and next-day audits available with transparent fixed pricing from €700. Smart algorithms automatically match the optimal local auditor.",
-    gradient: "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))",
     showAuditors: true,
   },
   {
     number: "02",
     title: "ScanPro+ AI Intelligence Platform",
     description: "AI co-pilot ensures consistent audit quality regardless of location. Predictive risk scoring, real-time compliance alerts, and computer vision for automated equipment verification.",
-    gradient: "linear-gradient(135deg, rgb(31, 41, 55), rgb(17, 24, 39), rgb(0, 0, 0))",
     featureType: "ai",
   },
   {
     number: "03",
     title: "Supplier Discovery & Intelligence",
     description: "SearchPro+ AI converts procurement requirements into qualified supplier lists in minutes. Triple-source architecture with explainable AI recommendations for complete transparency.",
-    gradient: "linear-gradient(135deg, rgb(168, 191, 197), rgb(158, 181, 187), rgb(148, 171, 177))",
     featureType: "supplier",
   },
   {
     number: "04",
     title: "Seamless Digital Workflow",
     description: "One-click audit requests with auto-dispatch to certified auditors. Real-time monitoring, instant comprehensive reports, and direct ERP integration for complete process automation.",
-    gradient: "linear-gradient(135deg, rgb(168, 197, 184), rgb(158, 187, 174), rgb(148, 177, 164))",
     featureType: "workflow",
   },
 ];
@@ -111,352 +76,107 @@ const projects = [
 const FullScreenProjects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const [isFanned, setIsFanned] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
 
-  // Mobile shows 3 cards, desktop shows all 6
   const visibleAuditors = isMobile ? auditors.slice(0, 3) : auditors;
 
-  useEffect(() => {
-    const cycle = () => {
-      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
-      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
-    };
-
-    cycle();
-    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
-
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
-  // Handle card click to cycle to next card
-  const handleCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % visibleAuditors.length);
-  };
-
-  // Calculate card positions for fan effect (for auditors)
-  const getCardStyle = (index: number, totalCards: number) => {
-    const centerIndex = (totalCards - 1) / 2;
-    // Adjust index based on activeIndex for rotation effect
-    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
-    const offset = adjustedIndex - centerIndex;
-    
-    if (isFanned) {
-      if (isMobile) {
-        return {
-          x: offset * 110,
-          y: Math.abs(offset) * -20,
-          rotateY: offset * -8,
-          rotateZ: offset * 6,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      } else {
-        return {
-          x: offset * 85,
-          y: Math.abs(offset) * -45,
-          rotateY: offset * -8,
-          rotateZ: offset * 8,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      }
-    } else {
-      return {
-        x: isMobile ? 0 : 180,
-        y: isMobile ? 0 : 80,
-        rotateY: 0,
-        rotateZ: isMobile ? 0 : -25,
-        scale: 0.98,
-        opacity: adjustedIndex === 0 ? 1 : 0,
-        zIndex: totalCards - adjustedIndex,
-      };
-    }
-  };
-
-  // Color interpolation for smooth transitions
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    [
-      "rgb(168, 197, 184)",
-      "rgb(17, 24, 39)",
-      "rgb(168, 191, 197)",
-      "rgb(168, 197, 184)",
-      "rgb(168, 197, 184)",
-    ]
-  );
-
   return (
-    <motion.div
-      ref={containerRef}
-      style={{ backgroundColor }}
-      className="relative"
-    >
+    <div ref={containerRef} className="relative bg-white">
       {projects.map((project, index) => {
-        // Determine nav theme based on project gradient
-        let navTheme: 'dark' | 'green' | 'light' = 'dark';
-        if (project.gradient.includes('rgb(168, 197, 184)')) {
-          navTheme = 'green';
-        } else if (project.gradient.includes('rgb(31, 41, 55)') || project.gradient.includes('rgb(168, 191, 197)')) {
-          navTheme = 'dark';
-        }
-
+        const isEven = index % 2 === 0;
+        
         return (
           <section
             key={index}
-            data-nav-theme={navTheme}
-            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-12 sm:py-16 lg:py-20"
+            data-nav-theme="light"
+            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24 sm:py-32 border-b border-gray-200 last:border-b-0"
           >
-          <div className="container mx-auto max-w-[2000px]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-12 lg:gap-16 xl:gap-24 2xl:gap-32 items-center">
-              {/* Left: Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="text-white space-y-4 sm:space-y-6 text-center lg:text-left"
-              >
-                <div className="flex items-center gap-2 sm:gap-3 justify-center lg:justify-start">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
-                  <span className="text-xs sm:text-sm font-sans tracking-wide font-medium">
-                    {project.number} Feature
-                  </span>
-                </div>
-
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-sans font-semibold leading-tight tracking-tight">
-                  {project.title}
-                </h2>
-
-                <p className="text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl font-sans leading-relaxed opacity-90 max-w-xl font-medium mx-auto lg:mx-0">
-                  {project.description}
-                </p>
-
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 sm:px-8 lg:px-7 xl:px-8 2xl:px-9 3xl:px-12 py-3 sm:py-4 lg:py-3.5 xl:py-4 2xl:py-5 3xl:py-6 rounded-full font-sans font-medium hover:bg-opacity-90 transition-all duration-300 tracking-wide min-h-[48px] text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-
-              {/* Right: Auditor Cards or Feature Cards */}
-              {project.showAuditors ? (
+            <div className="container mx-auto max-w-7xl">
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
+                {/* Text Content */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  className="flex justify-center lg:justify-end"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className={`space-y-6 ${!isEven ? 'lg:col-start-2' : ''}`}
                 >
-                  <div 
-                    className="relative w-full max-w-2xl"
-                    style={{ perspective: "1500px" }}
-                  >
-                    {/* Atmospheric Glow */}
-                    <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
-                    
-                    {/* Cards Container */}
-                    <div className="relative h-[300px] sm:h-[350px] lg:h-[360px] xl:h-[390px] 2xl:h-[430px] flex items-center justify-center">
-                      {visibleAuditors.map((auditor, auditorIndex) => {
-                        const style = getCardStyle(auditorIndex, visibleAuditors.length);
-                        
-                        return (
-                          <motion.div
-                            key={auditor.location}
-                            className="absolute cursor-pointer"
-                            onClick={handleCardClick}
-                            initial={false}
-                            whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                            animate={{
-                              x: style.x,
-                              y: style.y,
-                              rotateY: style.rotateY,
-                              rotateZ: style.rotateZ,
-                              scale: style.scale,
-                              opacity: style.opacity,
-                              zIndex: style.zIndex,
-                            }}
-                            transition={{
-                              duration: isMobile ? 2.5 : 1.8,
-                              delay: isFanned ? auditorIndex * (isMobile ? 0.25 : 0.12) : (visibleAuditors.length - auditorIndex) * 0.08,
-                              ease: [0.33, 1, 0.68, 1],
-                              type: "tween",
-                            }}
-                            style={{
-                              transformStyle: "preserve-3d",
-                              willChange: "transform, opacity",
-                            }}
-                          >
-                            {/* Card */}
-                            <div
-                              className={`relative w-44 h-56 sm:w-52 sm:h-64 lg:w-50 lg:h-62 xl:w-54 xl:h-68 2xl:w-58 2xl:h-74 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                              style={{
-                                boxShadow: `
-                                  0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                                  0 0 30px rgba(236, 72, 153, 0.2)
-                                `,
-                              }}
-                            >
-                              {/* Gradient Overlay for depth */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                              
-                              {/* Auditor Image */}
-                              <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-5 xl:pt-6 2xl:pt-7">
-                                <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-30 lg:h-30 xl:w-34 xl:h-34 2xl:w-38 2xl:h-38 rounded-full overflow-hidden border-2 border-white/10">
-                                  <img
-                                    src={auditor.image}
-                                    alt={`Professional auditor from ${auditor.location}`}
-                                    className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                                  />
-                                  {/* Dramatic colored lighting effect */}
-                                  <div 
-                                    className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                    style={{
-                                      background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                    }}
-                                  />
-                                </div>
-                              </div>
-
-                              {/* Location Badge */}
-                              <div className="absolute bottom-3 sm:bottom-4 lg:bottom-4 xl:bottom-5 2xl:bottom-6 left-0 right-0 flex justify-center px-3 sm:px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-4 xl:px-5 2xl:px-6 py-1.5 sm:py-2 lg:py-2 xl:py-2.5 2xl:py-3 w-full">
-                                  <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-sm xl:text-sm 2xl:text-base text-center">
-                                    {auditor.location}
-                                  </p>
-                                  <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-xs xl:text-xs 2xl:text-sm text-center">
-                                    {auditor.region}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Edge Highlight */}
-                              <div 
-                                className="absolute inset-0 pointer-events-none rounded-3xl"
-                                style={{
-                                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                                }}
-                              />
-                            </div>
-                          </motion.div>
-                        );
-                      })}
-                    </div>
+                  <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
+                    <span className="text-sm font-medium text-gray-600">
+                      {project.number}
+                    </span>
                   </div>
+
+                  <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900">
+                    {project.title}
+                  </h2>
+
+                  <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-xl">
+                    {project.description}
+                  </p>
+
+                  <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300">
+                    Learn more
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </motion.div>
-              ) : project.featureType ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  className="flex justify-center lg:justify-end"
-                >
-                  <div 
-                    className="relative w-full max-w-2xl"
-                    style={{ perspective: "1500px" }}
+
+                {/* Visual Content */}
+                {project.showAuditors ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                   >
-                    {/* Atmospheric Glow */}
-                    <div className="absolute inset-0 blur-3xl bg-cyan-400/10 scale-150 -z-10"></div>
-                    
-                    {/* Cards Container */}
-                    <div className="relative h-[532px] lg:h-[546px] xl:h-[560px] flex items-center justify-center">
-                      {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, cardIndex) => {
-                        const style = getCardStyle(cardIndex, 3);
-                        
-                        return (
-                          <motion.div
-                            key={card.label}
-                            className="absolute cursor-pointer"
-                            onClick={handleCardClick}
-                            initial={false}
-                            whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                            animate={{
-                              x: style.x,
-                              y: style.y,
-                              rotateY: style.rotateY,
-                              rotateZ: style.rotateZ,
-                              scale: style.scale,
-                              opacity: style.opacity,
-                              zIndex: style.zIndex,
-                            }}
-                            transition={{
-                              duration: isMobile ? 2.5 : 1.8,
-                              delay: isFanned ? cardIndex * (isMobile ? 0.25 : 0.12) : (3 - cardIndex) * 0.08,
-                              ease: [0.33, 1, 0.68, 1],
-                              type: "tween",
-                            }}
-                            style={{
-                              transformStyle: "preserve-3d",
-                              willChange: "transform, opacity",
-                            }}
-                          >
-                            {/* Card */}
-                            <div
-                              className={`relative w-[291px] h-[370px] lg:w-[302px] lg:h-[386px] xl:w-[314px] xl:h-[403px] rounded-3xl overflow-hidden bg-gradient-to-br ${card.gradient}`}
-                              style={{
-                                boxShadow: `
-                                  0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                                  0 0 30px rgba(236, 72, 153, 0.2)
-                                `,
-                              }}
-                            >
-                              {/* Gradient Overlay for depth */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                              
-                              {/* Feature Photo */}
-                              <img
-                                src={card.image}
-                                alt={`${card.label} feature visualization`}
-                                className="absolute inset-0 w-full h-full object-cover"
-                              />
-                              
-                              {/* Gradient Overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                              {/* Label Badge */}
-                              <div className="absolute bottom-5 left-0 right-0 flex justify-center px-4">
-                                <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 w-full">
-                                  <p className="text-white font-sans font-bold text-sm text-center">
-                                    {card.label}
-                                  </p>
-                                  <p className="text-white/80 font-sans text-xs text-center">
-                                    {card.sublabel}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Edge Highlight */}
-                              <div 
-                                className="absolute inset-0 pointer-events-none rounded-3xl"
-                                style={{
-                                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                                }}
-                              />
-                            </div>
-                          </motion.div>
-                        );
-                      })}
+                    <div className="grid grid-cols-3 gap-4">
+                      {visibleAuditors.map((auditor) => (
+                        <div 
+                          key={auditor.location}
+                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200"
+                        >
+                          <img
+                            src={auditor.image}
+                            alt={`Professional from ${auditor.location}`}
+                            className="w-full h-full object-cover grayscale"
+                          />
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </motion.div>
-              ) : null}
+                  </motion.div>
+                ) : project.featureType ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
+                  >
+                    <div className="grid grid-cols-3 gap-4">
+                      {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card) => (
+                        <div 
+                          key={card.label}
+                          className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200"
+                        >
+                          <img
+                            src={card.image}
+                            alt={card.label}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         );
       })}
 
-      {/* How It Works Section - After Project 03 */}
+      {/* How It Works Section */}
       <HowItWorksSection />
-    </motion.div>
+    </div>
   );
 };
 
