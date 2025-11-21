@@ -95,72 +95,91 @@ All colors MUST be HSL.
   }
 }
 
-/* Pixelated 8-bit icon styles - Minimalistic pixel art aesthetic */
+/* CRITICAL: Pixelated 8-bit icon styles - Minimalistic pixel art aesthetic */
 /* Forces ALL Lucide icons to display as chunky, blocky pixel art with no fills */
+/* This CSS applies to EVERY icon on EVERY page automatically */
 .lucide, 
 [class*="lucide-"],
-svg[class*="lucide"] {
-  /* Remove ALL fills - outline only */
+svg[class*="lucide"],
+svg.lucide,
+.lucide-icon {
+  /* FORCE remove ALL fills - outline ONLY */
   fill: none !important;
+  background: none !important;
+  background-color: transparent !important;
   
-  /* Force pixelated rendering */
+  /* FORCE pixelated rendering - CRITICAL for 8-bit effect */
   image-rendering: -moz-crisp-edges !important;
   image-rendering: -webkit-crisp-edges !important;
   image-rendering: pixelated !important;
   image-rendering: crisp-edges !important;
+  -ms-interpolation-mode: nearest-neighbor !important;
   
-  /* Remove anti-aliasing completely */
+  /* Remove ALL anti-aliasing completely */
   -webkit-font-smoothing: none !important;
   -moz-osx-font-smoothing: grayscale !important;
   shape-rendering: crispEdges !important;
+  text-rendering: geometricPrecision !important;
   
-  /* Chunky pixel strokes */
-  stroke-width: 2.5 !important;
+  /* THICK chunky pixel strokes for 8-bit aesthetic */
+  stroke-width: 3 !important;
   stroke-linecap: square !important;
   stroke-linejoin: miter !important;
+  vector-effect: non-scaling-stroke !important;
   
-  /* Force monochrome - use current color (typically black) */
+  /* Force BLACK monochrome - pure black pixel art */
   stroke: currentColor !important;
+  color: currentColor !important;
   
-  /* Pixelation effect via transform */
-  transform: scale(1.0) !important;
-  transform-origin: center !important;
+  /* Pixel sharpening and contrast boost */
+  filter: contrast(1.5) brightness(1.1) !important;
   
-  /* Additional sharpening */
-  filter: contrast(2) brightness(1) !important;
+  /* Ensure crisp edges at all scales */
+  transform-origin: center center !important;
 }
 
-/* Remove any child fills */
+/* FORCE remove fills from ALL child SVG elements */
 .lucide path,
 .lucide circle,
 .lucide rect,
 .lucide line,
 .lucide polyline,
 .lucide polygon,
+.lucide ellipse,
 [class*="lucide-"] path,
 [class*="lucide-"] circle,
 [class*="lucide-"] rect,
 [class*="lucide-"] line,
 [class*="lucide-"] polyline,
-[class*="lucide-"] polygon {
+[class*="lucide-"] polygon,
+[class*="lucide-"] ellipse,
+svg[class*="lucide"] path,
+svg[class*="lucide"] circle,
+svg[class*="lucide"] rect {
   fill: none !important;
+  background: none !important;
   stroke: currentColor !important;
   stroke-width: inherit !important;
+  stroke-linecap: inherit !important;
+  stroke-linejoin: inherit !important;
 }
 
+/* Explicit pixel-icon class with same aggressive styling */
 .pixel-icon {
   fill: none !important;
+  background: none !important;
   image-rendering: pixelated !important;
   image-rendering: -moz-crisp-edges !important;
   image-rendering: crisp-edges !important;
   -webkit-font-smoothing: none !important;
   -moz-osx-font-smoothing: grayscale !important;
   shape-rendering: crispEdges !important;
-  stroke-width: 2.5 !important;
+  stroke-width: 3 !important;
   stroke-linecap: square !important;
   stroke-linejoin: miter !important;
   stroke: currentColor !important;
-  filter: contrast(2) brightness(1) !important;
+  filter: contrast(1.5) brightness(1.1) !important;
+  vector-effect: non-scaling-stroke !important;
 }
 
 @layer base {
