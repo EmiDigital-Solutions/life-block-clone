@@ -65,7 +65,7 @@ const GroundIntelligence = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-gray-800 transition-all duration-300"
                 >
                   Schedule consultation
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -106,7 +106,7 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
             >
-              See <span className="text-primary">beyond the surface</span>
+              See <span style={{ color: '#A8C5B8' }}>beyond the surface</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -135,7 +135,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span className="text-primary">How It</span> Works.
+              <span style={{ color: '#A8C5B8' }}>How It</span> Works.
             </h2>
           </motion.div>
 
@@ -170,7 +170,7 @@ const GroundIntelligence = () => {
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                       {step.number}
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>
@@ -225,7 +225,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span className="text-primary">Results</span>
+              <span style={{ color: '#A8C5B8' }}>Results</span>
             </h2>
           </motion.div>
 
@@ -243,7 +243,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all"
               >
-                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl font-bold text-primary mb-2 sm:mb-3">
+                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl font-bold text-[#A8C5B8] mb-2 sm:mb-3">
                   {item.metric}
                 </div>
                 <p className="text-sm sm:text-base xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-medium">{item.label}</p>
@@ -268,7 +268,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-              <span className="text-primary">Pricing</span>
+              <span style={{ color: '#A8C5B8' }}>Pricing</span>
             </h2>
           </motion.div>
 
@@ -299,7 +299,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`p-6 sm:p-8 rounded-xl sm:rounded-2xl border ${
                   plan.highlighted 
-                    ? 'bg-white border-primary shadow-lg sm:transform sm:scale-105 border-2' 
+                    ? 'bg-white border-[#A8C5B8] shadow-lg sm:transform sm:scale-105 border-2' 
                     : 'bg-white/50 border-gray-200'
                 }`}
               >
@@ -308,7 +308,7 @@ const GroundIntelligence = () => {
                 <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#A8C5B8] flex-shrink-0 mt-0.5" />
                       {feature}
                     </li>
                   ))}
@@ -334,7 +334,7 @@ const GroundIntelligence = () => {
             className="space-y-6 sm:space-y-8"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white">
-              Ready for <span className="text-primary">real-time supplier intelligence?</span>
+              Ready for <span style={{ color: '#A8C5B8' }}>real-time supplier intelligence?</span>
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl text-white/80">
@@ -342,7 +342,7 @@ const GroundIntelligence = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px]">
+              <button className="w-full sm:w-auto bg-gray-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-gray-800 shadow-xl min-h-[48px]">
                 Schedule consultation
               </button>
               <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]">
