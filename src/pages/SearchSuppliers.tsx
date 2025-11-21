@@ -281,16 +281,16 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-[#14B8A6]/10 rounded-full mb-4 md:mb-6 border border-[#14B8A6]/20"
+                className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-[#A8C5B8]/10 rounded-full mb-4 md:mb-6 border border-[#A8C5B8]/20"
               >
-                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                <span className="text-xs md:text-sm font-medium text-primary">AI-Powered Discovery</span>
+                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
+                <span className="text-xs md:text-sm font-medium text-[#A8C5B8]">AI-Powered Discovery</span>
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
                 <span className="text-gray-900">Find suppliers</span>
                 <br />
-                <span className="text-primary">worldwide.</span>
+                <span className="text-[#A8C5B8]">worldwide.</span>
               </h1>
               
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
@@ -306,7 +306,7 @@ const SearchSuppliers = () => {
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
                     className="flex items-center gap-2 md:gap-3 text-gray-600"
                   >
-                    <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-[#A8C5B8] rounded-full"></div>
                     <span className="text-sm md:text-base lg:text-lg">{text}</span>
                   </motion.div>
                 ))}
@@ -331,7 +331,7 @@ const SearchSuppliers = () => {
                 <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-primary" />
+                    <Cpu className="w-5 h-5 text-[#A8C5B8]" />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -340,7 +340,7 @@ const SearchSuppliers = () => {
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
-                  <span className="text-primary text-sm font-semibold">
+                  <span className="text-[#A8C5B8] text-sm font-semibold">
                     Interactive Demo
                   </span>
                 </div>
@@ -359,7 +359,7 @@ const SearchSuppliers = () => {
                       key={step}
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                         step <= currentStep
-                          ? 'bg-primary text-white'
+                          ? 'bg-[#A8C5B8] text-white'
                           : 'bg-gray-200 text-gray-400'
                       }`}
                     >
@@ -386,16 +386,16 @@ const SearchSuppliers = () => {
                       <div
                         className={`max-w-[80%] p-4 rounded-2xl ${
                           msg.role === 'user'
-                            ? 'bg-[#14B8A6] text-white rounded-br-none'
+                            ? 'bg-[#A8C5B8] text-white rounded-br-none'
                             : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
                         }`}
                       >
                         {msg.role === 'ai' && (
                           <div className="flex items-center gap-2 mb-2">
-                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
                               <Cpu className="w-3 h-3 text-white" />
                             </div>
-                            <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                            <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                           </div>
                         )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -412,15 +412,15 @@ const SearchSuppliers = () => {
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                          <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                             </div>
                           )}
                         </div>
@@ -436,7 +436,7 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-end"
                     >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#A8C5B8] text-white rounded-br-none">
                         <p className="text-sm font-medium">{userInput}</p>
                       </div>
                     </motion.div>
@@ -452,7 +452,7 @@ const SearchSuppliers = () => {
                     className="mt-6"
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                      <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
                       <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                     </div>
                     
@@ -461,13 +461,13 @@ const SearchSuppliers = () => {
                         <button
                           key={supplier.id}
                           onClick={() => setSelectedSupplier(supplier)}
-                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
+                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
                         >
                           <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
+                            <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
                               {supplier.name}
                             </h4>
-                            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#14B8A6] group-hover:translate-x-1 transition-all" />
+                            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
                           </div>
                           <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                             <MapPin className="w-4 h-4" />
@@ -477,7 +477,7 @@ const SearchSuppliers = () => {
                             {supplier.certifications.slice(0, 2).map((cert, idx) => (
                               <span
                                 key={idx}
-                                className="px-2 py-0.5 bg-[#14B8A6]/10 text-[#14B8A6] text-xs rounded-full font-medium"
+                                className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
                               >
                                 {cert}
                               </span>
@@ -507,11 +507,11 @@ const SearchSuppliers = () => {
             className="mb-8 text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
               <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Interactive Demo</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              <span className="text-[#14B8A6]">Try SearchPro+</span>
+              <span className="text-[#A8C5B8]">Try SearchPro+</span>
               <br />
               <span className="text-gray-900">in Action</span>
             </h2>
@@ -533,7 +533,7 @@ const SearchSuppliers = () => {
               <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
                 <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
-                  <Cpu className="w-5 h-5 text-[#14B8A6]" />
+                  <Cpu className="w-5 h-5 text-[#A8C5B8]" />
                   <span className="text-white text-sm">AI-Powered</span>
                 </div>
               </div>
@@ -542,7 +542,7 @@ const SearchSuppliers = () => {
               
               {/* Teal label */}
               <div className="mb-3 flex-shrink-0">
-                <span className="text-[#14B8A6] text-sm font-semibold">
+                <span className="text-[#A8C5B8] text-sm font-semibold">
                   Interactive Demo
                 </span>
               </div>
@@ -561,7 +561,7 @@ const SearchSuppliers = () => {
                     key={step}
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                       step <= currentStep
-                        ? 'bg-[#14B8A6] text-white'
+                        ? 'bg-[#A8C5B8] text-white'
                         : 'bg-gray-200 text-gray-400'
                     }`}
                   >
@@ -588,16 +588,16 @@ const SearchSuppliers = () => {
                     <div
                       className={`max-w-[80%] p-4 rounded-2xl ${
                         msg.role === 'user'
-                          ? 'bg-[#14B8A6] text-white rounded-br-none'
+                          ? 'bg-[#A8C5B8] text-white rounded-br-none'
                           : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
                       }`}
                     >
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                          <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                         </div>
                       )}
                       <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -614,15 +614,15 @@ const SearchSuppliers = () => {
                   >
                     <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
                           <Cpu className="w-3 h-3 text-white" />
                         </div>
-                        <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                        <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                         {isTyping && (
                           <div className="flex gap-1 ml-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                           </div>
                         )}
                       </div>
@@ -638,7 +638,7 @@ const SearchSuppliers = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-end"
                   >
-                    <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
+                    <div className="max-w-[80%] p-4 rounded-2xl bg-[#A8C5B8] text-white rounded-br-none">
                       <p className="text-sm font-medium">{userInput}</p>
                     </div>
                   </motion.div>
@@ -654,7 +654,7 @@ const SearchSuppliers = () => {
                   className="mt-6"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                    <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
                     <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                   </div>
                   
@@ -663,13 +663,13 @@ const SearchSuppliers = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
+                        className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
+                          <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
                             {supplier.name}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#14B8A6] group-hover:translate-x-1 transition-all" />
+                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                           <MapPin className="w-4 h-4" />
@@ -679,7 +679,7 @@ const SearchSuppliers = () => {
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-[#14B8A6]/10 text-[#14B8A6] text-xs rounded-full font-medium"
+                              className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
                             >
                               {cert}
                             </span>
@@ -706,11 +706,11 @@ const SearchSuppliers = () => {
             className="text-center mb-8 md:mb-16"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
               <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 px-4">
-              <span className="text-[#14B8A6]">Your next supplier,</span>
+              <span className="text-[#A8C5B8]">Your next supplier,</span>
               <br />
               <span className="text-black">just a click away.</span>
             </h2>
@@ -722,19 +722,19 @@ const SearchSuppliers = () => {
                 stat: "10x",
                 title: "faster supplier research",
                 features: ["Filtered results", "AI-based ranking systems", "Always up-to-date"],
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#A8BFC5] to-[#96ADB8]"
               },
               {
                 stat: "25M+",
                 title: "supplier profiles",
                 features: ["Global transparency", "Niche technologies", "Cross-sector searches"],
-                gradient: "from-[#14B8A6] to-[#0D9488]"
+                gradient: "from-[#A8C5B8] to-[#96B8AD]"
               },
               {
                 stat: "100x",
                 title: "more results per query with SearchPro+",
                 features: ["Greater variety in supplier profiles", "Better comparison opportunities", "Higher match rate"],
-                gradient: "from-purple-500 to-purple-600"
+                gradient: "from-[#A8BFC5] to-[#96ADB8]"
               }
             ].map((item, index) => (
               <motion.div
@@ -753,7 +753,7 @@ const SearchSuppliers = () => {
                     {/* Background gradient glow */}
                     <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity`}></div>
                     
-                    <CardTitle className="text-[#14B8A6] text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
+                    <CardTitle className="text-[#A8C5B8] text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
                     <CardDescription className="text-black text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
                   </CardHeader>
                   <CardContent className="p-4 md:p-6">
@@ -767,8 +767,8 @@ const SearchSuppliers = () => {
                           transition={{ delay: 0.2 + i * 0.1 }}
                           className="flex items-center gap-2 md:gap-3 text-gray-600 text-sm md:text-base"
                         >
-                          <div className="w-4 h-4 md:w-5 md:h-5 bg-[#14B8A6]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#14B8A6]" />
+                          <div className="w-4 h-4 md:w-5 md:h-5 bg-[#A8C5B8]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#A8C5B8]" />
                           </div>
                           <span>{feature}</span>
                         </motion.li>
@@ -795,11 +795,11 @@ const SearchSuppliers = () => {
             className="mb-6 md:mb-12"
           >
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
               <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Process</span>
             </div>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
-              <span className="text-[#14B8A6]">Product</span>
+              <span className="text-[#A8C5B8]">Product</span>
               <br />
               <span className="text-black">Overview.</span>
             </h2>
@@ -821,14 +821,14 @@ const SearchSuppliers = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 md:px-6 py-2 md:py-3 rounded-2xl text-sm md:text-base font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
-                    ? "bg-white text-[#14B8A6] shadow-lg border-2 border-[#14B8A6]/20 scale-105"
+                    ? "bg-white text-[#A8C5B8] shadow-lg border-2 border-[#A8C5B8]/20 scale-105"
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
                 <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
-                  activeTab === tab.id ? "bg-[#14B8A6]/10" : "bg-gray-100"
+                  activeTab === tab.id ? "bg-[#A8C5B8]/10" : "bg-gray-100"
                 }`}>
-                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#14B8A6]" : "text-gray-500"}`} />
+                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#A8C5B8]" : "text-gray-500"}`} />
                 </div>
                 {tab.label}
               </motion.button>
@@ -857,10 +857,10 @@ const SearchSuppliers = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#14B8A6]/5 to-transparent rounded-2xl hover:from-[#14B8A6]/10 transition-all group"
+                        className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#A8C5B8]/5 to-transparent rounded-2xl hover:from-[#A8C5B8]/10 transition-all group"
                       >
-                        <div className="w-10 h-10 bg-[#14B8A6]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                        <div className="w-10 h-10 bg-[#A8C5B8]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
                         </div>
                         <div className="flex-1">
                           <p className="font-semibold text-gray-900">{company.name}</p>
@@ -869,17 +869,17 @@ const SearchSuppliers = () => {
                       </motion.div>
                     ))}
                   </div>
-                  <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white hover:from-[#0F9B8E] hover:to-[#0A7A6E] rounded-full w-full py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                  <Button className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white hover:from-[#96B8AD] hover:to-[#8AA7A0] rounded-full w-full py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105">
                     Save to list
                   </Button>
                 </div>
               )}
               {activeTab === "save" && (
                 <div className="space-y-4">
-                  <div className="p-6 bg-gradient-to-br from-[#14B8A6]/5 to-blue-50 rounded-2xl border border-[#14B8A6]/20">
+                  <div className="p-6 bg-gradient-to-br from-[#A8C5B8]/5 to-gray-50 rounded-2xl border border-[#A8C5B8]/20">
                     <div className="flex items-start gap-3 mb-3">
-                      <div className="w-10 h-10 bg-[#14B8A6]/20 rounded-full flex items-center justify-center">
-                        <Save className="w-5 h-5 text-[#14B8A6]" />
+                      <div className="w-10 h-10 bg-[#A8C5B8]/20 rounded-full flex items-center justify-center">
+                        <Save className="w-5 h-5 text-[#A8C5B8]" />
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-gray-900 mb-2">Local List - Automotive Supplier EMEA</p>
@@ -887,8 +887,8 @@ const SearchSuppliers = () => {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <Button variant="outline" size="sm" className="rounded-full text-[#14B8A6] border-[#14B8A6]/30 hover:bg-[#14B8A6]/10">Share</Button>
-                      <Button variant="outline" size="sm" className="rounded-full text-[#14B8A6] border-[#14B8A6]/30 hover:bg-[#14B8A6]/10">Edit</Button>
+                      <Button variant="outline" size="sm" className="rounded-full text-[#A8C5B8] border-[#A8C5B8]/30 hover:bg-[#A8C5B8]/10">Share</Button>
+                      <Button variant="outline" size="sm" className="rounded-full text-[#A8C5B8] border-[#A8C5B8]/30 hover:bg-[#A8C5B8]/10">Edit</Button>
                       <Button variant="outline" size="sm" className="rounded-full text-red-500 border-red-300 hover:bg-red-50">Delete</Button>
                     </div>
                   </div>
@@ -905,7 +905,7 @@ const SearchSuppliers = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <Button variant="outline" className="rounded-full border-[#14B8A6]/30 text-[#14B8A6] hover:bg-[#14B8A6]/10 px-6 py-3">
+                        <Button variant="outline" className="rounded-full border-[#A8C5B8]/30 text-[#A8C5B8] hover:bg-[#A8C5B8]/10 px-6 py-3">
                           <FileText className="w-4 h-4 mr-2" />
                           {format}
                         </Button>
@@ -925,7 +925,7 @@ const SearchSuppliers = () => {
               <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
-              <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
+              <Button className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] hover:from-[#96B8AD] hover:to-[#8AA7A0] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
                 Get Started
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -946,7 +946,7 @@ const SearchSuppliers = () => {
             transition={{ duration: 0.6 }}
             className="max-w-2xl mb-16 md:mb-24"
           >
-            <p className="text-sm font-medium text-[#14B8A6] mb-4 tracking-wide uppercase">Technology Stack</p>
+            <p className="text-sm font-medium text-[#A8C5B8] mb-4 tracking-wide uppercase">Technology Stack</p>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Built for precision, <br />powered by AI
             </h2>
@@ -964,13 +964,13 @@ const SearchSuppliers = () => {
               className="group relative"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
                 01
               </div>
               
               {/* Icon */}
               <div className="mb-6">
-                <MessageSquare className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+                <MessageSquare className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
               </div>
               
               {/* Content */}
@@ -1001,13 +1001,13 @@ const SearchSuppliers = () => {
               className="group relative"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
                 02
               </div>
               
               {/* Icon */}
               <div className="mb-6">
-                <Globe className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+                <Globe className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
               </div>
               
               {/* Content */}
@@ -1038,13 +1038,13 @@ const SearchSuppliers = () => {
               className="group"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#14B8A6] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
                 03
               </div>
               
               {/* Icon */}
               <div className="mb-6">
-                <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-[#2563EB] group-hover:text-[#1D4ED8] transition-colors duration-300" strokeWidth={1.5} />
+                <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
               </div>
               
               {/* Content */}
@@ -1080,7 +1080,7 @@ const SearchSuppliers = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mb-16 md:mb-24"
           >
-            <p className="text-sm font-medium text-[#14B8A6] mb-4 tracking-wide uppercase">AI Capabilities</p>
+            <p className="text-sm font-medium text-[#A8C5B8] mb-4 tracking-wide uppercase">AI Capabilities</p>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Eight features that transform <br />procurement intelligence
             </h2>
@@ -1198,10 +1198,10 @@ const SearchSuppliers = () => {
                 onClick={() => setSelectedAIFeature(index)}
                 className="group cursor-pointer"
               >
-                <div className="bg-white border border-gray-200 hover:border-[#14B8A6] rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all duration-300 hover:shadow-xl">
+                <div className="bg-white border border-gray-200 hover:border-[#A8C5B8] rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all duration-300 hover:shadow-xl">
                   <div className="flex items-start gap-6">
                     {/* Number Badge */}
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-100 group-hover:bg-[#14B8A6] flex items-center justify-center transition-colors duration-300">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-100 group-hover:bg-[#A8C5B8] flex items-center justify-center transition-colors duration-300">
                       <span className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">
                         {feature.number}
                       </span>
@@ -1209,13 +1209,13 @@ const SearchSuppliers = () => {
                     
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#2563EB] transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 transition-colors duration-300">
                         {feature.title}
                       </h3>
                       <p className="text-base text-gray-600 leading-relaxed mb-4">
                         {feature.description}
                       </p>
-                      <div className="inline-flex items-center gap-2 text-[#14B8A6] text-sm font-semibold group-hover:gap-3 transition-all">
+                      <div className="inline-flex items-center gap-2 text-[#A8C5B8] text-sm font-semibold group-hover:gap-3 transition-all">
                         <span>Learn more</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
                       </div>
@@ -1238,11 +1238,11 @@ const SearchSuppliers = () => {
             className="text-center mb-6 md:mb-16"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
               <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">FAQ</span>
             </div>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
-              <span className="text-[#14B8A6]">We answer all questions</span>
+              <span className="text-[#A8C5B8]">We answer all questions</span>
               <br />
               <span className="text-black">about SearchPro+.</span>
             </h2>
@@ -1464,8 +1464,8 @@ const SearchSuppliers = () => {
               <div className="space-y-8 p-2">
                 {/* Header */}
                 <div className="border-b border-gray-200 pb-6">
-                  <div className="inline-block px-3 py-1 bg-[#14B8A6]/10 rounded-full mb-4">
-                    <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-wide">Feature {String(selectedAIFeature + 1).padStart(2, '0')}</span>
+                  <div className="inline-block px-3 py-1 bg-[#A8C5B8]/10 rounded-full mb-4">
+                    <span className="text-[#A8C5B8] text-xs font-bold uppercase tracking-wide">Feature {String(selectedAIFeature + 1).padStart(2, '0')}</span>
                   </div>
                   <DialogTitle className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
                     {feature.title}
@@ -1487,8 +1487,8 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="bg-gradient-to-br from-[#14B8A6]/10 to-white rounded-2xl p-6 border border-[#14B8A6]/20">
-                    <div className="inline-block px-3 py-1 bg-[#14B8A6] rounded-full mb-3">
+                  <div className="bg-gradient-to-br from-[#A8C5B8]/10 to-white rounded-2xl p-6 border border-[#A8C5B8]/20">
+                    <div className="inline-block px-3 py-1 bg-[#A8C5B8] rounded-full mb-3">
                       <span className="text-white text-xs font-bold uppercase tracking-wide">Procurement</span>
                     </div>
                     <p className="text-sm md:text-base text-gray-700 leading-relaxed">
@@ -1508,7 +1508,7 @@ const SearchSuppliers = () => {
 
                   {/* Real-World Application */}
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6">
-                    <div className="inline-block px-3 py-1 bg-[#14B8A6] rounded-full mb-3">
+                    <div className="inline-block px-3 py-1 bg-[#A8C5B8] rounded-full mb-3">
                       <span className="text-white text-xs font-bold uppercase tracking-wide">Example</span>
                     </div>
                     <p className="text-sm md:text-base text-gray-200 leading-relaxed">
@@ -1544,15 +1544,15 @@ const SearchSuppliers = () => {
                     </DialogTitle>
                     <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
                       <div className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
                         <span>{selectedSupplier.location}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Users className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
+                        <Users className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
                         <span>{selectedSupplier.employees} employees</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Factory className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
+                        <Factory className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
                         <span>Founded {selectedSupplier.founded}</span>
                       </div>
                     </div>
@@ -1567,16 +1567,16 @@ const SearchSuppliers = () => {
 
               {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card className="rounded-2xl border-[#14B8A6]/20">
+                <Card className="rounded-2xl border-[#A8C5B8]/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
-                    <p className="text-lg font-bold text-[#14B8A6]">{selectedSupplier.experience}</p>
+                    <p className="text-lg font-bold text-[#A8C5B8]">{selectedSupplier.experience}</p>
                   </CardContent>
                 </Card>
-                <Card className="rounded-2xl border-blue-500/20">
+                <Card className="rounded-2xl border-[#A8BFC5]/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Production Capacity</p>
-                    <p className="text-sm font-semibold text-blue-600">{selectedSupplier.capacity}</p>
+                    <p className="text-sm font-semibold text-gray-700">{selectedSupplier.capacity}</p>
                   </CardContent>
                 </Card>
                 <Card className="rounded-2xl border-gray-500/20">
@@ -1590,12 +1590,12 @@ const SearchSuppliers = () => {
               {/* Certifications */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-[#14B8A6]" />
+                  <Award className="w-5 h-5 text-[#A8C5B8]" />
                   Certifications & Standards
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedSupplier.certifications.map((cert: string) => (
-                    <Badge key={cert} className="bg-[#14B8A6]/10 text-[#14B8A6] hover:bg-[#14B8A6]/20 border-[#14B8A6]/30">
+                    <Badge key={cert} className="bg-[#A8C5B8]/10 text-[#A8C5B8] hover:bg-[#A8C5B8]/20 border-[#A8C5B8]/30">
                       {cert}
                     </Badge>
                   ))}
@@ -1605,7 +1605,7 @@ const SearchSuppliers = () => {
               {/* Capabilities */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-[#14B8A6]" />
+                  <Target className="w-5 h-5 text-[#A8C5B8]" />
                   Core Capabilities
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
