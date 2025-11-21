@@ -259,95 +259,55 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Fixed height, doesn't expand */}
+      {/* Hero Section - Minimalist Design */}
       <section 
-        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible"
-        style={{ 
-          background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)",
-          minHeight: "60vh"
-        }}
+        data-nav-theme="dark"
+        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible bg-gray-900"
+        style={{ minHeight: "60vh" }}
       >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
-            style={{ background: "radial-gradient(circle, #14B8A6 0%, transparent 70%)" }}
-            animate={{
-              x: ["-10%", "10%", "-10%"],
-              y: ["-10%", "10%", "-10%"],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute right-0 bottom-0 w-96 h-96 rounded-full blur-3xl opacity-10"
-            style={{ background: "radial-gradient(circle, #0D9488 0%, transparent 70%)" }}
-            animate={{
-              x: ["10%", "-10%", "10%"],
-              y: ["10%", "-10%", "10%"],
-              scale: [1.2, 1, 1.2]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start">
             {/* Left Content - Takes 2 columns */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-[#14B8A6]/10 rounded-full mb-4 md:mb-6 border border-[#14B8A6]/20"
               >
-                <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
-                <span className="text-xs md:text-sm font-semibold text-[#14B8A6]">AI-Powered Supplier Discovery</span>
+                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
+                <span className="text-xs md:text-sm font-medium text-[#14B8A6]">AI-Powered Discovery</span>
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
-                <span className="text-[#14B8A6]">Find suppliers</span>
+                <span className="text-white">Find suppliers</span>
                 <br />
-                <span className="text-white">worldwide in real-time.</span>
+                <span className="text-[#14B8A6]">worldwide.</span>
               </h1>
               
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 {[
-                  "25+ million supplier profiles",
-                  "Relevant supplier data",
-                  "Save and export options"
+                  "25M+ global suppliers",
+                  "Real-time verification",
+                  "Instant export"
                 ].map((text, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-2 md:gap-3 text-white group"
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                    className="flex items-center gap-2 md:gap-3 text-gray-300"
                   >
-                    <div className="w-5 h-5 md:w-6 md:h-6 bg-[#14B8A6]/20 rounded-full flex items-center justify-center group-hover:bg-[#14B8A6]/30 transition-colors">
-                      <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-[#14B8A6]" />
-                    </div>
+                    <div className="w-1.5 h-1.5 bg-[#14B8A6] rounded-full"></div>
                     <span className="text-sm md:text-base lg:text-lg">{text}</span>
                   </motion.div>
                 ))}
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="hidden"
-              >
-                <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
-                  Get Started
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
             </motion.div>
 
             {/* Right Content - Interactive Demo Search - Takes 3 columns - YVOO Card Style - Desktop Only */}
@@ -1333,70 +1293,43 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 md:py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 50%, rgb(15, 23, 42) 100%)" }}>
-        {/* Animated gradient orbs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, #14B8A6 0%, transparent 70%)", opacity: 0.2 }}
-            animate={{
-              x: ["0%", "100%", "0%"],
-              y: ["0%", "100%", "0%"],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute right-0 bottom-0 w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, #0D9488 0%, transparent 70%)", opacity: 0.15 }}
-            animate={{
-              x: ["0%", "-100%", "0%"],
-              y: ["0%", "-100%", "0%"],
-              scale: [1.5, 1, 1.5]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#14B8A6]/10 rounded-full mb-6 border border-[#14B8A6]/20"
-            >
-              <Sparkles className="w-4 h-4 text-[#14B8A6]" />
-              <span className="text-xs md:text-sm font-semibold text-[#14B8A6]">Find companies</span>
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8"
-            >
-              Start searching today
-            </motion.h2>
+      {/* CTA Section - Minimalist Design */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+          <div className="max-w-4xl mx-auto text-center">
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white rounded-3xl p-2 flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-4 max-w-2xl mx-auto mb-8 shadow-2xl"
+              transition={{ duration: 0.5 }}
+              className="mb-12"
             >
-              <div className="flex items-center gap-2 flex-1 px-4">
-                <Search className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />
+              <p className="text-sm font-medium text-[#14B8A6] mb-4 uppercase tracking-wide">Get Started</p>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                Start discovering suppliers
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Join leading procurement teams using AI to find and verify suppliers globally
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="bg-gray-50 rounded-2xl border border-gray-200 p-2 flex flex-col md:flex-row items-stretch md:items-center gap-2 max-w-2xl mx-auto mb-8"
+            >
+              <div className="flex items-center gap-3 flex-1 px-4">
+                <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Ask our AI to find the right companies"
-                  className="flex-1 outline-none text-sm md:text-base text-gray-600 bg-transparent py-2"
+                  placeholder="What are you looking for?"
+                  className="flex-1 outline-none text-base text-gray-900 bg-transparent py-3"
                 />
               </div>
-              <Button className="bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:scale-105 transition-all">
+              <Button className="bg-gray-900 hover:bg-gray-800 text-white rounded-xl px-8 py-4 text-base transition-all">
                 Search
               </Button>
             </motion.div>
@@ -1405,22 +1338,17 @@ const SearchSuppliers = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="flex gap-3 justify-center flex-wrap"
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="flex gap-2 justify-center flex-wrap text-sm text-gray-500"
             >
-              <span className="text-gray-400 text-sm">Popular:</span>
-              {["Quantum Chips", "Quantum Simulations", "Precision Farming", "3D Bin Picking"].map((tag, index) => (
-                <motion.button
+              <span>Popular:</span>
+              {["CNC Machining", "Injection Molding", "PCB Assembly", "Metal Stamping"].map((tag) => (
+                <button
                   key={tag}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-all border border-white/10 hover:border-[#14B8A6]/30"
+                  className="px-3 py-1 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 rounded-full transition-all"
                 >
                   {tag}
-                </motion.button>
+                </button>
               ))}
             </motion.div>
           </div>
