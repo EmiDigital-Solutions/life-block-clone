@@ -686,7 +686,7 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-[#2563EB] text-center mb-20">
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-[#A8BFC5] text-center mb-20">
             Our History
           </motion.h2>
           
@@ -697,8 +697,8 @@ const AboutUs = () => {
               {timelineData.map(item => <button key={item.year} onClick={() => setSelectedYear(item.year)} className="flex flex-col items-center gap-2 group">
                   <motion.div whileHover={{
                 scale: 1.2
-              }} className={`w-4 h-4 rounded-full transition-all ${selectedYear === item.year ? 'bg-[#14B8A6] ring-4 ring-[#14B8A6]/20' : 'bg-gray-300 hover:bg-gray-400'}`} />
-                  <span className={`text-sm font-semibold ${selectedYear === item.year ? 'text-[#14B8A6]' : 'text-gray-400'}`}>
+              }} className={`w-4 h-4 rounded-full transition-all ${selectedYear === item.year ? 'bg-[#A8C5B8] ring-4 ring-[#A8C5B8]/20' : 'bg-gray-300 hover:bg-gray-400'}`} />
+                  <span className={`text-sm font-semibold ${selectedYear === item.year ? 'text-[#A8C5B8]' : 'text-gray-400'}`}>
                     {item.year}
                   </span>
                 </button>)}
@@ -721,7 +721,7 @@ const AboutUs = () => {
                     </div>
                   </div>
                   <div className="md:col-span-2 bg-white border border-gray-200 rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-[#2563EB]">{selectedTimeline.title}</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-[#A8BFC5]">{selectedTimeline.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
@@ -764,13 +764,13 @@ const AboutUs = () => {
             once: true
           }} className="order-1 lg:order-2 space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                YVOO <span className="text-[#2563EB]">Leadership</span>
+                YVOO <span className="text-[#A8BFC5]">Leadership</span>
               </h2>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
-              <Button variant="outline" className="border-2 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full px-8 py-6 text-lg">
+              <Button variant="outline" className="border-2 border-[#A8C5B8] text-[#A8C5B8] hover:bg-[#A8C5B8]/10 rounded-full px-8 py-6 text-lg">
                 Learn More
               </Button>
             </motion.div>
@@ -790,13 +790,13 @@ const AboutUs = () => {
         }} viewport={{
           once: true
         }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-[#2563EB]">Locations</span>
+            Our <span className="text-[#A8BFC5]">Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Location List */}
             <div className="lg:col-span-2 space-y-3">
-              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-[#14B8A6] text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
+              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-[#A8C5B8] text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
                   <span className="font-semibold">{location.name}</span>
                 </button>)}
             </div>
@@ -819,15 +819,15 @@ const AboutUs = () => {
                 </h3>
                 <div className="space-y-4 text-lg md:text-xl">
                   <p className="text-gray-600">
-                    <strong className="text-[#2563EB]">Address:</strong><br />
+                    <strong className="text-[#A8BFC5]">Address:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].address}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-[#2563EB]">Phone:</strong><br />
+                    <strong className="text-[#A8BFC5]">Phone:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].phone}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-[#2563EB]">Email:</strong><br />
+                    <strong className="text-[#A8BFC5]">Email:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].email}
                   </p>
                 </div>
@@ -872,10 +872,10 @@ const AboutUs = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button className="bg-white hover:bg-white/90 text-[#14B8A6] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
+              <Button className="bg-white hover:bg-white/90 text-[#A8C5B8] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
                 REQUEST DEMO
               </Button>
-              <Button asChild className="bg-[#14B8A6] hover:bg-[#14B8A6]/90 text-white px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
+              <Button asChild className="bg-[#A8C5B8] hover:bg-[#A8C5B8]/90 text-white px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
                 <a href="/auditors">
                   ONBOARD AS EXPERT
                 </a>
