@@ -95,45 +95,72 @@ All colors MUST be HSL.
   }
 }
 
-/* Pixelated icon styles - applies to ALL lucide-react icons globally */
-/* This creates the chunky, blocky 8-bit pixel effect matching the reference */
+/* Pixelated 8-bit icon styles - Minimalistic pixel art aesthetic */
+/* Forces ALL Lucide icons to display as chunky, blocky pixel art with no fills */
 .lucide, 
 [class*="lucide-"],
 svg[class*="lucide"] {
-  /* Apply SVG pixelation filter */
-  filter: url(#pixelate-icon);
+  /* Remove ALL fills - outline only */
+  fill: none !important;
   
-  /* Force sharp rendering */
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  /* Force pixelated rendering */
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: -webkit-crisp-edges !important;
+  image-rendering: pixelated !important;
+  image-rendering: crisp-edges !important;
   
   /* Remove anti-aliasing completely */
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: grayscale;
-  shape-rendering: crispEdges;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  shape-rendering: crispEdges !important;
   
-  /* Chunkier strokes for pixel aesthetic */
-  stroke-width: 3.5;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
+  /* Chunky pixel strokes */
+  stroke-width: 2.5 !important;
+  stroke-linecap: square !important;
+  stroke-linejoin: miter !important;
   
-  /* Slight contrast boost for pixel pop */
-  -webkit-filter: url(#pixelate-icon) contrast(1.2);
+  /* Force monochrome - use current color (typically black) */
+  stroke: currentColor !important;
+  
+  /* Pixelation effect via transform */
+  transform: scale(1.0) !important;
+  transform-origin: center !important;
+  
+  /* Additional sharpening */
+  filter: contrast(2) brightness(1) !important;
+}
+
+/* Remove any child fills */
+.lucide path,
+.lucide circle,
+.lucide rect,
+.lucide line,
+.lucide polyline,
+.lucide polygon,
+[class*="lucide-"] path,
+[class*="lucide-"] circle,
+[class*="lucide-"] rect,
+[class*="lucide-"] line,
+[class*="lucide-"] polyline,
+[class*="lucide-"] polygon {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: inherit !important;
 }
 
 .pixel-icon {
-  filter: url(#pixelate-icon);
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: grayscale;
-  shape-rendering: crispEdges;
-  stroke-width: 3.5;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
+  fill: none !important;
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  shape-rendering: crispEdges !important;
+  stroke-width: 2.5 !important;
+  stroke-linecap: square !important;
+  stroke-linejoin: miter !important;
+  stroke: currentColor !important;
+  filter: contrast(2) brightness(1) !important;
 }
 
 @layer base {
