@@ -1332,7 +1332,7 @@ const SearchSuppliers = () => {
               className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
             >
               <div className="flex items-center gap-3 flex-1 px-4">
-                <Search className="w-5 h-5 text-[#14B8A6]" />
+                <Search className="w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="What are you looking for? (e.g., CNC machining, ISO 9001...)"
@@ -1340,10 +1340,7 @@ const SearchSuppliers = () => {
                 />
               </div>
               <Button 
-                className="text-white rounded-full px-8 py-6 text-base font-semibold transition-all hover:shadow-lg"
-                style={{ 
-                  background: "linear-gradient(135deg, #14B8A6, #0D9488)",
-                }}
+                className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-6 py-3 text-sm font-semibold transition-all hover:shadow-lg"
               >
                 Start Search
               </Button>
