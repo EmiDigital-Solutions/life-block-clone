@@ -141,7 +141,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               <motion.div
                 className="absolute w-[600px] h-[600px] rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, transparent 70%)',
                   filter: 'blur(40px)'
                 }}
                 animate={{
@@ -177,9 +177,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.2 }}>
                 <defs>
                   <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
-                    <stop offset="50%" style={{ stopColor: '#14B8A6', stopOpacity: 0.8 }} />
-                    <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0 }} />
+                    <stop offset="0%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
+                    <stop offset="50%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0.8 }} />
+                    <stop offset="100%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
                   </linearGradient>
                 </defs>
                 
@@ -397,7 +397,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
                 <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
@@ -408,7 +408,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span style={{ color: '#14B8A6' }}>Auditor Network</span>
+                Global On-Demand<br /><span className="text-primary">Auditor Network</span>
               </motion.h2>
 
               <motion.p

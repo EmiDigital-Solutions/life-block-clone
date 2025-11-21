@@ -396,7 +396,7 @@ const AboutUs = () => {
             duration: 0.8
           }} className="space-y-6">
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                Technology and <span className="text-[#2563EB]">Innovation</span>
+                Technology and <span className="text-primary">Innovation</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 [Please provide the text content you'd like to add here]
@@ -446,8 +446,8 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-[#2563EB]">Principles</span>
+          }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
+            Our <span className="text-primary">Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -464,7 +464,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.1
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-[#2563EB]">Innovation</h3>
+                <h3 className="text-2xl font-bold text-primary">Innovation</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
@@ -482,7 +482,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.2
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-[#14B8A6]">Customer-Oriented Approach</h3>
+                <h3 className="text-2xl font-bold text-secondary">Customer-Oriented Approach</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
@@ -499,7 +499,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.3
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-[#2563EB]">Global & Personalized</h3>
+                <h3 className="text-2xl font-bold text-primary">Global & Personalized</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
@@ -516,7 +516,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.4
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-[#14B8A6]">Ethical AI</h3>
+                <h3 className="text-2xl font-bold text-secondary">Ethical AI</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
                 </p>
@@ -839,7 +839,7 @@ const AboutUs = () => {
 
       {/* SECTION 9: CTA FOOTER SECTION */}
       <section data-nav-theme="dark" className="py-32 px-4 sm:px-6 lg:px-12" style={{
-      background: "linear-gradient(135deg, rgb(15, 135, 117), rgb(20, 184, 166), rgb(45, 212, 191))"
+      background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))"
     }}>
         <div className="container mx-auto">
           <motion.div initial={{

@@ -63,8 +63,8 @@ const ROITimelineChart = () => {
                 <stop offset="100%" stopColor="#9CA3AF" />
               </linearGradient>
               <linearGradient id="scanproLine" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#14B8A6" />
-                <stop offset="100%" stopColor="#10B981" />
+                <stop offset="0%" stopColor="#A8C5B8" />
+                <stop offset="100%" stopColor="#A8C5B8" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#374151" vertical={false} />
