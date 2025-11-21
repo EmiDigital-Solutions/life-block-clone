@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
@@ -15,6 +15,8 @@ import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 import {
   Dialog,
   DialogContent,
@@ -1336,6 +1338,54 @@ const fallbackAuditors = [
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
+// 3D Step Visuals
+const Step3DVisual = ({ stepNumber }: { stepNumber: number }) => {
+  return (
+    <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <Step3DShape stepNumber={stepNumber} />
+    </Canvas>
+  );
+};
+
+const Step3DShape = ({ stepNumber }: { stepNumber: number }) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
+      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.2;
+    }
+  });
+
+  const getGeometry = () => {
+    switch (stepNumber) {
+      case 0:
+        return <torusGeometry args={[1, 0.4, 16, 100]} />;
+      case 1:
+        return <octahedronGeometry args={[1.2, 0]} />;
+      case 2:
+        return <icosahedronGeometry args={[1.2, 0]} />;
+      case 3:
+        return <boxGeometry args={[1.5, 1.5, 1.5]} />;
+      default:
+        return <sphereGeometry args={[1, 32, 32]} />;
+    }
+  };
+
+  return (
+    <mesh ref={meshRef}>
+      {getGeometry()}
+      <meshStandardMaterial
+        color="#A8C5B8"
+        metalness={0.3}
+        roughness={0.4}
+      />
+    </mesh>
+  );
+};
+
 // How Does YVOO Work Carousel - Card Design with Original Visuals
 const HowItWorksCarousel = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -1345,219 +1395,25 @@ const HowItWorksCarousel = () => {
       number: "01",
       title: "Place an Audit Request with 1 Click",
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          {/* 3D Earth */}
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
-            <Earth3D width="100%" height="100%" showPins={false} />
-            
-            {/* Green Location Marker */}
-            <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '30%', left: '70%' }}
-            >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] animate-ping opacity-40" />
-            </motion.div>
-            
-            {/* 1-Click Button */}
-            <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '32%', left: '73%' }}
-            >
-              <div className="bg-[#A8C5B8] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      )
+      feature: "Quick integration with ERP systems"
     },
     {
       number: "02",
       title: "Auto-Dispatch to Local Auditors",
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
-            <Earth3D width="100%" height="100%" showPins={true} />
-          </div>
-        </div>
-      )
+      feature: "Global network of certified auditors"
     },
     {
       number: "03",
       title: "Monitor Audits in Real-Time",
       description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          {/* Chat Interface - Matching height with other steps */}
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] relative z-10 ml-6 sm:ml-12 flex flex-col justify-center">
-            {/* User Message with looping typing animation */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
-              </div>
-              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none flex-1">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
-                <div className="space-y-1 sm:space-y-1.5">
-                  <motion.div 
-                    animate={{ width: ["0rem", "3rem", "3rem", "0rem"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1] }}
-                    className="h-1 sm:h-2 bg-white/50 rounded"
-                  />
-                  <motion.div 
-                    animate={{ width: ["0rem", "4rem", "4rem", "0rem"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.2 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-32"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            {/* Auditor Message with looping typing animation */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-2 sm:mb-4 justify-end">
-              <div className="bg-[#96B8AD] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tr-none flex-1">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">Auditor</p>
-                <div className="space-y-1 sm:space-y-1.5">
-                  <motion.div 
-                    animate={{ width: ["0rem", "3.5rem", "3.5rem", "0rem"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 0.5 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded"
-                  />
-                  <motion.div 
-                    animate={{ width: ["0rem", "4.5rem", "4.5rem", "0rem"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.7 }}
-                    className="h-1 sm:h-2 bg-white/50 rounded sm:w-36"
-                  />
-                </div>
-              </div>
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="user" className="w-3 h-3 sm:w-5 sm:h-5" />
-              </div>
-            </div>
-            
-            {/* User Message 2 with looping typing animation */}
-            <div className="flex items-start gap-1.5 sm:gap-3 mb-3 sm:mb-6">
-              <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-3 h-3 sm:w-5 sm:h-5" />
-              </div>
-              <div className="bg-[#A8C5B8] text-white px-2 py-1.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl rounded-tl-none">
-                <p className="text-[8px] sm:text-xs font-bold mb-1 sm:mb-2">You</p>
-                <motion.div 
-                  animate={{ width: ["0rem", "2.5rem", "2.5rem", "0rem"] }}
-                  transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 1 }}
-                  className="h-1 sm:h-2 bg-white/50 rounded sm:w-20"
-                />
-              </div>
-            </div>
-            
-            {/* Status Icons with continuous animation */}
-            <div className="flex items-center justify-center gap-2 sm:gap-4 pt-2 sm:pt-4 border-t border-gray-200">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8]/20 flex items-center justify-center"
-              >
-                <PixelIcon name="checkbox-on" className="w-3.5 h-3.5 sm:w-6 sm:h-6" color="#A8C5B8" />
-              </motion.div>
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-8 h-8 sm:w-14 sm:h-14 rounded-full bg-[#A8C5B8] flex items-center justify-center shadow-lg"
-              >
-                <PixelIcon name="message" className="w-4 h-4 sm:w-7 sm:h-7" />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      )
+      feature: "Direct communication channel"
     },
     {
       number: "04",
       title: "Receive Complete Reports",
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-white rounded-xl sm:rounded-3xl p-2.5 sm:p-5 md:p-6 shadow-2xl w-full max-w-[140px] sm:max-w-[280px] md:max-w-[310px] h-[140px] sm:h-[280px] md:h-[360px] flex flex-col justify-center">
-            {/* Report Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-2 sm:mb-4"
-            >
-              <div className="flex items-center justify-between mb-2 sm:mb-4">
-              <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-7 h-7 sm:w-12 sm:h-12" color="#A8C5B8" />
-                </div>
-                <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-9 h-9 sm:w-16 sm:h-16" color="#A8C5B8" />
-                </div>
-              </div>
-              
-              {/* Report Lines */}
-              <div className="space-y-1 sm:space-y-2">
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-1.5 sm:h-3 bg-gray-200 rounded w-4/6"></div>
-              </div>
-            </motion.div>
-            
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-2 sm:mb-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="bg-[#A8C5B8]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
-              >
-                <div className="text-base sm:text-2xl font-bold text-[#A8C5B8] mb-1 sm:mb-2">95%</div>
-                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-                className="bg-[#96B8AD]/10 rounded-lg sm:rounded-xl p-2 sm:p-4 text-center"
-              >
-                <div className="text-base sm:text-2xl font-bold text-[#96B8AD] mb-1 sm:mb-2">A+</div>
-                <div className="h-0.5 sm:h-1 bg-gray-300 rounded mx-auto w-6 sm:w-12"></div>
-              </motion.div>
-            </div>
-            
-            {/* Chart Bars */}
-            <div className="flex items-end gap-1 sm:gap-2 h-10 sm:h-16 mb-2 sm:mb-4">
-              {[60, 80, 95, 70].map((height, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${height}%` }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                  className={`rounded-t flex-1 ${
-                    i % 2 === 0 ? 'bg-[#A8C5B8]' : 'bg-[#96B8AD]'
-                  }`}
-                ></motion.div>
-              ))}
-            </div>
-            
-            {/* Download Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-center font-bold flex items-center justify-center gap-1.5 sm:gap-3 shadow-lg"
-            >
-              <PixelIcon name="shield" className="w-3 h-3 sm:w-5 sm:h-5" />
-              <span className="text-xs sm:text-base">Report Ready</span>
-            </motion.div>
-          </div>
-        </div>
-      )
+      feature: "AI-powered insights and analytics"
     }
   ];
 
@@ -1569,35 +1425,11 @@ const HowItWorksCarousel = () => {
     setCurrentStep((prev) => (prev - 1 + steps.length) % steps.length);
   };
 
-  // Touch swipe handlers
-  const [touchStart, setTouchStart] = React.useState(0);
-  const [touchEnd, setTouchEnd] = React.useState(0);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      // Swiped left, go to next
-      nextStep();
-    }
-
-    if (touchStart - touchEnd < -75) {
-      // Swiped right, go to previous
-      prevStep();
-    }
-  };
-
   return (
     <section 
       data-nav-theme="light"
-      className="relative py-6 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-12"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12"
+      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -1605,118 +1437,100 @@ const HowItWorksCarousel = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-6 sm:mb-12 md:mb-16"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="flex items-center justify-center gap-3 mb-2 sm:mb-4">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#A8C5B8]"></div>
-            <span className="text-[10px] sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+            <span className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
           </div>
-          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             How does YVOO Work
           </h2>
-          <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Four simple steps to transform your supplier audit process
           </p>
         </motion.div>
 
-        {/* Carousel Container */}
-        <div className="relative">
-          {/* Cards Display */}
-          <div 
-            className="overflow-x-hidden overflow-y-visible pb-0 sm:pb-20 md:pb-24"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <motion.div 
-              className="flex transition-transform duration-500 ease-out"
-              animate={{ x: `-${currentStep * 100}%` }}
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mb-12">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative group"
             >
-              {steps.map((step, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-0 md:px-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-2xl sm:rounded-2xl md:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible h-full">
-                      {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-l-2xl sm:rounded-l-2xl md:rounded-l-3xl p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
-                        {step.visual}
-                        
-                        {/* Decorative element */}
-                        <div className="absolute top-1 sm:top-4 left-1 sm:left-4 text-[40px] sm:text-[80px] font-bold text-[#A8C5B8]/10 leading-none">
-                          {step.number}
-                        </div>
-                      </div>
-
-                      {/* Right Side - Content */}
-                      <div className="p-4 sm:p-8 md:p-12">
-                        <span className="inline-block px-2 sm:px-4 py-0.5 sm:py-1.5 bg-[#A8C5B8]/10 text-[#A8C5B8] rounded-full text-[10px] sm:text-sm font-semibold mb-2 sm:mb-4 md:mb-6">
-                          Step {step.number}
-                        </span>
-                        
-                        <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-2 sm:mb-4 md:mb-6 leading-tight">
-                          {step.title}
-                        </h3>
-                        
-                        <p className="text-xs sm:text-base md:text-lg text-gray-600 leading-snug sm:leading-relaxed mb-3 sm:mb-6 md:mb-8">
-                          {step.description}
-                        </p>
-
-                        {/* Features list - Clean minimal design without icons */}
-                        <p className="text-xs sm:text-base text-gray-700">
-                          {index === 0 && "Quick integration with ERP systems"}
-                          {index === 1 && "Global network of certified auditors"}
-                          {index === 2 && "Direct communication channel"}
-                          {index === 3 && "AI-powered insights and analytics"}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
+              {/* 3D Visual Container */}
+              <div className="relative bg-white rounded-3xl shadow-lg overflow-hidden mb-6 h-[300px] sm:h-[400px] transition-all duration-300 group-hover:shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100">
+                  <Suspense fallback={<div className="w-full h-full flex items-center justify-center"><div className="text-gray-400">Loading...</div></div>}>
+                    <Step3DVisual stepNumber={index} />
+                  </Suspense>
                 </div>
-              ))}
+                
+                {/* Step Number Overlay */}
+                <div className="absolute top-6 left-6 text-6xl sm:text-7xl font-bold text-[#A8C5B8]/10 leading-none">
+                  {step.number}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="px-2">
+                <span className="inline-block px-4 py-1.5 bg-[#A8C5B8]/10 text-[#A8C5B8] rounded-full text-sm font-semibold mb-4">
+                  Step {step.number}
+                </span>
+                
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                  {step.title}
+                </h3>
+                
+                <p className="text-base text-gray-600 leading-relaxed mb-4">
+                  {step.description}
+                </p>
+
+                <p className="text-sm font-medium text-[#A8C5B8]">
+                  {step.feature}
+                </p>
+              </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={prevStep}
+            className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
+            aria-label="Previous step"
+          >
+            <PixelIcon name="arrow-right" className="w-6 h-6 rotate-180" />
+          </button>
+
+          <div className="flex items-center gap-3">
+            {steps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentStep(index)}
+                aria-label={`Go to step ${index + 1}`}
+              >
+                <div className={`transition-all ${
+                  index === currentStep
+                    ? 'w-12 h-3 bg-[#A8C5B8] rounded-full'
+                    : 'w-3 h-3 bg-gray-300 rounded-full hover:bg-[#A8C5B8]/50'
+                }`} />
+              </button>
+            ))}
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-10 md:mt-12">
-            {/* Arrow Buttons */}
-            <button
-              onClick={prevStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
-              aria-label="Previous step"
-            >
-              <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
-            </button>
-
-            {/* Step Indicators */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {steps.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentStep(index)}
-                  aria-label={`Go to step ${index + 1}`}
-                >
-                  <div className={`transition-all ${
-                    index === currentStep
-                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-[#A8C5B8] rounded-full'
-                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-[#A8C5B8]/50'
-                  }`} />
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={nextStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
-              aria-label="Next step"
-            >
-              <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          </div>
+          <button
+            onClick={nextStep}
+            className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
+            aria-label="Next step"
+          >
+            <PixelIcon name="arrow-right" className="w-6 h-6" />
+          </button>
         </div>
       </div>
     </section>
