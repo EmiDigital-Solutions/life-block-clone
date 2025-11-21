@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Brain, Sparkles, Zap, Search, Target, Network, Workflow, Clock, CheckCircle } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { HowItWorksSection } from "./HowItWorksSection";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";

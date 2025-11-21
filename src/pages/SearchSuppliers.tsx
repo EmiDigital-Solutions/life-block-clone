@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb, MessageSquare } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Menu, ChevronDown } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import connectimusLogo from "@/assets/connectimus-o-logo.png";

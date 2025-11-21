@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import founderPortrait from "@/assets/founder-portrait.jpg";
 import { Factory, CheckCircle, Award, Package, Users, Clock, AlertTriangle, Cog, ArrowRight } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 import { Card } from "@/components/ui/card";
 import {
   Dialog,
