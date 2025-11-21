@@ -968,13 +968,13 @@ const ComplianceStandardsGrid = () => {
               </p>
 
               {/* Click indicator */}
-              <div className="text-[10px] sm:text-xs font-semibold text-[#14B8A6] transition-opacity flex items-center justify-center gap-1">
+              <div className="text-[10px] sm:text-xs font-semibold text-[#A8C5B8] transition-opacity flex items-center justify-center gap-1">
                 Click to learn more
                 <PixelIcon name="arrow-right" className="w-3 h-3" />
               </div>
 
               {/* Hover effect overlay */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-[#14B8A6] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-3xl border-2 border-[#A8C5B8] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.button>
           );
         })}
@@ -994,7 +994,7 @@ const ComplianceStandardsGrid = () => {
                     <DialogTitle className="text-2xl font-bold text-gray-900">
                       {selectedStandard.name}
                     </DialogTitle>
-                    <p className="text-sm font-semibold text-[#14B8A6] mt-1">
+                    <p className="text-sm font-semibold text-[#A8C5B8] mt-1">
                       {selectedStandard.description}
                     </p>
                   </div>
@@ -1003,7 +1003,7 @@ const ComplianceStandardsGrid = () => {
               <DialogDescription className="text-base text-gray-700 leading-relaxed">
                 {selectedStandard.details}
               </DialogDescription>
-              <div className="mt-6 p-4 bg-[#14B8A6]/5 rounded-xl border border-[#14B8A6]/20">
+              <div className="mt-6 p-4 bg-[#A8C5B8]/5 rounded-xl border border-[#A8C5B8]/20">
                 <p className="text-sm text-gray-700">
                   <strong className="text-gray-900">✓ YVOO ScanPro+</strong> ensures full compliance with {selectedStandard.name} through our standardized audit processes, comprehensive documentation, and AI-powered verification systems.
                 </p>
@@ -1057,7 +1057,7 @@ const MobileCapabilitiesSection = ({ features }: { features: any[] }) => {
                   
                   {/* Teal label */}
                   <div className="mb-3 flex-shrink-0">
-                    <span className="text-[#14B8A6] text-sm font-semibold">
+                    <span className="text-[#A8C5B8] text-sm font-semibold">
                       {feature.label}
                     </span>
                   </div>
@@ -1358,8 +1358,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#14B8A6] animate-ping opacity-40" />
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1369,7 +1369,7 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#14B8A6] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+              <div className="bg-[#A8C5B8] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
                 <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                 <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
@@ -1493,10 +1493,10 @@ const HowItWorksCarousel = () => {
             >
               <div className="flex items-center justify-between mb-2 sm:mb-4">
               <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-7 h-7 sm:w-12 sm:h-12" color="#14B8A6" />
+                  <PixelIcon name="analytics" className="w-7 h-7 sm:w-12 sm:h-12" color="#A8C5B8" />
                 </div>
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-9 h-9 sm:w-16 sm:h-16" color="#14B8A6" />
+                  <PixelIcon name="checkbox-on" className="w-9 h-9 sm:w-16 sm:h-16" color="#A8C5B8" />
                 </div>
               </div>
               
@@ -1608,7 +1608,7 @@ const HowItWorksCarousel = () => {
           className="text-center mb-6 sm:mb-12 md:mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-2 sm:mb-4">
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#14B8A6]"></div>
+            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#A8C5B8]"></div>
             <span className="text-[10px] sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
           </div>
           <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-2 sm:mb-4">
@@ -1647,14 +1647,14 @@ const HowItWorksCarousel = () => {
                         {step.visual}
                         
                         {/* Decorative element */}
-                        <div className="absolute top-1 sm:top-4 left-1 sm:left-4 text-[40px] sm:text-[80px] font-bold text-[#14B8A6]/10 leading-none">
+                        <div className="absolute top-1 sm:top-4 left-1 sm:left-4 text-[40px] sm:text-[80px] font-bold text-[#A8C5B8]/10 leading-none">
                           {step.number}
                         </div>
                       </div>
 
                       {/* Right Side - Content */}
                       <div className="p-4 sm:p-8 md:p-12">
-                        <span className="inline-block px-2 sm:px-4 py-0.5 sm:py-1.5 bg-[#14B8A6]/10 text-[#14B8A6] rounded-full text-[10px] sm:text-sm font-semibold mb-2 sm:mb-4 md:mb-6">
+                        <span className="inline-block px-2 sm:px-4 py-0.5 sm:py-1.5 bg-[#A8C5B8]/10 text-[#A8C5B8] rounded-full text-[10px] sm:text-sm font-semibold mb-2 sm:mb-4 md:mb-6">
                           Step {step.number}
                         </span>
                         
@@ -1686,7 +1686,7 @@ const HowItWorksCarousel = () => {
             {/* Arrow Buttons */}
             <button
               onClick={prevStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
               aria-label="Previous step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
@@ -1702,8 +1702,8 @@ const HowItWorksCarousel = () => {
                 >
                   <div className={`transition-all ${
                     index === currentStep
-                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-[#14B8A6] rounded-full'
-                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-[#14B8A6]/50'
+                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-[#A8C5B8] rounded-full'
+                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-[#A8C5B8]/50'
                   }`} />
                 </button>
               ))}
@@ -1711,7 +1711,7 @@ const HowItWorksCarousel = () => {
 
             <button
               onClick={nextStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#14B8A6]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
               aria-label="Next step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -1951,7 +1951,7 @@ const ScanProPlus = () => {
             className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
-              Business <span style={{ color: '#2563EB' }}>Impact</span>
+              Business <span style={{ color: '#A8BFC5' }}>Impact</span>
             </h2>
             <p className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
               Data-driven insights showing measurable ROI and operational improvements
@@ -1961,10 +1961,10 @@ const ScanProPlus = () => {
           {/* Multi-layer Transparent Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
             {[
-              { value: 60, suffix: '%', label: 'Cost Reduction', color: '#14B8A6', delay: 0 },
-              { value: 70, suffix: '%', label: 'Time Savings', color: '#2563EB', delay: 0.1 },
-              { value: 96, suffix: '%', label: 'Price Transparency', color: '#14B8A6', delay: 0.2 },
-              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#2563EB', delay: 0.3 }
+              { value: 60, suffix: '%', label: 'Cost Reduction', color: '#A8C5B8', delay: 0 },
+              { value: 70, suffix: '%', label: 'Time Savings', color: '#A8BFC5', delay: 0.1 },
+              { value: 96, suffix: '%', label: 'Price Transparency', color: '#A8C5B8', delay: 0.2 },
+              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#A8BFC5', delay: 0.3 }
             ].map((metric, idx) => (
               <motion.div
                 key={idx}
@@ -2119,7 +2119,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center"
           >
-            Industry-Specific <span style={{ color: '#2563EB' }}>Use Cases</span>
+            Industry-Specific <span style={{ color: '#A8BFC5' }}>Use Cases</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -2198,7 +2198,7 @@ const ScanProPlus = () => {
 
                   {/* Right Side - Content */}
                   <div className="p-6 sm:p-8 md:p-12">
-                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#2563EB]/10 text-[#2563EB] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#A8BFC5]/10 text-[#A8BFC5] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
                       Industry Solution
                     </span>
                     
@@ -2218,7 +2218,7 @@ const ScanProPlus = () => {
                     </ul>
                     
                     {industry.result && (
-                      <div className="p-3 sm:p-4 rounded-lg" style={{ backgroundColor: 'rgba(20, 184, 166, 0.1)' }}>
+                      <div className="p-3 sm:p-4 rounded-lg" style={{ backgroundColor: 'rgba(168, 197, 184, 0.1)' }}>
                         <p className="text-sm sm:text-base text-gray-900 font-semibold">{industry.result}</p>
                       </div>
                     )}
@@ -2252,7 +2252,7 @@ const ScanProPlus = () => {
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
             </p>
-            <p className="text-xs sm:text-sm font-semibold text-[#14B8A6] mt-3 sm:mt-4">
+            <p className="text-xs sm:text-sm font-semibold text-[#A8C5B8] mt-3 sm:mt-4">
               👆 Click on any standard to learn more
             </p>
           </motion.div>
@@ -2294,18 +2294,18 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
-            Global <span style={{ color: '#2563EB' }}>Network</span> & Integration
+            Global <span style={{ color: '#A8BFC5' }}>Network</span> & Integration
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {/* ERP Integration Cards */}
             {[
-              { icon: "link", title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#2563EB' },
-              { icon: "link", title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#2563EB' },
-              { icon: "link", title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#2563EB' },
-              { icon: "globe", title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#14B8A6' },
-              { icon: "user", title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#14B8A6' },
-              { icon: "star", title: 'Quality Assured', desc: 'Rating system & tracking', color: '#14B8A6' },
+              { icon: "link", title: 'SAP Integration', desc: 'Supplier Evaluation & Release', color: '#A8BFC5' },
+              { icon: "link", title: 'Oracle', desc: 'Seamless ERP connectivity', color: '#A8BFC5' },
+              { icon: "link", title: 'Microsoft Dynamics', desc: 'Full system integration', color: '#A8BFC5' },
+              { icon: "globe", title: 'On-Demand Availability', desc: 'Same-Day audits worldwide', color: '#A8C5B8' },
+              { icon: "user", title: 'Smart Matching', desc: 'Optimal auditor selection', color: '#A8C5B8' },
+              { icon: "star", title: 'Quality Assured', desc: 'Rating system & tracking', color: '#A8C5B8' },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -2323,7 +2323,7 @@ const ScanProPlus = () => {
             ))}
           </div>
 
-          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #2563EB, #60A5FA)' }}>
+          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8BFC5, #A8C5B8)' }}>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
               Available in 47 Countries
             </h3>
