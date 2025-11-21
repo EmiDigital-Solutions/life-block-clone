@@ -1437,7 +1437,6 @@ const HowItWorksCarousel = () => {
                   />
                 </div>
               </div>
-              </div>
               <div className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="user" className="w-3 h-3 sm:w-5 sm:h-5" />
               </div>
