@@ -10,6 +10,10 @@ import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
+import industryAutomotive from "@/assets/industry-automotive.jpg";
+import industryAerospace from "@/assets/industry-aerospace.jpg";
+import industryMedical from "@/assets/industry-medical.jpg";
+import industryElectronics from "@/assets/industry-electronics.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
 import {
   Dialog,
@@ -2131,7 +2135,7 @@ const ScanProPlus = () => {
           <div className="space-y-6 sm:space-y-8">
             {[
               {
-                icon: "car",
+                image: industryAutomotive,
                 title: "Automotive: PPAP Validation & Tool Audits",
                 useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
                 solutions: [
@@ -2143,7 +2147,7 @@ const ScanProPlus = () => {
                 result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
               },
               {
-                icon: "rocket",
+                image: industryAerospace,
                 title: "Aerospace: AS9100 Compliance & Critical Process Validation",
                 useCase: "Validate welding processes at suppliers of critical aircraft components.",
                 solutions: [
@@ -2154,7 +2158,7 @@ const ScanProPlus = () => {
                 ]
               },
               {
-                icon: "heart",
+                image: industryMedical,
                 title: "Pharma: GMP Audits & Clean Room Assessments",
                 useCase: "GMP audit of an API manufacturer before contract signing.",
                 solutions: [
@@ -2165,7 +2169,7 @@ const ScanProPlus = () => {
                 ]
               },
               {
-                icon: "building",
+                image: industryElectronics,
                 title: "Chemical & Process Industry: REACH Compliance & Process Safety",
                 useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
                 solutions: [
@@ -2185,9 +2189,13 @@ const ScanProPlus = () => {
                 className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
-                  {/* Left Side - Icon */}
-                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 sm:p-10 md:p-12 h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center">
-                    <PixelIcon name={industry.icon} className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40" />
+                  {/* Left Side - Image */}
+                  <div className="relative overflow-hidden h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center">
+                    <img 
+                      src={industry.image} 
+                      alt={industry.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   {/* Right Side - Content */}
