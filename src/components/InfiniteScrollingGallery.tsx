@@ -1,4 +1,5 @@
 import { FileText, Brain, Cog, Gauge, Camera, Clock, TrendingUp, ListChecks, Plug } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 
 interface Capability {
   title: string;

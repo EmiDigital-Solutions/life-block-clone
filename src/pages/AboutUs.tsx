@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, Users, Globe, Shield, Target, TrendingUp, MessageCircle, Package, Zap, MessageSquare } from "lucide-react";
+import { PixelIcon } from "@/components/PixelIcon";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
