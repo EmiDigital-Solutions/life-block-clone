@@ -121,10 +121,13 @@ const iconMapping: Record<string, string> = {
   "factory": "building",
   "pill": "heart",
   "building2": "building",
+  "building": "building",
   "leaf": "leaf",
   "shieldCheck": "shield",
-  "checkCheck": "checkbox-on",
+  "checkCheck": "check",
   "messageSquare": "message",
+  "checkbox-on": "check",
+  "heart": "heart",
   
   // Additional mappings
   "brain": "zap",
@@ -134,7 +137,7 @@ const iconMapping: Record<string, string> = {
   "gauge": "sliders",
   "listChecks": "list",
   "plug": "link",
-  "circleCheck": "checkbox-on",
+  "circleCheck": "check",
 };
 
 export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor" }: PixelIconProps) => {
@@ -151,7 +154,13 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
       className={className}
       style={{ 
         filter: color !== "currentColor" ? `invert(${color === "white" ? "100%" : "0%"})` : undefined,
-        imageRendering: 'pixelated'
+        imageRendering: 'pixelated',
+        objectFit: 'contain'
+      }}
+      onError={(e) => {
+        console.error(`Failed to load pixelarticon: ${iconName}`);
+        // Fallback to a default icon
+        e.currentTarget.src = `https://unpkg.com/pixelarticons@1.8.1/svg/box.svg`;
       }}
     />
   );
