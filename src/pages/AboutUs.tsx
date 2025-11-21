@@ -559,9 +559,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.3
               }} className="absolute top-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
+                      <Lightbulb className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -575,9 +575,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.4
               }} className="absolute top-0 right-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Users className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
+                      <Users className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -591,9 +591,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.5
               }} className="absolute bottom-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0D9488] p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
+                      <Globe className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -607,9 +607,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.6
               }} className="absolute bottom-0 right-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#0F8775] p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Shield className="w-12 h-12 text-[#14B8A6]" strokeWidth={1.5} />
+                      <Shield className="w-12 h-12 text-primary" strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -644,7 +644,7 @@ const AboutUs = () => {
                 duration: 3,
                 repeat: Infinity
               }} className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg">
-                  <Package className="w-8 h-8 text-[#14B8A6]" />
+                  <Package className="w-8 h-8 text-primary" />
                 </motion.div>
               </div>
             </motion.div>
@@ -659,7 +659,7 @@ const AboutUs = () => {
           }} viewport={{
             once: true
           }} className="lg:col-span-3 space-y-6">
-              <div className="text-sm font-semibold text-[#14B8A6] uppercase tracking-wider">
+              <div className="text-sm font-semibold text-primary uppercase tracking-wider">
                 Carbon Reduction Commitment
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
