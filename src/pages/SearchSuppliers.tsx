@@ -350,12 +350,12 @@ const SearchSuppliers = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Content - Interactive Demo Search - Takes 3 columns - YVOO Card Style */}
+            {/* Right Content - Interactive Demo Search - Takes 3 columns - YVOO Card Style - Desktop Only */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative"
+              className="hidden lg:block lg:col-span-3 relative"
               style={{ 
                 transform: 'translateY(calc(40% + 4cm))',
                 zIndex: 10
@@ -531,6 +531,205 @@ const SearchSuppliers = () => {
           </div>
           
           {/* Left side text overlay - removed to prevent overlap */}
+        </div>
+      </section>
+
+      {/* Interactive Demo Chat Section - Mobile & Tablet Only */}
+      <section className="lg:hidden py-12 bg-gradient-to-br from-[#0A0E27] to-[#111827]" data-nav-theme="dark">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 text-center"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6]"></div>
+              <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Interactive Demo</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <span className="text-[#14B8A6]">Try SearchPro+</span>
+              <br />
+              <span className="text-white">in Action</span>
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Experience AI-powered conversational search
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            {/* Modern white card matching YVOO design */}
+            <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+              
+              {/* Black Navigation Bar - SearchPro+ */}
+              <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+                <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                <div className="flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-[#14B8A6]" />
+                  <span className="text-white text-sm">AI-Powered</span>
+                </div>
+              </div>
+
+              <div className="p-6">
+              
+              {/* Teal label */}
+              <div className="mb-3 flex-shrink-0">
+                <span className="text-[#14B8A6] text-sm font-semibold">
+                  Interactive Demo
+                </span>
+              </div>
+              {/* Bold title/description */}
+              <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
+                AI-Powered Conversational Search
+                <span className="block text-sm font-normal text-gray-600 mt-2">
+                  Step-by-step guidance to find your perfect supplier
+                </span>
+              </h3>
+
+              {/* Step indicators */}
+              <div className="flex items-center justify-center gap-2 mb-6">
+                {[1, 2, 3].map((step) => (
+                  <div
+                    key={step}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                      step <= currentStep
+                        ? 'bg-[#14B8A6] text-white'
+                        : 'bg-gray-200 text-gray-400'
+                    }`}
+                  >
+                    {step}
+                  </div>
+                ))}
+              </div>
+
+              {/* Conversation Thread - Enhanced rounded corners */}
+              <motion.div 
+                ref={chatContainerRef}
+                className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                animate={{ opacity: isFading ? 0 : 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                {conversationHistory.map((msg, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div
+                      className={`max-w-[80%] p-4 rounded-2xl ${
+                        msg.role === 'user'
+                          ? 'bg-[#14B8A6] text-white rounded-br-none'
+                          : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
+                      }`}
+                    >
+                      {msg.role === 'ai' && (
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                            <Cpu className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                        </div>
+                      )}
+                      <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
+                    </div>
+                  </motion.div>
+                ))}
+
+                {/* Active AI Response (Typing) */}
+                {aiResponse && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+                          <Cpu className="w-3 h-3 text-white" />
+                        </div>
+                        <span className="text-xs font-bold text-[#14B8A6]">YVOO</span>
+                        {isTyping && (
+                          <div className="flex gap-1 ml-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                          </div>
+                        )}
+                      </div>
+                      <p className="text-sm whitespace-pre-line font-medium">{aiResponse}</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Active User Input (Typing) */}
+                {userInput && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-end"
+                  >
+                    <div className="max-w-[80%] p-4 rounded-2xl bg-[#14B8A6] text-white rounded-br-none">
+                      <p className="text-sm font-medium">{userInput}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+
+              {/* Results section that overlays next page */}
+              {showResults && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="mt-6"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                    <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {suppliers.map((supplier) => (
+                      <button
+                        key={supplier.id}
+                        onClick={() => setSelectedSupplier(supplier)}
+                        className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#14B8A6] hover:shadow-md transition-all group"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="font-bold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
+                            {supplier.name}
+                          </h4>
+                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#14B8A6] group-hover:translate-x-1 transition-all" />
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                          <MapPin className="w-4 h-4" />
+                          <span>{supplier.location}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {supplier.certifications.slice(0, 2).map((cert, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2 py-0.5 bg-[#14B8A6]/10 text-[#14B8A6] text-xs rounded-full font-medium"
+                            >
+                              {cert}
+                            </span>
+                          ))}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
