@@ -96,25 +96,44 @@ All colors MUST be HSL.
 }
 
 /* Pixelated icon styles - applies to ALL lucide-react icons globally */
+/* This creates the chunky, blocky 8-bit pixel effect matching the reference */
 .lucide, 
 [class*="lucide-"],
 svg[class*="lucide"] {
-  image-rendering: pixelated;
+  /* Apply SVG pixelation filter */
+  filter: url(#pixelate-icon);
+  
+  /* Force sharp rendering */
   image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
   image-rendering: crisp-edges;
+  
+  /* Remove anti-aliasing completely */
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   shape-rendering: crispEdges;
-  stroke-width: 3;
+  
+  /* Chunkier strokes for pixel aesthetic */
+  stroke-width: 3.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  
+  /* Slight contrast boost for pixel pop */
+  -webkit-filter: url(#pixelate-icon) contrast(1.2);
 }
 
 .pixel-icon {
+  filter: url(#pixelate-icon);
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   shape-rendering: crispEdges;
+  stroke-width: 3.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
 }
 
 @layer base {
