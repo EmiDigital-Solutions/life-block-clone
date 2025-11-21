@@ -94,76 +94,131 @@ const FullScreenProjects = () => {
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
                 {/* Text Content */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ 
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
                   viewport={{ once: true, amount: 0.3 }}
                   className={`space-y-6 ${!isEven ? 'lg:col-start-2' : ''}`}
                 >
-                  <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2"
+                  >
                     <span className="text-sm font-medium text-gray-600">
                       {project.number}
                     </span>
-                  </div>
+                  </motion.div>
 
-                  <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900">
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900"
+                  >
                     {project.title}
-                  </h2>
+                  </motion.h2>
 
-                  <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-xl">
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    viewport={{ once: true }}
+                    className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-xl"
+                  >
                     {project.description}
-                  </p>
+                  </motion.p>
 
-                  <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300">
+                  <motion.button 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300"
+                  >
                     Learn more
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </motion.button>
                 </motion.div>
 
                 {/* Visual Content */}
                 {project.showAuditors ? (
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 1,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: 0.2
+                    }}
                     viewport={{ once: true, amount: 0.3 }}
                     className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                   >
                     <div className="grid grid-cols-3 gap-4">
-                      {visibleAuditors.map((auditor) => (
-                        <div 
+                      {visibleAuditors.map((auditor, idx) => (
+                        <motion.div 
                           key={auditor.location}
-                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            duration: 0.6,
+                            delay: 0.3 + (idx * 0.1),
+                            ease: [0.22, 1, 0.36, 1]
+                          }}
+                          viewport={{ once: true }}
+                          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
                         >
                           <img
                             src={auditor.image}
                             alt={`Professional from ${auditor.location}`}
-                            className="w-full h-full object-cover grayscale"
+                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                           />
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </motion.div>
                 ) : project.featureType ? (
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 1,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: 0.2
+                    }}
                     viewport={{ once: true, amount: 0.3 }}
                     className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}
                   >
                     <div className="grid grid-cols-3 gap-4">
-                      {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card) => (
-                        <div 
+                      {featurePhotos[project.featureType as keyof typeof featurePhotos].map((card, idx) => (
+                        <motion.div 
                           key={card.label}
-                          className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            duration: 0.6,
+                            delay: 0.3 + (idx * 0.1),
+                            ease: [0.22, 1, 0.36, 1]
+                          }}
+                          viewport={{ once: true }}
+                          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                          className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
                         >
                           <img
                             src={card.image}
                             alt={card.label}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                           />
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </motion.div>
