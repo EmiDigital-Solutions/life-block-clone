@@ -649,26 +649,8 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
             loading={index < 3 ? 'eager' : 'lazy'}
             style={{
               filter: isHovered 
-                ? 'grayscale(100%) brightness(1.1) contrast(1.1)' 
-                : 'grayscale(100%) brightness(1) contrast(1.05)'
-            }}
-          />
-          {/* Green highlight overlay for objects - enhanced */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at 50% 35%, rgba(168, 197, 184, 0.45) 0%, rgba(168, 197, 184, 0.3) 25%, rgba(168, 197, 184, 0.15) 45%, transparent 65%)',
-              mixBlendMode: 'overlay',
-              opacity: 0.85
-            }}
-          />
-          {/* Secondary green accent for objects */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at 50% 40%, rgba(168, 197, 184, 0.4) 0%, transparent 50%)',
-              mixBlendMode: 'color',
-              opacity: 0.7
+                ? 'brightness(1.1) contrast(1.05)' 
+                : 'brightness(1) contrast(1.05)'
             }}
           />
         </div>

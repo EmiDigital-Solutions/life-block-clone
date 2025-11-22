@@ -54,12 +54,61 @@ import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
 import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
 import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
 import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
+// New sphere images with green-highlighted equipment
+import sphereAuditor1 from "@/assets/sphere-auditor-1.jpg";
+import sphereAuditor2 from "@/assets/sphere-auditor-2.jpg";
+import sphereAuditor3 from "@/assets/sphere-auditor-3.jpg";
+import sphereAuditor4 from "@/assets/sphere-auditor-4.jpg";
+import sphereAuditor5 from "@/assets/sphere-auditor-5.jpg";
+import sphereAuditor6 from "@/assets/sphere-auditor-6.jpg";
+import sphereAuditor7 from "@/assets/sphere-auditor-7.jpg";
+import sphereAuditor8 from "@/assets/sphere-auditor-8.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
 
   // 40 unique auditor faces for the sphere - balanced diversity
   const sphereImages: ImageData[] = [{
+    id: 'new1',
+    src: sphereAuditor1,
+    alt: 'Female European Auditor with Safety Equipment',
+    title: 'Europe'
+  }, {
+    id: 'new2',
+    src: sphereAuditor2,
+    alt: 'Male Asian Auditor with Hard Hat',
+    title: 'Asia'
+  }, {
+    id: 'new3',
+    src: sphereAuditor3,
+    alt: 'Female African Quality Inspector',
+    title: 'Africa'
+  }, {
+    id: 'new4',
+    src: sphereAuditor4,
+    alt: 'Male European Procurement Specialist',
+    title: 'Europe'
+  }, {
+    id: 'new5',
+    src: sphereAuditor5,
+    alt: 'Female Middle Eastern Auditor',
+    title: 'Middle East'
+  }, {
+    id: 'new6',
+    src: sphereAuditor6,
+    alt: 'Male South Asian Inspector',
+    title: 'South Asia'
+  }, {
+    id: 'new7',
+    src: sphereAuditor7,
+    alt: 'Female Latin Procurement Specialist',
+    title: 'Americas'
+  }, {
+    id: 'new8',
+    src: sphereAuditor8,
+    alt: 'Male African Engineer',
+    title: 'Africa'
+  }, {
     id: '1',
     src: auditorBlonde1,
     alt: 'European Female Auditor',
