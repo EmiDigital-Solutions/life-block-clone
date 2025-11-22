@@ -28,7 +28,7 @@ import auditorGen3 from "@/assets/auditor-gen-3.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
-  const [selectedYear, setSelectedYear] = useState(2019);
+  const [selectedYear, setSelectedYear] = useState(2022);
 
   const heroImages = [
     { src: auditorBlonde1, alt: 'Quality Inspector' },
@@ -50,10 +50,7 @@ const AboutUs = () => {
   ];
 
   const timelineData = [
-    { year: 2019, title: "Foundation", desc: "YVOO Technologies founded in Zagreb with a vision to revolutionize B2B procurement through AI and human expertise." },
-    { year: 2020, title: "Product Launch", desc: "Launched SearchPro+ AI supplier discovery platform, connecting buyers with verified suppliers globally." },
-    { year: 2021, title: "Global Expansion", desc: "Expanded ScanPro+ auditing platform to 90+ countries with 2,000+ local expert auditors." },
-    { year: 2022, title: "Enterprise Growth", desc: "Secured major automotive and manufacturing clients including Mercedes, BMW, and Bosch." },
+    { year: 2022, title: "Foundation", desc: "YVOO Technologies founded in Zagreb with a vision to revolutionize B2B procurement through AI and human expertise." },
     { year: 2023, title: "Platform Innovation", desc: "Launched SalesPro+ supplier visibility platform, reaching 7M+ B2B decision-makers worldwide." },
     { year: 2024, title: "Market Leadership", desc: "Achieved 70% cost reduction and 80% time savings for enterprise clients across Europe." },
   ];
@@ -65,23 +62,11 @@ const AboutUs = () => {
       phone: "+385 1 234 5678",
       email: "info@yvoo.com"
     },
-    frankfurt: {
-      name: "Frankfurt",
-      address: "Bockenheimer Landstraße 2-4, 60306 Frankfurt, Germany",
-      phone: "+49 69 1234 5678",
-      email: "frankfurt@yvoo.com"
-    },
     munich: {
       name: "Munich",
       address: "Leopoldstraße 244, 80807 Munich, Germany",
       phone: "+49 89 1234 5678",
       email: "munich@yvoo.com"
-    },
-    stuttgart: {
-      name: "Stuttgart",
-      address: "Königstraße 10, 70173 Stuttgart, Germany",
-      phone: "+49 711 1234 5678",
-      email: "stuttgart@yvoo.com"
     }
   };
 
