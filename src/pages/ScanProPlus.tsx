@@ -1088,40 +1088,38 @@ const MobileCapabilitiesSection = ({ features }: { features: any[] }) => {
 
 // Challenge Toggle Section
 const ChallengeToggleSection = () => {
-  const [isWithScanPro, setIsWithScanPro] = useState(false); // Start with "Traditional" state
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [isWithScanPro, setIsWithScanPro] = useState(false);
 
   const withScanProContent = [
     {
       icon: "checkbox-on",
       title: "Fixed Price from €700",
-      description: "Transparent pricing with no hidden costs - know exactly what you pay before you commit"
+      description: "Transparent pricing with no hidden costs"
     },
     {
       icon: "zap",
       title: "Same-Day / Next-Day",
-      description: "Ultra-fast deployment with audits starting within 24 hours of your request"
+      description: "Ultra-fast deployment within 24 hours"
     },
     {
       icon: "calendar",
       title: "1-3 Days Structured",
-      description: "Efficient on-site audits with AI-powered workflows that respect quality standards"
+      description: "Efficient on-site audits with AI workflows"
     },
     {
       icon: "analytics",
       title: "Real-time + Report in 24h",
-      description: "Live insights during audit with complete documentation delivered within one day"
+      description: "Live insights with next-day documentation"
     },
     {
       icon: "checkbox-on",
       title: "100% Standardized",
-      description: "AI-supported consistency ensures every audit follows the same professional standards"
+      description: "AI-supported consistency across all audits"
     },
     {
       icon: "camera",
       title: "AI Computer Vision",
-      description: "Advanced equipment recognition with complete photographic documentation"
+      description: "Advanced equipment recognition"
     },
   ];
 
@@ -1129,32 +1127,32 @@ const ChallengeToggleSection = () => {
     {
       icon: "coin",
       title: "€15,000 - €25,000",
-      description: "Unpredictable costs with quotes on request and hidden fees that inflate final price"
+      description: "Unpredictable costs with hidden fees"
     },
     {
       icon: "clock",
       title: "2-3 Weeks Lead Time",
-      description: "Long coordination delays mean critical supplier issues remain undiscovered for weeks"
+      description: "Long delays before audit starts"
     },
     {
       icon: "close",
       title: "3-5 Days On-site",
-      description: "Extended audit duration disrupts supplier operations and delays critical decisions"
+      description: "Extended audit disrupts operations"
     },
     {
       icon: "alert",
       title: "5-10 Days After Audit",
-      description: "Delayed reporting means production issues continue while you wait for documentation"
+      description: "Delayed reporting slows decisions"
     },
     {
       icon: "close",
       title: "Depends on Auditor",
-      description: "Quality varies between auditors making supplier comparisons unreliable"
+      description: "Quality varies between auditors"
     },
     {
       icon: "alert",
       title: "Manual, Often Incomplete",
-      description: "Missing photos and incomplete documentation create gaps in evidence"
+      description: "Missing photos and documentation gaps"
     },
   ];
 
@@ -1162,164 +1160,83 @@ const ChallengeToggleSection = () => {
 
   return (
     <section 
-      ref={ref}
       data-nav-theme="light"
-      className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="py-8 sm:py-12 lg:py-16 px-4 bg-white"
       id="challenge"
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Label */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="flex items-center gap-2 mb-4 sm:mb-6"
-        >
-          <div className="flex items-center gap-1">
-            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-gray-300' : 'bg-red-600'}`} />
-            <div className={`w-3 h-3 rounded-full ${isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-300'}`} />
-          </div>
-          <span className="text-sm font-semibold text-gray-600">The Challenge You Know</span>
-        </motion.div>
-
-        {/* Main Headline with Toggle */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 mb-6 sm:mb-8">
-          <div className="flex items-center justify-between w-full">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="flex flex-wrap items-center gap-3 sm:gap-4"
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
-                {isWithScanPro ? 'With' : 'Traditional'}
-              </h2>
-              
-              <motion.span
-                key={isWithScanPro ? 'with' : 'traditional'}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
-                  isWithScanPro ? 'text-[#A8C5B8]' : 'text-red-600'
-                }`}
-              >
-                {isWithScanPro ? 'ScanPro+' : 'Providers'}
-              </motion.span>
-            </motion.div>
-
-            {/* Toggle Switch - Positioned at far right */}
-            <button
-              onClick={() => setIsWithScanPro(!isWithScanPro)}
-              className={`relative w-16 h-8 sm:w-20 sm:h-10 rounded-full transition-all duration-300 flex-shrink-0 ${
-                isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-400'
+        {/* Header with Toggle */}
+        <div className="flex items-center justify-between mb-6 sm:mb-8">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+              {isWithScanPro ? 'With' : 'Traditional'}
+            </h2>
+            
+            <motion.span
+              key={isWithScanPro ? 'with' : 'traditional'}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
+                isWithScanPro ? 'text-[#A8C5B8]' : 'text-red-600'
               }`}
-              aria-label="Toggle between ScanPro+ and Traditional Providers"
             >
-              <motion.div
-                className="absolute top-0.5 sm:top-1 left-0.5 sm:left-1 w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full shadow-lg"
-                animate={{ x: isWithScanPro ? 32 : 0 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            </button>
+              {isWithScanPro ? 'ScanPro+' : 'Providers'}
+            </motion.span>
           </div>
 
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            onClick={() => {
-              const element = document.getElementById('cta');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-2.5 sm:py-3 rounded-full font-semibold text-base sm:text-lg flex items-center gap-3 sm:gap-4 transition-all shadow-lg group bg-gray-900 text-white"
+          {/* Toggle Switch */}
+          <button
+            onClick={() => setIsWithScanPro(!isWithScanPro)}
+            className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
+              isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-400'
+            }`}
+            aria-label="Toggle comparison"
           >
-            <span>Get Started</span>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
-            </div>
-          </motion.button>
+            <motion.div
+              className="absolute top-0.5 left-0.5 w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full"
+              animate={{ x: isWithScanPro ? 28 : 0 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            />
+          </button>
         </div>
 
         {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3 }}
-          className="text-base sm:text-lg text-gray-600 mb-10 sm:mb-12 md:mb-16 max-w-3xl lg:ml-auto"
-        >
+        <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-2xl">
           {isWithScanPro 
-            ? "Experience transparent pricing, rapid deployment, and AI-powered standardization with YVOO ScanPro+."
-            : "Traditional supplier audits are inefficient and expensive with unpredictable costs, long delays, and inconsistent quality."}
-        </motion.p>
+            ? "Experience transparent pricing, rapid deployment, and AI-powered standardization."
+            : "Traditional audits: unpredictable costs, long delays, and inconsistent quality."}
+        </p>
 
-        {/* Modern Card Grid - 3x2 Grid Layout */}
-        <motion.div layout className="relative">
-          <motion.div
-            key={isWithScanPro ? 'with' : 'traditional'}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
-          >
-            {currentContent.map((item, index) => {
-              return (
-                <motion.div
-                  key={`${isWithScanPro ? 'with' : 'traditional'}-${item.title}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: index * 0.05, 
-                    duration: 0.4
-                  }}
-                  className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all flex flex-col"
-                >
-                  {/* Top - Icon/Visual */}
-                  <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 sm:p-8 flex items-center justify-center">
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ 
-                        delay: index * 0.05 + 0.2,
-                        duration: 0.5,
-                        type: "spring"
-                      }}
-                      className="flex items-center justify-center"
-                    >
-                      <PixelIcon 
-                        name={item.icon} 
-                        className={`w-16 h-16 sm:w-20 sm:h-20`}
-                        color={isWithScanPro ? '#A8C5B8' : '#EF4444'}
-                      />
-                    </motion.div>
-                  </div>
-
-                  {/* Bottom - Content */}
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col">
-                    <span className={`inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-semibold mb-3 sm:mb-4 self-start ${
-                      isWithScanPro 
-                        ? 'bg-[#A8C5B8]/10 text-[#A8C5B8]' 
-                        : 'bg-red-600/10 text-red-600'
-                    }`}>
-                      {isWithScanPro ? 'ScanPro+' : 'Traditional'}
-                    </span>
-                    
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+        {/* Grid */}
+        <motion.div
+          key={isWithScanPro ? 'with' : 'traditional'}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
+        >
+          {currentContent.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200"
+            >
+              <div className="flex items-start gap-3 mb-3">
+                <PixelIcon 
+                  name={item.icon} 
+                  className="w-8 h-8 flex-shrink-0"
+                  color={isWithScanPro ? '#A8C5B8' : '#EF4444'}
+                />
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </motion.div>
 
       </div>
