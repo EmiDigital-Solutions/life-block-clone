@@ -550,21 +550,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
       >
         <defs>
           <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: 'hsl(160, 25%, 72%)', stopOpacity: 0.9 }} />
-            <stop offset="100%" style={{ stopColor: 'hsl(160, 25%, 80%)', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: 'hsl(160, 25%, 72%)', stopOpacity: 0.3 }} />
+            <stop offset="100%" style={{ stopColor: 'hsl(160, 25%, 80%)', stopOpacity: 0.2 }} />
           </linearGradient>
-          <radialGradient id="nodeGlow">
-            <stop offset="0%" style={{ stopColor: 'hsl(160, 25%, 72%)', stopOpacity: 0.9 }} />
-            <stop offset="100%" style={{ stopColor: 'hsl(160, 25%, 72%)', stopOpacity: 0 }} />
-          </radialGradient>
-          <filter id="greenGlow">
-            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="hsl(160, 25%, 72%)"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
         </defs>
         {connections.map((connection, idx) => {
           const from = worldPositions[connection.from];
@@ -577,27 +565,19 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           const x2 = containerSize / 2 + to.x;
           const y2 = containerSize / 2 + to.y;
           
-          // Calculate opacity based on fade - visible network effect
-          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.35;
-          
-          // Calculate gradient for depth effect
-          const midOpacity = opacity * 0.6;
+          const opacity = Math.min(from.fadeOpacity, to.fadeOpacity) * 0.15;
           
           return (
-            <React.Fragment key={`connection-${idx}`}>
-              <line
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-              stroke="url(#greenGradient)"
-              strokeWidth="4"
-                opacity={opacity * 2.5}
-                style={{
-                  filter: 'drop-shadow(0 0 12px hsla(160, 25%, 72%, 1)) drop-shadow(0 0 20px hsla(160, 25%, 72%, 0.6))'
-                }}
-              />
-            </React.Fragment>
+            <line
+              key={`connection-${idx}`}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="rgba(168, 197, 184, 0.25)"
+              strokeWidth="1"
+              opacity={opacity}
+            />
           );
         })}
       </svg>
@@ -635,11 +615,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
         onMouseLeave={() => setHoveredIndex(null)}
         onClick={() => setSelectedImage(image)}
       >
-        <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2" style={{
-          borderColor: 'rgba(168, 197, 184, 0.4)',
+        <div className="relative w-full h-full rounded-full overflow-hidden border" style={{
+          borderColor: 'rgba(168, 197, 184, 0.25)',
           boxShadow: isHovered 
-            ? '0 8px 32px rgba(168, 197, 184, 0.4), 0 0 20px rgba(168, 197, 184, 0.6)' 
-            : '0 4px 12px rgba(168, 197, 184, 0.2), 0 0 8px rgba(168, 197, 184, 0.15)'
+            ? '0 4px 16px rgba(0, 0, 0, 0.1)' 
+            : '0 2px 8px rgba(0, 0, 0, 0.05)'
         }}>
           <img
             src={image.src}
@@ -648,18 +628,16 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
             draggable={false}
             loading={index < 3 ? 'eager' : 'lazy'}
             style={{
-              filter: isHovered 
-                ? 'grayscale(100%) brightness(1.1) contrast(1.1)' 
-                : 'grayscale(100%) brightness(1) contrast(1.05)'
+              filter: 'grayscale(100%)'
             }}
           />
-          {/* Green highlight overlay for objects */}
+          {/* Subtle green highlight overlay */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.25) 0%, rgba(168, 197, 184, 0.15) 30%, transparent 60%)',
+              background: 'radial-gradient(circle at 50% 50%, rgba(168, 197, 184, 0.18) 0%, transparent 60%)',
               mixBlendMode: 'color',
-              opacity: 0.6
+              opacity: 0.5
             }}
           />
         </div>
@@ -780,31 +758,27 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           height: containerSize,
           perspective: `${perspective}px`,
           backgroundImage: `
-            radial-gradient(ellipse at 35% 35%, rgba(168, 197, 184, 0.4) 0%, transparent 50%),
-            url(${worldMapGlobe}),
-            radial-gradient(ellipse at 30% 30%, rgba(168, 197, 184, 0.95) 0%, rgba(150, 181, 173, 1) 40%, rgba(130, 165, 160, 1) 80%, rgba(110, 150, 145, 1) 100%)
+            radial-gradient(circle at 40% 40%, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 50%, transparent 100%),
+            radial-gradient(circle, rgba(245, 245, 245, 1) 0%, rgba(230, 230, 230, 1) 100%)
           `,
-          backgroundPosition: 'center center, center center, center center',
-          backgroundSize: 'cover, cover, cover',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          animation: 'rotateGlobe 120s linear infinite',
-          border: '4px solid rgba(168, 197, 184, 0.6)',
-          boxShadow: `
-            0 0 80px rgba(168, 197, 184, 0.6),
-            0 0 120px rgba(168, 197, 184, 0.4),
-            inset 0 0 100px rgba(130, 165, 160, 0.4)
-          `,
+          border: '1px solid rgba(168, 197, 184, 0.2)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Green overlay to enhance the world map visibility */}
+        {/* Subtle dotted pattern overlay */}
         <div 
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 35% 35%, rgba(110, 150, 145, 0.15) 0%, rgba(130, 165, 160, 0.3) 50%, rgba(110, 150, 145, 0.5) 100%)`,
+            backgroundImage: 'radial-gradient(circle, rgba(168, 197, 184, 0.12) 1px, transparent 1px)',
+            backgroundSize: '20px 20px',
+            backgroundPosition: 'center center',
+            opacity: 0.4,
             zIndex: 1,
-            mixBlendMode: 'multiply'
           }}
         />
         
