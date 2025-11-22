@@ -287,7 +287,7 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-semibold text-white tracking-wide uppercase">AI-Powered Discovery</span>
               </motion.div>
 
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white">
+              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white mb-10" style={{ fontWeight: 900 }}>
                 <span className="block">Find suppliers</span>
                 <span className="block">worldwide.</span>
               </h1>
