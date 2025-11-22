@@ -1201,7 +1201,7 @@ const SearchSuppliers = () => {
                 <div className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 transition-all duration-300 hover:shadow-lg border-b-4 border-gray-100 hover:border-[#A8C5B8]">
                   <div className="flex items-start gap-6">
                     {/* 8-bit Pixel Arrow */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0" style={{ filter: 'invert(82%) sepia(10%) saturate(963%) hue-rotate(99deg) brightness(95%) contrast(86%)' }}>
                       <PixelIcon 
                         name="arrow-right" 
                         className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:translate-x-1"
