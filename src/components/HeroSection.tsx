@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import heroCharacter from "@/assets/hero-character.png";
+import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
@@ -80,8 +80,12 @@ const HeroSection = () => {
               className="flex flex-col gap-6 sm:gap-8 justify-center lg:justify-start items-center lg:items-start pt-2 sm:pt-4"
             >
               <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base">
-                Get Started
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                Audit
+                <PixelIcon 
+                  name="arrow-right" 
+                  className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" 
+                  color="white"
+                />
               </button>
               
               {/* Auditor Certifications */}
