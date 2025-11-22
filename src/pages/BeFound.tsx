@@ -141,13 +141,13 @@ const BeFound = () => {
               {" "}have to spend time...
             </h2>
 
-            {/* Image with circular gradient background */}
+            {/* Image with soft glowing gradient background */}
             <div className="relative flex justify-center items-center py-16">
-              {/* Large circular gradient background element - decorative */}
+              {/* Soft glowing gradient background - fades to transparent */}
               <div 
-                className="absolute w-[600px] h-[600px] md:w-[600px] md:h-[600px] max-[768px]:w-[400px] max-[768px]:h-[400px] rounded-full z-0"
+                className="absolute w-[750px] h-[750px] md:w-[750px] md:h-[750px] max-[768px]:w-[500px] max-[768px]:h-[500px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, #FFD4C3 0%, #FFC9B5 100%)"
+                  background: "radial-gradient(circle, rgba(255, 212, 195, 0.8) 0%, rgba(255, 201, 181, 0.6) 40%, rgba(255, 212, 195, 0.3) 70%, rgba(255, 212, 195, 0) 100%)"
                 }}
               ></div>
 
