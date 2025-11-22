@@ -9,6 +9,7 @@ import Earth3D from "@/components/Earth3D";
 import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
+import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -457,107 +458,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           </div>
         </div>
         
-      </div>
-    </section>
-  );
-};
-
-// Desktop Capabilities Section with Scroll Effect
-const DesktopCapabilitiesSection = ({ features }: { features: any[] }) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
-
-  const cardWidth = 340;
-  const gap = 20;
-  const numCards = features.length;
-  const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
-  const scrollDistance = -(totalCardsWidth - cardWidth - 50);
-  
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, scrollDistance]
-  );
-
-  return (
-    <section 
-      ref={sectionRef}
-      data-nav-theme="light"
-      className="relative h-auto lg:h-[120vh]"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-      id="capabilities"
-    >
-      <div className="lg:sticky top-0 h-auto lg:h-screen overflow-hidden flex flex-col justify-center py-8 sm:py-10 md:py-12">
-        {/* Features Header */}
-        <div className="text-center mb-4 sm:mb-5 md:mb-6 px-4 flex-shrink-0">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 text-gray-900"
-          >
-            Capabilities that modernize supplier audits
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto"
-          >
-            Nine AI-driven features for consistent, actionable outcomes.
-          </motion.p>
-        </div>
-
-        <div className="flex-1 overflow-x-auto lg:overflow-hidden relative">
-          <div className="h-full flex items-center">
-            <motion.div 
-              style={{ x }}
-              className="flex gap-4 sm:gap-5 lg:gap-5 xl:gap-6 pl-4 sm:pl-6 md:pl-8 pr-4 sm:pr-6 md:pr-8"
-            >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="relative w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] h-[420px] sm:h-[450px] md:h-[480px] flex-shrink-0"
-                >
-                  {/* Clean white card matching reference */}
-                  <div className="h-full bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden p-5 sm:p-6 md:p-8 flex flex-col">
-                    
-                    {/* Teal label */}
-                    <div className="mb-4 flex-shrink-0">
-                      <span className="text-[#A8C5B8] text-sm font-semibold">
-                        {feature.label}
-                      </span>
-                    </div>
-
-                    {/* Bold title/description */}
-                    <h3 className="text-gray-900 text-base sm:text-lg md:text-xl font-bold mb-5 sm:mb-6 md:mb-8 leading-tight flex-shrink-0 min-h-[100px] sm:min-h-[110px] md:min-h-[120px]">
-                      {feature.title}
-                    </h3>
-
-                    {/* Large image with rounded corners */}
-                    <div className="relative w-full flex-1 rounded-2xl overflow-hidden">
-                      <img
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
       </div>
     </section>
   );
@@ -1016,75 +916,6 @@ const ComplianceStandardsGrid = () => {
   );
 };
 
-
-// Mobile Capabilities Section
-const MobileCapabilitiesSection = ({ features }: { features: any[] }) => {
-  return (
-    <section
-      data-nav-theme="light"
-      className="relative py-16 px-4 sm:px-6"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-      id="capabilities"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Features Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">
-            Capabilities that modernize supplier audits
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-            Nine AI-driven features for consistent, actionable outcomes.
-          </p>
-        </motion.div>
-
-        <div className="overflow-x-auto pb-4 -mx-6 px-6">
-          <div className="flex gap-5 md:gap-6" style={{ width: 'max-content' }}>
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative w-[300px] md:w-[320px] h-[420px] flex-shrink-0"
-              >
-                {/* Clean white card matching reference */}
-                <div className="h-full bg-white rounded-3xl shadow-lg overflow-hidden p-6 flex flex-col">
-                  
-                  {/* Teal label */}
-                  <div className="mb-3 flex-shrink-0">
-                    <span className="text-[#A8C5B8] text-sm font-semibold">
-                      {feature.label}
-                    </span>
-                  </div>
-
-                  {/* Bold title/description */}
-                  <h3 className="text-gray-900 text-lg font-bold mb-6 leading-tight flex-shrink-0 min-h-[100px]">
-                    {feature.title}
-                  </h3>
-
-                  {/* Large image with rounded corners */}
-                  <div className="relative w-full flex-1 rounded-2xl overflow-hidden">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-};
 
 // Challenge Toggle Section
 const ChallengeToggleSection = () => {
@@ -1817,7 +1648,30 @@ const ScanProPlus = () => {
       {isMobile ? <MobileFeaturesSection auditors={auditors} /> : <DesktopFeaturesSection auditors={auditors} scrollToSection={scrollToSection} />}
 
       {/* Capabilities Section */}
-      {isMobile ? <MobileCapabilitiesSection features={features} /> : <DesktopCapabilitiesSection features={features} />}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        id="capabilities"
+      >
+        <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
+              Capabilities that modernize supplier audits
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600">
+              Nine AI-driven features for consistent, actionable outcomes.
+            </p>
+          </motion.div>
+
+          <InfiniteScrollingGallery />
+        </div>
+      </section>
 
       {/* How Does YVOO Work Carousel */}
       <HowItWorksCarousel />
