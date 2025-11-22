@@ -67,48 +67,49 @@ const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
 
-  // Sphere images with green-highlighted equipment - black/white style
-  const sphereImages: ImageData[] = [{
-    id: 'new1',
-    src: sphereAuditor1,
-    alt: 'Female European Auditor with Safety Equipment',
-    title: 'Europe'
-  }, {
-    id: 'new2',
-    src: sphereAuditor2,
-    alt: 'Male Asian Auditor with Hard Hat',
-    title: 'Asia'
-  }, {
-    id: 'new3',
-    src: sphereAuditor3,
-    alt: 'Female African Quality Inspector',
-    title: 'Africa'
-  }, {
-    id: 'new4',
-    src: sphereAuditor4,
-    alt: 'Male European Procurement Specialist',
-    title: 'Europe'
-  }, {
-    id: 'new5',
-    src: sphereAuditor5,
-    alt: 'Female Middle Eastern Auditor',
-    title: 'Middle East'
-  }, {
-    id: 'new6',
-    src: sphereAuditor6,
-    alt: 'Male South Asian Inspector',
-    title: 'South Asia'
-  }, {
-    id: 'new7',
-    src: sphereAuditor7,
-    alt: 'Female Latin Procurement Specialist',
-    title: 'Americas'
-  }, {
-    id: 'new8',
-    src: sphereAuditor8,
-    alt: 'Male African Engineer',
-    title: 'Africa'
-  }];
+  // Sphere images - diverse global team
+  const sphereImages: ImageData[] = [
+    { id: '1', src: auditorEuropean, alt: 'European Auditor', title: 'Europe' },
+    { id: '2', src: auditorAsian, alt: 'Asian Auditor', title: 'Asia' },
+    { id: '3', src: auditorAfrican, alt: 'African Auditor', title: 'Africa' },
+    { id: '4', src: auditorLatin, alt: 'Latin American Auditor', title: 'Americas' },
+    { id: '5', src: auditorMiddleEast, alt: 'Middle Eastern Auditor', title: 'Middle East' },
+    { id: '6', src: auditorSouthAsian, alt: 'South Asian Auditor', title: 'South Asia' },
+    { id: '7', src: auditorFemaleEuropean, alt: 'Female European Auditor', title: 'Europe' },
+    { id: '8', src: auditorFemaleAsian, alt: 'Female Asian Auditor', title: 'Asia' },
+    { id: '9', src: auditorFemaleAfrican, alt: 'Female African Auditor', title: 'Africa' },
+    { id: '10', src: auditorFemaleLatin, alt: 'Female Latin Auditor', title: 'Americas' },
+    { id: '11', src: auditorFemaleMiddleEast, alt: 'Female Middle Eastern Auditor', title: 'Middle East' },
+    { id: '12', src: auditorFemaleSouthAsian, alt: 'Female South Asian Auditor', title: 'South Asia' },
+    { id: '13', src: auditorFemaleOceania, alt: 'Female Oceania Auditor', title: 'Oceania' },
+    { id: '14', src: auditorMaleNorthAmerica, alt: 'Male North American Auditor', title: 'North America' },
+    { id: '15', src: auditorGen1, alt: 'Quality Inspector 1', title: 'Quality Inspector' },
+    { id: '16', src: auditorGen2, alt: 'Safety Auditor 2', title: 'Safety Auditor' },
+    { id: '17', src: auditorGen3, alt: 'Compliance Officer 3', title: 'Compliance Officer' },
+    { id: '18', src: auditorGen4, alt: 'Technical Inspector 4', title: 'Technical Inspector' },
+    { id: '19', src: auditorGen13, alt: 'Quality Manager 13', title: 'Quality Manager' },
+    { id: '20', src: auditorGen15, alt: 'Field Auditor 15', title: 'Field Auditor' },
+    { id: '21', src: auditorGen17, alt: 'Standards Expert 17', title: 'Standards Expert' },
+    { id: '22', src: auditorGen18, alt: 'Process Auditor 18', title: 'Process Auditor' },
+    { id: '23', src: auditorGen21, alt: 'Lead Auditor 21', title: 'Lead Auditor' },
+    { id: '24', src: auditorGen23, alt: 'Quality Specialist 23', title: 'Quality Specialist' },
+    { id: '25', src: auditorGen24, alt: 'Inspection Manager 24', title: 'Inspection Manager' },
+    { id: '26', src: auditorBlonde1, alt: 'Auditor Blonde 1', title: 'Auditor' },
+    { id: '27', src: auditorBlonde2, alt: 'Auditor Blonde 2', title: 'Auditor' },
+    { id: '28', src: auditorBlonde3, alt: 'Auditor Blonde 3', title: 'Auditor' },
+    { id: '29', src: auditorBlonde4, alt: 'Auditor Blonde 4', title: 'Auditor' },
+    { id: '30', src: auditorBlonde5, alt: 'Auditor Blonde 5', title: 'Auditor' },
+    { id: '31', src: procurementFemaleEuropean, alt: 'Procurement Specialist Europe', title: 'Procurement' },
+    { id: '32', src: procurementMaleAsian, alt: 'Procurement Specialist Asia', title: 'Procurement' },
+    { id: '33', src: procurementFemaleAfrican, alt: 'Procurement Specialist Africa', title: 'Procurement' },
+    { id: '34', src: procurementMaleLatin, alt: 'Procurement Specialist Americas', title: 'Procurement' },
+    { id: '35', src: procurementFemaleMiddleEast, alt: 'Procurement Specialist Middle East', title: 'Procurement' },
+    { id: '36', src: procurementMaleSouthAsian, alt: 'Procurement Specialist South Asia', title: 'Procurement' },
+    { id: '37', src: procurementFemaleBlonde, alt: 'Procurement Specialist', title: 'Procurement' },
+    { id: '38', src: procurementMaleOceania, alt: 'Procurement Specialist Oceania', title: 'Procurement' },
+    { id: '39', src: procurementFemaleAsian, alt: 'Procurement Specialist Asia', title: 'Procurement' },
+    { id: '40', src: procurementMaleEuropean, alt: 'Procurement Specialist Europe', title: 'Procurement' },
+  ];
   const locations = {
     zagreb: {
       name: "Zagreb (Headquarters)",
