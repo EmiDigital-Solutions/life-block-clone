@@ -653,13 +653,22 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
                 : 'grayscale(100%) brightness(1) contrast(1.05)'
             }}
           />
-          {/* Green highlight overlay for objects */}
+          {/* Green highlight overlay for objects - enhanced */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.25) 0%, rgba(168, 197, 184, 0.15) 30%, transparent 60%)',
+              background: 'radial-gradient(circle at 50% 35%, rgba(168, 197, 184, 0.45) 0%, rgba(168, 197, 184, 0.3) 25%, rgba(168, 197, 184, 0.15) 45%, transparent 65%)',
+              mixBlendMode: 'overlay',
+              opacity: 0.85
+            }}
+          />
+          {/* Secondary green accent for objects */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at 50% 40%, rgba(168, 197, 184, 0.4) 0%, transparent 50%)',
               mixBlendMode: 'color',
-              opacity: 0.6
+              opacity: 0.7
             }}
           />
         </div>
