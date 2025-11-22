@@ -395,8 +395,8 @@ const AboutUs = () => {
           }} transition={{
             duration: 0.8
           }} className="space-y-6">
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                Technology and <span className="text-primary">Innovation</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-black">
+                Technology and <span style={{ color: "#A8C5B8" }}>Innovation</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 [Please provide the text content you'd like to add here]
@@ -446,8 +446,8 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-          }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-primary">Principles</span>
+          }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-black text-center mb-20">
+            Our <span style={{ color: "#A8C5B8" }}>Principles</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -463,8 +463,8 @@ const AboutUs = () => {
               once: true
             }} transition={{
               delay: 0.1
-            }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-primary">Innovation</h3>
+              }} className="space-y-3">
+                <h3 className="text-2xl font-bold" style={{ color: "#A8C5B8" }}>Innovation</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Innovation is at the heart of YVOO. That's why we're the global leader in 
                   AI-powered procurement solutions.
@@ -482,7 +482,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.2
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-secondary">Customer-Oriented Approach</h3>
+                <h3 className="text-2xl font-bold" style={{ color: "#A8B8CA" }}>Customer-Oriented Approach</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We leverage AI's potential for outstanding customer experiences in procurement.
                 </p>
@@ -499,7 +499,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.3
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-primary">Global & Personalized</h3>
+                <h3 className="text-2xl font-bold" style={{ color: "#A8C5B8" }}>Global & Personalized</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Technology for maximum flexibility and unique experiences for customers and partners worldwide.
                 </p>
@@ -516,7 +516,7 @@ const AboutUs = () => {
             }} transition={{
               delay: 0.4
             }} className="space-y-3">
-                <h3 className="text-2xl font-bold text-secondary">Ethical AI</h3>
+                <h3 className="text-2xl font-bold" style={{ color: "#A8B8CA" }}>Ethical AI</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We build trust through integrity, transparency, and responsibility. Learn more in our Trust Center.
                 </p>
@@ -559,9 +559,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.3
               }} className="absolute top-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full p-1 shadow-xl" style={{ background: "linear-gradient(135deg, #A8C5B8, rgba(168, 197, 184, 0.8))" }}>
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Lightbulb className="w-12 h-12 text-primary" strokeWidth={1.5} />
+                      <Lightbulb className="w-12 h-12" style={{ color: "#A8C5B8" }} strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -575,9 +575,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.4
               }} className="absolute top-0 right-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full p-1 shadow-xl" style={{ background: "linear-gradient(135deg, #A8C5B8, rgba(168, 197, 184, 0.8))" }}>
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Users className="w-12 h-12 text-primary" strokeWidth={1.5} />
+                      <Users className="w-12 h-12" style={{ color: "#A8C5B8" }} strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -591,9 +591,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.5
               }} className="absolute bottom-0 left-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full p-1 shadow-xl" style={{ background: "linear-gradient(135deg, #A8C5B8, rgba(168, 197, 184, 0.8))" }}>
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-primary" strokeWidth={1.5} />
+                      <Globe className="w-12 h-12" style={{ color: "#A8C5B8" }} strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -607,9 +607,9 @@ const AboutUs = () => {
               }} transition={{
                 delay: 0.6
               }} className="absolute bottom-0 right-0">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary/80 p-1 shadow-xl">
+                  <div className="w-32 h-32 rounded-full p-1 shadow-xl" style={{ background: "linear-gradient(135deg, #A8C5B8, rgba(168, 197, 184, 0.8))" }}>
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <Shield className="w-12 h-12 text-primary" strokeWidth={1.5} />
+                      <Shield className="w-12 h-12" style={{ color: "#A8C5B8" }} strokeWidth={1.5} />
                     </div>
                   </div>
                 </motion.div>
@@ -644,7 +644,7 @@ const AboutUs = () => {
                 duration: 3,
                 repeat: Infinity
               }} className="absolute bottom-8 left-8 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-lg">
-                  <Package className="w-8 h-8 text-primary" />
+                  <Package className="w-8 h-8" style={{ color: "#A8C5B8" }} />
                 </motion.div>
               </div>
             </motion.div>
@@ -658,11 +658,11 @@ const AboutUs = () => {
             x: 0
           }} viewport={{
             once: true
-          }} className="lg:col-span-3 space-y-6">
-              <div className="text-sm font-semibold text-primary uppercase tracking-wider">
+              }} className="lg:col-span-3 space-y-6">
+              <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#A8C5B8" }}>
                 Carbon Reduction Commitment
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
                 Committed to Reducing Our Carbon Footprint and Building a Sustainable Future
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
@@ -686,7 +686,7 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-[#A8BFC5] text-center mb-20">
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-center mb-20" style={{ color: "#A8C5B8" }}>
             Our History
           </motion.h2>
           
@@ -697,8 +697,11 @@ const AboutUs = () => {
               {timelineData.map(item => <button key={item.year} onClick={() => setSelectedYear(item.year)} className="flex flex-col items-center gap-2 group">
                   <motion.div whileHover={{
                 scale: 1.2
-              }} className={`w-4 h-4 rounded-full transition-all ${selectedYear === item.year ? 'bg-[#A8C5B8] ring-4 ring-[#A8C5B8]/20' : 'bg-gray-300 hover:bg-gray-400'}`} />
-                  <span className={`text-sm font-semibold ${selectedYear === item.year ? 'text-[#A8C5B8]' : 'text-gray-400'}`}>
+              }} className="w-4 h-4 rounded-full transition-all" style={{
+                backgroundColor: selectedYear === item.year ? '#A8C5B8' : '#d1d5db',
+                boxShadow: selectedYear === item.year ? '0 0 0 4px rgba(168, 197, 184, 0.2)' : 'none'
+              }} />
+                  <span className="text-sm font-semibold" style={{ color: selectedYear === item.year ? '#A8C5B8' : '#9ca3af' }}>
                     {item.year}
                   </span>
                 </button>)}
@@ -721,7 +724,7 @@ const AboutUs = () => {
                     </div>
                   </div>
                   <div className="md:col-span-2 bg-white border border-gray-200 rounded-[2.5rem] p-8 shadow-xl flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4 text-[#A8BFC5]">{selectedTimeline.title}</h3>
+                    <h3 className="text-2xl font-bold mb-4" style={{ color: "#A8B8CA" }}>{selectedTimeline.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
                   </div>
                 </div>
@@ -763,14 +766,17 @@ const AboutUs = () => {
           }} viewport={{
             once: true
           }} className="order-1 lg:order-2 space-y-6">
-              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">
-                YVOO <span className="text-[#A8BFC5]">Leadership</span>
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-black">
+                YVOO <span style={{ color: "#A8B8CA" }}>Leadership</span>
               </h2>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
                 Our leadership team brings together entrepreneurial expertise and industry-specific knowledge—a 
                 combination that drives YVOO's success and innovation in AI-powered procurement solutions.
               </p>
-              <Button variant="outline" className="border-2 border-[#A8C5B8] text-[#A8C5B8] hover:bg-[#A8C5B8]/10 rounded-full px-8 py-6 text-lg">
+              <Button variant="outline" className="rounded-full px-8 py-6 text-lg border-2 hover:bg-opacity-10" style={{ 
+                borderColor: "#A8C5B8", 
+                color: "#A8C5B8",
+              }}>
                 Learn More
               </Button>
             </motion.div>
@@ -789,14 +795,19 @@ const AboutUs = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 text-center mb-20">
-            Our <span className="text-[#A8BFC5]">Locations</span>
+        }} className="text-4xl md:text-5xl xl:text-6xl font-bold text-black text-center mb-20">
+            Our <span style={{ color: "#A8B8CA" }}>Locations</span>
           </motion.h2>
           
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Location List */}
             <div className="lg:col-span-2 space-y-3">
-              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${selectedLocation === key ? 'bg-[#A8C5B8] text-white shadow-lg' : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'}`}>
+              {Object.entries(locations).map(([key, location]) => <button key={key} onClick={() => setSelectedLocation(key)} className="w-full text-left px-6 py-4 rounded-xl transition-all duration-300" style={{
+                backgroundColor: selectedLocation === key ? '#A8C5B8' : 'white',
+                color: selectedLocation === key ? 'white' : 'black',
+                border: selectedLocation === key ? 'none' : '1px solid #e5e7eb',
+                boxShadow: selectedLocation === key ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
+              }}>
                   <span className="font-semibold">{location.name}</span>
                 </button>)}
             </div>
@@ -814,20 +825,20 @@ const AboutUs = () => {
             duration: 0.6
           }} className="lg:col-span-3">
               <div className="bg-white border border-gray-200 rounded-[2.5rem] p-10 h-full flex flex-col justify-center space-y-8 shadow-xl">
-                <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+                <h3 className="text-3xl md:text-4xl font-bold text-black">
                   {locations[selectedLocation as keyof typeof locations].name}
                 </h3>
                 <div className="space-y-4 text-lg md:text-xl">
                   <p className="text-gray-600">
-                    <strong className="text-[#A8BFC5]">Address:</strong><br />
+                    <strong style={{ color: "#A8B8CA" }}>Address:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].address}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-[#A8BFC5]">Phone:</strong><br />
+                    <strong style={{ color: "#A8B8CA" }}>Phone:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].phone}
                   </p>
                   <p className="text-gray-600">
-                    <strong className="text-[#A8BFC5]">Email:</strong><br />
+                    <strong style={{ color: "#A8B8CA" }}>Email:</strong><br />
                     {locations[selectedLocation as keyof typeof locations].email}
                   </p>
                 </div>
@@ -872,10 +883,17 @@ const AboutUs = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button className="bg-white hover:bg-white/90 text-[#A8C5B8] px-12 py-7 text-xl font-semibold rounded-full shadow-2xl">
+              <Button className="px-12 py-7 text-xl font-semibold rounded-full shadow-2xl" style={{
+                backgroundColor: "white",
+                color: "#A8C5B8"
+              }}>
                 REQUEST DEMO
               </Button>
-              <Button asChild className="bg-[#A8C5B8] hover:bg-[#A8C5B8]/90 text-white px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2 border-white/30">
+              <Button asChild className="px-12 py-7 text-xl font-semibold rounded-full shadow-2xl border-2" style={{
+                backgroundColor: "#A8C5B8",
+                color: "white",
+                borderColor: "rgba(255, 255, 255, 0.3)"
+              }}>
                 <a href="/auditors">
                   ONBOARD AS EXPERT
                 </a>
