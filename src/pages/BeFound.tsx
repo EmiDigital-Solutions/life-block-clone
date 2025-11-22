@@ -3,6 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import supplierThinking from "@/assets/supplier-thinking.jpg";
 
 const BeFound = () => {
   return (
@@ -105,6 +106,93 @@ const BeFound = () => {
               Whether you're a growing manufacturer or established enterprise, 
               get the visibility you deserve on the world's B2B marketplace.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pain Points Hero Section with Image */}
+      <section className="py-32 px-6 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-16"
+          >
+            {/* Role Toggle */}
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-gray-900">
+                <button className="px-8 py-3 rounded-full bg-gray-900 text-white font-medium text-sm uppercase tracking-wider">
+                  Manufacturer
+                </button>
+                <button className="px-8 py-3 rounded-full text-gray-900 font-medium text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">
+                  Distributor
+                </button>
+              </div>
+            </div>
+
+            {/* Headline with emphasis */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center leading-tight">
+              Imagine if you didn't{" "}
+              <span className="relative inline-block">
+                have to spend time
+                <span className="absolute bottom-2 left-0 w-full h-3 bg-gray-900/10 -z-10"></span>
+              </span>
+              ...
+            </h2>
+
+            {/* Image with circular background */}
+            <div className="relative max-w-2xl mx-auto">
+              <div 
+                className="absolute inset-0 rounded-full blur-3xl opacity-30"
+                style={{ background: "radial-gradient(circle, hsl(160, 25%, 72%) 0%, transparent 70%)" }}
+              ></div>
+              <div className="relative aspect-square max-w-lg mx-auto">
+                <img 
+                  src={supplierThinking} 
+                  alt="Supplier thinking" 
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            </div>
+
+            {/* Pain Point Cards */}
+            <div className="space-y-4 max-w-2xl mx-auto">
+              {[
+                {
+                  icon: "🔔",
+                  text: "Manually updating your company information across multiple B2B directories."
+                },
+                {
+                  icon: "📄",
+                  text: "Responding to RFQs from unqualified buyers who aren't a good fit."
+                },
+                {
+                  icon: "💼",
+                  text: "Wondering if buyers are actually seeing your products and capabilities."
+                },
+                {
+                  icon: "✉️",
+                  text: "Creating marketing materials that never reach procurement teams."
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white border-2 border-gray-100 rounded-3xl p-6 flex items-start gap-4 hover:border-gray-200 transition-colors"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center flex-shrink-0 text-2xl">
+                    {item.icon}
+                  </div>
+                  <p className="text-lg text-gray-700 leading-relaxed pt-2">
+                    {item.text}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
