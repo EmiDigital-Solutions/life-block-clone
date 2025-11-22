@@ -126,16 +126,16 @@ const AboutUs = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.02 }}
                     />
-                    {/* Subtle green effect */}
+                    {/* Green highlight on objects only - like O/M reference */}
                     <motion.div 
                       className="absolute inset-0 pointer-events-none"
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 0.4 }}
+                      whileInView={{ opacity: 0.6 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.02 + 0.2 }}
                       style={{
-                        background: `rgba(168, 197, 184, 0.25)`,
-                        mixBlendMode: 'color'
+                        background: `radial-gradient(circle at 50% 35%, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.4) 20%, transparent 45%)`,
+                        mixBlendMode: 'screen'
                       }}
                     />
                     {/* Touch flash effect */}
@@ -287,13 +287,13 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Subtle green effect */}
+                {/* Green highlight on objects - like O/M reference */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `rgba(168, 197, 184, 0.25)`,
-                    mixBlendMode: 'color',
-                    opacity: 0.4
+                    background: `radial-gradient(circle at 55% 40%, rgba(168, 197, 184, 0.7) 0%, rgba(168, 197, 184, 0.3) 25%, transparent 50%)`,
+                    mixBlendMode: 'screen',
+                    opacity: 0.7
                   }}
                 />
               </div>
@@ -395,9 +395,9 @@ const AboutUs = () => {
                   <div 
                     className="absolute inset-0"
                     style={{
-                      background: `rgba(168, 197, 184, 0.25)`,
-                      mixBlendMode: 'color',
-                      opacity: 0.4
+                      background: `radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.7) 0%, rgba(168, 197, 184, 0.3) 25%, transparent 50%)`,
+                      mixBlendMode: 'screen',
+                      opacity: 0.7
                     }}
                   />
                 </div>
@@ -464,13 +464,13 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Subtle green effect */}
+                {/* Green highlight on objects - like O/M reference */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `rgba(168, 197, 184, 0.25)`,
-                    mixBlendMode: 'color',
-                    opacity: 0.4
+                    background: `radial-gradient(circle at 55% 40%, rgba(168, 197, 184, 0.7) 0%, rgba(168, 197, 184, 0.3) 25%, transparent 50%)`,
+                    mixBlendMode: 'screen',
+                    opacity: 0.7
                   }}
                 />
               </div>
