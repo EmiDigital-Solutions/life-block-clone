@@ -3,7 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import supplierPortraitHero from "@/assets/supplier-portrait-hero.jpg";
+import supplierPortraitHero from "@/assets/supplier-thinking-portrait.jpg";
 
 const BeFound = () => {
   return (
@@ -157,10 +157,6 @@ const BeFound = () => {
                   src={supplierPortraitHero} 
                   alt="Thoughtful supplier considering opportunities" 
                   className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
-                  style={{
-                    mixBlendMode: 'multiply',
-                    filter: 'contrast(1.2) brightness(1.1)'
-                  }}
                 />
               </div>
             </div>
