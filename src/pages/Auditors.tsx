@@ -821,40 +821,9 @@ const TechnologyFeaturesSection = () => {
                   <div className="absolute inset-0">
                     <img
                       src={feature.image}
-                      alt={feature.title}
+                      alt="Auditor"
                       className="w-full h-full object-cover"
                     />
-                  </div>
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-
-                  {/* Content */}
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
-                    <div className="flex gap-2">
-                      {feature.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 rounded-full text-xs font-medium text-white bg-white/20 backdrop-blur-md border border-white/30"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center`}>
-                          <feature.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white">
-                          {feature.title}
-                        </h3>
-                      </div>
-                      <p className="text-sm text-white/90 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -966,36 +935,9 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
                 <div className="absolute inset-0">
                   <img
                     src={feature.image}
-                    alt={feature.title}
+                    alt="Auditor"
                     className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-
-      {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
-
-                {/* Tags at top */}
-                <div className="absolute top-6 left-6 flex gap-2 flex-wrap z-20">
-                  {feature.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1.5 rounded-full text-white text-xs font-semibold bg-white/20 backdrop-blur-md border border-white/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Content at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                  <div className={`w-14 h-14 flex items-center justify-center bg-gradient-to-br ${feature.gradient} rounded-2xl shadow-lg mb-4 group-hover:scale-110 transition-transform`}>
-                    <feature.icon className="w-8 h-8" strokeWidth={2.5} />
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
-                  <p className="text-white/90 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
                 </div>
 
                 {/* Shine effect */}
