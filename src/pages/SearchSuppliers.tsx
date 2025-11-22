@@ -1201,7 +1201,7 @@ const SearchSuppliers = () => {
                 <div className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 transition-all duration-300 hover:shadow-lg border-b-4 border-gray-100 hover:border-[#A8C5B8]">
                   <div className="flex items-start gap-6">
                     {/* 8-bit Pixel Arrow */}
-                    <div className="flex-shrink-0" style={{ filter: 'invert(82%) sepia(10%) saturate(963%) hue-rotate(99deg) brightness(95%) contrast(86%)' }}>
+                    <div className="flex-shrink-0">
                       <PixelIcon 
                         name="arrow-right" 
                         className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:translate-x-1"
@@ -1213,9 +1213,13 @@ const SearchSuppliers = () => {
                       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 transition-colors duration-300">
                         {feature.title}
                       </h3>
-                      <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                      <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-4">
                         {feature.description}
                       </p>
+                      <div className="inline-flex items-center gap-2 text-[#A8C5B8] text-sm font-semibold group-hover:gap-3 transition-all">
+                        <span>Learn more</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
+                      </div>
                     </div>
                   </div>
                 </div>
