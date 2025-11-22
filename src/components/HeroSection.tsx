@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
-import heroCharacter from "@/assets/hero-character.png";
+import heroCharacter from "@/assets/hero-worker-green-helmet.png";
 import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
@@ -42,7 +42,7 @@ const HeroSection = () => {
           >
             <img 
               src={heroCharacter} 
-              alt="3D Character" 
+              alt="Professional worker with safety helmet" 
               className="w-full max-w-[280px] sm:max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain"
             />
           </motion.div>
