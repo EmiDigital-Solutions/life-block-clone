@@ -1370,9 +1370,9 @@ const SearchSuppliers = () => {
 
       <Footer />
 
-      {/* AI Feature Detail Modal - Minimalist Design */}
+      {/* AI Feature Detail Modal - Clean Modern Design */}
       <Dialog open={selectedAIFeature !== null} onOpenChange={() => setSelectedAIFeature(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl mx-4 md:mx-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl mx-4 md:mx-auto p-8 md:p-12">
           {selectedAIFeature !== null && (() => {
             const features = [
               {
@@ -1459,66 +1459,55 @@ const SearchSuppliers = () => {
             const feature = features[selectedAIFeature];
             
             return (
-              <div className="space-y-8 p-2">
+              <div className="space-y-8">
                 {/* Header */}
-                <div className="border-b border-gray-200 pb-6">
-                  <div className="inline-block px-3 py-1 bg-[#A8C5B8]/10 rounded-full mb-4">
-                    <span className="text-[#A8C5B8] text-xs font-bold uppercase tracking-wide">Feature {String(selectedAIFeature + 1).padStart(2, '0')}</span>
-                  </div>
-                  <DialogTitle className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                <div className="pb-6">
+                  <DialogTitle className="text-3xl md:text-5xl font-bold mb-4" style={{ color: '#A8C5B8' }}>
                     {feature.title}
                   </DialogTitle>
-                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                  <p className="text-lg md:text-xl text-gray-900 leading-relaxed">
                     {feature.detailedExplanation.overview}
                   </p>
                 </div>
 
                 <div className="space-y-6">
                   {/* For Engineers */}
-                  <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-6 border border-blue-100">
-                    <div className="inline-block px-3 py-1 bg-blue-500 rounded-full mb-3">
-                      <span className="text-white text-xs font-bold uppercase tracking-wide">Engineers</span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                  <div className="border-l-4 border-gray-900 pl-6 py-4">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">Engineers</h4>
+                    <p className="text-base text-gray-700 leading-relaxed">
                       {feature.detailedExplanation.forEngineers}
                     </p>
                   </div>
 
                   {/* For Procurement & Buyers */}
-                  <div className="bg-gradient-to-br from-[#A8C5B8]/10 to-white rounded-2xl p-6 border border-[#A8C5B8]/20">
-                    <div className="inline-block px-3 py-1 bg-[#A8C5B8] rounded-full mb-3">
-                      <span className="text-white text-xs font-bold uppercase tracking-wide">Procurement</span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                  <div className="border-l-4 border-[#A8C5B8] pl-6 py-4">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-[#A8C5B8] mb-3">Procurement</h4>
+                    <p className="text-base text-gray-700 leading-relaxed">
                       {feature.detailedExplanation.forBuyers}
                     </p>
                   </div>
 
                   {/* For Quality & Auditors */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200">
-                    <div className="inline-block px-3 py-1 bg-gray-700 rounded-full mb-3">
-                      <span className="text-white text-xs font-bold uppercase tracking-wide">Quality</span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                  <div className="border-l-4 border-[#A8B8CA] pl-6 py-4">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-[#A8B8CA] mb-3">Quality</h4>
+                    <p className="text-base text-gray-700 leading-relaxed">
                       {feature.detailedExplanation.forAuditors}
                     </p>
                   </div>
 
                   {/* Real-World Application */}
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6">
-                    <div className="inline-block px-3 py-1 bg-[#A8C5B8] rounded-full mb-3">
-                      <span className="text-white text-xs font-bold uppercase tracking-wide">Example</span>
-                    </div>
-                    <p className="text-sm md:text-base text-gray-200 leading-relaxed">
+                  <div className="bg-gray-50 rounded-2xl p-6 mt-8">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">Example</h4>
+                    <p className="text-base text-gray-700 leading-relaxed">
                       {feature.detailedExplanation.example}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex justify-end pt-4 border-t border-gray-200">
+                <div className="flex justify-end pt-6">
                   <Button 
                     onClick={() => setSelectedAIFeature(null)}
-                    className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-8 py-6"
+                    className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-8 py-3"
                   >
                     Close
                   </Button>
