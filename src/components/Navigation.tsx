@@ -71,6 +71,11 @@ const Navigation = () => {
             setNavBgColor('rgba(249, 250, 251, 0.95)');
             setTextColor('rgb(31, 41, 55)');
             break;
+          } else if (navTheme === 'primary') {
+            // Primary green section - use green background with white text
+            setNavBgColor('rgba(168, 197, 184, 0.95)');
+            setTextColor('rgb(255, 255, 255)');
+            break;
           }
           
           // If no data-nav-theme, fall back to color detection
