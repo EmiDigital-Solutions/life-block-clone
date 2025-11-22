@@ -65,15 +65,10 @@ const TestimonialSection = () => {
 
             {/* Testimonial */}
             <div className="space-y-4">
-              <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
-                <span className="text-white">"It's a game</span>{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-blue-400 text-black px-6 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
-                    changer"
-                  </span>
-                </span>
+              <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-black">
+                "It's a game changer"
               </p>
-              <p className="text-xl md:text-2xl text-white/90 font-normal">
+              <p className="text-xl md:text-2xl text-black/80 font-normal">
                 Christoph Seeholzer, Former Linde
               </p>
             </div>
