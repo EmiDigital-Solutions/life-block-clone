@@ -12,52 +12,52 @@ import SphereImageGrid, { ImageData } from "@/components/SphereImageGrid";
 import FounderMissionSection from "@/components/FounderMissionSection";
 
 // Import 20 B&W portraits with green-highlighted safety equipment
-import sphereFinal1 from "@/assets/sphere-final-1.jpg";
-import sphereFinal2 from "@/assets/sphere-final-2.jpg";
-import sphereFinal3 from "@/assets/sphere-final-3.jpg";
-import sphereFinal4 from "@/assets/sphere-final-4.jpg";
-import sphereFinal5 from "@/assets/sphere-final-5.jpg";
-import sphereFinal6 from "@/assets/sphere-final-6.jpg";
-import sphereFinal7 from "@/assets/sphere-final-7.jpg";
-import sphereFinal8 from "@/assets/sphere-final-8.jpg";
-import sphereFinal9 from "@/assets/sphere-final-9.jpg";
-import sphereFinal10 from "@/assets/sphere-final-10.jpg";
-import sphereFinal11 from "@/assets/sphere-final-11.jpg";
-import sphereFinal12 from "@/assets/sphere-final-12.jpg";
-import sphereFinal13 from "@/assets/sphere-final-13.jpg";
-import sphereFinal14 from "@/assets/sphere-final-14.jpg";
-import sphereFinal15 from "@/assets/sphere-final-15.jpg";
-import sphereFinal16 from "@/assets/sphere-final-16.jpg";
-import sphereFinal17 from "@/assets/sphere-final-17.jpg";
-import sphereFinal18 from "@/assets/sphere-final-18.jpg";
-import sphereFinal19 from "@/assets/sphere-final-19.jpg";
-import sphereFinal20 from "@/assets/sphere-final-20.jpg";
+import sphereAuditor1 from "@/assets/sphere-auditor-1.jpg";
+import sphereAuditor2 from "@/assets/sphere-auditor-2.jpg";
+import sphereAuditor3 from "@/assets/sphere-auditor-3.jpg";
+import sphereAuditor4 from "@/assets/sphere-auditor-4.jpg";
+import sphereAuditor5 from "@/assets/sphere-auditor-5.jpg";
+import sphereAuditor6 from "@/assets/sphere-auditor-6.jpg";
+import sphereAuditor7 from "@/assets/sphere-auditor-7.jpg";
+import sphereAuditor8 from "@/assets/sphere-auditor-8.jpg";
+import sphereAuditor9 from "@/assets/sphere-auditor-9.jpg";
+import sphereAuditor10 from "@/assets/sphere-auditor-10.jpg";
+import sphereAuditor11 from "@/assets/sphere-auditor-11.jpg";
+import sphereAuditor12 from "@/assets/sphere-auditor-12.jpg";
+import sphereAuditor13 from "@/assets/sphere-auditor-13.jpg";
+import sphereAuditor14 from "@/assets/sphere-auditor-14.jpg";
+import sphereAuditor15 from "@/assets/sphere-auditor-15.jpg";
+import sphereAuditor16 from "@/assets/sphere-auditor-16.jpg";
+import sphereAuditor17 from "@/assets/sphere-auditor-17.jpg";
+import sphereAuditor18 from "@/assets/sphere-auditor-18.jpg";
+import sphereAuditor19 from "@/assets/sphere-auditor-19.jpg";
+import sphereAuditor20 from "@/assets/sphere-auditor-20.jpg";
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2019);
 
   // Sphere images - ALL black & white with ONLY green safety equipment highlighted
   const sphereImages: ImageData[] = [
-    { id: '1', src: sphereFinal1, alt: 'Quality Inspector Europe', title: 'Quality Inspector' },
-    { id: '2', src: sphereFinal2, alt: 'Safety Auditor Europe', title: 'Safety Auditor' },
-    { id: '3', src: sphereFinal3, alt: 'Compliance Officer Africa', title: 'Compliance Officer' },
-    { id: '4', src: sphereFinal4, alt: 'Technical Inspector Europe', title: 'Technical Inspector' },
-    { id: '5', src: sphereFinal5, alt: 'Quality Manager Europe', title: 'Quality Manager' },
-    { id: '6', src: sphereFinal6, alt: 'Field Auditor Asia', title: 'Field Auditor' },
-    { id: '7', src: sphereFinal7, alt: 'Standards Expert Europe', title: 'Standards Expert' },
-    { id: '8', src: sphereFinal8, alt: 'Process Auditor Africa', title: 'Process Auditor' },
-    { id: '9', src: sphereFinal9, alt: 'Lead Auditor Europe', title: 'Lead Auditor' },
-    { id: '10', src: sphereFinal10, alt: 'Quality Specialist Europe', title: 'Quality Specialist' },
-    { id: '11', src: sphereFinal11, alt: 'Inspection Manager Americas', title: 'Inspection Manager' },
-    { id: '12', src: sphereFinal12, alt: 'Certification Expert Europe', title: 'Certification Expert' },
-    { id: '13', src: sphereFinal13, alt: 'Technical Assessor Europe', title: 'Technical Assessor' },
-    { id: '14', src: sphereFinal14, alt: 'Compliance Manager Europe', title: 'Compliance Manager' },
-    { id: '15', src: sphereFinal15, alt: 'Quality Engineer Europe', title: 'Quality Engineer' },
-    { id: '16', src: sphereFinal16, alt: 'Senior Inspector Asia', title: 'Senior Inspector' },
-    { id: '17', src: sphereFinal17, alt: 'Audit Specialist Europe', title: 'Audit Specialist' },
-    { id: '18', src: sphereFinal18, alt: 'Quality Director Europe', title: 'Quality Director' },
-    { id: '19', src: sphereFinal19, alt: 'Field Manager Europe', title: 'Field Manager' },
-    { id: '20', src: sphereFinal20, alt: 'Verification Expert Europe', title: 'Verification Expert' },
+    { id: '1', src: sphereAuditor1, alt: 'Quality Inspector Europe', title: 'Quality Inspector' },
+    { id: '2', src: sphereAuditor2, alt: 'Safety Auditor Europe', title: 'Safety Auditor' },
+    { id: '3', src: sphereAuditor3, alt: 'Compliance Officer Africa', title: 'Compliance Officer' },
+    { id: '4', src: sphereAuditor4, alt: 'Technical Inspector Europe', title: 'Technical Inspector' },
+    { id: '5', src: sphereAuditor5, alt: 'Quality Manager Europe', title: 'Quality Manager' },
+    { id: '6', src: sphereAuditor6, alt: 'Field Auditor Asia', title: 'Field Auditor' },
+    { id: '7', src: sphereAuditor7, alt: 'Standards Expert Europe', title: 'Standards Expert' },
+    { id: '8', src: sphereAuditor8, alt: 'Process Auditor Africa', title: 'Process Auditor' },
+    { id: '9', src: sphereAuditor9, alt: 'Lead Auditor Europe', title: 'Lead Auditor' },
+    { id: '10', src: sphereAuditor10, alt: 'Quality Specialist Europe', title: 'Quality Specialist' },
+    { id: '11', src: sphereAuditor11, alt: 'Inspection Manager Americas', title: 'Inspection Manager' },
+    { id: '12', src: sphereAuditor12, alt: 'Certification Expert Europe', title: 'Certification Expert' },
+    { id: '13', src: sphereAuditor13, alt: 'Technical Assessor Europe', title: 'Technical Assessor' },
+    { id: '14', src: sphereAuditor14, alt: 'Compliance Manager Europe', title: 'Compliance Manager' },
+    { id: '15', src: sphereAuditor15, alt: 'Quality Engineer Europe', title: 'Quality Engineer' },
+    { id: '16', src: sphereAuditor16, alt: 'Senior Inspector Asia', title: 'Senior Inspector' },
+    { id: '17', src: sphereAuditor17, alt: 'Audit Specialist Europe', title: 'Audit Specialist' },
+    { id: '18', src: sphereAuditor18, alt: 'Quality Director Europe', title: 'Quality Director' },
+    { id: '19', src: sphereAuditor19, alt: 'Field Manager Europe', title: 'Field Manager' },
+    { id: '20', src: sphereAuditor20, alt: 'Verification Expert Europe', title: 'Verification Expert' },
   ];
   const locations = {
     zagreb: {
