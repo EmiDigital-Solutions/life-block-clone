@@ -158,10 +158,10 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
     if (hexColor === "white") return "brightness(0) invert(1)";
     if (hexColor === "black") return "brightness(0)";
     
-    // For our specific colors
-    if (hexColor === "#A8C5B8") {
-      // Muted green
-      return "brightness(0) saturate(100%) invert(81%) sepia(8%) saturate(882%) hue-rotate(102deg) brightness(93%) contrast(89%)";
+    // For our specific colors - Updated darker green
+    if (hexColor === "#A8C5B8" || hexColor === "#85B3A4") {
+      // Muted green (darker version for better contrast)
+      return "brightness(0) saturate(100%) invert(65%) sepia(12%) saturate(862%) hue-rotate(108deg) brightness(95%) contrast(88%)";
     }
     if (hexColor === "#C57B7B") {
       // Muted red
