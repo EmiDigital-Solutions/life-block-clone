@@ -72,21 +72,29 @@ const HeroSection = () => {
               {heroContent.subtitle}
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4"
+              className="flex flex-col gap-6 justify-center lg:justify-start items-center lg:items-start pt-4"
             >
               <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-base">
                 Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="group inline-flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-900 px-8 py-4 rounded-full font-medium hover:border-gray-900 transition-all duration-300 text-base">
-                View Pricing
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              
+              {/* Auditor Certifications */}
+              <p className="text-sm text-gray-600 text-center lg:text-left">
+                Our auditor network includes professionals certified by:{" "}
+                <span className="font-medium text-gray-900">TÜV SÜD</span>
+                {" • "}
+                <span className="font-medium text-gray-900">Bureau Veritas</span>
+                {" • "}
+                <span className="font-medium text-gray-900">SGS</span>
+                {" • "}
+                <span className="font-medium text-gray-900">DNV</span>
+              </p>
             </motion.div>
           </div>
 
@@ -143,26 +151,6 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-      {/* Auditor Certifications */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="bg-gray-50 border-t border-gray-200 py-6"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <p className="text-center text-sm text-gray-600">
-            Our auditor network includes professionals certified by:{" "}
-            <span className="font-medium text-gray-900">TÜV SÜD</span>
-            {" • "}
-            <span className="font-medium text-gray-900">Bureau Veritas</span>
-            {" • "}
-            <span className="font-medium text-gray-900">SGS</span>
-            {" • "}
-            <span className="font-medium text-gray-900">DNV</span>
-          </p>
-        </div>
-      </motion.div>
     </section>
   );
 };
