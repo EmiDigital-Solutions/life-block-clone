@@ -66,7 +66,7 @@ const TestimonialSection = () => {
             {/* Testimonial */}
             <div className="space-y-4">
               <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-black">
-                "<span className="font-bold">ScanPro</span> is a Game Changer"
+                "<span className="font-bold">ScanPro</span>, it's a Game Changer"
               </p>
               <p className="text-xl md:text-2xl text-black/80 font-normal">
                 Christoph Seeholzer, Former Linde
