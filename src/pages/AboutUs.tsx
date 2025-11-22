@@ -126,15 +126,15 @@ const AboutUs = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.02 }}
                     />
-                    {/* Very subtle green effect */}
+                    {/* Subtle green effect */}
                     <motion.div 
                       className="absolute inset-0 pointer-events-none"
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 0.25 }}
+                      whileInView={{ opacity: 0.4 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.02 + 0.2 }}
                       style={{
-                        background: `radial-gradient(circle at 50% 50%, rgba(168, 197, 184, 0.2) 0%, rgba(168, 197, 184, 0.1) 50%, transparent 80%)`,
+                        background: `rgba(168, 197, 184, 0.25)`,
                         mixBlendMode: 'color'
                       }}
                     />
@@ -287,12 +287,13 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Very subtle green effect */}
+                {/* Subtle green effect */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
-                    mixBlendMode: 'color'
+                    background: `rgba(168, 197, 184, 0.25)`,
+                    mixBlendMode: 'color',
+                    opacity: 0.4
                   }}
                 />
               </div>
@@ -394,8 +395,9 @@ const AboutUs = () => {
                   <div 
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
-                      mixBlendMode: 'color'
+                      background: `rgba(168, 197, 184, 0.25)`,
+                      mixBlendMode: 'color',
+                      opacity: 0.4
                     }}
                   />
                 </div>
@@ -462,12 +464,13 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Very subtle green effect */}
+                {/* Subtle green effect */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
-                    mixBlendMode: 'color'
+                    background: `rgba(168, 197, 184, 0.25)`,
+                    mixBlendMode: 'color',
+                    opacity: 0.4
                   }}
                 />
               </div>
