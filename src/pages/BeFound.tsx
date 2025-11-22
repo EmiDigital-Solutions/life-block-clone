@@ -3,7 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import supplierThinkingPortrait from "@/assets/supplier-thinking-portrait.jpg";
+import supplierPortraitHero from "@/assets/supplier-portrait-hero.jpg";
 
 const BeFound = () => {
   return (
@@ -141,26 +141,23 @@ const BeFound = () => {
               {" "}have to spend time...
             </h2>
 
-            {/* Image with soft peach gradient background */}
-            <div className="relative max-w-2xl mx-auto py-8">
-              {/* Soft peach/coral gradient glow effect behind circle */}
+            {/* Image with circular gradient background */}
+            <div className="relative flex justify-center items-center py-16">
+              {/* Large circular gradient background element - decorative */}
               <div 
-                className="absolute inset-0 rounded-full blur-3xl opacity-60"
+                className="absolute w-[600px] h-[600px] md:w-[600px] md:h-[600px] max-[768px]:w-[400px] max-[768px]:h-[400px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle at center, rgba(255, 180, 162, 0.6) 0%, rgba(255, 200, 180, 0.4) 30%, rgba(255, 220, 200, 0.2) 50%, transparent 70%)",
-                  transform: "scale(1.2)"
+                  background: "radial-gradient(circle, #FFD4C3 0%, #FFC9B5 100%)"
                 }}
               ></div>
 
-              {/* Circular image container */}
-              <div className="relative aspect-square max-w-md mx-auto">
-                <div className="w-full h-full rounded-full overflow-hidden">
-                  <img 
-                    src={supplierThinkingPortrait} 
-                    alt="Thoughtful supplier considering opportunities" 
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
+              {/* Photo overlay - natural rectangular shape, not cropped */}
+              <div className="relative z-10">
+                <img 
+                  src={supplierPortraitHero} 
+                  alt="Thoughtful supplier considering opportunities" 
+                  className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
+                />
               </div>
             </div>
 
