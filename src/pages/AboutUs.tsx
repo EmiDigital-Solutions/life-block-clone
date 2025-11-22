@@ -321,58 +321,41 @@ const AboutUs = () => {
   return <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* SECTION 1: HERO SECTION - Cognigy Style */}
-      <section data-nav-theme="light" className="pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 sm:pb-16 md:pb-20 lg:pb-28 relative overflow-hidden bg-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1500px]">
-          <div className="grid grid-cols-1 md:grid-cols-[55%_45%] gap-12 sm:gap-16 md:gap-20 lg:gap-24 items-center">
+      {/* SECTION 1: HERO SECTION - Minimalist Clean Design */}
+      <section data-nav-theme="light" className="pt-40 pb-20 relative overflow-hidden bg-white">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left - 3D Sphere */}
-            <motion.div className="relative flex justify-center items-center order-1 md:order-1 md:ml-4 lg:ml-8" initial={{
-            opacity: 0,
-            scale: 0.8
-          }} animate={{
-            opacity: 1,
-            scale: 1
-          }} transition={{
-            duration: 0.8,
-            delay: 0.3
-          }}>
+            <motion.div 
+              className="relative flex justify-center items-center order-2 lg:order-1" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.6 }}
+            >
               <SphereImageGrid 
                 images={sphereImages} 
-                containerSize={550} 
-                sphereRadius={280} 
+                containerSize={500} 
+                sphereRadius={250} 
                 autoRotate={true} 
-                autoRotateSpeed={0.03}
-                dragSensitivity={0.25}
+                autoRotateSpeed={0.02}
+                dragSensitivity={0.2}
                 momentumDecay={0.98}
-                maxRotationSpeed={2}
-                baseImageScale={0.8} 
+                maxRotationSpeed={1.5}
+                baseImageScale={0.75} 
               />
             </motion.div>
             
-            {/* Right - Text Content with staggered animation */}
-            <motion.div className="flex flex-col space-y-4 sm:space-y-6 order-2 md:order-2" initial={{
-            opacity: 0
-          }} animate={{
-            opacity: 1
-          }} transition={{
-            duration: 0.6,
-            delay: 0.4
-          }}>
-              {/* Main Heading */}
-              <motion.h1 initial={{
-              opacity: 0,
-              y: 50
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 1,
-              delay: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-[-0.02em]" style={{
-              color: "#1E2A3A"
-            }}>Building the Global B2B Platform linking Clients, Suppliers & local Experts </motion.h1>
+            {/* Right - Text Content */}
+            <motion.div 
+              className="flex flex-col space-y-6 order-1 lg:order-2" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-black">
+                Building the Global B2B Platform linking Clients, Suppliers & local Experts
+              </h1>
             </motion.div>
             
           </div>
