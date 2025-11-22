@@ -330,23 +330,25 @@ const AboutUs = () => {
             <motion.div 
               className="lg:col-span-7 relative" 
               initial={{ opacity: 0, x: -30 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.5 }}
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
             >
               <div className="grid grid-cols-4 gap-3 aspect-square max-w-[600px]">
                 {sphereImages.slice(0, 16).map((image, index) => (
                   <motion.div
                     key={image.id}
                     className="relative aspect-square overflow-hidden bg-gray-100"
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ 
+                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                    whileInView={{ 
                       opacity: 1, 
                       scale: 1, 
                       y: 0,
                     }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ 
-                      duration: 0.6, 
-                      delay: index * 0.05,
+                      duration: 0.5, 
+                      delay: index * 0.04,
                       ease: [0.25, 0.46, 0.45, 0.94]
                     }}
                     style={{
@@ -362,27 +364,25 @@ const AboutUs = () => {
                       alt={image.alt}
                       className="w-full h-full object-cover"
                       style={{ filter: 'grayscale(100%)' }}
-                      animate={{ 
-                        scale: [1, 1.02, 1],
-                      }}
+                      initial={{ scale: 1.2 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
                       transition={{
-                        duration: 8 + (index % 3) * 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.2
+                        duration: 0.8,
+                        delay: index * 0.04,
+                        ease: "easeOut"
                       }}
                     />
-                    {/* Animated green highlight overlay for objects */}
+                    {/* Animated green highlight overlay for objects - triggers on scroll */}
                     <motion.div 
                       className="absolute inset-0 pointer-events-none"
-                      animate={{ 
-                        opacity: [0.5, 0.7, 0.5],
-                      }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 0.6 }}
+                      viewport={{ once: true }}
                       transition={{
-                        duration: 4 + (index % 3),
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.15
+                        duration: 0.6,
+                        delay: index * 0.04 + 0.2,
+                        ease: "easeOut"
                       }}
                       style={{
                         background: `
@@ -393,35 +393,36 @@ const AboutUs = () => {
                         mixBlendMode: 'color'
                       }}
                     />
-                    {/* Subtle animated border accent */}
+                    {/* Animated border accent */}
                     <motion.div 
-                      className="absolute inset-0 border border-[#A8C5B8]/30"
-                      animate={{ 
-                        opacity: [0.3, 0.6, 0.3],
-                      }}
+                      className="absolute inset-0 border border-[#A8C5B8]/40"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
                       transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.1
+                        duration: 0.4,
+                        delay: index * 0.04 + 0.3,
+                        ease: "easeOut"
                       }}
                     />
                   </motion.div>
                 ))}
               </div>
               
-              {/* Geometric accent lines with animation */}
+              {/* Geometric accent lines with scroll animation */}
               <motion.div 
                 className="absolute -top-8 -left-8 w-24 h-24 border-l-2 border-t-2 border-[#A8C5B8]"
-                initial={{ opacity: 0, scale: 0, rotate: -90 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, x: -20, y: -20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
               <motion.div 
                 className="absolute -bottom-8 -right-8 w-24 h-24 border-r-2 border-b-2 border-[#A8B8CA]"
-                initial={{ opacity: 0, scale: 0, rotate: 90 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, x: 20, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
             
