@@ -138,6 +138,11 @@ const iconMapping: Record<string, string> = {
   "listChecks": "list",
   "plug": "link",
   "circleCheck": "check",
+  
+  // Compliance standards specific mappings
+  "iso": "shield",
+  "as": "rocket",
+  "vda": "settings",
 };
 
 export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor" }: PixelIconProps) => {
