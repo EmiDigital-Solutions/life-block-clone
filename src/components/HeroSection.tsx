@@ -38,12 +38,17 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end overflow-hidden"
           >
             <img 
               src={heroCharacter} 
               alt="3D Character" 
-              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto object-cover object-center"
+              style={{ 
+                clipPath: 'inset(0% 0% 35% 0%)',
+                transform: 'scale(1.3)',
+                transformOrigin: 'center top'
+              }}
             />
           </motion.div>
 
