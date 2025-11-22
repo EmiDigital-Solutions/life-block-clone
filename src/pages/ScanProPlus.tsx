@@ -1179,7 +1179,7 @@ const ChallengeToggleSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
               className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
-                isWithScanPro ? 'text-[#A8C5B8]' : 'text-red-600'
+                isWithScanPro ? 'text-[#A8C5B8]' : 'text-[#A8C5B8]'
               }`}
             >
               {isWithScanPro ? 'ScanPro+' : 'Providers'}
@@ -1190,7 +1190,7 @@ const ChallengeToggleSection = () => {
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
             className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-gray-400'
+              isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-[#A8C5B8]/60'
             }`}
             aria-label="Toggle comparison"
           >
@@ -1226,7 +1226,7 @@ const ChallengeToggleSection = () => {
                 <PixelIcon 
                   name={item.icon} 
                   className="w-8 h-8 flex-shrink-0"
-                  color={isWithScanPro ? '#A8C5B8' : '#EF4444'}
+                  color="#A8C5B8"
                 />
                 <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
                   {item.title}
