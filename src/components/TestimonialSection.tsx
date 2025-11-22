@@ -48,19 +48,32 @@ const TestimonialSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center space-y-12"
+            className="text-left max-w-4xl space-y-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-              Built for mighty{" "}
-              <span className="block mt-2">B2B Supply Chains</span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1]">
+              Built for{" "}
+              <span className="block">
+                small but{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
+                    mighty
+                  </span>
+                </span>
+              </span>
+              <span className="block">B2B Supply Chains</span>
             </h2>
 
             {/* Testimonial */}
-            <div className="max-w-3xl mx-auto">
-              <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                "ScanPro; it's a game changer"
+            <div className="space-y-4">
+              <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+                <span className="text-white">"It's a game</span>{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-blue-400 text-black px-6 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
+                    changer"
+                  </span>
+                </span>
               </p>
-              <p className="text-lg md:text-xl text-white/80">
+              <p className="text-xl md:text-2xl text-white/90 font-normal">
                 Christoph Seeholzer, Former Linde
               </p>
             </div>
