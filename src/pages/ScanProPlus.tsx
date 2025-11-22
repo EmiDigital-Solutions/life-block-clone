@@ -878,7 +878,7 @@ const ComplianceStandardsGrid = () => {
     },
     {
       name: "AS9100",
-      iconName: "analytics",
+      iconName: "plane",
       description: "Aerospace Quality Standard",
       details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
     },
