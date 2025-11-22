@@ -1,67 +1,56 @@
-import { FileText, Brain, Cog, Gauge, Camera, Clock, TrendingUp, ListChecks, Plug } from "lucide-react";
 import { PixelIcon } from "@/components/PixelIcon";
 
 interface Capability {
   title: string;
   description: string;
-  icon: React.ReactNode;
-  variant: 'dark' | 'blue';
+  accentColor: string;
 }
 
 const capabilities: Capability[] = [
   { 
     title: "Flexible Templates", 
     description: "Create custom frameworks per industry, standard or customer requirement.",
-    icon: <FileText className="w-12 h-12" />,
-    variant: 'dark'
+    accentColor: '#A8C5B8'
   },
   { 
     title: "AI Guidance", 
     description: "Contextual hints during audits to ensure completeness and objectivity.",
-    icon: <Brain className="w-12 h-12" />,
-    variant: 'blue'
+    accentColor: '#A8B8CA'
   },
   { 
     title: "Equipment Intelligence", 
     description: "Identify machines and assets from photos; assess condition and compliance.",
-    icon: <Cog className="w-12 h-12" />,
-    variant: 'dark'
+    accentColor: '#A8C5B8'
   },
   { 
     title: "Dynamic Scoring", 
     description: "Configurable weightings and 1–5 scoring for transparent results.",
-    icon: <Gauge className="w-12 h-12" />,
-    variant: 'blue'
+    accentColor: '#A8B8CA'
   },
   { 
     title: "Evidence Handling", 
     description: "Auto-categorize photos & files (quality, safety, environment) for traceability.",
-    icon: <Camera className="w-12 h-12" />,
-    variant: 'dark'
+    accentColor: '#A8C5B8'
   },
   { 
     title: "Real-Time Progress", 
     description: "Live milestones and alerts during audits for fast course-corrections.",
-    icon: <Clock className="w-12 h-12" />,
-    variant: 'blue'
+    accentColor: '#A8B8CA'
   },
   { 
     title: "Predictive Risk Scoring", 
     description: "Anticipate issues from historical patterns and equipment signals.",
-    icon: <TrendingUp className="w-12 h-12" />,
-    variant: 'dark'
+    accentColor: '#A8C5B8'
   },
   { 
     title: "Corrective Action Tracking", 
     description: "Monitor improvements with reminders and due-dates.",
-    icon: <ListChecks className="w-12 h-12" />,
-    variant: 'blue'
+    accentColor: '#A8B8CA'
   },
   { 
     title: "Integrations", 
     description: "ERP/QMS connectors (SAP, Oracle, Dynamics, Trackwise, MasterControl, ETQ).",
-    icon: <Plug className="w-12 h-12" />,
-    variant: 'dark'
+    accentColor: '#A8C5B8'
   },
 ];
 
@@ -78,7 +67,7 @@ const InfiniteScrollingGallery = () => {
     return (
       <div className="overflow-hidden">
         <div 
-          className={`flex gap-5 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} hover:animation-pause`}
+          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} hover:animation-pause`}
           style={{
             width: 'fit-content',
           }}
@@ -86,24 +75,29 @@ const InfiniteScrollingGallery = () => {
           {duplicatedItems.map((item, index) => (
             <div
               key={`${rowIndex}-${index}`}
-              className={`
-                flex-shrink-0 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center
-                transition-transform duration-300 hover:scale-105 hover:shadow-2xl
-                ${item.variant === 'dark' 
-                  ? 'bg-gray-900 text-white shadow-xl' 
-                  : 'bg-blue-600 text-white shadow-xl'
-                }
-              `}
+              className="flex-shrink-0 rounded-2xl sm:rounded-3xl p-8 bg-white border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               style={{
-                width: '280px',
-                height: '180px',
+                width: '320px',
+                minHeight: '200px',
+                borderColor: item.accentColor,
               }}
             >
-              <div className="mb-3 sm:mb-4 opacity-90 scale-90 sm:scale-100">
-                {item.icon}
+              <div className="flex items-start gap-3 mb-4">
+                <PixelIcon 
+                  name="arrow-right" 
+                  className="w-5 h-5 flex-shrink-0 mt-1" 
+                  color={item.accentColor}
+                />
+                <h4 
+                  className="text-xl font-bold leading-tight"
+                  style={{ color: item.accentColor }}
+                >
+                  {item.title}
+                </h4>
               </div>
-              <h4 className="text-base sm:text-lg font-bold mb-1 sm:mb-2">{item.title}</h4>
-              <p className="text-xs sm:text-sm opacity-80 leading-tight">{item.description}</p>
+              <p className="text-base text-gray-700 leading-relaxed">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
@@ -112,7 +106,7 @@ const InfiniteScrollingGallery = () => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-5 py-6 sm:py-8">
+    <div className="space-y-6 py-8">
       {renderRow(row1, 'left', 1)}
       {renderRow(row2, 'right', 2)}
       {renderRow(row3, 'left', 3)}
@@ -123,13 +117,13 @@ const InfiniteScrollingGallery = () => {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-300px * 3));
+            transform: translateX(calc(-344px * 3));
           }
         }
 
         @keyframes scroll-right {
           0% {
-            transform: translateX(calc(-300px * 3));
+            transform: translateX(calc(-344px * 3));
           }
           100% {
             transform: translateX(0);
@@ -137,11 +131,11 @@ const InfiniteScrollingGallery = () => {
         }
 
         .animate-scroll-left {
-          animation: scroll-left 20s linear infinite;
+          animation: scroll-left 25s linear infinite;
         }
 
         .animate-scroll-right {
-          animation: scroll-right 20s linear infinite;
+          animation: scroll-right 25s linear infinite;
         }
 
         .hover\\:animation-pause:hover {
