@@ -164,23 +164,23 @@ const BeFound = () => {
               </div>
 
               {/* Pain Point Cards - overlapping the gradient */}
-              <div className="relative z-20 space-y-4 max-w-2xl w-full px-4">
+              <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
                 {[
                   {
-                    icon: "🔔",
-                    text: "Knowing when qualified buyers are actively searching for your exact product capabilities."
+                    text: "Know when buyers search for your products",
+                    textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities."
                   },
                   {
-                    icon: "📄",
-                    text: "Having buyers automatically discover your company profile without cold outreach."
+                    text: "Buyers discover you automatically",
+                    textFull: "Having buyers automatically discover your company profile without cold outreach."
                   },
                   {
-                    icon: "💼",
-                    text: "Getting visibility into which procurement teams viewed your products and services."
+                    text: "See which teams viewed your profile",
+                    textFull: "Getting visibility into which procurement teams viewed your products and services."
                   },
                   {
-                    icon: "✉️",
-                    text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
+                    text: "Receive pre-qualified RFQs",
+                    textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
                   }
                 ].map((item, index) => (
                   <motion.div
@@ -189,13 +189,22 @@ const BeFound = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl p-6 flex items-start gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
-                      {item.icon}
+                    {/* 8-bit pixel arrow */}
+                    <div className="flex-shrink-0 mt-1">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="md:w-6 md:h-6">
+                        <rect x="8" y="0" width="4" height="4" fill="black"/>
+                        <rect x="12" y="4" width="4" height="4" fill="black"/>
+                        <rect x="16" y="8" width="4" height="4" fill="black"/>
+                        <rect x="12" y="12" width="4" height="4" fill="black"/>
+                        <rect x="8" y="16" width="4" height="4" fill="black"/>
+                        <rect x="0" y="8" width="16" height="4" fill="black"/>
+                      </svg>
                     </div>
-                    <p className="text-lg text-gray-700 leading-relaxed pt-2">
-                      {item.text}
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                      <span className="md:hidden">{item.text}</span>
+                      <span className="hidden md:inline">{item.textFull}</span>
                     </p>
                   </motion.div>
                 ))}
