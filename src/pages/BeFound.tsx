@@ -1,700 +1,382 @@
-import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown, TrendingUp, BarChart3, Users } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { Button } from "@/components/ui/button";
 
 const BeFound = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-  const [isFanned, setIsFanned] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const cycle = () => {
-      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
-      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
-    };
-
-    cycle();
-    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
-  const handleCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % 3);
-  };
-
-  const getCardStyle = (index: number, totalCards: number) => {
-    const centerIndex = (totalCards - 1) / 2;
-    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
-    const offset = adjustedIndex - centerIndex;
-    
-    if (isFanned) {
-      if (isMobile) {
-        return {
-          x: offset * 110,
-          y: Math.abs(offset) * -20,
-          rotateY: offset * -8,
-          rotateZ: offset * 6,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      } else {
-        return {
-          x: offset * 85,
-          y: Math.abs(offset) * -45,
-          rotateY: offset * -8,
-          rotateZ: offset * 8,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      }
-    } else {
-      return {
-        x: isMobile ? 0 : 180,
-        y: isMobile ? 0 : 80,
-        rotateY: 0,
-        rotateZ: isMobile ? 0 : -25,
-        scale: 0.98,
-        opacity: adjustedIndex === 0 ? 1 : 0,
-        zIndex: totalCards - adjustedIndex,
-      };
-    }
-  };
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
-      <motion.div ref={containerRef} className="relative">
-        {/* Hero Section */}
-        <section
-          data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-          style={{ background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))" }}
-        >
-          <div className="container mx-auto">
-            <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 max-w-2xl text-left mx-0 pb-10">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
-              >
-                Become visible, to over 7 million+ B2B decision-makers.
-              </motion.h1>
+      {/* Hero Section - Inspired by MidFunnel's clean design */}
+      <section
+        data-nav-theme="dark"
+        className="relative min-h-screen flex items-center justify-center px-6 lg:px-12 py-32"
+        style={{
+          background: "linear-gradient(180deg, hsl(160, 25%, 72%) 0%, hsl(192, 20%, 72%) 50%, hsl(210, 30%, 72%) 100%)"
+        }}
+      >
+        <div className="container mx-auto max-w-5xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] tracking-tight">
+              Get discovered by<br />
+              <span className="text-white/90">7 million+ buyers</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Claim your free supplier profile on the world's fastest-growing B2B marketplace. 
+              Control your presence, track performance, and connect with decision-makers globally.
+            </p>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col space-y-4 text-white mx-0 mb-12"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+              <Button
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-white/90 text-lg px-8 py-6 h-auto rounded-full font-semibold group shadow-xl"
               >
-                <div className="flex items-center gap-3">
-                  <Check className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-lg font-normal leading-[1.6]">Free of Charge</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Check className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-lg font-normal leading-[1.6]">Paid Advertisement</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="w-full sm:w-auto mb-9"
-              >
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
-                  Claim your company
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90 mx-0"
-              >
-                <strong>Create or Claim your free profile just in minutes.</strong> If your company is already represented by Connectimus: take over the account free of charge and control the content individually.
-              </motion.p>
+                Claim Your Profile
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
-          </div>
-        </section>
 
-        {/* Logo Section */}
-        <section
-          data-nav-theme="light"
-          className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
-        >
-          <div className="container mx-auto">
-            <div className="text-center space-y-8 sm:space-y-12">
-              <motion.p 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center justify-center gap-2 text-white/80 text-sm"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Free forever · No credit card required</span>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Trusted By Section */}
+      <section className="py-16 px-6 bg-white border-b border-gray-100">
+        <div className="container mx-auto max-w-6xl">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-sm font-medium text-gray-500 mb-12 uppercase tracking-wider"
+          >
+            Trusted by Industry Leaders
+          </motion.p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            {["REWE", "KNORR-BREMSE", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
+              <motion.div
+                key={name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-gray-600 text-xs sm:text-sm font-medium"
+                transition={{ delay: index * 0.1 }}
+                className="flex items-center justify-center h-16"
               >
-                Reach thousands of market leaders via Connectimus.io
-              </motion.p>
+                <span className="text-xl font-bold text-gray-400 hover:text-gray-600 transition-colors">
+                  {name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Value Proposition - Clean Three Column */}
+      <section className="py-24 px-6 bg-gray-50">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6" style={{ color: "hsl(160, 25%, 72%)" }}>
+              Why Suppliers Choose Us
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to maximize your visibility and connect with qualified buyers
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              {
+                stat: "7M+",
+                label: "Annual Users",
+                description: "Global B2B decision-makers across all industries actively searching for suppliers like you"
+              },
+              {
+                stat: "12M+",
+                label: "Monthly Profile Views",
+                description: "Your profile gets discovered by procurement professionals conducting supplier research"
+              },
+              {
+                stat: "5x",
+                label: "More Visibility",
+                description: "Premium members see 5x more profile visits with targeted advertising and top rankings"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.stat}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="bg-white p-10 rounded-3xl text-center space-y-4 hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="text-6xl font-bold mb-4" style={{ color: "hsl(160, 25%, 72%)" }}>
+                  {item.stat}
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                  {item.label}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - Simple Steps */}
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6" style={{ color: "hsl(192, 20%, 72%)" }}>
+              Get Started in Minutes
+            </h2>
+          </motion.div>
+
+          <div className="space-y-16">
+            {[
+              {
+                step: "01",
+                title: "Claim Your Profile",
+                description: "Search for your company and claim your free profile. If you're not listed yet, create a new profile in just a few clicks. Full control over your company's presence.",
+                features: ["Free forever", "Instant activation", "Full editing rights"]
+              },
+              {
+                step: "02",
+                title: "Optimize Your Presence",
+                description: "Add rich media, certifications, product catalogs, and detailed company information. Make your profile stand out to procurement professionals.",
+                features: ["Rich media support", "Product showcase", "Certification badges"]
+              },
+              {
+                step: "03",
+                title: "Track Performance",
+                description: "Monitor impressions, clicks, and engagement. Understand who's viewing your profile and adjust your strategy based on real analytics.",
+                features: ["Real-time analytics", "Visitor insights", "Performance metrics"]
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-[200px,1fr] gap-8 items-start"
+              >
+                <div className="text-8xl font-bold text-gray-100">
+                  {item.step}
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-bold text-gray-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {item.features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center gap-2 text-sm font-medium"
+                        style={{ color: "hsl(160, 25%, 72%)" }}
+                      >
+                        <Check className="w-4 h-4" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Ads Section */}
+      <section className="py-24 px-6 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                Supercharge with <span style={{ color: "hsl(210, 30%, 72%)" }}>Connectimus Ads</span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Get 5x more visibility with targeted advertising. Appear at the top of search results 
+                and reach buyers actively looking for your solutions.
+              </p>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 items-center max-w-5xl mx-auto">
-                {["REWE", "KNORR-BREMSE", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
-                  <motion.div 
-                    key={name} 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center justify-center h-16 sm:h-20 bg-white/50 rounded-lg hover:bg-white transition-all px-3 sm:px-4"
-                  >
-                    <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-gray-700">{name}</span>
-                  </motion.div>
+              <div className="space-y-4 pt-4">
+                {[
+                  "Priority placement in search results",
+                  "Advanced targeting by industry & region",
+                  "Detailed buyer intent data",
+                  "Performance reporting dashboard"
+                ].map((feature) => (
+                  <div key={feature} className="flex items-start gap-3">
+                    <Check className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: "hsl(210, 30%, 72%)" }} />
+                    <span className="text-lg text-gray-700">{feature}</span>
+                  </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Our Value Section with Stats Cards */}
-        <section
-          data-nav-theme="light"
-          className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-        >
-          <div className="container mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-                <span className="text-primary">Our Value</span>
-              </h2>
+              <div className="pt-6">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-8 py-6 h-auto rounded-full font-semibold group border-2"
+                  style={{ borderColor: "hsl(210, 30%, 72%)", color: "hsl(210, 30%, 72%)" }}
+                >
+                  Learn About Ads
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="space-y-6"
-              >
-                <div className="space-y-10">
-                  <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">7M+</div>
-                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Users per year</div>
-                    <ul className="space-y-2 text-gray-600">
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Worldwide Audience
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        B2B driven
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        All industries
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">12M+</div>
-                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">Suppliers are viewed per month</div>
-                    <ul className="space-y-2 text-gray-600">
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Manage Supplier Profile Content
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Enrich Supplier Data
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Organic Analytics
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-[#14B8A6]">5x</div>
-                    <div className="text-2xl xl:text-2xl 2xl:text-4xl 3xl:text-5xl font-semibold text-gray-900">More Visibility for Connectimus Ad Customers</div>
-                    <ul className="space-y-2 text-gray-600">
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Precise Targeting
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Advanced Analytics
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="w-5 h-5 text-[#14B8A6]" />
-                        Buyer Intent Data
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="flex justify-center lg:justify-end"
-              >
-                <div 
-                  className="relative w-full max-w-2xl"
-                  style={{ perspective: "1500px" }}
-                >
-                  <div className="absolute inset-0 blur-3xl bg-[#14B8A6]/20 scale-150 -z-10"></div>
-                  
-                  <div className="relative h-[400px] flex items-center justify-center">
-                    {[
-                      { number: "7M+", title: "Users per year", items: ["Worldwide Audience", "B2B driven", "All industries"], gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { number: "12M+", title: "Suppliers viewed/month", items: ["Profile Content", "Data Enrichment", "Analytics"], gradient: "from-[#14B8A6] via-[#12A594] to-[#0F8775]" },
-                      { number: "5x", title: "Premium Visibility", items: ["Precise Targeting", "Advanced Analytics", "Intent Data"], gradient: "from-gray-800 via-gray-900 to-black" },
-                    ].map((stat, index) => {
-                      const style = getCardStyle(index, 3);
-                      
-                      return (
-                        <motion.div
-                          key={stat.number}
-                          className="absolute cursor-pointer"
-                          onClick={handleCardClick}
-                          initial={false}
-                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                          animate={{
-                            x: style.x,
-                            y: style.y,
-                            rotateY: style.rotateY,
-                            rotateZ: style.rotateZ,
-                            scale: style.scale,
-                            opacity: style.opacity,
-                            zIndex: style.zIndex,
-                          }}
-                          transition={{
-                            duration: isMobile ? 2.5 : 1.8,
-                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
-                            ease: [0.33, 1, 0.68, 1],
-                            type: "tween",
-                          }}
-                          style={{
-                            transformStyle: "preserve-3d",
-                            willChange: "transform, opacity",
-                          }}
-                        >
-                          <div
-                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${stat.gradient}`}
-                            style={{
-                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
-                            }}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                              <div className="text-5xl font-bold text-white mb-3">{stat.number}</div>
-                              <div className="text-lg font-semibold text-white mb-4">{stat.title}</div>
-                              <div className="space-y-2">
-                                {stat.items.map((item, i) => (
-                                  <div key={i} className="text-sm text-white/90 flex items-center gap-2">
-                                    <Check className="w-4 h-4" />
-                                    {item}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div 
-                              className="absolute inset-0 pointer-events-none rounded-3xl"
-                              style={{
-                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Product Overview Section */}
-        <section
-          data-nav-theme="dark"
-          className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
-        >
-          <div className="container mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="bg-white p-12 rounded-3xl shadow-2xl space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-                <span className="text-[#14B8A6]">Product</span> Overview.
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  number: 1,
-                  title: "Create / Claim your company profile",
-                  desc: "Take control of your supplier profile on Connectimus",
-                  detail: "With your free supplier profile you can control how buyers see your profile on Connectimus. Enrich your data, add relevant information and improve your overall presence.",
-                },
-                {
-                  number: 2,
-                  title: "Analytics",
-                  desc: "Monitor your performance",
-                  detail: "Gain access to key metrics such as impressions, clicks and CTR and get a comprehensive overview of user reach and engagement with your profile.",
-                },
-                {
-                  number: 3,
-                  title: "Connectimus Ads",
-                  desc: "Targeted advertising campaigns with Connectimus Ads",
-                  detail: "Use Connectimus Ads to boost visibility and generate leads. Secure a top ranking position on Connectimus. Define relevant search queries and target groups.",
-                },
-              ].map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="relative group"
-                >
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-teal-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                        {step.number}
-                      </div>
-                      <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                    </div>
-                    <p className="text-teal-300 font-medium mb-3">{step.desc}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed">{step.detail}</p>
-                    <button className="mt-6 text-teal-400 hover:text-teal-300 font-medium inline-flex items-center gap-2 group">
-                      Claim your company
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works Section */}
-        <HowItWorksSection />
-
-        {/* Global Leads Section with Cards */}
-        <section
-          data-nav-theme="green"
-          className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-24"
-          style={{ background: "linear-gradient(135deg, rgb(158, 181, 187), rgb(168, 191, 197), rgb(178, 201, 207))" }}
-        >
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="text-white space-y-6"
-              >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight">
-                  <span className="text-white">Global Leads on Autopilot</span> with Connectimus Ads
-                </h2>
-
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">Ranking</h3>
-                    <p className="text-white/90">Secure a top ranking position at Connectimus Search for more leads and greater visibility.</p>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">Performance Reporting</h3>
-                    <p className="text-white/90">Get advanced insights into the performance of your ad campaigns.</p>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">Buyer Intent Data</h3>
-                    <p className="text-white/90">Our platform delivers intent-driven insights so you can focus on the prospects that matter most - those actively exploring solutions like yours.</p>
-                  </div>
+              <div className="space-y-3">
+                <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "hsl(210, 30%, 72%)" }}>
+                  Premium Features
                 </div>
+                <div className="text-4xl font-bold text-gray-900">Everything You Need</div>
+              </div>
 
-                <div className="pt-6">
-                  <p className="text-lg font-medium mb-4">Want more B2B leads? Learn how to generate them on autopilot with Connectimus!</p>
-                  <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300">
-                    Compare Plans
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="flex justify-center lg:justify-end"
-              >
-                <div 
-                  className="relative w-full max-w-2xl"
-                  style={{ perspective: "1500px" }}
-                >
-                  <div className="absolute inset-0 blur-3xl bg-blue-400/20 scale-150 -z-10"></div>
-                  
-                  <div className="relative h-[400px] flex items-center justify-center">
-                    {[
-                      { icon: TrendingUp, label: "Ranking", desc: "Top positions", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-                      { icon: BarChart3, label: "Performance", desc: "Advanced insights", gradient: "from-teal-500 via-teal-600 to-teal-700" },
-                      { icon: Users, label: "Intent Data", desc: "Buyer focus", gradient: "from-gray-800 via-gray-900 to-black" },
-                    ].map((feature, index) => {
-                      const style = getCardStyle(index, 3);
-                      const IconComponent = feature.icon;
-                      
-                      return (
-                        <motion.div
-                          key={feature.label}
-                          className="absolute cursor-pointer"
-                          onClick={handleCardClick}
-                          initial={false}
-                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                          animate={{
-                            x: style.x,
-                            y: style.y,
-                            rotateY: style.rotateY,
-                            rotateZ: style.rotateZ,
-                            scale: style.scale,
-                            opacity: style.opacity,
-                            zIndex: style.zIndex,
-                          }}
-                          transition={{
-                            duration: isMobile ? 2.5 : 1.8,
-                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (3 - index) * 0.08,
-                            ease: [0.33, 1, 0.68, 1],
-                            type: "tween",
-                          }}
-                          style={{
-                            transformStyle: "preserve-3d",
-                            willChange: "transform, opacity",
-                          }}
-                        >
-                          <div
-                            className={`relative w-56 h-72 rounded-3xl overflow-hidden bg-gradient-to-br ${feature.gradient}`}
-                            style={{
-                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.3)",
-                            }}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                              <IconComponent className="w-20 h-20 text-white mb-4" />
-                              <div className="text-2xl font-bold text-white mb-2">{feature.label}</div>
-                              <div className="text-sm text-white/80">{feature.desc}</div>
-                            </div>
-
-                            <div 
-                              className="absolute inset-0 pointer-events-none rounded-3xl"
-                              style={{
-                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                      );
-                    })}
+              <div className="space-y-6">
+                {[
+                  { label: "Top Search Rankings", value: "Guaranteed" },
+                  { label: "Monthly Impressions", value: "50,000+" },
+                  { label: "Lead Quality Score", value: "95%" },
+                  { label: "ROI Tracking", value: "Real-time" }
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between py-4 border-b border-gray-100 last:border-0">
+                    <span className="text-gray-700 font-medium">{item.label}</span>
+                    <span className="text-xl font-bold" style={{ color: "hsl(210, 30%, 72%)" }}>{item.value}</span>
                   </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section
-          data-nav-theme="light"
-          className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(255, 255, 255))" }}
-        >
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {[
-                {
-                  quote: "With Connectimus, we can reach exactly those who want to optimize their processes with real-time data in a completely new and simple way.",
-                  name: "Nina Berger",
-                  role: "Business Development Manager",
-                  company: "Peakboard",
-                },
-                {
-                  quote: "As a start-up for intelligent process automation, digital and uncomplicated solutions are close to our hearts. The first match was made just two weeks after registering on the Connectimus platform. Connectimus connects companies simply, digitally and transparently!",
-                  name: "Florian Poniewaß",
-                  role: "Key Account Manager",
-                  company: "Alphabots GmbH",
-                },
-              ].map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="mb-6">
-                    <svg className="w-10 h-10 text-teal-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-700 text-lg mb-6 leading-relaxed italic">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-blue-500"></div>
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.role}</div>
-                      <div className="text-sm text-teal-500 font-medium">{testimonial.company}</div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section
-          data-nav-theme="dark"
-          className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55))" }}
-        >
-          <div className="container mx-auto max-w-4xl">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-white text-center mb-16"
-            >
-              <span className="text-white">We answer</span> <span className="text-teal-400">your questions.</span>
-            </motion.h2>
-
-            <div className="space-y-6">
-              {[
-                {
-                  question: "How can I take over an existing supplier profile?",
-                  answer: 'Click on "Register Company" and search for your company. If we have a pre-built version of your supplier profile, you can claim that company immediately. Otherwise, create a new one by entering your web domain.',
-                },
-                {
-                  question: "How many people can manage the account?",
-                  answer: "That's up to you. As soon as you have taken over or opened the profile, you can send links to employees who can manage the channel with you and enter all relevant information.",
-                },
-                {
-                  question: "Is the profile takeover free of charge?",
-                  answer: "Yes. It also doesn't matter whether you create a new profile or take one over from Connectimus. Adding content such as contact details or product information is also free of charge. You can use all the free features as soon as you register.",
-                },
-                {
-                  question: "How can I increase my visibility?",
-                  answer: "You can buy Connectimus ads to rank higher for specific keywords. Find out more on our platform (only available to registered users).",
-                },
-                {
-                  question: "Is my data treated confidentially?",
-                  answer: "Data protection is important to us. Therefore, all data will be handled in compliance with the GDPR.",
-                },
-              ].map((faq, index) => (
-                <motion.details
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all"
-                >
-                  <summary className="cursor-pointer p-6 flex justify-between items-center text-white font-semibold text-lg">
-                    <span>{faq.question}</span>
-                    <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
-                  </summary>
-                  <div className="px-6 pb-6 text-gray-300 leading-relaxed">
-                    {faq.answer}
-                  </div>
-                </motion.details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section
-          data-nav-theme="green"
-          className="relative py-24 px-6 md:px-12 lg:px-24"
-          style={{ background: "linear-gradient(135deg, rgb(148, 177, 164), rgb(168, 197, 184), rgb(188, 217, 204))" }}
-        >
-          <div className="container mx-auto text-center">
-            <div className="text-white space-y-10 max-w-4xl mx-auto">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold"
-              >
-                Find worldwide companies for free.
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-xl text-white/90 font-medium"
-              >
-                Ask our AI to find the right companies
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="flex flex-wrap gap-4 justify-center"
-              >
-                <button className="group inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-sans font-semibold hover:bg-opacity-90 transition-all duration-300 hover:scale-105">
-                  Start Searching
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-wrap gap-3 justify-center text-sm"
-              >
-                <span className="text-white/80">Popular:</span>
-                {["Quantum Chips", "Quantum Simulations", "Precision Farming", "3D Bin Picking"].map((tag) => (
-                  <button key={tag} className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-full transition-all">
-                    {tag}
-                  </button>
                 ))}
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
-        </section>
-      </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Loved by Suppliers
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                quote: "Within 3 months of claiming our profile, we saw a 300% increase in qualified inquiries. The platform pays for itself.",
+                author: "Sarah Chen",
+                role: "VP Sales, TechManufacturing GmbH"
+              },
+              {
+                quote: "The analytics dashboard gives us incredible insights into buyer behavior. We can now focus our efforts where they matter most.",
+                author: "Michael Weber",
+                role: "Marketing Director, Industrial Solutions AG"
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-gray-50 p-10 rounded-2xl space-y-6"
+              >
+                <p className="text-lg text-gray-700 leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
+                <div className="space-y-1">
+                  <div className="font-semibold text-gray-900">{testimonial.author}</div>
+                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section
+        className="py-32 px-6"
+        style={{
+          background: "linear-gradient(135deg, hsl(160, 25%, 72%) 0%, hsl(192, 20%, 72%) 100%)"
+        }}
+      >
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Ready to get discovered?
+            </h2>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              Join thousands of suppliers connecting with buyers on the world's fastest-growing B2B platform.
+            </p>
+            <div className="pt-6">
+              <Button
+                size="lg"
+                className="bg-white text-gray-900 hover:bg-white/90 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-2xl"
+              >
+                Claim Your Free Profile
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
+            <p className="text-white/70 text-sm">
+              No credit card required · Set up in under 5 minutes
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </div>
