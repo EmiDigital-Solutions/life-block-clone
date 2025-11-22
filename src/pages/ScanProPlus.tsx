@@ -2295,81 +2295,146 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Final CTA - Dark gradient */}
+      {/* Final CTA - Clean Modern Design */}
       <section 
-        data-nav-theme="dark" 
-        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        data-nav-theme="light" 
+        className="relative py-20 sm:py-24 md:py-32 px-6 bg-gray-50"
         id="cta"
       >
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-5 sm:space-y-6 md:space-y-8"
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white">
-              Ready for <span style={{ color: '#60A5FA' }}>the Future of Supplier Auditing?</span>
-            </h2>
-
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80">
-              Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
-            </p>
-
-            <div className="space-y-4 sm:space-y-5 md:space-y-6 mb-6 sm:mb-8">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
-                  Schedule a Demo (30 minutes)
-                </h4>
-                <p className="text-sm sm:text-base text-white/80">Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.</p>
-              </div>
-              
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
-                  Start Pilot Audit (2 weeks)
-                </h4>
-                <p className="text-sm sm:text-base text-white/80">Test the platform with a real supplier audit – without risk, with measurable results.</p>
-              </div>
-              
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 rounded-xl text-left hover:bg-white/10 transition-all">
-                <h4 className="text-lg sm:text-xl font-bold mb-2 text-white">
-                  Plan Integration
-                </h4>
-                <p className="text-sm sm:text-base text-white/80">Seamless integration into your existing Quality Management Systems and ERP landscape.</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
-              <a
-                href="mailto:ibrandic@yvoo.io"
-                className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-opacity-90 shadow-xl min-h-[48px] inline-flex items-center justify-center gap-2"
-              >
-                Schedule Demo
-              </a>
-              <a
-                href="mailto:ibrandic@yvoo.io"
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]"
-              >
-                Start Pilot Audit →
-              </a>
-            </div>
-
-            <div className="pt-8 border-t border-white/20">
-              <h3 className="text-2xl font-bold mb-4 text-white">Contact</h3>
-              <p className="text-lg text-white/90">
-                <strong>Ivo Brandic</strong>, CEO YVOO Technologies Ltd.<br />
-                <span className="inline-flex items-center gap-2 mt-2">
-                  <a href="mailto:ibrandic@yvoo.io" className="hover:underline" style={{ color: '#60A5FA' }}>ibrandic@yvoo.io</a>
-                </span><br />
-                <span className="inline-flex items-center gap-2 mt-2">
-                  +49 (0)152 03095799
-                </span><br />
-                <span className="inline-flex items-center gap-2 mt-2">
-                  WhatsApp | Google Meet
-                </span>
+            {/* Headline */}
+            <div className="space-y-6 max-w-3xl mx-auto">
+              <div className="w-12 h-0.5 bg-[#A8C5B8] mx-auto" />
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
+                Ready for the Future of Supplier Auditing?
+              </h2>
+              <p className="text-xl text-gray-600">
+                Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
               </p>
             </div>
+
+            {/* Options Grid */}
+            <div className="grid md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto">
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-2xl font-bold text-black mb-2">
+                      Schedule a Demo
+                    </h3>
+                    <p className="text-sm text-[#A8B8CA] mb-3">30 minutes</p>
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-2xl font-bold text-black mb-2">
+                      Start Pilot Audit
+                    </h3>
+                    <p className="text-sm text-[#A8B8CA] mb-3">2 weeks</p>
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      Test the platform with a real supplier audit – without risk, with measurable results.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-2xl font-bold text-black mb-2">
+                      Plan Integration
+                    </h3>
+                    <p className="text-sm text-[#A8B8CA] mb-3">Full setup</p>
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      Seamless integration into your existing Quality Management Systems and ERP landscape.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-gray-800 shadow-lg min-h-[56px]"
+              >
+                Schedule Demo
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:ibrandic@yvoo.io"
+                className="inline-flex items-center justify-center gap-2 bg-white text-black border-2 border-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-300 min-h-[56px]"
+              >
+                Start Pilot Audit
+              </a>
+            </motion.div>
+
+            {/* Contact Section */}
+            <motion.div 
+              className="pt-16 border-t border-gray-200 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-black">Contact</h3>
+                <div className="space-y-2 text-gray-600">
+                  <p className="text-lg">
+                    <span className="font-semibold text-black">Ivo Brandic</span>
+                    <span className="text-sm text-gray-500"> — CEO YVOO Technologies Ltd.</span>
+                  </p>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-base">
+                    <a href="mailto:ibrandic@yvoo.io" className="text-black hover:text-[#A8C5B8] transition-colors">
+                      ibrandic@yvoo.io
+                    </a>
+                    <span className="hidden sm:inline text-gray-300">|</span>
+                    <span className="text-gray-600">+49 (0)152 03095799</span>
+                  </div>
+                  <p className="text-sm text-gray-500">WhatsApp | Google Meet</p>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
