@@ -152,13 +152,36 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
   // Get the mapped icon name or use the normalized name
   const iconName = iconMapping[name] || iconMapping[normalizedName] || "box";
   
+  // Function to convert hex color to CSS filter
+  const getColorFilter = (hexColor: string) => {
+    if (hexColor === "currentColor") return undefined;
+    if (hexColor === "white") return "brightness(0) invert(1)";
+    if (hexColor === "black") return "brightness(0)";
+    
+    // For our specific colors
+    if (hexColor === "#A8C5B8") {
+      // Muted green
+      return "brightness(0) saturate(100%) invert(81%) sepia(8%) saturate(882%) hue-rotate(102deg) brightness(93%) contrast(89%)";
+    }
+    if (hexColor === "#C57B7B") {
+      // Muted red
+      return "brightness(0) saturate(100%) invert(66%) sepia(17%) saturate(1094%) hue-rotate(314deg) brightness(93%) contrast(86%)";
+    }
+    if (hexColor === "#A8B8CA") {
+      // Muted blue
+      return "brightness(0) saturate(100%) invert(79%) sepia(8%) saturate(923%) hue-rotate(181deg) brightness(92%) contrast(88%)";
+    }
+    
+    return undefined;
+  };
+  
   return (
     <img
       src={`https://unpkg.com/pixelarticons@1.8.1/svg/${iconName}.svg`}
       alt={name}
       className={className}
       style={{ 
-        filter: color !== "currentColor" ? `invert(${color === "white" ? "100%" : "0%"})` : undefined,
+        filter: getColorFilter(color),
         imageRendering: 'pixelated',
         objectFit: 'contain'
       }}
