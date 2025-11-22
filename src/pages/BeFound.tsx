@@ -3,7 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import supplierPortraitHero from "@/assets/supplier-thinking-portrait.jpg";
+import supplierPortraitHero from "@/assets/supplier-portrait-hero.jpg";
 
 const BeFound = () => {
   return (
