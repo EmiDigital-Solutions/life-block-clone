@@ -15,6 +15,7 @@ import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
+import industryCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
 import {
   Dialog,
@@ -1853,7 +1854,7 @@ const ScanProPlus = () => {
                 ]
               },
               {
-                image: industryElectronics,
+                image: industryCryogenicValve,
                 title: "Chemical & Process Industry: REACH Compliance & Process Safety",
                 useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
                 solutions: [
