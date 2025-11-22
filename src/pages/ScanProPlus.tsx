@@ -1093,86 +1093,66 @@ const ChallengeToggleSection = () => {
   const withScanProContent = [
     {
       icon: "checkbox-on",
-      title: "Fixed Price €700",
-      description: "Transparent pricing"
+      title: "Fixed Price from €700",
+      description: "Transparent pricing with no hidden costs"
     },
     {
       icon: "zap",
-      title: "Same/Next-Day",
-      description: "24h deployment"
+      title: "Same-Day / Next-Day",
+      description: "Ultra-fast deployment within 24 hours"
     },
     {
       icon: "calendar",
-      title: "1-3 Days",
-      description: "Efficient audits"
+      title: "1-3 Days Structured",
+      description: "Efficient on-site audits with AI workflows"
     },
     {
       icon: "analytics",
-      title: "Real-time Data",
-      description: "Live insights"
+      title: "Real-time + Report in 24h",
+      description: "Live insights with next-day documentation"
     },
     {
       icon: "checkbox-on",
-      title: "Standardized",
-      description: "AI consistency"
+      title: "100% Standardized",
+      description: "AI-supported consistency across all audits"
     },
     {
       icon: "camera",
-      title: "AI Vision",
-      description: "Equipment recognition"
-    },
-    {
-      icon: "globe",
-      title: "Global Network",
-      description: "Worldwide coverage"
-    },
-    {
-      icon: "shield",
-      title: "Quality Assured",
-      description: "Verified auditors"
+      title: "AI Computer Vision",
+      description: "Advanced equipment recognition"
     },
   ];
 
   const traditionalContent = [
     {
       icon: "coin",
-      title: "€15k - €25k",
-      description: "Hidden fees"
+      title: "€15,000 - €25,000",
+      description: "Unpredictable costs with hidden fees"
     },
     {
       icon: "clock",
-      title: "2-3 Weeks",
-      description: "Long delays"
+      title: "2-3 Weeks Lead Time",
+      description: "Long delays before audit starts"
     },
     {
       icon: "close",
-      title: "3-5 Days",
-      description: "Operations disrupted"
+      title: "3-5 Days On-site",
+      description: "Extended audit disrupts operations"
     },
     {
       icon: "alert",
-      title: "5-10 Days",
-      description: "Delayed reports"
+      title: "5-10 Days After Audit",
+      description: "Delayed reporting slows decisions"
     },
     {
       icon: "close",
-      title: "Inconsistent",
-      description: "Variable quality"
+      title: "Depends on Auditor",
+      description: "Quality varies between auditors"
     },
     {
       icon: "alert",
-      title: "Manual Process",
-      description: "Documentation gaps"
-    },
-    {
-      icon: "close",
-      title: "Limited Reach",
-      description: "Regional only"
-    },
-    {
-      icon: "alert",
-      title: "No Guarantees",
-      description: "Quality varies"
+      title: "Manual, Often Incomplete",
+      description: "Missing photos and documentation gaps"
     },
   ];
 
@@ -1229,13 +1209,13 @@ const ChallengeToggleSection = () => {
             : "Traditional audits: unpredictable costs, long delays, and inconsistent quality."}
         </p>
 
-        {/* Grid - 2 rows of 4 cards on mobile */}
+        {/* Grid - 2 rows of 3 cards on mobile */}
         <motion.div
           key={isWithScanPro ? 'with' : 'traditional'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4"
+          className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4"
         >
           {currentContent.map((item, index) => (
             <div
