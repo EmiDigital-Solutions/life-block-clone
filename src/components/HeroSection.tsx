@@ -33,12 +33,12 @@ const HeroSection = () => {
         {/* Two Column Layout */}
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
-          {/* Left Side - Character Image */}
+          {/* Character Image - Right on Desktop */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end -mt-8 sm:-mt-12 lg:-mt-0"
+            className="flex justify-center lg:justify-start order-1 lg:order-2 -mt-8 sm:-mt-12 lg:-mt-0"
           >
             <img 
               src={heroCharacter} 
@@ -47,8 +47,8 @@ const HeroSection = () => {
             />
           </motion.div>
 
-          {/* Right Side - Text Content */}
-          <div className="text-center lg:text-left space-y-8">
+          {/* Text Content - Left on Desktop */}
+          <div className="text-center lg:text-left space-y-8 order-2 lg:order-1">
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
