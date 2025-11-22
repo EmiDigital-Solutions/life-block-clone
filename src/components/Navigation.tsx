@@ -72,8 +72,8 @@ const Navigation = () => {
             setTextColor('rgb(31, 41, 55)');
             break;
           } else if (navTheme === 'primary') {
-            // Primary green section - use green background with white text
-            setNavBgColor('rgba(168, 197, 184, 0.95)');
+            // Primary green section - use gradient background matching hero
+            setNavBgColor('linear-gradient(135deg, rgba(168, 197, 184, 0.95) 0%, rgba(168, 191, 197, 0.95) 100%)');
             setTextColor('rgb(255, 255, 255)');
             break;
           }
@@ -134,7 +134,7 @@ const Navigation = () => {
     <nav 
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
       style={{ 
-        backgroundColor: navBgColor,
+        background: navBgColor,
         borderBottomColor: borderColor,
         minHeight: '64px',
       }}
