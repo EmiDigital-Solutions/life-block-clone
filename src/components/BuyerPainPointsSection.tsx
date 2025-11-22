@@ -11,20 +11,20 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Buyer professional considering opportunities",
     painPoints: [
       {
-        text: "Manually searching for suppliers",
-        textFull: "Manually searching through hundreds of supplier databases and directories to find qualified manufacturers."
+        text: "Wasting time on supplier search",
+        textFull: "Wasting countless hours manually searching for and vetting potential suppliers instead of strategic sourcing."
       },
       {
-        text: "Verify supplier capabilities yourself",
-        textFull: "Spending weeks verifying supplier capabilities, certifications, and production capacity before shortlisting."
+        text: "Troubleshooting supplier performance",
+        textFull: "Constantly troubleshooting supplier performance issues without reliable data on root causes."
       },
       {
-        text: "Organize costly on-site audits",
-        textFull: "Organizing and paying for expensive on-site audits that take weeks to schedule and complete."
+        text: "Getting real truth data",
+        textFull: "Struggling to get real, unbiased truth data about supplier capabilities and quality standards."
       },
       {
-        text: "Wait for audit reports",
-        textFull: "Waiting 10+ days for audit reports while your sourcing decisions are delayed and projects stall."
+        text: "Waiting for audit results",
+        textFull: "Waiting weeks for audit results while sourcing decisions are delayed and opportunities slip away."
       }
     ]
   };
@@ -34,20 +34,24 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Quality professional reviewing standards",
     painPoints: [
       {
-        text: "Coordinating audit schedules",
-        textFull: "Coordinating complex audit schedules across multiple suppliers, locations, and certification requirements."
+        text: "Managing high audit demand",
+        textFull: "Managing overwhelming demand for supplier audits across multiple locations and time zones."
       },
       {
-        text: "Inconsistent audit standards",
-        textFull: "Dealing with inconsistent audit standards and documentation quality from different auditing firms."
+        text: "Dealing with travel budgets",
+        textFull: "Dealing with limited travel budgets while audit requirements continue to grow exponentially."
       },
       {
-        text: "Manual compliance tracking",
-        textFull: "Manually tracking supplier compliance status, certifications, and audit findings across your supply chain."
+        text: "Scheduling long business trips",
+        textFull: "Scheduling exhausting long-distance business trips that disrupt work-life balance and team productivity."
       },
       {
-        text: "Limited real-time visibility",
-        textFull: "Having limited real-time visibility into supplier quality issues until audit reports arrive weeks later."
+        text: "Conducting manual audits",
+        textFull: "Conducting time-intensive manual audits with inconsistent documentation and quality standards."
+      },
+      {
+        text: "Creating detailed reports",
+        textFull: "Creating detailed audit reports manually, spending days on documentation instead of analysis."
       }
     ]
   };
