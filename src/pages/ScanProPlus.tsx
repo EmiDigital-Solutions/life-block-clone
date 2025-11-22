@@ -2232,12 +2232,16 @@ const ScanProPlus = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-start gap-3 sm:gap-4"
+                  className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
                 >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1" />
-                  <div>
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+                  <div className="flex-1">
                     <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-2">{item.desc}</p>
+                    <div className="inline-flex items-center gap-2 text-[#A8C5B8] text-sm font-semibold group-hover:gap-3 transition-all">
+                      <span>Learn more</span>
+                      <PixelIcon name="arrow-right" className="w-4 h-4" />
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -2264,12 +2268,16 @@ const ScanProPlus = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-start gap-3 sm:gap-4"
+                  className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
                 >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1" />
-                  <div>
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+                  <div className="flex-1">
                     <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-2">{item.desc}</p>
+                    <div className="inline-flex items-center gap-2 text-[#A8C5B8] text-sm font-semibold group-hover:gap-3 transition-all">
+                      <span>Learn more</span>
+                      <PixelIcon name="arrow-right" className="w-4 h-4" />
+                    </div>
                   </div>
                 </motion.div>
               ))}
