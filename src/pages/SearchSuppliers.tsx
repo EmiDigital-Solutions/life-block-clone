@@ -260,9 +260,9 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Dark Green Background */}
+      {/* Hero Section - Green Background */}
       <section 
-        data-nav-theme="dark"
+        data-nav-theme="primary"
         className="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-visible bg-primary"
         style={{ 
           minHeight: "70vh"
