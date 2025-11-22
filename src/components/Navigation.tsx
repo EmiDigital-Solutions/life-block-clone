@@ -72,8 +72,8 @@ const Navigation = () => {
             setTextColor('rgb(31, 41, 55)');
             break;
           } else if (navTheme === 'primary') {
-            // Primary green section - use gradient background matching hero
-            setNavBgColor('linear-gradient(135deg, rgba(168, 197, 184, 0.95) 0%, rgba(168, 191, 197, 0.95) 100%)');
+            // Primary green section - use gradient background matching hero exactly
+            setNavBgColor('linear-gradient(135deg, hsla(160, 25%, 72%, 0.95) 0%, hsla(192, 20%, 72%, 0.95) 100%)');
             setTextColor('rgb(255, 255, 255)');
             break;
           }
