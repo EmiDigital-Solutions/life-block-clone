@@ -126,15 +126,15 @@ const AboutUs = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.02 }}
                     />
-                    {/* Green highlight on objects */}
+                    {/* Very subtle green effect */}
                     <motion.div 
                       className="absolute inset-0 pointer-events-none"
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 0.5 }}
+                      whileInView={{ opacity: 0.25 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.02 + 0.2 }}
                       style={{
-                        background: `radial-gradient(circle at 45% 40%, rgba(168, 197, 184, 0.4) 0%, transparent 55%)`,
+                        background: `radial-gradient(circle at 50% 50%, rgba(168, 197, 184, 0.2) 0%, rgba(168, 197, 184, 0.1) 50%, transparent 80%)`,
                         mixBlendMode: 'color'
                       }}
                     />
@@ -287,11 +287,11 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Green highlight */}
+                {/* Very subtle green effect */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.35) 0%, transparent 60%)`,
+                    background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
                     mixBlendMode: 'color'
                   }}
                 />
@@ -394,7 +394,7 @@ const AboutUs = () => {
                   <div 
                     className="absolute inset-0"
                     style={{
-                      background: `radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.3) 0%, transparent 60%)`,
+                      background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
                       mixBlendMode: 'color'
                     }}
                   />
@@ -436,7 +436,7 @@ const AboutUs = () => {
 
               <Button 
                 variant="outline" 
-                className="rounded-none border-2 border-[#A8C5B8] text-[#A8C5B8] hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base"
+                className="rounded-full border-2 border-[#A8C5B8] text-[#A8C5B8] hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base"
               >
                 Learn More
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -462,11 +462,11 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Green highlight */}
+                {/* Very subtle green effect */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `radial-gradient(circle at 50% 40%, rgba(168, 197, 184, 0.35) 0%, transparent 60%)`,
+                    background: `linear-gradient(to bottom, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.08) 100%)`,
                     mixBlendMode: 'color'
                   }}
                 />
@@ -551,14 +551,14 @@ const AboutUs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button 
-                className="bg-[#A8C5B8] text-black hover:bg-[#A8C5B8]/90 rounded-none px-8 py-6 text-base font-semibold"
+                className="bg-[#A8C5B8] text-black hover:bg-[#A8C5B8]/90 rounded-full px-8 py-6 text-base font-semibold"
               >
                 Request Demo
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-none px-8 py-6 text-base font-semibold"
+                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-full px-8 py-6 text-base font-semibold"
               >
                 Contact Sales
               </Button>
