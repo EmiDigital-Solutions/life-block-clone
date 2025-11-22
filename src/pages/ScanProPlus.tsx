@@ -1093,66 +1093,86 @@ const ChallengeToggleSection = () => {
   const withScanProContent = [
     {
       icon: "checkbox-on",
-      title: "Fixed Price from €700",
-      description: "Transparent pricing with no hidden costs"
+      title: "Fixed Price €700",
+      description: "Transparent pricing"
     },
     {
       icon: "zap",
-      title: "Same-Day / Next-Day",
-      description: "Ultra-fast deployment within 24 hours"
+      title: "Same/Next-Day",
+      description: "24h deployment"
     },
     {
       icon: "calendar",
-      title: "1-3 Days Structured",
-      description: "Efficient on-site audits with AI workflows"
+      title: "1-3 Days",
+      description: "Efficient audits"
     },
     {
       icon: "analytics",
-      title: "Real-time + Report in 24h",
-      description: "Live insights with next-day documentation"
+      title: "Real-time Data",
+      description: "Live insights"
     },
     {
       icon: "checkbox-on",
-      title: "100% Standardized",
-      description: "AI-supported consistency across all audits"
+      title: "Standardized",
+      description: "AI consistency"
     },
     {
       icon: "camera",
-      title: "AI Computer Vision",
-      description: "Advanced equipment recognition"
+      title: "AI Vision",
+      description: "Equipment recognition"
+    },
+    {
+      icon: "globe",
+      title: "Global Network",
+      description: "Worldwide coverage"
+    },
+    {
+      icon: "shield",
+      title: "Quality Assured",
+      description: "Verified auditors"
     },
   ];
 
   const traditionalContent = [
     {
       icon: "coin",
-      title: "€15,000 - €25,000",
-      description: "Unpredictable costs with hidden fees"
+      title: "€15k - €25k",
+      description: "Hidden fees"
     },
     {
       icon: "clock",
-      title: "2-3 Weeks Lead Time",
-      description: "Long delays before audit starts"
+      title: "2-3 Weeks",
+      description: "Long delays"
     },
     {
       icon: "close",
-      title: "3-5 Days On-site",
-      description: "Extended audit disrupts operations"
+      title: "3-5 Days",
+      description: "Operations disrupted"
     },
     {
       icon: "alert",
-      title: "5-10 Days After Audit",
-      description: "Delayed reporting slows decisions"
+      title: "5-10 Days",
+      description: "Delayed reports"
     },
     {
       icon: "close",
-      title: "Depends on Auditor",
-      description: "Quality varies between auditors"
+      title: "Inconsistent",
+      description: "Variable quality"
     },
     {
       icon: "alert",
-      title: "Manual, Often Incomplete",
-      description: "Missing photos and documentation gaps"
+      title: "Manual Process",
+      description: "Documentation gaps"
+    },
+    {
+      icon: "close",
+      title: "Limited Reach",
+      description: "Regional only"
+    },
+    {
+      icon: "alert",
+      title: "No Guarantees",
+      description: "Quality varies"
     },
   ];
 
@@ -1209,30 +1229,30 @@ const ChallengeToggleSection = () => {
             : "Traditional audits: unpredictable costs, long delays, and inconsistent quality."}
         </p>
 
-        {/* Grid */}
+        {/* Grid - 2 rows of 4 cards on mobile */}
         <motion.div
           key={isWithScanPro ? 'with' : 'traditional'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4"
         >
           {currentContent.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200"
+              className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-5 border border-gray-200"
             >
-              <div className="flex items-start gap-3 mb-3">
+              <div className="flex flex-col items-center text-center gap-1 sm:gap-2 mb-1 sm:mb-3">
                 <PixelIcon 
                   name={item.icon} 
-                  className="w-8 h-8 flex-shrink-0"
+                  className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0"
                   color={isWithScanPro ? '#A8C5B8' : '#C57B7B'}
                 />
-                <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-tight">
+                <h3 className="text-xs sm:text-lg font-bold text-gray-900 leading-tight">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <p className="text-[10px] sm:text-sm text-gray-600 leading-tight sm:leading-relaxed text-center">
                 {item.description}
               </p>
             </div>
