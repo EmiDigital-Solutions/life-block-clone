@@ -52,12 +52,9 @@ const TestimonialSection = () => {
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1]">
               Built for{" "}
-              <span className="block">
-                small but{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
-                    mighty
-                  </span>
+              <span className="relative inline-block">
+                <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
+                  mighty
                 </span>
               </span>
               <span className="block">B2B Supply Chains</span>
@@ -66,7 +63,7 @@ const TestimonialSection = () => {
             {/* Testimonial */}
             <div className="space-y-4">
               <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-black">
-                "<span className="font-bold">ScanPro</span>, it's a Game Changer"
+                <span className="font-bold">ScanPro</span>, it's a Game Changer
               </p>
               <p className="text-xl md:text-2xl text-black/80 font-normal">
                 Christoph Seeholzer, Former Linde
