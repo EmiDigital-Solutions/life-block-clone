@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
+import heroCharacter from "@/assets/hero-character.png";
 
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
@@ -29,49 +30,67 @@ const HeroSection = () => {
       className="relative min-h-screen flex flex-col overflow-hidden bg-gray-50"
     >
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-8">
-        {/* Centered Content */}
-        <div className="max-w-5xl mx-auto text-center space-y-8">
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900"
-          >
-            {heroContent.heading.split(' ').slice(0, -3).join(' ')}{' '}
-            <span className="text-primary">
-              {heroContent.heading.split(' ').slice(-3).join(' ')}
-            </span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto"
-          >
-            {heroContent.subtitle}
-          </motion.p>
-
-          {/* CTA Buttons */}
+        {/* Two Column Layout */}
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Side - Character Image */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex justify-center lg:justify-end"
           >
-            <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-base">
-              Get Started
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="group inline-flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-900 px-8 py-4 rounded-full font-medium hover:border-gray-900 transition-all duration-300 text-base">
-              View Pricing
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <img 
+              src={heroCharacter} 
+              alt="3D Character" 
+              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+            />
           </motion.div>
-        </div>
 
+          {/* Right Side - Text Content */}
+          <div className="text-center lg:text-left space-y-8">
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900"
+            >
+              {heroContent.heading.split(' ').slice(0, -3).join(' ')}{' '}
+              <span className="text-primary">
+                {heroContent.heading.split(' ').slice(-3).join(' ')}
+              </span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl sm:text-2xl text-gray-600 max-w-3xl lg:max-w-none"
+            >
+              {heroContent.subtitle}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4"
+            >
+              <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-base">
+                Get Started
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="group inline-flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-900 px-8 py-4 rounded-full font-medium hover:border-gray-900 transition-all duration-300 text-base">
+                View Pricing
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
 
       {/* Scrolling Client Band */}
