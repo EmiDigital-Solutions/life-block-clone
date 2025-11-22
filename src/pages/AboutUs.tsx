@@ -28,7 +28,7 @@ import auditorGen3 from "@/assets/auditor-gen-3.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
-  const [selectedYear, setSelectedYear] = useState(2022);
+  const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
     { src: auditorBlonde1, alt: 'Quality Inspector' },
@@ -50,9 +50,9 @@ const AboutUs = () => {
   ];
 
   const timelineData = [
-    { year: 2022, title: "Foundation", desc: "YVOO Technologies founded in Zagreb with a vision to revolutionize B2B procurement through AI and human expertise." },
-    { year: 2023, title: "Platform Innovation", desc: "Launched SalesPro+ supplier visibility platform, reaching 7M+ B2B decision-makers worldwide." },
-    { year: 2024, title: "Market Leadership", desc: "Achieved 70% cost reduction and 80% time savings for enterprise clients across Europe." },
+    { year: 2023, title: "Foundation", desc: "YVOO Technologies founded in Zagreb with a vision to revolutionize B2B procurement through AI and human expertise." },
+    { year: 2024, title: "Platform Innovation", desc: "Launched SalesPro+ supplier visibility platform, reaching 7M+ B2B decision-makers worldwide." },
+    { year: 2025, title: "Market Leadership", desc: "Achieved 70% cost reduction and 80% time savings for enterprise clients across Europe." },
   ];
 
   const locations = {
