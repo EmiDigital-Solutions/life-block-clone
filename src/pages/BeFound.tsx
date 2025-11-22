@@ -3,7 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import supplierPortrait from "@/assets/supplier-portrait-hero.jpg";
+import supplierThinkingPortrait from "@/assets/supplier-thinking-portrait.jpg";
 
 const BeFound = () => {
   return (
@@ -119,10 +119,10 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-16"
           >
-            {/* Role Toggle */}
+            {/* Role Toggle - Blue gradient style */}
             <div className="flex justify-center">
-              <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-gray-900">
-                <button className="px-8 py-3 rounded-full bg-gray-900 text-white font-medium text-sm uppercase tracking-wider">
+              <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#5B7FE8]">
+                <button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#7B8FEC] to-[#5B7FE8] text-white font-medium text-sm uppercase tracking-wider shadow-sm">
                   Manufacturer
                 </button>
                 <button className="px-8 py-3 rounded-full text-gray-900 font-medium text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">
@@ -131,45 +131,36 @@ const BeFound = () => {
               </div>
             </div>
 
-            {/* Headline with emphasis */}
+            {/* Headline with orange underline emphasis */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center leading-tight">
-              Stop chasing buyers.{" "}
+              Imagine if you{" "}
               <span className="relative inline-block">
-                Let them find you
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-gradient-to-r from-[#A8C5B8] to-[#A8B8CA] opacity-30 -z-10"></span>
+                didn't
+                <span className="absolute bottom-2 left-0 w-full h-3 bg-[#FF8B6B] opacity-50 -z-10"></span>
               </span>
-              .
+              {" "}have to spend time...
             </h2>
 
-            {/* Image with rainbow gradient background */}
-            <div className="relative max-w-2xl mx-auto py-12">
-              {/* Rainbow gradient glow effect */}
+            {/* Image with soft peach gradient background */}
+            <div className="relative max-w-2xl mx-auto py-8">
+              {/* Soft peach/coral gradient glow effect behind circle */}
               <div 
-                className="absolute inset-0 rounded-full blur-3xl opacity-40"
+                className="absolute inset-0 rounded-full blur-3xl opacity-60"
                 style={{ 
-                  background: "radial-gradient(circle, #A8C5B8 0%, #A8B8CA 25%, #A8C5B8 50%, #A8B8CA 75%, transparent 100%)",
-                  animation: "pulse 4s ease-in-out infinite"
+                  background: "radial-gradient(circle at center, rgba(255, 180, 162, 0.6) 0%, rgba(255, 200, 180, 0.4) 30%, rgba(255, 220, 200, 0.2) 50%, transparent 70%)",
+                  transform: "scale(1.2)"
                 }}
               ></div>
-              
-              {/* Rotating gradient ring */}
-              <div className="absolute inset-0 max-w-lg mx-auto aspect-square">
-                <div 
-                  className="absolute inset-0 rounded-full opacity-60"
-                  style={{
-                    background: "conic-gradient(from 0deg, #A8C5B8, #A8B8CA, #A8C5B8, #A8B8CA, #A8C5B8)",
-                    filter: "blur(40px)",
-                    animation: "spin 8s linear infinite"
-                  }}
-                ></div>
-              </div>
 
-              <div className="relative aspect-square max-w-lg mx-auto">
-                <img 
-                  src={supplierPortrait} 
-                  alt="Successful supplier on Connectimus platform" 
-                  className="w-full h-full object-cover rounded-full shadow-2xl"
-                />
+              {/* Circular image container */}
+              <div className="relative aspect-square max-w-md mx-auto">
+                <div className="w-full h-full rounded-full overflow-hidden">
+                  <img 
+                    src={supplierThinkingPortrait} 
+                    alt="Thoughtful supplier considering opportunities" 
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
               </div>
             </div>
 
@@ -177,20 +168,20 @@ const BeFound = () => {
             <div className="space-y-4 max-w-2xl mx-auto">
               {[
                 {
-                  icon: "🔍",
-                  text: "Get discovered by qualified buyers actively searching for your exact products and capabilities."
+                  icon: "🔔",
+                  text: "Knowing when qualified buyers are actively searching for your exact product capabilities."
                 },
                 {
-                  icon: "🎯",
-                  text: "Receive RFQs from pre-vetted procurement teams who match your ideal customer profile."
+                  icon: "📄",
+                  text: "Having buyers automatically discover your company profile without cold outreach."
                 },
                 {
-                  icon: "📊",
-                  text: "Track exactly how many buyers view your profile and engage with your offerings."
+                  icon: "💼",
+                  text: "Getting visibility into which procurement teams viewed your products and services."
                 },
                 {
-                  icon: "⚡",
-                  text: "Update your company profile once and automatically appear in relevant supplier searches."
+                  icon: "✉️",
+                  text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
                 }
               ].map((item, index) => (
                 <motion.div
@@ -199,9 +190,9 @@ const BeFound = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white border-2 border-gray-100 rounded-3xl p-6 flex items-start gap-4 hover:border-gray-200 transition-colors"
+                  className="bg-white rounded-3xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center flex-shrink-0 text-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
                     {item.icon}
                   </div>
                   <p className="text-lg text-gray-700 leading-relaxed pt-2">
