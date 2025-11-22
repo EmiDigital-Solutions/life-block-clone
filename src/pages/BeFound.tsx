@@ -3,7 +3,7 @@ import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } f
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import supplierThinking from "@/assets/supplier-thinking.jpg";
+import supplierPortrait from "@/assets/supplier-portrait-hero.jpg";
 
 const BeFound = () => {
   return (
@@ -133,25 +133,42 @@ const BeFound = () => {
 
             {/* Headline with emphasis */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center leading-tight">
-              Imagine if you didn't{" "}
+              Stop chasing buyers.{" "}
               <span className="relative inline-block">
-                have to spend time
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-gray-900/10 -z-10"></span>
+                Let them find you
+                <span className="absolute bottom-2 left-0 w-full h-3 bg-gradient-to-r from-[#A8C5B8] to-[#A8B8CA] opacity-30 -z-10"></span>
               </span>
-              ...
+              .
             </h2>
 
-            {/* Image with circular background */}
-            <div className="relative max-w-2xl mx-auto">
+            {/* Image with rainbow gradient background */}
+            <div className="relative max-w-2xl mx-auto py-12">
+              {/* Rainbow gradient glow effect */}
               <div 
-                className="absolute inset-0 rounded-full blur-3xl opacity-30"
-                style={{ background: "radial-gradient(circle, hsl(160, 25%, 72%) 0%, transparent 70%)" }}
+                className="absolute inset-0 rounded-full blur-3xl opacity-40"
+                style={{ 
+                  background: "radial-gradient(circle, #A8C5B8 0%, #A8B8CA 25%, #A8C5B8 50%, #A8B8CA 75%, transparent 100%)",
+                  animation: "pulse 4s ease-in-out infinite"
+                }}
               ></div>
+              
+              {/* Rotating gradient ring */}
+              <div className="absolute inset-0 max-w-lg mx-auto aspect-square">
+                <div 
+                  className="absolute inset-0 rounded-full opacity-60"
+                  style={{
+                    background: "conic-gradient(from 0deg, #A8C5B8, #A8B8CA, #A8C5B8, #A8B8CA, #A8C5B8)",
+                    filter: "blur(40px)",
+                    animation: "spin 8s linear infinite"
+                  }}
+                ></div>
+              </div>
+
               <div className="relative aspect-square max-w-lg mx-auto">
                 <img 
-                  src={supplierThinking} 
-                  alt="Supplier thinking" 
-                  className="w-full h-full object-cover rounded-full"
+                  src={supplierPortrait} 
+                  alt="Successful supplier on Connectimus platform" 
+                  className="w-full h-full object-cover rounded-full shadow-2xl"
                 />
               </div>
             </div>
@@ -160,20 +177,20 @@ const BeFound = () => {
             <div className="space-y-4 max-w-2xl mx-auto">
               {[
                 {
-                  icon: "🔔",
-                  text: "Manually updating your company information across multiple B2B directories."
+                  icon: "🔍",
+                  text: "Get discovered by qualified buyers actively searching for your exact products and capabilities."
                 },
                 {
-                  icon: "📄",
-                  text: "Responding to RFQs from unqualified buyers who aren't a good fit."
+                  icon: "🎯",
+                  text: "Receive RFQs from pre-vetted procurement teams who match your ideal customer profile."
                 },
                 {
-                  icon: "💼",
-                  text: "Wondering if buyers are actually seeing your products and capabilities."
+                  icon: "📊",
+                  text: "Track exactly how many buyers view your profile and engage with your offerings."
                 },
                 {
-                  icon: "✉️",
-                  text: "Creating marketing materials that never reach procurement teams."
+                  icon: "⚡",
+                  text: "Update your company profile once and automatically appear in relevant supplier searches."
                 }
               ].map((item, index) => (
                 <motion.div
