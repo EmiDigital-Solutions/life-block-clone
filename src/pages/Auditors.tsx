@@ -42,7 +42,7 @@ import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
+import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 
@@ -724,7 +724,7 @@ const TechnologyFeaturesSection = () => {
       title: "Mobile Platform", 
       description: "Manage audits on the go with our comprehensive mobile application. Access all features, documents, and client communication from anywhere.",
       gradient: "from-[#A8C5B8] to-[#96B5AD]",
-      image: auditorBlonde1,
+      image: auditorBlonde3,
       tags: ["iOS", "Android"]
     },
     { 
