@@ -164,7 +164,7 @@ const BeFound = () => {
               </div>
 
               {/* Pain Point Cards - overlapping the gradient */}
-              <div className="relative z-20 space-y-4 max-w-2xl w-full px-4">
+              <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
                 {[
                   {
                     icon: "🔔",
@@ -189,12 +189,12 @@ const BeFound = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl p-6 flex items-start gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-xl md:text-2xl">
                       {item.icon}
                     </div>
-                    <p className="text-lg text-gray-700 leading-relaxed pt-2">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed pt-1 md:pt-2">
                       {item.text}
                     </p>
                   </motion.div>
