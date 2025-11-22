@@ -283,7 +283,7 @@ const AboutUs = () => {
                       radial-gradient(ellipse 180px 160px at 45% 35%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.6) 30%, transparent 60%),
                       radial-gradient(ellipse 140px 120px at 65% 55%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.5) 28%, transparent 55%)
                     `,
-                    mixBlendMode: 'hard-light'
+                    mixBlendMode: 'overlay'
                   }}
                 />
               </div>
@@ -390,7 +390,7 @@ const AboutUs = () => {
                         radial-gradient(ellipse 200px 180px at 50% 40%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.55) 28%, transparent 58%),
                         radial-gradient(ellipse 120px 100px at 35% 60%, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.45) 25%, transparent 52%)
                       `,
-                      mixBlendMode: 'hard-light'
+                      mixBlendMode: 'overlay'
                     }}
                   />
                 </div>
@@ -465,7 +465,7 @@ const AboutUs = () => {
                       radial-gradient(ellipse 150px 140px at 30% 45%, rgba(168, 197, 184, 0.88) 0%, rgba(168, 197, 184, 0.52) 30%, transparent 60%),
                       radial-gradient(ellipse 130px 120px at 70% 40%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.48) 28%, transparent 58%)
                     `,
-                    mixBlendMode: 'hard-light'
+                    mixBlendMode: 'overlay'
                   }}
                 />
               </div>
