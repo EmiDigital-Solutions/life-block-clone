@@ -89,32 +89,32 @@ const InfiniteScrollingGallery = () => {
           {duplicatedItems.map((item, index) => (
             <div
               key={`${rowIndex}-${index}`}
-              className="flex-shrink-0 rounded-2xl sm:rounded-3xl p-8 bg-white border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="flex-shrink-0 rounded-xl p-4 sm:p-6 bg-white border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               style={{
-                width: '320px',
-                minHeight: '200px',
+                width: '240px',
+                minHeight: '140px',
                 borderColor: item.accentColor,
               }}
             >
-              <div className="flex items-start gap-3 mb-4">
+              <div className="flex items-start gap-2 mb-2">
                 <PixelIcon 
                   name="arrow-right" 
-                  className="w-5 h-5 flex-shrink-0 mt-1" 
+                  className="w-4 h-4 flex-shrink-0 mt-0.5" 
                   color={item.accentColor}
                 />
                 <h4 
-                  className="text-xl font-bold leading-tight"
+                  className="text-base sm:text-lg font-bold leading-tight"
                   style={{ color: item.accentColor }}
                 >
                   {item.title}
                 </h4>
               </div>
-              <p className="text-base text-gray-700 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-gray-700 leading-snug mb-2">
                 {item.description}
               </p>
               <button
                 onClick={() => setSelectedCapability(item)}
-                className="text-sm font-medium hover:underline transition-all"
+                className="text-xs font-medium hover:underline transition-all"
                 style={{ color: item.accentColor }}
               >
                 Learn more →
@@ -128,7 +128,7 @@ const InfiniteScrollingGallery = () => {
 
   return (
     <>
-      <div className="space-y-6 py-8">
+      <div className="space-y-3 py-4">
         {renderRow(row1, 'left', 1)}
         {renderRow(row2, 'right', 2)}
         {renderRow(row3, 'left', 3)}
@@ -139,13 +139,13 @@ const InfiniteScrollingGallery = () => {
               transform: translateX(0);
             }
             100% {
-              transform: translateX(calc(-344px * 3));
+              transform: translateX(calc(-264px * 3));
             }
           }
 
           @keyframes scroll-right {
             0% {
-              transform: translateX(calc(-344px * 3));
+              transform: translateX(calc(-264px * 3));
             }
             100% {
               transform: translateX(0);
@@ -153,11 +153,11 @@ const InfiniteScrollingGallery = () => {
           }
 
           .animate-scroll-left {
-            animation: scroll-left 25s linear infinite;
+            animation: scroll-left 20s linear infinite;
           }
 
           .animate-scroll-right {
-            animation: scroll-right 25s linear infinite;
+            animation: scroll-right 20s linear infinite;
           }
 
           .hover\\:animation-pause:hover {

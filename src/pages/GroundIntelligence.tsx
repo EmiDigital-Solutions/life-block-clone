@@ -187,7 +187,7 @@ const GroundIntelligence = () => {
       {/* Capabilities Section - Infinite Scrolling Gallery */}
       <section 
         data-nav-theme="light" 
-        className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
+        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
         id="capabilities"
       >
@@ -196,12 +196,12 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16 px-4 sm:px-6 lg:px-12 xl:px-24"
+            className="text-center mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
               Capabilities that modernize supplier audits
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600">
               Nine AI-driven features for consistent, actionable outcomes.
             </p>
           </motion.div>
