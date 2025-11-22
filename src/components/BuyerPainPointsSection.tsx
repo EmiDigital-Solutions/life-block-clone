@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import buyerImage from "@/assets/buyer-hero-green.png";
-import auditorImage from "@/assets/auditor-gen-12.jpg";
+import qualityImage from "@/assets/quality-hero-green.png";
 
 const BuyerPainPointsSection = () => {
   const [activeRole, setActiveRole] = useState<"buyer" | "quality">("buyer");
@@ -38,7 +38,7 @@ const BuyerPainPointsSection = () => {
   };
 
   const qualityContent = {
-    image: auditorImage,
+    image: qualityImage,
     imageAlt: "Quality professional reviewing standards",
     painPoints: [
       {
@@ -138,8 +138,8 @@ const BuyerPainPointsSection = () => {
                 <img 
                   src={currentContent.image} 
                   alt={currentContent.imageAlt} 
-                  className={`max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl ${activeRole === "quality" ? "grayscale" : ""}`}
-                  style={activeRole === "buyer" ? { filter: "brightness(0.75) saturate(0.5) hue-rotate(-15deg)" } : {}}
+                  className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
+                  style={{ filter: "brightness(0.75) saturate(0.5) hue-rotate(-15deg)" }}
                 />
               </motion.div>
             </div>
