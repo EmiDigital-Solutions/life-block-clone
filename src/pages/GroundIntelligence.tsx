@@ -65,7 +65,7 @@ const GroundIntelligence = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-gray-800 transition-all duration-300"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-white/95 transition-all duration-300 shadow-xl"
                 >
                   Schedule consultation
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -342,7 +342,7 @@ const GroundIntelligence = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button className="w-full sm:w-auto bg-gray-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-gray-800 shadow-xl min-h-[48px]">
+              <button className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-white/95 shadow-xl min-h-[48px]">
                 Schedule consultation
               </button>
               <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]">

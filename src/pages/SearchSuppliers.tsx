@@ -1340,7 +1340,7 @@ const SearchSuppliers = () => {
                 />
               </div>
               <Button 
-                className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-6 py-3 text-sm font-semibold transition-all hover:shadow-lg"
+                className="bg-white hover:bg-white/95 text-gray-900 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:shadow-lg"
               >
                 Start Search
               </Button>
@@ -1506,7 +1506,7 @@ const SearchSuppliers = () => {
                 <div className="flex justify-end pt-6">
                   <Button 
                     onClick={() => setSelectedAIFeature(null)}
-                    className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-8 py-3"
+                    className="bg-white hover:bg-white/95 text-gray-900 rounded-full px-8 py-3"
                   >
                     Close
                   </Button>
