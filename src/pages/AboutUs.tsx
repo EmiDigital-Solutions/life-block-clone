@@ -321,41 +321,79 @@ const AboutUs = () => {
   return <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* SECTION 1: HERO SECTION - Minimalist Clean Design */}
-      <section data-nav-theme="light" className="pt-40 pb-20 relative overflow-hidden bg-white">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* SECTION 1: HERO SECTION - Radical Geometric Design */}
+      <section data-nav-theme="light" className="pt-32 pb-24 relative overflow-hidden bg-white">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left - 3D Sphere */}
+            {/* Left - Geometric Grid */}
             <motion.div 
-              className="relative flex justify-center items-center order-2 lg:order-1" 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 relative" 
+              initial={{ opacity: 0, x: -30 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.5 }}
             >
-              <SphereImageGrid 
-                images={sphereImages} 
-                containerSize={500} 
-                sphereRadius={250} 
-                autoRotate={true} 
-                autoRotateSpeed={0.02}
-                dragSensitivity={0.2}
-                momentumDecay={0.98}
-                maxRotationSpeed={1.5}
-                baseImageScale={0.75} 
-              />
+              <div className="grid grid-cols-4 gap-3 aspect-square max-w-[600px]">
+                {sphereImages.slice(0, 16).map((image, index) => (
+                  <motion.div
+                    key={image.id}
+                    className="relative aspect-square overflow-hidden bg-gray-100"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.03 }}
+                    style={{
+                      clipPath: index % 3 === 0 
+                        ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' 
+                        : index % 3 === 1 
+                        ? 'polygon(0 15%, 100% 0, 100% 100%, 0 100%)'
+                        : 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
+                    }}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                      style={{ filter: 'grayscale(100%)' }}
+                    />
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(168, 197, 184, 0.15) 0%, transparent 100%)',
+                        mixBlendMode: 'color'
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Geometric accent lines */}
+              <div className="absolute -top-8 -left-8 w-24 h-24 border-l-2 border-t-2 border-[#A8C5B8]" />
+              <div className="absolute -bottom-8 -right-8 w-24 h-24 border-r-2 border-b-2 border-[#A8B8CA]" />
             </motion.div>
             
             {/* Right - Text Content */}
             <motion.div 
-              className="flex flex-col space-y-6 order-1 lg:order-2" 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-5 flex flex-col space-y-8" 
+              initial={{ opacity: 0, x: 30 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-black">
-                Building the Global B2B Platform linking Clients, Suppliers & local Experts
-              </h1>
+              <div className="space-y-4">
+                <div className="w-16 h-1 bg-[#A8C5B8]" />
+                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-black">
+                  Building the Global B2B Platform
+                </h1>
+              </div>
+              
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Linking Clients, Suppliers & local Experts through innovative technology and human expertise.
+              </p>
+              
+              <div className="flex gap-1 pt-4">
+                <div className="w-12 h-1 bg-[#A8C5B8]" />
+                <div className="w-8 h-1 bg-[#A8B8CA]" />
+                <div className="w-4 h-1 bg-gray-300" />
+              </div>
             </motion.div>
             
           </div>
