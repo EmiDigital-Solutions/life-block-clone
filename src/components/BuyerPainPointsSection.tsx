@@ -1,7 +1,59 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import procurementImage from "@/assets/procurement-male-european.jpg";
+import auditorImage from "@/assets/auditor-gen-12.jpg";
 
 const BuyerPainPointsSection = () => {
+  const [activeRole, setActiveRole] = useState<"buyer" | "quality">("buyer");
+
+  const buyerContent = {
+    image: procurementImage,
+    imageAlt: "Buyer professional considering opportunities",
+    painPoints: [
+      {
+        text: "Manually searching for suppliers",
+        textFull: "Manually searching through hundreds of supplier databases and directories to find qualified manufacturers."
+      },
+      {
+        text: "Verify supplier capabilities yourself",
+        textFull: "Spending weeks verifying supplier capabilities, certifications, and production capacity before shortlisting."
+      },
+      {
+        text: "Organize costly on-site audits",
+        textFull: "Organizing and paying for expensive on-site audits that take weeks to schedule and complete."
+      },
+      {
+        text: "Wait for audit reports",
+        textFull: "Waiting 10+ days for audit reports while your sourcing decisions are delayed and projects stall."
+      }
+    ]
+  };
+
+  const qualityContent = {
+    image: auditorImage,
+    imageAlt: "Quality professional reviewing standards",
+    painPoints: [
+      {
+        text: "Coordinating audit schedules",
+        textFull: "Coordinating complex audit schedules across multiple suppliers, locations, and certification requirements."
+      },
+      {
+        text: "Inconsistent audit standards",
+        textFull: "Dealing with inconsistent audit standards and documentation quality from different auditing firms."
+      },
+      {
+        text: "Manual compliance tracking",
+        textFull: "Manually tracking supplier compliance status, certifications, and audit findings across your supply chain."
+      },
+      {
+        text: "Limited real-time visibility",
+        textFull: "Having limited real-time visibility into supplier quality issues until audit reports arrive weeks later."
+      }
+    ]
+  };
+
+  const currentContent = activeRole === "buyer" ? buyerContent : qualityContent;
+
   return (
     <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-4xl">
@@ -11,14 +63,28 @@ const BuyerPainPointsSection = () => {
           viewport={{ once: true }}
           className="space-y-12 sm:space-y-16"
         >
-          {/* Role Toggle - Blue gradient style */}
+          {/* Role Toggle */}
           <div className="flex justify-center">
             <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#A8B8CA]">
-              <button className="px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white font-medium text-xs sm:text-sm uppercase tracking-wider shadow-sm">
-                Procurement
+              <button 
+                onClick={() => setActiveRole("buyer")}
+                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                  activeRole === "buyer" 
+                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
+                    : "text-gray-900 hover:bg-gray-50"
+                }`}
+              >
+                Buyer
               </button>
-              <button className="px-6 sm:px-8 py-2 sm:py-3 rounded-full text-gray-900 font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">
-                Quality Team
+              <button 
+                onClick={() => setActiveRole("quality")}
+                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                  activeRole === "quality" 
+                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
+                    : "text-gray-900 hover:bg-gray-50"
+                }`}
+              >
+                Quality
               </button>
             </div>
           </div>
@@ -46,35 +112,30 @@ const BuyerPainPointsSection = () => {
               ></div>
 
               {/* Photo overlay - natural rectangular shape */}
-              <div className="relative z-10">
+              <motion.div 
+                key={activeRole}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="relative z-10"
+              >
                 <img 
-                  src={procurementImage} 
-                  alt="Procurement professional considering opportunities" 
+                  src={currentContent.image} 
+                  alt={currentContent.imageAlt} 
                   className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
                 />
-              </div>
+              </motion.div>
             </div>
 
             {/* Pain Point Cards - overlapping the gradient */}
-            <div className="relative z-20 space-y-2 sm:space-y-3 md:space-y-4 max-w-2xl w-full px-4">
-              {[
-                {
-                  text: "Manually searching for suppliers",
-                  textFull: "Manually searching through hundreds of supplier databases and directories to find qualified manufacturers."
-                },
-                {
-                  text: "Verify supplier capabilities yourself",
-                  textFull: "Spending weeks verifying supplier capabilities, certifications, and production capacity before shortlisting."
-                },
-                {
-                  text: "Organize costly on-site audits",
-                  textFull: "Organizing and paying for expensive on-site audits that take weeks to schedule and complete."
-                },
-                {
-                  text: "Wait for audit reports",
-                  textFull: "Waiting 10+ days for audit reports while your sourcing decisions are delayed and projects stall."
-                }
-              ].map((item, index) => (
+            <motion.div 
+              key={`cards-${activeRole}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="relative z-20 space-y-2 sm:space-y-3 md:space-y-4 max-w-2xl w-full px-4"
+            >
+              {currentContent.painPoints.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -100,7 +161,7 @@ const BuyerPainPointsSection = () => {
                   </p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
