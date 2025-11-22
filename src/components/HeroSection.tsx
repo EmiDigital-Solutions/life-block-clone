@@ -77,7 +77,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col gap-3 sm:gap-6 justify-center lg:justify-start items-center lg:items-start pt-2 sm:pt-4"
+              className="flex flex-col gap-6 sm:gap-8 justify-center lg:justify-start items-center lg:items-start pt-2 sm:pt-4"
             >
               <button className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base">
                 Get Started
