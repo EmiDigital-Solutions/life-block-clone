@@ -78,7 +78,7 @@ const AboutUs = () => {
       <Navigation />
       
       {/* HERO SECTION - Radical Geometric Grid */}
-      <section data-nav-theme="light" className="pt-32 pb-24 bg-white">
+      <section data-nav-theme="light" className="pt-32 pb-24 bg-gray-50">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
