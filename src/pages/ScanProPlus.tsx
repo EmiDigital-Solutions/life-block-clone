@@ -878,13 +878,13 @@ const ComplianceStandardsGrid = () => {
     },
     {
       name: "AS9100",
-      iconName: "rocket",
+      iconName: "analytics",
       description: "Aerospace Quality Standard",
       details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
     },
     {
       name: "ISO 14001",
-      iconName: "leaf",
+      iconName: "shield",
       description: "Environmental Management",
       details: "ISO 14001 provides a framework for environmental management systems. It helps organizations minimize their environmental impact, comply with regulations, and achieve sustainability goals."
     },
@@ -908,7 +908,7 @@ const ComplianceStandardsGrid = () => {
     },
     {
       name: "VDA 6.3",
-      iconName: "target",
+      iconName: "sliders",
       description: "Automotive Process Audit",
       details: "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production."
     },
