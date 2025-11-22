@@ -141,65 +141,62 @@ const BeFound = () => {
               {" "}have to spend time...
             </h2>
 
-            {/* Image with soft glowing gradient background and overlapping cards */}
-            <div className="relative flex flex-col items-center">
-              {/* Container for image and gradient */}
-              <div className="relative flex justify-center items-center mb-[-80px] z-10">
-                {/* Soft glowing gradient background - green/grey rainbow effect */}
-                <div 
-                  className="absolute w-[700px] h-[700px] md:w-[800px] md:h-[800px] max-[768px]:w-[450px] max-[768px]:h-[450px] rounded-full z-0"
-                  style={{ 
-                    background: "radial-gradient(circle, rgba(168, 197, 184, 0.4) 0%, rgba(200, 200, 200, 0.3) 30%, rgba(168, 184, 202, 0.2) 60%, rgba(168, 197, 184, 0.1) 80%, rgba(168, 197, 184, 0) 100%)"
-                  }}
-                ></div>
+            {/* Image with soft glowing gradient background */}
+            <div className="relative flex justify-center items-center py-16">
+              {/* Soft glowing gradient background - fades to transparent */}
+              <div 
+                className="absolute w-[750px] h-[750px] md:w-[750px] md:h-[750px] max-[768px]:w-[500px] max-[768px]:h-[500px] rounded-full z-0"
+                style={{ 
+                  background: "radial-gradient(circle, rgba(255, 212, 195, 0.8) 0%, rgba(255, 201, 181, 0.6) 40%, rgba(255, 212, 195, 0.3) 70%, rgba(255, 212, 195, 0) 100%)"
+                }}
+              ></div>
 
-                {/* Photo overlay - natural rectangular shape, not cropped */}
-                <div className="relative z-10">
-                  <img 
-                    src={supplierPortraitHero} 
-                    alt="Thoughtful supplier considering opportunities" 
-                    className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
-                  />
-                </div>
+              {/* Photo overlay - natural rectangular shape, not cropped */}
+              <div className="relative z-10">
+                <img 
+                  src={supplierPortraitHero} 
+                  alt="Thoughtful supplier considering opportunities" 
+                  className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
+                />
               </div>
+            </div>
 
-              {/* Pain Point Cards - overlapping the gradient */}
-              <div className="relative z-20 space-y-4 max-w-2xl w-full px-4">
-                {[
-                  {
-                    icon: "🔔",
-                    text: "Knowing when qualified buyers are actively searching for your exact product capabilities."
-                  },
-                  {
-                    icon: "📄",
-                    text: "Having buyers automatically discover your company profile without cold outreach."
-                  },
-                  {
-                    icon: "💼",
-                    text: "Getting visibility into which procurement teams viewed your products and services."
-                  },
-                  {
-                    icon: "✉️",
-                    text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-3xl p-6 flex items-start gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
-                      {item.icon}
-                    </div>
-                    <p className="text-lg text-gray-700 leading-relaxed pt-2">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Pain Point Cards */}
+            <div className="space-y-4 max-w-2xl mx-auto">
+              {[
+                {
+                  icon: "🔔",
+                  text: "Knowing when qualified buyers are actively searching for your exact product capabilities."
+                },
+                {
+                  icon: "📄",
+                  text: "Having buyers automatically discover your company profile without cold outreach."
+                },
+                {
+                  icon: "💼",
+                  text: "Getting visibility into which procurement teams viewed your products and services."
+                },
+                {
+                  icon: "✉️",
+                  text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white rounded-3xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
+                    {item.icon}
+                  </div>
+                  <p className="text-lg text-gray-700 leading-relaxed pt-2">
+                    {item.text}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
