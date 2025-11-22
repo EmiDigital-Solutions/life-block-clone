@@ -260,12 +260,12 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Light Design */}
+      {/* Hero Section - Dark Green Background */}
       <section 
-        data-nav-theme="light"
-        className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-visible bg-gray-50"
+        data-nav-theme="dark"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-visible bg-primary"
         style={{ 
-          minHeight: "60vh"
+          minHeight: "70vh"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
@@ -281,19 +281,19 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-[#A8C5B8]/10 rounded-full mb-4 md:mb-6 border border-[#A8C5B8]/20"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
               >
-                <Cpu className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
-                <span className="text-xs md:text-sm font-medium text-[#A8C5B8]">AI-Powered Discovery</span>
+                <Cpu className="w-4 h-4 text-white" />
+                <span className="text-sm font-medium text-white">AI-Powered Discovery</span>
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-tight">
-                <span className="text-gray-900">Find suppliers</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                <span className="text-white">Find suppliers</span>
                 <br />
-                <span className="text-[#A8C5B8]">worldwide.</span>
+                <span className="text-white">worldwide.</span>
               </h1>
               
-              <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
+              <div className="space-y-4 mb-8">
                 {[
                   "25M+ global suppliers",
                   "Real-time verification",
@@ -304,16 +304,16 @@ const SearchSuppliers = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                    className="flex items-center gap-2 md:gap-3 text-gray-600"
+                    className="flex items-center gap-3 text-white/90"
                   >
-                    <div className="w-1.5 h-1.5 bg-[#A8C5B8] rounded-full"></div>
-                    <span className="text-sm md:text-base lg:text-lg">{text}</span>
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <span className="text-base md:text-lg">{text}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Right Content - Interactive Demo Search - Takes 3 columns - YVOO Card Style - Desktop Only */}
+            {/* Right Content - Interactive Demo Search - Takes 3 columns - Desktop Only */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -325,7 +325,7 @@ const SearchSuppliers = () => {
               }}
             >
               {/* Modern white card matching YVOO design */}
-              <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
                 
                 {/* Black Navigation Bar - SearchPro+ */}
                 <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
