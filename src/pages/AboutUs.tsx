@@ -337,10 +337,11 @@ const AboutUs = () => {
                 {sphereImages.slice(0, 16).map((image, index) => (
                   <motion.div
                     key={image.id}
-                    className="relative aspect-square overflow-hidden bg-gray-100"
+                    className="relative aspect-square overflow-hidden bg-gray-100 group cursor-pointer"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: index * 0.03 }}
+                    whileHover={{ scale: 1.05, zIndex: 10 }}
                     style={{
                       clipPath: index % 3 === 0 
                         ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' 
@@ -349,26 +350,60 @@ const AboutUs = () => {
                         : 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
                     }}
                   >
-                    <img
+                    <motion.img
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-full object-cover"
                       style={{ filter: 'grayscale(100%)' }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
                     />
-                    <div 
-                      className="absolute inset-0"
+                    {/* Green highlight overlay for objects - animated on hover */}
+                    <motion.div 
+                      className="absolute inset-0 pointer-events-none"
+                      initial={{ opacity: 0.5 }}
+                      whileHover={{ opacity: 0.8 }}
+                      transition={{ duration: 0.3 }}
                       style={{
-                        background: 'linear-gradient(135deg, rgba(168, 197, 184, 0.15) 0%, transparent 100%)',
+                        background: `
+                          radial-gradient(circle at 40% 35%, rgba(168, 197, 184, 0.4) 0%, rgba(168, 197, 184, 0.25) 20%, transparent 50%),
+                          radial-gradient(circle at 60% 50%, rgba(168, 197, 184, 0.35) 0%, transparent 40%),
+                          radial-gradient(circle at 30% 70%, rgba(168, 197, 184, 0.3) 0%, transparent 35%)
+                        `,
                         mixBlendMode: 'color'
                       }}
+                    />
+                    {/* Geometric accent on hover */}
+                    <motion.div 
+                      className="absolute inset-0 border-2 border-[#A8C5B8]"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                    {/* Shine effect on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"
+                      initial={{ opacity: 0, x: '-100%' }}
+                      whileHover={{ opacity: 1, x: '100%' }}
+                      transition={{ duration: 0.6 }}
                     />
                   </motion.div>
                 ))}
               </div>
               
-              {/* Geometric accent lines */}
-              <div className="absolute -top-8 -left-8 w-24 h-24 border-l-2 border-t-2 border-[#A8C5B8]" />
-              <div className="absolute -bottom-8 -right-8 w-24 h-24 border-r-2 border-b-2 border-[#A8B8CA]" />
+              {/* Geometric accent lines with animation */}
+              <motion.div 
+                className="absolute -top-8 -left-8 w-24 h-24 border-l-2 border-t-2 border-[#A8C5B8]"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              />
+              <motion.div 
+                className="absolute -bottom-8 -right-8 w-24 h-24 border-r-2 border-b-2 border-[#A8B8CA]"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              />
             </motion.div>
             
             {/* Right - Text Content */}
