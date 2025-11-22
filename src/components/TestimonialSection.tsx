@@ -48,36 +48,20 @@ const TestimonialSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center space-y-8"
+            className="text-center"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
               Built for{" "}
               <span className="block mt-2">
-                Mighty{" "}
+                B2B Supply but{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-6 py-2 rounded-xl transform -rotate-1 inline-block">
-                    B2B Supply
+                    mighty
                   </span>
                 </span>
               </span>
-              <span className="block mt-2">Chains</span>
+              <span className="block mt-2">procurement teams.</span>
             </h2>
-
-            {/* Testimonial */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="max-w-3xl mx-auto pt-8"
-            >
-              <blockquote className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light italic leading-relaxed">
-                "ScanPro Its a game changer"
-              </blockquote>
-              <p className="mt-6 text-base md:text-lg text-white/70 font-normal">
-                Christoph Seeholzer, Former Linde Engineering
-              </p>
-            </motion.div>
           </motion.div>
 
           {/* Decorative circles */}
