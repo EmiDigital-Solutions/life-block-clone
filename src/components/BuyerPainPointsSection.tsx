@@ -25,6 +25,14 @@ const BuyerPainPointsSection = () => {
       {
         text: "Waiting for audit results",
         textFull: "Waiting weeks for audit results while sourcing decisions are delayed and opportunities slip away."
+      },
+      {
+        text: "Managing multiple auditors",
+        textFull: "Managing relationships with multiple auditing firms with different standards and reporting formats."
+      },
+      {
+        text: "Justifying high audit costs",
+        textFull: "Justifying €15,000+ audit costs to management while budgets are under constant pressure."
       }
     ]
   };
@@ -52,6 +60,10 @@ const BuyerPainPointsSection = () => {
       {
         text: "Creating detailed reports",
         textFull: "Creating detailed audit reports manually, spending days on documentation instead of analysis."
+      },
+      {
+        text: "Maintaining audit consistency",
+        textFull: "Maintaining consistent audit quality and standards when using different auditors across regions."
       }
     ]
   };
