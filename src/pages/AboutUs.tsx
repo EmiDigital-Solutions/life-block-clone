@@ -338,13 +338,15 @@ const AboutUs = () => {
                 {sphereImages.slice(0, 16).map((image, index) => (
                   <motion.div
                     key={image.id}
-                    className="relative aspect-square overflow-hidden bg-gray-100"
+                    className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer"
                     initial={{ opacity: 0, scale: 0.8, y: 30 }}
                     whileInView={{ 
                       opacity: 1, 
                       scale: 1, 
                       y: 0,
                     }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ 
                       duration: 0.5, 
@@ -366,6 +368,7 @@ const AboutUs = () => {
                       style={{ filter: 'grayscale(100%)' }}
                       initial={{ scale: 1.2 }}
                       whileInView={{ scale: 1 }}
+                      whileHover={{ scale: 1.1 }}
                       viewport={{ once: true }}
                       transition={{
                         duration: 0.8,
@@ -373,11 +376,12 @@ const AboutUs = () => {
                         ease: "easeOut"
                       }}
                     />
-                    {/* Animated green highlight overlay for objects - triggers on scroll */}
+                    {/* Animated green highlight overlay - enhanced on touch */}
                     <motion.div 
                       className="absolute inset-0 pointer-events-none"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 0.6 }}
+                      whileHover={{ opacity: 0.85 }}
                       viewport={{ once: true }}
                       transition={{
                         duration: 0.6,
@@ -386,24 +390,39 @@ const AboutUs = () => {
                       }}
                       style={{
                         background: `
-                          radial-gradient(circle at 40% 35%, rgba(168, 197, 184, 0.45) 0%, rgba(168, 197, 184, 0.28) 20%, transparent 50%),
-                          radial-gradient(circle at 60% 50%, rgba(168, 197, 184, 0.38) 0%, transparent 40%),
-                          radial-gradient(circle at 30% 70%, rgba(168, 197, 184, 0.32) 0%, transparent 35%)
+                          radial-gradient(circle at 40% 35%, rgba(168, 197, 184, 0.5) 0%, rgba(168, 197, 184, 0.32) 20%, transparent 50%),
+                          radial-gradient(circle at 60% 50%, rgba(168, 197, 184, 0.42) 0%, transparent 40%),
+                          radial-gradient(circle at 30% 70%, rgba(168, 197, 184, 0.36) 0%, transparent 35%)
                         `,
                         mixBlendMode: 'color'
                       }}
                     />
-                    {/* Animated border accent */}
+                    {/* Animated border accent - pulses on touch */}
                     <motion.div 
-                      className="absolute inset-0 border border-[#A8C5B8]/40"
+                      className="absolute inset-0 border-2 border-[#A8C5B8]/40"
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
+                      whileHover={{ 
+                        borderColor: 'rgba(168, 197, 184, 0.8)',
+                        opacity: 1,
+                        scale: 1.02
+                      }}
+                      whileTap={{ 
+                        borderColor: 'rgba(168, 197, 184, 1)',
+                        scale: 0.98
+                      }}
                       viewport={{ once: true }}
                       transition={{
-                        duration: 0.4,
-                        delay: index * 0.04 + 0.3,
+                        duration: 0.3,
                         ease: "easeOut"
                       }}
+                    />
+                    {/* Shine effect on touch */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent"
+                      initial={{ x: '-100%', opacity: 0 }}
+                      whileHover={{ x: '100%', opacity: 1 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                   </motion.div>
                 ))}
