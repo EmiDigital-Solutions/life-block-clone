@@ -27,9 +27,9 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-gray-50"
+      className="relative min-h-screen flex flex-col bg-gray-50"
     >
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-8">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-8">
         {/* Two Column Layout */}
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
@@ -38,12 +38,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end -mt-8 sm:-mt-12 lg:-mt-0"
           >
             <img 
               src={heroCharacter} 
               alt="3D Character" 
-              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain"
             />
           </motion.div>
 
