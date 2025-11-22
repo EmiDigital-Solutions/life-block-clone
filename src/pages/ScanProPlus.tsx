@@ -1875,7 +1875,7 @@ const ScanProPlus = () => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
                   {/* Left Side - Image */}
-                  <div className="relative overflow-hidden h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center">
+                  <div className="relative overflow-hidden h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center bg-gray-100">
                     <img 
                       src={industry.image} 
                       alt={industry.title}
