@@ -142,6 +142,27 @@ const HeroSection = () => {
             </motion.div>
           </div>
         </motion.div>
+
+      {/* Auditor Certifications */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="bg-gray-50 border-t border-gray-200 py-6"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-center text-sm text-gray-600">
+            Our auditor network includes professionals certified by:{" "}
+            <span className="font-medium text-gray-900">TÜV SÜD</span>
+            {" • "}
+            <span className="font-medium text-gray-900">Bureau Veritas</span>
+            {" • "}
+            <span className="font-medium text-gray-900">SGS</span>
+            {" • "}
+            <span className="font-medium text-gray-900">DNV</span>
+          </p>
+        </div>
+      </motion.div>
     </section>
   );
 };
