@@ -287,7 +287,7 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-semibold text-white tracking-wide uppercase">AI-Powered Discovery</span>
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-[0.95] tracking-tight">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-10">
                 <span className="text-white block">Find suppliers</span>
                 <span className="text-white block">worldwide.</span>
               </h1>
