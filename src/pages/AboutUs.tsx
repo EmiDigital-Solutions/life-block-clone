@@ -338,15 +338,17 @@ const AboutUs = () => {
                 {sphereImages.slice(0, 16).map((image, index) => (
                   <motion.div
                     key={image.id}
-                    className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer"
+                    className="relative aspect-square overflow-hidden bg-gray-100 cursor-pointer touch-none select-none"
                     initial={{ opacity: 0, scale: 0.8, y: 30 }}
                     whileInView={{ 
                       opacity: 1, 
                       scale: 1, 
                       y: 0,
                     }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ 
+                      scale: 0.92,
+                      transition: { duration: 0.2 }
+                    }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ 
                       duration: 0.5, 
@@ -361,68 +363,62 @@ const AboutUs = () => {
                         : 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
                     }}
                   >
-                    <motion.img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                      style={{ filter: 'grayscale(100%)' }}
-                      initial={{ scale: 1.2 }}
-                      whileInView={{ scale: 1 }}
-                      whileHover={{ scale: 1.1 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.8,
-                        delay: index * 0.04,
-                        ease: "easeOut"
-                      }}
-                    />
-                    {/* Animated green highlight overlay - enhanced on touch */}
+                    <motion.div className="w-full h-full">
+                      <motion.img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover pointer-events-none"
+                        style={{ filter: 'grayscale(100%)' }}
+                        initial={{ scale: 1.2 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.8,
+                          delay: index * 0.04,
+                          ease: "easeOut"
+                        }}
+                      />
+                      {/* Animated green highlight overlay - enhanced on touch */}
+                      <motion.div 
+                        className="absolute inset-0 pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.6 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.6,
+                          delay: index * 0.04 + 0.2,
+                          ease: "easeOut"
+                        }}
+                        style={{
+                          background: `
+                            radial-gradient(circle at 40% 35%, rgba(168, 197, 184, 0.5) 0%, rgba(168, 197, 184, 0.32) 20%, transparent 50%),
+                            radial-gradient(circle at 60% 50%, rgba(168, 197, 184, 0.42) 0%, transparent 40%),
+                            radial-gradient(circle at 30% 70%, rgba(168, 197, 184, 0.36) 0%, transparent 35%)
+                          `,
+                          mixBlendMode: 'color'
+                        }}
+                      />
+                      {/* Flash effect on touch */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        whileTap={{ 
+                          opacity: [0, 0.4, 0],
+                          transition: { duration: 0.4 }
+                        }}
+                      />
+                    </motion.div>
+                    {/* Animated border accent */}
                     <motion.div 
-                      className="absolute inset-0 pointer-events-none"
+                      className="absolute inset-0 border-2 border-[#A8C5B8]/40 pointer-events-none"
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 0.6 }}
-                      whileHover={{ opacity: 0.85 }}
+                      whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{
-                        duration: 0.6,
-                        delay: index * 0.04 + 0.2,
+                        duration: 0.4,
+                        delay: index * 0.04 + 0.3,
                         ease: "easeOut"
                       }}
-                      style={{
-                        background: `
-                          radial-gradient(circle at 40% 35%, rgba(168, 197, 184, 0.5) 0%, rgba(168, 197, 184, 0.32) 20%, transparent 50%),
-                          radial-gradient(circle at 60% 50%, rgba(168, 197, 184, 0.42) 0%, transparent 40%),
-                          radial-gradient(circle at 30% 70%, rgba(168, 197, 184, 0.36) 0%, transparent 35%)
-                        `,
-                        mixBlendMode: 'color'
-                      }}
-                    />
-                    {/* Animated border accent - pulses on touch */}
-                    <motion.div 
-                      className="absolute inset-0 border-2 border-[#A8C5B8]/40"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      whileHover={{ 
-                        borderColor: 'rgba(168, 197, 184, 0.8)',
-                        opacity: 1,
-                        scale: 1.02
-                      }}
-                      whileTap={{ 
-                        borderColor: 'rgba(168, 197, 184, 1)',
-                        scale: 0.98
-                      }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeOut"
-                      }}
-                    />
-                    {/* Shine effect on touch */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent"
-                      initial={{ x: '-100%', opacity: 0 }}
-                      whileHover={{ x: '100%', opacity: 1 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                   </motion.div>
                 ))}
