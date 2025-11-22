@@ -281,19 +281,18 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6 border border-white/20 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-8 border border-white/20 backdrop-blur-sm"
               >
                 <Cpu className="w-4 h-4 text-white" />
-                <span className="text-sm font-medium text-white">AI-Powered Discovery</span>
+                <span className="text-sm font-semibold text-white tracking-wide uppercase">AI-Powered Discovery</span>
               </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                <span className="text-white">Find suppliers</span>
-                <br />
-                <span className="text-white">worldwide.</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-[0.95] tracking-tight">
+                <span className="text-white block">Find suppliers</span>
+                <span className="text-white block">worldwide.</span>
               </h1>
               
-              <div className="space-y-4 mb-8">
+              <div className="space-y-5 mb-10">
                 {[
                   "25M+ global suppliers",
                   "Real-time verification",
@@ -306,8 +305,8 @@ const SearchSuppliers = () => {
                     transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
                     className="flex items-center gap-3 text-white/90"
                   >
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                    <span className="text-base md:text-lg">{text}</span>
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <span className="text-lg md:text-xl font-medium">{text}</span>
                   </motion.div>
                 ))}
               </div>
