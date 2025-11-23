@@ -26,7 +26,7 @@ const EmailComparisonSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
-            <div className="space-y-2 mb-6">
+            <div className="text-center mb-6">
               <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Usual</p>
             </div>
             
@@ -37,9 +37,10 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="bg-gray-100 rounded-2xl rounded-tl-sm p-4 max-w-[85%]"
+                className="rounded-2xl rounded-tl-sm p-4 max-w-[85%]"
+                style={{ backgroundColor: '#7B91E8' }}
               >
-                <p className="text-sm text-gray-900 leading-relaxed">
+                <p className="text-sm text-white leading-relaxed">
                   Sarah,<br/><br/>
                   Let me check if I have anyone available in that region.<br/><br/>
                   I'll get back to you by end of the week.<br/><br/>
@@ -50,7 +51,7 @@ const EmailComparisonSection = () => {
             </div>
           </motion.div>
 
-          {/* With ScanPro+ */}
+          {/* With ScanPro */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -58,8 +59,8 @@ const EmailComparisonSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
-            <div className="space-y-2 mb-6">
-              <p className="text-3xl lg:text-4xl font-bold text-gray-900">With ScanPro+</p>
+            <div className="text-center mb-6">
+              <p className="text-3xl lg:text-4xl font-bold text-gray-900">With ScanPro</p>
             </div>
             
             <div className="space-y-3">
@@ -70,9 +71,9 @@ const EmailComparisonSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
                 className="rounded-2xl rounded-tl-sm p-5 max-w-[95%]"
-                style={{ background: "linear-gradient(135deg, rgba(168, 197, 184, 0.2) 0%, rgba(168, 184, 202, 0.2) 100%)" }}
+                style={{ backgroundColor: '#7B91E8' }}
               >
-                <p className="text-sm text-gray-900 leading-relaxed">
+                <p className="text-sm text-white leading-relaxed">
                   Hey Sarah,<br/><br/>
                   No problem - I've got you covered!<br/><br/>
                   I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
