@@ -62,13 +62,13 @@ const TestimonialSection = () => {
 
             {/* Testimonial */}
             <div className="space-y-8">
-              <p className="text-2xl md:text-3xl font-bold text-black">
+              <p className="text-4xl md:text-5xl lg:text-6xl font-black text-black">
                 ScanPro
               </p>
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-white">
                 "It's a game changer"
               </p>
-              <p className="text-xl md:text-2xl text-white/90 font-normal pt-4">
+              <p className="text-base md:text-lg text-white/90 font-normal pt-4">
                 Christoph Seeholzer, Director Linde
               </p>
             </div>
