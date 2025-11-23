@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
   Calendar,
   Users,
@@ -31,24 +32,9 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
-// Import diverse professional faces for hero grid
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
-import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+// Import auditor photos for carousel and other sections
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
-import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
-import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
-import auditorGen2 from "@/assets/auditor-gen-2.jpg";
-import auditorGen3 from "@/assets/auditor-gen-3.jpg";
-// Keep existing imports for other sections
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
@@ -67,23 +53,55 @@ const Auditors = () => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const heroImages = [
-    { src: auditorBlonde1, alt: 'Quality Inspector' },
-    { src: auditorBlonde2, alt: 'Safety Manager' },
-    { src: auditorBlonde3, alt: 'Compliance Auditor' },
-    { src: auditorBlonde4, alt: 'Operations Director' },
-    { src: auditorBlonde5, alt: 'Factory Inspector' },
-    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
-    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
-    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
-    { src: auditorEuropean, alt: 'Senior Auditor' },
-    { src: procurementMaleAsian, alt: 'Sourcing Director' },
-    { src: auditorFemaleEuropean, alt: 'Quality Lead' },
-    { src: procurementFemaleAsian, alt: 'Procurement Specialist' },
-    { src: procurementMaleLatin, alt: 'Operations Manager' },
-    { src: auditorGen1, alt: 'Site Inspector' },
-    { src: auditorGen2, alt: 'Factory Manager' },
-    { src: auditorGen3, alt: 'Quality Director' },
+  const auditorTestimonials = [
+    { 
+      src: auditorFemaleAfrican, 
+      name: 'Sarah M.', 
+      role: 'ISO Auditor',
+      testimonial: 'Premium clients, transparent pricing. This platform transformed my audit practice.'
+    },
+    { 
+      src: auditorAsian, 
+      name: 'Chen Li',
+      role: 'Quality Specialist', 
+      testimonial: 'AI matching connects me with perfect assignments. Work-life balance finally achieved.'
+    },
+    { 
+      src: auditorFemaleEuropean, 
+      name: 'Anna K.',
+      role: 'Lead Auditor',
+      testimonial: 'Professional tools and enterprise clients. Exactly what serious auditors need.'
+    },
+    { 
+      src: auditorFemaleMiddleEast, 
+      name: 'Fatima H.',
+      role: 'Compliance Expert',
+      testimonial: 'Fast payments, quality assignments. No more chasing invoices or low-budget clients.'
+    },
+    { 
+      src: auditorFemaleLatin, 
+      name: 'Maria R.',
+      role: 'Factory Inspector',
+      testimonial: 'Smart scheduling syncs perfectly. I control my calendar, not the other way around.'
+    },
+    { 
+      src: auditorFemaleSouthAsian, 
+      name: 'Priya S.',
+      role: 'Systems Auditor',
+      testimonial: 'Real-time analytics help me grow. Data-driven insights for every audit decision.'
+    },
+    { 
+      src: auditorFemaleAfrican, 
+      name: 'Amara N.',
+      role: 'Safety Auditor',
+      testimonial: 'Bank-level security for all data. Client trust starts with platform security.'
+    },
+    { 
+      src: auditorMaleNorthAmerica, 
+      name: 'James T.',
+      role: 'Senior Auditor',
+      testimonial: 'Direct client communication. Professional messaging that builds lasting relationships.'
+    },
   ];
 
   useEffect(() => {
@@ -112,7 +130,7 @@ const Auditors = () => {
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left - Geometric Photo Grid */}
+              {/* Left - Carousel with Auditor Testimonials */}
               <motion.div 
                 className="lg:col-span-7 relative" 
                 initial={{ opacity: 0 }} 
@@ -120,53 +138,52 @@ const Auditors = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="grid grid-cols-4 gap-2 max-w-[600px]">
-                  {heroImages.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
-                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                      whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: index * 0.02 }}
-                    >
-                      <motion.img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover pointer-events-none"
-                        style={{ filter: 'grayscale(100%)' }}
-                        initial={{ scale: 1.15 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: index * 0.02 }}
-                      />
-                      {/* Touch flash effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
-                      />
-                      <div className="absolute inset-0 border border-black/5" />
-                    </motion.div>
-                  ))}
-                </div>
-                
-                {/* Geometric accent lines */}
-                <motion.div 
-                  className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-white/40"
-                  initial={{ opacity: 0, x: -10, y: -10 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                />
-                <motion.div 
-                  className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-white/40"
-                  initial={{ opacity: 0, x: 10, y: 10 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                />
+                <Carousel 
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full max-w-[600px]"
+                >
+                  <CarouselContent>
+                    {auditorTestimonials.map((auditor, index) => (
+                      <CarouselItem key={index}>
+                        <div className="relative">
+                          {/* Image Container */}
+                          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-white shadow-2xl">
+                            <img
+                              src={auditor.src}
+                              alt={auditor.name}
+                              className="w-full h-full object-cover"
+                            />
+                            {/* Gradient overlay for text readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                            
+                            {/* Testimonial overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                              <p className="text-white text-sm md:text-base leading-relaxed mb-4">
+                                "{auditor.testimonial}"
+                              </p>
+                              <div className="flex items-center gap-3">
+                                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                  <span className="text-white font-bold text-lg">
+                                    {auditor.name.charAt(0)}
+                                  </span>
+                                </div>
+                                <div>
+                                  <div className="text-white font-semibold">{auditor.name}</div>
+                                  <div className="text-white/80 text-sm">{auditor.role}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4 bg-white/90 hover:bg-white" />
+                  <CarouselNext className="right-4 bg-white/90 hover:bg-white" />
+                </Carousel>
               </motion.div>
               
               {/* Right - Text Content */}
