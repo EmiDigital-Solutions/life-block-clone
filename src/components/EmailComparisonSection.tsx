@@ -13,7 +13,7 @@ const EmailComparisonSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Conversations that keep supply chains moving.
+            Conversations that keep supply chains moving
           </h2>
         </motion.div>
 
@@ -27,7 +27,7 @@ const EmailComparisonSection = () => {
             className="space-y-6"
           >
             <div className="text-center mb-6">
-              <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Usual</p>
+              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Usual</p>
             </div>
             
             <div className="space-y-3">
@@ -41,7 +41,7 @@ const EmailComparisonSection = () => {
                 style={{ backgroundColor: '#6B88D0' }}
               >
                 <p className="text-sm text-white leading-relaxed">
-                  Sarah,<br/><br/>
+                  Hi Sarah,<br/><br/>
                   Let me check if I have anyone available in that region.<br/><br/>
                   I'll get back to you by end of the week.<br/><br/>
                   Best,<br/>
