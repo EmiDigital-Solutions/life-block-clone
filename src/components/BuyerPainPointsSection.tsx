@@ -11,28 +11,28 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Buyer professional considering opportunities",
     painPoints: [
       {
-        text: "Wasting time on supplier search",
-        textFull: "Wasting countless hours manually searching for and vetting potential suppliers instead of strategic sourcing."
+        text: "Finding suppliers, collecting RFI data & references",
+        textFull: "Finding suppliers, collecting RFI data & references"
       },
       {
-        text: "Troubleshooting supplier performance",
-        textFull: "Constantly troubleshooting supplier performance issues without reliable data on root causes."
+        text: "Analyzing supplier fit & building audit business cases",
+        textFull: "Analyzing supplier fit & building audit business cases"
       },
       {
-        text: "Getting real truth data",
-        textFull: "Struggling to get real, unbiased truth data about supplier capabilities and quality standards."
+        text: "Creating annual audit plans & competing for resources",
+        textFull: "Creating annual audit plans & competing for resources"
       },
       {
-        text: "Waiting for audit results",
-        textFull: "Waiting weeks for audit results while sourcing decisions are delayed and opportunities slip away."
+        text: "Coordinating suppliers, auditors, travel & stakeholder briefings",
+        textFull: "Coordinating suppliers, auditors, travel & stakeholder briefings"
       },
       {
-        text: "Managing multiple auditors",
-        textFull: "Managing relationships with multiple auditing firms with different standards and reporting formats."
+        text: "Conducting on-site audits & training auditors",
+        textFull: "Conducting on-site audits & training auditors"
       },
       {
-        text: "Justifying high audit costs",
-        textFull: "Justifying €15,000+ audit costs to management while budgets are under constant pressure."
+        text: "Aligning reports, tracking findings",
+        textFull: "Aligning reports, tracking findings"
       }
     ]
   };
