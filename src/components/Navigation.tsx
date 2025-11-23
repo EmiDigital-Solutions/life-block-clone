@@ -3,7 +3,7 @@ import { Menu, ChevronDown } from "lucide-react";
 import { PixelIcon } from "@/components/PixelIcon";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import connectimusLogo from "@/assets/connectimus-o-logo.png";
+import connectimusLogo from "@/assets/logo-new.svg";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -142,21 +142,12 @@ const Navigation = () => {
       <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1 sm:gap-1.5 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
-              alt="Connectimus O" 
-              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 xl:h-18 xl:w-18 2xl:h-20 2xl:w-20 object-contain"
-              style={{ filter: 'contrast(1.1) saturate(1.1)' }}
+              alt="YVOO Logo" 
+              className="h-8 sm:h-10 lg:h-11 xl:h-12 2xl:h-14 w-auto object-contain"
             />
-            <div className="hidden sm:block">
-              <div 
-                className="font-brand text-lg sm:text-xl lg:text-[22px] xl:text-2xl 2xl:text-3xl font-semibold tracking-tight transition-all duration-300"
-                style={{ color: textColor }}
-              >
-                Connectimus
-              </div>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
