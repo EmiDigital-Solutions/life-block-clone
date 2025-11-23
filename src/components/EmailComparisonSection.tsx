@@ -37,10 +37,11 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-4 w-full"
+                className="rounded-2xl rounded-tl-sm p-4 w-full relative"
                 style={{ backgroundColor: '#7B91C8' }}
               >
-                <p className="text-sm text-white leading-relaxed">
+                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <p className="text-sm text-white leading-relaxed pl-6">
                   Hi Sarah,<br/><br/>
                   Let me check if I have anyone available in that region.<br/><br/>
                   I'll get back to you by end of the week.<br/><br/>
@@ -66,14 +67,15 @@ const EmailComparisonSection = () => {
             <div className="space-y-3">
               {/* Message bubble */}
               <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full"
+                transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative"
                 style={{ backgroundColor: '#7B91C8' }}
               >
-                <p className="text-sm text-white leading-relaxed">
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <p className="text-sm text-white leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   No problem - I've got you covered!<br/><br/>
                   I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
