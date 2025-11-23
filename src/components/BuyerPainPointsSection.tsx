@@ -143,11 +143,27 @@ const BuyerPainPointsSection = () => {
                 transition={{ duration: 0.3 }}
                 className="relative z-10"
               >
-                <img 
-                  src={currentContent.image} 
-                  alt={currentContent.imageAlt} 
-                  className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
-                />
+                <div className="relative">
+                  <img 
+                    src={currentContent.image} 
+                    alt={currentContent.imageAlt} 
+                    className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
+                    style={{ filter: "grayscale(100%) contrast(1.1)" }}
+                  />
+                  {/* Green glow effect on watch area */}
+                  {activeRole === "buyer" && (
+                    <div 
+                      className="absolute w-16 h-16 rounded-full"
+                      style={{
+                        bottom: "28%",
+                        left: "45%",
+                        background: "radial-gradient(circle, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.4) 50%, transparent 100%)",
+                        filter: "blur(8px)",
+                        mixBlendMode: "screen"
+                      }}
+                    />
+                  )}
+                </div>
               </motion.div>
             </div>
 
