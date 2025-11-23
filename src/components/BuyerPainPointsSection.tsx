@@ -148,20 +148,32 @@ const BuyerPainPointsSection = () => {
                     src={currentContent.image} 
                     alt={currentContent.imageAlt} 
                     className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
-                    style={{ filter: "grayscale(100%) contrast(1.1)" }}
+                    style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1)" } : {}}
                   />
-                  {/* Green glow effect on watch area */}
+                  {/* Green glow effect on watch area - only for buyer */}
                   {activeRole === "buyer" && (
-                    <div 
-                      className="absolute w-16 h-16 rounded-full"
-                      style={{
-                        bottom: "28%",
-                        left: "45%",
-                        background: "radial-gradient(circle, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.4) 50%, transparent 100%)",
-                        filter: "blur(8px)",
-                        mixBlendMode: "screen"
-                      }}
-                    />
+                    <>
+                      <div 
+                        className="absolute w-24 h-24 rounded-full"
+                        style={{
+                          bottom: "26%",
+                          left: "42%",
+                          background: "radial-gradient(circle, rgba(168, 197, 184, 1) 0%, rgba(168, 197, 184, 0.7) 30%, rgba(168, 197, 184, 0.4) 60%, transparent 100%)",
+                          filter: "blur(4px)",
+                          mixBlendMode: "screen"
+                        }}
+                      />
+                      <div 
+                        className="absolute w-20 h-20 rounded-full"
+                        style={{
+                          bottom: "27%",
+                          left: "43%",
+                          background: "rgba(168, 197, 184, 0.9)",
+                          filter: "blur(12px)",
+                          mixBlendMode: "lighten"
+                        }}
+                      />
+                    </>
                   )}
                 </div>
               </motion.div>
