@@ -37,8 +37,8 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-4 max-w-[85%]"
-                style={{ backgroundColor: '#6B88D0' }}
+                className="rounded-2xl rounded-tl-sm p-4 max-w-[95%] md:max-w-[85%]"
+                style={{ backgroundColor: '#A8B8CA' }}
               >
                 <p className="text-sm text-white leading-relaxed">
                   Hi Sarah,<br/><br/>
@@ -70,8 +70,8 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-5 max-w-[95%]"
-                style={{ backgroundColor: '#6B88D0' }}
+                className="rounded-2xl rounded-tl-sm p-5 max-w-[98%] md:max-w-[95%]"
+                style={{ backgroundColor: '#A8B8CA' }}
               >
                 <p className="text-sm text-white leading-relaxed">
                   Hey Sarah,<br/><br/>
