@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import buyerImage from "@/assets/buyer-hero-green.png";
+import buyerImage from "@/assets/supplier-portrait-hero.png";
 import qualityImage from "@/assets/quality-hero-green.png";
 
 const BuyerPainPointsSection = () => {
