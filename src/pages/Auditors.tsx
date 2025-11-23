@@ -31,17 +31,31 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+// Import diverse professional faces for hero grid
+import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
+import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
+import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
+import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
+import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
+import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
+import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
+import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
+import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
+import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+// Keep existing imports for other sections
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
-import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
-import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
 import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import auditorFemaleOceania from "@/assets/auditor-female-oceania.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 
@@ -53,27 +67,24 @@ const Auditors = () => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const allAuditorProfiles = [
-    { image: auditorEuropean, name: "Senior Auditor", specialty: "ISO 9001 & VDA", location: "Europe", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorAsian, name: "Lead Auditor", specialty: "IATF 16949", location: "East Asia", gradient: "from-[#A8C5B8] via-[#96B5AD] to-[#96B5AD]" },
-    { image: auditorFemaleAfrican, name: "Principal Auditor", specialty: "Quality Systems", location: "Africa", gradient: "from-gray-800 via-gray-900 to-black" },
-    { image: auditorFemaleLatin, name: "Compliance Auditor", specialty: "ISO Standards", location: "Latin America", gradient: "from-blue-600 via-blue-700 to-blue-800" },
-    { image: auditorFemaleMiddleEast, name: "Process Auditor", specialty: "ISO 9001", location: "Middle East", gradient: "from-[#A8C5B8] via-[#96B5AD] to-[#96B5AD]" },
-    { image: auditorMaleNorthAmerica, name: "Technical Auditor", specialty: "VDA 6.3", location: "North America", gradient: "from-gray-800 via-gray-900 to-black" },
+  const heroImages = [
+    { src: auditorBlonde1, alt: 'Quality Inspector' },
+    { src: auditorBlonde2, alt: 'Safety Manager' },
+    { src: auditorBlonde3, alt: 'Compliance Auditor' },
+    { src: auditorBlonde4, alt: 'Operations Director' },
+    { src: auditorBlonde5, alt: 'Factory Inspector' },
+    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
+    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
+    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
+    { src: auditorEuropean, alt: 'Senior Auditor' },
+    { src: procurementMaleAsian, alt: 'Sourcing Director' },
+    { src: auditorFemaleEuropean, alt: 'Quality Lead' },
+    { src: procurementFemaleAsian, alt: 'Procurement Specialist' },
+    { src: procurementMaleLatin, alt: 'Operations Manager' },
+    { src: auditorGen1, alt: 'Site Inspector' },
+    { src: auditorGen2, alt: 'Factory Manager' },
+    { src: auditorGen3, alt: 'Quality Director' },
   ];
-
-  const auditorProfiles = isMobile ? allAuditorProfiles.slice(0, 3) : allAuditorProfiles;
-
-  useEffect(() => {
-    const cycle = () => {
-      setTimeout(() => setIsFanned(true), isMobile ? 2000 : 1500);
-      setTimeout(() => setIsFanned(false), isMobile ? 12000 : 9000);
-    };
-
-    cycle();
-    const interval = setInterval(cycle, isMobile ? 16000 : 12000);
-    return () => clearInterval(interval);
-  }, [isMobile]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,50 +93,6 @@ const Auditors = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % auditorProfiles.length);
-  };
-
-  const getCardStyle = (index: number, totalCards: number) => {
-    const centerIndex = (totalCards - 1) / 2;
-    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
-    const offset = adjustedIndex - centerIndex;
-    
-    if (isFanned) {
-      if (isMobile) {
-        return {
-          x: offset * 110,
-          y: Math.abs(offset) * -20,
-          rotateY: offset * -8,
-          rotateZ: offset * 6,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      } else {
-        return {
-          x: offset * 85,
-          y: Math.abs(offset) * -45,
-          rotateY: offset * -8,
-          rotateZ: offset * 8,
-          scale: 1,
-          opacity: 1,
-          zIndex: totalCards - Math.abs(offset),
-        };
-      }
-    } else {
-      return {
-        x: isMobile ? 0 : 180,
-        y: isMobile ? 0 : 80,
-        rotateY: 0,
-        rotateZ: isMobile ? 0 : -25,
-        scale: 0.98,
-        opacity: adjustedIndex === 0 ? 1 : 0,
-        zIndex: totalCards - adjustedIndex,
-      };
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -139,39 +106,88 @@ const Auditors = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="dark"
-          className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 py-20 pb-32 sm:pb-36 lg:pb-20"
+          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20"
           style={{ background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))" }}
         >
-          <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
+          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left Column: Text Content */}
-              <div className="flex flex-col space-y-6 md:space-y-8 text-left">
-                <motion.h1 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
-                >
-                  Join the Elite Auditor Network
-                  <span className="block mt-2 text-3xl md:text-4xl lg:text-6xl">for Global Industry Leaders</span>
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-lg font-normal text-white/90 leading-[1.6] max-w-[600px] mb-8"
-                >
-                  Partner with Connectimus to serve companies with the highest quality standards and premium requirements. Build your professional practice with meaningful assignments, premium compensation, and industry recognition.
-                </motion.p>
-
+              {/* Left - Geometric Photo Grid */}
+              <motion.div 
+                className="lg:col-span-7 relative" 
+                initial={{ opacity: 0 }} 
+                whileInView={{ opacity: 1 }} 
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="grid grid-cols-4 gap-2 max-w-[600px]">
+                  {heroImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
+                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: index * 0.02 }}
+                    >
+                      <motion.img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover pointer-events-none"
+                        style={{ filter: 'grayscale(100%)' }}
+                        initial={{ scale: 1.15 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: index * 0.02 }}
+                      />
+                      {/* Touch flash effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
+                      />
+                      <div className="absolute inset-0 border border-black/5" />
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Geometric accent lines */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex flex-col space-y-4 text-white mb-12"
-                >
+                  className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-white/40"
+                  initial={{ opacity: 0, x: -10, y: -10 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-white/40"
+                  initial={{ opacity: 0, x: 10, y: 10 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                />
+              </motion.div>
+              
+              {/* Right - Text Content */}
+              <motion.div 
+                className="lg:col-span-5 space-y-8" 
+                initial={{ opacity: 0, x: 30 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="space-y-6">
+                  <div className="w-12 h-0.5 bg-white/80" />
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white">
+                    Join the Elite Auditor Network
+                  </h1>
+                  <p className="text-xl text-white/90 leading-relaxed">
+                    Partner with Connectimus to serve companies with the highest quality standards and premium requirements.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col space-y-4 text-white">
                   <div className="flex items-center gap-3">
                     <Check className="w-5 h-5 flex-shrink-0" />
                     <span className="text-lg font-normal leading-[1.6]">Premium Enterprise Clients</span>
@@ -184,7 +200,7 @@ const Auditors = () => {
                     <Check className="w-5 h-5 flex-shrink-0" />
                     <span className="text-lg font-normal leading-[1.6]">Professional Development Support</span>
                   </div>
-                </motion.div>
+                </div>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -197,102 +213,14 @@ const Auditors = () => {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
-
-              </div>
-
-              {/* Right Column: Animated Auditor Cards */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex justify-center lg:justify-center order-first lg:order-last"
-              >
-                <div 
-                  className="relative w-full max-w-2xl"
-                  style={{ perspective: "1500px" }}
-                >
-                  <div className="absolute inset-0 blur-3xl bg-white/10 scale-150 -z-10"></div>
-                  
-                  <div className="relative h-[375px] sm:h-[438px] lg:h-[280px] xl:h-[530px] 2xl:h-[630px] 3xl:h-[740px] flex items-center justify-center">
-                    {auditorProfiles.map((auditor, index) => {
-                      const style = getCardStyle(index, auditorProfiles.length);
-                      
-                      return (
-                        <motion.div
-                          key={auditor.name}
-                          className="absolute cursor-pointer"
-                          onClick={handleCardClick}
-                          initial={false}
-                          whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                          animate={{
-                            x: style.x,
-                            y: style.y,
-                            rotateY: style.rotateY,
-                            rotateZ: style.rotateZ,
-                            scale: style.scale,
-                            opacity: style.opacity,
-                            zIndex: style.zIndex,
-                          }}
-                          transition={{
-                            duration: isMobile ? 2.5 : 1.8,
-                            delay: isFanned ? index * (isMobile ? 0.25 : 0.12) : (auditorProfiles.length - index) * 0.08,
-                            ease: [0.33, 1, 0.68, 1],
-                            type: "tween",
-                          }}
-                          style={{
-                            transformStyle: "preserve-3d",
-                            willChange: "transform, opacity",
-                          }}
-                        >
-                          <div
-                            className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                            style={{
-                              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 197, 94, 0.3)",
-                            }}
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            
-                            <div className="absolute inset-0 flex items-center justify-center pt-4 sm:pt-6 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-12">
-                              <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
-                                <img
-                                  src={auditor.image}
-                                  alt={auditor.name}
-                                  className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                                />
-                                <div 
-                                  className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                  style={{
-                                    background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-2 xl:bottom-7 2xl:bottom-9 3xl:bottom-12 left-0 right-0 flex justify-center px-3 sm:px-4 lg:px-2">
-                              <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-3 sm:px-4 lg:px-2 xl:px-7 2xl:px-9 py-1.5 sm:py-2 lg:py-1 xl:py-3 2xl:py-4 w-full">
-                                <p className="text-white font-sans font-bold text-xs sm:text-sm lg:text-[9px] xl:text-base 2xl:text-xl 3xl:text-3xl text-center">
-                                  {auditor.name}
-                                </p>
-                                <p className="text-white/80 font-sans text-[10px] sm:text-xs lg:text-[7px] xl:text-sm 2xl:text-lg 3xl:text-2xl text-center">
-                                  {auditor.specialty}
-                                </p>
-                              </div>
-                            </div>
-
-                            <div 
-                              className="absolute inset-0 pointer-events-none rounded-3xl"
-                              style={{
-                                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                
+                <div className="flex gap-1.5">
+                  <div className="w-10 h-0.5 bg-white/80" />
+                  <div className="w-6 h-0.5 bg-white/60" />
+                  <div className="w-3 h-0.5 bg-white/40" />
                 </div>
               </motion.div>
-
+              
             </div>
           </div>
 
