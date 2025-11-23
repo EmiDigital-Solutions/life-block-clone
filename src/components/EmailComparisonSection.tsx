@@ -77,9 +77,9 @@ const EmailComparisonSection = () => {
                   Hey Sarah,<br/><br/>
                   No problem - I've got you covered!<br/><br/>
                   I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
-                  The audit is scheduled for next week - I've already coordinated with your supplier and everything is set up. Cost is €700 total, and you'll receive the complete digital report within 24 hours after the audit is completed, including photos, scoring, and detailed findings.<br/><br/>
+                  Date is agreed with your supplier for next week Tuesday. Cost is €700 total, and you'll receive the complete digital report within 24 hours after the audit is completed, including photos, scoring, and detailed findings.<br/><br/>
                   I'm sending you the tracking link where you can see the auditor's profile, certifications, and follow the entire audit process in real-time. All documentation will be centralized there as well.<br/><br/>
-                  Does next week Tuesday or Wednesday work better for your supplier's schedule? Happy to adjust if needed.<br/><br/>
+                  Let me know if you need anything else!<br/><br/>
                   Best,<br/>
                   Michael
                 </p>
