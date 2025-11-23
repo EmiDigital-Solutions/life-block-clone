@@ -53,7 +53,7 @@ const TestimonialSection = () => {
             <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-32 md:mb-40">
               Built for{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
+                <span className="relative z-10 text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold" style={{ backgroundColor: '#7FA89A' }}>
                   mighty
                 </span>
               </span>
