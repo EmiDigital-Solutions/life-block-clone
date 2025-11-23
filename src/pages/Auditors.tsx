@@ -112,7 +112,7 @@ const Auditors = () => {
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left - Geometric Photo Grid with Creative Shapes */}
+              {/* Left - Geometric Photo Grid */}
               <motion.div 
                 className="lg:col-span-7 relative" 
                 initial={{ opacity: 0 }} 
@@ -121,111 +121,52 @@ const Auditors = () => {
                 transition={{ duration: 0.6 }}
               >
                 <div className="grid grid-cols-4 gap-2 max-w-[600px]">
-                  {heroImages.map((image, index) => {
-                    // Define different geometric shapes for variety
-                    const shapes = [
-                      'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', // Diamond
-                      'circle(50%)', // Circle
-                      'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)', // Hexagon
-                      'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', // Octagon
-                      'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', // Pentagon
-                      'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)', // Star-like
-                      'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', // Wide Hexagon
-                      'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)', // Trapezoid
-                      'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)', // Diamond (repeat)
-                      'circle(50%)', // Circle (repeat)
-                      'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)', // Hexagon (repeat)
-                      'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', // Octagon (repeat)
-                      'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)', // Pentagon (repeat)
-                      'polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)', // Star-like (repeat)
-                      'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)', // Wide Hexagon (repeat)
-                      'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)', // Trapezoid (repeat)
-                    ];
-                    
-                    return (
+                  {heroImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
+                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: index * 0.02 }}
+                    >
+                      <motion.img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover pointer-events-none"
+                        style={{ filter: 'grayscale(100%)' }}
+                        initial={{ scale: 1.15 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: index * 0.02 }}
+                      />
+                      {/* Touch flash effect */}
                       <motion.div
-                        key={index}
-                        className="relative aspect-square overflow-hidden bg-white/10 touch-none select-none backdrop-blur-sm"
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                        whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.4, delay: index * 0.02 }}
-                      >
-                        <motion.div
-                          className="w-full h-full"
-                          style={{ clipPath: shapes[index] }}
-                          initial={{ scale: 1.15 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: index * 0.02 }}
-                        >
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-full h-full object-cover pointer-events-none"
-                            style={{ filter: 'grayscale(100%) brightness(1.1)' }}
-                          />
-                        </motion.div>
-                        {/* Touch flash effect */}
-                        <motion.div
-                          className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
-                          style={{ clipPath: shapes[index] }}
-                          initial={{ opacity: 0 }}
-                          whileTap={{ opacity: [0, 0.4, 0], transition: { duration: 0.4 } }}
-                        />
-                        {/* Subtle border glow */}
-                        <div 
-                          className="absolute inset-0"
-                          style={{ 
-                            clipPath: shapes[index],
-                            boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.2)'
-                          }} 
-                        />
-                      </motion.div>
-                    );
-                  })}
+                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
+                      />
+                      <div className="absolute inset-0 border border-black/5" />
+                    </motion.div>
+                  ))}
                 </div>
                 
-                {/* Enhanced Geometric accent lines */}
+                {/* Geometric accent lines */}
                 <motion.div 
-                  className="absolute -top-6 -left-6 w-24 h-24"
+                  className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-white/40"
                   initial={{ opacity: 0, x: -10, y: -10 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <polyline 
-                      points="0,50 0,0 50,0" 
-                      fill="none" 
-                      stroke="white" 
-                      strokeWidth="2" 
-                      opacity="0.5"
-                    />
-                    <circle cx="0" cy="50" r="3" fill="white" opacity="0.6" />
-                    <circle cx="50" cy="0" r="3" fill="white" opacity="0.6" />
-                  </svg>
-                </motion.div>
+                />
                 <motion.div 
-                  className="absolute -bottom-6 -right-6 w-24 h-24"
+                  className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-white/40"
                   initial={{ opacity: 0, x: 10, y: 10 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.9 }}
-                >
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    <polyline 
-                      points="50,100 100,100 100,50" 
-                      fill="none" 
-                      stroke="white" 
-                      strokeWidth="2" 
-                      opacity="0.5"
-                    />
-                    <circle cx="50" cy="100" r="3" fill="white" opacity="0.6" />
-                    <circle cx="100" cy="50" r="3" fill="white" opacity="0.6" />
-                  </svg>
-                </motion.div>
+                />
               </motion.div>
               
               {/* Right - Text Content */}
