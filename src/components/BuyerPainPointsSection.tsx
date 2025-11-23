@@ -11,28 +11,32 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Buyer professional considering opportunities",
     painPoints: [
       {
-        text: "Finding suppliers, collecting RFI data & references",
-        textFull: "Finding suppliers, collecting RFI data & references"
+        text: "Screening 200+ suppliers to find the right one",
+        textFull: "Screening 200+ suppliers to find the right one"
       },
       {
-        text: "Analyzing supplier fit & building audit business cases",
-        textFull: "Analyzing supplier fit & building audit business cases"
+        text: "Analyzing 50+ criteria & justifying €25K investments",
+        textFull: "Analyzing 50+ criteria & justifying €25K investments"
       },
       {
-        text: "Creating annual audit plans & competing for resources",
-        textFull: "Creating annual audit plans & competing for resources"
+        text: "Planning annual audits & fighting for budget allocation",
+        textFull: "Planning annual audits & fighting for budget allocation"
       },
       {
-        text: "Coordinating suppliers, auditors, travel & stakeholder briefings",
-        textFull: "Coordinating suppliers, auditors, travel & stakeholder briefings"
+        text: "Aligning 5+ calendars for single audit dates",
+        textFull: "Aligning 5+ calendars for single audit dates"
       },
       {
-        text: "Conducting on-site audits & training auditors",
-        textFull: "Conducting on-site audits & training auditors"
+        text: "Planning, booking & traveling for manual audits",
+        textFull: "Planning, booking & traveling for manual audits"
       },
       {
-        text: "Aligning reports, tracking findings",
-        textFull: "Aligning reports, tracking findings"
+        text: "Chasing audit reports weeks after audit completion",
+        textFull: "Chasing audit reports weeks after audit completion"
+      },
+      {
+        text: "Following up NCs/OFIs & managing",
+        textFull: "Following up NCs/OFIs & managing"
       }
     ]
   };
