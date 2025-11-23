@@ -150,30 +150,18 @@ const BuyerPainPointsSection = () => {
                     className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
                     style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1)" } : {}}
                   />
-                  {/* Green glow effect on watch area - only for buyer */}
+                  {/* Green colorization on watch - only for buyer */}
                   {activeRole === "buyer" && (
-                    <>
-                      <div 
-                        className="absolute w-24 h-24 rounded-full"
-                        style={{
-                          bottom: "26%",
-                          left: "42%",
-                          background: "radial-gradient(circle, rgba(168, 197, 184, 1) 0%, rgba(168, 197, 184, 0.7) 30%, rgba(168, 197, 184, 0.4) 60%, transparent 100%)",
-                          filter: "blur(4px)",
-                          mixBlendMode: "screen"
-                        }}
-                      />
-                      <div 
-                        className="absolute w-20 h-20 rounded-full"
-                        style={{
-                          bottom: "27%",
-                          left: "43%",
-                          background: "rgba(168, 197, 184, 0.9)",
-                          filter: "blur(12px)",
-                          mixBlendMode: "lighten"
-                        }}
-                      />
-                    </>
+                    <div 
+                      className="absolute w-16 h-16 rounded-full"
+                      style={{
+                        bottom: "25%",
+                        left: "40%",
+                        background: "#A8C5B8",
+                        mixBlendMode: "color",
+                        opacity: 0.9
+                      }}
+                    />
                   )}
                 </div>
               </motion.div>
