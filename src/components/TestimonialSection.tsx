@@ -61,12 +61,15 @@ const TestimonialSection = () => {
             </h2>
 
             {/* Testimonial */}
-            <div className="space-y-4">
-              <p className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-black">
-                <span className="font-bold">ScanPro</span>, it's a Game Changer
+            <div className="space-y-8">
+              <p className="text-2xl md:text-3xl font-bold text-black">
+                ScanPro
               </p>
-              <p className="text-xl md:text-2xl text-black/80 font-normal">
-                Christoph Seeholzer, Former Linde
+              <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-white">
+                "It's a game changer"
+              </p>
+              <p className="text-xl md:text-2xl text-white/90 font-normal pt-4">
+                Christoph Seeholzer, Director Linde
               </p>
             </div>
           </motion.div>
