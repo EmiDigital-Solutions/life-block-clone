@@ -46,32 +46,32 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Quality professional reviewing standards",
     painPoints: [
       {
-        text: "Managing inconsistent audit requirements per customer",
-        textFull: "Managing inconsistent audit requirements per customer"
+        text: "Searching for available auditors to cover assignments",
+        textFull: "Searching for available auditors to cover assignments"
       },
       {
-        text: "Coordinating complex multi-country audit schedules",
-        textFull: "Coordinating complex multi-country audit schedules"
+        text: "Turning down ad-hoc requests due to staffing gaps",
+        textFull: "Turning down ad-hoc requests due to staffing gaps"
       },
       {
-        text: "Writing 30+ page reports with different standards",
-        textFull: "Writing 30+ page reports with different standards"
+        text: "Creating standardized reports from manual notes",
+        textFull: "Creating standardized reports from manual notes"
       },
       {
-        text: "Ensuring audit consistency across your auditor network",
-        textFull: "Ensuring audit consistency across your auditor network"
+        text: "Reaching suppliers in remote Asian/African markets",
+        textFull: "Reaching suppliers in remote Asian/African markets"
       },
       {
-        text: "Managing travel logistics & visa applications",
-        textFull: "Managing travel logistics & visa applications"
+        text: "Coordinating logistics with email & spreadsheets",
+        textFull: "Coordinating logistics with email & spreadsheets"
       },
       {
-        text: "Following up findings & scheduling re-audits",
-        textFull: "Following up findings & scheduling re-audits"
+        text: "Following up findings manually across systems",
+        textFull: "Following up findings manually across systems"
       },
       {
-        text: "Maintaining auditor certifications",
-        textFull: "Maintaining auditor certifications"
+        text: "Employing auditors permanently",
+        textFull: "Employing auditors permanently"
       }
     ]
   };
