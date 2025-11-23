@@ -112,7 +112,7 @@ const Auditors = () => {
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left - Geometric Photo Grid with Hexagon Shapes */}
+              {/* Left - Geometric Photo Grid with Diamond Shapes */}
               <motion.div 
                 className="lg:col-span-7 relative" 
                 initial={{ opacity: 0 }} 
@@ -122,8 +122,8 @@ const Auditors = () => {
               >
                 <div className="grid grid-cols-4 gap-2 max-w-[600px]">
                   {heroImages.map((image, index) => {
-                    // Hexagon - most symmetric shape
-                    const hexagonShape = 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)';
+                    // Diamond shape (rotated square)
+                    const diamondShape = 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)';
                     
                     return (
                       <motion.div
@@ -137,7 +137,7 @@ const Auditors = () => {
                       >
                         <motion.div
                           className="w-full h-full"
-                          style={{ clipPath: hexagonShape }}
+                          style={{ clipPath: diamondShape }}
                           initial={{ scale: 1.15 }}
                           whileInView={{ scale: 1 }}
                           viewport={{ once: true }}
@@ -153,7 +153,7 @@ const Auditors = () => {
                         {/* Touch flash effect */}
                         <motion.div
                           className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
-                          style={{ clipPath: hexagonShape }}
+                          style={{ clipPath: diamondShape }}
                           initial={{ opacity: 0 }}
                           whileTap={{ opacity: [0, 0.4, 0], transition: { duration: 0.4 } }}
                         />
@@ -161,7 +161,7 @@ const Auditors = () => {
                         <div 
                           className="absolute inset-0"
                           style={{ 
-                            clipPath: hexagonShape,
+                            clipPath: diamondShape,
                             boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.2)'
                           }} 
                         />
