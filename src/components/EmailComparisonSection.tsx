@@ -75,6 +75,8 @@ const EmailComparisonSection = () => {
                 style={{ backgroundColor: '#7B91C8' }}
               >
                 <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <div className="absolute right-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.6s" }}></div>
                 <p className="text-sm text-white leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   No problem - I've got you covered!<br/><br/>
