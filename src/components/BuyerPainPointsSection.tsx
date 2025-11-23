@@ -147,7 +147,6 @@ const BuyerPainPointsSection = () => {
                   src={currentContent.image} 
                   alt={currentContent.imageAlt} 
                   className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
-                  style={{ filter: "brightness(0.75) saturate(0.5) hue-rotate(-15deg)" }}
                 />
               </motion.div>
             </div>
