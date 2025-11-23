@@ -11,28 +11,28 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Buyer professional considering opportunities",
     painPoints: [
       {
-        text: "Searching for suppliers",
-        textFull: "Searching for suppliers"
+        text: "Wasting time on supplier search",
+        textFull: "Wasting countless hours manually searching for and vetting potential suppliers instead of strategic sourcing."
       },
       {
-        text: "Managing supplier issues",
-        textFull: "Managing supplier issues"
+        text: "Troubleshooting supplier performance",
+        textFull: "Constantly troubleshooting supplier performance issues without reliable data on root causes."
       },
       {
-        text: "Verifying supplier claims",
-        textFull: "Verifying supplier claims"
+        text: "Getting real truth data",
+        textFull: "Struggling to get real, unbiased truth data about supplier capabilities and quality standards."
       },
       {
-        text: "Waiting weeks for audits",
-        textFull: "Waiting weeks for audits"
+        text: "Waiting for audit results",
+        textFull: "Waiting weeks for audit results while sourcing decisions are delayed and opportunities slip away."
       },
       {
-        text: "Coordinating multiple auditors",
-        textFull: "Coordinating multiple auditors"
+        text: "Managing multiple auditors",
+        textFull: "Managing relationships with multiple auditing firms with different standards and reporting formats."
       },
       {
-        text: "Paying premium audit prices",
-        textFull: "Paying premium audit prices"
+        text: "Justifying high audit costs",
+        textFull: "Justifying €15,000+ audit costs to management while budgets are under constant pressure."
       }
     ]
   };
@@ -42,28 +42,28 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Quality professional reviewing standards",
     painPoints: [
       {
-        text: "Managing audit demand",
-        textFull: "Managing audit demand"
+        text: "Managing high audit demand",
+        textFull: "Managing overwhelming demand for supplier audits across multiple locations and time zones."
       },
       {
-        text: "Dealing with budget cuts",
-        textFull: "Dealing with budget cuts"
+        text: "Dealing with travel budgets",
+        textFull: "Dealing with limited travel budgets while audit requirements continue to grow exponentially."
       },
       {
-        text: "Traveling constantly",
-        textFull: "Traveling constantly"
+        text: "Scheduling long business trips",
+        textFull: "Scheduling exhausting long-distance business trips that disrupt work-life balance and team productivity."
       },
       {
         text: "Conducting manual audits",
-        textFull: "Conducting manual audits"
+        textFull: "Conducting time-intensive manual audits with inconsistent documentation and quality standards."
       },
       {
-        text: "Writing endless reports",
-        textFull: "Writing endless reports"
+        text: "Creating detailed reports",
+        textFull: "Creating detailed audit reports manually, spending days on documentation instead of analysis."
       },
       {
-        text: "Ensuring consistency",
-        textFull: "Ensuring consistency"
+        text: "Maintaining audit consistency",
+        textFull: "Maintaining consistent audit quality and standards when using different auditors across regions."
       }
     ]
   };
