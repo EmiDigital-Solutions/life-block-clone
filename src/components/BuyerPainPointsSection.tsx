@@ -46,28 +46,32 @@ const BuyerPainPointsSection = () => {
     imageAlt: "Quality professional reviewing standards",
     painPoints: [
       {
-        text: "Managing high audit demand",
-        textFull: "Managing overwhelming demand for supplier audits across multiple locations and time zones."
+        text: "Managing inconsistent audit requirements per customer",
+        textFull: "Managing inconsistent audit requirements per customer"
       },
       {
-        text: "Dealing with travel budgets",
-        textFull: "Dealing with limited travel budgets while audit requirements continue to grow exponentially."
+        text: "Coordinating complex multi-country audit schedules",
+        textFull: "Coordinating complex multi-country audit schedules"
       },
       {
-        text: "Scheduling long business trips",
-        textFull: "Scheduling exhausting long-distance business trips that disrupt work-life balance and team productivity."
+        text: "Writing 30+ page reports with different standards",
+        textFull: "Writing 30+ page reports with different standards"
       },
       {
-        text: "Conducting manual audits",
-        textFull: "Conducting time-intensive manual audits with inconsistent documentation and quality standards."
+        text: "Ensuring audit consistency across your auditor network",
+        textFull: "Ensuring audit consistency across your auditor network"
       },
       {
-        text: "Creating detailed reports",
-        textFull: "Creating detailed audit reports manually, spending days on documentation instead of analysis."
+        text: "Managing travel logistics & visa applications",
+        textFull: "Managing travel logistics & visa applications"
       },
       {
-        text: "Maintaining audit consistency",
-        textFull: "Maintaining consistent audit quality and standards when using different auditors across regions."
+        text: "Following up findings & scheduling re-audits",
+        textFull: "Following up findings & scheduling re-audits"
+      },
+      {
+        text: "Maintaining auditor certifications",
+        textFull: "Maintaining auditor certifications"
       }
     ]
   };
