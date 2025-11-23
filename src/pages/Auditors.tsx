@@ -130,112 +130,206 @@ const Auditors = () => {
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left - Carousel with Auditor Testimonials */}
+              {/* Left - Modern Minimalist Carousel */}
               <motion.div 
                 className="lg:col-span-7 relative" 
-                initial={{ opacity: 0 }} 
-                whileInView={{ opacity: 1 }} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8 }}
               >
                 <Carousel 
                   opts={{
-                    align: "start",
+                    align: "center",
                     loop: true,
                   }}
-                  className="w-full max-w-[600px]"
+                  className="w-full max-w-[650px]"
                 >
                   <CarouselContent>
                     {auditorTestimonials.map((auditor, index) => (
                       <CarouselItem key={index}>
-                        <div className="relative">
-                          {/* Image Container */}
-                          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-white shadow-2xl">
-                            <img
-                              src={auditor.src}
-                              alt={auditor.name}
-                              className="w-full h-full object-cover"
-                            />
-                            {/* Gradient overlay for text readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <motion.div 
+                          className="relative group"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                          {/* Main Card Container */}
+                          <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-white to-gray-50 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)]">
                             
-                            {/* Testimonial overlay */}
-                            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                              <p className="text-white text-sm md:text-base leading-relaxed mb-4">
-                                "{auditor.testimonial}"
-                              </p>
-                              <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                                  <span className="text-white font-bold text-lg">
+                            {/* Image Section - Large & Prominent */}
+                            <div className="relative aspect-[3/4] overflow-hidden">
+                              <motion.img
+                                src={auditor.src}
+                                alt={auditor.name}
+                                className="w-full h-full object-cover"
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.6 }}
+                              />
+                              {/* Subtle gradient overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                              
+                              {/* Floating badge */}
+                              <div className="absolute top-6 right-6 backdrop-blur-md bg-white/90 rounded-full px-4 py-2 shadow-lg">
+                                <span className="text-xs font-semibold text-gray-900 tracking-wide">
+                                  VERIFIED
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Content Section - Clean & Spacious */}
+                            <div className="relative bg-white p-8 space-y-6">
+                              {/* Testimonial Quote */}
+                              <div className="relative">
+                                <div className="absolute -top-2 -left-1 text-6xl text-gray-200 font-serif leading-none">
+                                  "
+                                </div>
+                                <p className="relative text-gray-700 text-base leading-relaxed pl-6">
+                                  {auditor.testimonial}
+                                </p>
+                              </div>
+
+                              {/* Author Info */}
+                              <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD] flex items-center justify-center shadow-md">
+                                  <span className="text-white font-bold text-xl">
                                     {auditor.name.charAt(0)}
                                   </span>
                                 </div>
-                                <div>
-                                  <div className="text-white font-semibold">{auditor.name}</div>
-                                  <div className="text-white/80 text-sm">{auditor.role}</div>
+                                <div className="flex-1">
+                                  <h4 className="text-gray-900 font-semibold text-lg">
+                                    {auditor.name}
+                                  </h4>
+                                  <p className="text-gray-500 text-sm">
+                                    {auditor.role}
+                                  </p>
+                                </div>
+                                <div className="flex gap-0.5">
+                                  {[...Array(5)].map((_, i) => (
+                                    <svg key={i} className="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20">
+                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                    </svg>
+                                  ))}
                                 </div>
                               </div>
                             </div>
+
+                            {/* Decorative element */}
+                            <div className="absolute top-0 left-0 w-32 h-32 bg-[#A8C5B8]/5 rounded-full blur-3xl" />
+                            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#A8B8CA]/5 rounded-full blur-3xl" />
                           </div>
-                        </div>
+                        </motion.div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="left-4 bg-white/90 hover:bg-white" />
-                  <CarouselNext className="right-4 bg-white/90 hover:bg-white" />
+                  
+                  {/* Modern Navigation Buttons */}
+                  <CarouselPrevious className="left-0 -translate-x-1/2 w-12 h-12 border-2 border-white bg-white/95 backdrop-blur-sm hover:bg-white hover:scale-110 transition-all shadow-xl" />
+                  <CarouselNext className="right-0 translate-x-1/2 w-12 h-12 border-2 border-white bg-white/95 backdrop-blur-sm hover:bg-white hover:scale-110 transition-all shadow-xl" />
                 </Carousel>
+
+                {/* Decorative accent lines */}
+                <motion.div 
+                  className="absolute -bottom-8 -left-8 w-24 h-24 border-l-2 border-b-2 border-white/30 rounded-bl-3xl"
+                  initial={{ opacity: 0, x: -20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                />
+                <motion.div 
+                  className="absolute -top-8 -right-8 w-24 h-24 border-r-2 border-t-2 border-white/30 rounded-tr-3xl"
+                  initial={{ opacity: 0, x: 20, y: -20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                />
               </motion.div>
               
-              {/* Right - Text Content */}
+              {/* Right - Modern Text Content */}
               <motion.div 
-                className="lg:col-span-5 space-y-8" 
+                className="lg:col-span-5 space-y-10" 
                 initial={{ opacity: 0, x: 30 }} 
                 whileInView={{ opacity: 1, x: 0 }} 
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="space-y-6">
-                  <div className="w-12 h-0.5 bg-white/80" />
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white">
-                    Join the Elite Auditor Network
+                <div className="space-y-8">
+                  {/* Minimalist label */}
+                  <motion.div 
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                    <span className="text-sm font-medium text-white tracking-wide">ELITE NETWORK</span>
+                  </motion.div>
+
+                  {/* Main headline */}
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight text-white">
+                    Join the Elite
+                    <br />
+                    <span className="text-white/90">Auditor</span>
+                    <br />
+                    <span className="text-white/80">Network</span>
                   </h1>
-                  <p className="text-xl text-white/90 leading-relaxed">
-                    Partner with Connectimus to serve companies with the highest quality standards and premium requirements.
+
+                  {/* Subheading */}
+                  <p className="text-xl lg:text-2xl text-white/90 leading-relaxed font-light max-w-md">
+                    Partner with Connectimus to serve premium enterprise clients with the highest quality standards.
                   </p>
                 </div>
                 
-                <div className="flex flex-col space-y-4 text-white">
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">Premium Enterprise Clients</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">€2,500+ Average Assignment Value</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">Professional Development Support</span>
-                  </div>
+                {/* Benefits - Minimal icons */}
+                <div className="flex flex-col space-y-5 text-white">
+                  {[
+                    { text: "Premium Enterprise Clients", icon: "✓" },
+                    { text: "€2,500+ Average Assignment Value", icon: "✓" },
+                    { text: "Professional Development Support", icon: "✓" }
+                  ].map((item, idx) => (
+                    <motion.div 
+                      key={idx}
+                      className="flex items-center gap-4 group"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + (idx * 0.1) }}
+                    >
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                        <span className="text-white font-bold text-sm">{item.icon}</span>
+                      </div>
+                      <span className="text-lg font-normal leading-tight">{item.text}</span>
+                    </motion.div>
+                  ))}
                 </div>
 
+                {/* CTA Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
                   className="flex relative z-10"
                 >
-                  <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
+                  <button className="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-10 py-5 rounded-full font-semibold text-lg hover:bg-gray-50 hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-xl">
                     Apply as Partner Auditor
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </button>
                 </motion.div>
                 
-                <div className="flex gap-1.5">
-                  <div className="w-10 h-0.5 bg-white/80" />
-                  <div className="w-6 h-0.5 bg-white/60" />
-                  <div className="w-3 h-0.5 bg-white/40" />
-                </div>
+                {/* Minimal progress bars */}
+                <motion.div 
+                  className="flex gap-2 pt-4"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1 }}
+                >
+                  <div className="h-1 w-16 bg-white rounded-full" />
+                  <div className="h-1 w-8 bg-white/60 rounded-full" />
+                  <div className="h-1 w-4 bg-white/40 rounded-full" />
+                </motion.div>
               </motion.div>
               
             </div>
