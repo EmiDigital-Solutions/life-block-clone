@@ -38,7 +38,7 @@ const EmailComparisonSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
                 className="rounded-2xl rounded-tl-sm p-4 w-full relative"
-                style={{ backgroundColor: '#7B91C8' }}
+                style={{ backgroundColor: '#A8BFC5' }}
               >
                 <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-white animate-pulse"></div>
                 <p className="text-sm text-white leading-relaxed pl-6">
@@ -72,7 +72,7 @@ const EmailComparisonSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
                 className="rounded-2xl rounded-tl-sm p-5 w-full relative"
-                style={{ backgroundColor: '#7B91C8' }}
+                style={{ backgroundColor: '#A8BFC5' }}
               >
                 <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
                 <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>
