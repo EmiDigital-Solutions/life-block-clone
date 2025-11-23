@@ -32,6 +32,7 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { PixelIcon } from "@/components/PixelIcon";
 // Import auditor photos for carousel and other sections
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
@@ -154,11 +155,11 @@ const Auditors = () => {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                          {/* Main Card Container */}
-                          <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-white to-gray-50 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)]">
+                          {/* Image Card with Text Overlay */}
+                          <div className="relative overflow-hidden rounded-[32px] shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)]">
                             
-                            {/* Image Section - Large & Prominent */}
-                            <div className="relative aspect-[3/4] overflow-hidden">
+                            {/* Image with Full Overlay */}
+                            <div className="relative aspect-[3/4]">
                               <motion.img
                                 src={auditor.src}
                                 alt={auditor.name}
@@ -166,66 +167,75 @@ const Auditors = () => {
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ duration: 0.6 }}
                               />
-                              {/* Subtle gradient overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                               
-                              {/* Floating badge */}
-                              <div className="absolute top-6 right-6 backdrop-blur-md bg-white/90 rounded-full px-4 py-2 shadow-lg">
-                                <span className="text-xs font-semibold text-gray-900 tracking-wide">
+                              {/* Dark gradient overlay for text readability */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                              
+                              {/* Floating verified badge */}
+                              <div className="absolute top-6 right-6 backdrop-blur-md bg-white/95 rounded-full px-4 py-2 shadow-xl">
+                                <span className="text-xs font-bold text-gray-900 tracking-wide">
                                   VERIFIED
                                 </span>
                               </div>
-                            </div>
 
-                            {/* Content Section - Clean & Spacious */}
-                            <div className="relative bg-white p-8 space-y-6">
-                              {/* Testimonial Quote */}
-                              <div className="relative">
-                                <div className="absolute -top-2 -left-1 text-6xl text-gray-200 font-serif leading-none">
-                                  "
-                                </div>
-                                <p className="relative text-gray-700 text-base leading-relaxed pl-6">
-                                  {auditor.testimonial}
-                                </p>
-                              </div>
-
-                              {/* Author Info */}
-                              <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
-                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD] flex items-center justify-center shadow-md">
-                                  <span className="text-white font-bold text-xl">
-                                    {auditor.name.charAt(0)}
-                                  </span>
-                                </div>
-                                <div className="flex-1">
-                                  <h4 className="text-gray-900 font-semibold text-lg">
-                                    {auditor.name}
-                                  </h4>
-                                  <p className="text-gray-500 text-sm">
-                                    {auditor.role}
+                              {/* Text Content Overlay */}
+                              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-6">
+                                {/* Testimonial Quote */}
+                                <div className="relative">
+                                  <div className="absolute -top-3 -left-2 text-7xl text-white/20 font-serif leading-none">
+                                    "
+                                  </div>
+                                  <p className="relative text-white text-base md:text-lg leading-relaxed pl-6 font-medium">
+                                    {auditor.testimonial}
                                   </p>
                                 </div>
-                                <div className="flex gap-0.5">
-                                  {[...Array(5)].map((_, i) => (
-                                    <svg key={i} className="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20">
-                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                    </svg>
-                                  ))}
+
+                                {/* Author Info with Stars */}
+                                <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center shadow-lg border-2 border-white/30">
+                                      <span className="text-white font-bold text-xl">
+                                        {auditor.name.charAt(0)}
+                                      </span>
+                                    </div>
+                                    <div>
+                                      <h4 className="text-white font-bold text-lg">
+                                        {auditor.name}
+                                      </h4>
+                                      <p className="text-white/80 text-sm">
+                                        {auditor.role}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="flex gap-1">
+                                    {[...Array(5)].map((_, i) => (
+                                      <svg key={i} className="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20">
+                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                      </svg>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             </div>
 
-                            {/* Decorative element */}
-                            <div className="absolute top-0 left-0 w-32 h-32 bg-[#A8C5B8]/5 rounded-full blur-3xl" />
-                            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#A8B8CA]/5 rounded-full blur-3xl" />
+                            {/* Decorative blur elements */}
+                            <div className="absolute top-0 left-0 w-32 h-32 bg-[#A8C5B8]/10 rounded-full blur-3xl pointer-events-none" />
+                            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#A8B8CA]/10 rounded-full blur-3xl pointer-events-none" />
                           </div>
                         </motion.div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
                   
-                  {/* Modern Navigation Buttons */}
-                  <CarouselPrevious className="left-0 -translate-x-1/2 w-12 h-12 border-2 border-white bg-white/95 backdrop-blur-sm hover:bg-white hover:scale-110 transition-all shadow-xl" />
-                  <CarouselNext className="right-0 translate-x-1/2 w-12 h-12 border-2 border-white bg-white/95 backdrop-blur-sm hover:bg-white hover:scale-110 transition-all shadow-xl" />
+                  {/* 8-bit Pixel Arrow Navigation */}
+                  <CarouselPrevious className="left-0 -translate-x-1/2 w-14 h-14 border-2 border-white bg-white hover:bg-gray-50 hover:scale-110 transition-all shadow-xl">
+                    <PixelIcon name="chevron-left" className="w-6 h-6" />
+                    <span className="sr-only">Previous slide</span>
+                  </CarouselPrevious>
+                  <CarouselNext className="right-0 translate-x-1/2 w-14 h-14 border-2 border-white bg-white hover:bg-gray-50 hover:scale-110 transition-all shadow-xl">
+                    <PixelIcon name="chevron-right" className="w-6 h-6" />
+                    <span className="sr-only">Next slide</span>
+                  </CarouselNext>
                 </Carousel>
 
                 {/* Decorative accent lines */}
