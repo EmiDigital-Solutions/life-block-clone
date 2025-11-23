@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import {
   Calendar,
   Users,
@@ -32,10 +31,24 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { PixelIcon } from "@/components/PixelIcon";
-// Import auditor photos for carousel and other sections
+// Import diverse professional faces for hero grid
+import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
+import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
+import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
+import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
+import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
+import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
+import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
+import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
+import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
+import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+// Keep existing imports for other sections
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
@@ -54,55 +67,23 @@ const Auditors = () => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const auditorTestimonials = [
-    { 
-      src: auditorFemaleAfrican, 
-      name: 'Sarah M.', 
-      role: 'ISO Auditor',
-      testimonial: 'Premium clients, transparent pricing. This platform transformed my audit practice.'
-    },
-    { 
-      src: auditorAsian, 
-      name: 'Chen Li',
-      role: 'Quality Specialist', 
-      testimonial: 'AI matching connects me with perfect assignments. Work-life balance finally achieved.'
-    },
-    { 
-      src: auditorFemaleEuropean, 
-      name: 'Anna K.',
-      role: 'Lead Auditor',
-      testimonial: 'Professional tools and enterprise clients. Exactly what serious auditors need.'
-    },
-    { 
-      src: auditorFemaleMiddleEast, 
-      name: 'Fatima H.',
-      role: 'Compliance Expert',
-      testimonial: 'Fast payments, quality assignments. No more chasing invoices or low-budget clients.'
-    },
-    { 
-      src: auditorFemaleLatin, 
-      name: 'Maria R.',
-      role: 'Factory Inspector',
-      testimonial: 'Smart scheduling syncs perfectly. I control my calendar, not the other way around.'
-    },
-    { 
-      src: auditorFemaleSouthAsian, 
-      name: 'Priya S.',
-      role: 'Systems Auditor',
-      testimonial: 'Real-time analytics help me grow. Data-driven insights for every audit decision.'
-    },
-    { 
-      src: auditorFemaleAfrican, 
-      name: 'Amara N.',
-      role: 'Safety Auditor',
-      testimonial: 'Bank-level security for all data. Client trust starts with platform security.'
-    },
-    { 
-      src: auditorMaleNorthAmerica, 
-      name: 'James T.',
-      role: 'Senior Auditor',
-      testimonial: 'Direct client communication. Professional messaging that builds lasting relationships.'
-    },
+  const heroImages = [
+    { src: auditorBlonde1, alt: 'Quality Inspector' },
+    { src: auditorBlonde2, alt: 'Safety Manager' },
+    { src: auditorBlonde3, alt: 'Compliance Auditor' },
+    { src: auditorBlonde4, alt: 'Operations Director' },
+    { src: auditorBlonde5, alt: 'Factory Inspector' },
+    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
+    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
+    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
+    { src: auditorEuropean, alt: 'Senior Auditor' },
+    { src: procurementMaleAsian, alt: 'Sourcing Director' },
+    { src: auditorFemaleEuropean, alt: 'Quality Lead' },
+    { src: procurementFemaleAsian, alt: 'Procurement Specialist' },
+    { src: procurementMaleLatin, alt: 'Operations Manager' },
+    { src: auditorGen1, alt: 'Site Inspector' },
+    { src: auditorGen2, alt: 'Factory Manager' },
+    { src: auditorGen3, alt: 'Quality Director' },
   ];
 
   useEffect(() => {
@@ -131,215 +112,113 @@ const Auditors = () => {
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
-              {/* Left - Modern Minimalist Carousel */}
+              {/* Left - Geometric Photo Grid */}
               <motion.div 
                 className="lg:col-span-7 relative" 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
+                initial={{ opacity: 0 }} 
+                whileInView={{ opacity: 1 }} 
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
               >
-                <Carousel 
-                  opts={{
-                    align: "center",
-                    loop: true,
-                  }}
-                  className="w-full max-w-[650px]"
-                >
-                  <CarouselContent>
-                    {auditorTestimonials.map((auditor, index) => (
-                      <CarouselItem key={index}>
-                        <motion.div 
-                          className="relative group"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                          {/* Image Card with Text Overlay */}
-                          <div className="relative overflow-hidden rounded-[32px] shadow-[0_20px_70px_-15px_rgba(0,0,0,0.4)]">
-                            
-                            {/* Image with Full Overlay */}
-                            <div className="relative aspect-[3/4]">
-                              <motion.img
-                                src={auditor.src}
-                                alt={auditor.name}
-                                className="w-full h-full object-cover"
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.6 }}
-                              />
-                              
-                              {/* Dark gradient overlay for text readability */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
-                              
-                              {/* Floating verified badge */}
-                              <div className="absolute top-6 right-6 backdrop-blur-md bg-white/95 rounded-full px-4 py-2 shadow-xl">
-                                <span className="text-xs font-bold text-gray-900 tracking-wide">
-                                  VERIFIED
-                                </span>
-                              </div>
-
-                              {/* Text Content Overlay */}
-                              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-6">
-                                {/* Testimonial Quote */}
-                                <div className="relative">
-                                  <div className="absolute -top-3 -left-2 text-7xl text-white/20 font-serif leading-none">
-                                    "
-                                  </div>
-                                  <p className="relative text-white text-base md:text-lg leading-relaxed pl-6 font-medium">
-                                    {auditor.testimonial}
-                                  </p>
-                                </div>
-
-                                {/* Author Info with Stars */}
-                                <div className="flex items-center justify-between pt-4 border-t border-white/20">
-                                  <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-white/30 to-white/10 backdrop-blur-sm flex items-center justify-center shadow-lg border-2 border-white/30">
-                                      <span className="text-white font-bold text-xl">
-                                        {auditor.name.charAt(0)}
-                                      </span>
-                                    </div>
-                                    <div>
-                                      <h4 className="text-white font-bold text-lg">
-                                        {auditor.name}
-                                      </h4>
-                                      <p className="text-white/80 text-sm">
-                                        {auditor.role}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                      <svg key={i} className="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20">
-                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                      </svg>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Decorative blur elements */}
-                            <div className="absolute top-0 left-0 w-32 h-32 bg-[#A8C5B8]/10 rounded-full blur-3xl pointer-events-none" />
-                            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#A8B8CA]/10 rounded-full blur-3xl pointer-events-none" />
-                          </div>
-                        </motion.div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  
-                  {/* 8-bit Pixel Arrow Navigation */}
-                  <CarouselPrevious className="left-0 -translate-x-1/2 w-14 h-14 border-2 border-white bg-white hover:bg-gray-50 hover:scale-110 transition-all shadow-xl">
-                    <PixelIcon name="chevron-left" className="w-6 h-6" />
-                    <span className="sr-only">Previous slide</span>
-                  </CarouselPrevious>
-                  <CarouselNext className="right-0 translate-x-1/2 w-14 h-14 border-2 border-white bg-white hover:bg-gray-50 hover:scale-110 transition-all shadow-xl">
-                    <PixelIcon name="chevron-right" className="w-6 h-6" />
-                    <span className="sr-only">Next slide</span>
-                  </CarouselNext>
-                </Carousel>
-
-                {/* Decorative accent lines */}
-                <motion.div 
-                  className="absolute -bottom-8 -left-8 w-24 h-24 border-l-2 border-b-2 border-white/30 rounded-bl-3xl"
-                  initial={{ opacity: 0, x: -20, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                />
-                <motion.div 
-                  className="absolute -top-8 -right-8 w-24 h-24 border-r-2 border-t-2 border-white/30 rounded-tr-3xl"
-                  initial={{ opacity: 0, x: 20, y: -20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                />
-              </motion.div>
-              
-              {/* Right - Modern Text Content */}
-              <motion.div 
-                className="lg:col-span-5 space-y-10" 
-                initial={{ opacity: 0, x: 30 }} 
-                whileInView={{ opacity: 1, x: 0 }} 
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="space-y-8">
-                  {/* Minimalist label */}
-                  <motion.div 
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                    <span className="text-sm font-medium text-white tracking-wide">ELITE NETWORK</span>
-                  </motion.div>
-
-                  {/* Main headline */}
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight text-white">
-                    Join the Elite
-                    <br />
-                    <span className="text-white/90">Auditor</span>
-                    <br />
-                    <span className="text-white/80">Network</span>
-                  </h1>
-
-                  {/* Subheading */}
-                  <p className="text-xl lg:text-2xl text-white/90 leading-relaxed font-light max-w-md">
-                    Partner with Connectimus to serve premium enterprise clients with the highest quality standards.
-                  </p>
-                </div>
-                
-                {/* Benefits - Minimal icons */}
-                <div className="flex flex-col space-y-5 text-white">
-                  {[
-                    { text: "Premium Enterprise Clients", icon: "✓" },
-                    { text: "€2,500+ Average Assignment Value", icon: "✓" },
-                    { text: "Professional Development Support", icon: "✓" }
-                  ].map((item, idx) => (
-                    <motion.div 
-                      key={idx}
-                      className="flex items-center gap-4 group"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + (idx * 0.1) }}
+                <div className="grid grid-cols-4 gap-2 max-w-[600px]">
+                  {heroImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
+                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: index * 0.02 }}
                     >
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                        <span className="text-white font-bold text-sm">{item.icon}</span>
-                      </div>
-                      <span className="text-lg font-normal leading-tight">{item.text}</span>
+                      <motion.img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover pointer-events-none"
+                        style={{ filter: 'grayscale(100%)' }}
+                        initial={{ scale: 1.15 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: index * 0.02 }}
+                      />
+                      {/* Touch flash effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
+                      />
+                      <div className="absolute inset-0 border border-black/5" />
                     </motion.div>
                   ))}
                 </div>
-
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                
+                {/* Geometric accent lines */}
+                <motion.div 
+                  className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-white/40"
+                  initial={{ opacity: 0, x: -10, y: -10 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.8 }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-white/40"
+                  initial={{ opacity: 0, x: 10, y: 10 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                />
+              </motion.div>
+              
+              {/* Right - Text Content */}
+              <motion.div 
+                className="lg:col-span-5 space-y-8" 
+                initial={{ opacity: 0, x: 30 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="space-y-6">
+                  <div className="w-12 h-0.5 bg-white/80" />
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white">
+                    Join the Elite Auditor Network
+                  </h1>
+                  <p className="text-xl text-white/90 leading-relaxed">
+                    Partner with Connectimus to serve companies with the highest quality standards and premium requirements.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col space-y-4 text-white">
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">Premium Enterprise Clients</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">€2,500+ Average Assignment Value</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0" />
+                    <span className="text-lg font-normal leading-[1.6]">Professional Development Support</span>
+                  </div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
                   className="flex relative z-10"
                 >
-                  <button className="group inline-flex items-center justify-center gap-3 bg-white text-gray-900 px-10 py-5 rounded-full font-semibold text-lg hover:bg-gray-50 hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-xl">
+                  <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
                     Apply as Partner Auditor
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
                 
-                {/* Minimal progress bars */}
-                <motion.div 
-                  className="flex gap-2 pt-4"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1 }}
-                >
-                  <div className="h-1 w-16 bg-white rounded-full" />
-                  <div className="h-1 w-8 bg-white/60 rounded-full" />
-                  <div className="h-1 w-4 bg-white/40 rounded-full" />
-                </motion.div>
+                <div className="flex gap-1.5">
+                  <div className="w-10 h-0.5 bg-white/80" />
+                  <div className="w-6 h-0.5 bg-white/60" />
+                  <div className="w-3 h-0.5 bg-white/40" />
+                </div>
               </motion.div>
               
             </div>
