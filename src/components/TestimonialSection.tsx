@@ -48,9 +48,9 @@ const TestimonialSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-left max-w-4xl space-y-16"
+            className="text-left w-full"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1]">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-32 md:mb-40">
               Built for{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 bg-[hsl(160,25%,72%)] text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold">
@@ -61,14 +61,14 @@ const TestimonialSection = () => {
             </h2>
 
             {/* Testimonial */}
-            <div className="space-y-8">
+            <div className="space-y-4 max-w-2xl">
               <p className="text-4xl md:text-5xl lg:text-6xl font-black text-black">
                 ScanPro
               </p>
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-white">
                 "It's a game changer"
               </p>
-              <p className="text-base md:text-lg text-white/90 font-normal pt-4">
+              <p className="text-base md:text-lg text-white/90 font-normal pt-2">
                 Christoph Seeholzer, Director Linde
               </p>
             </div>
