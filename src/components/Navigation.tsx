@@ -147,10 +147,10 @@ const Navigation = () => {
         minHeight: '64px',
       }}
     >
-      <div className="px-4 sm:px-6 lg:px-8 xl:pl-8">
-        <div className="flex items-center justify-between">
+      <div className="px-4 sm:px-6 lg:px-8 xl:pl-8 h-16">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center h-full hover:opacity-80 transition-opacity">
             <img 
               src={connectimusLogo} 
               alt="YVOO Logo" 
@@ -164,7 +164,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <div className="hidden lg:flex items-center h-full gap-6 xl:gap-8">
             {/* Solutions Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
