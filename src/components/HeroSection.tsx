@@ -50,20 +50,19 @@ const HeroSection = () => {
 
           {/* Text Content - Left on Desktop */}
           <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1 relative">
-            {/* Rotating Badge - 6cm diameter (approx 226px) with 3D effect */}
+            {/* Rotating Badge - 6cm diameter (approx 226px) with 5mm thickness */}
             <motion.div
               className="absolute -left-16 top-0 w-[226px] h-[226px] hidden lg:block"
               style={{
                 perspective: '1000px',
               }}
             >
-              <motion.img
-                src={badgeSeal}
-                alt="Quality badge seal"
-                className="w-full h-full"
+              <motion.div
                 style={{
-                  filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
                   transformStyle: 'preserve-3d',
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
                 }}
                 animate={{ rotateY: 360 }}
                 transition={{
@@ -71,7 +70,40 @@ const HeroSection = () => {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-              />
+              >
+                {/* Front face */}
+                <img
+                  src={badgeSeal}
+                  alt="Quality badge seal"
+                  className="w-full h-full absolute top-0 left-0"
+                  style={{
+                    filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
+                    transform: 'translateZ(9.5px)',
+                    backfaceVisibility: 'hidden',
+                  }}
+                />
+                {/* Back face */}
+                <img
+                  src={badgeSeal}
+                  alt="Quality badge seal back"
+                  className="w-full h-full absolute top-0 left-0"
+                  style={{
+                    filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(0.9) contrast(1.1)',
+                    transform: 'translateZ(-9.5px) rotateY(180deg)',
+                    backfaceVisibility: 'hidden',
+                  }}
+                />
+                {/* Edge thickness */}
+                <div
+                  className="absolute top-0 left-0 w-full h-full"
+                  style={{
+                    transform: 'translateZ(0px)',
+                    background: 'linear-gradient(90deg, rgba(150,150,150,0.8), rgba(180,180,180,0.8), rgba(150,150,150,0.8))',
+                    borderRadius: '50%',
+                    filter: 'blur(0.5px)',
+                  }}
+                />
+              </motion.div>
             </motion.div>
             
             {/* Main Heading */}
