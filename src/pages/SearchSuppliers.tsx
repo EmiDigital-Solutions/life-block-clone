@@ -189,72 +189,222 @@ const SearchSuppliers = () => {
     }, 40);
   };
 
-  const suppliers = [
-    {
-      id: 1,
-      name: "Precision CNC Solutions",
-      location: "Stuttgart, Germany",
-      size: "250-500",
-      specialties: "Automotive, ISO 9001, TS16949",
-      description: "Leading CNC machining specialist with 25+ years experience in automotive precision components",
-      certifications: ["ISO 9001:2015", "IATF 16949:2016", "ISO 14001"],
-      capabilities: ["5-axis CNC machining", "Aluminum & Steel processing", "Medium to high-volume production", "Quality inspection", "Surface treatment"],
-      experience: "25+ years in automotive sector",
-      capacity: "Medium to high-volume production (10,000-100,000 units/month)",
-      equipment: ["DMG Mori 5-axis machines", "Mazak CNC centers", "CMM inspection systems"],
-      founded: 1998,
-      employees: 380,
-      revenue: "€45-50M annually"
-    },
-    {
-      id: 2,
-      name: "TechMold Industries",
-      location: "Shanghai, China",
-      size: "500-1000",
-      specialties: "Injection Molding, IATF 16949",
-      description: "Advanced manufacturing facility specializing in precision injection molding and CNC machining",
-      certifications: ["IATF 16949:2016", "ISO 9001:2015", "ISO 13485"],
-      capabilities: ["CNC machining", "Injection molding", "Tool & die making", "Assembly services", "Quality control"],
-      experience: "18+ years in automotive and medical sectors",
-      capacity: "High-volume production (100,000+ units/month)",
-      equipment: ["Haas CNC machines", "Injection molding presses", "Automated inspection"],
-      founded: 2005,
-      employees: 720,
-      revenue: "¥280-300M annually"
-    },
-    {
-      id: 3,
-      name: "MediParts GmbH",
-      location: "Munich, Germany",
-      size: "100-250",
-      specialties: "Medical Devices, GMP, ISO 13485",
-      description: "Specialized in medical-grade precision components with cleanroom manufacturing",
-      certifications: ["ISO 13485:2016", "ISO 9001:2015", "GMP", "FDA Registered"],
-      capabilities: ["Precision CNC machining", "Medical-grade materials", "Cleanroom production", "Validation services", "Regulatory compliance"],
-      experience: "15+ years in medical device manufacturing",
-      capacity: "Low to medium-volume production (5,000-50,000 units/month)",
-      equipment: ["5-axis CNC machines", "Cleanroom facilities Class 7", "Validation equipment"],
-      founded: 2008,
-      employees: 185,
-      revenue: "€18-22M annually"
-    },
-    {
-      id: 4,
-      name: "AeroTech Components",
-      location: "Toulouse, France",
-      size: "500-1000",
-      specialties: "Aerospace, AS9100, NADCAP",
-      description: "Aerospace components manufacturer with advanced materials expertise",
-      certifications: ["AS9100D", "NADCAP", "ISO 9001:2015", "EN 9100"],
-      capabilities: ["5-axis CNC machining", "Titanium & exotic materials", "Heat treatment", "Non-destructive testing", "Special processes"],
-      experience: "30+ years in aerospace industry",
-      capacity: "Low to medium-volume production (2,000-25,000 units/month)",
-      equipment: ["Advanced 5-axis machines", "Aerospace-grade inspection", "Heat treatment facilities"],
-      founded: 1993,
-      employees: 650,
-      revenue: "€85-95M annually"
+  // Supplier database organized by industry/scenario
+  const allSuppliers = {
+    // Scenario 0: CNC Machining / Automotive
+    cnc_automotive: [
+      {
+        id: 1,
+        name: "Precision CNC Solutions",
+        location: "Stuttgart, Germany",
+        size: "250-500",
+        specialties: "Automotive, ISO 9001, TS16949",
+        description: "Leading CNC machining specialist with 25+ years experience in automotive precision components",
+        certifications: ["ISO 9001:2015", "IATF 16949:2016", "ISO 14001"],
+        capabilities: ["5-axis CNC machining", "Aluminum & Steel processing", "Medium to high-volume production", "Quality inspection", "Surface treatment"],
+        experience: "25+ years in automotive sector",
+        capacity: "Medium to high-volume production (10,000-100,000 units/month)",
+        equipment: ["DMG Mori 5-axis machines", "Mazak CNC centers", "CMM inspection systems"],
+        founded: 1998,
+        employees: 380,
+        revenue: "€45-50M annually"
+      },
+      {
+        id: 2,
+        name: "TechMold Industries",
+        location: "Shanghai, China",
+        size: "500-1000",
+        specialties: "Injection Molding, IATF 16949",
+        description: "Advanced manufacturing facility specializing in precision CNC and automotive components",
+        certifications: ["IATF 16949:2016", "ISO 9001:2015", "TS 16949"],
+        capabilities: ["CNC machining", "Injection molding", "Tool & die making", "Assembly services", "Quality control"],
+        experience: "18+ years in automotive sector",
+        capacity: "High-volume production (100,000+ units/month)",
+        equipment: ["Haas CNC machines", "Injection molding presses", "Automated inspection"],
+        founded: 2005,
+        employees: 720,
+        revenue: "¥280-300M annually"
+      },
+      {
+        id: 3,
+        name: "AutoPrecision GmbH",
+        location: "Munich, Germany",
+        size: "150-300",
+        specialties: "Automotive CNC, ISO 9001",
+        description: "Specialized in high-precision automotive CNC machining with advanced quality systems",
+        certifications: ["ISO 9001:2015", "IATF 16949:2016", "VDA 6.3"],
+        capabilities: ["Multi-axis CNC", "Automotive components", "In-process inspection", "Heat treatment", "Prototype to production"],
+        experience: "20+ years in automotive manufacturing",
+        capacity: "Medium-volume production (25,000-75,000 units/month)",
+        equipment: ["Fanuc CNC machines", "Coordinate measuring machines", "Quality labs"],
+        founded: 2003,
+        employees: 215,
+        revenue: "€28-32M annually"
+      },
+      {
+        id: 4,
+        name: "DriveComponents Ltd",
+        location: "Birmingham, UK",
+        size: "200-400",
+        specialties: "Automotive, IATF 16949",
+        description: "UK-based automotive component specialist with strong quality management",
+        certifications: ["IATF 16949:2016", "ISO 9001:2015", "ISO 14001"],
+        capabilities: ["CNC turning & milling", "Automotive assembly", "Supply chain management", "JIT delivery", "Engineering support"],
+        experience: "22+ years serving automotive OEMs",
+        capacity: "High-volume production (50,000-150,000 units/month)",
+        equipment: ["Mazak multi-tasking machines", "Robotic automation", "Vision inspection systems"],
+        founded: 2001,
+        employees: 340,
+        revenue: "£35-40M annually"
+      }
+    ],
+    // Scenario 1: Medical Device Components
+    medical_devices: [
+      {
+        id: 11,
+        name: "MediParts GmbH",
+        location: "Munich, Germany",
+        size: "100-250",
+        specialties: "Medical Devices, GMP, ISO 13485",
+        description: "Specialized in medical-grade precision components with cleanroom manufacturing",
+        certifications: ["ISO 13485:2016", "ISO 9001:2015", "GMP", "FDA Registered"],
+        capabilities: ["Precision CNC machining", "Medical-grade materials", "Cleanroom production", "Validation services", "Regulatory compliance"],
+        experience: "15+ years in medical device manufacturing",
+        capacity: "Low to medium-volume production (5,000-50,000 units/month)",
+        equipment: ["5-axis CNC machines", "Cleanroom facilities Class 7", "Validation equipment"],
+        founded: 2008,
+        employees: 185,
+        revenue: "€18-22M annually"
+      },
+      {
+        id: 12,
+        name: "BioTech Precision SA",
+        location: "Geneva, Switzerland",
+        size: "80-150",
+        specialties: "Implantable devices, ISO 13485, FDA",
+        description: "Swiss precision manufacturer specializing in implantable medical components",
+        certifications: ["ISO 13485:2016", "FDA Registered", "CE Mark", "GMP"],
+        capabilities: ["Micro-machining", "Implant-grade materials", "Cleanroom Class 5", "Biocompatibility testing", "Full traceability"],
+        experience: "18+ years in implantable devices",
+        capacity: "Low-volume high-precision (2,000-15,000 units/month)",
+        equipment: ["Swiss-type lathes", "Cleanroom production", "Advanced metrology"],
+        founded: 2006,
+        employees: 125,
+        revenue: "CHF 22-26M annually"
+      },
+      {
+        id: 13,
+        name: "MedTech Components Inc",
+        location: "Boston, MA, USA",
+        size: "150-300",
+        specialties: "Medical devices, FDA, cleanroom",
+        description: "US-based medical component manufacturer with extensive FDA experience",
+        certifications: ["ISO 13485:2016", "FDA Registered", "ISO 9001:2015", "ISO 14971"],
+        capabilities: ["Medical machining", "Cleanroom assembly", "Sterilization validation", "Design transfer", "Quality systems"],
+        experience: "20+ years FDA-regulated manufacturing",
+        capacity: "Medium-volume production (10,000-40,000 units/month)",
+        equipment: ["Medical-grade CNC", "Class 7 cleanrooms", "Automated inspection"],
+        founded: 2003,
+        employees: 245,
+        revenue: "$32-38M annually"
+      },
+      {
+        id: 14,
+        name: "SurgiPrecision Ltd",
+        location: "Dublin, Ireland",
+        size: "90-180",
+        specialties: "Surgical instruments, ISO 13485",
+        description: "European leader in surgical instrument and implant component manufacturing",
+        certifications: ["ISO 13485:2016", "CE Mark", "FDA Registered", "ISO 9001:2015"],
+        capabilities: ["Surgical components", "Implantable parts", "Cleanroom manufacturing", "Material certification", "Regulatory support"],
+        experience: "12+ years in surgical devices",
+        capacity: "Low to medium-volume (8,000-35,000 units/month)",
+        equipment: ["Precision CNC centers", "Cleanroom Class 7", "Surface finishing"],
+        founded: 2012,
+        employees: 160,
+        revenue: "€15-19M annually"
+      }
+    ],
+    // Scenario 2: Electronics Assembly / PCB
+    electronics_pcb: [
+      {
+        id: 21,
+        name: "CircuitPro Manufacturing",
+        location: "Shenzhen, China",
+        size: "800-1500",
+        specialties: "PCB Assembly, IPC-A-610 Class 3",
+        description: "Leading electronics manufacturer specializing in high-reliability PCB assembly for aerospace",
+        certifications: ["IPC-A-610 Class 3", "AS9100D", "ISO 9001:2015", "ITAR Registered"],
+        capabilities: ["SMT assembly", "Through-hole assembly", "X-ray inspection", "Conformal coating", "Aerospace PCBs"],
+        experience: "15+ years in aerospace electronics",
+        capacity: "High-volume production (500,000+ boards/month)",
+        equipment: ["Fuji SMT lines", "AOI systems", "X-ray inspection", "Wave soldering"],
+        founded: 2008,
+        employees: 1200,
+        revenue: "¥450-500M annually"
+      },
+      {
+        id: 22,
+        name: "AeroElectronics GmbH",
+        location: "Hamburg, Germany",
+        size: "300-600",
+        specialties: "Aerospace PCB, AS9100, IPC Class 3",
+        description: "German precision electronics for aerospace with stringent quality standards",
+        certifications: ["AS9100D", "IPC-A-610 Class 3", "EN 9100", "ISO 9001:2015"],
+        capabilities: ["Complex PCB assembly", "Box build", "Environmental testing", "DO-254 compliance", "Aerospace certification"],
+        experience: "22+ years in aerospace electronics",
+        capacity: "Medium-volume (50,000-200,000 boards/month)",
+        equipment: ["High-precision SMT", "Flying probe test", "Environmental chambers"],
+        founded: 2001,
+        employees: 485,
+        revenue: "€58-65M annually"
+      },
+      {
+        id: 23,
+        name: "Precision Electronics Ltd",
+        location: "San Jose, CA, USA",
+        size: "400-800",
+        specialties: "IPC Class 3, aerospace PCB",
+        description: "Silicon Valley electronics manufacturer with aerospace and defense expertise",
+        certifications: ["IPC-A-610 Class 3", "AS9100D", "ITAR", "J-STD-001"],
+        capabilities: ["High-reliability PCB", "Conformal coating", "Potting services", "Rework & repair", "Full traceability"],
+        experience: "18+ years aerospace & defense",
+        capacity: "Medium to high-volume (100,000-400,000 boards/month)",
+        equipment: ["Mycronic SMT", "3D AOI", "X-ray systems", "ESD protected"],
+        founded: 2006,
+        employees: 620,
+        revenue: "$72-82M annually"
+      },
+      {
+        id: 24,
+        name: "SkyCircuits International",
+        location: "Toulouse, France",
+        size: "250-500",
+        specialties: "Aerospace electronics, AS9100",
+        description: "French aerospace electronics specialist with European certification expertise",
+        certifications: ["AS9100D", "IPC-A-610 Class 3", "EN 9100", "NADCAP Electronics"],
+        capabilities: ["Aerospace PCB assembly", "Cable harness", "System integration", "Qualification testing", "Design support"],
+        experience: "25+ years in aerospace",
+        capacity: "Low to medium-volume (30,000-120,000 boards/month)",
+        equipment: ["Advanced SMT lines", "Flying probe", "Boundary scan", "Climate testing"],
+        founded: 1998,
+        employees: 410,
+        revenue: "€48-55M annually"
+      }
+    ]
+  };
+
+  // Get suppliers for current scenario
+  const getRelevantSuppliers = () => {
+    switch(currentScenario) {
+      case 0: return allSuppliers.cnc_automotive;
+      case 1: return allSuppliers.medical_devices;
+      case 2: return allSuppliers.electronics_pcb;
+      default: return allSuppliers.cnc_automotive;
     }
-  ];
+  };
+
+  const suppliers = getRelevantSuppliers();
 
   return (
     <div className="min-h-screen bg-white">
@@ -263,9 +413,10 @@ const SearchSuppliers = () => {
       {/* Hero Section - Green Background */}
       <section 
         data-nav-theme="primary"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-visible bg-primary"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary"
         style={{ 
-          minHeight: "70vh"
+          minHeight: "70vh",
+          overflow: showResults ? "visible" : "hidden"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
@@ -319,8 +470,9 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="hidden lg:block lg:col-span-3 relative"
               style={{ 
-                transform: 'translateY(calc(40% + 4cm))',
-                zIndex: 10
+                transform: showResults ? 'translateY(20%)' : 'translateY(calc(40% + 4cm))',
+                zIndex: 20,
+                transition: 'transform 0.5s ease-out'
               }}
             >
               {/* Modern white card matching YVOO design */}
