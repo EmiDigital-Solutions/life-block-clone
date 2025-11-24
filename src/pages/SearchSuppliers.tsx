@@ -98,10 +98,16 @@ const SearchSuppliers = () => {
 
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
-    // Scroll disabled - let users manually scroll if needed
+    // Use scrollIntoView on anchor for smooth scrolling
+    if (scrollAnchorRef.current) {
+      scrollAnchorRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   };
 
-  // Removed auto-scroll useEffect to prevent automatic scrolling
+  // Auto-scroll whenever messages or typing changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversationHistory, aiResponse, userInput]);
 
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = [];
