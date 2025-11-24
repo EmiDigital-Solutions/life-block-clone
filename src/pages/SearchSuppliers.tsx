@@ -23,6 +23,8 @@ const SearchSuppliers = () => {
   const [isFading, setIsFading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [selectedAIFeature, setSelectedAIFeature] = useState<number | null>(null);
+  const isRunningRef = useRef(false);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -95,53 +97,80 @@ const SearchSuppliers = () => {
   ];
 
   useEffect(() => {
+    // Cleanup function
+    return () => {
+      timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+      timeoutsRef.current = [];
+      isRunningRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    // Prevent multiple conversations from running
+    if (isRunningRef.current) return;
+    
+    isRunningRef.current = true;
+    timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    timeoutsRef.current = [];
+
     const runConversation = () => {
       const steps = scenarios[currentScenario].steps;
       
-      setTimeout(() => {
+      const t1 = setTimeout(() => {
         typeAiMessage(steps[0].aiPrompt, () => {
-          setTimeout(() => {
+          const t2 = setTimeout(() => {
             typeUserMessage(steps[0].userResponse, () => {
-              setTimeout(() => {
+              const t3 = setTimeout(() => {
                 typeAiMessage(steps[0].aiFollowUp, () => {
-                  setTimeout(() => {
+                  const t4 = setTimeout(() => {
                     setCurrentStep(2);
                     typeAiMessage(steps[1].aiPrompt, () => {
-                      setTimeout(() => {
+                      const t5 = setTimeout(() => {
                         typeUserMessage(steps[1].userResponse, () => {
-                          setTimeout(() => {
+                          const t6 = setTimeout(() => {
                             typeAiMessage(steps[1].aiFollowUp, () => {
-                              setTimeout(() => {
+                              const t7 = setTimeout(() => {
                                 setCurrentStep(3);
                                 typeAiMessage(steps[2].aiPrompt, () => {
-                                  setTimeout(() => {
+                                  const t8 = setTimeout(() => {
                                     setShowResults(true);
                                     // Wait 5 seconds after results, then fade out and restart
-                                    setTimeout(() => {
+                                    const t9 = setTimeout(() => {
                                       setIsFading(true);
-                                      setTimeout(() => {
+                                      const t10 = setTimeout(() => {
                                         setShowResults(false);
                                         setConversationHistory([]);
                                         setCurrentStep(1);
                                         setIsFading(false);
+                                        isRunningRef.current = false;
                                         setCurrentScenario((prev) => (prev + 1) % scenarios.length);
                                       }, 500);
+                                      timeoutsRef.current.push(t10);
                                     }, 5000);
+                                    timeoutsRef.current.push(t9);
                                   }, 1000);
+                                  timeoutsRef.current.push(t8);
                                 });
                               }, 1500);
+                              timeoutsRef.current.push(t7);
                             });
                           }, 1000);
+                          timeoutsRef.current.push(t6);
                         });
                       }, 1500);
+                      timeoutsRef.current.push(t5);
                     });
                   }, 1000);
+                  timeoutsRef.current.push(t4);
                 });
               }, 1500);
+              timeoutsRef.current.push(t3);
             });
           }, 1000);
+          timeoutsRef.current.push(t2);
         });
       }, 500);
+      timeoutsRef.current.push(t1);
     };
 
     runConversation();
