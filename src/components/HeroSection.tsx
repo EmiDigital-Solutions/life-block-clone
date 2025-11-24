@@ -38,12 +38,12 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-start order-1 lg:order-2 -mt-4 sm:-mt-8 lg:-mt-0"
+            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-4 sm:-mt-8 lg:-mt-0 overflow-visible"
           >
             <img 
               src={heroCharacter} 
               alt="Professional worker with safety helmet" 
-              className="w-full max-w-[280px] sm:max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain"
+              className="w-full max-w-[350px] sm:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl h-auto object-contain scale-110 lg:scale-125"
             />
           </motion.div>
 
