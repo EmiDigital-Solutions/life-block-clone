@@ -38,7 +38,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-12 sm:-mt-16 lg:-mt-10 overflow-visible"
+            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-16 sm:-mt-20 lg:-mt-14 overflow-visible"
           >
             <img 
               src={heroCharacter} 
