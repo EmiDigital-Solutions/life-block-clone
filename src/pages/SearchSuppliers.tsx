@@ -575,7 +575,7 @@ const SearchSuppliers = () => {
                 <motion.div 
                   ref={chatContainerRef}
                   className="space-y-4 flex-1 overflow-y-auto bg-white p-4"
-                  style={{ maxHeight: '320px', minHeight: '320px' }}
+                  style={{ maxHeight: '500px', minHeight: '500px' }}
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -783,7 +783,7 @@ const SearchSuppliers = () => {
               <motion.div 
                 ref={chatContainerRef}
                 className="space-y-4 mb-6 overflow-y-auto bg-white p-4"
-                style={{ maxHeight: '320px', minHeight: '320px' }}
+                style={{ maxHeight: '500px', minHeight: '500px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
