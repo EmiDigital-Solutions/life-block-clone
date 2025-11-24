@@ -98,17 +98,10 @@ const SearchSuppliers = () => {
 
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
-    // Add small delay to let framer-motion animations start
-    setTimeout(() => {
-      if (scrollAnchorRef.current) {
-        scrollAnchorRef.current.scrollIntoView({ behavior: 'auto', block: 'end' });
-      }
-    }, 50);
+    // Scroll disabled - let users manually scroll if needed
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [conversationHistory, aiResponse, userInput]);
+  // Removed auto-scroll useEffect to prevent automatic scrolling
 
   useEffect(() => {
     let timeouts: NodeJS.Timeout[] = [];
