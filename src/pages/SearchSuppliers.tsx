@@ -23,6 +23,7 @@ const SearchSuppliers = () => {
   const [isFading, setIsFading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [selectedAIFeature, setSelectedAIFeature] = useState<number | null>(null);
+  const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -97,9 +98,12 @@ const SearchSuppliers = () => {
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTo({
-        top: chatContainerRef.current.scrollHeight,
-        behavior: 'smooth'
+      // Use requestAnimationFrame to ensure DOM has updated
+      requestAnimationFrame(() => {
+        if (chatContainerRef.current) {
+          // Use instant behavior during fast typing to keep up
+          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
       });
     }
   };
@@ -109,95 +113,136 @@ const SearchSuppliers = () => {
   }, [conversationHistory, aiResponse, userInput]);
 
   useEffect(() => {
+    let timeouts: NodeJS.Timeout[] = [];
+    let intervals: NodeJS.Timeout[] = [];
+    
     const runConversation = () => {
       const steps = scenarios[currentScenario].steps;
       
-      setTimeout(() => {
+      const t1 = setTimeout(() => {
         typeAiMessage(steps[0].aiPrompt, () => {
-          setTimeout(() => {
+          const t2 = setTimeout(() => {
             typeUserMessage(steps[0].userResponse, () => {
-              setTimeout(() => {
+              const t3 = setTimeout(() => {
                 typeAiMessage(steps[0].aiFollowUp, () => {
-                  setTimeout(() => {
+                  const t4 = setTimeout(() => {
                     setCurrentStep(2);
                     typeAiMessage(steps[1].aiPrompt, () => {
-                      setTimeout(() => {
+                      const t5 = setTimeout(() => {
                         typeUserMessage(steps[1].userResponse, () => {
-                          setTimeout(() => {
+                          const t6 = setTimeout(() => {
                             typeAiMessage(steps[1].aiFollowUp, () => {
-                              setTimeout(() => {
+                              const t7 = setTimeout(() => {
                                 setCurrentStep(3);
                                 typeAiMessage(steps[2].aiPrompt, () => {
-                                  setTimeout(() => {
+                                  const t8 = setTimeout(() => {
                                     setShowResults(true);
                                     // Wait 5 seconds after results, then fade out and restart
-                                    setTimeout(() => {
+                                    const t9 = setTimeout(() => {
                                       setIsFading(true);
-                                      setTimeout(() => {
+                                      const t10 = setTimeout(() => {
                                         setShowResults(false);
                                         setConversationHistory([]);
                                         setCurrentStep(1);
                                         setIsFading(false);
                                         setCurrentScenario((prev) => (prev + 1) % scenarios.length);
                                       }, 500);
+                                      timeouts.push(t10);
                                     }, 5000);
+                                    timeouts.push(t9);
                                   }, 1000);
+                                  timeouts.push(t8);
                                 });
                               }, 1500);
+                              timeouts.push(t7);
                             });
                           }, 1000);
+                          timeouts.push(t6);
                         });
                       }, 1500);
+                      timeouts.push(t5);
                     });
                   }, 1000);
+                  timeouts.push(t4);
                 });
               }, 1500);
+              timeouts.push(t3);
             });
           }, 1000);
+          timeouts.push(t2);
         });
       }, 500);
+      timeouts.push(t1);
     };
 
     runConversation();
+    
+    // Cleanup function to clear all timeouts and intervals when scenario changes
+    return () => {
+      timeouts.forEach(timeout => clearTimeout(timeout));
+      intervals.forEach(interval => clearInterval(interval));
+      // Clear any active typing animation
+      if (typingIntervalRef.current) {
+        clearInterval(typingIntervalRef.current);
+        typingIntervalRef.current = null;
+      }
+      // Reset states
+      setAiResponse("");
+      setUserInput("");
+      setIsTyping(false);
+    };
   }, [currentScenario]);
 
   const typeAiMessage = (message: string, onComplete: () => void) => {
+    // Clear any existing typing interval
+    if (typingIntervalRef.current) {
+      clearInterval(typingIntervalRef.current);
+    }
+    
     setIsTyping(true);
     let currentIndex = 0;
     
-    const typingInterval = setInterval(() => {
+    typingIntervalRef.current = setInterval(() => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
         currentIndex++;
-        // Scroll to bottom on every character
-        scrollToBottom();
       } else {
-        clearInterval(typingInterval);
+        if (typingIntervalRef.current) {
+          clearInterval(typingIntervalRef.current);
+          typingIntervalRef.current = null;
+        }
         setIsTyping(false);
         setConversationHistory(prev => [...prev, { role: 'ai', message }]);
         setAiResponse("");
         onComplete();
       }
-    }, 20);
+    }, 15);
   };
 
   const typeUserMessage = (message: string, onComplete: () => void) => {
+    // Clear any existing typing interval
+    if (typingIntervalRef.current) {
+      clearInterval(typingIntervalRef.current);
+    }
+    
     let currentIndex = 0;
     
-    const typingInterval = setInterval(() => {
+    typingIntervalRef.current = setInterval(() => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
         currentIndex++;
-        // Scroll to bottom on every character
-        scrollToBottom();
       } else {
-        clearInterval(typingInterval);
+        if (typingIntervalRef.current) {
+          clearInterval(typingIntervalRef.current);
+          typingIntervalRef.current = null;
+        }
         setConversationHistory(prev => [...prev, { role: 'user', message }]);
         setUserInput("");
         onComplete();
       }
-    }, 40);
+    }, 30);
   };
+
 
   // Supplier database organized by industry/scenario
   const allSuppliers = {
@@ -529,8 +574,8 @@ const SearchSuppliers = () => {
                 {/* Conversation Thread - Fixed height with internal scrolling */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 flex-1 overflow-y-auto bg-white p-4 scroll-smooth"
-                  style={{ maxHeight: '280px' }}
+                  className="space-y-4 flex-1 overflow-y-auto bg-white p-4"
+                  style={{ maxHeight: '320px', minHeight: '320px' }}
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -737,7 +782,8 @@ const SearchSuppliers = () => {
               {/* Conversation Thread - Enhanced rounded corners */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                className="space-y-4 mb-6 overflow-y-auto bg-white p-4"
+                style={{ maxHeight: '320px', minHeight: '320px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
