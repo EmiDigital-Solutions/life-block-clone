@@ -1068,7 +1068,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* 7 AI Features Section - Minimalist Design */}
-      <section className="py-16 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 md:py-32 bg-gradient-to-b from-gray-50 to-white" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           
           {/* Section Header */}
@@ -1298,6 +1298,7 @@ const SearchSuppliers = () => {
 
       {/* CTA Section - Compromise Design */}
       <section 
+        data-nav-theme="light"
         className="relative py-20 md:py-32 overflow-hidden"
         style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
       >
