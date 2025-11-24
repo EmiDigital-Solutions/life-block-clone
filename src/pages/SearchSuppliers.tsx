@@ -405,7 +405,7 @@ const SearchSuppliers = () => {
     }
   };
 
-  const suppliers = getRelevantSuppliers().slice(0, 4);
+  const suppliers = getRelevantSuppliers();
 
   return (
     <div className="min-h-screen bg-white">
