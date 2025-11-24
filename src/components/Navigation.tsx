@@ -146,7 +146,7 @@ const Navigation = () => {
             <img 
               src={connectimusLogo} 
               alt="YVOO Logo" 
-              className="h-7 sm:h-9 lg:h-9 xl:h-10 2xl:h-12 w-auto object-contain transition-all duration-300"
+              className="h-6 sm:h-7 lg:h-7 xl:h-8 2xl:h-10 w-auto object-contain transition-all duration-300"
               style={{ 
                 filter: textColor === 'rgb(255, 255, 255)' 
                   ? 'brightness(0) invert(1)' 
