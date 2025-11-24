@@ -72,9 +72,17 @@ const Navigation = () => {
             setTextColor('rgb(31, 41, 55)');
             break;
           } else if (navTheme === 'primary') {
-            // Primary section - use solid dark background for better contrast
-            setNavBgColor('rgba(31, 41, 55, 0.95)');
-            setTextColor('rgb(255, 255, 255)');
+            // Primary section - extract and adapt to the section's background color
+            const computedStyle = window.getComputedStyle(section);
+            let bgColor = computedStyle.backgroundColor;
+            
+            // Extract RGB values and set colors to match section
+            const rgbMatch = bgColor.match(/\d+/g);
+            if (rgbMatch && rgbMatch.length >= 3) {
+              const [r, g, b] = rgbMatch.map(Number);
+              setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
+              setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
+            }
             break;
           }
           
