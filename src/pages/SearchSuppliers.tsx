@@ -98,9 +98,9 @@ const SearchSuppliers = () => {
 
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
-    // Use scrollIntoView on anchor for smooth scrolling
-    if (scrollAnchorRef.current) {
-      scrollAnchorRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Scroll chat container to bottom
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   };
 
