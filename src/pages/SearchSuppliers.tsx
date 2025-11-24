@@ -182,22 +182,12 @@ const SearchSuppliers = () => {
         }
       } else {
         clearInterval(typingInterval);
-        // Add to history first, then clear input to prevent duplicate
-        setTimeout(() => {
-          setConversationHistory(prev => [...prev, { role: 'user', message }]);
-          setUserInput("");
-          onComplete();
-        }, 50);
+        setConversationHistory(prev => [...prev, { role: 'user', message }]);
+        setUserInput("");
+        onComplete();
       }
     }, 40);
   };
-
-  // Auto-scroll when conversation history updates
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  }, [conversationHistory, aiResponse, userInput]);
 
   // Supplier database organized by industry/scenario
   const allSuppliers = {
@@ -423,7 +413,7 @@ const SearchSuppliers = () => {
       {/* Hero Section - Green Background */}
       <section 
         data-nav-theme="primary"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary transition-all duration-500"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary"
         style={{ 
           minHeight: "70vh",
           overflow: showResults ? "visible" : "hidden"
@@ -530,15 +520,17 @@ const SearchSuppliers = () => {
                 </div>
 
                 {/* Conversation Thread - Enhanced rounded corners */}
-                <div 
+                <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 min-h-[24rem] max-h-[32rem] overflow-y-auto bg-white p-4 scroll-smooth"
+                  className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                  animate={{ opacity: isFading ? 0 : 1 }}
+                  transition={{ duration: 0.5 }}
                 >
                   {conversationHistory.map((msg, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: isFading ? 0 : 1, y: 0 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3 }}
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
@@ -563,7 +555,7 @@ const SearchSuppliers = () => {
                   ))}
 
                   {/* Active AI Response (Typing) */}
-                  {aiResponse && !conversationHistory.some(msg => msg.role === 'ai' && msg.message === aiResponse) && (
+                  {aiResponse && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -589,7 +581,7 @@ const SearchSuppliers = () => {
                   )}
 
                   {/* Active User Input (Typing) */}
-                  {userInput && !conversationHistory.some(msg => msg.role === 'user' && msg.message === userInput) && (
+                  {userInput && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -600,7 +592,7 @@ const SearchSuppliers = () => {
                       </div>
                     </motion.div>
                   )}
-                </div>
+                </motion.div>
 
                 {/* Results section that overlays next page */}
                 {showResults && (
@@ -730,15 +722,17 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Conversation Thread - Enhanced rounded corners */}
-              <div 
+              <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 min-h-[24rem] max-h-[32rem] overflow-y-auto bg-white p-4 scroll-smooth"
+                className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                animate={{ opacity: isFading ? 0 : 1 }}
+                transition={{ duration: 0.5 }}
               >
                 {conversationHistory.map((msg, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: isFading ? 0 : 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
@@ -763,7 +757,7 @@ const SearchSuppliers = () => {
                 ))}
 
                 {/* Active AI Response (Typing) */}
-                {aiResponse && !conversationHistory.some(msg => msg.role === 'ai' && msg.message === aiResponse) && (
+                {aiResponse && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -789,7 +783,7 @@ const SearchSuppliers = () => {
                 )}
 
                 {/* Active User Input (Typing) */}
-                {userInput && !conversationHistory.some(msg => msg.role === 'user' && msg.message === userInput) && (
+                {userInput && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -800,7 +794,7 @@ const SearchSuppliers = () => {
                     </div>
                   </motion.div>
                 )}
-              </div>
+              </motion.div>
 
               {/* Results section that overlays next page */}
               {showResults && (
