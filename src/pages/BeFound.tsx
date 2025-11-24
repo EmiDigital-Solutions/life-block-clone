@@ -13,10 +13,7 @@ const BeFound = () => {
       {/* Hero Section - Large, Bold, Centered */}
       <section
         data-nav-theme="primary"
-        className="relative min-h-[90vh] flex items-center justify-center px-6 py-32"
-        style={{
-          background: "linear-gradient(135deg, hsl(160, 25%, 72%) 0%, hsl(192, 20%, 72%) 100%)"
-        }}
+        className="relative min-h-[90vh] flex items-center justify-center px-6 py-32 bg-primary"
       >
         <div className="container mx-auto max-w-5xl text-center">
           <motion.div

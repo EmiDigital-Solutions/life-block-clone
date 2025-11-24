@@ -72,8 +72,8 @@ const Navigation = () => {
             setTextColor('rgb(31, 41, 55)');
             break;
           } else if (navTheme === 'primary') {
-            // Primary section - use transparent background to show section color through
-            setNavBgColor('rgba(168, 191, 197, 0.3)');
+            // Primary section - use solid dark background for better contrast
+            setNavBgColor('rgba(31, 41, 55, 0.95)');
             setTextColor('rgb(255, 255, 255)');
             break;
           }
