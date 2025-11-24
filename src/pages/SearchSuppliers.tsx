@@ -94,6 +94,13 @@ const SearchSuppliers = () => {
     }
   ];
 
+  // Auto-scroll to bottom when conversation history changes
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [conversationHistory, aiResponse, userInput]);
+
   useEffect(() => {
     const runConversation = () => {
       const steps = scenarios[currentScenario].steps;
@@ -155,10 +162,6 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
         currentIndex++;
-        // Auto-scroll to bottom
-        if (chatContainerRef.current) {
-          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
       } else {
         clearInterval(typingInterval);
         setIsTyping(false);
@@ -176,10 +179,6 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
         currentIndex++;
-        // Auto-scroll to bottom
-        if (chatContainerRef.current) {
-          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
       } else {
         clearInterval(typingInterval);
         setConversationHistory(prev => [...prev, { role: 'user', message }]);
@@ -413,10 +412,9 @@ const SearchSuppliers = () => {
       {/* Hero Section - Green Background */}
       <section 
         data-nav-theme="primary"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary overflow-visible"
         style={{ 
-          minHeight: "70vh",
-          overflow: showResults ? "visible" : "hidden"
+          minHeight: "70vh"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
@@ -470,16 +468,14 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="hidden lg:block lg:col-span-3 relative"
               style={{ 
-                transform: showResults ? 'translateY(20%)' : 'translateY(calc(40% + 4cm))',
-                zIndex: 20,
-                transition: 'transform 0.5s ease-out'
+                zIndex: 20
               }}
             >
-              {/* Modern white card matching YVOO design */}
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+              {/* Modern white card matching YVOO design - Fixed height container */}
+              <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
                     <Cpu className="w-5 h-5 text-[#A8C5B8]" />
@@ -487,7 +483,7 @@ const SearchSuppliers = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col overflow-hidden">
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
@@ -496,7 +492,7 @@ const SearchSuppliers = () => {
                   </span>
                 </div>
                 {/* Bold title/description */}
-                <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
+                <h3 className="text-gray-900 text-xl font-bold mb-4 leading-tight flex-shrink-0">
                   AI-Powered Conversational Search
                   <span className="block text-sm font-normal text-gray-600 mt-2">
                     Step-by-step guidance to find your perfect supplier
@@ -504,7 +500,7 @@ const SearchSuppliers = () => {
                 </h3>
 
                 {/* Step indicators */}
-                <div className="flex items-center justify-center gap-2 mb-6">
+                <div className="flex items-center justify-center gap-2 mb-4 flex-shrink-0">
                   {[1, 2, 3].map((step) => (
                     <div
                       key={step}
@@ -519,10 +515,11 @@ const SearchSuppliers = () => {
                   ))}
                 </div>
 
-                {/* Conversation Thread - Enhanced rounded corners */}
+                {/* Conversation Thread - Fixed height with internal scrolling */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                  className="space-y-4 flex-1 overflow-y-auto bg-white p-4 scroll-smooth"
+                  style={{ maxHeight: '280px' }}
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -593,53 +590,55 @@ const SearchSuppliers = () => {
                     </motion.div>
                   )}
                 </motion.div>
+                </div>
 
-                {/* Results section that overlays next page */}
+                {/* Results section that breaks out of the card and overflows into white area */}
                 {showResults && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
                     transition={{ duration: 0.5 }}
-                    className="mt-6"
+                    className="absolute left-0 right-0 top-full mt-4 px-6 pb-6 z-30"
                   >
-                    <div className="flex items-center gap-2 mb-4">
-                      <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
-                      <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {suppliers.map((supplier) => (
-                        <button
-                          key={supplier.id}
-                          onClick={() => setSelectedSupplier(supplier)}
-                          className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
-                              {supplier.name}
-                            </h4>
-                            <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
-                          </div>
-                          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                            <MapPin className="w-4 h-4" />
-                            <span>{supplier.location}</span>
-                          </div>
-                          <div className="flex flex-wrap gap-1.5">
-                            {supplier.certifications.slice(0, 2).map((cert, idx) => (
-                              <span
-                                key={idx}
-                                className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
-                              >
-                                {cert}
-                              </span>
-                            ))}
-                          </div>
-                        </button>
-                      ))}
+                    <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                      <div className="flex items-center gap-2 mb-4">
+                        <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
+                        <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {suppliers.map((supplier) => (
+                          <button
+                            key={supplier.id}
+                            onClick={() => setSelectedSupplier(supplier)}
+                            className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
+                                {supplier.name}
+                              </h4>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                              <MapPin className="w-4 h-4" />
+                              <span>{supplier.location}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1.5">
+                              {supplier.certifications.slice(0, 2).map((cert, idx) => (
+                                <span
+                                  key={idx}
+                                  className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
+                                >
+                                  {cert}
+                                </span>
+                              ))}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 )}
-                </div>
               </div>
             </motion.div>
           </div>
