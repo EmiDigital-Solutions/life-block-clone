@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import heroCharacter from "@/assets/hero-worker-professional.png";
-import badgeSeal from "@/assets/badge-seal-transparent.png";
+import badgeSeal from "@/assets/badge-seal-final.png";
 import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
