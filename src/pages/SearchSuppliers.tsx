@@ -44,7 +44,13 @@ const SearchSuppliers = () => {
         },
         {
           step: 3,
-          aiPrompt: "Excellent! Now let me find suppliers matching your requirements: Precision CNC machining + ISO 9001 + Automotive sector + Optional IATF 16949",
+          aiPrompt: "Understood! What production volume are you targeting for this project?",
+          userResponse: "Medium to high volume, 10,000+ units per month",
+          aiFollowUp: "Excellent! For medium to high-volume production, I'll prioritize suppliers with: • Proven high-volume manufacturing capacity • Automated quality control systems • Scalable production lines • Just-in-time delivery capabilities"
+        },
+        {
+          step: 4,
+          aiPrompt: "Perfect! Now let me find suppliers matching all your requirements: Precision CNC machining + ISO 9001 + Automotive + IATF 16949 + High-volume capacity",
           userResponse: "Yes, show me the results",
           aiFollowUp: ""
         }
@@ -66,7 +72,13 @@ const SearchSuppliers = () => {
         },
         {
           step: 3,
-          aiPrompt: "Great! Let me find suppliers with: Implantable medical components + ISO 13485 + FDA registered + Cleanroom facilities",
+          aiPrompt: "Great! What materials do you need for these implantable components?",
+          userResponse: "Titanium and medical-grade stainless steel",
+          aiFollowUp: "Perfect choices for implants! For titanium and medical-grade stainless steel, I'll look for suppliers with: • Certified material sourcing • Full material traceability • Heat treatment capabilities • Surface finishing expertise"
+        },
+        {
+          step: 4,
+          aiPrompt: "Excellent! Searching for suppliers with: Implantable medical components + ISO 13485 + FDA registered + Cleanroom + Titanium/Steel expertise",
           userResponse: "Show me the options",
           aiFollowUp: ""
         }
@@ -88,7 +100,13 @@ const SearchSuppliers = () => {
         },
         {
           step: 3,
-          aiPrompt: "Outstanding! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Aerospace capabilities",
+          aiPrompt: "Great! What level of testing and inspection do you need?",
+          userResponse: "Full AOI, X-ray inspection, and functional testing",
+          aiFollowUp: "Excellent testing requirements! For comprehensive quality assurance, I'll prioritize suppliers with: • Automated Optical Inspection (AOI) • X-ray inspection systems • In-circuit and functional testing • Full traceability systems"
+        },
+        {
+          step: 4,
+          aiPrompt: "Outstanding! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Aerospace + Full testing capabilities",
           userResponse: "Yes, find them",
           aiFollowUp: ""
         }
@@ -133,22 +151,38 @@ const SearchSuppliers = () => {
                                 setCurrentStep(3);
                                 typeAiMessage(steps[2].aiPrompt, () => {
                                   const t8 = setTimeout(() => {
-                                    setShowResults(true);
-                                    // Wait 5 seconds after results, then fade out and restart
-                                    const t9 = setTimeout(() => {
-                                      setIsFading(true);
-                                      const t10 = setTimeout(() => {
-                                        setShowResults(false);
-                                        setConversationHistory([]);
-                                        setCurrentStep(1);
-                                        setIsFading(false);
-                                        isRunningRef.current = false;
-                                        setCurrentScenario((prev) => (prev + 1) % scenarios.length);
-                                      }, 500);
-                                      timeoutsRef.current.push(t10);
-                                    }, 5000);
-                                    timeoutsRef.current.push(t9);
-                                  }, 1000);
+                                    typeUserMessage(steps[2].userResponse, () => {
+                                      const t9 = setTimeout(() => {
+                                        typeAiMessage(steps[2].aiFollowUp, () => {
+                                          const t10 = setTimeout(() => {
+                                            setCurrentStep(4);
+                                            typeAiMessage(steps[3].aiPrompt, () => {
+                                              const t11 = setTimeout(() => {
+                                                setShowResults(true);
+                                                // Wait 5 seconds after results, then fade out and restart
+                                                const t12 = setTimeout(() => {
+                                                  setIsFading(true);
+                                                  const t13 = setTimeout(() => {
+                                                    setShowResults(false);
+                                                    setConversationHistory([]);
+                                                    setCurrentStep(1);
+                                                    setIsFading(false);
+                                                    isRunningRef.current = false;
+                                                    setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                                                  }, 500);
+                                                  timeoutsRef.current.push(t13);
+                                                }, 5000);
+                                                timeoutsRef.current.push(t12);
+                                              }, 1000);
+                                              timeoutsRef.current.push(t11);
+                                            });
+                                          }, 1500);
+                                          timeoutsRef.current.push(t10);
+                                        });
+                                      }, 1000);
+                                      timeoutsRef.current.push(t9);
+                                    });
+                                  }, 1500);
                                   timeoutsRef.current.push(t8);
                                 });
                               }, 1500);
