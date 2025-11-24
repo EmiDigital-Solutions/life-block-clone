@@ -98,9 +98,12 @@ const SearchSuppliers = () => {
 
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
-    // Scroll chat container to bottom
+    // Scroll chat container to bottom with smooth animation
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   };
 
