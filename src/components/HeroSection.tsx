@@ -55,6 +55,10 @@ const HeroSection = () => {
               src={badgeSeal}
               alt="Quality badge seal"
               className="absolute -left-16 top-0 w-20 h-20 lg:w-24 lg:h-24 hidden lg:block"
+              style={{
+                filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3)) brightness(1.1) contrast(1.15)',
+                transform: 'translateZ(0)',
+              }}
               animate={{ rotate: 360 }}
               transition={{
                 duration: 20,
