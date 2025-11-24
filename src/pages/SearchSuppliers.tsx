@@ -563,7 +563,7 @@ const SearchSuppliers = () => {
                   ))}
 
                   {/* Active AI Response (Typing) */}
-                  {aiResponse && (
+                  {aiResponse && !conversationHistory.some(msg => msg.role === 'ai' && msg.message === aiResponse) && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -763,7 +763,7 @@ const SearchSuppliers = () => {
                 ))}
 
                 {/* Active AI Response (Typing) */}
-                {aiResponse && (
+                {aiResponse && !conversationHistory.some(msg => msg.role === 'ai' && msg.message === aiResponse) && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
