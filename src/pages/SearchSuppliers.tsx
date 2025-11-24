@@ -94,11 +94,19 @@ const SearchSuppliers = () => {
     }
   ];
 
-  // Auto-scroll to bottom when conversation history changes
-  useEffect(() => {
+  // Scroll function to keep latest message visible
+  const scrollToBottom = () => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
     }
+  };
+
+  // Auto-scroll whenever content changes
+  useEffect(() => {
+    scrollToBottom();
   }, [conversationHistory, aiResponse, userInput]);
 
   useEffect(() => {
@@ -162,6 +170,8 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
         currentIndex++;
+        // Scroll during typing
+        scrollToBottom();
       } else {
         clearInterval(typingInterval);
         setIsTyping(false);
@@ -179,6 +189,8 @@ const SearchSuppliers = () => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
         currentIndex++;
+        // Scroll during typing
+        scrollToBottom();
       } else {
         clearInterval(typingInterval);
         setConversationHistory(prev => [...prev, { role: 'user', message }]);
