@@ -50,11 +50,11 @@ const HeroSection = () => {
 
           {/* Text Content - Left on Desktop */}
           <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1 relative">
-            {/* Rotating Badge - 3cm diameter (approx 113px) */}
+            {/* Rotating Badge - 6cm diameter (approx 226px) */}
             <motion.img
               src={badgeSeal}
               alt="Quality badge seal"
-              className="absolute -left-16 top-0 w-[113px] h-[113px] hidden lg:block"
+              className="absolute -left-16 top-0 w-[226px] h-[226px] hidden lg:block"
               style={{
                 filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
                 transform: 'translateZ(0)',
