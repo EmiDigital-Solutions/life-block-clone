@@ -22,8 +22,7 @@ const GroundIntelligence = () => {
       {/* Hero Section - Green gradient like BeFound */}
       <section
         data-nav-theme="primary"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32"
-        style={{ background: "linear-gradient(135deg, rgb(148, 177, 164), rgb(168, 197, 184), rgb(188, 217, 204))" }}
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32 bg-primary"
         id="hero"
       >
         <div className="container mx-auto max-w-4xl">

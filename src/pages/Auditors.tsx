@@ -105,9 +105,8 @@ const Auditors = () => {
       <div ref={containerRef}>
         {/* Hero Section */}
         <section
-          data-nav-theme="dark"
-          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20"
-          style={{ background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))" }}
+          data-nav-theme="primary"
+          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20 bg-primary"
         >
           <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -306,9 +305,8 @@ const Auditors = () => {
 
         {/* Final CTA Section */}
         <section 
-          data-nav-theme="dark"
-          className="py-16 md:py-20 px-4 md:px-6 lg:px-8"
-          style={{ background: "linear-gradient(135deg, rgb(150, 181, 173), rgb(168, 197, 184), rgb(186, 213, 195))" }}
+          data-nav-theme="primary"
+          className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-primary"
         >
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
