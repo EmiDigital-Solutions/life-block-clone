@@ -571,10 +571,11 @@ const SearchSuppliers = () => {
                   ))}
                 </div>
 
-                {/* Conversation Thread - Dynamically expanding */}
+                {/* Conversation Thread - Auto-scrolling with dynamic height */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 flex-1 bg-white p-4"
+                  className="space-y-4 flex-1 overflow-y-auto bg-white p-4"
+                  style={{ maxHeight: '600px' }}
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -778,10 +779,11 @@ const SearchSuppliers = () => {
                 ))}
               </div>
 
-              {/* Conversation Thread - Dynamically expanding */}
+              {/* Conversation Thread - Auto-scrolling with dynamic height */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 bg-white p-4"
+                className="space-y-4 mb-6 overflow-y-auto bg-white p-4"
+                style={{ maxHeight: '600px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
