@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import heroCharacter from "@/assets/hero-worker-professional.png";
+import badgeSeal from "@/assets/badge-seal.png";
 import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
@@ -48,7 +49,20 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Text Content - Left on Desktop */}
-          <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1">
+          <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1 relative">
+            {/* Rotating Badge */}
+            <motion.img
+              src={badgeSeal}
+              alt="Quality badge seal"
+              className="absolute -left-16 top-0 w-20 h-20 lg:w-24 lg:h-24 hidden lg:block"
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+            
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
