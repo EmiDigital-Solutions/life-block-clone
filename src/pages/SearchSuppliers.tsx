@@ -24,6 +24,7 @@ const SearchSuppliers = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [selectedAIFeature, setSelectedAIFeature] = useState<number | null>(null);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollAnchorRef = useRef<HTMLDivElement>(null);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -97,15 +98,12 @@ const SearchSuppliers = () => {
 
   // Smooth auto-scroll to bottom - scrolls continuously during typing
   const scrollToBottom = () => {
-    if (chatContainerRef.current) {
-      // Use requestAnimationFrame to ensure DOM has updated
-      requestAnimationFrame(() => {
-        if (chatContainerRef.current) {
-          // Use instant behavior during fast typing to keep up
-          chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
-      });
-    }
+    // Add small delay to let framer-motion animations start
+    setTimeout(() => {
+      if (scrollAnchorRef.current) {
+        scrollAnchorRef.current.scrollIntoView({ behavior: 'auto', block: 'end' });
+      }
+    }, 50);
   };
 
   useEffect(() => {
@@ -647,7 +645,7 @@ const SearchSuppliers = () => {
                   )}
                   
                   {/* Scroll anchor - invisible element at bottom */}
-                  <div className="h-1" />
+                  <div ref={scrollAnchorRef} className="h-1" />
                 </motion.div>
                 </div>
 
@@ -855,7 +853,7 @@ const SearchSuppliers = () => {
                 )}
                 
                 {/* Scroll anchor - invisible element at bottom */}
-                <div className="h-1" />
+                <div ref={scrollAnchorRef} className="h-1" />
               </motion.div>
 
               {/* Results section that overlays next page */}
