@@ -520,17 +520,15 @@ const SearchSuppliers = () => {
                 </div>
 
                 {/* Conversation Thread - Enhanced rounded corners */}
-                <motion.div 
+                <div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 h-96 overflow-y-auto bg-white p-4 scroll-smooth"
-                  style={{ opacity: isFading ? 0 : 1 }}
-                  transition={{ duration: 0.5 }}
+                  className="space-y-4 mb-6 min-h-[24rem] max-h-[32rem] overflow-y-auto bg-white p-4 scroll-smooth"
                 >
                   {conversationHistory.map((msg, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      animate={{ opacity: isFading ? 0 : 1, y: 0 }}
                       transition={{ duration: 0.3 }}
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
@@ -592,7 +590,7 @@ const SearchSuppliers = () => {
                       </div>
                     </motion.div>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Results section that overlays next page */}
                 {showResults && (
@@ -722,17 +720,15 @@ const SearchSuppliers = () => {
               </div>
 
               {/* Conversation Thread - Enhanced rounded corners */}
-              <motion.div 
+              <div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 h-96 overflow-y-auto bg-white p-4 scroll-smooth"
-                style={{ opacity: isFading ? 0 : 1 }}
-                transition={{ duration: 0.5 }}
+                className="space-y-4 mb-6 min-h-[24rem] max-h-[32rem] overflow-y-auto bg-white p-4 scroll-smooth"
               >
                 {conversationHistory.map((msg, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: isFading ? 0 : 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
@@ -794,7 +790,7 @@ const SearchSuppliers = () => {
                     </div>
                   </motion.div>
                 )}
-              </motion.div>
+              </div>
 
               {/* Results section that overlays next page */}
               {showResults && (
