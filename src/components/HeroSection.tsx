@@ -57,9 +57,9 @@ const HeroSection = () => {
               className="absolute -left-16 top-0 w-[226px] h-[226px] hidden lg:block"
               style={{
                 filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
-                transform: 'translateZ(0)',
+                transformStyle: 'preserve-3d',
               }}
-              animate={{ rotate: 360 }}
+              animate={{ rotateY: 360 }}
               transition={{
                 duration: 20,
                 repeat: Infinity,
