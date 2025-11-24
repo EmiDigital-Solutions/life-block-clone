@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
-import heroCharacter from "@/assets/hero-worker-green-helmet.png";
+import heroCharacter from "@/assets/hero-worker-professional.png";
 import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
