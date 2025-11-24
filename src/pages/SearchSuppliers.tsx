@@ -182,12 +182,22 @@ const SearchSuppliers = () => {
         }
       } else {
         clearInterval(typingInterval);
-        setConversationHistory(prev => [...prev, { role: 'user', message }]);
-        setUserInput("");
-        onComplete();
+        // Add to history first, then clear input to prevent duplicate
+        setTimeout(() => {
+          setConversationHistory(prev => [...prev, { role: 'user', message }]);
+          setUserInput("");
+          onComplete();
+        }, 50);
       }
     }, 40);
   };
+
+  // Auto-scroll when conversation history updates
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [conversationHistory, aiResponse, userInput]);
 
   // Supplier database organized by industry/scenario
   const allSuppliers = {
@@ -415,7 +425,7 @@ const SearchSuppliers = () => {
         data-nav-theme="primary"
         className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary transition-all duration-500"
         style={{ 
-          minHeight: showResults ? "120vh" : "70vh",
+          minHeight: "70vh",
           overflow: showResults ? "visible" : "hidden"
         }}
       >
@@ -579,7 +589,7 @@ const SearchSuppliers = () => {
                   )}
 
                   {/* Active User Input (Typing) */}
-                  {userInput && (
+                  {userInput && !conversationHistory.some(msg => msg.role === 'user' && msg.message === userInput) && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -779,7 +789,7 @@ const SearchSuppliers = () => {
                 )}
 
                 {/* Active User Input (Typing) */}
-                {userInput && (
+                {userInput && !conversationHistory.some(msg => msg.role === 'user' && msg.message === userInput) && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
