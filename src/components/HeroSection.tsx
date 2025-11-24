@@ -50,22 +50,29 @@ const HeroSection = () => {
 
           {/* Text Content - Left on Desktop */}
           <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1 relative">
-            {/* Rotating Badge - 6cm diameter (approx 226px) */}
-            <motion.img
-              src={badgeSeal}
-              alt="Quality badge seal"
+            {/* Rotating Badge - 6cm diameter (approx 226px) with 3D effect */}
+            <motion.div
               className="absolute -left-16 top-0 w-[226px] h-[226px] hidden lg:block"
               style={{
-                filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
-                transformStyle: 'preserve-3d',
+                perspective: '1000px',
               }}
-              animate={{ rotateY: 360 }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
+            >
+              <motion.img
+                src={badgeSeal}
+                alt="Quality badge seal"
+                className="w-full h-full"
+                style={{
+                  filter: 'drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4)) brightness(1.2) contrast(1.2)',
+                  transformStyle: 'preserve-3d',
+                }}
+                animate={{ rotateY: 360 }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            </motion.div>
             
             {/* Main Heading */}
             <motion.h1
