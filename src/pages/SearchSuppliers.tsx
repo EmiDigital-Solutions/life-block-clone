@@ -33,26 +33,14 @@ const SearchSuppliers = () => {
         {
           step: 1,
           aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "CNC machining",
-          aiFollowUp: "I understand you're looking for CNC machining. Let me help you refine this. Are you specifically interested in: • Precision CNC machining • Multi-axis CNC operations • High-volume CNC production • Or general CNC machining services?"
+          userResponse: "CNC machining for automotive",
+          aiFollowUp: "Great! For automotive CNC machining, what certifications and production volume do you need?"
         },
         {
           step: 2,
-          aiPrompt: "Great! For precision CNC machining, what industry standards or certifications are important for your project?",
-          userResponse: "ISO 9001 for automotive",
-          aiFollowUp: "Perfect! For automotive applications with ISO 9001, I also recommend considering: • IATF 16949 (automotive quality standard) • TS 16949 (technical specification) • AS9100 (if aerospace crossover) Would you like suppliers with any of these additional certifications?"
-        },
-        {
-          step: 3,
-          aiPrompt: "Understood! What production volume are you targeting for this project?",
-          userResponse: "Medium to high volume, 10,000+ units per month",
-          aiFollowUp: "Excellent! For medium to high-volume production, I'll prioritize suppliers with: • Proven high-volume manufacturing capacity • Automated quality control systems • Scalable production lines • Just-in-time delivery capabilities"
-        },
-        {
-          step: 4,
-          aiPrompt: "Perfect! Now let me find suppliers matching all your requirements: Precision CNC machining + ISO 9001 + Automotive + IATF 16949 + High-volume capacity",
-          userResponse: "Yes, show me the results",
-          aiFollowUp: ""
+          aiPrompt: "",
+          userResponse: "ISO 9001, IATF 16949, medium to high volume production",
+          aiFollowUp: "Perfect! Let me find suppliers matching: Precision CNC machining + ISO 9001 + IATF 16949 + High-volume capacity"
         }
       ]
     },
@@ -61,26 +49,14 @@ const SearchSuppliers = () => {
         {
           step: 1,
           aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "Medical device components",
-          aiFollowUp: "I see you need medical device components. Let me help narrow this down. Are you looking for: • Surgical instruments • Implantable components • Diagnostic equipment parts • Or general medical-grade components?"
+          userResponse: "Implantable medical device components",
+          aiFollowUp: "Perfect! For implantable medical components, what certifications and materials do you require?"
         },
         {
           step: 2,
-          aiPrompt: "Perfect! For implantable components, what certifications and regulatory requirements do you need?",
-          userResponse: "ISO 13485 and FDA registered",
-          aiFollowUp: "Excellent choice! For medical implants, I also suggest: • GMP compliance • Cleanroom manufacturing (Class 7 or better) • Biocompatibility testing • Material traceability Would you like suppliers with these capabilities?"
-        },
-        {
-          step: 3,
-          aiPrompt: "Great! What materials do you need for these implantable components?",
-          userResponse: "Titanium and medical-grade stainless steel",
-          aiFollowUp: "Perfect choices for implants! For titanium and medical-grade stainless steel, I'll look for suppliers with: • Certified material sourcing • Full material traceability • Heat treatment capabilities • Surface finishing expertise"
-        },
-        {
-          step: 4,
-          aiPrompt: "Excellent! Searching for suppliers with: Implantable medical components + ISO 13485 + FDA registered + Cleanroom + Titanium/Steel expertise",
-          userResponse: "Show me the options",
-          aiFollowUp: ""
+          aiPrompt: "",
+          userResponse: "ISO 13485, FDA registered, titanium and medical-grade steel",
+          aiFollowUp: "Excellent! Searching for suppliers with: Implantable components + ISO 13485 + FDA + Cleanroom + Titanium/Steel expertise"
         }
       ]
     },
@@ -89,26 +65,14 @@ const SearchSuppliers = () => {
         {
           step: 1,
           aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "Electronics assembly",
-          aiFollowUp: "I understand you need electronics assembly. Let me help specify this. Are you interested in: • PCB assembly (SMT/THT) • Box build assembly • Cable & wire harness • Or complete system integration?"
+          userResponse: "PCB assembly for aerospace applications",
+          aiFollowUp: "Great! For aerospace PCB assembly, what quality standards and testing capabilities do you need?"
         },
         {
           step: 2,
-          aiPrompt: "Excellent! For PCB assembly, what quality standards and capabilities do you require?",
-          userResponse: "IPC-A-610 Class 3 for aerospace",
-          aiFollowUp: "Perfect for aerospace! For IPC-A-610 Class 3, I recommend also considering: • AS9100 certification • Conformal coating • X-ray inspection • ESD protected environment Would these additional capabilities be valuable?"
-        },
-        {
-          step: 3,
-          aiPrompt: "Great! What level of testing and inspection do you need?",
-          userResponse: "Full AOI, X-ray inspection, and functional testing",
-          aiFollowUp: "Excellent testing requirements! For comprehensive quality assurance, I'll prioritize suppliers with: • Automated Optical Inspection (AOI) • X-ray inspection systems • In-circuit and functional testing • Full traceability systems"
-        },
-        {
-          step: 4,
-          aiPrompt: "Outstanding! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Aerospace + Full testing capabilities",
-          userResponse: "Yes, find them",
-          aiFollowUp: ""
+          aiPrompt: "",
+          userResponse: "IPC-A-610 Class 3, AS9100, with full AOI and X-ray inspection",
+          aiFollowUp: "Perfect! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Full testing capabilities"
         }
       ]
     }
@@ -142,52 +106,25 @@ const SearchSuppliers = () => {
                 typeAiMessage(steps[0].aiFollowUp, () => {
                   const t4 = setTimeout(() => {
                     setCurrentStep(2);
-                    typeAiMessage(steps[1].aiPrompt, () => {
+                    typeUserMessage(steps[1].userResponse, () => {
                       const t5 = setTimeout(() => {
-                        typeUserMessage(steps[1].userResponse, () => {
+                        typeAiMessage(steps[1].aiFollowUp, () => {
                           const t6 = setTimeout(() => {
-                            typeAiMessage(steps[1].aiFollowUp, () => {
-                              const t7 = setTimeout(() => {
-                                setCurrentStep(3);
-                                typeAiMessage(steps[2].aiPrompt, () => {
-                                  const t8 = setTimeout(() => {
-                                    typeUserMessage(steps[2].userResponse, () => {
-                                      const t9 = setTimeout(() => {
-                                        typeAiMessage(steps[2].aiFollowUp, () => {
-                                          const t10 = setTimeout(() => {
-                                            setCurrentStep(4);
-                                            typeAiMessage(steps[3].aiPrompt, () => {
-                                              const t11 = setTimeout(() => {
-                                                setShowResults(true);
-                                                // Wait 5 seconds after results, then fade out and restart
-                                                const t12 = setTimeout(() => {
-                                                  setIsFading(true);
-                                                  const t13 = setTimeout(() => {
-                                                    setShowResults(false);
-                                                    setConversationHistory([]);
-                                                    setCurrentStep(1);
-                                                    setIsFading(false);
-                                                    isRunningRef.current = false;
-                                                    setCurrentScenario((prev) => (prev + 1) % scenarios.length);
-                                                  }, 500);
-                                                  timeoutsRef.current.push(t13);
-                                                }, 5000);
-                                                timeoutsRef.current.push(t12);
-                                              }, 1000);
-                                              timeoutsRef.current.push(t11);
-                                            });
-                                          }, 1500);
-                                          timeoutsRef.current.push(t10);
-                                        });
-                                      }, 1000);
-                                      timeoutsRef.current.push(t9);
-                                    });
-                                  }, 1500);
-                                  timeoutsRef.current.push(t8);
-                                });
-                              }, 1500);
-                              timeoutsRef.current.push(t7);
-                            });
+                            setShowResults(true);
+                            // Wait 5 seconds after results, then fade out and restart
+                            const t7 = setTimeout(() => {
+                              setIsFading(true);
+                              const t8 = setTimeout(() => {
+                                setShowResults(false);
+                                setConversationHistory([]);
+                                setCurrentStep(1);
+                                setIsFading(false);
+                                isRunningRef.current = false;
+                                setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                              }, 500);
+                              timeoutsRef.current.push(t8);
+                            }, 5000);
+                            timeoutsRef.current.push(t7);
                           }, 1000);
                           timeoutsRef.current.push(t6);
                         });
