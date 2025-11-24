@@ -413,9 +413,9 @@ const SearchSuppliers = () => {
       {/* Hero Section - Green Background */}
       <section 
         data-nav-theme="primary"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary transition-all duration-500"
         style={{ 
-          minHeight: "70vh",
+          minHeight: showResults ? "120vh" : "70vh",
           overflow: showResults ? "visible" : "hidden"
         }}
       >
@@ -522,8 +522,8 @@ const SearchSuppliers = () => {
                 {/* Conversation Thread - Enhanced rounded corners */}
                 <motion.div 
                   ref={chatContainerRef}
-                  className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
-                  animate={{ opacity: isFading ? 0 : 1 }}
+                  className="space-y-4 mb-6 h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                  style={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
                   {conversationHistory.map((msg, index) => (
@@ -724,8 +724,8 @@ const SearchSuppliers = () => {
               {/* Conversation Thread - Enhanced rounded corners */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 max-h-96 overflow-y-auto bg-white p-4 scroll-smooth"
-                animate={{ opacity: isFading ? 0 : 1 }}
+                className="space-y-4 mb-6 h-96 overflow-y-auto bg-white p-4 scroll-smooth"
+                style={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
                 {conversationHistory.map((msg, index) => (
