@@ -85,13 +85,13 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
       {/* Pin body */}
       <mesh position={[0, 0.1, 0]}>
         <cylinderGeometry args={[0.05, 0.05, 0.2, 16]} />
-        <meshStandardMaterial color="#14B8A6" />
+        <meshStandardMaterial color="#A8C5B8" />
       </mesh>
       
       {/* Pin head */}
       <mesh position={[0, 0.22, 0]}>
         <sphereGeometry args={[0.08, 16, 16]} />
-        <meshStandardMaterial color="#14B8A6" emissive="#14B8A6" emissiveIntensity={0.3} />
+        <meshStandardMaterial color="#A8C5B8" emissive="#A8C5B8" emissiveIntensity={0.3} />
       </mesh>
 
       {/* White circle inside pin head */}
@@ -103,13 +103,17 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
       {/* User icon (simplified) */}
       <mesh position={[0, 0.26, 0.08]}>
         <sphereGeometry args={[0.02, 16, 16]} />
-        <meshBasicMaterial color="#14B8A6" />
+        <meshBasicMaterial color="#A8C5B8" />
+      </mesh>
+      <mesh position={[0, 0.2, 0.08]}>
+        <cylinderGeometry args={[0.03, 0.035, 0.04, 16]} />
+        <meshBasicMaterial color="#A8C5B8" />
       </mesh>
 
       {/* Pin pointer */}
       <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
         <coneGeometry args={[0.05, 0.1, 16]} />
-        <meshStandardMaterial color="#14B8A6" />
+        <meshStandardMaterial color="#96B5AD" />
       </mesh>
     </group>
   );

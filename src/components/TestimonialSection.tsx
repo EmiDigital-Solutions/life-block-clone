@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const TestimonialSection = () => {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-primary">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden" style={{ backgroundColor: '#A8C5B8' }}>
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Video Mockup Window */}
@@ -31,7 +31,7 @@ const TestimonialSection = () => {
               {/* Video/Screenshot Area */}
               <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                 <div className="text-center space-y-4 p-8">
-                  <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center bg-primary">
+                  <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#A8C5B8' }}>
                     <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>

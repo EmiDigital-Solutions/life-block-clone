@@ -159,17 +159,17 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
     if (hexColor === "black") return "brightness(0)";
     
     // For our specific colors
-    if (hexColor === "#14B8A6") {
-      // Primary green
-      return "brightness(0) saturate(100%) invert(52%) sepia(86%) saturate(645%) hue-rotate(129deg) brightness(92%) contrast(89%)";
+    if (hexColor === "#A8C5B8") {
+      // Muted green
+      return "brightness(0) saturate(100%) invert(81%) sepia(8%) saturate(882%) hue-rotate(102deg) brightness(93%) contrast(89%)";
     }
     if (hexColor === "#C57B7B") {
       // Muted red
       return "brightness(0) saturate(100%) invert(66%) sepia(17%) saturate(1094%) hue-rotate(314deg) brightness(93%) contrast(86%)";
     }
-    if (hexColor === "#2563EB") {
-      // Secondary blue
-      return "brightness(0) saturate(100%) invert(38%) sepia(96%) saturate(2407%) hue-rotate(215deg) brightness(97%) contrast(90%)";
+    if (hexColor === "#A8B8CA") {
+      // Muted blue
+      return "brightness(0) saturate(100%) invert(79%) sepia(8%) saturate(923%) hue-rotate(181deg) brightness(92%) contrast(88%)";
     }
     
     return undefined;

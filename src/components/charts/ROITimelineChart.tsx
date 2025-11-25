@@ -35,12 +35,12 @@ const ROITimelineChart = () => {
             </div>
             <div className="flex justify-between gap-8">
               <span className="text-sm text-gray-600">ScanPro+:</span>
-              <span className="font-black drop-shadow-sm" style={{ color: '#14B8A6' }}>€{payload[1].value.toLocaleString()}</span>
+              <span className="font-black drop-shadow-sm" style={{ color: '#A8C5B8' }}>€{payload[1].value.toLocaleString()}</span>
             </div>
             <div className="pt-3 border-t border-gray-200">
               <div className="flex justify-between gap-8">
                 <span className="text-sm font-bold text-gray-900">Saved:</span>
-                <span className="font-black drop-shadow-md" style={{ color: '#14B8A6', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>€{savings.toLocaleString()}</span>
+                <span className="font-black drop-shadow-md" style={{ color: '#A8C5B8', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>€{savings.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -63,8 +63,8 @@ const ROITimelineChart = () => {
                 <stop offset="100%" stopColor="#9CA3AF" />
               </linearGradient>
               <linearGradient id="scanproLine" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#14B8A6" />
-                <stop offset="100%" stopColor="#14B8A6" />
+                <stop offset="0%" stopColor="#A8C5B8" />
+                <stop offset="100%" stopColor="#A8C5B8" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
@@ -94,7 +94,7 @@ const ROITimelineChart = () => {
               dataKey="scanpro"
               stroke="url(#scanproLine)"
               strokeWidth={4}
-              dot={{ fill: '#14B8A6', r: 5 }}
+              dot={{ fill: '#A8C5B8', r: 5 }}
               activeDot={{ r: 7 }}
               animationDuration={2000}
               animationBegin={300}
@@ -115,14 +115,14 @@ const ROITimelineChart = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€400k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-primary/10 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-[#A8C5B8]/10 rounded-lg sm:rounded-xl">
           <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">ScanPro+</p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black drop-shadow-md text-primary">€17k</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black drop-shadow-md" style={{ color: '#A8C5B8', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>€17k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-primary/20 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-[#A8C5B8]/20 rounded-lg sm:rounded-xl">
           <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 drop-shadow-md text-primary" strokeWidth={3} />
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 drop-shadow-md" style={{ color: '#A8C5B8' }} strokeWidth={3} />
             <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-700 font-bold uppercase">Savings</p>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€{(totalSavings / 1000).toFixed(0)}k</p>
