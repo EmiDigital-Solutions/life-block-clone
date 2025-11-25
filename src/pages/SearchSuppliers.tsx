@@ -480,7 +480,7 @@ const SearchSuppliers = () => {
                 <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-[#A8C5B8] drop-shadow-md" strokeWidth={2.5} />
+                    <Cpu className="w-5 h-5 text-[#A8C5B8]" />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -489,7 +489,7 @@ const SearchSuppliers = () => {
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
-                  <span className="text-[#A8C5B8] text-sm font-black drop-shadow-sm">
+                  <span className="text-[#A8C5B8] text-sm font-semibold">
                     Interactive Demo
                   </span>
                 </div>
@@ -545,7 +545,7 @@ const SearchSuppliers = () => {
                             <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
                               <Cpu className="w-3 h-3 text-white" />
                             </div>
-                            <span className="text-xs font-black text-[#A8C5B8] drop-shadow-sm">YVOO</span>
+                            <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                           </div>
                         )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -807,7 +807,7 @@ const SearchSuppliers = () => {
                   className="mt-6"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-[#A8C5B8] drop-shadow-md" strokeWidth={3} />
+                    <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
                     <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                   </div>
                   
@@ -816,13 +816,13 @@ const SearchSuppliers = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-white border-2 border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
+                        className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-black text-gray-900 group-hover:text-[#A8C5B8] transition-colors drop-shadow-sm">
+                          <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
                             {supplier.name}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" strokeWidth={3} />
+                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                           <MapPin className="w-4 h-4" />
@@ -832,7 +832,7 @@ const SearchSuppliers = () => {
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-[#A8C5B8]/20 text-[#A8C5B8] text-xs rounded-full font-bold shadow-sm"
+                              className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
                             >
                               {cert}
                             </span>

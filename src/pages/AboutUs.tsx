@@ -203,7 +203,7 @@ const AboutUs = () => {
           >
             <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-black">
-                Core <span className="text-[#A8C5B8] font-black drop-shadow-sm">Principles</span>
+                Core <span className="text-[#A8C5B8]">Principles</span>
               </h2>
             </div>
 
@@ -223,7 +223,7 @@ const AboutUs = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <div className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#A8C5B8] flex-shrink-0 mt-1 drop-shadow-md" strokeWidth={4} />
+                    <Check className="w-5 h-5 text-[#A8C5B8] flex-shrink-0 mt-1" strokeWidth={3} />
                     <div>
                       <h3 className="text-xl font-bold text-black mb-2">{principle.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{principle.desc}</p>
@@ -283,7 +283,7 @@ const AboutUs = () => {
               className="space-y-8"
             >
               <div className="space-y-4">
-                <div className="text-sm font-black uppercase tracking-wider text-[#A8C5B8] drop-shadow-sm">
+                <div className="text-sm font-semibold uppercase tracking-wider text-[#A8C5B8]">
                   Environmental Commitment
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
@@ -318,7 +318,7 @@ const AboutUs = () => {
             className="space-y-16"
           >
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-black text-[#A8C5B8] drop-shadow-md">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#A8C5B8]">
                 Our Journey
               </h2>
             </div>
@@ -342,7 +342,7 @@ const AboutUs = () => {
                     />
                     <span 
                       className="text-sm font-semibold transition-colors"
-                      style={{ color: selectedYear === item.year ? '#A8C5B8' : '#9ca3af', fontWeight: selectedYear === item.year ? '900' : '600', textShadow: selectedYear === item.year ? '0 1px 2px rgba(0,0,0,0.1)' : 'none' }}
+                      style={{ color: selectedYear === item.year ? '#A8C5B8' : '#9ca3af' }}
                     >
                       {item.year}
                     </span>
@@ -416,7 +416,7 @@ const AboutUs = () => {
 
               <Button 
                 variant="outline" 
-                className="rounded-full border-3 border-[#A8C5B8] text-[#A8C5B8] font-bold hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
+                className="rounded-full border-2 border-[#A8C5B8] text-[#A8C5B8] hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base"
               >
                 Learn More
                 <ArrowRight className="ml-2 w-4 h-4" />
