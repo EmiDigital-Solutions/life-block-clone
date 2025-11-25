@@ -127,18 +127,25 @@ const BuyerPainPointsSection = () => {
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[1000px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
-              {/* Soft glowing gradient background */}
+              {/* Soft glowing gradient background with concentric colored rings */}
+              <div 
+                className="absolute w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] md:w-[950px] md:h-[950px] rounded-full z-0"
+                style={{ 
+                  background: "radial-gradient(circle, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.1) 50%, rgba(168, 197, 184, 0) 100%)"
+                }}
+              ></div>
+              <div 
+                className="absolute w-[550px] h-[550px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] rounded-full z-0"
+                style={{ 
+                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.2) 0%, rgba(168, 184, 202, 0.15) 50%, rgba(168, 184, 202, 0) 100%)"
+                }}
+              ></div>
               <div 
                 className="absolute w-[450px] h-[450px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 184, 202, 0.4) 0%, rgba(200, 200, 200, 0.3) 30%, rgba(168, 197, 184, 0.2) 60%, rgba(168, 184, 202, 0.1) 80%, rgba(168, 184, 202, 0) 100%)"
                 }}
               ></div>
-
-              {/* Concentric rings */}
-              <div className="absolute w-[500px] h-[500px] sm:w-[750px] sm:h-[750px] md:w-[850px] md:h-[850px] rounded-full border border-gray-200/40 z-0"></div>
-              <div className="absolute w-[550px] h-[550px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] rounded-full border border-gray-200/30 z-0"></div>
-              <div className="absolute w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] md:w-[950px] md:h-[950px] rounded-full border border-gray-200/20 z-0"></div>
 
               {/* Photo overlay - natural rectangular shape */}
               <motion.div 
