@@ -56,10 +56,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900"
+              className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900 max-w-4xl"
             >
               {heroContent.heading.split(' ').slice(0, -3).join(' ')}{' '}
-              <span className="text-primary tracking-tighter">
+              <span className="text-primary font-bold">
                 {heroContent.heading.split(' ').slice(-3).join(' ')}
               </span>
             </motion.h1>
