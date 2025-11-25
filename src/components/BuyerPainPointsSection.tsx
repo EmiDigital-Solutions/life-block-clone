@@ -192,13 +192,13 @@ const BuyerPainPointsSection = () => {
               <div className="hidden lg:block">
                 {currentContent.painPoints.map((item, index) => {
                   const positions = [
-                    { top: '8%', left: '2%', rotate: '-2deg' },       // Top left
-                    { top: '8%', right: '2%', rotate: '2deg' },       // Top right
-                    { top: '35%', left: '0%', rotate: '-1deg' },      // Middle left
-                    { top: '35%', right: '0%', rotate: '1deg' },      // Middle right
-                    { top: '62%', left: '2%', rotate: '2deg' },       // Lower left
-                    { top: '62%', right: '2%', rotate: '-2deg' },     // Lower right
-                    { bottom: '8%', left: '18%', rotate: '-1deg' }    // Bottom center-left
+                    { top: '2%', left: '0%', rotate: '-2deg' },       // Top left - outside gradient
+                    { top: '2%', right: '0%', rotate: '2deg' },       // Top right - outside gradient
+                    { top: '32%', left: '-2%', rotate: '-1deg' },     // Middle left - outside gradient
+                    { top: '32%', right: '-2%', rotate: '1deg' },     // Middle right - outside gradient
+                    { bottom: '8%', left: '0%', rotate: '2deg' },     // Bottom left - outside gradient
+                    { bottom: '8%', right: '0%', rotate: '-2deg' },   // Bottom right - outside gradient
+                    { bottom: '2%', left: '50%', transform: 'translateX(-50%)', rotate: '-1deg' } // Bottom center - outside gradient
                   ];
 
                   const position = positions[index] || positions[0];
@@ -213,7 +213,7 @@ const BuyerPainPointsSection = () => {
                       className="absolute bg-white rounded-2xl p-5 flex items-start gap-3 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[280px]"
                       style={{
                         ...position,
-                        transform: `rotate(${position.rotate})`
+                        transform: `${position.transform || ''} rotate(${position.rotate})`.trim()
                       }}
                     >
                       <div className="flex-shrink-0 mt-1">
