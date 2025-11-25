@@ -164,7 +164,7 @@ const BuyerPainPointsSection = () => {
                 <img 
                   src={currentContent.image} 
                   alt={currentContent.imageAlt} 
-                  className="max-w-[90vw] sm:max-w-[450px] w-full h-auto object-contain mx-auto rounded-2xl"
+                  className="max-w-[90vw] sm:max-w-[540px] w-full h-auto object-contain mx-auto rounded-2xl"
                   style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1)" } : {}}
                 />
               </motion.div>
