@@ -210,7 +210,7 @@ const BuyerPainPointsSection = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="absolute bg-white rounded-2xl p-5 flex items-start gap-3 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[280px]"
+                      className="absolute bg-white rounded-2xl p-6 flex items-start gap-4 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[360px] w-[360px]"
                       style={{
                         ...position,
                         transform: position.transform || 'none'
@@ -226,7 +226,7 @@ const BuyerPainPointsSection = () => {
                           <rect x="0" y="8" width="16" height="4" fill="black"/>
                         </svg>
                       </div>
-                      <p className="text-base text-gray-700 leading-relaxed">
+                      <p className="text-base text-gray-700 leading-snug line-clamp-2">
                         {item.textFull}
                       </p>
                     </motion.div>
