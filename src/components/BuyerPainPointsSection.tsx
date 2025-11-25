@@ -210,13 +210,13 @@ const BuyerPainPointsSection = () => {
               <div className="hidden lg:block">
                 {currentContent.painPoints.map((item, index) => {
                   const positions = [
-                    { top: '35%', left: '2%' },       // Top left
-                    { top: '35%', right: '2%' },      // Top right
+                    { top: '38%', left: '2%' },       // Top left - moved down
+                    { top: '38%', right: '2%' },      // Top right - moved down
                     { top: '50%', left: '0%', transform: 'translateY(-50%)' },       // Middle left - centered
                     { top: '50%', right: '0%', transform: 'translateY(-50%)' },      // Middle right - centered
-                    { top: '65%', left: '2%' },       // Lower left
-                    { top: '65%', right: '2%' },      // Lower right
-                    { bottom: '8%', left: 'calc(50% - 173px)' } // Bottom center - adjusted position
+                    { top: '62%', left: '2%' },       // Lower left - moved up
+                    { top: '62%', right: '2%' },      // Lower right - moved up
+                    { bottom: '12%', left: 'calc(50% - 173px)' } // Bottom center - moved up
                   ];
 
                   const position = positions[index] || positions[0];
