@@ -129,25 +129,25 @@ const BuyerPainPointsSection = () => {
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
               {/* Soft glowing gradient background with concentric colored rings - equal spacing */}
               <div 
-                className="absolute w-[620px] h-[620px] sm:w-[920px] sm:h-[920px] md:w-[980px] md:h-[980px] rounded-full z-0"
+                className="absolute w-[544px] h-[544px] sm:w-[844px] sm:h-[844px] md:w-[904px] md:h-[904px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, rgba(168, 197, 184, 0.08) 50%, rgba(168, 197, 184, 0) 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[580px] h-[580px] sm:w-[880px] sm:h-[880px] md:w-[920px] md:h-[920px] rounded-full z-0"
+                className="absolute w-[504px] h-[504px] sm:w-[804px] sm:h-[804px] md:w-[844px] md:h-[844px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 184, 202, 0.15) 0%, rgba(168, 184, 202, 0.1) 50%, rgba(168, 184, 202, 0) 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[520px] h-[520px] sm:w-[820px] sm:h-[820px] md:w-[860px] md:h-[860px] rounded-full z-0"
+                className="absolute w-[444px] h-[444px] sm:w-[744px] sm:h-[744px] md:w-[784px] md:h-[784px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 184, 202, 0.2) 0%, rgba(168, 184, 202, 0.15) 50%, rgba(168, 184, 202, 0) 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[450px] h-[450px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] rounded-full z-0"
+                className="absolute w-[374px] h-[374px] sm:w-[624px] sm:h-[624px] md:w-[724px] md:h-[724px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 184, 202, 0.4) 0%, rgba(200, 200, 200, 0.3) 30%, rgba(168, 197, 184, 0.2) 60%, rgba(168, 184, 202, 0.1) 80%, rgba(168, 184, 202, 0) 100%)"
                 }}
