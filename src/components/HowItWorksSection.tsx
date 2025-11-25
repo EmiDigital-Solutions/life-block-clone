@@ -1,162 +1,127 @@
-import { motion } from "framer-motion";
-import { FileCheck, MousePointerClick, Users, ClipboardCheck } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { FileCheck, MousePointerClick, Users, ClipboardCheck, Check } from "lucide-react";
+import { useRef, useState } from "react";
+import { PixelIcon } from "./PixelIcon";
 
 const featureCards = [
   {
     id: "ai-framework",
-    title: "AI-Generated Audit Framework & Auditor Guidance",
-    description: "AI builds a customized audit framework and guidance, adapting to your specific aspect objective",
+    title: "AI-Generated Audit Framework",
+    description: "AI builds customized frameworks adapting to your specific objectives",
     icon: FileCheck,
   },
   {
     id: "one-click",
     title: "1-Click Audit Request",
-    description: "Instant Audit Request tailored to your compliance needs",
+    description: "Instant audit requests tailored to your compliance needs",
     icon: MousePointerClick,
   },
   {
     id: "assignment",
     title: "Auditor Assignment",
-    description: "Global network of auditors assigned based on location and expertise",
+    description: "Global network assigned based on location and expertise",
     icon: Users,
   }
 ];
 
-// Central Hub Icon with glow effect
-const CentralHub = () => (
-  <motion.div
-    className="absolute left-1/2 top-[280px] -translate-x-1/2 z-20"
-    initial={{ scale: 0, opacity: 0 }}
-    whileInView={{ scale: 1, opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8, delay: 0.4 }}
-  >
-    {/* Outer glow */}
+// Central Hub Icon with elegant pulse
+const CentralHub = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
     <motion.div
-      className="absolute inset-0 rounded-full"
-      style={{
-        width: '100px',
-        height: '100px',
-        background: 'radial-gradient(circle, rgba(52, 224, 255, 0.4) 0%, rgba(52, 224, 255, 0.1) 50%, transparent 100%)',
-        filter: 'blur(15px)',
-        transform: 'translate(-50%, -50%)',
-        left: '50%',
-        top: '50%',
-      }}
-      animate={{
-        scale: [1, 1.3, 1],
-        opacity: [0.6, 1, 0.6],
-      }}
-      transition={{
-        duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}
-    />
-    
-    {/* Main circle */}
-    <div 
-      className="relative w-20 h-20 rounded-full flex items-center justify-center"
-      style={{ 
-        background: '#000',
-        border: '2px solid #34E0FF',
-        boxShadow: '0 0 20px rgba(52, 224, 255, 0.5)',
-      }}
-    >
-      {/* Atom icon */}
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-        <motion.circle
-          cx="18"
-          cy="18"
-          r="2.5"
-          fill="#34E0FF"
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        <motion.ellipse
-          cx="18"
-          cy="18"
-          rx="13"
-          ry="7"
-          stroke="#34E0FF"
-          strokeWidth="1"
-          fill="none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.ellipse
-          cx="18"
-          cy="18"
-          rx="13"
-          ry="7"
-          stroke="#41FFB1"
-          strokeWidth="1"
-          fill="none"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          transform="rotate(60 18 18)"
-        />
-        <motion.ellipse
-          cx="18"
-          cy="18"
-          rx="13"
-          ry="7"
-          stroke="#34E0FF"
-          strokeWidth="1"
-          fill="none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          transform="rotate(-60 18 18)"
-        />
-      </svg>
-    </div>
-  </motion.div>
-);
-
-// Dotted connection line component
-const DottedConnection = ({ 
-  fromX, 
-  fromY, 
-  toX, 
-  toY, 
-  delay = 0 
-}: { 
-  fromX: string; 
-  fromY: string; 
-  toX: string; 
-  toY: string; 
-  delay?: number;
-}) => (
-  <motion.svg
-    className="absolute top-0 left-0 w-full h-full pointer-events-none"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8, delay }}
-  >
-    <motion.line
-      x1={fromX}
-      y1={fromY}
-      x2={toX}
-      y2={toY}
-      stroke="#34E0FF"
-      strokeWidth="1"
-      strokeDasharray="4 4"
-      opacity="0.6"
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
+      className="absolute left-1/2 top-[280px] -translate-x-1/2 z-20"
+      initial={{ scale: 0, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 1.5, delay }}
-    />
-  </motion.svg>
-);
+      transition={{ duration: 0.8, delay: 0.4 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+    >
+      {/* Subtle outer glow */}
+      <motion.div
+        className="absolute inset-0 rounded-full"
+        style={{
+          width: '120px',
+          height: '120px',
+          background: 'radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 50%, transparent 100%)',
+          filter: 'blur(20px)',
+          transform: 'translate(-50%, -50%)',
+          left: '50%',
+          top: '50%',
+        }}
+        animate={{
+          scale: isHovered ? [1, 1.4, 1] : [1, 1.2, 1],
+          opacity: isHovered ? [0.4, 0.7, 0.4] : [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      {/* Main circle */}
+      <motion.div 
+        className="relative w-24 h-24 rounded-full flex items-center justify-center bg-white border-2 border-primary shadow-lg"
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3 }}
+      >
+        {/* Network icon */}
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <motion.circle
+            cx="24"
+            cy="24"
+            r="3"
+            className="fill-primary"
+            animate={{ scale: isHovered ? [1, 1.4, 1] : [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          {/* Orbital rings */}
+          {[0, 60, 120].map((rotation, i) => (
+            <motion.ellipse
+              key={i}
+              cx="24"
+              cy="24"
+              rx="16"
+              ry="8"
+              className="stroke-primary"
+              strokeWidth="1.5"
+              fill="none"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "linear" }}
+              transform={`rotate(${rotation} 24 24)`}
+            />
+          ))}
+          {/* Connection nodes */}
+          {[0, 120, 240].map((angle, i) => {
+            const x = 24 + 16 * Math.cos((angle * Math.PI) / 180);
+            const y = 24 + 16 * Math.sin((angle * Math.PI) / 180);
+            return (
+              <motion.circle
+                key={i}
+                cx={x}
+                cy={y}
+                r="2"
+                className="fill-secondary"
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+              />
+            );
+          })}
+        </svg>
+      </motion.div>
+    </motion.div>
+  );
+};
 
-// World map dot pattern
+
+// World map dot pattern with muted colors
 const WorldMapDots = () => (
   <motion.div
-    className="absolute inset-0 pointer-events-none opacity-30"
+    className="absolute inset-0 pointer-events-none opacity-20"
     initial={{ opacity: 0 }}
-    whileInView={{ opacity: 0.3 }}
+    whileInView={{ opacity: 0.2 }}
     viewport={{ once: true }}
     transition={{ duration: 1.5 }}
   >
@@ -164,172 +129,186 @@ const WorldMapDots = () => (
       className="absolute inset-0"
       style={{
         backgroundImage: `
-          radial-gradient(circle at 30% 50%, #34E0FF 0.5px, transparent 0.5px),
-          radial-gradient(circle at 70% 50%, #34E0FF 0.5px, transparent 0.5px),
-          radial-gradient(circle at 50% 40%, #34E0FF 0.5px, transparent 0.5px)
+          radial-gradient(circle at 30% 50%, hsl(var(--primary)) 1px, transparent 1px),
+          radial-gradient(circle at 70% 50%, hsl(var(--secondary)) 1px, transparent 1px),
+          radial-gradient(circle at 50% 40%, hsl(var(--primary)) 1px, transparent 1px)
         `,
-        backgroundSize: '20px 20px, 20px 20px, 20px 20px',
-        backgroundPosition: '0 0, 10px 10px, 5px 5px',
-        maskImage: 'radial-gradient(ellipse 800px 400px at center, black 40%, transparent 70%)',
+        backgroundSize: '24px 24px, 24px 24px, 24px 24px',
+        backgroundPosition: '0 0, 12px 12px, 6px 6px',
+        maskImage: 'radial-gradient(ellipse 900px 450px at center, black 40%, transparent 75%)',
       }}
     />
   </motion.div>
 );
 
 export const HowItWorksSection = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
+
   return (
     <section
+      ref={sectionRef}
       data-nav-theme="light"
-      className="relative overflow-hidden"
-      style={{ background: '#0A0A0A' }}
+      className="relative overflow-hidden bg-gradient-to-b from-white via-muted/20 to-white"
     >
-      <div className="max-w-[1400px] mx-auto px-8 lg:px-32 py-32 lg:py-40">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+          }}
+        />
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-32 py-24 lg:py-32 relative">
         
-        {/* Top CTA Button */}
+        {/* Section Title */}
         <motion.div 
-          className="flex justify-center mb-32"
-          initial={{ opacity: 0, y: -20 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.button
-            className="px-8 py-3 rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300"
-            style={{ 
-              background: 'transparent',
-              border: '1.5px solid #34E0FF',
-              color: '#34E0FF',
-            }}
-            whileHover={{ 
-              background: '#34E0FF',
-              color: '#000',
-              boxShadow: '0 0 20px rgba(52, 224, 255, 0.5)',
-            }}
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Find Your Auditor Now
-          </motion.button>
+            How <span className="text-primary">YVOO</span> Works
+          </motion.h2>
+          <motion.p 
+            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            From audit request to certified report in 3 simple steps
+          </motion.p>
         </motion.div>
 
         {/* Three Feature Cards + Central Hub */}
-        <div className="relative mb-40">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-24">
-            {featureCards.map((card, index) => (
-              <motion.div
-                key={card.id}
-                className="relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-              >
+        <div className="relative mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-24">
+            {featureCards.map((card, index) => {
+              const cardRef = useRef(null);
+              const cardInView = useInView(cardRef, { once: false, amount: 0.5 });
+              
+              return (
                 <motion.div
-                  className="p-8 rounded-2xl h-full"
-                  style={{
-                    background: '#000',
-                    border: '1px solid #34E0FF',
-                  }}
-                  whileHover={{
-                    boxShadow: '0 0 30px rgba(52, 224, 255, 0.3)',
-                  }}
-                  transition={{ duration: 0.3 }}
+                  key={card.id}
+                  ref={cardRef}
+                  className="relative group"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: index * 0.15 }}
                 >
-                  {/* Icon */}
-                  <div 
-                    className="w-16 h-16 rounded-lg flex items-center justify-center mb-6"
-                    style={{
-                      border: '1px solid #34E0FF',
-                      background: 'rgba(52, 224, 255, 0.05)',
+                  {/* Step number */}
+                  <motion.div 
+                    className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg shadow-lg z-10"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+                  >
+                    {index + 1}
+                  </motion.div>
+
+                  <motion.div
+                    className="p-8 rounded-3xl h-full bg-white border-2 border-transparent relative overflow-hidden"
+                    animate={{
+                      borderColor: cardInView ? 'hsl(var(--primary))' : 'transparent',
+                      boxShadow: cardInView 
+                        ? '0 10px 40px hsl(var(--primary) / 0.15)' 
+                        : '0 4px 20px hsl(0 0% 0% / 0.05)',
                     }}
+                    whileHover={{
+                      y: -8,
+                      boxShadow: '0 20px 50px hsl(var(--primary) / 0.25)',
+                    }}
+                    transition={{ duration: 0.4 }}
                   >
-                    <card.icon 
-                      className="w-8 h-8" 
-                      style={{ color: '#34E0FF', strokeWidth: 1.5 }} 
+                    {/* Animated gradient background */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.08) 0%, transparent 70%)',
+                      }}
                     />
-                  </div>
 
-                  {/* Title */}
-                  <h3 
-                    className="text-lg font-semibold mb-4 leading-tight"
-                    style={{ color: '#34E0FF' }}
-                  >
-                    {card.title}
-                  </h3>
+                    {/* Icon */}
+                    <motion.div 
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-primary/10 border border-primary/20 relative z-10"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <card.icon 
+                        className="w-8 h-8 text-primary" 
+                        strokeWidth={1.5} 
+                      />
+                    </motion.div>
 
-                  {/* Description */}
-                  <p 
-                    className="text-sm leading-relaxed"
-                    style={{ color: '#FAFAFA', opacity: 0.8 }}
-                  >
-                    {card.description}
-                  </p>
+                    {/* Title */}
+                    <h3 className="text-xl font-bold mb-4 leading-tight text-foreground relative z-10">
+                      {card.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm leading-relaxed text-muted-foreground relative z-10">
+                      {card.description}
+                    </p>
+
+                    {/* Arrow indicator */}
+                    {index < 2 && (
+                      <motion.div 
+                        className="hidden lg:block absolute -right-5 top-1/2 -translate-y-1/2"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.15 + 0.6 }}
+                      >
+                        <PixelIcon name="arrow-right" className="w-6 h-6" color="hsl(var(--primary))" />
+                      </motion.div>
+                    )}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Connection Lines - Desktop only */}
-          <div className="hidden lg:block absolute top-0 left-0 w-full h-[400px]">
+          <div className="hidden lg:block absolute top-0 left-0 w-full h-[400px] pointer-events-none">
             {/* Left card to center */}
-            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <svg className="absolute top-0 left-0 w-full h-full">
               <motion.line
                 x1="16.66%"
-                y1="220"
+                y1="200"
                 x2="50%"
                 y2="280"
-                stroke="#34E0FF"
-                strokeWidth="1"
-                strokeDasharray="4 4"
-                opacity="0.6"
+                className="stroke-primary"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                opacity="0.3"
                 initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 0.6 }}
+                whileInView={{ pathLength: 1, opacity: 0.3 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.5 }}
+                transition={{ duration: 1.5, delay: 0.6 }}
               />
-              {/* Animated dot */}
               <motion.circle
-                r="2"
-                fill="#34E0FF"
+                r="3"
+                className="fill-primary"
                 animate={{
                   cx: ['16.66%', '50%'],
-                  cy: [220, 280],
+                  cy: [200, 280],
                   opacity: [0, 1, 1, 0],
                 }}
                 transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.8,
-                }}
-              />
-            </svg>
-
-            {/* Center card to center */}
-            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-              <motion.line
-                x1="50%"
-                y1="220"
-                x2="50%"
-                y2="280"
-                stroke="#34E0FF"
-                strokeWidth="1"
-                strokeDasharray="4 4"
-                opacity="0.6"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 0.6 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.6 }}
-              />
-              {/* Animated dot */}
-              <motion.circle
-                r="2"
-                fill="#34E0FF"
-                animate={{
-                  cx: '50%',
-                  cy: [220, 280],
-                  opacity: [0, 1, 1, 0],
-                }}
-                transition={{
-                  duration: 2.5,
+                  duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
                   delay: 1,
@@ -337,36 +316,68 @@ export const HowItWorksSection = () => {
               />
             </svg>
 
-            {/* Right card to center */}
-            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            {/* Center card to center */}
+            <svg className="absolute top-0 left-0 w-full h-full">
               <motion.line
-                x1="83.33%"
-                y1="220"
+                x1="50%"
+                y1="200"
                 x2="50%"
                 y2="280"
-                stroke="#34E0FF"
-                strokeWidth="1"
-                strokeDasharray="4 4"
-                opacity="0.6"
+                className="stroke-primary"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                opacity="0.3"
                 initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 0.6 }}
+                whileInView={{ pathLength: 1, opacity: 0.3 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.7 }}
+                transition={{ duration: 1.5, delay: 0.75 }}
               />
-              {/* Animated dot */}
               <motion.circle
-                r="2"
-                fill="#34E0FF"
+                r="3"
+                className="fill-primary"
                 animate={{
-                  cx: ['83.33%', '50%'],
-                  cy: [220, 280],
+                  cx: '50%',
+                  cy: [200, 280],
                   opacity: [0, 1, 1, 0],
                 }}
                 transition={{
-                  duration: 2.5,
+                  duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 1.2,
+                  delay: 1.3,
+                }}
+              />
+            </svg>
+
+            {/* Right card to center */}
+            <svg className="absolute top-0 left-0 w-full h-full">
+              <motion.line
+                x1="83.33%"
+                y1="200"
+                x2="50%"
+                y2="280"
+                className="stroke-primary"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                opacity="0.3"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.3 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 0.9 }}
+              />
+              <motion.circle
+                r="3"
+                className="fill-primary"
+                animate={{
+                  cx: ['83.33%', '50%'],
+                  cy: [200, 280],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.6,
                 }}
               />
             </svg>
@@ -380,98 +391,106 @@ export const HowItWorksSection = () => {
 
         {/* Supplier On-Site Evaluation Section */}
         <motion.div
-          className="relative mb-40 flex flex-col items-center"
+          className="relative mb-32 flex flex-col items-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           {/* Dotted line from hub to evaluation */}
-          <div className="hidden lg:block absolute top-[-120px] left-1/2 -translate-x-1/2 w-px h-24">
+          <div className="hidden lg:block absolute top-[-100px] left-1/2 -translate-x-1/2 w-px h-20">
             <svg width="2" height="100%" className="w-full h-full">
               <motion.line
                 x1="1"
                 y1="0"
                 x2="1"
                 y2="100%"
-                stroke="#34E0FF"
-                strokeWidth="1"
-                strokeDasharray="4 4"
-                opacity="0.6"
+                className="stroke-primary"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                opacity="0.3"
                 initial={{ pathLength: 0 }}
                 whileInView={{ pathLength: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ duration: 1, delay: 1.2 }}
               />
             </svg>
             <motion.div
-              className="absolute w-2 h-2 rounded-full left-1/2 -translate-x-1/2"
-              style={{ background: '#34E0FF' }}
+              className="absolute w-3 h-3 rounded-full left-1/2 -translate-x-1/2 bg-primary"
               animate={{
                 top: ['0%', '100%'],
                 opacity: [0, 1, 1, 0],
               }}
               transition={{
-                duration: 2.5,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1.5,
+                delay: 2,
               }}
             />
           </div>
 
-          <div className="flex items-center gap-6">
-            {/* Simple icon illustration */}
-            <div 
-              className="w-20 h-20 rounded-lg flex items-center justify-center"
-              style={{
-                border: '1px solid #41FFB1',
-                background: 'rgba(65, 255, 177, 0.05)',
-              }}
+          <motion.div 
+            className="flex flex-col md:flex-row items-center gap-8 bg-white p-10 rounded-3xl border-2 border-secondary/30 shadow-xl max-w-2xl"
+            whileHover={{ 
+              boxShadow: '0 20px 60px hsl(var(--secondary) / 0.2)',
+              borderColor: 'hsl(var(--secondary))',
+            }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Icon illustration */}
+            <motion.div 
+              className="w-24 h-24 rounded-2xl flex items-center justify-center bg-secondary/10 border-2 border-secondary/30"
+              whileHover={{ rotate: 5, scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
               <ClipboardCheck 
-                className="w-10 h-10" 
-                style={{ color: '#41FFB1', strokeWidth: 1.5 }} 
+                className="w-12 h-12 text-secondary" 
+                strokeWidth={1.5} 
               />
-            </div>
+            </motion.div>
             
-            <div>
-              <h3 
-                className="text-2xl font-semibold mb-2"
-                style={{ color: '#FAFAFA' }}
-              >
-                Supplier On-Site Evaluation
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
+                On-Site Evaluation
               </h3>
-              <p 
-                className="text-sm"
-                style={{ color: '#FAFAFA', opacity: 0.7 }}
-              >
-                Professional on-site inspection and assessment
+              <p className="text-base text-muted-foreground leading-relaxed">
+                Certified auditors conduct thorough supplier assessments with digital reporting
               </p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Global Network Map Section */}
         <motion.div
-          className="relative mb-40 min-h-[500px]"
+          className="relative mb-32 min-h-[600px] bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 rounded-3xl p-12 overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
+          <motion.h3 
+            className="text-3xl md:text-4xl font-bold text-center mb-16 text-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Global Auditor Network
+          </motion.h3>
+
           <WorldMapDots />
           
           {/* Floating auditor cards */}
           {[
-            { x: '15%', y: '30%', delay: 0.2 },
-            { x: '75%', y: '25%', delay: 0.4 },
-            { x: '25%', y: '65%', delay: 0.6 },
-            { x: '80%', y: '70%', delay: 0.8 },
+            { x: '12%', y: '25%', delay: 0.2, region: 'Europe' },
+            { x: '78%', y: '20%', delay: 0.4, region: 'Asia' },
+            { x: '20%', y: '60%', delay: 0.6, region: 'Americas' },
+            { x: '75%', y: '65%', delay: 0.8, region: 'Africa' },
           ].map((pos, i) => (
             <motion.div
               key={i}
-              className="absolute"
+              className="absolute hidden md:block"
               style={{ left: pos.x, top: pos.y }}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -479,33 +498,46 @@ export const HowItWorksSection = () => {
               transition={{ duration: 0.6, delay: pos.delay }}
             >
               <motion.div
-                className="px-4 py-2 rounded-lg backdrop-blur-sm"
-                style={{
-                  background: 'rgba(0, 0, 0, 0.8)',
-                  border: '1px solid #34E0FF',
-                  boxShadow: '0 0 15px rgba(52, 224, 255, 0.2)',
-                }}
+                className="group px-5 py-3 rounded-2xl backdrop-blur-md bg-white/90 border-2 border-primary/20 shadow-lg cursor-pointer"
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -12, 0],
+                }}
+                whileHover={{
+                  scale: 1.1,
+                  borderColor: 'hsl(var(--primary))',
+                  boxShadow: '0 10px 30px hsl(var(--primary) / 0.3)',
                 }}
                 transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5,
+                  y: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.5,
+                  },
+                  scale: { duration: 0.3 },
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <div 
-                    className="w-2 h-2 rounded-full"
-                    style={{ background: '#41FFB1' }}
+                <div className="flex items-center gap-3">
+                  <motion.div 
+                    className="w-3 h-3 rounded-full bg-primary"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [1, 0.6, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
-                  <span 
-                    className="text-xs font-medium"
-                    style={{ color: '#FAFAFA' }}
-                  >
-                    Auditor #{i + 1}
-                  </span>
+                  <div>
+                    <span className="text-sm font-bold text-foreground block">
+                      {pos.region}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Certified Auditor
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
@@ -520,77 +552,118 @@ export const HowItWorksSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div 
-            className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden"
-            style={{
-              background: '#000',
-              border: '2px solid #34E0FF',
-              boxShadow: '0 0 40px rgba(52, 224, 255, 0.3)',
-            }}
-          >
+          <div className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden bg-white shadow-2xl border-2 border-muted">
             {/* Mockup header */}
-            <div 
-              className="px-6 py-4 flex items-center justify-between"
-              style={{ borderBottom: '1px solid rgba(52, 224, 255, 0.2)' }}
-            >
+            <div className="px-6 py-4 flex items-center justify-between bg-gradient-to-r from-primary/10 to-secondary/10 border-b-2 border-muted">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full" style={{ background: '#FF5F56' }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: '#FFBD2E' }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: '#27C93F' }} />
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <div className="w-3 h-3 rounded-full bg-green-500" />
               </div>
-              <span 
-                className="text-xs font-medium tracking-wide"
-                style={{ color: '#34E0FF' }}
-              >
-                AUDIT REPORT
+              <span className="text-sm font-bold tracking-wide text-primary">
+                DIGITAL AUDIT REPORT
               </span>
-              <button
-                className="px-4 py-1.5 rounded-full text-xs font-medium"
-                style={{
-                  background: '#34E0FF',
-                  color: '#000',
+              <motion.button
+                className="px-6 py-2 rounded-full text-sm font-bold bg-white text-foreground border-2 border-primary"
+                whileHover={{ 
+                  scale: 1.05,
+                  backgroundColor: 'hsl(var(--primary))',
+                  color: 'hsl(var(--primary-foreground))',
                 }}
+                transition={{ duration: 0.3 }}
               >
-                BOOK DEMO
-              </button>
+                View Demo
+              </motion.button>
             </div>
 
             {/* Mockup content */}
-            <div className="p-8 space-y-6">
+            <div className="p-10 space-y-8 bg-gradient-to-br from-white to-muted/20">
               {/* Report sections */}
-              <div className="grid grid-cols-2 gap-6">
-                <div 
-                  className="p-6 rounded-xl"
-                  style={{ background: 'rgba(52, 224, 255, 0.05)' }}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div 
+                  className="p-8 rounded-2xl bg-white border-2 border-primary/20 shadow-lg"
+                  whileHover={{ 
+                    boxShadow: '0 10px 40px hsl(var(--primary) / 0.2)',
+                    borderColor: 'hsl(var(--primary))',
+                  }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full"
-                    style={{ border: '2px solid #41FFB1' }}
-                  />
-                  <div className="space-y-2">
-                    <div className="h-2 rounded" style={{ background: 'rgba(52, 224, 255, 0.3)', width: '80%' }} />
-                    <div className="h-2 rounded" style={{ background: 'rgba(52, 224, 255, 0.2)', width: '60%' }} />
+                  <div className="w-40 h-40 mx-auto mb-6 rounded-full border-4 border-primary/30 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                    <Check className="w-20 h-20 text-primary" strokeWidth={3} />
                   </div>
-                </div>
-                <div className="space-y-4">
-                  <div 
-                    className="h-16 rounded-lg"
-                    style={{ background: 'rgba(65, 255, 177, 0.1)', border: '1px solid rgba(65, 255, 177, 0.3)' }}
-                  />
-                  <div 
-                    className="h-16 rounded-lg"
-                    style={{ background: 'rgba(52, 224, 255, 0.1)', border: '1px solid rgba(52, 224, 255, 0.3)' }}
-                  />
+                  <div className="space-y-3">
+                    <div className="h-3 rounded-full bg-primary/30 w-4/5" />
+                    <div className="h-3 rounded-full bg-primary/20 w-3/5" />
+                    <div className="h-3 rounded-full bg-primary/10 w-2/5" />
+                  </div>
+                </motion.div>
+                
+                <div className="space-y-5">
+                  <motion.div 
+                    className="h-20 rounded-2xl bg-gradient-to-r from-secondary/20 to-secondary/10 border-2 border-secondary/30 flex items-center px-6"
+                    whileHover={{ 
+                      boxShadow: '0 5px 20px hsl(var(--secondary) / 0.2)',
+                      borderColor: 'hsl(var(--secondary))',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-4 h-4 rounded-full bg-secondary" />
+                      <div className="space-y-2 flex-1">
+                        <div className="h-2 rounded bg-secondary/40 w-3/4" />
+                        <div className="h-2 rounded bg-secondary/20 w-1/2" />
+                      </div>
+                    </div>
+                  </motion.div>
+                  <motion.div 
+                    className="h-20 rounded-2xl bg-gradient-to-r from-primary/20 to-primary/10 border-2 border-primary/30 flex items-center px-6"
+                    whileHover={{ 
+                      boxShadow: '0 5px 20px hsl(var(--primary) / 0.2)',
+                      borderColor: 'hsl(var(--primary))',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-4 h-4 rounded-full bg-primary" />
+                      <div className="space-y-2 flex-1">
+                        <div className="h-2 rounded bg-primary/40 w-3/4" />
+                        <div className="h-2 rounded bg-primary/20 w-1/2" />
+                      </div>
+                    </div>
+                  </motion.div>
+                  <motion.div 
+                    className="h-20 rounded-2xl bg-gradient-to-r from-secondary/20 to-secondary/10 border-2 border-secondary/30 flex items-center px-6"
+                    whileHover={{ 
+                      boxShadow: '0 5px 20px hsl(var(--secondary) / 0.2)',
+                      borderColor: 'hsl(var(--secondary))',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-4 h-4 rounded-full bg-secondary" />
+                      <div className="space-y-2 flex-1">
+                        <div className="h-2 rounded bg-secondary/40 w-3/4" />
+                        <div className="h-2 rounded bg-secondary/20 w-1/2" />
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
 
-              {/* Bottom buttons */}
-              <div className="grid grid-cols-4 gap-4 pt-4">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
+              {/* Bottom action buttons */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                {['Download', 'Share', 'Print', 'Export'].map((label, i) => (
+                  <motion.button
                     key={i}
-                    className="h-12 rounded-lg"
-                    style={{ background: '#34E0FF' }}
-                  />
+                    className="h-14 rounded-xl bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center"
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: '0 5px 20px hsl(var(--primary) / 0.4)',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {label}
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -598,94 +671,129 @@ export const HowItWorksSection = () => {
 
           {/* Floating notification cards */}
           {[
-            { text: 'Your supplier audit is scheduled', x: '-120px', y: '100px', delay: 1 },
-            { text: 'The audit report is released', x: '-120px', y: '220px', delay: 1.5 },
+            { text: 'Audit scheduled successfully', icon: Check, x: '-140px', y: '120px', delay: 1 },
+            { text: 'Report generated & ready', icon: Check, x: '-140px', y: '240px', delay: 1.5 },
           ].map((notif, i) => (
             <motion.div
               key={i}
-              className="hidden xl:block absolute left-0 px-4 py-3 rounded-lg backdrop-blur-sm"
+              className="hidden xl:block absolute left-0 px-5 py-4 rounded-2xl backdrop-blur-lg bg-white/95 border-2 border-primary/30 shadow-xl"
               style={{
                 top: notif.y,
                 transform: `translateX(${notif.x})`,
-                background: 'rgba(0, 0, 0, 0.9)',
-                border: '1px solid #41FFB1',
-                boxShadow: '0 0 20px rgba(65, 255, 177, 0.2)',
-                minWidth: '240px',
+                minWidth: '260px',
               }}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: notif.delay }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 10px 40px hsl(var(--primary) / 0.3)',
+              }}
             >
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{ background: '#41FFB1' }}
-                />
-                <span 
-                  className="text-xs"
-                  style={{ color: '#FAFAFA' }}
-                >
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <notif.icon className="w-5 h-5 text-primary" strokeWidth={2.5} />
+                </div>
+                <span className="text-sm font-bold text-foreground">
                   {notif.text}
                 </span>
               </div>
-              <div 
-                className="mt-2 text-[10px]"
-                style={{ color: '#FAFAFA', opacity: 0.5 }}
-              >
-                Today, 09:15
+              <div className="mt-2 text-xs text-muted-foreground ml-11">
+                Just now
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Network Stats */}
+        {/* Network Stats & CTA */}
         <motion.div
-          className="mt-32 text-center space-y-12"
+          className="mt-32 text-center space-y-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h3 
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight"
-            style={{ color: '#FAFAFA' }}
+          <motion.h3 
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            Tap into Our Global Network of<br />
-            <span style={{ color: '#34E0FF' }}>Certified Auditors – On-Demand & AI-Powered</span>
-          </h3>
+            Connect with Our Global Network of{' '}
+            <span className="text-primary">Certified Auditors</span>
+          </motion.h3>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-16">
-            <div className="space-y-3">
-              <p 
-                className="text-sm tracking-widest uppercase font-medium"
-                style={{ color: '#34E0FF' }}
-              >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-20">
+            <motion.div 
+              className="space-y-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-sm tracking-widest uppercase font-bold text-primary">
                 Certified Auditors
               </p>
-              <p 
-                className="text-6xl sm:text-7xl lg:text-8xl font-bold"
-                style={{ color: '#FAFAFA' }}
+              <motion.p 
+                className="text-6xl sm:text-7xl lg:text-8xl font-black text-foreground"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
                 2,000+
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
             
-            <div className="space-y-3">
-              <p 
-                className="text-sm tracking-widest uppercase font-medium"
-                style={{ color: '#41FFB1' }}
-              >
-                Coverage
+            <div className="hidden sm:block w-px h-32 bg-gradient-to-b from-transparent via-border to-transparent" />
+            
+            <motion.div 
+              className="space-y-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-sm tracking-widest uppercase font-bold text-secondary">
+                Global Coverage
               </p>
-              <p 
-                className="text-6xl sm:text-7xl lg:text-8xl font-bold"
-                style={{ color: '#FAFAFA' }}
+              <motion.p 
+                className="text-6xl sm:text-7xl lg:text-8xl font-black text-foreground"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                90+ Countries
-              </p>
-            </div>
+                90+
+              </motion.p>
+              <p className="text-lg font-semibold text-muted-foreground">Countries</p>
+            </motion.div>
           </div>
+
+          {/* CTA Button */}
+          <motion.div 
+            className="pt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <motion.button
+              className="px-10 py-4 rounded-full text-base font-bold bg-white text-foreground border-2 border-primary shadow-lg group inline-flex items-center gap-3"
+              whileHover={{ 
+                scale: 1.05,
+                backgroundColor: 'hsl(var(--primary))',
+                color: 'hsl(var(--primary-foreground))',
+                boxShadow: '0 10px 40px hsl(var(--primary) / 0.4)',
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              Find Your Auditor Now
+              <PixelIcon 
+                name="arrow-right" 
+                className="w-5 h-5" 
+                color="currentColor" 
+              />
+            </motion.button>
+          </motion.div>
         </motion.div>
 
       </div>
