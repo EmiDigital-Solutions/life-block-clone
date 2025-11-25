@@ -216,7 +216,7 @@ const BuyerPainPointsSection = () => {
                     { top: '50%', right: '0%', transform: 'translateY(-50%)' },      // Middle right - centered
                     { top: '65%', left: '2%' },       // Lower left
                     { top: '65%', right: '2%' },      // Lower right
-                    { bottom: '8%', left: '50%', transform: 'translateX(calc(-50% - 113px))' } // Bottom center - moved 3cm left
+                    { bottom: '8%', left: 'calc(50% - 113px)' } // Bottom center - moved 3cm (113px) left
                   ];
 
                   const position = positions[index] || positions[0];
