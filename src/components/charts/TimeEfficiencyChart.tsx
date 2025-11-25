@@ -7,10 +7,10 @@ const TimeEfficiencyChart = () => {
   const isVisible = useInView(ref, { once: true, amount: 0.3 });
 
   const phases = [
-    { name: 'Auditor Search', traditional: 14, scanpro: 1, visualScanpro: 0.8, color: '#A8BFC5' },
-    { name: 'Preparation', traditional: 7, scanpro: 2, visualScanpro: 0.8, color: '#A8C5B8' },
+    { name: 'Auditor Search', traditional: 14, scanpro: 1, visualScanpro: 0.8, color: '#2563EB' },
+    { name: 'Preparation', traditional: 7, scanpro: 2, visualScanpro: 0.8, color: '#14B8A6' },
     { name: 'On-site Audit', traditional: 3, scanpro: 2, visualScanpro: 0.8, color: '#6B7280' },
-    { name: 'Report', traditional: 10, scanpro: 0.5, visualScanpro: 0.5, color: '#A8BFC5' },
+    { name: 'Report', traditional: 10, scanpro: 0.5, visualScanpro: 0.5, color: '#2563EB' },
   ];
 
   const totalTraditional = phases.reduce((sum, p) => sum + p.traditional, 0);
@@ -62,7 +62,7 @@ const TimeEfficiencyChart = () => {
         <div>
           <div className="flex items-center justify-between mb-3 sm:mb-5">
             <h4 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 flex items-center gap-2 sm:gap-3">
-              <Zap className="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-md" style={{ color: '#A8C5B8' }} strokeWidth={2.5} />
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-md text-primary" strokeWidth={2.5} />
               <span className="hidden sm:inline">ScanPro+ Approach</span>
               <span className="sm:hidden">ScanPro+</span>
             </h4>
@@ -98,7 +98,7 @@ const TimeEfficiencyChart = () => {
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ delay: 1.5, duration: 0.5 }}
             >
-              <span className="text-lg sm:text-xl md:text-2xl font-black drop-shadow-md" style={{ color: '#A8C5B8', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>{totalScanPro} days</span>
+              <span className="text-lg sm:text-xl md:text-2xl font-black drop-shadow-md text-primary">{totalScanPro} days</span>
             </motion.div>
           </div>
         </div>
@@ -115,7 +115,7 @@ const TimeEfficiencyChart = () => {
       </div>
 
       {/* Summary */}
-      <div className="p-4 sm:p-6 md:p-8 bg-[#A8C5B8]/10 rounded-xl sm:rounded-2xl">
+      <div className="p-4 sm:p-6 md:p-8 bg-primary/10 rounded-xl sm:rounded-2xl">
         <div className="flex items-center justify-between gap-4">
           <div className="flex-1">
             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">Time Reduction</p>
