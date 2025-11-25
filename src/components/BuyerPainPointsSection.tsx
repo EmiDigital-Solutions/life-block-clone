@@ -124,9 +124,9 @@ const BuyerPainPointsSection = () => {
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}
-          <div className="relative flex flex-col items-center">
-            {/* Container for image and gradient */}
-            <div className="relative flex justify-center items-center mb-[-60px] sm:mb-[-80px] z-10">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[900px]">
+            {/* Container for image and gradient - centered */}
+            <div className="relative flex justify-center items-center mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
               {/* Soft glowing gradient background */}
               <div 
                 className="absolute w-[450px] h-[450px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] rounded-full z-0"
@@ -152,40 +152,87 @@ const BuyerPainPointsSection = () => {
               </motion.div>
             </div>
 
-            {/* Pain Point Cards - overlapping the gradient */}
+            {/* Pain Point Cards - stacked on mobile, scattered around image on desktop */}
             <motion.div 
               key={`cards-${activeRole}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="relative z-20 space-y-2 sm:space-y-3 md:space-y-4 max-w-2xl w-full px-4"
+              className="relative z-20 w-full px-4 lg:absolute lg:inset-0 lg:px-0"
             >
-              {currentContent.painPoints.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
-                >
-                  {/* 8-bit pixel arrow */}
-                  <div className="flex-shrink-0 mt-0.5 sm:mt-1">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="sm:w-5 sm:h-5 md:w-6 md:h-6">
-                      <rect x="8" y="0" width="4" height="4" fill="black"/>
-                      <rect x="12" y="4" width="4" height="4" fill="black"/>
-                      <rect x="16" y="8" width="4" height="4" fill="black"/>
-                      <rect x="12" y="12" width="4" height="4" fill="black"/>
-                      <rect x="8" y="16" width="4" height="4" fill="black"/>
-                      <rect x="0" y="8" width="16" height="4" fill="black"/>
-                    </svg>
-                  </div>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                    <span className="md:hidden">{item.text}</span>
-                    <span className="hidden md:inline">{item.textFull}</span>
-                  </p>
-                </motion.div>
-              ))}
+              {/* Mobile: Stacked cards */}
+              <div className="lg:hidden space-y-2 sm:space-y-3 md:space-y-4 max-w-2xl w-full mx-auto">
+                {currentContent.painPoints.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                  >
+                    <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="sm:w-5 sm:h-5 md:w-6 md:h-6">
+                        <rect x="8" y="0" width="4" height="4" fill="black"/>
+                        <rect x="12" y="4" width="4" height="4" fill="black"/>
+                        <rect x="16" y="8" width="4" height="4" fill="black"/>
+                        <rect x="12" y="12" width="4" height="4" fill="black"/>
+                        <rect x="8" y="16" width="4" height="4" fill="black"/>
+                        <rect x="0" y="8" width="16" height="4" fill="black"/>
+                      </svg>
+                    </div>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                      {item.textFull}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Desktop: Scattered cards around image */}
+              <div className="hidden lg:block">
+                {currentContent.painPoints.map((item, index) => {
+                  const positions = [
+                    { top: '5%', left: '5%', rotate: '-2deg' },      // Top left
+                    { top: '8%', right: '8%', rotate: '2deg' },      // Top right
+                    { top: '30%', left: '2%', rotate: '-1deg' },     // Middle left
+                    { top: '32%', right: '5%', rotate: '1deg' },     // Middle right
+                    { bottom: '18%', left: '8%', rotate: '2deg' },   // Bottom left
+                    { bottom: '15%', right: '10%', rotate: '-2deg' }, // Bottom right
+                    { bottom: '35%', left: '12%', rotate: '-1deg' }  // Extra card (lower left)
+                  ];
+
+                  const position = positions[index] || positions[0];
+
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="absolute bg-white rounded-2xl p-5 flex items-start gap-3 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[280px]"
+                      style={{
+                        ...position,
+                        transform: `rotate(${position.rotate})`
+                      }}
+                    >
+                      <div className="flex-shrink-0 mt-1">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <rect x="8" y="0" width="4" height="4" fill="black"/>
+                          <rect x="12" y="4" width="4" height="4" fill="black"/>
+                          <rect x="16" y="8" width="4" height="4" fill="black"/>
+                          <rect x="12" y="12" width="4" height="4" fill="black"/>
+                          <rect x="8" y="16" width="4" height="4" fill="black"/>
+                          <rect x="0" y="8" width="16" height="4" fill="black"/>
+                        </svg>
+                      </div>
+                      <p className="text-base text-gray-700 leading-relaxed">
+                        {item.textFull}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </motion.div>
           </div>
         </motion.div>
