@@ -62,7 +62,7 @@ const TimeEfficiencyChart = () => {
         <div>
           <div className="flex items-center justify-between mb-3 sm:mb-5">
             <h4 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 flex items-center gap-2 sm:gap-3">
-              <Zap className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#A8C5B8' }} />
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-md" style={{ color: '#A8C5B8' }} strokeWidth={2.5} />
               <span className="hidden sm:inline">ScanPro+ Approach</span>
               <span className="sm:hidden">ScanPro+</span>
             </h4>
@@ -98,7 +98,7 @@ const TimeEfficiencyChart = () => {
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ delay: 1.5, duration: 0.5 }}
             >
-              <span className="text-lg sm:text-xl md:text-2xl font-black" style={{ color: '#A8C5B8' }}>{totalScanPro} days</span>
+              <span className="text-lg sm:text-xl md:text-2xl font-black drop-shadow-md" style={{ color: '#A8C5B8', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>{totalScanPro} days</span>
             </motion.div>
           </div>
         </div>
