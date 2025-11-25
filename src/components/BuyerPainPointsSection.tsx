@@ -126,7 +126,7 @@ const BuyerPainPointsSection = () => {
           {/* Image with soft glowing gradient background and overlapping cards */}
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[1000px]">
             {/* Container for image and gradient - centered */}
-            <div className="relative flex justify-center items-center mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
+            <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
               {/* Soft glowing gradient background */}
               <div 
                 className="absolute w-[450px] h-[450px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] rounded-full z-0"
