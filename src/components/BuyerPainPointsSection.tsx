@@ -80,7 +80,7 @@ const BuyerPainPointsSection = () => {
 
   return (
     <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const BuyerPainPointsSection = () => {
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}
-          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[900px]">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[1000px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
               {/* Soft glowing gradient background */}
@@ -192,13 +192,13 @@ const BuyerPainPointsSection = () => {
               <div className="hidden lg:block">
                 {currentContent.painPoints.map((item, index) => {
                   const positions = [
-                    { top: '2%', left: '0%' },       // Top left - outside gradient
-                    { top: '2%', right: '0%' },       // Top right - outside gradient
-                    { top: '32%', left: '-2%' },     // Middle left - outside gradient
-                    { top: '32%', right: '-2%' },     // Middle right - outside gradient
-                    { bottom: '8%', left: '0%' },     // Bottom left - outside gradient
-                    { bottom: '8%', right: '0%' },   // Bottom right - outside gradient
-                    { bottom: '2%', left: '50%', transform: 'translateX(-50%)' } // Bottom center - outside gradient
+                    { top: '5%', left: '2%' },        // Top left
+                    { top: '5%', right: '2%' },       // Top right
+                    { top: '35%', left: '0%' },       // Middle left
+                    { top: '35%', right: '0%' },      // Middle right
+                    { bottom: '25%', left: '2%' },    // Lower left
+                    { bottom: '25%', right: '2%' },   // Lower right
+                    { bottom: '5%', left: '50%', transform: 'translateX(-50%)' } // Bottom center
                   ];
 
                   const position = positions[index] || positions[0];
