@@ -79,13 +79,13 @@ const BuyerPainPointsSection = () => {
   const currentContent = activeRole === "buyer" ? buyerContent : qualityContent;
 
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-12 sm:space-y-16"
+          className="space-y-6 sm:space-y-8"
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
@@ -124,7 +124,7 @@ const BuyerPainPointsSection = () => {
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}
-          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[1000px]">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[800px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
               {/* Soft glowing gradient background with concentric colored rings - equal spacing */}
