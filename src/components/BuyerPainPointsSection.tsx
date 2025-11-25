@@ -31,12 +31,8 @@ const BuyerPainPointsSection = () => {
         textFull: "Planning, booking & traveling for manual audits"
       },
       {
-        text: "Chasing audit reports weeks after audit completion",
-        textFull: "Chasing audit reports weeks after audit completion"
-      },
-      {
-        text: "Following up NCs/OFIs & managing",
-        textFull: "Following up NCs/OFIs & managing"
+        text: "Chasing audit reports weeks after audit completion & following up NCs/OFIs",
+        textFull: "Chasing audit reports weeks after audit completion & following up NCs/OFIs"
       }
     ]
   };
@@ -66,12 +62,8 @@ const BuyerPainPointsSection = () => {
         textFull: "Coordinating logistics with email & spreadsheets"
       },
       {
-        text: "Following up findings manually across systems",
-        textFull: "Following up findings manually across systems"
-      },
-      {
-        text: "Employing auditors permanently",
-        textFull: "Employing auditors permanently"
+        text: "Following up findings manually across systems & employing auditors permanently",
+        textFull: "Following up findings manually across systems & employing auditors permanently"
       }
     ]
   };
@@ -215,8 +207,7 @@ const BuyerPainPointsSection = () => {
                     { top: '50%', left: '0%', transform: 'translateY(-50%)' },       // Middle left - centered
                     { top: '50%', right: '0%', transform: 'translateY(-50%)' },      // Middle right - centered
                     { top: '68%', left: '2%' },       // Lower left
-                    { top: '68%', right: '2%' },      // Lower right
-                    { bottom: '8%', left: 'calc(50% - 173px)' } // Bottom center
+                    { top: '68%', right: '2%' }       // Lower right
                   ];
 
                   const position = positions[index] || positions[0];
