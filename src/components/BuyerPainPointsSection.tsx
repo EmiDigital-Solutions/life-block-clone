@@ -135,6 +135,11 @@ const BuyerPainPointsSection = () => {
                 }}
               ></div>
 
+              {/* Concentric rings */}
+              <div className="absolute w-[500px] h-[500px] sm:w-[750px] sm:h-[750px] md:w-[850px] md:h-[850px] rounded-full border border-gray-200/40 z-0"></div>
+              <div className="absolute w-[550px] h-[550px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] rounded-full border border-gray-200/30 z-0"></div>
+              <div className="absolute w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] md:w-[950px] md:h-[950px] rounded-full border border-gray-200/20 z-0"></div>
+
               {/* Photo overlay - natural rectangular shape */}
               <motion.div 
                 key={activeRole}
