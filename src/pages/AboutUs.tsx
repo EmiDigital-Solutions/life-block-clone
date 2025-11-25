@@ -113,7 +113,7 @@ const AboutUs = () => {
                     />
                     {/* Touch flash effect */}
                     <motion.div
-                      className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                      className="absolute inset-0 bg-primary pointer-events-none"
                       initial={{ opacity: 0 }}
                       whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
                     />
@@ -124,14 +124,14 @@ const AboutUs = () => {
               
               {/* Geometric accent lines */}
               <motion.div 
-                className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-[#A8C5B8]"
+                className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-primary"
                 initial={{ opacity: 0, x: -10, y: -10 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               />
               <motion.div 
-                className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-[#A8B8CA]"
+                className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-secondary"
                 initial={{ opacity: 0, x: 10, y: 10 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
@@ -148,7 +148,7 @@ const AboutUs = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="space-y-6">
-                <div className="w-12 h-0.5 bg-[#A8C5B8]" />
+                <div className="w-12 h-0.5 bg-primary" />
                 <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-black">
                   Building the Global B2B Platform
                 </h1>
@@ -158,8 +158,8 @@ const AboutUs = () => {
               </div>
               
               <div className="flex gap-1.5">
-                <div className="w-10 h-0.5 bg-[#A8C5B8]" />
-                <div className="w-6 h-0.5 bg-[#A8B8CA]" />
+                <div className="w-10 h-0.5 bg-primary" />
+                <div className="w-6 h-0.5 bg-secondary" />
                 <div className="w-3 h-0.5 bg-gray-300" />
               </div>
             </motion.div>
@@ -178,7 +178,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-12 h-0.5 bg-[#A8C5B8] mx-auto" />
+            <div className="w-12 h-0.5 bg-primary mx-auto" />
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
               Our Mission
             </h2>
@@ -203,7 +203,7 @@ const AboutUs = () => {
           >
             <div className="text-center">
               <h2 className="text-4xl md:text-5xl font-bold text-black">
-                Core <span className="text-[#A8C5B8] font-black drop-shadow-sm">Principles</span>
+                Core <span className="text-primary font-black drop-shadow-sm">Principles</span>
               </h2>
             </div>
 
@@ -223,7 +223,7 @@ const AboutUs = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <div className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#A8C5B8] flex-shrink-0 mt-1 drop-shadow-md" strokeWidth={4} />
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1 drop-shadow-md" strokeWidth={4} />
                     <div>
                       <h3 className="text-xl font-bold text-black mb-2">{principle.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{principle.desc}</p>
@@ -260,13 +260,13 @@ const AboutUs = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Green highlight on specific objects - like helmet reference */}
+                {/* Green highlight on specific objects */}
                 <div 
                   className="absolute inset-0"
                   style={{
                     background: `
-                      radial-gradient(ellipse 180px 160px at 45% 35%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.6) 30%, transparent 60%),
-                      radial-gradient(ellipse 140px 120px at 65% 55%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.5) 28%, transparent 55%)
+                      radial-gradient(ellipse 180px 160px at 45% 35%, hsl(var(--primary) / 0.9) 0%, hsl(var(--primary) / 0.6) 30%, transparent 60%),
+                      radial-gradient(ellipse 140px 120px at 65% 55%, hsl(var(--primary) / 0.85) 0%, hsl(var(--primary) / 0.5) 28%, transparent 55%)
                     `,
                     mixBlendMode: 'overlay'
                   }}
@@ -283,7 +283,7 @@ const AboutUs = () => {
               className="space-y-8"
             >
               <div className="space-y-4">
-                <div className="text-sm font-black uppercase tracking-wider text-[#A8C5B8] drop-shadow-sm">
+                <div className="text-sm font-black uppercase tracking-wider text-primary drop-shadow-sm">
                   Environmental Commitment
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
@@ -298,8 +298,8 @@ const AboutUs = () => {
               </p>
 
               <div className="flex gap-1.5 pt-4">
-                <div className="w-10 h-0.5 bg-[#A8C5B8]" />
-                <div className="w-6 h-0.5 bg-[#A8B8CA]" />
+                <div className="w-10 h-0.5 bg-primary" />
+                <div className="w-6 h-0.5 bg-secondary" />
               </div>
             </motion.div>
 
@@ -318,7 +318,7 @@ const AboutUs = () => {
             className="space-y-16"
           >
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-black text-[#A8C5B8] drop-shadow-md">
+              <h2 className="text-4xl md:text-5xl font-black text-primary drop-shadow-md">
                 Our Journey
               </h2>
             </div>
@@ -337,12 +337,16 @@ const AboutUs = () => {
                       className="w-4 h-4 rounded-sm transition-all"
                       whileHover={{ scale: 1.2 }}
                       style={{
-                        backgroundColor: selectedYear === item.year ? '#A8C5B8' : '#d1d5db',
+                        backgroundColor: selectedYear === item.year ? 'hsl(var(--primary))' : '#d1d5db',
                       }}
                     />
                     <span 
                       className="text-sm font-semibold transition-colors"
-                      style={{ color: selectedYear === item.year ? '#A8C5B8' : '#9ca3af', fontWeight: selectedYear === item.year ? '900' : '600', textShadow: selectedYear === item.year ? '0 1px 2px rgba(0,0,0,0.1)' : 'none' }}
+                      style={{ 
+                        color: selectedYear === item.year ? 'hsl(var(--primary))' : '#9ca3af', 
+                        fontWeight: selectedYear === item.year ? '900' : '600', 
+                        textShadow: selectedYear === item.year ? '0 1px 2px rgba(0,0,0,0.1)' : 'none' 
+                      }}
                     >
                       {item.year}
                     </span>
@@ -367,13 +371,13 @@ const AboutUs = () => {
                     className="w-full h-full object-cover"
                     style={{ filter: 'grayscale(100%)' }}
                   />
-                  {/* Green highlight on specific objects - like helmet reference */}
+                  {/* Green highlight on specific objects */}
                   <div 
                     className="absolute inset-0"
                     style={{
                       background: `
-                        radial-gradient(ellipse 200px 180px at 50% 40%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.55) 28%, transparent 58%),
-                        radial-gradient(ellipse 120px 100px at 35% 60%, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.45) 25%, transparent 52%)
+                        radial-gradient(ellipse 200px 180px at 50% 40%, hsl(var(--primary) / 0.9) 0%, hsl(var(--primary) / 0.55) 28%, transparent 58%),
+                        radial-gradient(ellipse 120px 100px at 35% 60%, hsl(var(--primary) / 0.8) 0%, hsl(var(--primary) / 0.45) 25%, transparent 52%)
                       `,
                       mixBlendMode: 'overlay'
                     }}
@@ -390,77 +394,57 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* LEADERSHIP - Split Layout */}
+      {/* LEADERSHIP - Photo + Team */}
       <section data-nav-theme="light" className="py-32 bg-gray-50">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Content */}
+          <div className="grid lg:grid-cols-2 gap-16">
+            
+            {/* Leadership Team Photo */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="space-y-8 lg:order-1"
+              className="relative aspect-[4/3] overflow-hidden rounded-2xl"
             >
-              <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-black">
-                  Leadership <span className="text-[#A8B8CA]">Team</span>
-                </h2>
-              </div>
-              
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Our leadership brings together entrepreneurial expertise and deep industry knowledge—a combination 
-                that drives innovation in AI-powered procurement and global supplier verification.
-              </p>
-
-              <Button 
-                variant="outline" 
-                className="rounded-full border-3 border-[#A8C5B8] text-[#A8C5B8] font-bold hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
-              >
-                Learn More
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <img 
+                src={leadershipTeamImage} 
+                alt="Leadership Team" 
+                className="w-full h-full object-cover"
+                style={{ filter: 'grayscale(100%)' }}
+              />
             </motion.div>
 
-            {/* Photo */}
+            {/* Team Info */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative lg:order-2"
+              className="flex flex-col justify-center space-y-8"
             >
-              <div className="aspect-[4/3] overflow-hidden bg-gray-200">
-                <motion.img 
-                  src={leadershipTeamImage} 
-                  alt="YVOO Leadership Team" 
-                  className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%)' }}
-                  initial={{ scale: 1.1 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1 }}
-                />
-                {/* Green highlight on specific objects - like helmet reference */}
-                <div 
-                  className="absolute inset-0"
-                  style={{
-                    background: `
-                      radial-gradient(ellipse 150px 140px at 30% 45%, rgba(168, 197, 184, 0.88) 0%, rgba(168, 197, 184, 0.52) 30%, transparent 60%),
-                      radial-gradient(ellipse 130px 120px at 70% 40%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.48) 28%, transparent 58%)
-                    `,
-                    mixBlendMode: 'overlay'
-                  }}
-                />
-              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-black">
+                Leadership <span className="text-secondary">Team</span>
+              </h2>
+              
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Our diverse leadership team brings decades of experience in manufacturing, 
+                supply chain management, technology, and quality assurance. United by a shared 
+                vision of transforming B2B procurement through innovation and trust.
+              </p>
+
+              <button
+                className="rounded-full border-3 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
+              >
+                Meet the Team <ArrowRight className="inline-block ml-2 w-5 h-5" />
+              </button>
             </motion.div>
 
           </div>
         </div>
       </section>
 
-      {/* LOCATIONS - Minimal List */}
+      {/* LOCATIONS - Interactive Map Section */}
       <section data-nav-theme="light" className="py-32 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div
@@ -471,44 +455,46 @@ const AboutUs = () => {
             className="space-y-16"
           >
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">
-                Global <span className="text-[#A8B8CA]">Locations</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                Global <span className="text-secondary">Locations</span>
               </h2>
+              <p className="text-lg text-gray-600">
+                Our offices serve as hubs for innovation and collaboration
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12">
-              {/* Location Selector */}
-              <div className="space-y-2">
+              <div className="space-y-4">
                 {Object.entries(locations).map(([key, location]) => (
-                  <motion.button
+                  <button
                     key={key}
                     onClick={() => setSelectedLocation(key)}
-                    className="w-full text-left px-6 py-4 transition-all"
-                    whileHover={{ x: 4 }}
+                    className="w-full text-left px-6 py-4 rounded-xl transition-all duration-300"
                     style={{
-                      backgroundColor: selectedLocation === key ? '#A8C5B8' : 'transparent',
-                      color: selectedLocation === key ? 'white' : 'black',
-                      borderLeft: selectedLocation === key ? 'none' : '2px solid #e5e7eb'
+                      backgroundColor: selectedLocation === key ? 'hsl(var(--primary))' : 'transparent',
+                      border: '2px solid',
+                      borderColor: selectedLocation === key ? 'hsl(var(--primary))' : '#e5e7eb',
+                      color: selectedLocation === key ? 'white' : '#111827'
                     }}
                   >
-                    <span className="font-semibold text-lg">{location.name}</span>
-                  </motion.button>
+                    <h3 className="text-xl font-bold mb-1">{location.name}</h3>
+                    <p className="text-sm opacity-70">{location.address.split(',')[location.address.split(',').length - 1]}</p>
+                  </button>
                 ))}
               </div>
 
-              {/* Location Details */}
               <motion.div
                 key={selectedLocation}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-6 p-8 bg-gray-50"
+                transition={{ duration: 0.4 }}
+                className="bg-gray-50 rounded-2xl p-8 space-y-4"
               >
-                <h3 className="text-2xl font-bold text-black">{selectedLocationData.name}</h3>
-                <div className="space-y-3 text-gray-600">
-                  <p><span className="font-semibold text-[#A8B8CA]">Address:</span> {selectedLocationData.address}</p>
-                  <p><span className="font-semibold text-[#A8B8CA]">Phone:</span> {selectedLocationData.phone}</p>
-                  <p><span className="font-semibold text-[#A8B8CA]">Email:</span> {selectedLocationData.email}</p>
+                <h3 className="text-2xl font-bold text-black mb-6">{selectedLocationData.name}</h3>
+                <div className="space-y-3 text-gray-700">
+                  <p><span className="font-semibold text-secondary">Address:</span> {selectedLocationData.address}</p>
+                  <p><span className="font-semibold text-secondary">Phone:</span> {selectedLocationData.phone}</p>
+                  <p><span className="font-semibold text-secondary">Email:</span> {selectedLocationData.email}</p>
                 </div>
               </motion.div>
             </div>
@@ -516,34 +502,33 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* CTA SECTION - Full Width */}
-      <section data-nav-theme="light" className="py-32 bg-black text-white">
-        <div className="container mx-auto px-6 max-w-4xl">
+      {/* CTA SECTION */}
+      <section data-nav-theme="light" className="py-32 bg-gray-50">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center space-y-8"
+            className="space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Ready to Transform Your Procurement?
+            <h2 className="text-4xl md:text-5xl font-bold text-black">
+              Join Us in Transforming B2B Procurement
             </h2>
-            <p className="text-xl text-gray-400">
-              Join leading enterprises achieving 70% cost reduction and 80% time savings.
+            <p className="text-xl text-gray-600">
+              Whether you're a buyer, supplier, or auditor — let's build the future together
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button 
-                className="bg-[#A8C5B8] text-black hover:bg-[#A8C5B8]/90 rounded-full px-8 py-6 text-base font-semibold"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                className="bg-primary text-black hover:bg-primary/90 rounded-full px-8 py-6 text-base font-semibold"
               >
-                Request Demo
-                <ArrowRight className="ml-2 w-4 h-4" />
+                Get Started <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-full px-8 py-6 text-base font-semibold"
+              <Button
+                variant="outline"
+                className="rounded-full px-8 py-6 text-base font-semibold"
               >
-                Contact Sales
+                Contact Us
               </Button>
             </div>
           </motion.div>
