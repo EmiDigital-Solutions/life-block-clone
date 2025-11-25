@@ -127,15 +127,21 @@ const BuyerPainPointsSection = () => {
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[1000px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
-              {/* Soft glowing gradient background with concentric colored rings */}
+              {/* Soft glowing gradient background with concentric colored rings - equal spacing */}
               <div 
-                className="absolute w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] md:w-[950px] md:h-[950px] rounded-full z-0"
+                className="absolute w-[620px] h-[620px] sm:w-[920px] sm:h-[920px] md:w-[980px] md:h-[980px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 197, 184, 0.15) 0%, rgba(168, 197, 184, 0.1) 50%, rgba(168, 197, 184, 0) 100%)"
+                  background: "radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, rgba(168, 197, 184, 0.08) 50%, rgba(168, 197, 184, 0) 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[550px] h-[550px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] rounded-full z-0"
+                className="absolute w-[580px] h-[580px] sm:w-[880px] sm:h-[880px] md:w-[920px] md:h-[920px] rounded-full z-0"
+                style={{ 
+                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.15) 0%, rgba(168, 184, 202, 0.1) 50%, rgba(168, 184, 202, 0) 100%)"
+                }}
+              ></div>
+              <div 
+                className="absolute w-[520px] h-[520px] sm:w-[820px] sm:h-[820px] md:w-[860px] md:h-[860px] rounded-full z-0"
                 style={{ 
                   background: "radial-gradient(circle, rgba(168, 184, 202, 0.2) 0%, rgba(168, 184, 202, 0.15) 50%, rgba(168, 184, 202, 0) 100%)"
                 }}
