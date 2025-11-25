@@ -1,444 +1,693 @@
 import { motion } from "framer-motion";
-import { FileText, MousePointerClick, Users, Building2 } from "lucide-react";
+import { FileCheck, MousePointerClick, Users, ClipboardCheck } from "lucide-react";
 
-const workflowSteps = [
+const featureCards = [
   {
     id: "ai-framework",
     title: "AI-Generated Audit Framework & Auditor Guidance",
     description: "AI builds a customized audit framework and guidance, adapting to your specific aspect objective",
-    icon: FileText,
-    position: { desktop: "top-0 left-0", mobile: "top-0" },
-    color: "#A8C5B8"
+    icon: FileCheck,
   },
   {
     id: "one-click",
     title: "1-Click Audit Request",
     description: "Instant Audit Request tailored to your compliance needs",
     icon: MousePointerClick,
-    position: { desktop: "top-0 left-1/2 -translate-x-1/2", mobile: "top-24" },
-    color: "#A8BFC5"
   },
   {
     id: "assignment",
     title: "Auditor Assignment",
     description: "Global network of auditors assigned based on location and expertise",
     icon: Users,
-    position: { desktop: "top-0 right-0", mobile: "top-48" },
-    color: "#A8C5B8"
-  },
-  {
-    id: "evaluation",
-    title: "Supplier On-Site Evaluation",
-    description: "Professional on-site inspection and assessment",
-    icon: Building2,
-    position: { desktop: "top-80 left-1/2 -translate-x-1/2", mobile: "top-72" },
-    color: "#A8BFC5"
   }
 ];
 
+// Central Hub Icon with glow effect
 const CentralHub = () => (
   <motion.div
-    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+    className="absolute left-1/2 top-[280px] -translate-x-1/2 z-20"
     initial={{ scale: 0, opacity: 0 }}
     whileInView={{ scale: 1, opacity: 1 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.8, delay: 0.3 }}
+    transition={{ duration: 0.8, delay: 0.4 }}
   >
-    {/* Outer glow ring */}
+    {/* Outer glow */}
     <motion.div
       className="absolute inset-0 rounded-full"
       style={{
-        width: '120px',
-        height: '120px',
-        background: 'radial-gradient(circle, rgba(168, 197, 184, 0.3) 0%, rgba(168, 191, 197, 0.2) 50%, transparent 100%)',
-        filter: 'blur(20px)',
+        width: '100px',
+        height: '100px',
+        background: 'radial-gradient(circle, rgba(52, 224, 255, 0.4) 0%, rgba(52, 224, 255, 0.1) 50%, transparent 100%)',
+        filter: 'blur(15px)',
+        transform: 'translate(-50%, -50%)',
+        left: '50%',
+        top: '50%',
       }}
       animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.5, 0.8, 0.5],
+        scale: [1, 1.3, 1],
+        opacity: [0.6, 1, 0.6],
       }}
       transition={{
-        duration: 3,
+        duration: 2.5,
         repeat: Infinity,
         ease: "easeInOut"
       }}
     />
     
-    {/* Middle ring */}
-    <div className="relative w-24 h-24 rounded-full border-2 flex items-center justify-center"
-         style={{ borderColor: '#A8C5B8', background: 'rgba(0, 0, 0, 0.8)' }}>
-      {/* Inner glow */}
-      <motion.div
-        className="absolute inset-2 rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(168, 197, 184, 0.4) 0%, transparent 70%)',
-        }}
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
+    {/* Main circle */}
+    <div 
+      className="relative w-20 h-20 rounded-full flex items-center justify-center"
+      style={{ 
+        background: '#000',
+        border: '2px solid #34E0FF',
+        boxShadow: '0 0 20px rgba(52, 224, 255, 0.5)',
+      }}
+    >
       {/* Atom icon */}
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="relative z-10">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <motion.circle
-          cx="20"
-          cy="20"
-          r="3"
-          fill="#A8C5B8"
-          animate={{ scale: [1, 1.2, 1] }}
+          cx="18"
+          cy="18"
+          r="2.5"
+          fill="#34E0FF"
+          animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
         <motion.ellipse
-          cx="20"
-          cy="20"
-          rx="15"
-          ry="8"
-          stroke="#A8BFC5"
-          strokeWidth="1.5"
+          cx="18"
+          cy="18"
+          rx="13"
+          ry="7"
+          stroke="#34E0FF"
+          strokeWidth="1"
           fill="none"
-          style={{ transformOrigin: 'center' }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         />
         <motion.ellipse
-          cx="20"
-          cy="20"
-          rx="15"
-          ry="8"
-          stroke="#A8BFC5"
-          strokeWidth="1.5"
+          cx="18"
+          cy="18"
+          rx="13"
+          ry="7"
+          stroke="#41FFB1"
+          strokeWidth="1"
           fill="none"
-          style={{ transformOrigin: 'center' }}
           animate={{ rotate: -360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          transform="rotate(60 20 20)"
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          transform="rotate(60 18 18)"
         />
         <motion.ellipse
-          cx="20"
-          cy="20"
-          rx="15"
-          ry="8"
-          stroke="#A8BFC5"
-          strokeWidth="1.5"
+          cx="18"
+          cy="18"
+          rx="13"
+          ry="7"
+          stroke="#34E0FF"
+          strokeWidth="1"
           fill="none"
-          style={{ transformOrigin: 'center' }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          transform="rotate(-60 20 20)"
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          transform="rotate(-60 18 18)"
         />
       </svg>
     </div>
   </motion.div>
 );
 
-const DottedLine = ({ fromStep, delay }: { fromStep: number; delay: number }) => {
-  const lines = [
-    { from: "top-0 left-[20%]", to: "top-1/2 left-1/2", length: "h-64" }, // AI to center
-    { from: "top-0 left-1/2", to: "top-1/2 left-1/2", length: "h-48" }, // 1-Click to center
-    { from: "top-0 right-[20%]", to: "top-1/2 left-1/2", length: "h-64" }, // Assignment to center
-    { from: "top-80 left-1/2", to: "top-1/2 left-1/2", length: "h-32" }, // Evaluation to center
-  ];
-
-  return (
-    <motion.div
-      className="absolute hidden lg:block"
-      style={{
-        left: '50%',
-        top: fromStep === 3 ? '65%' : '15%',
-        height: fromStep === 3 ? '15%' : '35%',
-        width: '2px',
-        transformOrigin: 'top',
-      }}
-      initial={{ scaleY: 0, opacity: 0 }}
-      whileInView={{ scaleY: 1, opacity: 1 }}
+// Dotted connection line component
+const DottedConnection = ({ 
+  fromX, 
+  fromY, 
+  toX, 
+  toY, 
+  delay = 0 
+}: { 
+  fromX: string; 
+  fromY: string; 
+  toX: string; 
+  toY: string; 
+  delay?: number;
+}) => (
+  <motion.svg
+    className="absolute top-0 left-0 w-full h-full pointer-events-none"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, delay }}
+  >
+    <motion.line
+      x1={fromX}
+      y1={fromY}
+      x2={toX}
+      y2={toY}
+      stroke="#34E0FF"
+      strokeWidth="1"
+      strokeDasharray="4 4"
+      opacity="0.6"
+      initial={{ pathLength: 0 }}
+      whileInView={{ pathLength: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay }}
-    >
-      <svg width="2" height="100%" className="w-full h-full">
-        <line
-          x1="1"
-          y1="0"
-          x2="1"
-          y2="100%"
-          stroke="#A8C5B8"
-          strokeWidth="2"
-          strokeDasharray="4 4"
-          opacity="0.6"
-        />
-      </svg>
-      
-      {/* Animated dot */}
-      <motion.div
-        className="absolute w-2 h-2 rounded-full left-1/2 -translate-x-1/2"
-        style={{ backgroundColor: '#A8C5B8' }}
-        animate={{
-          top: ['0%', '100%'],
-          opacity: [0, 1, 1, 0],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: delay + 0.5,
-        }}
-      />
-    </motion.div>
-  );
-};
+      transition={{ duration: 1.5, delay }}
+    />
+  </motion.svg>
+);
+
+// World map dot pattern
+const WorldMapDots = () => (
+  <motion.div
+    className="absolute inset-0 pointer-events-none opacity-30"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 0.3 }}
+    viewport={{ once: true }}
+    transition={{ duration: 1.5 }}
+  >
+    <div 
+      className="absolute inset-0"
+      style={{
+        backgroundImage: `
+          radial-gradient(circle at 30% 50%, #34E0FF 0.5px, transparent 0.5px),
+          radial-gradient(circle at 70% 50%, #34E0FF 0.5px, transparent 0.5px),
+          radial-gradient(circle at 50% 40%, #34E0FF 0.5px, transparent 0.5px)
+        `,
+        backgroundSize: '20px 20px, 20px 20px, 20px 20px',
+        backgroundPosition: '0 0, 10px 10px, 5px 5px',
+        maskImage: 'radial-gradient(ellipse 800px 400px at center, black 40%, transparent 70%)',
+      }}
+    />
+  </motion.div>
+);
 
 export const HowItWorksSection = () => {
   return (
     <section
       data-nav-theme="light"
-      className="relative bg-black py-24 sm:py-32 lg:py-40 px-6 sm:px-8 lg:px-16 overflow-hidden"
+      className="relative overflow-hidden"
+      style={{ background: '#0A0A0A' }}
     >
-      {/* CTA Button at top */}
-      <div className="max-w-7xl mx-auto mb-20 text-center">
-        <motion.button
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-32 py-32 lg:py-40">
+        
+        {/* Top CTA Button */}
+        <motion.div 
+          className="flex justify-center mb-32"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center gap-3 px-10 py-4 text-black text-sm tracking-wider uppercase font-black rounded-full transition-all duration-300 shadow-lg"
-          style={{ backgroundColor: '#A8C5B8' }}
+          transition={{ duration: 0.6 }}
         >
-          Find Your Auditor Now
-        </motion.button>
-      </div>
+          <motion.button
+            className="px-8 py-3 rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300"
+            style={{ 
+              background: 'transparent',
+              border: '1.5px solid #34E0FF',
+              color: '#34E0FF',
+            }}
+            whileHover={{ 
+              background: '#34E0FF',
+              color: '#000',
+              boxShadow: '0 0 20px rgba(52, 224, 255, 0.5)',
+            }}
+          >
+            Find Your Auditor Now
+          </motion.button>
+        </motion.div>
 
-      {/* Workflow Visualization */}
-      <div className="max-w-7xl mx-auto mb-32">
-        <div className="relative min-h-[800px] lg:min-h-[600px]">
-          {/* Workflow Cards */}
-          {workflowSteps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              className={`absolute ${step.position.desktop} hidden lg:block w-80`}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-            >
-              <div 
-                className="relative bg-black/50 backdrop-blur-sm border-2 rounded-2xl p-6 space-y-4 hover:bg-black/70 transition-all duration-300"
-                style={{ borderColor: step.color }}
-              >
-                {/* Icon */}
-                <div 
-                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-4"
-                  style={{ 
-                    backgroundColor: `${step.color}20`,
-                    border: `2px solid ${step.color}`
-                  }}
-                >
-                  <step.icon className="w-8 h-8" style={{ color: step.color, strokeWidth: 2.5 }} />
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-xl font-black leading-tight" style={{ color: step.color }}>
-                  {step.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-sm text-white/80 font-light leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-
-              {/* Connection Line to Hub */}
-              {index < 3 && (
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 top-full w-0.5 origin-top"
-                  style={{ 
-                    height: index === 0 || index === 2 ? '180px' : '140px',
-                    background: `linear-gradient(180deg, ${step.color} 0%, transparent 100%)`
-                  }}
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
-                >
-                  <svg width="2" height="100%" className="w-full h-full">
-                    <line
-                      x1="1"
-                      y1="0"
-                      x2="1"
-                      y2="100%"
-                      stroke={step.color}
-                      strokeWidth="2"
-                      strokeDasharray="6 6"
-                      opacity="0.8"
-                    />
-                  </svg>
-                  
-                  {/* Animated pulse dot */}
-                  <motion.div
-                    className="absolute w-2 h-2 rounded-full left-1/2 -translate-x-1/2"
-                    style={{ backgroundColor: step.color, boxShadow: `0 0 10px ${step.color}` }}
-                    animate={{
-                      top: ['0%', '100%'],
-                      opacity: [0, 1, 1, 0],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.5,
-                    }}
-                  />
-                </motion.div>
-              )}
-
-              {/* Line from Evaluation (bottom) to Hub */}
-              {index === 3 && (
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 bottom-full w-0.5 origin-bottom"
-                  style={{ 
-                    height: '100px',
-                    background: `linear-gradient(0deg, ${step.color} 0%, transparent 100%)`
-                  }}
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                  <svg width="2" height="100%" className="w-full h-full">
-                    <line
-                      x1="1"
-                      y1="0"
-                      x2="1"
-                      y2="100%"
-                      stroke={step.color}
-                      strokeWidth="2"
-                      strokeDasharray="6 6"
-                      opacity="0.8"
-                    />
-                  </svg>
-                  
-                  {/* Animated pulse dot */}
-                  <motion.div
-                    className="absolute w-2 h-2 rounded-full left-1/2 -translate-x-1/2"
-                    style={{ backgroundColor: step.color, boxShadow: `0 0 10px ${step.color}` }}
-                    animate={{
-                      bottom: ['0%', '100%'],
-                      opacity: [0, 1, 1, 0],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.5,
-                    }}
-                  />
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
-
-          {/* Mobile Layout - Stacked */}
-          <div className="lg:hidden space-y-8">
-            {workflowSteps.map((step, index) => (
+        {/* Three Feature Cards + Central Hub */}
+        <div className="relative mb-40">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-24">
+            {featureCards.map((card, index) => (
               <motion.div
-                key={`mobile-${step.id}`}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                key={card.id}
                 className="relative"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
               >
-                <div 
-                  className="bg-black/50 backdrop-blur-sm border-2 rounded-2xl p-6 space-y-4"
-                  style={{ borderColor: step.color }}
+                <motion.div
+                  className="p-8 rounded-2xl h-full"
+                  style={{
+                    background: '#000',
+                    border: '1px solid #34E0FF',
+                  }}
+                  whileHover={{
+                    boxShadow: '0 0 30px rgba(52, 224, 255, 0.3)',
+                  }}
+                  transition={{ duration: 0.3 }}
                 >
+                  {/* Icon */}
                   <div 
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-3"
-                    style={{ 
-                      backgroundColor: `${step.color}20`,
-                      border: `2px solid ${step.color}`
+                    className="w-16 h-16 rounded-lg flex items-center justify-center mb-6"
+                    style={{
+                      border: '1px solid #34E0FF',
+                      background: 'rgba(52, 224, 255, 0.05)',
                     }}
                   >
-                    <step.icon className="w-7 h-7" style={{ color: step.color, strokeWidth: 2.5 }} />
+                    <card.icon 
+                      className="w-8 h-8" 
+                      style={{ color: '#34E0FF', strokeWidth: 1.5 }} 
+                    />
                   </div>
-                  
-                  <h3 className="text-lg font-black leading-tight" style={{ color: step.color }}>
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-sm text-white/80 font-light leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
 
-                {/* Mobile connecting line */}
-                {index < workflowSteps.length - 1 && (
-                  <motion.div
-                    className="absolute left-8 top-full w-0.5 h-8 origin-top"
-                    style={{ background: `linear-gradient(180deg, ${step.color} 0%, ${workflowSteps[index + 1].color} 100%)` }}
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                  />
-                )}
+                  {/* Title */}
+                  <h3 
+                    className="text-lg font-semibold mb-4 leading-tight"
+                    style={{ color: '#34E0FF' }}
+                  >
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p 
+                    className="text-sm leading-relaxed"
+                    style={{ color: '#FAFAFA', opacity: 0.8 }}
+                  >
+                    {card.description}
+                  </p>
+                </motion.div>
               </motion.div>
             ))}
           </div>
 
-          {/* Central Hub - Desktop Only */}
+          {/* Connection Lines - Desktop only */}
+          <div className="hidden lg:block absolute top-0 left-0 w-full h-[400px]">
+            {/* Left card to center */}
+            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+              <motion.line
+                x1="16.66%"
+                y1="220"
+                x2="50%"
+                y2="280"
+                stroke="#34E0FF"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.5 }}
+              />
+              {/* Animated dot */}
+              <motion.circle
+                r="2"
+                fill="#34E0FF"
+                animate={{
+                  cx: ['16.66%', '50%'],
+                  cy: [220, 280],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.8,
+                }}
+              />
+            </svg>
+
+            {/* Center card to center */}
+            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+              <motion.line
+                x1="50%"
+                y1="220"
+                x2="50%"
+                y2="280"
+                stroke="#34E0FF"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.6 }}
+              />
+              {/* Animated dot */}
+              <motion.circle
+                r="2"
+                fill="#34E0FF"
+                animate={{
+                  cx: '50%',
+                  cy: [220, 280],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+              />
+            </svg>
+
+            {/* Right card to center */}
+            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+              <motion.line
+                x1="83.33%"
+                y1="220"
+                x2="50%"
+                y2="280"
+                stroke="#34E0FF"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.7 }}
+              />
+              {/* Animated dot */}
+              <motion.circle
+                r="2"
+                fill="#34E0FF"
+                animate={{
+                  cx: ['83.33%', '50%'],
+                  cy: [220, 280],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.2,
+                }}
+              />
+            </svg>
+          </div>
+
+          {/* Central Hub - Desktop only */}
           <div className="hidden lg:block">
             <CentralHub />
           </div>
         </div>
-      </div>
 
-      {/* Network Stats */}
-      <div className="max-w-7xl mx-auto mb-20">
+        {/* Supplier On-Site Evaluation Section */}
         <motion.div
+          className="relative mb-40 flex flex-col items-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center space-y-12"
         >
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+          {/* Dotted line from hub to evaluation */}
+          <div className="hidden lg:block absolute top-[-120px] left-1/2 -translate-x-1/2 w-px h-24">
+            <svg width="2" height="100%" className="w-full h-full">
+              <motion.line
+                x1="1"
+                y1="0"
+                x2="1"
+                y2="100%"
+                stroke="#34E0FF"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.6"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.8 }}
+              />
+            </svg>
+            <motion.div
+              className="absolute w-2 h-2 rounded-full left-1/2 -translate-x-1/2"
+              style={{ background: '#34E0FF' }}
+              animate={{
+                top: ['0%', '100%'],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.5,
+              }}
+            />
+          </div>
+
+          <div className="flex items-center gap-6">
+            {/* Simple icon illustration */}
+            <div 
+              className="w-20 h-20 rounded-lg flex items-center justify-center"
+              style={{
+                border: '1px solid #41FFB1',
+                background: 'rgba(65, 255, 177, 0.05)',
+              }}
+            >
+              <ClipboardCheck 
+                className="w-10 h-10" 
+                style={{ color: '#41FFB1', strokeWidth: 1.5 }} 
+              />
+            </div>
+            
+            <div>
+              <h3 
+                className="text-2xl font-semibold mb-2"
+                style={{ color: '#FAFAFA' }}
+              >
+                Supplier On-Site Evaluation
+              </h3>
+              <p 
+                className="text-sm"
+                style={{ color: '#FAFAFA', opacity: 0.7 }}
+              >
+                Professional on-site inspection and assessment
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Global Network Map Section */}
+        <motion.div
+          className="relative mb-40 min-h-[500px]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          <WorldMapDots />
+          
+          {/* Floating auditor cards */}
+          {[
+            { x: '15%', y: '30%', delay: 0.2 },
+            { x: '75%', y: '25%', delay: 0.4 },
+            { x: '25%', y: '65%', delay: 0.6 },
+            { x: '80%', y: '70%', delay: 0.8 },
+          ].map((pos, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{ left: pos.x, top: pos.y }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: pos.delay }}
+            >
+              <motion.div
+                className="px-4 py-2 rounded-lg backdrop-blur-sm"
+                style={{
+                  background: 'rgba(0, 0, 0, 0.8)',
+                  border: '1px solid #34E0FF',
+                  boxShadow: '0 0 15px rgba(52, 224, 255, 0.2)',
+                }}
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.5,
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <div 
+                    className="w-2 h-2 rounded-full"
+                    style={{ background: '#41FFB1' }}
+                  />
+                  <span 
+                    className="text-xs font-medium"
+                    style={{ color: '#FAFAFA' }}
+                  >
+                    Auditor #{i + 1}
+                  </span>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Device Mockup Section */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div 
+            className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden"
+            style={{
+              background: '#000',
+              border: '2px solid #34E0FF',
+              boxShadow: '0 0 40px rgba(52, 224, 255, 0.3)',
+            }}
+          >
+            {/* Mockup header */}
+            <div 
+              className="px-6 py-4 flex items-center justify-between"
+              style={{ borderBottom: '1px solid rgba(52, 224, 255, 0.2)' }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full" style={{ background: '#FF5F56' }} />
+                <div className="w-3 h-3 rounded-full" style={{ background: '#FFBD2E' }} />
+                <div className="w-3 h-3 rounded-full" style={{ background: '#27C93F' }} />
+              </div>
+              <span 
+                className="text-xs font-medium tracking-wide"
+                style={{ color: '#34E0FF' }}
+              >
+                AUDIT REPORT
+              </span>
+              <button
+                className="px-4 py-1.5 rounded-full text-xs font-medium"
+                style={{
+                  background: '#34E0FF',
+                  color: '#000',
+                }}
+              >
+                BOOK DEMO
+              </button>
+            </div>
+
+            {/* Mockup content */}
+            <div className="p-8 space-y-6">
+              {/* Report sections */}
+              <div className="grid grid-cols-2 gap-6">
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{ background: 'rgba(52, 224, 255, 0.05)' }}
+                >
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full"
+                    style={{ border: '2px solid #41FFB1' }}
+                  />
+                  <div className="space-y-2">
+                    <div className="h-2 rounded" style={{ background: 'rgba(52, 224, 255, 0.3)', width: '80%' }} />
+                    <div className="h-2 rounded" style={{ background: 'rgba(52, 224, 255, 0.2)', width: '60%' }} />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div 
+                    className="h-16 rounded-lg"
+                    style={{ background: 'rgba(65, 255, 177, 0.1)', border: '1px solid rgba(65, 255, 177, 0.3)' }}
+                  />
+                  <div 
+                    className="h-16 rounded-lg"
+                    style={{ background: 'rgba(52, 224, 255, 0.1)', border: '1px solid rgba(52, 224, 255, 0.3)' }}
+                  />
+                </div>
+              </div>
+
+              {/* Bottom buttons */}
+              <div className="grid grid-cols-4 gap-4 pt-4">
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="h-12 rounded-lg"
+                    style={{ background: '#34E0FF' }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Floating notification cards */}
+          {[
+            { text: 'Your supplier audit is scheduled', x: '-120px', y: '100px', delay: 1 },
+            { text: 'The audit report is released', x: '-120px', y: '220px', delay: 1.5 },
+          ].map((notif, i) => (
+            <motion.div
+              key={i}
+              className="hidden xl:block absolute left-0 px-4 py-3 rounded-lg backdrop-blur-sm"
+              style={{
+                top: notif.y,
+                transform: `translateX(${notif.x})`,
+                background: 'rgba(0, 0, 0, 0.9)',
+                border: '1px solid #41FFB1',
+                boxShadow: '0 0 20px rgba(65, 255, 177, 0.2)',
+                minWidth: '240px',
+              }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: notif.delay }}
+            >
+              <div className="flex items-center gap-3">
+                <div 
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ background: '#41FFB1' }}
+                />
+                <span 
+                  className="text-xs"
+                  style={{ color: '#FAFAFA' }}
+                >
+                  {notif.text}
+                </span>
+              </div>
+              <div 
+                className="mt-2 text-[10px]"
+                style={{ color: '#FAFAFA', opacity: 0.5 }}
+              >
+                Today, 09:15
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Network Stats */}
+        <motion.div
+          className="mt-32 text-center space-y-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h3 
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight"
+            style={{ color: '#FAFAFA' }}
+          >
             Tap into Our Global Network of<br />
-            <span className="font-black drop-shadow-md" style={{ color: '#A8C5B8' }}>Certified Auditors – On-Demand & AI-Powered</span>
+            <span style={{ color: '#34E0FF' }}>Certified Auditors – On-Demand & AI-Powered</span>
           </h3>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-20">
-            <div className="space-y-2">
-              <p className="text-xs sm:text-sm tracking-wider uppercase font-black drop-shadow-sm" style={{ color: '#A8C5B8' }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-16">
+            <div className="space-y-3">
+              <p 
+                className="text-sm tracking-widest uppercase font-medium"
+                style={{ color: '#34E0FF' }}
+              >
                 Certified Auditors
               </p>
-              <p className="text-6xl sm:text-7xl lg:text-8xl font-black text-white">
-                2.000+
+              <p 
+                className="text-6xl sm:text-7xl lg:text-8xl font-bold"
+                style={{ color: '#FAFAFA' }}
+              >
+                2,000+
               </p>
             </div>
             
-            <div className="space-y-2">
-              <p className="text-xs sm:text-sm tracking-wider uppercase font-black drop-shadow-sm" style={{ color: '#A8C5B8' }}>
+            <div className="space-y-3">
+              <p 
+                className="text-sm tracking-widest uppercase font-medium"
+                style={{ color: '#41FFB1' }}
+              >
                 Coverage
               </p>
-              <p className="text-6xl sm:text-7xl lg:text-8xl font-black text-white">
+              <p 
+                className="text-6xl sm:text-7xl lg:text-8xl font-bold"
+                style={{ color: '#FAFAFA' }}
+              >
                 90+ Countries
               </p>
             </div>
           </div>
         </motion.div>
-      </div>
 
-      {/* Decorative dot grid background */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle, #A8C5B8 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }} />
       </div>
     </section>
   );
