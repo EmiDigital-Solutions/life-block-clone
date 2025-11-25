@@ -3,7 +3,7 @@ import { Menu, ChevronDown } from "lucide-react";
 import { PixelIcon } from "@/components/PixelIcon";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import connectimusLogo from "@/assets/logo-new.svg";
+import yvooLogo from "@/assets/logo-new.svg";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -152,8 +152,8 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center h-full hover:opacity-80 transition-opacity">
             <img 
-              src={connectimusLogo} 
-              alt="YVOO Logo" 
+              src={yvooLogo} 
+              alt="YVOO Logo"
               className="h-6 sm:h-7 lg:h-7 xl:h-8 2xl:h-10 w-auto object-contain transition-all duration-300"
               style={{ 
                 filter: textColor === 'rgb(255, 255, 255)' 

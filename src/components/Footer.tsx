@@ -10,9 +10,9 @@ const Footer = () => {
             
             {/* Column 1 - Company Info */}
             <div>
-              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold mb-3 sm:mb-4 tracking-wide">Connectimus</h3>
+              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold mb-3 sm:mb-4 tracking-wide">YVOO</h3>
               <address className="not-italic text-xs sm:text-sm xl:text-base 2xl:text-lg 3xl:text-xl text-gray-400 leading-relaxed font-medium">
-                CONNECTIMUS PROJECT d.o.o.<br />
+                YVOO PROJECT d.o.o.<br />
                 Novotnijeva 12<br />
                 10000 Zagreb, Croatia
               </address>
@@ -106,7 +106,7 @@ const Footer = () => {
                 </Link>
               </div>
               <div className="text-center sm:text-right tracking-wide">
-                © 2025 CONNECTIMUS PROJECT d.o.o. • Croatia
+                © 2025 YVOO PROJECT d.o.o. • Croatia
               </div>
             </div>
           </div>
