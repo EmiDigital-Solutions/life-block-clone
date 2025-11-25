@@ -152,6 +152,7 @@ const BuyerPainPointsSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
                 className="relative z-10"
+                style={activeRole === "quality" ? { marginLeft: '-60px' } : {}}
               >
                 <img 
                   src={currentContent.image} 
