@@ -32,7 +32,7 @@ const HeroSection = () => {
     >
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8">
         {/* Two Column Layout */}
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Character Image - Right on Desktop */}
           <motion.div
