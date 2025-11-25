@@ -81,12 +81,12 @@ const BuyerPainPointsSection = () => {
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#A8B8CA]">
+            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-secondary">
               <button 
                 onClick={() => setActiveRole("buyer")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "buyer" 
-                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
+                    ? "bg-gradient-to-r from-secondary to-primary text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-50"
                 }`}
               >
@@ -96,7 +96,7 @@ const BuyerPainPointsSection = () => {
                 onClick={() => setActiveRole("quality")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "quality" 
-                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
+                    ? "bg-gradient-to-r from-secondary to-primary text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-50"
                 }`}
               >
@@ -123,25 +123,25 @@ const BuyerPainPointsSection = () => {
               <div 
                 className="absolute w-[544px] h-[544px] sm:w-[844px] sm:h-[844px] md:w-[904px] md:h-[904px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, rgba(168, 197, 184, 0.08) 50%, rgba(168, 197, 184, 0) 100%)"
+                  background: "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, hsl(var(--primary) / 0.08) 50%, transparent 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[504px] h-[504px] sm:w-[804px] sm:h-[804px] md:w-[844px] md:h-[844px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.15) 0%, rgba(168, 184, 202, 0.1) 50%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, hsl(var(--secondary) / 0.15) 0%, hsl(var(--secondary) / 0.1) 50%, transparent 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[444px] h-[444px] sm:w-[744px] sm:h-[744px] md:w-[784px] md:h-[784px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.2) 0%, rgba(168, 184, 202, 0.15) 50%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, hsl(var(--secondary) / 0.2) 0%, hsl(var(--secondary) / 0.15) 50%, transparent 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[374px] h-[374px] sm:w-[624px] sm:h-[624px] md:w-[724px] md:h-[724px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.4) 0%, rgba(200, 200, 200, 0.3) 30%, rgba(168, 197, 184, 0.2) 60%, rgba(168, 184, 202, 0.1) 80%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, hsl(var(--secondary) / 0.4) 0%, hsl(var(--secondary) / 0.3) 30%, hsl(var(--primary) / 0.2) 60%, hsl(var(--secondary) / 0.1) 80%, transparent 100%)"
                 }}
               ></div>
 

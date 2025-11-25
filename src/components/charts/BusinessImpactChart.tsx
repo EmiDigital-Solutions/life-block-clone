@@ -17,8 +17,8 @@ const BusinessImpactChart = () => {
     {
       label: 'ScanPro+',
       value: 700,
-      color: '#A8C5B8',
-      bgColor: 'from-[#A8C5B8] to-[#96B8AD]',
+      color: '#14B8A6',
+      bgColor: 'from-primary to-primary/80',
       percentage: 3.5
     }
   ];
@@ -64,9 +64,9 @@ const BusinessImpactChart = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-[#A8C5B8]/10 rounded-xl sm:rounded-2xl"
+        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-primary/10 rounded-xl sm:rounded-2xl"
       >
-        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
           <TrendingDown className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
         </div>
         <div className="flex-1 min-w-0">
