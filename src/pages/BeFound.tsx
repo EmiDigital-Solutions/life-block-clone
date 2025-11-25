@@ -226,7 +226,7 @@ const BeFound = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Without Connectimus */}
+            {/* Without YVOO */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -234,7 +234,7 @@ const BeFound = () => {
               className="space-y-8"
             >
               <div className="inline-block px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold text-gray-600 mb-4">
-                Without Connectimus
+                Without YVOO
               </div>
               
               <div className="bg-gray-50 p-10 rounded-3xl space-y-6 border-2 border-gray-200">
@@ -270,7 +270,7 @@ const BeFound = () => {
               </div>
             </motion.div>
 
-            {/* With Connectimus */}
+            {/* With YVOO */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -278,7 +278,7 @@ const BeFound = () => {
               className="space-y-8"
             >
               <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold text-white mb-4" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
-                With Connectimus
+                With YVOO
               </div>
               
               <div className="p-10 rounded-3xl space-y-6 border-2" style={{ backgroundColor: "hsl(160, 25%, 95%)", borderColor: "hsl(160, 25%, 72%)" }}>
@@ -396,8 +396,8 @@ const BeFound = () => {
               </p>
               
               <p>
-                At Connectimus, we stand with suppliers who are committed to growth. The ones who understand 
-                that visibility isn't just about being found—it's about being found by the right buyers, 
+                At YVOO, we stand with suppliers who are committed to growth. The ones who understand 
+                that visibility isn't just about being found—it's about being found by the right buyers,
                 at the right time, with the right message.
               </p>
               
@@ -418,7 +418,7 @@ const BeFound = () => {
             </div>
 
             <div className="pt-8">
-              <p className="text-gray-600 font-medium">The Connectimus Team</p>
+              <p className="text-gray-600 font-medium">The YVOO Team</p>
             </div>
           </motion.div>
         </div>

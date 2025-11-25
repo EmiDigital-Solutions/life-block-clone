@@ -23,7 +23,7 @@ const TestimonialSection = () => {
                 </div>
                 <div className="flex-1 mx-4">
                   <div className="bg-white rounded px-3 py-1 text-xs text-gray-500">
-                    connectimus.com/platform
+                    yvoo.com/platform
                   </div>
                 </div>
               </div>

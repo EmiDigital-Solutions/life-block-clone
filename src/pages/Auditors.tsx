@@ -182,7 +182,7 @@ const Auditors = () => {
                     Join the Elite Auditor Network
                   </h1>
                   <p className="text-xl text-white/90 leading-relaxed">
-                    Partner with Connectimus to serve companies with the highest quality standards and premium requirements.
+                    Partner with YVOO to serve companies with the highest quality standards and premium requirements.
                   </p>
                 </div>
                 
@@ -421,7 +421,7 @@ const ValuePropositionSection = () => {
             <span className="text-[#A8C5B8]">Professional Partnership</span> Platform
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
-            Connectimus connects certified auditors with quality-focused enterprises. 
+            YVOO connects certified auditors with quality-focused enterprises. 
             We prioritize professional standards, strategic partnerships, and career development.
           </p>
         </motion.div>
@@ -1151,7 +1151,7 @@ const SuccessStoriesSection = () => {
       role: "Lead Auditor, ISO & VDA",
       years: "8 years experience",
       stats: { revenue: "€320K+ Earned", audits: "85 Assignments", rating: "5.0★" },
-      quote: "Connectimus transformed my practice. Working with premium clients has elevated my professional standing while providing exceptional compensation and meaningful work.",
+      quote: "YVOO transformed my practice. Working with premium clients has elevated my professional standing while providing exceptional compensation and meaningful work.",
       image: auditorEuropean,
     },
     {
@@ -1253,8 +1253,8 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
       a: "Partner auditors earn €2,500+ per assignment on average, with premium rates for specialized audits. Compensation is transparent, competitive, and reflects your professional expertise and certification level. Payments are processed securely within 14 days of completed audit submission."
     },
     {
-      q: "How does Connectimus differ from gig economy platforms?",
-      a: "Unlike gig platforms that prioritize volume and speed, Connectimus focuses on quality partnerships with premium enterprise clients who demand the highest standards. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
+      q: "How does YVOO differ from gig economy platforms?",
+      a: "Unlike gig platforms that prioritize volume and speed, YVOO focuses on quality partnerships with premium enterprise clients who demand the highest standards. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
     },
     {
       q: "What types of clients will I work with?",
@@ -1262,7 +1262,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
     },
     {
       q: "What professional development support is provided?",
-      a: "Connectimus invests in partner development through CPE credit programs, specialized training workshops, industry certifications, and mentorship opportunities. We support your career growth with access to advanced audit methodologies, emerging standards, and networking with elite auditors."
+      a: "YVOO invests in partner development through CPE credit programs, specialized training workshops, industry certifications, and mentorship opportunities. We support your career growth with access to advanced audit methodologies, emerging standards, and networking with elite auditors."
     },
     {
       q: "How many assignments can I expect per month?",
@@ -1368,7 +1368,7 @@ const ScrollZoomSection = () => {
             Shape Industry Standards
           </h3>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Partner with Connectimus to serve companies with the highest quality standards worldwide. Build your professional practice with meaningful assignments, premium compensation, and recognition from global industry leaders.
+            Partner with YVOO to serve companies with the highest quality standards worldwide. Build your professional practice with meaningful assignments, premium compensation, and recognition from global industry leaders.
           </p>
         </div>
 
