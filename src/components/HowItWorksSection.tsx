@@ -67,7 +67,7 @@ export const HowItWorksSection = () => {
               {/* Number */}
               <div className="mb-8">
                 <motion.span
-                  className="text-8xl sm:text-9xl font-light text-gray-200 group-hover:text-[#A8C5B8] transition-colors duration-500"
+                  className="text-8xl sm:text-9xl font-light text-gray-200 group-hover:text-[#A8C5B8] group-hover:font-bold transition-all duration-500 group-hover:drop-shadow-lg"
                   animate={hoveredStep === index ? { scale: 1.05 } : { scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
