@@ -31,8 +31,8 @@ const BuyerPainPointsSection = () => {
         textFull: "Planning, booking & traveling for manual audits"
       },
       {
-        text: "Chasing audit reports weeks after audit completion & following up NCs/OFIs",
-        textFull: "Chasing audit reports weeks after audit completion & following up NCs/OFIs"
+        text: "Chasing audit reports weeks after audit completion & following up supplier",
+        textFull: "Chasing audit reports weeks after audit completion & following up supplier"
       }
     ]
   };
