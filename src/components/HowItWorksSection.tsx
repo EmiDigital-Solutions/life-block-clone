@@ -1,21 +1,20 @@
 import { motion } from "framer-motion";
-import { Search, CheckCircle, ClipboardCheck, FileText } from "lucide-react";
 
 const features = [
   {
     title: "Cost-Efficient and Scalable",
     description: "Save up to 70% on audit costs while accelerating timelines by 80%, scaling easily to your needs.",
-    icon: "cost"
+    type: "cost"
   },
   {
     title: "Instant Global Audit",
     description: "YVOO provides 1-click access to certified auditors, ensuring you can book audits anytime, anywhere.",
-    icon: "global"
+    type: "global"
   },
   {
     title: "AI-Driven Compliance",
     description: "AI-Generated Audit framework & guidance adhering to ISO 9001, IATF 16949, and regional standards, ensuring comprehensive regulatory compliance across all locations.",
-    icon: "ai"
+    type: "ai"
   }
 ];
 
@@ -23,28 +22,72 @@ const workflow = [
   {
     step: "1",
     title: "1-Click Audit Request",
-    description: "Initiate audit request tailored to your supplier's needs",
-    icon: Search
+    description: "Initiate audit request tailored to your supplier's needs"
   },
   {
     step: "2",
     title: "Auditor Assignment",
-    description: "Global network of auditors assigned based on location and expertise",
-    icon: CheckCircle
+    description: "Global network of auditors assigned based on location and expertise"
   },
   {
     step: "3",
     title: "Supplier On-Site Evaluation",
-    description: "Professional on-site inspection and assessment",
-    icon: ClipboardCheck
+    description: "Professional on-site inspection and assessment"
   },
   {
     step: "4",
     title: "Digital Report",
-    description: "Comprehensive scored reports delivered within 24-48 hours",
-    icon: FileText
+    description: "Comprehensive scored reports delivered within 24-48 hours"
   }
 ];
+
+const GeometricIcon = ({ type }: { type: string }) => {
+  if (type === "cost") {
+    return (
+      <svg width="130" height="128" viewBox="0 0 130 128" fill="none" className="w-full h-full">
+        <circle cx="20" cy="20" r="8" fill="#A8C5B8" opacity="0.3" />
+        <circle cx="75" cy="35" r="6" fill="#A8BFC5" opacity="0.4" />
+        <rect x="45" y="10" width="50" height="50" fill="#A8BFC5" opacity="0.2" />
+        <path d="M15 95 L35 75 L50 85 L65 70" stroke="#A8BFC5" strokeWidth="3" fill="none" />
+        <circle cx="15" cy="95" r="5" fill="#A8C5B8" />
+        <circle cx="50" cy="85" r="5" fill="#A8BFC5" />
+        <rect x="85" y="90" width="25" height="30" fill="black" stroke="#A8BFC5" strokeWidth="2" />
+      </svg>
+    );
+  }
+  
+  if (type === "global") {
+    return (
+      <svg width="117" height="128" viewBox="0 0 117 128" fill="none" className="w-full h-full">
+        <rect x="10" y="15" width="40" height="45" stroke="white" strokeWidth="2" fill="none" />
+        <circle cx="50" cy="40" r="25" fill="#A8BFC5" opacity="0.3" />
+        <circle cx="85" cy="40" r="12" fill="#A8C5B8" opacity="0.4" />
+        <path d="M75 25 L85 20 L90 30" fill="#A8BFC5" />
+        <path d="M80 45 L85 55 L92 50" fill="#A8C5B8" />
+        <circle cx="25" cy="95" r="8" fill="#A8C5B8" />
+        <rect x="65" y="85" width="30" height="25" fill="black" stroke="#A8BFC5" strokeWidth="2" />
+        <circle cx="70" cy="10" r="4" fill="#A8BFC5" />
+      </svg>
+    );
+  }
+  
+  if (type === "ai") {
+    return (
+      <svg width="158" height="122" viewBox="0 0 158 122" fill="none" className="w-full h-full">
+        <path d="M70 40 L90 60 L70 80 L50 60 Z" fill="white" opacity="0.8" />
+        <path d="M30 35 L50 35 L40 50 Z" fill="white" opacity="0.6" />
+        <rect x="115" y="75" width="25" height="25" fill="#A8BFC5" opacity="0.4" />
+        <rect x="15" y="75" width="25" height="25" fill="#A8C5B8" opacity="0.4" />
+        <path d="M50 30 L80 40 L70 55" fill="#A8BFC5" opacity="0.5" />
+        <circle cx="20" cy="15" r="8" fill="#A8BFC5" opacity="0.3" />
+        <circle cx="110" cy="25" r="6" fill="#A8BFC5" opacity="0.4" />
+        <path d="M130 50 L145 65 L150 55 L155 70" stroke="#A8C5B8" strokeWidth="2" fill="none" />
+      </svg>
+    );
+  }
+  
+  return null;
+};
 
 export const HowItWorksSection = () => {
   return (
@@ -75,7 +118,7 @@ export const HowItWorksSection = () => {
 
       {/* Feature Cards */}
       <div className="max-w-7xl mx-auto mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -83,24 +126,23 @@ export const HowItWorksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative group"
+              className="relative"
             >
               {/* Vertical Accent Line */}
               <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{ backgroundColor: '#A8C5B8' }} />
               
-              <div className="pl-8 space-y-6">
-                {/* Icon Placeholder - Modern minimal icon */}
-                <div className="w-20 h-20 flex items-center justify-center">
-                  <div className="w-full h-full relative">
-                    {/* Abstract geometric icon representation */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full border-2 opacity-30" style={{ borderColor: '#A8C5B8' }} />
-                      <div className="absolute w-10 h-10 rounded-full" style={{ backgroundColor: '#A8C5B8', opacity: 0.2 }} />
-                      <div className="absolute w-4 h-4 rounded-full" style={{ backgroundColor: '#A8C5B8' }} />
-                    </div>
-                  </div>
-                </div>
+              {/* Geometric Icon */}
+              <motion.div 
+                className="w-32 h-32 mb-8 ml-8"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+              >
+                <GeometricIcon type={feature.type} />
+              </motion.div>
 
+              <div className="pl-8 space-y-6">
                 <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                   {feature.title}
                 </h3>
@@ -178,64 +220,61 @@ export const HowItWorksSection = () => {
         <div className="relative">
           {/* Workflow Steps */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {workflow.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  className="relative"
-                >
-                  <div className="bg-gray-900/50 backdrop-blur-sm border rounded-2xl p-6 space-y-4 h-full"
-                       style={{ borderColor: '#A8C5B8', borderWidth: '2px' }}>
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-xl flex items-center justify-center"
-                         style={{ backgroundColor: '#A8C5B8', opacity: 0.15 }}>
-                      <Icon className="w-8 h-8 font-black drop-shadow-md" style={{ color: '#A8C5B8' }} strokeWidth={2.5} />
-                    </div>
-                    
-                    {/* Title */}
-                    <h4 className="text-xl font-black text-white leading-tight">
-                      {item.title}
-                    </h4>
-                    
-                    {/* Description */}
-                    <p className="text-sm text-white/80 font-light leading-relaxed">
-                      {item.description}
-                    </p>
+            {workflow.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="bg-black/30 backdrop-blur-sm border-2 rounded-2xl p-6 space-y-4 h-full transition-all duration-300 hover:bg-black/50"
+                     style={{ borderColor: '#A8C5B8' }}>
+                  {/* Step Number Badge */}
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-black font-black text-xl"
+                       style={{ backgroundColor: '#A8C5B8' }}>
+                    {item.step}
                   </div>
+                  
+                  {/* Title */}
+                  <h4 className="text-xl font-black text-white leading-tight">
+                    {item.title}
+                  </h4>
+                  
+                  {/* Description */}
+                  <p className="text-sm text-white/80 font-light leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
 
-                  {/* Connecting Line (desktop only) */}
-                  {index < workflow.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 -translate-y-1/2"
-                         style={{ backgroundColor: '#A8C5B8', opacity: 0.3 }}>
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
-                           style={{ backgroundColor: '#A8C5B8' }} />
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
+                {/* Animated Connecting Arrow (desktop only) */}
+                {index < workflow.length - 1 && (
+                  <motion.div
+                    className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 -translate-y-1/2"
+                    style={{ backgroundColor: '#A8C5B8' }}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                  >
+                    <motion.div
+                      className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0"
+                      style={{
+                        borderLeft: '6px solid #A8C5B8',
+                        borderTop: '4px solid transparent',
+                        borderBottom: '4px solid transparent'
+                      }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
+                    />
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
           </div>
-
-          {/* Central Hub Visualization */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full items-center justify-center pointer-events-none"
-            style={{ backgroundColor: '#A8C5B8', opacity: 0.1 }}
-          >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center"
-                 style={{ backgroundColor: '#A8C5B8', opacity: 0.2 }}>
-              <div className="w-8 h-8 rounded-full"
-                   style={{ backgroundColor: '#A8C5B8' }} />
-            </div>
-          </motion.div>
         </div>
       </div>
 
