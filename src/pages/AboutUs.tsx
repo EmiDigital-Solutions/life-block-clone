@@ -113,7 +113,7 @@ const AboutUs = () => {
                     />
                     {/* Touch flash effect */}
                     <motion.div
-                      className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                      className="absolute inset-0 bg-[#B2CDBC] pointer-events-none"
                       initial={{ opacity: 0 }}
                       whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
                     />
@@ -148,7 +148,7 @@ const AboutUs = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="space-y-6">
-                <div className="w-12 h-0.5 bg-[#A8C5B8]" />
+                <div className="w-12 h-0.5 bg-[#B2CDBC]" />
                 <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-black">
                   Building the Global B2B Platform
                 </h1>
@@ -178,7 +178,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-12 h-0.5 bg-[#A8C5B8] mx-auto" />
+            <div className="w-12 h-0.5 bg-[#B2CDBC] mx-auto" />
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
               Our Mission
             </h2>
@@ -298,7 +298,7 @@ const AboutUs = () => {
               </p>
 
               <div className="flex gap-1.5 pt-4">
-                <div className="w-10 h-0.5 bg-[#A8C5B8]" />
+                <div className="w-10 h-0.5 bg-[#B2CDBC]" />
                 <div className="w-6 h-0.5 bg-[#A8B8CA]" />
               </div>
             </motion.div>
@@ -337,7 +337,7 @@ const AboutUs = () => {
                       className="w-4 h-4 rounded-sm transition-all"
                       whileHover={{ scale: 1.2 }}
                       style={{
-                        backgroundColor: selectedYear === item.year ? '#A8C5B8' : '#d1d5db',
+                        backgroundColor: selectedYear === item.year ? '#B2CDBC' : '#d1d5db',
                       }}
                     />
                     <span 
@@ -416,7 +416,7 @@ const AboutUs = () => {
 
               <Button 
                 variant="outline" 
-                className="rounded-full border-3 border-[#A8C5B8] text-[#A8C5B8] font-bold hover:bg-[#A8C5B8] hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
+                className="rounded-full border-3 border-[#B2CDBC] text-[#B2CDBC] font-bold hover:bg-[#B2CDBC] hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
               >
                 Learn More
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -486,7 +486,7 @@ const AboutUs = () => {
                     className="w-full text-left px-6 py-4 transition-all"
                     whileHover={{ x: 4 }}
                     style={{
-                      backgroundColor: selectedLocation === key ? '#A8C5B8' : 'transparent',
+                      backgroundColor: selectedLocation === key ? '#B2CDBC' : 'transparent',
                       color: selectedLocation === key ? 'white' : 'black',
                       borderLeft: selectedLocation === key ? 'none' : '2px solid #e5e7eb'
                     }}
@@ -534,7 +534,7 @@ const AboutUs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button 
-                className="bg-[#A8C5B8] text-black hover:bg-[#A8C5B8]/90 rounded-full px-8 py-6 text-base font-semibold"
+                className="bg-[#B2CDBC] text-black hover:bg-[#B2CDBC]/90 rounded-full px-8 py-6 text-base font-semibold"
               >
                 Request Demo
                 <ArrowRight className="ml-2 w-4 h-4" />

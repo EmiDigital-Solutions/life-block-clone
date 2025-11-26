@@ -169,7 +169,7 @@ const GroundIntelligence = () => {
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#B2CDBC] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                       {step.number}
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>

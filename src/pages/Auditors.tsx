@@ -142,7 +142,7 @@ const Auditors = () => {
                       />
                       {/* Touch flash effect */}
                       <motion.div
-                        className="absolute inset-0 bg-[#A8C5B8] pointer-events-none"
+                        className="absolute inset-0 bg-[#B2CDBC] pointer-events-none"
                         initial={{ opacity: 0 }}
                         whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
                       />
@@ -365,7 +365,7 @@ const Auditors = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-[#A8C5B8] text-white p-4 rounded-full shadow-lg hover:bg-[#96B5AD] transition-all z-50"
+            className="fixed bottom-8 right-8 bg-[#B2CDBC] text-white p-4 rounded-full shadow-lg hover:bg-[#B2CDBC]/90 transition-all z-50"
           >
             <ArrowUp className="w-6 h-6" />
           </motion.button>
@@ -436,7 +436,7 @@ const ValuePropositionSection = () => {
               whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
               className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm transition-all"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD] flex items-center justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center mb-6">
                 <feature.icon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -510,7 +510,7 @@ const TimelineSection = () => {
             initial={{ height: 0 }}
             animate={isInView ? { height: "100%" } : {}}
             transition={{ duration: 2 }}
-            className="absolute left-8 top-0 w-1 bg-[#A8C5B8]/30 hidden md:block"
+            className="absolute left-8 top-0 w-1 bg-[#B2CDBC]/30 hidden md:block"
           />
 
           {steps.map((step, index) => (
@@ -529,7 +529,7 @@ const TimelineSection = () => {
                   stiffness: 200,
                   delay: index * 0.2,
                 }}
-                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD] flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
+                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
               >
                 {step.number}
               </motion.div>
@@ -624,7 +624,7 @@ const QualificationsSection = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm transition-all"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD] flex items-center justify-center mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center mb-4">
                 <qual.icon className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -648,7 +648,7 @@ const TechnologyFeaturesSection = () => {
       icon: Smartphone, 
       title: "Mobile Platform", 
       description: "Manage audits on the go with our comprehensive mobile application. Access all features, documents, and client communication from anywhere.",
-      gradient: "from-[#A8C5B8] to-[#96B5AD]",
+      gradient: "from-[#B2CDBC] to-[#A0B9A9]",
       image: auditorFemaleAfrican,
       tags: ["iOS", "Android"]
     },
@@ -672,7 +672,7 @@ const TechnologyFeaturesSection = () => {
       icon: CreditCard, 
       title: "Secure Payments", 
       description: "Automated processing with bank-level security. Get paid quickly and reliably for every completed assignment.",
-      gradient: "from-[#A8C5B8] to-[#96B5AD]",
+      gradient: "from-[#B2CDBC] to-[#A0B9A9]",
       image: auditorFemaleMiddleEast,
       tags: ["Fast", "Secure"]
     },
@@ -824,7 +824,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-[#A8C5B8] text-white px-6 lg:px-7 xl:px-8 py-3 lg:py-3.5 xl:py-4 rounded-full font-semibold hover:bg-[#96B5AD] transition-colors shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 bg-[#B2CDBC] text-white px-6 lg:px-7 xl:px-8 py-3 lg:py-3.5 xl:py-4 rounded-full font-semibold hover:bg-[#B2CDBC]/90 transition-colors shadow-lg hover:shadow-xl"
           >
             Explore Features
             <ArrowRight className="w-5 h-5" />
@@ -834,7 +834,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
         {/* Cards Container - Horizontal scroll area */}
         <div className="flex-1 overflow-hidden relative">
           {/* Background indicators */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#A8C5B8]/20 z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#B2CDBC]/20 z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-1 bg-red-600/20 z-10" />
           
           {/* Scrolling cards */}
@@ -899,7 +899,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
                   scaleX: scrollYProgress,
                   transformOrigin: 'left'
                 }}
-                className="h-full bg-[#A8C5B8]"
+                className="h-full bg-[#B2CDBC]"
               />
             </div>
           </div>
@@ -1001,7 +1001,7 @@ const DoVsDontSection = () => {
         >
           <div className="flex items-center gap-1">
             <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-gray-300' : 'bg-blue-600'}`} />
-            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-[#A8C5B8]' : 'bg-gray-300'}`} />
+            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-[#B2CDBC]' : 'bg-gray-300'}`} />
           </div>
           <span className="text-sm font-semibold text-gray-600">What Is The Difference?</span>
         </motion.div>
@@ -1034,7 +1034,7 @@ const DoVsDontSection = () => {
             <button
               onClick={() => setIsDoState(!isDoState)}
               className={`relative w-20 h-10 rounded-full transition-all duration-300 ${
-                isDoState ? 'bg-[#A8C5B8]' : 'bg-gray-400'
+                isDoState ? 'bg-[#B2CDBC]' : 'bg-gray-400'
               }`}
               aria-label="Toggle between partner and don't partner"
             >
@@ -1117,7 +1117,7 @@ const DoVsDontSection = () => {
                     }}
                     className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
                       isDoState 
-                        ? 'bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD]' 
+                        ? 'bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9]' 
                         : 'bg-gradient-to-br from-red-500 to-red-600'
                     }`}
                   >
@@ -1204,7 +1204,7 @@ const SuccessStoriesSection = () => {
               className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-[#A8C5B8] to-[#96B5AD]">
+                <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9]">
                   <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
                 </div>
                 <div>

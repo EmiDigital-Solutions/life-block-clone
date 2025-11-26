@@ -398,7 +398,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#B2CDBC]"></div>
                 <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
@@ -493,7 +493,7 @@ const MapLocationMarker = ({
     >
       {/* Pulsing ring animation */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-[#A8C5B8]"
+        className="absolute inset-0 rounded-full bg-[#B2CDBC]"
         animate={{
           scale: [1, 2.2, 1],
           opacity: [0.7, 0, 0.7],
@@ -508,7 +508,7 @@ const MapLocationMarker = ({
       
       {/* Main marker dot */}
       <motion.div
-        className="w-5 h-5 rounded-full bg-[#A8C5B8] border-3 border-white shadow-xl relative z-10"
+        className="w-5 h-5 rounded-full bg-[#B2CDBC] border-3 border-white shadow-xl relative z-10"
         whileHover={{ scale: 1.4 }}
         transition={{ duration: 0.2 }}
         style={{
@@ -627,7 +627,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#B2CDBC]"></div>
                 <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
               </motion.div>
 
@@ -904,7 +904,7 @@ const ComplianceStandardsGrid = () => {
               <DialogDescription className="text-base text-gray-700 leading-relaxed">
                 {selectedStandard.details}
               </DialogDescription>
-              <div className="mt-6 p-4 bg-[#A8C5B8]/5 rounded-xl border border-[#A8C5B8]/20">
+              <div className="mt-6 p-4 bg-[#B2CDBC]/5 rounded-xl border border-[#B2CDBC]/20">
                 <p className="text-sm text-gray-700">
                   <strong className="text-gray-900">✓ YVOO ScanPro+</strong> ensures full compliance with {selectedStandard.name} through our standardized audit processes, comprehensive documentation, and AI-powered verification systems.
                 </p>
@@ -1022,7 +1022,7 @@ const ChallengeToggleSection = () => {
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
             className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-[#A8C5B8]' : 'bg-[#C57B7B]'
+              isWithScanPro ? 'bg-[#B2CDBC]' : 'bg-[#C57B7B]'
             }`}
             aria-label="Toggle comparison"
           >
@@ -1078,9 +1078,9 @@ const ChallengeToggleSection = () => {
 
 const fallbackAuditors = [
   { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#A8C5B8] via-[#96B8AD] to-[#8AA7A0]", gender: "male" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#B2CDBC] via-[#A0B9A9] to-[#8EA5A0]", gender: "male" },
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#A8C5B8] via-[#96B8AD] to-[#8AA7A0]", gender: "male" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#B2CDBC] via-[#A0B9A9] to-[#8EA5A0]", gender: "male" },
   { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
@@ -1107,8 +1107,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#A8C5B8] animate-ping opacity-40" />
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1118,7 +1118,7 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#A8C5B8] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+              <div className="bg-[#B2CDBC] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
                 <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                 <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
@@ -1149,10 +1149,10 @@ const HowItWorksCarousel = () => {
           <div className="bg-white rounded-xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
             {/* User Message */}
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#A8C5B8] flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#B2CDBC] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <div className="bg-[#A8C5B8] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
+              <div className="bg-[#B2CDBC] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">You</p>
                 <div className="space-y-2">
                   <motion.div 
@@ -1171,7 +1171,7 @@ const HowItWorksCarousel = () => {
             
             {/* Auditor Message */}
             <div className="flex items-start gap-2 sm:gap-3 justify-end">
-              <div className="bg-[#96B8AD] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
+              <div className="bg-[#A0B9A9] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">Auditor</p>
                 <div className="space-y-2">
                   <motion.div 
@@ -1186,7 +1186,7 @@ const HowItWorksCarousel = () => {
                   />
                 </div>
               </div>
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#96B8AD] flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#A0B9A9] flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
             </div>
@@ -1257,9 +1257,9 @@ const HowItWorksCarousel = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#96B8AD]/10 rounded-xl p-3 sm:p-4 text-center"
+                className="bg-[#A0B9A9]/10 rounded-xl p-3 sm:p-4 text-center"
               >
-                <div className="text-2xl sm:text-3xl font-bold text-[#96B8AD] mb-2">A+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-[#A0B9A9] mb-2">A+</div>
                 <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
               </motion.div>
             </div>
@@ -1273,7 +1273,7 @@ const HowItWorksCarousel = () => {
                   animate={{ height: `${height}%` }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
                   className={`rounded-t flex-1 ${
-                    i % 2 === 0 ? 'bg-[#A8C5B8]' : 'bg-[#96B8AD]'
+                    i % 2 === 0 ? 'bg-[#B2CDBC]' : 'bg-[#A0B9A9]'
                   }`}
                 ></motion.div>
               ))}
@@ -1284,7 +1284,7 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3 shadow-lg"
+              className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3 shadow-lg"
             >
               <PixelIcon name="shield" className="w-4 h-4 sm:w-6 sm:h-6" />
               <span className="text-sm sm:text-base">Report Ready</span>
