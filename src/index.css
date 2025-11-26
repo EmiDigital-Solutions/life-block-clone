@@ -28,10 +28,10 @@ All colors MUST be HSL.
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 160 25% 72%;
+    --accent: 158 23% 75%;
     --accent-foreground: 0 0% 0%;
 
-    --success: 160 25% 72%;
+    --success: 158 23% 75%;
     --success-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
@@ -53,13 +53,13 @@ All colors MUST be HSL.
     /* Full-screen project section colors */
     --project-blue: 192 20% 72%;
     --project-brown: 0 0% 50%;
-    --project-teal: 160 25% 72%;
+    --project-teal: 158 23% 75%;
     --project-pink: 0 0% 60%;
     
     /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
-    --content-accent: 160 25% 72%;
+    --content-accent: 158 23% 75%;
   }
 
   .dark {
@@ -83,7 +83,7 @@ All colors MUST be HSL.
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 160 25% 72%;
+    --accent: 158 23% 75%;
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 63% 31%;
