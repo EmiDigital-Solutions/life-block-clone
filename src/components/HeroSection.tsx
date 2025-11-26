@@ -81,7 +81,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col gap-6 sm:gap-8 justify-center lg:justify-start items-center lg:items-start pt-2 sm:pt-4"
             >
-              <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium hover:bg-white/95 transition-all duration-300 text-sm sm:text-base shadow-xl">
+              <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium transition-all duration-300 text-sm sm:text-base shadow-xl text-white" style={{ backgroundColor: '#05668D' }}>
                 Order Audit
                 <PixelIcon 
                   name="arrow-right" 
