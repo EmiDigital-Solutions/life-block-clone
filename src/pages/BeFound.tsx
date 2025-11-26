@@ -543,7 +543,7 @@ const BeFound = () => {
       <section
         className="py-40 px-6"
         style={{
-          background: "linear-gradient(135deg, hsl(160, 25%, 72%) 0%, hsl(192, 20%, 72%) 100%)"
+          background: "linear-gradient(135deg, hsl(158, 25%, 75%) 0%, hsl(192, 20%, 72%) 100%)"
         }}
       >
         <div className="container mx-auto max-w-4xl text-center">

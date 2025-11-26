@@ -115,7 +115,7 @@ const TimeEfficiencyChart = () => {
       </div>
 
       {/* Summary */}
-      <div className="p-4 sm:p-6 md:p-8 bg-[#A8C5B8]/10 rounded-xl sm:rounded-2xl">
+      <div className="p-4 sm:p-6 md:p-8 bg-[#B2CDBC]/10 rounded-xl sm:rounded-2xl">
         <div className="flex items-center justify-between gap-4">
           <div className="flex-1">
             <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">Time Reduction</p>

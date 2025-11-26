@@ -542,7 +542,7 @@ const SearchSuppliers = () => {
                       >
                         {msg.role === 'ai' && (
                           <div className="flex items-center gap-2 mb-2">
-                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
+                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
                               <Cpu className="w-3 h-3 text-white" />
                             </div>
                             <span className="text-xs font-black text-[#A8C5B8] drop-shadow-sm">YVOO</span>
@@ -562,7 +562,7 @@ const SearchSuppliers = () => {
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
                           <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
@@ -747,7 +747,7 @@ const SearchSuppliers = () => {
                     >
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
                           <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
@@ -767,7 +767,7 @@ const SearchSuppliers = () => {
                   >
                     <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#A8C5B8] to-[#96B8AD] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
                           <Cpu className="w-3 h-3 text-white" />
                         </div>
                         <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
@@ -881,7 +881,7 @@ const SearchSuppliers = () => {
                 stat: "25M+",
                 title: "supplier profiles",
                 features: ["Global transparency", "Niche technologies", "Cross-sector searches"],
-                gradient: "from-[#A8C5B8] to-[#96B8AD]"
+                gradient: "from-[#B2CDBC] to-[#A0B9A9]"
               },
               {
                 stat: "100x",
@@ -1022,7 +1022,7 @@ const SearchSuppliers = () => {
                       </motion.div>
                     ))}
                   </div>
-                  <Button className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] text-white hover:from-[#96B8AD] hover:to-[#8AA7A0] rounded-full w-full py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                  <Button className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] text-white hover:from-[#A0B9A9] hover:to-[#8EA5A0] rounded-full w-full py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105">
                     Save to list
                   </Button>
                 </div>
@@ -1078,7 +1078,7 @@ const SearchSuppliers = () => {
               <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
-              <Button className="bg-gradient-to-r from-[#A8C5B8] to-[#96B8AD] hover:from-[#96B8AD] hover:to-[#8AA7A0] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
+              <Button className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] hover:from-[#A0B9A9] hover:to-[#8EA5A0] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
                 Get Started
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>

@@ -113,7 +113,7 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
       {/* Pin pointer */}
       <mesh position={[0, 0, 0]} rotation={[0, 0, 0]}>
         <coneGeometry args={[0.05, 0.1, 16]} />
-        <meshStandardMaterial color="#96B5AD" />
+        <meshStandardMaterial color="#A0B9A9" />
       </mesh>
     </group>
   );
