@@ -1571,7 +1571,7 @@ const ScanProPlus = () => {
       >
         {/* Static background image */}
         <div 
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-60 brightness-75"
           style={{
             backgroundImage: `url(${scanProHeroBackground})`,
             backgroundSize: 'cover',
