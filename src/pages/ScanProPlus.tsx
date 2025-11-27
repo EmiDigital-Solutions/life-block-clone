@@ -1568,13 +1568,21 @@ const ScanProPlus = () => {
         data-nav-theme="light"
         className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
         id="hero"
-        style={{
-          backgroundImage: `url(${scanProHeroBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
       >
+        {/* Static background image */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `url(${scanProHeroBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></div>
+        
+        {/* Animated brushed steel wave effect */}
+        <div className="absolute inset-0 brushed-steel-waves"></div>
+        
         {/* Subtle overlay for contrast */}
         <div className="absolute inset-0 bg-white/10"></div>
 
