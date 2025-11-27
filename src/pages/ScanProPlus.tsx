@@ -33,6 +33,7 @@ import riskScoring from "@/assets/risk-scoring-ai.jpg";
 import liveTracking from "@/assets/live-tracking-dashboard.jpg";
 import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
+import scanProHeroBackground from "@/assets/scanpro-hero-background.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
@@ -1564,10 +1565,18 @@ const ScanProPlus = () => {
       
       {/* Hero Section */}
       <section
-        data-nav-theme="primary"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden bg-primary"
+        data-nav-theme="light"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
         id="hero"
+        style={{
+          backgroundImage: `url(${scanProHeroBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
       >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-white/40"></div>
 
         <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
@@ -1580,8 +1589,8 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-4 sm:mb-6"
               >
-                <div className="flex items-center gap-3 sm:gap-4 text-white text-xs sm:text-sm font-sans">
-                  <div className="h-px w-8 sm:w-12 bg-white"></div>
+                <div className="flex items-center gap-3 sm:gap-4 text-gray-800 text-xs sm:text-sm font-sans">
+                  <div className="h-px w-8 sm:w-12 bg-gray-800"></div>
                   <span>ScanPro+ — AI-powered supplier audits</span>
                 </div>
               </motion.div>
@@ -1590,7 +1599,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
               >
                 Supplier Audits in Days, Not Weeks
               </motion.h1>
@@ -1599,7 +1608,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-white leading-[1.4] mb-6 sm:mb-8"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-gray-800 leading-[1.4] mb-6 sm:mb-8"
               >
                 70% Cost Reduction · 80% Time Savings · Global Coverage
               </motion.h2>
@@ -1608,7 +1617,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg font-normal text-white leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
+                className="text-base sm:text-lg font-normal text-gray-700 leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
               >
                 On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
               </motion.p>
@@ -1621,7 +1630,7 @@ const ScanProPlus = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="bg-white text-gray-900 px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:bg-white/90 hover:scale-105 shadow-xl"
+                  className="bg-black text-white px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:bg-gray-800 hover:scale-105 shadow-xl"
                 >
                   Get Started
                 </button>
