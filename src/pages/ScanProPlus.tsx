@@ -1575,14 +1575,14 @@ const ScanProPlus = () => {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-white/40"></div>
+        {/* Subtle overlay for contrast */}
+        <div className="absolute inset-0 bg-white/10"></div>
 
         <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left backdrop-blur-md bg-white/30 p-8 sm:p-10 md:p-12 rounded-3xl">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
