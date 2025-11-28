@@ -44,7 +44,7 @@ const HeroSection = () => {
             <img 
               src={heroCharacter} 
               alt="Professional worker with safety helmet" 
-              className="w-full max-w-[350px] sm:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl h-auto object-contain scale-[0.94] lg:scale-[1.06]"
+              className="w-full max-w-[450px] sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl h-auto object-contain scale-[1.1] lg:scale-[1.3]"
             />
           </motion.div>
 
