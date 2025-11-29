@@ -35,12 +35,12 @@ const ROITimelineChart = () => {
             </div>
             <div className="flex justify-between gap-8">
               <span className="text-sm text-gray-600">ScanPro+:</span>
-              <span className="font-black drop-shadow-sm" style={{ color: '#A8C5B8' }}>€{payload[1].value.toLocaleString()}</span>
+              <span className="font-black drop-shadow-sm text-accent">€{payload[1].value.toLocaleString()}</span>
             </div>
             <div className="pt-3 border-t border-gray-200">
               <div className="flex justify-between gap-8">
                 <span className="text-sm font-bold text-gray-900">Saved:</span>
-                <span className="font-black drop-shadow-md" style={{ color: '#A8C5B8', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>€{savings.toLocaleString()}</span>
+                <span className="font-black drop-shadow-md text-accent">€{savings.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -59,12 +59,12 @@ const ROITimelineChart = () => {
           <LineChart data={data} margin={{ top: 10, right: 5, left: -10, bottom: 10 }}>
             <defs>
               <linearGradient id="traditionalLine" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#6B7280" />
-                <stop offset="100%" stopColor="#9CA3AF" />
+                <stop offset="0%" stopColor="hsl(var(--gray-medium))" />
+                <stop offset="100%" stopColor="hsl(var(--muted-foreground))" />
               </linearGradient>
               <linearGradient id="scanproLine" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#A8C5B8" />
-                <stop offset="100%" stopColor="#A8C5B8" />
+                <stop offset="0%" stopColor="hsl(var(--accent))" />
+                <stop offset="100%" stopColor="hsl(var(--accent))" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
@@ -84,7 +84,7 @@ const ROITimelineChart = () => {
               dataKey="traditional"
               stroke="url(#traditionalLine)"
               strokeWidth={3}
-              dot={{ fill: '#6B7280', r: 4 }}
+              dot={{ fill: 'hsl(var(--gray-medium))', r: 4 }}
               activeDot={{ r: 6 }}
               animationDuration={2000}
               animationEasing="ease-in-out"
@@ -94,7 +94,7 @@ const ROITimelineChart = () => {
               dataKey="scanpro"
               stroke="url(#scanproLine)"
               strokeWidth={4}
-              dot={{ fill: '#A8C5B8', r: 5 }}
+              dot={{ fill: 'hsl(var(--accent))', r: 5 }}
               activeDot={{ r: 7 }}
               animationDuration={2000}
               animationBegin={300}
@@ -115,14 +115,14 @@ const ROITimelineChart = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€400k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-[#B2CDBC]/10 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-secondary/10 rounded-lg sm:rounded-xl">
           <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 mb-1 sm:mb-2 font-semibold uppercase">ScanPro+</p>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black drop-shadow-md" style={{ color: '#B2CDBC', textShadow: '0 2px 4px rgba(0,0,0,0.15)' }}>€17k</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black drop-shadow-md text-secondary">€17k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-[#B2CDBC]/20 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-secondary/20 rounded-lg sm:rounded-xl">
           <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 drop-shadow-md" style={{ color: '#B2CDBC' }} strokeWidth={3} />
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 drop-shadow-md text-secondary" strokeWidth={3} />
             <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-700 font-bold uppercase">Savings</p>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€{(totalSavings / 1000).toFixed(0)}k</p>
