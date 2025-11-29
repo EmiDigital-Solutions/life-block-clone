@@ -11,131 +11,91 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors */
     --background: 0 0% 100%;
     --foreground: 0 0% 0%;
+
     --hero-background: 0 0% 5%;
 
-    /* Card colors */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
 
-    /* Popover colors */
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    /* Standard palette - Green variants */
-    --primary: 195 30% 51%;  /* #0A7FA5 - CTA button blue-green */
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 160 25% 72%;  /* #B2CDBC - Green backgrounds */
-    --secondary-foreground: 0 0% 4%;  /* #0A0A0A - Text on green */
+    --primary: 195 88.5714% 34.3137%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Standard palette - Accent greens */
-    --accent: 158 23% 75%;  /* #A8C5B8 - Muted green for headlines */
-    --accent-foreground: 0 0% 4%;
-    
-    --accent-hero: 160 35% 60%;  /* #6ea996 - Homepage hero accent */
-    
-    /* Standard palette - Blues */
-    --blue-muted: 192 20% 72%;  /* #A8BFC5 - Muted blue */
-    --blue-alt: 197 17% 71%;  /* #A8B8CA - Alternative blue */
+    --secondary: 161 25.5411% 54.7059%;
+    --secondary-foreground: 0 0% 0%;
 
-    /* Standard palette - Grays */
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
-    --gray-light: 0 0% 95%;
-    --gray-medium: 0 0% 65%;
-    --gray-dark: 0 0% 20%;
 
-    /* Standard palette - Black */
-    --black: 0 0% 4%;  /* #0A0A0A - Near-black */
-    
-    /* Success colors using green */
+    --accent: 158 23% 75%;
+    --accent-foreground: 0 0% 0%;
+
     --success: 158 23% 75%;
-    --success-foreground: 0 0% 4%;
+    --success-foreground: 0 0% 0%;
 
-    /* Destructive colors */
-    --destructive: 0 50% 65%;  /* Muted red #C57B7B */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* UI elements */
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 160 25% 72%;
+
     --radius: 0.5rem;
 
-    /* Legacy theme colors - mapped to standard palette */
+    /* Architecture theme colors */
     --hero-overlay: 0 0% 5% / 0.8;
     --navy-deep: 0 0% 10%;
     --navy-light: 0 0% 20%;
     --slate: 0 0% 65%;
     --cream: 0 0% 95%;
+
+    /* Full-screen project section colors */
     --project-blue: 192 20% 72%;
     --project-brown: 0 0% 50%;
     --project-teal: 158 23% 75%;
     --project-pink: 0 0% 60%;
+
+    /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
     --content-accent: 158 23% 75%;
-    
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
   .dark {
-    /* Base colors */
     --background: 0 0% 5%;
     --foreground: 0 0% 100%;
+
     --hero-background: 0 0% 5%;
 
-    /* Card colors */
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
 
-    /* Popover colors */
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
 
-    /* Standard palette - Green variants */
-    --primary: 195 30% 51%;  /* #0A7FA5 - CTA button blue-green */
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 160 25% 72%;  /* #B2CDBC - Green backgrounds */
-    --secondary-foreground: 0 0% 4%;
+    --primary: 161 26% 55%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Standard palette - Accent greens */
-    --accent: 158 23% 75%;  /* #A8C5B8 - Muted green for headlines */
-    --accent-foreground: 0 0% 4%;
-    
-    --accent-hero: 160 35% 60%;  /* #6ea996 - Homepage hero accent */
-    
-    /* Standard palette - Blues */
-    --blue-muted: 192 20% 72%;  /* #A8BFC5 - Muted blue */
-    --blue-alt: 197 17% 71%;  /* #A8B8CA - Alternative blue */
+    --secondary: 192 20% 72%;
+    --secondary-foreground: 0 0% 0%;
 
-    /* Standard palette - Grays */
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
-    --gray-light: 0 0% 95%;
-    --gray-medium: 0 0% 65%;
-    --gray-dark: 0 0% 20%;
 
-    /* Standard palette - Black */
-    --black: 0 0% 4%;
-    
-    /* Success colors using green */
-    --success: 158 23% 75%;
-    --success-foreground: 0 0% 4%;
+    --accent: 158 23% 75%;
+    --accent-foreground: 0 0% 0%;
 
-    /* Destructive colors */
-    --destructive: 0 50% 65%;  /* Muted red #C57B7B */
+    --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
 
-    /* UI elements */
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 160 25% 72%;
-    
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 }

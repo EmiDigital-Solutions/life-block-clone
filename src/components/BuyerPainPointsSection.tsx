@@ -81,12 +81,12 @@ const BuyerPainPointsSection = () => {
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-blue-alt">
+            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#A8B8CA]">
               <button 
                 onClick={() => setActiveRole("buyer")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "buyer" 
-                    ? "bg-gradient-to-r from-blue-alt to-accent text-white shadow-sm" 
+                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-50"
                 }`}
               >
@@ -96,7 +96,7 @@ const BuyerPainPointsSection = () => {
                 onClick={() => setActiveRole("quality")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "quality" 
-                    ? "bg-gradient-to-r from-blue-alt to-accent text-white shadow-sm" 
+                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-50"
                 }`}
               >
