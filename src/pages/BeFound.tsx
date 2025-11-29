@@ -277,16 +277,16 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold text-white mb-4" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+              <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold text-white mb-4 bg-accent">
                 With YVOO
               </div>
               
-              <div className="p-10 rounded-3xl space-y-6 border-2" style={{ backgroundColor: "hsl(160, 25%, 95%)", borderColor: "hsl(160, 25%, 72%)" }}>
+              <div className="p-10 rounded-3xl space-y-6 border-2 bg-accent/10 border-accent">
                 <div className="space-y-4 text-gray-900">
                   <p className="leading-relaxed font-medium">
                     Your optimized profile appears when buyers search for your products and services.
                   </p>
-                  <p className="text-sm font-semibold" style={{ color: "hsl(160, 25%, 40%)" }}>
+                  <p className="text-sm font-semibold text-accent-foreground">
                     Built to convert searches into qualified inquiries
                   </p>
                 </div>
@@ -294,19 +294,19 @@ const BeFound = () => {
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1 bg-accent">
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>12M+ monthly profile views</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1 bg-accent">
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>Real-time analytics dashboard</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1 bg-accent">
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>5x visibility with premium ads</span>
@@ -366,7 +366,7 @@ const BeFound = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white p-8 rounded-2xl text-center space-y-4 hover:shadow-lg transition-shadow"
               >
-                <div className="flex justify-center" style={{ color: "hsl(160, 25%, 72%)" }}>
+                <div className="flex justify-center text-accent">
                   {item.icon}
                 </div>
                 <p className="text-gray-700 leading-relaxed">{item.text}</p>
@@ -485,8 +485,7 @@ const BeFound = () => {
                     {item.features.map((feature) => (
                       <div
                         key={feature}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
-                        style={{ backgroundColor: "hsl(160, 25%, 95%)", color: "hsl(160, 25%, 40%)" }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-accent/10 text-accent-foreground"
                       >
                         <Check className="w-4 h-4" />
                         {feature}
@@ -541,10 +540,7 @@ const BeFound = () => {
 
       {/* Final CTA */}
       <section
-        className="py-40 px-6"
-        style={{
-          background: "linear-gradient(135deg, hsl(158, 25%, 75%) 0%, hsl(192, 20%, 72%) 100%)"
-        }}
+        className="py-40 px-6 bg-gradient-to-br from-accent via-secondary to-blue-muted"
       >
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div

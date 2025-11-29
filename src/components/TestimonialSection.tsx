@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const TestimonialSection = () => {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden" style={{ backgroundColor: '#B2CDBC' }}>
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-secondary">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Video Mockup Window */}
@@ -31,7 +31,7 @@ const TestimonialSection = () => {
               {/* Video/Screenshot Area */}
               <div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                 <div className="text-center space-y-4 p-8">
-                  <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#B2CDBC' }}>
+                  <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center bg-secondary">
                     <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
@@ -53,7 +53,7 @@ const TestimonialSection = () => {
             <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-32 md:mb-40">
               Built for{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold" style={{ backgroundColor: '#B2CDBC' }}>
+                <span className="relative z-10 text-black px-8 py-2 rounded-2xl transform rotate-[-1deg] inline-block font-bold bg-secondary">
                   mighty
                 </span>
               </span>
