@@ -28,7 +28,7 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-screen flex flex-col bg-gray-50"
     >
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8 overflow-hidden">
         {/* Two Column Layout */}
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
@@ -37,15 +37,15 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-20 sm:-mt-24 lg:-mt-20 overflow-hidden rounded-2xl"
+            className="flex justify-center lg:justify-end order-1 lg:order-2 overflow-visible"
           >
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full max-w-[550px] sm:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl h-auto object-contain"
-              style={{ transform: 'scale(1.2)', objectPosition: 'center center' }}
+              className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] h-auto object-contain bg-gray-50"
+              style={{ transform: 'scale(1.15)', objectPosition: 'center top' }}
             >
               <source src="/videos/hero-character-video.mp4" type="video/mp4" />
             </video>
