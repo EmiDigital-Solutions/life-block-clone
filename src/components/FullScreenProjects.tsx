@@ -88,9 +88,24 @@ const FullScreenProjects = () => {
           <section
             key={index}
             data-nav-theme="light"
-            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24 sm:py-32 border-b border-gray-200 last:border-b-0"
+            className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24 sm:py-32 border-b border-gray-200 last:border-b-0 overflow-hidden"
           >
-            <div className="container mx-auto max-w-7xl">
+            {/* Video Background for first section only */}
+            {index === 0 && (
+              <>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                >
+                  <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-black/40 z-0" />
+              </>
+            )}
+            <div className="container mx-auto max-w-7xl relative z-10">
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
                 {/* Text Content */}
                 <motion.div
@@ -108,9 +123,9 @@ const FullScreenProjects = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     viewport={{ once: true }}
-                    className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2"
+                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 ${index === 0 ? 'bg-white/20 backdrop-blur-sm' : 'bg-gray-100'}`}
                   >
-                    <span className="text-sm font-medium text-gray-600">
+                    <span className={`text-sm font-medium ${index === 0 ? 'text-white' : 'text-gray-600'}`}>
                       {project.number}
                     </span>
                   </motion.div>
@@ -120,7 +135,7 @@ const FullScreenProjects = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900"
+                    className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight ${index === 0 ? 'text-white' : 'text-gray-900'}`}
                   >
                     {project.title}
                   </motion.h2>
@@ -130,7 +145,7 @@ const FullScreenProjects = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.3 }}
                     viewport={{ once: true }}
-                    className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-xl"
+                    className={`text-lg sm:text-xl leading-relaxed max-w-xl ${index === 0 ? 'text-white/90' : 'text-gray-600'}`}
                   >
                     {project.description}
                   </motion.p>
@@ -142,7 +157,7 @@ const FullScreenProjects = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-all duration-300"
+                    className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium transition-all duration-300 ${index === 0 ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
                   >
                     Learn more
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -181,8 +196,11 @@ const FullScreenProjects = () => {
                             z: 50,
                             transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
                           }}
-                          style={{ transformStyle: "preserve-3d" }}
-                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow"
+                          style={{ 
+                            transformStyle: "preserve-3d",
+                            borderColor: index === 0 ? 'rgba(255,255,255,0.3)' : undefined
+                          }}
+                          className="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 border shadow-lg hover:shadow-2xl transition-shadow"
                         >
                           <motion.img
                             src={auditor.image}
