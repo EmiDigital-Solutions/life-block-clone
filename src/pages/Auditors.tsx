@@ -106,9 +106,22 @@ const Auditors = () => {
         {/* Hero Section */}
         <section
           data-nav-theme="primary"
-          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20 bg-primary"
+          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20 overflow-hidden"
         >
-          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40 z-0" />
+          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               
               {/* Left - Geometric Photo Grid */}
