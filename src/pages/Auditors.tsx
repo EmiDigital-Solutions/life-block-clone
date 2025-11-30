@@ -115,6 +115,7 @@ const Auditors = () => {
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-0"
+            style={{ transform: 'scale(1.15)', objectPosition: 'center center' }}
           >
             <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
           </video>
