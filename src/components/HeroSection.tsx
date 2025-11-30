@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
-import heroCharacter from "@/assets/hero-worker-professional.png";
-import badgeSeal from "@/assets/badge-seal-final.png";
 import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
@@ -34,18 +32,23 @@ const HeroSection = () => {
         {/* Two Column Layout */}
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
-          {/* Character Image - Right on Desktop */}
+          {/* Character Video - Right on Desktop */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-20 sm:-mt-24 lg:-mt-20 overflow-visible"
+            className="flex justify-center lg:justify-end order-1 lg:order-2 -mt-20 sm:-mt-24 lg:-mt-20 overflow-hidden rounded-2xl"
           >
-            <img 
-              src={heroCharacter} 
-              alt="Professional worker with safety helmet" 
-              className="w-full max-w-[550px] sm:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl h-auto object-contain scale-[1.2] lg:scale-[1.5]"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full max-w-[550px] sm:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl h-auto object-contain"
+              style={{ transform: 'scale(1.2)', objectPosition: 'center center' }}
+            >
+              <source src="/videos/hero-character-video.mp4" type="video/mp4" />
+            </video>
           </motion.div>
 
           {/* Text Content - Left on Desktop */}
