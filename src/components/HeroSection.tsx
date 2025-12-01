@@ -44,7 +44,7 @@ const HeroSection = () => {
         <div className="max-w-7xl w-full">
           
           {/* Text Content with Frosted Glass Effect */}
-          <div className="max-w-3xl backdrop-blur-xl bg-white/50 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl border border-white/20">
+          <div className="max-w-3xl backdrop-blur-xl bg-white/30 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl border border-white/20">
             <div className="text-left space-y-4 sm:space-y-6 lg:space-y-8">
             
               {/* Main Heading */}
