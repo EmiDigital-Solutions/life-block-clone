@@ -40,12 +40,12 @@ const HeroSection = () => {
         <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
       </video>
 
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8 relative z-10">
-        <div className="max-w-7xl mx-auto w-full">
+      <div className="flex-1 flex items-center justify-start px-4 sm:px-6 lg:px-16 xl:px-24 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8 relative z-10">
+        <div className="max-w-7xl w-full">
           
           {/* Text Content with Frosted Glass Effect */}
-          <div className="max-w-4xl backdrop-blur-xl bg-white/80 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl border border-white/20">
-            <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8">
+          <div className="max-w-3xl backdrop-blur-xl bg-white/50 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl border border-white/20">
+            <div className="text-left space-y-4 sm:space-y-6 lg:space-y-8">
             
               {/* Main Heading */}
               <motion.h1
@@ -75,7 +75,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-col gap-6 sm:gap-8 justify-center lg:justify-start items-center lg:items-start pt-2 sm:pt-4"
+                className="flex flex-col gap-6 sm:gap-8 justify-start items-start pt-2 sm:pt-4"
               >
                 <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium transition-all duration-300 text-sm sm:text-base shadow-xl text-white" style={{ backgroundColor: '#0A7FA5' }}>
                   Order Audit
@@ -87,7 +87,7 @@ const HeroSection = () => {
                 </button>
                 
                 {/* Auditor Certifications */}
-                <p className="text-xs sm:text-sm text-gray-600 text-center lg:text-left leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 text-left leading-relaxed">
                   Our auditor network includes professionals certified by:{" "}
                   <span className="font-medium text-gray-900">TÜV SÜD</span>
                   {" • "}
