@@ -35,7 +35,7 @@ const HeroSection = () => {
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ transform: 'scale(1.3)', objectPosition: 'center center' }}
+        style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
       >
         <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
       </video>
