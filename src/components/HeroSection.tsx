@@ -47,7 +47,7 @@ const HeroSection = () => {
               className="w-full max-w-[400px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] h-auto object-contain bg-gray-50"
               style={{ transform: 'scale(1.15)', objectPosition: 'center top' }}
             >
-              <source src="/videos/hero-character-video.mp4" type="video/mp4" />
+              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
             </video>
           </motion.div>
 
