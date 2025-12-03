@@ -477,10 +477,10 @@ const SearchSuppliers = () => {
               <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
                 {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
+                <div className="bg-[#0A0A0A] px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-[#A8C5B8] drop-shadow-md" strokeWidth={2.5} />
+                    <Cpu className="w-5 h-5 text-[#6EA996] drop-shadow-md" strokeWidth={2.5} />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -489,7 +489,7 @@ const SearchSuppliers = () => {
                 
                 {/* Teal label */}
                 <div className="mb-3 flex-shrink-0">
-                  <span className="text-[#A8C5B8] text-sm font-black drop-shadow-sm">
+                  <span className="text-[#6EA996] text-sm font-black drop-shadow-sm">
                     Interactive Demo
                   </span>
                 </div>
@@ -504,11 +504,11 @@ const SearchSuppliers = () => {
                 {/* Step indicators */}
                 <div className="flex items-center justify-center gap-2 mb-4 flex-shrink-0">
                   {[1, 2, 3].map((step) => (
-                    <div
+                <div
                       key={step}
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                         step <= currentStep
-                          ? 'bg-[#A8C5B8] text-white'
+                          ? 'bg-[#6EA996] text-white'
                           : 'bg-gray-200 text-gray-400'
                       }`}
                     >
@@ -533,21 +533,21 @@ const SearchSuppliers = () => {
                       transition={{ duration: 0.3 }}
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div
-                        className={`max-w-[80%] p-4 rounded-2xl ${
-                          msg.role === 'user'
-                            ? 'bg-[#A8C5B8] text-white rounded-br-none'
-                            : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
-                        }`}
-                      >
-                        {msg.role === 'ai' && (
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
-                              <Cpu className="w-3 h-3 text-white" />
+                        <div
+                          className={`max-w-[80%] p-4 rounded-2xl ${
+                            msg.role === 'user'
+                              ? 'bg-[#6EA996] text-white rounded-br-none'
+                              : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
+                          }`}
+                        >
+                          {msg.role === 'ai' && (
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#6EA996] flex items-center justify-center">
+                                <Cpu className="w-3 h-3 text-white" />
+                              </div>
+                              <span className="text-xs font-black text-[#6EA996] drop-shadow-sm">YVOO</span>
                             </div>
-                            <span className="text-xs font-black text-[#A8C5B8] drop-shadow-sm">YVOO</span>
-                          </div>
-                        )}
+                          )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
                       </div>
                     </motion.div>
@@ -562,15 +562,15 @@ const SearchSuppliers = () => {
                     >
                       <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#6EA996] flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
+                          <span className="text-xs font-bold text-[#6EA996]">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                             </div>
                           )}
                         </div>
@@ -586,7 +586,7 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-end"
                     >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#A8C5B8] text-white rounded-br-none">
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#6EA996] text-white rounded-br-none">
                         <p className="text-sm font-medium">{userInput}</p>
                       </div>
                     </motion.div>
@@ -604,7 +604,7 @@ const SearchSuppliers = () => {
                   >
                     <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                       <div className="flex items-center gap-2 mb-4">
-                        <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
+                        <CheckCircle2 className="w-5 h-5 text-[#6EA996]" />
                         <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                       </div>
                       
@@ -613,13 +613,13 @@ const SearchSuppliers = () => {
                           <button
                             key={supplier.id}
                             onClick={() => setSelectedSupplier(supplier)}
-                            className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
+                            className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#6EA996] hover:shadow-md transition-all group"
                           >
                             <div className="flex items-start justify-between mb-2">
-                              <h4 className="font-bold text-gray-900 group-hover:text-[#A8C5B8] transition-colors">
+                              <h4 className="font-bold text-gray-900 group-hover:text-[#6EA996] transition-colors">
                                 {supplier.name}
                               </h4>
-                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" />
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#6EA996] group-hover:translate-x-1 transition-all" />
                             </div>
                             <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                               <MapPin className="w-4 h-4" />
@@ -629,7 +629,7 @@ const SearchSuppliers = () => {
                               {supplier.certifications.slice(0, 2).map((cert, idx) => (
                                 <span
                                   key={idx}
-                                  className="px-2 py-0.5 bg-[#A8C5B8]/10 text-[#A8C5B8] text-xs rounded-full font-medium"
+                                  className="px-2 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-xs rounded-full font-medium"
                                 >
                                   {cert}
                                 </span>
@@ -1768,7 +1768,7 @@ const SearchSuppliers = () => {
                 <div className="space-y-2">
                   {selectedSupplier.equipment.map((equip: string) => (
                     <div key={equip} className="flex items-center gap-2 text-sm text-gray-700 p-2 bg-gray-50 rounded-lg">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996]"></div>
                       <span>{equip}</span>
                     </div>
                   ))}
