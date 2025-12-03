@@ -1048,24 +1048,24 @@ const ChallengeToggleSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4"
+          className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 xl:gap-8"
         >
           {currentContent.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-5 border border-gray-200"
+              className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl p-2 sm:p-5 lg:p-6 xl:p-7 border border-gray-200"
             >
               <div className="flex flex-col items-center text-center gap-1 sm:gap-2 mb-1 sm:mb-3">
-                <PixelIcon 
+                 <PixelIcon 
                   name={item.icon} 
-                  className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0"
+                  className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0"
                   color={isWithScanPro ? '#A8C5B8' : '#C57B7B'}
                 />
-                <h3 className="text-xs sm:text-lg font-bold text-gray-900 leading-tight">
+                <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-[10px] sm:text-sm text-gray-600 leading-tight sm:leading-relaxed text-center">
+              <p className="text-[10px] sm:text-sm lg:text-base text-gray-600 leading-tight sm:leading-relaxed lg:leading-relaxed text-center">
                 {item.description}
               </p>
             </div>
@@ -1997,7 +1997,7 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
             Global <span style={{ color: '#A8B8CA' }}>Network</span> & Integration
           </motion.h2>
@@ -2009,7 +2009,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-8 sm:mb-12"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">ERP Integration</h3>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">ERP Integration</h3>
             <div className="space-y-3 sm:space-y-4">
               {[
                 { title: 'SAP Integration', desc: 'Supplier Evaluation & Release' },
@@ -2024,10 +2024,10 @@ const ScanProPlus = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
                 >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
                   <div className="flex-1">
-                    <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">{item.title}</h4>
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-600">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -2041,7 +2041,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-8 sm:mb-12"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Global Network</h3>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Global Network</h3>
             <div className="space-y-3 sm:space-y-4">
               {[
                 { title: 'On-Demand Availability', desc: 'Same-Day audits worldwide' },
@@ -2056,21 +2056,21 @@ const ScanProPlus = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
                 >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
                   <div className="flex-1">
-                    <h4 className="text-base sm:text-lg font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">{item.title}</h4>
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-600">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          <div className="mt-6 sm:mt-8 p-6 sm:p-8 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8B8CA, #A8C5B8)' }}>
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+          <div className="mt-6 sm:mt-8 p-6 sm:p-8 lg:p-10 xl:p-12 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8B8CA, #A8C5B8)' }}>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">
               Available in 47 Countries
             </h3>
-            <p className="text-base sm:text-lg text-white/90">
+            <p className="text-base sm:text-lg lg:text-xl text-white/90">
               Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
             </p>
           </div>
