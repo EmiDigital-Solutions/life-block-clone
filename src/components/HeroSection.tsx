@@ -25,7 +25,7 @@ const HeroSection = () => {
 
   return (
     <section 
-      data-nav-theme="light"
+      data-nav-theme="hero"
       className="relative min-h-screen flex flex-col overflow-hidden"
     >
       {/* Full Background Video */}
