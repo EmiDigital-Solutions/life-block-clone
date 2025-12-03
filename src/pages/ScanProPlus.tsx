@@ -410,7 +410,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span className="text-[#A8C5B8] font-black drop-shadow-md">Auditor Network</span>
+                Global On-Demand<br /><span className="text-[#6EA996] font-black drop-shadow-md">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -530,7 +530,7 @@ const MapLocationMarker = ({
             <div className="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-gray-700">
               <p className="font-bold text-sm whitespace-nowrap">{name}</p>
               <div className="flex items-center gap-2 mt-1.5">
-                <div className="w-2 h-2 rounded-full bg-[#2ECC71] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-[#6EA996] animate-pulse" />
                 <p className="text-xs text-gray-300 font-medium">{availability}</p>
               </div>
             </div>
@@ -639,7 +639,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="whitespace-nowrap">Auditor Network</span>
+                Global On-Demand <span style={{ color: '#6EA996', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -870,13 +870,13 @@ const ComplianceStandardsGrid = () => {
               </p>
 
               {/* Click indicator */}
-              <div className="text-[10px] sm:text-xs font-black text-[#A8C5B8] transition-opacity flex items-center justify-center gap-1 drop-shadow-sm">
+              <div className="text-[10px] sm:text-xs font-black text-[#6EA996] transition-opacity flex items-center justify-center gap-1 drop-shadow-sm">
                 Click to learn more
                 <PixelIcon name="arrow-right" className="w-3 h-3" />
               </div>
 
               {/* Hover effect overlay */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-[#A8C5B8] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-3xl border-2 border-[#6EA996] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.button>
           );
         })}
@@ -896,7 +896,7 @@ const ComplianceStandardsGrid = () => {
                     <DialogTitle className="text-2xl font-bold text-gray-900">
                       {selectedStandard.name}
                     </DialogTitle>
-                    <p className="text-sm font-black text-[#A8C5B8] mt-1 drop-shadow-sm">
+                    <p className="text-sm font-black text-[#6EA996] mt-1 drop-shadow-sm">
                       {selectedStandard.description}
                     </p>
                   </div>
@@ -1012,7 +1012,7 @@ const ChallengeToggleSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
               className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
-                isWithScanPro ? 'text-[#A8C5B8]' : 'text-[#C57B7B]'
+                isWithScanPro ? 'text-[#6EA996]' : 'text-[#AD3D3D]'
               }`}
             >
               {isWithScanPro ? 'ScanPro+' : 'Providers'}
@@ -1023,7 +1023,7 @@ const ChallengeToggleSection = () => {
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
             className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-[#B2CDBC]' : 'bg-[#C57B7B]'
+              isWithScanPro ? 'bg-[#B2CDBC]' : 'bg-[#AD3D3D]'
             }`}
             aria-label="Toggle comparison"
           >
@@ -1056,10 +1056,10 @@ const ChallengeToggleSection = () => {
               className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl p-2 sm:p-5 lg:p-6 xl:p-7 border border-gray-200"
             >
               <div className="flex flex-col items-center text-center gap-1 sm:gap-2 mb-1 sm:mb-3">
-                 <PixelIcon 
+                <PixelIcon 
                   name={item.icon} 
                   className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0"
-                  color={isWithScanPro ? '#A8C5B8' : '#C57B7B'}
+                  color={isWithScanPro ? '#6EA996' : '#AD3D3D'}
                 />
                 <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight">
                   {item.title}
@@ -1079,9 +1079,9 @@ const ChallengeToggleSection = () => {
 
 const fallbackAuditors = [
   { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#B2CDBC] via-[#A0B9A9] to-[#8EA5A0]", gender: "male" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#B2CDBC] via-[#6EA996] to-[#6EA996]", gender: "male" },
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#B2CDBC] via-[#A0B9A9] to-[#8EA5A0]", gender: "male" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#B2CDBC] via-[#6EA996] to-[#6EA996]", gender: "male" },
   { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
@@ -1997,9 +1997,9 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
-            Global <span style={{ color: '#A8B8CA' }}>Network</span> & Integration
+            Global <span style={{ color: '#ACC5D9' }}>Network</span> & Integration
           </motion.h2>
 
           {/* ERP Integration Section */}
