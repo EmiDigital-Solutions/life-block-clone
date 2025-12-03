@@ -61,7 +61,12 @@ const Navigation = () => {
           // First check for data-nav-theme attribute (highest priority)
           const navTheme = section.getAttribute('data-nav-theme');
           
-          if (navTheme === 'dark') {
+          if (navTheme === 'hero') {
+            // Hero section on landing page - fully transparent nav with white text
+            setNavBgColor('rgba(0, 0, 0, 0)');
+            setTextColor('rgb(255, 255, 255)');
+            break;
+          } else if (navTheme === 'dark') {
             // Dark section - use dark background with light text
             setNavBgColor('rgba(31, 41, 55, 0.95)');
             setTextColor('rgb(255, 255, 255)');
@@ -143,7 +148,7 @@ const Navigation = () => {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
       style={{ 
         background: navBgColor,
-        borderBottomColor: borderColor,
+        borderBottomColor: navBgColor === 'rgba(0, 0, 0, 0)' ? 'transparent' : borderColor,
         minHeight: '64px',
       }}
     >
