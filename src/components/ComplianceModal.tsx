@@ -153,7 +153,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <button
               onClick={onClose}
-              className="flex items-center gap-2 text-gray-700 hover:text-[#0A7FA5] transition-colors font-medium"
+              className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors font-medium"
             >
               <ArrowLeft className="w-5 h-5" />
               <span className="hidden sm:inline">Back to ScanPro+</span>
@@ -207,7 +207,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
 
                 <button
                   type="button"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#0A7FA5] px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#0A7FA5]/90 hover:shadow-xl"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
                 >
                   Get In Touch
                 </button>
@@ -216,7 +216,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-full bg-[#0A7FA5] flex items-center justify-center animate-bounce">
+              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center animate-bounce">
                 <ChevronDown className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -236,7 +236,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                   </p>
                   <button
                     type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0A7FA5] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#0A7FA5]/90"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-primary/90"
                   >
                     Get In Touch
                   </button>
@@ -275,7 +275,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                     key={idx} 
                     className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#6EA996]/20 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
                       <PixelIcon name="checkbox-on" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700">{service}</p>
@@ -297,7 +297,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                     key={idx}
                     className="text-center p-6 rounded-3xl bg-gradient-to-br from-[#f8fafb] to-white"
                   >
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-[#0A7FA5]/10 flex items-center justify-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
                       <PixelIcon name={benefit.iconName} className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
@@ -309,7 +309,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 lg:py-20 bg-[#0A7FA5]">
+          <section className="py-16 lg:py-20 bg-primary">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Ready to streamline your {standard.name} audits?
@@ -319,7 +319,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
               </p>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-[#0A7FA5] shadow-lg transition-all hover:bg-gray-50"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-primary shadow-lg transition-all hover:bg-gray-50"
               >
                 Get In Touch
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
