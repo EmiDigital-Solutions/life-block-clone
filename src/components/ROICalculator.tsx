@@ -1,25 +1,55 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { DollarSign, Edit3, Zap, Lightbulb } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { DollarSign, TrendingDown, Clock, MapPin, FileCheck } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { auditTypes, regions, categories, type AuditType } from "@/data/auditPricingData";
 
 const ROICalculator = () => {
-  const [auditsPerYear, setAuditsPerYear] = useState(20);
-  const [traditionalCostPerAudit, setTraditionalCostPerAudit] = useState(20000);
-  
-  const scanProCostPerAudit = 700;
-  const weeksPerAudit = 2;
-  const workDaysPerWeek = 5;
-  const timeSavingsPercent = 0.7;
+  const [selectedCategory, setSelectedCategory] = useState<string>("Universal");
+  const [selectedAuditId, setSelectedAuditId] = useState<string>("214"); // ISO 9001 default
+  const [selectedRegion, setSelectedRegion] = useState<string>("dach");
+  const [auditsPerYear, setAuditsPerYear] = useState(10);
+
+  // Get filtered audits by category
+  const filteredAudits = useMemo(() => 
+    auditTypes.filter(a => a.category === selectedCategory),
+    [selectedCategory]
+  );
+
+  // Get selected audit details
+  const selectedAudit = useMemo(() => 
+    auditTypes.find(a => a.id.toString() === selectedAuditId),
+    [selectedAuditId]
+  );
+
+  // Get selected region details
+  const selectedRegionData = useMemo(() => 
+    regions.find(r => r.id === selectedRegion),
+    [selectedRegion]
+  );
 
   // Calculations
-  const traditionalTotalCost = auditsPerYear * traditionalCostPerAudit;
-  const scanProTotalCost = auditsPerYear * scanProCostPerAudit;
-  const annualSavings = traditionalTotalCost - scanProTotalCost;
-  const timeSavingsInDays = Math.round(
-    auditsPerYear * weeksPerAudit * workDaysPerWeek * timeSavingsPercent
-  );
+  const traditionalCost = selectedAudit?.traditionalEur || 0;
+  const yvooCost = selectedAudit?.pricing[selectedRegion as keyof typeof selectedAudit.pricing] || 0;
+  const savingsPerAudit = traditionalCost - yvooCost;
+  const savingsPercent = selectedAudit?.savingsPercent || 0;
+  
+  const totalTraditionalCost = traditionalCost * auditsPerYear;
+  const totalYvooCost = yvooCost * auditsPerYear;
+  const totalAnnualSavings = savingsPerAudit * auditsPerYear;
+
+  // Time savings calculation (based on complexity)
+  const getTimeSavings = () => {
+    if (!selectedAudit) return { weeks: 0, days: 0 };
+    const avgDays = (selectedAudit.minDays + selectedAudit.maxDays) / 2;
+    const timeSavingsPercent = 0.6; // 60% time savings
+    const savedDays = Math.round(avgDays * timeSavingsPercent * auditsPerYear);
+    return { weeks: Math.floor(savedDays / 5), days: savedDays };
+  };
+
+  const timeSavings = getTimeSavings();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('de-DE', {
@@ -29,132 +59,222 @@ const ROICalculator = () => {
     }).format(value);
   };
 
+  // Handle category change
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    const firstAudit = auditTypes.find(a => a.category === category);
+    if (firstAudit) {
+      setSelectedAuditId(firstAudit.id.toString());
+    }
+  };
+
   return (
-    <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
-      {/* Header Section */}
+    <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl border border-gray-200">
+      {/* Header */}
       <div className="mb-8">
-        <div className="flex flex-wrap items-center gap-3 mb-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900"
-          >
-            Calculate Your <span className="text-primary">Business Case</span>
-          </motion.h2>
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2"
+        >
+          Calculate Your <span className="text-[#0A7FA5]">Business Case</span>
+        </motion.h2>
+        <p className="text-gray-600">Select your audit type and region to see your potential savings</p>
       </div>
 
-      {/* Input Fields with Visual Cues */}
+      {/* Selection Controls */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-        className="bg-gradient-to-br from-primary/5 to-secondary/10 rounded-2xl p-6 md:p-8 mb-8 border-2 border-primary/30 relative"
+        transition={{ delay: 0.1 }}
+        className="bg-gradient-to-br from-[#0A7FA5]/5 to-[#6EA996]/10 rounded-2xl p-4 sm:p-6 mb-8 border border-[#0A7FA5]/20"
       >
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Category Selection */}
           <div className="space-y-2">
-            <Label htmlFor="audits" className="text-base font-bold text-gray-900">
-              Step 1: Your audits per year
+            <Label className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <FileCheck className="w-4 h-4 text-[#0A7FA5]" />
+              Category
             </Label>
-            <Input
-              id="audits"
-              type="number"
-              min="1"
-              value={auditsPerYear}
-              onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
-              placeholder="e.g., 20"
-              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-            />
+            <Select value={selectedCategory} onValueChange={handleCategoryChange}>
+              <SelectTrigger className="h-12 border-gray-300 bg-white">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
+          {/* Audit Type Selection */}
           <div className="space-y-2">
-            <Label htmlFor="traditional-cost" className="text-base font-bold text-gray-900">
-              Step 2: Your current cost per audit (€)
+            <Label className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <FileCheck className="w-4 h-4 text-[#0A7FA5]" />
+              Audit Standard
+            </Label>
+            <Select value={selectedAuditId} onValueChange={setSelectedAuditId}>
+              <SelectTrigger className="h-12 border-gray-300 bg-white">
+                <SelectValue placeholder="Select audit type" />
+              </SelectTrigger>
+              <SelectContent>
+                {filteredAudits.map((audit) => (
+                  <SelectItem key={audit.id} value={audit.id.toString()}>
+                    {audit.code} - {audit.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Region Selection */}
+          <div className="space-y-2">
+            <Label className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#0A7FA5]" />
+              Supplier Region
+            </Label>
+            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+              <SelectTrigger className="h-12 border-gray-300 bg-white">
+                <SelectValue placeholder="Select region" />
+              </SelectTrigger>
+              <SelectContent>
+                {regions.map((region) => (
+                  <SelectItem key={region.id} value={region.id}>
+                    {region.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Audits Per Year */}
+          <div className="space-y-2">
+            <Label className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <Clock className="w-4 h-4 text-[#0A7FA5]" />
+              Audits per Year
             </Label>
             <Input
-              id="traditional-cost"
               type="number"
               min="1"
-              value={traditionalCostPerAudit}
-              onChange={(e) => setTraditionalCostPerAudit(Math.max(1, parseInt(e.target.value) || 1))}
-              placeholder="e.g., 20000"
-              className="text-lg h-14 border-2 border-gray-300 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              max="500"
+              value={auditsPerYear}
+              onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
+              className="h-12 border-gray-300 bg-white text-center text-lg font-semibold"
             />
           </div>
         </div>
       </motion.div>
 
-      {/* Results Header */}
-      <div className="text-center mb-6">
+      {/* Audit Info Badge */}
+      {selectedAudit && (
         <motion.div
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full text-lg font-bold shadow-xl"
+          key={selectedAuditId}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-wrap items-center gap-3 mb-6"
         >
-          Your Results Update Instantly
+          <span className="px-3 py-1.5 bg-[#0A7FA5]/10 text-[#0A7FA5] rounded-full text-sm font-medium">
+            {selectedAudit.complexity} Complexity
+          </span>
+          <span className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+            {selectedAudit.minDays}-{selectedAudit.maxDays} Days
+          </span>
+          <span className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+            {selectedAudit.auditors} Auditor{selectedAudit.auditors > 1 ? 's' : ''}
+          </span>
+        </motion.div>
+      )}
+
+      {/* Cost Comparison */}
+      <div className="space-y-4 mb-6">
+        {/* Traditional Cost */}
+        <motion.div
+          key={`trad-${selectedAuditId}`}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-gray-50 rounded-xl border border-gray-200"
+        >
+          <div>
+            <p className="text-sm text-gray-500 mb-1">Traditional Audit Cost</p>
+            <p className="text-gray-700 font-medium">{auditsPerYear} × {formatCurrency(traditionalCost)}</p>
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 sm:mt-0">
+            {formatCurrency(totalTraditionalCost)}
+          </div>
+        </motion.div>
+
+        {/* YVOO Cost */}
+        <motion.div
+          key={`yvoo-${selectedAuditId}-${selectedRegion}`}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-[#6EA996]/10 rounded-xl border border-[#6EA996]/30"
+        >
+          <div>
+            <p className="text-sm text-gray-500 mb-1">YVOO ScanPro+ ({selectedRegionData?.label})</p>
+            <p className="text-gray-700 font-medium">{auditsPerYear} × {formatCurrency(yvooCost)}</p>
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold text-[#6EA996] mt-2 sm:mt-0">
+            {formatCurrency(totalYvooCost)}
+          </div>
         </motion.div>
       </div>
 
-      {/* Results */}
-      <div className="space-y-6">
-        <div className="flex justify-between items-center py-6 border-b-2 border-gray-200">
-          <div className="text-base sm:text-lg font-semibold text-gray-900">
-            Traditional Audit Costs ({auditsPerYear} × {formatCurrency(traditionalCostPerAudit)})
+      {/* Annual Savings Highlight */}
+      <motion.div
+        key={`savings-${totalAnnualSavings}`}
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-[#0A7FA5] to-[#0A7FA5]/80 text-white mb-6"
+      >
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
+              <DollarSign className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <p className="text-white/80 text-sm">Your Annual Cost Savings</p>
+              <p className="text-white/60 text-xs mt-0.5">Based on {auditsPerYear} audits per year</p>
+            </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-gray-900">
-            {formatCurrency(traditionalTotalCost)}
+          <div className="text-right">
+            <div className="text-4xl sm:text-5xl font-bold">
+              {formatCurrency(totalAnnualSavings)}
+            </div>
+            <div className="flex items-center justify-end gap-2 mt-1">
+              <TrendingDown className="w-4 h-4 text-green-300" />
+              <span className="text-green-300 font-semibold">{savingsPercent}% savings</span>
+            </div>
           </div>
         </div>
-        
-        <div className="flex justify-between items-center py-6 border-b-2 border-gray-200">
-          <div className="text-base sm:text-lg font-semibold text-gray-900">
-            YVOO ScanPro+ Costs ({auditsPerYear} × {formatCurrency(scanProCostPerAudit)})
+      </motion.div>
+
+      {/* Time Savings */}
+      <div className="rounded-xl p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Clock className="w-5 h-5 text-[#0A7FA5]" />
+            <span className="text-gray-700 font-medium">Estimated Time Savings</span>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-gray-900">
-            {formatCurrency(scanProTotalCost)}
-          </div>
-        </div>
-        
-        <motion.div
-          key={annualSavings}
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-          className="border-2 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-primary/10 to-primary/5 border-primary"
-        >
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-white" />
-              </div>
-              Your Annual Cost Savings
-            </div>
-            <div className="text-4xl sm:text-5xl font-bold text-primary">
-              {formatCurrency(annualSavings)}
-            </div>
-          </div>
-        </motion.div>
-        
-        <div className="rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
-          <div className="flex justify-between items-center">
-            <div className="text-base sm:text-lg font-semibold text-gray-900">
-              Time Savings ({timeSavingsPercent * 100}% of {weeksPerAudit} weeks per audit)
-            </div>
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">
-              {timeSavingsInDays} Work Days
-            </div>
+          <div className="text-xl sm:text-2xl font-bold text-[#0A7FA5]">
+            {timeSavings.days} Work Days <span className="text-base font-normal text-gray-500">({timeSavings.weeks} weeks)</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
-        <p className="text-gray-700 text-sm">
-          <strong className="text-gray-900">Additional Benefits:</strong> No travel costs for internal auditors, 
-          reduced rework through standardized reports, faster supplier releases 
-          enable shorter time-to-market, and improved supplier relationship management.
+      {/* Additional Benefits */}
+      <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <p className="text-gray-600 text-sm">
+          <strong className="text-gray-800">Additional Benefits:</strong> No travel costs, 
+          standardized digital reports within 24h, local certified auditors, 
+          faster supplier qualification, and improved audit consistency.
         </p>
       </div>
     </div>
