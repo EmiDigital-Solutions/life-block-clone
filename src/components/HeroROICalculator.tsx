@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { DollarSign } from "lucide-react";
+import { DollarSign, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -10,14 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { auditTypes, regions, categories } from "@/data/auditPricingData";
-
-type RegionKey = 'dach' | 'wEu' | 'eEu' | 'turkey' | 'china' | 'india' | 'sea' | 'usa' | 'latam';
+import { auditTypes, regions, categories, travelCosts, RegionKey } from "@/data/auditPricingData";
 
 const HeroROICalculator = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Automotive");
   const [selectedAuditId, setSelectedAuditId] = useState<string>("24"); // IATF 16949
-  const [selectedRegion, setSelectedRegion] = useState<RegionKey>("dach");
+  const [clientRegion, setClientRegion] = useState<RegionKey>("dach");
+  const [supplierRegion, setSupplierRegion] = useState<RegionKey>("china");
   const [auditsPerYear, setAuditsPerYear] = useState<string>("10");
 
   // Filter audits by category
@@ -33,8 +32,14 @@ const HeroROICalculator = () => {
   // Calculations
   const auditsNum = parseInt(auditsPerYear) || 0;
   
-  const traditionalCostPerAudit = selectedAudit?.traditionalEur || 0;
-  const yvooCostPerAudit = selectedAudit?.pricing[selectedRegion] || 0;
+  // Traditional cost = base audit cost + travel cost (client travels to supplier)
+  const traditionalBaseCost = selectedAudit?.traditionalEur || 0;
+  const travelCost = travelCosts[clientRegion]?.[supplierRegion] || 0;
+  const auditorCount = selectedAudit?.auditors || 1;
+  const traditionalCostPerAudit = traditionalBaseCost + (travelCost * auditorCount);
+  
+  // YVOO cost = local auditor, no travel needed
+  const yvooCostPerAudit = selectedAudit?.pricing[supplierRegion] || 0;
   
   const traditionalTotalCost = auditsNum * traditionalCostPerAudit;
   const yvooTotalCost = auditsNum * yvooCostPerAudit;
@@ -43,13 +48,22 @@ const HeroROICalculator = () => {
     ? Math.round((annualSavings / traditionalTotalCost) * 100) 
     : 0;
 
-  // Time savings calculation (based on audit complexity)
+  // Time savings calculation (travel time + scheduling efficiency)
   const getTimeSavingsDays = () => {
     if (!selectedAudit) return 0;
-    const avgDays = (selectedAudit.minDays + selectedAudit.maxDays) / 2;
-    const traditionalWeeks = avgDays * 2; // Traditional takes 2x longer
-    const timeSaved = traditionalWeeks - avgDays;
-    return Math.round(auditsNum * timeSaved);
+    const avgAuditDays = (selectedAudit.minDays + selectedAudit.maxDays) / 2;
+    
+    // Travel days based on distance (intercontinental = more travel time)
+    const isIntercontinental = 
+      (['dach', 'wEu', 'eEu'].includes(clientRegion) && ['china', 'india', 'sea', 'usa', 'latam'].includes(supplierRegion)) ||
+      (['china', 'india', 'sea'].includes(clientRegion) && ['dach', 'wEu', 'eEu', 'usa', 'latam'].includes(supplierRegion)) ||
+      (['usa', 'latam'].includes(clientRegion) && ['china', 'india', 'sea', 'dach', 'wEu', 'eEu'].includes(supplierRegion));
+    
+    const travelDays = isIntercontinental ? 3 : (clientRegion === supplierRegion ? 0 : 1);
+    const schedulingDays = 2; // YVOO's efficient scheduling saves ~2 days per audit
+    
+    const timeSavedPerAudit = travelDays + schedulingDays;
+    return Math.round(auditsNum * timeSavedPerAudit);
   };
 
   const formatCurrency = (value: number) => {
@@ -119,12 +133,29 @@ const HeroROICalculator = () => {
           </Select>
         </div>
 
-        {/* Region Selection */}
+        {/* Client Region Selection */}
+        <div className="space-y-1.5">
+          <Label className="text-xs font-bold text-gray-900">Your Location</Label>
+          <Select value={clientRegion} onValueChange={(v) => setClientRegion(v as RegionKey)}>
+            <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
+              <SelectValue placeholder="Select your region" />
+            </SelectTrigger>
+            <SelectContent>
+              {regions.map((region) => (
+                <SelectItem key={region.key} value={region.key} className="text-sm">
+                  {region.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Supplier Region Selection */}
         <div className="space-y-1.5">
           <Label className="text-xs font-bold text-gray-900">Supplier Region</Label>
-          <Select value={selectedRegion} onValueChange={(v) => setSelectedRegion(v as RegionKey)}>
+          <Select value={supplierRegion} onValueChange={(v) => setSupplierRegion(v as RegionKey)}>
             <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
-              <SelectValue placeholder="Select region" />
+              <SelectValue placeholder="Select supplier region" />
             </SelectTrigger>
             <SelectContent>
               {regions.map((region) => (
@@ -156,12 +187,18 @@ const HeroROICalculator = () => {
       {/* Results */}
       <div className="space-y-3 mt-4">
         <div className="flex justify-between items-center py-2 border-b border-gray-200">
-          <span className="text-xs text-gray-600">Traditional</span>
+          <div>
+            <span className="text-xs text-gray-600">Traditional</span>
+            <span className="text-[10px] text-gray-400 block">incl. travel</span>
+          </div>
           <span className="text-base font-bold text-gray-900">{formatCurrency(traditionalTotalCost)}</span>
         </div>
         
         <div className="flex justify-between items-center py-2 border-b border-gray-200">
-          <span className="text-xs text-gray-600">YVOO</span>
+          <div>
+            <span className="text-xs text-gray-600">YVOO</span>
+            <span className="text-[10px] text-gray-400 block">local auditors</span>
+          </div>
           <span className="text-base font-bold text-gray-900">{formatCurrency(yvooTotalCost)}</span>
         </div>
         
@@ -185,7 +222,10 @@ const HeroROICalculator = () => {
         
         <div className="rounded-xl p-3 bg-secondary border-2 border-secondary/80">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-semibold text-white">Time Saved</span>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-white" />
+              <span className="text-xs font-semibold text-white">Time Saved</span>
+            </div>
             <span className="text-base font-bold text-white">
               {getTimeSavingsDays()} Days
             </span>
