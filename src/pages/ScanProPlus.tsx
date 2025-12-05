@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
-import worldMapFlat from "@/assets/world-map-flat.png";
+import worldMapFilled from "@/assets/world-map-filled.png";
 import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
@@ -413,7 +413,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span className="text-[#6EA996] font-black drop-shadow-md">Auditor Network</span>
+                Global On-Demand<br /><span className="text-primary font-black drop-shadow-md">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -642,7 +642,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#6EA996', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="whitespace-nowrap">Auditor Network</span>
+                Global On-Demand <span style={{ color: 'hsl(var(--primary))', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -1387,7 +1387,7 @@ const HowItWorksCarousel = () => {
           {/* Flat World Map */}
           <div className="relative w-full max-w-[280px] sm:max-w-[450px] md:max-w-[550px]">
             <img 
-              src={worldMapFlat} 
+              src={worldMapFilled} 
               alt="Global coverage map" 
               className="w-full h-auto"
             />
@@ -1448,7 +1448,7 @@ const HowItWorksCarousel = () => {
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           <div className="relative w-full max-w-[280px] sm:max-w-[450px] md:max-w-[550px]">
             <img 
-              src={worldMapFlat} 
+              src={worldMapFilled} 
               alt="Global auditor network" 
               className="w-full h-auto"
             />
