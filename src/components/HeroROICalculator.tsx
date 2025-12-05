@@ -10,18 +10,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { auditTypes, regions, categories, travelCosts, RegionKey } from "@/data/auditPricingData";
+import { auditTypes, regions, categories, travelCosts, RegionKey, getAuditsByCategory } from "@/data/auditPricingData";
 
 const HeroROICalculator = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Automotive");
-  const [selectedAuditId, setSelectedAuditId] = useState<string>("24"); // IATF 16949
+  const [selectedCategory, setSelectedCategory] = useState<string>("Most Common Audits");
+  const [selectedAuditId, setSelectedAuditId] = useState<string>("202"); // ISO 9001
   const [clientRegion, setClientRegion] = useState<RegionKey>("dach");
   const [supplierRegion, setSupplierRegion] = useState<RegionKey>("china");
   const [auditsPerYear, setAuditsPerYear] = useState<string>("10");
 
-  // Filter audits by category
+  // Filter audits by category (handles "Most Common Audits" special case)
   const filteredAudits = useMemo(() => {
-    return auditTypes.filter(audit => audit.category === selectedCategory);
+    return getAuditsByCategory(selectedCategory);
   }, [selectedCategory]);
 
   // Get selected audit
@@ -77,9 +77,9 @@ const HeroROICalculator = () => {
   // Handle category change - reset audit selection
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    const firstAuditInCategory = auditTypes.find(a => a.category === category);
-    if (firstAuditInCategory) {
-      setSelectedAuditId(String(firstAuditInCategory.id));
+    const auditsInCategory = getAuditsByCategory(category);
+    if (auditsInCategory.length > 0) {
+      setSelectedAuditId(String(auditsInCategory[0].id));
     }
   };
 
