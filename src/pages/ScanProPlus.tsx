@@ -34,6 +34,8 @@ import liveTracking from "@/assets/live-tracking-dashboard.jpg";
 import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
 import scanProHeroBackground from "@/assets/scanpro-hero-background.jpg";
+import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
+import aboutSustainability from "@/assets/about-sustainability.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorLatin from "@/assets/auditor-real-latin.jpg";
@@ -765,6 +767,61 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
 const ComplianceStandardsGrid = () => {
   const [selectedStandard, setSelectedStandard] = useState<any>(null);
 
+  const imageConfigMap: Record<string, { src: string; alt: string }> = {
+    "ISO 9001": {
+      src: scanProDashboard,
+      alt: "Quality managers reviewing ISO 9001 supplier audit results in the YVOO ScanPro+ dashboard.",
+    },
+    "IATF 16949": {
+      src: industryAutomotive,
+      alt: "Automotive production team during an IATF 16949 supplier audit.",
+    },
+    "AS9100": {
+      src: industryAerospace,
+      alt: "Aerospace manufacturing team in a quality audit discussion.",
+    },
+    "ISO 14001": {
+      src: aboutSustainability,
+      alt: "Sustainable manufacturing site focused on environmental management.",
+    },
+    "GMP": {
+      src: aiAudit,
+      alt: "Pharmaceutical production line being inspected under GMP requirements.",
+    },
+    "API Q1": {
+      src: industryCryogenicValve,
+      alt: "Industrial valve manufacturing facility during an API Q1 quality check.",
+    },
+    "SQF": {
+      src: digitalWorkflowTeam,
+      alt: "Food industry quality team collaborating on Safe Quality Food procedures.",
+    },
+    "VDA 6.3": {
+      src: industryAutomotive,
+      alt: "Engineers reviewing process performance during a VDA 6.3 audit.",
+    },
+    "TS16949": {
+      src: industryAutomotive,
+      alt: "Automotive supplier plant during a technical specification quality review.",
+    },
+    "GDPR": {
+      src: scanProDashboard,
+      alt: "Compliance specialists reviewing GDPR data protection controls in a dashboard.",
+    },
+    "SOC 2": {
+      src: riskScoring,
+      alt: "Security analysts monitoring SOC 2 control performance on a risk dashboard.",
+    },
+    "FDA": {
+      src: industryMedical,
+      alt: "Medical device production team preparing for an FDA compliance inspection.",
+    },
+  };
+
+  const selectedImageConfig = selectedStandard
+    ? imageConfigMap[selectedStandard.name as keyof typeof imageConfigMap]
+    : undefined;
+
   const standards = [
     {
       name: "ISO 9001",
@@ -1196,50 +1253,80 @@ const ComplianceStandardsGrid = () => {
 
       {/* Modal */}
       <Dialog open={!!selectedStandard} onOpenChange={(open) => !open && setSelectedStandard(null)}>
-        <DialogContent className="sm:max-w-[720px] rounded-3xl">
+        <DialogContent className="max-w-none w-screen h-screen sm:rounded-none p-0 bg-background flex flex-col">
           {selectedStandard && (
-            <>
-              <DialogHeader>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center justify-center flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#B2CDBC]/20">
-                    <PixelIcon name={selectedStandard.iconName} className="w-10 h-10 sm:w-12 sm:h-12" />
-                  </div>
-                  <div className="flex-1">
-                    <DialogTitle className="text-2xl sm:text-3xl font-bold text-gray-900">
-                      {selectedStandard.name}
-                    </DialogTitle>
-                    <p className="text-sm sm:text-base font-black text-[#6EA996] mt-1 drop-shadow-sm">
-                      {selectedStandard.description}
+            <div className="flex-1 overflow-y-auto">
+              {/* Hero section */}
+              <section className="relative bg-gradient-to-br from-primary/10 via-background to-primary/5">
+                <div className="absolute -right-40 -top-40 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-primary/20 blur-3xl opacity-60" />
+                <div className="absolute -left-32 -bottom-32 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-primary/10" />
+                <div className="relative max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                  <div className="flex-1 text-left space-y-4 sm:space-y-5">
+                    <DialogHeader className="space-y-4 text-left">
+                      <div className="inline-flex items-center gap-3 rounded-full bg-primary/10 px-4 py-2 text-xs sm:text-sm font-semibold text-primary">
+                        <PixelIcon name="shield" className="w-4 h-4" />
+                        YVOO ScanPro+ Compliance Standard
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="flex items-center justify-center flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10">
+                          <PixelIcon name={selectedStandard.iconName} className="w-8 h-8 sm:w-10 sm:h-10" />
+                        </div>
+                        <div className="space-y-2">
+                          <DialogTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
+                            {selectedStandard.name} Audit Services
+                          </DialogTitle>
+                          <p className="text-sm sm:text-base font-semibold text-primary">
+                            {selectedStandard.description}
+                          </p>
+                          <DialogDescription className="text-sm sm:text-base text-muted-foreground max-w-xl">
+                            {selectedStandard.details}
+                          </DialogDescription>
+                        </div>
+                      </div>
+                    </DialogHeader>
+                    <p className="text-xs sm:text-sm text-muted-foreground/90">
+                      Independent supplier verification for regulated industries  planned, executed and documented through the YVOO ScanPro+ platform.
                     </p>
                   </div>
+                  {selectedImageConfig && (
+                    <div className="flex-1 flex justify-center">
+                      <div className="relative w-56 h-56 sm:w-72 sm:h-72">
+                        <div className="absolute inset-0 rounded-full bg-primary/10" />
+                        <div className="absolute inset-6 rounded-full bg-background shadow-xl overflow-hidden">
+                          <img
+                            src={selectedImageConfig.src}
+                            alt={selectedImageConfig.alt}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </DialogHeader>
+              </section>
 
-              <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-1">
-                <DialogDescription className="text-base text-gray-700 leading-relaxed">
-                  {selectedStandard.details}
-                </DialogDescription>
-
+              {/* Detail content */}
+              <section className="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10 lg:py-12 space-y-8">
                 {/* Why it matters */}
-                <section className="p-4 sm:p-5 rounded-2xl bg-[#B2CDBC]/10 border border-[#B2CDBC]/30">
-                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <section className="p-4 sm:p-5 rounded-2xl bg-primary/5 border border-primary/20">
+                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-2 flex items-center gap-2">
                     <PixelIcon name="lightbulb" className="w-4 h-4" />
                     Why it matters for procurement and supply chain
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {selectedStandard.whyItMatters}
                   </p>
                 </section>
 
                 {/* Services covered */}
                 <section>
-                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-2 flex items-center gap-2">
                     <PixelIcon name="checklist" className="w-4 h-4" />
                     Verification services covered by YVOO ScanPro+
                   </h4>
                   <ul className="space-y-1.5 sm:space-y-2">
                     {selectedStandard.services.map((service: string) => (
-                      <li key={service} className="flex items-start gap-2 text-sm text-gray-700">
+                      <li key={service} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <span className="mt-1">
                           <PixelIcon name="checkbox-on" className="w-3 h-3" />
                         </span>
@@ -1251,7 +1338,7 @@ const ComplianceStandardsGrid = () => {
 
                 {/* Key benefits */}
                 <section>
-                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-3 flex items-center gap-2">
                     <PixelIcon name="star" className="w-4 h-4" />
                     Three key benefits with YVOO ScanPro+
                   </h4>
@@ -1260,15 +1347,15 @@ const ComplianceStandardsGrid = () => {
                       (benefit: { iconName: string; title: string; description: string }) => (
                         <div
                           key={benefit.title}
-                          className="rounded-2xl border border-gray-200 bg-white p-3 sm:p-4 flex flex-col gap-2"
+                          className="rounded-2xl bg-muted/60 p-3 sm:p-4 flex flex-col gap-2"
                         >
                           <div className="flex items-center gap-2">
                             <PixelIcon name={benefit.iconName} className="w-4 h-4" />
-                            <p className="text-xs sm:text-sm font-semibold text-gray-900">
+                            <p className="text-xs sm:text-sm font-semibold text-foreground">
                               {benefit.title}
                             </p>
                           </div>
-                          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                             {benefit.description}
                           </p>
                         </div>
@@ -1281,14 +1368,14 @@ const ComplianceStandardsGrid = () => {
                 <div className="pt-2 flex justify-end">
                   <button
                     type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-white shadow-md transition-colors hover:bg-primary/90"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
                   >
                     Get in touch about {selectedStandard.name} audits
                     <PixelIcon name="arrow-right" className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
-            </>
+              </section>
+            </div>
           )}
         </DialogContent>
       </Dialog>
