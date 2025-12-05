@@ -770,73 +770,385 @@ const ComplianceStandardsGrid = () => {
       name: "ISO 9001",
       iconName: "trophy",
       description: "Quality Management System",
-      details: "ISO 9001 is the international standard for quality management systems (QMS). It helps organizations ensure they meet customer and regulatory requirements while continuously improving processes and efficiency."
+      details:
+        "ISO 9001 is the international standard for quality management systems (QMS). It helps organizations ensure they meet customer and regulatory requirements while continuously improving processes and efficiency.",
+      whyItMatters:
+        "For procurement teams, ISO 9001 is the baseline proof that a supplier can run stable, repeatable processes and deliver consistent quality at scale.",
+      services: [
+        "On-site and remote ISO 9001 supplier audits",
+        "Gap analysis against your internal quality requirements",
+        "Verification of process documentation and KPIs",
+        "Follow-up audits to confirm corrective actions",
+      ],
+      benefits: [
+        {
+          iconName: "checkbox-on",
+          title: "Lower quality risk",
+          description: "Reduce defects and rework by validating core quality controls before awarding business.",
+        },
+        {
+          iconName: "analytics",
+          title: "Comparable suppliers",
+          description: "Standardized reports make it easy to compare suppliers across regions and categories.",
+        },
+        {
+          iconName: "clock",
+          title: "Faster approvals",
+          description: "Shorten onboarding cycles with clear, audit-ready evidence for your stakeholders.",
+        },
+      ],
     },
     {
       name: "IATF 16949",
       iconName: "car",
       description: "Automotive Quality Standard",
-      details: "IATF 16949 defines quality management system requirements for the automotive industry. It emphasizes defect prevention, reduction of variation and waste in the supply chain, and continuous improvement."
+      details:
+        "IATF 16949 defines quality management system requirements for the automotive industry. It emphasizes defect prevention, reduction of variation and waste in the supply chain, and continuous improvement.",
+      whyItMatters:
+        "For automotive buyers, IATF 16949 is a non-negotiable requirement when qualifying critical component suppliers.",
+      services: [
+        "IATF 16949 readiness and surveillance audits",
+        "Process walk-throughs on production lines and logistics",
+        "Verification of control plans, PFMEAs and traceability",
+        "Audits of tier‑2 and tier‑3 sub-suppliers where needed",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "OEM-ready evidence",
+          description: "Provide audit documentation that satisfies OEM quality and launch teams.",
+        },
+        {
+          iconName: "zap",
+          title: "Issue detection early",
+          description: "Identify systemic risks before SOP and avoid line-stops or recalls.",
+        },
+        {
+          iconName: "factory",
+          title: "Global coverage",
+          description: "Verify automotive suppliers in established and emerging markets with one playbook.",
+        },
+      ],
     },
     {
       name: "AS9100",
       iconName: "plane",
       description: "Aerospace Quality Standard",
-      details: "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing."
+      details:
+        "AS9100 is the quality management standard specifically written for the aerospace industry. It ensures high reliability, safety, and quality in aviation, space, and defense manufacturing.",
+      whyItMatters:
+        "Aerospace programs depend on extremely low failure rates; AS9100 audits provide confidence in suppliers handling critical components.",
+      services: [
+        "On-site AS9100 supplier and sub-tier audits",
+        "Assessment of special processes and qualification records",
+        "Review of configuration, change and document control",
+        "Follow-up audits to track closure of major findings",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Safety assurance",
+          description: "Strengthen safety cases with independent verification of supplier controls.",
+        },
+        {
+          iconName: "target",
+          title: "Program stability",
+          description: "Reduce risk of delivery or quality disruption on long-running aerospace programs.",
+        },
+        {
+          iconName: "globe",
+          title: "Global sourcing",
+          description: "Confidently source aerospace parts from new geographies with consistent audits.",
+        },
+      ],
     },
     {
       name: "ISO 14001",
-      iconName: "shield",
+      iconName: "leaf",
       description: "Environmental Management",
-      details: "ISO 14001 provides a framework for environmental management systems. It helps organizations minimize their environmental impact, comply with regulations, and achieve sustainability goals."
+      details:
+        "ISO 14001 provides a framework for environmental management systems. It helps organizations minimize their environmental impact, comply with regulations, and achieve sustainability goals.",
+      whyItMatters:
+        "Sustainability targets increasingly flow into supplier contracts; ISO 14001 audits show how suppliers manage emissions, waste and compliance.",
+      services: [
+        "Verification of environmental management systems on-site",
+        "Assessment of waste, emissions and energy controls",
+        "Review of legal compliance and reporting obligations",
+        "ESG-focused supplier risk assessments",
+      ],
+      benefits: [
+        {
+          iconName: "leaf",
+          title: "ESG alignment",
+          description: "Connect supplier selection with your corporate sustainability and ESG goals.",
+        },
+        {
+          iconName: "shield",
+          title: "Regulatory confidence",
+          description: "Reduce the risk of non-compliance fines through independent checks.",
+        },
+        {
+          iconName: "analytics",
+          title: "Comparable metrics",
+          description: "Standardized findings make it easier to benchmark suppliers on sustainability.",
+        },
+      ],
     },
     {
       name: "GMP",
       iconName: "heart",
       description: "Good Manufacturing Practice",
-      details: "GMP ensures products are consistently produced and controlled according to quality standards. Critical for pharmaceutical, food, and medical device industries to ensure product safety and efficacy."
+      details:
+        "GMP ensures products are consistently produced and controlled according to quality standards. It is critical for pharmaceutical, food, and medical device industries to ensure product safety and efficacy.",
+      whyItMatters:
+        "For regulated industries, GMP failures can immediately translate into patient, consumer and brand risk.",
+      services: [
+        "On-site GMP compliance audits for pharma, biotech and food",
+        "Review of batch records, validations and cleanroom controls",
+        "Verification of training records and SOP adherence",
+        "Audit support before authority or customer inspections",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Patient safety",
+          description: "Validate that critical controls work in practice, not just on paper.",
+        },
+        {
+          iconName: "file",
+          title: "Audit-ready files",
+          description: "Generate structured documentation for regulatory and customer audits.",
+        },
+        {
+          iconName: "clock",
+          title: "Faster approvals",
+          description: "Support faster tech transfers and supplier changes with clear evidence.",
+        },
+      ],
     },
     {
       name: "API Q1",
       iconName: "building",
       description: "Petroleum Quality Standard",
-      details: "API Q1 is a quality management system specification for manufacturing organizations in the petroleum and natural gas industry, ensuring product integrity and safety throughout the supply chain."
+      details:
+        "API Q1 is a quality management system specification for manufacturing organizations in the petroleum and natural gas industry, ensuring product integrity and safety throughout the supply chain.",
+      whyItMatters:
+        "Energy and oil and gas projects depend on reliable equipment; API Q1 audits help avoid critical failures in the field.",
+      services: [
+        "Supplier qualification audits for API Q1 facilities",
+        "Verification of material traceability and welding procedures",
+        "Review of design, testing and calibration controls",
+        "Re-audits focused on closure of high-risk findings",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Asset reliability",
+          description: "Reduce unplanned downtime and safety incidents caused by poor equipment.",
+        },
+        {
+          iconName: "target",
+          title: "Project certainty",
+          description: "Strengthen confidence in suppliers delivering to demanding project timelines.",
+        },
+        {
+          iconName: "globe",
+          title: "Remote locations",
+          description: "Verify suppliers in remote regions with local auditors and unified reports.",
+        },
+      ],
     },
     {
       name: "SQF",
       iconName: "checkbox-on",
       description: "Food Safety Quality",
-      details: "Safe Quality Food (SQF) is a rigorous food safety and quality program recognized by retailers and food service providers worldwide, ensuring products meet the highest safety standards."
+      details:
+        "Safe Quality Food (SQF) is a rigorous food safety and quality program recognized by retailers and food service providers worldwide, ensuring products meet the highest safety standards.",
+      whyItMatters:
+        "Retailers and brand owners demand strong food safety proof before authorizing new plants and co-packers.",
+      services: [
+        "SQF certification readiness and surveillance audits",
+        "HACCP and prerequisite program verification",
+        "Assessment of allergen, hygiene and cleaning controls",
+        "Unannounced or short-notice verification audits",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Brand protection",
+          description: "Reduce recall and contamination risk across your food supply base.",
+        },
+        {
+          iconName: "users",
+          title: "Customer trust",
+          description: "Give retailers and brand owners confidence in your supplier selection.",
+        },
+        {
+          iconName: "analytics",
+          title: "Portfolio view",
+          description: "Understand food safety maturity across regions and categories in one view.",
+        },
+      ],
     },
     {
       name: "VDA 6.3",
       iconName: "sliders",
       description: "Automotive Process Audit",
-      details: "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production."
+      details:
+        "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production.",
+      whyItMatters:
+        "Buyers use VDA 6.3 to assess how robustly an automotive supplier can launch and run complex programs.",
+      services: [
+        "VDA 6.3 potential analysis and process audits",
+        "Deep dives into launch, change and escalation processes",
+        "Evaluation of APQP, PPAP and control plans",
+        "Audits of critical sub-suppliers in the chain",
+      ],
+      benefits: [
+        {
+          iconName: "target",
+          title: "Launch quality",
+          description: "Reduce ramp-up issues and quality spills in new model introductions.",
+        },
+        {
+          iconName: "clock",
+          title: "Shorter PPAP cycles",
+          description: "Well-prepared suppliers move through approval gates faster.",
+        },
+        {
+          iconName: "car",
+          title: "OEM alignment",
+          description: "Mirror the language and expectations of leading German OEMs.",
+        },
+      ],
     },
     {
       name: "TS16949",
       iconName: "car",
       description: "Technical Specification",
-      details: "TS16949 (now IATF 16949) was the technical specification for quality management in the automotive supply chain, focusing on continuous improvement and defect prevention."
+      details:
+        "TS16949 (now IATF 16949) was the technical specification for quality management in the automotive supply chain, focusing on continuous improvement and defect prevention.",
+      whyItMatters:
+        "Many legacy supplier qualifications still reference TS16949; audits translate these requirements into today\'s IATF framework.",
+      services: [
+        "Legacy TS16949 to IATF 16949 gap assessments",
+        "Verification of documentation and process updates",
+        "Support for multi-site and multi-tier supplier networks",
+        "Targeted audits where OEMs still use TS terminology",
+      ],
+      benefits: [
+        {
+          iconName: "file",
+          title: "Clean documentation",
+          description: "Clarify how historic TS16949 approvals map to current standards.",
+        },
+        {
+          iconName: "analytics",
+          title: "Portfolio harmonization",
+          description: "Unify expectations across plants, regions and legacy contracts.",
+        },
+        {
+          iconName: "shield",
+          title: "Reduced ambiguity",
+          description: "Avoid misunderstandings between OEM, tier‑1 and suppliers.",
+        },
+      ],
     },
     {
       name: "GDPR",
       iconName: "lock",
       description: "Data Protection Regulation",
-      details: "GDPR is the EU's comprehensive data protection law that ensures personal data privacy and security. It mandates strict requirements for data collection, processing, and storage."
+      details:
+        "GDPR is the EU data protection law that ensures personal data privacy and security. It mandates strict requirements for data collection, processing and storage.",
+      whyItMatters:
+        "Procurement increasingly works with SaaS and data processors; GDPR compliance is essential to avoid fines and reputational damage.",
+      services: [
+        "Vendor GDPR due diligence and documentation review",
+        "Verification of technical and organizational measures (TOMs)",
+        "Assessment of data processing agreements and sub-processors",
+        "Follow-up reviews after major platform or scope changes",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Lower legal risk",
+          description: "Independent verification reduces exposure to regulatory findings.",
+        },
+        {
+          iconName: "lock",
+          title: "Data trust",
+          description: "Ensure critical supplier platforms handle customer and employee data correctly.",
+        },
+        {
+          iconName: "analytics",
+          title: "Clear accountability",
+          description: "Document who is responsible for which part of the data flow.",
+        },
+      ],
     },
     {
       name: "SOC 2",
       iconName: "shield",
       description: "Security & Compliance",
-      details: "SOC 2 is an auditing standard for service organizations that store customer data in the cloud. It ensures proper security, availability, processing integrity, confidentiality, and privacy controls."
+      details:
+        "SOC 2 is an auditing standard for service organizations that store customer data in the cloud. It ensures proper security, availability, processing integrity, confidentiality and privacy controls.",
+      whyItMatters:
+        "When you outsource critical processes to SaaS or managed services, SOC 2 reports give insight into how they manage risk.",
+      services: [
+        "Supplier SOC 2 report reviews and interpretation",
+        "On-site or remote validation of key controls where needed",
+        "Mapping SOC 2 findings to your internal risk framework",
+        "Continuous monitoring plans for high-impact vendors",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Security assurance",
+          description: "Validate that cloud and IT suppliers protect your data appropriately.",
+        },
+        {
+          iconName: "analytics",
+          title: "Actionable insight",
+          description: "Translate technical reports into clear procurement recommendations.",
+        },
+        {
+          iconName: "clock",
+          title: "Faster sign-offs",
+          description: "Give risk and IT stakeholders the evidence they need more quickly.",
+        },
+      ],
     },
     {
       name: "FDA",
       iconName: "building",
       description: "FDA Compliance",
-      details: "FDA compliance ensures products meet US Food and Drug Administration regulations for safety, efficacy, and quality. Critical for pharmaceutical, medical device, and food industries."
+      details:
+        "FDA compliance ensures products meet US Food and Drug Administration regulations for safety, efficacy and quality. It is critical for pharmaceutical, medical device and food industries.",
+      whyItMatters:
+        "Selling into the US market requires confidence that suppliers can pass FDA inspections and maintain compliant operations.",
+      services: [
+        "Pre-FDA inspection readiness audits for suppliers",
+        "Verification of quality systems, validation and documentation",
+        "Review of change control, complaints and CAPA processes",
+        "Follow-up audits after warning letters or major findings",
+      ],
+      benefits: [
+        {
+          iconName: "shield",
+          title: "Market access",
+          description: "Support safe entry or expansion in highly regulated US markets.",
+        },
+        {
+          iconName: "file",
+          title: "Inspection files",
+          description: "Create structured, re-usable evidence packs for authorities and customers.",
+        },
+        {
+          iconName: "clock",
+          title: "Reduced disruption",
+          description: "Limit operational impact when issues are identified and corrected early.",
+        },
+      ],
     },
   ];
 
@@ -846,7 +1158,7 @@ const ComplianceStandardsGrid = () => {
         {standards.map((standard, idx) => {
           return (
             <motion.button
-              key={idx}
+              key={standard.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -883,32 +1195,98 @@ const ComplianceStandardsGrid = () => {
       </div>
 
       {/* Modal */}
-      <Dialog open={!!selectedStandard} onOpenChange={() => setSelectedStandard(null)}>
-        <DialogContent className="sm:max-w-[600px] rounded-3xl">
+      <Dialog open={!!selectedStandard} onOpenChange={(open) => !open && setSelectedStandard(null)}>
+        <DialogContent className="sm:max-w-[720px] rounded-3xl">
           {selectedStandard && (
             <>
               <DialogHeader>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center justify-center flex-shrink-0">
-                    <PixelIcon name={selectedStandard.iconName} className="w-16 h-16" />
+                  <div className="flex items-center justify-center flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#B2CDBC]/20">
+                    <PixelIcon name={selectedStandard.iconName} className="w-10 h-10 sm:w-12 sm:h-12" />
                   </div>
                   <div className="flex-1">
-                    <DialogTitle className="text-2xl font-bold text-gray-900">
+                    <DialogTitle className="text-2xl sm:text-3xl font-bold text-gray-900">
                       {selectedStandard.name}
                     </DialogTitle>
-                    <p className="text-sm font-black text-[#6EA996] mt-1 drop-shadow-sm">
+                    <p className="text-sm sm:text-base font-black text-[#6EA996] mt-1 drop-shadow-sm">
                       {selectedStandard.description}
                     </p>
                   </div>
                 </div>
               </DialogHeader>
-              <DialogDescription className="text-base text-gray-700 leading-relaxed">
-                {selectedStandard.details}
-              </DialogDescription>
-              <div className="mt-6 p-4 bg-[#B2CDBC]/5 rounded-xl border border-[#B2CDBC]/20">
-                <p className="text-sm text-gray-700">
-                  <strong className="text-gray-900">✓ YVOO ScanPro+</strong> ensures full compliance with {selectedStandard.name} through our standardized audit processes, comprehensive documentation, and AI-powered verification systems.
-                </p>
+
+              <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-1">
+                <DialogDescription className="text-base text-gray-700 leading-relaxed">
+                  {selectedStandard.details}
+                </DialogDescription>
+
+                {/* Why it matters */}
+                <section className="p-4 sm:p-5 rounded-2xl bg-[#B2CDBC]/10 border border-[#B2CDBC]/30">
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <PixelIcon name="lightbulb" className="w-4 h-4" />
+                    Why it matters for procurement and supply chain
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {selectedStandard.whyItMatters}
+                  </p>
+                </section>
+
+                {/* Services covered */}
+                <section>
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <PixelIcon name="checklist" className="w-4 h-4" />
+                    Verification services covered by YVOO ScanPro+
+                  </h4>
+                  <ul className="space-y-1.5 sm:space-y-2">
+                    {selectedStandard.services.map((service: string) => (
+                      <li key={service} className="flex items-start gap-2 text-sm text-gray-700">
+                        <span className="mt-1">
+                          <PixelIcon name="checkbox-on" className="w-3 h-3" />
+                        </span>
+                        <span>{service}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Key benefits */}
+                <section>
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <PixelIcon name="star" className="w-4 h-4" />
+                    Three key benefits with YVOO ScanPro+
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                    {selectedStandard.benefits.map(
+                      (benefit: { iconName: string; title: string; description: string }) => (
+                        <div
+                          key={benefit.title}
+                          className="rounded-2xl border border-gray-200 bg-white p-3 sm:p-4 flex flex-col gap-2"
+                        >
+                          <div className="flex items-center gap-2">
+                            <PixelIcon name={benefit.iconName} className="w-4 h-4" />
+                            <p className="text-xs sm:text-sm font-semibold text-gray-900">
+                              {benefit.title}
+                            </p>
+                          </div>
+                          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                            {benefit.description}
+                          </p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </section>
+
+                {/* CTA */}
+                <div className="pt-2 flex justify-end">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-white shadow-md transition-colors hover:bg-primary/90"
+                  >
+                    Get in touch about {selectedStandard.name} audits
+                    <PixelIcon name="arrow-right" className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </>
           )}
