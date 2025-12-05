@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { PixelIcon } from "@/components/PixelIcon";
-import { X, ChevronDown } from "lucide-react";
+import { X, ChevronDown, ArrowLeft } from "lucide-react";
 
 // Import images - Hero images (people/team focus)
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
@@ -148,15 +148,27 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
   return (
     <Dialog open={!!standard} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-none w-screen h-screen sm:rounded-none p-0 bg-white border-none overflow-hidden [&>button]:hidden">
-        {/* Custom close button */}
-        <button
-          onClick={onClose}
-          className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
-        >
-          <X className="w-6 h-6 text-gray-600" />
-        </button>
+        {/* Navigation bar with back button */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <button
+              onClick={onClose}
+              className="flex items-center gap-2 text-gray-700 hover:text-[#0A7FA5] transition-colors font-medium"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span className="hidden sm:inline">Back to ScanPro+</span>
+              <span className="sm:hidden">Back</span>
+            </button>
+            <button
+              onClick={onClose}
+              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+        </div>
 
-        <div className="h-full overflow-y-auto">
+        <div className="h-full overflow-y-auto pt-16">
           {/* Hero Section - Apotech style */}
           <section className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
             {/* Left side image - clipped circle */}
