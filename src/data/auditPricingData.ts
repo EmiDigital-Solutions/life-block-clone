@@ -319,12 +319,37 @@ export const auditTypes: AuditType[] = [
   { id: 214, code: "ISO 55001", name: "Asset Management System", displayLabel: "ISO 55001 - Asset Management System", category: "Universal", minDays: 2, maxDays: 3, auditors: 1, complexity: "Medium", traditionalEur: 7375, pricing: { dach: 3378, wEu: 2922, eEu: 2012, turkey: 1785, china: 2240, india: 1558, sea: 1694, usa: 3605, latam: 1785 }, savingsPercent: 54 },
 ];
 
-// Get unique categories
-export const categories = [...new Set(auditTypes.map(a => a.category))].sort();
+// Most common audit codes across industries
+export const mostCommonAuditCodes = [
+  "ISO 9001",      // Quality Management System (Universal)
+  "ISO 14001",     // Environmental Management System (Universal)
+  "ISO 45001",     // Occupational Health & Safety (Universal)
+  "IATF 16949",    // Automotive Quality Management (Automotive)
+  "ISO 13485",     // Medical Device Quality Management (Medical)
+  "AS9100",        // Aerospace Quality Management (Aerospace)
+  "ISO 27001",     // Information Security Management (IT & Cyber)
+  "VDA 6.3",       // Process Audit German Automotive (Automotive)
+  "BRCGS Food",    // Food Safety (Food Safety)
+  "FSSC 22000",    // Food Safety System Certification (Food Safety)
+  "SA8000",        // Social Accountability Standard (Social & Ethical)
+  "SMETA",         // Sedex Members Ethical Trade Audit (Social & Ethical)
+];
+
+// Get most common audits
+export const getMostCommonAudits = () => 
+  auditTypes.filter(a => mostCommonAuditCodes.includes(a.code));
+
+// Get unique categories with "Most Common Audits" first
+const uniqueCategories = [...new Set(auditTypes.map(a => a.category))].sort();
+export const categories = ["Most Common Audits", ...uniqueCategories];
 
 // Get audits by category
-export const getAuditsByCategory = (category: string) => 
-  auditTypes.filter(a => a.category === category);
+export const getAuditsByCategory = (category: string) => {
+  if (category === "Most Common Audits") {
+    return getMostCommonAudits();
+  }
+  return auditTypes.filter(a => a.category === category);
+};
 
 // Calculate travel cost between client and supplier regions
 export const getTravelCost = (clientRegion: RegionKey, supplierRegion: RegionKey, auditors: number): number => {
