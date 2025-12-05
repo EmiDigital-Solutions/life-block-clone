@@ -10,6 +10,7 @@ import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
+import { ComplianceModal } from "@/components/ComplianceModal";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -767,61 +768,6 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
 const ComplianceStandardsGrid = () => {
   const [selectedStandard, setSelectedStandard] = useState<any>(null);
 
-  const imageConfigMap: Record<string, { src: string; alt: string }> = {
-    "ISO 9001": {
-      src: scanProDashboard,
-      alt: "Quality managers reviewing ISO 9001 supplier audit results in the YVOO ScanPro+ dashboard.",
-    },
-    "IATF 16949": {
-      src: industryAutomotive,
-      alt: "Automotive production team during an IATF 16949 supplier audit.",
-    },
-    "AS9100": {
-      src: industryAerospace,
-      alt: "Aerospace manufacturing team in a quality audit discussion.",
-    },
-    "ISO 14001": {
-      src: aboutSustainability,
-      alt: "Sustainable manufacturing site focused on environmental management.",
-    },
-    "GMP": {
-      src: aiAudit,
-      alt: "Pharmaceutical production line being inspected under GMP requirements.",
-    },
-    "API Q1": {
-      src: industryCryogenicValve,
-      alt: "Industrial valve manufacturing facility during an API Q1 quality check.",
-    },
-    "SQF": {
-      src: digitalWorkflowTeam,
-      alt: "Food industry quality team collaborating on Safe Quality Food procedures.",
-    },
-    "VDA 6.3": {
-      src: industryAutomotive,
-      alt: "Engineers reviewing process performance during a VDA 6.3 audit.",
-    },
-    "TS16949": {
-      src: industryAutomotive,
-      alt: "Automotive supplier plant during a technical specification quality review.",
-    },
-    "GDPR": {
-      src: scanProDashboard,
-      alt: "Compliance specialists reviewing GDPR data protection controls in a dashboard.",
-    },
-    "SOC 2": {
-      src: riskScoring,
-      alt: "Security analysts monitoring SOC 2 control performance on a risk dashboard.",
-    },
-    "FDA": {
-      src: industryMedical,
-      alt: "Medical device production team preparing for an FDA compliance inspection.",
-    },
-  };
-
-  const selectedImageConfig = selectedStandard
-    ? imageConfigMap[selectedStandard.name as keyof typeof imageConfigMap]
-    : undefined;
-
   const standards = [
     {
       name: "ISO 9001",
@@ -1000,82 +946,82 @@ const ComplianceStandardsGrid = () => {
       benefits: [
         {
           iconName: "shield",
-          title: "Asset reliability",
-          description: "Reduce unplanned downtime and safety incidents caused by poor equipment.",
-        },
-        {
-          iconName: "target",
-          title: "Project certainty",
-          description: "Strengthen confidence in suppliers delivering to demanding project timelines.",
+          title: "Field reliability",
+          description: "Reduce unplanned downtime and HSE incidents on critical projects.",
         },
         {
           iconName: "globe",
-          title: "Remote locations",
-          description: "Verify suppliers in remote regions with local auditors and unified reports.",
+          title: "Global qualification",
+          description: "Qualify suppliers in key oil and gas hubs using one consistent standard.",
+        },
+        {
+          iconName: "analytics",
+          title: "Supplier rankings",
+          description: "Compare manufacturers with clear, objective scoring frameworks.",
         },
       ],
     },
     {
       name: "SQF",
-      iconName: "checkbox-on",
-      description: "Food Safety Quality",
+      iconName: "cutlery",
+      description: "Safe Quality Food",
       details:
-        "Safe Quality Food (SQF) is a rigorous food safety and quality program recognized by retailers and food service providers worldwide, ensuring products meet the highest safety standards.",
+        "SQF (Safe Quality Food) is a rigorous food safety and quality management certification recognized by retailers and foodservice providers worldwide.",
       whyItMatters:
-        "Retailers and brand owners demand strong food safety proof before authorizing new plants and co-packers.",
+        "Food retailers and restaurants require SQF certification to list products; audits protect against recalls, contamination and supply disruption.",
       services: [
-        "SQF certification readiness and surveillance audits",
-        "HACCP and prerequisite program verification",
-        "Assessment of allergen, hygiene and cleaning controls",
-        "Unannounced or short-notice verification audits",
+        "SQF readiness assessments and certification audits",
+        "HACCP plan review and on-site verification",
+        "Food safety culture evaluations",
+        "Post-audit corrective action support",
       ],
       benefits: [
         {
           iconName: "shield",
           title: "Brand protection",
-          description: "Reduce recall and contamination risk across your food supply base.",
+          description: "Reduce recall risk and demonstrate due diligence to customers.",
         },
         {
-          iconName: "users",
-          title: "Customer trust",
-          description: "Give retailers and brand owners confidence in your supplier selection.",
+          iconName: "target",
+          title: "Retailer acceptance",
+          description: "Meet stringent listing requirements for major grocery and foodservice buyers.",
         },
         {
           iconName: "analytics",
-          title: "Portfolio view",
-          description: "Understand food safety maturity across regions and categories in one view.",
+          title: "Supply chain visibility",
+          description: "Monitor ingredient and co-packer quality across multiple sites.",
         },
       ],
     },
     {
       name: "VDA 6.3",
-      iconName: "sliders",
-      description: "Automotive Process Audit",
+      iconName: "car",
+      description: "Process Audit Standard",
       details:
-        "VDA 6.3 is a process audit methodology developed by the German automotive industry. It evaluates process quality and identifies potential failures before they occur in production.",
+        "VDA 6.3 is a process audit standard developed by the German Association of the Automotive Industry (VDA) to evaluate the maturity and effectiveness of production processes in automotive supply chains.",
       whyItMatters:
-        "Buyers use VDA 6.3 to assess how robustly an automotive supplier can launch and run complex programs.",
+        "German OEMs and tier‑1s require VDA 6.3 scores before awarding new business; strong results accelerate nominations and SOPs.",
       services: [
-        "VDA 6.3 potential analysis and process audits",
-        "Deep dives into launch, change and escalation processes",
-        "Evaluation of APQP, PPAP and control plans",
-        "Audits of critical sub-suppliers in the chain",
+        "Full VDA 6.3 process audits with scoring",
+        "Pre-audit gap analysis and improvement planning",
+        "Verification of corrective actions from previous audits",
+        "Training on VDA 6.3 requirements for supplier teams",
       ],
       benefits: [
         {
           iconName: "target",
-          title: "Launch quality",
-          description: "Reduce ramp-up issues and quality spills in new model introductions.",
+          title: "OEM nomination",
+          description: "Improve VDA scores to meet thresholds for new project awards.",
         },
         {
-          iconName: "clock",
-          title: "Shorter PPAP cycles",
-          description: "Well-prepared suppliers move through approval gates faster.",
+          iconName: "analytics",
+          title: "Benchmark comparison",
+          description: "Compare process maturity across plants and suppliers objectively.",
         },
         {
-          iconName: "car",
-          title: "OEM alignment",
-          description: "Mirror the language and expectations of leading German OEMs.",
+          iconName: "zap",
+          title: "Continuous improvement",
+          description: "Use structured findings to drive focused process optimization.",
         },
       ],
     },
@@ -1084,19 +1030,19 @@ const ComplianceStandardsGrid = () => {
       iconName: "car",
       description: "Technical Specification",
       details:
-        "TS16949 (now IATF 16949) was the technical specification for quality management in the automotive supply chain, focusing on continuous improvement and defect prevention.",
+        "TS16949 was the predecessor to IATF 16949 and remains referenced in legacy contracts. It established core automotive quality system requirements still relevant during transitions.",
       whyItMatters:
-        "Many legacy supplier qualifications still reference TS16949; audits translate these requirements into today\'s IATF framework.",
+        "Older contracts and some markets still reference TS16949; audits clarify how legacy requirements map to current standards.",
       services: [
-        "Legacy TS16949 to IATF 16949 gap assessments",
-        "Verification of documentation and process updates",
-        "Support for multi-site and multi-tier supplier networks",
-        "Targeted audits where OEMs still use TS terminology",
+        "Legacy TS16949 verification and transition support",
+        "Comparison audits mapping TS16949 to IATF 16949",
+        "Documentation reviews for contract compliance",
+        "Supplier development plans for standard upgrades",
       ],
       benefits: [
         {
           iconName: "file",
-          title: "Clean documentation",
+          title: "Contract clarity",
           description: "Clarify how historic TS16949 approvals map to current standards.",
         },
         {
@@ -1252,137 +1198,13 @@ const ComplianceStandardsGrid = () => {
       </div>
 
       {/* Modal */}
-      <Dialog open={!!selectedStandard} onOpenChange={(open) => !open && setSelectedStandard(null)}>
-        <DialogContent className="max-w-none w-screen h-screen sm:rounded-none p-0 bg-background flex flex-col">
-          {selectedStandard && (
-            <div className="flex-1 overflow-y-auto">
-              {/* Hero section */}
-              <section className="relative bg-gradient-to-br from-primary/10 via-background to-primary/5">
-                <div className="absolute -right-40 -top-40 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-primary/20 blur-3xl opacity-60" />
-                <div className="absolute -left-32 -bottom-32 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-primary/10" />
-                <div className="relative max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-                  <div className="flex-1 text-left space-y-4 sm:space-y-5">
-                    <DialogHeader className="space-y-4 text-left">
-                      <div className="inline-flex items-center gap-3 rounded-full bg-primary/10 px-4 py-2 text-xs sm:text-sm font-semibold text-primary">
-                        <PixelIcon name="shield" className="w-4 h-4" />
-                        YVOO ScanPro+ Compliance Standard
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="flex items-center justify-center flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10">
-                          <PixelIcon name={selectedStandard.iconName} className="w-8 h-8 sm:w-10 sm:h-10" />
-                        </div>
-                        <div className="space-y-2">
-                          <DialogTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
-                            {selectedStandard.name} Audit Services
-                          </DialogTitle>
-                          <p className="text-sm sm:text-base font-semibold text-primary">
-                            {selectedStandard.description}
-                          </p>
-                          <DialogDescription className="text-sm sm:text-base text-muted-foreground max-w-xl">
-                            {selectedStandard.details}
-                          </DialogDescription>
-                        </div>
-                      </div>
-                    </DialogHeader>
-                    <p className="text-xs sm:text-sm text-muted-foreground/90">
-                      Independent supplier verification for regulated industries  planned, executed and documented through the YVOO ScanPro+ platform.
-                    </p>
-                  </div>
-                  {selectedImageConfig && (
-                    <div className="flex-1 flex justify-center">
-                      <div className="relative w-56 h-56 sm:w-72 sm:h-72">
-                        <div className="absolute inset-0 rounded-full bg-primary/10" />
-                        <div className="absolute inset-6 rounded-full bg-background shadow-xl overflow-hidden">
-                          <img
-                            src={selectedImageConfig.src}
-                            alt={selectedImageConfig.alt}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </section>
-
-              {/* Detail content */}
-              <section className="max-w-5xl mx-auto px-4 sm:px-8 py-8 sm:py-10 lg:py-12 space-y-8">
-                {/* Why it matters */}
-                <section className="p-4 sm:p-5 rounded-2xl bg-primary/5 border border-primary/20">
-                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-2 flex items-center gap-2">
-                    <PixelIcon name="lightbulb" className="w-4 h-4" />
-                    Why it matters for procurement and supply chain
-                  </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {selectedStandard.whyItMatters}
-                  </p>
-                </section>
-
-                {/* Services covered */}
-                <section>
-                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-2 flex items-center gap-2">
-                    <PixelIcon name="checklist" className="w-4 h-4" />
-                    Verification services covered by YVOO ScanPro+
-                  </h4>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    {selectedStandard.services.map((service: string) => (
-                      <li key={service} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="mt-1">
-                          <PixelIcon name="checkbox-on" className="w-3 h-3" />
-                        </span>
-                        <span>{service}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-
-                {/* Key benefits */}
-                <section>
-                  <h4 className="text-sm sm:text-base font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <PixelIcon name="star" className="w-4 h-4" />
-                    Three key benefits with YVOO ScanPro+
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                    {selectedStandard.benefits.map(
-                      (benefit: { iconName: string; title: string; description: string }) => (
-                        <div
-                          key={benefit.title}
-                          className="rounded-2xl bg-muted/60 p-3 sm:p-4 flex flex-col gap-2"
-                        >
-                          <div className="flex items-center gap-2">
-                            <PixelIcon name={benefit.iconName} className="w-4 h-4" />
-                            <p className="text-xs sm:text-sm font-semibold text-foreground">
-                              {benefit.title}
-                            </p>
-                          </div>
-                          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                            {benefit.description}
-                          </p>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </section>
-
-                {/* CTA */}
-                <div className="pt-2 flex justify-end">
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
-                  >
-                    Get in touch about {selectedStandard.name} audits
-                    <PixelIcon name="arrow-right" className="w-4 h-4" />
-                  </button>
-                </div>
-              </section>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      <ComplianceModal 
+        standard={selectedStandard} 
+        onClose={() => setSelectedStandard(null)} 
+      />
     </>
   );
 };
-
 
 // Challenge Toggle Section
 const ChallengeToggleSection = () => {
