@@ -66,6 +66,11 @@ const Navigation = () => {
             setNavBgColor('rgba(0, 0, 0, 0)');
             setTextColor('rgb(255, 255, 255)');
             break;
+          } else if (navTheme === 'blue') {
+            // Blue hero section (homepage) - blue background with white text
+            setNavBgColor('rgba(10, 127, 165, 0.95)');
+            setTextColor('rgb(255, 255, 255)');
+            break;
           } else if (navTheme === 'dark') {
             // Dark section - use dark background with light text
             setNavBgColor('rgba(31, 41, 55, 0.95)');
