@@ -123,6 +123,36 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
   const groupRef = useRef<THREE.Group>(null);
   const texture = useLoader(THREE.TextureLoader, worldMapGlobe);
 
+  // Apply brand color tint to texture
+  useEffect(() => {
+    if (texture) {
+      // Create a canvas to apply color overlay
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = texture.image;
+      
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      if (ctx) {
+        // Draw original image
+        ctx.drawImage(img, 0, 0);
+        
+        // Apply brand color overlay (Hero Green #6EA996 with higher saturation)
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.fillStyle = '#5A9A88'; // Slightly darker teal-green for better contrast
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Restore composite operation
+        ctx.globalCompositeOperation = 'source-over';
+        
+        // Update texture
+        texture.image = canvas;
+        texture.needsUpdate = true;
+      }
+    }
+  }, [texture]);
+
   // Rotate the earth smoothly
   useFrame(() => {
     if (groupRef.current) {
@@ -133,12 +163,13 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
   return (
     <>
       <group ref={groupRef}>
-        {/* Main Earth with clean dotted map texture */}
+        {/* Main Earth with brand-colored continents */}
         <Sphere args={[2.875, 128, 128]}>
           <meshStandardMaterial
             map={texture}
-            roughness={0.6}
-            metalness={0.2}
+            roughness={0.5}
+            metalness={0.1}
+            color="#6EA996" // Hero Green tint
           />
         </Sphere>
 
