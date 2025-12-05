@@ -413,7 +413,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand<br /><span className="text-[#6EA996] font-black drop-shadow-md">Auditor Network</span>
+                Global On-Demand<br /><span className="text-primary font-black">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -642,7 +642,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
               >
-                Global On-Demand <span style={{ color: '#6EA996', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }} className="whitespace-nowrap">Auditor Network</span>
+                Global On-Demand <span className="text-primary font-black whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -1185,13 +1185,13 @@ const ComplianceStandardsGrid = () => {
               </p>
 
               {/* Click indicator */}
-              <div className="text-[10px] sm:text-xs font-black text-[#6EA996] transition-opacity flex items-center justify-center gap-1 drop-shadow-sm">
+              <div className="text-[10px] sm:text-xs font-black text-primary transition-opacity flex items-center justify-center gap-1">
                 Click to learn more
                 <PixelIcon name="arrow-right" className="w-3 h-3" />
               </div>
 
               {/* Hover effect overlay */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-[#6EA996] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-3xl border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.button>
           );
         })}
@@ -1536,9 +1536,9 @@ const HowItWorksCarousel = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-[#A8C5B8]/10 rounded-xl p-3 sm:p-4 text-center"
+                className="bg-primary/10 rounded-xl p-3 sm:p-4 text-center"
               >
-                <div className="text-2xl sm:text-3xl font-black text-[#A8C5B8] mb-2 drop-shadow-md" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>95%</div>
+                <div className="text-2xl sm:text-3xl font-black text-primary mb-2">95%</div>
                 <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
               </motion.div>
               <motion.div
@@ -1989,7 +1989,7 @@ const ScanProPlus = () => {
             className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Business <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Impact</span>
+              Business <span className="text-primary font-black">Impact</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Data-driven insights showing measurable ROI and operational improvements
@@ -2234,7 +2234,7 @@ const ScanProPlus = () => {
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
             </p>
-            <p className="text-xs sm:text-sm font-black text-[#A8C5B8] mt-3 sm:mt-4 drop-shadow-sm">
+            <p className="text-xs sm:text-sm font-black text-primary mt-3 sm:mt-4">
               👆 Click on any standard to learn more
             </p>
           </motion.div>
@@ -2484,7 +2484,7 @@ const ScanProPlus = () => {
                     <span className="text-sm text-gray-500"> — CEO YVOO Technologies Ltd.</span>
                   </p>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-base">
-                    <a href="mailto:ibrandic@yvoo.io" className="text-black hover:text-[#A8C5B8] font-bold transition-colors drop-shadow-sm">
+                    <a href="mailto:ibrandic@yvoo.io" className="text-black hover:text-primary font-bold transition-colors">
                       ibrandic@yvoo.io
                     </a>
                     <span className="hidden sm:inline text-gray-300">|</span>
