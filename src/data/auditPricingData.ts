@@ -319,20 +319,14 @@ export const auditTypes: AuditType[] = [
   { id: 214, code: "ISO 55001", name: "Asset Management System", displayLabel: "ISO 55001 - Asset Management System", category: "Universal", minDays: 2, maxDays: 3, auditors: 1, complexity: "Medium", traditionalEur: 7375, pricing: { dach: 3378, wEu: 2922, eEu: 2012, turkey: 1785, china: 2240, india: 1558, sea: 1694, usa: 3605, latam: 1785 }, savingsPercent: 54 },
 ];
 
-// Most common audit codes across industries
+// Most common audit codes - Top 6 ranked by global usage
 export const mostCommonAuditCodes = [
-  "ISO 9001",      // Quality Management System (Universal)
-  "ISO 14001",     // Environmental Management System (Universal)
-  "ISO 45001",     // Occupational Health & Safety (Universal)
-  "IATF 16949",    // Automotive Quality Management (Automotive)
-  "ISO 13485",     // Medical Device Quality Management (Medical)
-  "AS9100",        // Aerospace Quality Management (Aerospace)
-  "ISO 27001",     // Information Security Management (IT & Cyber)
-  "VDA 6.3",       // Process Audit German Automotive (Automotive)
-  "BRCGS Food",    // Food Safety (Food Safety)
-  "FSSC 22000",    // Food Safety System Certification (Food Safety)
-  "SA8000",        // Social Accountability Standard (Social & Ethical)
-  "SMETA",         // Sedex Members Ethical Trade Audit (Social & Ethical)
+  "ISO 9001",      // #1 - Quality Management (1.3M+ certificates worldwide)
+  "ISO 14001",     // #2 - Environmental Management (500K+ certificates)
+  "ISO 45001",     // #3 - Occupational Health & Safety (300K+ certificates)
+  "IATF 16949",    // #4 - Automotive Quality (100K+ certificates)
+  "ISO 27001",     // #5 - Information Security (70K+ certificates)
+  "ISO 13485",     // #6 - Medical Devices (50K+ certificates)
 ];
 
 // Get most common audits
