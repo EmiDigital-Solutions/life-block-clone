@@ -77,95 +77,97 @@ const AboutUs = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* HERO SECTION - Radical Geometric Grid */}
-      <section data-nav-theme="light" className="pt-32 pb-24 bg-gray-50">
-        <div className="container mx-auto px-6 max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* HERO SECTION - Large Curved Image Design */}
+      <section data-nav-theme="light" className="min-h-screen flex items-center" style={{ background: 'linear-gradient(180deg, #f8faf9 0%, #ffffff 100%)' }}>
+        <div className="container mx-auto px-6 max-w-[1400px] py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
-            {/* Left - Geometric Photo Grid */}
+            {/* Left - Large Curved Image */}
             <motion.div 
-              className="lg:col-span-7 relative" 
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }} 
+              className="relative" 
+              initial={{ opacity: 0, x: -40 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="grid grid-cols-4 gap-2 max-w-[600px]">
-                {heroImages.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.02 }}
-                  >
-                    <motion.img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover pointer-events-none"
-                      style={{ filter: 'grayscale(100%)' }}
-                      initial={{ scale: 1.15 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.02 }}
-                    />
-                    {/* Touch flash effect */}
+              <div 
+                className="relative overflow-hidden"
+                style={{ 
+                  borderRadius: '0 50% 50% 0',
+                  height: '600px'
+                }}
+              >
+                <div className="grid grid-cols-4 gap-1 h-full w-full">
+                  {heroImages.slice(0, 8).map((image, index) => (
                     <motion.div
-                      className="absolute inset-0 bg-[#B2CDBC] pointer-events-none"
-                      initial={{ opacity: 0 }}
-                      whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
-                    />
-                    <div className="absolute inset-0 border border-black/5" />
-                  </motion.div>
-                ))}
+                      key={index}
+                      className="relative overflow-hidden"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      whileTap={{ scale: 0.98 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover"
+                        style={{ filter: 'grayscale(30%) brightness(0.95)' }}
+                      />
+                      {/* Green overlay */}
+                      <div 
+                        className="absolute inset-0"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(110, 169, 150, 0.3) 0%, rgba(110, 169, 150, 0.1) 100%)',
+                          mixBlendMode: 'multiply'
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              
-              {/* Geometric accent lines */}
-              <motion.div 
-                className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-[#A8C5B8]"
-                initial={{ opacity: 0, x: -10, y: -10 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              />
-              <motion.div 
-                className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-[#A8B8CA]"
-                initial={{ opacity: 0, x: 10, y: 10 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-              />
             </motion.div>
             
             {/* Right - Text Content */}
             <motion.div 
-              className="lg:col-span-5 space-y-8" 
-              initial={{ opacity: 0, x: 30 }} 
+              className="space-y-8 lg:pl-8" 
+              initial={{ opacity: 0, x: 40 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="space-y-6">
-                <div className="w-12 h-0.5 bg-[#B2CDBC]" />
-                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-black">
-                  Building the Global B2B Platform
-                </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Connecting clients, suppliers, and local experts through innovative technology and human expertise.
-                </p>
-              </div>
-              
-              <div className="flex gap-1.5">
-                <div className="w-10 h-0.5 bg-[#A8C5B8]" />
-                <div className="w-6 h-0.5 bg-[#A8B8CA]" />
-                <div className="w-3 h-0.5 bg-gray-300" />
-              </div>
+              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-[#0A0A0A]">
+                Building the Global B2B Platform
+              </h1>
+              <p className="text-xl text-[#4a4a4a] leading-relaxed max-w-lg">
+                Connecting clients, suppliers, and local experts through innovative technology and human expertise.
+              </p>
+              <p className="text-base text-[#6b6b6b] leading-relaxed max-w-lg">
+                Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
+              </p>
+              <Button 
+                className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-6 text-base font-semibold shadow-lg"
+              >
+                Get In Touch
+              </Button>
             </motion.div>
             
           </div>
         </div>
+        
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.6 }}
+        >
+          <div className="w-10 h-10 rounded-full bg-[#0A7FA5] flex items-center justify-center cursor-pointer hover:bg-[#0A7FA5]/80 transition-colors">
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </motion.div>
       </section>
 
       {/* MISSION STATEMENT - Full Width */}
@@ -236,71 +238,73 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* SUSTAINABILITY - Split Layout */}
-      <section data-nav-theme="light" className="py-32 bg-gray-50">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* SUSTAINABILITY - Large Curved Image Design */}
+      <section data-nav-theme="light" className="min-h-screen flex items-center" style={{ background: 'linear-gradient(180deg, #f8faf9 0%, #ffffff 100%)' }}>
+        <div className="container mx-auto px-6 max-w-[1400px] py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
-            {/* Photo */}
+            {/* Left - Large Curved Image */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="aspect-[4/5] overflow-hidden bg-gray-200">
+              <div 
+                className="relative overflow-hidden"
+                style={{ 
+                  borderRadius: '0 50% 50% 0',
+                  height: '550px'
+                }}
+              >
                 <motion.img 
                   src={sustainabilityImage} 
                   alt="Sustainable operations" 
                   className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%)' }}
+                  style={{ filter: 'grayscale(30%) brightness(0.95)' }}
                   initial={{ scale: 1.1 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Green highlight on specific objects - like helmet reference */}
+                {/* Green overlay */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `
-                      radial-gradient(ellipse 180px 160px at 45% 35%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.6) 30%, transparent 60%),
-                      radial-gradient(ellipse 140px 120px at 65% 55%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.5) 28%, transparent 55%)
-                    `,
-                    mixBlendMode: 'overlay'
+                    background: 'linear-gradient(135deg, rgba(110, 169, 150, 0.35) 0%, rgba(110, 169, 150, 0.15) 100%)',
+                    mixBlendMode: 'multiply'
                   }}
                 />
               </div>
             </motion.div>
 
-            {/* Content */}
+            {/* Right - Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-8"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-8 lg:pl-8"
             >
-              <div className="space-y-4">
-                <div className="text-sm font-black uppercase tracking-wider text-[#A8C5B8] drop-shadow-sm">
-                  Environmental Commitment
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
-                  Building a Sustainable Future
-                </h2>
-              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0A] leading-tight">
+                Building a Sustainable Future
+              </h2>
               
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-xl text-[#4a4a4a] leading-relaxed max-w-lg">
                 We're committed to minimizing our environmental impact through renewable energy adoption, 
-                waste reduction initiatives, and sustainable practices across all operations. Our goal is 
-                continuous improvement in carbon footprint reduction and resource efficiency.
+                waste reduction initiatives, and sustainable practices across all operations.
+              </p>
+              
+              <p className="text-base text-[#6b6b6b] leading-relaxed max-w-lg">
+                Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
               </p>
 
-              <div className="flex gap-1.5 pt-4">
-                <div className="w-10 h-0.5 bg-[#B2CDBC]" />
-                <div className="w-6 h-0.5 bg-[#A8B8CA]" />
-              </div>
+              <Button 
+                className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-6 text-base font-semibold shadow-lg"
+              >
+                Get In Touch
+              </Button>
             </motion.div>
 
           </div>
@@ -390,70 +394,73 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* LEADERSHIP - Split Layout */}
-      <section data-nav-theme="light" className="py-32 bg-gray-50">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Content */}
+      {/* LEADERSHIP - Large Curved Image Design */}
+      <section data-nav-theme="light" className="min-h-screen flex items-center" style={{ background: 'linear-gradient(180deg, #f8faf9 0%, #ffffff 100%)' }}>
+        <div className="container mx-auto px-6 max-w-[1400px] py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left - Large Curved Image */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8 lg:order-1"
+              transition={{ duration: 0.8 }}
+              className="relative"
             >
-              <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-black">
-                  Leadership <span className="text-[#A8B8CA]">Team</span>
-                </h2>
-              </div>
-              
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Our leadership brings together entrepreneurial expertise and deep industry knowledge—a combination 
-                that drives innovation in AI-powered procurement and global supplier verification.
-              </p>
-
-              <Button 
-                variant="outline" 
-                className="rounded-full border-3 border-[#B2CDBC] text-[#B2CDBC] font-bold hover:bg-[#B2CDBC] hover:text-white transition-colors px-8 py-6 text-base shadow-sm"
+              <div 
+                className="relative overflow-hidden"
+                style={{ 
+                  borderRadius: '0 50% 50% 0',
+                  height: '550px'
+                }}
               >
-                Learn More
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </motion.div>
-
-            {/* Photo */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative lg:order-2"
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-gray-200">
                 <motion.img 
                   src={leadershipTeamImage} 
                   alt="YVOO Leadership Team" 
                   className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%)' }}
+                  style={{ filter: 'grayscale(30%) brightness(0.95)' }}
                   initial={{ scale: 1.1 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 />
-                {/* Green highlight on specific objects - like helmet reference */}
+                {/* Green overlay */}
                 <div 
                   className="absolute inset-0"
                   style={{
-                    background: `
-                      radial-gradient(ellipse 150px 140px at 30% 45%, rgba(168, 197, 184, 0.88) 0%, rgba(168, 197, 184, 0.52) 30%, transparent 60%),
-                      radial-gradient(ellipse 130px 120px at 70% 40%, rgba(168, 197, 184, 0.85) 0%, rgba(168, 197, 184, 0.48) 28%, transparent 58%)
-                    `,
-                    mixBlendMode: 'overlay'
+                    background: 'linear-gradient(135deg, rgba(110, 169, 150, 0.35) 0%, rgba(110, 169, 150, 0.15) 100%)',
+                    mixBlendMode: 'multiply'
                   }}
                 />
               </div>
+            </motion.div>
+
+            {/* Right - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-8 lg:pl-8"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0A0A0A] leading-tight">
+                Leadership Team
+              </h2>
+              
+              <p className="text-xl text-[#4a4a4a] leading-relaxed max-w-lg">
+                Our leadership brings together entrepreneurial expertise and deep industry knowledge—a combination 
+                that drives innovation in AI-powered procurement and global supplier verification.
+              </p>
+              
+              <p className="text-base text-[#6b6b6b] leading-relaxed max-w-lg">
+                Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
+              </p>
+
+              <Button 
+                className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-6 text-base font-semibold shadow-lg"
+              >
+                Get In Touch
+              </Button>
             </motion.div>
 
           </div>
