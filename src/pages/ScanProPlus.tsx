@@ -533,7 +533,7 @@ const MapLocationMarker = ({
             <div className="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-gray-700">
               <p className="font-bold text-sm whitespace-nowrap">{name}</p>
               <div className="flex items-center gap-2 mt-1.5">
-                <div className="w-2 h-2 rounded-full bg-[#6EA996] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
                 <p className="text-xs text-gray-300 font-medium">{availability}</p>
               </div>
             </div>
@@ -1299,7 +1299,7 @@ const ChallengeToggleSection = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
               className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
-                isWithScanPro ? 'text-[#6EA996]' : 'text-[#AD3D3D]'
+                isWithScanPro ? 'text-secondary' : 'text-destructive'
               }`}
             >
               {isWithScanPro ? 'ScanPro+' : 'Providers'}
@@ -1310,7 +1310,7 @@ const ChallengeToggleSection = () => {
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
             className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-[#B2CDBC]' : 'bg-[#AD3D3D]'
+              isWithScanPro ? 'bg-accent' : 'bg-destructive'
             }`}
             aria-label="Toggle comparison"
           >
@@ -1346,7 +1346,7 @@ const ChallengeToggleSection = () => {
                 <PixelIcon 
                   name={item.icon} 
                   className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0"
-                  color={isWithScanPro ? '#6EA996' : '#AD3D3D'}
+                  color={isWithScanPro ? 'hsl(161, 26%, 55%)' : 'hsl(0, 84%, 60%)'}
                 />
                 <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight">
                   {item.title}
@@ -1366,9 +1366,9 @@ const ChallengeToggleSection = () => {
 
 const fallbackAuditors = [
   { image: auditorEuropean, location: "Europe", region: "Central Europe", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-[#B2CDBC] via-[#6EA996] to-[#6EA996]", gender: "male" },
+  { image: auditorAsian, location: "Asia", region: "East Asia Pacific", gradient: "from-accent via-secondary to-secondary", gender: "male" },
   { image: auditorLatin, location: "Americas", region: "North & South", gradient: "from-gray-700 via-gray-800 to-gray-900", gender: "male" },
-  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-[#B2CDBC] via-[#6EA996] to-[#6EA996]", gender: "male" },
+  { image: auditorMiddleEast, location: "Middle East", region: "Gulf Region", gradient: "from-accent via-secondary to-secondary", gender: "male" },
   { image: auditorFemaleEuropean, location: "Europe", region: "Western Europe", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
@@ -1395,8 +1395,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] animate-ping opacity-40" />
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1474,7 +1474,7 @@ const HowItWorksCarousel = () => {
                   />
                 </div>
               </div>
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#A0B9A9] flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
             </div>
@@ -1484,14 +1484,14 @@ const HowItWorksCarousel = () => {
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#A8C5B8]/20 flex items-center justify-center"
+                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-accent/20 flex items-center justify-center"
               >
-                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="#A8C5B8" />
+                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="hsl(158, 23%, 75%)" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#A8C5B8] flex items-center justify-center shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-accent flex items-center justify-center shadow-lg"
               >
                 <PixelIcon name="message" className="w-6 h-6 sm:w-8 sm:h-8" />
               </motion.div>

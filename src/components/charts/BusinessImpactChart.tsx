@@ -17,8 +17,8 @@ const BusinessImpactChart = () => {
     {
       label: 'ScanPro+',
       value: 700,
-      color: '#0A7FA5',
-      bgColor: '#0A7FA5',
+      color: 'hsl(195, 88%, 34%)',
+      bgColor: 'hsl(195, 88%, 34%)',
       percentage: 3.5
     }
   ];
