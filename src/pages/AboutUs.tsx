@@ -78,8 +78,25 @@ const AboutUs = () => {
       <Navigation />
       
       {/* HERO SECTION - Compliance Modal Style */}
-      <section data-nav-theme="light" className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
-        {/* Left side image - clipped ellipse */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        {/* Mobile/Tablet Image - Top */}
+        <motion.div 
+          className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="grid grid-cols-4 gap-0.5 h-full w-full">
+            {heroImages.slice(0, 4).map((image, index) => (
+              <div key={index} className="relative overflow-hidden">
+                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Desktop - Left side image - clipped ellipse */}
         <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
           <motion.div 
             className="absolute inset-0"
@@ -92,11 +109,7 @@ const AboutUs = () => {
             <div className="grid grid-cols-4 gap-0.5 h-full w-full">
               {heroImages.slice(0, 8).map((image, index) => (
                 <div key={index} className="relative overflow-hidden">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
@@ -104,40 +117,38 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 min-h-[70vh] lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
           <motion.div 
-            className="lg:ml-[45%] lg:pl-16 space-y-6"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Building the Global B2B Platform
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               Connecting clients, suppliers, and local experts through innovative technology and human expertise.
             </p>
-            <p className="text-base text-gray-500 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
             </p>
-            <Button 
-              className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-3 text-base font-semibold shadow-lg"
-            >
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        {/* Scroll indicator - hidden on mobile */}
+        <div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <motion.div 
-            className="w-14 h-14 rounded-full bg-[#0A7FA5] flex items-center justify-center animate-bounce"
+            className="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-[#0A7FA5] flex items-center justify-center animate-bounce"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </motion.div>
@@ -213,8 +224,19 @@ const AboutUs = () => {
       </section>
 
       {/* SUSTAINABILITY - Compliance Modal Style */}
-      <section data-nav-theme="light" className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
-        {/* Left side image - clipped ellipse */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        {/* Mobile/Tablet Image - Top */}
+        <motion.div 
+          className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={sustainabilityImage} alt="Sustainable operations" className="w-full h-full object-cover" />
+        </motion.div>
+
+        {/* Desktop - Left side image - clipped ellipse */}
         <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
           <motion.div 
             className="absolute inset-0"
@@ -224,36 +246,30 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <img 
-              src={sustainabilityImage} 
-              alt="Sustainable operations" 
-              className="h-full w-full object-cover"
-            />
+            <img src={sustainabilityImage} alt="Sustainable operations" className="h-full w-full object-cover" />
           </motion.div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 min-h-[70vh] lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
           <motion.div 
-            className="lg:ml-[45%] lg:pl-16 space-y-6"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Building a Sustainable Future
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               We're committed to minimizing our environmental impact through renewable energy adoption, 
               waste reduction initiatives, and sustainable practices across all operations.
             </p>
-            <p className="text-base text-gray-500 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
             </p>
-            <Button 
-              className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-3 text-base font-semibold shadow-lg"
-            >
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
@@ -344,8 +360,19 @@ const AboutUs = () => {
       </section>
 
       {/* LEADERSHIP - Compliance Modal Style */}
-      <section data-nav-theme="light" className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
-        {/* Left side image - clipped ellipse */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        {/* Mobile/Tablet Image - Top */}
+        <motion.div 
+          className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={leadershipTeamImage} alt="YVOO Leadership Team" className="w-full h-full object-cover" />
+        </motion.div>
+
+        {/* Desktop - Left side image - clipped ellipse */}
         <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
           <motion.div 
             className="absolute inset-0"
@@ -355,36 +382,30 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <img 
-              src={leadershipTeamImage} 
-              alt="YVOO Leadership Team" 
-              className="h-full w-full object-cover"
-            />
+            <img src={leadershipTeamImage} alt="YVOO Leadership Team" className="h-full w-full object-cover" />
           </motion.div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 min-h-[70vh] lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
           <motion.div 
-            className="lg:ml-[45%] lg:pl-16 space-y-6"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Leadership Team
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               Our leadership brings together entrepreneurial expertise and deep industry knowledge—a combination 
               that drives innovation in AI-powered procurement and global supplier verification.
             </p>
-            <p className="text-base text-gray-500 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
             </p>
-            <Button 
-              className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-8 py-3 text-base font-semibold shadow-lg"
-            >
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
