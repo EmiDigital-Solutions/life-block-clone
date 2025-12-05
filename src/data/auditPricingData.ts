@@ -333,9 +333,10 @@ export const mostCommonAuditCodes = [
 export const getMostCommonAudits = () => 
   auditTypes.filter(a => mostCommonAuditCodes.includes(a.code));
 
-// Get unique categories with "Most Common Audits" first
+// Get unique categories with "Most Common Audits" first, then "Universal", then rest alphabetically
 const uniqueCategories = [...new Set(auditTypes.map(a => a.category))].sort();
-export const categories = ["Most Common Audits", ...uniqueCategories];
+const filteredCategories = uniqueCategories.filter(c => c !== "Universal");
+export const categories = ["Most Common Audits", "Universal", ...filteredCategories];
 
 // Get audits by category
 export const getAuditsByCategory = (category: string) => {
