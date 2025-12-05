@@ -2,22 +2,25 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { PixelIcon } from "@/components/PixelIcon";
 import { X, ChevronDown, ArrowLeft } from "lucide-react";
 
-// Import images - Hero images (people/team focus)
-import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
-import aiCopilotAnalysis from "@/assets/ai-copilot-analysis.jpg";
-import smartMatchSuppliers from "@/assets/smart-match-suppliers.jpg";
-import supplierSearchInterface from "@/assets/supplier-search-interface.jpg";
-import riskScoringAi from "@/assets/risk-scoring-ai.jpg";
-import liveTrackingDashboard from "@/assets/live-tracking-dashboard.jpg";
-import auditorFactoryTeam from "@/assets/auditor-factory-team.jpg";
-import supplierNetworking from "@/assets/supplier-networking.jpg";
+// Import hero images (black and white, minimalistic)
+import featureAiPreferenceHero from "@/assets/feature-ai-preference-hero.jpg";
+import featureRequirementCaptureHero from "@/assets/feature-requirement-capture-hero.jpg";
+import featureMultiFactorHero from "@/assets/feature-multi-factor-hero.jpg";
+import featureExplainableAiHero from "@/assets/feature-explainable-ai-hero.jpg";
+import featureDeduplicationHero from "@/assets/feature-deduplication-hero.jpg";
+import featureDynamicResultsHero from "@/assets/feature-dynamic-results-hero.jpg";
+import featureRealtimeHero from "@/assets/feature-realtime-hero.jpg";
+import featureTermDiscoveryHero from "@/assets/feature-term-discovery-hero.jpg";
 
-// Import images - Secondary images (object/process focus)
-import scanproDashboard from "@/assets/scanpro-ai-dashboard.jpg";
-import erpIntegration from "@/assets/erp-integration-sync.jpg";
-import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
-import tripleSourceVerified from "@/assets/triple-source-verified.jpg";
-import realtimeAlerts from "@/assets/realtime-alerts.jpg";
+// Import secondary images (black and white, minimalistic)
+import featureAiPreferenceSecondary from "@/assets/feature-ai-preference-secondary.jpg";
+import featureRequirementCaptureSecondary from "@/assets/feature-requirement-capture-secondary.jpg";
+import featureMultiFactorSecondary from "@/assets/feature-multi-factor-secondary.jpg";
+import featureExplainableSecondary from "@/assets/feature-explainable-secondary.jpg";
+import featureDeduplicationSecondary from "@/assets/feature-deduplication-secondary.jpg";
+import featureDynamicSecondary from "@/assets/feature-dynamic-secondary.jpg";
+import featureRealtimeSecondary from "@/assets/feature-realtime-secondary.jpg";
+import featureTermDiscoverySecondary from "@/assets/feature-term-discovery-secondary.jpg";
 
 interface FeatureDetail {
   overview: string;
@@ -39,75 +42,75 @@ interface FeatureModalProps {
   onClose: () => void;
 }
 
-// Hero images - people/team focused for hero section
+// Hero images - black and white minimalistic
 const heroImageMap: Record<string, { src: string; alt: string }> = {
   "AI Preference Engine": {
-    src: aiCopilotAnalysis,
-    alt: "AI system analyzing supplier preferences and recommendations.",
+    src: featureAiPreferenceHero,
+    alt: "Professional analyzing data analytics dashboard.",
   },
   "Intelligent Requirement Capture": {
-    src: digitalWorkflowTeam,
-    alt: "Team working with intelligent document processing system.",
+    src: featureRequirementCaptureHero,
+    alt: "Hands reviewing technical documentation and blueprints.",
   },
   "Multi-Factor Matching": {
-    src: smartMatchSuppliers,
-    alt: "Multi-factor supplier matching analysis dashboard.",
+    src: featureMultiFactorHero,
+    alt: "Abstract geometric shapes representing connections and matching.",
   },
   "Explainable AI": {
-    src: supplierSearchInterface,
-    alt: "Transparent AI recommendation interface with explanations.",
+    src: featureExplainableAiHero,
+    alt: "Magnifying glass over data visualization for transparency.",
   },
   "Smart Deduplication": {
-    src: auditorFactoryTeam,
-    alt: "Team consolidating supplier data across systems.",
+    src: featureDeduplicationHero,
+    alt: "Merging streams representing data consolidation.",
   },
   "Dynamic Results": {
-    src: riskScoringAi,
-    alt: "Dynamic search results with quality-focused matching.",
+    src: featureDynamicResultsHero,
+    alt: "Precision target representing focused search results.",
   },
   "Real-Time Data Enrichment": {
-    src: liveTrackingDashboard,
-    alt: "Real-time supplier data enrichment dashboard.",
+    src: featureRealtimeHero,
+    alt: "Flowing data streams representing real-time updates.",
   },
   "Alternative Term Discovery": {
-    src: supplierNetworking,
-    alt: "Global supplier discovery across languages and regions.",
+    src: featureTermDiscoveryHero,
+    alt: "Globe representing global term discovery.",
   },
 };
 
-// Secondary images - object/process focused for circular section
+// Secondary images - black and white minimalistic for circular display
 const secondaryImageMap: Record<string, { src: string; alt: string }> = {
   "AI Preference Engine": {
-    src: scanproDashboard,
-    alt: "AI preference engine dashboard showing personalized results.",
+    src: featureAiPreferenceSecondary,
+    alt: "Dashboard interface showing personalized analytics.",
   },
   "Intelligent Requirement Capture": {
-    src: oneClickDispatch,
-    alt: "Document processing and requirement extraction interface.",
+    src: featureRequirementCaptureSecondary,
+    alt: "Document scanner processing technical requirements.",
   },
   "Multi-Factor Matching": {
-    src: tripleSourceVerified,
-    alt: "Multi-criteria matching visualization.",
+    src: featureMultiFactorSecondary,
+    alt: "Precision balance scale representing multi-criteria evaluation.",
   },
   "Explainable AI": {
-    src: riskScoringAi,
-    alt: "AI explanation and reasoning breakdown.",
+    src: featureExplainableSecondary,
+    alt: "Glass prism representing transparency in AI decisions.",
   },
   "Smart Deduplication": {
-    src: erpIntegration,
-    alt: "Entity resolution and deduplication system.",
+    src: featureDeduplicationSecondary,
+    alt: "Puzzle pieces representing entity consolidation.",
   },
   "Dynamic Results": {
-    src: scanproDashboard,
-    alt: "Dynamic search results optimization.",
+    src: featureDynamicSecondary,
+    alt: "Chess piece representing strategic focus.",
   },
   "Real-Time Data Enrichment": {
-    src: realtimeAlerts,
-    alt: "Real-time data updates and enrichment.",
+    src: featureRealtimeSecondary,
+    alt: "Water ripples representing real-time data flow.",
   },
   "Alternative Term Discovery": {
-    src: tripleSourceVerified,
-    alt: "Multi-language term discovery system.",
+    src: featureTermDiscoverySecondary,
+    alt: "Compass representing discovery and navigation.",
   },
 };
 
@@ -262,7 +265,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
 
         <div className="h-full overflow-y-auto pt-16">
           {/* Hero Section */}
-          <section className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+          <section className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#f5f5f5] via-white to-[#f5f5f5]">
             {/* Left side image - clipped circle */}
             <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
               <div 
@@ -275,7 +278,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                   <img
                     src={heroImage.src}
                     alt={heroImage.alt}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover grayscale"
                   />
                 )}
               </div>
@@ -285,8 +288,8 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
               <div className="lg:ml-[45%] lg:pl-16 space-y-6">
                 <DialogHeader className="space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-2">
-                    <span className="text-sm font-semibold text-primary">{feature.number}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full mb-2">
+                    <span className="text-sm font-semibold text-gray-900">{feature.number}</span>
                   </div>
                   <DialogTitle className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                     {feature.title}
@@ -311,7 +314,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center animate-bounce">
+              <div className="w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center animate-bounce">
                 <ChevronDown className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -344,8 +347,8 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                   </div>
 
                   {/* For Quality */}
-                  <div className="border-l-4 border-accent pl-6 py-2">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-accent mb-2">Quality</h4>
+                  <div className="border-l-4 border-gray-400 pl-6 py-2">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">Quality</h4>
                     <p className="text-base text-gray-600 leading-relaxed">
                       {feature.detailedExplanation.forAuditors}
                     </p>
@@ -356,7 +359,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                 <div className="flex justify-center lg:justify-end">
                   <div className="relative">
                     {/* Outer ring */}
-                    <div className="absolute -inset-8 rounded-full border-[20px] border-[#e8f4f8]" />
+                    <div className="absolute -inset-8 rounded-full border-[20px] border-gray-100" />
                     {/* Image circle */}
                     <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
                       {secondaryImage && (
@@ -374,7 +377,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
           </section>
 
           {/* Services Section */}
-          <section className="py-16 lg:py-24 bg-[#f8fafb]">
+          <section className="py-16 lg:py-24 bg-gray-50">
             <div className="max-w-5xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
                 Capabilities included
@@ -385,7 +388,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                     key={idx} 
                     className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
                       <PixelIcon name="checkbox-on" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700">{service}</p>
@@ -405,9 +408,9 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                 {benefits.map((benefit, idx) => (
                   <div 
                     key={idx}
-                    className="text-center p-6 rounded-3xl bg-gradient-to-br from-[#f8fafb] to-white"
+                    className="text-center p-6 rounded-3xl bg-gray-50"
                   >
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gray-100 flex items-center justify-center">
                       <PixelIcon name={benefit.iconName} className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
@@ -419,7 +422,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
           </section>
 
           {/* Example Section */}
-          <section className="py-16 lg:py-24 bg-[#f8fafb]">
+          <section className="py-16 lg:py-24 bg-gray-50">
             <div className="max-w-4xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
                 Real-world application
@@ -433,17 +436,17 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 lg:py-20 bg-primary">
+          <section className="py-16 lg:py-20 bg-gray-900">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Ready to experience {feature.title}?
               </h2>
-              <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
                 Start using YVOO SearchPro+ today and transform your supplier discovery process.
               </p>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-primary shadow-lg transition-all hover:bg-gray-50"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-gray-900 shadow-lg transition-all hover:bg-gray-100"
               >
                 Get Started
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
