@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
-import Earth3D from "@/components/Earth3D";
+import worldMapFlat from "@/assets/world-map-flat.png";
 import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
@@ -1384,31 +1384,56 @@ const HowItWorksCarousel = () => {
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          {/* 3D Earth */}
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
-            <Earth3D width="100%" height="100%" showPins={false} />
+          {/* Flat World Map */}
+          <div className="relative w-full max-w-[280px] sm:max-w-[450px] md:max-w-[550px]">
+            <img 
+              src={worldMapFlat} 
+              alt="Global coverage map" 
+              className="w-full h-auto"
+            />
             
-            {/* Green Location Marker */}
+            {/* Frosted Glass Info Box - Top Left */}
             <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '30%', left: '70%' }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="absolute top-[15%] left-[5%] backdrop-blur-md bg-secondary/80 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-lg border border-white/20"
             >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-[#B2CDBC] animate-ping opacity-40" />
+              <p className="text-[10px] sm:text-xs font-bold text-white">North America</p>
+              <p className="text-[8px] sm:text-[10px] text-white/80">340+ Auditors</p>
+            </motion.div>
+            
+            {/* Frosted Glass Info Box - Europe */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="absolute top-[10%] left-[45%] backdrop-blur-md bg-secondary/80 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-lg border border-white/20"
+            >
+              <p className="text-[10px] sm:text-xs font-bold text-white">Europe</p>
+              <p className="text-[8px] sm:text-[10px] text-white/80">520+ Auditors</p>
+            </motion.div>
+            
+            {/* Frosted Glass Info Box - Asia */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="absolute top-[25%] right-[10%] backdrop-blur-md bg-secondary/80 rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-lg border border-white/20"
+            >
+              <p className="text-[10px] sm:text-xs font-bold text-white">Asia Pacific</p>
+              <p className="text-[8px] sm:text-[10px] text-white/80">680+ Auditors</p>
             </motion.div>
             
             {/* 1-Click Button */}
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '32%', left: '73%' }}
+              className="absolute bottom-[20%] left-[50%] -translate-x-1/2"
             >
-              <div className="bg-[#B2CDBC] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
+              <div className="bg-primary text-white px-3 py-2 sm:px-5 sm:py-3 rounded-full flex items-center gap-2 shadow-xl">
+                <PixelIcon name="cursor" className="w-3 h-3 sm:w-5 sm:h-5" />
+                <span className="font-semibold text-xs sm:text-sm whitespace-nowrap">1-Click Audit</span>
               </div>
             </motion.div>
           </div>
@@ -1421,8 +1446,50 @@ const HowItWorksCarousel = () => {
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
-            <Earth3D width="100%" height="100%" showPins={true} />
+          <div className="relative w-full max-w-[280px] sm:max-w-[450px] md:max-w-[550px]">
+            <img 
+              src={worldMapFlat} 
+              alt="Global auditor network" 
+              className="w-full h-auto"
+            />
+            
+            {/* Animated Location Pins */}
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0 }}
+              className="absolute top-[25%] left-[15%] w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+              className="absolute top-[18%] left-[48%] w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
+              className="absolute top-[30%] right-[20%] w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.9 }}
+              className="absolute top-[55%] left-[25%] w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 1.2 }}
+              className="absolute bottom-[25%] right-[15%] w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg"
+            />
+            
+            {/* Frosted Glass Stats Box */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="absolute bottom-[10%] left-[50%] -translate-x-1/2 backdrop-blur-md bg-secondary/80 rounded-xl px-4 py-3 sm:px-6 sm:py-4 shadow-lg border border-white/20"
+            >
+              <p className="text-xs sm:text-sm font-bold text-white text-center">2,000+ Certified Auditors</p>
+              <p className="text-[10px] sm:text-xs text-white/80 text-center">90+ Countries Coverage</p>
+            </motion.div>
           </div>
         </div>
       )
