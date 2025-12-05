@@ -480,7 +480,7 @@ const SearchSuppliers = () => {
                 <div className="bg-[#0A0A0A] px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
                   <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                   <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-[#6EA996] drop-shadow-md" strokeWidth={2.5} />
+                    <Cpu className="w-5 h-5 text-primary" strokeWidth={2.5} />
                     <span className="text-white text-sm">AI-Powered</span>
                   </div>
                 </div>
@@ -807,7 +807,7 @@ const SearchSuppliers = () => {
                   className="mt-6"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-[#A8C5B8] drop-shadow-md" strokeWidth={3} />
+                    <CheckCircle2 className="w-5 h-5 text-primary" strokeWidth={3} />
                     <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                   </div>
                   

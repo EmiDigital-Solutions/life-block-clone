@@ -432,7 +432,7 @@ const ValuePropositionSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-[#A8C5B8] font-black drop-shadow-md">Professional Partnership</span> Platform
+            <span className="text-primary font-black">Professional Partnership</span> Platform
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
             YVOO connects certified auditors with quality-focused enterprises. 
@@ -512,7 +512,7 @@ const TimelineSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-[#A8C5B8] font-black drop-shadow-md">Partnership Journey</span>
+            <span className="text-primary font-black">Partnership Journey</span>
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Five steps to join the elite auditor network
@@ -618,7 +618,7 @@ const QualificationsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-[#A8C5B8] font-black drop-shadow-md">Professional Standards</span>
+            <span className="text-primary font-black">Professional Standards</span>
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Excellence requirements that ensure client trust and audit quality
@@ -739,7 +739,7 @@ const TechnologyFeaturesSection = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-black text-[#A8C5B8] mb-4 drop-shadow-md">
+            <h2 className="text-3xl md:text-4xl font-black text-primary mb-4">
               Enterprise Technology
             </h2>
             <p className="text-base md:text-lg text-gray-600">
@@ -820,7 +820,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-[#A8C5B8] mb-3 drop-shadow-md"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary mb-3"
           >
             Enterprise Technology
           </motion.h2>
@@ -1200,7 +1200,7 @@ const SuccessStoriesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-[#A8C5B8] font-black drop-shadow-md">Partner Success Stories</span>
+            <span className="text-primary font-black">Partner Success Stories</span>
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Real auditors, exceptional results
@@ -1230,11 +1230,11 @@ const SuccessStoriesSection = () => {
 
               <div className="grid grid-cols-3 gap-3 mb-6">
                 <div className="text-center">
-                  <div className="text-xl font-black text-[#A8C5B8] drop-shadow-md" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>{testimonial.stats.revenue.split(' ')[0]}</div>
+                  <div className="text-xl font-black text-primary">{testimonial.stats.revenue.split(' ')[0]}</div>
                   <div className="text-xs text-gray-500">{testimonial.stats.revenue.split(' ')[1]}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-black text-[#A8C5B8] drop-shadow-md" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>{testimonial.stats.audits.split(' ')[0]}</div>
+                  <div className="text-xl font-black text-primary">{testimonial.stats.audits.split(' ')[0]}</div>
                   <div className="text-xs text-gray-500">{testimonial.stats.audits.split(' ')[1]}</div>
                 </div>
                 <div className="text-center">
@@ -1302,7 +1302,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-[#A8C5B8] font-black drop-shadow-md">Frequently Asked Questions</span>
+            <span className="text-primary font-black">Frequently Asked Questions</span>
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Everything you need to know about partner auditor program
@@ -1378,7 +1378,7 @@ const ScrollZoomSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             Join Elite Auditors
           </h2>
-          <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#A8C5B8] mb-6 drop-shadow-md">
+          <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-6">
             Shape Industry Standards
           </h3>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">

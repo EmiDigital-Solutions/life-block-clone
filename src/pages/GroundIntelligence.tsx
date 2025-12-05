@@ -105,7 +105,7 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
             >
-              See <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>beyond the surface</span>
+              See <span className="text-primary font-black">beyond the surface</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -134,7 +134,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>How It</span> Works.
+              <span className="text-primary font-black">How It</span> Works.
             </h2>
           </motion.div>
 
@@ -169,7 +169,7 @@ const GroundIntelligence = () => {
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#B2CDBC] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                       {step.number}
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>
@@ -224,7 +224,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Results</span>
+              <span className="text-primary font-black">Results</span>
             </h2>
           </motion.div>
 
@@ -242,7 +242,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.2 }}
                 className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all"
               >
-                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl font-black text-[#A8C5B8] mb-2 sm:mb-3 drop-shadow-lg" style={{ textShadow: '0 4px 6px rgba(0,0,0,0.15)' }}>
+                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl font-black text-primary mb-2 sm:mb-3">
                   {item.metric}
                 </div>
                 <p className="text-sm sm:text-base xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-medium">{item.label}</p>
@@ -267,7 +267,7 @@ const GroundIntelligence = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-              <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Pricing</span>
+              <span className="text-primary font-black">Pricing</span>
             </h2>
           </motion.div>
 
@@ -298,7 +298,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`p-6 sm:p-8 rounded-xl sm:rounded-2xl border ${
                   plan.highlighted 
-                    ? 'bg-white border-[#A8C5B8] shadow-lg sm:transform sm:scale-105 border-2' 
+                    ? 'bg-white border-primary shadow-lg sm:transform sm:scale-105 border-2' 
                     : 'bg-white/50 border-gray-200'
                 }`}
               >
@@ -307,7 +307,7 @@ const GroundIntelligence = () => {
                 <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#A8C5B8] flex-shrink-0 mt-0.5 drop-shadow-md" strokeWidth={3} />
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={3} />
                       {feature}
                     </li>
                   ))}
@@ -333,7 +333,7 @@ const GroundIntelligence = () => {
             className="space-y-6 sm:space-y-8"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white">
-              Ready for <span style={{ color: '#A8C5B8', fontWeight: '900', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>real-time supplier intelligence?</span>
+              Ready for <span className="text-primary font-black">real-time supplier intelligence?</span>
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl text-white/80">
