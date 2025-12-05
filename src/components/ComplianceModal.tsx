@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { PixelIcon } from "@/components/PixelIcon";
 import { X, ChevronDown } from "lucide-react";
 
-// Import images
+// Import images - Hero images (people/team focus)
 import scanProDashboard from "@/assets/scanpro-ai-dashboard.jpg";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -12,6 +12,13 @@ import aboutSustainability from "@/assets/about-sustainability.jpg";
 import aiAudit from "@/assets/ai-audit-inspection.jpg";
 import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
 import riskScoring from "@/assets/risk-scoring-ai.jpg";
+// Import images - Secondary images (objects/process focus)
+import aiCopilot from "@/assets/ai-copilot-analysis.jpg";
+import liveTracking from "@/assets/live-tracking-dashboard.jpg";
+import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
+import auditorFactoryTeam from "@/assets/auditor-factory-team.jpg";
+import supplierNetworking from "@/assets/supplier-networking.jpg";
+import erpIntegration from "@/assets/erp-integration-sync.jpg";
 
 interface ComplianceStandard {
   name: string;
@@ -28,61 +35,115 @@ interface ComplianceModalProps {
   onClose: () => void;
 }
 
-const imageConfigMap: Record<string, { src: string; alt: string }> = {
+// Hero images - people/team focused for hero section
+const heroImageMap: Record<string, { src: string; alt: string }> = {
   "ISO 9001": {
-    src: scanProDashboard,
-    alt: "Quality managers reviewing ISO 9001 supplier audit results in the YVOO ScanPro+ dashboard.",
+    src: digitalWorkflowTeam,
+    alt: "Quality management team collaborating on ISO 9001 compliance processes.",
   },
   "IATF 16949": {
-    src: industryAutomotive,
-    alt: "Automotive production team during an IATF 16949 supplier audit.",
+    src: auditorFactoryTeam,
+    alt: "Automotive quality team conducting IATF 16949 supplier audit.",
   },
   "AS9100": {
     src: industryAerospace,
-    alt: "Aerospace manufacturing team in a quality audit discussion.",
+    alt: "Aerospace engineers in quality audit discussion.",
   },
   "ISO 14001": {
     src: aboutSustainability,
-    alt: "Sustainable manufacturing site focused on environmental management.",
+    alt: "Environmental management team at sustainable manufacturing site.",
   },
   "GMP": {
-    src: aiAudit,
-    alt: "Pharmaceutical production line being inspected under GMP requirements.",
+    src: industryMedical,
+    alt: "Pharmaceutical professionals during GMP compliance inspection.",
   },
   "API Q1": {
     src: industryCryogenicValve,
-    alt: "Industrial valve manufacturing facility during an API Q1 quality check.",
+    alt: "Industrial engineers at valve manufacturing facility.",
   },
   "SQF": {
-    src: digitalWorkflowTeam,
-    alt: "Food industry quality team collaborating on Safe Quality Food procedures.",
+    src: supplierNetworking,
+    alt: "Food safety professionals collaborating on SQF procedures.",
   },
   "VDA 6.3": {
     src: industryAutomotive,
-    alt: "Engineers reviewing process performance during a VDA 6.3 audit.",
+    alt: "Automotive engineers during VDA 6.3 process audit.",
   },
   "TS16949": {
-    src: industryAutomotive,
-    alt: "Automotive supplier plant during a technical specification quality review.",
+    src: auditorFactoryTeam,
+    alt: "Quality team at automotive supplier facility.",
   },
   "GDPR": {
-    src: scanProDashboard,
-    alt: "Compliance specialists reviewing GDPR data protection controls in a dashboard.",
+    src: digitalWorkflowTeam,
+    alt: "Compliance team reviewing data protection controls.",
   },
   "SOC 2": {
-    src: riskScoring,
-    alt: "Security analysts monitoring SOC 2 control performance on a risk dashboard.",
+    src: aiCopilot,
+    alt: "Security analysts monitoring SOC 2 compliance systems.",
   },
   "FDA": {
     src: industryMedical,
-    alt: "Medical device production team preparing for an FDA compliance inspection.",
+    alt: "Medical device team preparing for FDA compliance inspection.",
+  },
+};
+
+// Secondary images - object/process focused for circular section
+const secondaryImageMap: Record<string, { src: string; alt: string }> = {
+  "ISO 9001": {
+    src: scanProDashboard,
+    alt: "ISO 9001 audit results dashboard showing quality metrics.",
+  },
+  "IATF 16949": {
+    src: riskScoring,
+    alt: "IATF 16949 risk scoring and compliance dashboard.",
+  },
+  "AS9100": {
+    src: liveTracking,
+    alt: "AS9100 audit tracking and monitoring system.",
+  },
+  "ISO 14001": {
+    src: erpIntegration,
+    alt: "Environmental management system integration dashboard.",
+  },
+  "GMP": {
+    src: aiAudit,
+    alt: "GMP compliance inspection and documentation system.",
+  },
+  "API Q1": {
+    src: oneClickDispatch,
+    alt: "API Q1 audit dispatch and scheduling interface.",
+  },
+  "SQF": {
+    src: liveTracking,
+    alt: "SQF audit tracking and food safety monitoring.",
+  },
+  "VDA 6.3": {
+    src: scanProDashboard,
+    alt: "VDA 6.3 process audit results and scoring.",
+  },
+  "TS16949": {
+    src: riskScoring,
+    alt: "Automotive quality specification compliance metrics.",
+  },
+  "GDPR": {
+    src: riskScoring,
+    alt: "GDPR data protection compliance monitoring dashboard.",
+  },
+  "SOC 2": {
+    src: scanProDashboard,
+    alt: "SOC 2 security control performance dashboard.",
+  },
+  "FDA": {
+    src: aiAudit,
+    alt: "FDA compliance inspection documentation system.",
   },
 };
 
 export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => {
   if (!standard) return null;
 
-  const imageConfig = imageConfigMap[standard.name];
+  const heroImage = heroImageMap[standard.name];
+  const secondaryImage = secondaryImageMap[standard.name];
 
   return (
     <Dialog open={!!standard} onOpenChange={(open) => !open && onClose()}>
@@ -106,10 +167,10 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                   clipPath: 'ellipse(100% 100% at 0% 50%)',
                 }}
               >
-                {imageConfig && (
+                {heroImage && (
                   <img
-                    src={imageConfig.src}
-                    alt={imageConfig.alt}
+                    src={heroImage.src}
+                    alt={heroImage.alt}
                     className="h-full w-full object-cover"
                   />
                 )}
@@ -169,17 +230,17 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                   </button>
                 </div>
 
-                {/* Circular image with rings - Apotech style */}
+                {/* Circular image with rings - Different image from hero */}
                 <div className="flex justify-center lg:justify-end">
                   <div className="relative">
                     {/* Outer ring */}
                     <div className="absolute -inset-8 rounded-full border-[20px] border-[#e8f4f8]" />
                     {/* Image circle */}
                     <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
-                      {imageConfig && (
+                      {secondaryImage && (
                         <img
-                          src={imageConfig.src}
-                          alt={imageConfig.alt}
+                          src={secondaryImage.src}
+                          alt={secondaryImage.alt}
                           className="h-full w-full object-cover"
                         />
                       )}

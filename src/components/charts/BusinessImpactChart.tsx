@@ -10,15 +10,15 @@ const BusinessImpactChart = () => {
     {
       label: 'Traditional Provider',
       value: 20000,
-      color: '#6B7280',
-      bgColor: 'from-gray-400 to-gray-500',
+      color: '#1A1A1A',
+      bgColor: '#C0C0C0',
       percentage: 100
     },
     {
       label: 'ScanPro+',
       value: 700,
-      color: '#A8C5B8',
-      bgColor: 'from-[#B2CDBC] to-[#A0B9A9]',
+      color: '#0A7FA5',
+      bgColor: '#0A7FA5',
       percentage: 3.5
     }
   ];
@@ -44,7 +44,7 @@ const BusinessImpactChart = () => {
               </span>
             </div>
             
-            <div className="relative h-14 sm:h-16 md:h-20 bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden">
+            <div className="relative h-14 sm:h-16 md:h-20 bg-[#F5F5F5] rounded-2xl sm:rounded-3xl overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: isVisible ? `${metric.percentage}%` : 0 }}
@@ -53,7 +53,8 @@ const BusinessImpactChart = () => {
                   duration: 1.5, 
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className={`h-full bg-gradient-to-r ${metric.bgColor}`}
+                className="h-full rounded-2xl sm:rounded-3xl"
+                style={{ backgroundColor: metric.bgColor }}
               />
             </div>
           </motion.div>
@@ -64,14 +65,14 @@ const BusinessImpactChart = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-[#B2CDBC]/10 rounded-xl sm:rounded-2xl"
+        className="mt-6 sm:mt-8 md:mt-10 flex items-center gap-3 sm:gap-4 md:gap-6 p-4 sm:p-6 md:p-8 bg-[#ACC5D9]/20 rounded-2xl sm:rounded-3xl"
       >
-        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#B2CDBC] flex items-center justify-center flex-shrink-0">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-[#6EA996] flex items-center justify-center flex-shrink-0">
           <TrendingDown className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-1 font-semibold">Cost Reduction per Audit</p>
-          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900">-{savings}%</p>
+          <p className="text-[10px] sm:text-xs md:text-sm text-[#1A1A1A] mb-1 font-semibold">Cost Reduction per Audit</p>
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#0A0A0A]">-{savings}%</p>
         </div>
       </motion.div>
     </div>
