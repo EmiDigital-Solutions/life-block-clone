@@ -436,17 +436,17 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 lg:py-20 bg-gray-50 border-t border-gray-100">
+          <section className="py-16 lg:py-20 bg-gray-900">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Ready to experience {feature.title}?
               </h2>
-              <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
                 Start using YVOO SearchPro+ today and transform your supplier discovery process.
               </p>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-gray-900 shadow-lg transition-all hover:bg-gray-100"
               >
                 Get Started
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
