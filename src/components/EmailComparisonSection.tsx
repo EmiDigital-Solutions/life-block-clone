@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 
 const EmailComparisonSection = () => {
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-background">
-      <div className="container mx-auto max-w-6xl">
+    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
+      <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -13,113 +12,82 @@ const EmailComparisonSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Conversations that keep supply chains moving
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Usual - Email Interface */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+          {/* Usual */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-6"
           >
-            <div className="mb-4">
-              <span className="text-sm font-medium text-muted-foreground tracking-wide uppercase">Usual</span>
+            <div className="text-center mb-6">
+              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Usual</p>
             </div>
             
-            <div className="bg-muted/30 rounded-xl p-6 sm:p-8 min-h-[400px]">
-              {/* Email Header */}
-              <div className="border-b border-border pb-4 mb-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                    <span className="text-sm font-medium text-muted-foreground">MW</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-foreground">Michael Weber</p>
-                    <p className="text-xs text-muted-foreground">audit-services@partner.com</p>
-                  </div>
-                  <span className="text-xs text-muted-foreground">3 days later</span>
-                </div>
-                <p className="text-sm text-foreground font-medium">Re: Audit Request – Vietnam</p>
-              </div>
-
-              {/* Email Body */}
-              <div className="text-sm text-foreground/80 leading-relaxed space-y-4">
-                <p>Dear Sarah,</p>
-                <p>
-                  Thank you for your request. Unfortunately, we don't have qualified auditors in Vietnam at this time.
+            <div className="space-y-3">
+              {/* Message bubbles */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="rounded-2xl rounded-tl-sm p-4 w-full relative"
+                style={{ backgroundColor: '#8BA4AC' }}
+              >
+                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <p className="text-sm text-white leading-relaxed pl-6">
+                  Hi Sarah,<br/><br/>
+                  Let me check if I have anyone available in that region.<br/><br/>
+                  I'll get back to you by end of the week.<br/><br/>
+                  Best,<br/>
+                  Michael
                 </p>
-                <p>
-                  We could send someone from Singapore, but this would add travel costs and extend the timeline to 2–3 weeks.
-                </p>
-                <p>
-                  Let me know if you'd like a formal quotation.
-                </p>
-                <div className="pt-4 text-muted-foreground">
-                  <p>Best regards,</p>
-                  <p>Michael Weber</p>
-                </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* With YVOO - Order Confirmation */}
+          {/* With ScanPro */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-6"
           >
-            <div className="mb-4 flex items-center gap-3">
-              <span className="text-sm font-medium text-foreground tracking-wide uppercase">With YVOO</span>
-              <span className="text-xs text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">Instant</span>
+            <div className="text-center mb-6">
+              <p className="text-3xl lg:text-4xl font-bold text-gray-900">With ScanPro</p>
             </div>
             
-            <div className="bg-muted/30 rounded-xl p-6 sm:p-8 min-h-[400px]">
-              {/* Order Confirmation Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
-                  <Check className="w-5 h-5 text-secondary" strokeWidth={2.5} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground">Audit Confirmed</p>
-                  <p className="text-xs text-muted-foreground">Order #YV-2024-1847</p>
-                </div>
-              </div>
-
-              {/* Order Details */}
-              <div className="space-y-4">
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Supplier</span>
-                  <span className="text-sm text-foreground font-medium">TechParts Vietnam Co.</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Audit Date</span>
-                  <span className="text-sm text-foreground font-medium">Next Tuesday</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Auditor</span>
-                  <span className="text-sm text-foreground font-medium">Local, ISO/VDA certified</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Report Delivery</span>
-                  <span className="text-sm text-foreground font-medium">Within 24 hours</span>
-                </div>
-                <div className="flex justify-between py-3">
-                  <span className="text-sm text-muted-foreground">Total Cost</span>
-                  <span className="text-sm text-foreground font-medium">€700</span>
-                </div>
-              </div>
-
-              {/* Tracking Link */}
-              <div className="mt-6 pt-4 border-t border-border">
-                <p className="text-xs text-muted-foreground">
-                  Track progress in real-time via your dashboard
+            <div className="space-y-3">
+              {/* Message bubble */}
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative"
+                style={{ backgroundColor: '#8BA4AC' }}
+              >
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <p className="text-sm text-white leading-relaxed pl-6">
+                  Hey Sarah,<br/><br/>
+                  No problem - I've got you covered!<br/><br/>
+                  I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
+                  Date is agreed with your supplier for next week Tuesday. Cost is €700 total, and you'll receive the complete digital report within 24 hours after the audit is completed, including photos, scoring, and detailed findings.<br/><br/>
+                  I'm sending you the tracking link where you can see the auditor's profile, certifications, and follow the entire audit process in real-time. All documentation will be centralized there as well.<br/><br/>
+                  Let me know if you need anything else!<br/><br/>
+                  Best,<br/>
+                  Michael
                 </p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
