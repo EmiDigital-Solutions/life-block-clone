@@ -90,7 +90,7 @@ const AboutUs = () => {
           <div className="grid grid-cols-4 gap-0.5 h-full w-full">
             {heroImages.slice(0, 4).map((image, index) => (
               <div key={index} className="relative overflow-hidden">
-                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                <img src={image.src} alt={image.alt} className="w-full h-full object-cover grayscale" style={{ filter: 'grayscale(100%) sepia(20%) hue-rotate(80deg) saturate(80%)' }} />
               </div>
             ))}
           </div>
@@ -109,7 +109,7 @@ const AboutUs = () => {
             <div className="grid grid-cols-4 gap-0.5 h-full w-full">
               {heroImages.slice(0, 8).map((image, index) => (
                 <div key={index} className="relative overflow-hidden">
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" style={{ filter: 'grayscale(100%) sepia(20%) hue-rotate(80deg) saturate(80%)' }} />
                 </div>
               ))}
             </div>
