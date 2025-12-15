@@ -57,14 +57,14 @@ const HeroSection = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-start relative z-10">
-        <div className="container mx-auto px-6 lg:px-16 xl:px-24 pt-24 lg:pt-32 pb-8">
+        <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-24 lg:pt-32 pb-8">
           
           {/* Offmenu-style Content Card */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className="max-w-xl lg:max-w-2xl"
           >
             {/* Frosted Glass Card */}
             <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
