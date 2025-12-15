@@ -8,29 +8,29 @@ import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
-// Import diverse professional faces
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
-import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+// Import B&W with selective green highlight images
+import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
+import auditorSelectiveGreen2 from "@/assets/auditor-selective-green-2.jpg";
+import auditorSelectiveGreen3 from "@/assets/auditor-selective-green-3.jpg";
+import auditorSelectiveGreen4 from "@/assets/auditor-selective-green-4.jpg";
+import auditorSelectiveGreen5 from "@/assets/auditor-selective-green-5.jpg";
+import auditorSelectiveGreen6 from "@/assets/auditor-selective-green-6.jpg";
+import auditorSelectiveGreen7 from "@/assets/auditor-selective-green-7.jpg";
+import auditorSelectiveGreen8 from "@/assets/auditor-selective-green-8.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
-    { src: auditorBlonde1, alt: 'Quality Inspector' },
-    { src: auditorBlonde2, alt: 'Safety Manager' },
-    { src: auditorBlonde3, alt: 'Compliance Auditor' },
-    { src: auditorBlonde4, alt: 'Operations Director' },
-    { src: auditorBlonde5, alt: 'Factory Inspector' },
-    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
-    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
-    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
+    { src: auditorSelectiveGreen1, alt: 'Quality Inspector' },
+    { src: auditorSelectiveGreen2, alt: 'Safety Manager' },
+    { src: auditorSelectiveGreen3, alt: 'Compliance Auditor' },
+    { src: auditorSelectiveGreen4, alt: 'Operations Director' },
+    { src: auditorSelectiveGreen5, alt: 'Factory Inspector' },
+    { src: auditorSelectiveGreen6, alt: 'Procurement Manager' },
+    { src: auditorSelectiveGreen7, alt: 'Supply Chain Lead' },
+    { src: auditorSelectiveGreen8, alt: 'Vendor Relations' },
   ];
 
   const timelineData = [
@@ -74,12 +74,7 @@ const AboutUs = () => {
           <div className="grid grid-cols-4 gap-0.5 h-full w-full">
             {heroImages.slice(0, 4).map((image, index) => (
               <div key={index} className="relative overflow-hidden">
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
-                  className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%) sepia(50%) hue-rotate(70deg) saturate(120%)' }} 
-                />
+                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -98,12 +93,7 @@ const AboutUs = () => {
             <div className="grid grid-cols-4 gap-0.5 h-full w-full">
               {heroImages.slice(0, 8).map((image, index) => (
                 <div key={index} className="relative overflow-hidden">
-                  <img 
-                    src={image.src} 
-                    alt={image.alt} 
-                    className="w-full h-full object-cover"
-                    style={{ filter: 'grayscale(100%) sepia(50%) hue-rotate(70deg) saturate(120%)' }} 
-                  />
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
