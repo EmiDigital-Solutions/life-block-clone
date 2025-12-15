@@ -1,41 +1,112 @@
 import { motion } from "framer-motion";
 
-// Custom SVG icons matching the reference design
+// Custom SVG icons matching the exact CSS design specifications
+
+// Global Icon - Globe with checkmark
 const GlobalIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="40" r="28" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <ellipse cx="40" cy="40" rx="14" ry="28" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M12 40H68" stroke="#06D7F9" strokeWidth="2" />
-    <path d="M18 25H62" stroke="#06D7F9" strokeWidth="2" />
-    <path d="M18 55H62" stroke="#06D7F9" strokeWidth="2" />
-    <circle cx="58" cy="58" r="12" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M54 58L58 62L66 54" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Outer circle - white */}
+    <circle cx="40" cy="40" r="32" stroke="#FFFFFF" strokeWidth="2" fill="none" />
+    {/* Inner globe lines - cyan */}
+    <circle cx="40" cy="40" r="24" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    <ellipse cx="40" cy="40" rx="12" ry="24" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    <path d="M16 40H64" stroke="#06D7F9" strokeWidth="2" />
+    <path d="M20 28H60" stroke="#06D7F9" strokeWidth="2" />
+    <path d="M20 52H60" stroke="#06D7F9" strokeWidth="2" />
+    {/* Checkmark badge */}
+    <circle cx="62" cy="62" r="14" fill="#06D7F9" />
+    <path d="M55 62L60 67L70 57" stroke="#131D2A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
+// Quality Icon - Document with clock/timer (checklist verification)
 const QualityIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="16" y="12" width="48" height="56" rx="4" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M26 28H54" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M26 40H54" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M26 52H42" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="56" cy="56" r="14" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M56 48V56L62 62" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Main document shape - cyan */}
+    <path d="M8 8C8 4 11 0 16 0H52L72 20V72C72 76 69 80 64 80H16C11 80 8 76 8 72V8Z" fill="#06D7F9" />
+    {/* Folded corner */}
+    <path d="M52 0V16C52 18 54 20 56 20H72" fill="#06D7F9" />
+    <path d="M52 0L72 20" stroke="#131D2A" strokeWidth="1" />
+    {/* White content area with lines */}
+    <rect x="18" y="14" width="44" height="32" rx="2" fill="#FFFFFF" />
+    <rect x="24" y="22" width="32" height="3" rx="1" fill="#06D7F9" />
+    <rect x="24" y="30" width="24" height="3" rx="1" fill="#06D7F9" />
+    <rect x="24" y="38" width="28" height="3" rx="1" fill="#06D7F9" />
+    {/* Checkmarks */}
+    <circle cx="56" cy="56" r="16" fill="#FFFFFF" />
+    <path d="M48 56L54 62L66 50" stroke="#06D7F9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
+// Realtime Icon - Dashboard with chart lines
 const RealtimeIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="16" width="60" height="48" rx="4" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M10 28H70" stroke="#06D7F9" strokeWidth="2" />
-    <path d="M22 42L32 52L44 36L56 48" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="22" cy="42" r="3" fill="#06D7F9" />
-    <circle cx="32" cy="52" r="3" fill="#06D7F9" />
-    <circle cx="44" cy="36" r="3" fill="#06D7F9" />
-    <circle cx="56" cy="48" r="3" fill="#06D7F9" />
+    {/* Left sidebar - white */}
+    <rect x="0" y="0" width="28" height="80" rx="4" fill="#FFFFFF" />
+    {/* Sidebar elements */}
+    <rect x="6" y="8" width="16" height="4" rx="1" fill="#06D7F9" />
+    <rect x="6" y="18" width="12" height="3" rx="1" fill="#131D2A" />
+    <rect x="6" y="26" width="14" height="3" rx="1" fill="#131D2A" />
+    {/* Main chart area - cyan */}
+    <rect x="32" y="0" width="48" height="80" rx="4" fill="#06D7F9" />
+    {/* Chart line graph */}
+    <path d="M40 55L50 40L60 50L70 30" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Data points */}
+    <circle cx="40" cy="55" r="4" fill="#FFFFFF" />
+    <circle cx="50" cy="40" r="4" fill="#FFFFFF" />
+    <circle cx="60" cy="50" r="4" fill="#FFFFFF" />
+    <circle cx="70" cy="30" r="4" fill="#FFFFFF" />
+    {/* Grid lines */}
+    <path d="M40 65H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.5" />
+    <path d="M40 55H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.3" />
+    <path d="M40 45H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.3" />
+    {/* Data bars at bottom */}
+    <rect x="42" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
+    <rect x="52" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
+    <rect x="62" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
   </svg>
 );
 
+// Control Icon - Gear/cog with settings
+const ControlIcon = () => (
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Outer gear shape - cyan */}
+    <path d="M40 0L48 8H56V16L64 24V32L72 40L64 48V56L56 64V72H48L40 80L32 72H24V64L16 56V48L8 40L16 32V24L24 16V8H32L40 0Z" fill="#06D7F9" />
+    {/* Inner circle - white */}
+    <circle cx="40" cy="40" r="18" fill="#FFFFFF" />
+    {/* Center dot */}
+    <circle cx="40" cy="40" r="6" fill="#06D7F9" />
+    {/* Gear teeth details */}
+    <rect x="36" y="2" width="8" height="12" rx="2" fill="#06D7F9" />
+    <rect x="36" y="66" width="8" height="12" rx="2" fill="#06D7F9" />
+    <rect x="2" y="36" width="12" height="8" rx="2" fill="#06D7F9" />
+    <rect x="66" y="36" width="12" height="8" rx="2" fill="#06D7F9" />
+  </svg>
+);
+
+// Action Icon - Document with arrow (workflow)
+const ActionIcon = () => (
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Left document - cyan */}
+    <rect x="0" y="0" width="48" height="64" rx="4" fill="#06D7F9" />
+    {/* Document lines */}
+    <rect x="8" y="12" width="32" height="4" rx="1" fill="#FFFFFF" />
+    <rect x="8" y="22" width="24" height="4" rx="1" fill="#FFFFFF" />
+    <rect x="8" y="32" width="28" height="4" rx="1" fill="#FFFFFF" />
+    <rect x="8" y="42" width="20" height="4" rx="1" fill="#FFFFFF" />
+    <rect x="8" y="52" width="16" height="4" rx="1" fill="#FFFFFF" />
+    {/* Arrow - white */}
+    <path d="M52 32H72" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
+    <path d="M64 24L74 32L64 40" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Right target/result - cyan */}
+    <rect x="56" y="48" width="24" height="32" rx="4" fill="#06D7F9" />
+    <rect x="62" y="56" width="12" height="3" rx="1" fill="#FFFFFF" />
+    <rect x="62" y="64" width="10" height="3" rx="1" fill="#FFFFFF" />
+    <rect x="62" y="72" width="8" height="3" rx="1" fill="#FFFFFF" />
+  </svg>
+);
+
+// Email Icon - Email with document distribution
 const EmailIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* White envelope at top */}
@@ -58,30 +129,6 @@ const EmailIcon = () => (
     <rect x="7" y="67" width="14" height="4" rx="1" fill="#131D2A" />
     <rect x="36" y="67" width="14" height="4" rx="1" fill="#131D2A" />
     <rect x="66" y="67" width="14" height="4" rx="1" fill="#131D2A" />
-  </svg>
-);
-
-const ControlIcon = () => (
-  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="40" r="24" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M40 24V40L52 52" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="40" cy="40" r="4" fill="#06D7F9" />
-    <path d="M28 16L32 24" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M52 16L48 24" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <rect x="32" y="8" width="16" height="8" rx="2" stroke="#06D7F9" strokeWidth="2" fill="none" />
-  </svg>
-);
-
-const ActionIcon = () => (
-  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="12" width="32" height="40" rx="4" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M20 24H36" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M20 32H36" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M20 40H28" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
-    <path d="M44 36H68" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-    <path d="M58 28L68 36L58 44" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <rect x="48" y="52" width="20" height="16" rx="2" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M52 60H64" stroke="#06D7F9" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
