@@ -78,7 +78,7 @@ const AboutUs = () => {
                   src={image.src} 
                   alt={image.alt} 
                   className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%) brightness(1.1) sepia(30%) hue-rotate(80deg) saturate(60%)' }} 
+                  style={{ filter: 'grayscale(100%) sepia(15%) hue-rotate(80deg) saturate(40%)' }} 
                 />
               </div>
             ))}
@@ -102,7 +102,7 @@ const AboutUs = () => {
                     src={image.src} 
                     alt={image.alt} 
                     className="w-full h-full object-cover"
-                    style={{ filter: 'grayscale(100%) brightness(1.1) sepia(30%) hue-rotate(80deg) saturate(60%)' }} 
+                    style={{ filter: 'grayscale(100%) sepia(15%) hue-rotate(80deg) saturate(40%)' }} 
                   />
                 </div>
               ))}
