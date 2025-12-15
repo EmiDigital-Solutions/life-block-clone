@@ -861,87 +861,73 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Stats Section - Extra padding to prevent overlap */}
-      <section className="pt-16 md:pt-96 pb-16 md:pb-32 bg-[#FAFAFA]" data-nav-theme="light">
+      {/* Stats Section */}
+      <section className="pt-16 md:pt-96 pb-16 md:pb-32 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-20"
+            className="text-center mb-16 md:mb-24"
           >
-            <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="flex items-center justify-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">Benefits</span>
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-[0.15em]">Benefits</span>
             </div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight px-4">
-              <span className="text-primary font-light">Your next supplier,</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-tight">
+              <span className="text-primary">Your next supplier,</span>
               <br />
               <span className="text-foreground font-bold">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 max-w-5xl mx-auto">
             {[
               {
                 stat: "10x",
                 title: "faster supplier research",
-                features: ["Filtered results", "AI-based ranking systems", "Always up-to-date"],
-                accentColor: "bg-[#A8BFC5]"
+                features: ["Filtered results", "AI-based ranking systems", "Always up-to-date"]
               },
               {
                 stat: "25M+",
                 title: "supplier profiles",
-                features: ["Global transparency", "Niche technologies", "Cross-sector searches"],
-                accentColor: "bg-primary"
+                features: ["Global transparency", "Niche technologies", "Cross-sector searches"]
               },
               {
                 stat: "100x",
                 title: "more results per query with SearchPro+",
-                features: ["Greater variety in supplier profiles", "Better comparison opportunities", "Higher match rate"],
-                accentColor: "bg-[#A8BFC5]"
+                features: ["Greater variety in supplier profiles", "Better comparison opportunities", "Higher match rate"]
               }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: index * 0.1 }}
+                className={`p-8 md:p-12 ${index !== 2 ? 'md:border-r border-b md:border-b-0 border-border/30' : 'border-b md:border-b-0 border-border/30'}`}
               >
-                <div className="bg-white rounded-2xl p-8 md:p-10 h-full relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
-                  {/* Subtle accent bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${item.accentColor} opacity-80`}></div>
-                  
-                  {/* Large stat number */}
-                  <div className="mb-6">
-                    <span className="text-primary text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
-                      {item.stat}
-                    </span>
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-foreground text-lg md:text-xl font-semibold mb-8 leading-snug">
-                    {item.title}
-                  </h3>
-                  
-                  {/* Features list */}
-                  <ul className="space-y-4">
-                    {item.features.map((feature, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-2 flex-shrink-0"></div>
-                        <span className="text-sm md:text-base leading-relaxed">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                {/* Large stat */}
+                <div className="mb-4">
+                  <span className="text-primary text-5xl md:text-6xl font-bold">
+                    {item.stat}
+                  </span>
                 </div>
+                
+                {/* Title */}
+                <h3 className="text-foreground font-semibold mb-6 text-base md:text-lg">
+                  {item.title}
+                </h3>
+                
+                {/* Features */}
+                <ul className="space-y-3">
+                  {item.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2.5 text-muted-foreground text-sm">
+                      <div className="w-1 h-1 rounded-full bg-primary"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
