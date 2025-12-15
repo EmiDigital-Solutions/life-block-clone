@@ -111,9 +111,9 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center pointer-events-none">
           <motion.div 
-            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6 pointer-events-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
