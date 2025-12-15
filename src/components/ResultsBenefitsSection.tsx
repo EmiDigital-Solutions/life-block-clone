@@ -1,117 +1,45 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-// Minimalist outline icons using brand colors
-const accentColor = "#0A7FA5"; // CTA Blue-Teal
-const secondaryColor = "#6EA996"; // Hero Green
+const accentColor = "#0A7FA5";
+const greenColor = "#6EA996";
 
-// Icon 1: Globe with checkmark
-const GlobalIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="28" cy="28" r="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    <ellipse cx="28" cy="28" rx="8" ry="20" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <path d="M10 28H46" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M14 18H42" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M14 38H42" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M38 36L42 40L50 32" stroke={secondaryColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-// Icon 2: Magnifying glass with chart
-const QualityIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="22" cy="24" r="16" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <path d="M34 36L46 48" stroke={accentColor} strokeWidth="2" strokeLinecap="round" />
-    <path d="M12 30L18 24L24 28L32 18" stroke={secondaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-// Icon 3: Dashboard display
-const RealtimeIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="4" width="40" height="48" rx="3" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <path d="M8 12H48" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M16 36L24 28L32 34L42 20" stroke={secondaryColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="16" cy="36" r="2" fill={secondaryColor} />
-    <circle cx="24" cy="28" r="2" fill={secondaryColor} />
-    <circle cx="32" cy="34" r="2" fill={secondaryColor} />
-    <circle cx="42" cy="20" r="2" fill={secondaryColor} />
-  </svg>
-);
-
-// Icon 4: Document distribution
-const EmailIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="14" y="4" width="28" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    <path d="M14 8L28 18L42 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M28 24V32" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M12 32H44" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M16 32V38" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M28 32V38" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M40 32V38" stroke={accentColor} strokeWidth="1.5" />
-    <rect x="6" y="38" width="16" height="14" rx="2" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <rect x="20" y="38" width="16" height="14" rx="2" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <rect x="34" y="38" width="16" height="14" rx="2" stroke={accentColor} strokeWidth="1.5" fill="none" />
-  </svg>
-);
-
-// Icon 5: Gear/settings
-const ControlIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="28" cy="28" r="8" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <path d="M28 4V10M28 46V52M4 28H10M46 28H52M11 11L15 15M41 41L45 45M11 45L15 41M41 15L45 11" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="28" cy="28" r="16" stroke={accentColor} strokeWidth="1.5" fill="none" strokeDasharray="4 4" />
-  </svg>
-);
-
-// Icon 6: Document with arrow
-const ActionIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="4" y="4" width="32" height="48" rx="2" stroke={accentColor} strokeWidth="1.5" fill="none" />
-    <path d="M4 12H36" stroke={accentColor} strokeWidth="1.5" />
-    <path d="M10 20H30" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M10 28H26" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M10 36H22" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M40 28H52" stroke={secondaryColor} strokeWidth="2" strokeLinecap="round" />
-    <path d="M46 22L54 28L46 34" stroke={secondaryColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const benefits = [
+const transformations = [
   {
-    Icon: GlobalIcon,
-    title: "Instant access to global audit capacity",
-    description: "Your suppliers are worldwide - now your audit capability is too."
+    from: "Searching for auditors across time zones",
+    to: "Instant access to 2,000+ certified auditors worldwide",
+    icon: "globe"
   },
   {
-    Icon: QualityIcon,
-    title: "Consistent audit quality, every time",
-    description: "Our AI guides every auditor step by step, ensuring high-quality results."
+    from: "Inconsistent audit quality between auditors",
+    to: "AI-guided consistency across every single audit",
+    icon: "quality"
   },
   {
-    Icon: RealtimeIcon,
-    title: "Real-time insight into supplier risk",
-    description: "Dashboards show you exactly where the gaps and risks are - instantly."
+    from: "Waiting weeks for audit reports",
+    to: "Real-time dashboards and instant risk visibility",
+    icon: "speed"
   },
   {
-    Icon: EmailIcon,
-    title: "Eliminate email chaos",
-    description: "All your audit data, documents, and actions live in one secure platform."
+    from: "Drowning in email threads and versions",
+    to: "One platform for all audit data and actions",
+    icon: "clarity"
   },
   {
-    Icon: ControlIcon,
-    title: "Stay in control with flexible checklists",
-    description: "Use your own audit templates or industry standards - YVOO adapts to you."
+    from: "Adapting to rigid audit templates",
+    to: "Flexible checklists that adapt to your process",
+    icon: "control"
   },
   {
-    Icon: ActionIcon,
-    title: "Turn findings into action",
-    description: "YVOO links findings to corrective actions - and tracks them to closure."
+    from: "Flagged issues with no follow-through",
+    to: "Automated corrective actions tracked to closure",
+    icon: "action"
   }
 ];
 
 const ResultsBenefitsSection = () => {
   return (
-    <section className="bg-background py-24 md:py-32">
+    <section className="bg-foreground py-24 md:py-32 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <motion.div
@@ -119,42 +47,81 @@ const ResultsBenefitsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 md:mb-20"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight max-w-2xl">
-            Benefits of a Global Auditor Network
+          <p className="text-sm uppercase tracking-widest mb-4" style={{ color: greenColor }}>
+            Your Transformation
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-background leading-tight max-w-3xl mx-auto">
+            From frustration to full control
           </h2>
-          <p className="text-muted-foreground text-lg mt-4 max-w-xl">
-            AI-powered supplier audit solution
+          <p className="text-background/60 text-lg mt-6 max-w-2xl mx-auto">
+            See how YVOO transforms your supplier audit operations
           </p>
         </motion.div>
 
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
+        {/* Transformation Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {transformations.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="bg-background/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-background/10 hover:border-background/20 transition-colors"
             >
-              {/* Icon */}
-              <div className="w-14 h-14 mb-6 text-foreground">
-                <benefit.Icon />
-              </div>
+              <div className="flex flex-col gap-4">
+                {/* From state */}
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-background/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-background/40 text-xs font-medium">✕</span>
+                  </div>
+                  <p className="text-background/50 text-base line-through decoration-background/20">
+                    {item.from}
+                  </p>
+                </div>
 
-              {/* Content */}
-              <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
-                {benefit.title}
-              </h3>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                {benefit.description}
-              </p>
+                {/* Arrow */}
+                <div className="flex items-center gap-2 pl-2">
+                  <ArrowRight className="w-4 h-4" style={{ color: greenColor }} />
+                </div>
+
+                {/* To state */}
+                <div className="flex items-start gap-4">
+                  <div 
+                    className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ backgroundColor: greenColor }}
+                  >
+                    <span className="text-foreground text-xs font-bold">✓</span>
+                  </div>
+                  <p className="text-background font-medium text-base">
+                    {item.to}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-16"
+        >
+          <p className="text-background/60 text-lg mb-6">
+            Ready to transform your audit operations?
+          </p>
+          <button 
+            className="px-8 py-4 rounded-full font-semibold text-foreground transition-all hover:opacity-90"
+            style={{ backgroundColor: accentColor }}
+          >
+            Start Your Transformation
+          </button>
+        </motion.div>
       </div>
     </section>
   );
