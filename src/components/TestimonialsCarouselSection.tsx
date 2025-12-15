@@ -1,4 +1,11 @@
 import { motion } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import auditor1 from "@/assets/procurement-male-european.jpg";
 import auditor2 from "@/assets/procurement-female-asian.jpg";
@@ -74,43 +81,56 @@ const TestimonialsCarouselSection = () => {
             </h2>
           </motion.div>
 
-          {/* Grid - offmenu style cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className="bg-white rounded-[24px] p-7 hover:bg-[#fafafa] transition-colors duration-300"
-              >
-                {/* Quote */}
-                <blockquote className="text-foreground text-base leading-relaxed mb-6">
-                  "{testimonial.quote}"
-                </blockquote>
+          {/* Carousel */}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.08 }}
+                    className="bg-white rounded-[24px] p-7 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col"
+                  >
+                    {/* Quote */}
+                    <blockquote className="text-foreground text-base leading-relaxed mb-6 flex-grow">
+                      "{testimonial.quote}"
+                    </blockquote>
 
-                {/* Author - offmenu style with avatar and inline text */}
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#ebebeb]">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-semibold text-foreground text-sm">
-                      {testimonial.name}
-                    </span>
-                    <span className="text-muted-foreground text-xs">
-                      {testimonial.title}, {testimonial.company}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    {/* Author - offmenu style with avatar and inline text */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#ebebeb]">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-foreground text-sm">
+                          {testimonial.name}
+                        </span>
+                        <span className="text-muted-foreground text-xs">
+                          {testimonial.title}, {testimonial.company}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0 bg-white hover:bg-[#fafafa] border-none shadow-sm" />
+              <CarouselNext className="static translate-y-0 bg-white hover:bg-[#fafafa] border-none shadow-sm" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
