@@ -862,86 +862,85 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Stats Section - Extra padding to prevent overlap */}
-      <section className="pt-16 md:pt-96 pb-16 md:pb-32 bg-[#FAFAFA]" data-nav-theme="light">
+      <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-20"
+            className="text-center mb-8 md:mb-16"
           >
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]">Benefits</span>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
+              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight px-4">
-              <span className="text-primary font-light">Your next supplier,</span>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 px-4">
+              <span className="text-[#A8C5B8]">Your next supplier,</span>
               <br />
-              <span className="text-foreground font-bold">just a click away.</span>
+              <span className="text-black">just a click away.</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {[
               {
                 stat: "10x",
                 title: "faster supplier research",
                 features: ["Filtered results", "AI-based ranking systems", "Always up-to-date"],
-                accentColor: "bg-[#A8BFC5]"
+                gradient: "from-[#A8BFC5] to-[#96ADB8]"
               },
               {
                 stat: "25M+",
                 title: "supplier profiles",
                 features: ["Global transparency", "Niche technologies", "Cross-sector searches"],
-                accentColor: "bg-primary"
+                gradient: "from-[#B2CDBC] to-[#A0B9A9]"
               },
               {
                 stat: "100x",
                 title: "more results per query with SearchPro+",
                 features: ["Greater variety in supplier profiles", "Better comparison opportunities", "Higher match rate"],
-                accentColor: "bg-[#A8BFC5]"
+                gradient: "from-[#A8BFC5] to-[#96ADB8]"
               }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
               >
-                <div className="bg-white rounded-2xl p-8 md:p-10 h-full relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
-                  {/* Subtle accent bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 ${item.accentColor} opacity-80`}></div>
+                <Card className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
+                  {/* Gradient accent bar on top */}
+                  <div className={`h-1.5 md:h-2 bg-gradient-to-r ${item.gradient}`}></div>
                   
-                  {/* Large stat number */}
-                  <div className="mb-6">
-                    <span className="text-primary text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
-                      {item.stat}
-                    </span>
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-foreground text-lg md:text-xl font-semibold mb-8 leading-snug">
-                    {item.title}
-                  </h3>
-                  
-                  {/* Features list */}
-                  <ul className="space-y-4">
-                    {item.features.map((feature, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-2 flex-shrink-0"></div>
-                        <span className="text-sm md:text-base leading-relaxed">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+                  <CardHeader className="relative p-4 md:p-6">
+                    {/* Background gradient glow */}
+                    <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity`}></div>
+                    
+                    <CardTitle className="text-[#A8C5B8] text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
+                    <CardDescription className="text-black text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-4 md:p-6">
+                    <ul className="space-y-2 md:space-y-3">
+                      {item.features.map((feature, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 + i * 0.1 }}
+                          className="flex items-center gap-2 md:gap-3 text-gray-600 text-sm md:text-base"
+                        >
+                          <div className="w-4 h-4 md:w-5 md:h-5 bg-[#A8C5B8]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#A8C5B8]" />
+                          </div>
+                          <span>{feature}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
