@@ -56,59 +56,61 @@ const TestimonialsCarouselSection = () => {
   return (
     <section className="py-24 md:py-32 bg-[#f5f5f5]">
       <div className="container mx-auto px-6">
-        {/* Header - offmenu style with mixed weight typography */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">What our</span>{" "}
-            <span className="text-muted-foreground font-normal">customers</span>
-            <br />
-            <span className="text-muted-foreground font-normal">say about</span>{" "}
-            <span className="font-semibold text-foreground">YVOO.</span>
-          </h2>
-        </motion.div>
+        {/* Outer container - offmenu style */}
+        <div className="bg-[#ebebeb] rounded-[32px] p-8 md:p-12 lg:p-16">
+          {/* Header - offmenu style with mixed weight typography */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">What our</span>{" "}
+              <span className="text-muted-foreground font-light">customers</span>
+              <br />
+              <span className="text-muted-foreground font-light">say about</span>{" "}
+              <span className="font-semibold text-foreground">YVOO.</span>
+            </h2>
+          </motion.div>
 
-        {/* Grid - offmenu style cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
-            >
-              {/* Quote */}
-              <blockquote className="text-foreground text-lg leading-relaxed mb-8">
-                "{testimonial.quote}"
-              </blockquote>
+          {/* Grid - offmenu style cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="bg-white rounded-[24px] p-7 hover:bg-[#fafafa] transition-colors duration-300"
+              >
+                {/* Quote */}
+                <blockquote className="text-foreground text-base leading-relaxed mb-6">
+                  "{testimonial.quote}"
+                </blockquote>
 
-              {/* Author - offmenu style with avatar and inline text */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
+                {/* Author - offmenu style with avatar and inline text */}
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#ebebeb]">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-foreground text-sm">
+                      {testimonial.name}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {testimonial.title}, {testimonial.company}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-sm">
-                  <span className="font-medium text-foreground">
-                    {testimonial.name}
-                  </span>
-                  <span className="text-muted-foreground">—</span>
-                  <span className="text-muted-foreground">
-                    {testimonial.title}, {testimonial.company}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
