@@ -8,6 +8,10 @@ import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import industryCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
+import industryConstruction from "@/assets/industry-construction.jpg";
+import industryEnvironmental from "@/assets/industry-environmental.jpg";
+import industryFoodBeverage from "@/assets/industry-food-beverage.jpg";
+import industrySocialResponsibility from "@/assets/industry-social-responsibility.jpg";
 import factoryHero from "@/assets/factory-hero-background.jpg";
 
 // Category to image mapping
@@ -17,18 +21,18 @@ const categoryImages: Record<string, string> = {
   "Aerospace": industryAerospace,
   "Automotive": industryAutomotive,
   "Chemical": industryCryogenicValve,
-  "Construction": factoryHero,
+  "Construction": industryConstruction,
   "Electronics": industryElectronics,
   "Energy": industryCryogenicValve,
-  "Environmental": factoryHero,
-  "Food & Beverage": factoryHero,
+  "Environmental": industryEnvironmental,
+  "Food & Beverage": industryFoodBeverage,
   "General Manufacturing": factoryHero,
   "Information Security": industryElectronics,
   "Medical Devices": industryMedical,
   "Oil & Gas": industryCryogenicValve,
   "Pharmaceutical": industryMedical,
   "Railway": industryAutomotive,
-  "Social Responsibility": factoryHero,
+  "Social Responsibility": industrySocialResponsibility,
 };
 
 const ROICalculatorSection = () => {
