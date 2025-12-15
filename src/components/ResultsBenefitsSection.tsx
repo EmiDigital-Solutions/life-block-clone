@@ -138,7 +138,7 @@ const ResultsBenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group"
+              className="group p-6 rounded-2xl bg-secondary/30 hover:bg-secondary/60 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               {/* Icon */}
               <div className="w-14 h-14 mb-6 text-foreground">
