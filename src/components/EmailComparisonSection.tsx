@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const EmailComparisonSection = () => {
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
+    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-gray-50">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
@@ -37,11 +37,10 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-4 w-full relative"
-                style={{ backgroundColor: '#8BA4AC' }}
+                className="rounded-2xl rounded-tl-sm p-4 w-full relative bg-gray-200"
               >
-                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-white animate-pulse"></div>
-                <p className="text-sm text-white leading-relaxed pl-6">
+                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-gray-400 animate-pulse"></div>
+                <p className="text-sm text-gray-700 leading-relaxed pl-6">
                   Hi Sarah,<br/><br/>
                   Let me check if I have anyone available in that region.<br/><br/>
                   I'll get back to you by end of the week.<br/><br/>
@@ -61,7 +60,7 @@ const EmailComparisonSection = () => {
             className="space-y-6"
           >
             <div className="text-center mb-6">
-              <p className="text-3xl lg:text-4xl font-bold text-gray-900">With ScanPro</p>
+              <p className="text-3xl lg:text-4xl font-bold text-primary">With ScanPro</p>
             </div>
             
             <div className="space-y-3">
@@ -71,13 +70,12 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full relative"
-                style={{ backgroundColor: '#8BA4AC' }}
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-primary/10 border border-primary/20"
               >
-                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
-                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>
-                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.6s" }}></div>
-                <p className="text-sm text-white leading-relaxed pl-6">
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-primary animate-pulse"></div>
+                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <p className="text-sm text-gray-800 leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   No problem - I've got you covered!<br/><br/>
                   I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>

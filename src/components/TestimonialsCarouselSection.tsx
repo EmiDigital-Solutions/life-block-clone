@@ -55,7 +55,7 @@ const testimonials = [
 
 const TestimonialsCarouselSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-24 md:py-32 bg-gray-50">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -64,10 +64,10 @@ const TestimonialsCarouselSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             What Our Customers Say
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Trusted by procurement leaders at world-class companies
           </p>
         </motion.div>
@@ -81,7 +81,7 @@ const TestimonialsCarouselSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-secondary/30 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               {/* Stars */}
               <div className="flex gap-0.5 mb-4">
@@ -91,13 +91,13 @@ const TestimonialsCarouselSection = () => {
               </div>
 
               {/* Quote */}
-              <blockquote className="text-foreground leading-relaxed mb-6">
+              <blockquote className="text-gray-900 leading-relaxed mb-6">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -105,10 +105,10 @@ const TestimonialsCarouselSection = () => {
                   />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground text-sm">
+                  <p className="font-semibold text-gray-900 text-sm">
                     {testimonial.name}
                   </p>
-                  <p className="text-muted-foreground text-xs">
+                  <p className="text-gray-500 text-xs">
                     {testimonial.title}
                   </p>
                   <p className="text-primary text-xs font-medium">
