@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 import auditor1 from "@/assets/procurement-male-european.jpg";
 import auditor2 from "@/assets/procurement-female-asian.jpg";
 import auditor3 from "@/assets/procurement-male-latin.jpg";
 import auditor4 from "@/assets/procurement-female-european.jpg";
 import auditor5 from "@/assets/procurement-male-asian.jpg";
+import auditor6 from "@/assets/procurement-female-blonde.jpg";
 
 const testimonials = [
   {
@@ -18,7 +16,7 @@ const testimonials = [
     image: auditor1,
   },
   {
-    quote: "We've cut our audit costs by 65% while actually improving coverage. The AI-powered reports are incredibly thorough.",
+    quote: "We've cut our audit costs by 65% while actually improving coverage.",
     name: "Dr. Lin Chen",
     title: "VP Procurement",
     company: "Continental AG",
@@ -45,37 +43,18 @@ const testimonials = [
     company: "Denso Corporation",
     image: auditor5,
   },
+  {
+    quote: "The AI-powered reports are incredibly thorough and consistent.",
+    name: "Sophie Laurent",
+    title: "Quality Assurance Lead",
+    company: "Airbus",
+    image: auditor6,
+  },
 ];
 
 const TestimonialsCarouselSection = () => {
-  const [current, setCurrent] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying]);
-
-  const next = () => {
-    setIsAutoPlaying(false);
-    setCurrent((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prev = () => {
-    setIsAutoPlaying(false);
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const goTo = (index: number) => {
-    setIsAutoPlaying(false);
-    setCurrent(index);
-  };
-
   return (
-    <section className="py-24 md:py-32 bg-background overflow-hidden">
+    <section className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -92,90 +71,45 @@ const TestimonialsCarouselSection = () => {
           </p>
         </motion.div>
 
-        {/* Carousel */}
-        <div className="max-w-4xl mx-auto relative">
-          {/* Main testimonial */}
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4 }}
-                className="bg-secondary/30 rounded-3xl p-6 md:p-8"
-              >
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  {/* Photo */}
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-3 border-primary/20 shadow-lg">
-                      <img
-                        src={testimonials[current].image}
-                        alt={testimonials[current].name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-secondary/30 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              {/* Quote */}
+              <blockquote className="text-foreground leading-relaxed mb-6">
+                "{testimonial.quote}"
+              </blockquote>
 
-                  {/* Content */}
-                  <div className="flex-1 text-center md:text-left">
-                    {/* Quote */}
-                    <blockquote className="text-lg md:text-xl font-medium text-foreground leading-relaxed mb-4">
-                      "{testimonials[current].quote}"
-                    </blockquote>
-
-                    {/* Author */}
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
-                      <p className="font-semibold text-foreground">
-                        {testimonials[current].name}
-                      </p>
-                      <span className="hidden md:block text-muted-foreground">•</span>
-                      <p className="text-muted-foreground text-sm">
-                        {testimonials[current].title}, <span className="text-primary font-medium">{testimonials[current].company}</span>
-                      </p>
-                    </div>
-                  </div>
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prev}
-              className="rounded-full w-10 h-10 border-border hover:bg-secondary/50"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goTo(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === current
-                      ? "bg-primary w-8"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={next}
-              className="rounded-full w-10 h-10 border-border hover:bg-secondary/50"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">
+                    {testimonial.name}
+                  </p>
+                  <p className="text-muted-foreground text-xs">
+                    {testimonial.title}
+                  </p>
+                  <p className="text-primary text-xs font-medium">
+                    {testimonial.company}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
