@@ -4,19 +4,26 @@ import { DollarSign, TrendingDown, Clock, MapPin, FileCheck } from "lucide-react
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { auditTypes, regions, categories, type AuditType } from "@/data/auditPricingData";
+import { auditTypes, regions, categories, getAuditsByCategory, getMostCommonAudits, type AuditType } from "@/data/auditPricingData";
 
 const ROICalculator = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Universal");
-  const [selectedAuditId, setSelectedAuditId] = useState<string>("214"); // ISO 9001 default
+  const [selectedCategory, setSelectedCategory] = useState<string>("Most Common Audits");
+  const [selectedAuditId, setSelectedAuditId] = useState<string>(""); // Will be set by first audit
   const [selectedRegion, setSelectedRegion] = useState<string>("dach");
   const [auditsPerYear, setAuditsPerYear] = useState(10);
 
-  // Get filtered audits by category
+  // Get filtered audits by category using the proper function
   const filteredAudits = useMemo(() => 
-    auditTypes.filter(a => a.category === selectedCategory),
+    getAuditsByCategory(selectedCategory),
     [selectedCategory]
   );
+  
+  // Set default audit when category changes or on mount
+  useMemo(() => {
+    if (filteredAudits.length > 0 && !selectedAuditId) {
+      setSelectedAuditId(filteredAudits[0].id.toString());
+    }
+  }, [filteredAudits, selectedAuditId]);
 
   // Get selected audit details
   const selectedAudit = useMemo(() => 
