@@ -31,6 +31,34 @@ const faqs = [
     question: "How does pricing work?",
     answer: "Pricing varies by audit type, location, and complexity. Use our ROI calculator above for instant estimates. There are no hidden fees — you pay per audit with transparent pricing.",
   },
+  {
+    question: "Does YVOO integrate with our existing ERP/PLM systems?",
+    answer: "Yes, YVOO offers native integrations with SAP, Oracle, Microsoft Dynamics, and other major ERP systems. We also provide a REST API for custom integrations. Data syncs automatically, eliminating manual data entry.",
+  },
+  {
+    question: "Can we connect YVOO to our supplier management platform?",
+    answer: "Absolutely. We integrate with leading SRM platforms including Ariba, Coupa, Jaggaer, and GEP. Audit results flow directly into your supplier scorecards and risk dashboards.",
+  },
+  {
+    question: "How is our audit data protected?",
+    answer: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We maintain SOC 2 Type II certification, GDPR compliance, and undergo regular third-party security audits. Your data is stored in ISO 27001 certified data centers.",
+  },
+  {
+    question: "Who owns the audit data and reports?",
+    answer: "You retain full ownership of all audit data and reports. We act as a data processor, not a data controller. You can export or delete your data at any time.",
+  },
+  {
+    question: "What kind of support do you offer?",
+    answer: "We provide 24/7 email support, dedicated account managers for enterprise clients, and live chat during business hours. Our average response time is under 2 hours for critical issues.",
+  },
+  {
+    question: "Do you offer training for our team?",
+    answer: "Yes, we provide complimentary onboarding sessions, video tutorials, and documentation. Enterprise clients receive customized training programs and ongoing success management.",
+  },
+  {
+    question: "What happens if an audit needs to be rescheduled?",
+    answer: "Audits can be rescheduled up to 48 hours before the scheduled date at no additional cost. Our support team handles all coordination with auditors and suppliers.",
+  },
 ];
 
 const FAQSection = () => {
