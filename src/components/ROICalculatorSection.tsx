@@ -3,7 +3,7 @@ import ROICalculator from "./ROICalculator";
 
 const ROICalculatorSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-muted/20">
+    <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -11,10 +11,10 @@ const ROICalculatorSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             See Your Savings
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Calculate your potential cost and time savings with YVOO
           </p>
         </motion.div>

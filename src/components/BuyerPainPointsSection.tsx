@@ -71,7 +71,7 @@ const BuyerPainPointsSection = () => {
   const currentContent = activeRole === "buyer" ? buyerContent : qualityContent;
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gray-50">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,13 +81,13 @@ const BuyerPainPointsSection = () => {
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#A8B8CA]">
+            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-gray-300 bg-white">
               <button 
                 onClick={() => setActiveRole("buyer")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "buyer" 
-                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
-                    : "text-gray-900 hover:bg-gray-50"
+                    ? "bg-gray-900 text-white shadow-sm" 
+                    : "text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Buyer
@@ -96,8 +96,8 @@ const BuyerPainPointsSection = () => {
                 onClick={() => setActiveRole("quality")}
                 className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "quality" 
-                    ? "bg-gradient-to-r from-[#A8B8CA] to-[#A8C5B8] text-white shadow-sm" 
-                    : "text-gray-900 hover:bg-gray-50"
+                    ? "bg-gray-900 text-white shadow-sm" 
+                    : "text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Quality
@@ -123,25 +123,25 @@ const BuyerPainPointsSection = () => {
               <div 
                 className="absolute w-[544px] h-[544px] sm:w-[844px] sm:h-[844px] md:w-[904px] md:h-[904px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, rgba(168, 197, 184, 0.08) 50%, rgba(168, 197, 184, 0) 100%)"
+                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.08) 0%, rgba(10, 127, 165, 0.04) 50%, rgba(10, 127, 165, 0) 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[504px] h-[504px] sm:w-[804px] sm:h-[804px] md:w-[844px] md:h-[844px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.15) 0%, rgba(168, 184, 202, 0.1) 50%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.12) 0%, rgba(10, 127, 165, 0.06) 50%, rgba(10, 127, 165, 0) 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[444px] h-[444px] sm:w-[744px] sm:h-[744px] md:w-[784px] md:h-[784px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.2) 0%, rgba(168, 184, 202, 0.15) 50%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, rgba(10, 127, 165, 0.08) 50%, rgba(10, 127, 165, 0) 100%)"
                 }}
               ></div>
               <div 
                 className="absolute w-[374px] h-[374px] sm:w-[624px] sm:h-[624px] md:w-[724px] md:h-[724px] rounded-full z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(168, 184, 202, 0.4) 0%, rgba(200, 200, 200, 0.3) 30%, rgba(168, 197, 184, 0.2) 60%, rgba(168, 184, 202, 0.1) 80%, rgba(168, 184, 202, 0) 100%)"
+                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.2) 0%, rgba(10, 127, 165, 0.12) 30%, rgba(10, 127, 165, 0.06) 60%, rgba(10, 127, 165, 0.02) 80%, rgba(10, 127, 165, 0) 100%)"
                 }}
               ></div>
 
