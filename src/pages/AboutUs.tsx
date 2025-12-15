@@ -77,9 +77,9 @@ const AboutUs = () => {
                 <img 
                   src={image.src} 
                   alt={image.alt} 
-                  className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700" 
+                  className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-500" 
                 />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
               </div>
             ))}
           </div>
@@ -101,9 +101,9 @@ const AboutUs = () => {
                   <img 
                     src={image.src} 
                     alt={image.alt} 
-                    className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700" 
+                    className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-500" 
                   />
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
                 </div>
               ))}
             </div>
