@@ -18,23 +18,24 @@ const GlobalIcon = () => (
   </svg>
 );
 
-// Icon 2: Magnifying glass with document (top-center)
+// Icon 2: Magnifying glass with document/chart (top-center)
 const QualityIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Magnifying glass circle */}
-    <circle cx="32" cy="32" r="22" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
+    <circle cx="30" cy="34" r="24" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
     {/* Magnifying glass handle */}
-    <path d="M48 48L64 64" stroke="#06D7F9" strokeWidth="3" strokeLinecap="round" />
-    {/* Document inside magnifier */}
-    <rect x="22" y="20" width="20" height="24" rx="2" stroke="#FFFFFF" strokeWidth="2" fill="none" />
-    {/* Document lines */}
-    <path d="M26 28H38" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-    <path d="M26 34H38" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-    <path d="M26 40H34" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
-    {/* Small dots/indicators */}
-    <circle cx="58" cy="20" r="3" fill="#06D7F9" />
-    <circle cx="68" cy="28" r="2" fill="#06D7F9" />
-    <circle cx="64" cy="38" r="2" fill="#06D7F9" />
+    <path d="M48 52L66 70" stroke="#06D7F9" strokeWidth="4" strokeLinecap="round" />
+    {/* Chart line inside magnifier */}
+    <path d="M16 44L24 36L32 42L44 26" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Data points on chart */}
+    <circle cx="16" cy="44" r="2.5" fill="#FFFFFF" />
+    <circle cx="24" cy="36" r="2.5" fill="#FFFFFF" />
+    <circle cx="32" cy="42" r="2.5" fill="#FFFFFF" />
+    <circle cx="44" cy="26" r="2.5" fill="#FFFFFF" />
+    {/* Small indicator dots on right */}
+    <circle cx="62" cy="16" r="3" fill="#06D7F9" />
+    <circle cx="72" cy="26" r="2.5" fill="#06D7F9" />
+    <circle cx="68" cy="38" r="2" fill="#06D7F9" />
   </svg>
 );
 
