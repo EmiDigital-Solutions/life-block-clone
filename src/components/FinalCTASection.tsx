@@ -36,6 +36,7 @@ const FinalCTASection = () => {
               size="lg"
               variant="outline"
               className="border border-border text-foreground hover:bg-muted rounded-full px-8 py-6 text-base font-medium"
+              onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}
             >
               Book a Demo
             </Button>
