@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 import auditor1 from "@/assets/procurement-male-european.jpg";
 import auditor2 from "@/assets/procurement-female-asian.jpg";
@@ -82,6 +83,13 @@ const TestimonialsCarouselSection = () => {
               transition={{ delay: index * 0.1 }}
               className="bg-secondary/30 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
+              {/* Stars */}
+              <div className="flex gap-0.5 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                ))}
+              </div>
+
               {/* Quote */}
               <blockquote className="text-foreground leading-relaxed mb-6">
                 "{testimonial.quote}"
