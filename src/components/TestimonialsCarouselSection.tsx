@@ -98,23 +98,23 @@ const TestimonialsCarouselSection = () => {
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/3">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.08 }}
-                    className="bg-white rounded-[24px] p-8 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[280px]"
+                    className="bg-white rounded-[28px] p-10 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[340px]"
                   >
                     {/* Quote */}
                     <blockquote 
-                      className="text-foreground text-lg leading-relaxed mb-8 flex-grow"
+                      className="text-foreground text-xl leading-relaxed mb-10 flex-grow"
                       dangerouslySetInnerHTML={{ __html: `"${testimonial.quote}"` }}
                     />
 
                     {/* Author - offmenu style with avatar and inline text */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#ebebeb]">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#ebebeb]">
                         <img
                           src={testimonial.image}
                           alt={testimonial.name}
@@ -122,10 +122,10 @@ const TestimonialsCarouselSection = () => {
                         />
                       </div>
                       <div className="flex flex-col">
-                        <span className="font-semibold text-foreground text-sm">
+                        <span className="font-semibold text-foreground text-base">
                           {testimonial.name}
                         </span>
-                        <span className="text-muted-foreground text-xs">
+                        <span className="text-muted-foreground text-sm">
                           {testimonial.title}, {testimonial.company}
                         </span>
                       </div>
