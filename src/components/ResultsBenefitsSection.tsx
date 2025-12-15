@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 const accentColor = "#0A7FA5";
 const greenColor = "#6EA996";
@@ -7,39 +6,33 @@ const greenColor = "#6EA996";
 const transformations = [
   {
     from: "Searching for auditors across time zones",
-    to: "Instant access to 2,000+ certified auditors worldwide",
-    icon: "globe"
+    to: "Instant access to certified auditors worldwide"
   },
   {
     from: "Inconsistent audit quality between auditors",
-    to: "AI-guided consistency across every single audit",
-    icon: "quality"
+    to: "AI-guided consistency across every audit"
   },
   {
     from: "Waiting weeks for audit reports",
-    to: "Real-time dashboards and instant risk visibility",
-    icon: "speed"
+    to: "Real-time dashboards and instant visibility"
   },
   {
     from: "Drowning in email threads and versions",
-    to: "One platform for all audit data and actions",
-    icon: "clarity"
+    to: "One platform for all data and actions"
   },
   {
     from: "Adapting to rigid audit templates",
-    to: "Flexible checklists that adapt to your process",
-    icon: "control"
+    to: "Flexible checklists that adapt to you"
   },
   {
     from: "Flagged issues with no follow-through",
-    to: "Automated corrective actions tracked to closure",
-    icon: "action"
+    to: "Automated actions tracked to closure"
   }
 ];
 
 const ResultsBenefitsSection = () => {
   return (
-    <section className="bg-foreground py-24 md:py-32 overflow-hidden">
+    <section className="bg-background py-24 md:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <motion.div
@@ -47,76 +40,79 @@ const ResultsBenefitsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="mb-16 md:mb-20"
         >
-          <p className="text-sm uppercase tracking-widest mb-4" style={{ color: greenColor }}>
-            Your Transformation
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-background leading-tight max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
             From frustration to full control
           </h2>
-          <p className="text-background/60 text-lg mt-6 max-w-2xl mx-auto">
-            See how YVOO transforms your supplier audit operations
+          <p className="text-muted-foreground text-lg mt-4 max-w-xl">
+            See how your audit operations transform with YVOO
           </p>
         </motion.div>
 
-        {/* Transformation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {transformations.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="bg-background/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-background/10 hover:border-background/20 transition-colors"
-            >
-              <div className="flex flex-col gap-4">
-                {/* From state */}
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full bg-background/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-background/40 text-xs font-medium">✕</span>
-                  </div>
-                  <p className="text-background/50 text-base line-through decoration-background/20">
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Before Column */}
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Today</span>
+            </div>
+            <div className="space-y-6">
+              {transformations.map((item, index) => (
+                <motion.div
+                  key={`from-${index}`}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="flex items-start gap-4"
+                >
+                  <span className="text-muted-foreground/40 text-lg mt-0.5">—</span>
+                  <p className="text-muted-foreground text-lg">
                     {item.from}
                   </p>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-                {/* Arrow */}
-                <div className="flex items-center gap-2 pl-2">
-                  <ArrowRight className="w-4 h-4" style={{ color: greenColor }} />
-                </div>
-
-                {/* To state */}
-                <div className="flex items-start gap-4">
-                  <div 
-                    className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: greenColor }}
-                  >
-                    <span className="text-foreground text-xs font-bold">✓</span>
-                  </div>
-                  <p className="text-background font-medium text-base">
+          {/* After Column */}
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: greenColor }} />
+              <span className="text-sm font-medium uppercase tracking-wide" style={{ color: greenColor }}>With YVOO</span>
+            </div>
+            <div className="space-y-6">
+              {transformations.map((item, index) => (
+                <motion.div
+                  key={`to-${index}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="flex items-start gap-4"
+                >
+                  <span className="text-lg mt-0.5" style={{ color: greenColor }}>→</span>
+                  <p className="text-foreground text-lg font-medium">
                     {item.to}
                   </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Bottom CTA */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 pt-16 border-t border-border"
         >
-          <p className="text-background/60 text-lg mb-6">
-            Ready to transform your audit operations?
-          </p>
           <button 
-            className="px-8 py-4 rounded-full font-semibold text-foreground transition-all hover:opacity-90"
+            className="px-8 py-4 rounded-full font-medium text-white transition-all hover:opacity-90"
             style={{ backgroundColor: accentColor }}
           >
             Start Your Transformation
