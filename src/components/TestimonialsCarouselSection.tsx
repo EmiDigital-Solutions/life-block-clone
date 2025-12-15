@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
 
 import auditor1 from "@/assets/procurement-male-european.jpg";
 import auditor2 from "@/assets/procurement-female-asian.jpg";
@@ -55,65 +54,57 @@ const testimonials = [
 
 const TestimonialsCarouselSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-gray-50">
+    <section className="py-24 md:py-32 bg-[#f5f5f5]">
       <div className="container mx-auto px-6">
-        {/* Header */}
+        {/* Header - offmenu style with mixed weight typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            What Our Customers Say
+          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">What our</span>{" "}
+            <span className="text-muted-foreground font-normal">customers</span>
+            <br />
+            <span className="text-muted-foreground font-normal">say about</span>{" "}
+            <span className="font-semibold text-foreground">YVOO.</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Trusted by procurement leaders at world-class companies
-          </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid - offmenu style cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              transition={{ delay: index * 0.08 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              {/* Stars */}
-              <div className="flex gap-0.5 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-
               {/* Quote */}
-              <blockquote className="text-gray-900 leading-relaxed mb-6">
+              <blockquote className="text-foreground text-lg leading-relaxed mb-8">
                 "{testimonial.quote}"
               </blockquote>
 
-              {/* Author */}
+              {/* Author - offmenu style with avatar and inline text */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-900 text-sm">
+                <div className="flex items-center gap-1.5 text-sm">
+                  <span className="font-medium text-foreground">
                     {testimonial.name}
-                  </p>
-                  <p className="text-gray-500 text-xs">
-                    {testimonial.title}
-                  </p>
-                  <p className="text-primary text-xs font-medium">
-                    {testimonial.company}
-                  </p>
+                  </span>
+                  <span className="text-muted-foreground">—</span>
+                  <span className="text-muted-foreground">
+                    {testimonial.title}, {testimonial.company}
+                  </span>
                 </div>
               </div>
             </motion.div>
