@@ -86,7 +86,7 @@ const AboutUs = () => {
         </motion.div>
 
         {/* Desktop - Left side image - clipped ellipse */}
-        <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden z-[5]">
           <motion.div 
             className="absolute inset-0"
             style={{ clipPath: 'ellipse(100% 100% at 0% 50%)' }}
