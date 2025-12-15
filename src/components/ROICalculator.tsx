@@ -1,41 +1,16 @@
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo, useEffect } from "react";
+import { motion } from "framer-motion";
 import { DollarSign, TrendingDown, Clock, MapPin, FileCheck } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { auditTypes, regions, categories, type AuditType } from "@/data/auditPricingData";
 
-// Import category images
-import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryAerospace from "@/assets/industry-aerospace.jpg";
-import industryMedical from "@/assets/industry-medical.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
-import industryCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
-import factoryHero from "@/assets/factory-hero-background.jpg";
+interface ROICalculatorProps {
+  onCategoryChange?: (category: string) => void;
+}
 
-// Category to image mapping
-const categoryImages: Record<string, string> = {
-  "Most Common Audits": factoryHero,
-  "Universal": factoryHero,
-  "Aerospace": industryAerospace,
-  "Automotive": industryAutomotive,
-  "Chemical": industryCryogenicValve,
-  "Construction": factoryHero,
-  "Electronics": industryElectronics,
-  "Energy": industryCryogenicValve,
-  "Environmental": factoryHero,
-  "Food & Beverage": factoryHero,
-  "General Manufacturing": factoryHero,
-  "Information Security": industryElectronics,
-  "Medical Devices": industryMedical,
-  "Oil & Gas": industryCryogenicValve,
-  "Pharmaceutical": industryMedical,
-  "Railway": industryAutomotive,
-  "Social Responsibility": factoryHero,
-};
-
-const ROICalculator = () => {
+const ROICalculator = ({ onCategoryChange }: ROICalculatorProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Universal");
   const [selectedAuditId, setSelectedAuditId] = useState<string>("214"); // ISO 9001 default
   const [selectedRegion, setSelectedRegion] = useState<string>("dach");
@@ -58,9 +33,6 @@ const ROICalculator = () => {
     regions.find(r => r.id === selectedRegion),
     [selectedRegion]
   );
-
-  // Get category image
-  const categoryImage = categoryImages[selectedCategory] || factoryHero;
 
   // Calculations
   const traditionalCost = selectedAudit?.traditionalEur || 0;
@@ -94,39 +66,22 @@ const ROICalculator = () => {
   // Handle category change
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    onCategoryChange?.(category);
     const firstAudit = auditTypes.find(a => a.category === category);
     if (firstAudit) {
       setSelectedAuditId(firstAudit.id.toString());
     }
   };
 
+  // Notify parent of initial category
+  useEffect(() => {
+    onCategoryChange?.(selectedCategory);
+  }, []);
+
   return (
     <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl border border-gray-200 relative overflow-hidden">
-      
-      {/* Category Watermark Image */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selectedCategory}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 0.08, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.5 }}
-          className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
-        >
-          <img 
-            src={categoryImage} 
-            alt={selectedCategory}
-            className="w-full h-full object-cover object-center"
-            style={{ 
-              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
-
       {/* Header */}
-      <div className="mb-8 relative z-10">
+      <div className="mb-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
