@@ -36,7 +36,7 @@ const HeroSection = () => {
 
   return (
     <section 
-      data-nav-theme="blue"
+      data-nav-theme="dark"
       className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
     >
       {/* Video Background Container */}
