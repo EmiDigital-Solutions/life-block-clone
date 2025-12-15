@@ -1,134 +1,128 @@
 import { motion } from "framer-motion";
 
-// Custom SVG icons matching the exact CSS design specifications
+// Custom SVG icons cloned from reference design
 
-// Global Icon - Globe with checkmark
+// Icon 1: Globe with checkmark (top-left)
 const GlobalIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Outer circle - white */}
-    <circle cx="40" cy="40" r="32" stroke="#FFFFFF" strokeWidth="2" fill="none" />
-    {/* Inner globe lines - cyan */}
-    <circle cx="40" cy="40" r="24" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <ellipse cx="40" cy="40" rx="12" ry="24" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <path d="M16 40H64" stroke="#06D7F9" strokeWidth="2" />
-    <path d="M20 28H60" stroke="#06D7F9" strokeWidth="2" />
-    <path d="M20 52H60" stroke="#06D7F9" strokeWidth="2" />
-    {/* Checkmark badge */}
-    <circle cx="62" cy="62" r="14" fill="#06D7F9" />
-    <path d="M55 62L60 67L70 57" stroke="#131D2A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="40" cy="40" r="30" stroke="#FFFFFF" strokeWidth="2.5" fill="none" />
+    {/* Globe meridian */}
+    <ellipse cx="40" cy="40" rx="12" ry="30" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    {/* Horizontal lines */}
+    <path d="M12 40H68" stroke="#06D7F9" strokeWidth="2" />
+    <path d="M18 26H62" stroke="#06D7F9" strokeWidth="2" />
+    <path d="M18 54H62" stroke="#06D7F9" strokeWidth="2" />
+    {/* Checkmark in bottom right */}
+    <path d="M52 50L58 56L68 44" stroke="#06D7F9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-// Quality Icon - Document with clock/timer (checklist verification)
+// Icon 2: Magnifying glass with document (top-center)
 const QualityIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Main document shape - cyan */}
-    <path d="M8 8C8 4 11 0 16 0H52L72 20V72C72 76 69 80 64 80H16C11 80 8 76 8 72V8Z" fill="#06D7F9" />
-    {/* Folded corner */}
-    <path d="M52 0V16C52 18 54 20 56 20H72" fill="#06D7F9" />
-    <path d="M52 0L72 20" stroke="#131D2A" strokeWidth="1" />
-    {/* White content area with lines */}
-    <rect x="18" y="14" width="44" height="32" rx="2" fill="#FFFFFF" />
-    <rect x="24" y="22" width="32" height="3" rx="1" fill="#06D7F9" />
-    <rect x="24" y="30" width="24" height="3" rx="1" fill="#06D7F9" />
-    <rect x="24" y="38" width="28" height="3" rx="1" fill="#06D7F9" />
-    {/* Checkmarks */}
-    <circle cx="56" cy="56" r="16" fill="#FFFFFF" />
-    <path d="M48 56L54 62L66 50" stroke="#06D7F9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Magnifying glass circle */}
+    <circle cx="32" cy="32" r="22" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
+    {/* Magnifying glass handle */}
+    <path d="M48 48L64 64" stroke="#06D7F9" strokeWidth="3" strokeLinecap="round" />
+    {/* Document inside magnifier */}
+    <rect x="22" y="20" width="20" height="24" rx="2" stroke="#FFFFFF" strokeWidth="2" fill="none" />
+    {/* Document lines */}
+    <path d="M26 28H38" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+    <path d="M26 34H38" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+    <path d="M26 40H34" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+    {/* Small dots/indicators */}
+    <circle cx="58" cy="20" r="3" fill="#06D7F9" />
+    <circle cx="68" cy="28" r="2" fill="#06D7F9" />
+    <circle cx="64" cy="38" r="2" fill="#06D7F9" />
   </svg>
 );
 
-// Realtime Icon - Dashboard with chart lines
+// Icon 3: Dashboard/chart display (top-right)
 const RealtimeIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Left sidebar - white */}
-    <rect x="0" y="0" width="28" height="80" rx="4" fill="#FFFFFF" />
-    {/* Sidebar elements */}
-    <rect x="6" y="8" width="16" height="4" rx="1" fill="#06D7F9" />
-    <rect x="6" y="18" width="12" height="3" rx="1" fill="#131D2A" />
-    <rect x="6" y="26" width="14" height="3" rx="1" fill="#131D2A" />
-    {/* Main chart area - cyan */}
-    <rect x="32" y="0" width="48" height="80" rx="4" fill="#06D7F9" />
-    {/* Chart line graph */}
-    <path d="M40 55L50 40L60 50L70 30" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Mobile/tablet frame */}
+    <rect x="16" y="4" width="48" height="72" rx="4" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
+    {/* Top bar */}
+    <path d="M16 16H64" stroke="#06D7F9" strokeWidth="2" />
+    {/* Chart line going up */}
+    <path d="M24 56L36 44L48 52L60 28" stroke="#06D7F9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     {/* Data points */}
-    <circle cx="40" cy="55" r="4" fill="#FFFFFF" />
-    <circle cx="50" cy="40" r="4" fill="#FFFFFF" />
-    <circle cx="60" cy="50" r="4" fill="#FFFFFF" />
-    <circle cx="70" cy="30" r="4" fill="#FFFFFF" />
-    {/* Grid lines */}
-    <path d="M40 65H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.5" />
-    <path d="M40 55H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.3" />
-    <path d="M40 45H70" stroke="#FFFFFF" strokeWidth="1" opacity="0.3" />
-    {/* Data bars at bottom */}
-    <rect x="42" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
-    <rect x="52" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
-    <rect x="62" y="68" width="6" height="6" rx="1" fill="#FFFFFF" />
+    <circle cx="24" cy="56" r="3" fill="#06D7F9" />
+    <circle cx="36" cy="44" r="3" fill="#06D7F9" />
+    <circle cx="48" cy="52" r="3" fill="#06D7F9" />
+    <circle cx="60" cy="28" r="3" fill="#06D7F9" />
+    {/* Bottom data rows */}
+    <rect x="24" y="62" width="16" height="3" rx="1" fill="#06D7F9" />
+    <rect x="44" y="62" width="12" height="3" rx="1" fill="#06D7F9" />
+    <rect x="24" y="68" width="12" height="3" rx="1" fill="#06D7F9" />
+    <rect x="40" y="68" width="16" height="3" rx="1" fill="#06D7F9" />
   </svg>
 );
 
-// Control Icon - Gear/cog with settings
-const ControlIcon = () => (
-  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Outer gear shape - cyan */}
-    <path d="M40 0L48 8H56V16L64 24V32L72 40L64 48V56L56 64V72H48L40 80L32 72H24V64L16 56V48L8 40L16 32V24L24 16V8H32L40 0Z" fill="#06D7F9" />
-    {/* Inner circle - white */}
-    <circle cx="40" cy="40" r="18" fill="#FFFFFF" />
-    {/* Center dot */}
-    <circle cx="40" cy="40" r="6" fill="#06D7F9" />
-    {/* Gear teeth details */}
-    <rect x="36" y="2" width="8" height="12" rx="2" fill="#06D7F9" />
-    <rect x="36" y="66" width="8" height="12" rx="2" fill="#06D7F9" />
-    <rect x="2" y="36" width="12" height="8" rx="2" fill="#06D7F9" />
-    <rect x="66" y="36" width="12" height="8" rx="2" fill="#06D7F9" />
-  </svg>
-);
-
-// Action Icon - Document with arrow (workflow)
-const ActionIcon = () => (
-  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Left document - cyan */}
-    <rect x="0" y="0" width="48" height="64" rx="4" fill="#06D7F9" />
-    {/* Document lines */}
-    <rect x="8" y="12" width="32" height="4" rx="1" fill="#FFFFFF" />
-    <rect x="8" y="22" width="24" height="4" rx="1" fill="#FFFFFF" />
-    <rect x="8" y="32" width="28" height="4" rx="1" fill="#FFFFFF" />
-    <rect x="8" y="42" width="20" height="4" rx="1" fill="#FFFFFF" />
-    <rect x="8" y="52" width="16" height="4" rx="1" fill="#FFFFFF" />
-    {/* Arrow - white */}
-    <path d="M52 32H72" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" />
-    <path d="M64 24L74 32L64 40" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Right target/result - cyan */}
-    <rect x="56" y="48" width="24" height="32" rx="4" fill="#06D7F9" />
-    <rect x="62" y="56" width="12" height="3" rx="1" fill="#FFFFFF" />
-    <rect x="62" y="64" width="10" height="3" rx="1" fill="#FFFFFF" />
-    <rect x="62" y="72" width="8" height="3" rx="1" fill="#FFFFFF" />
-  </svg>
-);
-
-// Email Icon - Email with document distribution
+// Icon 4: Email/Document distribution (bottom-left)
 const EmailIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* White envelope at top */}
-    <rect x="13" y="0" width="54" height="43" rx="3" fill="#FFFFFF" />
-    <path d="M13 8L40 28L67 8" stroke="#131D2A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Horizontal bars on envelope */}
-    <rect x="44" y="24" width="16" height="4" rx="1" fill="#06D7F9" />
-    <rect x="44" y="32" width="16" height="4" rx="1" fill="#06D7F9" />
-    {/* Top bar */}
-    <rect x="21" y="0" width="37" height="10" rx="2" fill="#06D7F9" />
-    {/* Connecting vertical line */}
-    <rect x="38" y="40" width="4" height="22" fill="#06D7F9" />
-    {/* Horizontal connecting bar */}
-    <rect x="8" y="51" width="64" height="12" rx="2" fill="#06D7F9" />
+    {/* Top document/envelope */}
+    <rect x="20" y="0" width="40" height="32" rx="3" stroke="#FFFFFF" strokeWidth="2.5" fill="none" />
+    {/* Envelope flap */}
+    <path d="M20 8L40 22L60 8" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Horizontal lines in document */}
+    <rect x="44" y="14" width="12" height="3" rx="1" fill="#06D7F9" />
+    <rect x="44" y="20" width="12" height="3" rx="1" fill="#06D7F9" />
+    {/* Vertical connecting line */}
+    <rect x="38" y="32" width="4" height="16" fill="#06D7F9" />
+    {/* Horizontal connector */}
+    <rect x="10" y="44" width="60" height="4" rx="1" fill="#06D7F9" />
+    {/* Three vertical lines down */}
+    <rect x="18" y="48" width="4" height="10" fill="#06D7F9" />
+    <rect x="38" y="48" width="4" height="10" fill="#06D7F9" />
+    <rect x="58" y="48" width="4" height="10" fill="#06D7F9" />
     {/* Three document blocks at bottom */}
-    <rect x="0" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
-    <rect x="29" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
-    <rect x="59" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
-    {/* Small bars on document blocks */}
-    <rect x="7" y="67" width="14" height="4" rx="1" fill="#131D2A" />
-    <rect x="36" y="67" width="14" height="4" rx="1" fill="#131D2A" />
-    <rect x="66" y="67" width="14" height="4" rx="1" fill="#131D2A" />
+    <rect x="6" y="58" width="28" height="22" rx="3" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    <rect x="26" y="58" width="28" height="22" rx="3" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    <rect x="46" y="58" width="28" height="22" rx="3" stroke="#06D7F9" strokeWidth="2" fill="none" />
+    {/* Lines in bottom blocks */}
+    <rect x="12" y="66" width="16" height="3" rx="1" fill="#06D7F9" />
+    <rect x="32" y="66" width="16" height="3" rx="1" fill="#06D7F9" />
+    <rect x="52" y="66" width="16" height="3" rx="1" fill="#06D7F9" />
+  </svg>
+);
+
+// Icon 5: Gear/cog (bottom-center)
+const ControlIcon = () => (
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Outer gear teeth */}
+    <path 
+      d="M40 8L44 8L48 4L52 8L56 8L60 12L60 16L64 20L64 24L68 28L68 32L72 36L72 40L72 44L68 48L68 52L64 56L64 60L60 64L56 72L52 72L48 76L44 72L40 72L36 72L32 76L28 72L24 72L20 64L16 60L16 56L12 52L12 48L8 44L8 40L8 36L12 32L12 28L16 24L16 20L20 16L20 12L24 8L28 8L32 4L36 8L40 8Z" 
+      stroke="#06D7F9" 
+      strokeWidth="2.5" 
+      fill="none"
+    />
+    {/* Inner circle */}
+    <circle cx="40" cy="40" r="14" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
+    {/* Center dot */}
+    <circle cx="40" cy="40" r="4" fill="#06D7F9" />
+  </svg>
+);
+
+// Icon 6: Document with arrow (bottom-right)
+const ActionIcon = () => (
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Main document frame */}
+    <rect x="8" y="4" width="44" height="72" rx="3" stroke="#06D7F9" strokeWidth="2.5" fill="none" />
+    {/* Document header line */}
+    <path d="M8 16H52" stroke="#06D7F9" strokeWidth="2" />
+    {/* Content lines */}
+    <rect x="16" y="24" width="28" height="3" rx="1" fill="#06D7F9" />
+    <rect x="16" y="32" width="24" height="3" rx="1" fill="#06D7F9" />
+    <rect x="16" y="40" width="20" height="3" rx="1" fill="#06D7F9" />
+    <rect x="16" y="48" width="28" height="3" rx="1" fill="#06D7F9" />
+    <rect x="16" y="56" width="16" height="3" rx="1" fill="#06D7F9" />
+    <rect x="16" y="64" width="24" height="3" rx="1" fill="#06D7F9" />
+    {/* Arrow pointing right */}
+    <path d="M56 40H74" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
+    <path d="M66 32L76 40L66 48" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
