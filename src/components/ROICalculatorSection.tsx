@@ -2,43 +2,47 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ROICalculator from "./ROICalculator";
 
-// Import category images
-import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryAerospace from "@/assets/industry-aerospace.jpg";
-import industryMedical from "@/assets/industry-medical.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
-import industryCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
-import industryConstruction from "@/assets/industry-construction.jpg";
-import industryEnvironmental from "@/assets/industry-environmental.jpg";
-import industryFoodBeverage from "@/assets/industry-food-beverage.jpg";
-import industrySocialResponsibility from "@/assets/industry-social-responsibility.jpg";
-import factoryHero from "@/assets/factory-hero-background.jpg";
+// Import category-specific images
+import categoryAutomotive from "@/assets/category-automotive.jpg";
+import categoryAerospace from "@/assets/category-aerospace.jpg";
+import categoryMedical from "@/assets/category-medical.jpg";
+import categoryElectronics from "@/assets/category-electronics.jpg";
+import categoryChemical from "@/assets/category-chemical.jpg";
+import categoryConstruction from "@/assets/category-construction.jpg";
+import categoryEnvironmental from "@/assets/category-environmental.jpg";
+import categoryFood from "@/assets/category-food.jpg";
+import categorySafety from "@/assets/category-safety.jpg";
+import categorySecurity from "@/assets/category-security.jpg";
+import categoryRailway from "@/assets/category-railway.jpg";
+import categoryPharmaceutical from "@/assets/category-pharmaceutical.jpg";
+import categoryManufacturing from "@/assets/category-manufacturing.jpg";
+import categorySocial from "@/assets/category-social.jpg";
 
-// Category to image mapping
+// Category to image mapping - industry-specific images
 const categoryImages: Record<string, string> = {
-  "Most Common Audits": factoryHero,
-  "Universal": factoryHero,
-  "Aerospace": industryAerospace,
-  "Automotive": industryAutomotive,
-  "Chemical": industryCryogenicValve,
-  "Construction": industryConstruction,
-  "Electronics": industryElectronics,
-  "Energy": industryCryogenicValve,
-  "Environmental": industryEnvironmental,
-  "Food & Beverage": industryFoodBeverage,
-  "General Manufacturing": factoryHero,
-  "Information Security": industryElectronics,
-  "Medical Devices": industryMedical,
-  "Oil & Gas": industryCryogenicValve,
-  "Pharmaceutical": industryMedical,
-  "Railway": industryAutomotive,
-  "Social Responsibility": industrySocialResponsibility,
+  "Most Common Audits": categoryManufacturing,
+  "Universal": categoryManufacturing,
+  "Aerospace": categoryAerospace,
+  "Automotive": categoryAutomotive,
+  "Chemical": categoryChemical,
+  "Construction": categoryConstruction,
+  "Electronics": categoryElectronics,
+  "Energy": categoryChemical,
+  "Environmental": categoryEnvironmental,
+  "Food & Beverage": categoryFood,
+  "General Manufacturing": categoryManufacturing,
+  "Information Security": categorySecurity,
+  "Medical Devices": categoryMedical,
+  "Oil & Gas": categoryChemical,
+  "Pharmaceutical": categoryPharmaceutical,
+  "Railway": categoryRailway,
+  "Social Responsibility": categorySocial,
 };
 
 const ROICalculatorSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Universal");
   
-  const categoryImage = categoryImages[selectedCategory] || factoryHero;
+  const categoryImage = categoryImages[selectedCategory] || categoryManufacturing;
 
   return (
     <section className="py-24 md:py-32 bg-gray-50 relative overflow-hidden">
