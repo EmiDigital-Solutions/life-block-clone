@@ -47,7 +47,7 @@ const ROICalculatorSection = () => {
         <motion.div
           key={selectedCategory}
           initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 0.06, scale: 1 }}
+          animate={{ opacity: 0.15, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.6 }}
           className="absolute inset-0 pointer-events-none"
