@@ -56,28 +56,28 @@ const HeroSection = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center relative z-10">
-        <div className="container mx-auto px-6 lg:px-12 xl:px-16 pt-20 lg:pt-24">
+      <div className="flex-1 flex items-center justify-start relative z-10">
+        <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-24 lg:pt-32 pb-8">
           
           {/* Offmenu-style Content Card */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-lg lg:max-w-xl xl:max-w-2xl"
+            className="max-w-xl lg:max-w-2xl"
           >
             {/* Frosted Glass Card */}
-            <div className="bg-[#ebebeb]/95 backdrop-blur-xl rounded-[28px] p-6 sm:p-8 lg:p-10">
+            <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
               
               {/* Tagline Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-5"
+                className="mb-6"
               >
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full text-xs font-medium text-foreground">
-                  <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   {heroContent.tagline}
                 </span>
               </motion.div>
@@ -87,7 +87,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] tracking-tight mb-5"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
               >
                 <span className="font-semibold text-foreground">On-Site Supplier</span>
                 <br />
@@ -102,7 +102,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6"
+                className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
               >
                 {heroContent.subtitle}
               </motion.p>
@@ -112,17 +112,17 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center mb-6"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
               >
-                <button className="group inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-sm lg:text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
                   Order Audit
                   <PixelIcon 
                     name="arrow-right" 
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
                     color="currentColor"
                   />
                 </button>
-                <button className="group inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-medium transition-all duration-300 text-sm lg:text-base text-foreground hover:bg-white/50">
+                <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
                   How it works
                   <PixelIcon 
                     name="arrow-right" 
@@ -137,16 +137,16 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="pt-5 border-t border-gray-300/50"
+                className="pt-6 border-t border-gray-300/50"
               >
-                <p className="text-xs text-muted-foreground mb-2">
+                <p className="text-sm text-muted-foreground mb-3">
                   Auditors certified by:
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 bg-white rounded-full text-xs font-medium text-foreground"
+                      className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground"
                     >
                       {cert}
                     </span>
