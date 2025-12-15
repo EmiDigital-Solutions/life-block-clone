@@ -111,9 +111,9 @@ const benefits = [
 
 const ResultsBenefitsSection = () => {
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="py-24 md:py-32 bg-[#f5f5f5]">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        {/* Section Header */}
+        {/* Section Header - offmenu style mixed weight typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,16 +121,17 @@ const ResultsBenefitsSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-16 md:mb-20"
         >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight max-w-2xl">
-          Transform Your Audits
-        </h2>
-          <p className="text-gray-600 text-lg mt-4 max-w-xl">
-            AI-powered supplier audit solution
-          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">Transform</span>{" "}
+            <span className="text-muted-foreground font-normal">your audits,</span>
+            <br />
+            <span className="text-muted-foreground font-normal">elevate your</span>{" "}
+            <span className="font-semibold text-foreground">supply chain.</span>
+          </h2>
         </motion.div>
 
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Benefits Grid - offmenu style cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -138,18 +139,18 @@ const ResultsBenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               {/* Icon */}
-              <div className="w-14 h-14 mb-6 text-gray-900">
+              <div className="w-14 h-14 mb-6 text-foreground">
                 <benefit.Icon />
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight">
+              <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 text-base leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 {benefit.description}
               </p>
             </motion.div>
