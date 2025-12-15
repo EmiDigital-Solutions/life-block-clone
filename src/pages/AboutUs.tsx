@@ -73,8 +73,13 @@ const AboutUs = () => {
         >
           <div className="grid grid-cols-4 gap-0.5 h-full w-full">
             {heroImages.slice(0, 4).map((image, index) => (
-              <div key={index} className="relative overflow-hidden">
-                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+              <div key={index} className="relative overflow-hidden group cursor-pointer">
+                <img 
+                  src={image.src} 
+                  alt={image.alt} 
+                  className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
               </div>
             ))}
           </div>
@@ -92,8 +97,13 @@ const AboutUs = () => {
           >
             <div className="grid grid-cols-4 gap-0.5 h-full w-full">
               {heroImages.slice(0, 8).map((image, index) => (
-                <div key={index} className="relative overflow-hidden">
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                <div key={index} className="relative overflow-hidden group cursor-pointer">
+                  <img 
+                    src={image.src} 
+                    alt={image.alt} 
+                    className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
                 </div>
               ))}
             </div>
