@@ -95,7 +95,7 @@ const TestimonialsCarouselSection = () => {
         {/* Carousel */}
         <div className="max-w-4xl mx-auto relative">
           {/* Main testimonial */}
-          <div className="relative min-h-[400px] md:min-h-[350px]">
+          <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -103,12 +103,12 @@ const TestimonialsCarouselSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.4 }}
-                className="bg-secondary/30 rounded-3xl p-8 md:p-12"
+                className="bg-secondary/30 rounded-3xl p-6 md:p-8"
               >
-                <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex flex-col md:flex-row items-center gap-6">
                   {/* Photo */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-3 border-primary/20 shadow-lg">
                       <img
                         src={testimonials[current].image}
                         alt={testimonials[current].name}
@@ -120,20 +120,18 @@ const TestimonialsCarouselSection = () => {
                   {/* Content */}
                   <div className="flex-1 text-center md:text-left">
                     {/* Quote */}
-                    <blockquote className="text-xl md:text-2xl font-medium text-foreground leading-relaxed mb-6">
+                    <blockquote className="text-lg md:text-xl font-medium text-foreground leading-relaxed mb-4">
                       "{testimonials[current].quote}"
                     </blockquote>
 
                     {/* Author */}
-                    <div>
-                      <p className="font-semibold text-foreground text-lg">
+                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
+                      <p className="font-semibold text-foreground">
                         {testimonials[current].name}
                       </p>
-                      <p className="text-muted-foreground">
-                        {testimonials[current].title}
-                      </p>
-                      <p className="text-primary font-medium">
-                        {testimonials[current].company}
+                      <span className="hidden md:block text-muted-foreground">•</span>
+                      <p className="text-muted-foreground text-sm">
+                        {testimonials[current].title}, <span className="text-primary font-medium">{testimonials[current].company}</span>
                       </p>
                     </div>
                   </div>
