@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -16,42 +17,42 @@ import auditor6 from "@/assets/procurement-female-blonde.jpg";
 
 const testimonials = [
   {
-    quote: "YVOO reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers.",
+    quote: "YVOO reduced our audit lead time from <strong>3 weeks to 3 days</strong>. The quality is <strong>consistent</strong> across all our global suppliers.",
     name: "Marcus Weber",
     title: "Head of Supplier Quality",
     company: "Siemens Energy",
     image: auditor1,
   },
   {
-    quote: "We've cut our audit costs by 65% while actually improving coverage.",
+    quote: "We've cut our <strong>audit costs by 65%</strong> while actually <strong>improving coverage</strong>.",
     name: "Dr. Lin Chen",
     title: "VP Procurement",
     company: "Continental AG",
     image: auditor2,
   },
   {
-    quote: "Finding certified auditors in Southeast Asia was always a challenge. YVOO solved that problem overnight.",
+    quote: "Finding <strong>certified auditors</strong> in Southeast Asia was always a challenge. YVOO solved that problem <strong>overnight</strong>.",
     name: "Carlos Martinez",
     title: "Global Quality Director",
     company: "ZF Group",
     image: auditor3,
   },
   {
-    quote: "The platform's ease of use is remarkable. Our team was fully onboarded in less than a day.",
+    quote: "The platform's <strong>ease of use</strong> is remarkable. Our team was <strong>fully onboarded in less than a day</strong>.",
     name: "Anna Bergström",
     title: "Supplier Development Manager",
     company: "Volvo Cars",
     image: auditor4,
   },
   {
-    quote: "Real-time visibility into audit progress has transformed how we manage supplier risk.",
+    quote: "<strong>Real-time visibility</strong> into audit progress has <strong>transformed</strong> how we manage supplier risk.",
     name: "Takeshi Yamamoto",
     title: "Chief Procurement Officer",
     company: "Denso Corporation",
     image: auditor5,
   },
   {
-    quote: "The AI-powered reports are incredibly thorough and consistent.",
+    quote: "The <strong>AI-powered reports</strong> are incredibly <strong>thorough and consistent</strong>.",
     name: "Sophie Laurent",
     title: "Quality Assurance Lead",
     company: "Airbus",
@@ -87,6 +88,12 @@ const TestimonialsCarouselSection = () => {
               align: "start",
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+                stopOnInteraction: true,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent className="-ml-4">
@@ -97,12 +104,13 @@ const TestimonialsCarouselSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.08 }}
-                    className="bg-white rounded-[24px] p-7 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col"
+                    className="bg-white rounded-[24px] p-8 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[280px]"
                   >
                     {/* Quote */}
-                    <blockquote className="text-foreground text-base leading-relaxed mb-6 flex-grow">
-                      "{testimonial.quote}"
-                    </blockquote>
+                    <blockquote 
+                      className="text-foreground text-lg leading-relaxed mb-8 flex-grow"
+                      dangerouslySetInnerHTML={{ __html: `"${testimonial.quote}"` }}
+                    />
 
                     {/* Author - offmenu style with avatar and inline text */}
                     <div className="flex items-center gap-3">
