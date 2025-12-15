@@ -8,29 +8,29 @@ import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
-// Import diverse professional faces
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
-import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+// Import images from Enterprise Technology section
+import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
+import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
+import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
+import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
-    { src: auditorBlonde1, alt: 'Quality Inspector' },
-    { src: auditorBlonde2, alt: 'Safety Manager' },
-    { src: auditorBlonde3, alt: 'Compliance Auditor' },
-    { src: auditorBlonde4, alt: 'Operations Director' },
-    { src: auditorBlonde5, alt: 'Factory Inspector' },
-    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
-    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
-    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
+    { src: auditorFemaleAfrican, alt: 'Quality Inspector' },
+    { src: auditorAsian, alt: 'Safety Manager' },
+    { src: auditorFemaleEuropean, alt: 'Compliance Auditor' },
+    { src: auditorFemaleMiddleEast, alt: 'Operations Director' },
+    { src: auditorFemaleLatin, alt: 'Factory Inspector' },
+    { src: auditorFemaleSouthAsian, alt: 'Procurement Manager' },
+    { src: auditorMaleNorthAmerica, alt: 'Supply Chain Lead' },
+    { src: auditorAfrican, alt: 'Vendor Relations' },
   ];
 
   const timelineData = [
