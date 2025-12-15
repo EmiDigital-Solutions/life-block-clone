@@ -8,45 +8,29 @@ import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
-// Import diverse professional faces
-import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
-import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
-import auditorBlonde3 from "@/assets/auditor-blonde-3.jpg";
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import auditorBlonde5 from "@/assets/auditor-blonde-5.jpg";
-import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
-import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
-import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
-import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
-import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
-import auditorGen2 from "@/assets/auditor-gen-2.jpg";
-import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+// Import B&W with green highlight auditor images
+import auditorBwGreen1 from "@/assets/auditor-bw-green-1.jpg";
+import auditorBwGreen2 from "@/assets/auditor-bw-green-2.jpg";
+import auditorBwGreen3 from "@/assets/auditor-bw-green-3.jpg";
+import auditorBwGreen4 from "@/assets/auditor-bw-green-4.jpg";
+import auditorBwGreen5 from "@/assets/auditor-bw-green-5.jpg";
+import auditorBwGreen6 from "@/assets/auditor-bw-green-6.jpg";
+import auditorBwGreen7 from "@/assets/auditor-bw-green-7.jpg";
+import auditorBwGreen8 from "@/assets/auditor-bw-green-8.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
-    { src: auditorBlonde1, alt: 'Quality Inspector' },
-    { src: auditorBlonde2, alt: 'Safety Manager' },
-    { src: auditorBlonde3, alt: 'Compliance Auditor' },
-    { src: auditorBlonde4, alt: 'Operations Director' },
-    { src: auditorBlonde5, alt: 'Factory Inspector' },
-    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
-    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
-    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
-    { src: auditorEuropean, alt: 'Senior Auditor' },
-    { src: procurementMaleAsian, alt: 'Sourcing Director' },
-    { src: auditorFemaleEuropean, alt: 'Quality Lead' },
-    { src: procurementFemaleAsian, alt: 'Procurement Specialist' },
-    { src: procurementMaleLatin, alt: 'Operations Manager' },
-    { src: auditorGen1, alt: 'Site Inspector' },
-    { src: auditorGen2, alt: 'Factory Manager' },
-    { src: auditorGen3, alt: 'Quality Director' },
+    { src: auditorBwGreen1, alt: 'Quality Inspector' },
+    { src: auditorBwGreen2, alt: 'Safety Manager' },
+    { src: auditorBwGreen3, alt: 'Compliance Auditor' },
+    { src: auditorBwGreen4, alt: 'Operations Director' },
+    { src: auditorBwGreen5, alt: 'Factory Inspector' },
+    { src: auditorBwGreen6, alt: 'Procurement Manager' },
+    { src: auditorBwGreen7, alt: 'Supply Chain Lead' },
+    { src: auditorBwGreen8, alt: 'Vendor Relations' },
   ];
 
   const timelineData = [
@@ -89,8 +73,8 @@ const AboutUs = () => {
         >
           <div className="grid grid-cols-4 gap-0.5 h-full w-full">
             {heroImages.slice(0, 4).map((image, index) => (
-              <div key={index} className="relative overflow-hidden bg-[#6EA996]">
-                <img src={image.src} alt={image.alt} className="w-full h-full object-cover mix-blend-luminosity" />
+              <div key={index} className="relative overflow-hidden">
+                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -108,8 +92,8 @@ const AboutUs = () => {
           >
             <div className="grid grid-cols-4 gap-0.5 h-full w-full">
               {heroImages.slice(0, 8).map((image, index) => (
-                <div key={index} className="relative overflow-hidden bg-[#6EA996]">
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover mix-blend-luminosity" />
+                <div key={index} className="relative overflow-hidden">
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
