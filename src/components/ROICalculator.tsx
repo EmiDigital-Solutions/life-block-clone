@@ -1,10 +1,39 @@
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { DollarSign, TrendingDown, Clock, MapPin, FileCheck } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { auditTypes, regions, categories, type AuditType } from "@/data/auditPricingData";
+
+// Import category images
+import industryAutomotive from "@/assets/industry-automotive.jpg";
+import industryAerospace from "@/assets/industry-aerospace.jpg";
+import industryMedical from "@/assets/industry-medical.jpg";
+import industryElectronics from "@/assets/industry-electronics.jpg";
+import industryCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
+import factoryHero from "@/assets/factory-hero-background.jpg";
+
+// Category to image mapping
+const categoryImages: Record<string, string> = {
+  "Most Common Audits": factoryHero,
+  "Universal": factoryHero,
+  "Aerospace": industryAerospace,
+  "Automotive": industryAutomotive,
+  "Chemical": industryCryogenicValve,
+  "Construction": factoryHero,
+  "Electronics": industryElectronics,
+  "Energy": industryCryogenicValve,
+  "Environmental": factoryHero,
+  "Food & Beverage": factoryHero,
+  "General Manufacturing": factoryHero,
+  "Information Security": industryElectronics,
+  "Medical Devices": industryMedical,
+  "Oil & Gas": industryCryogenicValve,
+  "Pharmaceutical": industryMedical,
+  "Railway": industryAutomotive,
+  "Social Responsibility": factoryHero,
+};
 
 const ROICalculator = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Universal");
@@ -29,6 +58,9 @@ const ROICalculator = () => {
     regions.find(r => r.id === selectedRegion),
     [selectedRegion]
   );
+
+  // Get category image
+  const categoryImage = categoryImages[selectedCategory] || factoryHero;
 
   // Calculations
   const traditionalCost = selectedAudit?.traditionalEur || 0;
@@ -69,9 +101,32 @@ const ROICalculator = () => {
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl border border-gray-200">
+    <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl border border-gray-200 relative overflow-hidden">
+      
+      {/* Category Watermark Image */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedCategory}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.08, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.5 }}
+          className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
+        >
+          <img 
+            src={categoryImage} 
+            alt={selectedCategory}
+            className="w-full h-full object-cover object-center"
+            style={{ 
+              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
+
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +144,7 @@ const ROICalculator = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1 }}
-      className="bg-gradient-to-br from-primary/5 to-secondary/10 rounded-2xl p-4 sm:p-6 mb-8 border border-primary/20"
+      className="bg-gradient-to-br from-primary/5 to-secondary/10 rounded-2xl p-4 sm:p-6 mb-8 border border-primary/20 relative z-10"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Category Selection */}
@@ -176,7 +231,7 @@ const ROICalculator = () => {
           key={selectedAuditId}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-wrap items-center gap-3 mb-6"
+          className="flex flex-wrap items-center gap-3 mb-6 relative z-10"
         >
           <span className="px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
             {selectedAudit.complexity} Complexity
@@ -191,7 +246,7 @@ const ROICalculator = () => {
       )}
 
       {/* Cost Comparison */}
-      <div className="space-y-4 mb-6">
+      <div className="space-y-4 mb-6 relative z-10">
         {/* Traditional Cost */}
         <motion.div
           key={`trad-${selectedAuditId}`}
@@ -232,7 +287,7 @@ const ROICalculator = () => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-primary to-primary/80 text-white mb-6"
+        className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-primary to-primary/80 text-white mb-6 relative z-10"
       >
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           <div className="flex items-center gap-4">
@@ -257,7 +312,7 @@ const ROICalculator = () => {
       </motion.div>
 
       {/* Time Savings */}
-      <div className="rounded-xl p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
+      <div className="rounded-xl p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 relative z-10">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div className="flex items-center gap-3">
             <Clock className="w-5 h-5 text-primary" />
@@ -270,7 +325,7 @@ const ROICalculator = () => {
       </div>
 
       {/* Additional Benefits */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+      <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200 relative z-10">
         <p className="text-gray-600 text-sm">
           <strong className="text-gray-800">Additional Benefits:</strong> No travel costs, 
           standardized digital reports within 24h, local certified auditors, 
