@@ -1,9 +1,7 @@
-import { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Sphere, OrbitControls } from '@react-three/drei';
+import { useRef, useState, useEffect, Suspense } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Sphere, OrbitControls, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { motion, AnimatePresence } from 'framer-motion';
-import worldMapGlobe from '@/assets/world-map-globe.png';
 
 // Location pins data with lat/long coordinates
 const locationPins3D = [
@@ -121,19 +119,57 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
 
 const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins: number[] }) => {
   const groupRef = useRef<THREE.Group>(null);
-  const texture = useLoader(THREE.TextureLoader, worldMapGlobe);
+  
+  // Create a simple procedural earth texture as fallback
+  const createEarthTexture = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    
+    // Background - ocean
+    ctx.fillStyle = '#E5E7EB';
+    ctx.fillRect(0, 0, 512, 256);
+    
+    // Draw simplified continents as dots/points
+    ctx.fillStyle = '#1A1A1A';
+    const continentPoints = [
+      // North America
+      { x: 80, y: 80, r: 25 }, { x: 100, y: 90, r: 20 }, { x: 60, y: 100, r: 15 },
+      // South America  
+      { x: 120, y: 160, r: 15 }, { x: 130, y: 180, r: 12 },
+      // Europe
+      { x: 260, y: 75, r: 12 }, { x: 275, y: 80, r: 10 },
+      // Africa
+      { x: 270, y: 130, r: 20 }, { x: 280, y: 150, r: 15 },
+      // Asia
+      { x: 340, y: 80, r: 25 }, { x: 380, y: 90, r: 20 }, { x: 400, y: 100, r: 15 },
+      // Australia
+      { x: 420, y: 170, r: 15 },
+    ];
+    
+    continentPoints.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    
+    return new THREE.CanvasTexture(canvas);
+  };
+  
+  const [texture] = useState(() => createEarthTexture());
 
   // Rotate the earth smoothly
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += 0.001; // Smooth rotation
+      groupRef.current.rotation.y += 0.001;
     }
   });
 
   return (
     <>
       <group ref={groupRef}>
-        {/* Main Earth with clean dotted map texture */}
         <Sphere args={[2.875, 128, 128]}>
           <meshStandardMaterial
             map={texture}
@@ -142,7 +178,6 @@ const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins
           />
         </Sphere>
 
-        {/* 3D Pins attached to globe */}
         {showPins && locationPins3D.map((pin) => (
           <Pin3D
             key={pin.id}
