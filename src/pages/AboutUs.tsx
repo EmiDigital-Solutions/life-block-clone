@@ -8,29 +8,29 @@ import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
-// Import images from Enterprise Technology section
-import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
+// Import images for hero section
+import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
+import auditorBlonde2 from "@/assets/auditor-blonde-2.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
 import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
 const AboutUs = () => {
   const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
-    { src: auditorFemaleAfrican, alt: 'Quality Inspector' },
+    { src: auditorBlonde1, alt: 'Quality Inspector' },
     { src: auditorAsian, alt: 'Safety Manager' },
     { src: auditorFemaleEuropean, alt: 'Compliance Auditor' },
     { src: auditorFemaleMiddleEast, alt: 'Operations Director' },
     { src: auditorFemaleLatin, alt: 'Factory Inspector' },
     { src: auditorFemaleSouthAsian, alt: 'Procurement Manager' },
     { src: auditorMaleNorthAmerica, alt: 'Supply Chain Lead' },
-    { src: auditorAfrican, alt: 'Vendor Relations' },
+    { src: auditorBlonde2, alt: 'Vendor Relations' },
   ];
 
   const timelineData = [
