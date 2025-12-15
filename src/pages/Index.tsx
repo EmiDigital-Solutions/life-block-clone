@@ -8,6 +8,7 @@ import ResultsBenefitsSection from "@/components/ResultsBenefitsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import ROICalculatorSection from "@/components/ROICalculatorSection";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
+import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import FullScreenProjects from "@/components/FullScreenProjects";
@@ -26,6 +27,7 @@ const Index = () => {
       <HowItWorksSection />
       <ROICalculatorSection />
       <GlobalNetworkSection />
+      <TestimonialsCarouselSection />
       <FAQSection />
       <FinalCTASection />
       <FullScreenProjects />
