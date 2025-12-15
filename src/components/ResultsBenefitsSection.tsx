@@ -38,15 +38,26 @@ const RealtimeIcon = () => (
 
 const EmailIcon = () => (
   <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="20" width="56" height="40" rx="4" stroke="#FFFFFF" strokeWidth="2" fill="none" />
-    <path d="M12 24L40 44L68 24" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <rect x="44" y="48" width="24" height="20" rx="2" stroke="#06D7F9" strokeWidth="2" fill="none" />
-    <circle cx="50" cy="58" r="2" fill="#06D7F9" />
-    <circle cx="56" cy="58" r="2" fill="#06D7F9" />
-    <circle cx="62" cy="58" r="2" fill="#06D7F9" />
-    <circle cx="50" cy="64" r="2" fill="#06D7F9" />
-    <circle cx="56" cy="64" r="2" fill="#06D7F9" />
-    <circle cx="62" cy="64" r="2" fill="#06D7F9" />
+    {/* White envelope at top */}
+    <rect x="13" y="0" width="54" height="43" rx="3" fill="#FFFFFF" />
+    <path d="M13 8L40 28L67 8" stroke="#131D2A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Horizontal bars on envelope */}
+    <rect x="44" y="24" width="16" height="4" rx="1" fill="#06D7F9" />
+    <rect x="44" y="32" width="16" height="4" rx="1" fill="#06D7F9" />
+    {/* Top bar */}
+    <rect x="21" y="0" width="37" height="10" rx="2" fill="#06D7F9" />
+    {/* Connecting vertical line */}
+    <rect x="38" y="40" width="4" height="22" fill="#06D7F9" />
+    {/* Horizontal connecting bar */}
+    <rect x="8" y="51" width="64" height="12" rx="2" fill="#06D7F9" />
+    {/* Three document blocks at bottom */}
+    <rect x="0" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
+    <rect x="29" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
+    <rect x="59" y="58" width="21" height="22" rx="3" fill="#06D7F9" />
+    {/* Small bars on document blocks */}
+    <rect x="7" y="67" width="14" height="4" rx="1" fill="#131D2A" />
+    <rect x="36" y="67" width="14" height="4" rx="1" fill="#131D2A" />
+    <rect x="66" y="67" width="14" height="4" rx="1" fill="#131D2A" />
   </svg>
 );
 
