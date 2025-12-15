@@ -23,49 +23,86 @@ const HeroSection = () => {
     }
   }, [heroData]);
 
+  const companies = [
+    "Siemens",
+    "Bosch",
+    "Schneider Electric",
+    "ABB",
+    "Honeywell",
+    "Emerson",
+    "Rockwell Automation",
+    "Mitsubishi Electric",
+  ];
+
   return (
     <section 
       data-nav-theme="blue"
-      className="relative min-h-screen flex flex-col overflow-hidden"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
     >
-      {/* Full Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
-      >
-        <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-      </video>
+      {/* Video Background Container */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
+        >
+          <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+        </video>
+        {/* Subtle overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
+      </div>
 
-      <div className="flex-1 flex items-center justify-start px-4 sm:px-6 lg:px-16 xl:px-24 pt-16 sm:pt-24 lg:pt-32 pb-4 sm:pb-8 relative z-10">
-        <div className="max-w-7xl w-full">
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-start relative z-10">
+        <div className="container mx-auto px-6 lg:px-16 xl:px-24 pt-24 lg:pt-32 pb-8">
           
-          {/* Text Content with Frosted Glass Effect */}
-          <div className="max-w-3xl backdrop-blur-xl bg-white/50 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl border border-white/20">
-            <div className="text-left space-y-4 sm:space-y-6 lg:space-y-8">
-            
-              {/* Main Heading */}
+          {/* Offmenu-style Content Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            {/* Frosted Glass Card */}
+            <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+              
+              {/* Tagline Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6"
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  {heroContent.tagline}
+                </span>
+              </motion.div>
+
+              {/* Main Heading - Offmenu mixed weight style */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-gray-900 max-w-4xl"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
               >
-                {heroContent.heading.split(' ').slice(0, -3).join(' ')}{' '}
-                <span className="text-primary font-bold">
-                  {heroContent.heading.split(' ').slice(-3).join(' ')}
-                </span>
+                <span className="font-semibold text-foreground">On-Site Supplier</span>
+                <br />
+                <span className="text-muted-foreground font-light">Audits in</span>{" "}
+                <span className="font-semibold text-primary">Days,</span>
+                <br />
+                <span className="text-muted-foreground font-light">Not Weeks.</span>
               </motion.h1>
 
               {/* Subtitle */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base sm:text-xl lg:text-2xl text-gray-600 max-w-3xl lg:max-w-none"
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
               >
                 {heroContent.subtitle}
               </motion.p>
@@ -74,86 +111,96 @@ const HeroSection = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-col gap-6 sm:gap-8 justify-start items-start pt-2 sm:pt-4"
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
               >
-                <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium transition-all duration-300 text-sm sm:text-base shadow-xl text-white bg-primary hover:bg-primary/90">
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
                   Order Audit
                   <PixelIcon 
                     name="arrow-right" 
-                    className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" 
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
                     color="currentColor"
                   />
                 </button>
-                
-                {/* Auditor Certifications */}
-                <p className="text-xs sm:text-sm text-gray-600 text-left leading-relaxed">
-                  Our auditor network includes professionals certified by:{" "}
-                  <span className="font-medium text-gray-900">TÜV SÜD</span>
-                  {" • "}
-                  <span className="font-medium text-gray-900">Bureau Veritas</span>
-                  {" • "}
-                  <span className="font-medium text-gray-900">SGS</span>
-                  {" • "}
-                  <span className="font-medium text-gray-900">DNV</span>
+                <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
+                  How it works
+                  <PixelIcon 
+                    name="arrow-right" 
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                    color="currentColor"
+                  />
+                </button>
+              </motion.div>
+
+              {/* Certifications */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="pt-6 border-t border-gray-300/50"
+              >
+                <p className="text-sm text-muted-foreground mb-3">
+                  Auditors certified by:
                 </p>
+                <div className="flex flex-wrap gap-3">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
+                    <span
+                      key={idx}
+                      className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground"
+                    >
+                      {cert}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
 
-      {/* Scrolling Client Band */}
+      {/* Scrolling Client Band - Offmenu style */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="bg-white border-t border-gray-200 py-6 overflow-hidden mt-auto relative z-10"
+        transition={{ duration: 1, delay: 0.7 }}
+        className="bg-white py-8 overflow-hidden mt-auto relative z-10"
       >
-          <p className="text-center text-sm text-gray-500 mb-4">
-            Trusted by world's most exciting brands
+        <div className="container mx-auto px-6 mb-4">
+          <p className="text-sm text-muted-foreground font-medium">
+            Trusted by leading enterprises
           </p>
-          <div className="relative flex">
-            <motion.div
-              className="flex gap-12 whitespace-nowrap"
-              animate={{
-                x: [0, -1920],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...Array(3)].map((_, setIndex) => (
-                <div key={setIndex} className="flex gap-12 items-center">
-                  {[
-                    "Siemens",
-                    "Bosch",
-                    "Schneider Electric",
-                    "ABB",
-                    "Honeywell",
-                    "Emerson",
-                    "Rockwell Automation",
-                    "Mitsubishi Electric",
-                  ].map((company, idx) => (
-                    <span
-                      key={idx}
-                      className="text-base font-medium text-gray-400 tracking-wide"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-
+        </div>
+        <div className="relative flex">
+          <motion.div
+            className="flex gap-16 whitespace-nowrap"
+            animate={{
+              x: [0, -1920],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 35,
+                ease: "linear",
+              },
+            }}
+          >
+            {[...Array(3)].map((_, setIndex) => (
+              <div key={setIndex} className="flex gap-16 items-center">
+                {companies.map((company, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xl font-semibold text-gray-300 tracking-wide hover:text-gray-500 transition-colors"
+                  >
+                    {company}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 };
