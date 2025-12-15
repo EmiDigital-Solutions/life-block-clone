@@ -66,8 +66,8 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="max-w-xl lg:max-w-2xl"
           >
-            {/* Frosted Glass Card - More transparent */}
-            <div className="bg-[#ebebeb]/75 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+            {/* Frosted Glass Card */}
+            <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
               
               {/* Tagline Badge */}
               <motion.div
@@ -114,7 +114,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
               >
-                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90 hover:shadow-xl hover:scale-105">
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
                   Order Audit
                   <PixelIcon 
                     name="arrow-right" 
