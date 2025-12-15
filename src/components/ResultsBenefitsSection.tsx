@@ -122,10 +122,10 @@ const ResultsBenefitsSection = () => {
           className="mb-16 md:mb-20"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight max-w-2xl">
-            Benefits of a Global Auditor Network
+            Why YVOO?
           </h2>
           <p className="text-muted-foreground text-lg mt-4 max-w-xl">
-            AI-powered supplier audit solution
+            Six reasons teams choose us
           </p>
         </motion.div>
 
