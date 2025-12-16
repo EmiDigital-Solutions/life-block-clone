@@ -2,6 +2,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+// Import images for mockups
+import equipmentImage from "@/assets/industry-automotive.jpg";
+import evidenceImg1 from "@/assets/auditor-factory-team.jpg";
+import evidenceImg2 from "@/assets/factory-hero-background.jpg";
+import evidenceImg3 from "@/assets/industry-electronics.jpg";
+
 interface Capability {
   title: string;
   description: string;
@@ -301,33 +307,12 @@ const EquipmentMockup = () => (
       
       {/* Image Area */}
       <div className="flex-1 relative bg-gradient-to-br from-[#0f0f18] to-[#0a0a12] m-2 rounded-lg overflow-hidden">
-        {/* Simulated Factory Equipment */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative">
-            {/* Machine Body */}
-            <div className="w-24 h-18 bg-gradient-to-b from-[#2a2a3a] to-[#1a1a28] rounded-lg relative">
-              {/* Control Panel */}
-              <div className="absolute top-1 left-1 w-8 h-6 bg-[#0f0f18] rounded">
-                <div className="grid grid-cols-3 gap-0.5 p-0.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                </div>
-                <div className="mt-0.5 mx-0.5 h-2 bg-primary/30 rounded-sm" />
-              </div>
-              {/* Spindle */}
-              <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-[#3a3a4a] border-2 border-[#4a4a5a]">
-                <div className="absolute inset-1 rounded-full bg-[#2a2a3a]" />
-              </div>
-              {/* Work Area */}
-              <div className="absolute bottom-1 inset-x-1 h-8 bg-[#12121a] rounded">
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-3 bg-[#3a3a4a] rounded-sm" />
-              </div>
-            </div>
-            {/* Base */}
-            <div className="w-28 h-3 bg-gradient-to-b from-[#3a3a4a] to-[#2a2a3a] rounded-b-lg -mt-0.5 mx-auto" />
-          </div>
-        </div>
+        {/* Real Equipment Image */}
+        <img 
+          src={equipmentImage} 
+          alt="Factory equipment" 
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+        />
         
         {/* Detection Overlay */}
         <motion.div
@@ -541,12 +526,12 @@ const EvidenceMockup = () => (
       {/* Grid */}
       <div className="flex-1 p-2 grid grid-cols-3 gap-1.5 overflow-hidden">
         {[
-          { type: "img", name: "Production_Floor.jpg", tag: "QMS", tagColor: "bg-green-400", size: "2.4 MB" },
-          { type: "pdf", name: "ISO_Certificate.pdf", tag: "QMS", tagColor: "bg-green-400", size: "1.1 MB" },
-          { type: "img", name: "Fire_Exits.jpg", tag: "Safety", tagColor: "bg-accent", size: "3.2 MB" },
-          { type: "img", name: "Waste_Storage.jpg", tag: "Env", tagColor: "bg-yellow-400", size: "2.8 MB" },
-          { type: "doc", name: "Training_Records.xlsx", tag: "QMS", tagColor: "bg-green-400", size: "450 KB" },
-          { type: "img", name: "Equipment_Label.jpg", tag: "Safety", tagColor: "bg-accent", size: "1.9 MB" },
+          { type: "img", name: "Production_Floor.jpg", tag: "QMS", tagColor: "bg-green-400", size: "2.4 MB", img: evidenceImg1 },
+          { type: "pdf", name: "ISO_Certificate.pdf", tag: "QMS", tagColor: "bg-green-400", size: "1.1 MB", img: null },
+          { type: "img", name: "Fire_Exits.jpg", tag: "Safety", tagColor: "bg-accent", size: "3.2 MB", img: evidenceImg2 },
+          { type: "img", name: "Waste_Storage.jpg", tag: "Env", tagColor: "bg-yellow-400", size: "2.8 MB", img: evidenceImg3 },
+          { type: "doc", name: "Training_Records.xlsx", tag: "QMS", tagColor: "bg-green-400", size: "450 KB", img: null },
+          { type: "img", name: "Equipment_Label.jpg", tag: "Safety", tagColor: "bg-accent", size: "1.9 MB", img: equipmentImage },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -556,9 +541,13 @@ const EvidenceMockup = () => (
             className="bg-[#12121a] rounded-lg overflow-hidden group cursor-pointer hover:ring-1 hover:ring-primary/50"
           >
             {/* Preview */}
-            <div className="aspect-square relative bg-gradient-to-br from-white/5 to-transparent">
-              {item.type === "img" ? (
-                <div className="absolute inset-1 rounded bg-gradient-to-br from-white/10 to-white/5" />
+            <div className="aspect-square relative bg-gradient-to-br from-white/5 to-transparent overflow-hidden">
+              {item.type === "img" && item.img ? (
+                <img 
+                  src={item.img} 
+                  alt={item.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className={`w-6 h-7 rounded ${item.type === 'pdf' ? 'bg-red-500/20' : 'bg-blue-500/20'} flex items-center justify-center`}>
@@ -571,7 +560,7 @@ const EvidenceMockup = () => (
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.12 + 0.2, duration: 0.2, repeat: Infinity, repeatDelay: 6 }}
-                className={`absolute top-1 right-1 ${item.tagColor} px-1 py-0.5 rounded text-[6px] text-white font-medium`}
+                className={`absolute top-1 right-1 ${item.tagColor} px-1 py-0.5 rounded text-[6px] text-white font-medium shadow-sm`}
               >
                 {item.tag}
               </motion.div>
@@ -580,7 +569,7 @@ const EvidenceMockup = () => (
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.12 + 0.4, duration: 0.2, repeat: Infinity, repeatDelay: 6 }}
-                className="absolute bottom-1 left-1 bg-primary/80 px-1 py-0.5 rounded text-[5px] text-white flex items-center gap-0.5"
+                className="absolute bottom-1 left-1 bg-primary/90 px-1 py-0.5 rounded text-[5px] text-white flex items-center gap-0.5 shadow-sm"
               >
                 <svg className="w-1.5 h-1.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
