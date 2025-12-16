@@ -1,26 +1,28 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useRef, Suspense, useMemo } from 'react';
-import { Group, Mesh, Vector3 } from 'three';
-import { Environment, Float, Line, Text } from '@react-three/drei';
+import { useRef, Suspense } from 'react';
+import { Group, Mesh } from 'three';
+import { Environment, Float, Line } from '@react-three/drei';
+
+// Brand colors
+const COLORS = {
+  primary: "#0A7FA5",      // CTA Blue-Teal
+  secondary: "#6EA996",    // Hero Green
+  dark: "#1A1A1A",         // Charcoal
+  light: "#ACC5D9",        // BlueGrey Light
+  wireframe: "#C0C0C0",    // Grey Mid
+  accent: "#B2CDBC",       // Mint Light
+};
 
 // CAD-style dimension line
 function DimensionLine({ 
   start, 
   end, 
   offset = 0.3,
-  color = "#0A7FA5" 
 }: { 
   start: [number, number, number]; 
   end: [number, number, number];
   offset?: number;
-  color?: string;
 }) {
-  const midPoint: [number, number, number] = [
-    (start[0] + end[0]) / 2,
-    start[1] + offset,
-    (start[2] + end[2]) / 2
-  ];
-  
   return (
     <group>
       <Line
@@ -28,164 +30,142 @@ function DimensionLine({
           [start[0], start[1] + offset, start[2]],
           [end[0], end[1] + offset, end[2]]
         ]}
-        color={color}
+        color={COLORS.primary}
         lineWidth={1}
         transparent
-        opacity={0.6}
+        opacity={0.4}
       />
-      {/* End markers */}
       <mesh position={[start[0], start[1] + offset, start[2]]} rotation={[0, 0, Math.PI / 4]}>
-        <boxGeometry args={[0.05, 0.05, 0.01]} />
-        <meshBasicMaterial color={color} transparent opacity={0.6} />
+        <boxGeometry args={[0.04, 0.04, 0.01]} />
+        <meshBasicMaterial color={COLORS.primary} transparent opacity={0.4} />
       </mesh>
       <mesh position={[end[0], end[1] + offset, end[2]]} rotation={[0, 0, Math.PI / 4]}>
-        <boxGeometry args={[0.05, 0.05, 0.01]} />
-        <meshBasicMaterial color={color} transparent opacity={0.6} />
+        <boxGeometry args={[0.04, 0.04, 0.01]} />
+        <meshBasicMaterial color={COLORS.primary} transparent opacity={0.4} />
       </mesh>
     </group>
   );
 }
 
-// Realistic CNC Machine
+// Wireframe CNC Machine - Blueprint style
 function CNCMachine({ position }: { position: [number, number, number] }) {
   const spindleRef = useRef<Mesh>(null);
   const toolRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (spindleRef.current) {
-      spindleRef.current.rotation.y = state.clock.elapsedTime * 8;
+      spindleRef.current.rotation.y = state.clock.elapsedTime * 6;
     }
     if (toolRef.current) {
-      toolRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.8) * 0.15;
-      toolRef.current.position.z = Math.cos(state.clock.elapsedTime * 0.6) * 0.1;
+      toolRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.8) * 0.12;
+      toolRef.current.position.z = Math.cos(state.clock.elapsedTime * 0.6) * 0.08;
     }
   });
 
   return (
     <group position={position}>
-      {/* Machine enclosure */}
+      {/* Machine frame - wireframe */}
       <mesh position={[0, 0.35, 0]}>
-        <boxGeometry args={[0.8, 0.7, 0.7]} />
-        <meshStandardMaterial color="#2a2a2a" metalness={0.9} roughness={0.2} transparent opacity={0.3} />
+        <boxGeometry args={[0.7, 0.65, 0.6]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
-      {/* Frame structure */}
-      {[[-0.35, 0, -0.3], [-0.35, 0, 0.3], [0.35, 0, -0.3], [0.35, 0, 0.3]].map((pos, i) => (
+      {/* Frame pillars */}
+      {[[-0.3, 0, -0.25], [-0.3, 0, 0.25], [0.3, 0, -0.25], [0.3, 0, 0.25]].map((pos, i) => (
         <mesh key={i} position={pos as [number, number, number]}>
-          <boxGeometry args={[0.05, 0.7, 0.05]} />
-          <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+          <boxGeometry args={[0.04, 0.65, 0.04]} />
+          <meshStandardMaterial color={COLORS.secondary} metalness={0.6} roughness={0.4} />
         </mesh>
       ))}
       {/* Work table */}
       <mesh position={[0, 0.05, 0]}>
-        <boxGeometry args={[0.5, 0.08, 0.45]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.95} roughness={0.1} />
+        <boxGeometry args={[0.45, 0.06, 0.4]} />
+        <meshStandardMaterial color={COLORS.dark} metalness={0.9} roughness={0.1} />
       </mesh>
-      {/* T-slot details */}
-      {[-0.15, 0, 0.15].map((z, i) => (
-        <mesh key={i} position={[0, 0.095, z]}>
-          <boxGeometry args={[0.48, 0.01, 0.03]} />
-          <meshStandardMaterial color="#333" metalness={0.9} roughness={0.1} />
-        </mesh>
-      ))}
       {/* Spindle assembly */}
       <group ref={toolRef} position={[0, 0.45, 0]}>
         <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[0.2, 0.15, 0.2]} />
-          <meshStandardMaterial color="#0A7FA5" metalness={0.8} roughness={0.2} />
+          <boxGeometry args={[0.15, 0.12, 0.15]} />
+          <meshStandardMaterial color={COLORS.primary} metalness={0.7} roughness={0.3} />
         </mesh>
-        <mesh ref={spindleRef} position={[0, -0.12, 0]}>
-          <cylinderGeometry args={[0.04, 0.02, 0.15, 16]} />
-          <meshStandardMaterial color="#c0c0c0" metalness={0.95} roughness={0.1} />
+        <mesh ref={spindleRef} position={[0, -0.1, 0]}>
+          <cylinderGeometry args={[0.03, 0.015, 0.12, 12]} />
+          <meshStandardMaterial color={COLORS.light} metalness={0.95} roughness={0.1} />
         </mesh>
       </group>
       {/* Control panel */}
-      <mesh position={[0.42, 0.4, 0]}>
-        <boxGeometry args={[0.08, 0.25, 0.3]} />
-        <meshStandardMaterial color="#1a1a1a" />
+      <mesh position={[0.38, 0.35, 0]}>
+        <boxGeometry args={[0.06, 0.2, 0.25]} />
+        <meshStandardMaterial color={COLORS.dark} />
       </mesh>
-      <mesh position={[0.47, 0.42, 0]}>
-        <planeGeometry args={[0.01, 0.18, 0.2]} />
-        <meshStandardMaterial color="#0A7FA5" emissive="#0A7FA5" emissiveIntensity={0.3} />
+      <mesh position={[0.42, 0.37, 0]}>
+        <planeGeometry args={[0.01, 0.12, 0.15]} />
+        <meshStandardMaterial color={COLORS.primary} emissive={COLORS.primary} emissiveIntensity={0.2} />
       </mesh>
     </group>
   );
 }
 
-// Quality Inspection Station
+// Quality Inspection Station - Technical style
 function InspectionStation({ position }: { position: [number, number, number] }) {
   const gaugeRef = useRef<Mesh>(null);
   
   useFrame((state) => {
     if (gaugeRef.current) {
-      gaugeRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 2) * 0.3;
+      gaugeRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 1.5) * 0.25;
     }
   });
 
   return (
     <group position={position}>
-      {/* Inspection table */}
+      {/* Inspection table - wireframe */}
       <mesh position={[0, -0.05, 0]}>
-        <boxGeometry args={[0.6, 0.1, 0.5]} />
-        <meshStandardMaterial color="#e8e8e8" metalness={0.3} roughness={0.4} />
+        <boxGeometry args={[0.55, 0.08, 0.45]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.6} />
+      </mesh>
+      {/* Table surface */}
+      <mesh position={[0, -0.02, 0]}>
+        <boxGeometry args={[0.5, 0.02, 0.4]} />
+        <meshStandardMaterial color={COLORS.light} metalness={0.4} roughness={0.5} />
       </mesh>
       {/* Table legs */}
-      {[[-0.25, -0.25, -0.2], [-0.25, -0.25, 0.2], [0.25, -0.25, -0.2], [0.25, -0.25, 0.2]].map((pos, i) => (
+      {[[-0.22, -0.22, -0.18], [-0.22, -0.22, 0.18], [0.22, -0.22, -0.18], [0.22, -0.22, 0.18]].map((pos, i) => (
         <mesh key={i} position={pos as [number, number, number]}>
-          <cylinderGeometry args={[0.02, 0.02, 0.3, 8]} />
-          <meshStandardMaterial color="#6EA996" metalness={0.6} roughness={0.3} />
+          <cylinderGeometry args={[0.015, 0.015, 0.28, 8]} />
+          <meshStandardMaterial color={COLORS.secondary} metalness={0.5} roughness={0.4} />
         </mesh>
       ))}
-      {/* Measuring equipment - Caliper */}
-      <group position={[0.1, 0.05, 0]} rotation={[0, 0.3, 0]}>
+      {/* Measuring tool */}
+      <group position={[0.08, 0.03, 0]} rotation={[0, 0.3, 0]}>
         <mesh>
-          <boxGeometry args={[0.25, 0.02, 0.06]} />
-          <meshStandardMaterial color="#c0c0c0" metalness={0.9} roughness={0.1} />
-        </mesh>
-        <mesh position={[0.08, 0.02, 0]}>
-          <boxGeometry args={[0.08, 0.04, 0.04]} />
-          <meshStandardMaterial color="#c0c0c0" metalness={0.9} roughness={0.1} />
+          <boxGeometry args={[0.2, 0.015, 0.05]} />
+          <meshStandardMaterial color={COLORS.wireframe} metalness={0.8} roughness={0.2} />
         </mesh>
       </group>
       {/* Height gauge */}
-      <group position={[-0.15, 0.15, 0.1]}>
+      <group position={[-0.12, 0.12, 0.08]}>
         <mesh>
-          <boxGeometry args={[0.08, 0.02, 0.08]} />
-          <meshStandardMaterial color="#1a1a1a" />
+          <boxGeometry args={[0.06, 0.015, 0.06]} />
+          <meshStandardMaterial color={COLORS.dark} />
         </mesh>
-        <mesh position={[0, 0.12, 0]}>
-          <cylinderGeometry args={[0.015, 0.015, 0.22, 12]} />
-          <meshStandardMaterial color="#c0c0c0" metalness={0.9} roughness={0.1} />
+        <mesh position={[0, 0.1, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.18, 10]} />
+          <meshStandardMaterial color={COLORS.wireframe} metalness={0.9} roughness={0.1} />
         </mesh>
-        <mesh ref={gaugeRef} position={[0.04, 0.1, 0]}>
-          <boxGeometry args={[0.08, 0.015, 0.03]} />
-          <meshStandardMaterial color="#0A7FA5" />
+        <mesh ref={gaugeRef} position={[0.035, 0.08, 0]}>
+          <boxGeometry args={[0.06, 0.012, 0.025]} />
+          <meshStandardMaterial color={COLORS.primary} />
         </mesh>
       </group>
       {/* Part being inspected */}
-      <mesh position={[0.05, 0.08, -0.1]} rotation={[0, 0.5, 0]}>
-        <cylinderGeometry args={[0.05, 0.05, 0.04, 24]} />
-        <meshStandardMaterial color="#b0b0b0" metalness={0.8} roughness={0.2} />
+      <mesh position={[0.04, 0.06, -0.08]} rotation={[0, 0.5, 0]}>
+        <cylinderGeometry args={[0.04, 0.04, 0.035, 20]} />
+        <meshStandardMaterial color={COLORS.wireframe} metalness={0.7} roughness={0.3} />
       </mesh>
-      {/* Magnifying lamp */}
-      <group position={[0.2, 0.3, -0.15]}>
-        <mesh position={[0, -0.1, 0]}>
-          <cylinderGeometry args={[0.01, 0.01, 0.2, 8]} />
-          <meshStandardMaterial color="#333" />
-        </mesh>
-        <mesh>
-          <torusGeometry args={[0.06, 0.015, 8, 24]} />
-          <meshStandardMaterial color="#1a1a1a" />
-        </mesh>
-        <mesh position={[0, 0, 0.01]}>
-          <circleGeometry args={[0.05, 24]} />
-          <meshStandardMaterial color="#fff" transparent opacity={0.3} />
-        </mesh>
-      </group>
     </group>
   );
 }
 
-// Realistic Assembly Line with detailed conveyor
+// Assembly Line - Technical wireframe style
 function AssemblyLine({ position }: { position: [number, number, number] }) {
   const partsRef = useRef<Group>(null);
   const rollerRefs = useRef<(Mesh | null)[]>([]);
@@ -193,71 +173,65 @@ function AssemblyLine({ position }: { position: [number, number, number] }) {
   useFrame((state) => {
     if (partsRef.current) {
       partsRef.current.children.forEach((part, i) => {
-        const offset = (state.clock.elapsedTime * 0.25 + i * 0.4) % 2.4;
-        part.position.x = -1 + offset;
+        const offset = (state.clock.elapsedTime * 0.2 + i * 0.35) % 2.2;
+        part.position.x = -0.9 + offset;
       });
     }
     rollerRefs.current.forEach((roller) => {
       if (roller) {
-        roller.rotation.z = state.clock.elapsedTime * 3;
+        roller.rotation.z = state.clock.elapsedTime * 2.5;
       }
     });
   });
 
   return (
     <group position={position}>
-      {/* Main conveyor frame */}
+      {/* Main conveyor frame - wireframe */}
       <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[2.5, 0.06, 0.5]} />
-        <meshStandardMaterial color="#333" metalness={0.8} roughness={0.2} />
+        <boxGeometry args={[2.2, 0.05, 0.45]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
       {/* Side rails */}
-      <mesh position={[0, 0.05, 0.23]}>
-        <boxGeometry args={[2.5, 0.04, 0.04]} />
-        <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+      <mesh position={[0, 0.04, 0.2]}>
+        <boxGeometry args={[2.2, 0.03, 0.03]} />
+        <meshStandardMaterial color={COLORS.secondary} metalness={0.6} roughness={0.4} />
       </mesh>
-      <mesh position={[0, 0.05, -0.23]}>
-        <boxGeometry args={[2.5, 0.04, 0.04]} />
-        <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+      <mesh position={[0, 0.04, -0.2]}>
+        <boxGeometry args={[2.2, 0.03, 0.03]} />
+        <meshStandardMaterial color={COLORS.secondary} metalness={0.6} roughness={0.4} />
       </mesh>
       {/* Rollers */}
-      {Array.from({ length: 12 }).map((_, i) => (
+      {Array.from({ length: 10 }).map((_, i) => (
         <mesh 
           key={i} 
           ref={(el) => { if (el) rollerRefs.current[i] = el; }}
-          position={[-1.1 + i * 0.2, -0.01, 0]} 
+          position={[-0.95 + i * 0.2, -0.01, 0]} 
           rotation={[Math.PI / 2, 0, 0]}
         >
-          <cylinderGeometry args={[0.025, 0.025, 0.42, 12]} />
-          <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+          <cylinderGeometry args={[0.02, 0.02, 0.36, 10]} />
+          <meshStandardMaterial color={COLORS.dark} metalness={0.85} roughness={0.15} />
         </mesh>
       ))}
-      {/* Support legs */}
-      {[-0.9, -0.3, 0.3, 0.9].map((x, i) => (
+      {/* Support legs - wireframe */}
+      {[-0.8, -0.2, 0.4, 0.8].map((x, i) => (
         <group key={i}>
-          <mesh position={[x, -0.2, 0.2]}>
-            <boxGeometry args={[0.04, 0.35, 0.04]} />
-            <meshStandardMaterial color="#6EA996" metalness={0.6} roughness={0.3} />
+          <mesh position={[x, -0.18, 0.18]}>
+            <boxGeometry args={[0.03, 0.3, 0.03]} />
+            <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.7} />
           </mesh>
-          <mesh position={[x, -0.2, -0.2]}>
-            <boxGeometry args={[0.04, 0.35, 0.04]} />
-            <meshStandardMaterial color="#6EA996" metalness={0.6} roughness={0.3} />
+          <mesh position={[x, -0.18, -0.18]}>
+            <boxGeometry args={[0.03, 0.3, 0.03]} />
+            <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.7} />
           </mesh>
         </group>
       ))}
-      {/* Moving parts on conveyor */}
+      {/* Moving parts - wireframe blocks */}
       <group ref={partsRef}>
         {[0, 1, 2, 3, 4].map((i) => (
-          <group key={i} position={[-0.8 + i * 0.4, 0.08, 0]}>
-            {/* Engine block style part */}
+          <group key={i} position={[-0.7 + i * 0.35, 0.06, 0]}>
             <mesh>
-              <boxGeometry args={[0.15, 0.08, 0.12]} />
-              <meshStandardMaterial color="#808080" metalness={0.85} roughness={0.15} />
-            </mesh>
-            {/* Detail features */}
-            <mesh position={[0, 0.05, 0]}>
-              <cylinderGeometry args={[0.02, 0.02, 0.04, 8]} />
-              <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+              <boxGeometry args={[0.12, 0.06, 0.1]} />
+              <meshStandardMaterial color={COLORS.primary} transparent opacity={0.7} />
             </mesh>
           </group>
         ))}
@@ -266,8 +240,8 @@ function AssemblyLine({ position }: { position: [number, number, number] }) {
   );
 }
 
-// Industrial Robot Arm with realistic joints
-function IndustrialRobot({ position, baseColor = "#0A7FA5" }: { position: [number, number, number]; baseColor?: string }) {
+// Industrial Robot - Technical style
+function IndustrialRobot({ position }: { position: [number, number, number] }) {
   const joint1Ref = useRef<Group>(null);
   const joint2Ref = useRef<Group>(null);
   const joint3Ref = useRef<Group>(null);
@@ -275,75 +249,69 @@ function IndustrialRobot({ position, baseColor = "#0A7FA5" }: { position: [numbe
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     if (joint1Ref.current) {
-      joint1Ref.current.rotation.y = Math.sin(t * 0.4) * 0.6;
+      joint1Ref.current.rotation.y = Math.sin(t * 0.35) * 0.5;
     }
     if (joint2Ref.current) {
-      joint2Ref.current.rotation.z = -0.3 + Math.sin(t * 0.5 + 1) * 0.3;
+      joint2Ref.current.rotation.z = -0.25 + Math.sin(t * 0.45 + 1) * 0.25;
     }
     if (joint3Ref.current) {
-      joint3Ref.current.rotation.z = Math.sin(t * 0.6 + 2) * 0.4;
+      joint3Ref.current.rotation.z = Math.sin(t * 0.55 + 2) * 0.35;
     }
   });
 
   return (
     <group position={position}>
-      {/* Heavy base */}
-      <mesh position={[0, 0.05, 0]}>
-        <cylinderGeometry args={[0.2, 0.25, 0.1, 24]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+      {/* Base - wireframe */}
+      <mesh position={[0, 0.04, 0]}>
+        <cylinderGeometry args={[0.15, 0.18, 0.08, 20]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.6} />
       </mesh>
-      {/* Base mounting plate */}
-      <mesh position={[0, 0.11, 0]}>
-        <cylinderGeometry args={[0.15, 0.18, 0.02, 24]} />
-        <meshStandardMaterial color={baseColor} metalness={0.7} roughness={0.2} />
+      <mesh position={[0, 0.09, 0]}>
+        <cylinderGeometry args={[0.12, 0.14, 0.02, 20]} />
+        <meshStandardMaterial color={COLORS.secondary} metalness={0.6} roughness={0.3} />
       </mesh>
       
       {/* J1 - Base rotation */}
-      <group ref={joint1Ref} position={[0, 0.12, 0]}>
-        {/* Lower arm housing */}
-        <mesh position={[0, 0.15, 0]}>
-          <boxGeometry args={[0.12, 0.25, 0.12]} />
-          <meshStandardMaterial color={baseColor} metalness={0.7} roughness={0.2} />
+      <group ref={joint1Ref} position={[0, 0.1, 0]}>
+        <mesh position={[0, 0.12, 0]}>
+          <boxGeometry args={[0.1, 0.2, 0.1]} />
+          <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.7} />
         </mesh>
         
         {/* J2 - Shoulder */}
-        <group ref={joint2Ref} position={[0, 0.28, 0]}>
-          {/* Joint cover */}
+        <group ref={joint2Ref} position={[0, 0.23, 0]}>
           <mesh rotation={[Math.PI / 2, 0, 0]}>
-            <cylinderGeometry args={[0.06, 0.06, 0.14, 16]} />
-            <meshStandardMaterial color="#333" metalness={0.85} roughness={0.15} />
+            <cylinderGeometry args={[0.045, 0.045, 0.1, 14]} />
+            <meshStandardMaterial color={COLORS.dark} metalness={0.8} roughness={0.2} />
           </mesh>
-          {/* Upper arm */}
-          <mesh position={[0, 0.18, 0]}>
-            <boxGeometry args={[0.08, 0.3, 0.08]} />
-            <meshStandardMaterial color={baseColor} metalness={0.7} roughness={0.2} />
+          <mesh position={[0, 0.15, 0]}>
+            <boxGeometry args={[0.06, 0.25, 0.06]} />
+            <meshStandardMaterial color={COLORS.primary} wireframe transparent opacity={0.8} />
           </mesh>
           
           {/* J3 - Elbow */}
-          <group ref={joint3Ref} position={[0, 0.35, 0]}>
+          <group ref={joint3Ref} position={[0, 0.28, 0]}>
             <mesh rotation={[Math.PI / 2, 0, 0]}>
-              <cylinderGeometry args={[0.04, 0.04, 0.1, 16]} />
-              <meshStandardMaterial color="#333" metalness={0.85} roughness={0.15} />
+              <cylinderGeometry args={[0.03, 0.03, 0.08, 12]} />
+              <meshStandardMaterial color={COLORS.dark} metalness={0.8} roughness={0.2} />
             </mesh>
-            {/* Forearm */}
-            <mesh position={[0, 0.12, 0]}>
-              <boxGeometry args={[0.06, 0.2, 0.06]} />
-              <meshStandardMaterial color={baseColor} metalness={0.7} roughness={0.2} />
+            <mesh position={[0, 0.1, 0]}>
+              <boxGeometry args={[0.05, 0.16, 0.05]} />
+              <meshStandardMaterial color={COLORS.primary} wireframe transparent opacity={0.8} />
             </mesh>
-            {/* End effector / Gripper */}
-            <group position={[0, 0.24, 0]}>
+            {/* End effector */}
+            <group position={[0, 0.2, 0]}>
               <mesh>
-                <cylinderGeometry args={[0.03, 0.04, 0.05, 12]} />
-                <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+                <cylinderGeometry args={[0.025, 0.03, 0.04, 10]} />
+                <meshStandardMaterial color={COLORS.dark} metalness={0.85} roughness={0.15} />
               </mesh>
-              {/* Gripper fingers */}
-              <mesh position={[0.025, -0.04, 0]}>
-                <boxGeometry args={[0.015, 0.06, 0.02]} />
-                <meshStandardMaterial color="#6EA996" metalness={0.8} roughness={0.2} />
+              <mesh position={[0.02, -0.03, 0]}>
+                <boxGeometry args={[0.012, 0.05, 0.015]} />
+                <meshStandardMaterial color={COLORS.secondary} metalness={0.7} roughness={0.3} />
               </mesh>
-              <mesh position={[-0.025, -0.04, 0]}>
-                <boxGeometry args={[0.015, 0.06, 0.02]} />
-                <meshStandardMaterial color="#6EA996" metalness={0.8} roughness={0.2} />
+              <mesh position={[-0.02, -0.03, 0]}>
+                <boxGeometry args={[0.012, 0.05, 0.015]} />
+                <meshStandardMaterial color={COLORS.secondary} metalness={0.7} roughness={0.3} />
               </mesh>
             </group>
           </group>
@@ -353,344 +321,263 @@ function IndustrialRobot({ position, baseColor = "#0A7FA5" }: { position: [numbe
   );
 }
 
-// Detailed Worker with safety equipment
-function DetailedWorker({ position, rotation = 0 }: { position: [number, number, number]; rotation?: number }) {
-  const clipboardRef = useRef<Group>(null);
-  
-  useFrame((state) => {
-    if (clipboardRef.current) {
-      clipboardRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
-    }
-  });
-
+// Technical Worker Silhouette - Blueprint style
+function TechnicalWorker({ position, rotation = 0 }: { position: [number, number, number]; rotation?: number }) {
   return (
     <group position={position} rotation={[0, rotation, 0]}>
-      {/* Hard hat */}
-      <mesh position={[0, 0.42, 0]}>
-        <sphereGeometry args={[0.065, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#f5a623" metalness={0.3} roughness={0.4} />
+      {/* Head - simple sphere */}
+      <mesh position={[0, 0.38, 0]}>
+        <sphereGeometry args={[0.045, 10, 10]} />
+        <meshStandardMaterial color={COLORS.primary} transparent opacity={0.8} />
       </mesh>
-      <mesh position={[0, 0.39, 0]}>
-        <cylinderGeometry args={[0.07, 0.07, 0.02, 16]} />
-        <meshStandardMaterial color="#f5a623" metalness={0.3} roughness={0.4} />
+      {/* Hard hat brim */}
+      <mesh position={[0, 0.41, 0]}>
+        <cylinderGeometry args={[0.055, 0.055, 0.015, 12]} />
+        <meshStandardMaterial color={COLORS.secondary} />
       </mesh>
-      {/* Head */}
-      <mesh position={[0, 0.35, 0]}>
-        <sphereGeometry args={[0.055, 12, 12]} />
-        <meshStandardMaterial color="#d4a574" />
+      {/* Body - wireframe */}
+      <mesh position={[0, 0.18, 0]}>
+        <cylinderGeometry args={[0.04, 0.055, 0.22, 8]} />
+        <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.7} />
       </mesh>
-      {/* Safety vest body */}
-      <mesh position={[0, 0.15, 0]}>
-        <cylinderGeometry args={[0.05, 0.07, 0.25, 8]} />
-        <meshStandardMaterial color="#ff6b00" />
+      {/* Legs - wireframe */}
+      <mesh position={[-0.025, -0.05, 0]}>
+        <cylinderGeometry args={[0.02, 0.02, 0.18, 6]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.6} />
       </mesh>
-      {/* Vest stripes */}
-      <mesh position={[0, 0.18, 0.052]}>
-        <boxGeometry args={[0.06, 0.02, 0.01]} />
-        <meshStandardMaterial color="#c0c0c0" emissive="#c0c0c0" emissiveIntensity={0.3} />
+      <mesh position={[0.025, -0.05, 0]}>
+        <cylinderGeometry args={[0.02, 0.02, 0.18, 6]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.6} />
       </mesh>
-      <mesh position={[0, 0.12, 0.052]}>
-        <boxGeometry args={[0.06, 0.02, 0.01]} />
-        <meshStandardMaterial color="#c0c0c0" emissive="#c0c0c0" emissiveIntensity={0.3} />
-      </mesh>
-      {/* Arms */}
-      <mesh position={[-0.08, 0.15, 0]} rotation={[0, 0, 0.3]}>
-        <cylinderGeometry args={[0.02, 0.02, 0.15, 6]} />
-        <meshStandardMaterial color="#0A7FA5" />
-      </mesh>
-      <mesh position={[0.08, 0.12, 0.03]} rotation={[0.5, 0, -0.3]}>
-        <cylinderGeometry args={[0.02, 0.02, 0.15, 6]} />
-        <meshStandardMaterial color="#0A7FA5" />
-      </mesh>
-      {/* Legs */}
-      <mesh position={[-0.03, -0.08, 0]}>
-        <cylinderGeometry args={[0.025, 0.025, 0.2, 6]} />
-        <meshStandardMaterial color="#1a1a1a" />
-      </mesh>
-      <mesh position={[0.03, -0.08, 0]}>
-        <cylinderGeometry args={[0.025, 0.025, 0.2, 6]} />
-        <meshStandardMaterial color="#1a1a1a" />
-      </mesh>
-      {/* Safety boots */}
-      <mesh position={[-0.03, -0.19, 0.015]}>
-        <boxGeometry args={[0.04, 0.04, 0.07]} />
-        <meshStandardMaterial color="#333" />
-      </mesh>
-      <mesh position={[0.03, -0.19, 0.015]}>
-        <boxGeometry args={[0.04, 0.04, 0.07]} />
-        <meshStandardMaterial color="#333" />
-      </mesh>
-      {/* Clipboard */}
-      <group ref={clipboardRef} position={[0.12, 0.08, 0.06]} rotation={[0.8, 0, 0.2]}>
-        <mesh>
-          <boxGeometry args={[0.08, 0.1, 0.01]} />
-          <meshStandardMaterial color="#8b4513" />
-        </mesh>
-        <mesh position={[0, 0, 0.006]}>
-          <planeGeometry args={[0.07, 0.09]} />
-          <meshStandardMaterial color="#fff" />
-        </mesh>
-      </group>
     </group>
   );
 }
 
-// Pipe system with valves
+// Pipe system - Technical blueprint style
 function PipeSystem({ position }: { position: [number, number, number] }) {
   const valveRef = useRef<Mesh>(null);
   
   useFrame((state) => {
     if (valveRef.current) {
-      valveRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
+      valveRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.25) * 0.15;
     }
   });
 
   return (
     <group position={position}>
-      {/* Main horizontal pipe */}
+      {/* Main pipe - wireframe */}
       <mesh rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.04, 0.04, 1.5, 16]} />
-        <meshStandardMaterial color="#808080" metalness={0.9} roughness={0.1} />
+        <cylinderGeometry args={[0.03, 0.03, 1.2, 14]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
       {/* Vertical section */}
-      <mesh position={[0.5, -0.25, 0]}>
-        <cylinderGeometry args={[0.04, 0.04, 0.5, 16]} />
-        <meshStandardMaterial color="#808080" metalness={0.9} roughness={0.1} />
+      <mesh position={[0.4, -0.2, 0]}>
+        <cylinderGeometry args={[0.03, 0.03, 0.4, 14]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
-      {/* Elbow fitting */}
-      <mesh position={[0.5, 0, 0]}>
-        <torusGeometry args={[0.08, 0.04, 8, 12, Math.PI / 2]} />
-        <meshStandardMaterial color="#808080" metalness={0.9} roughness={0.1} />
+      {/* Elbow */}
+      <mesh position={[0.4, 0, 0]}>
+        <torusGeometry args={[0.06, 0.03, 8, 10, Math.PI / 2]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
       {/* Valve */}
-      <group position={[-0.2, 0, 0]}>
+      <group position={[-0.15, 0, 0]}>
         <mesh>
-          <cylinderGeometry args={[0.06, 0.06, 0.08, 12]} />
-          <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+          <cylinderGeometry args={[0.045, 0.045, 0.06, 10]} />
+          <meshStandardMaterial color={COLORS.secondary} metalness={0.6} roughness={0.4} />
         </mesh>
-        <mesh ref={valveRef} position={[0, 0.06, 0]}>
-          <cylinderGeometry args={[0.015, 0.02, 0.1, 8]} />
-          <meshStandardMaterial color="#0A7FA5" metalness={0.8} roughness={0.2} />
+        <mesh ref={valveRef} position={[0, 0.05, 0]}>
+          <cylinderGeometry args={[0.012, 0.015, 0.08, 8]} />
+          <meshStandardMaterial color={COLORS.primary} metalness={0.7} roughness={0.3} />
         </mesh>
-        <mesh position={[0, 0.12, 0]}>
-          <torusGeometry args={[0.03, 0.008, 8, 16]} />
-          <meshStandardMaterial color="#0A7FA5" metalness={0.8} roughness={0.2} />
-        </mesh>
-      </group>
-      {/* Pressure gauge */}
-      <group position={[0.2, 0.06, 0]} rotation={[0, 0, 0]}>
-        <mesh>
-          <cylinderGeometry args={[0.035, 0.035, 0.02, 16]} />
-          <meshStandardMaterial color="#1a1a1a" />
-        </mesh>
-        <mesh position={[0, 0.011, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <circleGeometry args={[0.03, 24]} />
-          <meshStandardMaterial color="#fff" />
+        <mesh position={[0, 0.1, 0]}>
+          <torusGeometry args={[0.025, 0.006, 8, 14]} />
+          <meshStandardMaterial color={COLORS.primary} metalness={0.7} roughness={0.3} />
         </mesh>
       </group>
     </group>
   );
 }
 
-// Control cabinet
+// Control Cabinet - Technical style
 function ControlCabinet({ position }: { position: [number, number, number] }) {
   return (
     <group position={position}>
-      {/* Cabinet body */}
-      <mesh position={[0, 0.4, 0]}>
-        <boxGeometry args={[0.4, 0.8, 0.25]} />
-        <meshStandardMaterial color="#e8e8e8" metalness={0.5} roughness={0.3} />
+      {/* Cabinet body - wireframe */}
+      <mesh position={[0, 0.35, 0]}>
+        <boxGeometry args={[0.35, 0.7, 0.22]} />
+        <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
       </mesh>
       {/* Door panel */}
-      <mesh position={[0, 0.4, 0.126]}>
-        <boxGeometry args={[0.36, 0.76, 0.01]} />
-        <meshStandardMaterial color="#d0d0d0" metalness={0.6} roughness={0.2} />
+      <mesh position={[0, 0.35, 0.112]}>
+        <boxGeometry args={[0.32, 0.66, 0.01]} />
+        <meshStandardMaterial color={COLORS.light} metalness={0.5} roughness={0.3} transparent opacity={0.6} />
       </mesh>
-      {/* Handle */}
-      <mesh position={[0.14, 0.4, 0.14]}>
-        <boxGeometry args={[0.02, 0.1, 0.02]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
-      </mesh>
-      {/* Status lights */}
-      {[0.65, 0.55, 0.45].map((y, i) => (
-        <mesh key={i} position={[-0.12, y, 0.135]}>
-          <sphereGeometry args={[0.015, 12, 12]} />
+      {/* Status indicators */}
+      {[0.55, 0.45, 0.35].map((y, i) => (
+        <mesh key={i} position={[-0.1, y, 0.12]}>
+          <sphereGeometry args={[0.012, 10, 10]} />
           <meshStandardMaterial 
-            color={i === 0 ? "#4ade80" : i === 1 ? "#fbbf24" : "#ef4444"} 
-            emissive={i === 0 ? "#4ade80" : i === 1 ? "#fbbf24" : "#ef4444"} 
-            emissiveIntensity={i === 0 ? 0.8 : 0.3}
+            color={i === 0 ? COLORS.secondary : COLORS.primary} 
+            emissive={i === 0 ? COLORS.secondary : COLORS.primary} 
+            emissiveIntensity={i === 0 ? 0.5 : 0.2}
           />
         </mesh>
       ))}
-      {/* Warning label */}
-      <mesh position={[0, 0.15, 0.135]}>
-        <planeGeometry args={[0.15, 0.08]} />
-        <meshStandardMaterial color="#fbbf24" />
-      </mesh>
     </group>
   );
 }
 
-// Scanning laser effect
-function LaserScanner({ position }: { position: [number, number, number] }) {
+// Scanning effect - Technical laser
+function ScanningLaser({ position }: { position: [number, number, number] }) {
   const laserRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (laserRef.current) {
-      laserRef.current.rotation.y = state.clock.elapsedTime * 2;
+      laserRef.current.rotation.y = state.clock.elapsedTime * 1.5;
     }
   });
 
   return (
     <group position={position}>
-      {/* Scanner housing */}
       <mesh>
-        <cylinderGeometry args={[0.06, 0.08, 0.1, 16]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+        <cylinderGeometry args={[0.05, 0.06, 0.08, 14]} />
+        <meshStandardMaterial color={COLORS.dark} metalness={0.8} roughness={0.2} />
       </mesh>
-      {/* Laser beam */}
       <group ref={laserRef}>
-        <mesh position={[0, -0.5, 0]}>
-          <cylinderGeometry args={[0.003, 0.003, 0.9, 8]} />
-          <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={2} transparent opacity={0.8} />
+        <mesh position={[0, -0.4, 0]}>
+          <cylinderGeometry args={[0.002, 0.002, 0.75, 6]} />
+          <meshStandardMaterial color={COLORS.primary} emissive={COLORS.primary} emissiveIntensity={1.5} transparent opacity={0.7} />
         </mesh>
       </group>
     </group>
   );
 }
 
-// Main factory structure - CAD style
+// Main factory - Blueprint/CAD aesthetic
 function Factory() {
   const groupRef = useRef<Group>(null);
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.04;
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.035;
     }
   });
 
   return (
-    <Float speed={0.8} rotationIntensity={0.03} floatIntensity={0.15}>
+    <Float speed={0.6} rotationIntensity={0.02} floatIntensity={0.1}>
       <group ref={groupRef} scale={1}>
         
-        {/* === FLOOR GRID - CAD STYLE === */}
-        <mesh position={[0, -0.55, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[6, 6, 30, 30]} />
-          <meshBasicMaterial color="#6EA996" wireframe transparent opacity={0.12} />
+        {/* === FLOOR GRID - Blueprint style === */}
+        <mesh position={[0, -0.52, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[5.5, 5.5, 28, 28]} />
+          <meshBasicMaterial color={COLORS.secondary} wireframe transparent opacity={0.15} />
         </mesh>
         
-        {/* === MAIN PRODUCTION FLOOR === */}
-        <mesh position={[0, -0.52, 0]}>
-          <boxGeometry args={[5, 0.05, 4]} />
-          <meshStandardMaterial color="#e0e0e0" metalness={0.2} roughness={0.6} />
-        </mesh>
-        
-        {/* Floor markings - safety zones */}
-        <mesh position={[-1.5, -0.49, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[0.8, 3]} />
-          <meshStandardMaterial color="#fbbf24" transparent opacity={0.4} />
+        {/* === PRODUCTION FLOOR - Wireframe base === */}
+        <mesh position={[0, -0.5, 0]}>
+          <boxGeometry args={[4.5, 0.04, 3.5]} />
+          <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.3} />
         </mesh>
         
         {/* === CNC MACHINES === */}
-        <CNCMachine position={[-1.5, -0.5, -1]} />
-        <CNCMachine position={[-1.5, -0.5, 0.5]} />
+        <CNCMachine position={[-1.4, -0.48, -0.9]} />
+        <CNCMachine position={[-1.4, -0.48, 0.4]} />
         
         {/* === ASSEMBLY LINE === */}
-        <AssemblyLine position={[0.5, -0.15, 0]} />
+        <AssemblyLine position={[0.4, -0.15, 0]} />
         
         {/* === INDUSTRIAL ROBOTS === */}
-        <IndustrialRobot position={[0, -0.5, -1.2]} baseColor="#0A7FA5" />
-        <IndustrialRobot position={[1.2, -0.5, -1.2]} baseColor="#6EA996" />
+        <IndustrialRobot position={[0, -0.48, -1.1]} />
+        <IndustrialRobot position={[1.1, -0.48, -1.1]} />
         
         {/* === QUALITY INSPECTION === */}
-        <InspectionStation position={[1.8, -0.4, 0.8]} />
+        <InspectionStation position={[1.6, -0.38, 0.7]} />
         
-        {/* === WORKERS === */}
-        <DetailedWorker position={[-0.5, -0.25, 0.8]} rotation={-0.5} />
-        <DetailedWorker position={[1.5, -0.25, 0.3]} rotation={2.5} />
-        <DetailedWorker position={[-1.8, -0.25, 0]} rotation={1} />
-        <DetailedWorker position={[0.8, -0.25, -0.8]} rotation={-1.5} />
+        {/* === WORKERS - Technical silhouettes === */}
+        <TechnicalWorker position={[-0.4, -0.25, 0.7]} rotation={-0.4} />
+        <TechnicalWorker position={[1.3, -0.25, 0.25]} rotation={2.3} />
+        <TechnicalWorker position={[-1.6, -0.25, -0.1]} rotation={0.8} />
+        <TechnicalWorker position={[0.6, -0.25, -0.7]} rotation={-1.2} />
         
         {/* === PIPE SYSTEMS === */}
-        <PipeSystem position={[-2, 0.5, -0.5]} />
-        <PipeSystem position={[2, 0.3, 0]} />
+        <PipeSystem position={[-1.8, 0.4, -0.4]} />
+        <PipeSystem position={[1.8, 0.25, -0.1]} />
         
         {/* === CONTROL CABINETS === */}
-        <ControlCabinet position={[-2.2, -0.5, 1.2]} />
-        <ControlCabinet position={[2.2, -0.5, -1.2]} />
+        <ControlCabinet position={[-2, -0.48, 1]} />
+        <ControlCabinet position={[2, -0.48, -1.1]} />
         
-        {/* === OVERHEAD CRANE === */}
-        <group position={[0, 1.5, 0]}>
+        {/* === OVERHEAD STRUCTURE - Wireframe crane === */}
+        <group position={[0, 1.3, 0]}>
           {/* Rails */}
-          <mesh position={[0, 0, -1.5]}>
-            <boxGeometry args={[5, 0.08, 0.1]} />
-            <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+          <mesh position={[0, 0, -1.3]}>
+            <boxGeometry args={[4.2, 0.06, 0.08]} />
+            <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.6} />
           </mesh>
-          <mesh position={[0, 0, 1.5]}>
-            <boxGeometry args={[5, 0.08, 0.1]} />
-            <meshStandardMaterial color="#6EA996" metalness={0.7} roughness={0.3} />
+          <mesh position={[0, 0, 1.3]}>
+            <boxGeometry args={[4.2, 0.06, 0.08]} />
+            <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.6} />
           </mesh>
           {/* Bridge */}
-          <mesh position={[0, -0.05, 0]}>
-            <boxGeometry args={[0.15, 0.15, 3]} />
-            <meshStandardMaterial color="#f5a623" />
+          <mesh position={[0, -0.04, 0]}>
+            <boxGeometry args={[0.12, 0.12, 2.6]} />
+            <meshStandardMaterial color={COLORS.secondary} wireframe transparent opacity={0.7} />
           </mesh>
           {/* Hoist */}
-          <mesh position={[0, -0.2, 0]}>
-            <boxGeometry args={[0.2, 0.15, 0.2]} />
-            <meshStandardMaterial color="#f5a623" />
+          <mesh position={[0, -0.15, 0]}>
+            <boxGeometry args={[0.15, 0.12, 0.15]} />
+            <meshStandardMaterial color={COLORS.primary} transparent opacity={0.8} />
           </mesh>
           {/* Cable */}
-          <mesh position={[0, -0.6, 0]}>
-            <cylinderGeometry args={[0.008, 0.008, 0.7, 8]} />
-            <meshStandardMaterial color="#1a1a1a" />
+          <mesh position={[0, -0.5, 0]}>
+            <cylinderGeometry args={[0.006, 0.006, 0.6, 6]} />
+            <meshStandardMaterial color={COLORS.dark} />
           </mesh>
           {/* Hook */}
-          <mesh position={[0, -0.98, 0]}>
-            <torusGeometry args={[0.04, 0.01, 8, 16, Math.PI * 1.5]} />
-            <meshStandardMaterial color="#0A7FA5" metalness={0.8} roughness={0.2} />
+          <mesh position={[0, -0.82, 0]}>
+            <torusGeometry args={[0.03, 0.008, 8, 14, Math.PI * 1.5]} />
+            <meshStandardMaterial color={COLORS.primary} metalness={0.7} roughness={0.3} />
           </mesh>
         </group>
         
-        {/* === LASER SCANNER - QC === */}
-        <LaserScanner position={[1.5, 0.8, 0.8]} />
+        {/* === SCANNING LASER === */}
+        <ScanningLaser position={[1.3, 0.7, 0.7]} />
         
-        {/* === DIMENSION LINES - CAD STYLE === */}
-        <DimensionLine start={[-2.5, -0.5, 2]} end={[2.5, -0.5, 2]} offset={0.2} />
-        <DimensionLine start={[-2.5, -0.5, -2]} end={[-2.5, -0.5, 2]} offset={0.2} />
+        {/* === DIMENSION LINES - CAD style === */}
+        <DimensionLine start={[-2.2, -0.48, 1.7]} end={[2.2, -0.48, 1.7]} offset={0.15} />
+        <DimensionLine start={[-2.2, -0.48, -1.7]} end={[-2.2, -0.48, 1.7]} offset={0.15} />
         
         {/* === AUDIT CHECKPOINT MARKERS === */}
         {[
-          [-2.3, -0.5, 1.8],
-          [2.3, -0.5, 1.8],
-          [-2.3, -0.5, -1.8],
-          [2.3, -0.5, -1.8],
-          [0, -0.5, 1.8],
+          [-2, -0.48, 1.5],
+          [2, -0.48, 1.5],
+          [-2, -0.48, -1.5],
+          [2, -0.48, -1.5],
+          [0, -0.48, 1.5],
         ].map((pos, i) => (
           <group key={i} position={pos as [number, number, number]}>
             <mesh>
-              <cylinderGeometry args={[0.06, 0.06, 0.02, 24]} />
-              <meshStandardMaterial color="#0A7FA5" metalness={0.7} roughness={0.3} />
+              <cylinderGeometry args={[0.05, 0.05, 0.015, 20]} />
+              <meshStandardMaterial color={COLORS.primary} metalness={0.6} roughness={0.4} />
             </mesh>
-            <mesh position={[0, 0.02, 0]}>
-              <sphereGeometry args={[0.035, 16, 16]} />
-              <meshStandardMaterial color="#0A7FA5" emissive="#0A7FA5" emissiveIntensity={0.6} />
+            <mesh position={[0, 0.015, 0]}>
+              <sphereGeometry args={[0.028, 14, 14]} />
+              <meshStandardMaterial color={COLORS.primary} emissive={COLORS.primary} emissiveIntensity={0.4} />
             </mesh>
           </group>
         ))}
         
-        {/* === STORAGE/MATERIAL AREA === */}
-        <group position={[2, -0.5, 0.5]}>
-          {/* Pallet with parts */}
-          <mesh position={[0, 0.02, 0]}>
-            <boxGeometry args={[0.4, 0.04, 0.4]} />
-            <meshStandardMaterial color="#8b4513" />
+        {/* === STORAGE AREA - Wireframe === */}
+        <group position={[1.8, -0.48, 0.4]}>
+          <mesh position={[0, 0.015, 0]}>
+            <boxGeometry args={[0.35, 0.03, 0.35]} />
+            <meshStandardMaterial color={COLORS.wireframe} wireframe transparent opacity={0.5} />
           </mesh>
-          {/* Stacked boxes */}
-          {[[0, 0.12, 0], [0, 0.24, 0], [-0.08, 0.12, 0.08]].map((pos, i) => (
+          {[[0, 0.1, 0], [0, 0.2, 0], [-0.06, 0.1, 0.06]].map((pos, i) => (
             <mesh key={i} position={pos as [number, number, number]}>
-              <boxGeometry args={[0.15, 0.1, 0.15]} />
-              <meshStandardMaterial color={i % 2 === 0 ? "#6EA996" : "#0A7FA5"} transparent opacity={0.9} />
+              <boxGeometry args={[0.12, 0.08, 0.12]} />
+              <meshStandardMaterial color={i % 2 === 0 ? COLORS.secondary : COLORS.primary} wireframe transparent opacity={0.7} />
             </mesh>
           ))}
         </group>
@@ -702,24 +589,21 @@ function Factory() {
 
 export function AnimatedFactory3D() {
   return (
-    <div className="absolute inset-0 z-[2] pointer-events-none" style={{ opacity: 0.65 }}>
+    <div className="absolute inset-0 z-[2] pointer-events-none" style={{ opacity: 0.8 }}>
       <Canvas
-        camera={{ position: [6, 4, 6], fov: 35 }}
+        camera={{ position: [4, 2.5, 4], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          {/* Lighting setup for CAD-style clarity */}
-          <ambientLight intensity={0.7} />
-          <directionalLight position={[10, 12, 8]} intensity={1.5} castShadow />
-          <directionalLight position={[-8, 6, -8]} intensity={0.5} />
-          <pointLight position={[0, 4, 0]} intensity={0.4} color="#ffffff" />
-          <spotLight position={[0, 5, 0]} angle={0.4} penumbra={0.5} intensity={0.6} />
+          {/* Stronger lighting for visibility */}
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[10, 10, 8]} intensity={1.5} />
+          <directionalLight position={[-8, 5, -8]} intensity={0.6} />
+          <pointLight position={[0, 4, 0]} intensity={0.5} color="#ffffff" />
           
-          {/* Environment for realistic reflections */}
           <Environment preset="city" />
           
-          {/* The Factory */}
           <Factory />
         </Suspense>
       </Canvas>
