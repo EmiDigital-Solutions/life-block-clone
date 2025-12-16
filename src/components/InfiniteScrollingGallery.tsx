@@ -56,16 +56,16 @@ const capabilities: Capability[] = [
 
 // Window Chrome Component
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="w-full h-full bg-[#0d0d14] rounded-lg overflow-hidden flex flex-col shadow-2xl">
+  <div className="w-full h-full bg-[#0A0A0A] rounded-lg overflow-hidden flex flex-col shadow-2xl">
     {/* Title Bar */}
-    <div className="h-7 bg-[#1a1a24] flex items-center px-2.5 gap-2 border-b border-white/5 flex-shrink-0">
+    <div className="h-7 bg-[#161616] flex items-center px-2.5 gap-2 border-b border-[#C0C0C0]/10 flex-shrink-0">
       <div className="flex gap-1.5">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#C4564F]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#D8A860]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#7CC2A7]" />
       </div>
       <div className="flex-1 text-center">
-        <span className="text-[9px] text-white/40 font-medium">{title}</span>
+        <span className="text-[9px] text-[#C0C0C0]/60 font-medium">{title}</span>
       </div>
       <div className="w-12" />
     </div>
@@ -81,20 +81,20 @@ const TemplateMockup = () => (
   <WindowChrome title="Template Builder — ISO 9001:2015">
     <div className="h-full flex text-[9px]">
       {/* Sidebar */}
-      <div className="w-16 bg-[#12121a] border-r border-white/5 p-2 flex flex-col gap-1">
-        <div className="p-1.5 bg-primary/20 rounded text-primary text-center">
+      <div className="w-16 bg-[#0A0A0A] border-r border-[#C0C0C0]/10 p-2 flex flex-col gap-1">
+        <div className="p-1.5 bg-[#1391BF]/20 rounded text-[#1391BF] text-center">
           <svg className="w-3 h-3 mx-auto mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
           <span className="text-[7px]">Sections</span>
         </div>
-        <div className="p-1.5 text-white/40 text-center hover:bg-white/5 rounded">
+        <div className="p-1.5 text-[#C0C0C0]/60 text-center hover:bg-[#C0C0C0]/5 rounded">
           <svg className="w-3 h-3 mx-auto mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
           <span className="text-[7px]">Fields</span>
         </div>
-        <div className="p-1.5 text-white/40 text-center hover:bg-white/5 rounded">
+        <div className="p-1.5 text-[#C0C0C0]/60 text-center hover:bg-[#C0C0C0]/5 rounded">
           <svg className="w-3 h-3 mx-auto mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -108,12 +108,12 @@ const TemplateMockup = () => (
         {/* Header */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
-            <div className="px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded text-[7px]">Published</div>
-            <span className="text-white/40 text-[7px]">v2.4</span>
+            <div className="px-1.5 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded text-[7px]">Published</div>
+            <span className="text-[#C0C0C0]/60 text-[7px]">v2.4</span>
           </div>
           <div className="flex gap-1">
-            <div className="px-2 py-0.5 bg-white/5 text-white/60 rounded text-[7px]">Preview</div>
-            <div className="px-2 py-0.5 bg-primary text-white rounded text-[7px]">Save</div>
+            <div className="px-2 py-0.5 bg-[#C0C0C0]/10 text-[#C0C0C0]/80 rounded text-[7px]">Preview</div>
+            <div className="px-2 py-0.5 bg-[#1391BF] text-white rounded text-[7px]">Save</div>
           </div>
         </div>
         
@@ -124,24 +124,24 @@ const TemplateMockup = () => (
             { name: "5. Leadership", items: ["5.1 Leadership commitment", "5.2 Quality policy", "5.3 Roles & responsibilities"], progress: 100 },
             { name: "7. Support", items: ["7.1 Resources", "7.2 Competence", "7.3 Awareness"], progress: 66 },
           ].map((section, i) => (
-            <motion.div
+          <motion.div
               key={i}
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.3, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
-              className="bg-[#1a1a24] rounded-lg overflow-hidden"
+              className="bg-[#161616] rounded-lg overflow-hidden"
             >
-              <div className="px-2 py-1.5 flex items-center gap-1.5 border-b border-white/5">
+              <div className="px-2 py-1.5 flex items-center gap-1.5 border-b border-[#C0C0C0]/10">
                 <motion.svg
                   animate={{ rotate: [0, 90] }}
                   transition={{ delay: i * 0.3 + 0.2, duration: 0.2, repeat: Infinity, repeatDelay: 6 }}
-                  className="w-2.5 h-2.5 text-white/40" viewBox="0 0 24 24" fill="currentColor"
+                  className="w-2.5 h-2.5 text-[#C0C0C0]/60" viewBox="0 0 24 24" fill="currentColor"
                 >
                   <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
                 </motion.svg>
-                <span className="text-white/90 font-medium flex-1">{section.name}</span>
-                <div className="w-10 h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div className={`h-full rounded-full ${section.progress === 100 ? 'bg-green-400' : 'bg-primary'}`} style={{ width: `${section.progress}%` }} />
+                <span className="text-[#F5F5F5]/90 font-medium flex-1">{section.name}</span>
+                <div className="w-10 h-1 bg-[#C0C0C0]/20 rounded-full overflow-hidden">
+                  <div className={`h-full rounded-full ${section.progress === 100 ? 'bg-[#7CC2A7]' : 'bg-[#1391BF]'}`} style={{ width: `${section.progress}%` }} />
                 </div>
               </div>
               <div className="px-2 py-1 space-y-0.5">
@@ -151,17 +151,17 @@ const TemplateMockup = () => (
                     initial={{ opacity: 0, x: -5 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.3 + j * 0.1 + 0.4, duration: 0.2, repeat: Infinity, repeatDelay: 6 }}
-                    className="flex items-center gap-1.5 py-0.5 px-1 hover:bg-white/5 rounded"
+                    className="flex items-center gap-1.5 py-0.5 px-1 hover:bg-[#C0C0C0]/5 rounded"
                   >
-                    <div className={`w-2.5 h-2.5 rounded border ${j < 2 || section.progress === 100 ? 'bg-primary border-primary' : 'border-white/20'} flex items-center justify-center`}>
+                    <div className={`w-2.5 h-2.5 rounded border ${j < 2 || section.progress === 100 ? 'bg-[#1391BF] border-[#1391BF]' : 'border-[#C0C0C0]/30'} flex items-center justify-center`}>
                       {(j < 2 || section.progress === 100) && (
                         <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
                       )}
                     </div>
-                    <span className="text-white/60 flex-1">{item}</span>
-                    <span className="text-white/30 text-[7px]">12 criteria</span>
+                    <span className="text-[#C0C0C0]/80 flex-1">{item}</span>
+                    <span className="text-[#C0C0C0]/50 text-[7px]">12 criteria</span>
                   </motion.div>
                 ))}
               </div>
@@ -176,23 +176,23 @@ const TemplateMockup = () => (
 // AI Assistant Chat UI
 const AIMockup = () => (
   <WindowChrome title="YVOO Copilot — Audit Assistant">
-    <div className="h-full flex flex-col text-[9px] bg-[#0f0f17]">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Header */}
-      <div className="px-2.5 py-2 border-b border-white/5 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center ring-2 ring-primary/20">
+      <div className="px-2.5 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex items-center justify-center ring-2 ring-[#1391BF]/20">
           <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
         <div className="flex-1">
-          <div className="text-white/90 font-medium">YVOO Copilot</div>
+          <div className="text-[#F5F5F5]/90 font-medium">YVOO Copilot</div>
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <span className="text-white/40 text-[7px]">Active • ISO 9001 context</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7CC2A7]" />
+            <span className="text-[#C0C0C0]/60 text-[7px]">Active • ISO 9001 context</span>
           </div>
         </div>
         <div className="flex gap-1">
-          <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-white/40">
+          <div className="w-5 h-5 rounded bg-[#C0C0C0]/10 flex items-center justify-center text-[#C0C0C0]/60">
             <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
             </svg>
@@ -208,14 +208,14 @@ const AIMockup = () => (
           transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
           className="flex gap-2"
         >
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex-shrink-0 flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <div className="bg-[#1a1a28] rounded-xl rounded-tl-sm p-2 max-w-[85%]">
-            <p className="text-white/80 leading-relaxed">I noticed you haven't collected evidence for <span className="text-primary font-medium">Clause 7.1.5 - Monitoring and measuring resources</span>. This is a critical requirement.</p>
-            <span className="text-white/30 text-[7px] mt-1 block">2 min ago</span>
+          <div className="bg-[#161616] rounded-xl rounded-tl-sm p-2 max-w-[85%]">
+            <p className="text-[#F5F5F5]/80 leading-relaxed">I noticed you haven't collected evidence for <span className="text-[#1391BF] font-medium">Clause 7.1.5 - Monitoring and measuring resources</span>. This is a critical requirement.</p>
+            <span className="text-[#C0C0C0]/50 text-[7px] mt-1 block">2 min ago</span>
           </div>
         </motion.div>
         
@@ -225,11 +225,11 @@ const AIMockup = () => (
           transition={{ delay: 1.5, duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
           className="flex gap-2 justify-end"
         >
-          <div className="bg-primary/20 rounded-xl rounded-tr-sm p-2 max-w-[75%]">
-            <p className="text-white/80">What evidence should I collect?</p>
-            <span className="text-white/30 text-[7px] mt-1 block text-right">1 min ago</span>
+          <div className="bg-[#1391BF]/20 rounded-xl rounded-tr-sm p-2 max-w-[75%]">
+            <p className="text-[#F5F5F5]/80">What evidence should I collect?</p>
+            <span className="text-[#C0C0C0]/50 text-[7px] mt-1 block text-right">1 min ago</span>
           </div>
-          <div className="w-5 h-5 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center text-[7px] text-white/60 font-medium">
+          <div className="w-5 h-5 rounded-full bg-[#C0C0C0]/30 flex-shrink-0 flex items-center justify-center text-[7px] text-[#F5F5F5]/80 font-medium">
             JD
           </div>
         </motion.div>
@@ -240,14 +240,14 @@ const AIMockup = () => (
           transition={{ delay: 3, duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
           className="flex gap-2"
         >
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex-shrink-0 flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <div className="bg-[#1a1a28] rounded-xl rounded-tl-sm p-2 max-w-[90%]">
-            <p className="text-white/80 mb-1.5">Based on ISO 9001:2015, you should collect:</p>
-            <div className="space-y-1 bg-white/5 rounded-lg p-1.5">
+          <div className="bg-[#161616] rounded-xl rounded-tl-sm p-2 max-w-[90%]">
+            <p className="text-[#F5F5F5]/80 mb-1.5">Based on ISO 9001:2015, you should collect:</p>
+            <div className="space-y-1 bg-[#C0C0C0]/5 rounded-lg p-1.5">
               {[
                 { icon: "📋", text: "Calibration certificates & schedules" },
                 { icon: "🔧", text: "Equipment maintenance records" },
@@ -258,7 +258,7 @@ const AIMockup = () => (
                   initial={{ opacity: 0, x: -5 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 3.5 + i * 0.2, duration: 0.2, repeat: Infinity, repeatDelay: 8 }}
-                  className="flex items-center gap-1.5 text-white/70"
+                  className="flex items-center gap-1.5 text-[#C0C0C0]/90"
                 >
                   <span className="text-[8px]">{item.icon}</span>
                   <span>{item.text}</span>
@@ -266,18 +266,18 @@ const AIMockup = () => (
               ))}
             </div>
             <div className="flex gap-1 mt-1.5">
-              <div className="px-1.5 py-0.5 bg-primary/20 text-primary rounded text-[7px] cursor-pointer hover:bg-primary/30">Add to checklist</div>
-              <div className="px-1.5 py-0.5 bg-white/5 text-white/60 rounded text-[7px] cursor-pointer hover:bg-white/10">Show examples</div>
+              <div className="px-1.5 py-0.5 bg-[#1391BF]/20 text-[#1391BF] rounded text-[7px] cursor-pointer hover:bg-[#1391BF]/30">Add to checklist</div>
+              <div className="px-1.5 py-0.5 bg-[#C0C0C0]/10 text-[#C0C0C0]/80 rounded text-[7px] cursor-pointer hover:bg-[#C0C0C0]/15">Show examples</div>
             </div>
           </div>
         </motion.div>
       </div>
       
       {/* Input */}
-      <div className="p-2 border-t border-white/5">
-        <div className="flex items-center gap-2 bg-[#1a1a28] rounded-lg px-2 py-1.5">
-          <input type="text" placeholder="Ask about audit requirements..." className="flex-1 bg-transparent text-white/80 placeholder:text-white/30 outline-none text-[9px]" />
-          <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
+      <div className="p-2 border-t border-[#C0C0C0]/10">
+        <div className="flex items-center gap-2 bg-[#161616] rounded-lg px-2 py-1.5">
+          <input type="text" placeholder="Ask about audit requirements..." className="flex-1 bg-transparent text-[#F5F5F5]/80 placeholder:text-[#C0C0C0]/40 outline-none text-[9px]" />
+          <div className="w-5 h-5 rounded bg-[#1391BF] flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
@@ -291,22 +291,22 @@ const AIMockup = () => (
 // Equipment Recognition UI
 const EquipmentMockup = () => (
   <WindowChrome title="Equipment Scanner — AI Detection">
-    <div className="h-full flex flex-col text-[9px] bg-[#0a0a12]">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
-      <div className="px-2 py-1.5 border-b border-white/5 flex items-center gap-2">
+      <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
         <div className="flex gap-1">
           {["Detect", "Measure", "Compare"].map((tool, i) => (
-            <div key={tool} className={`px-1.5 py-0.5 rounded text-[7px] ${i === 0 ? 'bg-primary text-white' : 'bg-white/5 text-white/50'}`}>
+            <div key={tool} className={`px-1.5 py-0.5 rounded text-[7px] ${i === 0 ? 'bg-[#1391BF] text-white' : 'bg-[#C0C0C0]/10 text-[#C0C0C0]/70'}`}>
               {tool}
             </div>
           ))}
         </div>
         <div className="flex-1" />
-        <span className="text-white/40 text-[7px]">Confidence: 94%</span>
+        <span className="text-[#C0C0C0]/60 text-[7px]">Confidence: 94%</span>
       </div>
       
       {/* Image Area */}
-      <div className="flex-1 relative bg-gradient-to-br from-[#0f0f18] to-[#0a0a12] m-2 rounded-lg overflow-hidden">
+      <div className="flex-1 relative bg-gradient-to-br from-[#0A0A0A] to-[#161616] m-2 rounded-lg overflow-hidden">
         {/* Real Equipment Image */}
         <img 
           src={equipmentImage} 
@@ -326,13 +326,13 @@ const EquipmentMockup = () => (
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
-            className="absolute inset-2 border-2 border-accent rounded"
+            className="absolute inset-2 border-2 border-[#7CC2A7] rounded"
           >
             {/* Corners */}
-            <div className="absolute -top-0.5 -left-0.5 w-2 h-2 border-t-2 border-l-2 border-accent" />
-            <div className="absolute -top-0.5 -right-0.5 w-2 h-2 border-t-2 border-r-2 border-accent" />
-            <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 border-b-2 border-l-2 border-accent" />
-            <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2 border-accent" />
+            <div className="absolute -top-0.5 -left-0.5 w-2 h-2 border-t-2 border-l-2 border-[#7CC2A7]" />
+            <div className="absolute -top-0.5 -right-0.5 w-2 h-2 border-t-2 border-r-2 border-[#7CC2A7]" />
+            <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 border-b-2 border-l-2 border-[#7CC2A7]" />
+            <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2 border-[#7CC2A7]" />
           </motion.div>
           
           {/* Label */}
@@ -340,7 +340,7 @@ const EquipmentMockup = () => (
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
-            className="absolute top-0 left-0 bg-accent px-1.5 py-0.5 rounded-br rounded-tl flex items-center gap-1"
+            className="absolute top-0 left-0 bg-[#7CC2A7] px-1.5 py-0.5 rounded-br rounded-tl flex items-center gap-1"
           >
             <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -353,9 +353,9 @@ const EquipmentMockup = () => (
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
-            className="absolute top-4 left-2 w-10 h-8 border border-primary/60 rounded-sm"
+            className="absolute top-4 left-2 w-10 h-8 border border-[#1391BF]/60 rounded-sm"
           >
-            <div className="absolute -top-2 left-0 bg-primary/80 px-1 py-0.5 rounded text-[6px] text-white">Control Panel</div>
+            <div className="absolute -top-2 left-0 bg-[#1391BF]/80 px-1 py-0.5 rounded text-[6px] text-white">Control Panel</div>
           </motion.div>
         </motion.div>
         
@@ -364,7 +364,7 @@ const EquipmentMockup = () => (
           initial={{ top: 0 }}
           animate={{ top: '100%' }}
           transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
-          className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent"
+          className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#7CC2A7] to-transparent"
         />
       </div>
       
@@ -373,27 +373,27 @@ const EquipmentMockup = () => (
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
-        className="mx-2 mb-2 bg-[#12121a] rounded-lg p-2 border border-white/5"
+        className="mx-2 mb-2 bg-[#161616] rounded-lg p-2 border border-[#C0C0C0]/10"
       >
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-white/90 font-medium">DMG MORI NLX 2500</span>
+          <span className="text-[#F5F5F5]/90 font-medium">DMG MORI NLX 2500</span>
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <span className="text-green-400 text-[7px]">Verified</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-[#7CC2A7]" />
+            <span className="text-[#7CC2A7] text-[7px]">Verified</span>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 text-[7px]">
           <div>
-            <div className="text-white/40">Asset ID</div>
-            <div className="text-white/80">MCH-2024-0847</div>
+            <div className="text-[#C0C0C0]/60">Asset ID</div>
+            <div className="text-[#F5F5F5]/80">MCH-2024-0847</div>
           </div>
           <div>
-            <div className="text-white/40">Last Service</div>
-            <div className="text-white/80">Oct 15, 2024</div>
+            <div className="text-[#C0C0C0]/60">Last Service</div>
+            <div className="text-[#F5F5F5]/80">Oct 15, 2024</div>
           </div>
           <div>
-            <div className="text-white/40">Condition</div>
-            <div className="text-green-400">Good</div>
+            <div className="text-[#C0C0C0]/60">Condition</div>
+            <div className="text-[#7CC2A7]">Good</div>
           </div>
         </div>
       </motion.div>
@@ -404,16 +404,16 @@ const EquipmentMockup = () => (
 // Scoring Dashboard UI
 const ScoringMockup = () => (
   <WindowChrome title="Audit Scorecard — Supplier Assessment">
-    <div className="h-full flex flex-col text-[9px] bg-[#0a0a12] p-2.5">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <div>
-          <div className="text-white/90 font-medium">Müller GmbH</div>
-          <div className="text-white/40 text-[7px]">ISO 9001 • IATF 16949</div>
+          <div className="text-[#F5F5F5]/90 font-medium">Müller GmbH</div>
+          <div className="text-[#C0C0C0]/60 text-[7px]">ISO 9001 • IATF 16949</div>
         </div>
         <div className="text-right">
-          <div className="text-white/40 text-[7px]">Audit Date</div>
-          <div className="text-white/60">Nov 12, 2024</div>
+          <div className="text-[#C0C0C0]/60 text-[7px]">Audit Date</div>
+          <div className="text-[#C0C0C0]/80">Nov 12, 2024</div>
         </div>
       </div>
       
@@ -427,7 +427,7 @@ const ScoringMockup = () => (
         >
           {/* Background Ring */}
           <svg className="w-full h-full -rotate-90">
-            <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="6" />
+            <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(192,192,192,0.15)" strokeWidth="6" />
             <motion.circle
               cx="40" cy="40" r="34" fill="none" stroke="url(#scoreGradient)" strokeWidth="6"
               strokeLinecap="round"
@@ -437,8 +437,8 @@ const ScoringMockup = () => (
             />
             <defs>
               <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0A7FA5" />
-                <stop offset="100%" stopColor="#6EA996" />
+                <stop offset="0%" stopColor="#1391BF" />
+                <stop offset="100%" stopColor="#7CC2A7" />
               </linearGradient>
             </defs>
           </svg>
@@ -447,11 +447,11 @@ const ScoringMockup = () => (
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-              className="text-2xl font-bold text-white"
+              className="text-2xl font-bold text-[#F5F5F5]"
             >
               84
             </motion.span>
-            <span className="text-white/40 text-[7px]">/ 100</span>
+            <span className="text-[#C0C0C0]/60 text-[7px]">/ 100</span>
           </div>
         </motion.div>
       </div>
@@ -459,26 +459,26 @@ const ScoringMockup = () => (
       {/* Category Breakdown */}
       <div className="flex-1 space-y-1.5">
         {[
-          { name: "Quality Management", score: 92, weight: "40%", color: "bg-green-400" },
-          { name: "Process Control", score: 85, weight: "25%", color: "bg-accent" },
-          { name: "Documentation", score: 78, weight: "20%", color: "bg-yellow-400" },
-          { name: "Continuous Improvement", score: 70, weight: "15%", color: "bg-primary" },
+          { name: "Quality Management", score: 92, weight: "40%", color: "bg-[#7CC2A7]" },
+          { name: "Process Control", score: 85, weight: "25%", color: "bg-[#7B8E80]" },
+          { name: "Documentation", score: 78, weight: "20%", color: "bg-[#D8A860]" },
+          { name: "Continuous Improvement", score: 70, weight: "15%", color: "bg-[#1391BF]" },
         ].map((item, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.5 + i * 0.2, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-            className="bg-[#12121a] rounded-lg p-1.5"
+            className="bg-[#161616] rounded-lg p-1.5"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-white/80">{item.name}</span>
+              <span className="text-[#F5F5F5]/80">{item.name}</span>
               <div className="flex items-center gap-2">
-                <span className="text-white/40 text-[7px]">{item.weight}</span>
-                <span className="text-white font-medium">{item.score}</span>
+                <span className="text-[#C0C0C0]/60 text-[7px]">{item.weight}</span>
+                <span className="text-[#F5F5F5] font-medium">{item.score}</span>
               </div>
             </div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-[#C0C0C0]/15 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${item.score}%` }}
@@ -491,12 +491,12 @@ const ScoringMockup = () => (
       </div>
       
       {/* Footer */}
-      <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
+      <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#C0C0C0]/10">
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 rounded-full bg-green-400" />
-          <span className="text-white/60 text-[7px]">Approved</span>
+          <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
+          <span className="text-[#C0C0C0]/80 text-[7px]">Approved</span>
         </div>
-        <span className="text-white/40 text-[7px]">Previous: 79 (+5)</span>
+        <span className="text-[#C0C0C0]/60 text-[7px]">Previous: 79 (+5)</span>
       </div>
     </div>
   </WindowChrome>
@@ -505,18 +505,18 @@ const ScoringMockup = () => (
 // Evidence Gallery UI
 const EvidenceMockup = () => (
   <WindowChrome title="Evidence Manager — 47 files">
-    <div className="h-full flex flex-col text-[9px] bg-[#0a0a12]">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
-      <div className="px-2 py-1.5 border-b border-white/5 flex items-center gap-2">
-        <div className="flex-1 flex items-center gap-1 bg-[#12121a] rounded px-1.5 py-0.5">
-          <svg className="w-2.5 h-2.5 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
+        <div className="flex-1 flex items-center gap-1 bg-[#161616] rounded px-1.5 py-0.5">
+          <svg className="w-2.5 h-2.5 text-[#C0C0C0]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <span className="text-white/30 text-[8px]">Search evidence...</span>
+          <span className="text-[#C0C0C0]/50 text-[8px]">Search evidence...</span>
         </div>
         <div className="flex gap-0.5">
           {["All", "QMS", "Safety", "Env"].map((tab, i) => (
-            <div key={tab} className={`px-1.5 py-0.5 rounded text-[7px] ${i === 0 ? 'bg-primary text-white' : 'text-white/40 hover:bg-white/5'}`}>
+            <div key={tab} className={`px-1.5 py-0.5 rounded text-[7px] ${i === 0 ? 'bg-[#1391BF] text-white' : 'text-[#C0C0C0]/60 hover:bg-[#C0C0C0]/10'}`}>
               {tab}
             </div>
           ))}
@@ -526,22 +526,22 @@ const EvidenceMockup = () => (
       {/* Grid */}
       <div className="flex-1 p-2 grid grid-cols-3 gap-1.5 overflow-hidden">
         {[
-          { type: "img", name: "CNC_Inspection.jpg", tag: "QMS", tagColor: "bg-green-400", size: "2.4 MB", img: evidenceImg1 },
-          { type: "pdf", name: "Quality_Manual_v3.2.pdf", tag: "QMS", tagColor: "bg-green-400", size: "4.8 MB", img: null },
-          { type: "img", name: "Emergency_Routes.jpg", tag: "Safety", tagColor: "bg-accent", size: "3.2 MB", img: evidenceImg2 },
-          { type: "pdf", name: "Work_Instruction_WI-042.pdf", tag: "QMS", tagColor: "bg-green-400", size: "1.2 MB", img: null },
-          { type: "doc", name: "Calibration_Log_2024.xlsx", tag: "QMS", tagColor: "bg-green-400", size: "450 KB", img: null },
-          { type: "img", name: "Machine_Nameplate.jpg", tag: "Safety", tagColor: "bg-accent", size: "1.9 MB", img: equipmentImage },
+          { type: "img", name: "CNC_Inspection.jpg", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "2.4 MB", img: evidenceImg1 },
+          { type: "pdf", name: "Quality_Manual_v3.2.pdf", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "4.8 MB", img: null },
+          { type: "img", name: "Emergency_Routes.jpg", tag: "Safety", tagColor: "bg-[#7B8E80]", size: "3.2 MB", img: evidenceImg2 },
+          { type: "pdf", name: "Work_Instruction_WI-042.pdf", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "1.2 MB", img: null },
+          { type: "doc", name: "Calibration_Log_2024.xlsx", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "450 KB", img: null },
+          { type: "img", name: "Machine_Nameplate.jpg", tag: "Safety", tagColor: "bg-[#7B8E80]", size: "1.9 MB", img: equipmentImage },
         ].map((item, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.12, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
-            className="bg-[#12121a] rounded-lg overflow-hidden group cursor-pointer hover:ring-1 hover:ring-primary/50"
+            className="bg-[#161616] rounded-lg overflow-hidden group cursor-pointer hover:ring-1 hover:ring-[#1391BF]/50"
           >
             {/* Preview */}
-            <div className="aspect-square relative bg-gradient-to-br from-white/5 to-transparent overflow-hidden">
+            <div className="aspect-square relative bg-gradient-to-br from-[#C0C0C0]/5 to-transparent overflow-hidden">
               {item.type === "img" && item.img ? (
                 <img 
                   src={item.img} 
@@ -550,8 +550,8 @@ const EvidenceMockup = () => (
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-6 h-7 rounded ${item.type === 'pdf' ? 'bg-red-500/20' : 'bg-blue-500/20'} flex items-center justify-center`}>
-                    <span className="text-[7px] font-bold text-white/60 uppercase">{item.type}</span>
+                  <div className={`w-6 h-7 rounded ${item.type === 'pdf' ? 'bg-[#C4564F]/20' : 'bg-[#1391BF]/20'} flex items-center justify-center`}>
+                    <span className="text-[7px] font-bold text-[#C0C0C0]/80 uppercase">{item.type}</span>
                   </div>
                 </div>
               )}
@@ -569,7 +569,7 @@ const EvidenceMockup = () => (
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.12 + 0.4, duration: 0.2, repeat: Infinity, repeatDelay: 6 }}
-                className="absolute bottom-1 left-1 bg-primary/90 px-1 py-0.5 rounded text-[5px] text-white flex items-center gap-0.5 shadow-sm"
+                className="absolute bottom-1 left-1 bg-[#1391BF]/90 px-1 py-0.5 rounded text-[5px] text-white flex items-center gap-0.5 shadow-sm"
               >
                 <svg className="w-1.5 h-1.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -579,8 +579,8 @@ const EvidenceMockup = () => (
             </div>
             {/* Info */}
             <div className="p-1.5">
-              <div className="text-white/80 truncate text-[8px]">{item.name}</div>
-              <div className="text-white/40 text-[7px]">{item.size}</div>
+              <div className="text-[#F5F5F5]/80 truncate text-[8px]">{item.name}</div>
+              <div className="text-[#C0C0C0]/60 text-[7px]">{item.size}</div>
             </div>
           </motion.div>
         ))}
@@ -591,17 +591,17 @@ const EvidenceMockup = () => (
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: [0, 1, 1, 0] }}
         transition={{ delay: 3, duration: 3, repeat: Infinity, repeatDelay: 3 }}
-        className="mx-2 mb-2 bg-primary/10 border border-primary/20 rounded-lg p-2"
+        className="mx-2 mb-2 bg-[#1391BF]/10 border border-[#1391BF]/20 rounded-lg p-2"
       >
         <div className="flex items-center gap-2">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="w-3 h-3 border border-primary border-t-transparent rounded-full"
+            className="w-3 h-3 border border-[#1391BF] border-t-transparent rounded-full"
           />
           <div className="flex-1">
-            <div className="text-white/80 text-[8px]">Processing 3 new files...</div>
-            <div className="text-white/40 text-[7px]">AI categorizing and extracting metadata</div>
+            <div className="text-[#F5F5F5]/80 text-[8px]">Processing 3 new files...</div>
+            <div className="text-[#C0C0C0]/60 text-[7px]">AI categorizing and extracting metadata</div>
           </div>
         </div>
       </motion.div>
@@ -612,30 +612,30 @@ const EvidenceMockup = () => (
 // Progress Dashboard UI
 const ProgressMockup = () => (
   <WindowChrome title="Live Audit Tracker — Müller GmbH">
-    <div className="h-full flex text-[9px] bg-[#0a0a12]">
+    <div className="h-full flex text-[9px] bg-[#0A0A0A]">
       {/* Timeline */}
       <div className="flex-1 p-2.5 overflow-hidden">
         {/* Status Bar */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-white/90 font-medium">In Progress</span>
+            <div className="w-2 h-2 rounded-full bg-[#7CC2A7] animate-pulse" />
+            <span className="text-[#F5F5F5]/90 font-medium">In Progress</span>
           </div>
-          <div className="text-white/40 text-[7px]">Started 3h 24m ago</div>
+          <div className="text-[#C0C0C0]/60 text-[7px]">Started 3h 24m ago</div>
         </div>
         
         {/* Progress Bar */}
         <div className="mb-3">
           <div className="flex justify-between text-[7px] mb-1">
-            <span className="text-white/40">Overall Completion</span>
-            <span className="text-white/80">65%</span>
+            <span className="text-[#C0C0C0]/60">Overall Completion</span>
+            <span className="text-[#F5F5F5]/80">65%</span>
           </div>
-          <div className="h-2 bg-[#12121a] rounded-full overflow-hidden">
+          <div className="h-2 bg-[#161616] rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: '65%' }}
               transition={{ duration: 1, repeat: Infinity, repeatDelay: 7 }}
-              className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+              className="h-full bg-gradient-to-r from-[#1391BF] to-[#7CC2A7] rounded-full"
             />
           </div>
         </div>
@@ -655,12 +655,12 @@ const ProgressMockup = () => (
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 + i * 0.15, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-              className={`flex items-center gap-2 p-1.5 rounded-lg ${item.status === 'active' ? 'bg-primary/10 border border-primary/30' : 'hover:bg-white/5'}`}
+              className={`flex items-center gap-2 p-1.5 rounded-lg ${item.status === 'active' ? 'bg-[#1391BF]/10 border border-[#1391BF]/30' : 'hover:bg-[#C0C0C0]/5'}`}
             >
               <div className="flex flex-col items-center w-4">
                 <div className={`w-3 h-3 rounded-full flex items-center justify-center ${
-                  item.status === 'complete' ? 'bg-green-400' : 
-                  item.status === 'active' ? 'bg-primary ring-2 ring-primary/30' : 'bg-white/20'
+                  item.status === 'complete' ? 'bg-[#7CC2A7]' : 
+                  item.status === 'active' ? 'bg-[#1391BF] ring-2 ring-[#1391BF]/30' : 'bg-[#C0C0C0]/30'
                 }`}>
                   {item.status === 'complete' && (
                     <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -671,13 +671,13 @@ const ProgressMockup = () => (
                     <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                   )}
                 </div>
-                {i < 5 && <div className={`w-0.5 h-3 ${item.status === 'complete' ? 'bg-green-400/50' : 'bg-white/10'}`} />}
+                {i < 5 && <div className={`w-0.5 h-3 ${item.status === 'complete' ? 'bg-[#7CC2A7]/50' : 'bg-[#C0C0C0]/20'}`} />}
               </div>
               <div className="flex-1">
-                <div className={`${item.status === 'pending' ? 'text-white/40' : 'text-white/80'}`}>{item.name}</div>
+                <div className={`${item.status === 'pending' ? 'text-[#C0C0C0]/60' : 'text-[#F5F5F5]/80'}`}>{item.name}</div>
               </div>
-              <div className="text-white/40 text-[7px] w-8">{item.time}</div>
-              <div className={`w-4 h-4 rounded-full ${item.auditor === '—' ? 'bg-white/10' : 'bg-white/20'} flex items-center justify-center text-[6px] text-white/60`}>
+              <div className="text-[#C0C0C0]/60 text-[7px] w-8">{item.time}</div>
+              <div className={`w-4 h-4 rounded-full ${item.auditor === '—' ? 'bg-[#C0C0C0]/15' : 'bg-[#C0C0C0]/30'} flex items-center justify-center text-[6px] text-[#C0C0C0]/80`}>
                 {item.auditor}
               </div>
             </motion.div>
@@ -686,33 +686,33 @@ const ProgressMockup = () => (
       </div>
       
       {/* Side Panel */}
-      <div className="w-20 bg-[#0f0f17] border-l border-white/5 p-2 flex flex-col">
-        <div className="text-white/60 text-[7px] mb-1.5">Findings</div>
+      <div className="w-20 bg-[#0A0A0A] border-l border-[#C0C0C0]/10 p-2 flex flex-col">
+        <div className="text-[#C0C0C0]/80 text-[7px] mb-1.5">Findings</div>
         <div className="space-y-1 flex-1">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-            className="bg-yellow-400/20 border border-yellow-400/30 rounded p-1"
+            className="bg-[#D8A860]/20 border border-[#D8A860]/30 rounded p-1"
           >
-            <div className="text-yellow-400 text-[7px] font-medium">Minor NC</div>
-            <div className="text-white/60 text-[6px]">Doc control 4.2.3</div>
+            <div className="text-[#D8A860] text-[7px] font-medium">Minor NC</div>
+            <div className="text-[#C0C0C0]/80 text-[6px]">Doc control 4.2.3</div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.3, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-            className="bg-blue-400/20 border border-blue-400/30 rounded p-1"
+            className="bg-[#1391BF]/20 border border-[#1391BF]/30 rounded p-1"
           >
-            <div className="text-blue-400 text-[7px] font-medium">OFI</div>
-            <div className="text-white/60 text-[6px]">Training records</div>
+            <div className="text-[#1391BF] text-[7px] font-medium">OFI</div>
+            <div className="text-[#C0C0C0]/80 text-[6px]">Training records</div>
           </motion.div>
         </div>
-        <div className="pt-2 border-t border-white/5">
-          <div className="text-white/40 text-[6px] mb-1">Quick Stats</div>
-          <div className="text-white/80 text-[8px]">12 areas</div>
-          <div className="text-white/80 text-[8px]">47 evidence</div>
-          <div className="text-white/80 text-[8px]">2 findings</div>
+        <div className="pt-2 border-t border-[#C0C0C0]/10">
+          <div className="text-[#C0C0C0]/60 text-[6px] mb-1">Quick Stats</div>
+          <div className="text-[#F5F5F5]/80 text-[8px]">12 areas</div>
+          <div className="text-[#F5F5F5]/80 text-[8px]">47 evidence</div>
+          <div className="text-[#F5F5F5]/80 text-[8px]">2 findings</div>
         </div>
       </div>
     </div>
