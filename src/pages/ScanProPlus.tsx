@@ -2009,17 +2009,12 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8 }}
                 className="relative flex justify-center lg:justify-start order-2 lg:order-1"
               >
-                {/* Large circular clipped image */}
-                <div 
-                  className="relative w-[320px] h-[380px] sm:w-[400px] sm:h-[480px] lg:w-[480px] lg:h-[560px] xl:w-[560px] xl:h-[640px]"
-                  style={{
-                    clipPath: "ellipse(100% 100% at 0% 50%)"
-                  }}
-                >
+                {/* Large circular clipped image - Apotech style */}
+                <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[450px] lg:h-[450px] xl:w-[520px] xl:h-[520px] rounded-full overflow-hidden shadow-2xl">
                   <img 
                     src={scanProHeroAuditor} 
                     alt="Professional auditor team" 
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center scale-110"
                   />
                 </div>
               </motion.div>
