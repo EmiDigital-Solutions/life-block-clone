@@ -120,40 +120,102 @@ const Pin3D = ({ position, visible }: { position: THREE.Vector3; visible: boolea
 const EarthSphere = ({ showPins, visiblePins }: { showPins: boolean; visiblePins: number[] }) => {
   const groupRef = useRef<THREE.Group>(null);
   
-  // Create a simple procedural earth texture as fallback
+  // Create a filled earth texture with solid continents
   const createEarthTexture = () => {
     const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 256;
+    canvas.width = 1024;
+    canvas.height = 512;
     const ctx = canvas.getContext('2d');
     if (!ctx) return null;
     
-    // Background - ocean
-    ctx.fillStyle = '#E5E7EB';
-    ctx.fillRect(0, 0, 512, 256);
+    // Background - ocean (light gray)
+    ctx.fillStyle = '#E8EAED';
+    ctx.fillRect(0, 0, 1024, 512);
     
-    // Draw simplified continents as dots/points
+    // Draw filled continents
     ctx.fillStyle = '#1A1A1A';
-    const continentPoints = [
-      // North America
-      { x: 80, y: 80, r: 25 }, { x: 100, y: 90, r: 20 }, { x: 60, y: 100, r: 15 },
-      // South America  
-      { x: 120, y: 160, r: 15 }, { x: 130, y: 180, r: 12 },
-      // Europe
-      { x: 260, y: 75, r: 12 }, { x: 275, y: 80, r: 10 },
-      // Africa
-      { x: 270, y: 130, r: 20 }, { x: 280, y: 150, r: 15 },
-      // Asia
-      { x: 340, y: 80, r: 25 }, { x: 380, y: 90, r: 20 }, { x: 400, y: 100, r: 15 },
-      // Australia
-      { x: 420, y: 170, r: 15 },
-    ];
     
-    continentPoints.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
+    // North America
+    ctx.beginPath();
+    ctx.moveTo(50, 80);
+    ctx.bezierCurveTo(80, 60, 140, 50, 180, 70);
+    ctx.bezierCurveTo(200, 80, 220, 100, 230, 130);
+    ctx.bezierCurveTo(220, 160, 200, 180, 170, 190);
+    ctx.bezierCurveTo(140, 195, 110, 180, 90, 160);
+    ctx.bezierCurveTo(70, 140, 50, 120, 40, 100);
+    ctx.bezierCurveTo(35, 90, 40, 85, 50, 80);
+    ctx.fill();
+    
+    // Central America
+    ctx.beginPath();
+    ctx.moveTo(170, 195);
+    ctx.bezierCurveTo(180, 210, 175, 230, 165, 245);
+    ctx.bezierCurveTo(155, 235, 160, 210, 170, 195);
+    ctx.fill();
+    
+    // South America
+    ctx.beginPath();
+    ctx.moveTo(180, 250);
+    ctx.bezierCurveTo(200, 260, 220, 290, 230, 340);
+    ctx.bezierCurveTo(225, 380, 210, 420, 180, 440);
+    ctx.bezierCurveTo(160, 430, 150, 400, 155, 360);
+    ctx.bezierCurveTo(160, 320, 165, 280, 180, 250);
+    ctx.fill();
+    
+    // Europe
+    ctx.beginPath();
+    ctx.moveTo(480, 70);
+    ctx.bezierCurveTo(510, 60, 550, 70, 570, 90);
+    ctx.bezierCurveTo(580, 110, 570, 130, 550, 140);
+    ctx.bezierCurveTo(520, 150, 490, 145, 470, 130);
+    ctx.bezierCurveTo(460, 110, 465, 85, 480, 70);
+    ctx.fill();
+    
+    // Africa
+    ctx.beginPath();
+    ctx.moveTo(500, 180);
+    ctx.bezierCurveTo(530, 170, 570, 180, 590, 210);
+    ctx.bezierCurveTo(600, 250, 590, 300, 570, 340);
+    ctx.bezierCurveTo(550, 370, 520, 380, 490, 360);
+    ctx.bezierCurveTo(470, 330, 465, 280, 475, 240);
+    ctx.bezierCurveTo(480, 210, 490, 185, 500, 180);
+    ctx.fill();
+    
+    // Asia
+    ctx.beginPath();
+    ctx.moveTo(590, 80);
+    ctx.bezierCurveTo(650, 60, 750, 70, 820, 90);
+    ctx.bezierCurveTo(870, 110, 900, 140, 910, 180);
+    ctx.bezierCurveTo(900, 220, 860, 240, 800, 250);
+    ctx.bezierCurveTo(740, 260, 680, 250, 640, 220);
+    ctx.bezierCurveTo(610, 190, 600, 150, 590, 120);
+    ctx.bezierCurveTo(585, 100, 580, 85, 590, 80);
+    ctx.fill();
+    
+    // India
+    ctx.beginPath();
+    ctx.moveTo(680, 200);
+    ctx.bezierCurveTo(700, 210, 710, 250, 700, 290);
+    ctx.bezierCurveTo(690, 300, 670, 295, 665, 270);
+    ctx.bezierCurveTo(660, 240, 665, 210, 680, 200);
+    ctx.fill();
+    
+    // Southeast Asia
+    ctx.beginPath();
+    ctx.moveTo(780, 250);
+    ctx.bezierCurveTo(810, 260, 830, 290, 820, 320);
+    ctx.bezierCurveTo(800, 340, 770, 330, 760, 300);
+    ctx.bezierCurveTo(755, 275, 765, 255, 780, 250);
+    ctx.fill();
+    
+    // Australia
+    ctx.beginPath();
+    ctx.moveTo(830, 340);
+    ctx.bezierCurveTo(880, 330, 930, 350, 950, 390);
+    ctx.bezierCurveTo(945, 420, 920, 440, 880, 445);
+    ctx.bezierCurveTo(840, 445, 810, 420, 810, 390);
+    ctx.bezierCurveTo(815, 360, 820, 345, 830, 340);
+    ctx.fill();
     
     return new THREE.CanvasTexture(canvas);
   };
