@@ -1,114 +1,170 @@
 import { motion } from "framer-motion";
-import Earth3D from "@/components/Earth3D";
+import dottedWorldMap from "@/assets/dotted-world-map.png";
 import { PixelIcon } from "@/components/PixelIcon";
+
+const regions = [
+  { name: "Europe", auditors: "2,400+", x: "48%", y: "28%" },
+  { name: "Asia Pacific", auditors: "1,800+", x: "75%", y: "45%" },
+  { name: "Americas", auditors: "1,200+", x: "22%", y: "40%" },
+  { name: "Middle East", auditors: "600+", x: "58%", y: "42%" },
+  { name: "Africa", auditors: "400+", x: "52%", y: "58%" },
+];
 
 const GlobalNetworkSection = () => {
   return (
     <section className="py-24 md:py-32 bg-[#f5f5f5] overflow-hidden">
       <div className="container mx-auto px-6">
-        
-        {/* Section Header - simple, no box */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center justify-center gap-3 mb-6"
-        >
-          <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Global Coverage</span>
-        </motion.div>
+        <div className="bg-[#ebebeb] rounded-[32px] p-8 md:p-12 lg:p-16">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col space-y-6 lg:space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Global Coverage</span>
+              </motion.div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-center"
-        >
-          <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
-          <span className="font-normal text-muted-foreground">Auditor Network</span>
-        </motion.h2>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-5xl lg:text-6xl leading-tight"
+              >
+                <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
+                <span className="font-normal text-muted-foreground">Auditor Network</span>
+              </motion.h2>
 
-        {/* Globe - Full filled, centered */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="w-full max-w-xl">
-            <Earth3D height="450px" showPins={true} />
-          </div>
-        </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-muted-foreground leading-relaxed"
+              >
+                6,400+ certified auditors in 120+ countries. On-site within 48 hours. €700 flat rate.
+              </motion.p>
 
-        {/* Content below globe - no box, just text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto text-center mb-10"
-        >
-          6,400+ certified auditors in 120+ countries. On-site within 48 hours. €700 flat rate.
-        </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.25 }}
+                className="text-left"
+              >
+                <p className="text-sm font-semibold text-foreground mb-3">
+                  Our auditor network includes professionals certified by:
+                </p>
+                <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
+                  <span className="text-sm">TÜV SÜD</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">Bureau Veritas</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">SGS</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">DNV</span>
+                </div>
+              </motion.div>
 
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-10"
-        >
-          {[
-            { value: "6,400+", label: "Certified Auditors" },
-            { value: "120+", label: "Countries" },
-            { value: "50+", label: "Standards" },
-            { value: "24h", label: "Response" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-semibold text-foreground">{stat.value}</p>
-              <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <button className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group">
+                  <span>Find Auditors</span>
+                  <PixelIcon name="arrow-right" className="w-5 h-5" />
+                </button>
+              </motion.div>
+
+              {/* Stats row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-foreground/10"
+              >
+                {[
+                  { value: "6,400+", label: "Certified Auditors" },
+                  { value: "120+", label: "Countries" },
+                  { value: "50+", label: "Standards" },
+                  { value: "24h", label: "Response" },
+                ].map((stat, index) => (
+                  <div key={stat.label} className="text-left">
+                    <p className="text-2xl md:text-3xl font-semibold text-foreground">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground">{stat.label}</p>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-          ))}
-        </motion.div>
 
-        {/* Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mb-10"
-        >
-          <p className="text-sm font-semibold text-foreground mb-3">
-            Our auditor network includes professionals certified by:
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-muted-foreground">
-            <span className="text-sm">TÜV SÜD</span>
-            <span className="text-muted-foreground/30">•</span>
-            <span className="text-sm">Bureau Veritas</span>
-            <span className="text-muted-foreground/30">•</span>
-            <span className="text-sm">SGS</span>
-            <span className="text-muted-foreground/30">•</span>
-            <span className="text-sm">DNV</span>
+            {/* Right Column: Map */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="relative aspect-square rounded-[24px] overflow-hidden bg-white">
+                <img
+                  src={dottedWorldMap}
+                  alt="Global auditor network coverage"
+                  className="w-full h-full object-contain p-8"
+                  style={{ opacity: 0.6 }}
+                />
+
+                {/* Region markers */}
+                {regions.map((region, index) => (
+                  <motion.div
+                    key={region.name}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+                    className="absolute group cursor-pointer"
+                    style={{ left: region.x, top: region.y, transform: 'translate(-50%, -50%)' }}
+                  >
+                    {/* Pulse effect */}
+                    <motion.div
+                      className="absolute rounded-full bg-primary"
+                      animate={{
+                        scale: [1, 2.2, 1],
+                        opacity: [0.7, 0, 0.7],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      style={{ width: '24px', height: '24px', left: '-12px', top: '-12px' }}
+                    />
+                    
+                    {/* Marker dot */}
+                    <div className="relative w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg z-10" />
+                    
+                    {/* Label on hover */}
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+                      <div className="bg-foreground text-background px-3 py-2 rounded-xl shadow-xl">
+                        <p className="text-xs font-semibold">{region.name}</p>
+                        <p className="text-xs font-bold text-primary">{region.auditors}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+            
           </div>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="flex justify-center"
-        >
-          <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:opacity-90 flex items-center gap-3">
-            <span>Find Auditors</span>
-            <PixelIcon name="arrow-right" className="w-5 h-5" />
-          </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
