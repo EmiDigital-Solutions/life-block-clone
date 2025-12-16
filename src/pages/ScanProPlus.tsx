@@ -1859,7 +1859,7 @@ const ScanProPlus = () => {
         {/* Main Content */}
         <div className="flex-1 flex items-center">
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-end">
               
               {/* Left Column: Frosted Glass Card */}
               <motion.div 
