@@ -1293,7 +1293,7 @@ const IndustryUseCasesGrid = () => {
               className="group bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-all duration-300 cursor-pointer text-left flex flex-col h-full"
             >
               {/* Image - Fixed aspect ratio with full image visibility */}
-              <div className="relative overflow-hidden aspect-video flex-shrink-0 bg-foreground/5">
+              <div className="relative overflow-hidden aspect-video flex-shrink-0 bg-white">
                 <img 
                   src={industry.image} 
                   alt={industry.title}
