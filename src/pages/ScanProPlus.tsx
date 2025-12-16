@@ -52,7 +52,7 @@ import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
-import { AnimatedRing3D } from "@/components/AnimatedRing3D";
+import { AnimatedHelix3D } from "@/components/AnimatedHelix3D";
 
 // Desktop Technology Section with Scroll Effect - Auditor Network Only
 const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
@@ -1989,7 +1989,7 @@ const ScanProPlus = () => {
       >
         {/* 3D Ring Layer */}
         <Suspense fallback={null}>
-          <AnimatedRing3D />
+          <AnimatedHelix3D />
         </Suspense>
         
         {/* Subtle marble texture overlay */}
