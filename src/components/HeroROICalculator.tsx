@@ -88,22 +88,22 @@ const HeroROICalculator = () => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="bg-white rounded-3xl p-5 lg:p-6 shadow-2xl max-w-md"
+      className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-6 lg:p-8 max-w-md"
     >
       {/* Header */}
-      <div className="mb-4">
-        <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
+      <div className="mb-5">
+        <h3 className="text-xl lg:text-2xl font-bold text-foreground">
           <span className="text-primary">ROI</span> Calculator
         </h3>
       </div>
 
       {/* Selection Fields */}
-      <div className="space-y-3 mb-4">
+      <div className="space-y-3 mb-5">
         {/* Category Selection */}
         <div className="space-y-1.5">
-          <Label className="text-xs font-bold text-gray-900">Industry</Label>
+          <Label className="text-xs font-bold text-foreground">Industry</Label>
           <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
+            <SelectTrigger className="h-9 bg-white border-border text-sm">
               <SelectValue placeholder="Select industry" />
             </SelectTrigger>
             <SelectContent className="max-h-60">
@@ -118,9 +118,9 @@ const HeroROICalculator = () => {
 
         {/* Audit Type Selection */}
         <div className="space-y-1.5">
-          <Label className="text-xs font-bold text-gray-900">Audit Standard</Label>
+          <Label className="text-xs font-bold text-foreground">Audit Standard</Label>
           <Select value={selectedAuditId} onValueChange={setSelectedAuditId}>
-            <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
+            <SelectTrigger className="h-9 bg-white border-border text-sm">
               <SelectValue placeholder="Select audit type" />
             </SelectTrigger>
             <SelectContent className="max-h-60">
@@ -135,9 +135,9 @@ const HeroROICalculator = () => {
 
         {/* Client Region Selection */}
         <div className="space-y-1.5">
-          <Label className="text-xs font-bold text-gray-900">Your Location</Label>
+          <Label className="text-xs font-bold text-foreground">Your Location</Label>
           <Select value={clientRegion} onValueChange={(v) => setClientRegion(v as RegionKey)}>
-            <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
+            <SelectTrigger className="h-9 bg-white border-border text-sm">
               <SelectValue placeholder="Select your region" />
             </SelectTrigger>
             <SelectContent>
@@ -152,9 +152,9 @@ const HeroROICalculator = () => {
 
         {/* Supplier Region Selection */}
         <div className="space-y-1.5">
-          <Label className="text-xs font-bold text-gray-900">Supplier Region</Label>
+          <Label className="text-xs font-bold text-foreground">Supplier Region</Label>
           <Select value={supplierRegion} onValueChange={(v) => setSupplierRegion(v as RegionKey)}>
-            <SelectTrigger className="h-9 bg-gray-50 border-gray-300 text-sm">
+            <SelectTrigger className="h-9 bg-white border-border text-sm">
               <SelectValue placeholder="Select supplier region" />
             </SelectTrigger>
             <SelectContent>
@@ -169,7 +169,7 @@ const HeroROICalculator = () => {
 
         {/* Audits Per Year */}
         <div className="space-y-1.5">
-          <Label htmlFor="hero-audits" className="text-xs font-bold text-gray-900">
+          <Label htmlFor="hero-audits" className="text-xs font-bold text-foreground">
             Audits per year
           </Label>
           <Input
@@ -179,27 +179,27 @@ const HeroROICalculator = () => {
             value={auditsPerYear}
             onChange={(e) => setAuditsPerYear(e.target.value)}
             placeholder="e.g., 10"
-            className="h-9 bg-gray-50 border-gray-300 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="h-9 bg-white border-border text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
 
       {/* Results */}
-      <div className="space-y-3 mt-4">
-        <div className="flex justify-between items-center py-2 border-b border-gray-200">
+      <div className="space-y-3 mt-5">
+        <div className="flex justify-between items-center py-2 border-b border-border">
           <div>
-            <span className="text-xs text-gray-600">Traditional</span>
-            <span className="text-[10px] text-gray-400 block">incl. travel</span>
+            <span className="text-xs text-muted-foreground">Traditional</span>
+            <span className="text-[10px] text-muted-foreground/70 block">incl. travel</span>
           </div>
-          <span className="text-base font-bold text-gray-900">{formatCurrency(traditionalTotalCost)}</span>
+          <span className="text-base font-bold text-foreground">{formatCurrency(traditionalTotalCost)}</span>
         </div>
         
-        <div className="flex justify-between items-center py-2 border-b border-gray-200">
+        <div className="flex justify-between items-center py-2 border-b border-border">
           <div>
-            <span className="text-xs text-gray-600">YVOO</span>
-            <span className="text-[10px] text-gray-400 block">local auditors</span>
+            <span className="text-xs text-muted-foreground">YVOO</span>
+            <span className="text-[10px] text-muted-foreground/70 block">local auditors</span>
           </div>
-          <span className="text-base font-bold text-gray-900">{formatCurrency(yvooTotalCost)}</span>
+          <span className="text-base font-bold text-foreground">{formatCurrency(yvooTotalCost)}</span>
         </div>
         
         <motion.div
@@ -207,26 +207,26 @@ const HeroROICalculator = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="rounded-xl p-3 bg-primary border-2 border-primary/80"
+          className="rounded-2xl p-3 bg-primary"
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-white" />
-              <span className="text-xs font-semibold text-white">You Save ({savingsPercent}%)</span>
+              <DollarSign className="w-5 h-5 text-primary-foreground" />
+              <span className="text-xs font-semibold text-primary-foreground">You Save ({savingsPercent}%)</span>
             </div>
-            <div className="text-xl lg:text-2xl font-bold text-white">
+            <div className="text-xl lg:text-2xl font-bold text-primary-foreground">
               {formatCurrency(annualSavings)}
             </div>
           </div>
         </motion.div>
         
-        <div className="rounded-xl p-3 bg-secondary border-2 border-secondary/80">
+        <div className="rounded-2xl p-3 bg-foreground">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-white" />
-              <span className="text-xs font-semibold text-white">Time Saved</span>
+              <Clock className="w-4 h-4 text-background" />
+              <span className="text-xs font-semibold text-background">Time Saved</span>
             </div>
-            <span className="text-base font-bold text-white">
+            <span className="text-base font-bold text-background">
               {getTimeSavingsDays()} Days
             </span>
           </div>
