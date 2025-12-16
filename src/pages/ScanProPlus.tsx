@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, lazy, Suspense } from "react";
 import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
@@ -52,6 +52,7 @@ import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
+import { AnimatedRing3D } from "@/components/AnimatedRing3D";
 
 // Desktop Technology Section with Scroll Effect - Auditor Network Only
 const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
@@ -1983,19 +1984,20 @@ const ScanProPlus = () => {
       {/* Hero Section - Offmenu.design Style */}
       <section
         data-nav-theme="hero"
-        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#f8f8f8] via-[#f0f0f0] to-[#e8e8e8]"
         id="hero"
       >
-        {/* Background Image Layer */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={scanProHeroAuditor} 
-            alt="Professional auditor conducting supplier audit" 
-            className="w-full h-full object-cover object-top"
-          />
-          {/* Subtle overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
-        </div>
+        {/* 3D Ring Layer */}
+        <Suspense fallback={null}>
+          <AnimatedRing3D />
+        </Suspense>
+        
+        {/* Subtle marble texture overlay */}
+        <div className="absolute inset-0 z-[1] opacity-30 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 50%, rgba(200,200,200,0.3) 100%)`,
+          }}
+        />
 
         {/* Centered Content */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 lg:py-40">
