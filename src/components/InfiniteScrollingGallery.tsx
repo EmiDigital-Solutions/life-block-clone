@@ -6,7 +6,7 @@ interface Capability {
   title: string;
   description: string;
   detailedDescription: string;
-  mockupType: 'template' | 'ai' | 'equipment' | 'scoring' | 'evidence' | 'progress' | 'risk' | 'tracking' | 'integration';
+  mockupType: 'template' | 'ai' | 'equipment' | 'scoring' | 'evidence' | 'progress';
 }
 
 const capabilities: Capability[] = [
@@ -48,148 +48,379 @@ const capabilities: Capability[] = [
   },
 ];
 
-// Animated Mockup Components
+// Template Builder UI
 const TemplateMockup = () => (
-  <div className="w-full h-full p-4 flex flex-col gap-2">
-    <div className="bg-white/20 rounded-lg p-2 flex items-center gap-2">
-      <div className="w-3 h-3 rounded bg-primary/60" />
-      <div className="h-2 bg-white/40 rounded flex-1" />
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Header */}
+    <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center gap-2">
+        <div className="w-2 h-2 rounded bg-primary" />
+        <span className="text-white/80 font-medium">ISO 9001 Template</span>
+      </div>
+      <div className="flex gap-1">
+        <div className="px-2 py-0.5 bg-primary/20 text-primary rounded text-[8px]">Draft</div>
+      </div>
     </div>
-    {[0, 1, 2].map((i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: i * 0.3, duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-        className="bg-white/10 rounded-lg p-2 flex items-center gap-2"
-      >
-        <motion.div 
-          className="w-4 h-4 rounded border-2 border-accent"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ delay: i * 0.3 + 0.5, duration: 0.3, repeat: Infinity, repeatDelay: 3 }}
-        />
-        <div className="h-2 bg-white/30 rounded flex-1" />
-      </motion.div>
-    ))}
+    
+    {/* Sections */}
+    <div className="flex-1 space-y-2 overflow-hidden">
+      {[
+        { name: "Quality Management", items: ["Policy", "Objectives", "Resources"] },
+        { name: "Documentation", items: ["Procedures", "Records", "Control"] },
+        { name: "Performance", items: ["Monitoring", "Analysis", "Improvement"] },
+      ].map((section, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.4, duration: 0.5, repeat: Infinity, repeatDelay: 5 }}
+          className="bg-white/5 rounded-lg p-2"
+        >
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <motion.svg
+              animate={{ rotate: [0, 90] }}
+              transition={{ delay: i * 0.4 + 0.3, duration: 0.3, repeat: Infinity, repeatDelay: 5 }}
+              className="w-2.5 h-2.5 text-white/60" viewBox="0 0 24 24" fill="currentColor"
+            >
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </motion.svg>
+            <span className="text-white/90 font-medium">{section.name}</span>
+          </div>
+          <div className="pl-4 space-y-1">
+            {section.items.map((item, j) => (
+              <motion.div
+                key={j}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: i * 0.4 + j * 0.15 + 0.5, duration: 0.3, repeat: Infinity, repeatDelay: 5 }}
+                className="flex items-center gap-1.5"
+              >
+                <div className="w-3 h-3 rounded border border-accent/50 flex items-center justify-center">
+                  <motion.svg
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: i * 0.4 + j * 0.15 + 0.7, duration: 0.2, repeat: Infinity, repeatDelay: 5 }}
+                    className="w-2 h-2 text-accent" viewBox="0 0 24 24" fill="currentColor"
+                  >
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </motion.svg>
+                </div>
+                <span className="text-white/60">{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      ))}
+    </div>
   </div>
 );
 
+// AI Assistant Chat UI
 const AIMockup = () => (
-  <div className="w-full h-full p-4 flex flex-col gap-2">
-    <div className="flex-1 flex flex-col justify-end gap-2">
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Header */}
+    <div className="flex items-center gap-2 mb-3 pb-2 border-b border-white/10">
+      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+        <span className="text-white text-[8px] font-bold">AI</span>
+      </div>
+      <div>
+        <div className="text-white/90 font-medium">YVOO Copilot</div>
+        <div className="text-white/40 text-[8px]">Audit Assistant</div>
+      </div>
+      <div className="ml-auto w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+    </div>
+    
+    {/* Chat */}
+    <div className="flex-1 space-y-2 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 4 }}
-        className="bg-white/20 rounded-xl p-2 ml-auto max-w-[70%]"
+        transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+        className="bg-white/10 rounded-lg rounded-bl-sm p-2 max-w-[85%]"
       >
-        <div className="h-2 bg-white/40 rounded w-full mb-1" />
-        <div className="h-2 bg-white/30 rounded w-3/4" />
+        <p className="text-white/80">Missing evidence for clause 7.1.5 - Monitoring resources</p>
       </motion.div>
+      
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5, repeat: Infinity, repeatDelay: 4 }}
-        className="bg-primary/30 rounded-xl p-2 mr-auto max-w-[80%] flex gap-2"
+        transition={{ delay: 1.2, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+        className="bg-primary/20 rounded-lg rounded-br-sm p-2 max-w-[85%] ml-auto"
       >
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-4 h-4 rounded-full border-2 border-t-transparent border-white/60"
-        />
-        <div className="flex-1">
-          <div className="h-2 bg-white/40 rounded w-full mb-1" />
-          <div className="h-2 bg-white/30 rounded w-2/3" />
+        <p className="text-white/80">What should I collect?</p>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.4, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+        className="bg-white/10 rounded-lg rounded-bl-sm p-2 max-w-[90%]"
+      >
+        <p className="text-white/80 mb-1.5">Recommended evidence:</p>
+        <div className="space-y-1">
+          {["Calibration certificates", "Equipment list", "Maintenance logs"].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2.8 + i * 0.2, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+              className="flex items-center gap-1"
+            >
+              <div className="w-1 h-1 rounded-full bg-accent" />
+              <span className="text-white/60">{item}</span>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </div>
   </div>
 );
 
+// Equipment Recognition UI
 const EquipmentMockup = () => (
-  <div className="w-full h-full p-4 flex items-center justify-center">
-    <div className="relative">
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Image area with detection */}
+    <div className="flex-1 bg-white/5 rounded-lg relative overflow-hidden mb-2">
+      {/* Simulated machine image */}
+      <div className="absolute inset-4 flex items-center justify-center">
+        <div className="w-20 h-14 bg-gradient-to-br from-white/10 to-white/5 rounded-lg relative">
+          <div className="absolute top-1 left-1 w-4 h-4 bg-white/20 rounded" />
+          <div className="absolute bottom-1 right-1 w-6 h-3 bg-white/15 rounded-sm" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white/10" />
+        </div>
+      </div>
+      
+      {/* Detection box */}
       <motion.div
-        className="w-20 h-16 bg-white/20 rounded-lg"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-        className="absolute -top-2 -right-2 bg-accent rounded-full p-1"
-      >
-        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-        </svg>
-      </motion.div>
-      <motion.div
-        initial={{ width: 0 }}
-        animate={{ width: '100%' }}
-        transition={{ delay: 1, duration: 1, repeat: Infinity, repeatDelay: 2 }}
-        className="absolute -bottom-4 left-0 h-1 bg-primary/60 rounded"
-      />
-    </div>
-  </div>
-);
-
-const ScoringMockup = () => (
-  <div className="w-full h-full p-4 flex items-end justify-center gap-2">
-    {[60, 80, 45, 90, 70].map((height, i) => (
-      <motion.div
-        key={i}
-        initial={{ height: 0 }}
-        animate={{ height: `${height}%` }}
-        transition={{ delay: i * 0.2, duration: 0.8, repeat: Infinity, repeatDelay: 3 }}
-        className="w-6 bg-gradient-to-t from-primary/60 to-accent/60 rounded-t"
-      />
-    ))}
-  </div>
-);
-
-const EvidenceMockup = () => (
-  <div className="w-full h-full p-3 grid grid-cols-3 gap-2">
-    {[0, 1, 2, 3, 4, 5].map((i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: i * 0.2, duration: 0.4, repeat: Infinity, repeatDelay: 4 }}
-        className="bg-white/20 rounded-lg aspect-square flex items-center justify-center"
+        transition={{ delay: 0.5, duration: 0.5, repeat: Infinity, repeatDelay: 5 }}
+        className="absolute inset-3 border-2 border-accent rounded-lg"
       >
         <motion.div
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
-          className="w-4 h-4 rounded bg-accent/50"
+          initial={{ width: 0 }}
+          animate={{ width: '100%' }}
+          transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatDelay: 5 }}
+          className="absolute -top-0.5 left-0 h-0.5 bg-accent"
         />
       </motion.div>
-    ))}
+      
+      {/* Label */}
+      <motion.div
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.3, repeat: Infinity, repeatDelay: 5 }}
+        className="absolute top-1 left-1 bg-accent px-1.5 py-0.5 rounded text-[8px] text-white font-medium"
+      >
+        CNC Machine • 94%
+      </motion.div>
+    </div>
+    
+    {/* Details */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2, duration: 0.4, repeat: Infinity, repeatDelay: 5 }}
+      className="bg-white/5 rounded-lg p-2 space-y-1.5"
+    >
+      <div className="flex justify-between">
+        <span className="text-white/60">Model</span>
+        <span className="text-white/90">DMG MORI NLX</span>
+      </div>
+      <div className="flex justify-between">
+        <span className="text-white/60">Condition</span>
+        <span className="text-green-400">Good</span>
+      </div>
+      <div className="flex justify-between">
+        <span className="text-white/60">Last Service</span>
+        <span className="text-white/90">2024-10-15</span>
+      </div>
+    </motion.div>
   </div>
 );
 
-const ProgressMockup = () => (
-  <div className="w-full h-full p-4 flex flex-col gap-3">
-    {[85, 60, 40].map((progress, i) => (
-      <div key={i} className="flex items-center gap-2">
-        <div className="flex-1 h-3 bg-white/10 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ delay: i * 0.3, duration: 1, repeat: Infinity, repeatDelay: 3 }}
-            className="h-full bg-gradient-to-r from-primary/60 to-accent/60 rounded-full"
-          />
-        </div>
+// Scoring Dashboard UI
+const ScoringMockup = () => (
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Overall Score */}
+    <div className="text-center mb-3">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 6 }}
+        className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent"
+      >
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: i * 0.3 + 0.5, duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-          className="text-xs text-white/60 font-medium"
+          transition={{ delay: 0.5, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+          className="text-2xl font-bold text-white"
         >
-          {progress}%
+          4.2
         </motion.span>
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+        className="text-white/60 mt-1"
+      >
+        Overall Score
+      </motion.p>
+    </div>
+    
+    {/* Category Scores */}
+    <div className="space-y-2">
+      {[
+        { name: "Quality", score: 4.5, color: "bg-green-400" },
+        { name: "Safety", score: 4.0, color: "bg-accent" },
+        { name: "Environment", score: 3.8, color: "bg-yellow-400" },
+        { name: "Social", score: 4.5, color: "bg-primary" },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1 + i * 0.3, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+          className="flex items-center gap-2"
+        >
+          <span className="text-white/60 w-16">{item.name}</span>
+          <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${(item.score / 5) * 100}%` }}
+              transition={{ delay: 1.2 + i * 0.3, duration: 0.5, repeat: Infinity, repeatDelay: 6 }}
+              className={`h-full ${item.color} rounded-full`}
+            />
+          </div>
+          <span className="text-white/90 w-6 text-right">{item.score}</span>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+// Evidence Gallery UI
+const EvidenceMockup = () => (
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Tabs */}
+    <div className="flex gap-1 mb-2">
+      {["All", "Quality", "Safety", "Env"].map((tab, i) => (
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: i === 0 ? 1 : 0.5 }}
+          className={`px-2 py-1 rounded-full text-[8px] ${i === 0 ? 'bg-primary text-white' : 'bg-white/10 text-white/60'}`}
+        >
+          {tab}
+        </motion.div>
+      ))}
+    </div>
+    
+    {/* Grid */}
+    <div className="flex-1 grid grid-cols-3 gap-1.5">
+      {[
+        { type: "img", tag: "Quality", color: "bg-green-400" },
+        { type: "pdf", tag: "Safety", color: "bg-accent" },
+        { type: "img", tag: "Env", color: "bg-yellow-400" },
+        { type: "img", tag: "Quality", color: "bg-green-400" },
+        { type: "doc", tag: "Safety", color: "bg-accent" },
+        { type: "img", tag: "Quality", color: "bg-green-400" },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.15, duration: 0.3, repeat: Infinity, repeatDelay: 5 }}
+          className="aspect-square bg-white/10 rounded-lg relative overflow-hidden"
+        >
+          {item.type === "img" ? (
+            <div className="absolute inset-1 bg-gradient-to-br from-white/20 to-white/5 rounded" />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white/40 text-[8px] font-bold uppercase">{item.type}</span>
+            </div>
+          )}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: i * 0.15 + 0.3, duration: 0.2, repeat: Infinity, repeatDelay: 5 }}
+            className={`absolute bottom-0.5 right-0.5 px-1 py-0.5 rounded text-[6px] text-white ${item.color}`}
+          >
+            {item.tag}
+          </motion.div>
+        </motion.div>
+      ))}
+    </div>
+    
+    {/* Upload hint */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 1, 1, 0] }}
+      transition={{ delay: 2, duration: 2, repeat: Infinity, repeatDelay: 3 }}
+      className="mt-2 text-center text-white/40 text-[8px]"
+    >
+      AI auto-categorizing 3 new files...
+    </motion.div>
+  </div>
+);
+
+// Progress Dashboard UI
+const ProgressMockup = () => (
+  <div className="w-full h-full bg-[#1a1a2e] p-3 flex flex-col text-[10px]">
+    {/* Header */}
+    <div className="flex justify-between items-center mb-3">
+      <span className="text-white/90 font-medium">Audit Progress</span>
+      <div className="flex items-center gap-1">
+        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+        <span className="text-white/60 text-[8px]">Live</span>
       </div>
-    ))}
+    </div>
+    
+    {/* Milestones */}
+    <div className="flex-1 space-y-2">
+      {[
+        { name: "Opening Meeting", status: "complete", time: "09:00" },
+        { name: "Document Review", status: "complete", time: "10:30" },
+        { name: "Site Walkthrough", status: "active", time: "12:00" },
+        { name: "Interviews", status: "pending", time: "14:00" },
+        { name: "Closing Meeting", status: "pending", time: "16:00" },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.25, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+          className="flex items-center gap-2"
+        >
+          <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+            item.status === 'complete' ? 'bg-green-400' : 
+            item.status === 'active' ? 'bg-accent animate-pulse' : 'bg-white/20'
+          }`}>
+            {item.status === 'complete' && (
+              <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            )}
+          </div>
+          <span className={`flex-1 ${item.status === 'pending' ? 'text-white/40' : 'text-white/80'}`}>
+            {item.name}
+          </span>
+          <span className="text-white/40">{item.time}</span>
+        </motion.div>
+      ))}
+    </div>
+    
+    {/* Alert */}
+    <motion.div
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 2.5, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+      className="mt-2 bg-yellow-400/20 border border-yellow-400/30 rounded-lg p-2 flex items-center gap-2"
+    >
+      <span className="text-yellow-400">⚠</span>
+      <span className="text-white/80 text-[8px]">Finding detected in Section 4.2</span>
+    </motion.div>
   </div>
 );
 
@@ -227,7 +458,7 @@ const InfiniteScrollingGallery = () => {
               className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               style={{ width: '280px' }}
             >
-              <div className="aspect-square bg-gradient-to-br from-charcoal to-foreground/90 flex items-center justify-center relative overflow-hidden">
+              <div className="aspect-square overflow-hidden rounded-t-2xl">
                 <MockupRenderer type={item.mockupType} />
               </div>
               <div className="p-4">
