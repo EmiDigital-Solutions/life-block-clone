@@ -140,9 +140,9 @@ const TestimonialsCarouselSection = () => {
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
               <span className="font-semibold text-foreground">What our</span>{" "}
-              <span className="text-muted-foreground font-light">customers</span>
+              <span className="font-normal text-muted-foreground">customers</span>
               <br />
-              <span className="text-muted-foreground font-light">say about</span>{" "}
+              <span className="font-normal text-muted-foreground">say about</span>{" "}
               <span className="font-semibold text-foreground">YVOO.</span>
             </h2>
           </motion.div>
