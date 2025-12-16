@@ -1,206 +1,143 @@
 import { motion } from "framer-motion";
+import { FileCheck, MousePointerClick, Users, ClipboardCheck, BarChart3 } from "lucide-react";
+import { PixelIcon } from "./PixelIcon";
 
 const steps = [
   {
     number: "01",
-    title: "Place an Audit Request with 1 Click",
-    description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
-    feature: "Quick integration with ERP systems",
-    badge: "1-Click",
+    title: "Request Audit",
+    description: "Submit your audit request with supplier details. Our AI generates a customized framework based on your requirements.",
+    icon: MousePointerClick,
   },
   {
     number: "02",
-    title: "Smart Auditor Matching",
-    description: "Our AI instantly matches your request with the best-qualified auditor from our global network based on location, expertise, and certifications.",
-    feature: "AI-powered matching algorithm",
-    badge: "AI Match",
+    title: "Auditor Assignment",
+    description: "We match you with a certified auditor from our global network based on location, expertise, and availability.",
+    icon: Users,
   },
   {
     number: "03",
-    title: "Real-Time Audit Tracking",
-    description: "Monitor your audit progress in real-time. Get live updates, photo documentation, and instant notifications throughout the entire process.",
-    feature: "Live dashboard monitoring",
-    badge: "Live",
+    title: "On-Site Evaluation",
+    description: "Your assigned auditor conducts a thorough on-site assessment using our AI-guided digital checklist.",
+    icon: ClipboardCheck,
   },
   {
     number: "04",
-    title: "Digital Report Delivery",
-    description: "Receive your comprehensive audit report within 24 hours. All findings, photos, and corrective actions are digitally documented and ready to share.",
-    feature: "Reports delivered within 24 hours",
-    badge: "24h",
+    title: "Digital Report",
+    description: "Receive your comprehensive audit report within 24 hours, complete with findings, photos, and action items.",
+    icon: BarChart3,
   },
 ];
 
-// Dotted Globe Component
-const DottedGlobe = ({ badge }: { badge: string }) => {
-  return (
-    <div className="relative w-[280px] h-[280px] lg:w-[340px] lg:h-[340px]">
-      {/* Black globe with dotted pattern */}
-      <div 
-        className="absolute inset-0 rounded-full bg-foreground"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05) 0%, transparent 40%)
-          `,
-          boxShadow: `
-            inset -15px -15px 30px rgba(0,0,0,0.4),
-            0 20px 40px rgba(0,0,0,0.15)
-          `,
-        }}
-      />
-      
-      {/* Dotted world map pattern */}
-      <svg 
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 200 200"
-        style={{ opacity: 0.9 }}
-      >
-        {/* Generate dots for globe pattern */}
-        {Array.from({ length: 20 }).map((_, row) => 
-          Array.from({ length: 30 }).map((_, col) => {
-            const x = 10 + col * 6;
-            const y = 10 + row * 9;
-            const cx = 100;
-            const cy = 100;
-            const dx = x - cx;
-            const dy = y - cy;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            if (dist > 85) return null;
-            
-            // Create landmass-like patterns
-            const noise = Math.sin(x * 0.15) * Math.cos(y * 0.12) + Math.sin(x * 0.08 + y * 0.1);
-            const isLand = noise > -0.3 && Math.random() > 0.3;
-            
-            if (!isLand) return null;
-            
-            const opacity = 1 - (dist / 100) * 0.3;
-            const size = 1.5 + (1 - dist / 100) * 0.8;
-            
-            return (
-              <circle
-                key={`${row}-${col}`}
-                cx={x}
-                cy={y}
-                r={size}
-                fill="white"
-                opacity={opacity}
-              />
-            );
-          })
-        )}
-      </svg>
-      
-      {/* Highlight reflection */}
-      <div 
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: '30%',
-          height: '20%',
-          top: '15%',
-          left: '20%',
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%)',
-          borderRadius: '50%',
-          filter: 'blur(10px)',
-        }}
-      />
-      
-      {/* Badge positioned on sphere */}
-      <div className="absolute top-1/2 right-[-20px] lg:right-[-30px] -translate-y-1/2">
-        <motion.span 
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full shadow-lg"
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-foreground/60"></span>
-          {badge}
-        </motion.span>
-      </div>
-    </div>
-  );
-};
+const stats = [
+  { value: "2,000+", label: "Certified Auditors" },
+  { value: "90+", label: "Countries" },
+  { value: "48h", label: "Average Response" },
+  { value: "€700", label: "Starting Price" },
+];
 
 export const HowItWorksSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-[#f8f9fa]">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="py-24 lg:py-32 bg-[#f5f5f5]">
+      <div className="container mx-auto px-6 lg:px-20">
         
-        {/* Section Header */}
+        {/* Section Header - offmenu style mixed weight typography */}
         <motion.div 
-          className="text-center mb-16"
+          className="mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-primary"></div>
-            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Process</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            How does YVOO Work
+          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">How it</span>{" "}
+            <span className="text-muted-foreground font-normal">works,</span>
+            <br />
+            <span className="text-muted-foreground font-normal">step by</span>{" "}
+            <span className="font-semibold text-foreground">step.</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Four simple steps to transform your supplier audit process
-          </p>
         </motion.div>
 
-        {/* Steps */}
-        <div className="space-y-8">
+        {/* Steps Grid - offmenu style cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-[32px] overflow-hidden shadow-sm"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Sphere Side */}
-                <div className="relative bg-[#f0f0f0] p-8 lg:p-12 flex items-center justify-center min-h-[300px] lg:min-h-[400px]">
-                  {/* Large Step Number Background */}
-                  <span className="absolute top-6 left-8 text-[120px] lg:text-[180px] font-black text-foreground/5 leading-none select-none">
-                    {step.number}
-                  </span>
-                  
-                  {/* Metallic Sphere */}
-                  <div className="relative z-10">
-                    <DottedGlobe badge={step.badge} />
-                  </div>
-                </div>
-
-                {/* Content Side */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  {/* Step Badge */}
-                  <div className="mb-4">
-                    <span className="inline-block px-3 py-1.5 bg-muted text-muted-foreground text-xs font-semibold rounded-full">
-                      Step {step.number}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4 leading-tight">
-                    {step.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-6">
-                    {step.description}
-                  </p>
-
-                  {/* Feature Highlight */}
-                  <p className="text-sm text-muted-foreground">
-                    {step.feature}
-                  </p>
-                </div>
+              {/* Step Number */}
+              <div className="text-5xl font-black text-foreground/15 mb-6">
+                {step.number}
               </div>
+
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-full bg-foreground/5 flex items-center justify-center mb-6">
+                <step.icon className="w-6 h-6 text-foreground" strokeWidth={1.5} />
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-foreground mb-3">
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-muted-foreground text-base leading-relaxed">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>
+
+        {/* Stats Section - dark offmenu style */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
+                  {stat.value}
+                </p>
+                <p className="text-white/50 text-sm font-medium">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-12 pt-12 border-t border-white/10"
+          >
+            <h3 className="text-2xl md:text-3xl text-white mb-6">
+              <span className="font-semibold">Ready</span>{" "}
+              <span className="font-normal text-white/60">to transform your supplier audits?</span>
+            </h3>
+            <button className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300">
+              Find Your Auditor Now
+              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+            </button>
+          </motion.div>
+        </motion.div>
 
       </div>
     </section>

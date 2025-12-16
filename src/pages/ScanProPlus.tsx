@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
 import Earth3D from "@/components/Earth3D";
-import { DottedGlobe } from "@/components/DottedGlobe";
 import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
@@ -1385,9 +1384,36 @@ const HowItWorksCarousel = () => {
       description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <DottedGlobe badge="1-Click" showMarker />
+          {/* 3D Earth */}
+          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
+            <Earth3D width="100%" height="100%" showPins={false} />
+            
+            {/* Green Location Marker */}
+            <motion.div
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="absolute"
+              style={{ top: '30%', left: '70%' }}
+            >
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent animate-ping opacity-40" />
+            </motion.div>
+            
+            {/* 1-Click Button */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute"
+              style={{ top: '32%', left: '73%' }}
+            >
+              <div className="bg-[#B2CDBC] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+                <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      ),
+      )
     },
     {
       number: "02",
@@ -1395,9 +1421,11 @@ const HowItWorksCarousel = () => {
       description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <DottedGlobe badge="Auto-Dispatch" showMarker={false} />
+          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
+            <Earth3D width="100%" height="100%" showPins={true} />
+          </div>
         </div>
-      ),
+      )
     },
     {
       number: "03",
