@@ -1970,7 +1970,7 @@ const ScanProPlus = () => {
                 <img 
                   src={scanProHeroAuditor} 
                   alt="Professional auditor" 
-                  className="w-full max-w-md xl:max-w-lg object-contain"
+                  className="w-full max-w-2xl xl:max-w-3xl object-contain"
                 />
               </motion.div>
 
