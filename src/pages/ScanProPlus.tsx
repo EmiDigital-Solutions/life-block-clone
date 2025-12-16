@@ -1292,12 +1292,12 @@ const IndustryUseCasesGrid = () => {
               onClick={() => setSelectedUseCase(industry)}
               className="group bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-all duration-300 cursor-pointer text-left flex flex-col h-full"
             >
-              {/* Image - Fixed aspect ratio with full image visibility */}
-              <div className="relative overflow-hidden aspect-video flex-shrink-0 bg-white">
+              {/* Image - Unified size with consistent fill */}
+              <div className="relative overflow-hidden aspect-[4/3] flex-shrink-0 bg-white rounded-t-[28px]">
                 <img 
                   src={industry.image} 
                   alt={industry.title}
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
