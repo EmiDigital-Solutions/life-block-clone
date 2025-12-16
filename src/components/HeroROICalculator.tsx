@@ -85,10 +85,10 @@ const HeroROICalculator = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-6 lg:p-8 max-w-md"
+      className="bg-white rounded-[24px] p-6"
     >
       {/* Header */}
       <div className="mb-5">
