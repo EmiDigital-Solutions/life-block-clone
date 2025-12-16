@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const EmailComparisonSection = () => {
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-gray-50">
-      <div className="container mx-auto max-w-7xl">
+    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-background">
+      <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -12,80 +12,96 @@ const EmailComparisonSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
             Conversations that keep supply chains moving
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-10">
           {/* Usual */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-6"
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            <div className="text-center mb-6">
-              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Usual</p>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-muted-foreground/50"></div>
+              <p className="text-lg font-semibold text-muted-foreground uppercase tracking-wider">Usual</p>
             </div>
             
-            <div className="space-y-3">
-              {/* Message bubbles */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-4 w-full relative bg-gray-200"
-              >
-                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-gray-400 animate-pulse"></div>
-                <p className="text-sm text-gray-700 leading-relaxed pl-6">
-                  Hi Sarah,<br/><br/>
-                  Let me check if I have anyone available in that region.<br/><br/>
-                  I'll get back to you by end of the week.<br/><br/>
-                  Best,<br/>
-                  Michael
-                </p>
-              </motion.div>
+            <div className="bg-muted rounded-2xl p-6 border border-border">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-muted-foreground/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-medium text-muted-foreground">M</span>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-medium text-foreground">Michael</span>
+                    <span className="text-xs text-muted-foreground">2 days later</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Hi Sarah,<br/><br/>
+                    Let me check if I have anyone available in that region.<br/><br/>
+                    I'll get back to you by end of the week.<br/><br/>
+                    Best,<br/>
+                    Michael
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Result indicator */}
+            <div className="flex items-center gap-2 pt-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-destructive"></div>
+              <span className="text-sm text-muted-foreground">Waiting for response...</span>
             </div>
           </motion.div>
 
           {/* With ScanPro */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-6"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="space-y-4"
           >
-            <div className="text-center mb-6">
-              <p className="text-3xl lg:text-4xl font-bold text-primary">With ScanPro</p>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <p className="text-lg font-semibold text-primary uppercase tracking-wider">With YVOO</p>
             </div>
             
-            <div className="space-y-3">
-              {/* Message bubble */}
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-primary/10 border border-primary/20"
-              >
-                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-primary animate-pulse"></div>
-                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.3s" }}></div>
-                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.6s" }}></div>
-                <p className="text-sm text-gray-800 leading-relaxed pl-6">
-                  Hey Sarah,<br/><br/>
-                  No problem - I've got you covered!<br/><br/>
-                  I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
-                  Date is agreed with your supplier for next week Tuesday. Cost is €700 total, and you'll receive the complete digital report within 24 hours after the audit is completed, including photos, scoring, and detailed findings.<br/><br/>
-                  I'm sending you the tracking link where you can see the auditor's profile, certifications, and follow the entire audit process in real-time. All documentation will be centralized there as well.<br/><br/>
-                  Let me know if you need anything else!<br/><br/>
-                  Best,<br/>
-                  Michael
-                </p>
-              </motion.div>
+            <div className="bg-primary/5 rounded-2xl p-6 border border-primary/20">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-medium text-primary">M</span>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-medium text-foreground">Michael</span>
+                    <span className="text-xs text-primary font-medium">2 hours later</span>
+                  </div>
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    Hey Sarah,<br/><br/>
+                    No problem - I've got you covered!<br/><br/>
+                    ✓ Certified local auditor assigned from the region<br/>
+                    ✓ ISO/VDA qualified with automotive experience<br/>
+                    ✓ Audit scheduled for next week Tuesday<br/>
+                    ✓ Cost: €700 total<br/>
+                    ✓ Digital report within 24 hours<br/><br/>
+                    Sending you the tracking link now.<br/><br/>
+                    Best,<br/>
+                    Michael
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Result indicator */}
+            <div className="flex items-center gap-2 pt-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+              <span className="text-sm text-secondary font-medium">Audit confirmed & scheduled</span>
             </div>
           </motion.div>
         </div>
