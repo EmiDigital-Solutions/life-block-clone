@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 // Import images for mockups
-import equipmentImage from "@/assets/industry-automotive.jpg";
+import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import evidenceImg1 from "@/assets/auditor-factory-team.jpg";
 import evidenceImg2 from "@/assets/factory-hero-background.jpg";
 import evidenceImg3 from "@/assets/industry-electronics.jpg";
