@@ -1871,14 +1871,13 @@ const ScanProPlus = () => {
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10">
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
+            <div className="max-w-3xl">
               
-              {/* Left Column: Frosted Glass Card */}
+              {/* Frosted Glass Card with Header + ROI Calculator */}
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-xl lg:max-w-2xl"
               >
                 {/* Frosted Glass Card */}
                 <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
@@ -1921,12 +1920,22 @@ const ScanProPlus = () => {
                     On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
                   </motion.p>
 
-                  {/* CTA Buttons */}
+                  {/* ROI Calculator */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
+                    className="mb-8"
+                  >
+                    <HeroROICalculator />
+                  </motion.div>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center"
                   >
                     <button 
                       onClick={() => scrollToSection('cta')}
@@ -1948,38 +1957,7 @@ const ScanProPlus = () => {
                       />
                     </button>
                   </motion.div>
-
-                  {/* Stats Row */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="pt-6 border-t border-border/50"
-                  >
-                    <div className="flex flex-wrap gap-6">
-                      {[
-                        { value: "70%", label: "Cost Reduction" },
-                        { value: "80%", label: "Time Savings" },
-                        { value: "48h", label: "Deployment" },
-                      ].map((stat, idx) => (
-                        <div key={idx} className="text-center">
-                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                          <p className="text-sm text-muted-foreground">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
                 </div>
-              </motion.div>
-
-              {/* Right Column: ROI Calculator */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="hidden lg:block"
-              >
-                <HeroROICalculator />
               </motion.div>
 
             </div>
@@ -1987,10 +1965,6 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-[#f5f5f5]">
-        <HeroROICalculator />
-      </div>
 
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
