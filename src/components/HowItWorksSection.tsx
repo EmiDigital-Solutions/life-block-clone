@@ -31,98 +31,91 @@ const steps = [
   },
 ];
 
-// Metallic 3D Sphere Component
-const MetallicSphere = ({ badge }: { badge: string }) => {
+// Dotted Globe Component
+const DottedGlobe = ({ badge }: { badge: string }) => {
   return (
-    <div className="relative w-[200px] h-[200px] lg:w-[280px] lg:h-[280px]">
-      {/* Main sphere with metallic gradient */}
+    <div className="relative w-[280px] h-[280px] lg:w-[340px] lg:h-[340px]">
+      {/* Black globe with dotted pattern */}
       <div 
-        className="absolute inset-0 rounded-full"
+        className="absolute inset-0 rounded-full bg-foreground"
         style={{
-          background: `
-            radial-gradient(ellipse 70% 50% at 25% 25%, rgba(255,255,255,0.9) 0%, transparent 50%),
-            radial-gradient(ellipse 50% 40% at 75% 70%, rgba(200,200,200,0.4) 0%, transparent 40%),
-            linear-gradient(135deg, 
-              #e8e8e8 0%, 
-              #d0d0d0 15%,
-              #b8b8b8 30%,
-              #a0a0a0 45%,
-              #888888 55%,
-              #707070 70%,
-              #585858 85%,
-              #404040 100%
-            )
+          backgroundImage: `
+            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05) 0%, transparent 40%)
           `,
           boxShadow: `
-            inset -20px -20px 40px rgba(0,0,0,0.3),
-            inset 10px 10px 30px rgba(255,255,255,0.4),
-            0 30px 60px rgba(0,0,0,0.2)
+            inset -15px -15px 30px rgba(0,0,0,0.4),
+            0 20px 40px rgba(0,0,0,0.15)
           `,
         }}
       />
       
-      {/* Abstract organic shapes on sphere */}
-      <div 
-        className="absolute inset-0 rounded-full overflow-hidden"
-        style={{
-          opacity: 0.6,
-        }}
+      {/* Dotted world map pattern */}
+      <svg 
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 200 200"
+        style={{ opacity: 0.9 }}
       >
-        {/* Dark organic shape 1 */}
-        <div 
-          className="absolute"
-          style={{
-            width: '80%',
-            height: '60%',
-            top: '10%',
-            left: '-10%',
-            background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 50%, transparent 100%)',
-            borderRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
-            transform: 'rotate(-20deg)',
-            filter: 'blur(2px)',
-          }}
-        />
-        
-        {/* Dark organic shape 2 */}
-        <div 
-          className="absolute"
-          style={{
-            width: '50%',
-            height: '70%',
-            bottom: '5%',
-            right: '-5%',
-            background: 'linear-gradient(225deg, #2a2a2a 0%, #1a1a1a 50%, transparent 100%)',
-            borderRadius: '50% 50% 30% 70% / 60% 40% 60% 40%',
-            transform: 'rotate(30deg)',
-            filter: 'blur(2px)',
-          }}
-        />
-      </div>
+        {/* Generate dots for globe pattern */}
+        {Array.from({ length: 20 }).map((_, row) => 
+          Array.from({ length: 30 }).map((_, col) => {
+            const x = 10 + col * 6;
+            const y = 10 + row * 9;
+            const cx = 100;
+            const cy = 100;
+            const dx = x - cx;
+            const dy = y - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist > 85) return null;
+            
+            // Create landmass-like patterns
+            const noise = Math.sin(x * 0.15) * Math.cos(y * 0.12) + Math.sin(x * 0.08 + y * 0.1);
+            const isLand = noise > -0.3 && Math.random() > 0.3;
+            
+            if (!isLand) return null;
+            
+            const opacity = 1 - (dist / 100) * 0.3;
+            const size = 1.5 + (1 - dist / 100) * 0.8;
+            
+            return (
+              <circle
+                key={`${row}-${col}`}
+                cx={x}
+                cy={y}
+                r={size}
+                fill="white"
+                opacity={opacity}
+              />
+            );
+          })
+        )}
+      </svg>
       
       {/* Highlight reflection */}
       <div 
-        className="absolute rounded-full"
+        className="absolute rounded-full pointer-events-none"
         style={{
-          width: '40%',
-          height: '25%',
-          top: '12%',
-          left: '15%',
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%)',
+          width: '30%',
+          height: '20%',
+          top: '15%',
+          left: '20%',
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%)',
           borderRadius: '50%',
-          filter: 'blur(8px)',
+          filter: 'blur(10px)',
         }}
       />
       
       {/* Badge positioned on sphere */}
-      <div className="absolute bottom-6 right-0 lg:bottom-8 lg:right-[-10px]">
+      <div className="absolute top-1/2 right-[-20px] lg:right-[-30px] -translate-y-1/2">
         <motion.span 
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary/20 text-primary text-sm font-medium rounded-full shadow-lg"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent text-accent-foreground text-sm font-medium rounded-full shadow-lg"
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-accent-foreground/60"></span>
           {badge}
         </motion.span>
       </div>
@@ -176,7 +169,7 @@ export const HowItWorksSection = () => {
                   
                   {/* Metallic Sphere */}
                   <div className="relative z-10">
-                    <MetallicSphere badge={step.badge} />
+                    <DottedGlobe badge={step.badge} />
                   </div>
                 </div>
 
