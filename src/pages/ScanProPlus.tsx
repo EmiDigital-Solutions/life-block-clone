@@ -1281,7 +1281,7 @@ const IndustryUseCasesGrid = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {useCases.map((industry, idx) => (
             <motion.button
               key={idx}
@@ -1290,44 +1290,39 @@ const IndustryUseCasesGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedUseCase(industry)}
-              className="bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer text-left"
+              className="group bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-all duration-300 cursor-pointer text-left flex flex-col h-full"
             >
-              {/* Image */}
-              <div className="relative overflow-hidden h-48">
+              {/* Image - Fixed height with gradient overlay */}
+              <div className="relative overflow-hidden h-56 flex-shrink-0">
                 <img 
                   src={industry.image} 
                   alt={industry.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
 
-              {/* Content */}
-              <div className="p-8">
-                <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+              {/* Content - Flex grow for equal heights */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight line-clamp-2">
                   {industry.title}
                 </h3>
                 
-                <p className="text-muted-foreground text-base mb-4">{industry.useCase}</p>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{industry.useCase}</p>
                 
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-1.5 mb-4 flex-grow">
                   {industry.solutions.slice(0, 3).map((item, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="text-primary">•</span>
-                      {item}
+                    <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span className="line-clamp-1">{item}</span>
                     </li>
                   ))}
                 </ul>
-                
-                {industry.result && (
-                  <div className="p-4 rounded-2xl bg-foreground/5 mb-4">
-                    <p className="text-sm text-foreground font-medium">{industry.result}</p>
-                  </div>
-                )}
 
-                {/* Click indicator */}
-                <div className="text-xs font-medium text-primary flex items-center gap-1">
-                  Learn more
-                  <PixelIcon name="arrow-right" className="w-3 h-3" />
+                {/* Click indicator - Always at bottom */}
+                <div className="text-xs font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto pt-2 border-t border-foreground/10">
+                  View details
+                  <PixelIcon name="arrow-right" className="w-3 h-3 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
             </motion.button>
