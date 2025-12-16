@@ -385,7 +385,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                     key={idx} 
                     className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
                       <PixelIcon name="checkbox-on" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700">{service}</p>

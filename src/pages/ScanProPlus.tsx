@@ -661,7 +661,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
+              <button className="bg-white border-2 border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
                   <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -1310,7 +1310,7 @@ const ChallengeToggleSection = () => {
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
             className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-accent' : 'bg-destructive'
+              isWithScanPro ? 'bg-primary' : 'bg-destructive'
             }`}
             aria-label="Toggle comparison"
           >
@@ -1346,7 +1346,7 @@ const ChallengeToggleSection = () => {
                 <PixelIcon 
                   name={item.icon} 
                   className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0"
-                  color={isWithScanPro ? 'hsl(161, 26%, 55%)' : 'hsl(0, 84%, 60%)'}
+                  color={isWithScanPro ? 'hsl(var(--primary))' : 'hsl(0, 84%, 60%)'}
                 />
                 <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight">
                   {item.title}
@@ -1701,7 +1701,7 @@ const HowItWorksCarousel = () => {
           <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-10 md:mt-12">
             <button
               onClick={prevStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-primary"
               aria-label="Previous step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
@@ -1716,8 +1716,8 @@ const HowItWorksCarousel = () => {
                 >
                   <div className={`transition-all ${
                     index === currentStep
-                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-[#A8C5B8] rounded-full'
-                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-[#A8C5B8]/50'
+                      ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-primary rounded-full'
+                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-primary/50'
                   }`} />
                 </button>
               ))}
@@ -1725,7 +1725,7 @@ const HowItWorksCarousel = () => {
 
             <button
               onClick={nextStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-[#A8C5B8]"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-primary"
               aria-label="Next step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -2101,7 +2101,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center"
           >
-            Industry-Specific <span style={{ color: '#A8BFC5' }}>Use Cases</span>
+            Industry-Specific <span className="text-primary">Use Cases</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -2180,7 +2180,7 @@ const ScanProPlus = () => {
 
                   {/* Right Side - Content */}
                   <div className="p-6 sm:p-8 md:p-12">
-                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[#A8BFC5]/10 text-[#A8BFC5] rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
                       Industry Solution
                     </span>
                     
@@ -2276,7 +2276,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
           >
-            Global <span style={{ color: '#ACC5D9' }}>Network</span> & Integration
+            Global <span className="text-primary">Network</span> & Integration
           </motion.h2>
 
           {/* ERP Integration Section */}
@@ -2343,7 +2343,7 @@ const ScanProPlus = () => {
             </div>
           </motion.div>
 
-          <div className="mt-6 sm:mt-8 p-6 sm:p-8 lg:p-10 xl:p-12 rounded-xl text-white" style={{ background: 'linear-gradient(to right, #A8B8CA, #A8C5B8)' }}>
+          <div className="mt-6 sm:mt-8 p-6 sm:p-8 lg:p-10 xl:p-12 rounded-xl text-white bg-primary">
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">
               Available in 47 Countries
             </h3>
@@ -2370,7 +2370,7 @@ const ScanProPlus = () => {
           >
             {/* Headline */}
             <div className="space-y-6 max-w-3xl mx-auto">
-              <div className="w-12 h-0.5 bg-[#A8C5B8] mx-auto" />
+              <div className="w-12 h-0.5 bg-primary mx-auto" />
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
                 Ready for the Future of Supplier Auditing?
               </h2>
@@ -2389,12 +2389,12 @@ const ScanProPlus = () => {
                 transition={{ delay: 0.1, duration: 0.5 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
                   <div>
                     <h3 className="text-2xl font-bold text-black mb-2">
                       Schedule a Demo
                     </h3>
-                    <p className="text-sm text-[#A8B8CA] mb-3">30 minutes</p>
+                    <p className="text-sm text-primary mb-3">30 minutes</p>
                     <p className="text-base text-gray-600 leading-relaxed">
                       Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.
                     </p>
@@ -2410,12 +2410,12 @@ const ScanProPlus = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
                   <div>
                     <h3 className="text-2xl font-bold text-black mb-2">
                       Start Pilot Audit
                     </h3>
-                    <p className="text-sm text-[#A8B8CA] mb-3">2 weeks</p>
+                    <p className="text-sm text-primary mb-3">2 weeks</p>
                     <p className="text-base text-gray-600 leading-relaxed">
                       Test the platform with a real supplier audit – without risk, with measurable results.
                     </p>
@@ -2431,12 +2431,12 @@ const ScanProPlus = () => {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-[#A8C5B8] mt-3 flex-shrink-0" />
+                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
                   <div>
                     <h3 className="text-2xl font-bold text-black mb-2">
                       Plan Integration
                     </h3>
-                    <p className="text-sm text-[#A8B8CA] mb-3">Full setup</p>
+                    <p className="text-sm text-primary mb-3">Full setup</p>
                     <p className="text-base text-gray-600 leading-relaxed">
                       Seamless integration into your existing Quality Management Systems and ERP landscape.
                     </p>
@@ -2455,14 +2455,14 @@ const ScanProPlus = () => {
             >
               <a
                 href="mailto:ibrandic@yvoo.io"
-                className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-gray-800 shadow-lg min-h-[56px]"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-primary/90 shadow-lg min-h-[56px]"
               >
                 Schedule Demo
                 <ArrowRight className="w-5 h-5" />
               </a>
               <a
                 href="mailto:ibrandic@yvoo.io"
-                className="inline-flex items-center justify-center gap-2 bg-white text-black border-2 border-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-300 min-h-[56px]"
+                className="inline-flex items-center justify-center gap-2 bg-white text-primary border-2 border-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary/10 transition-all duration-300 min-h-[56px]"
               >
                 Start Pilot Audit
               </a>
@@ -2484,7 +2484,7 @@ const ScanProPlus = () => {
                     <span className="text-sm text-gray-500"> — CEO YVOO Technologies Ltd.</span>
                   </p>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-base">
-                    <a href="mailto:ibrandic@yvoo.io" className="text-black hover:text-primary font-bold transition-colors">
+                    <a href="mailto:ibrandic@yvoo.io" className="text-primary hover:text-primary/80 font-bold transition-colors">
                       ibrandic@yvoo.io
                     </a>
                     <span className="hidden sm:inline text-gray-300">|</span>
