@@ -106,13 +106,11 @@ const BuyerPainPointsSection = () => {
           </div>
 
           {/* Headline with orange underline emphasis */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center leading-tight px-4">
-            Imagine if you{" "}
-            <span className="relative inline-block">
-              didn't
-              <span className="absolute bottom-1 sm:bottom-2 left-0 w-full h-2 sm:h-3 bg-[#FF8B6B] opacity-50 -z-10"></span>
-            </span>
-            {" "}have to spend time...
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-center leading-tight px-4">
+            <span className="font-semibold text-foreground">Imagine if you</span>{" "}
+            <span className="font-normal text-muted-foreground">didn't have to</span>
+            <br />
+            <span className="font-normal text-muted-foreground">spend time...</span>
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}

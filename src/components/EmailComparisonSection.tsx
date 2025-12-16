@@ -12,8 +12,12 @@ const EmailComparisonSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Conversations that keep supply chains moving
+          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">Conversations</span>{" "}
+            <span className="font-normal text-muted-foreground">that keep</span>
+            <br />
+            <span className="font-normal text-muted-foreground">supply chains</span>{" "}
+            <span className="font-semibold text-foreground">moving.</span>
           </h2>
         </motion.div>
 

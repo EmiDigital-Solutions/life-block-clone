@@ -13,11 +13,11 @@ const FinalCTASection = () => {
           className="max-w-4xl mx-auto text-center"
         >
           {/* Mixed weight heading like offmenu */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight tracking-tight">
-            <span className="font-bold text-foreground">Ready to</span>{" "}
-            <span className="font-light text-muted-foreground">transform your</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+            <span className="font-semibold text-foreground">Ready to</span>{" "}
+            <span className="font-normal text-muted-foreground">transform your</span>
             <br />
-            <span className="font-light text-muted-foreground">supplier audits?</span>
+            <span className="font-normal text-muted-foreground">supplier audits?</span>
           </h2>
           
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">

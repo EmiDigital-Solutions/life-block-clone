@@ -35,10 +35,10 @@ const GlobalNetworkSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl leading-tight"
               >
                 <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
-                <span className="font-light text-muted-foreground">Auditor Network</span>
+                <span className="font-normal text-muted-foreground">Auditor Network</span>
               </motion.h2>
 
               <motion.p
