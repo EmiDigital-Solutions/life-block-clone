@@ -11,6 +11,7 @@ import ROITimelineChart from "@/components/charts/ROITimelineChart";
 import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
+import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -1207,6 +1208,142 @@ const ComplianceStandardsGrid = () => {
   );
 };
 
+// Industry Use Cases Grid with Modal
+const IndustryUseCasesGrid = () => {
+  const [selectedUseCase, setSelectedUseCase] = useState<IndustryUseCase | null>(null);
+
+  const useCases: IndustryUseCase[] = [
+    {
+      image: industryAutomotive,
+      title: "Automotive: PPAP Validation & Tool Audits",
+      useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
+      solutions: [
+        "Complete First Article Inspection with automatic document creation",
+        "Supplier development according to IATF 16949",
+        "Automatic release process with ERP integration",
+        "VDA 6.3 compliant process assessment"
+      ],
+      result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
+    },
+    {
+      image: industryAerospace,
+      title: "Aerospace: AS9100 Compliance & Critical Process Validation",
+      useCase: "Validate welding processes at suppliers of critical aircraft components.",
+      solutions: [
+        "Welding process qualification with complete documentation",
+        "Material tracking and certificate tracking",
+        "AS9100-compliant reporting",
+        "Critical process parameter monitoring"
+      ]
+    },
+    {
+      image: industryMedical,
+      title: "Pharma: GMP Audits & Clean Room Assessments",
+      useCase: "GMP audit of an API manufacturer before contract signing.",
+      solutions: [
+        "Sterilization process validation with FDA-compliant documentation",
+        "Clean Room assessment with automatic classification",
+        "Change Control and deviation management",
+        "Validation processes fully documented"
+      ]
+    },
+    {
+      image: industryCryogenicValve,
+      title: "Chemical & Process Industry: REACH Compliance & Process Safety",
+      useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
+      solutions: [
+        "Plant safety inspection with automatic risk assessment",
+        "Environmental audits and REACH compliance check",
+        "Action tracking with deadline monitoring",
+        "Process safety according to COMAH/Seveso"
+      ]
+    }
+  ];
+
+  return (
+    <section 
+      data-nav-theme="light" 
+      className="py-24 md:py-32 bg-background"
+    >
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">Industry</span>{" "}
+            <span className="text-muted-foreground font-normal">specific</span>
+            <br />
+            <span className="text-muted-foreground font-normal">use</span>{" "}
+            <span className="font-semibold text-foreground">cases.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {useCases.map((industry, idx) => (
+            <motion.button
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
+              onClick={() => setSelectedUseCase(industry)}
+              className="bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer text-left"
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden h-48">
+                <img 
+                  src={industry.image} 
+                  alt={industry.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-8">
+                <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+                  {industry.title}
+                </h3>
+                
+                <p className="text-muted-foreground text-base mb-4">{industry.useCase}</p>
+                
+                <ul className="space-y-2 mb-4">
+                  {industry.solutions.slice(0, 3).map((item, i) => (
+                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                      <span className="text-primary">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                
+                {industry.result && (
+                  <div className="p-4 rounded-2xl bg-foreground/5 mb-4">
+                    <p className="text-sm text-foreground font-medium">{industry.result}</p>
+                  </div>
+                )}
+
+                {/* Click indicator */}
+                <div className="text-xs font-medium text-primary flex items-center gap-1">
+                  Learn more
+                  <PixelIcon name="arrow-right" className="w-3 h-3" />
+                </div>
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* Modal */}
+      <IndustryUseCaseModal 
+        useCase={selectedUseCase} 
+        onClose={() => setSelectedUseCase(null)} 
+      />
+    </section>
+  );
+};
+
 // Challenge Toggle Section
 const ChallengeToggleSection = () => {
   const [isWithScanPro, setIsWithScanPro] = useState(false);
@@ -2128,119 +2265,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Industry Use Cases - Homepage Style */}
-      <section 
-        data-nav-theme="light" 
-        className="py-24 md:py-32 bg-background"
-      >
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 md:mb-20"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">Industry</span>{" "}
-              <span className="text-muted-foreground font-normal">specific</span>
-              <br />
-              <span className="text-muted-foreground font-normal">use</span>{" "}
-              <span className="font-semibold text-foreground">cases.</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {[
-              {
-                image: industryAutomotive,
-                title: "Automotive: PPAP Validation & Tool Audits",
-                useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
-                solutions: [
-                  "Complete First Article Inspection with automatic document creation",
-                  "Supplier development according to IATF 16949",
-                  "Automatic release process with ERP integration",
-                  "VDA 6.3 compliant process assessment"
-                ],
-                result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
-              },
-              {
-                image: industryAerospace,
-                title: "Aerospace: AS9100 Compliance & Critical Process Validation",
-                useCase: "Validate welding processes at suppliers of critical aircraft components.",
-                solutions: [
-                  "Welding process qualification with complete documentation",
-                  "Material tracking and certificate tracking",
-                  "AS9100-compliant reporting",
-                  "Critical process parameter monitoring"
-                ]
-              },
-              {
-                image: industryMedical,
-                title: "Pharma: GMP Audits & Clean Room Assessments",
-                useCase: "GMP audit of an API manufacturer before contract signing.",
-                solutions: [
-                  "Sterilization process validation with FDA-compliant documentation",
-                  "Clean Room assessment with automatic classification",
-                  "Change Control and deviation management",
-                  "Validation processes fully documented"
-                ]
-              },
-              {
-                image: industryCryogenicValve,
-                title: "Chemical & Process Industry: REACH Compliance & Process Safety",
-                useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
-                solutions: [
-                  "Plant safety inspection with automatic risk assessment",
-                  "Environmental audits and REACH compliance check",
-                  "Action tracking with deadline monitoring",
-                  "Process safety according to COMAH/Seveso"
-                ]
-              }
-            ].map((industry, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-colors duration-300"
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden h-48">
-                  <img 
-                    src={industry.image} 
-                    alt={industry.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-8">
-                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
-                    {industry.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground text-base mb-4">{industry.useCase}</p>
-                  
-                  <ul className="space-y-2 mb-4">
-                    {industry.solutions.slice(0, 3).map((item, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {industry.result && (
-                    <div className="p-4 rounded-2xl bg-foreground/5">
-                      <p className="text-sm text-foreground font-medium">{industry.result}</p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <IndustryUseCasesGrid />
 
       {/* Compliance Standards - Homepage Style */}
       <section 
