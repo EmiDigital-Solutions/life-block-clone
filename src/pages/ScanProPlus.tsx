@@ -1157,7 +1157,7 @@ const ComplianceStandardsGrid = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {standards.map((standard, idx) => {
           return (
             <motion.button
@@ -1167,31 +1167,28 @@ const ComplianceStandardsGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedStandard(standard)}
-              className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer w-full h-full aspect-square flex flex-col items-center justify-center"
+              className="group bg-[#ebebeb] rounded-[28px] p-6 hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer w-full text-left"
             >
               {/* Icon - pixel art style */}
-              <div className="mb-2 sm:mb-4 mx-auto flex items-center justify-center">
-                <PixelIcon name={standard.iconName} className="w-12 h-12 sm:w-16 sm:h-16" />
+              <div className="w-12 h-12 mb-4">
+                <PixelIcon name={standard.iconName} className="w-12 h-12" />
               </div>
 
               {/* Standard name */}
-              <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2 text-center">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {standard.name}
               </h3>
 
               {/* Description */}
-              <p className="text-[10px] sm:text-xs text-gray-600 mb-2 sm:mb-3 text-center line-clamp-2">
+              <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                 {standard.description}
               </p>
 
               {/* Click indicator */}
-              <div className="text-[10px] sm:text-xs font-black text-primary transition-opacity flex items-center justify-center gap-1">
-                Click to learn more
+              <div className="text-xs font-medium text-primary flex items-center gap-1">
+                Learn more
                 <PixelIcon name="arrow-right" className="w-3 h-3" />
               </div>
-
-              {/* Hover effect overlay */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </motion.button>
           );
         })}
@@ -1281,81 +1278,80 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="py-8 sm:py-12 lg:py-16 px-4 bg-white"
+      className="py-24 md:py-32 bg-[#f5f5f5]"
       id="challenge"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         
         {/* Header with Toggle */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
-              {isWithScanPro ? 'With' : 'Traditional'}
+        <div className="flex items-center justify-between mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">{isWithScanPro ? 'With' : 'Traditional'}</span>{" "}
+              <span className={isWithScanPro ? 'text-primary font-semibold' : 'text-destructive font-semibold'}>
+                {isWithScanPro ? 'ScanPro+' : 'Providers'}
+              </span>
             </h2>
-            
-            <motion.span
-              key={isWithScanPro ? 'with' : 'traditional'}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
-                isWithScanPro ? 'text-secondary' : 'text-destructive'
-              }`}
-            >
-              {isWithScanPro ? 'ScanPro+' : 'Providers'}
-            </motion.span>
-          </div>
+          </motion.div>
 
           {/* Toggle Switch */}
           <button
             onClick={() => setIsWithScanPro(!isWithScanPro)}
-            className={`relative w-14 h-7 sm:w-16 sm:h-8 rounded-full transition-colors duration-300 ${
+            className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
               isWithScanPro ? 'bg-primary' : 'bg-destructive'
             }`}
             aria-label="Toggle comparison"
           >
             <motion.div
-              className="absolute top-0.5 left-0.5 w-6 h-6 sm:w-7 sm:h-7 bg-white rounded-full"
-              animate={{ x: isWithScanPro ? 28 : 0 }}
+              className="absolute top-0.5 left-0.5 w-7 h-7 bg-white rounded-full"
+              animate={{ x: isWithScanPro ? 32 : 0 }}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           </button>
         </div>
 
         {/* Description */}
-        <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-2xl">
+        <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
             ? "Experience transparent pricing, rapid deployment, and AI-powered standardization."
             : "Traditional audits: unpredictable costs, long delays, and inconsistent quality."}
         </p>
 
-        {/* Grid - 2 rows of 3 cards on mobile */}
+        {/* Grid - Homepage Card Style */}
         <motion.div
           key={isWithScanPro ? 'with' : 'traditional'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 xl:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {currentContent.map((item, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl p-2 sm:p-5 lg:p-6 xl:p-7 border border-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <div className="flex flex-col items-center text-center gap-1 sm:gap-2 mb-1 sm:mb-3">
+              <div className="w-12 h-12 rounded-full bg-foreground/5 flex items-center justify-center mb-6">
                 <PixelIcon 
                   name={item.icon} 
-                  className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0"
+                  className="w-6 h-6"
                   color={isWithScanPro ? 'hsl(var(--primary))' : 'hsl(0, 84%, 60%)'}
                 />
-                <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight">
-                  {item.title}
-                </h3>
               </div>
-              <p className="text-[10px] sm:text-sm lg:text-base text-gray-600 leading-tight sm:leading-relaxed lg:leading-relaxed text-center">
+              <h3 className="text-xl font-semibold text-foreground mb-3">
+                {item.title}
+              </h3>
+              <p className="text-muted-foreground text-base leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -1973,74 +1969,64 @@ const ScanProPlus = () => {
       <HowItWorksCarousel />
 
 
-      {/* Results Section - Clean Modern Design */}
+      {/* Results Section - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(255, 255, 255))" }}
+        className="py-24 md:py-32 bg-[#f5f5f5]"
         id="results"
       >
-
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
+            className="mb-16 md:mb-20"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Business <span className="text-primary font-black">Impact</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Business</span>{" "}
+              <span className="text-muted-foreground font-normal">impact,</span>
+              <br />
+              <span className="text-muted-foreground font-normal">measured</span>{" "}
+              <span className="font-semibold text-foreground">results.</span>
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Data-driven insights showing measurable ROI and operational improvements
-            </p>
           </motion.div>
 
-          {/* Clean Metric Cards - Testing Bluer Color */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
-            {[
-              { value: 60, suffix: '%', label: 'Cost Reduction', color: '#A8C5B8', delay: 0 },
-              { value: 70, suffix: '%', label: 'Time Savings', color: '#A8B8CA', delay: 0.1 },
-              { value: 96, suffix: '%', label: 'Price Transparency', color: '#A8C5B8', delay: 0.2 },
-              { value: 48, suffix: 'h', label: 'Rapid Deployment', color: '#A8B8CA', delay: 0.3 }
-            ].map((metric, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: metric.delay, duration: 0.5 }}
-                className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
-              >
+          {/* Stats Section - Dark Homepage Style */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mb-12"
+          >
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+              {[
+                { value: '60%', label: 'Cost Reduction' },
+                { value: '70%', label: 'Time Savings' },
+                { value: '96%', label: 'Price Transparency' },
+                { value: '48h', label: 'Rapid Deployment' }
+              ].map((stat, index) => (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: metric.delay + 0.2, type: "spring", stiffness: 200 }}
-                  className="text-4xl sm:text-5xl font-bold mb-2"
-                  style={{ color: metric.color }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="text-center"
                 >
-                  {metric.value}{metric.suffix}
+                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-white/50 text-sm font-medium">
+                    {stat.label}
+                  </p>
                 </motion.div>
-                <p className="text-gray-900 font-semibold mb-4">{metric.label}</p>
-                
-                {/* Animated Progress Bar */}
-                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${metric.value}%` }}
-                    viewport={{ once: true }}
-                    transition={{ delay: metric.delay + 0.5, duration: 1.2, ease: "easeOut" }}
-                    className="h-full rounded-full"
-                    style={{ backgroundColor: metric.color }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
 
-          {/* Chart Grid - Clean Design */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-6 sm:mb-8 md:mb-10">
+          {/* Chart Grid - Homepage Card Style */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
             
             {/* Cost Comparison Bar Chart */}
             <motion.div
@@ -2048,10 +2034,10 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Cost Comparison</h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-4 sm:mb-6">Traditional vs ScanPro+ per audit</p>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Cost Comparison</h3>
+              <p className="text-muted-foreground text-base mb-6">Traditional vs ScanPro+ per audit</p>
               
               <BusinessImpactChart />
             </motion.div>
@@ -2062,25 +2048,24 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Cumulative Savings</h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-4 sm:mb-6">12-month projection (20 audits/year)</p>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Cumulative Savings</h3>
+              <p className="text-muted-foreground text-base mb-6">12-month projection (20 audits/year)</p>
               
               <ROITimelineChart />
             </motion.div>
           </div>
 
-          {/* Full-width Time Efficiency Chart */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow"
+            className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
           >
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Time-to-Audit Comparison</h3>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-4 sm:mb-6">End-to-end audit process duration</p>
+            <h3 className="text-xl font-semibold text-foreground mb-3">Time-to-Audit Comparison</h3>
+            <p className="text-muted-foreground text-base mb-6">End-to-end audit process duration</p>
             
             <TimeEfficiencyChart />
           </motion.div>
@@ -2088,31 +2073,28 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Industry Use Cases - Light gradient */}
+      {/* Industry Use Cases - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        className="py-24 md:py-32 bg-background"
       >
-        <div className="container mx-auto max-w-6xl">
-          <motion.h2
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 text-center"
+            className="mb-16 md:mb-20"
           >
-            Industry-Specific <span className="text-primary">Use Cases</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 text-center"
-          >
-            Tailored solutions for automotive, aerospace, pharma, and chemical industries
-          </motion.p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Industry</span>{" "}
+              <span className="text-muted-foreground font-normal">specific</span>
+              <br />
+              <span className="text-muted-foreground font-normal">use</span>{" "}
+              <span className="font-semibold text-foreground">cases.</span>
+            </h2>
+          </motion.div>
 
-          <div className="space-y-6 sm:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[
               {
                 image: industryAutomotive,
@@ -2165,46 +2147,40 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden"
+                transition={{ delay: idx * 0.05 }}
+                className="bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-colors duration-300"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center">
-                  {/* Left Side - Image */}
-                  <div className="relative overflow-hidden h-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px] flex items-center justify-center bg-gray-100">
-                    <img 
-                      src={industry.image} 
-                      alt={industry.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                {/* Image */}
+                <div className="relative overflow-hidden h-48">
+                  <img 
+                    src={industry.image} 
+                    alt={industry.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                  {/* Right Side - Content */}
-                  <div className="p-6 sm:p-8 md:p-12">
-                    <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
-                      Industry Solution
-                    </span>
-                    
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                      {industry.title}
-                    </h3>
-                    
-                    <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">{industry.useCase}</p>
-                    
-                    <p className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 sm:mb-3">ScanPro+ Solution:</p>
-                    <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                      {industry.solutions.map((item, i) => (
-                        <li key={i} className="text-sm sm:text-base text-gray-700">
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    {industry.result && (
-                      <div className="p-3 sm:p-4 rounded-lg" style={{ backgroundColor: 'rgba(168, 197, 184, 0.1)' }}>
-                        <p className="text-sm sm:text-base text-gray-900 font-semibold">{industry.result}</p>
-                      </div>
-                    )}
-                  </div>
+                {/* Content */}
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+                    {industry.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground text-base mb-4">{industry.useCase}</p>
+                  
+                  <ul className="space-y-2 mb-4">
+                    {industry.solutions.slice(0, 3).map((item, i) => (
+                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                        <span className="text-primary">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  {industry.result && (
+                    <div className="p-4 rounded-2xl bg-foreground/5">
+                      <p className="text-sm text-foreground font-medium">{industry.result}</p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -2212,30 +2188,28 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Compliance Standards - Modern Interactive Cards */}
+      {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        className="py-24 md:py-32 bg-[#f5f5f5]"
       >
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-10 md:mb-12"
+            className="mb-16 md:mb-20"
           >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-                Compliance & Supported Standards
-              </h2>
-            </div>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+              <span className="font-semibold text-foreground">Compliance</span>{" "}
+              <span className="text-muted-foreground font-normal">&</span>
+              <br />
+              <span className="text-muted-foreground font-normal">supported</span>{" "}
+              <span className="font-semibold text-foreground">standards.</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
               YVOO ScanPro+ meets the highest international quality and safety standards. 
               Your audits are legally secure and comply with all industry-specific requirements.
-            </p>
-            <p className="text-xs sm:text-sm font-black text-primary mt-3 sm:mt-4">
-              👆 Click on any standard to learn more
             </p>
           </motion.div>
 
@@ -2243,19 +2217,19 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8 sm:mb-10 mt-6 sm:mt-8"
+            className="mb-12"
           >
-            <p className="text-base sm:text-lg font-semibold text-gray-700 mb-2 sm:mb-3">
+            <p className="text-base font-medium text-foreground mb-3">
               Our auditor network includes professionals certified by:
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-gray-600 px-4">
-              <span className="text-sm sm:text-base">TÜV SÜD</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm sm:text-base">Bureau Veritas</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm sm:text-base">SGS</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm sm:text-base">DNV</span>
+            <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+              <span>TÜV SÜD</span>
+              <span className="text-border">•</span>
+              <span>Bureau Veritas</span>
+              <span className="text-border">•</span>
+              <span>SGS</span>
+              <span className="text-border">•</span>
+              <span>DNV</span>
             </div>
           </motion.div>
           
@@ -2263,235 +2237,154 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Global Network - Light gradient with image */}
+      {/* Global Network - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        className="py-24 md:py-32 bg-background"
       >
-        <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 sm:mb-10 md:mb-12 text-center"
-          >
-            Global <span className="text-primary">Network</span> & Integration
-          </motion.h2>
-
-          {/* ERP Integration Section */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
+            className="mb-16 md:mb-20"
           >
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">ERP Integration</h3>
-            <div className="space-y-3 sm:space-y-4">
-              {[
-                { title: 'SAP Integration', desc: 'Supplier Evaluation & Release' },
-                { title: 'Oracle', desc: 'Seamless ERP connectivity' },
-                { title: 'Microsoft Dynamics', desc: 'Full system integration' },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
-                >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
-                  <div className="flex-1">
-                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base lg:text-lg text-gray-600">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Global</span>{" "}
+              <span className="text-muted-foreground font-normal">network</span>
+              <br />
+              <span className="text-muted-foreground font-normal">&</span>{" "}
+              <span className="font-semibold text-foreground">integration.</span>
+            </h2>
           </motion.div>
 
-          {/* Global Network Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8 sm:mb-12"
-          >
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Global Network</h3>
-            <div className="space-y-3 sm:space-y-4">
-              {[
-                { title: 'On-Demand Availability', desc: 'Same-Day audits worldwide' },
-                { title: 'Smart Matching', desc: 'Optimal auditor selection' },
-                { title: 'Quality Assured', desc: 'Rating system & tracking' },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex items-start gap-3 sm:gap-4 group cursor-pointer"
-                >
-                  <PixelIcon name="arrow-right" className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex-shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
-                  <div className="flex-1">
-                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">{item.title}</h4>
-                    <p className="text-sm sm:text-base lg:text-lg text-gray-600">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="mt-6 sm:mt-8 p-6 sm:p-8 lg:p-10 xl:p-12 rounded-xl text-white bg-primary">
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">
-              Available in 47 Countries
-            </h3>
-            <p className="text-base sm:text-lg lg:text-xl text-white/90">
-              Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA - Clean Modern Design */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-20 sm:py-24 md:py-32 px-6 bg-gray-50"
-        id="cta"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-16"
-          >
-            {/* Headline */}
-            <div className="space-y-6 max-w-3xl mx-auto">
-              <div className="w-12 h-0.5 bg-primary mx-auto" />
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black leading-tight">
-                Ready for the Future of Supplier Auditing?
-              </h2>
-              <p className="text-xl text-gray-600">
-                Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
-              </p>
-            </div>
-
-            {/* Options Grid */}
-            <div className="grid md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto">
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.5 }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-2xl font-bold text-black mb-2">
-                      Schedule a Demo
-                    </h3>
-                    <p className="text-sm text-primary mb-3">30 minutes</p>
-                    <p className="text-base text-gray-600 leading-relaxed">
-                      Experience in a personal demo how YVOO ScanPro+ revolutionizes your supplier audits.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-2xl font-bold text-black mb-2">
-                      Start Pilot Audit
-                    </h3>
-                    <p className="text-sm text-primary mb-3">2 weeks</p>
-                    <p className="text-base text-gray-600 leading-relaxed">
-                      Test the platform with a real supplier audit – without risk, with measurable results.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-0.5 bg-primary mt-3 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-2xl font-bold text-black mb-2">
-                      Plan Integration
-                    </h3>
-                    <p className="text-sm text-primary mb-3">Full setup</p>
-                    <p className="text-base text-gray-600 leading-relaxed">
-                      Seamless integration into your existing Quality Management Systems and ERP landscape.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          {/* Two Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+            {/* ERP Integration Card */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <a
-                href="mailto:ibrandic@yvoo.io"
-                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-primary/90 shadow-lg min-h-[56px]"
-              >
-                Schedule Demo
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:ibrandic@yvoo.io"
-                className="inline-flex items-center justify-center gap-2 bg-white text-primary border-2 border-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary/10 transition-all duration-300 min-h-[56px]"
-              >
-                Start Pilot Audit
-              </a>
+              <h3 className="text-xl font-semibold text-foreground mb-6">ERP Integration</h3>
+              <div className="space-y-4">
+                {[
+                  { title: 'SAP Integration', desc: 'Supplier Evaluation & Release' },
+                  { title: 'Oracle', desc: 'Seamless ERP connectivity' },
+                  { title: 'Microsoft Dynamics', desc: 'Full system integration' },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <PixelIcon name="arrow-right" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Contact Section */}
-            <motion.div 
-              className="pt-16 border-t border-gray-200 max-w-2xl mx-auto"
+            {/* Global Network Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+            >
+              <h3 className="text-xl font-semibold text-foreground mb-6">Global Network</h3>
+              <div className="space-y-4">
+                {[
+                  { title: 'On-Demand Availability', desc: 'Same-Day audits worldwide' },
+                  { title: 'Smart Matching', desc: 'Optimal auditor selection' },
+                  { title: 'Quality Assured', desc: 'Rating system & tracking' },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <PixelIcon name="arrow-right" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-foreground">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Dark Stats Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16"
+          >
+            <h3 className="text-2xl md:text-3xl text-white mb-4">
+              <span className="font-semibold">Available</span>{" "}
+              <span className="font-normal text-white/60">in 47 Countries</span>
+            </h3>
+            <p className="text-white/60 text-lg mb-8 max-w-2xl">
+              Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
+            </p>
+            <button className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300">
+              Find Your Auditor Now
+              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA - Homepage Style */}
+      <section 
+        data-nav-theme="light" 
+        className="py-24 md:py-32 bg-background"
+        id="cta"
+      >
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            {/* Mixed weight heading */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+              <span className="font-semibold text-foreground">Ready to</span>{" "}
+              <span className="font-normal text-muted-foreground">transform your</span>
+              <br />
+              <span className="font-normal text-muted-foreground">supplier audits?</span>
+            </h2>
+            
+            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
+              Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-base font-medium inline-flex items-center gap-2">
+                Order Audit
+                <PixelIcon name="arrow-right" className="w-4 h-4" />
+              </button>
+              <button 
+                className="border border-border text-foreground hover:bg-muted rounded-full px-8 py-6 text-base font-medium"
+                onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}
+              >
+                Book a Demo
+              </button>
+            </div>
+
+            {/* Trust indicators */}
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 0.3 }}
+              className="mt-16 pt-8 border-t border-border"
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-black">Contact</h3>
-                <div className="space-y-2 text-gray-600">
-                  <p className="text-lg">
-                    <span className="font-semibold text-black">Ivo Brandic</span>
-                    <span className="text-sm text-gray-500"> — CEO YVOO Technologies Ltd.</span>
-                  </p>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-base">
-                    <a href="mailto:ibrandic@yvoo.io" className="text-primary hover:text-primary/80 font-bold transition-colors">
-                      ibrandic@yvoo.io
-                    </a>
-                    <span className="hidden sm:inline text-gray-300">|</span>
-                    <span className="text-gray-600">+49 (0)152 03095799</span>
-                  </div>
-                  <p className="text-sm text-gray-500">WhatsApp | Google Meet</p>
-                </div>
+              <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
+                <span>No setup fees</span>
+                <span>Pay per audit</span>
+                <span>24/7 Support</span>
+                <span>Cancel anytime</span>
               </div>
             </motion.div>
           </motion.div>
