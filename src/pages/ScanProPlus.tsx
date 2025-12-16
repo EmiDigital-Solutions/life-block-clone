@@ -1980,98 +1980,130 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Apotech Style */}
+      {/* Hero Section - Apotech Style Clone */}
       <section
         data-nav-theme="light"
         className="relative min-h-screen flex flex-col overflow-hidden"
         id="hero"
-        style={{
-          background: "linear-gradient(135deg, #d4e8e7 0%, #e8f4f8 50%, #d4e8e7 100%)"
-        }}
       >
-        {/* Curved shape overlay on right side */}
-        <div 
-          className="absolute top-0 right-0 w-1/2 h-full pointer-events-none hidden lg:block"
-          style={{
-            background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)"
-          }}
-        />
+        {/* Background - Light gray left, teal gradient right */}
+        <div className="absolute inset-0 flex">
+          {/* Left side - light gray */}
+          <div className="w-1/2 bg-[#e8e8e8]" />
+          {/* Right side - teal gradient */}
+          <div 
+            className="w-1/2"
+            style={{
+              background: "linear-gradient(135deg, #b8d4d8 0%, #d4e8eb 50%, #c8dde0 100%)"
+            }}
+          />
+        </div>
 
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10">
-          <div className="w-full max-w-[1800px] mx-auto px-6 lg:px-12 xl:px-20 pt-24 lg:pt-32 pb-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="w-full h-full flex">
+            
+            {/* Left Column: Arc-shaped Image */}
+            <motion.div 
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-[45%] hidden lg:block"
+            >
+              {/* Arc-clipped image container */}
+              <div 
+                className="absolute inset-0 overflow-hidden"
+                style={{
+                  clipPath: "ellipse(85% 100% at 0% 50%)"
+                }}
+              >
+                <img 
+                  src={scanProHeroAuditor} 
+                  alt="Professional auditor team" 
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
               
-              {/* Left Column: Circular Image */}
-              <motion.div 
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative flex justify-center lg:justify-start order-2 lg:order-1"
-              >
-                {/* Large circular clipped image - Apotech style */}
-                <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[450px] lg:h-[450px] xl:w-[520px] xl:h-[520px] rounded-full overflow-hidden shadow-2xl">
-                  <img 
-                    src={scanProHeroAuditor} 
-                    alt="Professional auditor team" 
-                    className="w-full h-full object-cover object-center scale-110"
-                  />
-                </div>
-              </motion.div>
+              {/* Teal arc border overlay */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  clipPath: "ellipse(85% 100% at 0% 50%)",
+                  boxShadow: "inset -8px 0 0 0 #2b7a8c"
+                }}
+              />
+            </motion.div>
 
-              {/* Right Column: Text Content */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="order-1 lg:order-2"
-              >
-                {/* Main Heading - Apotech style with accent color */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6">
+            {/* Right Column: Text Content */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex-1 flex items-center px-8 lg:px-16 xl:px-24 py-24 lg:py-0"
+            >
+              <div className="max-w-xl">
+                {/* Main Heading - Apotech exact style */}
+                <h1 className="text-4xl sm:text-5xl lg:text-[56px] xl:text-[64px] leading-[1.1] tracking-tight mb-8">
                   <span className="font-normal text-foreground">Truly </span>
-                  <span className="font-normal text-primary italic">'tailor-made'</span>
+                  <span className="font-normal text-[#2b7a8c] italic">'tailor-made'</span>
                   <br />
-                  <span className="font-normal text-foreground">flexible and bespoke</span>
+                  <span className="font-bold text-foreground">flexible and bespoke</span>
                   <br />
-                  <span className="font-normal text-primary">supplier audits</span>
+                  <span className="font-normal text-[#2b7a8c]">solutions</span>
                 </h1>
 
                 {/* Subheadline */}
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-foreground/80 mb-6">
+                <h2 className="text-xl lg:text-2xl font-semibold text-foreground/80 mb-4">
                   Global Complexity, Simplified Locally
                 </h2>
 
                 {/* Description paragraphs */}
-                <div className="space-y-4 mb-10 max-w-xl">
-                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                <div className="space-y-4 mb-10">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     As global industry experts, YVOO helps procurement teams around the world streamline supplier audits, mitigate risks and ensure quality compliance.
                   </p>
-                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    We offer a modern, AI-powered approach that delivers complete audit confidence and peace of mind in your supply chain.
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    We offer a modern and dynamic approach that delivers complete audit peace of mind and confidence in your supply chain.
                   </p>
                 </div>
 
-                {/* CTA Buttons - Apotech style */}
+                {/* CTA Buttons - Apotech exact style */}
                 <div className="flex flex-col sm:flex-row gap-4 items-start">
                   <button 
                     onClick={() => scrollToSection('cta')}
-                    className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-[#2b7a8c] text-white font-medium rounded-lg hover:bg-[#236a7a] transition-all duration-300"
                   >
                     Get in touch
                   </button>
                   <button 
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary/10 transition-all duration-300"
+                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-[#2b7a8c] text-[#2b7a8c] font-medium rounded-lg hover:bg-[#2b7a8c]/10 transition-all duration-300"
                   >
                     Discover our case studies
                   </button>
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
 
-            </div>
           </div>
         </div>
 
-        {/* Scroll Down Indicator */}
+        {/* Mobile Image - Full width below */}
+        <div className="lg:hidden relative w-full h-[300px] sm:h-[400px]">
+          <div 
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              clipPath: "ellipse(120% 100% at 50% 100%)"
+            }}
+          >
+            <img 
+              src={scanProHeroAuditor} 
+              alt="Professional auditor team" 
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator - Teal circle with chevron */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -2080,10 +2112,10 @@ const ScanProPlus = () => {
         >
           <button 
             onClick={() => scrollToSection('capabilities')}
-            className="w-14 h-14 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+            className="w-14 h-14 rounded-full bg-[#2b7a8c] flex items-center justify-center hover:bg-[#236a7a] transition-colors shadow-lg"
           >
             <svg 
-              className="w-6 h-6 text-primary-foreground" 
+              className="w-6 h-6 text-white" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
