@@ -1980,134 +1980,86 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Homepage Style */}
+      {/* Hero Section - Offmenu.design Style */}
       <section
-        data-nav-theme="light"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
+        data-nav-theme="hero"
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
         id="hero"
       >
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={scanProHeroAuditor} 
+            alt="Professional auditor conducting supplier audit" 
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
+        </div>
 
-        {/* Main Content */}
-        <div className="flex-1 flex items-center">
-          <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-end">
-              
-              {/* Left Column: Frosted Glass Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-xl lg:max-w-2xl"
-              >
-                {/* Frosted Glass Card */}
-                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
-                  
-                  {/* Tagline Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="mb-6"
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                      ScanPro+ — AI-Powered Supplier Audits
-                    </span>
-                  </motion.div>
+        {/* Centered Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 lg:py-40">
+          
+          {/* Main Headline - offmenu style with mixed fonts */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8 max-w-5xl"
+          >
+            <span className="font-semibold text-foreground">AI-Powered Supplier Audits</span>
+            <br />
+            <span className="font-serif italic font-normal text-muted-foreground">Worth Trusting</span>
+          </motion.h1>
 
-                  {/* Main Heading - Mixed weight style */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
-                  >
-                    <span className="font-semibold text-foreground">Supplier Audits</span>
-                    <br />
-                    <span className="text-muted-foreground font-light">in</span>{" "}
-                    <span className="font-semibold text-primary">Days,</span>
-                    <br />
-                    <span className="text-muted-foreground font-light">Not Weeks.</span>
-                  </motion.h1>
+          {/* CTA Buttons - Centered, offmenu style */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 items-center"
+          >
+            <button 
+              onClick={() => scrollToSection('cta')}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base bg-foreground text-white hover:bg-foreground/90"
+            >
+              Get Started
+              <PixelIcon 
+                name="arrow-right" 
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                color="currentColor"
+              />
+            </button>
+            <button 
+              onClick={() => scrollToSection('how-it-works')}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium transition-all duration-300 text-base bg-white text-foreground hover:bg-white/90 border border-border/20"
+            >
+              View Pricing
+              <PixelIcon 
+                name="arrow-right" 
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                color="currentColor"
+              />
+            </button>
+          </motion.div>
+        </div>
 
-                  {/* Subtitle */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
-                  >
-                    On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
-                  </motion.p>
-
-                  {/* CTA Buttons */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
-                  >
-                    <button 
-                      onClick={() => scrollToSection('cta')}
-                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
-                    >
-                      Get Started
-                      <PixelIcon 
-                        name="arrow-right" 
-                        className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                        color="currentColor"
-                      />
-                    </button>
-                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
-                      How it works
-                      <PixelIcon 
-                        name="arrow-right" 
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                        color="currentColor"
-                      />
-                    </button>
-                  </motion.div>
-
-                  {/* Stats Row */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="pt-6 border-t border-border/50"
-                  >
-                    <div className="flex flex-wrap gap-6">
-                      {[
-                        { value: "70%", label: "Cost Reduction" },
-                        { value: "80%", label: "Time Savings" },
-                        { value: "48h", label: "Deployment" },
-                      ].map((stat, idx) => (
-                        <div key={idx} className="text-center">
-                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                          <p className="text-sm text-muted-foreground">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Right Column: Auditor Image */}
-              <motion.div 
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="hidden lg:flex items-end justify-center"
-              >
-                <img 
-                  src={scanProHeroAuditor} 
-                  alt="Professional auditor" 
-                  className="w-full max-w-2xl xl:max-w-3xl object-contain"
-                />
-              </motion.div>
-
+        {/* Client Logos Band - Bottom */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="absolute bottom-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-sm py-6 px-6"
+        >
+          <div className="flex items-center justify-center gap-8 lg:gap-16 text-muted-foreground">
+            <span className="text-sm font-medium whitespace-nowrap">Trusted by world's leading manufacturers</span>
+            <div className="hidden md:flex items-center gap-8 lg:gap-12">
+              {['TÜV SÜD', 'Bureau Veritas', 'SGS', 'DNV'].map((logo) => (
+                <span key={logo} className="text-sm font-semibold text-foreground/60">{logo}</span>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
