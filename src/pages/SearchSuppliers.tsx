@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { useState, useRef, useEffect } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
+import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
@@ -1399,65 +1400,8 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* FAQ Section - Matching Homepage Style */}
-      <section className="py-24 md:py-32 bg-[#f5f5f5]" data-nav-theme="light">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">We answer all questions</span>
-              <br />
-              <span className="font-normal text-muted-foreground">about SearchPro+.</span>
-            </h2>
-          </motion.div>
-
-          <Accordion type="single" collapsible defaultValue="item-0">
-            {[
-              {
-                q: "How does YVOO's search engine work?",
-                a: "YVOO SearchPro+ uses a triple-source architecture combining verified supplier databases, company research databases, and real-time web searches. Our AI agent guides you through a conversational workflow to understand your exact requirements."
-              },
-              {
-                q: "Do I need a subscription to use YVOO's search engine?",
-                a: "Yes, YVOO SearchPro+ is available through subscription plans tailored to your company size and needs. Contact us for a demo and custom pricing."
-              },
-              {
-                q: "Who can use SearchPro+?",
-                a: "SearchPro+ is designed for procurement professionals, supply chain managers, and sourcing teams across all industries looking to streamline their supplier discovery process."
-              },
-              {
-                q: "How can I use SearchPro+'s export files?",
-                a: "You can export supplier lists in CSV, Excel, or PDF formats for seamless integration with your existing procurement systems or ERP platforms."
-              },
-              {
-                q: "Is my data treated confidentially?",
-                a: "Absolutely. We maintain strict data privacy standards and comply with GDPR regulations. Your searches and supplier lists remain completely confidential."
-              },
-              {
-                q: "What makes SearchPro+ different from traditional search engines?",
-                a: "Unlike traditional search engines, SearchPro+ uses AI to understand procurement-specific requirements, searches multiple verified databases simultaneously, and provides explainable recommendations with quality scores."
-              }
-            ].map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`} 
-                className="border-t border-[#d5d5d5] border-b-0"
-              >
-                <AccordionTrigger className="py-6 text-left text-lg md:text-xl text-foreground font-medium leading-snug hover:no-underline [&[data-state=open]>div]:bg-[#c5c5c5] group">
-                  <span className="flex-1 pr-4">{faq.q}</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+      {/* FAQ Section - Matching Homepage Style with Categories */}
+      <SearchSuppliersFAQ />
 
       {/* CTA Section - Matching Homepage Style */}
       <section 
