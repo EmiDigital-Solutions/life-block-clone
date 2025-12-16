@@ -48,38 +48,86 @@ const capabilities: Capability[] = [
     description: "Monitor improvements with reminders and due-dates.",
     detailedDescription: "Comprehensive corrective action management system tracks findings from identification through verification of effectiveness. Automated workflows assign responsibilities, set due dates, and send reminders to responsible parties. Suppliers can submit evidence of corrective actions directly through the platform. Built-in approval workflows ensure corrective actions are verified before closure. Analytics dashboard shows closure rates, overdue actions, and effectiveness trends across your supplier base."
   },
+  { 
+    title: "Integrations", 
+    description: "ERP/QMS connectors (SAP, Oracle, Dynamics, Trackwise, MasterControl, ETQ).",
+    detailedDescription: "Pre-built connectors integrate with major ERP systems (SAP, Oracle, Microsoft Dynamics), quality management systems (Trackwise, MasterControl, ETQ), and procurement platforms. Bi-directional data synchronization ensures audit findings, supplier scores, and corrective actions flow automatically into your existing systems. API-first architecture enables custom integrations with proprietary systems. Automated data exchange eliminates manual data entry and reduces errors by up to 95%."
+  },
 ];
 
 const InfiniteScrollingGallery = () => {
   const [selectedCapability, setSelectedCapability] = useState<Capability | null>(null);
 
+  const row1 = [capabilities[0], capabilities[1], capabilities[2]];
+  const row2 = [capabilities[3], capabilities[4], capabilities[5]];
+
+  const renderRow = (items: Capability[], direction: 'left' | 'right', rowIndex: number) => {
+    const duplicatedItems = [...items, ...items, ...items];
+    
+    return (
+      <div className="overflow-hidden">
+        <div 
+          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} hover:animation-pause`}
+          style={{ width: 'fit-content' }}
+        >
+          {duplicatedItems.map((item, index) => (
+            <div
+              key={`${rowIndex}-${index}`}
+              onClick={() => setSelectedCapability(item)}
+              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              style={{ width: '280px' }}
+            >
+              <div className="aspect-square bg-gradient-to-br from-accent/20 to-secondary/30 flex items-center justify-center p-6">
+                <h4 className="text-xl font-bold text-foreground text-center leading-tight">
+                  {item.title}
+                </h4>
+              </div>
+              <div className="p-4">
+                <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
+                  {item.description}
+                </p>
+                <span className="text-xs font-medium text-primary mt-2 inline-block hover:underline">
+                  Learn more →
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-        {capabilities.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedCapability(item)}
-            className="group cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-          >
-            <div className="aspect-square bg-gradient-to-br from-accent/20 to-secondary/30 flex items-center justify-center p-6">
-              <h4 className="text-lg md:text-xl font-bold text-foreground text-center leading-tight">
-                {item.title}
-              </h4>
-            </div>
-            <div className="p-4">
-              <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
-                {item.description}
-              </p>
-              <span className="text-xs font-medium text-primary mt-2 inline-block group-hover:underline">
-                Learn more →
-              </span>
-            </div>
-          </div>
-        ))}
+      <div className="space-y-6 py-4">
+        {renderRow(row1, 'left', 1)}
+        {renderRow(row2, 'right', 2)}
+
+        <style>{`
+          @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-304px * 3)); }
+          }
+
+          @keyframes scroll-right {
+            0% { transform: translateX(calc(-304px * 3)); }
+            100% { transform: translateX(0); }
+          }
+
+          .animate-scroll-left {
+            animation: scroll-left 25s linear infinite;
+          }
+
+          .animate-scroll-right {
+            animation: scroll-right 25s linear infinite;
+          }
+
+          .hover\\:animation-pause:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
 
-      {/* Modal Dialog */}
       <Dialog open={selectedCapability !== null} onOpenChange={() => setSelectedCapability(null)}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
