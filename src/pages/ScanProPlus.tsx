@@ -44,6 +44,7 @@ import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
 import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
+import scanProHeroAuditor from "@/assets/scanpro-hero-auditor.png";
 import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
@@ -1959,14 +1960,18 @@ const ScanProPlus = () => {
                 </div>
               </motion.div>
 
-              {/* Right Column: ROI Calculator */}
+              {/* Right Column: Auditor Image */}
               <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="hidden lg:block"
+                className="hidden lg:flex items-end justify-center"
               >
-                <HeroROICalculator />
+                <img 
+                  src={scanProHeroAuditor} 
+                  alt="Professional auditor" 
+                  className="w-full max-w-md xl:max-w-lg object-contain"
+                />
               </motion.div>
 
             </div>
