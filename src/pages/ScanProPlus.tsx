@@ -1980,150 +1980,134 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Apotech Style Clone */}
+      {/* Hero Section - Homepage Style */}
       <section
         data-nav-theme="light"
-        className="relative min-h-screen flex flex-col overflow-hidden"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
         id="hero"
       >
-        {/* Background - Light gray left, teal gradient right */}
-        <div className="absolute inset-0 flex">
-          {/* Left side - light gray */}
-          <div className="w-1/2 bg-[#e8e8e8]" />
-          {/* Right side - teal gradient */}
-          <div 
-            className="w-1/2"
-            style={{
-              background: "linear-gradient(135deg, #b8d4d8 0%, #d4e8eb 50%, #c8dde0 100%)"
-            }}
-          />
-        </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center relative z-10">
-          <div className="w-full h-full flex">
-            
-            {/* Left Column: Arc-shaped Image */}
-            <motion.div 
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative w-[45%] hidden lg:block"
-            >
-              {/* Arc-clipped image container */}
-              <div 
-                className="absolute inset-0 overflow-hidden"
-                style={{
-                  clipPath: "ellipse(85% 100% at 0% 50%)"
-                }}
+        <div className="flex-1 flex items-center">
+          <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-end">
+              
+              {/* Left Column: Frosted Glass Card */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-xl lg:max-w-2xl"
+              >
+                {/* Frosted Glass Card */}
+                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+                  
+                  {/* Tagline Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="mb-6"
+                  >
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                      ScanPro+ — AI-Powered Supplier Audits
+                    </span>
+                  </motion.div>
+
+                  {/* Main Heading - Mixed weight style */}
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
+                  >
+                    <span className="font-semibold text-foreground">Supplier Audits</span>
+                    <br />
+                    <span className="text-muted-foreground font-light">in</span>{" "}
+                    <span className="font-semibold text-primary">Days,</span>
+                    <br />
+                    <span className="text-muted-foreground font-light">Not Weeks.</span>
+                  </motion.h1>
+
+                  {/* Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
+                  >
+                    On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
+                  >
+                    <button 
+                      onClick={() => scrollToSection('cta')}
+                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
+                    >
+                      Get Started
+                      <PixelIcon 
+                        name="arrow-right" 
+                        className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                        color="currentColor"
+                      />
+                    </button>
+                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
+                      How it works
+                      <PixelIcon 
+                        name="arrow-right" 
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                        color="currentColor"
+                      />
+                    </button>
+                  </motion.div>
+
+                  {/* Stats Row */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="pt-6 border-t border-border/50"
+                  >
+                    <div className="flex flex-wrap gap-6">
+                      {[
+                        { value: "70%", label: "Cost Reduction" },
+                        { value: "80%", label: "Time Savings" },
+                        { value: "48h", label: "Deployment" },
+                      ].map((stat, idx) => (
+                        <div key={idx} className="text-center">
+                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                          <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Right Column: Auditor Image */}
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="hidden lg:flex items-end justify-center"
               >
                 <img 
                   src={scanProHeroAuditor} 
-                  alt="Professional auditor team" 
-                  className="w-full h-full object-cover object-center"
+                  alt="Professional auditor" 
+                  className="w-full max-w-2xl xl:max-w-3xl object-contain"
                 />
-              </div>
-              
-              {/* Teal arc border overlay */}
-              <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  clipPath: "ellipse(85% 100% at 0% 50%)",
-                  boxShadow: "inset -8px 0 0 0 #2b7a8c"
-                }}
-              />
-            </motion.div>
+              </motion.div>
 
-            {/* Right Column: Text Content */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex-1 flex items-center px-8 lg:px-16 xl:px-24 py-24 lg:py-0"
-            >
-              <div className="max-w-xl">
-                {/* Main Heading - Apotech exact style */}
-                <h1 className="text-4xl sm:text-5xl lg:text-[56px] xl:text-[64px] leading-[1.1] tracking-tight mb-8">
-                  <span className="font-normal text-foreground">Truly </span>
-                  <span className="font-normal text-[#2b7a8c] italic">'tailor-made'</span>
-                  <br />
-                  <span className="font-bold text-foreground">flexible and bespoke</span>
-                  <br />
-                  <span className="font-normal text-[#2b7a8c]">solutions</span>
-                </h1>
-
-                {/* Subheadline */}
-                <h2 className="text-xl lg:text-2xl font-semibold text-foreground/80 mb-4">
-                  Global Complexity, Simplified Locally
-                </h2>
-
-                {/* Description paragraphs */}
-                <div className="space-y-4 mb-10">
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    As global industry experts, YVOO helps procurement teams around the world streamline supplier audits, mitigate risks and ensure quality compliance.
-                  </p>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    We offer a modern and dynamic approach that delivers complete audit peace of mind and confidence in your supply chain.
-                  </p>
-                </div>
-
-                {/* CTA Buttons - Apotech exact style */}
-                <div className="flex flex-col sm:flex-row gap-4 items-start">
-                  <button 
-                    onClick={() => scrollToSection('cta')}
-                    className="inline-flex items-center justify-center px-8 py-4 bg-[#2b7a8c] text-white font-medium rounded-lg hover:bg-[#236a7a] transition-all duration-300"
-                  >
-                    Get in touch
-                  </button>
-                  <button 
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-[#2b7a8c] text-[#2b7a8c] font-medium rounded-lg hover:bg-[#2b7a8c]/10 transition-all duration-300"
-                  >
-                    Discover our case studies
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-
+            </div>
           </div>
         </div>
-
-        {/* Mobile Image - Full width below */}
-        <div className="lg:hidden relative w-full h-[300px] sm:h-[400px]">
-          <div 
-            className="absolute inset-0 overflow-hidden"
-            style={{
-              clipPath: "ellipse(120% 100% at 50% 100%)"
-            }}
-          >
-            <img 
-              src={scanProHeroAuditor} 
-              alt="Professional auditor team" 
-              className="w-full h-full object-cover object-center"
-            />
-          </div>
-        </div>
-
-        {/* Scroll Down Indicator - Teal circle with chevron */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-        >
-          <button 
-            onClick={() => scrollToSection('capabilities')}
-            className="w-14 h-14 rounded-full bg-[#2b7a8c] flex items-center justify-center hover:bg-[#236a7a] transition-colors shadow-lg"
-          >
-            <svg 
-              className="w-6 h-6 text-white" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-        </motion.div>
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
