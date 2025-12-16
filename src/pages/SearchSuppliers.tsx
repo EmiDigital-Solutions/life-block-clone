@@ -671,15 +671,15 @@ const SearchSuppliers = () => {
             className="mb-8 text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#A8C5B8]"></div>
-              <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Interactive Demo</span>
+              <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+              <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Interactive Demo</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              <span className="text-[#A8C5B8]">Try SearchPro+</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
+              <span className="font-semibold text-foreground">Try SearchPro+</span>
               <br />
-              <span className="text-gray-900">in Action</span>
+              <span className="font-normal text-muted-foreground">in Action</span>
             </h2>
-            <p className="text-gray-400 text-lg">
+            <p className="text-muted-foreground text-lg">
               Experience AI-powered conversational search
             </p>
           </motion.div>
@@ -871,13 +871,13 @@ const SearchSuppliers = () => {
             className="text-center mb-8 md:mb-16"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
-              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Benefits</span>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Benefits</span>
             </div>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 px-4">
-              <span className="text-[#A8C5B8]">Your next supplier,</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-3 px-4">
+              <span className="font-semibold text-foreground">Your next supplier,</span>
               <br />
-              <span className="text-black">just a click away.</span>
+              <span className="font-normal text-muted-foreground">just a click away.</span>
             </h2>
           </motion.div>
 
@@ -960,13 +960,13 @@ const SearchSuppliers = () => {
             className="mb-6 md:mb-12"
           >
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
-              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Process</span>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Process</span>
             </div>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">
-              <span className="text-[#A8C5B8]">Product</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Product</span>
               <br />
-              <span className="text-black">Overview.</span>
+              <span className="font-normal text-muted-foreground">Overview.</span>
             </h2>
           </motion.div>
 
@@ -1111,9 +1111,9 @@ const SearchSuppliers = () => {
             transition={{ duration: 0.6 }}
             className="max-w-2xl mb-16 md:mb-24"
           >
-            <p className="text-sm font-medium text-[#A8C5B8] mb-4 tracking-wide uppercase">Technology Stack</p>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Built for precision, <br />powered by AI
+            <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">Technology Stack</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Built for precision,</span> <br /><span className="font-normal text-muted-foreground">powered by AI</span>
             </h2>
           </motion.div>
 
@@ -1245,11 +1245,11 @@ const SearchSuppliers = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mb-16 md:mb-24"
           >
-            <p className="text-sm font-medium text-[#A8C5B8] mb-4 tracking-wide uppercase">AI Capabilities</p>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Eight features that transform <br />procurement intelligence
+            <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">AI Capabilities</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+              <span className="font-semibold text-foreground">Eight features that transform</span> <br /><span className="font-normal text-muted-foreground">procurement intelligence</span>
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-muted-foreground">
               Built to eliminate manual work and deliver precision matching across global supplier networks.
             </p>
           </motion.div>
@@ -1404,13 +1404,13 @@ const SearchSuppliers = () => {
             className="text-center mb-6 md:mb-16"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#A8C5B8]"></div>
-              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">FAQ</span>
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">FAQ</span>
             </div>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 px-4">
-              <span className="text-[#A8C5B8]">We answer all questions</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-3 md:mb-4 px-4">
+              <span className="font-semibold text-foreground">We answer all questions</span>
               <br />
-              <span className="text-black">about SearchPro+.</span>
+              <span className="font-normal text-muted-foreground">about SearchPro+.</span>
             </h2>
           </motion.div>
 
@@ -1478,15 +1478,16 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#A8C5B8]/10 rounded-full mb-6 border border-[#A8C5B8]/20">
-                <Sparkles className="w-4 h-4 text-[#A8C5B8]" />
-                <span className="text-sm font-medium text-[#A8C5B8]">Start Your Search</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 border border-primary/20">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Start Your Search</span>
               </div>
               
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Find your next <span style={{ color: '#A8C5B8' }}>supplier partner</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                <span className="font-semibold text-foreground">Find your next</span>{" "}
+                <span className="font-normal text-muted-foreground">supplier partner</span>
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                 Join thousands of procurement professionals discovering and verifying suppliers with AI
               </p>
             </motion.div>
