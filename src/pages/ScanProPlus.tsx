@@ -1850,28 +1850,13 @@ const ScanProPlus = () => {
       
       {/* Hero Section - Homepage Style */}
       <section
-        data-nav-theme="dark"
+        data-nav-theme="light"
         className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
         id="hero"
       >
-        {/* Video Background Container */}
-        <div className="absolute inset-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
-          >
-            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-          </video>
-          {/* Subtle overlay for better text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
-        </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center relative z-10">
+        <div className="flex-1 flex items-center">
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
               
