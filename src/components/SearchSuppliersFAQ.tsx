@@ -161,7 +161,7 @@ const SearchSuppliersFAQ = () => {
               onClick={() => handleCategoryChange(category.id)}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === category.id
-                  ? "bg-foreground text-white"
+                  ? "bg-primary text-white"
                   : "bg-[#e5e5e5] text-foreground hover:bg-[#d5d5d5]"
               }`}
             >

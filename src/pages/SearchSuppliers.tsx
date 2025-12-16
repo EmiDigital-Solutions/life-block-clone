@@ -485,7 +485,7 @@ const SearchSuppliers = () => {
                   transition={{ delay: 0.5, duration: 0.5 }}
                   className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
                 >
-                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
+                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
                     Start Search
                     <PixelIcon 
                       name="arrow-right" 
@@ -846,13 +846,13 @@ const SearchSuppliers = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-white border-2 border-gray-200 rounded-2xl hover:border-[#A8C5B8] hover:shadow-md transition-all group"
+                        className="text-left p-4 bg-white border-2 border-gray-200 rounded-2xl hover:border-primary hover:shadow-md transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-black text-gray-900 group-hover:text-[#A8C5B8] transition-colors drop-shadow-sm">
+                          <h4 className="font-black text-gray-900 group-hover:text-primary transition-colors drop-shadow-sm">
                             {supplier.name}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#A8C5B8] group-hover:translate-x-1 transition-all" strokeWidth={3} />
+                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                           <MapPin className="w-4 h-4" />
@@ -862,7 +862,7 @@ const SearchSuppliers = () => {
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-[#A8C5B8]/20 text-[#A8C5B8] text-xs rounded-full font-bold shadow-sm"
+                              className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full font-bold shadow-sm"
                             >
                               {cert}
                             </span>
@@ -992,14 +992,14 @@ const SearchSuppliers = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 md:px-6 py-2 md:py-3 rounded-2xl text-sm md:text-base font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
-                    ? "bg-white text-[#A8C5B8] shadow-lg border-2 border-[#A8C5B8]/20 scale-105"
+                    ? "bg-white text-primary shadow-lg border-2 border-primary/20 scale-105"
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
                 <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
-                  activeTab === tab.id ? "bg-[#A8C5B8]/10" : "bg-gray-100"
+                  activeTab === tab.id ? "bg-primary/10" : "bg-gray-100"
                 }`}>
-                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-[#A8C5B8]" : "text-gray-500"}`} />
+                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-primary" : "text-gray-500"}`} />
                 </div>
                 {tab.label}
               </motion.button>
@@ -1028,10 +1028,10 @@ const SearchSuppliers = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#A8C5B8]/5 to-transparent rounded-2xl hover:from-[#A8C5B8]/10 transition-all group"
+                        className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl hover:from-primary/10 transition-all group"
                       >
-                        <div className="w-10 h-10 bg-[#A8C5B8]/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-5 h-5 text-[#A8C5B8]" />
+                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <CheckCircle2 className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1">
                           <p className="font-semibold text-gray-900">{company.name}</p>
@@ -1047,10 +1047,10 @@ const SearchSuppliers = () => {
               )}
               {activeTab === "save" && (
                 <div className="space-y-4">
-                  <div className="p-6 bg-gradient-to-br from-[#A8C5B8]/5 to-gray-50 rounded-2xl border border-[#A8C5B8]/20">
+                  <div className="p-6 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl border border-primary/20">
                     <div className="flex items-start gap-3 mb-3">
-                      <div className="w-10 h-10 bg-[#A8C5B8]/20 rounded-full flex items-center justify-center">
-                        <Save className="w-5 h-5 text-[#A8C5B8]" />
+                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                        <Save className="w-5 h-5 text-primary" />
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-gray-900 mb-2">Local List - Automotive Supplier EMEA</p>
@@ -1058,8 +1058,8 @@ const SearchSuppliers = () => {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <Button variant="outline" size="sm" className="rounded-full text-[#A8C5B8] border-[#A8C5B8]/30 hover:bg-[#A8C5B8]/10">Share</Button>
-                      <Button variant="outline" size="sm" className="rounded-full text-[#A8C5B8] border-[#A8C5B8]/30 hover:bg-[#A8C5B8]/10">Edit</Button>
+                      <Button variant="outline" size="sm" className="rounded-full text-primary border-primary/30 hover:bg-primary/10">Share</Button>
+                      <Button variant="outline" size="sm" className="rounded-full text-primary border-primary/30 hover:bg-primary/10">Edit</Button>
                       <Button variant="outline" size="sm" className="rounded-full text-red-500 border-red-300 hover:bg-red-50">Delete</Button>
                     </div>
                   </div>
@@ -1076,7 +1076,7 @@ const SearchSuppliers = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <Button variant="outline" className="rounded-full border-[#A8C5B8]/30 text-[#A8C5B8] hover:bg-[#A8C5B8]/10 px-6 py-3">
+                        <Button variant="outline" className="rounded-full border-primary/30 text-primary hover:bg-primary/10 px-6 py-3">
                           <FileText className="w-4 h-4 mr-2" />
                           {format}
                         </Button>
@@ -1096,7 +1096,7 @@ const SearchSuppliers = () => {
               <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
-              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
+              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
                 Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -1135,7 +1135,7 @@ const SearchSuppliers = () => {
               className="group relative"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 01
               </div>
               
@@ -1172,7 +1172,7 @@ const SearchSuppliers = () => {
               className="group relative"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 02
               </div>
               
@@ -1209,7 +1209,7 @@ const SearchSuppliers = () => {
               className="group"
             >
               {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-[#A8C5B8] group-hover:text-white transition-colors duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 03
               </div>
               
@@ -1387,7 +1387,7 @@ const SearchSuppliers = () => {
                       <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-4">
                         {feature.description}
                       </p>
-                      <div className="inline-flex items-center gap-2 text-[#A8C5B8] text-sm font-semibold group-hover:gap-3 transition-all">
+                      <div className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
                         <span>Learn more</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
                       </div>
@@ -1447,7 +1447,7 @@ const SearchSuppliers = () => {
                   className="flex-1 outline-none text-base text-foreground bg-transparent py-3 placeholder:text-muted-foreground"
                 />
               </div>
-              <button className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
+              <button className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
                 Start Search
               </button>
             </motion.div>
@@ -1494,15 +1494,15 @@ const SearchSuppliers = () => {
                     </DialogTitle>
                     <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
                       <div className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-primary" />
                         <span>{selectedSupplier.location}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Users className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
+                        <Users className="w-3 h-3 md:w-4 md:h-4 text-primary" />
                         <span>{selectedSupplier.employees} employees</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Factory className="w-3 h-3 md:w-4 md:h-4 text-[#A8C5B8]" />
+                        <Factory className="w-3 h-3 md:w-4 md:h-4 text-primary" />
                         <span>Founded {selectedSupplier.founded}</span>
                       </div>
                     </div>
@@ -1517,13 +1517,13 @@ const SearchSuppliers = () => {
 
               {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card className="rounded-2xl border-[#A8C5B8]/20">
+                <Card className="rounded-2xl border-primary/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
-                    <p className="text-lg font-bold text-[#A8C5B8]">{selectedSupplier.experience}</p>
+                    <p className="text-lg font-bold text-primary">{selectedSupplier.experience}</p>
                   </CardContent>
                 </Card>
-                <Card className="rounded-2xl border-[#A8BFC5]/20">
+                <Card className="rounded-2xl border-primary/20">
                   <CardContent className="p-4">
                     <p className="text-xs text-gray-600 mb-1">Production Capacity</p>
                     <p className="text-sm font-semibold text-gray-700">{selectedSupplier.capacity}</p>
@@ -1540,12 +1540,12 @@ const SearchSuppliers = () => {
               {/* Certifications */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-[#A8C5B8]" />
+                  <Award className="w-5 h-5 text-primary" />
                   Certifications & Standards
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedSupplier.certifications.map((cert: string) => (
-                    <Badge key={cert} className="bg-[#A8C5B8]/10 text-[#A8C5B8] hover:bg-[#A8C5B8]/20 border-[#A8C5B8]/30">
+                    <Badge key={cert} className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/30">
                       {cert}
                     </Badge>
                   ))}
@@ -1555,13 +1555,13 @@ const SearchSuppliers = () => {
               {/* Capabilities */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-[#A8C5B8]" />
+                  <Target className="w-5 h-5 text-primary" />
                   Core Capabilities
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {selectedSupplier.capabilities.map((capability: string) => (
                     <div key={capability} className="flex items-center gap-2 text-sm text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
                       <span>{capability}</span>
                     </div>
                   ))}
@@ -1571,13 +1571,13 @@ const SearchSuppliers = () => {
               {/* Equipment */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-[#14B8A6]" />
+                  <Zap className="w-5 h-5 text-primary" />
                   Equipment & Technology
                 </h3>
                 <div className="space-y-2">
                   {selectedSupplier.equipment.map((equip: string) => (
                     <div key={equip} className="flex items-center gap-2 text-sm text-gray-700 p-2 bg-gray-50 rounded-lg">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996]"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                       <span>{equip}</span>
                     </div>
                   ))}
@@ -1586,10 +1586,10 @@ const SearchSuppliers = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4 border-t border-gray-200">
-                <Button className="flex-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488] hover:from-[#0F9B8E] hover:to-[#0A7A6E] text-white rounded-full">
+                <Button className="flex-1 bg-primary hover:bg-primary/90 text-white rounded-full">
                   Request Quote
                 </Button>
-                <Button variant="outline" className="flex-1 border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/10 rounded-full">
+                <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary/10 rounded-full">
                   Schedule Audit
                 </Button>
                 <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-full">
