@@ -423,55 +423,76 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Green Background */}
+      {/* Hero Section - Light Background with Frosted Glass Card */}
       <section 
-        data-nav-theme="primary"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-primary overflow-visible"
+        data-nav-theme="dark"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#f5f5f5] overflow-visible"
         style={{ 
           minHeight: "70vh"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start">
-            {/* Left Content - Takes 2 columns */}
+            {/* Left Content - Frosted Glass Card - Takes 2 columns */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-8 border border-white/20 backdrop-blur-sm"
-              >
-                <Cpu className="w-4 h-4 text-white" />
-                <span className="text-sm font-semibold text-white tracking-wide uppercase">AI-Powered Discovery</span>
-              </motion.div>
+              <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="mb-6"
+                >
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                    <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    AI-Powered Discovery
+                  </span>
+                </motion.div>
 
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white mb-10" style={{ fontWeight: 800 }}>
-                <span className="block">Find suppliers</span>
-                <span className="block">worldwide.</span>
-              </h1>
-              
-              <div className="space-y-5 mb-10">
-                {[
-                  "25M+ global suppliers",
-                  "Real-time verification",
-                  "Instant export"
-                ].map((text, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                    className="flex items-center gap-3 text-white/90"
-                  >
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-lg md:text-xl font-medium">{text}</span>
-                  </motion.div>
-                ))}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
+                  <span className="font-semibold text-foreground">Find suppliers</span>
+                  <br />
+                  <span className="text-muted-foreground font-light">worldwide.</span>
+                </h1>
+                
+                <div className="space-y-4 mb-8">
+                  {[
+                    "25M+ global suppliers",
+                    "Real-time verification",
+                    "Instant export"
+                  ].map((text, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                      className="flex items-center gap-3 text-muted-foreground"
+                    >
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-lg font-medium">{text}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+                >
+                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
+                    Start Search
+                    <PixelIcon 
+                      name="arrow-right" 
+                      className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                      color="currentColor"
+                    />
+                  </button>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -488,46 +509,46 @@ const SearchSuppliers = () => {
               {/* Modern white card matching YVOO design - Fixed height container */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
-                {/* Black Navigation Bar - SearchPro+ */}
-                <div className="bg-[#0A0A0A] px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
-                  <h2 className="text-white text-xl font-bold">SearchPro+</h2>
-                  <div className="flex items-center gap-2">
-                    <Cpu className="w-5 h-5 text-primary" strokeWidth={2.5} />
-                    <span className="text-white text-sm">AI-Powered</span>
+              {/* Modern Card Header */}
+              <div className="bg-foreground px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
+                <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                <div className="flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-primary" strokeWidth={2.5} />
+                  <span className="text-white text-sm">AI-Powered</span>
+                </div>
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col overflow-hidden">
+              
+              {/* Label */}
+              <div className="mb-3 flex-shrink-0">
+                <span className="text-primary text-sm font-semibold">
+                  Interactive Demo
+                </span>
+              </div>
+              {/* Bold title/description */}
+              <h3 className="text-foreground text-xl font-bold mb-4 leading-tight flex-shrink-0">
+                AI-Powered Conversational Search
+                <span className="block text-sm font-normal text-muted-foreground mt-2">
+                  Step-by-step guidance to find your perfect supplier
+                </span>
+              </h3>
+
+              {/* Step indicators */}
+              <div className="flex items-center justify-center gap-2 mb-4 flex-shrink-0">
+                {[1, 2, 3].map((step) => (
+              <div
+                    key={step}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                      step <= currentStep
+                        ? 'bg-foreground text-white'
+                        : 'bg-[#e5e5e5] text-muted-foreground'
+                    }`}
+                  >
+                    {step}
                   </div>
-                </div>
-
-                <div className="p-6 flex-1 flex flex-col overflow-hidden">
-                
-                {/* Teal label */}
-                <div className="mb-3 flex-shrink-0">
-                  <span className="text-[#6EA996] text-sm font-black drop-shadow-sm">
-                    Interactive Demo
-                  </span>
-                </div>
-                {/* Bold title/description */}
-                <h3 className="text-gray-900 text-xl font-bold mb-4 leading-tight flex-shrink-0">
-                  AI-Powered Conversational Search
-                  <span className="block text-sm font-normal text-gray-600 mt-2">
-                    Step-by-step guidance to find your perfect supplier
-                  </span>
-                </h3>
-
-                {/* Step indicators */}
-                <div className="flex items-center justify-center gap-2 mb-4 flex-shrink-0">
-                  {[1, 2, 3].map((step) => (
-                <div
-                      key={step}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                        step <= currentStep
-                          ? 'bg-[#6EA996] text-white'
-                          : 'bg-gray-200 text-gray-400'
-                      }`}
-                    >
-                      {step}
-                    </div>
-                  ))}
-                </div>
+                ))}
+              </div>
 
                 {/* Conversation Thread - Auto-scrolling with dynamic height */}
                 <motion.div 
@@ -545,19 +566,19 @@ const SearchSuppliers = () => {
                       transition={{ duration: 0.3 }}
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                        <div
+                      <div
                           className={`max-w-[80%] p-4 rounded-2xl ${
                             msg.role === 'user'
-                              ? 'bg-[#6EA996] text-white rounded-br-none'
-                              : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
+                              ? 'bg-foreground text-white rounded-br-none'
+                              : 'bg-white text-foreground rounded-bl-none shadow-sm border border-[#d5d5d5]'
                           }`}
                         >
                           {msg.role === 'ai' && (
                             <div className="flex items-center gap-2 mb-2">
-                              <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#6EA996] flex items-center justify-center">
+                              <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
                                 <Cpu className="w-3 h-3 text-white" />
                               </div>
-                              <span className="text-xs font-black text-[#6EA996] drop-shadow-sm">YVOO</span>
+                              <span className="text-xs font-semibold text-foreground">YVOO</span>
                             </div>
                           )}
                         <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -572,17 +593,17 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-start"
                     >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-white text-foreground rounded-bl-none shadow-sm border border-[#d5d5d5]">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#6EA996] flex items-center justify-center">
+                          <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
                             <Cpu className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-[#6EA996]">YVOO</span>
+                          <span className="text-xs font-semibold text-foreground">YVOO</span>
                           {isTyping && (
                             <div className="flex gap-1 ml-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                             </div>
                           )}
                         </div>
@@ -598,11 +619,11 @@ const SearchSuppliers = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-end"
                     >
-                      <div className="max-w-[80%] p-4 rounded-2xl bg-[#6EA996] text-white rounded-br-none">
-                        <p className="text-sm font-medium">{userInput}</p>
-                      </div>
-                    </motion.div>
-                  )}
+                    <div className="max-w-[80%] p-4 rounded-2xl bg-foreground text-white rounded-br-none">
+                      <p className="text-sm font-medium">{userInput}</p>
+                    </div>
+                  </motion.div>
+                )}
                 </motion.div>
                 </div>
 
@@ -662,18 +683,14 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Interactive Demo Chat Section - Mobile & Tablet Only */}
-      <section className="lg:hidden py-12 bg-white" data-nav-theme="light">
+      <section className="lg:hidden py-12 bg-[#f5f5f5]" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 text-center"
+            className="mb-8"
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-              <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Interactive Demo</span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
               <span className="font-semibold text-foreground">Try SearchPro+</span>
               <br />
@@ -690,30 +707,30 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Modern white card matching YVOO design */}
-            <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+            {/* Frosted Glass Card */}
+            <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] overflow-hidden">
               
-              {/* Black Navigation Bar - SearchPro+ */}
-              <div className="bg-gray-900 px-6 py-4 rounded-t-3xl flex items-center justify-between">
+              {/* Card Header */}
+              <div className="bg-foreground px-6 py-4 flex items-center justify-between">
                 <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
-                  <Cpu className="w-5 h-5 text-[#A8C5B8]" />
+                  <Cpu className="w-5 h-5 text-primary" />
                   <span className="text-white text-sm">AI-Powered</span>
                 </div>
               </div>
 
               <div className="p-6">
               
-              {/* Teal label */}
+              {/* Label */}
               <div className="mb-3 flex-shrink-0">
-                <span className="text-[#A8C5B8] text-sm font-semibold">
+                <span className="text-primary text-sm font-semibold">
                   Interactive Demo
                 </span>
               </div>
               {/* Bold title/description */}
-              <h3 className="text-gray-900 text-xl font-bold mb-6 leading-tight">
+              <h3 className="text-foreground text-xl font-bold mb-6 leading-tight">
                 AI-Powered Conversational Search
-                <span className="block text-sm font-normal text-gray-600 mt-2">
+                <span className="block text-sm font-normal text-muted-foreground mt-2">
                   Step-by-step guidance to find your perfect supplier
                 </span>
               </h3>
@@ -725,8 +742,8 @@ const SearchSuppliers = () => {
                     key={step}
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                       step <= currentStep
-                        ? 'bg-[#A8C5B8] text-white'
-                        : 'bg-gray-200 text-gray-400'
+                        ? 'bg-foreground text-white'
+                        : 'bg-[#d5d5d5] text-muted-foreground'
                     }`}
                   >
                     {step}
@@ -861,19 +878,15 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Stats Section - Extra padding to prevent overlap */}
-      <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-white" data-nav-theme="light">
+      {/* Stats Section */}
+      <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-[#f5f5f5]" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8 md:mb-16"
+            className="mb-8 md:mb-16"
           >
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Benefits</span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-3 px-4">
               <span className="font-semibold text-foreground">Your next supplier,</span>
               <br />
@@ -910,18 +923,12 @@ const SearchSuppliers = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
-                  {/* Gradient accent bar on top */}
-                  <div className={`h-1.5 md:h-2 bg-gradient-to-r ${item.gradient}`}></div>
-                  
-                  <CardHeader className="relative p-4 md:p-6">
-                    {/* Background gradient glow */}
-                    <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity`}></div>
-                    
-                    <CardTitle className="text-[#A8C5B8] text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
-                    <CardDescription className="text-black text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
+                <Card className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
+                  <CardHeader className="relative p-6 md:p-8">
+                    <CardTitle className="text-foreground text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
+                    <CardDescription className="text-muted-foreground text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
                   </CardHeader>
-                  <CardContent className="p-4 md:p-6">
+                  <CardContent className="p-6 md:p-8 pt-0">
                     <ul className="space-y-2 md:space-y-3">
                       {item.features.map((feature, i) => (
                         <motion.li
@@ -930,11 +937,9 @@ const SearchSuppliers = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.2 + i * 0.1 }}
-                          className="flex items-center gap-2 md:gap-3 text-gray-600 text-sm md:text-base"
+                          className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base"
                         >
-                          <div className="w-4 h-4 md:w-5 md:h-5 bg-[#A8C5B8]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#A8C5B8]" />
-                          </div>
+                          <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
                           <span>{feature}</span>
                         </motion.li>
                       ))}
@@ -1086,14 +1091,14 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Key suppliers always in sight</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Key suppliers always in sight</h3>
+              <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
-              <Button className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] hover:from-[#A0B9A9] hover:to-[#8EA5A0] text-white rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 group">
+              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
                 Get Started
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
             </motion.div>
           </div>
         </div>
@@ -1394,27 +1399,23 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-8 md:py-20 bg-white" data-nav-theme="light">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20 max-w-4xl">
+      {/* FAQ Section - Matching Homepage Style */}
+      <section className="py-24 md:py-32 bg-[#f5f5f5]" data-nav-theme="light">
+        <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-6 md:mb-16"
+            className="mb-12"
           >
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">FAQ</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-3 md:mb-4 px-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
               <span className="font-semibold text-foreground">We answer all questions</span>
               <br />
               <span className="font-normal text-muted-foreground">about SearchPro+.</span>
             </h2>
           </motion.div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible defaultValue="item-0">
             {[
               {
                 q: "How does YVOO's search engine work?",
@@ -1441,32 +1442,27 @@ const SearchSuppliers = () => {
                 a: "Unlike traditional search engines, SearchPro+ uses AI to understand procurement-specific requirements, searches multiple verified databases simultaneously, and provides explainable recommendations with quality scores."
               }
             ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`} 
+                className="border-t border-[#d5d5d5] border-b-0"
               >
-                <AccordionItem value={`item-${index}`} className="bg-gradient-to-r from-gray-50 to-white rounded-2xl px-4 md:px-6 border-0 shadow-sm hover:shadow-md transition-all">
-                  <AccordionTrigger className="text-left text-sm md:text-base font-semibold hover:no-underline text-gray-900 py-4 md:py-6">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm md:text-base text-gray-600 leading-relaxed pb-4 md:pb-6">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
+                <AccordionTrigger className="py-6 text-left text-lg md:text-xl text-foreground font-medium leading-snug hover:no-underline [&[data-state=open]>div]:bg-[#c5c5c5] group">
+                  <span className="flex-1 pr-4">{faq.q}</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
 
-      {/* CTA Section - Compromise Design */}
+      {/* CTA Section - Matching Homepage Style */}
       <section 
         data-nav-theme="light"
-        className="relative py-20 md:py-32 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        className="relative py-20 md:py-32 overflow-hidden bg-[#f5f5f5]"
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -1478,9 +1474,9 @@ const SearchSuppliers = () => {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 border border-primary/20">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">Start Your Search</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-6">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-foreground">Start Your Search</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
@@ -1497,21 +1493,19 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
+              className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] shadow-lg p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
             >
               <div className="flex items-center gap-3 flex-1 px-4">
-                <Search className="w-5 h-5 text-gray-400" />
+                <Search className="w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="What are you looking for? (e.g., CNC machining, ISO 9001...)"
-                  className="flex-1 outline-none text-base text-gray-900 bg-transparent py-3 placeholder:text-gray-400"
+                  className="flex-1 outline-none text-base text-foreground bg-transparent py-3 placeholder:text-muted-foreground"
                 />
               </div>
-              <Button 
-                className="bg-white hover:bg-white/95 text-gray-900 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:shadow-lg"
-              >
+              <button className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
                 Start Search
-              </Button>
+              </button>
             </motion.div>
 
             <motion.div
@@ -1519,13 +1513,13 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex gap-2 justify-center flex-wrap text-sm text-gray-500"
+              className="flex gap-2 justify-center flex-wrap text-sm text-muted-foreground"
             >
               <span>Popular:</span>
               {["CNC Machining", "Injection Molding", "PCB Assembly", "Metal Stamping"].map((tag) => (
                 <button
                   key={tag}
-                  className="px-3 py-1 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 rounded-full transition-all"
+                  className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground hover:bg-[#e5e5e5] transition-all"
                 >
                   {tag}
                 </button>
