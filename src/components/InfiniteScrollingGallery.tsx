@@ -526,12 +526,12 @@ const EvidenceMockup = () => (
       {/* Grid */}
       <div className="flex-1 p-2 grid grid-cols-3 gap-1.5 overflow-hidden">
         {[
-          { type: "img", name: "Production_Floor.jpg", tag: "QMS", tagColor: "bg-green-400", size: "2.4 MB", img: evidenceImg1 },
-          { type: "pdf", name: "ISO_Certificate.pdf", tag: "QMS", tagColor: "bg-green-400", size: "1.1 MB", img: null },
-          { type: "img", name: "Fire_Exits.jpg", tag: "Safety", tagColor: "bg-accent", size: "3.2 MB", img: evidenceImg2 },
-          { type: "img", name: "Waste_Storage.jpg", tag: "Env", tagColor: "bg-yellow-400", size: "2.8 MB", img: evidenceImg3 },
-          { type: "doc", name: "Training_Records.xlsx", tag: "QMS", tagColor: "bg-green-400", size: "450 KB", img: null },
-          { type: "img", name: "Equipment_Label.jpg", tag: "Safety", tagColor: "bg-accent", size: "1.9 MB", img: equipmentImage },
+          { type: "img", name: "CNC_Inspection.jpg", tag: "QMS", tagColor: "bg-green-400", size: "2.4 MB", img: evidenceImg1 },
+          { type: "pdf", name: "Quality_Manual_v3.2.pdf", tag: "QMS", tagColor: "bg-green-400", size: "4.8 MB", img: null },
+          { type: "img", name: "Emergency_Routes.jpg", tag: "Safety", tagColor: "bg-accent", size: "3.2 MB", img: evidenceImg2 },
+          { type: "pdf", name: "Work_Instruction_WI-042.pdf", tag: "QMS", tagColor: "bg-green-400", size: "1.2 MB", img: null },
+          { type: "doc", name: "Calibration_Log_2024.xlsx", tag: "QMS", tagColor: "bg-green-400", size: "450 KB", img: null },
+          { type: "img", name: "Machine_Nameplate.jpg", tag: "Safety", tagColor: "bg-accent", size: "1.9 MB", img: equipmentImage },
         ].map((item, i) => (
           <motion.div
             key={i}
