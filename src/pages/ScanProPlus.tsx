@@ -1281,7 +1281,7 @@ const IndustryUseCasesGrid = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {useCases.map((industry, idx) => (
             <motion.button
               key={idx}
@@ -1293,7 +1293,7 @@ const IndustryUseCasesGrid = () => {
               className="group bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-all duration-300 cursor-pointer text-left flex flex-col h-full"
             >
               {/* Image - Unified size with consistent fill */}
-              <div className="relative overflow-hidden aspect-[4/3] flex-shrink-0 bg-white rounded-t-[28px]">
+              <div className="relative overflow-hidden aspect-square flex-shrink-0 bg-white rounded-t-[28px]">
                 <img 
                   src={industry.image} 
                   alt={industry.title}
