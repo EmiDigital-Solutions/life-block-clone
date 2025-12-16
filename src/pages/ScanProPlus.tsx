@@ -1848,84 +1848,143 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section */}
+      {/* Hero Section - Homepage Style */}
       <section
-        data-nav-theme="light"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 overflow-hidden"
+        data-nav-theme="dark"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
         id="hero"
-        style={{ background: 'linear-gradient(135deg, #0A7FA5 0%, #0D8FB8 50%, #0A7FA5 100%)' }}
       >
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
-                           radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 30%)`
-        }} />
+        {/* Video Background Container */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
+          >
+            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle overlay for better text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
+        </div>
 
-        <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
-            
-            {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left backdrop-blur-md bg-background/20 p-8 sm:p-10 md:p-12 rounded-3xl border border-background/30">
+        {/* Main Content */}
+        <div className="flex-1 flex items-center relative z-10">
+          <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
+              
+              {/* Left Column: Frosted Glass Card */}
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="mb-4 sm:mb-6"
+                className="max-w-xl lg:max-w-2xl"
               >
-                <div className="flex items-center gap-3 sm:gap-4 text-primary-foreground/90 text-xs sm:text-sm font-sans">
-                  <div className="h-px w-8 sm:w-12 bg-primary-foreground/60"></div>
-                  <span>ScanPro+ — AI-powered supplier audits</span>
+                {/* Frosted Glass Card */}
+                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+                  
+                  {/* Tagline Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="mb-6"
+                  >
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                      ScanPro+ — AI-Powered Supplier Audits
+                    </span>
+                  </motion.div>
+
+                  {/* Main Heading - Mixed weight style */}
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
+                  >
+                    <span className="font-semibold text-foreground">Supplier Audits</span>
+                    <br />
+                    <span className="text-muted-foreground font-light">in</span>{" "}
+                    <span className="font-semibold text-primary">Days,</span>
+                    <br />
+                    <span className="text-muted-foreground font-light">Not Weeks.</span>
+                  </motion.h1>
+
+                  {/* Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
+                  >
+                    On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
+                  >
+                    <button 
+                      onClick={() => scrollToSection('cta')}
+                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
+                    >
+                      Get Started
+                      <PixelIcon 
+                        name="arrow-right" 
+                        className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                        color="currentColor"
+                      />
+                    </button>
+                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
+                      How it works
+                      <PixelIcon 
+                        name="arrow-right" 
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                        color="currentColor"
+                      />
+                    </button>
+                  </motion.div>
+
+                  {/* Stats Row */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="pt-6 border-t border-border/50"
+                  >
+                    <div className="flex flex-wrap gap-6">
+                      {[
+                        { value: "70%", label: "Cost Reduction" },
+                        { value: "80%", label: "Time Savings" },
+                        { value: "48h", label: "Deployment" },
+                      ].map((stat, idx) => (
+                        <div key={idx} className="text-center">
+                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                          <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
 
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
+              {/* Right Column: ROI Calculator */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="hidden lg:block"
               >
-                Supplier Audits in Days, Not Weeks
-              </motion.h1>
-
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-primary-foreground/90 leading-[1.4] mb-6 sm:mb-8"
-              >
-                70% Cost Reduction · 80% Time Savings · Global Coverage
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg font-normal text-primary-foreground/80 leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
-              >
-                On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex"
-              >
-                <button 
-                  onClick={() => scrollToSection('cta')}
-                  className="bg-background text-primary px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:bg-background/90"
-                >
-                  Get Started
-                </button>
+                <HeroROICalculator />
               </motion.div>
-            </div>
 
-            {/* Right Column: ROI Calculator */}
-            <div className="hidden lg:block">
-              <HeroROICalculator />
             </div>
-
           </div>
         </div>
       </section>
