@@ -120,7 +120,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-gray-50"
+      className="relative py-12 sm:py-16 md:py-20 bg-[#f5f5f5]"
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
@@ -348,10 +348,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   }}
                   onClick={() => handleCardClick(index)}
                 >
-                  <motion.div 
-                    className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden w-[140px]"
+                <motion.div 
+                    className="bg-[#ebebeb] rounded-xl overflow-hidden w-[140px]"
                     whileHover={{
-                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
                     }}
                   >
                     <div className="relative h-[120px] overflow-hidden">
@@ -377,13 +377,13 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                         </motion.span>
                       </div>
                     </div>
-                    <div className="p-2.5 bg-white">
-                      <h4 className="font-bold text-xs text-gray-900 mb-0.5 leading-tight">{auditor.name}</h4>
-                      <p className="text-[9px] text-gray-500 mb-1.5 leading-tight">{auditor.title}</p>
-                      <p className="text-[9px] text-gray-600 mb-1.5">{auditor.location}</p>
+                    <div className="p-2.5 bg-[#ebebeb]">
+                      <h4 className="font-bold text-xs text-foreground mb-0.5 leading-tight">{auditor.name}</h4>
+                      <p className="text-[9px] text-muted-foreground mb-1.5 leading-tight">{auditor.title}</p>
+                      <p className="text-[9px] text-muted-foreground mb-1.5">{auditor.location}</p>
                       <div className="flex items-center gap-1">
                         <PixelIcon name="star" className="w-3 h-3" />
-                        <span className="text-[9px] font-semibold text-gray-900">{auditor.rating}</span>
+                        <span className="text-[9px] font-semibold text-foreground">{auditor.rating}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -392,18 +392,18 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             })}
           </AnimatePresence>
 
-          <div className="relative z-30">
+            <div className="relative z-30">
 
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-white/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-background/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#B2CDBC]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">ScanPro+</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">ScanPro+</span>
               </motion.div>
 
               <motion.h2
@@ -411,9 +411,11 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight break-words"
               >
-                Global On-Demand<br /><span className="text-primary font-black">Auditor Network</span>
+                <span className="font-semibold text-foreground">Global On-Demand</span><br />
+                <span className="text-muted-foreground font-normal">Auditor</span>{" "}
+                <span className="font-semibold text-foreground">Network</span>
               </motion.h2>
 
               <motion.p
@@ -421,7 +423,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -433,16 +435,16 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.25 }}
                 className="text-left mb-4"
               >
-                <p className="text-base font-semibold text-gray-700 mb-2">
+                <p className="text-base font-semibold text-foreground mb-2">
                   Our auditor network includes professionals certified by:
                 </p>
-                <div className="flex flex-wrap items-center gap-3 text-gray-600">
+                <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
                   <span className="text-sm">TÜV SÜD</span>
-                  <span className="text-gray-300">•</span>
+                  <span className="text-border">•</span>
                   <span className="text-sm">Bureau Veritas</span>
-                  <span className="text-gray-300">•</span>
+                  <span className="text-border">•</span>
                   <span className="text-sm">SGS</span>
-                  <span className="text-gray-300">•</span>
+                  <span className="text-border">•</span>
                   <span className="text-sm">DNV</span>
                 </div>
               </motion.div>
@@ -453,7 +455,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-gray-900 hover:text-white flex items-center gap-2 sm:gap-3 group">
+                <button className="bg-primary text-primary-foreground px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary/90 flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
                   <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -497,7 +499,7 @@ const MapLocationMarker = ({
     >
       {/* Pulsing ring animation */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-[#B2CDBC]"
+        className="absolute inset-0 rounded-full bg-primary"
         animate={{
           scale: [1, 2.2, 1],
           opacity: [0.7, 0, 0.7],
@@ -512,11 +514,11 @@ const MapLocationMarker = ({
       
       {/* Main marker dot */}
       <motion.div
-        className="w-5 h-5 rounded-full bg-[#B2CDBC] border-3 border-white shadow-xl relative z-10"
+        className="w-5 h-5 rounded-full bg-primary border-3 border-white shadow-xl relative z-10"
         whileHover={{ scale: 1.4 }}
         transition={{ duration: 0.2 }}
         style={{
-          boxShadow: '0 4px 12px rgba(168, 197, 184, 0.6)'
+          boxShadow: '0 4px 12px hsl(var(--primary) / 0.6)'
         }}
       />
 
@@ -530,16 +532,16 @@ const MapLocationMarker = ({
             transition={{ duration: 0.2 }}
             className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 pointer-events-none z-30"
           >
-            <div className="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-gray-700">
+            <div className="bg-[#1a1a1a] text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-white/10">
               <p className="font-bold text-sm whitespace-nowrap">{name}</p>
               <div className="flex items-center gap-2 mt-1.5">
-                <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-                <p className="text-xs text-gray-300 font-medium">{availability}</p>
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <p className="text-xs text-white/60 font-medium">{availability}</p>
               </div>
             </div>
             {/* Tooltip arrow */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px]">
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-gray-900" />
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#1a1a1a]" />
             </div>
           </motion.div>
         )}
@@ -631,8 +633,8 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#B2CDBC]"></div>
-                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">01 Feature</span>
+                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">01 Feature</span>
               </motion.div>
 
               <motion.h2
@@ -640,9 +642,10 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight break-words"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight break-words"
               >
-                Global On-Demand <span className="text-primary font-black whitespace-nowrap">Auditor Network</span>
+                <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
+                <span className="text-muted-foreground font-normal whitespace-nowrap">Auditor Network</span>
               </motion.h2>
 
               <motion.p
@@ -650,7 +653,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
               >
                 Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
               </motion.p>
@@ -1391,8 +1394,8 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '30%', left: '70%' }}
             >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-accent animate-ping opacity-40" />
+              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg" />
+              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-primary animate-ping opacity-40" />
             </motion.div>
             
             {/* 1-Click Button */}
@@ -1402,7 +1405,7 @@ const HowItWorksCarousel = () => {
               className="absolute"
               style={{ top: '32%', left: '73%' }}
             >
-              <div className="bg-[#B2CDBC] text-white px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
+              <div className="bg-primary text-primary-foreground px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
                 <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                 <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
@@ -1430,24 +1433,24 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Chat Interface */}
-          <div className="bg-white rounded-xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
+          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
             {/* User Message */}
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-[#B2CDBC] flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <div className="bg-[#B2CDBC] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
+              <div className="bg-primary text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">You</p>
                 <div className="space-y-2">
                   <motion.div 
                     animate={{ width: ["0%", "80%", "80%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1] }}
-                    className="h-2 sm:h-3 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
                   />
                   <motion.div 
                     animate={{ width: ["0%", "100%", "100%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.2 }}
-                    className="h-2 sm:h-3 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
                   />
                 </div>
               </div>
@@ -1455,39 +1458,39 @@ const HowItWorksCarousel = () => {
             
             {/* Auditor Message */}
             <div className="flex items-start gap-2 sm:gap-3 justify-end">
-              <div className="bg-[#A0B9A9] text-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
+              <div className="bg-primary/80 text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">Auditor</p>
                 <div className="space-y-2">
                   <motion.div 
                     animate={{ width: ["0%", "90%", "90%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 0.5 }}
-                    className="h-2 sm:h-3 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
                   />
                   <motion.div 
                     animate={{ width: ["0%", "100%", "100%", "0%"] }}
                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.7 }}
-                    className="h-2 sm:h-3 bg-white/50 rounded"
+                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
                   />
                 </div>
               </div>
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary/60 flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
             </div>
             
             {/* Status Icons */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-accent/20 flex items-center justify-center"
+                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center"
               >
-                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="hsl(158, 23%, 75%)" />
+                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="hsl(var(--primary))" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-accent flex items-center justify-center shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/60 flex items-center justify-center"
               >
                 <PixelIcon name="message" className="w-6 h-6 sm:w-8 sm:h-8" />
               </motion.div>
@@ -1502,7 +1505,7 @@ const HowItWorksCarousel = () => {
       description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-white rounded-xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
+          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -1511,18 +1514,18 @@ const HowItWorksCarousel = () => {
             >
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-10 h-10 sm:w-14 sm:h-14" color="#A8C5B8" />
+                  <PixelIcon name="analytics" className="w-10 h-10 sm:w-14 sm:h-14" color="hsl(var(--primary))" />
                 </div>
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-12 h-12 sm:w-18 sm:h-18" color="#A8C5B8" />
+                  <PixelIcon name="checkbox-on" className="w-12 h-12 sm:w-18 sm:h-18" color="hsl(var(--primary))" />
                 </div>
               </div>
               
               {/* Report Lines */}
               <div className="space-y-2">
-                <div className="h-2 sm:h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-2 sm:h-3 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-2 sm:h-3 bg-gray-200 rounded w-4/6"></div>
+                <div className="h-2 sm:h-3 bg-border rounded w-full"></div>
+                <div className="h-2 sm:h-3 bg-border rounded w-5/6"></div>
+                <div className="h-2 sm:h-3 bg-border rounded w-4/6"></div>
               </div>
             </motion.div>
             
@@ -1535,16 +1538,16 @@ const HowItWorksCarousel = () => {
                 className="bg-primary/10 rounded-xl p-3 sm:p-4 text-center"
               >
                 <div className="text-2xl sm:text-3xl font-black text-primary mb-2">95%</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
+                <div className="h-1 bg-border rounded mx-auto w-12"></div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-[#A0B9A9]/10 rounded-xl p-3 sm:p-4 text-center"
+                className="bg-primary/5 rounded-xl p-3 sm:p-4 text-center"
               >
-                <div className="text-2xl sm:text-3xl font-bold text-[#A0B9A9] mb-2">A+</div>
-                <div className="h-1 bg-gray-300 rounded mx-auto w-12"></div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary/80 mb-2">A+</div>
+                <div className="h-1 bg-border rounded mx-auto w-12"></div>
               </motion.div>
             </div>
             
@@ -1557,7 +1560,7 @@ const HowItWorksCarousel = () => {
                   animate={{ height: `${height}%` }}
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
                   className={`rounded-t flex-1 ${
-                    i % 2 === 0 ? 'bg-[#B2CDBC]' : 'bg-[#A0B9A9]'
+                    i % 2 === 0 ? 'bg-primary' : 'bg-primary/60'
                   }`}
                 ></motion.div>
               ))}
@@ -1568,7 +1571,7 @@ const HowItWorksCarousel = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3 shadow-lg"
+              className="bg-primary text-primary-foreground px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3"
             >
               <PixelIcon name="shield" className="w-4 h-4 sm:w-6 sm:h-6" />
               <span className="text-sm sm:text-base">Report Ready</span>
@@ -1611,25 +1614,24 @@ const HowItWorksCarousel = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12 bg-background"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header - Homepage Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#A8C5B8]"></div>
-            <span className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">Process</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-            How does YVOO Work
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <span className="font-semibold text-foreground">How does</span>{" "}
+            <span className="text-muted-foreground font-normal">YVOO</span>
+            <br />
+            <span className="text-muted-foreground font-normal">actually</span>{" "}
+            <span className="font-semibold text-foreground">work.</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mt-4">
             Four simple steps to transform your supplier audit process
           </p>
         </motion.div>
@@ -1697,7 +1699,7 @@ const HowItWorksCarousel = () => {
           <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-10 md:mt-12">
             <button
               onClick={prevStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-primary"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all hover:scale-110 flex items-center justify-center text-foreground"
               aria-label="Previous step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
@@ -1713,7 +1715,7 @@ const HowItWorksCarousel = () => {
                   <div className={`transition-all ${
                     index === currentStep
                       ? 'w-10 sm:w-12 h-2.5 sm:h-3 bg-primary rounded-full'
-                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gray-300 rounded-full hover:bg-primary/50'
+                      : 'w-2.5 sm:w-3 h-2.5 sm:h-3 bg-border rounded-full hover:bg-primary/50'
                   }`} />
                 </button>
               ))}
@@ -1721,7 +1723,7 @@ const HowItWorksCarousel = () => {
 
             <button
               onClick={nextStep}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center text-gray-700 hover:text-primary"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all hover:scale-110 flex items-center justify-center text-foreground"
               aria-label="Next step"
             >
               <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -1858,21 +1860,21 @@ const ScanProPlus = () => {
           backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
                            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
                            radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 30%)`
-        }}></div>
+        }} />
 
         <div className="relative z-10 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 sm:gap-8 lg:gap-6 xl:gap-20 2xl:gap-28 items-center">
             
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left backdrop-blur-md bg-white/20 p-8 sm:p-10 md:p-12 rounded-3xl border border-white/30">
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left backdrop-blur-md bg-background/20 p-8 sm:p-10 md:p-12 rounded-3xl border border-background/30">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="mb-4 sm:mb-6"
               >
-                <div className="flex items-center gap-3 sm:gap-4 text-white/90 text-xs sm:text-sm font-sans">
-                  <div className="h-px w-8 sm:w-12 bg-white/60"></div>
+                <div className="flex items-center gap-3 sm:gap-4 text-primary-foreground/90 text-xs sm:text-sm font-sans">
+                  <div className="h-px w-8 sm:w-12 bg-primary-foreground/60"></div>
                   <span>ScanPro+ — AI-powered supplier audits</span>
                 </div>
               </motion.div>
@@ -1881,7 +1883,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.1] tracking-[-0.02em] mb-4 sm:mb-6"
               >
                 Supplier Audits in Days, Not Weeks
               </motion.h1>
@@ -1890,7 +1892,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-white/90 leading-[1.4] mb-6 sm:mb-8"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-primary-foreground/90 leading-[1.4] mb-6 sm:mb-8"
               >
                 70% Cost Reduction · 80% Time Savings · Global Coverage
               </motion.h2>
@@ -1899,7 +1901,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base sm:text-lg font-normal text-white/80 leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
+                className="text-base sm:text-lg font-normal text-primary-foreground/80 leading-[1.6] max-w-[600px] mb-8 sm:mb-10 md:mb-12"
               >
                 On-site supplier audits starting at €700 fixed price. AI-powered intelligence with certified auditors across 90+ countries. Complete assessments in 3 days with real-time reporting.
               </motion.p>
@@ -1912,7 +1914,7 @@ const ScanProPlus = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="bg-white text-[#0A7FA5] px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:bg-white/90"
+                  className="bg-background text-primary px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:bg-background/90"
                 >
                   Get Started
                 </button>
@@ -1929,7 +1931,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-gray-50">
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-[#f5f5f5]">
         <HeroROICalculator />
       </div>
 
@@ -1942,8 +1944,7 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden bg-[#f5f5f5]"
         id="capabilities"
       >
         <div className="w-full">
@@ -1951,12 +1952,16 @@ const ScanProPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
+            className="mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
-              Capabilities that modernize supplier audits
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-2">
+              <span className="font-semibold text-foreground">Capabilities</span>{" "}
+              <span className="text-muted-foreground font-normal">that modernize</span>
+              <br />
+              <span className="text-muted-foreground font-normal">supplier</span>{" "}
+              <span className="font-semibold text-foreground">audits.</span>
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
               Nine AI-driven features for consistent, actionable outcomes.
             </p>
           </motion.div>
