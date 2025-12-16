@@ -48,7 +48,6 @@ import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
-import scanProHeroAuditor from "@/assets/scanpro-hero-auditor.png";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -1855,29 +1854,18 @@ const ScanProPlus = () => {
         className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
         id="hero"
       >
-        {/* Background Image - Right Side */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div 
-            className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 bg-cover bg-center bg-no-repeat"
-            style={{ 
-              backgroundImage: `url(${scanProHeroAuditor})`,
-              backgroundPosition: 'center top'
-            }}
-          />
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent lg:via-[#f5f5f5]/80" />
-        </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center relative z-10">
+        <div className="flex-1 flex items-center">
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
-            <div className="max-w-3xl">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
               
-              {/* Frosted Glass Card with Header + ROI Calculator */}
+              {/* Left Column: Frosted Glass Card */}
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                className="max-w-xl lg:max-w-2xl"
               >
                 {/* Frosted Glass Card */}
                 <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
@@ -1920,22 +1908,12 @@ const ScanProPlus = () => {
                     On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
                   </motion.p>
 
-                  {/* ROI Calculator */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mb-8"
-                  >
-                    <HeroROICalculator />
-                  </motion.div>
-
                   {/* CTA Buttons */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center"
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
                   >
                     <button 
                       onClick={() => scrollToSection('cta')}
@@ -1957,7 +1935,38 @@ const ScanProPlus = () => {
                       />
                     </button>
                   </motion.div>
+
+                  {/* Stats Row */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="pt-6 border-t border-border/50"
+                  >
+                    <div className="flex flex-wrap gap-6">
+                      {[
+                        { value: "70%", label: "Cost Reduction" },
+                        { value: "80%", label: "Time Savings" },
+                        { value: "48h", label: "Deployment" },
+                      ].map((stat, idx) => (
+                        <div key={idx} className="text-center">
+                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                          <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
+              </motion.div>
+
+              {/* Right Column: ROI Calculator */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="hidden lg:block"
+              >
+                <HeroROICalculator />
               </motion.div>
 
             </div>
@@ -1965,6 +1974,10 @@ const ScanProPlus = () => {
         </div>
       </section>
 
+      {/* ROI Calculator - Visible on Mobile */}
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-[#f5f5f5]">
+        <HeroROICalculator />
+      </div>
 
       {/* Challenge & Solution - Toggle Section */}
       <ChallengeToggleSection />
