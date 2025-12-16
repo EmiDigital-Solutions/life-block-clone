@@ -48,6 +48,7 @@ import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
+import scanProHeroAuditor from "@/assets/scanpro-hero-auditor.png";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -1854,9 +1855,21 @@ const ScanProPlus = () => {
         className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
         id="hero"
       >
+        {/* Background Image - Right Side */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 bg-cover bg-center bg-no-repeat"
+            style={{ 
+              backgroundImage: `url(${scanProHeroAuditor})`,
+              backgroundPosition: 'center top'
+            }}
+          />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5]/95 to-transparent lg:via-[#f5f5f5]/80" />
+        </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex items-center">
+        <div className="flex-1 flex items-center relative z-10">
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-center">
               
