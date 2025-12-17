@@ -72,9 +72,9 @@ const EmailComparisonSection = () => {
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
                 className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-[#0A7FA5]"
               >
-                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-primary animate-pulse"></div>
-                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.3s" }}></div>
-                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
+                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.6s" }}></div>
                 <p className="text-sm text-white leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   Done! I've assigned Nguyen Tran—a VDA 6.3 certified auditor based in Ho Chi Minh City. He's audited 50+ automotive suppliers in the region.<br/><br/>
