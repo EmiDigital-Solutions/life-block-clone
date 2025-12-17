@@ -118,9 +118,10 @@ const BuyerPainPointsSection = () => {
               {/* Photo overlay */}
               <motion.div 
                 key={activeRole}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="relative z-10"
                 style={activeRole === "quality" ? { marginLeft: '-60px' } : {}}
               >
@@ -138,9 +139,9 @@ const BuyerPainPointsSection = () => {
             {/* Pain Point Cards - stacked on mobile, scattered around image on desktop */}
             <motion.div 
               key={`cards-${activeRole}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
               className="relative z-20 w-full px-4 lg:absolute lg:inset-0 lg:px-0"
             >
               {/* Mobile: Stacked cards */}
