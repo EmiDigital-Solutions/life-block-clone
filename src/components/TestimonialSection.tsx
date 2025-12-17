@@ -50,7 +50,7 @@ const TestimonialSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-left w-full"
           >
-            <h2 className="section-headline text-foreground mb-32 md:mb-40">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.15] text-foreground mb-32 md:mb-40">
               Built for <span className="inline-block px-4 py-1 bg-primary text-white rounded-xl -rotate-2">mighty</span>
               <br />B2B Supply Chains
             </h2>
