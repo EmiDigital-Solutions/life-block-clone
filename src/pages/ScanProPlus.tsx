@@ -122,9 +122,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-white"
+      className="relative py-10 sm:py-14 md:py-20 lg:py-24 bg-white"
     >
-      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
@@ -397,7 +397,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             <div className="relative z-30">
 
             {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-background/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg">
+            <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-background/80 backdrop-blur-sm p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
