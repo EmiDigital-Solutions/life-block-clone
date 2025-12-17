@@ -50,14 +50,14 @@ const TestimonialSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-left w-full"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.15] text-foreground mb-32 md:mb-40">
-              Built for <span className="inline-block px-3 py-0.5 bg-primary text-white rounded-md -rotate-2 font-bold">mighty</span>
+            <h2 className="section-headline text-foreground mb-32 md:mb-40">
+              Built for <span className="inline-block px-3 py-0.5 bg-primary text-white rounded-md -rotate-2 font-medium">mighty</span>
               <br />B2B Supply Chains
             </h2>
 
             {/* Testimonial */}
             <div className="space-y-4 max-w-2xl">
-              <p className="text-4xl md:text-5xl lg:text-6xl font-black text-primary">
+              <p className="section-headline-sm text-primary">
                 ScanPro
               </p>
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-gray-900">

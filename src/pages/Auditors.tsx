@@ -192,7 +192,7 @@ const Auditors = () => {
               >
                 <div className="space-y-6">
                   <div className="w-12 h-0.5 bg-white/80" />
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white">
+                  <h1 className="section-headline text-white">
                     Join the Elite Auditor Network
                   </h1>
                   <p className="text-xl text-white/90 leading-relaxed">
@@ -431,8 +431,8 @@ const ValuePropositionSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-primary font-black">Professional Partnership</span> Platform
+          <h2 className="section-headline text-foreground mb-6">
+            Professional Partnership Platform
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
             YVOO connects certified auditors with quality-focused enterprises. 
@@ -511,8 +511,8 @@ const TimelineSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-primary font-black">Partnership Journey</span>
+          <h2 className="section-headline text-foreground mb-4">
+            Partnership Journey
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Five steps to join the elite auditor network
@@ -617,8 +617,8 @@ const QualificationsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-primary font-black">Professional Standards</span>
+          <h2 className="section-headline text-foreground mb-4">
+            Professional Standards
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Excellence requirements that ensure client trust and audit quality
@@ -739,7 +739,7 @@ const TechnologyFeaturesSection = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-black text-primary mb-4">
+            <h2 className="section-headline text-foreground mb-4">
               Enterprise Technology
             </h2>
             <p className="text-base md:text-lg text-gray-600">
@@ -820,7 +820,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary mb-3"
+            className="section-headline text-foreground mb-3"
           >
             Enterprise Technology
           </motion.h2>
@@ -1028,7 +1028,7 @@ const DoVsDontSection = () => {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
+            <h2 className="section-headline text-foreground">
               When auditors
             </h2>
             
@@ -1037,8 +1037,8 @@ const DoVsDontSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold ${
-                isDoState ? 'text-[#A8C5B8]' : 'text-red-600'
+              className={`section-headline ${
+                isDoState ? 'text-secondary' : 'text-destructive'
               }`}
             >
               {isDoState ? 'partner' : "don't partner"}
@@ -1059,7 +1059,7 @@ const DoVsDontSection = () => {
               />
             </button>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900">
+            <h2 className="section-headline text-foreground">
               with us.
             </h2>
           </motion.div>
@@ -1199,8 +1199,8 @@ const SuccessStoriesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-primary font-black">Partner Success Stories</span>
+          <h2 className="section-headline text-foreground mb-4">
+            Partner Success Stories
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Real auditors, exceptional results
@@ -1301,8 +1301,8 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-4">
-            <span className="text-primary font-black">Frequently Asked Questions</span>
+          <h2 className="section-headline text-foreground mb-4">
+            Frequently Asked Questions
           </h2>
           <p className="text-lg md:text-xl lg:text-xl text-gray-600">
             Everything you need to know about partner auditor program
@@ -1375,10 +1375,10 @@ const ScrollZoomSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Heading Text */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+          <h2 className="section-headline text-foreground mb-4">
             Join Elite Auditors
           </h2>
-          <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-6">
+          <h3 className="section-headline text-primary mb-6">
             Shape Industry Standards
           </h3>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -1415,7 +1415,7 @@ const ScrollZoomSection = () => {
             </div>
 
             {/* Headline */}
-            <h4 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+            <h4 className="section-headline text-white max-w-4xl mb-6">
               Audit Excellence Starts Here
             </h4>
             
