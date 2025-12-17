@@ -32,7 +32,7 @@ const detectedObjects: DetectedObject[] = [
     y: 8,
     width: 90,
     height: 84,
-    color: "#7CC2A7",
+    color: "#1391BF",
     details: {
       model: "DMG MORI NLX 2500",
       assetId: "MCH-2024-0847",
@@ -59,7 +59,7 @@ const detectedObjects: DetectedObject[] = [
     y: 30,
     width: 30,
     height: 35,
-    color: "#D8A860"
+    color: "#1391BF"
   },
   {
     id: "safety",
@@ -69,7 +69,7 @@ const detectedObjects: DetectedObject[] = [
     y: 10,
     width: 35,
     height: 20,
-    color: "#C4564F"
+    color: "#1391BF"
   }
 ];
 
@@ -140,15 +140,11 @@ export function EquipmentIntelligenceDemo() {
         </div>
       </div>
       
-      <div className="w-full max-w-[680px] xl:max-w-[720px] bg-gradient-to-br from-[#0A0A0A] to-[#0D0D0D] rounded-2xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] border border-[#C0C0C0]/8">
+      <div className="w-full max-w-[780px] xl:max-w-[850px] bg-gradient-to-br from-[#0A0A0A] to-[#0D0D0D] rounded-2xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] border border-[#C0C0C0]/8">
         {/* Window Title Bar */}
-        <div className="px-5 py-3.5 bg-[#141414] flex items-center gap-3 border-b border-[#C0C0C0]/8">
-          <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#C4564F] hover:bg-[#E45F57] transition-colors cursor-pointer" />
-            <div className="w-3 h-3 rounded-full bg-[#D8A860] hover:bg-[#E8B870] transition-colors cursor-pointer" />
-            <div className="w-3 h-3 rounded-full bg-[#7CC2A7] hover:bg-[#8CD2B7] transition-colors cursor-pointer" />
-          </div>
-          <div className="flex-1 flex items-center justify-center">
+        <div className="px-5 py-3.5 bg-[#141414] flex items-center justify-between border-b border-[#C0C0C0]/8">
+          <div className="flex items-center gap-2">
+            <Cpu className="w-4 h-4 text-[#1391BF]" />
             <span className="text-xs text-[#C0C0C0]/60 font-medium tracking-wide">YVOO Equipment Scanner</span>
           </div>
           <div className="flex items-center gap-2">
@@ -328,26 +324,47 @@ export function EquipmentIntelligenceDemo() {
             </div>
             
             {/* Side Panel */}
-            <div className="w-[180px] flex flex-col gap-3">
-              {/* Detected Objects List */}
+            <div className="w-[200px] flex flex-col gap-3">
+              {/* Detection Effects */}
               <div className="bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/5">
-                <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-2">Detected</div>
-                <div className="space-y-1.5">
-                  {detectedObjects.map((obj) => (
-                    <button
-                      key={obj.id}
-                      onClick={() => setSelectedObject(obj.id)}
-                      className={`w-full px-2.5 py-2 rounded-lg text-left transition-all duration-200 flex items-center gap-2 ${
-                        selectedObject === obj.id 
-                          ? 'bg-[#C0C0C0]/10' 
-                          : 'hover:bg-[#C0C0C0]/5'
-                      }`}
-                    >
-                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: obj.color }} />
-                      <span className="text-[11px] text-[#F5F5F5]/80 flex-1 truncate">{obj.label}</span>
-                      <span className="text-[10px] text-[#C0C0C0]/50">{obj.confidence}%</span>
-                    </button>
-                  ))}
+                <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-3">Detection Process</div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#1391BF]/5 border border-[#1391BF]/10">
+                    <div className="w-6 h-6 rounded-md bg-[#1391BF]/10 flex items-center justify-center">
+                      <Eye className="w-3.5 h-3.5 text-[#1391BF]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[11px] text-[#F5F5F5]/80 block">Image Analysis</span>
+                      <span className="text-[9px] text-[#C0C0C0]/50">Neural network scan</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#7CC2A7]/5 border border-[#7CC2A7]/10">
+                    <div className="w-6 h-6 rounded-md bg-[#7CC2A7]/10 flex items-center justify-center">
+                      <Target className="w-3.5 h-3.5 text-[#7CC2A7]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[11px] text-[#F5F5F5]/80 block">Object Detection</span>
+                      <span className="text-[9px] text-[#C0C0C0]/50">Boundary extraction</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#1391BF]/5 border border-[#1391BF]/10">
+                    <div className="w-6 h-6 rounded-md bg-[#1391BF]/10 flex items-center justify-center">
+                      <Cpu className="w-3.5 h-3.5 text-[#1391BF]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[11px] text-[#F5F5F5]/80 block">Classification</span>
+                      <span className="text-[9px] text-[#C0C0C0]/50">Asset identification</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#7CC2A7]/5 border border-[#7CC2A7]/10">
+                    <div className="w-6 h-6 rounded-md bg-[#7CC2A7]/10 flex items-center justify-center">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC2A7]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[11px] text-[#F5F5F5]/80 block">Verification</span>
+                      <span className="text-[9px] text-[#C0C0C0]/50">Compliance check</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               
