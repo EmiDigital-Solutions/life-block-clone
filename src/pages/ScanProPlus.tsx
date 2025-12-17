@@ -12,7 +12,7 @@ import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
-import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
@@ -2040,23 +2040,31 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hidden lg:block relative"
               >
-                <div className="w-full max-w-[500px] xl:max-w-[550px] bg-[#0A0A0A] rounded-lg overflow-hidden shadow-2xl">
+                {/* AI Computer Vision Badge */}
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="px-3 py-1.5 bg-[#7CC2A7]/20 border border-[#7CC2A7]/40 rounded-full flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#7CC2A7]" />
+                    <span className="text-sm text-[#7CC2A7] font-medium">AI Computer Vision</span>
+                  </div>
+                </div>
+                
+                <div className="w-full max-w-[600px] xl:max-w-[680px] bg-[#0A0A0A] rounded-xl overflow-hidden shadow-2xl border border-[#C0C0C0]/10">
                   {/* Window Title Bar */}
-                  <div className="px-3 py-2 bg-[#161616] flex items-center gap-2 border-b border-[#C0C0C0]/10">
+                  <div className="px-4 py-3 bg-[#161616] flex items-center gap-2 border-b border-[#C0C0C0]/10">
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
                       <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
                       <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
                     </div>
-                    <span className="text-xs text-[#C0C0C0]/80 ml-2 font-medium">Equipment Scanner — AI Detection</span>
+                    <span className="text-sm text-[#C0C0C0]/80 ml-2 font-medium">Equipment Scanner — AI Detection</span>
                   </div>
                   
-                  <div className="p-3 flex flex-col text-sm bg-[#0A0A0A]">
+                  <div className="p-4 flex flex-col text-sm bg-[#0A0A0A]">
                     {/* Toolbar */}
-                    <div className="px-2 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2 mb-3">
-                      <div className="flex gap-1.5">
+                    <div className="px-2 py-2.5 border-b border-[#C0C0C0]/10 flex items-center gap-2 mb-4">
+                      <div className="flex gap-2">
                         {["Detect", "Measure", "Compare"].map((tool, i) => (
-                          <div key={tool} className={`px-2 py-1 rounded text-xs ${i === 0 ? 'bg-[#1391BF] text-white' : 'bg-[#C0C0C0]/10 text-[#C0C0C0]/70'}`}>
+                          <div key={tool} className={`px-3 py-1.5 rounded text-xs font-medium ${i === 0 ? 'bg-[#1391BF] text-white' : 'bg-[#C0C0C0]/10 text-[#C0C0C0]/70'}`}>
                             {tool}
                           </div>
                         ))}
@@ -2066,7 +2074,7 @@ const ScanProPlus = () => {
                     </div>
                     
                     {/* Image Area */}
-                    <div className="relative h-[280px] bg-gradient-to-br from-[#0A0A0A] to-[#161616] rounded-lg overflow-hidden mb-3">
+                    <div className="relative h-[340px] bg-gradient-to-br from-[#0A0A0A] to-[#161616] rounded-lg overflow-hidden mb-4">
                       <img 
                         src={equipmentImage} 
                         alt="DMG MORI CNC Machine" 
@@ -2155,6 +2163,11 @@ const ScanProPlus = () => {
                     </motion.div>
                   </div>
                 </div>
+                
+                {/* Description */}
+                <p className="mt-4 text-sm text-[#C0C0C0]/80 max-w-[600px]">
+                  Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly.
+                </p>
               </motion.div>
             </div>
           </div>
