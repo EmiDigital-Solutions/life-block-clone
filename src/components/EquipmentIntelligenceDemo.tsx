@@ -426,19 +426,19 @@ export function EquipmentIntelligenceDemo() {
                 </div>
                 
                 <div className="grid grid-cols-4 gap-4 mb-3">
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Asset ID</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.assetId}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Condition</div>
                     <div className="text-xs text-[#7CC2A7] font-medium">{selectedDetails.condition}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Last Service</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.lastService}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Compliance</div>
                     <div className="text-xs text-[#1391BF] font-medium">CE · ISO 12100</div>
                   </div>
@@ -446,19 +446,19 @@ export function EquipmentIntelligenceDemo() {
                 
                 {/* Machine Specifications */}
                 <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Spindle</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.spindleSpeed}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Max Ø</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.maxDiameter}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Axis Travel</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.axisTravel}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                  <div className="bg-[#F5F5F5] rounded-lg p-2.5 border border-[#E8E8E8]">
                     <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Power</div>
                     <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.power}</div>
                   </div>
