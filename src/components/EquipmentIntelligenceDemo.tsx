@@ -45,7 +45,7 @@ const detectedObjects: DetectedObject[] = [
       assetId: "MCH-2024-0847",
       condition: "Good",
       lastService: "Oct 15, 2024",
-      nextService: "Jan 2026",
+      nextService: "January",
       compliance: "CE · ISO 12100 · EN 12417",
       specs: {
         spindleSpeed: "4,000 rpm",
@@ -144,24 +144,24 @@ export function EquipmentIntelligenceDemo() {
     >
       {/* AI Computer Vision Badge - Desktop */}
       <div className="hidden lg:flex items-center gap-3 mb-4">
-        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-2 backdrop-blur-sm">
-          <Sparkles className="w-4 h-4 text-[#7CC2A7]" />
-          <span className="text-sm text-white/90 font-medium">AI Computer Vision</span>
+        <div className="px-4 py-2 bg-[#F0F0F0] border border-[#E0E0E0] rounded-full flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-[#1391BF]" />
+          <span className="text-sm text-[#1A1A1A] font-medium">AI Computer Vision</span>
         </div>
       </div>
 
       {/* Mobile Badge */}
       <div className="lg:hidden flex items-center gap-2 mb-4">
-        <div className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-[#7CC2A7]" />
-          <span className="text-xs text-white/90 font-medium">AI Computer Vision</span>
+        <div className="px-3 py-1.5 bg-[#F0F0F0] border border-[#E0E0E0] rounded-full flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-[#1391BF]" />
+          <span className="text-xs text-[#1A1A1A] font-medium">AI Computer Vision</span>
         </div>
       </div>
       
       <div className="w-full">
         {/* Clean Toolbar - Floating Style */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 mb-4">
-          <div className="flex gap-1 bg-white/5 backdrop-blur-sm p-1 rounded-xl border border-white/10">
+          <div className="flex gap-1 bg-[#F0F0F0] p-1 rounded-xl border border-[#E0E0E0]">
             {modes.map((m) => (
               <button
                 key={m.id}
@@ -169,7 +169,7 @@ export function EquipmentIntelligenceDemo() {
                 className={`px-3 lg:px-4 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition-all duration-200 ${
                   mode === m.id 
                     ? 'bg-[#1391BF] text-white' 
-                    : 'text-white/60 hover:text-white/90 hover:bg-white/5'
+                    : 'text-[#666666] hover:text-[#1A1A1A] hover:bg-[#E8E8E8]'
                 }`}
               >
                 <m.icon className="w-3.5 h-3.5" />
@@ -179,9 +179,9 @@ export function EquipmentIntelligenceDemo() {
           </div>
           
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-[#F0F0F0] rounded-lg border border-[#E0E0E0]">
               <div className={`w-2 h-2 rounded-full ${isScanning ? 'bg-[#7CC2A7] animate-pulse' : 'bg-[#7CC2A7]'}`} />
-              <span className="text-white/70 text-xs font-medium">
+              <span className="text-[#666666] text-xs font-medium">
                 {isScanning ? 'Analyzing...' : 'Complete'}
               </span>
             </div>
@@ -193,7 +193,7 @@ export function EquipmentIntelligenceDemo() {
         
         {/* Progress Bar */}
         {isScanning && (
-          <div className="h-0.5 bg-white/5 rounded-full mb-4 overflow-hidden">
+          <div className="h-0.5 bg-[#E0E0E0] rounded-full mb-4 overflow-hidden">
             <motion.div 
               className="h-full bg-gradient-to-r from-[#7CC2A7] to-[#1391BF]"
               style={{ width: `${scanProgress}%` }}
@@ -317,13 +317,13 @@ export function EquipmentIntelligenceDemo() {
               {/* Stats Overlay */}
               <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
                 <div className="flex gap-2">
-                  <div className="px-2.5 py-1.5 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 flex items-center gap-2">
+                  <div className="px-2.5 py-1.5 bg-white/90 backdrop-blur-md rounded-lg border border-[#E0E0E0] flex items-center gap-2">
                     <Eye className="w-3.5 h-3.5 text-[#7CC2A7]" />
-                    <span className="text-[11px] text-white/90 font-medium">{detectedObjects.length} Objects</span>
+                    <span className="text-[11px] text-[#1A1A1A] font-medium">{detectedObjects.length} Objects</span>
                   </div>
-                  <div className="px-2.5 py-1.5 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 flex items-center gap-2">
+                  <div className="px-2.5 py-1.5 bg-white/90 backdrop-blur-md rounded-lg border border-[#E0E0E0] flex items-center gap-2">
                     <Zap className="w-3.5 h-3.5 text-[#D8A860]" />
-                    <span className="text-[11px] text-white/90 font-medium">0.8s</span>
+                    <span className="text-[11px] text-[#1A1A1A] font-medium">0.8s</span>
                   </div>
                 </div>
               </div>
@@ -332,16 +332,16 @@ export function EquipmentIntelligenceDemo() {
             {/* Side Panel - Desktop Only */}
             <div className="hidden lg:flex w-[240px] flex-col gap-3">
               {/* Detection Effects */}
-              <div className="bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/5">
-                <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-3">Detection Process</div>
+              <div className="bg-[#F5F5F5] rounded-xl p-3 border border-[#E0E0E0]">
+                <div className="text-[10px] text-[#666666] uppercase tracking-wider font-semibold mb-3">Detection Process</div>
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#1391BF]/5 border border-[#1391BF]/10">
                     <div className="w-6 h-6 rounded-md bg-[#1391BF]/10 flex items-center justify-center">
                       <Eye className="w-3.5 h-3.5 text-[#1391BF]" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[11px] text-[#F5F5F5]/80 block">Image Analysis</span>
-                      <span className="text-[9px] text-[#C0C0C0]/50">Neural network scan</span>
+                      <span className="text-[11px] text-[#1A1A1A] block">Image Analysis</span>
+                      <span className="text-[9px] text-[#888888]">Neural network scan</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#7CC2A7]/5 border border-[#7CC2A7]/10">
@@ -349,8 +349,8 @@ export function EquipmentIntelligenceDemo() {
                       <Target className="w-3.5 h-3.5 text-[#7CC2A7]" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[11px] text-[#F5F5F5]/80 block">Object Detection</span>
-                      <span className="text-[9px] text-[#C0C0C0]/50">Boundary extraction</span>
+                      <span className="text-[11px] text-[#1A1A1A] block">Object Detection</span>
+                      <span className="text-[9px] text-[#888888]">Boundary extraction</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#1391BF]/5 border border-[#1391BF]/10">
@@ -358,8 +358,8 @@ export function EquipmentIntelligenceDemo() {
                       <Cpu className="w-3.5 h-3.5 text-[#1391BF]" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[11px] text-[#F5F5F5]/80 block">Classification</span>
-                      <span className="text-[9px] text-[#C0C0C0]/50">Asset identification</span>
+                      <span className="text-[11px] text-[#1A1A1A] block">Classification</span>
+                      <span className="text-[9px] text-[#888888]">Asset identification</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#7CC2A7]/5 border border-[#7CC2A7]/10">
@@ -367,27 +367,27 @@ export function EquipmentIntelligenceDemo() {
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC2A7]" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[11px] text-[#F5F5F5]/80 block">Verification</span>
-                      <span className="text-[9px] text-[#C0C0C0]/50">Compliance check</span>
+                      <span className="text-[11px] text-[#1A1A1A] block">Verification</span>
+                      <span className="text-[9px] text-[#888888]">Compliance check</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Quick Stats */}
-              <div className="bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/5 flex-1">
-                <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-2">Analysis</div>
+              <div className="bg-[#F5F5F5] rounded-xl p-3 border border-[#E0E0E0] flex-1">
+                <div className="text-[10px] text-[#666666] uppercase tracking-wider font-semibold mb-2">Analysis</div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-[11px] text-[#C0C0C0]/60">Accuracy</span>
+                    <span className="text-[11px] text-[#666666]">Accuracy</span>
                     <span className="text-[11px] text-[#7CC2A7] font-semibold">94%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[11px] text-[#C0C0C0]/60">Objects</span>
-                    <span className="text-[11px] text-[#F5F5F5]/80 font-semibold">{detectedObjects.length}</span>
+                    <span className="text-[11px] text-[#666666]">Objects</span>
+                    <span className="text-[11px] text-[#1A1A1A] font-semibold">{detectedObjects.length}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[11px] text-[#C0C0C0]/60">Status</span>
+                    <span className="text-[11px] text-[#666666]">Status</span>
                     <span className="text-[11px] text-[#7CC2A7] font-semibold">Verified</span>
                   </div>
                 </div>
@@ -402,7 +402,7 @@ export function EquipmentIntelligenceDemo() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="hidden lg:block mt-4 bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
+                className="hidden lg:block mt-4 bg-[#F5F5F5] rounded-xl p-4 border border-[#E0E0E0]"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
@@ -410,8 +410,8 @@ export function EquipmentIntelligenceDemo() {
                       <CheckCircle2 className="w-5 h-5 text-[#7CC2A7]" />
                     </div>
                     <div>
-                      <div className="text-white font-semibold">{selectedDetails.model}</div>
-                      <div className="text-[11px] text-white/60">{selectedDetails.compliance}</div>
+                      <div className="text-[#1A1A1A] font-semibold">{selectedDetails.model}</div>
+                      <div className="text-[11px] text-[#666666]">{selectedDetails.compliance}</div>
                     </div>
                   </div>
                   <button className="px-3 py-1.5 bg-[#1391BF] hover:bg-[#1391BF]/90 rounded-lg text-xs text-white font-medium flex items-center gap-1.5 transition-colors">
@@ -426,41 +426,41 @@ export function EquipmentIntelligenceDemo() {
                 </div>
                 
                 <div className="grid grid-cols-4 gap-4 mb-3">
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Asset ID</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.assetId}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Asset ID</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.assetId}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Condition</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Condition</div>
                     <div className="text-xs text-[#7CC2A7] font-medium">{selectedDetails.condition}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Last Service</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.lastService}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Last Service</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.lastService}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Compliance</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Compliance</div>
                     <div className="text-xs text-[#1391BF] font-medium">CE · ISO 12100</div>
                   </div>
                 </div>
                 
                 {/* Machine Specifications */}
                 <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Spindle</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.spindleSpeed}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Spindle</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.spindleSpeed}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Max Ø</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.maxDiameter}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Max Ø</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.maxDiameter}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Axis Travel</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.axisTravel}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Axis Travel</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.axisTravel}</div>
                   </div>
-                  <div className="bg-black/20 rounded-lg p-2.5">
-                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Power</div>
-                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.power}</div>
+                  <div className="bg-white rounded-lg p-2.5 border border-[#E8E8E8]">
+                    <div className="text-[10px] text-[#888888] uppercase tracking-wider mb-1">Power</div>
+                    <div className="text-xs text-[#1A1A1A] font-medium">{selectedDetails.specs?.power}</div>
                   </div>
                 </div>
               </motion.div>
@@ -469,7 +469,7 @@ export function EquipmentIntelligenceDemo() {
         </div>
       
       {/* Description */}
-      <p className="mt-4 text-sm text-white/60 max-w-[600px] leading-relaxed">
+      <p className="mt-4 text-sm text-[#666666] max-w-[600px] leading-relaxed">
         Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly.
       </p>
     </motion.div>
