@@ -121,7 +121,7 @@ const BuyerPainPointsSection = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="relative z-10"
                 style={activeRole === "quality" ? { marginLeft: '-60px' } : {}}
               >
