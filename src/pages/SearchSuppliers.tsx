@@ -434,62 +434,66 @@ const SearchSuppliers = () => {
       >
         <div className="container mx-auto px-6 lg:px-20 relative z-10">
           
-          {/* Centered Content - ensun.io style */}
-          <div className="text-center max-w-4xl mx-auto mb-16">
+          {/* Two-column layout - ensun.io style */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Main Heading */}
-            <motion.h1
+            {/* Left Column - Text Content */}
+            <div className="text-left">
+              
+              {/* Main Heading - Multi-line with colored words */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-10"
+              >
+                <span className="font-semibold text-primary block">Find</span>
+                <span className="font-semibold text-primary block">suppliers</span>
+                <span className="font-semibold text-white block">worldwide</span>
+                <span className="font-semibold text-white block">in real-</span>
+                <span className="font-semibold text-white block">time.</span>
+              </motion.h1>
+              
+              {/* Vertical checkmark list */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex flex-col gap-3 mb-10"
+              >
+                {[
+                  "25+ million supplier profiles",
+                  "Relevant supplier data",
+                  "Save and export options"
+                ].map((text, index) => (
+                  <div key={index} className="flex items-center gap-3 text-white/80">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-base font-medium">{text}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
+                  Get Started
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Product Demo Card */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="hidden lg:block relative"
+              style={{ zIndex: 20 }}
             >
-              <span className="font-semibold text-primary">Find suppliers</span>
-              <br />
-              <span className="font-semibold text-white">worldwide in real-time.</span>
-            </motion.h1>
-            
-            {/* Horizontal checkmark list */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10"
-            >
-              {[
-                "25+ million supplier profiles",
-                "Relevant supplier data",
-                "Save and export options"
-              ].map((text, index) => (
-                <div key={index} className="flex items-center gap-2 text-white/80">
-                  <Check className="w-5 h-5 text-primary" />
-                  <span className="text-base font-medium">{text}</span>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
-                Get Started
-              </button>
-            </motion.div>
-          </div>
-
-          {/* Demo Search Panel - Centered below headline - Desktop Only */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden lg:block max-w-4xl mx-auto relative"
-            style={{ 
-              zIndex: 20
-            }}
-          >
               {/* Modern white card matching YVOO design - Fixed height container */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
@@ -660,8 +664,7 @@ const SearchSuppliers = () => {
                 )}
               </div>
             </motion.div>
-          
-          {/* Left side text overlay - removed to prevent overlap */}
+          </div>
         </div>
       </section>
 
