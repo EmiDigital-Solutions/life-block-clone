@@ -119,7 +119,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="hero-headline text-foreground">
+            <h1 className="section-headline text-foreground">
               Building the Global B2B Platform
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">

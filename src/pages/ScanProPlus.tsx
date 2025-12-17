@@ -2009,9 +2009,9 @@ const ScanProPlus = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="hero-headline mb-6"
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
                   >
-                    <span className="text-foreground">Supplier Audits</span>
+                    <span className="font-semibold text-foreground">Supplier Audits</span>
                     <br />
                     <span className="text-muted-foreground font-light">in</span>{" "}
                     <span className="font-semibold text-primary">Days,</span>

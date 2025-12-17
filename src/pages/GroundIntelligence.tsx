@@ -31,7 +31,7 @@ const GroundIntelligence = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="hero-headline text-white mb-6"
+                className="section-headline text-white mb-6"
               >
                 Transform supplier data into strategic advantage
               </motion.h1>
