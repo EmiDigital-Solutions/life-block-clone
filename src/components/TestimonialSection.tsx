@@ -64,11 +64,11 @@ const TestimonialSection = () => {
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-gray-900">
                 "It's a game changer"
               </p>
-              <div className="flex items-center gap-4 pt-4">
+              <div className="flex items-center gap-5 pt-4">
                 <img 
                   src={christophPortrait} 
                   alt="Christoph Seeholzer" 
-                  className="w-14 h-14 rounded-full object-cover"
+                  className="w-20 h-20 rounded-full object-cover"
                 />
                 <p className="text-base md:text-lg text-gray-600 font-normal">
                   Christoph Seeholzer, Director Linde
