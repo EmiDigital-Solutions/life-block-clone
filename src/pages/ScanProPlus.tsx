@@ -1978,8 +1978,8 @@ const ScanProPlus = () => {
         className="relative bg-[#0A0A0A] min-h-screen lg:h-[780px]"
         style={{ overflow: 'visible', clipPath: 'none' }}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
-          <div className="w-full pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 lg:pb-16" style={{ overflow: 'visible' }}>
+        <div className="container mx-auto px-3 sm:px-4 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
+          <div className="w-full pt-16 sm:pt-20 md:pt-28 pb-6 sm:pb-10 lg:pb-16" style={{ overflow: 'visible' }}>
           
           {/* Two-column layout - Demo larger */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
