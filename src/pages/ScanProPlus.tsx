@@ -417,7 +417,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 transition={{ delay: 0.1 }}
                 className="section-headline text-foreground max-w-xl"
               >
-                Global On-Demand Auditor Network
+                Your auditor, anywhere, anytime
               </motion.h2>
 
               <motion.p
@@ -425,9 +425,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg"
               >
-                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
+                Stop flying auditors across continents. Access local experts certified in VDA 6.3, 
+                IATF 16949, or ISO standards—already on the ground where your suppliers operate.
               </motion.p>
 
               <motion.div
@@ -1271,9 +1272,12 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground max-w-2xl">
-            Industry specific use cases
+          <h2 className="section-headline text-foreground max-w-2xl mb-4">
+            How industry leaders use ScanPro+
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Real scenarios from automotive, aerospace, pharma, and chemical—see how teams like yours work smarter.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -1340,66 +1344,66 @@ const ChallengeToggleSection = () => {
   const withScanProContent = [
     {
       icon: "checkbox-on",
-      title: "Fixed Price from €700",
-      description: "Transparent pricing with no hidden costs"
+      title: "€700 flat—budget secured",
+      description: "Finance approves instantly. No surprises."
     },
     {
       icon: "zap",
-      title: "Same-Day / Next-Day",
-      description: "Ultra-fast deployment within 24 hours"
+      title: "Auditor on-site in 48h",
+      description: "Your supplier issues don't wait—neither should you."
     },
     {
       icon: "calendar",
-      title: "1-3 Days Structured",
-      description: "Efficient on-site audits with AI workflows"
+      title: "1-3 day structured audit",
+      description: "Minimal disruption to your team and supplier."
     },
     {
       icon: "analytics",
-      title: "Real-time + Report in 24h",
-      description: "Live insights with next-day documentation"
+      title: "Report in 24h, not weeks",
+      description: "Make decisions while the context is fresh."
     },
     {
       icon: "checkbox-on",
-      title: "100% Standardized",
-      description: "AI-supported consistency across all audits"
+      title: "Every audit, same standard",
+      description: "AI ensures consistency your QM team can trust."
     },
     {
       icon: "camera",
-      title: "AI Computer Vision",
-      description: "Advanced equipment recognition"
+      title: "AI equipment intelligence",
+      description: "Machine conditions documented automatically."
     },
   ];
 
   const traditionalContent = [
     {
       icon: "coin",
-      title: "€15,000 - €25,000",
-      description: "Unpredictable costs with hidden fees"
+      title: "€15K-€25K per audit",
+      description: "Budget fights, travel expenses, hotel costs."
     },
     {
       icon: "clock",
-      title: "2-3 Weeks Lead Time",
-      description: "Long delays before audit starts"
+      title: "2-3 weeks just to start",
+      description: "Your quality engineer's calendar is full."
     },
     {
       icon: "close",
-      title: "3-5 Days On-site",
-      description: "Extended audit disrupts operations"
+      title: "3-5 days on-site",
+      description: "Your engineer away from their real work."
     },
     {
       icon: "alert",
-      title: "5-10 Days After Audit",
-      description: "Delayed reporting slows decisions"
+      title: "Report? Maybe in 10 days",
+      description: "By then, everyone forgot the details."
     },
     {
       icon: "close",
-      title: "Depends on Auditor",
-      description: "Quality varies between auditors"
+      title: "Quality depends on who's sent",
+      description: "Junior auditor today, expert tomorrow."
     },
     {
       icon: "alert",
-      title: "Manual, Often Incomplete",
-      description: "Missing photos and documentation gaps"
+      title: "Photos? What photos?",
+      description: "Documentation gaps that hurt you later."
     },
   ];
 
@@ -1447,8 +1451,8 @@ const ChallengeToggleSection = () => {
         {/* Description */}
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
-            ? "Experience transparent pricing, rapid deployment, and AI-powered standardization."
-            : "Traditional audits: unpredictable costs, long delays, and inconsistent quality."}
+            ? "What procurement directors, quality managers, and CFOs see when they switch."
+            : "The hidden cost of 'we've always done it this way.'"}
         </p>
 
         {/* Grid - Homepage Card Style */}
@@ -1506,8 +1510,8 @@ const HowItWorksCarousel = () => {
   const steps = [
     {
       number: "01",
-      title: "Place an Audit Request with 1 Click",
-      description: "Easily schedule a supplier audit through YVOO's platform or integrate it with your ERP system. With just a click, you can request an audit, making the process hassle-free.",
+      title: "One click. Audit requested.",
+      description: "Your procurement team submits via platform or ERP integration. No RFQs, no vendor negotiations, no calendar juggling. Done.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* 3D Earth */}
@@ -1543,8 +1547,8 @@ const HowItWorksCarousel = () => {
     },
     {
       number: "02",
-      title: "Auto-Dispatch to Local Auditors",
-      description: "YVOO automatically assigns certified auditors from our global network to your supplier location. Geo-locator technology ensures local expertise, ensuring accurate results.",
+      title: "Local expert assigned instantly",
+      description: "Our AI matches a certified auditor near your supplier—no travel costs, no jet lag, no delays. They know the language and the local context.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
@@ -1555,8 +1559,8 @@ const HowItWorksCarousel = () => {
     },
     {
       number: "03",
-      title: "Monitor Audits in Real-Time",
-      description: "Stay updated with real-time tracking of your audit process. Communicate directly with auditors for transparency and receive notifications for key audit milestones.",
+      title: "Watch progress live",
+      description: "Your quality manager sees real-time updates. Chat directly with the auditor. Know exactly what's happening without being there.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Chat Interface */}
@@ -1628,8 +1632,8 @@ const HowItWorksCarousel = () => {
     },
     {
       number: "04",
-      title: "Receive Complete Reports",
-      description: "Get comprehensive audit reports with AI-powered insights, photographic evidence, and actionable recommendations delivered within 24 hours of audit completion.",
+      title: "Report in your inbox. Tomorrow.",
+      description: "AI-structured report with photos, findings, and action items—ready for your QM system. No more waiting weeks for documentation.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
@@ -1752,10 +1756,10 @@ const HowItWorksCarousel = () => {
           className="mb-12 sm:mb-16 md:mb-20"
         >
           <h2 className="section-headline text-foreground">
-            How does YVOO work
+            From request to report in 4 steps
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mt-4">
-            Four simple steps to transform your supplier audit process
+            What used to take your team weeks now happens in days—without anyone leaving their desk.
           </p>
         </motion.div>
 
@@ -1987,19 +1991,19 @@ const ScanProPlus = () => {
             {/* Left Column - Text Content */}
             <div className="text-left pt-4">
               
-              {/* Main Heading - All white text, Supplier Audits on one line */}
+              {/* Main Heading - Transformation-focused */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
               >
-                <span className="text-white whitespace-nowrap">Supplier Audits</span>
+                <span className="text-white">Transform how</span>
                 <br />
-                <span className="text-white">in days, not weeks.</span>
+                <span className="text-white">your team audits.</span>
               </motion.h1>
               
-              {/* Vertical checkmark list */}
+              {/* Vertical checkmark list - Client benefits focused */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -2007,9 +2011,9 @@ const ScanProPlus = () => {
                 className="flex flex-col gap-3 mb-10"
               >
                 {[
-                  "On-site audits from €700",
-                  "2,000+ certified auditors",
-                  "90+ countries covered"
+                  "Cut audit costs by 60%, redeploy budget strategically",
+                  "Free your engineers from coordination tasks",
+                  "Get audit-ready suppliers in 48h, not weeks"
                 ].map((text, index) => (
                   <div key={index} className="flex items-center gap-3 text-white/80">
                     <Check className="w-5 h-5 text-white flex-shrink-0" />
@@ -2024,12 +2028,14 @@ const ScanProPlus = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <button 
-                  onClick={() => scrollToSection('cta')}
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
                 >
-                  Get Started
-                </button>
+                  See it in action
+                </a>
               </motion.div>
             </div>
 
@@ -2075,10 +2081,10 @@ const ScanProPlus = () => {
             className="mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
             <h2 className="section-headline text-foreground max-w-2xl mb-2">
-              Capabilities that modernize supplier audits
+              Give your team superpowers
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
-              Nine AI-driven features for consistent, actionable outcomes.
+              AI capabilities that let procurement, quality & engineering focus on decisions—not paperwork.
             </p>
           </motion.div>
 
@@ -2103,9 +2109,12 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <h2 className="section-headline text-foreground max-w-2xl">
-              Business impact, measured results
+            <h2 className="section-headline text-foreground max-w-2xl mb-4">
+              What CFOs and Procurement Directors see
             </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Measurable ROI from day one. Real savings your finance team will notice.
+            </p>
           </motion.div>
 
           {/* Stats Section - Dark Homepage Style */}
@@ -2118,10 +2127,10 @@ const ScanProPlus = () => {
           >
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
               {[
-                { value: '60%', label: 'Cost Reduction' },
-                { value: '70%', label: 'Time Savings' },
-                { value: '96%', label: 'Price Transparency' },
-                { value: '48h', label: 'Rapid Deployment' }
+                { value: '60%', label: 'Lower audit spend' },
+                { value: '70%', label: 'Less time coordinating' },
+                { value: '48h', label: 'From request to auditor on-site' },
+                { value: '0', label: 'Travel costs for your team' }
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -2206,11 +2215,11 @@ const ScanProPlus = () => {
             className="mb-16 md:mb-20"
           >
             <h2 className="section-headline text-foreground max-w-2xl mb-6">
-              Compliance & supported standards
+              Every standard your customers require
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              YVOO ScanPro+ meets the highest international quality and safety standards. 
-              Your audits are legally secure and comply with all industry-specific requirements.
+              Whether your customer is Volkswagen, Bosch, or Airbus—we speak their audit language. 
+              VDA 6.3, IATF 16949, AS9100, and 200+ more frameworks ready to deploy.
             </p>
           </motion.div>
 
@@ -2250,9 +2259,12 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <h2 className="section-headline text-foreground max-w-2xl">
-              Global network & integration
+            <h2 className="section-headline text-foreground max-w-2xl mb-4">
+              Fits into how you already work
             </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Connect to SAP, Oracle, or your QMS. No rip-and-replace—just better data flowing through your existing systems.
+            </p>
           </motion.div>
 
           {/* Two Column Grid */}
@@ -2318,16 +2330,20 @@ const ScanProPlus = () => {
             className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16"
           >
             <h3 className="text-2xl md:text-3xl text-white mb-4">
-              <span className="font-semibold">Available</span>{" "}
-              <span className="font-normal text-white/60">in 47 Countries</span>
+              <span className="font-semibold">Your auditor is already there.</span>
             </h3>
             <p className="text-white/60 text-lg mb-8 max-w-2xl">
-              Need an audit in Shanghai? Book directly a local, ISO-certified auditor with experience in your industry – available within 24 hours.
+              Need a VDA 6.3 audit at your supplier in Shenzhen? No flights, no hotel costs, no time lost. Book a local expert—on-site within 24 hours.
             </p>
-            <button className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300">
-              Find Your Auditor Now
+            <a 
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300"
+            >
+              Book a Demo
               <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>
@@ -2346,11 +2362,11 @@ const ScanProPlus = () => {
           >
             {/* Mixed weight heading */}
             <h2 className="section-headline text-foreground mb-6 max-w-2xl mx-auto">
-              Ready to transform your supplier audits?
+              Your competitors already switched. When will you?
             </h2>
             
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-              Join leading companies from Automotive, Aerospace, and Pharma who already trust YVOO ScanPro+.
+              Leading OEMs and Tier-1 suppliers use YVOO to audit faster, cheaper, and smarter. See how we can transform your supplier quality operations.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -2377,8 +2393,8 @@ const ScanProPlus = () => {
               <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
                 <span>No setup fees</span>
                 <span>Pay per audit</span>
-                <span>24/7 Support</span>
-                <span>Cancel anytime</span>
+                <span>Dedicated account manager</span>
+                <span>Enterprise SLA available</span>
               </div>
             </motion.div>
           </motion.div>
