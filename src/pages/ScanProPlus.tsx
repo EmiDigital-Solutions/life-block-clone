@@ -1982,18 +1982,18 @@ const ScanProPlus = () => {
         <div className="flex-1 flex items-center">
           <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
             
-            {/* Two Column Layout - ensun.io style */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Two Column Layout - Demo prominent */}
+            <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-start">
               
               {/* Left Column - Content */}
-              <div className="text-left">
+              <div className="text-left lg:pt-8">
                 
                 {/* Main Heading - ensun.io style with line breaks */}
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6 lg:mb-8"
                 >
                   <span className="font-semibold text-primary">Supplier Audits</span>
                   <br />
