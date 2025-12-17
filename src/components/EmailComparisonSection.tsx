@@ -13,8 +13,7 @@ const EmailComparisonSection = () => {
           className="text-center mb-16"
         >
           <h2 className="section-headline text-foreground">
-            Conversations that keep<br />
-            <span className="inline-block px-4 py-1 bg-[#0A7FA5] skew-x-[-12deg] mt-2"><span className="inline-block skew-x-[12deg] text-white font-medium">supply chains</span></span> moving
+            Conversations that keep supply chains moving
           </h2>
         </motion.div>
 
@@ -27,8 +26,8 @@ const EmailComparisonSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
-            <div className="mb-6">
-              <p className="text-2xl lg:text-3xl font-medium text-foreground">Traditional approach</p>
+            <div className="text-center mb-6">
+              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Traditional approach</p>
             </div>
             
             <div className="space-y-3">
@@ -38,9 +37,10 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl p-6 w-full bg-gray-100"
+                className="rounded-2xl rounded-tl-sm p-4 w-full relative bg-gray-200"
               >
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-gray-400 animate-pulse"></div>
+                <p className="text-sm text-gray-700 leading-relaxed pl-6">
                   Hi Sarah,<br/><br/>
                   Let me check if I have anyone available in that region. Our auditors are booked for the next 3 weeks, and flying someone from Germany will cost around €12,000 with travel.<br/><br/>
                   I'll get back to you by end of the week with options.<br/><br/>
@@ -51,7 +51,7 @@ const EmailComparisonSection = () => {
             </div>
           </motion.div>
 
-          {/* With YVOO */}
+          {/* With ScanPro */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,8 +59,8 @@ const EmailComparisonSection = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
-            <div className="mb-6">
-              <p className="text-2xl lg:text-3xl font-medium text-foreground">
+            <div className="text-center mb-6">
+              <p className="text-3xl lg:text-4xl font-bold text-foreground">
                 With <span className="inline-block px-3 py-0.5 bg-[#0A7FA5] skew-x-[-12deg]"><span className="inline-block skew-x-[12deg] text-white">YVOO</span></span>
               </p>
             </div>
@@ -72,9 +72,12 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl p-6 w-full bg-[#0A7FA5]"
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-[#0A7FA5]"
               >
-                <p className="text-sm text-white leading-relaxed">
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white/60 animate-pulse"></div>
+                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <p className="text-sm text-white leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   Done! I've assigned Nguyen Tran—a VDA 6.3 certified auditor based in Ho Chi Minh City. He's audited 50+ automotive suppliers in the region.<br/><br/>
                   Audit confirmed for next Tuesday. Total cost: €700. You'll have the digital report with photos, scores, and findings within 24h after completion.<br/><br/>
