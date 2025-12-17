@@ -445,13 +445,11 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-10"
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
               >
-                <span className="font-semibold text-primary block">Find</span>
-                <span className="font-semibold text-primary block">suppliers</span>
-                <span className="font-semibold text-white block">worldwide</span>
-                <span className="font-semibold text-white block">in real-</span>
-                <span className="font-semibold text-white block">time.</span>
+                <span className="text-primary">Find suppliers</span>
+                <br />
+                <span className="text-white">worldwide in real-time.</span>
               </motion.h1>
               
               {/* Vertical checkmark list */}
