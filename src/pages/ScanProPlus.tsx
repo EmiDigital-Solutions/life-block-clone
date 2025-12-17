@@ -1991,11 +1991,11 @@ const ScanProPlus = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8 font-semibold"
                 >
-                  <span className="font-semibold text-primary">Supplier Audits</span>
+                  <span className="text-primary">Supplier Audits</span>
                   <br />
-                  <span className="font-semibold text-white">in days, not weeks.</span>
+                  <span className="text-white">in days, not weeks.</span>
                 </motion.h1>
 
                 {/* Vertical checkmark list - ensun.io style */}
