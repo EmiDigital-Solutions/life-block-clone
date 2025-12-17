@@ -395,53 +395,6 @@ export function EquipmentIntelligenceDemo() {
             </div>
           </div>
           
-          {/* Mobile Results Panel */}
-          {showResults && selectedDetails && (
-            <div className="lg:hidden mt-3 bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/10">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#7CC2A7]/10 flex items-center justify-center">
-                    <CheckCircle2 className="w-4 h-4 text-[#7CC2A7]" />
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm">{selectedDetails.model}</div>
-                    <div className="text-[10px] text-white/60">{selectedDetails.compliance}</div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Maintenance Alert - Mobile */}
-              <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#D8A860]/10 border border-[#D8A860]/20 rounded-lg mb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D8A860] animate-pulse" />
-                <span className="text-[10px] text-[#D8A860] font-medium">Maintenance due: {selectedDetails.nextService}</span>
-              </div>
-              
-              {/* Info Grid - Mobile */}
-              <div className="grid grid-cols-2 gap-2 mb-2">
-                <div className="bg-black/30 rounded-lg p-2">
-                  <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Asset ID</div>
-                  <div className="text-[11px] text-white/90 font-medium">{selectedDetails.assetId}</div>
-                </div>
-                <div className="bg-black/30 rounded-lg p-2">
-                  <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Condition</div>
-                  <div className="text-[11px] text-[#7CC2A7] font-medium">{selectedDetails.condition}</div>
-                </div>
-              </div>
-              
-              {/* Specs Grid - Mobile */}
-              <div className="grid grid-cols-2 gap-2">
-                <div className="bg-black/30 rounded-lg p-2">
-                  <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Spindle</div>
-                  <div className="text-[11px] text-white/90 font-medium">{selectedDetails.specs?.spindleSpeed}</div>
-                </div>
-                <div className="bg-black/30 rounded-lg p-2">
-                  <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Power</div>
-                  <div className="text-[11px] text-white/90 font-medium">{selectedDetails.specs?.power}</div>
-                </div>
-              </div>
-            </div>
-          )}
-          
           {/* Results Panel - Desktop Only */}
           <AnimatePresence>
             {showResults && selectedDetails && (
