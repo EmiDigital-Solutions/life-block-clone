@@ -12,6 +12,7 @@ import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
+import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
 import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -2034,141 +2035,7 @@ const ScanProPlus = () => {
               </div>
 
               {/* Right Column - Equipment Intelligence Demo */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="hidden lg:block relative"
-              >
-                {/* AI Computer Vision Badge */}
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="px-3 py-1.5 bg-[#7CC2A7]/20 border border-[#7CC2A7]/40 rounded-full flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#7CC2A7]" />
-                    <span className="text-sm text-[#7CC2A7] font-medium">AI Computer Vision</span>
-                  </div>
-                </div>
-                
-                <div className="w-full max-w-[600px] xl:max-w-[680px] bg-[#0A0A0A] rounded-xl overflow-hidden shadow-2xl border border-[#C0C0C0]/10">
-                  {/* Window Title Bar */}
-                  <div className="px-4 py-3 bg-[#161616] flex items-center gap-2 border-b border-[#C0C0C0]/10">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
-                      <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
-                      <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
-                    </div>
-                    <span className="text-sm text-[#C0C0C0]/80 ml-2 font-medium">Equipment Scanner — AI Detection</span>
-                  </div>
-                  
-                  <div className="p-4 flex flex-col text-sm bg-[#0A0A0A]">
-                    {/* Toolbar */}
-                    <div className="px-2 py-2.5 border-b border-[#C0C0C0]/10 flex items-center gap-2 mb-4">
-                      <div className="flex gap-2">
-                        {["Detect", "Measure", "Compare"].map((tool, i) => (
-                          <div key={tool} className={`px-3 py-1.5 rounded text-xs font-medium ${i === 0 ? 'bg-[#1391BF] text-white' : 'bg-[#C0C0C0]/10 text-[#C0C0C0]/70'}`}>
-                            {tool}
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex-1" />
-                      <span className="text-[#C0C0C0]/60 text-xs">Confidence: 94%</span>
-                    </div>
-                    
-                    {/* Image Area */}
-                    <div className="relative h-[340px] bg-gradient-to-br from-[#0A0A0A] to-[#161616] rounded-lg overflow-hidden mb-4">
-                      <img 
-                        src={equipmentImage} 
-                        alt="DMG MORI CNC Machine" 
-                        className="absolute inset-0 w-full h-full object-cover opacity-90"
-                      />
-                      
-                      {/* Detection Overlay */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 0.5, repeat: Infinity, repeatDelay: 6 }}
-                        className="absolute inset-4"
-                      >
-                        {/* Main Bounding Box */}
-                        <motion.div
-                          initial={{ scale: 1.1, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.8, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
-                          className="absolute inset-3 border-2 border-[#7CC2A7] rounded"
-                        >
-                          <div className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-[#7CC2A7]" />
-                          <div className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-[#7CC2A7]" />
-                          <div className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-[#7CC2A7]" />
-                          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 border-[#7CC2A7]" />
-                        </motion.div>
-                        
-                        {/* Label */}
-                        <motion.div
-                          initial={{ opacity: 0, y: -5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1.2, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
-                          className="absolute top-1 left-1 bg-[#7CC2A7] px-2 py-1 rounded-br rounded-tl flex items-center gap-1.5"
-                        >
-                          <CheckCircle2 className="w-3 h-3 text-white" />
-                          <span className="text-white text-xs font-medium">CNC Lathe • 94%</span>
-                        </motion.div>
-                        
-                        {/* Sub-detection */}
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 1.8, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
-                          className="absolute top-6 left-3 w-16 h-12 border border-[#1391BF]/60 rounded-sm"
-                        >
-                          <div className="absolute -top-2.5 left-0 bg-[#1391BF]/80 px-1.5 py-0.5 rounded text-[10px] text-white">Control Panel</div>
-                        </motion.div>
-                      </motion.div>
-                      
-                      {/* Scanning Line */}
-                      <motion.div
-                        initial={{ top: 0 }}
-                        animate={{ top: '100%' }}
-                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
-                        className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#7CC2A7] to-transparent"
-                      />
-                    </div>
-                    
-                    {/* Results Panel */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
-                      className="bg-[#161616] rounded-lg p-3 border border-[#C0C0C0]/10"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[#F5F5F5]/90 font-medium text-sm">DMG MORI NLX 2500</span>
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
-                          <span className="text-[#7CC2A7] text-xs">Verified</span>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-3 gap-3 text-xs">
-                        <div>
-                          <div className="text-[#C0C0C0]/60">Asset ID</div>
-                          <div className="text-[#F5F5F5]/80">MCH-2024-0847</div>
-                        </div>
-                        <div>
-                          <div className="text-[#C0C0C0]/60">Last Service</div>
-                          <div className="text-[#F5F5F5]/80">Oct 15, 2024</div>
-                        </div>
-                        <div>
-                          <div className="text-[#C0C0C0]/60">Condition</div>
-                          <div className="text-[#7CC2A7]">Good</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </div>
-                
-                {/* Description */}
-                <p className="mt-4 text-sm text-[#C0C0C0]/80 max-w-[600px]">
-                  Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly.
-                </p>
-              </motion.div>
+              <EquipmentIntelligenceDemo />
             </div>
           </div>
         </div>
