@@ -189,8 +189,8 @@ export function EquipmentIntelligenceDemo() {
         
         {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row gap-4">
-          {/* Image Area - Frameless with subtle shadow */}
-          <div className="relative flex-1 h-[280px] sm:h-[340px] lg:h-[440px] rounded-2xl overflow-hidden shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]">
+          {/* Image Area - 16:9 proportion */}
+          <div className="relative flex-1 aspect-video rounded-2xl overflow-hidden shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]">
             <img 
               src={equipmentImage} 
               alt="DMG MORI CNC Machine" 
