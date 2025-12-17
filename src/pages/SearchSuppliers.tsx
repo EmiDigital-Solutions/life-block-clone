@@ -692,7 +692,7 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="section-headline text-foreground mb-4">
+            <h2 className="section-headline text-foreground mb-4 max-w-xl">
               Try SearchPro+ in Action
             </h2>
             <p className="text-muted-foreground text-lg">
@@ -886,7 +886,7 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             className="mb-8 md:mb-16"
           >
-            <h2 className="section-headline text-foreground mb-3 px-4">
+            <h2 className="section-headline text-foreground mb-3 px-4 max-w-3xl">
               Your next supplier, just a click away
             </h2>
           </motion.div>
@@ -965,10 +965,8 @@ const SearchSuppliers = () => {
               <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Process</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">Product</span>
-              <br />
-              <span className="font-normal text-muted-foreground">Overview.</span>
+            <h2 className="section-headline text-foreground">
+              Product Overview
             </h2>
           </motion.div>
 
@@ -1114,8 +1112,8 @@ const SearchSuppliers = () => {
             className="max-w-2xl mb-16 md:mb-24"
           >
             <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">Technology Stack</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">Built for precision,</span> <br /><span className="font-normal text-muted-foreground">powered by AI</span>
+            <h2 className="section-headline text-foreground max-w-2xl">
+              Built for precision, powered by AI
             </h2>
           </motion.div>
 
@@ -1248,8 +1246,8 @@ const SearchSuppliers = () => {
             className="max-w-3xl mb-16 md:mb-24"
           >
             <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">AI Capabilities</p>
-            <h2 className="section-headline text-foreground mb-6">
-              Eight features that transform procurement intelligence
+            <h2 className="section-headline text-foreground mb-6 max-w-2xl">
+              Eight features that transform procurement
             </h2>
             <p className="text-lg text-muted-foreground">
               Built to eliminate manual work and deliver precision matching across global supplier networks.
@@ -1419,9 +1417,8 @@ const SearchSuppliers = () => {
                 <span className="text-sm font-medium text-foreground">Start Your Search</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-                <span className="font-semibold text-foreground">Find your next</span>{" "}
-                <span className="font-normal text-muted-foreground">supplier partner</span>
+              <h2 className="section-headline text-foreground mb-6">
+                Find your next supplier partner
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                 Join thousands of procurement professionals discovering and verifying suppliers with AI
