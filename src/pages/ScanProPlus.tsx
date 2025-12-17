@@ -1996,13 +1996,11 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold whitespace-nowrap"
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
               >
-                <span className="text-white">On-Site Supplier Audits</span>
+                <span className="text-white">Transform how</span>
                 <br />
-                <span className="text-white">in </span>
-                <span className="text-primary">Days,</span>
-                <span className="text-white"> Not Weeks.</span>
+                <span className="text-white">your team audits.</span>
               </motion.h1>
               
               {/* Vertical checkmark list - Client benefits focused */}
