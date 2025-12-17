@@ -114,10 +114,6 @@ const BuyerPainPointsSection = () => {
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[800px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
-              {/* Solid grey background */}
-              <div 
-                className="absolute w-[520px] h-[520px] sm:w-[680px] sm:h-[680px] md:w-[760px] md:h-[760px] bg-gray-100 z-0"
-              ></div>
 
               {/* Photo overlay */}
               <motion.div 
