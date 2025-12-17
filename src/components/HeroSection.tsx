@@ -5,9 +5,9 @@ import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
-    tagline: "Trusted by Tier-1 suppliers · 90+ countries · AI-powered",
-    heading: "Stop Flying Your Engineers to Audits",
-    subtitle: "Local certified auditors, on-site in 48h, from €700",
+    tagline: "AI Computer Vision",
+    heading: "Supplier Audits in days, not weeks.",
+    subtitle: "",
   });
 
   const { data: heroData } = useContentByType("hero_content");
@@ -78,90 +78,62 @@ const HeroSection = () => {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  {heroContent.tagline}
+                  AI Computer Vision
                 </span>
               </motion.div>
 
-              {/* Main Heading - Transformation focused */}
+              {/* Main Heading */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="section-headline mb-6"
+                className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-8"
               >
-                <span className="text-foreground">Stop Flying Your</span>
+                <span className="text-foreground">Supplier Audits</span>
                 <br />
-                <span className="text-foreground">Engineers to</span>{" "}
-                <span className="text-primary">Audits.</span>
+                <span className="text-foreground">in days, not</span>
+                <br />
+                <span className="text-foreground">weeks.</span>
               </motion.h1>
 
-              {/* Subtitle */}
-              <motion.p
+              {/* Bullet Points */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
+                className="space-y-3 mb-8"
               >
-                {heroContent.subtitle}
-              </motion.p>
+                {[
+                  "On-site audits from €700",
+                  "2,000+ certified auditors",
+                  "90+ countries covered"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-muted-foreground">
+                    <svg className="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-base lg:text-lg">{item}</span>
+                  </div>
+                ))}
+              </motion.div>
 
               {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
               >
                 <a 
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90"
                 >
-                  See How It Works
-                  <PixelIcon 
-                    name="arrow-right" 
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                    color="currentColor"
-                  />
+                  Get Started
                 </a>
-                <a 
-                  href="/scanpro-plus"
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50"
-                >
-                  Explore ScanPro+
-                  <PixelIcon 
-                    name="arrow-right" 
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                    color="currentColor"
-                  />
-                </a>
-              </motion.div>
-
-              {/* Certifications */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="pt-6 border-t border-gray-300/50"
-              >
-                <p className="text-sm text-muted-foreground mb-3">
-                  Auditors certified by:
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
-                    <span
-                      key={idx}
-                      className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground"
-                    >
-                      {cert}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
             </div>
           </motion.div>
-
         </div>
       </div>
 
