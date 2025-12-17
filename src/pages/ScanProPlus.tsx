@@ -1975,10 +1975,11 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative bg-[#0A0A0A] overflow-visible h-[860px] lg:h-[780px]"
+        className="relative bg-[#0A0A0A] h-[860px] lg:h-[780px]"
+        style={{ overflow: 'visible', clipPath: 'none' }}
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center">
-          <div className="w-full pt-24 md:pt-28 pb-16">
+        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
+          <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>
           
           {/* Two-column layout - Demo larger */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
