@@ -466,6 +466,65 @@ export function EquipmentIntelligenceDemo() {
               </motion.div>
             )}
           </AnimatePresence>
+          
+          {/* Results Panel - Mobile Only */}
+          <AnimatePresence>
+            {showResults && selectedDetails && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="lg:hidden mt-4 bg-white/5 backdrop-blur-sm rounded-xl p-3 border border-white/10"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#7CC2A7]/10 flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-[#7CC2A7]" />
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold text-sm">{selectedDetails.model}</div>
+                    <div className="text-[10px] text-white/60">{selectedDetails.compliance}</div>
+                  </div>
+                </div>
+                
+                {/* Maintenance Alert - Mobile */}
+                <div className="flex items-center gap-2 px-2.5 py-1.5 bg-[#D8A860]/10 border border-[#D8A860]/20 rounded-lg mb-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8A860] animate-pulse" />
+                  <span className="text-[10px] text-[#D8A860] font-medium">Maintenance due: {selectedDetails.nextService}</span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-2 mb-2">
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Asset ID</div>
+                    <div className="text-[11px] text-white/90 font-medium">{selectedDetails.assetId}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Condition</div>
+                    <div className="text-[11px] text-[#7CC2A7] font-medium">{selectedDetails.condition}</div>
+                  </div>
+                </div>
+                
+                {/* Machine Specifications - Mobile */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Spindle</div>
+                    <div className="text-[11px] text-white/90 font-medium">{selectedDetails.specs?.spindleSpeed}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Max Ø</div>
+                    <div className="text-[11px] text-white/90 font-medium">{selectedDetails.specs?.maxDiameter}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Power</div>
+                    <div className="text-[11px] text-white/90 font-medium">{selectedDetails.specs?.power}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2">
+                    <div className="text-[9px] text-white/50 uppercase tracking-wider mb-0.5">Axis Travel</div>
+                    <div className="text-[11px] text-white/90 font-medium truncate">{selectedDetails.specs?.axisTravel}</div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       
       {/* Description */}
