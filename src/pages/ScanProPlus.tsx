@@ -1969,10 +1969,10 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Homepage Style */}
+      {/* Hero Section - Dark Background like ensun.io */}
       <section
-        data-nav-theme="light"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-white"
+        data-nav-theme="hero"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
         id="hero"
       >
 
@@ -1981,15 +1981,15 @@ const ScanProPlus = () => {
           <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-end">
               
-              {/* Left Column: Frosted Glass Card */}
+              {/* Left Column */}
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="max-w-xl lg:max-w-2xl"
               >
-                {/* Frosted Glass Card */}
-                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+                {/* Content Container */}
+                <div className="p-8 sm:p-10 lg:p-14">
                   
                   {/* Tagline Badge */}
                   <motion.div
@@ -1998,7 +1998,7 @@ const ScanProPlus = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6"
                   >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
                       <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                       ScanPro+ — AI-Powered Supplier Audits
                     </span>
@@ -2011,12 +2011,12 @@ const ScanProPlus = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
                   >
-                    <span className="font-semibold text-foreground">Supplier Audits</span>
+                    <span className="font-semibold text-white">Supplier Audits</span>
                     <br />
-                    <span className="text-muted-foreground font-light">in</span>{" "}
+                    <span className="text-white/60 font-light">in</span>{" "}
                     <span className="font-semibold text-primary">Days,</span>
                     <br />
-                    <span className="text-muted-foreground font-light">Not Weeks.</span>
+                    <span className="text-white/60 font-light">Not Weeks.</span>
                   </motion.h1>
 
                   {/* Subtitle */}
@@ -2024,7 +2024,7 @@ const ScanProPlus = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-xl"
+                    className="text-lg sm:text-xl lg:text-2xl text-white/70 mb-8 max-w-xl"
                   >
                     On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
                   </motion.p>
@@ -2038,7 +2038,7 @@ const ScanProPlus = () => {
                   >
                     <button 
                       onClick={() => scrollToSection('cta')}
-                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
+                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-foreground bg-primary hover:bg-primary/90"
                     >
                       Get Started
                       <PixelIcon 
@@ -2047,7 +2047,7 @@ const ScanProPlus = () => {
                         color="currentColor"
                       />
                     </button>
-                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
+                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-white hover:bg-white/10">
                       How it works
                       <PixelIcon 
                         name="arrow-right" 
@@ -2062,7 +2062,7 @@ const ScanProPlus = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="pt-6 border-t border-border/50"
+                    className="pt-6 border-t border-white/20"
                   >
                     <div className="flex flex-wrap gap-6">
                       {[
@@ -2071,8 +2071,8 @@ const ScanProPlus = () => {
                         { value: "48h", label: "Deployment" },
                       ].map((stat, idx) => (
                         <div key={idx} className="text-center">
-                          <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                          <p className="text-sm text-muted-foreground">{stat.label}</p>
+                          <p className="text-2xl font-bold text-white">{stat.value}</p>
+                          <p className="text-sm text-white/60">{stat.label}</p>
                         </div>
                       ))}
                     </div>
