@@ -432,70 +432,64 @@ const SearchSuppliers = () => {
           minHeight: "70vh"
         }}
       >
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start">
-            {/* Left Content - Takes 2 columns */}
+        <div className="container mx-auto px-6 lg:px-20 relative z-10">
+          
+          {/* Centered Content - ensun.io style */}
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
+            >
+              <span className="font-semibold text-primary">Find suppliers</span>
+              <br />
+              <span className="font-semibold text-white">worldwide in real-time.</span>
+            </motion.h1>
+            
+            {/* Horizontal checkmark list */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-2"
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10"
             >
-              <div className="p-8 sm:p-10">
-                {/* Main Heading - ensun.io style */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-8">
-                  <span className="font-semibold text-primary">Find suppliers</span>
-                  <br />
-                  <span className="font-semibold text-white">worldwide in real-time.</span>
-                </h1>
-                
-                {/* Horizontal checkmark list - ensun.io style */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  className="flex flex-wrap gap-x-6 gap-y-3 mb-8"
-                >
-                  {[
-                    "25+ million supplier profiles",
-                    "Relevant supplier data",
-                    "Save and export options"
-                  ].map((text, index) => (
-                    <div key={index} className="flex items-center gap-2 text-white/80">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span className="text-base font-medium">{text}</span>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
-                    Get Started
-                    <PixelIcon 
-                      name="arrow-right" 
-                      className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                      color="currentColor"
-                    />
-                  </button>
-                </motion.div>
-              </div>
+              {[
+                "25+ million supplier profiles",
+                "Relevant supplier data",
+                "Save and export options"
+              ].map((text, index) => (
+                <div key={index} className="flex items-center gap-2 text-white/80">
+                  <Check className="w-5 h-5 text-primary" />
+                  <span className="text-base font-medium">{text}</span>
+                </div>
+              ))}
             </motion.div>
 
-            {/* Right Content - Interactive Demo Search - Takes 3 columns - Desktop Only */}
+            {/* CTA Button */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden lg:block lg:col-span-3 relative"
-              style={{ 
-                zIndex: 20
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             >
+              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
+                Get Started
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Demo Search Panel - Centered below headline - Desktop Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hidden lg:block max-w-4xl mx-auto relative"
+            style={{ 
+              zIndex: 20
+            }}
+          >
               {/* Modern white card matching YVOO design - Fixed height container */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
@@ -666,7 +660,6 @@ const SearchSuppliers = () => {
                 )}
               </div>
             </motion.div>
-          </div>
           
           {/* Left side text overlay - removed to prevent overlap */}
         </div>
