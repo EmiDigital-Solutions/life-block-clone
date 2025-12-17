@@ -8,28 +8,28 @@ const faqCategories = [
     label: "General",
     faqs: [
       {
-        question: "How quickly can you assign an auditor?",
-        answer: "In most cases, we can assign a certified auditor within 24-48 hours. For urgent requests, we have expedited options available. Our global network ensures coverage even in remote locations.",
+        question: "How fast can you get an auditor on-site?",
+        answer: "In most cases, 24-48 hours. For urgent requests, we have same-day options in major manufacturing regions. Our local auditor network means no waiting for international travel.",
       },
       {
-        question: "What audit standards do you support?",
-        answer: "We support 50+ international standards including ISO 9001, ISO 14001, IATF 16949, ISO 13485, AS9100, and many industry-specific standards. Our AI adapts frameworks to your specific requirements.",
+        question: "How much does an audit actually cost?",
+        answer: "Starting at €700 for standard audits—fixed price, no hidden fees. Compare that to €12,000-25,000 for traditional audits with travel, hotels, and consultant day rates.",
       },
       {
-        question: "How do you ensure audit quality and consistency?",
-        answer: "Every auditor in our network is vetted and certified. Our AI-powered platform guides auditors through standardized processes, ensuring consistent quality across all audits regardless of location.",
+        question: "What standards and frameworks do you support?",
+        answer: "50+ including ISO 9001, VDA 6.3, IATF 16949, ISO 13485, AS9100. We also support custom checklists—upload your own templates and we'll adapt.",
       },
       {
-        question: "What's included in the audit report?",
-        answer: "You receive a comprehensive digital report within 24 hours, including findings, non-conformances, photos, evidence, risk scoring, and actionable recommendations. All data is accessible in your dashboard.",
+        question: "How do you ensure consistent quality across auditors?",
+        answer: "Our AI guides every auditor through standardized workflows. Same questions, same scoring criteria, same report format—regardless of who conducts the audit or where.",
       },
       {
-        question: "Can I use my own audit checklists?",
-        answer: "Absolutely. You can upload your proprietary checklists, modify our templates, or use industry-standard frameworks. Our platform adapts to your specific audit requirements.",
+        question: "When do I get the audit report?",
+        answer: "Within 24 hours of audit completion. Digital format with findings, photos, risk scores, and recommended actions—ready to import into your QMS.",
       },
       {
-        question: "How does pricing work?",
-        answer: "Pricing varies by audit type, location, and complexity. Use our ROI calculator above for instant estimates. There are no hidden fees — you pay per audit with transparent pricing.",
+        question: "Can I track the audit in real-time?",
+        answer: "Yes. Live dashboard shows audit progress, completed checkpoints, and preliminary findings. You can chat directly with the auditor during the assessment.",
       },
     ],
   },
@@ -127,7 +127,7 @@ const FAQSection = () => {
           className="mb-12"
         >
           <h2 className="section-headline text-foreground">
-            Frequently asked questions
+            Questions procurement teams ask
           </h2>
         </motion.div>
 

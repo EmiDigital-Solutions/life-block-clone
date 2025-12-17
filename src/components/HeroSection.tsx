@@ -5,9 +5,9 @@ import { PixelIcon } from "./PixelIcon";
 
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
-    tagline: "2,000+ Auditors · 90+ Countries · AI-Powered",
-    heading: "On-Site Supplier Audits in Days, Not Weeks",
-    subtitle: "Physical factory assessments starting from €700",
+    tagline: "Trusted by Tier-1 suppliers · 90+ countries · AI-powered",
+    heading: "Stop Flying Your Engineers to Audits",
+    subtitle: "Local certified auditors, on-site in 48h, from €700",
   });
 
   const { data: heroData } = useContentByType("hero_content");
@@ -82,19 +82,17 @@ const HeroSection = () => {
                 </span>
               </motion.div>
 
-              {/* Main Heading - Offmenu mixed weight style */}
+              {/* Main Heading - Transformation focused */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="section-headline mb-6"
               >
-                <span className="text-foreground">On-Site Supplier</span>
+                <span className="text-foreground">Stop Flying Your</span>
                 <br />
-                <span className="text-foreground">Audits in</span>{" "}
-                <span className="text-primary">Days,</span>
-                <br />
-                <span className="text-foreground">Not Weeks.</span>
+                <span className="text-foreground">Engineers to</span>{" "}
+                <span className="text-primary">Audits.</span>
               </motion.h1>
 
               {/* Subtitle */}
@@ -114,22 +112,30 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
               >
-                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90">
-                  Order Audit
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-foreground hover:bg-foreground/90"
+                >
+                  See How It Works
                   <PixelIcon 
                     name="arrow-right" 
                     className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
                     color="currentColor"
                   />
-                </button>
-                <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50">
-                  How it works
+                </a>
+                <a 
+                  href="/scanpro-plus"
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-foreground hover:bg-white/50"
+                >
+                  Explore ScanPro+
                   <PixelIcon 
                     name="arrow-right" 
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
                     color="currentColor"
                   />
-                </button>
+                </a>
               </motion.div>
 
               {/* Certifications */}
