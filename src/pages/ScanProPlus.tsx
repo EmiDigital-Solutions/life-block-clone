@@ -413,11 +413,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight break-words"
+                className="section-headline text-foreground max-w-xl"
               >
-                <span className="font-semibold text-foreground">Global On-Demand</span><br />
-                <span className="text-muted-foreground font-normal">Auditor</span>{" "}
-                <span className="font-semibold text-foreground">Network</span>
+                Global On-Demand Auditor Network
               </motion.h2>
 
               <motion.p
@@ -644,10 +642,9 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight break-words"
+                className="section-headline text-foreground max-w-xl"
               >
-                <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
-                <span className="text-muted-foreground font-normal whitespace-nowrap">Auditor Network</span>
+                Global On-Demand Auditor Network
               </motion.h2>
 
               <motion.p
@@ -1272,12 +1269,8 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           className="mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">Industry</span>{" "}
-            <span className="text-muted-foreground font-normal">specific</span>
-            <br />
-            <span className="text-muted-foreground font-normal">use</span>{" "}
-            <span className="font-semibold text-foreground">cases.</span>
+          <h2 className="section-headline text-foreground max-w-2xl">
+            Industry specific use cases
           </h2>
         </motion.div>
 
@@ -2130,12 +2123,8 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-2">
-              <span className="font-semibold text-foreground">Capabilities</span>{" "}
-              <span className="text-muted-foreground font-normal">that modernize</span>
-              <br />
-              <span className="text-muted-foreground font-normal">supplier</span>{" "}
-              <span className="font-semibold text-foreground">audits.</span>
+            <h2 className="section-headline text-foreground max-w-2xl mb-2">
+              Capabilities that modernize supplier audits
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
               Nine AI-driven features for consistent, actionable outcomes.
@@ -2163,12 +2152,8 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">Business</span>{" "}
-              <span className="text-muted-foreground font-normal">impact,</span>
-              <br />
-              <span className="text-muted-foreground font-normal">measured</span>{" "}
-              <span className="font-semibold text-foreground">results.</span>
+            <h2 className="section-headline text-foreground max-w-2xl">
+              Business impact, measured results
             </h2>
           </motion.div>
 
@@ -2269,12 +2254,8 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-              <span className="font-semibold text-foreground">Compliance</span>{" "}
-              <span className="text-muted-foreground font-normal">&</span>
-              <br />
-              <span className="text-muted-foreground font-normal">supported</span>{" "}
-              <span className="font-semibold text-foreground">standards.</span>
+            <h2 className="section-headline text-foreground max-w-2xl mb-6">
+              Compliance & supported standards
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
               YVOO ScanPro+ meets the highest international quality and safety standards. 
@@ -2318,12 +2299,8 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">Global</span>{" "}
-              <span className="text-muted-foreground font-normal">network</span>
-              <br />
-              <span className="text-muted-foreground font-normal">&</span>{" "}
-              <span className="font-semibold text-foreground">integration.</span>
+            <h2 className="section-headline text-foreground max-w-2xl">
+              Global network & integration
             </h2>
           </motion.div>
 
@@ -2417,11 +2394,8 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
           >
             {/* Mixed weight heading */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
-              <span className="font-semibold text-foreground">Ready to</span>{" "}
-              <span className="font-normal text-muted-foreground">transform your</span>
-              <br />
-              <span className="font-normal text-muted-foreground">supplier audits?</span>
+            <h2 className="section-headline text-foreground mb-6 max-w-2xl mx-auto">
+              Ready to transform your supplier audits?
             </h2>
             
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
