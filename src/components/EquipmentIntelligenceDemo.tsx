@@ -332,7 +332,7 @@ export function EquipmentIntelligenceDemo() {
             {/* Side Panel - Desktop Only */}
             <div className="hidden lg:flex w-[240px] flex-col gap-3">
               {/* Detection Effects */}
-              <div className="bg-[#F5F5F5] rounded-xl p-3 border border-[#E0E0E0]">
+              <div className="bg-white rounded-xl p-3 border border-[#E0E0E0]">
                 <div className="text-[10px] text-[#666666] uppercase tracking-wider font-semibold mb-3">Detection Process</div>
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-[#1391BF]/5 border border-[#1391BF]/10">
@@ -375,7 +375,7 @@ export function EquipmentIntelligenceDemo() {
               </div>
               
               {/* Quick Stats */}
-              <div className="bg-[#F5F5F5] rounded-xl p-3 border border-[#E0E0E0] flex-1">
+              <div className="bg-white rounded-xl p-3 border border-[#E0E0E0] flex-1">
                 <div className="text-[10px] text-[#666666] uppercase tracking-wider font-semibold mb-2">Analysis</div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
@@ -402,7 +402,7 @@ export function EquipmentIntelligenceDemo() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="hidden lg:block mt-4 bg-[#F5F5F5] rounded-xl p-4 border border-[#E0E0E0]"
+                className="hidden lg:block mt-4 bg-white rounded-xl p-4 border border-[#E0E0E0]"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
