@@ -739,7 +739,7 @@ const TechnologyFeaturesSection = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-black text-primary mb-4">
+            <h2 className="section-headline text-primary mb-4">
               Enterprise Technology
             </h2>
             <p className="text-base md:text-lg text-gray-600">
@@ -820,7 +820,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary mb-3"
+            className="section-headline text-primary mb-3"
           >
             Enterprise Technology
           </motion.h2>
