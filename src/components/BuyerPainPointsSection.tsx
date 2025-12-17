@@ -124,19 +124,19 @@ const BuyerPainPointsSection = () => {
               <div 
                 className="absolute w-[480px] h-[480px] sm:w-[620px] sm:h-[620px] md:w-[700px] md:h-[700px] z-0"
                 style={{ 
-                  border: "1px solid rgba(10, 10, 10, 0.06)"
+                  border: "1px solid rgba(10, 127, 165, 0.15)"
                 }}
               ></div>
               <div 
                 className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] md:w-[580px] md:h-[580px] z-0"
                 style={{ 
-                  border: "1px solid rgba(10, 10, 10, 0.08)"
+                  border: "1px solid rgba(10, 127, 165, 0.25)"
                 }}
               ></div>
               <div 
                 className="absolute w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[460px] md:h-[460px] z-0"
                 style={{ 
-                  border: "1px solid rgba(10, 10, 10, 0.04)"
+                  border: "1px solid rgba(10, 127, 165, 0.12)"
                 }}
               ></div>
 
