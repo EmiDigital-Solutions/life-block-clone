@@ -123,91 +123,83 @@ export function EquipmentIntelligenceDemo() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="hidden lg:block relative"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      className="relative w-full"
     >
-      {/* AI Computer Vision Badge */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="px-4 py-2 bg-gradient-to-r from-[#7CC2A7]/20 to-[#1391BF]/20 border border-[#7CC2A7]/30 rounded-full flex items-center gap-2 backdrop-blur-sm">
+      {/* AI Computer Vision Badge - Desktop */}
+      <div className="hidden lg:flex items-center gap-3 mb-4">
+        <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-2 backdrop-blur-sm">
           <Sparkles className="w-4 h-4 text-[#7CC2A7]" />
-          <span className="text-sm text-[#7CC2A7] font-medium">AI Computer Vision</span>
+          <span className="text-sm text-white/90 font-medium">AI Computer Vision</span>
         </div>
-        <div className="px-3 py-1.5 bg-[#1391BF]/10 border border-[#1391BF]/30 rounded-full flex items-center gap-2">
-          <Cpu className="w-3.5 h-3.5 text-[#1391BF]" />
-          <span className="text-xs text-[#1391BF]">Live Analysis</span>
+      </div>
+
+      {/* Mobile Badge */}
+      <div className="lg:hidden flex items-center gap-2 mb-4">
+        <div className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-[#7CC2A7]" />
+          <span className="text-xs text-white/90 font-medium">AI Computer Vision</span>
         </div>
       </div>
       
-      <div className="w-full max-w-[780px] xl:max-w-[850px] bg-gradient-to-br from-[#0A0A0A] to-[#0D0D0D] rounded-2xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] border border-[#C0C0C0]/8">
-        {/* Window Title Bar */}
-        <div className="px-5 py-3.5 bg-[#141414] flex items-center justify-between border-b border-[#C0C0C0]/8">
-          <div className="flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-[#1391BF]" />
-            <span className="text-xs text-[#C0C0C0]/60 font-medium tracking-wide">YVOO Equipment Scanner</span>
+      <div className="w-full">
+        {/* Clean Toolbar - Floating Style */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 mb-4">
+          <div className="flex gap-1 bg-white/5 backdrop-blur-sm p-1 rounded-xl border border-white/10">
+            {modes.map((m) => (
+              <button
+                key={m.id}
+                onClick={() => setMode(m.id)}
+                className={`px-3 lg:px-4 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition-all duration-200 ${
+                  mode === m.id 
+                    ? 'bg-[#1391BF] text-white' 
+                    : 'text-white/60 hover:text-white/90 hover:bg-white/5'
+                }`}
+              >
+                <m.icon className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">{m.label}</span>
+              </button>
+            ))}
           </div>
-          <div className="flex items-center gap-2">
-            <Settings className="w-4 h-4 text-[#C0C0C0]/40 hover:text-[#C0C0C0]/70 cursor-pointer transition-colors" />
+          
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10">
+              <div className={`w-2 h-2 rounded-full ${isScanning ? 'bg-[#7CC2A7] animate-pulse' : 'bg-[#7CC2A7]'}`} />
+              <span className="text-white/70 text-xs font-medium">
+                {isScanning ? 'Analyzing...' : 'Complete'}
+              </span>
+            </div>
+            {!isScanning && (
+              <span className="text-[#7CC2A7] text-xs font-semibold">94%</span>
+            )}
           </div>
         </div>
         
-        <div className="p-5 flex flex-col text-sm bg-[#0A0A0A]">
-          {/* Toolbar */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex gap-1.5 bg-[#161616] p-1 rounded-lg">
-              {modes.map((m) => (
-                <button
-                  key={m.id}
-                  onClick={() => setMode(m.id)}
-                  className={`px-4 py-2 rounded-md text-xs font-medium flex items-center gap-2 transition-all duration-200 ${
-                    mode === m.id 
-                      ? 'bg-gradient-to-r from-[#1391BF] to-[#0D7FA5] text-white shadow-lg shadow-[#1391BF]/20' 
-                      : 'text-[#C0C0C0]/60 hover:text-[#C0C0C0]/90 hover:bg-[#C0C0C0]/5'
-                  }`}
-                >
-                  <m.icon className="w-3.5 h-3.5" />
-                  {m.label}
-                </button>
-              ))}
-            </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${isScanning ? 'bg-[#7CC2A7] animate-pulse' : 'bg-[#7CC2A7]'}`} />
-                <span className="text-[#C0C0C0]/70 text-xs font-medium">
-                  {isScanning ? 'Analyzing...' : 'Complete'}
-                </span>
-              </div>
-              {!isScanning && (
-                <span className="text-[#7CC2A7] text-xs font-semibold">94% Confidence</span>
-              )}
-            </div>
+        {/* Progress Bar */}
+        {isScanning && (
+          <div className="h-0.5 bg-white/5 rounded-full mb-4 overflow-hidden">
+            <motion.div 
+              className="h-full bg-gradient-to-r from-[#7CC2A7] to-[#1391BF]"
+              style={{ width: `${scanProgress}%` }}
+            />
           </div>
-          
-          {/* Progress Bar */}
-          {isScanning && (
-            <div className="h-0.5 bg-[#161616] rounded-full mb-4 overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-[#7CC2A7] to-[#1391BF]"
-                style={{ width: `${scanProgress}%` }}
-              />
-            </div>
-          )}
-          
-          {/* Main Content Area */}
-          <div className="flex gap-4">
-            {/* Image Area */}
-            <div className="relative flex-1 h-[380px] bg-gradient-to-br from-[#0A0A0A] to-[#161616] rounded-xl overflow-hidden border border-[#C0C0C0]/5">
-              <img 
-                src={equipmentImage} 
-                alt="DMG MORI CNC Machine" 
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              
-              {/* Scanning Overlay */}
-              {isScanning && (
-                <>
+        )}
+        
+        {/* Main Content Area */}
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Image Area - Frameless with subtle shadow */}
+          <div className="relative flex-1 h-[280px] sm:h-[340px] lg:h-[420px] rounded-2xl overflow-hidden shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]">
+            <img 
+              src={equipmentImage} 
+              alt="DMG MORI CNC Machine" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            
+            {/* Scanning Overlay */}
+            {isScanning && (
+              <>
                   <div className="absolute inset-0 bg-gradient-to-b from-[#7CC2A7]/5 to-transparent" />
                   <motion.div
                     initial={{ top: 0 }}
@@ -323,8 +315,8 @@ export function EquipmentIntelligenceDemo() {
               </div>
             </div>
             
-            {/* Side Panel */}
-            <div className="w-[200px] flex flex-col gap-3">
+            {/* Side Panel - Desktop Only */}
+            <div className="hidden lg:flex w-[200px] flex-col gap-3">
               {/* Detection Effects */}
               <div className="bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/5">
                 <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-3">Detection Process</div>
@@ -389,14 +381,14 @@ export function EquipmentIntelligenceDemo() {
             </div>
           </div>
           
-          {/* Results Panel */}
+          {/* Results Panel - Desktop Only */}
           <AnimatePresence>
             {showResults && selectedDetails && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="mt-4 bg-gradient-to-r from-[#141414] to-[#161616] rounded-xl p-4 border border-[#C0C0C0]/5"
+                className="hidden lg:block mt-4 bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
@@ -404,8 +396,8 @@ export function EquipmentIntelligenceDemo() {
                       <CheckCircle2 className="w-5 h-5 text-[#7CC2A7]" />
                     </div>
                     <div>
-                      <div className="text-[#F5F5F5] font-semibold">{selectedDetails.model}</div>
-                      <div className="text-[11px] text-[#C0C0C0]/60">{selectedDetails.compliance}</div>
+                      <div className="text-white font-semibold">{selectedDetails.model}</div>
+                      <div className="text-[11px] text-white/60">{selectedDetails.compliance}</div>
                     </div>
                   </div>
                   <button className="px-3 py-1.5 bg-[#1391BF] hover:bg-[#1391BF]/90 rounded-lg text-xs text-white font-medium flex items-center gap-1.5 transition-colors">
@@ -414,20 +406,20 @@ export function EquipmentIntelligenceDemo() {
                   </button>
                 </div>
                 <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-[#0A0A0A]/50 rounded-lg p-2.5">
-                    <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider mb-1">Asset ID</div>
-                    <div className="text-xs text-[#F5F5F5]/90 font-medium">{selectedDetails.assetId}</div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Asset ID</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.assetId}</div>
                   </div>
-                  <div className="bg-[#0A0A0A]/50 rounded-lg p-2.5">
-                    <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider mb-1">Condition</div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Condition</div>
                     <div className="text-xs text-[#7CC2A7] font-medium">{selectedDetails.condition}</div>
                   </div>
-                  <div className="bg-[#0A0A0A]/50 rounded-lg p-2.5">
-                    <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider mb-1">Last Service</div>
-                    <div className="text-xs text-[#F5F5F5]/90 font-medium">{selectedDetails.lastService}</div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Last Service</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.lastService}</div>
                   </div>
-                  <div className="bg-[#0A0A0A]/50 rounded-lg p-2.5">
-                    <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider mb-1">Compliance</div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Compliance</div>
                     <div className="text-xs text-[#1391BF] font-medium">ISO 9001</div>
                   </div>
                 </div>
@@ -435,11 +427,10 @@ export function EquipmentIntelligenceDemo() {
             )}
           </AnimatePresence>
         </div>
-      </div>
       
       {/* Description */}
-      <p className="mt-5 text-sm text-[#C0C0C0]/70 max-w-[600px] leading-relaxed">
-        Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly with AI-powered computer vision.
+      <p className="mt-4 text-sm text-white/60 max-w-[600px] leading-relaxed">
+        Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly.
       </p>
     </motion.div>
   );
