@@ -45,7 +45,7 @@ const detectedObjects: DetectedObject[] = [
       assetId: "MCH-2024-0847",
       condition: "Good",
       lastService: "Oct 15, 2024",
-      nextService: "Jan 15, 2025",
+      nextService: "Jan 2026",
       compliance: "CE · ISO 12100 · EN 12417",
       specs: {
         spindleSpeed: "4,000 rpm",
