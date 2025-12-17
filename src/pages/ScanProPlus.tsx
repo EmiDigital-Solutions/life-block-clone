@@ -46,6 +46,7 @@ import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 import auditorMapPin from "@/assets/auditor-map-pin.png";
 import scanProHeroAuditor from "@/assets/scanpro-hero-auditor.png";
+import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
@@ -2032,24 +2033,127 @@ const ScanProPlus = () => {
                 </motion.div>
               </div>
 
-              {/* Right Column - Hero Image with Ellipse Clip (About Us style) */}
+              {/* Right Column - Equipment Intelligence Demo */}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hidden lg:block relative"
               >
-                <div 
-                  className="relative h-[500px] xl:h-[550px] overflow-hidden rounded-2xl"
-                  style={{ clipPath: 'ellipse(100% 100% at 100% 50%)' }}
-                >
-                  <img 
-                    src={scanProHeroAuditor} 
-                    alt="Professional auditor in factory" 
-                    className="w-full h-full object-cover object-center brightness-95"
-                  />
-                  {/* Subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0A7FA5]/20 pointer-events-none" />
+                <div className="w-full max-w-[500px] xl:max-w-[550px] bg-[#0A0A0A] rounded-lg overflow-hidden shadow-2xl">
+                  {/* Window Title Bar */}
+                  <div className="px-3 py-2 bg-[#161616] flex items-center gap-2 border-b border-[#C0C0C0]/10">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
+                      <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
+                      <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
+                    </div>
+                    <span className="text-xs text-[#C0C0C0]/80 ml-2 font-medium">Equipment Scanner — AI Detection</span>
+                  </div>
+                  
+                  <div className="p-3 flex flex-col text-sm bg-[#0A0A0A]">
+                    {/* Toolbar */}
+                    <div className="px-2 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2 mb-3">
+                      <div className="flex gap-1.5">
+                        {["Detect", "Measure", "Compare"].map((tool, i) => (
+                          <div key={tool} className={`px-2 py-1 rounded text-xs ${i === 0 ? 'bg-[#1391BF] text-white' : 'bg-[#C0C0C0]/10 text-[#C0C0C0]/70'}`}>
+                            {tool}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex-1" />
+                      <span className="text-[#C0C0C0]/60 text-xs">Confidence: 94%</span>
+                    </div>
+                    
+                    {/* Image Area */}
+                    <div className="relative h-[280px] bg-gradient-to-br from-[#0A0A0A] to-[#161616] rounded-lg overflow-hidden mb-3">
+                      <img 
+                        src={equipmentImage} 
+                        alt="DMG MORI CNC Machine" 
+                        className="absolute inset-0 w-full h-full object-cover opacity-90"
+                      />
+                      
+                      {/* Detection Overlay */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 0.5, repeat: Infinity, repeatDelay: 6 }}
+                        className="absolute inset-4"
+                      >
+                        {/* Main Bounding Box */}
+                        <motion.div
+                          initial={{ scale: 1.1, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.8, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+                          className="absolute inset-3 border-2 border-[#7CC2A7] rounded"
+                        >
+                          <div className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-[#7CC2A7]" />
+                          <div className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-[#7CC2A7]" />
+                          <div className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-[#7CC2A7]" />
+                          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 border-[#7CC2A7]" />
+                        </motion.div>
+                        
+                        {/* Label */}
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1.2, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+                          className="absolute top-1 left-1 bg-[#7CC2A7] px-2 py-1 rounded-br rounded-tl flex items-center gap-1.5"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-white" />
+                          <span className="text-white text-xs font-medium">CNC Lathe • 94%</span>
+                        </motion.div>
+                        
+                        {/* Sub-detection */}
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.8, duration: 0.3, repeat: Infinity, repeatDelay: 6 }}
+                          className="absolute top-6 left-3 w-16 h-12 border border-[#1391BF]/60 rounded-sm"
+                        >
+                          <div className="absolute -top-2.5 left-0 bg-[#1391BF]/80 px-1.5 py-0.5 rounded text-[10px] text-white">Control Panel</div>
+                        </motion.div>
+                      </motion.div>
+                      
+                      {/* Scanning Line */}
+                      <motion.div
+                        initial={{ top: 0 }}
+                        animate={{ top: '100%' }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
+                        className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#7CC2A7] to-transparent"
+                      />
+                    </div>
+                    
+                    {/* Results Panel */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 2, duration: 0.4, repeat: Infinity, repeatDelay: 6 }}
+                      className="bg-[#161616] rounded-lg p-3 border border-[#C0C0C0]/10"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[#F5F5F5]/90 font-medium text-sm">DMG MORI NLX 2500</span>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
+                          <span className="text-[#7CC2A7] text-xs">Verified</span>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 gap-3 text-xs">
+                        <div>
+                          <div className="text-[#C0C0C0]/60">Asset ID</div>
+                          <div className="text-[#F5F5F5]/80">MCH-2024-0847</div>
+                        </div>
+                        <div>
+                          <div className="text-[#C0C0C0]/60">Last Service</div>
+                          <div className="text-[#F5F5F5]/80">Oct 15, 2024</div>
+                        </div>
+                        <div>
+                          <div className="text-[#C0C0C0]/60">Condition</div>
+                          <div className="text-[#7CC2A7]">Good</div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </motion.div>
             </div>
