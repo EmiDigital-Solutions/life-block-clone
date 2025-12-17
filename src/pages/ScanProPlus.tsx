@@ -2038,8 +2038,8 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="hidden lg:block relative z-20"
-              style={{ marginBottom: "-160px" }}
+              className="hidden lg:block relative z-20 w-[140%] -mr-[40%]"
+              style={{ marginBottom: "-200px" }}
             >
               <EquipmentIntelligenceDemo />
             </motion.div>
