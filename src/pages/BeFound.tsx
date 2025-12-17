@@ -88,7 +88,7 @@ const BeFound = () => {
       </section>
 
       {/* Built For Section */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -318,7 +318,7 @@ const BeFound = () => {
       </section>
 
       {/* Pain Points Grid */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -425,7 +425,7 @@ const BeFound = () => {
       </section>
 
       {/* Feature Walkthrough */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -150,7 +150,7 @@ const AboutUs = () => {
       </section>
 
       {/* MISSION STATEMENT - Full Width */}
-      <section data-nav-theme="light" className="py-32 bg-gray-50">
+      <section data-nav-theme="light" className="py-32 bg-white">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div 
             className="text-center space-y-8"

@@ -12,7 +12,7 @@ const regions = [
 
 const GlobalNetworkSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-[#f5f5f5] overflow-hidden">
+    <section className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="bg-[#ebebeb] rounded-[32px] p-8 md:p-12 lg:p-16">
           

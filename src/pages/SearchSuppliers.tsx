@@ -427,7 +427,7 @@ const SearchSuppliers = () => {
       {/* Hero Section - Light Background with Frosted Glass Card */}
       <section 
         data-nav-theme="dark"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#f5f5f5] overflow-visible"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-white overflow-visible"
         style={{ 
           minHeight: "70vh"
         }}
@@ -684,7 +684,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Interactive Demo Chat Section - Mobile & Tablet Only */}
-      <section className="lg:hidden py-12 bg-[#f5f5f5]" data-nav-theme="light">
+      <section className="lg:hidden py-12 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -880,7 +880,7 @@ const SearchSuppliers = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-[#f5f5f5]" data-nav-theme="light">
+      <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-white" data-nav-theme="light">
         <div className="container mx-auto px-4 md:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1406,7 +1406,7 @@ const SearchSuppliers = () => {
       {/* CTA Section - Matching Homepage Style */}
       <section 
         data-nav-theme="light"
-        className="relative py-20 md:py-32 overflow-hidden bg-[#f5f5f5]"
+        className="relative py-20 md:py-32 overflow-hidden bg-white"
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
