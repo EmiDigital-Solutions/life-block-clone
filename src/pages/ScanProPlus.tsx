@@ -2033,7 +2033,19 @@ const ScanProPlus = () => {
               </motion.div>
             </div>
 
-            {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
+            {/* Right Column - Equipment Intelligence Demo (Mobile) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="lg:hidden relative z-20"
+            >
+              <div className="rounded-[24px] bg-[#0A0A0A] p-3 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
+                <EquipmentIntelligenceDemo />
+              </div>
+            </motion.div>
+
+            {/* Right Column - Equipment Intelligence Demo - Overflows into next section (Desktop) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
