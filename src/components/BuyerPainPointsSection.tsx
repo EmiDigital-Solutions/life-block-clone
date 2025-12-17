@@ -114,18 +114,30 @@ const BuyerPainPointsSection = () => {
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[800px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
-              {/* Clean squared geometric background */}
+              {/* Professional geometric frame */}
               <div 
-                className="absolute w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] z-0"
+                className="absolute w-[520px] h-[520px] sm:w-[680px] sm:h-[680px] md:w-[760px] md:h-[760px] z-0"
                 style={{ 
-                  background: "linear-gradient(135deg, rgba(10, 10, 10, 0.03) 0%, rgba(10, 10, 10, 0.01) 100%)"
+                  background: "linear-gradient(180deg, rgba(10, 10, 10, 0.02) 0%, transparent 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[420px] h-[420px] sm:w-[580px] sm:h-[580px] md:w-[660px] md:h-[660px] border border-gray-100 z-0"
+                className="absolute w-[480px] h-[480px] sm:w-[620px] sm:h-[620px] md:w-[700px] md:h-[700px] z-0"
+                style={{ 
+                  border: "1px solid rgba(10, 10, 10, 0.06)"
+                }}
               ></div>
               <div 
-                className="absolute w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] md:w-[520px] md:h-[520px] border border-gray-200 z-0"
+                className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] md:w-[580px] md:h-[580px] z-0"
+                style={{ 
+                  border: "1px solid rgba(10, 10, 10, 0.08)"
+                }}
+              ></div>
+              <div 
+                className="absolute w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[460px] md:h-[460px] z-0"
+                style={{ 
+                  border: "1px solid rgba(10, 10, 10, 0.04)"
+                }}
               ></div>
 
               {/* Photo overlay */}
