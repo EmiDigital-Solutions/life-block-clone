@@ -127,10 +127,10 @@ const BuyerPainPointsSection = () => {
                 <img 
                   src={currentContent.image} 
                   alt={currentContent.imageAlt} 
-                  className={`w-full h-auto object-contain mx-auto ${
+                  className={`w-full h-auto object-contain mx-auto drop-shadow-2xl ${
                     activeRole === "buyer" ? "max-w-[90vw] sm:max-w-[540px]" : "max-w-[90vw] sm:max-w-[459px]"
                   }`}
-                  style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1)" } : {}}
+                  style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1) drop-shadow(0 25px 50px rgba(0,0,0,0.25))" } : { filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.25))" }}
                 />
               </motion.div>
             </div>
