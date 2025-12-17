@@ -1991,67 +1991,51 @@ const ScanProPlus = () => {
                 {/* Content Container */}
                 <div className="p-8 sm:p-10 lg:p-14">
                   
-                  {/* Tagline Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="mb-6"
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                      ScanPro+ — AI-Powered Supplier Audits
-                    </span>
-                  </motion.div>
-
-                  {/* Main Heading - Mixed weight style */}
+                  {/* Main Heading - ensun.io style */}
                   <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-8"
                   >
-                    <span className="font-semibold text-white">Supplier Audits</span>
+                    <span className="font-semibold text-primary">Supplier Audits</span>
                     <br />
-                    <span className="text-white/60 font-light">in</span>{" "}
-                    <span className="font-semibold text-primary">Days,</span>
-                    <br />
-                    <span className="text-white/60 font-light">Not Weeks.</span>
+                    <span className="font-semibold text-white">in days, not weeks.</span>
                   </motion.h1>
 
-                  {/* Subtitle */}
-                  <motion.p
+                  {/* Horizontal checkmark list - ensun.io style */}
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-lg sm:text-xl lg:text-2xl text-white/70 mb-8 max-w-xl"
+                    className="flex flex-wrap gap-x-6 gap-y-3 mb-8"
                   >
-                    On-site supplier audits starting at €700. AI-powered intelligence across 90+ countries.
-                  </motion.p>
+                    {[
+                      "On-site audits from €700",
+                      "2,000+ certified auditors",
+                      "90+ countries covered"
+                    ].map((text, index) => (
+                      <div key={index} className="flex items-center gap-2 text-white/80">
+                        <CheckCircle2 className="w-5 h-5 text-primary" />
+                        <span className="text-base font-medium">{text}</span>
+                      </div>
+                    ))}
+                  </motion.div>
 
-                  {/* CTA Buttons */}
+                  {/* CTA Button */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8"
                   >
                     <button 
                       onClick={() => scrollToSection('cta')}
-                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-foreground bg-primary hover:bg-primary/90"
+                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
                     >
                       Get Started
                       <PixelIcon 
                         name="arrow-right" 
                         className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                        color="currentColor"
-                      />
-                    </button>
-                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-medium transition-all duration-300 text-base text-white hover:bg-white/10">
-                      How it works
-                      <PixelIcon 
-                        name="arrow-right" 
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
                         color="currentColor"
                       />
                     </button>
