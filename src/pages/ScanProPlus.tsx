@@ -1977,55 +1977,112 @@ const ScanProPlus = () => {
       >
 
         {/* Main Content - Centered like ensun.io */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center">
           <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
             
-            {/* Centered Content */}
-            <div className="text-center max-w-4xl mx-auto">
+            {/* Two Column Layout - ensun.io style */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               
-              {/* Main Heading - ensun.io style */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
-              >
-                <span className="font-semibold text-primary">Supplier Audits</span>
-                <br />
-                <span className="font-semibold text-white">in days, not weeks.</span>
-              </motion.h1>
-
-              {/* Horizontal checkmark list - ensun.io style */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10"
-              >
-                {[
-                  "On-site audits from €700",
-                  "2,000+ certified auditors",
-                  "90+ countries covered"
-                ].map((text, index) => (
-                  <div key={index} className="flex items-center gap-2 text-white/80">
-                    <Check className="w-5 h-5 text-primary" />
-                    <span className="text-base font-medium">{text}</span>
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <button 
-                  onClick={() => scrollToSection('cta')}
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+              {/* Left Column - Content */}
+              <div className="text-left">
+                
+                {/* Main Heading - ensun.io style with line breaks */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
                 >
-                  Get Started
-                </button>
+                  <span className="font-semibold text-primary">Supplier Audits</span>
+                  <br />
+                  <span className="font-semibold text-white">in days, not weeks.</span>
+                </motion.h1>
+
+                {/* Vertical checkmark list - ensun.io style */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="flex flex-col gap-3 mb-10"
+                >
+                  {[
+                    "On-site audits from €700",
+                    "2,000+ certified auditors",
+                    "90+ countries covered"
+                  ].map((text, index) => (
+                    <div key={index} className="flex items-center gap-3 text-white/80">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-base font-medium">{text}</span>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <button 
+                    onClick={() => scrollToSection('cta')}
+                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+                  >
+                    Get Started
+                  </button>
+                </motion.div>
+              </div>
+
+              {/* Right Column - Product Demo Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="hidden lg:block"
+              >
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-2xl">
+                  <div className="bg-[#1a1a1a] rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/60 text-sm">Audit Request</span>
+                        <span className="text-primary text-sm font-medium">In Progress</span>
+                      </div>
+                      <div className="h-px bg-white/10"></div>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="text-white/40 text-xs mb-1">Standard</p>
+                          <p className="text-white font-medium">ISO 9001</p>
+                        </div>
+                        <div>
+                          <p className="text-white/40 text-xs mb-1">Location</p>
+                          <p className="text-white font-medium">Shanghai, CN</p>
+                        </div>
+                        <div>
+                          <p className="text-white/40 text-xs mb-1">Estimated Cost</p>
+                          <p className="text-primary font-semibold">€850</p>
+                        </div>
+                        <div>
+                          <p className="text-white/40 text-xs mb-1">Timeline</p>
+                          <p className="text-white font-medium">5 days</p>
+                        </div>
+                      </div>
+                      <div className="h-px bg-white/10"></div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                          <Check className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-white text-sm font-medium">Auditor Assigned</p>
+                          <p className="text-white/50 text-xs">Dr. Wei Chen • TÜV Certified</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
