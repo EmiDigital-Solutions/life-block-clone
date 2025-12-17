@@ -413,11 +413,11 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight break-words"
+                className="section-headline"
               >
-                <span className="font-semibold text-foreground">Global On-Demand</span><br />
-                <span className="text-muted-foreground font-normal">Auditor</span>{" "}
-                <span className="font-semibold text-foreground">Network</span>
+                <span className="text-foreground">Global On-Demand</span><br />
+                <span className="text-muted-foreground">Auditor</span>{" "}
+                <span className="text-foreground">Network</span>
               </motion.h2>
 
               <motion.p
