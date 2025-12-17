@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 @tailwind base;
 @tailwind components;
@@ -186,17 +187,17 @@ All colors MUST be HSL.
     line-height: 1.5;
   }
 
-  /* Section Headlines - bfl.ai inspired clean, bold typography */
+  /* Section Headlines - bfl.ai inspired clean, semi-bold typography */
   .section-headline {
-    @apply text-4xl md:text-5xl lg:text-[68px] font-black tracking-[-0.03em] leading-[1.1];
+    @apply text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1];
   }
 
   .section-headline-lg {
-    @apply text-5xl md:text-6xl lg:text-[80px] font-black tracking-[-0.03em] leading-[1.05];
+    @apply text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[1.05];
   }
 
   .section-headline-sm {
-    @apply text-3xl md:text-4xl lg:text-5xl font-black tracking-[-0.03em] leading-[1.1];
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1];
   }
 
   @keyframes gradient {

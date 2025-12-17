@@ -119,7 +119,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="section-headline text-gray-900">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Building the Global B2B Platform
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
@@ -253,7 +253,7 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="section-headline text-gray-900">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Building a Sustainable Future
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
@@ -281,7 +281,7 @@ const AboutUs = () => {
             className="space-y-16"
           >
             <div className="text-center">
-              <h2 className="section-headline text-primary">
+              <h2 className="text-4xl md:text-5xl font-black text-primary">
                 Our Journey
               </h2>
             </div>

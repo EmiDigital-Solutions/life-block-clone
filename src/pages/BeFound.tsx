@@ -22,7 +22,7 @@ const BeFound = () => {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h1 className="section-headline text-white">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] tracking-tight">
               Get Discovered by Buyers
             </h1>
             
@@ -215,7 +215,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="section-headline text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Visibility that converts
             </h2>
           </motion.div>
@@ -321,7 +321,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="section-headline text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Stop missing opportunities...
             </h2>
           </motion.div>
@@ -380,7 +380,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-12 text-center"
           >
-            <h3 className="section-headline text-foreground">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
               Dear Manufacturers,
             </h3>
             
@@ -428,7 +428,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="section-headline text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               From profile creation to qualified leads
             </h2>
           </motion.div>
@@ -548,7 +548,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
-            <h2 className="section-headline text-white">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
               Start getting discovered today
             </h2>
             <p className="text-2xl text-white/90 max-w-2xl mx-auto font-light">

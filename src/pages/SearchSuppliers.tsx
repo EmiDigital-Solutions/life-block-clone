@@ -454,10 +454,10 @@ const SearchSuppliers = () => {
                   </span>
                 </motion.div>
 
-                <h1 className="section-headline mb-6">
-                  <span className="text-foreground">Find suppliers</span>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
+                  <span className="font-semibold text-foreground">Find suppliers</span>
                   <br />
-                  <span className="text-muted-foreground">worldwide.</span>
+                  <span className="text-muted-foreground font-light">worldwide.</span>
                 </h1>
                 
                 <div className="space-y-4 mb-8">
@@ -1114,8 +1114,8 @@ const SearchSuppliers = () => {
             className="max-w-2xl mb-16 md:mb-24"
           >
             <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">Technology Stack</p>
-            <h2 className="section-headline text-foreground">
-              Built for precision, powered by AI
+            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="font-semibold text-foreground">Built for precision,</span> <br /><span className="font-normal text-muted-foreground">powered by AI</span>
             </h2>
           </motion.div>
 
