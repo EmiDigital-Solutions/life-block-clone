@@ -2032,56 +2032,24 @@ const ScanProPlus = () => {
                 </motion.div>
               </div>
 
-              {/* Right Column - Product Demo Card */}
+              {/* Right Column - Hero Image with Ellipse Clip (About Us style) */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="hidden lg:block"
+                className="hidden lg:block relative"
               >
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-2xl">
-                  <div className="bg-[#1a1a1a] rounded-xl p-4">
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white/60 text-sm">Audit Request</span>
-                        <span className="text-primary text-sm font-medium">In Progress</span>
-                      </div>
-                      <div className="h-px bg-white/10"></div>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p className="text-white/40 text-xs mb-1">Standard</p>
-                          <p className="text-white font-medium">ISO 9001</p>
-                        </div>
-                        <div>
-                          <p className="text-white/40 text-xs mb-1">Location</p>
-                          <p className="text-white font-medium">Shanghai, CN</p>
-                        </div>
-                        <div>
-                          <p className="text-white/40 text-xs mb-1">Estimated Cost</p>
-                          <p className="text-primary font-semibold">€850</p>
-                        </div>
-                        <div>
-                          <p className="text-white/40 text-xs mb-1">Timeline</p>
-                          <p className="text-white font-medium">5 days</p>
-                        </div>
-                      </div>
-                      <div className="h-px bg-white/10"></div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                          <Check className="w-4 h-4 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-white text-sm font-medium">Auditor Assigned</p>
-                          <p className="text-white/50 text-xs">Dr. Wei Chen • TÜV Certified</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div 
+                  className="relative h-[500px] xl:h-[550px] overflow-hidden rounded-2xl"
+                  style={{ clipPath: 'ellipse(100% 100% at 100% 50%)' }}
+                >
+                  <img 
+                    src={scanProHeroAuditor} 
+                    alt="Professional auditor in factory" 
+                    className="w-full h-full object-cover object-center brightness-95"
+                  />
+                  {/* Subtle gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0A7FA5]/20 pointer-events-none" />
                 </div>
               </motion.div>
             </div>
