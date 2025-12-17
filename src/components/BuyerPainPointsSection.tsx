@@ -71,46 +71,8 @@ const BuyerPainPointsSection = () => {
   const currentContent = activeRole === "buyer" ? buyerContent : qualityContent;
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 relative overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>
-      {/* Modern minimalist geometric background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large diagonal rectangle - top right */}
-        <div 
-          className="absolute -top-20 -right-20 w-[500px] h-[300px] rotate-12"
-          style={{ backgroundColor: 'rgba(192, 192, 192, 0.3)' }}
-        />
-        {/* Medium rectangle - bottom left */}
-        <div 
-          className="absolute -bottom-10 -left-10 w-[400px] h-[250px] -rotate-6"
-          style={{ backgroundColor: 'rgba(192, 192, 192, 0.25)' }}
-        />
-        {/* Small square - center right */}
-        <div 
-          className="absolute top-1/3 right-[15%] w-[200px] h-[200px] rotate-45"
-          style={{ backgroundColor: 'rgba(192, 192, 192, 0.2)' }}
-        />
-        {/* Sharp blue accent line - top */}
-        <div 
-          className="absolute top-0 left-[20%] w-[300px] h-[3px]"
-          style={{ backgroundColor: '#0A7FA5' }}
-        />
-        {/* Sharp blue accent line - bottom right */}
-        <div 
-          className="absolute bottom-[20%] right-0 w-[200px] h-[3px]"
-          style={{ backgroundColor: '#0A7FA5' }}
-        />
-        {/* Sharp blue accent line - vertical left */}
-        <div 
-          className="absolute top-[30%] left-[10%] w-[3px] h-[150px]"
-          style={{ backgroundColor: '#0A7FA5' }}
-        />
-        {/* Additional overlapping shape */}
-        <div 
-          className="absolute top-[60%] left-[30%] w-[250px] h-[150px] -rotate-12"
-          style={{ backgroundColor: 'rgba(192, 192, 192, 0.15)' }}
-        />
-      </div>
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
