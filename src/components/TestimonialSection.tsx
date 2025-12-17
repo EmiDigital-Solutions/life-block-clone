@@ -51,20 +51,20 @@ const TestimonialSection = () => {
             className="text-left w-full"
           >
             <h2 className="section-headline text-foreground mb-32 md:mb-40">
-              Built for <span className="inline-block px-3 py-0.5 bg-primary text-white rounded-md -rotate-2 font-medium">enterprise</span>
-              <br />supply chains
+              Built for <span className="inline-block px-3 py-0.5 bg-primary text-white rounded-md -rotate-2 font-medium">mighty</span>
+              <br />B2B Supply Chains
             </h2>
 
             {/* Testimonial */}
             <div className="space-y-4 max-w-2xl">
               <p className="section-headline-sm text-primary">
-                YVOO ScanPro+
+                ScanPro
               </p>
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-gray-900">
-                "We cut audit costs by 65% in 6 months"
+                "It's a game changer"
               </p>
               <p className="text-base md:text-lg text-gray-600 font-normal pt-2">
-                Head of Supplier Quality, German Tier-1 Automotive
+                Christoph Seeholzer, Director Linde
               </p>
             </div>
           </motion.div>
