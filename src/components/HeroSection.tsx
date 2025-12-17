@@ -87,7 +87,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl md:text-5xl lg:text-[68px] font-bold leading-[1.1] tracking-[-0.02em] mb-6"
+                className="text-4xl md:text-5xl lg:text-[68px] font-extrabold leading-[1.1] tracking-[-0.02em] mb-6"
               >
                 <span className="text-foreground">On-Site Supplier</span>
                 <br />
