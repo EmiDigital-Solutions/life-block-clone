@@ -87,16 +87,13 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6 whitespace-nowrap"
               >
-                <span className="text-foreground">On-Site</span>
+                <span className="text-foreground">On-Site Supplier Audits</span>
                 <br />
-                <span className="text-foreground">Supplier</span>
-                <br />
-                <span className="text-foreground">Audits in </span>
+                <span className="text-foreground">in </span>
                 <span className="text-primary">Days,</span>
-                <br />
-                <span className="text-foreground">Not Weeks.</span>
+                <span className="text-foreground"> Not Weeks.</span>
               </motion.h1>
 
               {/* Subtitle */}
