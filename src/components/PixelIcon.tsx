@@ -122,12 +122,13 @@ const iconMapping: Record<string, string> = {
   "pill": "heart",
   "building2": "building",
   "building": "building",
-  "leaf": "leaf",
+  "leaf": "tree",
   "shieldCheck": "shield",
   "checkCheck": "check",
   "messageSquare": "message",
   "checkbox-on": "check",
   "heart": "heart",
+  "box": "gift",
   
   // Additional mappings
   "brain": "zap",
@@ -150,7 +151,7 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
   const normalizedName = name.toLowerCase().replace(/([A-Z])/g, '-$1').toLowerCase();
   
   // Get the mapped icon name or use the normalized name
-  const iconName = iconMapping[name] || iconMapping[normalizedName] || "box";
+  const iconName = iconMapping[name] || iconMapping[normalizedName] || "question";
   
   // Function to convert hex color to CSS filter
   const getColorFilter = (hexColor: string) => {
@@ -187,8 +188,8 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
       }}
       onError={(e) => {
         console.error(`Failed to load pixelarticon: ${iconName}`);
-        // Fallback to a default icon
-        e.currentTarget.src = `https://unpkg.com/pixelarticons@1.8.1/svg/box.svg`;
+        // Fallback to a default icon that exists
+        e.currentTarget.src = `https://unpkg.com/pixelarticons@1.8.1/svg/question.svg`;
       }}
     />
   );

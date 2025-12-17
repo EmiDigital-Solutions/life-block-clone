@@ -1975,11 +1975,11 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative bg-[#0A0A0A] h-[860px] lg:h-[780px]"
+        className="relative bg-[#0A0A0A] min-h-screen lg:h-[780px]"
         style={{ overflow: 'visible', clipPath: 'none' }}
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
-          <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
+          <div className="w-full pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 lg:pb-16" style={{ overflow: 'visible' }}>
           
           {/* Two-column layout - Demo larger */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
@@ -1992,7 +1992,7 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6 sm:mb-8 lg:mb-10 font-semibold"
               >
                 <span className="text-white whitespace-nowrap">Supplier Audits</span>
                 <br />
@@ -2004,16 +2004,16 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex flex-col gap-3 mb-10"
+                className="flex flex-col gap-2 sm:gap-3 mb-6 sm:mb-8 lg:mb-10"
               >
                 {[
                   "On-site audits from €700",
                   "2,000+ certified auditors",
                   "90+ countries covered"
                 ].map((text, index) => (
-                  <div key={index} className="flex items-center gap-3 text-white/80">
-                    <Check className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-base font-medium">{text}</span>
+                  <div key={index} className="flex items-center gap-2 sm:gap-3 text-white/80">
+                    <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-medium">{text}</span>
                   </div>
                 ))}
               </motion.div>
@@ -2026,7 +2026,7 @@ const ScanProPlus = () => {
               >
                 <button 
                   onClick={() => scrollToSection('cta')}
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+                  className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base text-foreground bg-primary hover:bg-primary/90"
                 >
                   Get Started
                 </button>
@@ -2044,7 +2044,7 @@ const ScanProPlus = () => {
                 <Sparkles className="w-3.5 h-3.5 text-[#7CC2A7]" />
                 AI-powered equipment recognition
               </p>
-              <div className="rounded-[24px] bg-[#0A0A0A] p-3 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
+              <div className="rounded-[16px] sm:rounded-[24px] bg-[#0A0A0A] p-2 sm:p-3 shadow-[0_16px_60px_-24px_rgba(0,0,0,0.9)] overflow-hidden border border-white/5">
                 <EquipmentIntelligenceDemo />
               </div>
             </motion.div>
