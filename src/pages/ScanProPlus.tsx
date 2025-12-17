@@ -1408,7 +1408,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 bg-white"
+      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-56 bg-white"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -1975,10 +1975,10 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative bg-[#0A0A0A] overflow-visible"
-        style={{ height: "auto", minHeight: "fit-content" }}
+        className="relative bg-[#0A0A0A] overflow-visible h-[860px] lg:h-[780px]"
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10 pt-32 md:pt-40 pb-20 md:pb-24">
+        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center">
+          <div className="w-full pt-24 md:pt-28 pb-16">
           
           {/* Two-column layout - Demo larger */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
@@ -2038,10 +2038,11 @@ const ScanProPlus = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="hidden lg:block relative z-20"
-              style={{ marginBottom: "-120px" }}
+              style={{ marginBottom: "-80px" }}
             >
               <EquipmentIntelligenceDemo />
             </motion.div>
+          </div>
           </div>
         </div>
       </section>
