@@ -454,8 +454,8 @@ const SearchSuppliers = () => {
                   </span>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
-                  <span className="font-semibold text-foreground">Find suppliers</span>
+                <h1 className="hero-headline mb-6">
+                  <span className="text-foreground">Find suppliers</span>
                   <br />
                   <span className="text-muted-foreground font-light">worldwide.</span>
                 </h1>
