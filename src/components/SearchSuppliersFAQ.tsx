@@ -131,7 +131,7 @@ const SearchSuppliersFAQ = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-[#f5f5f5]" data-nav-theme="light">
+    <section className="py-24 md:py-32 bg-white" data-nav-theme="light">
       <div className="container mx-auto px-6 max-w-4xl">
         {/* Header */}
         <motion.div

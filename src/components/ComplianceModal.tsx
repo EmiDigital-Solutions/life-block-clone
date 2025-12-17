@@ -264,7 +264,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
           </section>
 
           {/* Services Section */}
-          <section className="py-16 lg:py-24 bg-[#f8fafb]">
+          <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-5xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
                 Verification services covered by YVOO ScanPro+

@@ -241,7 +241,7 @@ export const IndustryUseCaseModal = ({ useCase, onClose }: IndustryUseCaseModalP
           )}
 
           {/* Solutions Section */}
-          <section className="py-16 lg:py-24 bg-[#f8fafb]">
+          <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-5xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
                 What YVOO ScanPro+ delivers
@@ -289,7 +289,7 @@ export const IndustryUseCaseModal = ({ useCase, onClose }: IndustryUseCaseModalP
 
           {/* Result Section */}
           {useCase.result && (
-            <section className="py-16 bg-[#f8fafb]">
+            <section className="py-16 bg-white">
               <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <div className="bg-white rounded-3xl p-8 shadow-lg">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Real Results</h3>

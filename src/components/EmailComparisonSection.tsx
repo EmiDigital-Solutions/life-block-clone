@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const EmailComparisonSection = () => {
   return (
-    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-gray-50">
+    <section className="py-20 sm:py-32 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div

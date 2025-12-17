@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const TestimonialSection = () => {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gray-100">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Video Mockup Window */}

@@ -38,7 +38,7 @@ const stats = [
 
 export const HowItWorksSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-[#f5f5f5]">
+    <section className="py-24 lg:py-32 bg-white">
       <div className="container mx-auto px-6 lg:px-20">
         
         {/* Section Header - offmenu style mixed weight typography */}

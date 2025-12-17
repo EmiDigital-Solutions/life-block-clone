@@ -3,7 +3,7 @@ import ROICalculator from "./ROICalculator";
 
 const ROICalculatorSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-[#f5f5f5]">
+    <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
         {/* Header - offmenu style mixed weight typography */}
         <motion.div

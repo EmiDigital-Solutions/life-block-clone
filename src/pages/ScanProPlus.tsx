@@ -122,7 +122,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-[#f5f5f5]"
+      className="relative py-12 sm:py-16 md:py-20 bg-white"
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
@@ -1413,7 +1413,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="py-24 md:py-32 bg-[#f5f5f5]"
+      className="py-24 md:py-32 bg-white"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -1983,7 +1983,7 @@ const ScanProPlus = () => {
       {/* Hero Section - Homepage Style */}
       <section
         data-nav-theme="light"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-[#f5f5f5]"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-white"
         id="hero"
       >
 
@@ -2111,7 +2111,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-[#f5f5f5]">
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white">
         <HeroROICalculator />
       </div>
 
@@ -2124,7 +2124,7 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden bg-[#f5f5f5]"
+        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden bg-white"
         id="capabilities"
       >
         <div className="w-full">
@@ -2157,7 +2157,7 @@ const ScanProPlus = () => {
       {/* Results Section - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-[#f5f5f5]"
+        className="py-24 md:py-32 bg-white"
         id="results"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2264,7 +2264,7 @@ const ScanProPlus = () => {
       {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-[#f5f5f5]"
+        className="py-24 md:py-32 bg-white"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div

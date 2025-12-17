@@ -137,7 +137,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
           </section>
 
           {/* Quote Section */}
-          <section className="py-16 lg:py-24 bg-[#f8fafb]">
+          <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
               <blockquote 
                 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-gray-900 leading-relaxed"
