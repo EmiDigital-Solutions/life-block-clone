@@ -1408,7 +1408,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="py-24 md:py-32 bg-white"
+      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 bg-white"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -1975,15 +1975,16 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-24 bg-[#0A0A0A] overflow-visible"
+        className="relative bg-[#0A0A0A] overflow-visible"
+        style={{ height: "auto", minHeight: "fit-content" }}
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10">
+        <div className="container mx-auto px-6 lg:px-20 relative z-10 pt-32 md:pt-40 pb-20 md:pb-24">
           
           {/* Two-column layout - Demo larger */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
             
             {/* Left Column - Text Content */}
-            <div className="text-left">
+            <div className="text-left pt-4">
               
               {/* Main Heading - All white text, Supplier Audits on one line */}
               <motion.h1
@@ -2031,12 +2032,13 @@ const ScanProPlus = () => {
               </motion.div>
             </div>
 
-            {/* Right Column - Equipment Intelligence Demo */}
+            {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="hidden lg:block"
+              className="hidden lg:block relative z-20"
+              style={{ marginBottom: "-120px" }}
             >
               <EquipmentIntelligenceDemo />
             </motion.div>
