@@ -31,7 +31,7 @@ const GroundIntelligence = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-4xl md:text-5xl lg:text-[68px] font-bold text-white leading-[1.1] tracking-[-0.02em] mb-6"
+                className="section-headline text-white mb-6"
               >
                 Transform supplier data into strategic advantage
               </motion.h1>
@@ -197,7 +197,7 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
+            <h2 className="section-headline text-foreground mb-2">
               Capabilities that modernize supplier audits
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-gray-600">
@@ -223,8 +223,8 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span className="text-primary font-black">Results</span>
+            <h2 className="section-headline text-white mb-4">
+              <span className="text-primary">Results</span>
             </h2>
           </motion.div>
 
@@ -266,8 +266,8 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900 mb-4">
-              <span className="text-primary font-black">Pricing</span>
+            <h2 className="section-headline text-foreground mb-4">
+              <span className="text-primary">Pricing</span>
             </h2>
           </motion.div>
 
@@ -332,8 +332,8 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="space-y-6 sm:space-y-8"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white">
-              Ready for <span className="text-primary font-black">real-time supplier intelligence?</span>
+            <h2 className="section-headline text-white">
+              Ready for <span className="text-primary">real-time supplier intelligence?</span>
             </h2>
 
             <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl text-white/80">
