@@ -53,7 +53,7 @@ const iconMapping: Record<string, string> = {
   "bolt": "zap",
   
   // Maps and location
-  "globe": "globe",
+  "globe": "world",
   "map-pin": "pin",
   "mapPin": "pin",
   
@@ -150,7 +150,7 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
   const normalizedName = name.toLowerCase().replace(/([A-Z])/g, '-$1').toLowerCase();
   
   // Get the mapped icon name or use the normalized name
-  const iconName = iconMapping[name] || iconMapping[normalizedName] || "box";
+  const iconName = iconMapping[name] || iconMapping[normalizedName] || "alert";
   
   // Function to convert hex color to CSS filter
   const getColorFilter = (hexColor: string) => {
@@ -188,7 +188,7 @@ export const PixelIcon = ({ name, className = "w-16 h-16", color = "currentColor
       onError={(e) => {
         console.error(`Failed to load pixelarticon: ${iconName}`);
         // Fallback to a default icon
-        e.currentTarget.src = `https://unpkg.com/pixelarticons@1.8.1/svg/box.svg`;
+        e.currentTarget.src = `https://unpkg.com/pixelarticons@1.8.1/svg/alert.svg`;
       }}
     />
   );
