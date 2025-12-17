@@ -13,11 +13,8 @@ const EmailComparisonSection = () => {
           className="text-center mb-16"
         >
           <h2 className="section-headline text-foreground">
-            Same request. Different outcome.
+            Conversations that keep supply chains moving
           </h2>
-          <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
-            What happens when your team asks for a supplier audit in Vietnam?
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
