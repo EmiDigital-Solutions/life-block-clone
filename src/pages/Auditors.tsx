@@ -192,7 +192,7 @@ const Auditors = () => {
               >
                 <div className="space-y-6">
                   <div className="w-12 h-0.5 bg-white/80" />
-                  <h1 className="section-headline text-white">
+                  <h1 className="hero-headline text-white">
                     Join the Elite Auditor Network
                   </h1>
                   <p className="text-xl text-white/90 leading-relaxed">

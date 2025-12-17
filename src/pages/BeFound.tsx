@@ -22,7 +22,7 @@ const BeFound = () => {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h1 className="section-headline text-white">
+            <h1 className="hero-headline text-white">
               Get Discovered by Buyers
             </h1>
             
