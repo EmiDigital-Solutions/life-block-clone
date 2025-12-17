@@ -19,7 +19,14 @@ interface DetectedObject {
     assetId?: string;
     condition?: string;
     lastService?: string;
+    nextService?: string;
     compliance?: string;
+    specs?: {
+      spindleSpeed?: string;
+      maxDiameter?: string;
+      axisTravel?: string;
+      power?: string;
+    };
   };
 }
 
@@ -38,7 +45,14 @@ const detectedObjects: DetectedObject[] = [
       assetId: "MCH-2024-0847",
       condition: "Good",
       lastService: "Oct 15, 2024",
-      compliance: "CE · ISO 12100 · EN 12417"
+      nextService: "Jan 15, 2025",
+      compliance: "CE · ISO 12100 · EN 12417",
+      specs: {
+        spindleSpeed: "4,000 rpm",
+        maxDiameter: "366 mm",
+        axisTravel: "X: 260 / Z: 1,280 mm",
+        power: "22 kW"
+      }
     }
   },
   {
@@ -405,7 +419,13 @@ export function EquipmentIntelligenceDemo() {
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <div className="grid grid-cols-4 gap-4">
+                {/* Maintenance Alert */}
+                <div className="flex items-center gap-2 px-3 py-2 bg-[#D8A860]/10 border border-[#D8A860]/20 rounded-lg mb-3">
+                  <div className="w-2 h-2 rounded-full bg-[#D8A860] animate-pulse" />
+                  <span className="text-[11px] text-[#D8A860] font-medium">Maintenance due: {selectedDetails.nextService}</span>
+                </div>
+                
+                <div className="grid grid-cols-4 gap-4 mb-3">
                   <div className="bg-black/20 rounded-lg p-2.5">
                     <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Asset ID</div>
                     <div className="text-xs text-white/90 font-medium">{selectedDetails.assetId}</div>
@@ -420,7 +440,27 @@ export function EquipmentIntelligenceDemo() {
                   </div>
                   <div className="bg-black/20 rounded-lg p-2.5">
                     <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Compliance</div>
-                    <div className="text-xs text-[#1391BF] font-medium">ISO 9001</div>
+                    <div className="text-xs text-[#1391BF] font-medium">CE · ISO 12100</div>
+                  </div>
+                </div>
+                
+                {/* Machine Specifications */}
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Spindle</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.spindleSpeed}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Max Ø</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.maxDiameter}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Axis Travel</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.axisTravel}</div>
+                  </div>
+                  <div className="bg-black/20 rounded-lg p-2.5">
+                    <div className="text-[10px] text-white/50 uppercase tracking-wider mb-1">Power</div>
+                    <div className="text-xs text-white/90 font-medium">{selectedDetails.specs?.power}</div>
                   </div>
                 </div>
               </motion.div>
