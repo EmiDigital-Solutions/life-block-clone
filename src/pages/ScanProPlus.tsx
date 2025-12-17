@@ -12,7 +12,7 @@ import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
-import { ArrowRight, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
@@ -1976,111 +1976,61 @@ const ScanProPlus = () => {
         id="hero"
       >
 
-        {/* Main Content */}
-        <div className="flex-1 flex items-center">
-          <div className="w-full max-w-[2000px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 xl:gap-20 items-end">
+        {/* Main Content - Centered like ensun.io */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
+            
+            {/* Centered Content */}
+            <div className="text-center max-w-4xl mx-auto">
               
-              {/* Left Column */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
+              {/* Main Heading - ensun.io style */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-xl lg:max-w-2xl"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight mb-8"
               >
-                {/* Content Container */}
-                <div className="p-8 sm:p-10 lg:p-14">
-                  
-                  {/* Main Heading - ensun.io style */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-8"
-                  >
-                    <span className="font-semibold text-primary">Supplier Audits</span>
-                    <br />
-                    <span className="font-semibold text-white">in days, not weeks.</span>
-                  </motion.h1>
+                <span className="font-semibold text-primary">Supplier Audits</span>
+                <br />
+                <span className="font-semibold text-white">in days, not weeks.</span>
+              </motion.h1>
 
-                  {/* Horizontal checkmark list - ensun.io style */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-wrap gap-x-6 gap-y-3 mb-8"
-                  >
-                    {[
-                      "On-site audits from €700",
-                      "2,000+ certified auditors",
-                      "90+ countries covered"
-                    ].map((text, index) => (
-                      <div key={index} className="flex items-center gap-2 text-white/80">
-                        <CheckCircle2 className="w-5 h-5 text-primary" />
-                        <span className="text-base font-medium">{text}</span>
-                      </div>
-                    ))}
-                  </motion.div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    <button 
-                      onClick={() => scrollToSection('cta')}
-                      className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
-                    >
-                      Get Started
-                      <PixelIcon 
-                        name="arrow-right" 
-                        className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                        color="currentColor"
-                      />
-                    </button>
-                  </motion.div>
-
-                  {/* Stats Row */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="pt-6 border-t border-white/20"
-                  >
-                    <div className="flex flex-wrap gap-6">
-                      {[
-                        { value: "70%", label: "Cost Reduction" },
-                        { value: "80%", label: "Time Savings" },
-                        { value: "48h", label: "Deployment" },
-                      ].map((stat, idx) => (
-                        <div key={idx} className="text-center">
-                          <p className="text-2xl font-bold text-white">{stat.value}</p>
-                          <p className="text-sm text-white/60">{stat.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Right Column: Auditor Image */}
-              <motion.div 
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
+              {/* Horizontal checkmark list - ensun.io style */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="hidden lg:flex items-end justify-center"
+                className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10"
               >
-                <img 
-                  src={scanProHeroAuditor} 
-                  alt="Professional auditor" 
-                  className="w-full max-w-2xl xl:max-w-3xl object-contain"
-                />
+                {[
+                  "On-site audits from €700",
+                  "2,000+ certified auditors",
+                  "90+ countries covered"
+                ].map((text, index) => (
+                  <div key={index} className="flex items-center gap-2 text-white/80">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-base font-medium">{text}</span>
+                  </div>
+                ))}
               </motion.div>
 
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+                >
+                  Get Started
+                </button>
+              </motion.div>
             </div>
           </div>
         </div>
+
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
