@@ -1971,75 +1971,78 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Dark Background like ensun.io */}
+      {/* Hero Section - Dark Background like SearchSuppliers */}
       <section
         data-nav-theme="hero"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
         id="hero"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#0A0A0A] overflow-visible"
+        style={{ minHeight: "70vh" }}
       >
-
-        {/* Main Content - Centered like ensun.io */}
-        <div className="flex-1 flex items-center">
-          <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 xl:px-16 pt-24 lg:pt-32 pb-8">
+        <div className="container mx-auto px-6 lg:px-20 relative z-10">
+          
+          {/* Two-column layout - Demo larger */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-center">
             
-            {/* Two Column Layout - Demo prominent */}
-            <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-start">
+            {/* Left Column - Text Content */}
+            <div className="text-left">
               
-              {/* Left Column - Content */}
-              <div className="text-left lg:pt-8">
-                
-                {/* Main Heading - ensun.io style with line breaks */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-6 lg:mb-8"
-                >
-                  <span className="font-semibold text-primary">Supplier Audits</span>
-                  <br />
-                  <span className="font-semibold text-white">in days, not weeks.</span>
-                </motion.h1>
+              {/* Main Heading - All white text, Supplier Audits on one line */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
+              >
+                <span className="text-white whitespace-nowrap">Supplier Audits</span>
+                <br />
+                <span className="text-white">in days, not weeks.</span>
+              </motion.h1>
+              
+              {/* Vertical checkmark list */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex flex-col gap-3 mb-10"
+              >
+                {[
+                  "On-site audits from €700",
+                  "2,000+ certified auditors",
+                  "90+ countries covered"
+                ].map((text, index) => (
+                  <div key={index} className="flex items-center gap-3 text-white/80">
+                    <Check className="w-5 h-5 text-white flex-shrink-0" />
+                    <span className="text-base font-medium">{text}</span>
+                  </div>
+                ))}
+              </motion.div>
 
-                {/* Vertical checkmark list - ensun.io style */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="flex flex-col gap-3 mb-10"
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                <button 
+                  onClick={() => scrollToSection('cta')}
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
                 >
-                  {[
-                    "On-site audits from €700",
-                    "2,000+ certified auditors",
-                    "90+ countries covered"
-                  ].map((text, index) => (
-                    <div key={index} className="flex items-center gap-3 text-white/80">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-base font-medium">{text}</span>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <button 
-                    onClick={() => scrollToSection('cta')}
-                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
-                  >
-                    Get Started
-                  </button>
-                </motion.div>
-              </div>
-
-              {/* Right Column - Equipment Intelligence Demo */}
-              <EquipmentIntelligenceDemo />
+                  Get Started
+                </button>
+              </motion.div>
             </div>
+
+            {/* Right Column - Equipment Intelligence Demo */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="hidden lg:block"
+            >
+              <EquipmentIntelligenceDemo />
+            </motion.div>
           </div>
         </div>
-
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
