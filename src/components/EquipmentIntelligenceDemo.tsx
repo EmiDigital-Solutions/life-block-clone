@@ -38,7 +38,7 @@ const detectedObjects: DetectedObject[] = [
       assetId: "MCH-2024-0847",
       condition: "Good",
       lastService: "Oct 15, 2024",
-      compliance: "ISO 9001 Certified"
+      compliance: "CE · ISO 12100 · EN 12417"
     }
   },
   {
