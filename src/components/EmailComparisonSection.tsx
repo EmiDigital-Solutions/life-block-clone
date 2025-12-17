@@ -70,7 +70,7 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-primary/10 border border-primary/20"
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-[#0A7FA5]/15"
               >
                 <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-primary animate-pulse"></div>
                 <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.3s" }}></div>
