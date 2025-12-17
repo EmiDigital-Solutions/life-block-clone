@@ -189,8 +189,8 @@ export function EquipmentIntelligenceDemo() {
         
         {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row gap-4">
-          {/* Image Area - Frameless with subtle shadow */}
-          <div className="relative flex-1 h-[280px] sm:h-[340px] lg:h-[420px] rounded-2xl overflow-hidden shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]">
+          {/* Image Area - Frameless with subtle shadow - Large on desktop */}
+          <div className="relative flex-1 h-[280px] sm:h-[340px] lg:h-[520px] rounded-2xl overflow-hidden shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]">
             <img 
               src={equipmentImage} 
               alt="DMG MORI CNC Machine" 
@@ -316,7 +316,7 @@ export function EquipmentIntelligenceDemo() {
             </div>
             
             {/* Side Panel - Desktop Only */}
-            <div className="hidden lg:flex w-[200px] flex-col gap-3">
+            <div className="hidden lg:flex w-[240px] flex-col gap-3">
               {/* Detection Effects */}
               <div className="bg-[#141414] rounded-xl p-3 border border-[#C0C0C0]/5">
                 <div className="text-[10px] text-[#C0C0C0]/50 uppercase tracking-wider font-semibold mb-3">Detection Process</div>
