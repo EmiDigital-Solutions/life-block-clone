@@ -1425,9 +1425,9 @@ const ChallengeToggleSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-              <span className="font-semibold text-foreground">{isWithScanPro ? 'With' : 'Traditional'}</span>{" "}
-              <span className={isWithScanPro ? 'text-primary font-semibold' : 'text-destructive font-semibold'}>
+            <h2 className="section-headline">
+              <span className="text-foreground">{isWithScanPro ? 'With' : 'Traditional'}</span>{" "}
+              <span className={isWithScanPro ? 'text-primary' : 'text-destructive'}>
                 {isWithScanPro ? 'ScanPro+' : 'Providers'}
               </span>
             </h2>
@@ -1756,12 +1756,8 @@ const HowItWorksCarousel = () => {
           viewport={{ once: true }}
           className="mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">How does</span>{" "}
-            <span className="text-muted-foreground font-normal">YVOO</span>
-            <br />
-            <span className="text-muted-foreground font-normal">actually</span>{" "}
-            <span className="font-semibold text-foreground">work.</span>
+          <h2 className="section-headline text-foreground">
+            How does YVOO work
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mt-4">
             Four simple steps to transform your supplier audit process

@@ -327,7 +327,7 @@ const Auditors = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-6"
+              className="section-headline text-white mb-6"
             >
               Ready to Build Your Professional Practice?
             </motion.h2>

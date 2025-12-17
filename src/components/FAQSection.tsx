@@ -126,10 +126,8 @@ const FAQSection = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">Frequently</span>
-            <br />
-            <span className="font-normal text-muted-foreground">asked questions</span>
+          <h2 className="section-headline text-foreground">
+            Frequently asked questions
           </h2>
         </motion.div>
 

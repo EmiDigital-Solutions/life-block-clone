@@ -692,10 +692,8 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
-              <span className="font-semibold text-foreground">Try SearchPro+</span>
-              <br />
-              <span className="font-normal text-muted-foreground">in Action</span>
+            <h2 className="section-headline text-foreground mb-4">
+              Try SearchPro+ in Action
             </h2>
             <p className="text-muted-foreground text-lg">
               Experience AI-powered conversational search
@@ -888,10 +886,8 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             className="mb-8 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-3 px-4">
-              <span className="font-semibold text-foreground">Your next supplier,</span>
-              <br />
-              <span className="font-normal text-muted-foreground">just a click away.</span>
+            <h2 className="section-headline text-foreground mb-3 px-4">
+              Your next supplier, just a click away
             </h2>
           </motion.div>
 
@@ -1252,8 +1248,8 @@ const SearchSuppliers = () => {
             className="max-w-3xl mb-16 md:mb-24"
           >
             <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">AI Capabilities</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-              <span className="font-semibold text-foreground">Eight features that transform</span> <br /><span className="font-normal text-muted-foreground">procurement intelligence</span>
+            <h2 className="section-headline text-foreground mb-6">
+              Eight features that transform procurement intelligence
             </h2>
             <p className="text-lg text-muted-foreground">
               Built to eliminate manual work and deliver precision matching across global supplier networks.

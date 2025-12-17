@@ -35,10 +35,9 @@ const GlobalNetworkSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-5xl lg:text-6xl leading-tight"
+                className="section-headline text-foreground"
               >
-                <span className="font-semibold text-foreground">Global On-Demand</span>{" "}
-                <span className="font-normal text-muted-foreground">Auditor Network</span>
+                Global On-Demand Auditor Network
               </motion.h2>
 
               <motion.p

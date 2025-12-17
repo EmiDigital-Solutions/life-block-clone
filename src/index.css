@@ -176,15 +176,28 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
   p, span, a, button {
-    font-weight: 500;
-    letter-spacing: 0.015em;
-    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 0em;
+    line-height: 1.5;
+  }
+
+  /* Section Headlines - bfl.ai inspired clean, bold typography */
+  .section-headline {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
+  }
+
+  .section-headline-lg {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05];
+  }
+
+  .section-headline-sm {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1];
   }
 
   @keyframes gradient {

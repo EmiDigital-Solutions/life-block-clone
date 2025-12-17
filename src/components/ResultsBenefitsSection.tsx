@@ -121,12 +121,8 @@ const ResultsBenefitsSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">Transform</span>{" "}
-            <span className="text-muted-foreground font-normal">your audits,</span>
-            <br />
-            <span className="text-muted-foreground font-normal">elevate your</span>{" "}
-            <span className="font-semibold text-foreground">supply chain.</span>
+          <h2 className="section-headline text-foreground">
+            Transform your supply chain
           </h2>
         </motion.div>
 
