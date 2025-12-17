@@ -81,23 +81,23 @@ const BuyerPainPointsSection = () => {
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-gray-300 bg-white">
+            <div className="inline-flex items-center gap-0 p-1 border border-gray-200 bg-white">
               <button 
                 onClick={() => setActiveRole("buyer")}
-                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                className={`px-6 sm:px-8 py-2 sm:py-3 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "buyer" 
-                    ? "bg-gray-900 text-white shadow-sm" 
-                    : "text-gray-900 hover:bg-gray-100"
+                    ? "bg-foreground text-white" 
+                    : "text-foreground hover:bg-gray-50"
                 }`}
               >
                 Buyer
               </button>
               <button 
                 onClick={() => setActiveRole("quality")}
-                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                className={`px-6 sm:px-8 py-2 sm:py-3 font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "quality" 
-                    ? "bg-gray-900 text-white shadow-sm" 
-                    : "text-gray-900 hover:bg-gray-100"
+                    ? "bg-foreground text-white" 
+                    : "text-foreground hover:bg-gray-50"
                 }`}
               >
                 Quality
@@ -114,33 +114,21 @@ const BuyerPainPointsSection = () => {
           <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[800px]">
             {/* Container for image and gradient - centered */}
             <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
-              {/* Soft glowing gradient background with concentric colored rings - equal spacing */}
+              {/* Clean squared geometric background */}
               <div 
-                className="absolute w-[544px] h-[544px] sm:w-[844px] sm:h-[844px] md:w-[904px] md:h-[904px] rounded-full z-0"
+                className="absolute w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] md:w-[800px] md:h-[800px] z-0"
                 style={{ 
-                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.08) 0%, rgba(10, 127, 165, 0.04) 50%, rgba(10, 127, 165, 0) 100%)"
+                  background: "linear-gradient(135deg, rgba(10, 10, 10, 0.03) 0%, rgba(10, 10, 10, 0.01) 100%)"
                 }}
               ></div>
               <div 
-                className="absolute w-[504px] h-[504px] sm:w-[804px] sm:h-[804px] md:w-[844px] md:h-[844px] rounded-full z-0"
-                style={{ 
-                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.12) 0%, rgba(10, 127, 165, 0.06) 50%, rgba(10, 127, 165, 0) 100%)"
-                }}
+                className="absolute w-[420px] h-[420px] sm:w-[580px] sm:h-[580px] md:w-[660px] md:h-[660px] border border-gray-100 z-0"
               ></div>
               <div 
-                className="absolute w-[444px] h-[444px] sm:w-[744px] sm:h-[744px] md:w-[784px] md:h-[784px] rounded-full z-0"
-                style={{ 
-                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, rgba(10, 127, 165, 0.08) 50%, rgba(10, 127, 165, 0) 100%)"
-                }}
-              ></div>
-              <div 
-                className="absolute w-[374px] h-[374px] sm:w-[624px] sm:h-[624px] md:w-[724px] md:h-[724px] rounded-full z-0"
-                style={{ 
-                  background: "radial-gradient(circle, rgba(10, 127, 165, 0.2) 0%, rgba(10, 127, 165, 0.12) 30%, rgba(10, 127, 165, 0.06) 60%, rgba(10, 127, 165, 0.02) 80%, rgba(10, 127, 165, 0) 100%)"
-                }}
+                className="absolute w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] md:w-[520px] md:h-[520px] border border-gray-200 z-0"
               ></div>
 
-              {/* Photo overlay - natural rectangular shape */}
+              {/* Photo overlay */}
               <motion.div 
                 key={activeRole}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -152,7 +140,7 @@ const BuyerPainPointsSection = () => {
                 <img 
                   src={currentContent.image} 
                   alt={currentContent.imageAlt} 
-                  className={`w-full h-auto object-contain mx-auto rounded-2xl ${
+                  className={`w-full h-auto object-contain mx-auto ${
                     activeRole === "buyer" ? "max-w-[90vw] sm:max-w-[540px]" : "max-w-[90vw] sm:max-w-[459px]"
                   }`}
                   style={activeRole === "buyer" ? { filter: "grayscale(100%) contrast(1.1)" } : {}}
@@ -177,7 +165,7 @@ const BuyerPainPointsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 border border-gray-100 hover:border-gray-200 transition-colors"
                   >
                     <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="sm:w-5 sm:h-5 md:w-6 md:h-6">
@@ -217,7 +205,7 @@ const BuyerPainPointsSection = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="absolute bg-white rounded-2xl p-6 flex items-start gap-4 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[360px] w-[360px]"
+                      className="absolute bg-white p-6 flex items-start gap-4 border border-gray-100 hover:border-gray-200 transition-colors max-w-[360px] w-[360px]"
                       style={{
                         ...position,
                         transform: position.transform || 'none'
