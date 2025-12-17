@@ -60,9 +60,7 @@ const EmailComparisonSection = () => {
             className="space-y-6"
           >
             <div className="text-center mb-6">
-              <p className="text-3xl lg:text-4xl font-bold text-foreground">
-                With <span className="inline-block px-3 py-0.5 bg-[#0A7FA5] skew-x-[-12deg]"><span className="inline-block skew-x-[12deg] text-white">YVOO</span></span>
-              </p>
+              <p className="text-3xl lg:text-4xl font-bold text-primary">With YVOO</p>
             </div>
             
             <div className="space-y-3">
@@ -72,12 +70,12 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-[#0A7FA5]"
+                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-primary/10 border border-primary/20"
               >
-                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white/60 animate-pulse"></div>
-                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "0.3s" }}></div>
-                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "0.6s" }}></div>
-                <p className="text-sm text-white leading-relaxed pl-6">
+                <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-primary animate-pulse"></div>
+                <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+                <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <p className="text-sm text-gray-800 leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
                   Done! I've assigned Nguyen Tran—a VDA 6.3 certified auditor based in Ho Chi Minh City. He's audited 50+ automotive suppliers in the region.<br/><br/>
                   Audit confirmed for next Tuesday. Total cost: €700. You'll have the digital report with photos, scores, and findings within 24h after completion.<br/><br/>
