@@ -2040,6 +2040,10 @@ const ScanProPlus = () => {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="lg:hidden relative z-20"
             >
+              <p className="text-white/70 text-xs font-medium mb-2 flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#7CC2A7]" />
+                AI-powered equipment recognition
+              </p>
               <div className="rounded-[24px] bg-[#0A0A0A] p-3 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
                 <EquipmentIntelligenceDemo />
               </div>
