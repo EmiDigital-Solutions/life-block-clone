@@ -64,7 +64,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-xl lg:max-w-2xl"
+            className="max-w-2xl lg:max-w-3xl"
           >
             {/* Frosted Glass Card */}
             <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
