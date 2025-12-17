@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 
 const TestimonialSection = () => {
   return (
@@ -63,9 +64,16 @@ const TestimonialSection = () => {
               <p className="text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-gray-900">
                 "It's a game changer"
               </p>
-              <p className="text-base md:text-lg text-gray-600 font-normal pt-2">
-                Christoph Seeholzer, Director Linde
-              </p>
+              <div className="flex items-center gap-4 pt-4">
+                <img 
+                  src={christophPortrait} 
+                  alt="Christoph Seeholzer" 
+                  className="w-14 h-14 rounded-full object-cover"
+                />
+                <p className="text-base md:text-lg text-gray-600 font-normal">
+                  Christoph Seeholzer, Director Linde
+                </p>
+              </div>
             </div>
           </motion.div>
 
