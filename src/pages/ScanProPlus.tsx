@@ -1408,7 +1408,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-56 bg-white"
+      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2038,7 +2038,7 @@ const ScanProPlus = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="hidden lg:block relative z-20"
-              style={{ marginBottom: "-80px" }}
+              style={{ marginBottom: "-160px" }}
             >
               <EquipmentIntelligenceDemo />
             </motion.div>
