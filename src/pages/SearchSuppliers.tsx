@@ -424,40 +424,40 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Light Background with Frosted Glass Card */}
+      {/* Hero Section - Dark Background like ensun.io */}
       <section 
-        data-nav-theme="dark"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-white overflow-visible"
+        data-nav-theme="hero"
+        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#0A0A0A] overflow-visible"
         style={{ 
           minHeight: "70vh"
         }}
       >
         <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12 items-start">
-            {/* Left Content - Frosted Glass Card - Takes 2 columns */}
+            {/* Left Content - Takes 2 columns */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10">
+              <div className="p-8 sm:p-10">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                   className="mb-6"
                 >
-                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
                     <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                     AI-Powered Discovery
                   </span>
                 </motion.div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
-                  <span className="font-semibold text-foreground">Find suppliers</span>
+                  <span className="font-semibold text-white">Find suppliers</span>
                   <br />
-                  <span className="text-muted-foreground font-light">worldwide.</span>
+                  <span className="text-white/60 font-light">worldwide.</span>
                 </h1>
                 
                 <div className="space-y-4 mb-8">
@@ -471,7 +471,7 @@ const SearchSuppliers = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                      className="flex items-center gap-3 text-muted-foreground"
+                      className="flex items-center gap-3 text-white/70"
                     >
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-lg font-medium">{text}</span>
@@ -485,7 +485,7 @@ const SearchSuppliers = () => {
                   transition={{ delay: 0.5, duration: 0.5 }}
                   className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
                 >
-                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
+                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-foreground bg-primary hover:bg-primary/90">
                     Start Search
                     <PixelIcon 
                       name="arrow-right" 
