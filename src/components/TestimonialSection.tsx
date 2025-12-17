@@ -51,7 +51,7 @@ const TestimonialSection = () => {
             className="text-left w-full"
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.15] text-foreground mb-32 md:mb-40">
-              Built for <span className="inline-block px-4 py-1 bg-primary text-white rounded-xl -rotate-2 font-bold">mighty</span>
+              Built for <span className="inline-block px-3 py-0.5 bg-primary text-white rounded-md -rotate-2 font-bold">mighty</span>
               <br />B2B Supply Chains
             </h2>
 
