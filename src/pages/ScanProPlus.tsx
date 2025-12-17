@@ -1971,12 +1971,11 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Dark Background like SearchSuppliers */}
+      {/* Hero Section - Dark Background with fixed height */}
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#0A0A0A] overflow-visible"
-        style={{ minHeight: "70vh" }}
+        className="relative pt-32 md:pt-40 pb-20 md:pb-24 bg-[#0A0A0A] overflow-visible"
       >
         <div className="container mx-auto px-6 lg:px-20 relative z-10">
           
