@@ -5,35 +5,35 @@ import { PixelIcon } from "./PixelIcon";
 const steps = [
   {
     number: "01",
-    title: "Request Audit",
-    description: "Submit your audit request with supplier details. Our AI generates a customized framework based on your requirements.",
+    title: "Submit request",
+    description: "One click from your dashboard or ERP. Specify supplier, standard, and timeline. That's it.",
     icon: MousePointerClick,
   },
   {
     number: "02",
-    title: "Auditor Assignment",
-    description: "We match you with a certified auditor from our global network based on location, expertise, and availability.",
+    title: "We assign locally",
+    description: "Our AI matches a certified auditor near your supplier—no travel costs, no waiting.",
     icon: Users,
   },
   {
     number: "03",
-    title: "On-Site Evaluation",
-    description: "Your assigned auditor conducts a thorough on-site assessment using our AI-guided digital checklist.",
+    title: "Watch it happen",
+    description: "Real-time updates during the audit. Chat directly with the auditor. Know exactly what's happening.",
     icon: ClipboardCheck,
   },
   {
     number: "04",
-    title: "Digital Report",
-    description: "Receive your comprehensive audit report within 24 hours, complete with findings, photos, and action items.",
+    title: "Report delivered",
+    description: "Complete digital report in 24h—findings, photos, scores, action items. Ready for your QMS.",
     icon: BarChart3,
   },
 ];
 
 const stats = [
-  { value: "2,000+", label: "Certified Auditors" },
-  { value: "90+", label: "Countries" },
-  { value: "48h", label: "Average Response" },
-  { value: "€700", label: "Starting Price" },
+  { value: "60%", label: "Lower audit costs" },
+  { value: "48h", label: "Auditor on-site" },
+  { value: "24h", label: "Report delivery" },
+  { value: "€0", label: "Travel costs" },
 ];
 
 export const HowItWorksSection = () => {
@@ -50,7 +50,7 @@ export const HowItWorksSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-headline text-foreground">
-            How it works
+            From request to report in 4 steps
           </h2>
         </motion.div>
 
@@ -125,13 +125,18 @@ export const HowItWorksSection = () => {
             className="text-center mt-12 pt-12 border-t border-white/10"
           >
             <h3 className="text-2xl md:text-3xl text-white mb-6">
-              <span className="font-semibold">Ready</span>{" "}
-              <span className="font-normal text-white/60">to transform your supplier audits?</span>
+              <span className="font-semibold">Your competitors already switched.</span>{" "}
+              <span className="font-normal text-white/60">When will you?</span>
             </h3>
-            <button className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300">
-              Find Your Auditor Now
+            <a 
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300"
+            >
+              Book a Demo
               <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-            </button>
+            </a>
           </motion.div>
         </motion.div>
 

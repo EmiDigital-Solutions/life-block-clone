@@ -37,7 +37,7 @@ const GlobalNetworkSection = () => {
                 transition={{ delay: 0.1 }}
                 className="section-headline text-foreground"
               >
-                Global On-Demand Auditor Network
+                Your auditor is already there
               </motion.h2>
 
               <motion.p
@@ -47,7 +47,7 @@ const GlobalNetworkSection = () => {
                 transition={{ delay: 0.2 }}
                 className="text-base md:text-lg text-muted-foreground leading-relaxed"
               >
-                6,400+ certified auditors in 120+ countries. On-site within 48 hours. €700 flat rate.
+                Supplier in Shanghai? Auditor in Shanghai. Supplier in São Paulo? Auditor in São Paulo. No flights. No hotels. No waiting.
               </motion.p>
 
               <motion.div
@@ -77,10 +77,15 @@ const GlobalNetworkSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <button className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group">
-                  <span>Find Auditors</span>
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group"
+                >
+                  <span>See Coverage Map</span>
                   <PixelIcon name="arrow-right" className="w-5 h-5" />
-                </button>
+                </a>
               </motion.div>
 
               {/* Stats row */}
@@ -92,10 +97,10 @@ const GlobalNetworkSection = () => {
                 className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-foreground/10"
               >
                 {[
-                  { value: "6,400+", label: "Certified Auditors" },
-                  { value: "120+", label: "Countries" },
-                  { value: "50+", label: "Standards" },
-                  { value: "24h", label: "Response" },
+                  { value: "2,000+", label: "Local Auditors" },
+                  { value: "90+", label: "Countries" },
+                  { value: "48h", label: "On-site" },
+                  { value: "€0", label: "Travel Costs" },
                 ].map((stat, index) => (
                   <div key={stat.label} className="text-left">
                     <p className="text-2xl md:text-3xl font-semibold text-foreground">{stat.value}</p>

@@ -8,62 +8,62 @@ const BuyerPainPointsSection = () => {
 
   const buyerContent = {
     image: buyerImage,
-    imageAlt: "Buyer professional considering opportunities",
+    imageAlt: "Procurement professional considering opportunities",
     painPoints: [
       {
-        text: "Screening 200+ suppliers to find the right one",
-        textFull: "Screening 200+ suppliers to find the right one"
+        text: "Screening 200+ suppliers just to find one qualified option",
+        textFull: "Screening 200+ suppliers just to find one qualified option"
       },
       {
-        text: "Analyzing 50+ criteria & justifying €25K investments",
-        textFull: "Analyzing 50+ criteria & justifying €25K investments"
+        text: "Justifying €15K-25K audit costs to finance every quarter",
+        textFull: "Justifying €15K-25K audit costs to finance every quarter"
       },
       {
-        text: "Planning annual audits & fighting for budget allocation",
-        textFull: "Planning annual audits & fighting for budget allocation"
+        text: "Waiting 3 weeks for your quality engineer's calendar to clear",
+        textFull: "Waiting 3 weeks for your quality engineer's calendar to clear"
       },
       {
-        text: "Aligning 5+ calendars for single audit dates",
-        textFull: "Aligning 5+ calendars for single audit dates"
+        text: "Booking flights, hotels, visas for one-day factory visits",
+        textFull: "Booking flights, hotels, visas for one-day factory visits"
       },
       {
-        text: "Planning, booking & traveling for manual audits",
-        textFull: "Planning, booking & traveling for manual audits"
+        text: "Chasing audit reports weeks after your team returned",
+        textFull: "Chasing audit reports weeks after your team returned"
       },
       {
-        text: "Chasing audit reports weeks after audit completion & following up supplier",
-        textFull: "Chasing audit reports weeks after audit completion & following up supplier"
+        text: "Explaining to leadership why supplier issues weren't caught earlier",
+        textFull: "Explaining to leadership why supplier issues weren't caught earlier"
       }
     ]
   };
 
   const qualityContent = {
     image: qualityImage,
-    imageAlt: "Quality professional reviewing standards",
+    imageAlt: "Quality manager reviewing supplier data",
     painPoints: [
       {
-        text: "Searching for available auditors to cover assignments",
-        textFull: "Searching for available auditors to cover assignments"
+        text: "Hiring permanent auditors who sit idle between audits",
+        textFull: "Hiring permanent auditors who sit idle between audits"
       },
       {
-        text: "Turning down ad-hoc requests due to staffing gaps",
-        textFull: "Turning down ad-hoc requests due to staffing gaps"
+        text: "Turning down urgent audit requests because no one's available",
+        textFull: "Turning down urgent audit requests because no one's available"
       },
       {
-        text: "Creating standardized reports from manual notes",
-        textFull: "Creating standardized reports from manual notes"
+        text: "Standardizing reports when every auditor has their own style",
+        textFull: "Standardizing reports when every auditor has their own style"
       },
       {
-        text: "Reaching suppliers in remote Asian/African markets",
-        textFull: "Reaching suppliers in remote Asian/African markets"
+        text: "Reaching suppliers in Vietnam, India, Mexico without local presence",
+        textFull: "Reaching suppliers in Vietnam, India, Mexico without local presence"
       },
       {
-        text: "Coordinating logistics with email & spreadsheets",
-        textFull: "Coordinating logistics with email & spreadsheets"
+        text: "Managing logistics across email threads and Excel trackers",
+        textFull: "Managing logistics across email threads and Excel trackers"
       },
       {
-        text: "Following up findings manually across systems & employing auditors permanently",
-        textFull: "Following up findings manually across systems & employing auditors permanently"
+        text: "Following up on corrective actions scattered across systems",
+        textFull: "Following up on corrective actions scattered across systems"
       }
     ]
   };
@@ -105,9 +105,9 @@ const BuyerPainPointsSection = () => {
             </div>
           </div>
 
-          {/* Headline with orange underline emphasis */}
+          {/* Headline - transformation focused */}
           <h2 className="section-headline text-foreground text-center px-4">
-            Imagine if you didn't have to spend time...
+            What if you never had to deal with...
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}

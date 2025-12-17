@@ -79,33 +79,33 @@ const ActionIcon = () => (
 const benefits = [
   {
     Icon: GlobalIcon,
-    title: "Instant access to global audit capacity",
-    description: "Your suppliers are worldwide - now your audit capability is too."
+    title: "Audit any supplier, anywhere",
+    description: "Need an auditor in Shenzhen tomorrow? Done. No flights, no hotels, no delays."
   },
   {
     Icon: QualityIcon,
-    title: "Consistent audit quality, every time",
-    description: "Our AI guides every auditor step by step, ensuring high-quality results."
+    title: "Same quality, every audit",
+    description: "AI guides every auditor through your exact requirements—consistent results your QM team can trust."
   },
   {
     Icon: RealtimeIcon,
-    title: "Real-time insight into supplier risk",
-    description: "Dashboards show you exactly where the gaps and risks are - instantly."
+    title: "See supplier risk in real-time",
+    description: "Live dashboards show exactly where problems are—before they become supply chain crises."
   },
   {
     Icon: EmailIcon,
-    title: "Eliminate email chaos",
-    description: "All your audit data, documents, and actions live in one secure platform."
+    title: "End the email chaos",
+    description: "All findings, photos, and action items in one platform. Stop digging through inboxes."
   },
   {
     Icon: ControlIcon,
-    title: "Stay in control with flexible checklists",
-    description: "Use your own audit templates or industry standards - YVOO adapts to you."
+    title: "Your standards, our platform",
+    description: "Use VDA 6.3, IATF 16949, or your own checklists. YVOO adapts to how you work."
   },
   {
     Icon: ActionIcon,
-    title: "Turn findings into action",
-    description: "YVOO links findings to corrective actions - and tracks them to closure."
+    title: "Findings → Actions → Closed",
+    description: "Link every finding to a corrective action—and track it until it's resolved."
   }
 ];
 
@@ -122,7 +122,7 @@ const ResultsBenefitsSection = () => {
           className="mb-16 md:mb-20"
         >
           <h2 className="section-headline text-foreground">
-            Transform your supply chain
+            What changes for your team
           </h2>
         </motion.div>
 

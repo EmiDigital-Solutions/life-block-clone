@@ -13,8 +13,11 @@ const EmailComparisonSection = () => {
           className="text-center mb-16"
         >
           <h2 className="section-headline text-foreground">
-            Conversations that keep supply chains moving
+            Same request. Different outcome.
           </h2>
+          <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
+            What happens when your team asks for a supplier audit in Vietnam?
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
@@ -27,7 +30,7 @@ const EmailComparisonSection = () => {
             className="space-y-6"
           >
             <div className="text-center mb-6">
-              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Usual</p>
+              <p className="text-2xl lg:text-3xl font-bold text-gray-900">Traditional approach</p>
             </div>
             
             <div className="space-y-3">
@@ -42,8 +45,8 @@ const EmailComparisonSection = () => {
                 <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-gray-400 animate-pulse"></div>
                 <p className="text-sm text-gray-700 leading-relaxed pl-6">
                   Hi Sarah,<br/><br/>
-                  Let me check if I have anyone available in that region.<br/><br/>
-                  I'll get back to you by end of the week.<br/><br/>
+                  Let me check if I have anyone available in that region. Our auditors are booked for the next 3 weeks, and flying someone from Germany will cost around €12,000 with travel.<br/><br/>
+                  I'll get back to you by end of the week with options.<br/><br/>
                   Best,<br/>
                   Michael
                 </p>
@@ -60,7 +63,7 @@ const EmailComparisonSection = () => {
             className="space-y-6"
           >
             <div className="text-center mb-6">
-              <p className="text-3xl lg:text-4xl font-bold text-primary">With ScanPro</p>
+              <p className="text-3xl lg:text-4xl font-bold text-primary">With YVOO</p>
             </div>
             
             <div className="space-y-3">
@@ -77,12 +80,9 @@ const EmailComparisonSection = () => {
                 <div className="absolute left-5 bottom-7 w-3 h-3 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.6s" }}></div>
                 <p className="text-sm text-gray-800 leading-relaxed pl-6">
                   Hey Sarah,<br/><br/>
-                  No problem - I've got you covered!<br/><br/>
-                  I've assigned one of our certified local auditors from the region. He's ISO/VDA qualified and has done similar audits for automotive suppliers, so quality standards are guaranteed.<br/><br/>
-                  Date is agreed with your supplier for next week Tuesday. Cost is €700 total, and you'll receive the complete digital report within 24 hours after the audit is completed, including photos, scoring, and detailed findings.<br/><br/>
-                  I'm sending you the tracking link where you can see the auditor's profile, certifications, and follow the entire audit process in real-time. All documentation will be centralized there as well.<br/><br/>
-                  Let me know if you need anything else!<br/><br/>
-                  Best,<br/>
+                  Done! I've assigned Nguyen Tran—a VDA 6.3 certified auditor based in Ho Chi Minh City. He's audited 50+ automotive suppliers in the region.<br/><br/>
+                  Audit confirmed for next Tuesday. Total cost: €700. You'll have the digital report with photos, scores, and findings within 24h after completion.<br/><br/>
+                  Track everything live here: [link]<br/><br/>
                   Michael
                 </p>
               </motion.div>
