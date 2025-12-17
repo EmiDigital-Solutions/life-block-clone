@@ -442,51 +442,40 @@ const SearchSuppliers = () => {
               className="lg:col-span-2"
             >
               <div className="p-8 sm:p-10">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  className="mb-6"
-                >
-                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
-                    <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    AI-Powered Discovery
-                  </span>
-                </motion.div>
-
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
-                  <span className="font-semibold text-white">Find suppliers</span>
+                {/* Main Heading - ensun.io style */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-8">
+                  <span className="font-semibold text-primary">Find suppliers</span>
                   <br />
-                  <span className="text-white/60 font-light">worldwide.</span>
+                  <span className="font-semibold text-white">worldwide in real-time.</span>
                 </h1>
                 
-                <div className="space-y-4 mb-8">
-                  {[
-                    "25M+ global suppliers",
-                    "Real-time verification",
-                    "Instant export"
-                  ].map((text, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                      className="flex items-center gap-3 text-white/70"
-                    >
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-lg font-medium">{text}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
+                {/* Horizontal checkmark list - ensun.io style */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="flex flex-wrap gap-x-6 gap-y-3 mb-8"
                 >
-                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-foreground bg-primary hover:bg-primary/90">
-                    Start Search
+                  {[
+                    "25+ million supplier profiles",
+                    "Relevant supplier data",
+                    "Save and export options"
+                  ].map((text, index) => (
+                    <div key={index} className="flex items-center gap-2 text-white/80">
+                      <Check className="w-5 h-5 text-primary" />
+                      <span className="text-base font-medium">{text}</span>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
+                    Get Started
                     <PixelIcon 
                       name="arrow-right" 
                       className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
