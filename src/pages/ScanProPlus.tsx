@@ -2041,9 +2041,7 @@ const ScanProPlus = () => {
               className="hidden lg:block relative z-20"
               style={{ marginBottom: "-160px" }}
             >
-              <div className="rounded-[32px] bg-[#0A0A0A] p-4 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
-                <EquipmentIntelligenceDemo />
-              </div>
+              <EquipmentIntelligenceDemo />
             </motion.div>
           </div>
           </div>
