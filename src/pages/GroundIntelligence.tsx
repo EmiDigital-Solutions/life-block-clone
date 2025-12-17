@@ -103,9 +103,9 @@ const GroundIntelligence = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-gray-900"
+              className="section-headline text-foreground"
             >
-              See <span className="text-primary font-black">beyond the surface</span>
+              See beyond the surface
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -133,8 +133,8 @@ const GroundIntelligence = () => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl 2xl:text-7xl 3xl:text-8xl font-bold text-white mb-4">
-              <span className="text-primary font-black">How It</span> Works.
+            <h2 className="section-headline text-white mb-4">
+              How It Works
             </h2>
           </motion.div>
 

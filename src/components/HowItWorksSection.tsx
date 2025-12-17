@@ -49,12 +49,8 @@ export const HowItWorksSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">How it</span>{" "}
-            <span className="text-muted-foreground font-normal">works,</span>
-            <br />
-            <span className="text-muted-foreground font-normal">step by</span>{" "}
-            <span className="font-semibold text-foreground">step.</span>
+          <h2 className="section-headline text-foreground">
+            How it works
           </h2>
         </motion.div>
 

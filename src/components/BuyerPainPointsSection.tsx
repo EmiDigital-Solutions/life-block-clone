@@ -106,11 +106,8 @@ const BuyerPainPointsSection = () => {
           </div>
 
           {/* Headline with orange underline emphasis */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-center leading-tight px-4">
-            <span className="font-semibold text-foreground">Imagine if you</span>{" "}
-            <span className="font-normal text-muted-foreground">didn't have to</span>
-            <br />
-            <span className="font-normal text-muted-foreground">spend time...</span>
+          <h2 className="section-headline text-foreground text-center px-4">
+            Imagine if you didn't have to spend time...
           </h2>
 
           {/* Image with soft glowing gradient background and overlapping cards */}

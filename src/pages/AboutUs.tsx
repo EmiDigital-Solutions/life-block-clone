@@ -160,7 +160,7 @@ const AboutUs = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="w-12 h-0.5 bg-[#B2CDBC] mx-auto" />
-            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight">
+            <h2 className="section-headline text-foreground">
               Our Mission
             </h2>
             <p className="text-2xl text-gray-700 leading-relaxed font-light">
@@ -183,8 +183,8 @@ const AboutUs = () => {
             className="space-y-16"
           >
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-black">
-                Core <span className="text-primary font-black">Principles</span>
+              <h2 className="section-headline text-foreground">
+                Core Principles
               </h2>
             </div>
 

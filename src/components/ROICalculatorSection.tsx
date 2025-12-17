@@ -12,12 +12,8 @@ const ROICalculatorSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
-            <span className="font-semibold text-foreground">See your</span>{" "}
-            <span className="text-muted-foreground font-normal">savings,</span>
-            <br />
-            <span className="text-muted-foreground font-normal">calculate your</span>{" "}
-            <span className="font-semibold text-foreground">ROI.</span>
+          <h2 className="section-headline text-foreground">
+            Calculate your ROI
           </h2>
         </motion.div>
 

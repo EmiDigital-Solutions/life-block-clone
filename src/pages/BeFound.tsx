@@ -96,8 +96,8 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Built for <span className="italic font-light">ambitious</span> suppliers.
+            <h2 className="section-headline text-foreground">
+              Built for ambitious suppliers
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Whether you're a growing manufacturer or established enterprise, 
@@ -129,13 +129,8 @@ const BeFound = () => {
             </div>
 
             {/* Headline with orange underline emphasis */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center leading-tight">
-              Imagine if you{" "}
-              <span className="relative inline-block">
-                didn't
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-[#FF8B6B] opacity-50 -z-10"></span>
-              </span>
-              {" "}have to spend time...
+            <h2 className="section-headline text-foreground text-center">
+              Imagine if you didn't have to spend time...
             </h2>
 
             {/* Image with soft glowing gradient background and overlapping cards */}
