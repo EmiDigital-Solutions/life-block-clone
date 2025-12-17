@@ -78,7 +78,7 @@ const HeroSection = () => {
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  AI Computer Vision
+                  2,000+ Auditors · 90+ Countries · AI-Powered
                 </span>
               </motion.div>
 
@@ -87,50 +87,71 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-8"
+                className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
               >
-                <span className="text-foreground">Supplier Audits</span>
+                <span className="text-foreground">On-Site</span>
                 <br />
-                <span className="text-foreground">in days, not</span>
+                <span className="text-foreground">Supplier</span>
                 <br />
-                <span className="text-foreground">weeks.</span>
+                <span className="text-foreground">Audits in </span>
+                <span className="text-primary">Days,</span>
+                <br />
+                <span className="text-foreground">Not Weeks.</span>
               </motion.h1>
 
-              {/* Bullet Points */}
-              <motion.div
+              {/* Subtitle */}
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="space-y-3 mb-8"
+                className="text-lg text-muted-foreground mb-8"
               >
-                {[
-                  "On-site audits from €700",
-                  "2,000+ certified auditors",
-                  "90+ countries covered"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-muted-foreground">
-                    <svg className="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-base lg:text-lg">{item}</span>
-                  </div>
-                ))}
-              </motion.div>
+                Physical factory assessments starting from €700
+              </motion.p>
 
-              {/* CTA Button */}
+              {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-4 mb-8"
               >
                 <a 
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-foreground hover:bg-foreground/90"
                 >
-                  Get Started
+                  Order Audit
                 </a>
+                <a 
+                  href="#how-it-works"
+                  className="inline-flex items-center gap-2 px-4 py-4 font-medium text-foreground hover:text-foreground/70 transition-colors"
+                >
+                  How it works
+                  <span className="text-lg">→</span>
+                </a>
+              </motion.div>
+
+              {/* Certifications */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <p className="text-sm text-muted-foreground mb-3">
+                  Auditors certified by:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
+                    <span
+                      key={idx}
+                      className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground border border-gray-200"
+                    >
+                      {cert}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             </div>
           </motion.div>
