@@ -1240,25 +1240,21 @@ const ReportDemo = () => {
                   <div className="flex items-end justify-between h-28 gap-3 relative z-10">
                     {historicalScores.map((item, i) => {
                       const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
-                      const height = ((item.score - 50) / 50) * 100; // Scale from 50-100 range
+                      const heightPx = ((item.score - 50) / 50) * 112; // 112px = h-28
                       return (
-                        <motion.div 
+                        <div 
                           key={item.year}
-                          className="flex-1 flex flex-col items-center gap-1"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: i * 0.1 }}
+                          className="flex-1 flex flex-col items-center h-full justify-end"
                         >
+                          <span className="text-[10px] font-bold text-white mb-1">{item.score}%</span>
                           <motion.div 
-                            className="w-full rounded-t-lg relative"
-                            style={{ backgroundColor: color + '60' }}
+                            className="w-full rounded-t-lg"
+                            style={{ backgroundColor: color }}
                             initial={{ height: 0 }}
-                            animate={{ height: `${height}%` }}
+                            animate={{ height: heightPx }}
                             transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
-                          >
-                            <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white">{item.score}%</span>
-                          </motion.div>
-                        </motion.div>
+                          />
+                        </div>
                       );
                     })}
                   </div>
