@@ -11,7 +11,7 @@ import evidenceAssembly from "@/assets/evidence-assembly-station.jpg";
 import evidenceCertification from "@/assets/evidence-certification.jpg";
 import evidenceInspector from "@/assets/evidence-inspector.jpg";
 // Auditor images for dispatch step
-import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorRealEuropean from "@/assets/auditor-real-european.jpg";
 import auditorGen2 from "@/assets/auditor-gen-2.jpg";
 import auditorGen3 from "@/assets/auditor-gen-3.jpg";
 import auditorGen4 from "@/assets/auditor-gen-4.jpg";
@@ -551,7 +551,7 @@ const AuditorDispatchDemo = () => {
   }, []);
   
   const auditors = [
-    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorGen1 },
+    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorRealEuropean },
     { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia", image: auditorGen2 },
     { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm", image: auditorGen3 },
     { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America", image: auditorGen4 },
