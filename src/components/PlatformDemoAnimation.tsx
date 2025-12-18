@@ -628,7 +628,7 @@ const AuditorDispatchDemo = () => {
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3 + i * 0.15, type: "spring", stiffness: 200 }}
-              className="absolute z-20"
+              className={`absolute ${selectedAuditor === i ? 'z-50' : 'z-20'}`}
               style={{ left: `${auditor.x}%`, top: `${auditor.y}%`, transform: 'translate(-50%, -50%)' }}
             >
               {/* Pulse Ring for Selected */}
@@ -1242,13 +1242,16 @@ const FollowUpDemo = () => (
 const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
+  // Custom durations per step (ms) - search needs more time
+  const stepDurations = [12000, 10000, 10000, 10000, 10000, 10000]; // Search, Order, Dispatch, Audit, Report, Follow-up
+  
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setCurrentStep((prev) => (prev + 1) % demoSteps.length);
-    }, 7000);
+    }, stepDurations[currentStep]);
     
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [currentStep]);
   
   const renderDemo = () => {
     switch (currentStep) {
