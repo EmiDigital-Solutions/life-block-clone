@@ -1035,13 +1035,13 @@ const ReportDemo = () => {
     { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
   ];
   
-  // Historical score data for trend chart
+  // Historical score data for trend chart - realistic non-linear trend with client names
   const historicalScores = [
-    { year: '2021', score: 65, auditor: 'TÜV SÜD' },
-    { year: '2022', score: 72, auditor: 'Bureau Veritas' },
-    { year: '2023', score: 78, auditor: 'YVOO' },
-    { year: '2024', score: 82, auditor: 'YVOO' },
-    { year: '2025', score: 84.2, auditor: 'YVOO' },
+    { year: '2021', score: 78, client: 'BMW' },
+    { year: '2022', score: 82, client: 'Mercedes' },
+    { year: '2023', score: 79, client: 'Audi' },
+    { year: '2024', score: 85, client: 'Porsche' },
+    { year: '2025', score: 88, client: 'VW Group' },
   ];
   
   // Benchmark data
@@ -1228,19 +1228,18 @@ const ReportDemo = () => {
             {/* Score Trend Chart - Bars + Line */}
             <div className="mb-4">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-white/90 font-medium text-sm">Score Trend (5-Year History)</div>
+                <div className="text-white/90 font-medium text-sm">Audit Score History</div>
                 <div className="flex gap-3 text-[9px] text-[#C0C0C0]/60">
-                  <span className="flex items-center gap-1"><div className="w-3 h-2 rounded bg-[#1391BF]/60" />Absolute</span>
-                  <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#7CC2A7]" />Trend</span>
+                  <span className="flex items-center gap-1"><div className="w-3 h-2 rounded bg-[#0A7FA5]" />Score</span>
+                  <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#0A7FA5]" />Trend</span>
                 </div>
               </div>
               <div className="bg-[#161616] rounded-xl p-4">
                 <div className="relative h-36">
-                  {/* Bars for absolute values */}
+                  {/* Bars - all blue, non-linear trend */}
                   <div className="flex items-end justify-around h-28 px-2 relative z-10">
                     {historicalScores.map((item, i) => {
-                      const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
-                      const heightPx = ((item.score - 50) / 50) * 112; // 112px = h-28
+                      const heightPx = ((item.score - 50) / 50) * 112;
                       return (
                         <div 
                           key={item.year}
@@ -1248,8 +1247,7 @@ const ReportDemo = () => {
                         >
                           <span className="text-[10px] font-bold text-white mb-1">{item.score}%</span>
                           <motion.div 
-                            className="w-5 rounded-t-md"
-                            style={{ backgroundColor: color }}
+                            className="w-5 rounded-t-md bg-[#0A7FA5]"
                             initial={{ height: 0 }}
                             animate={{ height: heightPx }}
                             transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
@@ -1263,7 +1261,7 @@ const ReportDemo = () => {
                   <svg className="absolute top-0 left-2 right-2 h-28 z-20 pointer-events-none overflow-visible">
                     <motion.polyline
                       fill="none"
-                      stroke="#7CC2A7"
+                      stroke="#0A7FA5"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -1271,7 +1269,6 @@ const ReportDemo = () => {
                       animate={{ pathLength: 1 }}
                       transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
                       points={historicalScores.map((item, i) => {
-                        // Align with justify-around distribution (items spaced evenly with half-space at edges)
                         const totalItems = historicalScores.length;
                         const x = ((i + 0.5) / totalItems) * 100;
                         const y = 100 - ((item.score - 50) / 50) * 100;
@@ -1289,7 +1286,7 @@ const ReportDemo = () => {
                           cx={`${x}%`}
                           cy={`${y}%`}
                           r="4"
-                          fill="#7CC2A7"
+                          fill="#0A7FA5"
                           stroke="#161616"
                           strokeWidth="2"
                           initial={{ opacity: 0, scale: 0 }}
@@ -1300,12 +1297,12 @@ const ReportDemo = () => {
                     })}
                   </svg>
                   
-                  {/* Year labels */}
+                  {/* Year labels with client names */}
                   <div className="flex justify-between mt-2">
                     {historicalScores.map((item) => (
                       <div key={item.year} className="flex-1 text-center">
                         <span className="text-[#C0C0C0]/60 text-[9px]">{item.year}</span>
-                        <div className="text-[#C0C0C0]/40 text-[8px] truncate">{item.auditor}</div>
+                        <div className="text-[#C0C0C0]/40 text-[8px] truncate">{item.client}</div>
                       </div>
                     ))}
                   </div>
