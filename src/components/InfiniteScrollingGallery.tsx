@@ -1146,6 +1146,7 @@ const MockupRenderer = ({ type }: { type: Capability['mockupType'] }) => {
 const InfiniteScrollingGallery = () => {
   const [selectedCapability, setSelectedCapability] = useState<Capability | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const row1 = [capabilities[0], capabilities[1], capabilities[2], capabilities[6]];
   const row2 = [capabilities[3], capabilities[4], capabilities[5], capabilities[7], capabilities[8]];
@@ -1156,7 +1157,7 @@ const InfiniteScrollingGallery = () => {
     return (
       <div className="overflow-hidden">
         <div 
-          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} hover:animation-pause`}
+          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause`}
           style={{ width: 'fit-content' }}
         >
           {duplicatedItems.map((item, index) => (
@@ -1199,8 +1200,8 @@ const InfiniteScrollingGallery = () => {
 
   return (
     <>
-      {/* Color Guidance Table */}
-      <div className="mb-6 px-4 sm:px-6 lg:px-12 xl:px-24">
+      {/* Color Guidance Table & Pause Button */}
+      <div className="mb-6 px-4 sm:px-6 lg:px-12 xl:px-24 flex flex-wrap items-center justify-between gap-4">
         <div className="inline-flex items-center gap-6 bg-[#161616] rounded-full px-6 py-3">
           <span className="text-[#C0C0C0]/80 text-sm font-medium">Status Guide:</span>
           <div className="flex items-center gap-2">
@@ -1220,6 +1221,28 @@ const InfiniteScrollingGallery = () => {
             <span className="text-[#F5F5F5]/80 text-sm">In Progress</span>
           </div>
         </div>
+        
+        {/* Pause/Play Button */}
+        <button
+          onClick={() => setIsPaused(!isPaused)}
+          className="inline-flex items-center gap-2 bg-[#161616] hover:bg-[#1a1a1a] rounded-full px-5 py-3 transition-colors duration-200"
+        >
+          {isPaused ? (
+            <>
+              <svg className="w-4 h-4 text-[#7CC2A7]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span className="text-[#F5F5F5]/80 text-sm font-medium">Play</span>
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4 text-[#D8A860]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+              <span className="text-[#F5F5F5]/80 text-sm font-medium">Pause</span>
+            </>
+          )}
+        </button>
       </div>
 
       <div className="space-y-6 py-4">
@@ -1247,6 +1270,10 @@ const InfiniteScrollingGallery = () => {
 
           .hover\\:animation-pause:hover {
             animation-play-state: paused;
+          }
+
+          .animation-paused {
+            animation-play-state: paused !important;
           }
         `}</style>
       </div>
