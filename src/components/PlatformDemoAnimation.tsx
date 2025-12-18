@@ -1190,7 +1190,7 @@ const ReportDemo = () => {
               </div>
             </div>
             
-            <div className="space-y-2 overflow-y-auto max-h-[calc(100%-2rem)]">
+            <div className="space-y-2 overflow-hidden">
               {nonConformances.map((nc, i) => (
                 <motion.div 
                   key={nc.id}
