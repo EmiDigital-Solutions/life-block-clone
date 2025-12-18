@@ -1000,112 +1000,260 @@ const AuditExecutionDemo = () => (
   </WindowChrome>
 );
 
-// Step 5: Report Generation
-const ReportDemo = () => (
-  <WindowChrome title="ScanPro+ — Audit Report: TechMold Industries">
-    <div className="h-full flex">
-      <div className="w-2/3 p-4 flex flex-col border-r border-[#C0C0C0]/10">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <div className="text-white font-medium text-lg">VDA 6.3 Audit Report</div>
-            <div className="text-[#C0C0C0]/60 text-sm">TechMold Industries · February 15, 2025</div>
+// Step 5: Professional Audit Report Generation
+const ReportDemo = () => {
+  const processElements = [
+    { code: 'P2', name: 'Project Management', score: 88, weight: 12 },
+    { code: 'P3', name: 'Product & Process Development Planning', score: 82, weight: 15 },
+    { code: 'P4', name: 'Product & Process Development Realization', score: 85, weight: 18 },
+    { code: 'P5', name: 'Supplier Management', score: 79, weight: 12 },
+    { code: 'P6', name: 'Process Analysis / Production', score: 84, weight: 28 },
+    { code: 'P7', name: 'Customer Care / Satisfaction', score: 91, weight: 15 },
+  ];
+  
+  const nonConformances = [
+    { id: 'NC-001', element: 'P6.3.2', finding: 'Calibration records for CMM Zeiss Contura incomplete - missing 3 measuring devices', severity: 'major', category: 'Process Control', rootCause: 'Documentation gap' },
+    { id: 'NC-002', element: 'P6.2.1', finding: 'Operator qualification matrix not updated for 2 new CNC operators since Q3 2024', severity: 'minor', category: 'Personnel', rootCause: 'Training backlog' },
+    { id: 'NC-003', element: 'P4.6', finding: 'Process FMEA (PFMEA-TM-2023-001) not revised after design change ECN-2024-047', severity: 'major', category: 'Risk Management', rootCause: 'Change management' },
+    { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
+  ];
+  
+  const evidenceItems = [
+    { id: 1, type: 'Equipment', label: 'CNC Machining Center', ref: 'IMG-001', verified: true },
+    { id: 2, type: 'Document', label: 'Control Plan Rev.4', ref: 'DOC-012', verified: true },
+    { id: 3, type: 'Measurement', label: 'CMM Inspection Report', ref: 'RPT-045', verified: true },
+    { id: 4, type: 'Process', label: 'Assembly Line Station 3', ref: 'IMG-023', verified: false },
+    { id: 5, type: 'Certificate', label: 'ISO 9001:2015 Cert', ref: 'CRT-001', verified: true },
+    { id: 6, type: 'Training', label: 'Operator Skill Matrix', ref: 'DOC-089', verified: true },
+  ];
+
+  const overallScore = 84.2;
+  const certificationStatus = overallScore >= 90 ? 'A' : overallScore >= 80 ? 'B' : overallScore >= 60 ? 'C' : 'D';
+  
+  return (
+    <WindowChrome title="ScanPro+ — VDA 6.3 Process Audit Report">
+      <div className="h-full flex bg-[#0A0A0A]">
+        {/* Main Report Content */}
+        <div className="w-[65%] flex flex-col border-r border-[#C0C0C0]/10 overflow-hidden">
+          {/* Report Header - Professional */}
+          <div className="p-4 border-b border-[#C0C0C0]/10 bg-gradient-to-r from-[#0A0A0A] to-[#161616]">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 border border-[#1391BF]/30 flex items-center justify-center">
+                  <span className="text-[#1391BF] font-bold text-sm">TM</span>
+                </div>
+                <div>
+                  <div className="text-white font-semibold">TechMold Industries Co., Ltd.</div>
+                  <div className="text-[#C0C0C0]/60 text-xs">Shanghai, China • DUNS: 54-128-9047</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="px-1.5 py-0.5 bg-[#1391BF]/15 text-[#1391BF] rounded text-[10px] font-medium">VDA 6.3:2023</span>
+                    <span className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] rounded text-[10px] font-medium">Process Audit</span>
+                  </div>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-2 justify-end mb-1">
+                  <span className={`text-3xl font-bold ${certificationStatus === 'A' ? 'text-[#7CC2A7]' : certificationStatus === 'B' ? 'text-[#1391BF]' : 'text-[#D8A860]'}`}>
+                    {overallScore.toFixed(1)}%
+                  </span>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${
+                    certificationStatus === 'A' ? 'bg-[#7CC2A7]/20 text-[#7CC2A7]' : 
+                    certificationStatus === 'B' ? 'bg-[#1391BF]/20 text-[#1391BF]' : 'bg-[#D8A860]/20 text-[#D8A860]'
+                  }`}>
+                    {certificationStatus}
+                  </div>
+                </div>
+                <div className="text-[#C0C0C0]/50 text-[10px]">Grade {certificationStatus} Supplier</div>
+                <div className="text-[#C0C0C0]/40 text-[10px]">Audit Date: Feb 14-15, 2025</div>
+              </div>
+            </div>
           </div>
-          <div className="text-right">
-            <div className="text-[#7CC2A7] font-bold text-3xl">87%</div>
-            <div className="text-[#C0C0C0]/40 text-xs">Overall Score</div>
+          
+          {/* Process Elements Grid - VDA 6.3 Standard */}
+          <div className="p-4 border-b border-[#C0C0C0]/10">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-white/90 font-medium text-sm">Process Element Scores (VDA 6.3)</div>
+              <div className="flex gap-3 text-[10px]">
+                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />≥90% (A)</span>
+                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#1391BF]" />≥80% (B)</span>
+                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#D8A860]" />≥60% (C)</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-6 gap-2">
+              {processElements.map((el, i) => {
+                const color = el.score >= 90 ? '#7CC2A7' : el.score >= 80 ? '#1391BF' : '#D8A860';
+                return (
+                  <motion.div 
+                    key={el.code}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08 }}
+                    className="bg-[#161616] rounded-xl p-3 text-center"
+                  >
+                    <div className="text-[#C0C0C0]/50 text-[10px] font-medium mb-1">{el.code}</div>
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.3 + i * 0.08, type: "spring" }}
+                      className="text-lg font-bold mb-1"
+                      style={{ color }}
+                    >
+                      {el.score}%
+                    </motion.div>
+                    <div className="text-[#C0C0C0]/40 text-[9px] leading-tight line-clamp-2">{el.name}</div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+          
+          {/* Non-Conformances Table - Professional */}
+          <div className="flex-1 p-4 overflow-hidden">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-white/90 font-medium text-sm">Non-Conformances & Observations</div>
+              <div className="flex gap-2">
+                <span className="px-2 py-0.5 bg-[#C4564F]/15 text-[#C4564F] rounded text-[10px] font-medium">2 Major</span>
+                <span className="px-2 py-0.5 bg-[#D8A860]/15 text-[#D8A860] rounded text-[10px] font-medium">1 Minor</span>
+                <span className="px-2 py-0.5 bg-[#1391BF]/15 text-[#1391BF] rounded text-[10px] font-medium">1 OFI</span>
+              </div>
+            </div>
+            
+            <div className="space-y-2 overflow-y-auto max-h-[calc(100%-2rem)]">
+              {nonConformances.map((nc, i) => (
+                <motion.div 
+                  key={nc.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                  className="bg-[#161616] rounded-xl p-3 border-l-2"
+                  style={{ borderLeftColor: nc.severity === 'major' ? '#C4564F' : nc.severity === 'minor' ? '#D8A860' : '#1391BF' }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ${
+                      nc.severity === 'major' ? 'bg-[#C4564F]/20 text-[#C4564F]' : 
+                      nc.severity === 'minor' ? 'bg-[#D8A860]/20 text-[#D8A860]' : 'bg-[#1391BF]/20 text-[#1391BF]'
+                    }`}>
+                      {nc.severity === 'observation' ? 'OFI' : nc.severity}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[#C0C0C0]/50 text-[10px] font-mono">{nc.id}</span>
+                        <span className="text-[#1391BF] text-[10px] font-medium">{nc.element}</span>
+                        <span className="text-[#C0C0C0]/30 text-[10px]">•</span>
+                        <span className="text-[#C0C0C0]/50 text-[10px]">{nc.category}</span>
+                      </div>
+                      <div className="text-white/80 text-xs leading-relaxed">{nc.finding}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
         
-        <div className="bg-[#161616] rounded-xl p-4 mb-4">
-          <div className="text-white/80 text-sm mb-3">Score Trend</div>
-          <div className="flex items-end gap-3 h-20">
-            {[65, 72, 78, 82, 87].map((score, i) => (
-              <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${score}%` }} transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                className="flex-1 bg-[#1391BF] rounded-t-lg relative"
-              >
-                <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs text-white">{score}</span>
-              </motion.div>
-            ))}
+        {/* Right Sidebar */}
+        <div className="w-[35%] flex flex-col overflow-hidden">
+          {/* Evidence Gallery - Unique Items */}
+          <div className="p-4 border-b border-[#C0C0C0]/10">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-white/90 font-medium text-sm">Evidence Gallery</div>
+              <span className="text-[#C0C0C0]/50 text-[10px]">247 items collected</span>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {evidenceItems.map((item, i) => {
+                const bgColors = ['from-[#1391BF]/30', 'from-[#7CC2A7]/30', 'from-[#D8A860]/30', 'from-[#C4564F]/30', 'from-[#1391BF]/30', 'from-[#7CC2A7]/30'];
+                const icons = {
+                  Equipment: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+                  Document: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>,
+                  Measurement: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+                  Process: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>,
+                  Certificate: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>,
+                  Training: <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
+                };
+                return (
+                  <motion.div 
+                    key={item.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + i * 0.08 }}
+                    className={`aspect-square rounded-xl bg-gradient-to-br ${bgColors[i]} to-[#161616] p-2 relative overflow-hidden`}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center text-white/40">
+                      {icons[item.type as keyof typeof icons]}
+                    </div>
+                    <div className="absolute bottom-1 left-1 right-1">
+                      <div className="text-white/80 text-[8px] font-medium truncate">{item.label}</div>
+                      <div className="text-[#C0C0C0]/40 text-[7px]">{item.ref}</div>
+                    </div>
+                    {item.verified && (
+                      <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-[#7CC2A7] flex items-center justify-center">
+                        <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-          <div className="flex justify-between mt-2 text-xs text-[#C0C0C0]/40">
-            <span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span>
-          </div>
-        </div>
-        
-        <div className="mb-4">
-          <div className="text-white/80 text-sm mb-3">Evidence Gallery</div>
-          <div className="grid grid-cols-4 gap-2">
-            {[equipmentImage, factoryImage, equipmentImage, factoryImage].map((img, i) => (
-              <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 + i * 0.1 }}
-                className="aspect-square rounded-lg overflow-hidden"
-              >
-                <img src={img} alt={`Evidence ${i + 1}`} className="w-full h-full object-cover" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="flex-1">
-          <div className="text-white/80 text-sm mb-3">Key Findings</div>
-          <div className="space-y-2">
-            {[
-              { finding: "Calibration records incomplete for CMM equipment", severity: 'major', clause: 'P6.3.2' },
-              { finding: "Training records need update for new operators", severity: 'minor', clause: 'P6.2.1' },
-              { finding: "Process FMEA not updated since 2023", severity: 'major', clause: 'P6.1.4' },
-            ].map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 + i * 0.15 }}
-                className="flex items-start gap-3 p-3 bg-[#161616] rounded-lg"
-              >
-                <div className={`px-2 py-1 rounded text-xs font-bold ${item.severity === 'major' ? 'bg-[#C4564F]/20 text-[#C4564F]' : 'bg-[#D8A860]/20 text-[#D8A860]'}`}>
-                  {item.severity.toUpperCase()}
+          
+          {/* Auditor Signature Block */}
+          <div className="p-4 border-b border-[#C0C0C0]/10">
+            <div className="text-white/90 font-medium text-sm mb-3">Lead Auditor</div>
+            <div className="bg-[#161616] rounded-xl p-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] flex items-center justify-center text-white font-bold text-sm">
+                  WL
                 </div>
                 <div className="flex-1">
-                  <div className="text-white/90 text-sm">{item.finding}</div>
-                  <div className="text-[#C0C0C0]/50 text-xs mt-1">Clause: {item.clause}</div>
+                  <div className="text-white font-medium text-sm">Wei Liu</div>
+                  <div className="text-[#C0C0C0]/60 text-[10px]">VDA 6.3 Licensed Auditor</div>
+                  <div className="text-[#C0C0C0]/40 text-[9px]">Cert: VDA-QMC-2023-1847</div>
                 </div>
-              </motion.div>
-            ))}
+                <div className="text-right">
+                  <div className="text-[#7CC2A7] text-[10px] font-medium">Verified</div>
+                  <div className="text-[#C0C0C0]/40 text-[9px]">847 audits</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Export Options */}
+          <div className="p-4 mt-auto">
+            <div className="space-y-2">
+              <motion.button 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="w-full py-2.5 bg-[#1391BF] text-white rounded-xl text-sm font-medium flex items-center justify-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Export VDA 6.3 Report (PDF)
+              </motion.button>
+              <motion.button 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
+                className="w-full py-2.5 bg-[#161616] text-white/80 rounded-xl text-sm font-medium flex items-center justify-center gap-2 border border-[#C0C0C0]/10"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+                Share with BMW SQE Portal
+              </motion.button>
+            </div>
+            <div className="mt-3 text-center">
+              <span className="text-[#C0C0C0]/40 text-[9px]">Report ID: YVOO-VDA63-2025-00847</span>
+            </div>
           </div>
         </div>
       </div>
-      
-      <div className="w-1/3 p-4 flex flex-col">
-        <div className="text-white/90 font-medium text-sm mb-4">Category Scores</div>
-        <div className="space-y-3 flex-1">
-          {[
-            { category: 'P6.1 Process Input', score: 92, color: '#7CC2A7' },
-            { category: 'P6.2 Personnel', score: 85, color: '#7CC2A7' },
-            { category: 'P6.3 Resources', score: 78, color: '#D8A860' },
-            { category: 'P6.4 Operations', score: 88, color: '#7CC2A7' },
-            { category: 'P6.5 Transport', score: 90, color: '#7CC2A7' },
-            { category: 'P6.6 Analysis', score: 82, color: '#7CC2A7' },
-          ].map((cat, i) => (
-            <motion.div key={cat.category} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 + i * 0.1 }}>
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-[#C0C0C0]/80">{cat.category}</span>
-                <span className="text-white font-medium">{cat.score}%</span>
-              </div>
-              <div className="h-2 bg-[#C0C0C0]/10 rounded-full overflow-hidden">
-                <motion.div initial={{ width: 0 }} animate={{ width: `${cat.score}%` }} transition={{ delay: 0.5 + i * 0.1, duration: 0.4 }}
-                  style={{ backgroundColor: cat.color }} className="h-full rounded-full"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        <div className="mt-4 space-y-2">
-          <button className="w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium">
-            Download PDF Report
-          </button>
-          <button className="w-full py-3 bg-[#161616] text-white/80 rounded-xl text-sm font-medium">
-            Share with Stakeholders
-          </button>
-        </div>
-      </div>
-    </div>
-  </WindowChrome>
-);
+    </WindowChrome>
+  );
+};
 
 // Step 6: Follow-up Manager
 const FollowUpDemo = () => (
