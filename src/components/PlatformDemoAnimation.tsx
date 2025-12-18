@@ -10,6 +10,13 @@ import evidenceControlPlan from "@/assets/evidence-control-plan.jpg";
 import evidenceAssembly from "@/assets/evidence-assembly-station.jpg";
 import evidenceCertification from "@/assets/evidence-certification.jpg";
 import evidenceInspector from "@/assets/evidence-inspector.jpg";
+// Auditor images for dispatch step
+import auditorGen1 from "@/assets/auditor-gen-1.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+import auditorGen4 from "@/assets/auditor-gen-4.jpg";
+import auditorGen5 from "@/assets/auditor-gen-5.jpg";
+import auditorGen6 from "@/assets/auditor-gen-6.jpg";
 
 interface DemoStep {
   id: number;
@@ -544,12 +551,12 @@ const AuditorDispatchDemo = () => {
   }, []);
   
   const auditors = [
-    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe" },
-    { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia" },
-    { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm" },
-    { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America" },
-    { name: "Raj Patel", location: "Mumbai, India", specialty: "ISO 14001", distance: "Local", available: "Today", rating: 4.6, audits: 389, x: 70, y: 48, region: "Asia" },
-    { name: "Sarah Chen", location: "Singapore", specialty: "ISO 45001", distance: "Local", available: "Tomorrow", rating: 4.8, audits: 456, x: 82, y: 55, region: "SEA" },
+    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorGen1 },
+    { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia", image: auditorGen2 },
+    { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm", image: auditorGen3 },
+    { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America", image: auditorGen4 },
+    { name: "Raj Patel", location: "Mumbai, India", specialty: "ISO 14001", distance: "Local", available: "Today", rating: 4.6, audits: 389, x: 70, y: 48, region: "Asia", image: auditorGen5 },
+    { name: "Sarah Chen", location: "Singapore", specialty: "ISO 45001", distance: "Local", available: "Tomorrow", rating: 4.8, audits: 456, x: 82, y: 55, region: "SEA", image: auditorGen6 },
   ];
   
   return (
@@ -771,12 +778,16 @@ const AuditorDispatchDemo = () => {
                 onClick={() => setSelectedAuditor(i)}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold transition-all ${
+                  <div className={`relative w-12 h-12 rounded-xl overflow-hidden transition-all ${
                     selectedAuditor === i 
-                      ? 'bg-gradient-to-br from-[#7CC2A7] to-[#5BA88F]' 
-                      : 'bg-gradient-to-br from-[#1391BF] to-[#0A7FA5]'
+                      ? 'ring-2 ring-[#7CC2A7] ring-offset-2 ring-offset-[#161616]' 
+                      : ''
                   }`}>
-                    {auditor.name.split(' ').slice(-1)[0][0]}{auditor.name.split(' ')[0][0]}
+                    <img 
+                      src={auditor.image} 
+                      alt={auditor.name} 
+                      className="w-full h-full object-cover"
+                    />
                     {selectedAuditor === i && (
                       <motion.div 
                         initial={{ scale: 0 }}
