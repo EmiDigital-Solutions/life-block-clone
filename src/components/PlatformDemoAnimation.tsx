@@ -1296,25 +1296,7 @@ const ReportDemo = () => {
                       );
                     })()}
                     
-                    {/* Trend line connecting bar tops */}
-                    <motion.polyline
-                      fill="none"
-                      stroke="#0A7FA5"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      vectorEffect="non-scaling-stroke"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
-                      points={historicalScores.map((item, i) => {
-                        const totalItems = historicalScores.length;
-                        // Position at center of each bar slot
-                        const x = ((i + 0.5) / totalItems) * 100;
-                        const y = 100 - ((item.score - 50) / 50) * 100;
-                        return `${x},${y}`;
-                      }).join(' ')}
-                    />
+                    {/* Trend line removed (per request) */}
                   </svg>
                   
                   {/* Year labels with client names */}
