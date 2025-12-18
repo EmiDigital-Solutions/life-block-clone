@@ -16,99 +16,123 @@ const demoSteps: DemoStep[] = [
   { id: 5, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
-// Step 1: Supplier Search
+// Step 1: Supplier Search - DMG MORI Profile
 const SupplierSearchDemo = () => (
   <div className="h-full flex flex-col text-xs bg-[#0A0A0A] p-4">
-    <div className="flex items-center gap-3 mb-4">
+    <div className="flex items-center gap-3 mb-3">
       <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-sm font-bold">1</div>
       <span className="text-white/90 font-medium">Find Supplier</span>
     </div>
     
+    {/* Search Bar */}
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-[#161616] rounded-xl p-4 mb-3"
+      className="bg-[#161616] rounded-xl p-3 mb-3"
     >
-      <div className="grid grid-cols-3 gap-3 mb-3">
-        {[
-          { label: "Company", value: "Müller GmbH" },
-          { label: "City", value: "Stuttgart" },
-          { label: "Country", value: "Germany" },
-        ].map((field, i) => (
-          <motion.div 
-            key={field.label}
+      <div className="flex gap-2">
+        <div className="flex-1 h-8 bg-[#0A0A0A] rounded border border-[#C0C0C0]/20 px-3 flex items-center">
+          <svg className="w-3.5 h-3.5 text-[#C0C0C0]/40 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 + i * 0.2 }}
+            transition={{ delay: 0.5 }}
+            className="text-white/80"
           >
-            <label className="text-[#C0C0C0]/60 text-[10px] block mb-1">{field.label}</label>
-            <div className="h-8 bg-[#0A0A0A] rounded border border-[#C0C0C0]/20 px-2 flex items-center">
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 + i * 0.2 }}
-                className="text-white/80"
-              >
-                {field.value}
-              </motion.span>
-            </div>
-          </motion.div>
-        ))}
+            DMG MORI
+          </motion.span>
+        </div>
+        <motion.button
+          initial={{ scale: 0.95 }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ delay: 0.8, duration: 0.3 }}
+          className="px-4 py-2 bg-[#1391BF] text-white rounded-lg text-[11px] font-medium"
+        >
+          Search
+        </motion.button>
       </div>
-      <motion.button
-        initial={{ scale: 0.95 }}
-        animate={{ scale: [1, 1.02, 1] }}
-        transition={{ delay: 1.2, duration: 0.3 }}
-        className="w-full py-2 bg-[#1391BF] text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2"
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        Search Supplier
-      </motion.button>
     </motion.div>
 
+    {/* DMG MORI Supplier Profile Card */}
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.5 }}
-      className="flex-1 bg-[#161616] rounded-xl p-4"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 0.5 }}
+      className="flex-1 bg-[#161616] rounded-xl p-3 space-y-3"
     >
-      <div className="flex items-center gap-2 mb-3">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-          className="w-5 h-5 border-2 border-[#1391BF] border-t-transparent rounded-full"
-        />
-        <span className="text-[#1391BF] text-sm font-medium">Generating AI Report...</span>
+      {/* Company Header */}
+      <div className="flex items-start gap-3">
+        <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+          <span className="text-[#0A0A0A] font-bold text-[9px] text-center leading-tight">DMG<br/>MORI</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-white font-semibold text-sm">DMG MORI AG</div>
+          <div className="flex items-center gap-1.5 text-[#C0C0C0]/70 text-[10px] mt-0.5">
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>Bielefeld, Germany</span>
+          </div>
+          <div className="text-[#C0C0C0]/50 text-[10px]">CNC Machine Manufacturing</div>
+        </div>
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 1.8 }}
+          className="text-right"
+        >
+          <div className="text-[#7CC2A7] font-bold text-lg">98</div>
+          <div className="text-[#C0C0C0]/40 text-[9px]">Risk Score</div>
+        </motion.div>
       </div>
-      
-      <div className="space-y-2">
+
+      {/* Stats Grid */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2 }}
+        className="grid grid-cols-4 gap-1.5"
+      >
         {[
-          { label: "Company Profile", progress: 100 },
-          { label: "Risk Assessment", progress: 75 },
-          { label: "Certifications", progress: 50 },
-        ].map((item, i) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.8 + i * 0.2 }}
-            className="flex items-center gap-2"
-          >
-            <span className="text-[#C0C0C0]/80 text-[10px] w-24">{item.label}</span>
-            <div className="flex-1 h-2 bg-[#C0C0C0]/15 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${item.progress}%` }}
-                transition={{ delay: 2 + i * 0.2, duration: 0.6 }}
-                className="h-full bg-[#1391BF] rounded-full"
-              />
-            </div>
-          </motion.div>
+          { label: 'Employees', value: '12,000+' },
+          { label: 'Revenue', value: '€2.5B' },
+          { label: 'Founded', value: '1870' },
+          { label: 'Sites', value: '154' },
+        ].map((stat) => (
+          <div key={stat.label} className="bg-[#0A0A0A] rounded-lg p-2 text-center">
+            <div className="text-white font-medium text-[11px]">{stat.value}</div>
+            <div className="text-[#C0C0C0]/40 text-[8px]">{stat.label}</div>
+          </div>
         ))}
-      </div>
+      </motion.div>
+
+      {/* Certifications */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.8 }}
+        className="flex flex-wrap gap-1.5"
+      >
+        {['ISO 9001', 'ISO 14001', 'IATF 16949', 'ISO 45001'].map((cert) => (
+          <span key={cert} className="px-2 py-1 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[9px] rounded-full border border-[#7CC2A7]/30">
+            {cert}
+          </span>
+        ))}
+      </motion.div>
+
+      {/* Product Categories */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3.2 }}
+        className="text-[#C0C0C0]/60 text-[9px]"
+      >
+        <span className="text-[#C0C0C0]/40">Products:</span> CNC Lathes, Milling Machines, Automation Systems, Digital Solutions
+      </motion.div>
     </motion.div>
   </div>
 );
@@ -267,161 +291,329 @@ const AuditExecutionDemo = () => (
   </div>
 );
 
-// Step 4: Report Generation
+// Step 4: Report Generation - Comprehensive with findings, images, charts
 const ReportDemo = () => (
-  <div className="h-full flex flex-col text-xs bg-[#0A0A0A] p-4">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-6 h-6 rounded-full bg-[#7CC2A7] flex items-center justify-center text-white text-sm">✓</div>
-      <div className="h-0.5 flex-1 bg-[#7CC2A7]" />
-      <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-sm font-bold">4</div>
-      <span className="text-white/90 font-medium">Report</span>
-    </div>
-    
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex-1 bg-[#161616] rounded-xl p-4"
-    >
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <div className="text-white font-medium">Audit Report</div>
-          <div className="text-[#C0C0C0]/60 text-[10px]">Müller GmbH • ISO 9001:2015</div>
-        </div>
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5 }}
-          className="px-3 py-1 bg-[#7CC2A7] text-white rounded-full text-[10px] font-medium"
-        >
-          Passed
-        </motion.div>
+  <div className="h-full flex text-xs bg-[#0A0A0A]">
+    {/* Left Panel - Report Overview */}
+    <div className="flex-1 p-4 flex flex-col">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-6 h-6 rounded-full bg-[#7CC2A7] flex items-center justify-center text-white text-sm">✓</div>
+        <div className="h-0.5 flex-1 bg-[#7CC2A7]" />
+        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-sm font-bold">4</div>
+        <span className="text-white/90 font-medium">Report</span>
       </div>
       
-      <div className="space-y-3">
-        {[
-          { section: "Executive Summary", pages: "2 pages" },
-          { section: "Audit Findings", pages: "8 pages" },
-          { section: "Evidence Gallery", pages: "47 photos" },
-          { section: "Corrective Actions", pages: "3 items" },
-        ].map((item, i) => (
+      {/* Header with Score */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="bg-[#161616] rounded-xl p-3 mb-3"
+      >
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <div className="text-white font-medium">DMG MORI AG</div>
+            <div className="text-[#C0C0C0]/60 text-[10px]">IATF 16949 Audit • Jan 2025</div>
+          </div>
           <motion.div
-            key={item.section}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 + i * 0.15 }}
-            className="flex items-center gap-3 p-3 bg-[#0A0A0A] rounded-lg"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-center"
           >
-            <svg className="w-5 h-5 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <div className="flex-1">
-              <div className="text-white/90">{item.section}</div>
-              <div className="text-[#C0C0C0]/50 text-[9px]">{item.pages}</div>
-            </div>
-            <svg className="w-4 h-4 text-[#C0C0C0]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <div className="text-2xl font-bold text-[#7CC2A7]">87</div>
+            <div className="text-[#C0C0C0]/40 text-[9px]">Overall Score</div>
           </motion.div>
-        ))}
-      </div>
-      
+        </div>
+        
+        {/* Score Chart Bars */}
+        <div className="space-y-2">
+          {[
+            { label: 'Quality Management', score: 92, color: '#7CC2A7' },
+            { label: 'Process Control', score: 85, color: '#1391BF' },
+            { label: 'Documentation', score: 78, color: '#D8A860' },
+            { label: 'Equipment Maint.', score: 88, color: '#7CC2A7' },
+          ].map((item, i) => (
+            <div key={item.label} className="space-y-0.5">
+              <div className="flex justify-between text-[9px]">
+                <span className="text-[#C0C0C0]/60">{item.label}</span>
+                <span className="text-white">{item.score}%</span>
+              </div>
+              <div className="h-1.5 bg-[#C0C0C0]/10 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${item.score}%` }}
+                  transition={{ delay: 0.8 + i * 0.15, duration: 0.5 }}
+                  style={{ backgroundColor: item.color }}
+                  className="h-full rounded-full"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Findings Summary */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="grid grid-cols-3 gap-2 mb-3"
+      >
+        <div className="bg-[#C4564F]/15 rounded-lg p-2 text-center">
+          <div className="text-[#C4564F] font-bold">1</div>
+          <div className="text-[#C0C0C0]/40 text-[9px]">Major NC</div>
+        </div>
+        <div className="bg-[#D8A860]/15 rounded-lg p-2 text-center">
+          <div className="text-[#D8A860] font-bold">3</div>
+          <div className="text-[#C0C0C0]/40 text-[9px]">Minor NC</div>
+        </div>
+        <div className="bg-[#1391BF]/15 rounded-lg p-2 text-center">
+          <div className="text-[#1391BF] font-bold">5</div>
+          <div className="text-[#C0C0C0]/40 text-[9px]">OFI</div>
+        </div>
+      </motion.div>
+
+      {/* Download Button */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="mt-4 w-full py-2.5 bg-[#1391BF] text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2"
+        transition={{ delay: 2.5 }}
+        className="mt-auto py-2.5 bg-[#1391BF] text-white rounded-lg text-[11px] font-medium flex items-center justify-center gap-2"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
         </svg>
-        Download PDF Report
+        Download Full Report (PDF)
       </motion.button>
-    </motion.div>
+    </div>
+
+    {/* Right Panel - Evidence & Findings */}
+    <div className="w-44 bg-[#161616] p-3 flex flex-col gap-3">
+      {/* Evidence Gallery */}
+      <div>
+        <div className="text-[#C0C0C0]/60 text-[9px] uppercase tracking-wide mb-2">Evidence</div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
+          className="relative rounded-lg overflow-hidden"
+        >
+          <img src={equipmentImage} alt="Evidence" className="w-full h-16 object-cover" />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1.5">
+            <div className="text-white text-[8px]">47 photos attached</div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Key Findings */}
+      <div className="flex-1">
+        <div className="text-[#C0C0C0]/60 text-[9px] uppercase tracking-wide mb-2">Key Findings</div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="space-y-2"
+        >
+          <div className="bg-[#C4564F]/10 border border-[#C4564F]/30 rounded-lg p-2">
+            <div className="flex items-center gap-1.5 mb-1">
+              <svg className="w-3 h-3 text-[#C4564F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span className="text-[#C4564F] text-[9px] font-medium">Major NC</span>
+            </div>
+            <div className="text-white/70 text-[8px]">Missing traceability for batch #2024-1847</div>
+          </div>
+          <div className="bg-[#D8A860]/10 border border-[#D8A860]/30 rounded-lg p-2">
+            <div className="flex items-center gap-1.5 mb-1">
+              <svg className="w-3 h-3 text-[#D8A860]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-[#D8A860] text-[9px] font-medium">Minor NC</span>
+            </div>
+            <div className="text-white/70 text-[8px]">CMM calibration records incomplete</div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
   </div>
 );
 
-// Step 5: Follow-up Manager
+// Step 5: Follow-up Manager - Detailed with responsible, deadline, tasks, status
 const FollowUpDemo = () => (
-  <div className="h-full flex flex-col text-xs bg-[#0A0A0A] p-4">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-6 h-6 rounded-full bg-[#7CC2A7] flex items-center justify-center text-white text-sm">✓</div>
-      <div className="h-0.5 flex-1 bg-[#7CC2A7]" />
-      <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-sm font-bold">5</div>
-      <span className="text-white/90 font-medium">Follow-up</span>
-    </div>
-    
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex-1 bg-[#161616] rounded-xl p-4"
-    >
-      <div className="flex items-center justify-between mb-4">
-        <div className="text-white font-medium">Action Items</div>
+  <div className="h-full flex text-xs bg-[#0A0A0A]">
+    {/* Main Panel - Tasks */}
+    <div className="flex-1 p-4 flex flex-col">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-6 h-6 rounded-full bg-[#7CC2A7] flex items-center justify-center text-white text-sm">✓</div>
+        <div className="h-0.5 flex-1 bg-[#7CC2A7]" />
+        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-sm font-bold">5</div>
+        <span className="text-white/90 font-medium">Follow-up</span>
+      </div>
+      
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-white font-medium">Corrective Actions</div>
         <div className="flex items-center gap-2">
-          <div className="px-2 py-0.5 bg-[#D8A860]/20 text-[#D8A860] rounded text-[9px]">1 Open</div>
-          <div className="px-2 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded text-[9px]">2 Closed</div>
+          <div className="px-2 py-0.5 bg-[#D8A860]/20 text-[#D8A860] rounded text-[9px]">2 In Progress</div>
+          <div className="px-2 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded text-[9px]">1 Complete</div>
         </div>
       </div>
       
-      <div className="space-y-2">
+      {/* Task Cards */}
+      <div className="flex-1 space-y-2 overflow-y-auto">
         {[
-          { title: "Update calibration records", status: "open", due: "Jan 15", assignee: "MS" },
-          { title: "Document control procedure", status: "closed", due: "Dec 20", assignee: "JD" },
-          { title: "Training matrix update", status: "closed", due: "Dec 18", assignee: "AK" },
+          { 
+            title: 'Traceability Documentation Update',
+            status: 'In Progress',
+            statusColor: '#D8A860',
+            responsible: 'Hans Mueller',
+            role: 'Quality Manager',
+            deadline: 'Feb 15, 2025',
+            progress: 65,
+            tasks: 4,
+            completed: 2
+          },
+          { 
+            title: 'CMM Calibration Records',
+            status: 'Pending Review',
+            statusColor: '#1391BF',
+            responsible: 'Anna Schmidt',
+            role: 'Metrology Lead',
+            deadline: 'Feb 20, 2025',
+            progress: 90,
+            tasks: 3,
+            completed: 3
+          },
+          { 
+            title: 'Training Records Update',
+            status: 'Complete',
+            statusColor: '#7CC2A7',
+            responsible: 'Thomas Weber',
+            role: 'HR Manager',
+            deadline: 'Feb 10, 2025',
+            progress: 100,
+            tasks: 2,
+            completed: 2
+          },
         ].map((item, i) => (
           <motion.div
             key={item.title}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 + i * 0.15 }}
-            className={`p-3 rounded-lg ${
-              item.status === 'open' ? 'bg-[#D8A860]/10 border border-[#D8A860]/30' : 'bg-[#0A0A0A]'
+            transition={{ delay: 0.3 + i * 0.2 }}
+            className={`bg-[#161616] rounded-lg p-3 ${
+              item.status === 'In Progress' ? 'border border-[#D8A860]/30' : ''
             }`}
           >
-            <div className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded flex items-center justify-center ${
-                item.status === 'closed' ? 'bg-[#7CC2A7]' : 'border border-[#D8A860]'
-              }`}>
-                {item.status === 'closed' && (
-                  <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                  </svg>
-                )}
-              </div>
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
-                <div className={`${item.status === 'closed' ? 'text-white/50 line-through' : 'text-white/90'}`}>
-                  {item.title}
+                <div className="text-white/90 font-medium text-[11px]">{item.title}</div>
+                <div className="flex items-center gap-3 mt-1">
+                  <div className="flex items-center gap-1.5 text-[#C0C0C0]/60 text-[9px]">
+                    <div className="w-4 h-4 rounded-full bg-[#1391BF]/20 flex items-center justify-center text-[#1391BF] text-[7px] font-bold">
+                      {item.responsible.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <span>{item.responsible}</span>
+                    <span className="text-[#C0C0C0]/40">• {item.role}</span>
+                  </div>
                 </div>
-                <div className="text-[#C0C0C0]/50 text-[9px] flex items-center gap-2">
-                  <span>Due: {item.due}</span>
-                  <span>•</span>
-                  <span>{item.assignee}</span>
-                </div>
+              </div>
+              <span 
+                className="px-2 py-0.5 text-[9px] rounded-full"
+                style={{ backgroundColor: `${item.statusColor}20`, color: item.statusColor }}
+              >
+                {item.status}
+              </span>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="flex items-center gap-2 mb-2">
+              <div className="flex-1 h-1.5 bg-[#C0C0C0]/10 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${item.progress}%` }}
+                  transition={{ delay: 0.8 + i * 0.2, duration: 0.5 }}
+                  style={{ backgroundColor: item.statusColor }}
+                  className="h-full rounded-full"
+                />
+              </div>
+              <span className="text-[#C0C0C0]/60 text-[9px]">{item.progress}%</span>
+            </div>
+            
+            {/* Meta */}
+            <div className="flex items-center gap-3 text-[9px] text-[#C0C0C0]/50">
+              <div className="flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Due: {item.deadline}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <span>{item.completed}/{item.tasks} Tasks</span>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
-      
+    </div>
+
+    {/* Right Panel - Activity & Schedule */}
+    <div className="w-40 bg-[#161616] p-3 flex flex-col gap-3">
+      {/* Re-audit Schedule */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="mt-4 p-3 bg-[#1391BF]/10 border border-[#1391BF]/30 rounded-lg"
+        className="bg-[#1391BF]/10 border border-[#1391BF]/30 rounded-lg p-2"
       >
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-[#1391BF] flex items-center justify-center">
-            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
           <div>
-            <div className="text-white/90 font-medium">Re-audit Scheduled</div>
-            <div className="text-[#1391BF] text-[10px]">March 15, 2026 • Follow-up verification</div>
+            <div className="text-white/90 font-medium text-[10px]">Re-audit</div>
+            <div className="text-[#1391BF] text-[9px]">Mar 15, 2026</div>
           </div>
         </div>
       </motion.div>
-    </motion.div>
+
+      {/* Recent Activity */}
+      <div className="flex-1">
+        <div className="text-[#C0C0C0]/60 text-[9px] uppercase tracking-wide mb-2">Activity</div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="space-y-2"
+        >
+          {[
+            { time: '2h ago', text: 'Hans uploaded evidence', color: '#7CC2A7' },
+            { time: '5h ago', text: 'Anna requested review', color: '#1391BF' },
+            { time: '1d ago', text: 'Thomas completed task', color: '#7CC2A7' },
+            { time: '2d ago', text: 'Deadline reminder sent', color: '#D8A860' },
+          ].map((activity, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.8 + i * 0.15 }}
+              className="flex items-start gap-2"
+            >
+              <div className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: activity.color }} />
+              <div>
+                <div className="text-white/70 text-[9px]">{activity.text}</div>
+                <div className="text-[#C0C0C0]/40 text-[8px]">{activity.time}</div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
   </div>
 );
 
@@ -431,7 +623,7 @@ const PlatformDemoAnimation = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStep((prev) => (prev + 1) % demoSteps.length);
-    }, 4000); // Change step every 4 seconds
+    }, 7000); // Change step every 7 seconds for better absorption
     
     return () => clearInterval(interval);
   }, []);
