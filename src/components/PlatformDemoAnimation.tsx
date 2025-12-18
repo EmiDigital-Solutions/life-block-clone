@@ -1225,36 +1225,91 @@ const ReportDemo = () => {
           ) : (
           /* Analytics View */
           <div className="flex-1 p-4 overflow-hidden">
-            {/* Score Trend Chart */}
+            {/* Score Trend Chart - Bars + Line */}
             <div className="mb-4">
-              <div className="text-white/90 font-medium text-sm mb-3">Score Trend (5-Year History)</div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-white/90 font-medium text-sm">Score Trend (5-Year History)</div>
+                <div className="flex gap-3 text-[9px] text-[#C0C0C0]/60">
+                  <span className="flex items-center gap-1"><div className="w-3 h-2 rounded bg-[#1391BF]/60" />Absolute</span>
+                  <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#7CC2A7]" />Trend</span>
+                </div>
+              </div>
               <div className="bg-[#161616] rounded-xl p-4">
-                <div className="flex items-end justify-between h-32 gap-3">
-                  {historicalScores.map((item, i) => {
-                    const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
-                    const height = (item.score / 100) * 100;
-                    return (
-                      <motion.div 
-                        key={item.year}
-                        className="flex-1 flex flex-col items-center gap-1"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
+                <div className="relative h-36">
+                  {/* Bars for absolute values */}
+                  <div className="flex items-end justify-between h-28 gap-3 relative z-10">
+                    {historicalScores.map((item, i) => {
+                      const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
+                      const height = ((item.score - 50) / 50) * 100; // Scale from 50-100 range
+                      return (
                         <motion.div 
-                          className="w-full rounded-t-lg relative"
-                          style={{ backgroundColor: color }}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${height}%` }}
-                          transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
+                          key={item.year}
+                          className="flex-1 flex flex-col items-center gap-1"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: i * 0.1 }}
                         >
-                          <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white">{item.score}%</span>
+                          <motion.div 
+                            className="w-full rounded-t-lg relative"
+                            style={{ backgroundColor: color + '60' }}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${height}%` }}
+                            transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
+                          >
+                            <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white">{item.score}%</span>
+                          </motion.div>
                         </motion.div>
+                      );
+                    })}
+                  </div>
+                  
+                  {/* Trend Line Overlay */}
+                  <svg className="absolute inset-0 w-full h-28 z-20 pointer-events-none" preserveAspectRatio="none">
+                    <motion.polyline
+                      fill="none"
+                      stroke="#7CC2A7"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+                      points={historicalScores.map((item, i) => {
+                        const x = (i / (historicalScores.length - 1)) * 100;
+                        const y = 100 - ((item.score - 50) / 50) * 100;
+                        return `${x}%,${y}%`;
+                      }).join(' ')}
+                    />
+                    {/* Trend line dots */}
+                    {historicalScores.map((item, i) => {
+                      const x = (i / (historicalScores.length - 1)) * 100;
+                      const y = 100 - ((item.score - 50) / 50) * 100;
+                      return (
+                        <motion.circle
+                          key={item.year}
+                          cx={`${x}%`}
+                          cy={`${y}%`}
+                          r="4"
+                          fill="#7CC2A7"
+                          stroke="#161616"
+                          strokeWidth="2"
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 1 + i * 0.1 }}
+                        />
+                      );
+                    })}
+                  </svg>
+                  
+                  {/* Year labels */}
+                  <div className="flex justify-between mt-2">
+                    {historicalScores.map((item) => (
+                      <div key={item.year} className="flex-1 text-center">
                         <span className="text-[#C0C0C0]/60 text-[9px]">{item.year}</span>
-                        <span className="text-[#C0C0C0]/40 text-[8px] truncate w-full text-center">{item.auditor}</span>
-                      </motion.div>
-                    );
-                  })}
+                        <div className="text-[#C0C0C0]/40 text-[8px] truncate">{item.auditor}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
