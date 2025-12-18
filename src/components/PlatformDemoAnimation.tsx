@@ -549,160 +549,192 @@ const AuditorDispatchDemo = () => {
     <WindowChrome title="ScanPro+ — Global Auditor Network">
       <div className="h-full flex">
         {/* Map View - Enhanced */}
-        <div className="w-3/5 relative bg-gradient-to-br from-[#0A0A0A] via-[#0d1117] to-[#0A0A0A] overflow-hidden">
-          {/* Animated Grid Background */}
-          <div className="absolute inset-0 opacity-10">
+        <div className="w-3/5 relative bg-[#0A0A0A] overflow-hidden">
+          {/* Subtle Grid Background */}
+          <div className="absolute inset-0 opacity-5">
             <div className="w-full h-full" style={{
-              backgroundImage: 'linear-gradient(rgba(19,145,191,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(19,145,191,0.3) 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
+              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(19,145,191,0.8) 1px, transparent 0)',
+              backgroundSize: '32px 32px'
             }} />
           </div>
           
-          {/* World Map */}
-          <div className="absolute inset-0 opacity-20">
-            <img src={worldMap} alt="World Map" className="w-full h-full object-cover" />
+          {/* World Map - Brighter */}
+          <div className="absolute inset-0 opacity-30">
+            <img src={worldMap} alt="World Map" className="w-full h-full object-cover" style={{ filter: 'brightness(1.2) contrast(1.1)' }} />
           </div>
           
-          {/* Animated Pulse Rings from Center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-            {[1, 2, 3].map((ring) => (
-              <motion.div
-                key={ring}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#1391BF]/30"
-                initial={{ width: 40, height: 40, opacity: 0.6 }}
-                animate={{ width: [40, 300, 500], height: [40, 300, 500], opacity: [0.6, 0.2, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: ring * 1.2, ease: "easeOut" }}
-              />
-            ))}
-          </div>
+          {/* Soft Center Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#1391BF]/8 rounded-full blur-[100px] pointer-events-none" />
           
-          {/* Connection Lines with Gradient */}
-          <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 8px rgba(19,145,191,0.5))' }}>
+          {/* Connection Lines - Elegant Curved */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none">
             <defs>
-              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1391BF" stopOpacity="0.1" />
-                <stop offset="50%" stopColor="#1391BF" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#7CC2A7" stopOpacity="0.6" />
+              <linearGradient id="activeLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#1391BF" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#7CC2A7" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#7CC2A7" stopOpacity="0.5" />
               </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
-            {auditors.map((auditor, i) => (
-              <motion.line
-                key={i}
-                x1="50%"
-                y1="50%"
-                x2={`${auditor.x}%`}
-                y2={`${auditor.y}%`}
-                stroke={selectedAuditor === i ? "url(#lineGradient)" : "#1391BF"}
-                strokeWidth={selectedAuditor === i ? 3 : 1}
-                strokeOpacity={selectedAuditor === i ? 1 : 0.15}
-                strokeDasharray={selectedAuditor === i ? "8 4" : "4 4"}
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: i * 0.15 }}
-              />
-            ))}
+            {auditors.map((auditor, i) => {
+              const cx = 50;
+              const cy = 50;
+              const midX = (cx + auditor.x) / 2;
+              const midY = (cy + auditor.y) / 2 - 5;
+              const isSelected = selectedAuditor === i;
+              
+              return (
+                <motion.path
+                  key={i}
+                  d={`M ${cx}% ${cy}% Q ${midX}% ${midY}% ${auditor.x}% ${auditor.y}%`}
+                  fill="none"
+                  stroke={isSelected ? "url(#activeLineGrad)" : "#1391BF"}
+                  strokeWidth={isSelected ? 2.5 : 1}
+                  strokeOpacity={isSelected ? 1 : 0.12}
+                  strokeDasharray={isSelected ? "0" : "2 6"}
+                  filter={isSelected ? "url(#glow)" : "none"}
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.2, delay: i * 0.1 }}
+                />
+              );
+            })}
           </svg>
           
-          {/* Center Hub - Enhanced */}
+          {/* Center Hub */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <motion.div 
-              animate={{ scale: [1, 1.1, 1] }} 
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative"
+              animate={{ scale: [1, 1.05, 1] }} 
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] flex items-center justify-center shadow-[0_0_40px_rgba(19,145,191,0.5)]">
-                <div className="w-14 h-14 rounded-full bg-[#0A0A0A] flex items-center justify-center border border-[#1391BF]/50">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] flex items-center justify-center shadow-[0_0_30px_rgba(19,145,191,0.4)]">
+                <div className="w-11 h-11 rounded-full bg-[#0A0A0A] flex items-center justify-center">
                   <div className="text-center">
-                    <span className="text-white font-bold text-xs">YVOO</span>
-                    <div className="text-[#1391BF] text-[8px]">HQ</div>
+                    <span className="text-white font-bold text-[11px]">YVOO</span>
+                    <div className="text-[#1391BF] text-[7px] -mt-0.5">HQ</div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
           
-          {/* Auditor Pins - Enhanced */}
-          {auditors.map((auditor, i) => (
-            <motion.div
-              key={i}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3 + i * 0.15, type: "spring", stiffness: 200 }}
-              className="absolute z-20"
-              style={{ left: `${auditor.x}%`, top: `${auditor.y}%`, transform: 'translate(-50%, -50%)' }}
-            >
-              {/* Pulse Ring for Selected */}
-              {selectedAuditor === i && (
-                <motion.div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7CC2A7]/20"
-                  initial={{ width: 40, height: 40 }}
-                  animate={{ width: [40, 70], height: [40, 70], opacity: [0.8, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-              )}
-              
+          {/* Auditor Pins */}
+          {auditors.map((auditor, i) => {
+            const isSelected = selectedAuditor === i;
+            return (
               <motion.div
-                animate={selectedAuditor === i ? { y: [-2, 2, -2] } : {}}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className={`relative w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all shadow-lg ${
-                  selectedAuditor === i 
-                    ? 'bg-gradient-to-br from-[#7CC2A7] to-[#5BA88F] ring-4 ring-[#7CC2A7]/40 scale-110' 
-                    : 'bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] hover:scale-105'
-                }`}
-                onClick={() => setSelectedAuditor(i)}
+                key={i}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3 + i * 0.1, type: "spring", stiffness: 200 }}
+                className="absolute z-20"
+                style={{ left: `${auditor.x}%`, top: `${auditor.y}%`, transform: 'translate(-50%, -50%)' }}
               >
-                <span className="text-white font-bold text-sm">
-                  {auditor.name.split(' ').slice(-1)[0][0]}{auditor.name.split(' ')[0][0]}
-                </span>
+                {/* Selection Ring */}
+                {isSelected && (
+                  <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#7CC2A7]"
+                    initial={{ width: 48, height: 48, opacity: 0 }}
+                    animate={{ width: [48, 64], height: [48, 64], opacity: [0.8, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                )}
                 
-                {/* Rating Badge */}
-                <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#0A0A0A] border border-[#7CC2A7] flex items-center justify-center">
-                  <span className="text-[#7CC2A7] text-[8px] font-bold">{auditor.rating}</span>
-                </div>
-              </motion.div>
-              
-              {/* Info Tooltip */}
-              {selectedAuditor === i && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className="absolute top-14 left-1/2 -translate-x-1/2 bg-[#161616]/95 backdrop-blur-sm rounded-xl p-3 whitespace-nowrap z-30 border border-[#C0C0C0]/10 shadow-2xl min-w-[140px]"
+                  whileHover={{ scale: 1.1 }}
+                  animate={isSelected ? { y: [-1, 1, -1] } : {}}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  className={`relative w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all ${
+                    isSelected 
+                      ? 'bg-gradient-to-br from-[#7CC2A7] to-[#5BA88F] shadow-[0_0_20px_rgba(124,194,167,0.5)]' 
+                      : 'bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] hover:shadow-[0_0_15px_rgba(19,145,191,0.4)]'
+                  }`}
+                  onClick={() => setSelectedAuditor(i)}
                 >
-                  <div className="text-white font-semibold text-sm mb-1">{auditor.name}</div>
-                  <div className="text-[#C0C0C0]/70 text-xs mb-2">{auditor.location}</div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-[#7CC2A7]">★ {auditor.rating}</span>
-                    <span className="text-[#C0C0C0]/40">•</span>
-                    <span className="text-[#C0C0C0]/60">{auditor.audits} audits</span>
-                  </div>
-                  <div className="mt-2 flex gap-1">
-                    <span className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[9px] rounded">{auditor.specialty}</span>
+                  <span className="text-white font-semibold text-xs">
+                    {auditor.name.split(' ')[0][0]}{auditor.name.split(' ').slice(-1)[0][0]}
+                  </span>
+                  
+                  {/* Rating Badge */}
+                  <div className={`absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full flex items-center justify-center text-[8px] font-bold ${
+                    isSelected ? 'bg-[#0A0A0A] text-[#7CC2A7] border border-[#7CC2A7]' : 'bg-[#0A0A0A] text-[#D8A860] border border-[#D8A860]/50'
+                  }`}>
+                    {auditor.rating}
                   </div>
                 </motion.div>
-              )}
-            </motion.div>
-          ))}
+                
+                {/* Enhanced Tooltip */}
+                {isSelected && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#161616] rounded-xl p-3 whitespace-nowrap z-30 border border-[#7CC2A7]/30 shadow-xl min-w-[150px]"
+                  >
+                    <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#161616] rotate-45 border-l border-t border-[#7CC2A7]/30" />
+                    <div className="text-white font-semibold text-sm">{auditor.name}</div>
+                    <div className="text-[#C0C0C0]/70 text-xs mt-0.5">{auditor.location}</div>
+                    <div className="flex items-center gap-3 mt-2 pt-2 border-t border-[#C0C0C0]/10">
+                      <div className="flex items-center gap-1">
+                        <span className="text-[#D8A860]">★</span>
+                        <span className="text-white text-xs font-medium">{auditor.rating}</span>
+                      </div>
+                      <div className="text-[#C0C0C0]/50 text-xs">{auditor.audits} audits</div>
+                    </div>
+                    <div className="mt-2">
+                      <span className="px-2 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[10px] rounded-full font-medium">{auditor.specialty}</span>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            );
+          })}
           
-          {/* Stats Bar - Enhanced */}
+          {/* Stats Bar - Clean Design */}
           <div className="absolute bottom-0 left-0 right-0">
-            <div className="bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/95 to-transparent pt-8 pb-4 px-4">
-              <div className="bg-[#161616]/80 backdrop-blur-xl rounded-2xl p-4 border border-[#C0C0C0]/10">
-                <div className="grid grid-cols-4 gap-3">
+            <div className="bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent pt-6 pb-3 px-3">
+              <div className="bg-[#161616]/90 backdrop-blur-sm rounded-xl p-3 border border-[#C0C0C0]/5">
+                <div className="grid grid-cols-4 gap-2">
                   {[
-                    { value: "2,000+", label: "Certified Auditors", color: "#7CC2A7", icon: "👤" },
-                    { value: "90+", label: "Countries", color: "#1391BF", icon: "🌍" },
-                    { value: "<48h", label: "Deployment", color: "#D8A860", icon: "⚡" },
-                    { value: "100%", label: "Local Coverage", color: "#7CC2A7", icon: "📍" },
+                    { value: "2,000+", label: "Certified Auditors", color: "#7CC2A7", icon: (
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    )},
+                    { value: "90+", label: "Countries", color: "#1391BF", icon: (
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )},
+                    { value: "<48h", label: "Deployment", color: "#D8A860", icon: (
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    )},
+                    { value: "100%", label: "Local Coverage", color: "#7CC2A7", icon: (
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    )},
                   ].map((stat, i) => (
                     <motion.div 
                       key={i}
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
+                      transition={{ delay: 0.4 + i * 0.08 }}
                       className="text-center"
                     >
-                      <div className="text-2xl font-bold" style={{ color: stat.color }}>{stat.value}</div>
-                      <div className="text-[#C0C0C0]/50 text-[10px] mt-0.5">{stat.label}</div>
+                      <div className="flex items-center justify-center gap-1.5">
+                        <span style={{ color: stat.color }}>{stat.icon}</span>
+                        <span className="text-xl font-bold" style={{ color: stat.color }}>{stat.value}</span>
+                      </div>
+                      <div className="text-[#C0C0C0]/40 text-[9px] mt-0.5">{stat.label}</div>
                     </motion.div>
                   ))}
                 </div>
@@ -714,99 +746,98 @@ const AuditorDispatchDemo = () => {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1 }}
-            className="absolute top-4 left-4 bg-[#161616]/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-[#1391BF]/30"
+            transition={{ delay: 0.8 }}
+            className="absolute top-3 left-3 bg-[#161616]/95 backdrop-blur-sm rounded-xl px-3 py-2.5 border border-[#C0C0C0]/10"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <div className="text-white font-semibold text-sm">We are everywhere</div>
-                <div className="text-[#1391BF] text-xs">Local experts in every region</div>
+                <div className="text-white font-semibold text-xs">We are everywhere</div>
+                <div className="text-[#7CC2A7] text-[10px]">Local experts in every region</div>
               </div>
             </div>
           </motion.div>
         </div>
         
-        {/* Auditor Selection Panel - Enhanced */}
+        {/* Auditor Selection Panel */}
         <div className="w-2/5 flex flex-col bg-[#0d0d0d]">
           {/* Header */}
           <div className="p-4 border-b border-[#C0C0C0]/10">
             <div className="flex items-center justify-between mb-1">
-              <div className="text-white font-semibold text-lg">Best Match Auditors</div>
-              <motion.span 
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="px-3 py-1 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded-full text-xs font-medium"
-              >
+              <div className="text-white font-semibold text-base">Best Match Auditors</div>
+              <span className="px-2.5 py-1 bg-[#7CC2A7]/15 text-[#7CC2A7] rounded-full text-[11px] font-medium border border-[#7CC2A7]/20">
                 {auditors.length} Available
-              </motion.span>
+              </span>
             </div>
             <div className="text-[#C0C0C0]/50 text-xs">Matching: VDA 6.3, Shanghai Region</div>
           </div>
           
           {/* Auditor Cards */}
           <div className="flex-1 p-3 space-y-2 overflow-y-auto">
-            {auditors.slice(0, 4).map((auditor, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + i * 0.1 }}
-                className={`p-3 rounded-xl cursor-pointer transition-all ${
-                  selectedAuditor === i 
-                    ? 'bg-gradient-to-r from-[#1391BF]/20 to-[#7CC2A7]/10 border border-[#1391BF]/50 shadow-lg' 
-                    : 'bg-[#161616] hover:bg-[#1a1a1a] border border-transparent'
-                }`}
-                onClick={() => setSelectedAuditor(i)}
-              >
-                <div className="flex items-start gap-3">
-                  <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold transition-all ${
-                    selectedAuditor === i 
-                      ? 'bg-gradient-to-br from-[#7CC2A7] to-[#5BA88F]' 
-                      : 'bg-gradient-to-br from-[#1391BF] to-[#0A7FA5]'
-                  }`}>
-                    {auditor.name.split(' ').slice(-1)[0][0]}{auditor.name.split(' ')[0][0]}
-                    {selectedAuditor === i && (
-                      <motion.div 
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="absolute -top-1 -right-1 w-4 h-4 bg-[#7CC2A7] rounded-full flex items-center justify-center"
-                      >
-                        <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                      </motion.div>
-                    )}
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <div className="text-white font-medium text-sm">{auditor.name}</div>
-                      <div className="flex items-center gap-0.5">
-                        <span className="text-[#D8A860] text-xs">★</span>
-                        <span className="text-[#C0C0C0]/70 text-xs">{auditor.rating}</span>
+            {auditors.slice(0, 4).map((auditor, i) => {
+              const isSelected = selectedAuditor === i;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 + i * 0.08 }}
+                  className={`p-3 rounded-xl cursor-pointer transition-all ${
+                    isSelected 
+                      ? 'bg-[#161616] border border-[#7CC2A7]/40 shadow-[0_0_15px_rgba(124,194,167,0.1)]' 
+                      : 'bg-[#131313] hover:bg-[#161616] border border-transparent'
+                  }`}
+                  onClick={() => setSelectedAuditor(i)}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center text-white font-semibold text-sm transition-all ${
+                      isSelected 
+                        ? 'bg-gradient-to-br from-[#7CC2A7] to-[#5BA88F]' 
+                        : 'bg-gradient-to-br from-[#1391BF] to-[#0A7FA5]'
+                    }`}>
+                      {auditor.name.split(' ')[0][0]}{auditor.name.split(' ').slice(-1)[0][0]}
+                      {isSelected && (
+                        <motion.div 
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute -top-1 -right-1 w-4 h-4 bg-[#7CC2A7] rounded-full flex items-center justify-center border-2 border-[#0d0d0d]"
+                        >
+                          <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                          </svg>
+                        </motion.div>
+                      )}
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white font-medium text-sm">{auditor.name}</span>
+                        <div className="flex items-center gap-0.5 text-xs">
+                          <span className="text-[#D8A860]">★</span>
+                          <span className="text-[#C0C0C0]/70">{auditor.rating}</span>
+                        </div>
+                      </div>
+                      <div className="text-[#C0C0C0]/50 text-xs mt-0.5">{auditor.location}</div>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="px-2 py-0.5 bg-[#7CC2A7]/10 text-[#7CC2A7] text-[10px] rounded-full font-medium">{auditor.specialty}</span>
+                        <span className="text-[#C0C0C0]/40 text-[10px]">{auditor.audits} audits</span>
                       </div>
                     </div>
-                    <div className="text-[#C0C0C0]/50 text-xs mt-0.5">{auditor.location}</div>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="px-2 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[10px] rounded-full font-medium">{auditor.specialty}</span>
-                      <span className="text-[#C0C0C0]/40 text-[10px]">{auditor.audits} audits</span>
+                    
+                    <div className="text-right">
+                      <div className={`text-xs font-semibold ${auditor.available === 'Today' ? 'text-[#7CC2A7]' : auditor.available === 'Tomorrow' ? 'text-[#1391BF]' : 'text-[#D8A860]'}`}>
+                        {auditor.available}
+                      </div>
+                      <div className="text-[#C0C0C0]/40 text-[10px] mt-0.5">{auditor.distance}</div>
                     </div>
                   </div>
-                  
-                  <div className="text-right">
-                    <div className={`text-xs font-semibold ${auditor.available === 'Today' ? 'text-[#7CC2A7]' : auditor.available === 'Tomorrow' ? 'text-[#1391BF]' : 'text-[#D8A860]'}`}>
-                      {auditor.available}
-                    </div>
-                    <div className="text-[#C0C0C0]/40 text-[10px] mt-0.5">{auditor.distance}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
           
           {/* Dispatch Status */}
