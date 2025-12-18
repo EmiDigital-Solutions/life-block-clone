@@ -1259,6 +1259,40 @@ const ReportDemo = () => {
                   
                   {/* Trend Line Overlay - aligned to bar centers */}
                   <svg className="absolute top-0 left-2 right-2 h-28 z-20 pointer-events-none overflow-visible">
+                    {/* Average score dashed line */}
+                    {(() => {
+                      const avgScore = historicalScores.reduce((sum, item) => sum + item.score, 0) / historicalScores.length;
+                      const avgY = 100 - ((avgScore - 50) / 50) * 100;
+                      return (
+                        <>
+                          <motion.line
+                            x1="0%"
+                            y1={`${avgY}%`}
+                            x2="100%"
+                            y2={`${avgY}%`}
+                            stroke="#C0C0C0"
+                            strokeWidth="1"
+                            strokeDasharray="4 4"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.6 }}
+                            transition={{ delay: 0.5, duration: 0.5 }}
+                          />
+                          <motion.text
+                            x="100%"
+                            y={`${avgY - 2}%`}
+                            fill="#C0C0C0"
+                            fontSize="8"
+                            textAnchor="end"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.8 }}
+                            transition={{ delay: 0.7, duration: 0.5 }}
+                          >
+                            Avg: {avgScore.toFixed(1)}%
+                          </motion.text>
+                        </>
+                      );
+                    })()}
+                    
                     <motion.polyline
                       fill="none"
                       stroke="#0A7FA5"
