@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import factoryImage from "@/assets/factory-hero-background.jpg";
 import worldMap from "@/assets/dotted-world-map.png";
-import aiInspectorImage from "@/assets/ai-inspector-tech.jpg";
-import workflowImage from "@/assets/workflow-dashboard.jpg";
-import scanproImage from "@/assets/scanpro-ai-dashboard.jpg";
-import erpImage from "@/assets/erp-integration-sync.jpg";
-import qualityImage from "@/assets/quality-hero-green.png";
-import auditorTeamImage from "@/assets/auditor-factory-team.jpg";
+// Evidence gallery images - authentic audit context
+import aiAuditInspection from "@/assets/ai-audit-inspection.jpg";
+import aiInspectorTech from "@/assets/ai-inspector-tech.jpg";
+import industryAutomotive from "@/assets/industry-automotive.jpg";
+import industryCryogenic from "@/assets/industry-cryogenic-valve.jpg";
+import auditorFactoryTeam from "@/assets/auditor-factory-team.jpg";
+import digitalWorkflow from "@/assets/digital-workflow-team.jpg";
 
 interface DemoStep {
   id: number;
@@ -1024,7 +1025,8 @@ const ReportDemo = () => {
     { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
   ];
   
-  const evidenceImages = [equipmentImage, scanproImage, workflowImage, factoryImage, erpImage, auditorTeamImage];
+  // Authentic audit evidence images
+  const evidenceImages = [equipmentImage, aiAuditInspection, aiInspectorTech, industryAutomotive, industryCryogenic, auditorFactoryTeam];
   
   const evidenceItems = [
     { id: 1, type: 'Equipment', label: 'CNC Machining Center', ref: 'IMG-001', verified: true },
