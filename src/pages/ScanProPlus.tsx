@@ -13,9 +13,6 @@ import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
-import ColorGuidanceTable from "@/components/scanproplus/ColorGuidanceTable";
-import OrderingProcess from "@/components/scanproplus/OrderingProcess";
-import FollowUpManager from "@/components/scanproplus/FollowUpManager";
 import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
@@ -2092,37 +2089,6 @@ const ScanProPlus = () => {
           </motion.div>
 
           <InfiniteScrollingGallery />
-          
-          {/* Color Guidance Table */}
-          <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mt-12">
-            <ColorGuidanceTable />
-          </div>
-          
-          {/* 2-Screen Ordering Process */}
-          <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mt-12">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-semibold text-foreground mb-6"
-            >
-              Order an Audit in 4 Simple Steps
-            </motion.h3>
-            <OrderingProcess />
-          </div>
-          
-          {/* Follow-up Manager */}
-          <div className="px-4 sm:px-6 lg:px-12 xl:px-24 mt-12">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-semibold text-foreground mb-6"
-            >
-              Follow-Up Manager
-            </motion.h3>
-            <FollowUpManager />
-          </div>
         </div>
       </section>
 

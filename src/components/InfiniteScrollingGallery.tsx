@@ -54,14 +54,20 @@ const capabilities: Capability[] = [
   },
 ];
 
-// Window Chrome Component - Clean minimal design without traffic lights
+// Window Chrome Component
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div className="w-full h-full bg-[#0A0A0A] rounded-lg overflow-hidden flex flex-col shadow-2xl">
-    {/* Title Bar - Clean without traffic lights */}
-    <div className="h-7 bg-[#161616] flex items-center px-3 border-b border-[#C0C0C0]/10 flex-shrink-0">
+    {/* Title Bar */}
+    <div className="h-7 bg-[#161616] flex items-center px-2.5 gap-2 border-b border-[#C0C0C0]/10 flex-shrink-0">
+      <div className="flex gap-1.5">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#C4564F]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#D8A860]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#7CC2A7]" />
+      </div>
       <div className="flex-1 text-center">
         <span className="text-[9px] text-[#C0C0C0]/60 font-medium">{title}</span>
       </div>
+      <div className="w-12" />
     </div>
     {/* Content */}
     <div className="flex-1 overflow-hidden">
@@ -744,20 +750,8 @@ const InfiniteScrollingGallery = () => {
             <div
               key={`${rowIndex}-${index}`}
               onClick={() => setSelectedCapability(item)}
-              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 ease-out hover:shadow-2xl hover:z-50 relative group"
-              style={{ 
-                width: '300px',
-                transform: 'scale(1)',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease, z-index 0s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.15)';
-                e.currentTarget.style.zIndex = '50';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.zIndex = '0';
-              }}
+              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:ring-1 hover:ring-primary/30"
+              style={{ width: '300px' }}
             >
               <div className="aspect-square overflow-hidden">
                 <MockupRenderer type={item.mockupType} />
