@@ -1257,47 +1257,7 @@ const ReportDemo = () => {
                     })}
                   </div>
                   
-                  {/* Trend Line Overlay - using viewBox for proper alignment */}
-                  <svg 
-                    className="absolute top-0 left-0 right-0 h-28 z-20 pointer-events-none overflow-visible"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                  >
-                    {/* Average score dashed line */}
-                    {(() => {
-                      const avgScore = historicalScores.reduce((sum, item) => sum + item.score, 0) / historicalScores.length;
-                      const avgY = 100 - ((avgScore - 50) / 50) * 100;
-                      return (
-                        <>
-                          <motion.line
-                            x1="0"
-                            y1={avgY}
-                            x2="100"
-                            y2={avgY}
-                            stroke="#C0C0C0"
-                            strokeWidth="0.5"
-                            strokeDasharray="2 2"
-                            vectorEffect="non-scaling-stroke"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.6 }}
-                            transition={{ delay: 0.5, duration: 0.5 }}
-                          />
-                          <text
-                            x="98"
-                            y={avgY - 3}
-                            fill="#C0C0C0"
-                            fontSize="6"
-                            textAnchor="end"
-                            style={{ opacity: 0.8 }}
-                          >
-                            Avg: {avgScore.toFixed(1)}%
-                          </text>
-                        </>
-                      );
-                    })()}
-                    
-                    {/* Trend line removed (per request) */}
-                  </svg>
+                  {/* Overlay lines removed (per request) */}
                   
                   {/* Year labels with client names */}
                   <div className="flex justify-between mt-2">
