@@ -1011,6 +1011,14 @@ const AuditExecutionDemo = () => (
 const ReportDemo = () => {
   const [viewMode, setViewMode] = useState<'overview' | 'analytics'>('overview');
   
+  // Auto-switch between Overview and Analytics every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setViewMode(prev => prev === 'overview' ? 'analytics' : 'overview');
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+  
   const processElements = [
     { code: 'P2', name: 'Project Management', score: 88, weight: 12 },
     { code: 'P3', name: 'Product & Process Development Planning', score: 82, weight: 15 },
