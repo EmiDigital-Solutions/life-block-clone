@@ -1155,7 +1155,7 @@ const InfiniteScrollingGallery = () => {
     const duplicatedItems = [...items, ...items, ...items];
     
     return (
-      <div className="overflow-hidden">
+      <div className="overflow-visible">
         <div 
           className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause`}
           style={{ width: 'fit-content' }}
@@ -1245,7 +1245,7 @@ const InfiniteScrollingGallery = () => {
         </button>
       </div>
 
-      <div className="space-y-6 py-4">
+      <div className="space-y-6 py-4 overflow-visible">
         {renderRow(row1, 'left', 1)}
         {renderRow(row2, 'right', 2)}
 
