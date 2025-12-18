@@ -1152,6 +1152,8 @@ const InfiniteScrollingGallery = () => {
                 scale: hoveredKey === `${rowIndex}-${index}` ? 1.35 : 1,
                 zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1,
                 y: hoveredKey === `${rowIndex}-${index}` ? -30 : 0,
+                filter: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 'blur(3px)' : 'blur(0px)',
+                opacity: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 0.7 : 1,
               }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               whileHover={{
