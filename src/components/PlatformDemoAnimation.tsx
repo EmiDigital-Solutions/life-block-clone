@@ -1041,7 +1041,7 @@ const ReportDemo = () => {
     { year: '2022', score: 82, client: 'Mercedes' },
     { year: '2023', score: 79, client: 'Audi' },
     { year: '2024', score: 85, client: 'Porsche' },
-    { year: '2025', score: 88, client: 'VW Group' },
+    { year: '2025', score: 88, client: 'YVOO' },
   ];
   
   // Benchmark data
@@ -1236,7 +1236,7 @@ const ReportDemo = () => {
               </div>
               <div className="bg-[#161616] rounded-xl p-4">
                 <div className="relative h-36">
-                  {/* Bars - all blue, non-linear trend */}
+                  {/* Bars - all blue, thicker */}
                   <div className="flex items-end justify-around h-28 px-2 relative z-10">
                     {historicalScores.map((item, i) => {
                       const heightPx = ((item.score - 50) / 50) * 112;
@@ -1247,7 +1247,7 @@ const ReportDemo = () => {
                         >
                           <span className="text-[10px] font-bold text-white mb-1">{item.score}%</span>
                           <motion.div 
-                            className="w-5 rounded-t-md bg-[#0A7FA5]"
+                            className="w-8 rounded-t-md bg-[#0A7FA5]"
                             initial={{ height: 0 }}
                             animate={{ height: heightPx }}
                             transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
