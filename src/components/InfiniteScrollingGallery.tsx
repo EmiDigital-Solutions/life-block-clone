@@ -1134,10 +1134,17 @@ const InfiniteScrollingGallery = () => {
     const duplicatedItems = [...items, ...items, ...items];
     
     return (
-      <div className="overflow-visible">
+      <div
+        className="overflow-visible relative"
+        style={{
+          // Important: each row is its own stacking context because the scrolling container uses transforms.
+          // Raise the entire hovered row above the other row.
+          zIndex: hoveredKey && hoveredKey.startsWith(`${rowIndex}-`) ? 100 : 1,
+        }}
+      >
         <div 
-          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause`}
-          style={{ width: 'fit-content' }}
+          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause relative`}
+          style={{ width: 'fit-content', zIndex: hoveredKey && hoveredKey.startsWith(`${rowIndex}-`) ? 100 : 1 }}
         >
           {duplicatedItems.map((item, index) => (
             <motion.div
@@ -1205,7 +1212,7 @@ const InfiniteScrollingGallery = () => {
         </button>
       </div>
 
-      <div className="space-y-6 py-4 overflow-visible">
+      <div className="space-y-6 py-4 overflow-visible relative isolate">
         {renderRow(row1, 'left', 1)}
         {renderRow(row2, 'right', 2)}
 
