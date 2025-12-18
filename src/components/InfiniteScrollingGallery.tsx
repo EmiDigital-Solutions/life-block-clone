@@ -1279,46 +1279,46 @@ const InfiniteScrollingGallery = () => {
       </div>
 
       <Dialog open={selectedCapability !== null} onOpenChange={() => setSelectedCapability(null)}>
-        <DialogContent className="max-w-5xl max-h-[90vh] overflow-hidden p-0 border border-border/20 bg-background rounded-2xl">
-          <div className="flex flex-col lg:flex-row">
-            {/* Mockup Area - maintains aspect ratio */}
-            <div className="flex-1 bg-[#f8f8f8] p-6 lg:p-8 flex items-center justify-center min-h-[400px] lg:min-h-[550px]">
-              <div className="w-full max-w-[600px] rounded-xl overflow-hidden shadow-lg border border-border/10">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0">
+          <div className="flex flex-col lg:flex-row h-full">
+            {/* Full-size Mockup */}
+            <div className="flex-1 bg-[#0A0A0A] p-4 lg:p-6 min-h-[400px] lg:min-h-[600px]">
+              <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
                 {selectedCapability && <MockupRenderer type={selectedCapability.mockupType} />}
               </div>
             </div>
             
             {/* Details Panel */}
-            <div className="w-full lg:w-[320px] p-6 lg:p-8 border-t lg:border-t-0 lg:border-l border-border/20 bg-background flex flex-col">
-              <DialogHeader className="space-y-0">
-                <DialogTitle className="text-xl font-medium text-foreground tracking-tight leading-tight">
+            <div className="w-full lg:w-80 bg-background p-6 flex flex-col">
+              <DialogHeader className="mb-4">
+                <DialogTitle className="text-2xl font-bold text-primary">
                   {selectedCapability?.title}
                 </DialogTitle>
               </DialogHeader>
               
-              <p className="text-muted-foreground text-sm leading-relaxed mt-4">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 {selectedCapability?.detailedDescription}
               </p>
               
-              {/* Status Legend */}
-              <div className="mt-auto pt-6">
-                <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Status Guide</div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
-                    <span className="text-sm text-foreground">Compliant</span>
+              {/* Color Legend in Dialog */}
+              <div className="mt-auto pt-4 border-t border-border">
+                <div className="text-sm font-medium text-foreground mb-3">Status Indicators</div>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
+                    <span className="text-muted-foreground">Compliant</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#D8A860]" />
-                    <span className="text-sm text-foreground">Needs Review</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
+                    <span className="text-muted-foreground">Review</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#C4564F]" />
-                    <span className="text-sm text-foreground">Critical Issue</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
+                    <span className="text-muted-foreground">Critical</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#1391BF]" />
-                    <span className="text-sm text-foreground">In Progress</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#1391BF]" />
+                    <span className="text-muted-foreground">In Progress</span>
                   </div>
                 </div>
               </div>
