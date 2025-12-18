@@ -190,7 +190,7 @@ const AIMockup = () => (
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Header */}
       <div className="px-2.5 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex items-center justify-center ring-2 ring-[#1391BF]/20">
+        <div className="w-7 h-7 rounded-full bg-[#1391BF] flex items-center justify-center ring-2 ring-[#1391BF]/20">
           <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
@@ -219,7 +219,7 @@ const AIMockup = () => (
           transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
           className="flex gap-2"
         >
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex-shrink-0 flex items-center justify-center">
+          <div className="w-5 h-5 rounded-full bg-[#1391BF] flex-shrink-0 flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -251,7 +251,7 @@ const AIMockup = () => (
           transition={{ delay: 3, duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
           className="flex gap-2"
         >
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#1391BF] to-[#7CC2A7] flex-shrink-0 flex items-center justify-center">
+          <div className="w-5 h-5 rounded-full bg-[#1391BF] flex-shrink-0 flex items-center justify-center">
             <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -317,7 +317,7 @@ const EquipmentMockup = () => (
       </div>
       
       {/* Image Area */}
-      <div className="flex-1 relative bg-gradient-to-br from-[#0A0A0A] to-[#161616] m-2 rounded-lg overflow-hidden">
+      <div className="flex-1 relative bg-[#0A0A0A] m-2 rounded-lg overflow-hidden">
         {/* Real Equipment Image */}
         <img 
           src={equipmentImage} 
@@ -375,7 +375,7 @@ const EquipmentMockup = () => (
           initial={{ top: 0 }}
           animate={{ top: '100%' }}
           transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
-          className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#7CC2A7] to-transparent"
+          className="absolute left-0 right-0 h-0.5 bg-[#1391BF]/50"
         />
       </div>
       
@@ -440,18 +440,12 @@ const ScoringMockup = () => (
           <svg className="w-full h-full -rotate-90">
             <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(192,192,192,0.15)" strokeWidth="6" />
             <motion.circle
-              cx="40" cy="40" r="34" fill="none" stroke="url(#scoreGradient)" strokeWidth="6"
+              cx="40" cy="40" r="34" fill="none" stroke="#1391BF" strokeWidth="6"
               strokeLinecap="round"
               initial={{ strokeDasharray: "0 214" }}
               animate={{ strokeDasharray: "180 214" }}
               transition={{ delay: 0.6, duration: 1, repeat: Infinity, repeatDelay: 7 }}
             />
-            <defs>
-              <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1391BF" />
-                <stop offset="100%" stopColor="#7CC2A7" />
-              </linearGradient>
-            </defs>
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <motion.span
@@ -555,7 +549,7 @@ const EvidenceMockup = () => (
             className="bg-[#161616] rounded-lg overflow-hidden group cursor-pointer hover:ring-1 hover:ring-[#1391BF]/50"
           >
             {/* Preview */}
-            <div className="aspect-square relative bg-gradient-to-br from-[#C0C0C0]/5 to-transparent overflow-hidden">
+            <div className="aspect-square relative bg-[#C0C0C0]/5 overflow-hidden">
               {item.type === "img" && item.img ? (
                 <img 
                   src={item.img} 
@@ -623,110 +617,120 @@ const EvidenceMockup = () => (
   </WindowChrome>
 );
 
-// Progress Dashboard UI
+// Progress Dashboard UI - Redesigned for professional look
 const ProgressMockup = () => (
   <WindowChrome title="Live Audit Tracker — Müller GmbH">
     <div className="h-full flex text-[9px] bg-[#0A0A0A]">
-      {/* Timeline */}
-      <div className="flex-1 p-2.5 overflow-hidden">
-        {/* Status Bar */}
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-[#7CC2A7] animate-pulse" />
-            <span className="text-[#F5F5F5]/90 font-medium">In Progress</span>
+      {/* Main Content */}
+      <div className="flex-1 p-3 overflow-hidden">
+        {/* Header with Status */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-[#1391BF] animate-pulse" />
+            <span className="text-[#F5F5F5] font-medium text-[10px]">Audit In Progress</span>
           </div>
-          <div className="text-[#C0C0C0]/60 text-[7px]">Started 3h 24m ago</div>
+          <div className="px-2 py-0.5 bg-[#1391BF]/15 rounded text-[#1391BF] text-[7px] font-medium">
+            65% Complete
+          </div>
         </div>
         
         {/* Progress Bar */}
-        <div className="mb-3">
-          <div className="flex justify-between text-[7px] mb-1">
-            <span className="text-[#C0C0C0]/60">Overall Completion</span>
-            <span className="text-[#F5F5F5]/80">65%</span>
-          </div>
-          <div className="h-2 bg-[#161616] rounded-full overflow-hidden">
+        <div className="mb-4">
+          <div className="h-1.5 bg-[#161616] rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: '65%' }}
               transition={{ duration: 1, repeat: Infinity, repeatDelay: 7 }}
-              className="h-full bg-gradient-to-r from-[#1391BF] to-[#7CC2A7] rounded-full"
+              className="h-full bg-[#1391BF] rounded-full"
             />
+          </div>
+          <div className="flex justify-between mt-1 text-[7px] text-[#C0C0C0]/50">
+            <span>Started 3h 24m ago</span>
+            <span>Est. 2h remaining</span>
           </div>
         </div>
         
-        {/* Milestones */}
-        <div className="space-y-1">
+        {/* Milestones Timeline */}
+        <div className="space-y-0.5">
           {[
-            { name: "Opening Meeting", time: "09:00", status: "complete", auditor: "JD" },
-            { name: "Document Review", time: "09:45", status: "complete", auditor: "JD" },
-            { name: "Process Area A", time: "11:00", status: "complete", auditor: "MK" },
-            { name: "Process Area B", time: "12:30", status: "active", auditor: "JD" },
-            { name: "Interviews", time: "14:00", status: "pending", auditor: "—" },
-            { name: "Closing Meeting", time: "16:00", status: "pending", auditor: "—" },
+            { name: "Opening Meeting", time: "09:00", status: "complete" },
+            { name: "Document Review", time: "09:45", status: "complete" },
+            { name: "Process Area A", time: "11:00", status: "complete" },
+            { name: "Process Area B", time: "12:30", status: "active" },
+            { name: "Interviews", time: "14:00", status: "pending" },
+            { name: "Closing Meeting", time: "16:00", status: "pending" },
           ].map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 + i * 0.15, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-              className={`flex items-center gap-2 p-1.5 rounded-lg ${item.status === 'active' ? 'bg-[#1391BF]/10 border border-[#1391BF]/30' : 'hover:bg-[#C0C0C0]/5'}`}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
+              className={`flex items-center gap-2.5 py-1.5 px-2 rounded ${
+                item.status === 'active' ? 'bg-[#1391BF]/10' : ''
+              }`}
             >
-              <div className="flex flex-col items-center w-4">
-                <div className={`w-3 h-3 rounded-full flex items-center justify-center ${
+              <div className="relative flex flex-col items-center">
+                <div className={`w-2.5 h-2.5 rounded-full flex items-center justify-center ${
                   item.status === 'complete' ? 'bg-[#7CC2A7]' : 
-                  item.status === 'active' ? 'bg-[#1391BF] ring-2 ring-[#1391BF]/30' : 'bg-[#C0C0C0]/30'
+                  item.status === 'active' ? 'bg-[#1391BF]' : 'bg-[#C0C0C0]/20'
                 }`}>
                   {item.status === 'complete' && (
-                    <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
                   )}
-                  {item.status === 'active' && (
-                    <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  )}
                 </div>
-                {i < 5 && <div className={`w-0.5 h-3 ${item.status === 'complete' ? 'bg-[#7CC2A7]/50' : 'bg-[#C0C0C0]/20'}`} />}
+                {i < 5 && (
+                  <div className={`w-px h-3 ${
+                    item.status === 'complete' ? 'bg-[#7CC2A7]/40' : 'bg-[#C0C0C0]/10'
+                  }`} />
+                )}
               </div>
-              <div className="flex-1">
-                <div className={`${item.status === 'pending' ? 'text-[#C0C0C0]/60' : 'text-[#F5F5F5]/80'}`}>{item.name}</div>
-              </div>
-              <div className="text-[#C0C0C0]/60 text-[7px] w-8">{item.time}</div>
-              <div className={`w-4 h-4 rounded-full ${item.auditor === '—' ? 'bg-[#C0C0C0]/15' : 'bg-[#C0C0C0]/30'} flex items-center justify-center text-[6px] text-[#C0C0C0]/80`}>
-                {item.auditor}
+              <div className="flex-1 flex items-center justify-between">
+                <span className={`${
+                  item.status === 'pending' ? 'text-[#C0C0C0]/40' : 
+                  item.status === 'active' ? 'text-[#1391BF] font-medium' : 'text-[#F5F5F5]/70'
+                }`}>{item.name}</span>
+                <span className="text-[#C0C0C0]/40 text-[7px]">{item.time}</span>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
       
-      {/* Side Panel */}
-      <div className="w-20 bg-[#0A0A0A] border-l border-[#C0C0C0]/10 p-2 flex flex-col">
-        <div className="text-[#C0C0C0]/80 text-[7px] mb-1.5">Findings</div>
-        <div className="space-y-1 flex-1">
+      {/* Stats Panel */}
+      <div className="w-16 bg-[#161616] border-l border-[#C0C0C0]/5 p-2 flex flex-col gap-2">
+        <div className="text-[#C0C0C0]/50 text-[7px] uppercase tracking-wider">Stats</div>
+        
+        <div className="space-y-2">
+          <div className="text-center">
+            <div className="text-[#F5F5F5] text-[12px] font-medium">12</div>
+            <div className="text-[#C0C0C0]/40 text-[6px]">Areas</div>
+          </div>
+          <div className="text-center">
+            <div className="text-[#F5F5F5] text-[12px] font-medium">47</div>
+            <div className="text-[#C0C0C0]/40 text-[6px]">Evidence</div>
+          </div>
+        </div>
+        
+        <div className="mt-auto space-y-1.5">
+          <div className="text-[#C0C0C0]/50 text-[6px] uppercase tracking-wider">Findings</div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-            className="bg-[#D8A860]/20 border border-[#D8A860]/30 rounded p-1"
+            className="bg-[#D8A860]/15 rounded px-1.5 py-1"
           >
-            <div className="text-[#D8A860] text-[7px] font-medium">Minor NC</div>
-            <div className="text-[#C0C0C0]/80 text-[6px]">Doc control 4.2.3</div>
+            <div className="text-[#D8A860] text-[7px] font-medium">1 Minor</div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.3, duration: 0.3, repeat: Infinity, repeatDelay: 7 }}
-            className="bg-[#1391BF]/20 border border-[#1391BF]/30 rounded p-1"
+            className="bg-[#1391BF]/15 rounded px-1.5 py-1"
           >
-            <div className="text-[#1391BF] text-[7px] font-medium">OFI</div>
-            <div className="text-[#C0C0C0]/80 text-[6px]">Training records</div>
+            <div className="text-[#1391BF] text-[7px] font-medium">1 OFI</div>
           </motion.div>
-        </div>
-        <div className="pt-2 border-t border-[#C0C0C0]/10">
-          <div className="text-[#C0C0C0]/60 text-[6px] mb-1">Quick Stats</div>
-          <div className="text-[#F5F5F5]/80 text-[8px]">12 areas</div>
-          <div className="text-[#F5F5F5]/80 text-[8px]">47 evidence</div>
-          <div className="text-[#F5F5F5]/80 text-[8px]">2 findings</div>
         </div>
       </div>
     </div>
@@ -841,7 +845,7 @@ const SupplierSearchMockup = () => (
                   initial={{ width: 0 }}
                   animate={{ width: `${item.progress}%` }}
                   transition={{ delay: 2.7 + i * 0.3, duration: 0.5, repeat: Infinity, repeatDelay: 8 }}
-                  className="h-full bg-gradient-to-r from-[#1391BF] to-[#7CC2A7] rounded-full"
+                  className="h-full bg-[#1391BF] rounded-full"
                 />
               </div>
               <span className="text-[#7CC2A7] text-[7px] w-6">{item.progress}%</span>
@@ -1030,7 +1034,7 @@ const FollowUpMockup = () => (
             initial={{ width: 0 }}
             animate={{ width: '60%' }}
             transition={{ delay: 0.7, duration: 0.8, repeat: Infinity, repeatDelay: 10 }}
-            className="h-full bg-gradient-to-r from-[#D8A860] to-[#7CC2A7] rounded-full"
+            className="h-full bg-[#1391BF] rounded-full"
           />
         </div>
       </motion.div>
