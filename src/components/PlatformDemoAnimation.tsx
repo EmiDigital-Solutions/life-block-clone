@@ -17,187 +17,220 @@ const demoSteps: DemoStep[] = [
   { id: 5, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
-// Step 1: AI-Powered Supplier Search with Conversation + Full Profile
+// Step 1: AI-Powered Supplier Search - Conversation → Results List → Full Profile
 const SupplierSearchDemo = () => {
-  const [conversationStep, setConversationStep] = useState(0);
-  const [showProfile, setShowProfile] = useState(false);
+  const [phase, setPhase] = useState<'chat' | 'results' | 'profile'>('chat');
+  const [chatStep, setChatStep] = useState(0);
   
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
-    setConversationStep(0);
-    setShowProfile(false);
+    setPhase('chat');
+    setChatStep(0);
     
-    timers.push(setTimeout(() => setConversationStep(1), 800));
-    timers.push(setTimeout(() => setConversationStep(2), 2000));
-    timers.push(setTimeout(() => setConversationStep(3), 3200));
-    timers.push(setTimeout(() => setConversationStep(4), 4500));
-    timers.push(setTimeout(() => setShowProfile(true), 5500));
+    // Chat animation
+    timers.push(setTimeout(() => setChatStep(1), 500));
+    timers.push(setTimeout(() => setChatStep(2), 1500));
+    timers.push(setTimeout(() => setChatStep(3), 2500));
+    timers.push(setTimeout(() => setChatStep(4), 3500));
+    // Show results
+    timers.push(setTimeout(() => setPhase('results'), 4200));
+    // Show profile
+    timers.push(setTimeout(() => setPhase('profile'), 5800));
     
     return () => timers.forEach(t => clearTimeout(t));
   }, []);
 
+  const suppliers = [
+    { name: "DMG MORI AG", location: "Bielefeld, Germany", certs: ["ISO 9001", "IATF 16949"], score: 98 },
+    { name: "Precision CNC Solutions", location: "Stuttgart, Germany", certs: ["ISO 9001", "ISO 14001"], score: 94 },
+    { name: "TechMold Industries", location: "Shanghai, China", certs: ["IATF 16949", "TS 16949"], score: 89 },
+    { name: "AutoPrecision GmbH", location: "Munich, Germany", certs: ["VDA 6.3", "IATF 16949"], score: 91 },
+  ];
+
   return (
-    <div className="h-full flex text-xs bg-[#0A0A0A]">
-      {/* Left: AI Chat */}
-      <div className="w-1/2 p-3 flex flex-col border-r border-[#C0C0C0]/10">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span className="text-white/90 font-medium text-[10px]">AIVOO Search</span>
-          <span className="px-1.5 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded text-[7px]">Online</span>
+    <div className="h-full flex flex-col text-xs bg-[#0A0A0A] p-3">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#C0C0C0]/10">
+        <div className="w-6 h-6 rounded bg-[#1391BF] flex items-center justify-center">
+          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
-        
-        <div className="flex-1 space-y-2 overflow-hidden">
-          {/* AI Message 1 */}
-          {conversationStep >= 1 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex gap-2"
-            >
-              <div className="w-5 h-5 rounded-full bg-[#1391BF]/20 flex items-center justify-center flex-shrink-0">
-                <svg className="w-2.5 h-2.5 text-[#1391BF]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div className="bg-[#161616] rounded-lg p-2 max-w-[85%]">
-                <p className="text-white/80 text-[9px]">What type of supplier are you looking for?</p>
-              </div>
-            </motion.div>
-          )}
-          
-          {/* User Message 1 */}
-          {conversationStep >= 2 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex gap-2 justify-end"
-            >
-              <div className="bg-[#1391BF] rounded-lg p-2 max-w-[85%]">
-                <p className="text-white text-[9px]">CNC machining for automotive, IATF certified</p>
-              </div>
-            </motion.div>
-          )}
-          
-          {/* AI Message 2 */}
-          {conversationStep >= 3 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex gap-2"
-            >
-              <div className="w-5 h-5 rounded-full bg-[#1391BF]/20 flex items-center justify-center flex-shrink-0">
-                <svg className="w-2.5 h-2.5 text-[#1391BF]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div className="bg-[#161616] rounded-lg p-2 max-w-[85%]">
-                <p className="text-white/80 text-[9px]">Great! What region or country do you prefer?</p>
-              </div>
-            </motion.div>
-          )}
-          
-          {/* User Message 2 */}
-          {conversationStep >= 4 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex gap-2 justify-end"
-            >
-              <div className="bg-[#1391BF] rounded-lg p-2 max-w-[85%]">
-                <p className="text-white text-[9px]">Germany, high-volume production capability</p>
-              </div>
-            </motion.div>
-          )}
-          
-          {/* AI Loading */}
-          {conversationStep >= 4 && !showProfile && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex gap-2"
-            >
-              <div className="w-5 h-5 rounded-full bg-[#1391BF]/20 flex items-center justify-center flex-shrink-0">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="w-2.5 h-2.5 border border-[#1391BF] border-t-transparent rounded-full"
-                />
-              </div>
-              <div className="bg-[#161616] rounded-lg p-2">
-                <p className="text-[#1391BF] text-[9px]">Searching suppliers...</p>
-              </div>
-            </motion.div>
-          )}
-        </div>
+        <span className="text-white/90 font-medium text-[10px]">SearchPro+</span>
+        <span className="px-1.5 py-0.5 bg-[#1391BF]/20 text-[#1391BF] rounded text-[7px]">AI-Powered</span>
       </div>
-      
-      {/* Right: Supplier Profile */}
-      <div className="w-1/2 p-3 flex flex-col">
-        {showProfile ? (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex-1 bg-[#161616] rounded-lg p-3 space-y-2"
-          >
-            {/* Header */}
-            <div className="flex items-start gap-2">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-[#0A0A0A] font-bold text-[7px] text-center leading-tight">DMG<br/>MORI</span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-white font-semibold text-[11px]">DMG MORI AG</div>
-                <div className="text-[#C0C0C0]/60 text-[8px]">Bielefeld, Germany</div>
-              </div>
-              <div className="text-right">
-                <div className="text-[#7CC2A7] font-bold text-lg">98</div>
-                <div className="text-[#C0C0C0]/40 text-[7px]">Score</div>
-              </div>
-            </div>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-1">
-              {[
-                { label: 'Employees', value: '12K+' },
-                { label: 'Revenue', value: '€2.5B' },
-                { label: 'Founded', value: '1870' },
-                { label: 'Sites', value: '154' },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-[#0A0A0A] rounded p-1.5 text-center">
-                  <div className="text-white font-medium text-[9px]">{stat.value}</div>
-                  <div className="text-[#C0C0C0]/40 text-[6px]">{stat.label}</div>
+
+      {phase === 'chat' && (
+        <div className="flex-1 flex flex-col">
+          <div className="text-[#C0C0C0]/60 text-[8px] mb-2">Conversational Search</div>
+          <div className="flex-1 space-y-2 overflow-hidden">
+            {/* AI Message 1 */}
+            {chatStep >= 1 && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
+                <div className="w-5 h-5 rounded bg-[#161616] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-2.5 h-2.5 text-[#1391BF]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-              ))}
-            </div>
+                <div className="bg-[#161616] rounded-lg rounded-bl-none p-2 max-w-[80%]">
+                  <p className="text-white/80 text-[9px]">What type of supplier are you looking for?</p>
+                </div>
+              </motion.div>
+            )}
             
-            {/* Certifications */}
+            {/* User Message 1 */}
+            {chatStep >= 2 && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
+                <div className="bg-[#1391BF] rounded-lg rounded-br-none p-2 max-w-[80%]">
+                  <p className="text-white text-[9px]">CNC machining, automotive sector, IATF certified</p>
+                </div>
+              </motion.div>
+            )}
+            
+            {/* AI Message 2 */}
+            {chatStep >= 3 && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
+                <div className="w-5 h-5 rounded bg-[#161616] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-2.5 h-2.5 text-[#1391BF]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="bg-[#161616] rounded-lg rounded-bl-none p-2 max-w-[80%]">
+                  <p className="text-white/80 text-[9px]">What region do you prefer and what volume capacity?</p>
+                </div>
+              </motion.div>
+            )}
+            
+            {/* User Message 2 */}
+            {chatStep >= 4 && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
+                <div className="bg-[#1391BF] rounded-lg rounded-br-none p-2 max-w-[80%]">
+                  <p className="text-white text-[9px]">Germany or China, high-volume production</p>
+                </div>
+              </motion.div>
+            )}
+            
+            {/* Loading */}
+            {chatStep >= 4 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex gap-2">
+                <div className="w-5 h-5 rounded bg-[#161616] flex items-center justify-center flex-shrink-0">
+                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-2.5 h-2.5 border border-[#1391BF] border-t-transparent rounded-full" />
+                </div>
+                <div className="bg-[#161616] rounded-lg rounded-bl-none p-2">
+                  <p className="text-[#1391BF] text-[9px]">Searching 25M+ suppliers...</p>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {phase === 'results' && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex-1 flex flex-col">
+          <div className="flex items-center gap-2 mb-2">
+            <svg className="w-4 h-4 text-[#7CC2A7]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span className="text-white/90 text-[10px] font-medium">4 Matching Suppliers Found</span>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2 flex-1">
+            {suppliers.map((supplier, i) => (
+              <motion.div
+                key={supplier.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className={`bg-[#161616] rounded-lg p-2 cursor-pointer transition-all ${i === 0 ? 'ring-1 ring-[#1391BF]' : 'hover:bg-[#1a1a1a]'}`}
+              >
+                <div className="flex items-start justify-between mb-1">
+                  <span className="text-white/90 text-[9px] font-medium truncate flex-1">{supplier.name}</span>
+                  <span className="text-[#7CC2A7] text-[8px] font-bold ml-1">{supplier.score}</span>
+                </div>
+                <div className="flex items-center gap-1 text-[#C0C0C0]/60 text-[7px] mb-1.5">
+                  <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                  <span className="truncate">{supplier.location}</span>
+                </div>
+                <div className="flex gap-1 flex-wrap">
+                  {supplier.certs.slice(0, 2).map((cert) => (
+                    <span key={cert} className="px-1 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[6px] rounded">
+                      {cert}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {phase === 'profile' && (
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex-1 flex flex-col">
+          {/* Profile Header */}
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-[#0A0A0A] font-bold text-[8px] text-center leading-tight">DMG<br/>MORI</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-white font-semibold text-[11px]">DMG MORI AG</div>
+              <div className="flex items-center gap-1 text-[#C0C0C0]/60 text-[8px]">
+                <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                </svg>
+                <span>Bielefeld, Germany</span>
+              </div>
+              <div className="text-[#C0C0C0]/50 text-[7px]">CNC Machine Manufacturing</div>
+            </div>
+            <div className="text-right">
+              <div className="text-[#7CC2A7] font-bold text-xl">98</div>
+              <div className="text-[#C0C0C0]/40 text-[7px]">Score</div>
+            </div>
+          </div>
+          
+          {/* Stats Grid */}
+          <div className="grid grid-cols-4 gap-1.5 mb-3">
+            {[
+              { label: 'Employees', value: '12,000+' },
+              { label: 'Revenue', value: '€2.5B' },
+              { label: 'Founded', value: '1870' },
+              { label: 'Sites', value: '154' },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-[#161616] rounded-lg p-1.5 text-center">
+                <div className="text-white font-medium text-[9px]">{stat.value}</div>
+                <div className="text-[#C0C0C0]/40 text-[6px]">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Certifications */}
+          <div className="mb-3">
+            <div className="text-[#C0C0C0]/60 text-[7px] mb-1.5">Certifications</div>
             <div className="flex flex-wrap gap-1">
-              {['ISO 9001', 'IATF 16949', 'ISO 14001'].map((cert) => (
-                <span key={cert} className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[7px] rounded-full">
+              {['ISO 9001:2015', 'IATF 16949:2016', 'ISO 14001', 'ISO 45001'].map((cert) => (
+                <span key={cert} className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[7px] rounded-full border border-[#7CC2A7]/30">
                   {cert}
                 </span>
               ))}
             </div>
-            
-            {/* Capabilities */}
-            <div className="text-[#C0C0C0]/60 text-[8px]">
-              <span className="text-[#C0C0C0]/40">Capabilities:</span> 5-Axis CNC, High-Volume, Automotive Components
-            </div>
-            
-            {/* CTA */}
-            <button className="w-full py-1.5 bg-[#1391BF] text-white rounded text-[9px] font-medium">
-              Add to Audit Order →
-            </button>
-          </motion.div>
-        ) : (
-          <div className="flex-1 flex items-center justify-center text-[#C0C0C0]/30 text-[10px]">
-            Search for suppliers...
           </div>
-        )}
-      </div>
+          
+          {/* Capabilities */}
+          <div className="mb-3">
+            <div className="text-[#C0C0C0]/60 text-[7px] mb-1.5">Capabilities</div>
+            <div className="text-white/70 text-[8px]">5-Axis CNC Machining • High-Volume Production • Automotive Components • Precision Engineering</div>
+          </div>
+          
+          {/* CTA */}
+          <button className="w-full py-2 bg-[#1391BF] text-white rounded-lg text-[9px] font-medium mt-auto flex items-center justify-center gap-1.5">
+            <span>Add to Audit Order</span>
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </motion.div>
+      )}
     </div>
   );
 };
