@@ -1257,8 +1257,12 @@ const ReportDemo = () => {
                     })}
                   </div>
                   
-                  {/* Trend Line Overlay - aligned to bar centers */}
-                  <svg className="absolute top-0 left-2 right-2 h-28 z-20 pointer-events-none overflow-visible">
+                  {/* Trend Line Overlay - using viewBox for proper alignment */}
+                  <svg 
+                    className="absolute top-0 left-0 right-0 h-28 z-20 pointer-events-none overflow-visible"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
                     {/* Average score dashed line */}
                     {(() => {
                       const avgScore = historicalScores.reduce((sum, item) => sum + item.score, 0) / historicalScores.length;
@@ -1266,69 +1270,51 @@ const ReportDemo = () => {
                       return (
                         <>
                           <motion.line
-                            x1="0%"
-                            y1={`${avgY}%`}
-                            x2="100%"
-                            y2={`${avgY}%`}
+                            x1="0"
+                            y1={avgY}
+                            x2="100"
+                            y2={avgY}
                             stroke="#C0C0C0"
-                            strokeWidth="1"
-                            strokeDasharray="4 4"
+                            strokeWidth="0.5"
+                            strokeDasharray="2 2"
+                            vectorEffect="non-scaling-stroke"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.6 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
                           />
-                          <motion.text
-                            x="100%"
-                            y={`${avgY - 2}%`}
+                          <text
+                            x="98"
+                            y={avgY - 3}
                             fill="#C0C0C0"
-                            fontSize="8"
+                            fontSize="6"
                             textAnchor="end"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.8 }}
-                            transition={{ delay: 0.7, duration: 0.5 }}
+                            style={{ opacity: 0.8 }}
                           >
                             Avg: {avgScore.toFixed(1)}%
-                          </motion.text>
+                          </text>
                         </>
                       );
                     })()}
                     
+                    {/* Trend line connecting bar tops */}
                     <motion.polyline
                       fill="none"
                       stroke="#0A7FA5"
-                      strokeWidth="2"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      vectorEffect="non-scaling-stroke"
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
                       transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
                       points={historicalScores.map((item, i) => {
                         const totalItems = historicalScores.length;
+                        // Position at center of each bar slot
                         const x = ((i + 0.5) / totalItems) * 100;
                         const y = 100 - ((item.score - 50) / 50) * 100;
-                        return `${x}%,${y}%`;
+                        return `${x},${y}`;
                       }).join(' ')}
                     />
-                    {/* Trend line dots */}
-                    {historicalScores.map((item, i) => {
-                      const totalItems = historicalScores.length;
-                      const x = ((i + 0.5) / totalItems) * 100;
-                      const y = 100 - ((item.score - 50) / 50) * 100;
-                      return (
-                        <motion.circle
-                          key={item.year}
-                          cx={`${x}%`}
-                          cy={`${y}%`}
-                          r="4"
-                          fill="#0A7FA5"
-                          stroke="#161616"
-                          strokeWidth="2"
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 1 + i * 0.1 }}
-                        />
-                      );
-                    })}
                   </svg>
                   
                   {/* Year labels with client names */}
