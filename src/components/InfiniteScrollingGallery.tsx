@@ -12,7 +12,7 @@ interface Capability {
   title: string;
   description: string;
   detailedDescription: string;
-  mockupType: 'template' | 'ai' | 'equipment' | 'scoring' | 'evidence' | 'progress';
+  mockupType: 'template' | 'ai' | 'equipment' | 'scoring' | 'evidence' | 'progress' | 'supplierSearch' | 'auditPrep' | 'followUp';
 }
 
 const capabilities: Capability[] = [
@@ -52,22 +52,53 @@ const capabilities: Capability[] = [
     detailedDescription: "Live dashboard provides real-time visibility into audit progress, completion rates, and emerging issues.",
     mockupType: 'progress'
   },
+  { 
+    title: "Supplier Search & Intelligence", 
+    description: "Find suppliers and generate AI-powered intelligence reports instantly.",
+    detailedDescription: "Search for suppliers by company name, city, or country and receive comprehensive AI-generated intelligence reports with risk assessments, certifications, and recommendations.",
+    mockupType: 'supplierSearch'
+  },
+  { 
+    title: "Audit Preparation & Ordering", 
+    description: "Select suppliers, upload documents, and order audits with one click.",
+    detailedDescription: "Streamlined audit ordering process: select multiple suppliers, upload checklists and supporting documents, configure audit parameters, and submit orders instantly.",
+    mockupType: 'auditPrep'
+  },
+  { 
+    title: "Follow-up Manager", 
+    description: "Track action items, assignments, and resolution progress in one place.",
+    detailedDescription: "Comprehensive follow-up management with task assignments, due dates, progress tracking, attachments, comments, and complete history logs for audit findings.",
+    mockupType: 'followUp'
+  },
 ];
 
-// Window Chrome Component
-const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
+// Color Legend Component
+const ColorLegend = () => (
+  <div className="absolute top-1 right-2 flex items-center gap-3 text-[7px]">
+    <div className="flex items-center gap-1">
+      <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
+      <span className="text-[#C0C0C0]/70">Compliant</span>
+    </div>
+    <div className="flex items-center gap-1">
+      <div className="w-2 h-2 rounded-full bg-[#D8A860]" />
+      <span className="text-[#C0C0C0]/70">Review</span>
+    </div>
+    <div className="flex items-center gap-1">
+      <div className="w-2 h-2 rounded-full bg-[#C4564F]" />
+      <span className="text-[#C0C0C0]/70">Critical</span>
+    </div>
+  </div>
+);
+
+// Window Chrome Component - Clean design without traffic lights
+const WindowChrome = ({ title, children, showLegend = false }: { title: string; children: React.ReactNode; showLegend?: boolean }) => (
   <div className="w-full h-full bg-[#0A0A0A] rounded-lg overflow-hidden flex flex-col shadow-2xl">
-    {/* Title Bar */}
-    <div className="h-7 bg-[#161616] flex items-center px-2.5 gap-2 border-b border-[#C0C0C0]/10 flex-shrink-0">
-      <div className="flex gap-1.5">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#C4564F]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#D8A860]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#7CC2A7]" />
+    {/* Title Bar - Clean design */}
+    <div className="h-7 bg-[#161616] flex items-center px-3 border-b border-[#C0C0C0]/10 flex-shrink-0 relative">
+      <div className="flex-1">
+        <span className="text-[9px] text-[#C0C0C0]/80 font-medium">{title}</span>
       </div>
-      <div className="flex-1 text-center">
-        <span className="text-[9px] text-[#C0C0C0]/60 font-medium">{title}</span>
-      </div>
-      <div className="w-12" />
+      {showLegend && <ColorLegend />}
     </div>
     {/* Content */}
     <div className="flex-1 overflow-hidden">
@@ -78,7 +109,7 @@ const WindowChrome = ({ title, children }: { title: string; children: React.Reac
 
 // Template Builder UI
 const TemplateMockup = () => (
-  <WindowChrome title="Template Builder — ISO 9001:2015">
+  <WindowChrome title="Template Builder — ISO 9001:2015" showLegend>
     <div className="h-full flex text-[9px]">
       {/* Sidebar */}
       <div className="w-16 bg-[#0A0A0A] border-r border-[#C0C0C0]/10 p-2 flex flex-col gap-1">
@@ -120,9 +151,9 @@ const TemplateMockup = () => (
         {/* Sections */}
         <div className="space-y-1.5">
           {[
-            { name: "4. Context of the Organization", items: ["4.1 Understanding the organization", "4.2 Understanding needs of parties", "4.3 Scope of QMS"], progress: 100 },
-            { name: "5. Leadership", items: ["5.1 Leadership commitment", "5.2 Quality policy", "5.3 Roles & responsibilities"], progress: 100 },
-            { name: "7. Support", items: ["7.1 Resources", "7.2 Competence", "7.3 Awareness"], progress: 66 },
+            { name: "4. Context of the Organization", items: ["4.1 Understanding the organization", "4.2 Understanding needs of parties", "4.3 Scope of QMS"], progress: 100, status: 'compliant' },
+            { name: "5. Leadership", items: ["5.1 Leadership commitment", "5.2 Quality policy", "5.3 Roles & responsibilities"], progress: 100, status: 'compliant' },
+            { name: "7. Support", items: ["7.1 Resources", "7.2 Competence", "7.3 Awareness"], progress: 66, status: 'review' },
           ].map((section, i) => (
           <motion.div
               key={i}
@@ -140,6 +171,7 @@ const TemplateMockup = () => (
                   <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
                 </motion.svg>
                 <span className="text-[#F5F5F5]/90 font-medium flex-1">{section.name}</span>
+                <div className={`w-2 h-2 rounded-full ${section.status === 'compliant' ? 'bg-[#7CC2A7]' : 'bg-[#D8A860]'}`} />
                 <div className="w-10 h-1 bg-[#C0C0C0]/20 rounded-full overflow-hidden">
                   <div className={`h-full rounded-full ${section.progress === 100 ? 'bg-[#7CC2A7]' : 'bg-[#1391BF]'}`} style={{ width: `${section.progress}%` }} />
                 </div>
@@ -290,7 +322,7 @@ const AIMockup = () => (
 
 // Equipment Recognition UI
 const EquipmentMockup = () => (
-  <WindowChrome title="Equipment Scanner — AI Detection">
+  <WindowChrome title="Equipment Scanner — AI Detection" showLegend>
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
       <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
@@ -379,7 +411,7 @@ const EquipmentMockup = () => (
           <span className="text-[#F5F5F5]/90 font-medium">DMG MORI NLX 2500</span>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-[#7CC2A7]" />
-            <span className="text-[#7CC2A7] text-[7px]">Verified</span>
+            <span className="text-[#7CC2A7] text-[7px]">Compliant</span>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 text-[7px]">
@@ -403,7 +435,7 @@ const EquipmentMockup = () => (
 
 // Scoring Dashboard UI
 const ScoringMockup = () => (
-  <WindowChrome title="Audit Scorecard — Supplier Assessment">
+  <WindowChrome title="Audit Scorecard — Supplier Assessment" showLegend>
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
@@ -459,10 +491,10 @@ const ScoringMockup = () => (
       {/* Category Breakdown */}
       <div className="flex-1 space-y-1.5">
         {[
-          { name: "Quality Management", score: 92, weight: "40%", color: "bg-[#7CC2A7]" },
-          { name: "Process Control", score: 85, weight: "25%", color: "bg-[#7B8E80]" },
-          { name: "Documentation", score: 78, weight: "20%", color: "bg-[#D8A860]" },
-          { name: "Continuous Improvement", score: 70, weight: "15%", color: "bg-[#1391BF]" },
+          { name: "Quality Management", score: 92, weight: "40%", color: "bg-[#7CC2A7]", status: "compliant" },
+          { name: "Process Control", score: 85, weight: "25%", color: "bg-[#7CC2A7]", status: "compliant" },
+          { name: "Documentation", score: 78, weight: "20%", color: "bg-[#D8A860]", status: "review" },
+          { name: "Continuous Improvement", score: 70, weight: "15%", color: "bg-[#D8A860]", status: "review" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -472,7 +504,10 @@ const ScoringMockup = () => (
             className="bg-[#161616] rounded-lg p-1.5"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[#F5F5F5]/80">{item.name}</span>
+              <div className="flex items-center gap-1.5">
+                <div className={`w-2 h-2 rounded-full ${item.status === 'compliant' ? 'bg-[#7CC2A7]' : 'bg-[#D8A860]'}`} />
+                <span className="text-[#F5F5F5]/80">{item.name}</span>
+              </div>
               <div className="flex items-center gap-2">
                 <span className="text-[#C0C0C0]/60 text-[7px]">{item.weight}</span>
                 <span className="text-[#F5F5F5] font-medium">{item.score}</span>
@@ -504,7 +539,7 @@ const ScoringMockup = () => (
 
 // Evidence Gallery UI
 const EvidenceMockup = () => (
-  <WindowChrome title="Evidence Manager — 47 files">
+  <WindowChrome title="Evidence Manager — 47 files" showLegend>
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
       <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
@@ -528,10 +563,10 @@ const EvidenceMockup = () => (
         {[
           { type: "img", name: "CNC_Inspection.jpg", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "2.4 MB", img: evidenceImg1 },
           { type: "pdf", name: "Quality_Manual_v3.2.pdf", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "4.8 MB", img: null },
-          { type: "img", name: "Emergency_Routes.jpg", tag: "Safety", tagColor: "bg-[#7B8E80]", size: "3.2 MB", img: evidenceImg2 },
+          { type: "img", name: "Emergency_Routes.jpg", tag: "Safety", tagColor: "bg-[#D8A860]", size: "3.2 MB", img: evidenceImg2 },
           { type: "pdf", name: "Work_Instruction_WI-042.pdf", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "1.2 MB", img: null },
           { type: "doc", name: "Calibration_Log_2024.xlsx", tag: "QMS", tagColor: "bg-[#7CC2A7]", size: "450 KB", img: null },
-          { type: "img", name: "Machine_Nameplate.jpg", tag: "Safety", tagColor: "bg-[#7B8E80]", size: "1.9 MB", img: equipmentImage },
+          { type: "img", name: "Machine_Nameplate.jpg", tag: "Safety", tagColor: "bg-[#D8A860]", size: "1.9 MB", img: equipmentImage },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -611,7 +646,7 @@ const EvidenceMockup = () => (
 
 // Progress Dashboard UI
 const ProgressMockup = () => (
-  <WindowChrome title="Live Audit Tracker — Müller GmbH">
+  <WindowChrome title="Live Audit Tracker — Müller GmbH" showLegend>
     <div className="h-full flex text-[9px] bg-[#0A0A0A]">
       {/* Timeline */}
       <div className="flex-1 p-2.5 overflow-hidden">
@@ -719,6 +754,380 @@ const ProgressMockup = () => (
   </WindowChrome>
 );
 
+// NEW: Supplier Search & Intelligence UI (Steps 1+2)
+const SupplierSearchMockup = () => (
+  <WindowChrome title="Supplier Search & Intelligence">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5">
+      {/* Step Indicator */}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-[7px] font-bold">1</div>
+          <span className="text-[#F5F5F5]/80 text-[7px]">Search</span>
+        </div>
+        <div className="h-px flex-1 bg-[#1391BF]/50" />
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded-full bg-[#1391BF]/30 flex items-center justify-center text-[#1391BF] text-[7px] font-bold">2</div>
+          <span className="text-[#C0C0C0]/60 text-[7px]">Report</span>
+        </div>
+      </div>
+
+      {/* Search Form */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 8 }}
+        className="bg-[#161616] rounded-lg p-2.5 mb-2"
+      >
+        <div className="grid grid-cols-3 gap-2 mb-2">
+          <div>
+            <label className="text-[#C0C0C0]/60 text-[7px] block mb-0.5">Company Name</label>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '100%' }}
+              transition={{ delay: 0.5, duration: 0.8, repeat: Infinity, repeatDelay: 8 }}
+              className="h-5 bg-[#0A0A0A] rounded border border-[#C0C0C0]/20 px-1.5 flex items-center"
+            >
+              <span className="text-[#F5F5F5]/80">Müller GmbH</span>
+            </motion.div>
+          </div>
+          <div>
+            <label className="text-[#C0C0C0]/60 text-[7px] block mb-0.5">City</label>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '100%' }}
+              transition={{ delay: 0.7, duration: 0.6, repeat: Infinity, repeatDelay: 8 }}
+              className="h-5 bg-[#0A0A0A] rounded border border-[#C0C0C0]/20 px-1.5 flex items-center"
+            >
+              <span className="text-[#F5F5F5]/80">Stuttgart</span>
+            </motion.div>
+          </div>
+          <div>
+            <label className="text-[#C0C0C0]/60 text-[7px] block mb-0.5">Country</label>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '100%' }}
+              transition={{ delay: 0.9, duration: 0.5, repeat: Infinity, repeatDelay: 8 }}
+              className="h-5 bg-[#0A0A0A] rounded border border-[#C0C0C0]/20 px-1.5 flex items-center"
+            >
+              <span className="text-[#F5F5F5]/80">Germany</span>
+            </motion.div>
+          </div>
+        </div>
+        <motion.button
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ delay: 1.3, duration: 0.3, repeat: Infinity, repeatDelay: 8 }}
+          className="w-full py-1.5 bg-[#1391BF] text-white rounded text-[8px] font-medium flex items-center justify-center gap-1"
+        >
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Search Supplier
+        </motion.button>
+      </motion.div>
+
+      {/* AI Report Generation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.5, repeat: Infinity, repeatDelay: 8 }}
+        className="flex-1 bg-[#161616] rounded-lg p-2.5 overflow-hidden"
+      >
+        <div className="flex items-center gap-2 mb-2">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="w-4 h-4 border-2 border-[#1391BF] border-t-transparent rounded-full"
+          />
+          <span className="text-[#1391BF] text-[8px] font-medium">Generating AI Intelligence Report...</span>
+        </div>
+        
+        <div className="space-y-1.5">
+          {[
+            { label: "Company Profile", progress: 100 },
+            { label: "Financial Analysis", progress: 85 },
+            { label: "Risk Assessment", progress: 60 },
+            { label: "Certifications", progress: 30 },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2.5 + i * 0.3, duration: 0.3, repeat: Infinity, repeatDelay: 8 }}
+              className="flex items-center gap-2"
+            >
+              <span className="text-[#C0C0C0]/80 text-[7px] w-20">{item.label}</span>
+              <div className="flex-1 h-1.5 bg-[#C0C0C0]/15 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${item.progress}%` }}
+                  transition={{ delay: 2.7 + i * 0.3, duration: 0.5, repeat: Infinity, repeatDelay: 8 }}
+                  className="h-full bg-gradient-to-r from-[#1391BF] to-[#7CC2A7] rounded-full"
+                />
+              </div>
+              <span className="text-[#7CC2A7] text-[7px] w-6">{item.progress}%</span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 5, duration: 0.5, repeat: Infinity, repeatDelay: 8 }}
+          className="mt-3 p-2 bg-[#7CC2A7]/10 border border-[#7CC2A7]/30 rounded-lg"
+        >
+          <div className="flex items-center gap-1 mb-1">
+            <svg className="w-3 h-3 text-[#7CC2A7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-[#7CC2A7] text-[8px] font-medium">Report Ready</span>
+          </div>
+          <p className="text-[#C0C0C0]/80 text-[7px]">Overall Risk Score: Low • ISO 9001 Certified</p>
+        </motion.div>
+      </motion.div>
+    </div>
+  </WindowChrome>
+);
+
+// NEW: Audit Preparation & Ordering UI (Steps 3+4)
+const AuditPrepMockup = () => (
+  <WindowChrome title="Audit Preparation & Ordering">
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5">
+      {/* Step Indicator */}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded-full bg-[#7CC2A7] flex items-center justify-center text-white text-[7px]">✓</div>
+          <span className="text-[#7CC2A7] text-[7px]">Search</span>
+        </div>
+        <div className="h-px flex-1 bg-[#7CC2A7]" />
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-[7px] font-bold">3</div>
+          <span className="text-[#F5F5F5]/80 text-[7px]">Prepare</span>
+        </div>
+        <div className="h-px flex-1 bg-[#1391BF]/50" />
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded-full bg-[#1391BF]/30 flex items-center justify-center text-[#1391BF] text-[7px] font-bold">4</div>
+          <span className="text-[#C0C0C0]/60 text-[7px]">Order</span>
+        </div>
+      </div>
+
+      {/* Supplier Selection */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mb-2"
+      >
+        <div className="text-[#C0C0C0]/80 text-[7px] mb-1.5">Select Suppliers for Audit</div>
+        <div className="grid grid-cols-2 gap-1.5">
+          {[
+            { name: "Müller GmbH", location: "Germany", selected: true },
+            { name: "TechParts Inc", location: "USA", selected: true },
+            { name: "Asia Components", location: "China", selected: false },
+          ].map((supplier, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 + i * 0.15, duration: 0.3, repeat: Infinity, repeatDelay: 10 }}
+              className={`p-1.5 rounded-lg border cursor-pointer ${supplier.selected ? 'bg-[#1391BF]/10 border-[#1391BF]/40' : 'bg-[#161616] border-[#C0C0C0]/20'}`}
+            >
+              <div className="flex items-center gap-1.5">
+                <div className={`w-3 h-3 rounded border-2 flex items-center justify-center ${supplier.selected ? 'bg-[#1391BF] border-[#1391BF]' : 'border-[#C0C0C0]/40'}`}>
+                  {supplier.selected && <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[#F5F5F5]/90 text-[8px] font-medium truncate">{supplier.name}</div>
+                  <div className="text-[#C0C0C0]/60 text-[6px]">{supplier.location}</div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Upload Zone */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mb-2"
+      >
+        <div className="text-[#C0C0C0]/80 text-[7px] mb-1.5">Upload Documents</div>
+        <div className="grid grid-cols-2 gap-1.5">
+          <div className="p-2 border border-dashed border-[#7CC2A7]/40 bg-[#7CC2A7]/5 rounded-lg text-center">
+            <svg className="w-4 h-4 mx-auto text-[#7CC2A7] mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <div className="text-[#7CC2A7] text-[7px] font-medium">Checklist.pdf</div>
+            <div className="text-[#C0C0C0]/60 text-[6px]">Uploaded</div>
+          </div>
+          <div className="p-2 border border-dashed border-[#C0C0C0]/30 rounded-lg text-center">
+            <svg className="w-4 h-4 mx-auto text-[#C0C0C0]/40 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <div className="text-[#C0C0C0]/60 text-[7px]">Drop files here</div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Order Confirmation */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="flex-1 bg-[#161616] rounded-lg p-2.5"
+      >
+        <div className="text-[#F5F5F5]/90 text-[8px] font-medium mb-2">Order Summary</div>
+        <div className="space-y-1 mb-2">
+          <div className="flex justify-between text-[7px]">
+            <span className="text-[#C0C0C0]/60">Suppliers</span>
+            <span className="text-[#F5F5F5]/80">2 selected</span>
+          </div>
+          <div className="flex justify-between text-[7px]">
+            <span className="text-[#C0C0C0]/60">Audit Type</span>
+            <span className="text-[#F5F5F5]/80">ISO 9001</span>
+          </div>
+          <div className="flex justify-between text-[7px]">
+            <span className="text-[#C0C0C0]/60">Est. Cost</span>
+            <span className="text-[#7CC2A7] font-medium">€1,400</span>
+          </div>
+        </div>
+        <motion.button
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ delay: 4, duration: 0.3, repeat: Infinity, repeatDelay: 10 }}
+          className="w-full py-2 bg-[#1391BF] text-white rounded-lg text-[8px] font-medium flex items-center justify-center gap-1"
+        >
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Confirm & Order Audit
+        </motion.button>
+      </motion.div>
+    </div>
+  </WindowChrome>
+);
+
+// NEW: Follow-up Manager UI
+const FollowUpMockup = () => (
+  <WindowChrome title="Follow-up Manager — Action Item" showLegend>
+    <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5 overflow-hidden">
+      {/* Task Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mb-2"
+      >
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-[#F5F5F5] text-[10px] font-semibold">Document Control Improvement</span>
+          <span className="px-1.5 py-0.5 bg-[#D8A860]/20 text-[#D8A860] rounded text-[6px] font-medium">Minor NC</span>
+          <span className="px-1.5 py-0.5 bg-[#1391BF]/20 text-[#1391BF] rounded text-[6px] font-medium">In Progress</span>
+        </div>
+        <div className="flex items-center gap-3 text-[7px]">
+          <div className="flex items-center gap-1">
+            <div className="w-4 h-4 rounded-full bg-[#C0C0C0]/30 flex items-center justify-center text-[6px] text-[#F5F5F5]/80">MS</div>
+            <span className="text-[#C0C0C0]/80">Michael Schmidt</span>
+          </div>
+          <span className="text-[#C0C0C0]/40">•</span>
+          <span className="text-[#C4564F]">Due: Dec 20, 2024</span>
+        </div>
+      </motion.div>
+
+      {/* Progress */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mb-2"
+      >
+        <div className="flex justify-between text-[7px] mb-1">
+          <span className="text-[#C0C0C0]/60">Completion Progress</span>
+          <span className="text-[#F5F5F5]/80">60%</span>
+        </div>
+        <div className="h-2 bg-[#161616] rounded-full overflow-hidden">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: '60%' }}
+            transition={{ delay: 0.7, duration: 0.8, repeat: Infinity, repeatDelay: 10 }}
+            className="h-full bg-gradient-to-r from-[#D8A860] to-[#7CC2A7] rounded-full"
+          />
+        </div>
+      </motion.div>
+
+      {/* Attachments */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mb-2"
+      >
+        <div className="text-[#C0C0C0]/80 text-[7px] mb-1">Attachments</div>
+        <div className="flex gap-1">
+          {["CAPA_Form.pdf", "Training_Record.xlsx"].map((file, i) => (
+            <div key={i} className="px-1.5 py-1 bg-[#161616] rounded flex items-center gap-1">
+              <svg className="w-2.5 h-2.5 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+              </svg>
+              <span className="text-[#F5F5F5]/80 text-[7px]">{file}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Comments */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="flex-1 min-h-0"
+      >
+        <div className="text-[#C0C0C0]/80 text-[7px] mb-1">Comments & Notes</div>
+        <div className="bg-[#161616] rounded-lg p-1.5 h-[50px] overflow-hidden">
+          {[
+            { user: "AS", text: "Updated procedures drafted", time: "2h ago" },
+            { user: "MS", text: "Awaiting QM approval", time: "1d ago" },
+          ].map((comment, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2 + i * 0.3, duration: 0.3, repeat: Infinity, repeatDelay: 10 }}
+              className="flex items-start gap-1.5 mb-1"
+            >
+              <div className="w-3 h-3 rounded-full bg-[#1391BF]/30 flex items-center justify-center text-[5px] text-[#1391BF] flex-shrink-0">{comment.user}</div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[#F5F5F5]/80 text-[7px]">{comment.text}</span>
+                <span className="text-[#C0C0C0]/50 text-[6px] ml-1">{comment.time}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* History */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3, duration: 0.4, repeat: Infinity, repeatDelay: 10 }}
+        className="mt-2 pt-2 border-t border-[#C0C0C0]/10"
+      >
+        <div className="text-[#C0C0C0]/60 text-[6px] mb-1">History Log</div>
+        <div className="flex items-center gap-2 text-[6px]">
+          <span className="text-[#C0C0C0]/50">Dec 5</span>
+          <span className="text-[#F5F5F5]/60">Created from audit finding</span>
+          <span className="text-[#C0C0C0]/40">→</span>
+          <span className="text-[#C0C0C0]/50">Dec 8</span>
+          <span className="text-[#F5F5F5]/60">Assigned to MS</span>
+          <span className="text-[#C0C0C0]/40">→</span>
+          <span className="text-[#1391BF]">In Progress</span>
+        </div>
+      </motion.div>
+    </div>
+  </WindowChrome>
+);
+
 const MockupRenderer = ({ type }: { type: Capability['mockupType'] }) => {
   switch (type) {
     case 'template': return <TemplateMockup />;
@@ -727,15 +1136,19 @@ const MockupRenderer = ({ type }: { type: Capability['mockupType'] }) => {
     case 'scoring': return <ScoringMockup />;
     case 'evidence': return <EvidenceMockup />;
     case 'progress': return <ProgressMockup />;
+    case 'supplierSearch': return <SupplierSearchMockup />;
+    case 'auditPrep': return <AuditPrepMockup />;
+    case 'followUp': return <FollowUpMockup />;
     default: return <ProgressMockup />;
   }
 };
 
 const InfiniteScrollingGallery = () => {
   const [selectedCapability, setSelectedCapability] = useState<Capability | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const row1 = [capabilities[0], capabilities[1], capabilities[2]];
-  const row2 = [capabilities[3], capabilities[4], capabilities[5]];
+  const row1 = [capabilities[0], capabilities[1], capabilities[2], capabilities[6]];
+  const row2 = [capabilities[3], capabilities[4], capabilities[5], capabilities[7], capabilities[8]];
 
   const renderRow = (items: Capability[], direction: 'left' | 'right', rowIndex: number) => {
     const duplicatedItems = [...items, ...items, ...items];
@@ -747,16 +1160,28 @@ const InfiniteScrollingGallery = () => {
           style={{ width: 'fit-content' }}
         >
           {duplicatedItems.map((item, index) => (
-            <div
+            <motion.div
               key={`${rowIndex}-${index}`}
               onClick={() => setSelectedCapability(item)}
-              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden bg-card transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:ring-1 hover:ring-primary/30"
-              style={{ width: '300px' }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500"
+              style={{ width: '320px' }}
+              initial={false}
+              animate={{
+                scale: hoveredIndex === index ? 1.15 : 1,
+                zIndex: hoveredIndex === index ? 50 : 1,
+                y: hoveredIndex === index ? -20 : 0,
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileHover={{
+                boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.5)",
+              }}
             >
-              <div className="aspect-square overflow-hidden">
+              <div className="aspect-square overflow-hidden rounded-t-2xl">
                 <MockupRenderer type={item.mockupType} />
               </div>
-              <div className="p-4 bg-card">
+              <div className="p-4 bg-card rounded-b-2xl">
                 <h4 className="text-base font-bold text-foreground mb-1">{item.title}</h4>
                 <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
                   {item.description}
@@ -765,7 +1190,7 @@ const InfiniteScrollingGallery = () => {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -774,6 +1199,29 @@ const InfiniteScrollingGallery = () => {
 
   return (
     <>
+      {/* Color Guidance Table */}
+      <div className="mb-6 px-4 sm:px-6 lg:px-12 xl:px-24">
+        <div className="inline-flex items-center gap-6 bg-[#161616] rounded-full px-6 py-3">
+          <span className="text-[#C0C0C0]/80 text-sm font-medium">Status Guide:</span>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
+            <span className="text-[#F5F5F5]/80 text-sm">Compliant / Good</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
+            <span className="text-[#F5F5F5]/80 text-sm">Review Required / OFI</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
+            <span className="text-[#F5F5F5]/80 text-sm">Critical / Major NC</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#1391BF]" />
+            <span className="text-[#F5F5F5]/80 text-sm">In Progress</span>
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-6 py-4">
         {renderRow(row1, 'left', 1)}
         {renderRow(row2, 'right', 2)}
@@ -781,20 +1229,20 @@ const InfiniteScrollingGallery = () => {
         <style>{`
           @keyframes scroll-left {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-324px * 3)); }
+            100% { transform: translateX(calc(-344px * 4)); }
           }
 
           @keyframes scroll-right {
-            0% { transform: translateX(calc(-324px * 3)); }
+            0% { transform: translateX(calc(-344px * 5)); }
             100% { transform: translateX(0); }
           }
 
           .animate-scroll-left {
-            animation: scroll-left 30s linear infinite;
+            animation: scroll-left 40s linear infinite;
           }
 
           .animate-scroll-right {
-            animation: scroll-right 30s linear infinite;
+            animation: scroll-right 45s linear infinite;
           }
 
           .hover\\:animation-pause:hover {
