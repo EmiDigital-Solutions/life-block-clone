@@ -1050,20 +1050,7 @@ const PlatformDemoAnimation = () => {
       </div>
       
       {/* Demo Window */}
-      <div className="relative bg-white rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden">
-        {/* Browser Chrome */}
-        <div className="bg-gray-50 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
-          <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-          </div>
-          <div className="flex-1 mx-4">
-            <div className="bg-white rounded px-3 py-1 text-xs text-gray-500 border border-gray-200">
-              yvoo.com/platform/{demoSteps[currentStep].title.toLowerCase().replace(' ', '-')}
-            </div>
-          </div>
-        </div>
+      <div className="relative bg-[#0A0A0A] rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden">
         
         {/* Demo Content */}
         <div className="aspect-video bg-[#0A0A0A] relative overflow-hidden">
