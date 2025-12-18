@@ -11,12 +11,12 @@ import evidenceAssembly from "@/assets/evidence-assembly-station.jpg";
 import evidenceCertification from "@/assets/evidence-certification.jpg";
 import evidenceInspector from "@/assets/evidence-inspector.jpg";
 // Auditor images for dispatch step
-import auditorBlonde4 from "@/assets/auditor-blonde-4.jpg";
-import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
-import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
-import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
-import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
+import auditorGen7 from "@/assets/auditor-gen-7.jpg";
+import auditorGen2 from "@/assets/auditor-gen-2.jpg";
+import auditorGen3 from "@/assets/auditor-gen-3.jpg";
+import auditorGen4 from "@/assets/auditor-gen-4.jpg";
+import auditorGen5 from "@/assets/auditor-gen-5.jpg";
+import auditorGen6 from "@/assets/auditor-gen-6.jpg";
 
 interface DemoStep {
   id: number;
@@ -551,12 +551,12 @@ const AuditorDispatchDemo = () => {
   }, []);
   
   const auditors = [
-    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorBlonde4 },
-    { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia", image: procurementMaleAsian },
-    { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm", image: auditorFemaleLatin },
-    { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America", image: auditorMaleNorthAmerica },
-    { name: "Raj Patel", location: "Mumbai, India", specialty: "ISO 14001", distance: "Local", available: "Today", rating: 4.6, audits: 389, x: 70, y: 48, region: "Asia", image: procurementMaleSouthAsian },
-    { name: "Sarah Chen", location: "Singapore", specialty: "ISO 45001", distance: "Local", available: "Tomorrow", rating: 4.8, audits: 456, x: 82, y: 55, region: "SEA", image: procurementFemaleAsian },
+    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorGen7 },
+    { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia", image: auditorGen2 },
+    { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm", image: auditorGen3 },
+    { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America", image: auditorGen4 },
+    { name: "Raj Patel", location: "Mumbai, India", specialty: "ISO 14001", distance: "Local", available: "Today", rating: 4.6, audits: 389, x: 70, y: 48, region: "Asia", image: auditorGen5 },
+    { name: "Sarah Chen", location: "Singapore", specialty: "ISO 45001", distance: "Local", available: "Tomorrow", rating: 4.8, audits: 456, x: 82, y: 55, region: "SEA", image: auditorGen6 },
   ];
   
   return (
