@@ -674,7 +674,8 @@ const AuditorDispatchDemo = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#161616] rounded-xl p-3 whitespace-nowrap z-30 border border-[#7CC2A7]/30 shadow-xl min-w-[150px]"
+                    className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#161616] rounded-xl p-3 whitespace-nowrap z-50 border border-[#7CC2A7]/30 shadow-2xl min-w-[150px]"
+                    style={{ pointerEvents: 'none' }}
                   >
                     <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#161616] rotate-45 border-l border-t border-[#7CC2A7]/30" />
                     <div className="text-white font-semibold text-sm">{auditor.name}</div>
