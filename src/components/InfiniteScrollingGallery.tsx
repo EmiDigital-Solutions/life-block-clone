@@ -1156,8 +1156,9 @@ const InfiniteScrollingGallery = () => {
                 opacity: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 0.7 : 1,
               }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileTap={{ scale: 0.95 }}
               whileHover={{
-                boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.5)",
+                boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.6)",
               }}
             >
               <div className="aspect-square overflow-hidden rounded-t-2xl">
