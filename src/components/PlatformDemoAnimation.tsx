@@ -1237,18 +1237,18 @@ const ReportDemo = () => {
               <div className="bg-[#161616] rounded-xl p-4">
                 <div className="relative h-36">
                   {/* Bars for absolute values */}
-                  <div className="flex items-end justify-between h-28 gap-3 relative z-10">
+                  <div className="flex items-end justify-around h-28 px-2 relative z-10">
                     {historicalScores.map((item, i) => {
                       const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
                       const heightPx = ((item.score - 50) / 50) * 112; // 112px = h-28
                       return (
                         <div 
                           key={item.year}
-                          className="flex-1 flex flex-col items-center h-full justify-end"
+                          className="flex flex-col items-center h-full justify-end"
                         >
                           <span className="text-[10px] font-bold text-white mb-1">{item.score}%</span>
                           <motion.div 
-                            className="w-full rounded-t-lg"
+                            className="w-5 rounded-t-md"
                             style={{ backgroundColor: color }}
                             initial={{ height: 0 }}
                             animate={{ height: heightPx }}
@@ -1259,8 +1259,8 @@ const ReportDemo = () => {
                     })}
                   </div>
                   
-                  {/* Trend Line Overlay */}
-                  <svg className="absolute inset-0 w-full h-28 z-20 pointer-events-none" preserveAspectRatio="none">
+                  {/* Trend Line Overlay - aligned to bar centers */}
+                  <svg className="absolute top-0 left-2 right-2 h-28 z-20 pointer-events-none overflow-visible">
                     <motion.polyline
                       fill="none"
                       stroke="#7CC2A7"
@@ -1271,14 +1271,17 @@ const ReportDemo = () => {
                       animate={{ pathLength: 1 }}
                       transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
                       points={historicalScores.map((item, i) => {
-                        const x = (i / (historicalScores.length - 1)) * 100;
+                        // Align with justify-around distribution (items spaced evenly with half-space at edges)
+                        const totalItems = historicalScores.length;
+                        const x = ((i + 0.5) / totalItems) * 100;
                         const y = 100 - ((item.score - 50) / 50) * 100;
                         return `${x}%,${y}%`;
                       }).join(' ')}
                     />
                     {/* Trend line dots */}
                     {historicalScores.map((item, i) => {
-                      const x = (i / (historicalScores.length - 1)) * 100;
+                      const totalItems = historicalScores.length;
+                      const x = ((i + 0.5) / totalItems) * 100;
                       const y = 100 - ((item.score - 50) / 50) * 100;
                       return (
                         <motion.circle
