@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import factoryImage from "@/assets/factory-hero-background.jpg";
 import worldMap from "@/assets/dotted-world-map.png";
-// Evidence gallery images - authentic audit context
-import aiAuditInspection from "@/assets/ai-audit-inspection.jpg";
-import aiInspectorTech from "@/assets/ai-inspector-tech.jpg";
-import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryCryogenic from "@/assets/industry-cryogenic-valve.jpg";
-import auditorFactoryTeam from "@/assets/auditor-factory-team.jpg";
-import digitalWorkflow from "@/assets/digital-workflow-team.jpg";
+// Evidence gallery - authentic audit evidence photos
+import evidenceCNC from "@/assets/cnc-machine-dmg-nlx.jpg";
+import evidenceFactory from "@/assets/factory-hero-background.jpg";
+import evidenceValve from "@/assets/industry-cryogenic-valve.jpg";
+import evidenceBadge from "@/assets/badge-seal-final.png";
+import evidenceTeam from "@/assets/auditor-factory-team.jpg";
+import evidenceAerospace from "@/assets/industry-aerospace.jpg";
 
 interface DemoStep {
   id: number;
@@ -1025,16 +1025,16 @@ const ReportDemo = () => {
     { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
   ];
   
-  // Authentic audit evidence images
-  const evidenceImages = [equipmentImage, aiAuditInspection, aiInspectorTech, industryAutomotive, industryCryogenic, auditorFactoryTeam];
+  // Authentic audit evidence - photos taken during on-site audit
+  const evidenceImages = [evidenceCNC, evidenceValve, evidenceAerospace, evidenceFactory, evidenceBadge, evidenceTeam];
   
   const evidenceItems = [
-    { id: 1, type: 'Equipment', label: 'CNC Machining Center', ref: 'IMG-001', verified: true },
-    { id: 2, type: 'Document', label: 'Control Plan Rev.4', ref: 'DOC-012', verified: true },
-    { id: 3, type: 'Measurement', label: 'CMM Inspection Report', ref: 'RPT-045', verified: true },
-    { id: 4, type: 'Process', label: 'Assembly Line Station 3', ref: 'IMG-023', verified: false },
+    { id: 1, type: 'Equipment', label: 'DMG MORI NLX 2500', ref: 'IMG-001', verified: true },
+    { id: 2, type: 'Equipment', label: 'Cryogenic Valve Assembly', ref: 'IMG-012', verified: true },
+    { id: 3, type: 'Process', label: 'Precision Machining Bay', ref: 'IMG-023', verified: true },
+    { id: 4, type: 'Facility', label: 'Production Floor Overview', ref: 'IMG-034', verified: false },
     { id: 5, type: 'Certificate', label: 'ISO 9001:2015 Cert', ref: 'CRT-001', verified: true },
-    { id: 6, type: 'Training', label: 'Operator Skill Matrix', ref: 'DOC-089', verified: true },
+    { id: 6, type: 'Personnel', label: 'QC Team Inspection', ref: 'IMG-045', verified: true },
   ];
 
   const overallScore = 84.2;
