@@ -1009,6 +1009,8 @@ const AuditExecutionDemo = () => (
 
 // Step 5: Professional Audit Report Generation
 const ReportDemo = () => {
+  const [viewMode, setViewMode] = useState<'overview' | 'analytics'>('overview');
+  
   const processElements = [
     { code: 'P2', name: 'Project Management', score: 88, weight: 12 },
     { code: 'P3', name: 'Product & Process Development Planning', score: 82, weight: 15 },
@@ -1023,6 +1025,22 @@ const ReportDemo = () => {
     { id: 'NC-002', element: 'P6.2.1', finding: 'Operator qualification matrix not updated for 2 new CNC operators since Q3 2024', severity: 'minor', category: 'Personnel', rootCause: 'Training backlog' },
     { id: 'NC-003', element: 'P4.6', finding: 'Process FMEA (PFMEA-TM-2023-001) not revised after design change ECN-2024-047', severity: 'major', category: 'Risk Management', rootCause: 'Change management' },
     { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
+  ];
+  
+  // Historical score data for trend chart
+  const historicalScores = [
+    { year: '2021', score: 65, auditor: 'TÜV SÜD' },
+    { year: '2022', score: 72, auditor: 'Bureau Veritas' },
+    { year: '2023', score: 78, auditor: 'YVOO' },
+    { year: '2024', score: 82, auditor: 'YVOO' },
+    { year: '2025', score: 84.2, auditor: 'YVOO' },
+  ];
+  
+  // Benchmark data
+  const benchmarkData = [
+    { category: 'Industry Avg', score: 76 },
+    { category: 'Top 10%', score: 92 },
+    { category: 'This Supplier', score: 84.2 },
   ];
   
   // Custom AI-generated VDA 6.3 audit evidence images
@@ -1079,6 +1097,42 @@ const ReportDemo = () => {
             </div>
           </div>
           
+          {/* View Mode Toggle */}
+          <div className="px-4 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2">
+            <button
+              onClick={() => setViewMode('overview')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                viewMode === 'overview' 
+                  ? 'bg-[#1391BF] text-white' 
+                  : 'bg-[#161616] text-[#C0C0C0]/60 hover:text-white'
+              }`}
+            >
+              <span className="flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Overview
+              </span>
+            </button>
+            <button
+              onClick={() => setViewMode('analytics')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                viewMode === 'analytics' 
+                  ? 'bg-[#1391BF] text-white' 
+                  : 'bg-[#161616] text-[#C0C0C0]/60 hover:text-white'
+              }`}
+            >
+              <span className="flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Analytics
+              </span>
+            </button>
+          </div>
+          
+          {viewMode === 'overview' ? (
+          <>
           {/* Process Elements Grid - VDA 6.3 Standard */}
           <div className="p-4 border-b border-[#C0C0C0]/10">
             <div className="flex items-center justify-between mb-3">
@@ -1159,6 +1213,113 @@ const ReportDemo = () => {
               ))}
             </div>
           </div>
+          </>
+          ) : (
+          /* Analytics View */
+          <div className="flex-1 p-4 overflow-hidden">
+            {/* Score Trend Chart */}
+            <div className="mb-4">
+              <div className="text-white/90 font-medium text-sm mb-3">Score Trend (5-Year History)</div>
+              <div className="bg-[#161616] rounded-xl p-4">
+                <div className="flex items-end justify-between h-32 gap-3">
+                  {historicalScores.map((item, i) => {
+                    const color = item.score >= 90 ? '#7CC2A7' : item.score >= 80 ? '#1391BF' : item.score >= 60 ? '#D8A860' : '#C4564F';
+                    const height = (item.score / 100) * 100;
+                    return (
+                      <motion.div 
+                        key={item.year}
+                        className="flex-1 flex flex-col items-center gap-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        <motion.div 
+                          className="w-full rounded-t-lg relative"
+                          style={{ backgroundColor: color }}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${height}%` }}
+                          transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
+                        >
+                          <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-white">{item.score}%</span>
+                        </motion.div>
+                        <span className="text-[#C0C0C0]/60 text-[9px]">{item.year}</span>
+                        <span className="text-[#C0C0C0]/40 text-[8px] truncate w-full text-center">{item.auditor}</span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            
+            {/* Process Elements Radar-style Comparison */}
+            <div className="mb-4">
+              <div className="text-white/90 font-medium text-sm mb-3">Process Element Analysis</div>
+              <div className="bg-[#161616] rounded-xl p-4">
+                <div className="space-y-2">
+                  {processElements.map((el, i) => {
+                    const color = el.score >= 90 ? '#7CC2A7' : el.score >= 80 ? '#1391BF' : '#D8A860';
+                    return (
+                      <motion.div 
+                        key={el.code}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + i * 0.08 }}
+                        className="flex items-center gap-3"
+                      >
+                        <span className="text-[#C0C0C0]/50 text-[10px] w-6">{el.code}</span>
+                        <div className="flex-1 h-4 bg-[#0A0A0A] rounded-full overflow-hidden relative">
+                          <motion.div 
+                            className="h-full rounded-full"
+                            style={{ backgroundColor: color }}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${el.score}%` }}
+                            transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
+                          />
+                          <div className="absolute inset-0 flex items-center px-2">
+                            <span className="text-[8px] text-white/80 font-medium truncate">{el.name}</span>
+                          </div>
+                        </div>
+                        <span className="text-white font-bold text-xs w-10 text-right">{el.score}%</span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            
+            {/* Benchmark Comparison */}
+            <div>
+              <div className="text-white/90 font-medium text-sm mb-3">Industry Benchmark</div>
+              <div className="bg-[#161616] rounded-xl p-4">
+                <div className="flex items-end justify-around h-24">
+                  {benchmarkData.map((item, i) => {
+                    const isThisSupplier = item.category === 'This Supplier';
+                    const color = isThisSupplier ? '#1391BF' : item.category === 'Top 10%' ? '#7CC2A7' : '#C0C0C0';
+                    return (
+                      <motion.div 
+                        key={item.category}
+                        className="flex flex-col items-center gap-2"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 + i * 0.15 }}
+                      >
+                        <motion.div 
+                          className={`w-16 rounded-t-lg ${isThisSupplier ? 'ring-2 ring-[#1391BF]/50' : ''}`}
+                          style={{ backgroundColor: color + (isThisSupplier ? '' : '40') }}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${(item.score / 100) * 80}px` }}
+                          transition={{ delay: 0.8 + i * 0.15, duration: 0.4 }}
+                        />
+                        <span className={`text-xs font-bold ${isThisSupplier ? 'text-[#1391BF]' : 'text-[#C0C0C0]/60'}`}>{item.score}%</span>
+                        <span className="text-[#C0C0C0]/50 text-[9px] text-center">{item.category}</span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+          )}
         </div>
         
         {/* Right Sidebar */}
