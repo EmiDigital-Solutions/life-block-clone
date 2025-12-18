@@ -72,33 +72,12 @@ const capabilities: Capability[] = [
   },
 ];
 
-// Color Legend Component
-const ColorLegend = () => (
-  <div className="absolute top-1 right-2 flex items-center gap-3 text-[7px]">
-    <div className="flex items-center gap-1">
-      <div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />
-      <span className="text-[#C0C0C0]/70">Compliant</span>
-    </div>
-    <div className="flex items-center gap-1">
-      <div className="w-2 h-2 rounded-full bg-[#D8A860]" />
-      <span className="text-[#C0C0C0]/70">Review</span>
-    </div>
-    <div className="flex items-center gap-1">
-      <div className="w-2 h-2 rounded-full bg-[#C4564F]" />
-      <span className="text-[#C0C0C0]/70">Critical</span>
-    </div>
-  </div>
-);
-
 // Window Chrome Component - Clean design without traffic lights
-const WindowChrome = ({ title, children, showLegend = false }: { title: string; children: React.ReactNode; showLegend?: boolean }) => (
+const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div className="w-full h-full bg-[#0A0A0A] rounded-lg overflow-hidden flex flex-col shadow-2xl">
     {/* Title Bar - Clean design */}
-    <div className="h-7 bg-[#161616] flex items-center px-3 border-b border-[#C0C0C0]/10 flex-shrink-0 relative">
-      <div className="flex-1">
-        <span className="text-[9px] text-[#C0C0C0]/80 font-medium">{title}</span>
-      </div>
-      {showLegend && <ColorLegend />}
+    <div className="h-7 bg-[#161616] flex items-center px-3 border-b border-[#C0C0C0]/10 flex-shrink-0">
+      <span className="text-[9px] text-[#C0C0C0]/80 font-medium">{title}</span>
     </div>
     {/* Content */}
     <div className="flex-1 overflow-hidden">
@@ -109,7 +88,7 @@ const WindowChrome = ({ title, children, showLegend = false }: { title: string; 
 
 // Template Builder UI
 const TemplateMockup = () => (
-  <WindowChrome title="Template Builder — ISO 9001:2015" showLegend>
+  <WindowChrome title="Template Builder — ISO 9001:2015">
     <div className="h-full flex text-[9px]">
       {/* Sidebar */}
       <div className="w-16 bg-[#0A0A0A] border-r border-[#C0C0C0]/10 p-2 flex flex-col gap-1">
@@ -322,7 +301,7 @@ const AIMockup = () => (
 
 // Equipment Recognition UI
 const EquipmentMockup = () => (
-  <WindowChrome title="Equipment Scanner — AI Detection" showLegend>
+  <WindowChrome title="Equipment Scanner — AI Detection">
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
       <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
@@ -435,7 +414,7 @@ const EquipmentMockup = () => (
 
 // Scoring Dashboard UI
 const ScoringMockup = () => (
-  <WindowChrome title="Audit Scorecard — Supplier Assessment" showLegend>
+  <WindowChrome title="Audit Scorecard — Supplier Assessment">
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
@@ -539,7 +518,7 @@ const ScoringMockup = () => (
 
 // Evidence Gallery UI
 const EvidenceMockup = () => (
-  <WindowChrome title="Evidence Manager — 47 files" showLegend>
+  <WindowChrome title="Evidence Manager — 47 files">
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Toolbar */}
       <div className="px-2 py-1.5 border-b border-[#C0C0C0]/10 flex items-center gap-2">
@@ -646,7 +625,7 @@ const EvidenceMockup = () => (
 
 // Progress Dashboard UI
 const ProgressMockup = () => (
-  <WindowChrome title="Live Audit Tracker — Müller GmbH" showLegend>
+  <WindowChrome title="Live Audit Tracker — Müller GmbH">
     <div className="h-full flex text-[9px] bg-[#0A0A0A]">
       {/* Timeline */}
       <div className="flex-1 p-2.5 overflow-hidden">
@@ -1011,7 +990,7 @@ const AuditPrepMockup = () => (
 
 // NEW: Follow-up Manager UI
 const FollowUpMockup = () => (
-  <WindowChrome title="Follow-up Manager — Action Item" showLegend>
+  <WindowChrome title="Follow-up Manager — Action Item">
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A] p-2.5 overflow-hidden">
       {/* Task Header */}
       <motion.div
@@ -1145,7 +1124,7 @@ const MockupRenderer = ({ type }: { type: Capability['mockupType'] }) => {
 
 const InfiniteScrollingGallery = () => {
   const [selectedCapability, setSelectedCapability] = useState<Capability | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
   const row1 = [capabilities[0], capabilities[1], capabilities[2], capabilities[6]];
@@ -1164,15 +1143,15 @@ const InfiniteScrollingGallery = () => {
             <motion.div
               key={`${rowIndex}-${index}`}
               onClick={() => setSelectedCapability(item)}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => setHoveredKey(`${rowIndex}-${index}`)}
+              onMouseLeave={() => setHoveredKey(null)}
               className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500"
               style={{ width: '320px' }}
               initial={false}
               animate={{
-                scale: hoveredIndex === index ? 1.15 : 1,
-                zIndex: hoveredIndex === index ? 50 : 1,
-                y: hoveredIndex === index ? -20 : 0,
+                scale: hoveredKey === `${rowIndex}-${index}` ? 1.15 : 1,
+                zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1,
+                y: hoveredKey === `${rowIndex}-${index}` ? -20 : 0,
               }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               whileHover={{
@@ -1200,29 +1179,8 @@ const InfiniteScrollingGallery = () => {
 
   return (
     <>
-      {/* Color Guidance Table & Pause Button */}
-      <div className="mb-6 px-4 sm:px-6 lg:px-12 xl:px-24 flex flex-wrap items-center justify-between gap-4">
-        <div className="inline-flex items-center gap-6 bg-[#161616] rounded-full px-6 py-3">
-          <span className="text-[#C0C0C0]/80 text-sm font-medium">Status Guide:</span>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#7CC2A7]" />
-            <span className="text-[#F5F5F5]/80 text-sm">Compliant / Good</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#D8A860]" />
-            <span className="text-[#F5F5F5]/80 text-sm">Review Required / OFI</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#C4564F]" />
-            <span className="text-[#F5F5F5]/80 text-sm">Critical / Major NC</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#1391BF]" />
-            <span className="text-[#F5F5F5]/80 text-sm">In Progress</span>
-          </div>
-        </div>
-        
-        {/* Pause/Play Button */}
+      {/* Pause/Play Button */}
+      <div className="mb-6 px-4 sm:px-6 lg:px-12 xl:px-24 flex justify-end">
         <button
           onClick={() => setIsPaused(!isPaused)}
           className="inline-flex items-center gap-2 bg-[#161616] hover:bg-[#1a1a1a] rounded-full px-5 py-3 transition-colors duration-200"
