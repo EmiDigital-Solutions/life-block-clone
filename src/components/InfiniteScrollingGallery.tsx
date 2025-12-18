@@ -186,7 +186,7 @@ const TemplateMockup = () => (
 
 // AI Assistant Chat UI
 const AIMockup = () => (
-  <WindowChrome title="YVOO Copilot — Audit Assistant">
+  <WindowChrome title="AIVOO — Audit Assistant">
     <div className="h-full flex flex-col text-[9px] bg-[#0A0A0A]">
       {/* Header */}
       <div className="px-2.5 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2">
@@ -196,7 +196,7 @@ const AIMockup = () => (
           </svg>
         </div>
         <div className="flex-1">
-          <div className="text-[#F5F5F5]/90 font-medium">YVOO Copilot</div>
+          <div className="text-[#F5F5F5]/90 font-medium">AIVOO</div>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-[#7CC2A7]" />
             <span className="text-[#C0C0C0]/60 text-[7px]">Active • ISO 9001 context</span>
