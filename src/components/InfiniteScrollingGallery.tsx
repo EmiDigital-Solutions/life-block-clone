@@ -1145,12 +1145,11 @@ const InfiniteScrollingGallery = () => {
               onClick={() => setSelectedCapability(item)}
               onMouseEnter={() => setHoveredKey(`${rowIndex}-${index}`)}
               onMouseLeave={() => setHoveredKey(null)}
-              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500"
-              style={{ width: '320px' }}
+              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500 relative"
+              style={{ width: '320px', zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1 }}
               initial={false}
               animate={{
                 scale: hoveredKey === `${rowIndex}-${index}` ? 1.35 : 1,
-                zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1,
                 y: hoveredKey === `${rowIndex}-${index}` ? -30 : 0,
                 filter: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 'blur(3px)' : 'blur(0px)',
                 opacity: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 0.7 : 1,
