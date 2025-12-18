@@ -1179,9 +1179,6 @@ const InfiniteScrollingGallery = () => {
                 <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
                   {item.description}
                 </p>
-                <span className="text-xs font-medium text-primary mt-2 inline-block hover:underline">
-                  Learn more →
-                </span>
               </div>
             </motion.div>
           ))}
