@@ -109,113 +109,104 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Bold Typography Dark Style */}
+        {/* Hero Section - Premium B2B Style */}
         <section
           data-nav-theme="white"
           className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Subtle gradient accent */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-          
           {/* Main Content */}
-          <div className="container mx-auto px-6 lg:px-12 pt-32 pb-20 relative z-10">
-            <div className="max-w-4xl">
+          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
               
-              {/* Tagline */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-8"
-              >
-                <span className="text-primary font-medium tracking-wider uppercase text-sm">
-                  For Elite Auditors Only
-                </span>
-              </motion.div>
-
-              {/* Main Heading - The core value proposition */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] mb-8 text-white"
-              >
-                Stop being
-                <br />
-                <span className="text-primary">undervalued.</span>
-              </motion.h1>
-
-              {/* Subtitle - Speaking to their pain */}
+              {/* Eyebrow - Exclusivity signal */}
               <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-12"
+              >
+                By Invitation Only
+              </motion.p>
+
+              {/* Main Heading - Aspirational, confident */}
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl lg:text-2xl text-white/50 mb-12 max-w-2xl leading-relaxed"
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
               >
-                You've earned your certifications. You've built your expertise. 
-                Now work with clients who respect that—and pay accordingly.
+                We partner with
+                <br />
+                <span className="font-medium">exceptional auditors.</span>
+              </motion.h1>
+
+              {/* Subtitle - Selective, not desperate */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-white/40 mb-16 max-w-xl mx-auto"
+              >
+                Our clients demand the highest standards.
+                <br />
+                So do we.
               </motion.p>
 
-              {/* Value Props - Quick hits */}
+              {/* CTA - Simple, confident */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-wrap gap-x-8 gap-y-4 mb-12 text-white/70"
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                {[
-                  "€2,500–€4,500 per audit",
-                  "48h payment guarantee",
-                  "Premium clients only"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-primary" />
-                    <span className="text-lg">{item}</span>
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-6"
-              >
-                <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base bg-primary text-primary-foreground hover:bg-primary/90">
-                  Apply to Join
+                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-white text-[#0a0a0a] hover:bg-white/90">
+                  Apply for Partnership
                   <ArrowRight className="w-5 h-5" />
                 </button>
-                <a 
-                  href="#how-it-works"
-                  className="inline-flex items-center gap-2 font-medium text-white/50 hover:text-white transition-colors"
-                >
-                  See how it works
-                  <span>→</span>
-                </a>
               </motion.div>
             </div>
 
-            {/* Stats Strip - Social proof */}
+            {/* Client Logos - Show caliber */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-24 pt-12 border-t border-white/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="mt-32 pt-12 border-t border-white/10"
             >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
-                {[
-                  { value: "2,000+", label: "Active auditors" },
-                  { value: "90+", label: "Countries covered" },
-                  { value: "€4.5K", label: "Avg. top monthly" },
-                  { value: "4.9/5", label: "Client satisfaction" }
-                ].map((stat, idx) => (
-                  <div key={idx}>
-                    <p className="text-3xl lg:text-4xl font-bold text-white mb-1">{stat.value}</p>
-                    <p className="text-sm text-white/40">{stat.label}</p>
-                  </div>
+              <p className="text-center text-white/30 text-sm tracking-wider uppercase mb-10">
+                Our partners audit for
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+                {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF"].map((client, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
+                    className="text-2xl lg:text-3xl font-light text-white/20 hover:text-white/40 transition-colors"
+                  >
+                    {client}
+                  </motion.span>
                 ))}
               </div>
+            </motion.div>
+
+            {/* Minimal stats - understated confidence */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.5 }}
+              className="mt-20 flex justify-center gap-16 lg:gap-24"
+            >
+              {[
+                { value: "2,000+", label: "Partners" },
+                { value: "94", label: "Countries" },
+                { value: "12K+", label: "Audits Completed" }
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center">
+                  <p className="text-2xl lg:text-3xl font-light text-white/80">{stat.value}</p>
+                  <p className="text-xs text-white/30 uppercase tracking-wider mt-1">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </div>
         </section>
