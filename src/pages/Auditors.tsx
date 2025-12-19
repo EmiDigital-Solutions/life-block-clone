@@ -230,6 +230,9 @@ const Auditors = () => {
         {/* Technology Features - New Design */}
         <TechnologyFeaturesSection />
 
+        {/* Day in the Life */}
+        <DayInLifeSection />
+
         {/* Success Stories */}
         <SuccessStoriesSection />
 
@@ -710,6 +713,146 @@ const TechnologyFeaturesSection = () => {
   );
 };
 
+// DAY IN THE LIFE SECTION - Auditor's Workday Timeline
+const DayInLifeSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const timeline = [
+    {
+      time: "08:00",
+      title: "Assignment notification",
+      desc: "Wake up to a new audit matched to your expertise. Automotive supplier, 15 km from home. Accept with one tap.",
+      highlight: "No travel planning",
+    },
+    {
+      time: "09:30",
+      title: "Arrive on-site",
+      desc: "AI-generated checklist ready on your phone. Client specs already loaded. GPS confirms your arrival.",
+      highlight: "Zero prep time",
+    },
+    {
+      time: "10:00",
+      title: "Production floor audit",
+      desc: "Point camera at CNC machine—AI identifies DMG Mori NLX 2500, checks maintenance status. Photo auto-tagged.",
+      highlight: "AI equipment scan",
+    },
+    {
+      time: "12:30",
+      title: "Quick lunch break",
+      desc: "Check live progress dashboard. 60% complete. AI has already categorized 47 evidence photos.",
+      highlight: "Real-time tracking",
+    },
+    {
+      time: "14:00",
+      title: "Quality lab inspection",
+      desc: "Critical finding detected—missing calibration certificate. Red flag sent instantly to client.",
+      highlight: "Instant alerts",
+    },
+    {
+      time: "16:30",
+      title: "Wrap up on-site",
+      desc: "Final walkthrough complete. AI has drafted 80% of your report from structured inputs.",
+      highlight: "Auto-documentation",
+    },
+    {
+      time: "17:30",
+      title: "Home, report done",
+      desc: "Review AI-generated report, add expert commentary. Submit. Payment confirmed in 14 days.",
+      highlight: "Same-day delivery",
+    },
+  ];
+
+  return (
+    <section 
+      ref={ref}
+      data-nav-theme="light"
+      className="py-32 md:py-40 bg-white overflow-hidden"
+    >
+      <div className="container mx-auto px-6 lg:px-16">
+        
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              A Day With YVOO
+            </span>
+          </div>
+          <h2 className="section-headline text-foreground">
+            Your new workday.
+          </h2>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-[60px] md:left-[80px] top-0 bottom-0 w-px bg-border hidden sm:block" />
+          
+          <div className="space-y-8 md:space-y-12">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.1 + index * 0.08 }}
+                className="flex gap-6 md:gap-10"
+              >
+                {/* Time */}
+                <div className="flex-shrink-0 w-[50px] md:w-[60px] text-right">
+                  <span className="text-2xl md:text-3xl font-medium text-foreground">{item.time}</span>
+                </div>
+                
+                {/* Dot */}
+                <div className="hidden sm:flex flex-shrink-0 w-5 h-5 rounded-full bg-primary mt-2 relative z-10" />
+                
+                {/* Content */}
+                <div className="flex-1 pb-8 border-b border-border sm:border-0">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
+                    <h3 className="text-lg md:text-xl font-medium text-foreground">{item.title}</h3>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                      {item.highlight}
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-20 pt-12 border-t border-border"
+        >
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <p className="text-3xl md:text-4xl font-medium text-foreground">0 km</p>
+              <p className="text-sm text-muted-foreground mt-1">Flight distance</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-medium text-foreground">1 day</p>
+              <p className="text-sm text-muted-foreground mt-1">Total time</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-medium text-foreground">70%</p>
+              <p className="text-sm text-muted-foreground mt-1">Less paperwork</p>
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
 
 // SUCCESS STORIES SECTION - Premium B2B Style
 const SuccessStoriesSection = () => {
