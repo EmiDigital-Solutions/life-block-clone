@@ -103,197 +103,163 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section */}
+        {/* Hero Section - Homepage Style */}
         <section
-          data-nav-theme="primary"
-          className="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-24 pt-32 pb-32 sm:pb-36 lg:pb-20 overflow-hidden"
+          data-nav-theme="black"
+          className="relative min-h-screen flex flex-col overflow-hidden bg-white"
         >
-          {/* Video Background */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover z-0"
-            style={{ transform: 'scale(1.15)', objectPosition: 'center center' }}
-          >
-            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-          </video>
-          
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/40 z-0" />
-          <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          {/* Video Background Container */}
+          <div className="absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
+            >
+              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+            </video>
+            {/* Subtle overlay for better text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 flex items-center justify-start relative z-10">
+            <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-24 lg:pt-32 pb-8">
               
-              {/* Left - Geometric Photo Grid */}
+              {/* Offmenu-style Content Card */}
               <motion.div 
-                className="lg:col-span-7 relative" 
-                initial={{ opacity: 0 }} 
-                whileInView={{ opacity: 1 }} 
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-2xl lg:max-w-3xl"
               >
-                <div className="grid grid-cols-4 gap-2 max-w-[600px]">
-                  {heroImages.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      className="relative aspect-square overflow-hidden bg-gray-100 touch-none select-none"
-                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                      whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: index * 0.02 }}
+                {/* Frosted Glass Card */}
+                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
+                  
+                  {/* Tagline Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="mb-6"
+                  >
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                      2,000+ Auditors · 90+ Countries · Premium Clients
+                    </span>
+                  </motion.div>
+
+                  {/* Main Heading */}
+                  <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                  >
+                    <span className="text-foreground">Join the Elite</span>
+                    <br />
+                    <span className="text-primary">Auditor Network</span>
+                  </motion.h1>
+
+                  {/* Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="text-lg text-muted-foreground mb-8"
+                  >
+                    Partner with YVOO to serve companies with the highest quality standards. €2,500+ average assignment value.
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="flex flex-wrap items-center gap-4 mb-8"
+                  >
+                    <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-foreground hover:bg-foreground/90">
+                      Apply as Partner
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                    <a 
+                      href="#how-it-works"
+                      className="inline-flex items-center gap-2 px-4 py-4 font-medium text-foreground hover:text-foreground/70 transition-colors"
                     >
-                      <motion.img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-full object-cover pointer-events-none"
-                        style={{ filter: 'grayscale(100%)' }}
-                        initial={{ scale: 1.15 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: index * 0.02 }}
-                      />
-                      {/* Touch flash effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-[#B2CDBC] pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        whileTap={{ opacity: [0, 0.3, 0], transition: { duration: 0.4 } }}
-                      />
-                      <div className="absolute inset-0 border border-black/5" />
-                    </motion.div>
-                  ))}
+                      How it works
+                      <span className="text-lg">→</span>
+                    </a>
+                  </motion.div>
+
+                  {/* Benefits */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Partner benefits:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {["Premium Clients", "Flexible Schedule", "AI Tools", "Fast Payment"].map((benefit, idx) => (
+                        <span
+                          key={idx}
+                          className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground border border-gray-200"
+                        >
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
-                
-                {/* Geometric accent lines */}
-                <motion.div 
-                  className="absolute -top-6 -left-6 w-20 h-20 border-l border-t border-white/40"
-                  initial={{ opacity: 0, x: -10, y: -10 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                />
-                <motion.div 
-                  className="absolute -bottom-6 -right-6 w-20 h-20 border-r border-b border-white/40"
-                  initial={{ opacity: 0, x: 10, y: 10 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                />
               </motion.div>
-              
-              {/* Right - Text Content */}
-              <motion.div 
-                className="lg:col-span-5 space-y-8" 
-                initial={{ opacity: 0, x: 30 }} 
-                whileInView={{ opacity: 1, x: 0 }} 
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+            </div>
+          </div>
+
+          {/* Scrolling Client Band - Homepage style */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="bg-white py-8 overflow-hidden mt-auto relative z-10"
+          >
+            <div className="container mx-auto px-6 mb-4">
+              <p className="text-sm text-muted-foreground font-medium">
+                Trusted by global industry leaders
+              </p>
+            </div>
+            <div className="relative flex">
+              <motion.div
+                className="flex gap-16 whitespace-nowrap"
+                animate={{
+                  x: [0, -1920],
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 35,
+                    ease: "linear",
+                  },
+                }}
               >
-                <div className="space-y-6">
-                  <div className="w-12 h-0.5 bg-white/80" />
-                  <h1 className="section-headline text-white">
-                    Join the Elite Auditor Network
-                  </h1>
-                  <p className="text-xl text-white/90 leading-relaxed">
-                    Partner with YVOO to serve companies with the highest quality standards and premium requirements.
-                  </p>
-                </div>
-                
-                <div className="flex flex-col space-y-4 text-white">
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">Premium Enterprise Clients</span>
+                {[...Array(3)].map((_, setIndex) => (
+                  <div key={setIndex} className="flex gap-16 items-center">
+                    {["Automotive", "Aerospace", "Engineering", "Manufacturing", "Industrial", "Technology", "Energy", "Pharma"].map((industry, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xl font-semibold text-gray-300 tracking-wide hover:text-gray-500 transition-colors"
+                      >
+                        {industry}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">€2,500+ Average Assignment Value</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-lg font-normal leading-[1.6]">Professional Development Support</span>
-                  </div>
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="flex relative z-10"
-                >
-                  <button className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300">
-                    Apply as Partner Auditor
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </motion.div>
-                
-                <div className="flex gap-1.5">
-                  <div className="w-10 h-0.5 bg-white/80" />
-                  <div className="w-6 h-0.5 bg-white/60" />
-                  <div className="w-3 h-0.5 bg-white/40" />
-                </div>
+                ))}
               </motion.div>
-              
             </div>
-          </div>
-
-          {/* Animated Company Names Band - White Background */}
-          <div className="absolute bottom-0 left-0 right-0 py-4 sm:py-5 lg:py-6 overflow-hidden bg-white border-t border-gray-200 z-0">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-4">
-                <span className="text-sm font-semibold text-gray-600">Trusted by Global Industry Leaders</span>
-              </div>
-              <div className="flex whitespace-nowrap">
-                <motion.div
-                  animate={{ x: [0, -1920] }}
-                  transition={{
-                    x: {
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      duration: 40,
-                      ease: "linear",
-                    },
-                  }}
-                  className="flex items-center gap-12 pr-12"
-                >
-                  {[...Array(3)].map((_, index) => (
-                    <div key={`auditor-band1-${index}`} className="flex items-center gap-12">
-                      <span className="text-lg font-bold text-gray-800">AUTOMOTIVE</span>
-                      <span className="text-lg font-bold text-gray-800">AEROSPACE</span>
-                      <span className="text-lg font-bold text-gray-800">ENGINEERING</span>
-                      <span className="text-lg font-bold text-gray-800">MANUFACTURING</span>
-                      <span className="text-lg font-bold text-gray-800">INDUSTRIAL</span>
-                      <span className="text-lg font-bold text-gray-800">TECHNOLOGY</span>
-                    </div>
-                  ))}
-                </motion.div>
-                <motion.div
-                  animate={{ x: [0, -1920] }}
-                  transition={{
-                    x: {
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      duration: 40,
-                      ease: "linear",
-                    },
-                  }}
-                  className="flex items-center gap-12 pr-12"
-                  aria-hidden="true"
-                >
-                  {[...Array(3)].map((_, index) => (
-                    <div key={`auditor-band2-${index}`} className="flex items-center gap-12">
-                      <span className="text-lg font-bold text-gray-800">AUTOMOTIVE</span>
-                      <span className="text-lg font-bold text-gray-800">AEROSPACE</span>
-                      <span className="text-lg font-bold text-gray-800">ENGINEERING</span>
-                      <span className="text-lg font-bold text-gray-800">MANUFACTURING</span>
-                      <span className="text-lg font-bold text-gray-800">INDUSTRIAL</span>
-                      <span className="text-lg font-bold text-gray-800">TECHNOLOGY</span>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Scroll-Zoom Section */}
