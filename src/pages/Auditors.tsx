@@ -367,31 +367,42 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION - Premium B2B Style
+// TIMELINE SECTION - Sophisticated Editorial Design with Hover Accordion
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const steps = [
     {
       number: "01",
       title: "Apply",
-      description: "Submit credentials online. Review within 48 hours.",
+      subtitle: "Submit credentials",
+      description: "Online application with credentials and certifications. Review within 48 hours.",
     },
     {
       number: "02",
       title: "Verify",
-      description: "Background check and technical interview.",
+      subtitle: "Background check",
+      description: "Technical interview and comprehensive credential verification.",
     },
     {
       number: "03",
       title: "Match",
-      description: "We connect you with aligned clients.",
+      subtitle: "Client alignment",
+      description: "AI connects you with enterprise clients matched to your expertise.",
     },
     {
       number: "04",
       title: "Audit",
-      description: "Deliver. Get paid within 14 days.",
+      subtitle: "Deliver excellence",
+      description: "Conduct audits with enterprise-grade tools and real-time support.",
+    },
+    {
+      number: "05",
+      title: "Earn",
+      subtitle: "Fast payment",
+      description: "Compensation within 14 days. Transparent terms, no hidden fees.",
     },
   ];
 
@@ -400,11 +411,12 @@ const TimelineSection = () => {
       <div className="container mx-auto px-6 lg:px-16">
         
         {/* Header */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
@@ -412,10 +424,10 @@ const TimelineSection = () => {
                 The Process
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
-              Four steps.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.05] tracking-tight">
+              From application
               <br />
-              <span className="font-medium">No complexity.</span>
+              <span className="font-medium">to first audit.</span>
             </h2>
           </motion.div>
           
@@ -423,35 +435,78 @@ const TimelineSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="flex flex-col justify-end"
+            className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              From application to first assignment in 7-10 business days.
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              7-10 business days from application to your first premium engagement.
             </p>
           </motion.div>
         </div>
 
-        {/* Steps - Clean Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 lg:p-10"
-            >
-              <span className="text-5xl font-extralight text-primary/30 block mb-6">
-                {step.number}
-              </span>
-              <h3 className="text-xl font-medium text-foreground mb-3">
-                {step.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </motion.div>
-          ))}
+        {/* Steps - Horizontal Accordion */}
+        <div className="relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+          
+          <div className="flex flex-col md:flex-row">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group relative border-b md:border-b-0 md:border-r border-border last:border-r-0 cursor-pointer transition-all duration-500 ease-out ${
+                  hoveredIndex === index 
+                    ? 'md:flex-[2.5]' 
+                    : hoveredIndex !== null 
+                      ? 'md:flex-[0.8]' 
+                      : 'md:flex-1'
+                }`}
+              >
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                  {/* Number */}
+                  <div className="flex items-start justify-between mb-auto">
+                    <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 text-primary ${
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-30'
+                    }`}>
+                      {step.number}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="mt-12 md:mt-20">
+                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
+                    }`}>
+                      {step.subtitle}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description - Only visible on hover */}
+                    <motion.p
+                      initial={false}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        height: hoveredIndex === index ? 'auto' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                    >
+                      {step.description}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Hover indicator line */}
+                  <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ${
+                    hoveredIndex === index ? 'w-full' : 'w-0'
+                  }`} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
