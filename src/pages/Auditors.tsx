@@ -283,53 +283,50 @@ const Auditors = () => {
         {/* Success Stories */}
         <SuccessStoriesSection />
 
-        {/* Final CTA Section */}
+        {/* Final CTA Section - Homepage Style */}
         <section 
-          data-nav-theme="primary"
-          className="py-16 md:py-20 px-4 md:px-6 lg:px-8 bg-primary"
+          data-nav-theme="light"
+          className="py-24 md:py-32 bg-background"
         >
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-headline text-white mb-6"
-            >
-              Ready to Build Your Professional Practice?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-base md:text-lg lg:text-xl text-white/90 mb-8 lg:mb-10"
-            >
-              Join an elite network of certified auditors serving companies with the highest quality standards, professional excellence and sustainable growth
-            </motion.p>
+          <div className="container mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              className="max-w-4xl mx-auto text-center"
             >
-              <button className="px-8 md:px-10 lg:px-12 py-3 md:py-4 text-base md:text-lg bg-white text-gray-900 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-                Apply for Partnership
-              </button>
+              <h2 className="section-headline text-foreground mb-6">
+                Ready to Build Your Professional Practice?
+              </h2>
+              
+              <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
+                Join an elite network of certified auditors serving companies with the highest quality standards.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href="#"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-4 text-base font-semibold inline-flex items-center gap-2"
+                >
+                  Apply for Partnership
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="mt-16 pt-8 border-t border-border"
+              >
+                <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
+                  <span>Premium Compensation</span>
+                  <span>Strategic Partnerships</span>
+                  <span>Professional Development</span>
+                </div>
+              </motion.div>
             </motion.div>
-            <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center text-white">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-white" />
-                <span>Premium Compensation</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-white" />
-                <span>Strategic Partnerships</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-white" />
-                <span>Professional Development</span>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -387,42 +384,36 @@ const ValuePropositionSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="py-24 md:py-32 bg-white"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground mb-6">
+          <h2 className="section-headline text-foreground">
             Professional Partnership Platform
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
-            YVOO connects certified auditors with quality-focused enterprises. 
-            We prioritize professional standards, strategic partnerships, and career development.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm transition-all"
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center mb-6">
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <feature.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <p className="text-muted-foreground text-base leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -468,21 +459,17 @@ const TimelineSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      className="py-24 md:py-32 bg-background"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground mb-4">
+          <h2 className="section-headline text-foreground">
             Partnership Journey
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl text-gray-600">
-            Five steps to join the elite auditor network
-          </p>
         </motion.div>
 
         <div className="relative">
@@ -490,7 +477,7 @@ const TimelineSection = () => {
             initial={{ height: 0 }}
             animate={isInView ? { height: "100%" } : {}}
             transition={{ duration: 2 }}
-            className="absolute left-8 top-0 w-1 bg-[#B2CDBC]/30 hidden md:block"
+            className="absolute left-7 top-0 w-0.5 bg-border hidden md:block"
           />
 
           {steps.map((step, index) => (
@@ -498,8 +485,8 @@ const TimelineSection = () => {
               key={index}
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="flex items-start gap-6 mb-12 relative"
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="flex items-start gap-6 mb-8 relative"
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -507,22 +494,22 @@ const TimelineSection = () => {
                 transition={{
                   type: "spring",
                   stiffness: 200,
-                  delay: index * 0.2,
+                  delay: index * 0.15,
                 }}
-                className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center text-white text-2xl font-bold shadow-lg z-10"
+                className="flex-shrink-0 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xl font-semibold z-10"
               >
                 {step.number}
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
-                className="flex-1 bg-white rounded-2xl p-6 shadow-sm border border-gray-200"
+                transition={{ duration: 0.5, delay: index * 0.15 + 0.1 }}
+                className="flex-1 bg-[#ebebeb] rounded-[28px] p-6 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-foreground mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-600">{step.description}</p>
+                <p className="text-muted-foreground">{step.description}</p>
               </motion.div>
             </motion.div>
           ))}
@@ -574,43 +561,38 @@ const QualificationsSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="py-24 md:py-32 bg-white"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground mb-4">
+          <h2 className="section-headline text-foreground">
             Professional Standards
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl text-gray-600">
-            Excellence requirements that ensure client trust and audit quality
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {qualifications.map((qual, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
                 duration: 0.4,
-                delay: index * 0.1,
+                delay: index * 0.05,
               }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm transition-all"
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center mb-4">
-                <qual.icon className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                <qual.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                 {qual.title}
               </h3>
-              <p className="text-gray-600 text-sm">{qual.description}</p>
+              <p className="text-muted-foreground text-base leading-relaxed">{qual.description}</p>
             </motion.div>
           ))}
         </div>
@@ -695,42 +677,38 @@ const TechnologyFeaturesSection = () => {
     return (
       <section 
         data-nav-theme="light"
-        className="py-20 md:py-24 px-6"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        className="py-24 md:py-32 bg-background"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <h2 className="section-headline text-foreground mb-4">
+            <h2 className="section-headline text-foreground">
               Enterprise Technology
             </h2>
-            <p className="text-base md:text-lg text-gray-600">
-              Professional tools that enhance your audit efficiency
-            </p>
           </motion.div>
 
           <div className="overflow-x-auto pb-4 -mx-6 px-6">
-            <div className="flex gap-5 md:gap-6" style={{ width: 'max-content' }}>
+            <div className="flex gap-5" style={{ width: 'max-content' }}>
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="relative w-[600px] md:w-[640px] h-[680px] md:h-[700px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-[#ebebeb] rounded-[28px] p-8 w-[320px] flex-shrink-0 hover:bg-[#e3e3e3] transition-colors duration-300"
                 >
-                  {/* Background Image */}
-                  <div className="absolute inset-0">
-                    <img
-                      src={feature.image}
-                      alt="Auditor"
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <feature.icon className="w-7 h-7 text-primary" />
                   </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -775,93 +753,77 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[120vh]"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      className="relative h-[120vh] bg-background"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
         
-        {/* Header - Fixed position, always visible */}
-        <div className="text-center mb-8 px-4 flex-shrink-0">
+        {/* Header */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 mb-8 flex-shrink-0">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-headline text-foreground mb-3"
+            className="section-headline text-foreground mb-6"
           >
             Enterprise Technology
           </motion.h2>
-          <motion.p
+          <motion.a
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-lg lg:text-lg xl:text-xl text-gray-600 max-w-3xl mx-auto mb-4"
-          >
-            Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
-          </motion.p>
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-[#B2CDBC] text-white px-6 lg:px-7 xl:px-8 py-3 lg:py-3.5 xl:py-4 rounded-full font-semibold hover:bg-[#B2CDBC]/90 transition-colors shadow-lg hover:shadow-xl"
+            href="#"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors"
           >
             Explore Features
             <ArrowRight className="w-5 h-5" />
-          </motion.button>
+          </motion.a>
         </div>
 
-        {/* Cards Container - Horizontal scroll area */}
+        {/* Cards Container */}
         <div className="flex-1 overflow-hidden relative">
-          {/* Background indicators */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#B2CDBC]/20 z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-1 bg-red-600/20 z-10" />
-          
-          {/* Scrolling cards */}
           <div className="h-full flex items-center">
             <motion.div 
               style={{ x }}
-              className="flex gap-5 lg:gap-5 xl:gap-6 pl-8 pr-8"
+              className="flex gap-5 pl-6 md:pl-12 lg:pl-20 pr-8"
             >
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  whileHover={{ 
-                    y: -12,
-                    scale: 1.03,
-                    transition: { duration: 0.2 }
-                  }}
-                  className="relative w-[640px] lg:w-[660px] xl:w-[680px] h-[800px] lg:h-[820px] xl:h-[840px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-[#ebebeb] rounded-[28px] p-8 w-[340px] lg:w-[380px] h-[400px] lg:h-[450px] flex-shrink-0 hover:bg-[#e3e3e3] transition-colors duration-300 flex flex-col"
                 >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src={feature.image}
-                    alt="Auditor"
-                    className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-
-                {/* Shine effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/15 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
-              </motion.div>
-            ))}
-          </motion.div>
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <feature.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed flex-1">{feature.description}</p>
+                  <div className="flex gap-2 mt-4">
+                    {feature.tags.map((tag: string, tagIndex: number) => (
+                      <span key={tagIndex} className="px-3 py-1 bg-white rounded-full text-sm text-muted-foreground">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
 
         {/* Progress indicator */}
         <motion.div 
-          className="text-center mt-6 flex-shrink-0"
+          className="container mx-auto px-6 md:px-12 lg:px-20 mt-6 flex-shrink-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
             <span>Scroll to explore</span>
             <motion.span
               animate={{ x: [0, 10, 0] }}
@@ -872,14 +834,14 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
           </div>
           
           {/* Progress bar */}
-          <div className="max-w-md mx-auto mt-4">
-            <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+          <div className="max-w-md">
+            <div className="h-1 bg-border rounded-full overflow-hidden">
               <motion.div 
                 style={{ 
                   scaleX: scrollYProgress,
                   transformOrigin: 'left'
                 }}
-                className="h-full bg-[#B2CDBC]"
+                className="h-full bg-primary"
               />
             </div>
           </div>
@@ -968,26 +930,12 @@ const DoVsDontSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="py-24 md:py-32 bg-white"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         
-        {/* Label */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="flex items-center gap-2 mb-6"
-        >
-          <div className="flex items-center gap-1">
-            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-gray-300' : 'bg-blue-600'}`} />
-            <div className={`w-3 h-3 rounded-full ${isDoState ? 'bg-[#B2CDBC]' : 'bg-gray-300'}`} />
-          </div>
-          <span className="text-sm font-semibold text-gray-600">What Is The Difference?</span>
-        </motion.div>
-
         {/* Main Headline with Toggle */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-12">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1004,7 +952,7 @@ const DoVsDontSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
               className={`section-headline ${
-                isDoState ? 'text-secondary' : 'text-destructive'
+                isDoState ? 'text-primary' : 'text-destructive'
               }`}
             >
               {isDoState ? 'partner' : "don't partner"}
@@ -1014,7 +962,7 @@ const DoVsDontSection = () => {
             <button
               onClick={() => setIsDoState(!isDoState)}
               className={`relative w-20 h-10 rounded-full transition-all duration-300 ${
-                isDoState ? 'bg-[#B2CDBC]' : 'bg-gray-400'
+                isDoState ? 'bg-primary' : 'bg-muted-foreground'
               }`}
               aria-label="Toggle between partner and don't partner"
             >
@@ -1030,31 +978,17 @@ const DoVsDontSection = () => {
             </h2>
           </motion.div>
 
-          <motion.button
+          <motion.a
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            className="bg-blue-600 text-white pl-8 pr-3 py-3 rounded-full font-semibold text-lg flex items-center gap-4 hover:bg-blue-700 transition-all shadow-lg group"
+            href="#"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors"
           >
-            <span>Partner with us</span>
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-              <ArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </motion.button>
+            Partner with us
+            <ArrowRight className="w-5 h-5" />
+          </motion.a>
         </div>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3 }}
-          className="text-lg text-gray-600 mb-16 max-w-3xl lg:ml-auto"
-        >
-          {isDoState 
-            ? "Experience premium compensation, strategic partnerships, and professional growth when joining our elite auditor network."
-            : "Avoid the traditional challenges that limit your practice: low fees, inconsistent work, and lack of professional development."}
-        </motion.p>
 
         {/* Animated Grid */}
         <motion.div layout className="relative">
@@ -1064,7 +998,7 @@ const DoVsDontSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 lg:gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {currentContent.map((item, index) => {
               const Icon = item.icon;
@@ -1079,34 +1013,19 @@ const DoVsDontSection = () => {
                     type: "spring",
                     stiffness: 100
                   }}
-                  whileHover={{ 
-                    y: -8, 
-                    boxShadow: isDoState 
-                      ? '0 12px 24px rgba(34, 197, 94, 0.2)' 
-                      : '0 12px 24px rgba(239, 68, 68, 0.2)'
-                  }}
-                  className="bg-white border border-gray-200 rounded-2xl p-8 transition-all"
+                  className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
                 >
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ 
-                      delay: index * 0.05 + 0.2,
-                      type: "spring",
-                      stiffness: 200
-                    }}
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
-                      isDoState 
-                        ? 'bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9]' 
-                        : 'bg-gradient-to-br from-red-500 to-red-600'
-                    }`}
-                  >
-                    <Icon className="w-8 h-8 text-white" />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
+                    isDoState 
+                      ? 'bg-primary/10' 
+                      : 'bg-destructive/10'
+                  }`}>
+                    <Icon className={`w-7 h-7 ${isDoState ? 'text-primary' : 'text-destructive'}`} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -1156,62 +1075,56 @@ const SuccessStoriesSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+      className="py-24 md:py-32 bg-background"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground mb-4">
+          <h2 className="section-headline text-foreground">
             Partner Success Stories
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl text-gray-600">
-            Real auditors, exceptional results
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+              transition={{ delay: index * 0.1 }}
+              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9]">
+                <div className="w-16 h-16 rounded-full overflow-hidden">
                   <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  <p className="text-xs text-gray-500">{testimonial.years}</p>
+                  <h3 className="text-lg font-semibold text-foreground">{testimonial.name}</h3>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
                 <div className="text-center">
-                  <div className="text-xl font-black text-primary">{testimonial.stats.revenue.split(' ')[0]}</div>
-                  <div className="text-xs text-gray-500">{testimonial.stats.revenue.split(' ')[1]}</div>
+                  <div className="text-lg font-bold text-primary">{testimonial.stats.revenue.split(' ')[0]}</div>
+                  <div className="text-xs text-muted-foreground">{testimonial.stats.revenue.split(' ')[1]}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-black text-primary">{testimonial.stats.audits.split(' ')[0]}</div>
-                  <div className="text-xs text-gray-500">{testimonial.stats.audits.split(' ')[1]}</div>
+                  <div className="text-lg font-bold text-primary">{testimonial.stats.audits.split(' ')[0]}</div>
+                  <div className="text-xs text-muted-foreground">{testimonial.stats.audits.split(' ')[1]}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl font-bold text-amber-500 flex items-center justify-center gap-1">
+                  <div className="text-lg font-bold text-foreground">
                     {testimonial.stats.rating}
                   </div>
-                  <div className="text-xs text-gray-500">Rating</div>
+                  <div className="text-xs text-muted-foreground">Rating</div>
                 </div>
               </div>
 
-              <p className="text-gray-600 italic leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 "{testimonial.quote}"
               </p>
             </motion.div>
@@ -1258,39 +1171,35 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-20 md:py-24 px-6 lg:px-12 xl:px-16 2xl:px-24"
-      style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+      className="py-24 md:py-32 bg-white"
     >
-      <div className="max-w-3xl mx-auto">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="mb-16 md:mb-20"
         >
-          <h2 className="section-headline text-foreground mb-4">
+          <h2 className="section-headline text-foreground">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg md:text-xl lg:text-xl text-gray-600">
-            Everything you need to know about partner auditor program
-          </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-lg border border-gray-200 overflow-hidden"
+              transition={{ delay: index * 0.05 }}
+              className="bg-[#ebebeb] rounded-[20px] overflow-hidden"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#e3e3e3] transition-colors"
               >
-                <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
+                <span className="font-semibold text-foreground pr-4">{faq.q}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${
+                  className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform ${
                     openFaq === index ? "rotate-180" : ""
                   }`}
                 />
