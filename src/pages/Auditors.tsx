@@ -426,11 +426,11 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION - Enhanced Editorial Design
+// TIMELINE SECTION - Sophisticated Editorial Design
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const steps = [
     {
@@ -438,35 +438,30 @@ const TimelineSection = () => {
       title: "Apply",
       subtitle: "Begin your journey",
       description: "Submit credentials and certifications. Our team reviews within 48 hours with personalized feedback.",
-      icon: FileText,
     },
     {
       number: "02",
       title: "Profile",
       subtitle: "Showcase expertise",
       description: "Build a comprehensive profile highlighting your specializations, achievements, and industry focus.",
-      icon: User,
     },
     {
       number: "03",
       title: "Match",
       subtitle: "Intelligent pairing",
       description: "Our AI algorithm connects you with enterprise clients perfectly aligned to your qualifications.",
-      icon: Target,
     },
     {
       number: "04",
       title: "Execute",
       subtitle: "Deliver excellence",
       description: "Conduct audits with enterprise-grade digital tools, real-time support, and quality protocols.",
-      icon: ClipboardCheck,
     },
     {
       number: "05",
       title: "Earn",
       subtitle: "Premium rewards",
       description: "Receive competitive compensation with transparent terms and 14-day payment processing.",
-      icon: Coins,
     },
   ];
 
@@ -475,23 +470,23 @@ const TimelineSection = () => {
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         
         {/* Header - Asymmetric */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-6"
+            className="lg:col-span-5"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-primary" />
-              <span className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                 The Process
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[0.95] tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-foreground leading-[0.95] tracking-tight">
               Partnership
               <br />
-              <span className="font-semibold">Journey</span>
+              <span className="font-medium">Journey</span>
             </h2>
           </motion.div>
           
@@ -499,139 +494,87 @@ const TimelineSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:col-span-5 lg:col-start-8 flex flex-col justify-end"
+            className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
               A refined pathway from application to your first premium engagement—designed for professionals who value excellence.
             </p>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 mt-8 text-foreground font-medium group"
+            >
+              Begin Application
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </motion.div>
         </div>
 
-        {/* Progress Bar */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative h-1 bg-muted rounded-full mb-12 origin-left"
-        >
-          <motion.div
-            className="absolute top-0 left-0 h-full bg-primary rounded-full"
-            initial={{ width: "0%" }}
-            animate={{ width: `${((activeIndex + 1) / steps.length) * 100}%` }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          />
-          {/* Progress dots */}
-          <div className="absolute top-1/2 left-0 right-0 flex justify-between -translate-y-1/2">
-            {steps.map((_, index) => (
-              <motion.button
+        {/* Steps - Horizontal Accordion */}
+        <div className="relative">
+          {/* Top border */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+          
+          <div className="flex flex-col md:flex-row">
+            {steps.map((step, index) => (
+              <motion.div
                 key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-4 h-4 rounded-full border-2 transition-all duration-300 ${
-                  index <= activeIndex 
-                    ? 'bg-primary border-primary scale-110' 
-                    : 'bg-background border-muted-foreground/30 hover:border-primary/50'
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group relative border-b md:border-b-0 md:border-r border-border last:border-r-0 cursor-pointer transition-all duration-500 ease-out ${
+                  hoveredIndex === index 
+                    ? 'md:flex-[2.5]' 
+                    : hoveredIndex !== null 
+                      ? 'md:flex-[0.8]' 
+                      : 'md:flex-1'
                 }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.95 }}
-              />
+              >
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                  {/* Number */}
+                  <div className="flex items-start justify-between mb-auto">
+                    <span className={`text-7xl md:text-8xl font-extralight transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/20'
+                    }`}>
+                      {step.number}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="mt-12 md:mt-20">
+                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground'
+                    }`}>
+                      {step.subtitle}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description - Only visible on hover */}
+                    <motion.p
+                      initial={false}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        height: hoveredIndex === index ? 'auto' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                    >
+                      {step.description}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Hover indicator line */}
+                  <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ${
+                    hoveredIndex === index ? 'w-full' : 'w-0'
+                  }`} />
+                </div>
+              </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Steps - Enhanced Horizontal Accordion */}
-        <div className="relative">
-          <div className="flex flex-col md:flex-row gap-2 md:gap-0">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = activeIndex === index;
-              
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  onClick={() => setActiveIndex(index)}
-                  className={`group relative cursor-pointer transition-all duration-500 ease-out rounded-xl md:rounded-none md:first:rounded-l-2xl md:last:rounded-r-2xl overflow-hidden ${
-                    isActive 
-                      ? 'md:flex-[3] bg-primary/5 border border-primary/20' 
-                      : 'md:flex-[1] bg-muted/30 border border-transparent hover:bg-muted/50'
-                  }`}
-                >
-                  <div className="py-8 md:py-12 px-6 md:px-8 h-full flex flex-col min-h-[280px] md:min-h-[320px]">
-                    {/* Header with Icon and Number */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className={`p-3 rounded-xl transition-all duration-300 ${
-                        isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
-                      }`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className={`text-4xl md:text-5xl font-extralight transition-colors duration-300 ${
-                        isActive ? 'text-primary' : 'text-muted-foreground/20'
-                      }`}>
-                        {step.number}
-                      </span>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col">
-                      <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
-                        isActive ? 'text-primary' : 'text-muted-foreground'
-                      }`}>
-                        {step.subtitle}
-                      </span>
-                      <h3 className={`text-xl md:text-2xl font-semibold mt-2 mb-4 transition-colors duration-300 ${
-                        isActive ? 'text-foreground' : 'text-foreground/70'
-                      }`}>
-                        {step.title}
-                      </h3>
-                      
-                      {/* Description - Always visible on active, fade on mobile */}
-                      <motion.p
-                        initial={false}
-                        animate={{ 
-                          opacity: isActive ? 1 : 0,
-                          height: isActive ? 'auto' : 0,
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
-                      >
-                        {step.description}
-                      </motion.p>
-                    </div>
-                    
-                    {/* Active indicator */}
-                    <motion.div 
-                      className="absolute bottom-0 left-0 right-0 h-1 bg-primary"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: isActive ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
-
-        {/* Strong CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-lg hover:bg-primary/90 transition-all hover:gap-4 shadow-lg shadow-primary/25"
-          >
-            Start Your Journey
-            <ArrowRight className="w-5 h-5" />
-          </a>
-          <span className="text-sm text-muted-foreground">
-            Average onboarding time: 48 hours
-          </span>
-        </motion.div>
 
       </div>
     </section>
