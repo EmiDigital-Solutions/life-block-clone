@@ -223,8 +223,6 @@ const Auditors = () => {
         {/* Qualifications Section */}
         <QualificationsSection />
 
-        {/* Do vs Don't Toggle Section */}
-        <DoVsDontSection />
 
         {/* Technology Features - New Design */}
         <TechnologyFeaturesSection />
