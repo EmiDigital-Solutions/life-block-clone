@@ -27,7 +27,7 @@ const TestimonialSection = () => {
             className="text-left w-full"
           >
             <h2 className="section-headline text-foreground mb-32 md:mb-40">
-              Built for <span className="inline-block px-4 py-1 bg-primary skew-x-[-12deg]"><span className="inline-block skew-x-[12deg] text-primary-foreground font-medium">high-performance</span></span>
+              Built for <span className="inline-block px-4 py-1 bg-[#0A7FA5] skew-x-[-12deg]"><span className="inline-block skew-x-[12deg] text-white font-medium">high-performance</span></span>
               <br />B2B Supply Chains
             </h2>
 

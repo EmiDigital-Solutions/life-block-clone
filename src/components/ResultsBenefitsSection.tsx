@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-// Tech-forward icons with brand accent colors
+// Minimalist outline icons using brand colors
 const accentColor = "#0A7FA5"; // CTA Blue-Teal
 const secondaryColor = "#6EA996"; // Hero Green
 
