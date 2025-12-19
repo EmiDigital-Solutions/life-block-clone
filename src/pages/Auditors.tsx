@@ -422,98 +422,226 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION
+// TIMELINE SECTION - Modern Enterprise Design
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [activeStep, setActiveStep] = useState(0);
 
   const steps = [
     {
       number: "01",
-      title: "Application & Verification",
-      description: "Submit your credentials, certifications, and professional background for review",
+      title: "Apply",
+      subtitle: "Application & Verification",
+      description: "Submit your credentials, certifications, and professional background. Our team reviews each application within 48 hours.",
+      details: ["Credential verification", "Background check", "Reference validation"],
     },
     {
       number: "02",
-      title: "Profile Excellence",
-      description: "Build a comprehensive profile showcasing your expertise, specializations, and achievements",
+      title: "Profile",
+      subtitle: "Build Your Presence",
+      description: "Create a comprehensive profile showcasing your expertise, industry specializations, and career achievements.",
+      details: ["Expertise mapping", "Certification upload", "Portfolio showcase"],
     },
     {
       number: "03",
-      title: "Smart Matching",
-      description: "AI-powered system matches your expertise with premium enterprise client requirements",
+      title: "Match",
+      subtitle: "AI-Powered Matching",
+      description: "Our intelligent system connects you with premium enterprise clients that perfectly align with your qualifications.",
+      details: ["Smart algorithms", "Client preferences", "Optimal fit scoring"],
     },
     {
       number: "04",
-      title: "Professional Auditing",
-      description: "Conduct audits with enterprise-grade tools, support, and quality assurance",
+      title: "Audit",
+      subtitle: "Professional Execution",
+      description: "Conduct audits with enterprise-grade digital tools, dedicated support, and quality assurance protocols.",
+      details: ["Digital toolkit", "Real-time support", "Quality standards"],
     },
     {
       number: "05",
-      title: "Secure Payment",
-      description: "Receive premium compensation directly with transparent terms and timely processing",
+      title: "Earn",
+      subtitle: "Premium Compensation",
+      description: "Receive competitive compensation with transparent terms. Payments processed within 14 days of completion.",
+      details: ["€2,500+ average", "Fast processing", "Transparent terms"],
     },
   ];
 
   return (
     <section 
       ref={ref} 
-      data-nav-theme="light"
-      className="py-24 md:py-32 bg-background"
+      data-nav-theme="dark"
+      className="py-32 md:py-40 bg-foreground overflow-hidden"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mb-16 md:mb-20"
+        
+        {/* Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 md:mb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-white/60 mb-6">
+              <span className="w-8 h-px bg-white/40" />
+              HOW IT WORKS
+            </span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.05] tracking-tight">
+              Partnership
+              <br />
+              <span className="text-primary">Journey</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="flex flex-col justify-end"
+          >
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-md">
+              From application to your first premium assignment in as little as one week. A streamlined process designed for professionals.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Step Indicators - Horizontal */}
+        <div className="relative mb-16">
+          {/* Progress Line */}
+          <div className="absolute top-6 left-0 right-0 h-px bg-white/10" />
+          <motion.div 
+            className="absolute top-6 left-0 h-px bg-primary"
+            initial={{ width: "0%" }}
+            animate={isInView ? { width: `${(activeStep / (steps.length - 1)) * 100}%` } : {}}
+            transition={{ duration: 0.5 }}
+          />
+          
+          {/* Step Dots */}
+          <div className="relative flex justify-between">
+            {steps.map((step, index) => (
+              <motion.button
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onClick={() => setActiveStep(index)}
+                className="flex flex-col items-center group cursor-pointer"
+              >
+                {/* Dot */}
+                <div className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
+                  index <= activeStep 
+                    ? 'bg-primary border-primary' 
+                    : 'bg-transparent border-white/20 group-hover:border-white/40'
+                }`}>
+                  <span className={`text-sm font-semibold transition-colors duration-300 ${
+                    index <= activeStep ? 'text-primary-foreground' : 'text-white/40 group-hover:text-white/60'
+                  }`}>
+                    {step.number}
+                  </span>
+                  
+                  {/* Pulse ring for active */}
+                  {index === activeStep && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-primary"
+                      initial={{ scale: 1, opacity: 1 }}
+                      animate={{ scale: 1.5, opacity: 0 }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  )}
+                </div>
+                
+                {/* Label */}
+                <span className={`mt-4 text-sm font-medium transition-colors duration-300 ${
+                  index <= activeStep ? 'text-white' : 'text-white/40 group-hover:text-white/60'
+                }`}>
+                  {step.title}
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Step Content */}
+        <motion.div 
+          key={activeStep}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
         >
-          <h2 className="section-headline text-foreground">
-            Partnership Journey
-          </h2>
+          {/* Left: Main Content */}
+          <div className="lg:col-span-7">
+            <div className="bg-white/5 backdrop-blur-sm rounded-[32px] p-8 md:p-12 border border-white/10">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-6xl md:text-7xl font-light text-primary/30">
+                  {steps[activeStep].number}
+                </span>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-white">
+                    {steps[activeStep].subtitle}
+                  </h3>
+                </div>
+              </div>
+              
+              <p className="text-lg text-white/70 leading-relaxed mb-8">
+                {steps[activeStep].description}
+              </p>
+              
+              {/* Details List */}
+              <div className="flex flex-wrap gap-3">
+                {steps[activeStep].details.map((detail, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="px-4 py-2 bg-white/10 rounded-full text-sm text-white/80"
+                  >
+                    {detail}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Right: Navigation & CTA */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            {/* Quick Nav */}
+            <div className="space-y-3 mb-8">
+              {steps.map((step, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setActiveStep(index)}
+                  className={`w-full text-left px-5 py-4 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
+                    index === activeStep 
+                      ? 'bg-primary text-primary-foreground' 
+                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                  }`}
+                  whileHover={{ x: index !== activeStep ? 4 : 0 }}
+                >
+                  <span className="flex items-center gap-4">
+                    <span className="text-sm font-medium opacity-50">{step.number}</span>
+                    <span className="font-medium">{step.title}</span>
+                  </span>
+                  <ArrowRight className={`w-4 h-4 transition-transform ${
+                    index === activeStep ? '' : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-1'
+                  }`} />
+                </motion.button>
+              ))}
+            </div>
+            
+            {/* CTA */}
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-3 bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
+            >
+              Start Your Journey
+              <ArrowRight className="w-5 h-5" />
+            </motion.a>
+          </div>
         </motion.div>
 
-        <div className="relative">
-          <motion.div
-            initial={{ height: 0 }}
-            animate={isInView ? { height: "100%" } : {}}
-            transition={{ duration: 2 }}
-            className="absolute left-7 top-0 w-0.5 bg-border hidden md:block"
-          />
-
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="flex items-start gap-6 mb-8 relative"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  delay: index * 0.15,
-                }}
-                className="flex-shrink-0 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xl font-semibold z-10"
-              >
-                {step.number}
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.15 + 0.1 }}
-                className="flex-1 bg-[#ebebeb] rounded-[28px] p-6 hover:bg-[#e3e3e3] transition-colors duration-300"
-              >
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground">{step.description}</p>
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
