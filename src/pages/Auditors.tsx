@@ -30,7 +30,9 @@ import {
   ArrowUp,
   FileText,
   ClipboardCheck,
-  Coins
+  Coins,
+  Plus,
+  Minus
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -1268,36 +1270,40 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
       data-nav-theme="light"
       className="py-24 md:py-32 bg-white"
     >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
+      <div className="container mx-auto px-6 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mb-16 md:mb-20"
+          className="mb-12"
         >
           <h2 className="section-headline text-foreground">
-            Frequently Asked Questions
+            Questions auditors ask
           </h2>
         </motion.div>
 
-        <div className="space-y-3">
+        <div>
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.05 }}
-              className="bg-[#ebebeb] rounded-[20px] overflow-hidden"
+              className="border-t border-[#d5d5d5]"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#e3e3e3] transition-colors"
+                className="w-full py-6 flex items-start justify-between gap-6 text-left group"
               >
-                <span className="font-semibold text-foreground pr-4">{faq.q}</span>
-                <ChevronDown
-                  className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform ${
-                    openFaq === index ? "rotate-180" : ""
-                  }`}
-                />
+                <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                  {faq.q}
+                </span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                  {openFaq === index ? (
+                    <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  ) : (
+                    <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  )}
+                </div>
               </button>
               <motion.div
                 initial={false}
@@ -1305,12 +1311,12 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
                   height: openFaq === index ? "auto" : 0,
                   opacity: openFaq === index ? 1 : 0,
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+                <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
                   {faq.a}
-                </div>
+                </p>
               </motion.div>
             </motion.div>
           ))}
