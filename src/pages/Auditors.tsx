@@ -785,82 +785,53 @@ const DayInLifeSection = () => {
           </h2>
         </motion.div>
 
-        {/* Timeline + Image Layout */}
-        <div className="grid lg:grid-cols-[1fr,400px] gap-12 lg:gap-20 items-start">
+        {/* Timeline */}
+        <div className="relative max-w-5xl">
+          {/* Vertical line */}
+          <div className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block" />
           
-          {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block" />
-            
-            <div className="space-y-16 md:space-y-20">
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
-                  className="flex gap-8 md:gap-12 group"
-                >
-                  {/* Day badge */}
-                  <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
-                    <div className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-full border-2 border-primary/20 items-center justify-center bg-white group-hover:border-primary/40 transition-colors duration-300">
-                      <span className="text-sm md:text-base font-semibold text-primary tracking-wide">{item.day}</span>
-                    </div>
-                    <span className="sm:hidden text-lg font-semibold text-primary">{item.day}</span>
+          <div className="space-y-16 md:space-y-20">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
+                className="flex gap-8 md:gap-12 group"
+              >
+                {/* Day badge */}
+                <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
+                  <div className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-full border-2 border-primary/20 items-center justify-center bg-white group-hover:border-primary/40 transition-colors duration-300">
+                    <span className="text-sm md:text-base font-semibold text-primary tracking-wide">{item.day}</span>
+                  </div>
+                  <span className="sm:hidden text-lg font-semibold text-primary">{item.day}</span>
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 pt-2 md:pt-4">
+                  <div className="mb-6">
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">{item.title}</h3>
                   </div>
                   
-                  {/* Content */}
-                  <div className="flex-1 pt-2 md:pt-4">
-                    <div className="mb-6">
-                      <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">{item.title}</h3>
+                  {/* Old vs New */}
+                  <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center mt-0.5">
+                        <X className="w-3.5 h-3.5 text-muted-foreground" />
+                      </div>
+                      <p className="text-muted-foreground text-base leading-relaxed">{item.oldWay}</p>
                     </div>
-                    
-                    {/* Old vs New */}
-                    <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center mt-0.5">
-                          <X className="w-3.5 h-3.5 text-muted-foreground" />
-                        </div>
-                        <p className="text-muted-foreground text-base leading-relaxed">{item.oldWay}</p>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-primary" />
                       </div>
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                          <Check className="w-3.5 h-3.5 text-primary" />
-                        </div>
-                        <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
-                      </div>
+                      <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Image Card - Sticky on desktop, matching auditor carousel style */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="hidden lg:block sticky top-32"
-          >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
-              <img 
-                src={auditorSelectiveGreen1}
-                alt="YVOO auditor"
-                className="w-full h-full object-cover"
-              />
-              {/* Bottom text overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
-                <p className="text-white/70 text-xs tracking-widest uppercase mb-1">
-                  Germany · Automotive
-                </p>
-                <p className="text-white text-xl font-medium">
-                  VDA 6.3 Lead Auditor
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
       </div>
