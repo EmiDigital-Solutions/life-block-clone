@@ -426,120 +426,155 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION - Editorial Design
+// TIMELINE SECTION - Sophisticated Editorial Design
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const steps = [
     {
       number: "01",
       title: "Apply",
-      description: "Submit your credentials and professional background. Review within 48 hours.",
-      icon: FileText,
+      subtitle: "Begin your journey",
+      description: "Submit credentials and certifications. Our team reviews within 48 hours with personalized feedback.",
     },
     {
       number: "02",
       title: "Profile",
-      description: "Build your professional presence with expertise mapping and certifications.",
-      icon: User,
+      subtitle: "Showcase expertise",
+      description: "Build a comprehensive profile highlighting your specializations, achievements, and industry focus.",
     },
     {
       number: "03",
       title: "Match",
-      description: "AI connects you with enterprise clients aligned to your qualifications.",
-      icon: Target,
+      subtitle: "Intelligent pairing",
+      description: "Our AI algorithm connects you with enterprise clients perfectly aligned to your qualifications.",
     },
     {
       number: "04",
-      title: "Audit",
-      description: "Execute audits with enterprise-grade tools and dedicated support.",
-      icon: ClipboardCheck,
+      title: "Execute",
+      subtitle: "Deliver excellence",
+      description: "Conduct audits with enterprise-grade digital tools, real-time support, and quality protocols.",
     },
     {
       number: "05",
       title: "Earn",
-      description: "Premium compensation with payments processed within 14 days.",
-      icon: Coins,
+      subtitle: "Premium rewards",
+      description: "Receive competitive compensation with transparent terms and 14-day payment processing.",
     },
   ];
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-secondary/30">
+    <section ref={ref} className="py-32 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4">
-            Your Journey
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            From application to your first assignment in one week
-          </p>
-        </motion.div>
+        {/* Header - Asymmetric */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+                The Process
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-foreground leading-[0.95] tracking-tight">
+              Partnership
+              <br />
+              <span className="font-medium">Journey</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
+          >
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A refined pathway from application to your first premium engagement—designed for professionals who value excellence.
+            </p>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 mt-8 text-foreground font-medium group"
+            >
+              Begin Application
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </motion.div>
+        </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
+        {/* Steps - Horizontal Accordion */}
+        <div className="relative">
+          {/* Top border */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+          
+          <div className="flex flex-col md:flex-row">
+            {steps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 24 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group relative border-b md:border-b-0 md:border-r border-border last:border-r-0 cursor-pointer transition-all duration-500 ease-out ${
+                  hoveredIndex === index 
+                    ? 'md:flex-[2.5]' 
+                    : hoveredIndex !== null 
+                      ? 'md:flex-[0.8]' 
+                      : 'md:flex-1'
+                }`}
               >
-                {/* Connector Line (desktop only) */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-border z-0" />
-                )}
-                
-                {/* Card */}
-                <div className="relative bg-background rounded-2xl p-6 border border-border hover:border-foreground/20 transition-all duration-300 hover:shadow-lg h-full">
-                  {/* Number Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-medium text-muted-foreground tracking-wider">
-                      STEP {step.number}
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                  {/* Number */}
+                  <div className="flex items-start justify-between mb-auto">
+                    <span className={`text-7xl md:text-8xl font-extralight transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/20'
+                    }`}>
+                      {step.number}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      <Icon className="w-5 h-5" />
-                    </div>
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
+                  <div className="mt-12 md:mt-20">
+                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground'
+                    }`}>
+                      {step.subtitle}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description - Only visible on hover */}
+                    <motion.p
+                      initial={false}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        height: hoveredIndex === index ? 'auto' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                    >
+                      {step.description}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Hover indicator line */}
+                  <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ${
+                    hoveredIndex === index ? 'w-full' : 'w-0'
+                  }`} />
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
         </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-12 md:mt-16"
-        >
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-full font-medium hover:bg-foreground/90 transition-colors"
-          >
-            Start Your Journey
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </motion.div>
 
       </div>
     </section>
