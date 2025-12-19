@@ -3,6 +3,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
   Calendar,
   Users,
+  User,
   DollarSign,
   Shield,
   Award,
@@ -26,7 +27,10 @@ import {
   TrendingUp,
   Building2,
   Target,
-  ArrowUp
+  ArrowUp,
+  FileText,
+  ClipboardCheck,
+  Coins
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -422,177 +426,119 @@ const ValuePropositionSection = () => {
   );
 };
 
-// TIMELINE SECTION - Modern Enterprise Design
+// TIMELINE SECTION - Editorial Design
 const TimelineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [activeStep, setActiveStep] = useState(0);
 
   const steps = [
     {
       number: "01",
       title: "Apply",
-      subtitle: "Application & Verification",
-      description: "Submit your credentials, certifications, and professional background. Our team reviews each application within 48 hours.",
-      details: ["Credential verification", "Background check", "Reference validation"],
+      description: "Submit your credentials and professional background. Review within 48 hours.",
+      icon: FileText,
     },
     {
       number: "02",
       title: "Profile",
-      subtitle: "Build Your Presence",
-      description: "Create a comprehensive profile showcasing your expertise, industry specializations, and career achievements.",
-      details: ["Expertise mapping", "Certification upload", "Portfolio showcase"],
+      description: "Build your professional presence with expertise mapping and certifications.",
+      icon: User,
     },
     {
       number: "03",
       title: "Match",
-      subtitle: "AI-Powered Matching",
-      description: "Our intelligent system connects you with premium enterprise clients that perfectly align with your qualifications.",
-      details: ["Smart algorithms", "Client preferences", "Optimal fit scoring"],
+      description: "AI connects you with enterprise clients aligned to your qualifications.",
+      icon: Target,
     },
     {
       number: "04",
       title: "Audit",
-      subtitle: "Professional Execution",
-      description: "Conduct audits with enterprise-grade digital tools, dedicated support, and quality assurance protocols.",
-      details: ["Digital toolkit", "Real-time support", "Quality standards"],
+      description: "Execute audits with enterprise-grade tools and dedicated support.",
+      icon: ClipboardCheck,
     },
     {
       number: "05",
       title: "Earn",
-      subtitle: "Premium Compensation",
-      description: "Receive competitive compensation with transparent terms. Payments processed within 14 days of completion.",
-      details: ["€2,500+ average", "Fast processing", "Transparent terms"],
+      description: "Premium compensation with payments processed within 14 days.",
+      icon: Coins,
     },
   ];
 
   return (
-    <section 
-      ref={ref} 
-      className="py-32 md:py-40 bg-background overflow-hidden relative"
-    >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
+    <section ref={ref} className="py-24 md:py-32 bg-secondary/30">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         
         {/* Header */}
-        <div className="max-w-3xl mb-20 md:mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm font-medium text-muted-foreground tracking-wide uppercase mb-4 block">
-              How it works
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.1] tracking-tight">
-              Partnership Journey
-            </h2>
-          </motion.div>
-        </div>
-
-        {/* Steps - Minimal Horizontal Layout */}
-        <div className="relative mb-16">
-          {/* Progress Line */}
-          <div className="absolute top-5 left-0 right-0 h-px bg-border" />
-          <motion.div 
-            className="absolute top-5 left-0 h-px bg-foreground"
-            initial={{ width: "0%" }}
-            animate={isInView ? { width: `${(activeStep / (steps.length - 1)) * 100}%` } : {}}
-            transition={{ duration: 0.4 }}
-          />
-          
-          {/* Step Numbers */}
-          <div className="relative flex justify-between">
-            {steps.map((step, index) => (
-              <motion.button
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                onClick={() => setActiveStep(index)}
-                className="flex flex-col items-center group cursor-pointer"
-              >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  index <= activeStep 
-                    ? 'bg-foreground text-background' 
-                    : 'bg-background border border-border text-muted-foreground group-hover:border-foreground/30'
-                }`}>
-                  <span className="text-sm font-medium">
-                    {step.number}
-                  </span>
-                </div>
-                
-                <span className={`mt-3 text-sm font-medium transition-colors duration-300 ${
-                  index === activeStep ? 'text-foreground' : 'text-muted-foreground'
-                }`}>
-                  {step.title}
-                </span>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        {/* Active Step Content - Clean Card */}
-        <motion.div 
-          key={activeStep}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16 md:mb-20"
         >
-          {/* Left: Content */}
-          <div className="border border-border rounded-2xl p-8 md:p-10">
-            <span className="text-5xl font-light text-muted-foreground/30 mb-4 block">
-              {steps[activeStep].number}
-            </span>
-            <h3 className="text-2xl font-medium text-foreground mb-4">
-              {steps[activeStep].subtitle}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              {steps[activeStep].description}
-            </p>
-            
-            {/* Details */}
-            <div className="flex flex-wrap gap-2">
-              {steps[activeStep].details.map((detail, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-full text-sm"
-                >
-                  {detail}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          {/* Right: Quick Nav */}
-          <div className="space-y-2">
-            {steps.map((step, index) => (
-              <button
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4">
+            Your Journey
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            From application to your first assignment in one week
+          </p>
+        </motion.div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
                 key={index}
-                onClick={() => setActiveStep(index)}
-                className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 flex items-center justify-between ${
-                  index === activeStep 
-                    ? 'bg-foreground text-background' 
-                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
-                }`}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative"
               >
-                <span className="flex items-center gap-4">
-                  <span className="text-sm opacity-60">{step.number}</span>
-                  <span className="font-medium">{step.title}</span>
-                </span>
-                {index === activeStep && <ArrowRight className="w-4 h-4" />}
-              </button>
-            ))}
-            
-            {/* CTA */}
-            <a
-              href="#"
-              className="mt-6 inline-flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-6 py-4 rounded-xl font-medium hover:bg-primary/90 transition-colors"
-            >
-              Start Your Journey
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
+                {/* Connector Line (desktop only) */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-border z-0" />
+                )}
+                
+                {/* Card */}
+                <div className="relative bg-background rounded-2xl p-6 border border-border hover:border-foreground/20 transition-all duration-300 hover:shadow-lg h-full">
+                  {/* Number Badge */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-xs font-medium text-muted-foreground tracking-wider">
+                      STEP {step.number}
+                    </span>
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="text-center mt-12 md:mt-16"
+        >
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-full font-medium hover:bg-foreground/90 transition-colors"
+          >
+            Start Your Journey
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </motion.div>
 
       </div>
