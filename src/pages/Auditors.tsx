@@ -1240,27 +1240,27 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
   const faqs = [
     {
       q: "What is the compensation structure for partner auditors?",
-      a: "Partner auditors earn €2,500+ per assignment on average, with premium rates for specialized audits. Compensation is transparent, competitive, and reflects your professional expertise and certification level. Payments are processed securely within 14 days of completed audit submission."
+      a: "Partner auditors earn €2,500–€4,500 per assignment depending on audit type and complexity. Standard ISO audits start at €2,500, while specialized audits (VDA 6.3, IATF 16949, AS9100) command €3,500–€4,500. Payments are processed within 14 days via direct bank transfer. No platform fees or commission deductions—you keep 100% of your quoted rate."
     },
     {
       q: "How does YVOO differ from gig economy platforms?",
-      a: "Unlike gig platforms that prioritize volume and speed, YVOO focuses on quality partnerships with premium enterprise clients who demand the highest standards. We provide sustainable workloads, premium compensation, professional development opportunities, and long-term client relationships—not one-off assignments with time pressure."
+      a: "YVOO partners with Fortune 500 manufacturers and Tier-1 suppliers who require certified professionals—not freelancers racing against the clock. Key differences: premium compensation (3–5× typical gig rates), sustainable workload (3–5 audits/month vs. daily grind), long-term client relationships, and professional development investment. We reject 70% of client requests that do not meet our quality standards."
     },
     {
       q: "What types of clients will I work with?",
-      a: "Our partner auditors work with global industry leaders across automotive, aerospace, engineering, and manufacturing sectors. These enterprise clients maintain the highest quality standards, value professional excellence, and seek long-term partnerships. All assignments are with established companies requiring certified professional auditors."
+      a: "Our client portfolio includes automotive OEMs (BMW, Mercedes, Volkswagen Group), aerospace manufacturers (Airbus suppliers, Safran), medical device companies, and precision engineering firms. All clients are pre-vetted enterprises with established quality management systems. You will never be assigned to startups, small workshops, or companies seeking cut-rate audits."
     },
     {
       q: "What professional development support is provided?",
-      a: "YVOO invests in partner development through CPE credit programs, specialized training workshops, industry certifications, and mentorship opportunities. We support your career growth with access to advanced audit methodologies, emerging standards, and networking with elite auditors."
+      a: "We invest €2,000+ annually per partner in professional development: CPE credits for maintaining certifications, quarterly webinars on emerging standards (IATF updates, VDA revisions), access to our auditor knowledge base with 500+ case studies, and annual partner summit with industry experts. Top performers receive sponsored certifications and conference attendance."
     },
     {
       q: "How many assignments can I expect per month?",
-      a: "Assignment frequency depends on your availability, specialization, and client demand. Most active partners complete 3-5 enterprise audits monthly, allowing for thorough work while maintaining quality standards. You have full control over accepting assignments that match your schedule and expertise."
+      a: "Active partners typically complete 3–5 enterprise audits monthly, representing €10,000–€18,000 in earnings. You set your own availability—accept assignments that fit your schedule, decline without penalty. Our AI matching system prioritizes auditors based on specialization, location, and client preferences, ensuring consistent high-quality opportunities."
     },
     {
       q: "What is the application and verification process?",
-      a: "The partnership application involves credential verification, background screening, and professional reference checks. Most qualified candidates complete the process within 7-10 business days. We maintain high standards to ensure client trust and protect the integrity of our auditor network."
+      a: "Step 1: Submit credentials and certifications online (10 minutes). Step 2: Background verification and reference checks (5–7 days). Step 3: Technical interview with our audit director (30 minutes). Step 4: Onboarding and platform training (2 hours). Total timeline: 7–10 business days. Acceptance rate: approximately 15% of applicants meet our standards."
     }
   ];
 
