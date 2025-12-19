@@ -807,11 +807,8 @@ const DayInLifeSection = () => {
                 
                 {/* Content */}
                 <div className="flex-1 pt-2 md:pt-4">
-                  <div className="mb-6">
-                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mb-3 leading-tight">{item.title}</h3>
-                    <span className="inline-block px-4 py-1.5 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase rounded-full">
-                      {item.highlight}
-                    </span>
+                <div className="mb-6">
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">{item.title}</h3>
                   </div>
                   
                   {/* Old vs New */}
