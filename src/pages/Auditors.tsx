@@ -592,142 +592,64 @@ const QualificationsSection = () => {
   );
 };
 
-// TECHNOLOGY/PLATFORM SECTION - Premium High-Tech Showcase
+// TECHNOLOGY/PLATFORM SECTION - Premium Minimalist
 const TechnologyFeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const coreFeatures = [
-    { 
-      title: "AI Equipment Recognition", 
-      desc: "Point your camera at any machine. Our computer vision instantly identifies manufacturer, model, condition, and compliance status.",
-      highlight: "World's first"
-    },
-    { 
-      title: "Smart Audit Templates", 
-      desc: "AI generates customized frameworks from client specifications. Context-aware guidance throughout every audit step.",
-      highlight: "Auto-generated"
-    },
-    { 
-      title: "Real-Time Intelligence", 
-      desc: "Live progress tracking, instant red-flag alerts, and automated evidence categorization as you work.",
-      highlight: "Instant alerts"
-    },
-    { 
-      title: "Predictive Risk Scoring", 
-      desc: "AI analyzes historical data to predict supplier risks before they become problems. Benchmark against industry peers.",
-      highlight: "Risk prediction"
-    },
+  const features = [
+    { title: "AI Equipment Recognition", desc: "Point. Scan. Identify. Computer vision analyzes machines instantly." },
+    { title: "Smart Templates", desc: "AI-generated audit frameworks from client specs." },
+    { title: "Real-Time Alerts", desc: "Instant red-flag notifications during audits." },
+    { title: "14-Day Payments", desc: "Fast, transparent. No chasing invoices." },
   ];
-
-  const integrations = ["SAP", "Oracle", "Microsoft Dynamics", "Trackwise", "MasterControl"];
-  const standards = ["ISO 9001", "IATF 16949", "AS9100", "GMP", "VDA 6.3", "API Q1"];
 
   return (
     <section 
       ref={ref}
-      data-nav-theme="white"
-      className="py-32 md:py-40 bg-[#0a0a0a] overflow-hidden"
+      data-nav-theme="light"
+      className="py-32 md:py-40 bg-[#f5f5f5]"
     >
       <div className="container mx-auto px-6 lg:px-16">
         
         {/* Header */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-20 md:mb-28">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-white/30" />
-              <span className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
-                ScanPro+ Platform
-              </span>
-            </div>
-            <h2 className="section-headline text-white mb-6">
-              AI that transforms
-              <br />
-              how you audit.
-            </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:pt-8 flex flex-col justify-end"
-          >
-            <p className="text-lg text-white/50 leading-relaxed mb-8">
-              The world's only platform combining computer vision for machinery analysis with on-demand global auditor deployment.
-            </p>
-            
-            {/* Impact Stats */}
-            <div className="flex gap-12">
-              <div>
-                <p className="text-4xl font-medium text-primary">70%</p>
-                <p className="text-sm text-white/40 mt-1">Time saved</p>
-              </div>
-              <div>
-                <p className="text-4xl font-medium text-primary">3 days</p>
-                <p className="text-sm text-white/40 mt-1">Not weeks</p>
-              </div>
-              <div>
-                <p className="text-4xl font-medium text-primary">60%</p>
-                <p className="text-sm text-white/40 mt-1">Cost reduction</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              Technology
+            </span>
+          </div>
+          <h2 className="section-headline text-foreground mb-6">
+            AI-powered tools.
+            <br />
+            70% less admin.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-xl">
+            Enterprise-grade platform with computer vision and predictive analytics.
+          </p>
+        </motion.div>
 
-        {/* Core Features Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-20">
-          {coreFeatures.map((feature, index) => (
+        {/* Features - Clean horizontal layout */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-16 gap-y-12">
+          {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+              transition={{ delay: index * 0.1 }}
+              className="border-t-2 border-foreground/10 pt-6"
             >
-              <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full mb-4">
-                {feature.highlight}
-              </span>
-              <h3 className="text-xl font-medium text-white mb-3">{feature.title}</h3>
-              <p className="text-white/50 leading-relaxed">{feature.desc}</p>
+              <h3 className="text-lg font-medium text-foreground mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
-
-        {/* Integrations & Standards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="border-t border-white/10 pt-12"
-        >
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <p className="text-white/40 text-sm uppercase tracking-wider mb-4">ERP Integrations</p>
-              <div className="flex flex-wrap gap-3">
-                {integrations.map((item, idx) => (
-                  <span key={idx} className="px-4 py-2 bg-white/5 rounded-full text-white/70 text-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="text-white/40 text-sm uppercase tracking-wider mb-4">Supported Standards</p>
-              <div className="flex flex-wrap gap-3">
-                {standards.map((item, idx) => (
-                  <span key={idx} className="px-4 py-2 bg-white/5 rounded-full text-white/70 text-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
 
       </div>
     </section>
