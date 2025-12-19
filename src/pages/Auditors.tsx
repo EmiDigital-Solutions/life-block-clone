@@ -250,11 +250,11 @@ const Auditors = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-[1.1] tracking-tight mb-8"
+                className="section-headline text-white mb-8"
               >
                 Let's discuss
                 <br />
-                <span className="font-medium">your partnership.</span>
+                your partnership.
               </motion.h2>
               
               <motion.p
@@ -334,10 +334,10 @@ const ValuePropositionSection = () => {
                 The Partnership
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
+            <h2 className="section-headline text-foreground">
               We select partners
               <br />
-              <span className="font-medium">who select us.</span>
+              who select us.
             </h2>
           </motion.div>
           
@@ -424,10 +424,10 @@ const TimelineSection = () => {
                 The Process
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.05] tracking-tight">
+            <h2 className="section-headline text-foreground">
               From application
               <br />
-              <span className="font-medium">to first audit.</span>
+              to first audit.
             </h2>
           </motion.div>
           
@@ -547,10 +547,10 @@ const QualificationsSection = () => {
                 Requirements
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-[1.1] tracking-tight mb-8">
+            <h2 className="section-headline text-white mb-8">
               We're selective.
               <br />
-              <span className="font-medium">So are you.</span>
+              So are you.
             </h2>
             <p className="text-white/50 text-lg max-w-md">
               Our 15% acceptance rate ensures every partner meets the standards our clients expect.
@@ -622,10 +622,10 @@ const TechnologyFeaturesSection = () => {
               Technology
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight mb-6">
+          <h2 className="section-headline text-foreground mb-6">
             Built for the
             <br />
-            <span className="font-medium">modern auditor.</span>
+            modern auditor.
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl">
             Enterprise-grade tools that eliminate busywork. Focus on auditing, not admin.
@@ -699,7 +699,7 @@ const SuccessStoriesSection = () => {
               From Our Partners
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-light text-foreground leading-[1.1] tracking-tight">
+          <h2 className="section-headline text-foreground">
             In their words.
           </h2>
         </motion.div>
