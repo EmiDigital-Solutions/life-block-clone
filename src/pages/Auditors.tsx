@@ -843,18 +843,21 @@ const DayInLifeSection = () => {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="hidden lg:block sticky top-32"
           >
-            <div className="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-2xl">
-              <img 
-                src={evidenceInspector}
-                alt="YVOO auditor conducting inspection"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <p className="text-white/90 text-lg font-light leading-relaxed mb-3">
+            <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-border/50">
+              <div className="aspect-[3/4] relative">
+                <img 
+                  src={evidenceInspector}
+                  alt="YVOO auditor conducting inspection"
+                  className="w-full h-full object-cover grayscale"
+                />
+                {/* Green overlay effect */}
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-white via-white/95 to-transparent">
+                <p className="text-foreground text-lg font-light leading-relaxed mb-2">
                   Focus on what you do best.
                 </p>
-                <p className="text-primary text-xl font-medium flex items-center gap-2">
+                <p className="text-primary text-xl font-semibold flex items-center gap-2">
                   Professional auditing. <ArrowRight className="w-5 h-5" />
                 </p>
               </div>
