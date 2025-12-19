@@ -836,7 +836,7 @@ const ScrollZoomSection = () => {
   const auditors = [
     { src: auditorEuropean, role: "VDA 6.3 Lead Auditor", location: "Germany", industry: "Automotive" },
     { src: auditorAsian, role: "ISO 9001 Specialist", location: "Japan", industry: "Electronics" },
-    { src: auditorMaleNorthAmerica, role: "FDA & ISO 13485 Auditor", location: "USA", industry: "Medical Devices" },
+    { src: auditorMaleNorthAmerica, role: "ABS & DNV-GL Auditor", location: "USA", industry: "Shipbuilding" },
     { src: auditorMiddleEast, role: "API & ISO 29001 Auditor", location: "UAE", industry: "Oil & Gas" },
     { src: auditorLatin, role: "IATF 16949 Specialist", location: "Mexico", industry: "Automotive" },
     { src: auditorSouthAsian, role: "AS9100 Lead Auditor", location: "India", industry: "Aerospace" },
