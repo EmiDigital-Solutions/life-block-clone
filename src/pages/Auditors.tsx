@@ -589,69 +589,36 @@ const QualificationsSection = () => {
   );
 };
 
-// TECHNOLOGY/PLATFORM SECTION - Work Transformation
+// TECHNOLOGY/PLATFORM SECTION - Bento Grid Design
 const TechnologyFeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const features = [
-    {
-      icon: Zap,
-      title: "AI-Powered Matching",
-      description: "Our algorithm analyzes 50+ parameters to connect you with perfectly aligned clients. No more mismatched assignments.",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile-First Platform",
-      description: "Complete audits, upload evidence, communicate with clients—all from your phone. Work from anywhere.",
-    },
-    {
-      icon: BarChart3,
-      title: "Smart Documentation",
-      description: "AI-assisted report generation, automated checklists, and digital evidence capture. Cut admin time by 60%.",
-    },
-    {
-      icon: CreditCard,
-      title: "Instant Payments",
-      description: "Automated invoicing and fast processing. No chasing payments, no accounting headaches.",
-    },
-    {
-      icon: Calendar,
-      title: "Intelligent Scheduling",
-      description: "Calendar sync, travel optimization, and workload balancing. Your time, optimized.",
-    },
-    {
-      icon: MessageCircle,
-      title: "Direct Client Channel",
-      description: "Secure messaging, document sharing, and real-time updates. Professional communication, simplified.",
-    },
-  ];
-
   return (
     <section 
       ref={ref}
-      data-nav-theme="light"
-      className="py-32 md:py-40 bg-[#f5f5f5]"
+      data-nav-theme="white"
+      className="py-32 md:py-40 bg-[#0a0a0a]"
     >
       <div className="container mx-auto px-6 lg:px-16">
         
         {/* Header */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <div className="w-12 h-px bg-white/30" />
+              <span className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
                 Technology
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
-              Work smarter.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-[1.1] tracking-tight">
+              Built for the
               <br />
-              <span className="font-medium">Not harder.</span>
+              <span className="font-medium">modern auditor.</span>
             </h2>
           </motion.div>
           
@@ -661,34 +628,128 @@ const TechnologyFeaturesSection = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="flex flex-col justify-end"
           >
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              Enterprise-grade tools that eliminate busywork so you can focus on what you do best—auditing.
+            <p className="text-lg text-white/50 leading-relaxed max-w-md">
+              Enterprise-grade tools that eliminate busywork. Focus on auditing, not admin.
             </p>
           </motion.div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.08 }}
-                className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-medium text-foreground mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          {/* Large Feature - AI Matching */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1 }}
+            className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl p-8 lg:p-10 border border-white/10 group hover:border-primary/30 transition-colors"
+          >
+            <div className="flex flex-col h-full">
+              <Zap className="w-10 h-10 text-primary mb-6" />
+              <h3 className="text-2xl lg:text-3xl font-medium text-white mb-3">AI-Powered Matching</h3>
+              <p className="text-white/50 text-lg mb-8 max-w-lg">
+                Our algorithm analyzes 50+ parameters to connect you with perfectly aligned clients. No more mismatched assignments.
+              </p>
+              <div className="mt-auto flex gap-3">
+                <span className="px-4 py-2 bg-white/10 rounded-full text-sm text-white/70">Smart Algorithm</span>
+                <span className="px-4 py-2 bg-white/10 rounded-full text-sm text-white/70">Real-time</span>
+              </div>
+            </div>
+          </motion.div>
 
+          {/* Mobile Platform */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.15 }}
+            className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <Smartphone className="w-8 h-8 text-white/70 mb-5" />
+            <h3 className="text-xl font-medium text-white mb-2">Mobile-First</h3>
+            <p className="text-white/40 text-sm leading-relaxed">
+              Complete audits, upload evidence, communicate—all from your phone.
+            </p>
+          </motion.div>
+
+          {/* Smart Documentation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <BarChart3 className="w-8 h-8 text-white/70 mb-5" />
+            <h3 className="text-xl font-medium text-white mb-2">Smart Reports</h3>
+            <p className="text-white/40 text-sm leading-relaxed">
+              AI-assisted documentation. Cut admin time by 60%.
+            </p>
+          </motion.div>
+
+          {/* Large Feature - Payments */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.25 }}
+            className="lg:col-span-2 bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 lg:p-10 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+              <div className="flex-1">
+                <CreditCard className="w-10 h-10 text-white/70 mb-5" />
+                <h3 className="text-2xl font-medium text-white mb-2">Fast, Reliable Payments</h3>
+                <p className="text-white/40 leading-relaxed">
+                  Automated invoicing, transparent terms. No chasing payments, no accounting headaches.
+                </p>
+              </div>
+              <div className="flex-shrink-0 text-right">
+                <span className="text-5xl lg:text-6xl font-light text-white/20">14</span>
+                <p className="text-white/40 text-sm">day processing</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Scheduling */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3 }}
+            className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <Calendar className="w-8 h-8 text-white/70 mb-5" />
+            <h3 className="text-xl font-medium text-white mb-2">Smart Scheduling</h3>
+            <p className="text-white/40 text-sm leading-relaxed">
+              Calendar sync, travel optimization, workload balancing.
+            </p>
+          </motion.div>
+
+          {/* Communication */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35 }}
+            className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <MessageCircle className="w-8 h-8 text-white/70 mb-5" />
+            <h3 className="text-xl font-medium text-white mb-2">Direct Channel</h3>
+            <p className="text-white/40 text-sm leading-relaxed">
+              Secure messaging and document sharing with clients.
+            </p>
+          </motion.div>
+
+          {/* Security */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-colors"
+          >
+            <Lock className="w-8 h-8 text-white/70 mb-5" />
+            <h3 className="text-xl font-medium text-white mb-2">Bank-Level Security</h3>
+            <p className="text-white/40 text-sm leading-relaxed">
+              Enterprise encryption. Your data, protected.
+            </p>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
