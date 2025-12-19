@@ -824,44 +824,129 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
   );
 };
 
-// SCROLL-ZOOM SECTION - Premium B2B Style
+// AUDITOR CAROUSEL SECTION - Premium People Gallery
 const ScrollZoomSection = () => {
   const sectionRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.05]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.8]);
+  const auditors = [
+    { src: auditorEuropean, name: "Dr. Michael Wagner", role: "VDA 6.3 Lead Auditor", location: "Munich, Germany" },
+    { src: auditorAsian, name: "Kenji Tanaka", role: "ISO 9001 Specialist", location: "Tokyo, Japan" },
+    { src: auditorFemaleEuropean, name: "Sarah Chen", role: "IATF 16949 Auditor", location: "Stuttgart, Germany" },
+    { src: auditorAfrican, name: "James Okonkwo", role: "Quality Systems Lead", location: "Lagos, Nigeria" },
+    { src: auditorFemaleSouthAsian, name: "Priya Sharma", role: "AS9100 Specialist", location: "Bangalore, India" },
+    { src: auditorMaleNorthAmerica, name: "David Miller", role: "Medical Device Auditor", location: "Chicago, USA" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % auditors.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [auditors.length]);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 px-6 lg:px-12 bg-[#f5f5f5]">
-      <div className="max-w-6xl mx-auto">
-        {/* Rounded Image Container */}
-        <motion.div 
-          style={{ opacity: imageOpacity }}
-          className="relative w-full rounded-[40px] md:rounded-[60px] overflow-hidden"
+    <section ref={sectionRef} className="py-32 md:py-40 bg-[#f5f5f5] overflow-hidden">
+      <div className="container mx-auto px-6 lg:px-16">
+        
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="mb-16 md:mb-20"
         >
-          <motion.img
-            style={{ scale: imageScale }}
-            src={auditorFactoryTeam}
-            alt="Professional auditors in industrial setting"
-            className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover"
-          />
-          
-          {/* Minimal Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          
-          {/* Bottom Content */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <p className="text-white/60 text-sm tracking-wider uppercase mb-2">Our Network</p>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white max-w-lg">
-              2,000+ certified auditors across 94 countries.
-            </h3>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              Our Network
+            </span>
           </div>
+          <h2 className="section-headline text-foreground">
+            Meet our partners.
+          </h2>
         </motion.div>
+
+        {/* Carousel */}
+        <div className="relative">
+          {/* Main Image */}
+          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] rounded-[32px] md:rounded-[48px] overflow-hidden">
+            {auditors.map((auditor, index) => (
+              <motion.div
+                key={index}
+                initial={false}
+                animate={{
+                  opacity: currentIndex === index ? 1 : 0,
+                  scale: currentIndex === index ? 1 : 1.05,
+                }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={auditor.src}
+                  alt={auditor.name}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              </motion.div>
+            ))}
+
+            {/* Content Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <p className="text-white/60 text-sm tracking-wider uppercase mb-2">
+                  {auditors[currentIndex].location}
+                </p>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-2">
+                  {auditors[currentIndex].name}
+                </h3>
+                <p className="text-white/70 text-lg">
+                  {auditors[currentIndex].role}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="absolute bottom-8 right-8 md:right-12 lg:right-16 flex gap-2">
+              {auditors.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                      ? 'w-8 bg-white' 
+                      : 'bg-white/40 hover:bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-foreground/10">
+            {[
+              { value: "2,000+", label: "Certified Auditors" },
+              { value: "94", label: "Countries" },
+              { value: "15%", label: "Acceptance Rate" },
+            ].map((stat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + idx * 0.1 }}
+                className="text-center"
+              >
+                <p className="text-3xl md:text-4xl font-medium text-foreground">{stat.value}</p>
+                <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
