@@ -109,195 +109,175 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Image Grid Style */}
+        {/* Hero Section - Dark Premium Style */}
         <section
-          data-nav-theme="black"
-          className="relative min-h-screen flex flex-col overflow-hidden bg-[#f8f8f8]"
+          data-nav-theme="white"
+          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+          
+          {/* Decorative grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }} />
+
           {/* Main Content */}
-          <div className="flex-1 flex items-center relative z-10">
-            <div className="container mx-auto px-6 lg:px-12 pt-24 lg:pt-32 pb-16">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                {/* Left Column - Text Content */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 40 }}
+          <div className="container mx-auto px-6 lg:px-12 pt-32 pb-20 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+              
+              {/* Left Column - Text Content */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-xl"
+              >
+                {/* Tagline */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="max-w-xl"
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="mb-8"
                 >
-                  {/* Tagline Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="mb-6"
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground shadow-sm">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                      2,000+ Auditors · 90+ Countries
-                    </span>
-                  </motion.div>
-
-                  {/* Main Heading */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
-                  >
-                    <span className="text-foreground">Join the Elite</span>
-                    <br />
-                    <span className="text-primary">Auditor Network</span>
-                  </motion.h1>
-
-                  {/* Subtitle */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-lg text-muted-foreground mb-8"
-                  >
-                    Partner with YVOO to serve companies with the highest quality standards. €2,500+ average assignment value.
-                  </motion.p>
-
-                  {/* CTA Buttons */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="flex flex-wrap items-center gap-4 mb-8"
-                  >
-                    <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-foreground hover:bg-foreground/90">
-                      Apply as Partner
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                    <a 
-                      href="#how-it-works"
-                      className="inline-flex items-center gap-2 px-4 py-4 font-medium text-foreground hover:text-foreground/70 transition-colors"
-                    >
-                      How it works
-                      <span className="text-lg">→</span>
-                    </a>
-                  </motion.div>
-
-                  {/* Benefits */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                  >
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Partner benefits:
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["Premium Clients", "Flexible Schedule", "AI Tools", "Fast Payment"].map((benefit, idx) => (
-                        <span
-                          key={idx}
-                          className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground border border-gray-200"
-                        >
-                          {benefit}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
+                  <span className="text-primary font-medium tracking-wider uppercase text-sm">
+                    Join 2,000+ Elite Auditors
+                  </span>
                 </motion.div>
 
-                {/* Right Column - Image Grid */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                  className="relative hidden lg:block"
+                {/* Main Heading */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.05] mb-8 text-white"
                 >
-                  <div className="grid grid-cols-4 gap-3">
-                    {heroImages.slice(0, 12).map((image, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 + idx * 0.05 }}
-                        className={`relative overflow-hidden rounded-2xl ${
-                          idx === 0 || idx === 5 ? 'col-span-2 row-span-2' : ''
-                        }`}
-                        style={{ 
-                          aspectRatio: idx === 0 || idx === 5 ? '1' : '1',
-                        }}
-                      >
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                      </motion.div>
-                    ))}
+                  Your Expertise.
+                  <br />
+                  <span className="text-primary">Our Network.</span>
+                </motion.h1>
+
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-xl text-white/60 mb-10 leading-relaxed"
+                >
+                  Partner with YVOO to access premium clients across 90+ countries. Average assignment value: €2,500+
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="flex flex-wrap items-center gap-4 mb-12"
+                >
+                  <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base bg-primary text-primary-foreground hover:bg-primary/90">
+                    Apply as Partner
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <a 
+                    href="#how-it-works"
+                    className="inline-flex items-center gap-2 px-4 py-4 font-medium text-white/70 hover:text-white transition-colors"
+                  >
+                    How it works
+                    <span className="text-lg">→</span>
+                  </a>
+                </motion.div>
+
+                {/* Stats Row */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex gap-12"
+                >
+                  {[
+                    { value: "90+", label: "Countries" },
+                    { value: "€4.5K", label: "Top Monthly" },
+                    { value: "48h", label: "Fast Payment" }
+                  ].map((stat, idx) => (
+                    <div key={idx}>
+                      <p className="text-3xl font-bold text-white">{stat.value}</p>
+                      <p className="text-sm text-white/40">{stat.label}</p>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* Right Column - Featured Image Grid */}
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="relative hidden lg:block"
+              >
+                {/* Main large image */}
+                <div className="relative">
+                  <div className="relative overflow-hidden rounded-3xl">
+                    <img
+                      src={heroImages[0].src}
+                      alt={heroImages[0].alt}
+                      className="w-full aspect-[4/5] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   </div>
                   
-                  {/* Floating Stats Card */}
+                  {/* Floating smaller images */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="absolute -left-12 top-1/4 w-32 h-32 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
+                  >
+                    <img src={heroImages[1].src} alt={heroImages[1].alt} className="w-full h-full object-cover" />
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="absolute -right-8 top-12 w-28 h-28 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
+                  >
+                    <img src={heroImages[2].src} alt={heroImages[2].alt} className="w-full h-full object-cover" />
+                  </motion.div>
+                  
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-xl"
+                    transition={{ duration: 0.8, delay: 0.9 }}
+                    className="absolute -bottom-8 right-12 w-36 h-36 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <TrendingUp className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-2xl font-bold text-foreground">€4,500+</p>
-                        <p className="text-sm text-muted-foreground">Top earners monthly</p>
-                      </div>
-                    </div>
+                    <img src={heroImages[3].src} alt={heroImages[3].alt} className="w-full h-full object-cover" />
                   </motion.div>
+                </div>
+
+                {/* Floating badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  className="absolute -left-6 bottom-1/4 bg-white rounded-2xl p-4 shadow-2xl"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Star className="w-5 h-5 text-primary fill-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-foreground">Top Rated</p>
+                      <p className="text-xs text-muted-foreground">Network</p>
+                    </div>
+                  </div>
                 </motion.div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
-          {/* Scrolling Industry Band */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="bg-white py-8 overflow-hidden mt-auto relative z-10"
-          >
-            <div className="container mx-auto px-6 mb-4">
-              <p className="text-sm text-muted-foreground font-medium">
-                Trusted by global industry leaders
-              </p>
-            </div>
-            <div className="relative flex">
-              <motion.div
-                className="flex gap-16 whitespace-nowrap"
-                animate={{
-                  x: [0, -1920],
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 35,
-                    ease: "linear",
-                  },
-                }}
-              >
-                {[...Array(3)].map((_, setIndex) => (
-                  <div key={setIndex} className="flex gap-16 items-center">
-                    {["Automotive", "Aerospace", "Engineering", "Manufacturing", "Industrial", "Technology", "Energy", "Pharma"].map((industry, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xl font-semibold text-gray-300 tracking-wide hover:text-gray-500 transition-colors"
-                      >
-                        {industry}
-                      </span>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
+          {/* Bottom gradient fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         </section>
 
         {/* Scroll-Zoom Section */}
