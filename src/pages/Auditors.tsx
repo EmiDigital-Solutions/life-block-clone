@@ -672,12 +672,12 @@ const TechnologyFeaturesSection = () => {
     },
   ];
 
-  // Mobile carousel - render differently
+  // Mobile carousel
   if (isMobile) {
     return (
       <section 
         data-nav-theme="light"
-        className="py-24 md:py-32 bg-background"
+        className="py-24 md:py-32 bg-white"
       >
         <div className="container mx-auto px-6">
           <motion.div
@@ -686,9 +686,12 @@ const TechnologyFeaturesSection = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="section-headline text-foreground">
+            <h2 className="section-headline text-foreground mb-4">
               Enterprise Technology
             </h2>
+            <p className="text-lg text-muted-foreground">
+              Professional tools that enhance your audit efficiency
+            </p>
           </motion.div>
 
           <div className="overflow-x-auto pb-4 -mx-6 px-6">
@@ -696,19 +699,29 @@ const TechnologyFeaturesSection = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-[#ebebeb] rounded-[28px] p-8 w-[320px] flex-shrink-0 hover:bg-[#e3e3e3] transition-colors duration-300"
+                  className="relative w-[320px] h-[400px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <feature.icon className="w-7 h-7 text-primary" />
+                  <div className="absolute inset-0">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-base leading-relaxed">{feature.description}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <div className="flex gap-2">
+                      {feature.tags.map((tag: string, tagIndex: number) => (
+                        <span key={tagIndex} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -718,11 +731,11 @@ const TechnologyFeaturesSection = () => {
     );
   }
 
-  // Desktop version without scroll-jacking
+  // Desktop version
   return <DesktopTechnologySection features={features} />;
 };
 
-// Desktop Technology Section with Scroll Effect
+// Desktop Technology Section with Large Image Cards
 const DesktopTechnologySection = ({ features }: { features: any[] }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -731,18 +744,12 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
     offset: ["start start", "end end"]
   });
 
-  // Calculate exact scroll distance so last card reaches left edge
-  const cardWidth = 680;
+  const cardWidth = 640;
   const gap = 24;
   const numCards = features.length;
-  
-  // Total width of all cards
   const totalCardsWidth = (cardWidth * numCards) + (gap * (numCards - 1));
-  
-  // Distance needed to move last card to left edge
   const scrollDistance = -(totalCardsWidth - cardWidth - 50);
   
-  // Transform vertical scroll to horizontal movement
   const x = useTransform(
     scrollYProgress,
     [0, 1],
@@ -753,7 +760,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative h-[120vh] bg-background"
+      className="relative h-[150vh] bg-white"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-8">
         
@@ -763,53 +770,80 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-headline text-foreground mb-6"
+            className="section-headline text-foreground mb-4"
           >
             Enterprise Technology
           </motion.h2>
-          <motion.a
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground mb-6 max-w-2xl"
+          >
+            Professional tools that enhance your audit efficiency. Our comprehensive platform provides everything you need to succeed.
+          </motion.p>
+          <motion.a
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
             href="#"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 bg-foreground text-white px-8 py-4 rounded-full font-semibold hover:bg-foreground/90 transition-colors"
           >
             Explore Features
             <ArrowRight className="w-5 h-5" />
           </motion.a>
         </div>
 
-        {/* Cards Container */}
+        {/* Large Image Cards Container */}
         <div className="flex-1 overflow-hidden relative">
           <div className="h-full flex items-center">
             <motion.div 
               style={{ x }}
-              className="flex gap-5 pl-6 md:pl-12 lg:pl-20 pr-8"
+              className="flex gap-6 pl-6 md:pl-12 lg:pl-20 pr-8"
             >
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-[#ebebeb] rounded-[28px] p-8 w-[340px] lg:w-[380px] h-[400px] lg:h-[450px] flex-shrink-0 hover:bg-[#e3e3e3] transition-colors duration-300 flex flex-col"
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  whileHover={{ 
+                    y: -12,
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="relative w-[600px] lg:w-[640px] h-[700px] lg:h-[750px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <feature.icon className="w-7 h-7 text-primary" />
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover brightness-95 group-hover:scale-110 transition-transform duration-700"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3 leading-tight">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-base leading-relaxed flex-1">{feature.description}</p>
-                  <div className="flex gap-2 mt-4">
-                    {feature.tags.map((tag: string, tagIndex: number) => (
-                      <span key={tagIndex} className="px-3 py-1 bg-white rounded-full text-sm text-muted-foreground">
-                        {tag}
-                      </span>
-                    ))}
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <div className="flex gap-2 mb-4">
+                      {feature.tags.map((tag: string, tagIndex: number) => (
+                        <span key={tagIndex} className="px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-3xl font-semibold mb-3">{feature.title}</h3>
+                    <p className="text-white/80 text-base leading-relaxed max-w-md">{feature.description}</p>
                   </div>
+
+                  {/* Shine effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
                 </motion.div>
               ))}
             </motion.div>
@@ -833,7 +867,6 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
             </motion.span>
           </div>
           
-          {/* Progress bar */}
           <div className="max-w-md">
             <div className="h-1 bg-border rounded-full overflow-hidden">
               <motion.div 
