@@ -536,8 +536,8 @@ const TimelineSection = () => {
                 <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
                   {/* Number */}
                   <div className="flex items-start justify-between mb-auto">
-                    <span className={`text-7xl md:text-8xl font-extralight transition-colors duration-300 ${
-                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/20'
+                    <span className={`text-7xl md:text-8xl font-extralight transition-colors duration-300 text-primary ${
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-40'
                     }`}>
                       {step.number}
                     </span>
