@@ -472,22 +472,30 @@ const TimelineSection = () => {
       data-nav-theme="dark"
       className="py-32 md:py-40 bg-foreground overflow-hidden relative"
     >
-      {/* Background Elements */}
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-        backgroundSize: '60px 60px'
-      }} />
+      {/* Geometric Background Elements */}
+      {/* Large circle outline - top right */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] border border-white/[0.06] rounded-full" />
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] border border-white/[0.04] rounded-full" />
       
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 -left-40 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] opacity-30" />
-      <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[180px] opacity-25" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[200px] opacity-20" />
+      {/* Large circle outline - bottom left */}
+      <div className="absolute -bottom-60 -left-60 w-[700px] h-[700px] border border-white/[0.05] rounded-full" />
       
-      {/* Subtle noise texture overlay */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
-      }} />
+      {/* Diagonal lines */}
+      <div className="absolute top-0 right-1/4 w-px h-[300px] bg-gradient-to-b from-transparent via-white/10 to-transparent rotate-[20deg]" />
+      <div className="absolute bottom-0 left-1/3 w-px h-[250px] bg-gradient-to-t from-transparent via-white/8 to-transparent -rotate-[15deg]" />
+      
+      {/* Accent dot grid - top left */}
+      <div className="absolute top-20 left-20 grid grid-cols-5 gap-4 opacity-20">
+        {[...Array(15)].map((_, i) => (
+          <div key={i} className="w-1 h-1 rounded-full bg-primary" />
+        ))}
+      </div>
+      
+      {/* Floating geometric shapes */}
+      <div className="absolute top-1/4 right-20 w-16 h-16 border border-primary/20 rotate-45" />
+      <div className="absolute bottom-1/3 left-16 w-10 h-10 border border-white/10 rounded-full" />
+      <div className="absolute top-1/2 right-1/3 w-6 h-6 bg-primary/10 rotate-12" />
+
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         
