@@ -755,7 +755,7 @@ const TechnologyFeaturesSection = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  className="relative w-[300px] md:w-[320px] h-[340px] md:h-[350px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
+                  className="relative w-[600px] md:w-[640px] h-[680px] md:h-[700px] rounded-3xl overflow-hidden shadow-lg flex-shrink-0"
                 >
                   {/* Background Image */}
                   <div className="absolute inset-0">
@@ -788,8 +788,8 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
   });
 
   // Calculate exact scroll distance so last card reaches left edge
-  const cardWidth = 340;
-  const gap = 20;
+  const cardWidth = 680;
+  const gap = 24;
   const numCards = features.length;
   
   // Total width of all cards
@@ -869,7 +869,7 @@ const DesktopTechnologySection = ({ features }: { features: any[] }) => {
                     scale: 1.03,
                     transition: { duration: 0.2 }
                   }}
-                  className="relative w-[320px] lg:w-[330px] xl:w-[340px] h-[400px] lg:h-[410px] xl:h-[420px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
+                  className="relative w-[640px] lg:w-[660px] xl:w-[680px] h-[800px] lg:h-[820px] xl:h-[840px] rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group cursor-pointer"
                 >
                 {/* Background Image */}
                 <div className="absolute inset-0">
