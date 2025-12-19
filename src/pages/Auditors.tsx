@@ -831,12 +831,12 @@ const ScrollZoomSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const auditors = [
-    { src: auditorEuropean, name: "Dr. Michael Wagner", role: "VDA 6.3 Lead Auditor", location: "Munich, Germany" },
-    { src: auditorAsian, name: "Kenji Tanaka", role: "ISO 9001 Specialist", location: "Tokyo, Japan" },
-    { src: auditorFemaleEuropean, name: "Sarah Chen", role: "IATF 16949 Auditor", location: "Stuttgart, Germany" },
-    { src: auditorAfrican, name: "James Okonkwo", role: "Quality Systems Lead", location: "Lagos, Nigeria" },
-    { src: auditorFemaleSouthAsian, name: "Priya Sharma", role: "AS9100 Specialist", location: "Bangalore, India" },
-    { src: auditorMaleNorthAmerica, name: "David Miller", role: "Medical Device Auditor", location: "Chicago, USA" },
+    { src: auditorEuropean, role: "VDA 6.3 Lead Auditor", location: "Germany" },
+    { src: auditorAsian, role: "ISO 9001 Specialist", location: "Japan" },
+    { src: auditorFemaleEuropean, role: "IATF 16949 Auditor", location: "Germany" },
+    { src: auditorAfrican, role: "Quality Systems Lead", location: "Nigeria" },
+    { src: auditorFemaleSouthAsian, role: "AS9100 Specialist", location: "India" },
+    { src: auditorMaleNorthAmerica, role: "Medical Device Auditor", location: "USA" },
   ];
 
   useEffect(() => {
@@ -884,7 +884,7 @@ const ScrollZoomSection = () => {
               >
                 <img
                   src={auditor.src}
-                  alt={auditor.name}
+                  alt={`${auditor.role} - ${auditor.location}`}
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
@@ -899,15 +899,12 @@ const ScrollZoomSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <p className="text-white/60 text-sm tracking-wider uppercase mb-2">
+                <p className="text-white/60 text-sm tracking-wider uppercase mb-3">
                   {auditors[currentIndex].location}
                 </p>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-2">
-                  {auditors[currentIndex].name}
-                </h3>
-                <p className="text-white/70 text-lg">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white">
                   {auditors[currentIndex].role}
-                </p>
+                </h3>
               </motion.div>
             </div>
 
