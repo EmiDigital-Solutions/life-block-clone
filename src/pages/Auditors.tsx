@@ -57,6 +57,9 @@ import auditorGen3 from "@/assets/auditor-gen-3.jpg";
 // Keep existing imports for other sections
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
 import auditorFemaleMiddleEast from "@/assets/auditor-female-middle-east.jpg";
@@ -831,12 +834,14 @@ const ScrollZoomSection = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const auditors = [
-    { src: auditorEuropean, role: "VDA 6.3 Lead Auditor", location: "Germany" },
-    { src: auditorAsian, role: "ISO 9001 Specialist", location: "Japan" },
-    { src: auditorFemaleEuropean, role: "IATF 16949 Auditor", location: "Germany" },
-    { src: auditorAfrican, role: "Quality Systems Lead", location: "Nigeria" },
-    { src: auditorFemaleSouthAsian, role: "AS9100 Specialist", location: "India" },
-    { src: auditorMaleNorthAmerica, role: "Medical Device Auditor", location: "USA" },
+    { src: auditorEuropean, role: "VDA 6.3 Lead Auditor", location: "Germany", industry: "Automotive" },
+    { src: auditorAsian, role: "ISO 9001 Specialist", location: "Japan", industry: "Electronics" },
+    { src: auditorMaleNorthAmerica, role: "FDA & ISO 13485 Auditor", location: "USA", industry: "Medical Devices" },
+    { src: auditorMiddleEast, role: "API & ISO 29001 Auditor", location: "UAE", industry: "Oil & Gas" },
+    { src: auditorLatin, role: "IATF 16949 Specialist", location: "Mexico", industry: "Automotive" },
+    { src: auditorSouthAsian, role: "AS9100 Lead Auditor", location: "India", industry: "Aerospace" },
+    { src: auditorAfrican, role: "Mining & Energy Auditor", location: "South Africa", industry: "Mining" },
+    { src: auditorFemaleEuropean, role: "Pharmaceutical GMP Auditor", location: "Switzerland", industry: "Pharma" },
   ];
 
   useEffect(() => {
@@ -900,9 +905,9 @@ const ScrollZoomSection = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <p className="text-white/60 text-sm tracking-wider uppercase mb-3">
-                  {auditors[currentIndex].location}
+                  {auditors[currentIndex].location} · {auditors[currentIndex].industry}
                 </p>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white">
                   {auditors[currentIndex].role}
                 </h3>
               </motion.div>
