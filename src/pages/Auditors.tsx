@@ -109,41 +109,23 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Homepage Style */}
+        {/* Hero Section - Image Grid Style */}
         <section
           data-nav-theme="black"
-          className="relative min-h-screen flex flex-col overflow-hidden bg-white"
+          className="relative min-h-screen flex flex-col overflow-hidden bg-[#f8f8f8]"
         >
-          {/* Video Background Container */}
-          <div className="absolute inset-0 overflow-hidden">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
-            >
-              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-            </video>
-            {/* Subtle overlay for better text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
-          </div>
-
           {/* Main Content */}
-          <div className="flex-1 flex items-center justify-start relative z-10">
-            <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-24 lg:pt-32 pb-8">
-              
-              {/* Offmenu-style Content Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-2xl lg:max-w-3xl"
-              >
-                {/* Frosted Glass Card */}
-                <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-8 sm:p-10 lg:p-14">
-                  
+          <div className="flex-1 flex items-center relative z-10">
+            <div className="container mx-auto px-6 lg:px-12 pt-24 lg:pt-32 pb-16">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                
+                {/* Left Column - Text Content */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="max-w-xl"
+                >
                   {/* Tagline Badge */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -151,9 +133,9 @@ const Auditors = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="mb-6"
                   >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground shadow-sm">
                       <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                      2,000+ Auditors · 90+ Countries · Premium Clients
+                      2,000+ Auditors · 90+ Countries
                     </span>
                   </motion.div>
 
@@ -219,12 +201,62 @@ const Auditors = () => {
                       ))}
                     </div>
                   </motion.div>
-                </div>
-              </motion.div>
+                </motion.div>
+
+                {/* Right Column - Image Grid */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                  className="relative hidden lg:block"
+                >
+                  <div className="grid grid-cols-4 gap-3">
+                    {heroImages.slice(0, 12).map((image, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 + idx * 0.05 }}
+                        className={`relative overflow-hidden rounded-2xl ${
+                          idx === 0 || idx === 5 ? 'col-span-2 row-span-2' : ''
+                        }`}
+                        style={{ 
+                          aspectRatio: idx === 0 || idx === 5 ? '1' : '1',
+                        }}
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Floating Stats Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-xl"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <TrendingUp className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-foreground">€4,500+</p>
+                        <p className="text-sm text-muted-foreground">Top earners monthly</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
 
-          {/* Scrolling Client Band - Homepage style */}
+          {/* Scrolling Industry Band */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
