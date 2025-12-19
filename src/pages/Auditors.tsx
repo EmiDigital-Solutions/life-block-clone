@@ -713,60 +713,46 @@ const TechnologyFeaturesSection = () => {
   );
 };
 
-// WORKFLOW SECTION - ScanPro+ Audit Process
+// WORKFLOW SECTION - What YVOO Does Better
 const DayInLifeSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const phases = [
+  const timeline = [
     {
-      phase: "01",
-      title: "Preparation",
-      color: "primary",
-      location: "Remote",
-      steps: [
-        "Receive assignment notification",
-        "Review supplier documents",
-        "Build audit plan with AI templates",
-        "Send plan to supplier for confirmation",
-      ],
+      day: "Day 1",
+      title: "Assignment matched to you",
+      oldWay: "Cold calls, negotiate rates, plan travel",
+      newWay: "AI matches your expertise + location. Accept with one tap. Fixed rate, no negotiation.",
+      highlight: "Zero acquisition effort",
     },
     {
-      phase: "02",
-      title: "On-Site Audit",
-      color: "amber",
-      location: "On-Site",
-      steps: [
-        "Opening meeting with management",
-        "Facility tour: Incoming → Production → QC/Lab → Finished goods",
-        "Process audits with AI equipment scanning",
-        "Document review & management interview",
-        "Closing meeting: present findings",
-      ],
+      day: "Day 2",
+      title: "Preparation from home",
+      oldWay: "Build checklists manually, request documents, chase suppliers",
+      newWay: "AI generates audit template from client specs. Documents pre-loaded. Supplier confirmed.",
+      highlight: "2 hours vs 2 days",
     },
     {
-      phase: "03",
-      title: "Reporting",
-      color: "emerald",
-      location: "Remote",
-      steps: [
-        "AI generates report draft from inputs",
-        "Add expert commentary & analysis",
-        "QA review & approval",
-        "Submit final report to client",
-      ],
+      day: "Day 3-4",
+      title: "On-site audit",
+      oldWay: "Paper checklists, manual photos, handwritten notes, remember everything",
+      newWay: "Scan equipment → AI identifies. Take photo → auto-categorized. Finding → instant alert to client.",
+      highlight: "AI documents as you work",
     },
     {
-      phase: "04",
-      title: "Follow-Up",
-      color: "pink",
-      location: "Remote",
-      steps: [
-        "Track corrective actions",
-        "Verify supplier evidence",
-        "Close findings",
-        "Complete audit & receive payment",
-      ],
+      day: "Day 5",
+      title: "Report delivery",
+      oldWay: "2-3 days writing reports, formatting, compiling evidence",
+      newWay: "AI drafted 80% from your inputs. Add expertise. Submit. Done.",
+      highlight: "Hours, not days",
+    },
+    {
+      day: "Day 14",
+      title: "Payment received",
+      oldWay: "Send invoice, wait 60-90 days, chase payment",
+      newWay: "Automatic processing. Bank transfer confirmed. No invoicing.",
+      highlight: "14 days guaranteed",
     },
   ];
 
@@ -774,7 +760,7 @@ const DayInLifeSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-[#f5f5f5] overflow-hidden"
+      className="py-32 md:py-40 bg-white overflow-hidden"
     >
       <div className="container mx-auto px-6 lg:px-16">
         
@@ -783,86 +769,66 @@ const DayInLifeSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16"
+          className="max-w-3xl mb-20"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
             <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-              Your Workflow
+              The Difference
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            The ScanPro+ process.
+            Same audit. Less friction.
           </h2>
         </motion.div>
 
-        {/* Phases Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {phases.map((phase, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + index * 0.1 }}
-              className="bg-white rounded-[24px] p-8 relative"
-            >
-              {/* Phase Header */}
-              <div className="flex items-center justify-between mb-6">
-                <span className={`text-4xl font-bold ${
-                  index === 0 ? 'text-primary' : 
-                  index === 1 ? 'text-amber-500' : 
-                  index === 2 ? 'text-emerald-500' : 
-                  'text-pink-500'
-                }`}>
-                  {phase.phase}
-                </span>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  phase.location === 'Remote' 
-                    ? 'bg-muted text-muted-foreground' 
-                    : 'bg-amber-100 text-amber-700'
-                }`}>
-                  {phase.location}
-                </span>
-              </div>
-
-              <h3 className="text-xl font-medium text-foreground mb-6">{phase.title}</h3>
-
-              {/* Steps */}
-              <div className="space-y-3">
-                {phase.steps.map((step, stepIdx) => (
-                  <div key={stepIdx} className="flex items-start gap-3">
-                    <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${
-                      index === 0 ? 'bg-primary' : 
-                      index === 1 ? 'bg-amber-500' : 
-                      index === 2 ? 'bg-emerald-500' : 
-                      'bg-pink-500'
-                    }`} />
-                    <span className="text-sm text-muted-foreground leading-relaxed">{step}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Connector Arrow (not on last) */}
-              {index < 3 && (
-                <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-2xl text-border z-10">
-                  →
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-[60px] md:left-[80px] top-0 bottom-0 w-px bg-border hidden sm:block" />
+          
+          <div className="space-y-12 md:space-y-16">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.1 + index * 0.08 }}
+                className="flex gap-6 md:gap-10"
+              >
+                {/* Day */}
+                <div className="flex-shrink-0 w-[50px] md:w-[60px] text-right">
+                  <span className="text-xl md:text-2xl font-medium text-foreground">{item.day}</span>
                 </div>
-              )}
-            </motion.div>
-          ))}
+                
+                {/* Dot */}
+                <div className="hidden sm:flex flex-shrink-0 w-5 h-5 rounded-full bg-primary mt-1 relative z-10" />
+                
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <h3 className="text-xl md:text-2xl font-medium text-foreground">{item.title}</h3>
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                      {item.highlight}
+                    </span>
+                  </div>
+                  
+                  {/* Old vs New */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <X className="w-4 h-4 text-muted-foreground/50 mt-1 flex-shrink-0" />
+                      <p className="text-muted-foreground/70 text-sm line-through decoration-muted-foreground/30">{item.oldWay}</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                      <p className="text-foreground text-sm">{item.newWay}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-
-        {/* Bottom Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="mt-12 text-center"
-        >
-          <p className="text-muted-foreground">
-            AI assists at every step—from equipment scanning to report generation. You focus on expertise.
-          </p>
-        </motion.div>
 
       </div>
     </section>
