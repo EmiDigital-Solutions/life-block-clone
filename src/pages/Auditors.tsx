@@ -109,175 +109,115 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Dark Premium Style */}
+        {/* Hero Section - Bold Typography Dark Style */}
         <section
           data-nav-theme="white"
           className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+          {/* Subtle gradient accent */}
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
           
-          {/* Decorative grid pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }} />
-
           {/* Main Content */}
           <div className="container mx-auto px-6 lg:px-12 pt-32 pb-20 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div className="max-w-4xl">
               
-              {/* Left Column - Text Content */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
+              {/* Tagline */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-xl"
+                transition={{ duration: 0.6 }}
+                className="mb-8"
               >
-                {/* Tagline */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="mb-8"
-                >
-                  <span className="text-primary font-medium tracking-wider uppercase text-sm">
-                    Join 2,000+ Elite Auditors
-                  </span>
-                </motion.div>
-
-                {/* Main Heading */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.05] mb-8 text-white"
-                >
-                  Your Expertise.
-                  <br />
-                  <span className="text-primary">Our Network.</span>
-                </motion.h1>
-
-                {/* Subtitle */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-xl text-white/60 mb-10 leading-relaxed"
-                >
-                  Partner with YVOO to access premium clients across 90+ countries. Average assignment value: €2,500+
-                </motion.p>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex flex-wrap items-center gap-4 mb-12"
-                >
-                  <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base bg-primary text-primary-foreground hover:bg-primary/90">
-                    Apply as Partner
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                  <a 
-                    href="#how-it-works"
-                    className="inline-flex items-center gap-2 px-4 py-4 font-medium text-white/70 hover:text-white transition-colors"
-                  >
-                    How it works
-                    <span className="text-lg">→</span>
-                  </a>
-                </motion.div>
-
-                {/* Stats Row */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="flex gap-12"
-                >
-                  {[
-                    { value: "90+", label: "Countries" },
-                    { value: "€4.5K", label: "Top Monthly" },
-                    { value: "48h", label: "Fast Payment" }
-                  ].map((stat, idx) => (
-                    <div key={idx}>
-                      <p className="text-3xl font-bold text-white">{stat.value}</p>
-                      <p className="text-sm text-white/40">{stat.label}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                <span className="text-primary font-medium tracking-wider uppercase text-sm">
+                  For Elite Auditors Only
+                </span>
               </motion.div>
 
-              {/* Right Column - Featured Image Grid */}
-              <motion.div 
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="relative hidden lg:block"
+              {/* Main Heading - The core value proposition */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] mb-8 text-white"
               >
-                {/* Main large image */}
-                <div className="relative">
-                  <div className="relative overflow-hidden rounded-3xl">
-                    <img
-                      src={heroImages[0].src}
-                      alt={heroImages[0].alt}
-                      className="w-full aspect-[4/5] object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  </div>
-                  
-                  {/* Floating smaller images */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                    className="absolute -left-12 top-1/4 w-32 h-32 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
-                  >
-                    <img src={heroImages[1].src} alt={heroImages[1].alt} className="w-full h-full object-cover" />
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="absolute -right-8 top-12 w-28 h-28 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
-                  >
-                    <img src={heroImages[2].src} alt={heroImages[2].alt} className="w-full h-full object-cover" />
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.9 }}
-                    className="absolute -bottom-8 right-12 w-36 h-36 rounded-2xl overflow-hidden border-4 border-[#0a0a0a] shadow-2xl"
-                  >
-                    <img src={heroImages[3].src} alt={heroImages[3].alt} className="w-full h-full object-cover" />
-                  </motion.div>
-                </div>
+                Stop being
+                <br />
+                <span className="text-primary">undervalued.</span>
+              </motion.h1>
 
-                {/* Floating badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1 }}
-                  className="absolute -left-6 bottom-1/4 bg-white rounded-2xl p-4 shadow-2xl"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Star className="w-5 h-5 text-primary fill-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-foreground">Top Rated</p>
-                      <p className="text-xs text-muted-foreground">Network</p>
-                    </div>
+              {/* Subtitle - Speaking to their pain */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-xl lg:text-2xl text-white/50 mb-12 max-w-2xl leading-relaxed"
+              >
+                You've earned your certifications. You've built your expertise. 
+                Now work with clients who respect that—and pay accordingly.
+              </motion.p>
+
+              {/* Value Props - Quick hits */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex flex-wrap gap-x-8 gap-y-4 mb-12 text-white/70"
+              >
+                {[
+                  "€2,500–€4,500 per audit",
+                  "48h payment guarantee",
+                  "Premium clients only"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary" />
+                    <span className="text-lg">{item}</span>
                   </div>
-                </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-6"
+              >
+                <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base bg-primary text-primary-foreground hover:bg-primary/90">
+                  Apply to Join
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <a 
+                  href="#how-it-works"
+                  className="inline-flex items-center gap-2 font-medium text-white/50 hover:text-white transition-colors"
+                >
+                  See how it works
+                  <span>→</span>
+                </a>
               </motion.div>
             </div>
-          </div>
 
-          {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+            {/* Stats Strip - Social proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-24 pt-12 border-t border-white/10"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
+                {[
+                  { value: "2,000+", label: "Active auditors" },
+                  { value: "90+", label: "Countries covered" },
+                  { value: "€4.5K", label: "Avg. top monthly" },
+                  { value: "4.9/5", label: "Client satisfaction" }
+                ].map((stat, idx) => (
+                  <div key={idx}>
+                    <p className="text-3xl lg:text-4xl font-bold text-white mb-1">{stat.value}</p>
+                    <p className="text-sm text-white/40">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Scroll-Zoom Section */}
