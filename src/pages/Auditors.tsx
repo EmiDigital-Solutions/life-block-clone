@@ -863,7 +863,7 @@ const ScrollZoomSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            Meet our partners.
+            Experts worldwide.
           </h2>
         </motion.div>
 
