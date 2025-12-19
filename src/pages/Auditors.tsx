@@ -885,7 +885,7 @@ const ScrollZoomSection = () => {
                 <img
                   src={auditor.src}
                   alt={`${auditor.role} - ${auditor.location}`}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[center_20%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               </motion.div>
