@@ -760,68 +760,73 @@ const DayInLifeSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white overflow-hidden"
+      className="py-32 md:py-48 bg-white overflow-hidden"
     >
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="container mx-auto px-6 lg:px-20">
         
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-20"
+          className="max-w-4xl mb-24 md:mb-32"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-16 h-px bg-primary" />
+            <span className="text-xs font-semibold tracking-[0.25em] text-primary uppercase">
               The Difference
             </span>
           </div>
-          <h2 className="section-headline text-foreground">
-            Same audit. Less friction.
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
+            Same audit.<br />
+            <span className="font-medium">Less friction.</span>
           </h2>
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div className="relative max-w-5xl">
           {/* Vertical line */}
-          <div className="absolute left-[60px] md:left-[80px] top-0 bottom-0 w-px bg-border hidden sm:block" />
+          <div className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block" />
           
-          <div className="space-y-12 md:space-y-16">
+          <div className="space-y-16 md:space-y-24">
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.1 + index * 0.08 }}
-                className="flex gap-6 md:gap-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
+                className="flex gap-8 md:gap-12 group"
               >
-                {/* Day */}
-                <div className="flex-shrink-0 w-[50px] md:w-[60px] text-right">
-                  <span className="text-xl md:text-2xl font-medium text-foreground">{item.day}</span>
+                {/* Day badge */}
+                <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
+                  <div className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-full border-2 border-primary/20 items-center justify-center bg-white group-hover:border-primary/40 transition-colors duration-300">
+                    <span className="text-sm md:text-base font-semibold text-primary tracking-wide">{item.day}</span>
+                  </div>
+                  <span className="sm:hidden text-lg font-semibold text-primary">{item.day}</span>
                 </div>
                 
-                {/* Dot */}
-                <div className="hidden sm:flex flex-shrink-0 w-5 h-5 rounded-full bg-primary mt-1 relative z-10" />
-                
                 {/* Content */}
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <h3 className="text-xl md:text-2xl font-medium text-foreground">{item.title}</h3>
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+                <div className="flex-1 pt-2 md:pt-4">
+                  <div className="mb-6">
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mb-3 leading-tight">{item.title}</h3>
+                    <span className="inline-block px-4 py-1.5 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase rounded-full">
                       {item.highlight}
                     </span>
                   </div>
                   
                   {/* Old vs New */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <X className="w-4 h-4 text-muted-foreground/50 mt-1 flex-shrink-0" />
-                      <p className="text-muted-foreground/70 text-sm line-through decoration-muted-foreground/30">{item.oldWay}</p>
+                  <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center mt-0.5">
+                        <X className="w-3.5 h-3.5 text-muted-foreground" />
+                      </div>
+                      <p className="text-muted-foreground text-base leading-relaxed">{item.oldWay}</p>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                      <p className="text-foreground text-sm">{item.newWay}</p>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
                     </div>
                   </div>
                 </div>
