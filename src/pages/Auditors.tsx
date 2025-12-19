@@ -438,7 +438,7 @@ const TimelineSection = () => {
             className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              7-10 business days from application to your first premium engagement.
+              A streamlined process designed for professionals who value their time.
             </p>
           </motion.div>
         </div>
@@ -589,28 +589,54 @@ const QualificationsSection = () => {
   );
 };
 
-// TECHNOLOGY/PLATFORM SECTION - Premium B2B Style (simplified)
+// TECHNOLOGY/PLATFORM SECTION - Work Transformation
 const TechnologyFeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const capabilities = [
-    { title: "Smart matching", desc: "AI connects you with clients aligned to your expertise" },
-    { title: "Mobile platform", desc: "Manage everything from iOS or Android" },
-    { title: "Fast payments", desc: "14-day processing, bank-level security" },
-    { title: "Scheduling", desc: "Calendar sync with your existing tools" },
+  const features = [
+    {
+      icon: Zap,
+      title: "AI-Powered Matching",
+      description: "Our algorithm analyzes 50+ parameters to connect you with perfectly aligned clients. No more mismatched assignments.",
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile-First Platform",
+      description: "Complete audits, upload evidence, communicate with clients—all from your phone. Work from anywhere.",
+    },
+    {
+      icon: BarChart3,
+      title: "Smart Documentation",
+      description: "AI-assisted report generation, automated checklists, and digital evidence capture. Cut admin time by 60%.",
+    },
+    {
+      icon: CreditCard,
+      title: "Instant Payments",
+      description: "Automated invoicing and fast processing. No chasing payments, no accounting headaches.",
+    },
+    {
+      icon: Calendar,
+      title: "Intelligent Scheduling",
+      description: "Calendar sync, travel optimization, and workload balancing. Your time, optimized.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Direct Client Channel",
+      description: "Secure messaging, document sharing, and real-time updates. Professional communication, simplified.",
+    },
   ];
 
   return (
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white"
+      className="py-32 md:py-40 bg-[#f5f5f5]"
     >
       <div className="container mx-auto px-6 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          {/* Left - Headline */}
+        
+        {/* Header */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -619,35 +645,50 @@ const TechnologyFeaturesSection = () => {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
               <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-                Platform
+                Technology
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight mb-6">
-              Tools that
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
+              Work smarter.
               <br />
-              <span className="font-medium">work for you.</span>
+              <span className="font-medium">Not harder.</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-md">
-              Enterprise-grade platform designed for professionals who value efficiency.
-            </p>
           </motion.div>
           
-          {/* Right - Capabilities */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col justify-end"
           >
-            <div className="grid grid-cols-2 gap-8">
-              {capabilities.map((item, idx) => (
-                <div key={idx}>
-                  <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+              Enterprise-grade tools that eliminate busywork so you can focus on what you do best—auditing.
+            </p>
           </motion.div>
         </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.08 }}
+                className="bg-white rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-medium text-foreground mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );
