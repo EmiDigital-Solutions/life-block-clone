@@ -470,9 +470,26 @@ const TimelineSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="dark"
-      className="py-32 md:py-40 bg-foreground overflow-hidden"
+      className="py-32 md:py-40 bg-foreground overflow-hidden relative"
     >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+      {/* Background Elements */}
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+        backgroundSize: '60px 60px'
+      }} />
+      
+      {/* Gradient Orbs */}
+      <div className="absolute top-20 -left-40 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] opacity-30" />
+      <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[180px] opacity-25" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[200px] opacity-20" />
+      
+      {/* Subtle noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
+      }} />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 md:mb-28">
