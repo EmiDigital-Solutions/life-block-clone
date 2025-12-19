@@ -68,6 +68,7 @@ import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
+import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -836,29 +837,26 @@ const DayInLifeSection = () => {
             </div>
           </div>
 
-          {/* Image Card - Sticky on desktop */}
+          {/* Image Card - Sticky on desktop, matching auditor carousel style */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
             className="hidden lg:block sticky top-32"
           >
-            <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-border/50">
-              <div className="aspect-[3/4] relative">
-                <img 
-                  src={evidenceInspector}
-                  alt="YVOO auditor conducting inspection"
-                  className="w-full h-full object-cover grayscale"
-                />
-                {/* Green overlay effect */}
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-white via-white/95 to-transparent">
-                <p className="text-foreground text-lg font-light leading-relaxed mb-2">
-                  Focus on what you do best.
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
+              <img 
+                src={auditorSelectiveGreen1}
+                alt="YVOO auditor"
+                className="w-full h-full object-cover"
+              />
+              {/* Bottom text overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
+                <p className="text-white/70 text-xs tracking-widest uppercase mb-1">
+                  Germany · Automotive
                 </p>
-                <p className="text-primary text-xl font-semibold flex items-center gap-2">
-                  Professional auditing. <ArrowRight className="w-5 h-5" />
+                <p className="text-white text-xl font-medium">
+                  VDA 6.3 Lead Auditor
                 </p>
               </div>
             </div>
