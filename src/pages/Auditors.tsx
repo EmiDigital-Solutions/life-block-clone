@@ -748,11 +748,11 @@ const DayInLifeSection = () => {
       highlight: "Hours, not days",
     },
     {
-      day: "Day 14",
+      day: "Day 6-8",
       title: "Payment received",
       oldWay: "Send invoice, wait 60-90 days, chase payment",
       newWay: "Automatic processing. Bank transfer confirmed. No invoicing.",
-      highlight: "14 days guaranteed",
+      highlight: "3 days max",
     },
   ];
 
