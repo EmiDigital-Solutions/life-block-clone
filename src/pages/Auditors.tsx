@@ -469,106 +469,60 @@ const TimelineSection = () => {
   return (
     <section 
       ref={ref} 
-      data-nav-theme="dark"
-      className="py-32 md:py-40 bg-foreground overflow-hidden relative"
+      className="py-32 md:py-40 bg-background overflow-hidden relative"
     >
-      {/* Background Elements */}
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-        backgroundSize: '60px 60px'
-      }} />
-      
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 -left-40 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] opacity-30" />
-      <div className="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[180px] opacity-25" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[200px] opacity-20" />
-      
-      {/* Subtle noise texture overlay */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
-      }} />
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 md:mb-28">
+        <div className="max-w-3xl mb-20 md:mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-white/60 mb-6">
-              <span className="w-8 h-px bg-white/40" />
-              HOW IT WORKS
+            <span className="text-sm font-medium text-muted-foreground tracking-wide uppercase mb-4 block">
+              How it works
             </span>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.05] tracking-tight">
-              Partnership
-              <br />
-              <span className="text-primary">Journey</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.1] tracking-tight">
+              Partnership Journey
             </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex flex-col justify-end"
-          >
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-md">
-              From application to your first premium assignment in as little as one week. A streamlined process designed for professionals.
-            </p>
           </motion.div>
         </div>
 
-        {/* Step Indicators - Horizontal */}
+        {/* Steps - Minimal Horizontal Layout */}
         <div className="relative mb-16">
           {/* Progress Line */}
-          <div className="absolute top-6 left-0 right-0 h-px bg-white/10" />
+          <div className="absolute top-5 left-0 right-0 h-px bg-border" />
           <motion.div 
-            className="absolute top-6 left-0 h-px bg-primary"
+            className="absolute top-5 left-0 h-px bg-foreground"
             initial={{ width: "0%" }}
             animate={isInView ? { width: `${(activeStep / (steps.length - 1)) * 100}%` } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           />
           
-          {/* Step Dots */}
+          {/* Step Numbers */}
           <div className="relative flex justify-between">
             {steps.map((step, index) => (
               <motion.button
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
                 onClick={() => setActiveStep(index)}
                 className="flex flex-col items-center group cursor-pointer"
               >
-                {/* Dot */}
-                <div className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                   index <= activeStep 
-                    ? 'bg-primary border-primary' 
-                    : 'bg-transparent border-white/20 group-hover:border-white/40'
+                    ? 'bg-foreground text-background' 
+                    : 'bg-background border border-border text-muted-foreground group-hover:border-foreground/30'
                 }`}>
-                  <span className={`text-sm font-semibold transition-colors duration-300 ${
-                    index <= activeStep ? 'text-primary-foreground' : 'text-white/40 group-hover:text-white/60'
-                  }`}>
+                  <span className="text-sm font-medium">
                     {step.number}
                   </span>
-                  
-                  {/* Pulse ring for active */}
-                  {index === activeStep && (
-                    <motion.div
-                      className="absolute inset-0 rounded-full border-2 border-primary"
-                      initial={{ scale: 1, opacity: 1 }}
-                      animate={{ scale: 1.5, opacity: 0 }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    />
-                  )}
                 </div>
                 
-                {/* Label */}
-                <span className={`mt-4 text-sm font-medium transition-colors duration-300 ${
-                  index <= activeStep ? 'text-white' : 'text-white/40 group-hover:text-white/60'
+                <span className={`mt-3 text-sm font-medium transition-colors duration-300 ${
+                  index === activeStep ? 'text-foreground' : 'text-muted-foreground'
                 }`}>
                   {step.title}
                 </span>
@@ -577,85 +531,67 @@ const TimelineSection = () => {
           </div>
         </div>
 
-        {/* Active Step Content */}
+        {/* Active Step Content - Clean Card */}
         <motion.div 
           key={activeStep}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
+          transition={{ duration: 0.4 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20"
         >
-          {/* Left: Main Content */}
-          <div className="lg:col-span-7">
-            <div className="bg-white/5 backdrop-blur-sm rounded-[32px] p-8 md:p-12 border border-white/10">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-6xl md:text-7xl font-light text-primary/30">
-                  {steps[activeStep].number}
+          {/* Left: Content */}
+          <div className="border border-border rounded-2xl p-8 md:p-10">
+            <span className="text-5xl font-light text-muted-foreground/30 mb-4 block">
+              {steps[activeStep].number}
+            </span>
+            <h3 className="text-2xl font-medium text-foreground mb-4">
+              {steps[activeStep].subtitle}
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              {steps[activeStep].description}
+            </p>
+            
+            {/* Details */}
+            <div className="flex flex-wrap gap-2">
+              {steps[activeStep].details.map((detail, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1.5 bg-secondary text-secondary-foreground rounded-full text-sm"
+                >
+                  {detail}
                 </span>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-semibold text-white">
-                    {steps[activeStep].subtitle}
-                  </h3>
-                </div>
-              </div>
-              
-              <p className="text-lg text-white/70 leading-relaxed mb-8">
-                {steps[activeStep].description}
-              </p>
-              
-              {/* Details List */}
-              <div className="flex flex-wrap gap-3">
-                {steps[activeStep].details.map((detail, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="px-4 py-2 bg-white/10 rounded-full text-sm text-white/80"
-                  >
-                    {detail}
-                  </motion.span>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
           
-          {/* Right: Navigation & CTA */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            {/* Quick Nav */}
-            <div className="space-y-3 mb-8">
-              {steps.map((step, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setActiveStep(index)}
-                  className={`w-full text-left px-5 py-4 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
-                    index === activeStep 
-                      ? 'bg-primary text-primary-foreground' 
-                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                  }`}
-                  whileHover={{ x: index !== activeStep ? 4 : 0 }}
-                >
-                  <span className="flex items-center gap-4">
-                    <span className="text-sm font-medium opacity-50">{step.number}</span>
-                    <span className="font-medium">{step.title}</span>
-                  </span>
-                  <ArrowRight className={`w-4 h-4 transition-transform ${
-                    index === activeStep ? '' : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-1'
-                  }`} />
-                </motion.button>
-              ))}
-            </div>
+          {/* Right: Quick Nav */}
+          <div className="space-y-2">
+            {steps.map((step, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveStep(index)}
+                className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 flex items-center justify-between ${
+                  index === activeStep 
+                    ? 'bg-foreground text-background' 
+                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground'
+                }`}
+              >
+                <span className="flex items-center gap-4">
+                  <span className="text-sm opacity-60">{step.number}</span>
+                  <span className="font-medium">{step.title}</span>
+                </span>
+                {index === activeStep && <ArrowRight className="w-4 h-4" />}
+              </button>
+            ))}
             
             {/* CTA */}
-            <motion.a
+            <a
               href="#"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-3 bg-white text-foreground px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
+              className="mt-6 inline-flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-6 py-4 rounded-xl font-medium hover:bg-primary/90 transition-colors"
             >
               Start Your Journey
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </motion.div>
 
