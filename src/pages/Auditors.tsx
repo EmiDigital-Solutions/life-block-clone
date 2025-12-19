@@ -310,10 +310,24 @@ const Auditors = () => {
   );
 };
 
-// VALUE PROPOSITION SECTION - Premium B2B Style
+// VALUE PROPOSITION SECTION - The Future of Auditing
 const ValuePropositionSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const oldWay = [
+    "Constant travel, hotels, jet lag",
+    "Manual reports, endless paperwork",
+    "Chase invoices for months",
+    "Inconsistent one-off assignments",
+  ];
+
+  const newWay = [
+    "Work locally, audit globally",
+    "AI writes reports as you work",
+    "Payment in 14 days, guaranteed",
+    "Premium clients, steady pipeline",
+  ];
 
   return (
     <section 
@@ -322,49 +336,91 @@ const ValuePropositionSection = () => {
       className="py-32 md:py-40 bg-white"
     >
       <div className="container mx-auto px-6 lg:px-16">
-        {/* Two column layout */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              Your Future
+            </span>
+          </div>
+          <h2 className="section-headline text-foreground">
+            Auditing, reinvented.
+          </h2>
+        </motion.div>
+
+        {/* Old vs New Comparison */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           
-          {/* Left - Headline */}
+          {/* Old Way */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="bg-[#f5f5f5] rounded-[32px] p-10"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-                The Partnership
-              </span>
+            <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
+              Traditional Auditing
+            </p>
+            <div className="space-y-5">
+              {oldWay.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                    <X className="w-3 h-3 text-destructive" />
+                  </div>
+                  <span className="text-muted-foreground">{item}</span>
+                </div>
+              ))}
             </div>
-            <h2 className="section-headline text-foreground">
-              We select partners
-              <br />
-              who select us.
-            </h2>
           </motion.div>
           
-          {/* Right - Values */}
+          {/* New Way */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:pt-8"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="bg-[#0a0a0a] rounded-[32px] p-10"
           >
-            <div className="space-y-8">
-              {[
-                { title: "Premium clients only", desc: "Fortune 500 manufacturers, automotive OEMs, aerospace suppliers." },
-                { title: "Sustainable workload", desc: "Quality over quantity. 3-5 meaningful assignments monthly." },
-                { title: "Professional respect", desc: "You set your availability. No penalties, no pressure." },
-              ].map((item, idx) => (
-                <div key={idx} className="border-l-2 border-primary/30 pl-6">
-                  <h3 className="text-lg font-medium text-foreground mb-1">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+            <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-8">
+              With YVOO
+            </p>
+            <div className="space-y-5">
+              {newWay.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-primary" />
+                  </div>
+                  <span className="text-white/80">{item}</span>
                 </div>
               ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Value Props */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-border"
+        >
+          {[
+            { title: "Premium clients", desc: "Fortune 500 manufacturers, automotive OEMs, aerospace suppliers." },
+            { title: "AI co-pilot", desc: "Computer vision, smart templates, real-time guidance at your fingertips." },
+            { title: "Focus on expertise", desc: "You audit. AI handles documentation. 70% less admin work." },
+          ].map((item, idx) => (
+            <div key={idx}>
+              <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
+              <p className="text-muted-foreground">{item.desc}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
@@ -598,10 +654,10 @@ const TechnologyFeaturesSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const features = [
-    { title: "AI Equipment Recognition", desc: "Point. Scan. Identify. Computer vision analyzes machines instantly." },
-    { title: "Smart Templates", desc: "AI-generated audit frameworks from client specs." },
-    { title: "Real-Time Alerts", desc: "Instant red-flag notifications during audits." },
-    { title: "14-Day Payments", desc: "Fast, transparent. No chasing invoices." },
+    { title: "Equipment Recognition", desc: "Camera scans machines. AI identifies manufacturer, model, condition." },
+    { title: "Smart Templates", desc: "Upload specs. AI generates your audit framework automatically." },
+    { title: "Live Documentation", desc: "Photos auto-categorize. Findings auto-format. Reports write themselves." },
+    { title: "Instant Payments", desc: "14-day processing. Transparent rates. No invoice chasing." },
   ];
 
   return (
@@ -626,12 +682,10 @@ const TechnologyFeaturesSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground mb-6">
-            AI-powered tools.
-            <br />
-            70% less admin.
+            Your AI co-pilot.
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl">
-            Enterprise-grade platform with computer vision and predictive analytics.
+            Point your phone at a machine—AI identifies it. Take a photo—AI categorizes it. Finish the audit—AI writes the report. You focus on what matters: your expertise.
           </p>
         </motion.div>
 
