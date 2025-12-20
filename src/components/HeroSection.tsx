@@ -109,14 +109,14 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 mb-8 mt-12"
             >
-              <span className="text-base text-foreground font-semibold bg-white/60 backdrop-blur-md px-8 py-4 rounded-full shadow-sm border border-white/30">
+              <span className="text-base text-foreground font-semibold bg-white/60 backdrop-blur-md px-8 py-4 rounded-full shadow-sm border border-white/30 hover:bg-white/80 hover:shadow-md hover:scale-105 transition-all duration-300 cursor-default">
                 Audit starts at €700
               </span>
               <a 
                 href="https://calendly.com/yvoo/demo-yvoo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
               >
                 Order YVOO Audit
                 <span>→</span>
