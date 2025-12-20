@@ -108,7 +108,7 @@ export const HowItWorksSection = () => {
                 <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
                   {/* Number */}
                   <div className="flex items-start justify-between mb-auto">
-                    <span className={`text-7xl md:text-8xl font-extralight transition-all duration-300 ${
+                    <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-primary/80'
                     }`}>
                       {step.number}
@@ -117,12 +117,12 @@ export const HowItWorksSection = () => {
                   
                   {/* Content */}
                   <div className="mt-12 md:mt-20">
-                    <span className={`text-base tracking-[0.15em] uppercase transition-colors duration-300 ${
+                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
                       {step.subtitle}
                     </span>
-                    <h3 className="text-3xl md:text-4xl font-medium text-foreground mt-2 mb-4">
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
                       {step.title}
                     </h3>
                     
@@ -134,7 +134,7 @@ export const HowItWorksSection = () => {
                         height: hoveredIndex === index ? 'auto' : 0,
                       }}
                       transition={{ duration: 0.3 }}
-                      className="text-base text-muted-foreground leading-relaxed overflow-hidden"
+                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
                     >
                       {step.description}
                     </motion.p>
