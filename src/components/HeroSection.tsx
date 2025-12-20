@@ -41,15 +41,15 @@ const HeroSection = () => {
     >
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
-        <div className="w-full px-4 lg:px-8 lg:ml-4 xl:ml-8 2xl:ml-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1.6fr] gap-8 lg:gap-10 items-center">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-6 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative z-20 overflow-visible"
+              className="relative z-20 overflow-visible lg:-ml-8 xl:-ml-12 2xl:-ml-16"
             >
               {/* Tagline Badge */}
               <motion.div
