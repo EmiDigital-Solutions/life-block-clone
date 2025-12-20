@@ -69,23 +69,14 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
-import auditorsHeroObject from "@/assets/auditors-hero-flowing-green.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
   const isMobile = useIsMobile();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  // Parallax effect for hero background
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const heroImages = [
     { src: auditorBlonde1, alt: 'Quality Inspector' },
@@ -123,75 +114,104 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - VanMoof Style with Flowing Lines Background */}
+        {/* Hero Section - Premium B2B Style */}
         <section
-          ref={heroRef}
           data-nav-theme="white"
-          className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
+          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Background Image - Positioned Lower with Top Gradient Blend and Parallax */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{ y: heroY }}
-          >
-            <img 
-              src={auditorsHeroObject}
-              alt="Abstract flowing lines"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 95%', transform: 'translateY(140px)', height: 'calc(100% + 140px)' }}
-            />
-            {/* Gradient overlay to blend black top into image */}
-            <div 
-              className="absolute inset-0 pointer-events-none"
-              style={{ 
-                background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
-              }}
-            />
-          </motion.div>
-
-          {/* Main Content - VanMoof Layout */}
-          <div className="relative z-10 w-full h-full flex flex-col justify-between px-12 lg:px-24 xl:px-32 py-8">
-            
-            {/* Middle Content Area */}
-            <div className="flex-1 flex items-start justify-start pt-16 lg:pt-20">
+          {/* Main Content */}
+          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
               
-              {/* Left Side - Description & CTA */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="text-left"
+              {/* Eyebrow - Exclusivity signal */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-12"
               >
-                <h1 className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] mb-8">
-                  <span className="block whitespace-nowrap">We partner with</span>
-                  <span className="block whitespace-nowrap">exceptional auditors.</span>
-                </h1>
-                <p className="text-white/70 text-lg lg:text-xl leading-relaxed mb-6 whitespace-nowrap">
-                  Our clients demand the highest standards. So do we.
-                </p>
-                <a
-                  href="#apply"
-                  className="inline-flex items-center gap-3 text-white transition-colors group"
-                >
-                  <span className="w-10 h-10 rounded-sm bg-primary/20 border border-primary flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-                    <ArrowRight className="w-5 h-5" />
-                  </span>
-                  <span className="text-base font-medium">Apply to become YVOO Auditor</span>
-                </a>
+                By Invitation Only
+              </motion.p>
+
+              {/* Main Heading - Aspirational, confident */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
+              >
+                We partner with
+                <br />
+                <span className="font-medium">exceptional auditors.</span>
+              </motion.h1>
+
+              {/* Subtitle - Selective, not desperate */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-white/40 mb-16 max-w-xl mx-auto"
+              >
+                Our clients demand the highest standards.
+                <br />
+                So do we.
+              </motion.p>
+
+              {/* CTA - Simple, confident */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
+                  Apply for Partnership
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </motion.div>
             </div>
 
-            {/* Bottom Right - Status Badge */}
+            {/* Client Logos - Show caliber */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="flex justify-end"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="mt-32 pt-12 border-t border-white/10"
             >
-              <div className="flex items-center gap-2 text-white/70 text-sm">
-                <span>By invitation only</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <p className="text-center text-white/30 text-sm tracking-wider uppercase mb-10">
+                Our partners audit for
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+                {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF"].map((client, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
+                    className="text-2xl lg:text-3xl font-light text-white/20 hover:text-white/40 transition-colors"
+                  >
+                    {client}
+                  </motion.span>
+                ))}
               </div>
+            </motion.div>
+
+            {/* Minimal stats - understated confidence */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.5 }}
+              className="mt-20 flex justify-center gap-16 lg:gap-24"
+            >
+              {[
+                { value: "2,000+", label: "Partners" },
+                { value: "94", label: "Countries" },
+                { value: "12K+", label: "Audits Completed" }
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center">
+                  <p className="text-2xl lg:text-3xl font-light text-white/80">{stat.value}</p>
+                  <p className="text-xs text-white/30 uppercase tracking-wider mt-1">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </div>
         </section>
