@@ -115,74 +115,72 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - VanMoof Style */}
+        {/* Hero Section - Centered Layout with Green Flowing Background */}
         <section
           data-nav-theme="white"
-          className="relative h-screen flex items-center overflow-hidden bg-[#1a1a1a]"
+          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
               src={auditorsHeroObject}
-              alt="Precision measuring instrument"
-              className="w-full h-full object-cover object-center"
+              alt="Abstract flowing lines"
+              className="w-full h-full object-cover object-center opacity-40"
             />
             {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/50" />
+            <div className="absolute inset-0 bg-black/60" />
           </div>
 
-          {/* Main Content - VanMoof Layout */}
-          <div className="relative z-10 w-full h-full flex flex-col justify-between px-8 lg:px-16 py-8">
-            
-            {/* Middle Content Area */}
-            <div className="flex-1 flex items-center justify-between">
+          {/* Main Content - Centered Layout */}
+          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
               
-              {/* Left Side - Large Typography */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="flex-shrink-0"
+              {/* Eyebrow - Exclusivity signal */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-12"
               >
-                <h1 className="text-[12rem] sm:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-light text-white leading-none tracking-tighter select-none">
-                  2K+
-                </h1>
-              </motion.div>
+                By Invitation Only
+              </motion.p>
 
-              {/* Right Side - Description & CTA */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="max-w-sm text-right"
+              {/* Main Heading - Aspirational, confident */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
               >
-                <p className="text-white/90 text-lg lg:text-xl leading-relaxed mb-6">
-                  Join our elite network. Connect with high-caliber clients worldwide.
-                </p>
-                <a
-                  href="#apply"
-                  className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
-                >
-                  <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowRight className="w-5 h-5" />
-                  </span>
-                  <span className="text-base font-medium">Apply Now</span>
-                </a>
+                We partner with
+                <br />
+                <span className="font-medium text-primary">exceptional auditors.</span>
+              </motion.h1>
+
+              {/* Subtitle - Selective, not desperate */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-white/40 mb-16 max-w-xl mx-auto"
+              >
+                Our clients demand the highest standards.
+                <br />
+                So do we.
+              </motion.p>
+
+              {/* CTA - Simple, confident */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
+                  Apply for Partnership
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </motion.div>
             </div>
-
-            {/* Bottom Right - Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="flex justify-end"
-            >
-              <div className="flex items-center gap-2 text-white/70 text-sm">
-                <span>Accepting applications</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              </div>
-            </motion.div>
           </div>
         </section>
 
