@@ -154,7 +154,7 @@ const Auditors = () => {
                   <span className="block whitespace-nowrap">We partner with</span>
                   <span className="block whitespace-nowrap">exceptional auditors.</span>
                 </h1>
-                <p className="text-white/70 text-lg lg:text-xl leading-relaxed mb-6 max-w-md">
+                <p className="text-white/70 text-lg lg:text-xl leading-relaxed mb-6 whitespace-nowrap">
                   Our clients demand the highest standards. So do we.
                 </p>
                 <a
