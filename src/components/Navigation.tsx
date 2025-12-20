@@ -26,11 +26,11 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.65) 100%)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 100px rgba(255,255,255,0.5), inset 0 2px 6px rgba(255,255,255,0.6)',
-          backdropFilter: 'blur(60px) saturate(200%)',
-          WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-          border: '1px solid rgba(255,255,255,0.5)'
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.45) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 0 120px rgba(255,255,255,0.4), inset 0 1px 4px rgba(255,255,255,0.5)',
+          backdropFilter: 'blur(80px) saturate(220%)',
+          WebkitBackdropFilter: 'blur(80px) saturate(220%)',
+          border: '1px solid rgba(255,255,255,0.4)'
         }}
       >
         {/* Main Nav Bar */}
