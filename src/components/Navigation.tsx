@@ -26,25 +26,25 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.45) 100%)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 0 120px rgba(255,255,255,0.4), inset 0 1px 4px rgba(255,255,255,0.5)',
-          backdropFilter: 'blur(80px) saturate(220%)',
-          WebkitBackdropFilter: 'blur(80px) saturate(220%)',
-          border: '1px solid rgba(255,255,255,0.4)'
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.85) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+          backdropFilter: 'blur(40px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+          border: '1px solid rgba(255,255,255,0.5)'
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-stretch h-20">
+        <div className="flex items-center">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center px-8 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center pl-6 pr-8 py-4 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
@@ -52,24 +52,27 @@ const Navigation = () => {
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col items-center justify-center w-16 gap-2 hover:bg-gray-100/30 transition-colors"
+            className="flex flex-col items-center justify-center px-6 py-5 gap-2 hover:bg-gray-100/30 transition-colors"
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-foreground" />
+              <X className="w-7 h-7 text-foreground" />
             ) : (
               <>
-                <span className="w-7 h-0.5 bg-foreground rounded-full" />
-                <span className="w-7 h-0.5 bg-foreground rounded-full" />
+                <span className="w-8 h-[3px] bg-foreground rounded-full" />
+                <span className="w-8 h-[3px] bg-foreground rounded-full" />
               </>
             )}
           </button>
+
+          {/* Spacer */}
+          <div className="w-12" />
 
           {/* CTA Button */}
           <a
             href="https://calendly.com/yvoo/demo-yvoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-foreground text-white px-8 rounded-full font-semibold text-lg hover:bg-foreground/90 transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-foreground text-white pl-7 pr-6 py-4 mr-2 rounded-full font-medium text-base hover:bg-foreground/90 transition-all duration-300"
           >
             Book a Call
             <ArrowRight className="w-5 h-5" />
