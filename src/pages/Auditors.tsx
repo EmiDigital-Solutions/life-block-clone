@@ -866,7 +866,7 @@ const DayInLifeSection = () => {
               />
             </div>
             
-            <div className="space-y-16 md:space-y-20">
+            <div className="space-y-8 md:space-y-10">
               {timeline.map((item, index) => (
                 <motion.div
                   key={index}
