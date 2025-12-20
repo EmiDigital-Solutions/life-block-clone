@@ -5,18 +5,17 @@ import PlatformDemoAnimation from "./PlatformDemoAnimation";
 const TestimonialSection = () => {
   return (
     <section className="relative overflow-hidden bg-muted">
-      <div className="relative py-20 md:py-32 lg:py-40 pb-24 md:pb-36 lg:pb-44">
+      <div className="relative py-12 md:py-16 lg:py-20 pb-24 md:pb-36 lg:pb-44">
         {/* Small top badge */}
-        <div className="container mx-auto px-6 mb-8">
+        <div className="container mx-auto px-6 mb-6">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="flex justify-center"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-white backdrop-blur-sm rounded-full text-sm font-medium text-foreground shadow-sm">
-              <span className="text-primary">⚡</span>
-              Get started in minutes
+            <span className="inline-flex items-center px-4 py-2 bg-white backdrop-blur-sm rounded-full text-sm font-medium text-foreground shadow-sm">
+              Order Audit in minutes
             </span>
           </motion.div>
         </div>
