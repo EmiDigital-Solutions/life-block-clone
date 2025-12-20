@@ -1140,7 +1140,7 @@ const InfiniteScrollingGallery = () => {
         }}
       >
         <div 
-          className={`flex gap-6 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause relative`}
+          className={`flex gap-8 ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'} ${isPaused ? 'animation-paused' : ''} hover:animation-pause relative`}
           style={{ width: 'fit-content', zIndex: hoveredKey && hoveredKey.startsWith(`${rowIndex}-`) ? 100 : 1 }}
         >
           {duplicatedItems.map((item, index) => (
@@ -1213,11 +1213,11 @@ const InfiniteScrollingGallery = () => {
         <style>{`
           @keyframes scroll-left {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-440px * 4)); }
+            100% { transform: translateX(calc(-448px * 4)); }
           }
 
           @keyframes scroll-right {
-            0% { transform: translateX(calc(-440px * 5)); }
+            0% { transform: translateX(calc(-448px * 5)); }
             100% { transform: translateX(0); }
           }
 
