@@ -71,9 +71,8 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="section-headline text-foreground mb-6"
               >
-                On-Site Supplier Audits
-                <br />
-                in Days, Not Weeks.
+                <span className="block">On-Site Supplier Audits</span>
+                <span className="block">in Days, Not Weeks.</span>
               </motion.h1>
 
               {/* Subtitle */}
