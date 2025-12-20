@@ -22,13 +22,15 @@ const Navigation = () => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
-        className={`bg-white/70 backdrop-blur-3xl shadow-2xl border border-white/50 transition-all duration-300 ${
+        className={`relative overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06)',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.85) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06), inset 0 0 80px rgba(255,255,255,0.6), inset 0 2px 4px rgba(255,255,255,0.8)',
           backdropFilter: 'blur(40px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(40px) saturate(180%)'
+          WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+          border: '1px solid rgba(255,255,255,0.6)'
         }}
       >
         {/* Main Nav Bar */}
