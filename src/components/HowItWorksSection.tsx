@@ -185,27 +185,45 @@ export const HowItWorksSection = () => {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* CTA with Video Background */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-12 pt-12 border-t border-white/10"
+            className="relative mt-12 pt-12 border-t border-white/10 overflow-hidden rounded-2xl"
           >
-            <h3 className="text-2xl md:text-3xl text-white mb-6">
-              <span className="font-semibold">Your competitors already switched.</span>{" "}
-              <span className="font-normal text-white/60">When will you?</span>
-            </h3>
-            <a 
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
-            >
-              Book a Demo
-              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-            </a>
+            {/* Video Background */}
+            <div className="absolute inset-0 z-0">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-foreground/70" />
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 text-center py-16 px-8">
+              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
+                <span className="font-semibold">Your competitors already switched.</span>{" "}
+                <br className="hidden md:block" />
+                <span className="font-normal text-white/80">When will you?</span>
+              </h3>
+              <a 
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
+              >
+                Book a Demo
+                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+              </a>
+            </div>
           </motion.div>
         </motion.div>
 
