@@ -480,10 +480,10 @@ const SearchSuppliers = () => {
               />
             </motion.div>
           ))}
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
+          {/* Dark overlay for text readability - lighter to show faces */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
           {/* Green accent overlay */}
-          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
         </div>
 
         {/* Main Content */}
