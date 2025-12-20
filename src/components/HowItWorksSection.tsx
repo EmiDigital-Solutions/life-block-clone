@@ -112,9 +112,9 @@ export const HowItWorksSection = () => {
                       : 'md:flex-1'
                 }`}
               >
-                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col min-h-[280px] md:min-h-[340px]">
                   {/* Number */}
-                  <div className="flex items-start justify-between mb-auto">
+                  <div className="flex items-start justify-between">
                     <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-primary/80'
                     }`}>
@@ -123,7 +123,7 @@ export const HowItWorksSection = () => {
                   </div>
                   
                   {/* Content */}
-                  <div className="mt-12 md:mt-20">
+                  <div className="mt-auto">
                     <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
@@ -134,17 +134,13 @@ export const HowItWorksSection = () => {
                     </h3>
                     
                     {/* Description - Only visible on hover */}
-                    <motion.p
-                      initial={false}
-                      animate={{ 
-                        opacity: hoveredIndex === index ? 1 : 0,
-                        height: hoveredIndex === index ? 'auto' : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="text-lg text-muted-foreground leading-relaxed overflow-hidden"
+                    <p
+                      className={`text-lg text-muted-foreground leading-relaxed transition-opacity duration-300 ${
+                        hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                      }`}
                     >
                       {step.description}
-                    </motion.p>
+                    </p>
                   </div>
                   
                   {/* Hover indicator line */}
