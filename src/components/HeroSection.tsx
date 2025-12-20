@@ -227,10 +227,10 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.7 }}
-        className="bg-white py-8 overflow-hidden mt-auto relative z-10"
+        className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
       >
         <div className="container mx-auto px-6 mb-4">
-          <p className="text-sm text-muted-foreground font-medium">
+          <p className="text-sm text-white/60 font-medium">
             Trusted by leading enterprises
           </p>
         </div>
@@ -254,7 +254,7 @@ const HeroSection = () => {
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-gray-300 tracking-wide hover:text-gray-500 transition-colors"
+                    className="text-xl font-semibold text-white/30 tracking-wide hover:text-white/50 transition-colors"
                   >
                     {company}
                   </span>
