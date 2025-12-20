@@ -72,7 +72,7 @@ const Navigation = () => {
             href="https://calendly.com/yvoo/demo-yvoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-foreground text-white pl-7 pr-6 py-4 mr-2 rounded-full font-medium text-base hover:bg-foreground/90 transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-foreground text-white pl-8 pr-7 py-6 my-1.5 mr-1.5 rounded-full font-medium text-lg hover:bg-foreground/90 transition-all duration-300"
           >
             Book a Call
             <ArrowRight className="w-5 h-5" />
