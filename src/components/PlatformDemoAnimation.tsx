@@ -870,7 +870,7 @@ const AuditExecutionDemo = () => {
   );
 };
 
-// Step 5: Professional Audit Report Generation
+// Step 5: Professional Audit Report Generation - Light Enterprise Dashboard
 const ReportDemo = () => {
   const [viewMode, setViewMode] = useState<'overview' | 'analytics'>('overview');
   
@@ -892,13 +892,12 @@ const ReportDemo = () => {
   ];
   
   const nonConformances = [
-    { id: 'NC-001', element: 'P6.3.2', finding: 'Calibration records for CMM Zeiss Contura incomplete - missing 3 measuring devices', severity: 'major', category: 'Process Control', rootCause: 'Documentation gap' },
-    { id: 'NC-002', element: 'P6.2.1', finding: 'Operator qualification matrix not updated for 2 new CNC operators since Q3 2024', severity: 'minor', category: 'Personnel', rootCause: 'Training backlog' },
-    { id: 'NC-003', element: 'P4.6', finding: 'Process FMEA (PFMEA-TM-2023-001) not revised after design change ECN-2024-047', severity: 'major', category: 'Risk Management', rootCause: 'Change management' },
-    { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward 1.33 limit', severity: 'observation', category: 'Quality Control', rootCause: 'Tool wear monitoring' },
+    { id: 'NC-001', element: 'P6.3.2', finding: 'Calibration records for CMM Zeiss Contura incomplete', severity: 'major', category: 'Process Control' },
+    { id: 'NC-002', element: 'P6.2.1', finding: 'Operator qualification matrix not updated for 2 new CNC operators', severity: 'minor', category: 'Personnel' },
+    { id: 'NC-003', element: 'P4.6', finding: 'Process FMEA not revised after design change ECN-2024-047', severity: 'major', category: 'Risk Management' },
+    { id: 'OFI-001', element: 'P6.4.3', finding: 'SPC charts for critical dimension CTQ-012 show Cpk trending toward limit', severity: 'observation', category: 'Quality Control' },
   ];
   
-  // Historical score data for trend chart - realistic non-linear trend with client names
   const historicalScores = [
     { year: '2021', score: 78, client: 'BMW' },
     { year: '2022', score: 82, client: 'Mercedes' },
@@ -907,14 +906,12 @@ const ReportDemo = () => {
     { year: '2025', score: 88, client: 'YVOO' },
   ];
   
-  // Benchmark data
   const benchmarkData = [
     { category: 'Industry Avg', score: 76 },
     { category: 'Top 10%', score: 92 },
     { category: 'This Supplier', score: 84.2 },
   ];
   
-  // Custom AI-generated VDA 6.3 audit evidence images
   const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector];
   
   const evidenceItems = [
@@ -931,374 +928,325 @@ const ReportDemo = () => {
   
   return (
     <WindowChrome title="ScanPro+ — VDA 6.3 Process Audit Report">
-      <div className="h-full flex bg-[#0A0A0A]">
-        {/* Main Report Content */}
-        <div className="w-[65%] flex flex-col border-r border-[#C0C0C0]/10 overflow-hidden">
-          {/* Report Header - Professional */}
-          <div className="p-4 border-b border-[#C0C0C0]/10 bg-gradient-to-r from-[#0A0A0A] to-[#161616]">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 border border-[#1391BF]/30 flex items-center justify-center">
-                  <span className="text-[#1391BF] font-bold text-sm">TM</span>
-                </div>
-                <div>
-                  <div className="text-white font-semibold">TechMold Industries Co., Ltd.</div>
-                  <div className="text-[#C0C0C0]/60 text-xs">Shanghai, China • DUNS: 54-128-9047</div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="px-1.5 py-0.5 bg-[#1391BF]/15 text-[#1391BF] rounded text-[10px] font-medium">VDA 6.3:2023</span>
-                    <span className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] rounded text-[10px] font-medium">Process Audit</span>
-                  </div>
-                </div>
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Header */}
+        <div className="px-5 py-4 border-b border-gray-200 bg-white">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center">
+                <span className="text-gray-700 font-bold text-sm">TM</span>
               </div>
+              <div>
+                <div className="text-gray-900 font-semibold text-sm">TechMold Industries Co., Ltd.</div>
+                <div className="text-gray-500 text-xs">Shanghai, China • DUNS: 54-128-9047</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
               <div className="text-right">
-                <div className="flex items-center gap-2 justify-end mb-1">
-                  <span className={`text-3xl font-bold ${certificationStatus === 'A' ? 'text-[#7CC2A7]' : certificationStatus === 'B' ? 'text-[#1391BF]' : 'text-[#D8A860]'}`}>
+                <div className="flex items-center gap-2 justify-end">
+                  <span className={`text-2xl font-bold ${certificationStatus === 'A' ? 'text-emerald-600' : certificationStatus === 'B' ? 'text-[#1391BF]' : 'text-amber-500'}`}>
                     {overallScore.toFixed(1)}%
                   </span>
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${
-                    certificationStatus === 'A' ? 'bg-[#7CC2A7]/20 text-[#7CC2A7]' : 
-                    certificationStatus === 'B' ? 'bg-[#1391BF]/20 text-[#1391BF]' : 'bg-[#D8A860]/20 text-[#D8A860]'
+                  <div className={`w-7 h-7 rounded-md flex items-center justify-center font-bold text-xs ${
+                    certificationStatus === 'A' ? 'bg-emerald-100 text-emerald-700' : 
+                    certificationStatus === 'B' ? 'bg-[#1391BF]/10 text-[#1391BF]' : 'bg-amber-100 text-amber-700'
                   }`}>
                     {certificationStatus}
                   </div>
                 </div>
-                <div className="text-[#C0C0C0]/50 text-[10px]">Grade {certificationStatus} Supplier</div>
-                <div className="text-[#C0C0C0]/40 text-[10px]">Audit Date: Feb 14-15, 2025</div>
+                <div className="text-gray-400 text-[10px]">Audit: Feb 14-15, 2025</div>
+              </div>
+              <div className="flex gap-1.5">
+                <span className="px-2 py-1 bg-[#1391BF]/10 text-[#1391BF] rounded text-[10px] font-medium">VDA 6.3</span>
+                <span className="px-2 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px] font-medium">Process Audit</span>
               </div>
             </div>
           </div>
-          
-          {/* View Mode Toggle */}
-          <div className="px-4 py-2 border-b border-[#C0C0C0]/10 flex items-center gap-2">
-            <button
-              onClick={() => setViewMode('overview')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                viewMode === 'overview' 
-                  ? 'bg-[#1391BF] text-white' 
-                  : 'bg-[#161616] text-[#C0C0C0]/60 hover:text-white'
-              }`}
-            >
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Overview
-              </span>
-            </button>
-            <button
-              onClick={() => setViewMode('analytics')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                viewMode === 'analytics' 
-                  ? 'bg-[#1391BF] text-white' 
-                  : 'bg-[#161616] text-[#C0C0C0]/60 hover:text-white'
-              }`}
-            >
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                Analytics
-              </span>
-            </button>
-          </div>
-          
-          {viewMode === 'overview' ? (
-          <>
-          {/* Process Elements Grid - VDA 6.3 Standard */}
-          <div className="p-4 border-b border-[#C0C0C0]/10">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-white/90 font-medium text-sm">Process Element Scores (VDA 6.3)</div>
-              <div className="flex gap-3 text-[10px]">
-                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#7CC2A7]" />≥90% (A)</span>
-                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#1391BF]" />≥80% (B)</span>
-                <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#D8A860]" />≥60% (C)</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-6 gap-2">
-              {processElements.map((el, i) => {
-                const color = el.score >= 90 ? '#7CC2A7' : el.score >= 80 ? '#1391BF' : '#D8A860';
-                return (
-                  <motion.div 
-                    key={el.code}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.08 }}
-                    className="bg-[#161616] rounded-xl p-3 text-center"
-                  >
-                    <div className="text-[#C0C0C0]/50 text-[10px] font-medium mb-1">{el.code}</div>
-                    <motion.div 
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.3 + i * 0.08, type: "spring" }}
-                      className="text-lg font-bold mb-1"
-                      style={{ color }}
-                    >
-                      {el.score}%
-                    </motion.div>
-                    <div className="text-[#C0C0C0]/40 text-[9px] leading-tight line-clamp-2">{el.name}</div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-          
-          {/* Non-Conformances Table - Professional */}
-          <div className="flex-1 p-4 overflow-hidden">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-white/90 font-medium text-sm">Non-Conformances & Observations</div>
-              <div className="flex gap-2">
-                <span className="px-2 py-0.5 bg-[#C4564F]/15 text-[#C4564F] rounded text-[10px] font-medium">2 Major</span>
-                <span className="px-2 py-0.5 bg-[#D8A860]/15 text-[#D8A860] rounded text-[10px] font-medium">1 Minor</span>
-                <span className="px-2 py-0.5 bg-[#1391BF]/15 text-[#1391BF] rounded text-[10px] font-medium">1 OFI</span>
-              </div>
-            </div>
-            
-            <div className="space-y-2 overflow-hidden">
-              {nonConformances.map((nc, i) => (
-                <motion.div 
-                  key={nc.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + i * 0.1 }}
-                  className="bg-[#161616] rounded-xl p-3 border-l-2"
-                  style={{ borderLeftColor: nc.severity === 'major' ? '#C4564F' : nc.severity === 'minor' ? '#D8A860' : '#1391BF' }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={`px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ${
-                      nc.severity === 'major' ? 'bg-[#C4564F]/20 text-[#C4564F]' : 
-                      nc.severity === 'minor' ? 'bg-[#D8A860]/20 text-[#D8A860]' : 'bg-[#1391BF]/20 text-[#1391BF]'
-                    }`}>
-                      {nc.severity === 'observation' ? 'OFI' : nc.severity}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[#C0C0C0]/50 text-[10px] font-mono">{nc.id}</span>
-                        <span className="text-[#1391BF] text-[10px] font-medium">{nc.element}</span>
-                        <span className="text-[#C0C0C0]/30 text-[10px]">•</span>
-                        <span className="text-[#C0C0C0]/50 text-[10px]">{nc.category}</span>
-                      </div>
-                      <div className="text-white/80 text-xs leading-relaxed">{nc.finding}</div>
+        </div>
+        
+        {/* Tab Navigation */}
+        <div className="px-5 py-2 border-b border-gray-200 bg-white flex items-center gap-1">
+          <button
+            onClick={() => setViewMode('overview')}
+            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+              viewMode === 'overview' 
+                ? 'bg-gray-900 text-white' 
+                : 'text-gray-500 hover:bg-gray-100'
+            }`}
+          >
+            Overview
+          </button>
+          <button
+            onClick={() => setViewMode('analytics')}
+            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+              viewMode === 'analytics' 
+                ? 'bg-gray-900 text-white' 
+                : 'text-gray-500 hover:bg-gray-100'
+            }`}
+          >
+            Analytics
+          </button>
+        </div>
+        
+        {/* Content Area */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Main Content */}
+          <div className="flex-1 overflow-y-auto">
+            {viewMode === 'overview' ? (
+              <div className="p-5 space-y-4">
+                {/* Process Elements Grid */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-gray-900">Process Element Scores</h3>
+                    <div className="flex gap-3 text-[10px] text-gray-500">
+                      <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-500" />≥90% (A)</span>
+                      <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#1391BF]" />≥80% (B)</span>
+                      <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-amber-500" />≥60% (C)</span>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          </>
-          ) : (
-          /* Analytics View */
-          <div className="flex-1 p-4 overflow-hidden">
-            {/* Score Trend Chart - Bars + Line */}
-            <div className="mb-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-white/90 font-medium text-sm">Audit Score History</div>
-                <div className="flex gap-3 text-[9px] text-[#C0C0C0]/60">
-                  <span className="flex items-center gap-1"><div className="w-3 h-2 rounded bg-[#0A7FA5]" />Score</span>
-                  <span className="flex items-center gap-1"><div className="w-3 h-0.5 bg-[#0A7FA5]" />Trend</span>
-                </div>
-              </div>
-              <div className="bg-[#161616] rounded-xl p-4">
-                <div className="relative h-36">
-                  {/* Bars - all blue, thicker */}
-                  <div className="flex items-end justify-around h-28 px-2 relative z-10">
-                    {historicalScores.map((item, i) => {
-                      const heightPx = ((item.score - 50) / 50) * 112;
+                  <div className="grid grid-cols-6 gap-2">
+                    {processElements.map((el, i) => {
+                      const color = el.score >= 90 ? 'text-emerald-600' : el.score >= 80 ? 'text-[#1391BF]' : 'text-amber-600';
+                      const bgColor = el.score >= 90 ? 'bg-emerald-50' : el.score >= 80 ? 'bg-[#1391BF]/5' : 'bg-amber-50';
                       return (
-                        <div 
-                          key={item.year}
-                          className="flex flex-col items-center h-full justify-end"
+                        <motion.div 
+                          key={el.code}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + i * 0.05 }}
+                          className={`rounded-lg p-3 text-center border border-gray-100 ${bgColor}`}
                         >
-                          <span className="text-[10px] font-bold text-white mb-1">{item.score}%</span>
-                          <motion.div 
-                            className="w-8 rounded-t-md bg-[#0A7FA5]"
-                            initial={{ height: 0 }}
-                            animate={{ height: heightPx }}
-                            transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
-                          />
-                        </div>
+                          <div className="text-gray-400 text-[10px] font-medium mb-1">{el.code}</div>
+                          <div className={`text-lg font-bold ${color}`}>{el.score}%</div>
+                          <div className="text-gray-500 text-[9px] leading-tight mt-1 line-clamp-2">{el.name}</div>
+                        </motion.div>
                       );
                     })}
                   </div>
-                  
-                  {/* Overlay lines removed (per request) */}
-                  
-                  {/* Year labels with client names */}
-                  <div className="flex justify-between mt-2">
-                    {historicalScores.map((item) => (
-                      <div key={item.year} className="flex-1 text-center">
-                        <span className="text-[#C0C0C0]/60 text-[9px]">{item.year}</span>
-                        <div className="text-[#C0C0C0]/40 text-[8px] truncate">{item.client}</div>
-                      </div>
-                    ))}
+                </div>
+                
+                {/* Non-Conformances Table */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-gray-900">Non-Conformances & Observations</h3>
+                    <div className="flex gap-2">
+                      <span className="px-2 py-0.5 bg-red-50 text-red-600 rounded text-[10px] font-medium">2 Major</span>
+                      <span className="px-2 py-0.5 bg-amber-50 text-amber-600 rounded text-[10px] font-medium">1 Minor</span>
+                      <span className="px-2 py-0.5 bg-blue-50 text-blue-600 rounded text-[10px] font-medium">1 OFI</span>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-gray-100 bg-gray-50">
+                          <th className="text-left py-2 px-3 font-medium text-gray-500">ID</th>
+                          <th className="text-left py-2 px-3 font-medium text-gray-500">Element</th>
+                          <th className="text-left py-2 px-3 font-medium text-gray-500">Finding</th>
+                          <th className="text-left py-2 px-3 font-medium text-gray-500">Severity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {nonConformances.map((nc, i) => (
+                          <motion.tr 
+                            key={nc.id}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 + i * 0.08 }}
+                            className="border-b border-gray-50 last:border-0"
+                          >
+                            <td className="py-2.5 px-3 font-mono text-gray-400">{nc.id}</td>
+                            <td className="py-2.5 px-3 text-[#1391BF] font-medium">{nc.element}</td>
+                            <td className="py-2.5 px-3 text-gray-700">{nc.finding}</td>
+                            <td className="py-2.5 px-3">
+                              <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium uppercase ${
+                                nc.severity === 'major' ? 'bg-red-50 text-red-600' : 
+                                nc.severity === 'minor' ? 'bg-amber-50 text-amber-600' : 'bg-blue-50 text-blue-600'
+                              }`}>
+                                {nc.severity === 'observation' ? 'OFI' : nc.severity}
+                              </span>
+                            </td>
+                          </motion.tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Process Elements Radar-style Comparison */}
-            <div className="mb-4">
-              <div className="text-white/90 font-medium text-sm mb-3">Process Element Analysis</div>
-              <div className="bg-[#161616] rounded-xl p-4">
-                <div className="space-y-2">
-                  {processElements.map((el, i) => {
-                    const color = el.score >= 90 ? '#7CC2A7' : el.score >= 80 ? '#1391BF' : '#D8A860';
-                    return (
-                      <motion.div 
-                        key={el.code}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + i * 0.08 }}
-                        className="flex items-center gap-3"
-                      >
-                        <span className="text-[#C0C0C0]/50 text-[10px] w-6">{el.code}</span>
-                        <div className="flex-1 h-4 bg-[#0A0A0A] rounded-full overflow-hidden relative">
-                          <motion.div 
-                            className="h-full rounded-full"
-                            style={{ backgroundColor: color }}
-                            initial={{ width: 0 }}
-                            animate={{ width: `${el.score}%` }}
-                            transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
-                          />
-                          <div className="absolute inset-0 flex items-center px-2">
-                            <span className="text-[8px] text-white/80 font-medium truncate">{el.name}</span>
+            ) : (
+              <div className="p-5 space-y-4">
+                {/* Score History Chart */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">Audit Score History</h3>
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-end justify-around h-32">
+                      {historicalScores.map((item, i) => {
+                        const heightPx = ((item.score - 50) / 50) * 100;
+                        return (
+                          <div key={item.year} className="flex flex-col items-center">
+                            <span className="text-xs font-bold text-gray-900 mb-1">{item.score}%</span>
+                            <motion.div 
+                              className="w-10 rounded-t bg-[#1391BF]"
+                              initial={{ height: 0 }}
+                              animate={{ height: heightPx }}
+                              transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
+                            />
+                            <div className="mt-2 text-center">
+                              <div className="text-gray-500 text-[10px]">{item.year}</div>
+                              <div className="text-gray-400 text-[9px]">{item.client}</div>
+                            </div>
                           </div>
-                        </div>
-                        <span className="text-white font-bold text-xs w-10 text-right">{el.score}%</span>
-                      </motion.div>
-                    );
-                  })}
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Benchmark Comparison */}
-            <div>
-              <div className="text-white/90 font-medium text-sm mb-3">Industry Benchmark</div>
-              <div className="bg-[#161616] rounded-xl p-4">
-                <div className="flex items-end justify-around h-24">
-                  {benchmarkData.map((item, i) => {
-                    const isThisSupplier = item.category === 'This Supplier';
-                    const color = isThisSupplier ? '#1391BF' : item.category === 'Top 10%' ? '#7CC2A7' : '#C0C0C0';
-                    return (
-                      <motion.div 
-                        key={item.category}
-                        className="flex flex-col items-center gap-2"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 + i * 0.15 }}
-                      >
+                
+                {/* Process Element Analysis */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">Process Element Analysis</h3>
+                  <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
+                    {processElements.map((el, i) => {
+                      const color = el.score >= 90 ? '#10b981' : el.score >= 80 ? '#1391BF' : '#f59e0b';
+                      return (
                         <motion.div 
-                          className={`w-16 rounded-t-lg ${isThisSupplier ? 'ring-2 ring-[#1391BF]/50' : ''}`}
-                          style={{ backgroundColor: color + (isThisSupplier ? '' : '40') }}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${(item.score / 100) * 80}px` }}
-                          transition={{ delay: 0.8 + i * 0.15, duration: 0.4 }}
-                        />
-                        <span className={`text-xs font-bold ${isThisSupplier ? 'text-[#1391BF]' : 'text-[#C0C0C0]/60'}`}>{item.score}%</span>
-                        <span className="text-[#C0C0C0]/50 text-[9px] text-center">{item.category}</span>
-                      </motion.div>
-                    );
-                  })}
+                          key={el.code}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 + i * 0.05 }}
+                          className="flex items-center gap-3"
+                        >
+                          <span className="text-gray-400 text-[10px] font-mono w-6">{el.code}</span>
+                          <div className="flex-1 h-5 bg-gray-100 rounded-full overflow-hidden">
+                            <motion.div 
+                              className="h-full rounded-full"
+                              style={{ backgroundColor: color }}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${el.score}%` }}
+                              transition={{ delay: 0.4 + i * 0.05, duration: 0.4 }}
+                            />
+                          </div>
+                          <span className="text-gray-900 font-bold text-xs w-10 text-right">{el.score}%</span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+                
+                {/* Industry Benchmark */}
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-3">Industry Benchmark</h3>
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <div className="flex items-end justify-around h-24">
+                      {benchmarkData.map((item, i) => {
+                        const isThisSupplier = item.category === 'This Supplier';
+                        const color = isThisSupplier ? '#1391BF' : item.category === 'Top 10%' ? '#10b981' : '#9ca3af';
+                        return (
+                          <motion.div 
+                            key={item.category}
+                            className="flex flex-col items-center"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 + i * 0.1 }}
+                          >
+                            <motion.div 
+                              className={`w-14 rounded-t ${isThisSupplier ? 'ring-2 ring-[#1391BF]/30' : ''}`}
+                              style={{ backgroundColor: color }}
+                              initial={{ height: 0 }}
+                              animate={{ height: `${(item.score / 100) * 70}px` }}
+                              transition={{ delay: 0.6 + i * 0.1, duration: 0.3 }}
+                            />
+                            <span className={`text-xs font-bold mt-2 ${isThisSupplier ? 'text-[#1391BF]' : 'text-gray-500'}`}>{item.score}%</span>
+                            <span className="text-gray-400 text-[9px] text-center mt-0.5">{item.category}</span>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
-          )}
-        </div>
-        
-        {/* Right Sidebar */}
-        <div className="w-[35%] flex flex-col overflow-hidden">
-          {/* Evidence Gallery - Unique Items */}
-          <div className="p-4 border-b border-[#C0C0C0]/10">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-white/90 font-medium text-sm">Evidence Gallery</div>
-              <span className="text-[#C0C0C0]/50 text-[10px]">247 items collected</span>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              {evidenceItems.map((item, i) => {
-                return (
+          
+          {/* Right Sidebar */}
+          <div className="w-[220px] border-l border-gray-200 bg-white flex flex-col overflow-hidden">
+            {/* Evidence Gallery */}
+            <div className="p-4 border-b border-gray-100">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-xs font-semibold text-gray-900">Evidence Gallery</h4>
+                <span className="text-gray-400 text-[10px]">247 items</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5">
+                {evidenceItems.map((item, i) => (
                   <motion.div 
                     key={item.id}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + i * 0.08 }}
-                    className="aspect-square rounded-xl relative overflow-hidden group"
+                    transition={{ delay: 0.3 + i * 0.05 }}
+                    className="aspect-square rounded-md relative overflow-hidden"
                   >
                     <img 
                       src={evidenceImages[i]} 
                       alt={item.label}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <div className="absolute bottom-1 left-1 right-1">
-                      <div className="text-white text-[8px] font-medium truncate">{item.label}</div>
-                      <div className="text-white/60 text-[7px]">{item.ref}</div>
+                      <div className="text-white text-[7px] font-medium truncate">{item.label}</div>
                     </div>
                     {item.verified && (
-                      <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#7CC2A7] flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
                       </div>
                     )}
-                    <div className="absolute top-1 left-1 px-1 py-0.5 bg-black/60 rounded text-[7px] text-white/80">
-                      {item.type}
-                    </div>
                   </motion.div>
-                );
-              })}
-            </div>
-          </div>
-          
-          {/* Auditor Signature Block */}
-          <div className="p-4 border-b border-[#C0C0C0]/10">
-            <div className="text-white/90 font-medium text-sm mb-3">Lead Auditor</div>
-            <div className="bg-[#161616] rounded-xl p-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] flex items-center justify-center text-white font-bold text-sm">
-                  WL
-                </div>
-                <div className="flex-1">
-                  <div className="text-white font-medium text-sm">Wei Liu</div>
-                  <div className="text-[#C0C0C0]/60 text-[10px]">VDA 6.3 Licensed Auditor</div>
-                  <div className="text-[#C0C0C0]/40 text-[9px]">Cert: VDA-QMC-2023-1847</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[#7CC2A7] text-[10px] font-medium">Verified</div>
-                  <div className="text-[#C0C0C0]/40 text-[9px]">847 audits</div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-          
-          {/* Export Options */}
-          <div className="p-4 mt-auto">
-            <div className="space-y-2">
+            
+            {/* Lead Auditor */}
+            <div className="p-4 border-b border-gray-100">
+              <h4 className="text-xs font-semibold text-gray-900 mb-2">Lead Auditor</h4>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-[#1391BF] flex items-center justify-center text-white font-bold text-[10px]">
+                  WL
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-gray-900 font-medium text-xs">Wei Liu</div>
+                  <div className="text-gray-400 text-[10px]">VDA 6.3 Licensed</div>
+                </div>
+                <div className="text-emerald-600 text-[10px] font-medium">✓</div>
+              </div>
+            </div>
+            
+            {/* Export Buttons */}
+            <div className="p-4 mt-auto">
               <motion.button 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="w-full py-2.5 bg-[#1391BF] text-white rounded-xl text-sm font-medium flex items-center justify-center gap-2"
+                transition={{ delay: 0.6 }}
+                className="w-full py-2 bg-gray-900 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 mb-2"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Export VDA 6.3 Report (PDF)
+                Export PDF
               </motion.button>
               <motion.button 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.9 }}
-                className="w-full py-2.5 bg-[#161616] text-white/80 rounded-xl text-sm font-medium flex items-center justify-center gap-2 border border-[#C0C0C0]/10"
+                transition={{ delay: 0.7 }}
+                className="w-full py-2 bg-white text-gray-600 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 border border-gray-200"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                 </svg>
-                Share with BMW SQE Portal
+                Share Report
               </motion.button>
-            </div>
-            <div className="mt-3 text-center">
-              <span className="text-[#C0C0C0]/40 text-[9px]">Report ID: YVOO-VDA63-2025-00847</span>
+              <div className="mt-2 text-center">
+                <span className="text-gray-400 text-[9px]">ID: YVOO-VDA63-2025-00847</span>
+              </div>
             </div>
           </div>
         </div>
