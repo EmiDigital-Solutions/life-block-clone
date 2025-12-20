@@ -95,23 +95,6 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
         {/* Green accent overlay */}
         <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
-        
-        {/* Auditor Role & Location Overlay */}
-        <div className="absolute bottom-8 left-8 md:left-16 lg:left-20 z-10">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <p className="text-white/60 text-sm tracking-wider uppercase mb-2">
-              {heroImages[activeIndex].location}
-            </p>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-white">
-              {heroImages[activeIndex].role}
-            </h3>
-          </motion.div>
-        </div>
       </div>
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
@@ -254,7 +237,7 @@ const HeroSection = () => {
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-white/30 tracking-wide hover:text-white/50 transition-colors"
+                    className="text-xl font-semibold text-white/70 tracking-wide hover:text-white transition-colors"
                   >
                     {company}
                   </span>
