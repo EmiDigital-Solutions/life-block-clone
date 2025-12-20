@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Play, Pause } from "lucide-react";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
 const TestimonialSection = () => {
-  const [isDemoPlaying, setIsDemoPlaying] = useState(false);
-
   return (
     <section className="relative overflow-hidden bg-muted">
       <div className="relative py-12 md:py-16 lg:py-20 pb-24 md:pb-36 lg:pb-44">
@@ -22,7 +18,7 @@ const TestimonialSection = () => {
           </motion.h2>
         </div>
 
-        {/* Platform Demo Animation - Larger floating card with play button */}
+        {/* Platform Demo Animation - Larger floating card */}
         <div className="container mx-auto px-6 mb-20 md:mb-28 lg:mb-32">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -32,41 +28,12 @@ const TestimonialSection = () => {
             className="max-w-6xl mx-auto"
           >
             <div 
-              className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer group"
+              className="rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.15), 0 30px 60px -30px rgba(0, 0, 0, 0.2)',
               }}
-              onClick={() => setIsDemoPlaying(true)}
             >
-              {/* Demo content */}
-              <div className={`transition-opacity duration-500 ${isDemoPlaying ? 'opacity-100' : 'opacity-100'}`}>
-                <PlatformDemoAnimation />
-              </div>
-
-              {/* Play/Pause button overlay */}
-              <div 
-                className={`absolute inset-0 flex items-center justify-center transition-colors ${
-                  isDemoPlaying ? 'bg-transparent opacity-0 hover:opacity-100 hover:bg-black/10' : 'bg-black/20 group-hover:bg-black/30'
-                }`}
-              >
-                <motion.button
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-2xl flex items-center justify-center transition-all"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsDemoPlaying(!isDemoPlaying);
-                  }}
-                >
-                  {isDemoPlaying ? (
-                    <Pause className="w-8 h-8 md:w-10 md:h-10 text-foreground" fill="currentColor" />
-                  ) : (
-                    <Play className="w-8 h-8 md:w-10 md:h-10 text-foreground ml-1" fill="currentColor" />
-                  )}
-                </motion.button>
-              </div>
+              <PlatformDemoAnimation />
             </div>
           </motion.div>
         </div>
