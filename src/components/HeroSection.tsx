@@ -73,7 +73,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-6"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-foreground shadow-sm">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full text-sm font-medium text-foreground shadow-sm border border-white/30">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 2,000+ Auditors · 90+ Countries · AI-Powered
               </span>
@@ -109,7 +109,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 mb-8"
             >
-              <span className="text-lg text-foreground font-medium bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+              <span className="text-lg text-foreground font-medium bg-white/60 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-white/30">
                 Audit starts at €700
               </span>
               <a 
@@ -136,7 +136,7 @@ const HeroSection = () => {
                 {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-foreground border border-border/50 shadow-sm"
+                    className="px-4 py-2 bg-white/60 backdrop-blur-md rounded-full text-sm font-medium text-foreground border border-white/30 shadow-sm"
                   >
                     {cert}
                   </span>
@@ -152,7 +152,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.7 }}
-        className="bg-white py-8 overflow-hidden mt-auto relative z-10"
+        className="bg-white/60 backdrop-blur-md py-8 overflow-hidden mt-auto relative z-10 border-t border-white/30"
       >
         <div className="container mx-auto px-6 mb-4">
           <p className="text-sm text-muted-foreground font-medium">
