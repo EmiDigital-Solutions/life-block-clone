@@ -80,23 +80,16 @@ const Auditors = () => {
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Use the same images as the "Experts worldwide" carousel
   const heroImages = [
-    { src: auditorBlonde1, alt: 'Quality Inspector' },
-    { src: auditorBlonde2, alt: 'Safety Manager' },
-    { src: auditorBlonde3, alt: 'Compliance Auditor' },
-    { src: auditorBlonde4, alt: 'Operations Director' },
-    { src: auditorBlonde5, alt: 'Factory Inspector' },
-    { src: procurementFemaleBlonde, alt: 'Procurement Manager' },
-    { src: procurementMaleOceania, alt: 'Supply Chain Lead' },
-    { src: procurementFemaleEuropean, alt: 'Vendor Relations' },
-    { src: auditorEuropean, alt: 'Senior Auditor' },
-    { src: procurementMaleAsian, alt: 'Sourcing Director' },
-    { src: auditorFemaleEuropean, alt: 'Quality Lead' },
-    { src: procurementFemaleAsian, alt: 'Procurement Specialist' },
-    { src: procurementMaleLatin, alt: 'Operations Manager' },
-    { src: auditorGen1, alt: 'Site Inspector' },
-    { src: auditorGen2, alt: 'Factory Manager' },
-    { src: auditorGen3, alt: 'Quality Director' },
+    { src: auditorEuropean, alt: 'VDA 6.3 Lead Auditor - Germany', role: 'VDA 6.3 Lead Auditor', location: 'Germany' },
+    { src: auditorAsian, alt: 'ISO 9001 Specialist - Japan', role: 'ISO 9001 Specialist', location: 'Japan' },
+    { src: auditorMaleNorthAmerica, alt: 'ABS & DNV-GL Auditor - USA', role: 'ABS & DNV-GL Auditor', location: 'USA' },
+    { src: auditorMiddleEast, alt: 'API & ISO 29001 Auditor - UAE', role: 'API & ISO 29001 Auditor', location: 'UAE' },
+    { src: auditorLatin, alt: 'IATF 16949 Specialist - Mexico', role: 'IATF 16949 Specialist', location: 'Mexico' },
+    { src: auditorSouthAsian, alt: 'AS9100 Lead Auditor - India', role: 'AS9100 Lead Auditor', location: 'India' },
+    { src: auditorAfrican, alt: 'Mining & Energy Auditor - South Africa', role: 'Mining & Energy Auditor', location: 'South Africa' },
+    { src: auditorFemaleEuropean, alt: 'Pharmaceutical GMP Auditor - Switzerland', role: 'Pharmaceutical GMP Auditor', location: 'Switzerland' },
   ];
 
   useEffect(() => {
