@@ -1167,9 +1167,9 @@ const InfiniteScrollingGallery = () => {
               <div className="aspect-square overflow-hidden rounded-t-2xl">
                 <MockupRenderer type={item.mockupType} />
               </div>
-              <div className="p-4 bg-card rounded-b-2xl">
-                <h4 className="text-base font-bold text-foreground mb-1">{item.title}</h4>
-                <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
+              <div className="p-5 bg-card rounded-b-2xl">
+                <h4 className="text-lg font-bold text-foreground mb-1.5">{item.title}</h4>
+                <p className="text-base text-muted-foreground leading-snug line-clamp-2">
                   {item.description}
                 </p>
               </div>
