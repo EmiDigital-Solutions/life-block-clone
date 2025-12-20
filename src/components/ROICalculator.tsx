@@ -252,12 +252,12 @@ const ROICalculator = () => {
             </div>
           </div>
           <div className="text-right">
-            <div className="text-4xl sm:text-5xl font-semibold text-green-400">
+            <div className="text-4xl sm:text-5xl font-semibold text-accent">
               −{formatCurrency(totalAnnualSavings)}
             </div>
             <div className="flex items-center justify-end gap-2 mt-1">
-              <TrendingDown className="w-4 h-4 text-green-400" />
-              <span className="text-green-400 font-medium">{savingsPercent}% savings</span>
+              <TrendingDown className="w-4 h-4 text-accent" />
+              <span className="text-accent font-medium">{savingsPercent}% savings</span>
             </div>
           </div>
         </div>
