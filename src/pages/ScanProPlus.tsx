@@ -14,7 +14,7 @@ import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
 import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
-import industryAutomotive from "@/assets/industry-automotive.jpg";
+import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
 import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
@@ -1321,7 +1321,7 @@ const IndustryUseCasesGrid = () => {
 
   const useCases: IndustryUseCase[] = [
     {
-      image: industryAutomotive,
+      image: industryAutomotiveBwGreen,
       title: "Automotive: PPAP Validation & Tool Audits",
       useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
       solutions: [
