@@ -415,32 +415,88 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             })}
           </AnimatePresence>
 
-            <div className="relative z-30">
-
-            {/* Clean Headline Only */}
-            <div className="flex flex-col text-left">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="section-headline text-foreground md:whitespace-nowrap"
-              >
-                Your auditor, anywhere, anytime
-              </motion.h2>
+            {/* Centered Headline Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+              <div className="text-center px-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative"
+                >
+                  {/* Decorative line above */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "4rem" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6"
+                  />
+                  
+                  {/* Main headline with dramatic styling */}
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight md:whitespace-nowrap">
+                    <span className="text-foreground/90">Your auditor,</span>
+                    <br className="md:hidden" />
+                    <span className="text-primary"> anywhere</span>
+                    <span className="text-foreground/90">,</span>
+                    <span className="text-primary"> anytime</span>
+                  </h2>
+                  
+                  {/* Decorative line below */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "4rem" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                    className="h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6"
+                  />
+                </motion.div>
+              </div>
             </div>
-
           </div>
         </div>
         
-        {/* Description below the globe */}
-        <motion.p
+        {/* Description below the globe - refined */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl text-center mx-auto mt-8"
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="max-w-3xl mx-auto text-center mt-12 px-4"
         >
-          Access local experts certified in VDA 6.3, IATF 16949, or ISO standards—already on the ground where your suppliers operate.
-        </motion.p>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Access local experts certified in{" "}
+            <span className="text-foreground font-medium">VDA 6.3</span>,{" "}
+            <span className="text-foreground font-medium">IATF 16949</span>, or{" "}
+            <span className="text-foreground font-medium">ISO standards</span>
+            —already on the ground where your suppliers operate.
+          </p>
+          
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mt-10"
+          >
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">500+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Certified Auditors</div>
+            </div>
+            <div className="w-px h-10 bg-border hidden sm:block" />
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">45+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Countries Covered</div>
+            </div>
+            <div className="w-px h-10 bg-border hidden sm:block" />
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-primary">24h</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Average Response</div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
