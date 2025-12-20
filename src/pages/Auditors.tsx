@@ -154,7 +154,7 @@ const Auditors = () => {
               >
                 We partner with
                 <br />
-                <span className="font-medium text-primary">exceptional auditors.</span>
+                <span className="font-medium">exceptional auditors.</span>
               </motion.h1>
 
               {/* Subtitle - Selective, not desperate */}
