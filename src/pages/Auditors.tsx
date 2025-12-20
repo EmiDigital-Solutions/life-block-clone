@@ -120,15 +120,13 @@ const Auditors = () => {
           data-nav-theme="white"
           className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Background Image */}
+          {/* Background Image - No overlay */}
           <div className="absolute inset-0">
             <img 
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
-              className="w-full h-full object-cover object-center opacity-50"
+              className="w-full h-full object-cover object-center"
             />
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60" />
           </div>
 
           {/* Main Content - VanMoof Layout */}
@@ -154,10 +152,10 @@ const Auditors = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="max-w-sm text-right"
+                className="max-w-md text-right"
               >
                 <p className="text-white text-lg lg:text-xl leading-relaxed mb-6">
-                  Join our elite network. Connect with high-caliber clients worldwide.
+                  We partner with exceptional auditors. Our clients demand the highest standards. So do we.
                 </p>
                 <a
                   href="#apply"
@@ -166,7 +164,7 @@ const Auditors = () => {
                   <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                     <ArrowRight className="w-5 h-5" />
                   </span>
-                  <span className="text-base font-medium">Apply Now</span>
+                  <span className="text-base font-medium">Apply for Partnership</span>
                 </a>
               </motion.div>
             </div>
