@@ -247,13 +247,13 @@ const ROICalculator = () => {
               <DollarSign className="w-7 h-7 text-white" />
             </div>
             <div>
-              <p className="text-white/70 text-sm">Your Annual Cost Savings</p>
+              <p className="text-white/70 text-sm">You Save Annually</p>
               <p className="text-white/50 text-xs mt-0.5">Based on {auditsPerYear} audits per year</p>
             </div>
           </div>
           <div className="text-right">
-            <div className="text-4xl sm:text-5xl font-semibold">
-              {formatCurrency(totalAnnualSavings)}
+            <div className="text-4xl sm:text-5xl font-semibold text-green-400">
+              −{formatCurrency(totalAnnualSavings)}
             </div>
             <div className="flex items-center justify-end gap-2 mt-1">
               <TrendingDown className="w-4 h-4 text-green-400" />
