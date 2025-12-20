@@ -716,6 +716,62 @@ const TechnologyFeaturesSection = () => {
   );
 };
 
+// Auditor Parallax Image Component
+const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
+  const imageRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.98]);
+  const decorY1 = useTransform(scrollYProgress, [0, 1], [-20, 30]);
+  const decorY2 = useTransform(scrollYProgress, [0, 1], [20, -20]);
+
+  return (
+    <motion.div
+      ref={imageRef}
+      initial={{ opacity: 0, x: 40 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.5 }}
+      className="hidden lg:block sticky top-32"
+    >
+      <div className="relative">
+        {/* Main image container with parallax */}
+        <motion.div 
+          className="relative overflow-hidden rounded-2xl"
+          style={{ y, scale }}
+        >
+          <img 
+            src={auditorTimelineHero}
+            alt="Professional Quality Auditor"
+            className="w-full h-auto object-cover"
+          />
+          {/* Subtle overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+        </motion.div>
+        
+        {/* Decorative elements with opposite parallax */}
+        <motion.div
+          className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl"
+          style={{ y: decorY1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        />
+        <motion.div
+          className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-xl"
+          style={{ y: decorY2 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.9, duration: 0.5 }}
+        />
+      </div>
+    </motion.div>
+  );
+};
+
 // WORKFLOW SECTION - What YVOO Does Better
 const DayInLifeSection = () => {
   const ref = useRef(null);
@@ -905,40 +961,8 @@ const DayInLifeSection = () => {
             </div>
           </div>
 
-          {/* Auditor Image - Right Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden lg:block sticky top-32"
-          >
-            <div className="relative">
-              {/* Main image container */}
-              <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src={auditorTimelineHero}
-                  alt="Professional Quality Auditor"
-                  className="w-full h-auto object-cover"
-                />
-                {/* Subtle overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-              </div>
-              
-              {/* Decorative elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              />
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-xl"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.9, duration: 0.5 }}
-              />
-            </div>
-          </motion.div>
+          {/* Auditor Image - Right Side with Parallax */}
+          <AuditorParallaxImage isInView={isInView} />
         </div>
 
       </div>
