@@ -953,18 +953,7 @@ const DayInLifeSection = () => {
                         >
                           <Check className="w-3.5 h-3.5 text-primary" />
                         </motion.div>
-                        <div className="flex items-center gap-4 flex-wrap">
-                          <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
-                          {index === timeline.length - 1 && (
-                            <Button 
-                              size="lg" 
-                              className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 text-base font-medium ml-48"
-                            >
-                              Start your new way to audit now
-                              <ArrowRight className="ml-2 w-4 h-4" />
-                            </Button>
-                          )}
-                        </div>
+                        <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
                       </motion.div>
                     </div>
                   </div>
@@ -976,6 +965,22 @@ const DayInLifeSection = () => {
           {/* Auditor Image - Right Side with Parallax */}
           <AuditorParallaxImage isInView={isInView} />
         </div>
+
+        {/* Independent CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.8, duration: 0.6 }}
+          className="mt-12 flex justify-end pr-4 lg:pr-20"
+        >
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 text-base font-medium"
+          >
+            Start your new way to audit now
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+        </motion.div>
 
       </div>
     </section>
