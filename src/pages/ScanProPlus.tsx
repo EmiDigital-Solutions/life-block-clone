@@ -1275,50 +1275,35 @@ const IndustryShowcaseCard = ({
         onClick={onClick}
         className="group relative overflow-hidden cursor-pointer rounded-2xl w-full h-full"
       >
-        {/* Light container frame */}
-        <div className="relative bg-[#f0f0f0] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
-          {/* Studio gradient background */}
-          <div 
-            className={`relative ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}
-            style={{
-              background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f5 40%, #e0e0e0 85%, #d0d0d0 100%)'
-            }}
-          >
-            {/* Image with parallax */}
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-              <motion.img 
-                src={useCase.image} 
-                alt={useCase.title}
-                style={{ y, scale }}
-                className={`${isLarge ? 'w-[85%] h-[85%]' : 'w-[80%] h-[80%]'} object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]`}
-              />
-            </div>
-            
-            {/* Reflection effect at bottom */}
-            <div 
-              className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
-              style={{
-                background: 'linear-gradient(180deg, transparent 0%, rgba(240, 240, 240, 0.8) 60%, #f0f0f0 100%)'
-              }}
-            />
-            
-            {/* Badge - VanMoof style */}
-            <div className="absolute bottom-4 left-4 z-10">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-foreground/90 backdrop-blur-sm rounded-md text-xs font-medium text-white uppercase tracking-wider">
-                {badge}
-              </span>
-            </div>
-          </div>
+        {/* Full-bleed image container */}
+        <div className={`relative overflow-hidden rounded-2xl ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}>
+          {/* Full-bleed image with parallax */}
+          <motion.img 
+            src={useCase.image} 
+            alt={useCase.title}
+            style={{ y, scale }}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
           
-          {/* Bottom info bar */}
-          <div className="p-4 md:p-5 bg-[#f0f0f0]">
-            <h3 className={`font-semibold text-foreground mb-1 leading-tight line-clamp-1 ${isLarge ? 'text-lg md:text-xl' : 'text-sm md:text-base'}`}>
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+          
+          {/* Content overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+            {/* Badge */}
+            <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+              {badge}
+            </span>
+            
+            <h3 className={`font-bold text-white mb-1.5 leading-tight ${isLarge ? 'text-xl md:text-2xl' : 'text-base md:text-lg'}`}>
               {useCase.title.split(':')[1]?.trim() || useCase.title}
             </h3>
-            <p className={`text-muted-foreground line-clamp-1 ${isLarge ? 'text-sm' : 'text-xs'}`}>
+            
+            <p className={`text-white/70 line-clamp-2 mb-3 ${isLarge ? 'text-sm' : 'text-xs'}`}>
               {useCase.useCase}
             </p>
-            <div className="flex items-center gap-1.5 mt-3 text-primary group-hover:text-primary/80 transition-colors">
+            
+            <div className="flex items-center gap-1.5 text-white/80 group-hover:text-white transition-colors">
               <span className="text-xs font-medium">View details</span>
               <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
             </div>
@@ -1441,51 +1426,35 @@ const IndustryUseCasesGrid = () => {
           onClick={() => setSelectedUseCase(useCases[3])}
           className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
         >
-          <div className="relative bg-[#f0f0f0] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
-            {/* Wide studio gradient */}
-            <div 
-              className="relative aspect-[21/9] md:aspect-[3/1]"
-              style={{
-                background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f5 30%, #e0e0e0 80%, #d0d0d0 100%)'
-              }}
-            >
-              {/* Image */}
-              <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                <img 
-                  src={useCases[3].image} 
-                  alt={useCases[3].title}
-                  className="w-[90%] h-[85%] object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-              
-              {/* Reflection */}
-              <div 
-                className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(180deg, transparent 0%, rgba(240, 240, 240, 0.8) 60%, #f0f0f0 100%)'
-                }}
-              />
-              
-              {/* Badge */}
-              <div className="absolute bottom-4 left-4 z-10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-foreground/90 backdrop-blur-sm rounded-md text-xs font-medium text-white uppercase tracking-wider">
-                  Chemical & Process
-                </span>
-              </div>
-            </div>
+          {/* Full-bleed image container */}
+          <div className="relative overflow-hidden rounded-2xl aspect-[21/9] md:aspect-[3/1]">
+            {/* Full-bleed image */}
+            <img 
+              src={useCases[3].image} 
+              alt={useCases[3].title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
             
-            {/* Bottom info */}
-            <div className="p-5 md:p-6 bg-[#f0f0f0] flex items-center justify-between">
-              <div>
-                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1 leading-tight">
-                  REACH Compliance & Process Safety
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-1">
-                  {useCases[3].useCase}
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-primary group-hover:text-primary/80 transition-colors">
-                <span className="text-sm font-medium hidden md:inline">View details</span>
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+            
+            {/* Content overlay */}
+            <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
+              {/* Badge */}
+              <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
+                Chemical & Process
+              </span>
+              
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+                REACH Compliance & Process Safety
+              </h3>
+              
+              <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
+                {useCases[3].useCase}
+              </p>
+              
+              <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+                <span className="text-sm font-medium">Explore use case</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </div>
             </div>
