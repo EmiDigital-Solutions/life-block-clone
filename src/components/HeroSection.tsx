@@ -113,7 +113,7 @@ const HeroSection = () => {
                 href="https://calendly.com/yvoo/demo-yvoo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90 hover:scale-105"
               >
                 Order Audit
               </a>
