@@ -151,7 +151,8 @@ const Auditors = () => {
                 className="max-w-2xl text-left"
               >
                 <h1 className="text-white text-5xl lg:text-7xl xl:text-8xl font-light leading-tight mb-6">
-                  We partner with<br />exceptional auditors.
+                  <span className="block">We partner with</span>
+                  <span className="block">exceptional auditors.</span>
                 </h1>
                 <p className="text-white/80 text-xl lg:text-2xl leading-relaxed mb-8">
                   Our clients demand the highest standards. So do we.
