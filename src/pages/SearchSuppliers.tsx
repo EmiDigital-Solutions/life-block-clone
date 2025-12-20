@@ -461,7 +461,7 @@ const SearchSuppliers = () => {
         className="relative min-h-screen flex flex-col overflow-visible"
       >
         {/* Full-screen Image Carousel Background */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           {heroImages.map((image, index) => (
             <motion.div
               key={index}
