@@ -157,56 +157,56 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Stats Section - dark style */}
+        {/* Stats Section with Video Background */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mt-20"
+          className="relative rounded-[32px] p-12 lg:p-16 mt-20 overflow-hidden"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-white/50 text-sm font-medium">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA with Video Background */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative mt-12 border-t border-white/10 overflow-hidden rounded-2xl"
+          {/* Video Background - Full Card */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
           >
-            {/* Video Background - Full Fill */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover z-0"
+            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-foreground/75 z-[1]" />
+          
+          {/* Content */}
+          <div className="relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-white/50 text-sm font-medium">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-12 pt-12 border-t border-white/10 text-center"
             >
-              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-foreground/70 z-[1]" />
-            
-            {/* Content */}
-            <div className="relative z-10 text-center py-16 px-8">
               <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
                 <span className="font-semibold">Your competitors already switched.</span>{" "}
                 <br className="hidden md:block" />
@@ -221,8 +221,8 @@ export const HowItWorksSection = () => {
                 Book a Demo
                 <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
 
       </div>
