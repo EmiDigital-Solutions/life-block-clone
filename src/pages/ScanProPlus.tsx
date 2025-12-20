@@ -54,6 +54,7 @@ import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
+import auditorsHeroObject from "@/assets/auditors-hero-flowing-green.jpg";
 
 // Desktop Technology Section with Scroll Effect - Auditor Network Only
 const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
@@ -1975,13 +1976,30 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Dark Background with fixed height */}
+      {/* Hero Section - Dark Background with Flowing Lines */}
       <section
         data-nav-theme="hero"
         id="hero"
-        className="relative bg-[#0A0A0A] h-[860px] lg:h-[780px]"
+        className="relative bg-[#0a0a0a] h-[860px] lg:h-[780px]"
         style={{ overflow: 'visible', clipPath: 'none' }}
       >
+        {/* Background Image - Positioned Lower with Top Gradient Blend */}
+        <div className="absolute inset-0">
+          <img 
+            src={auditorsHeroObject}
+            alt="Abstract flowing lines"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 95%', transform: 'translateY(140px)', height: 'calc(100% + 140px)' }}
+          />
+          {/* Gradient overlay to blend black top into image */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{ 
+              background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
+            }}
+          />
+        </div>
+
         <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
           <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>
           
