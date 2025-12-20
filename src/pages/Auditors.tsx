@@ -163,7 +163,7 @@ const Auditors = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-white text-[#0a0a0a] hover:bg-white/90">
+                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
                   Apply for Partnership
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -283,7 +283,7 @@ const Auditors = () => {
               >
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-white text-[#0a0a0a] hover:bg-white/90"
+                  className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90"
                 >
                   Apply for Partnership
                   <ArrowRight className="w-5 h-5" />
