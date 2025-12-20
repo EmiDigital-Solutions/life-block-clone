@@ -120,13 +120,20 @@ const Auditors = () => {
           data-nav-theme="white"
           className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Background Image - Positioned Lower, No Overlay */}
+          {/* Background Image - Positioned Lower with Top Gradient Blend */}
           <div className="absolute inset-0">
             <img 
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
               className="w-full h-full object-cover"
               style={{ objectPosition: 'center 95%', transform: 'translateY(140px)', height: 'calc(100% + 140px)' }}
+            />
+            {/* Gradient overlay to blend black top into image */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{ 
+                background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
+              }}
             />
           </div>
 
