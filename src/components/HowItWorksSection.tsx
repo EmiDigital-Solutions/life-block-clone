@@ -108,8 +108,8 @@ export const HowItWorksSection = () => {
                 <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
                   {/* Number */}
                   <div className="flex items-start justify-between mb-auto">
-                    <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 text-primary ${
-                      hoveredIndex === index ? 'opacity-100' : 'opacity-30'
+                    <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-primary/50'
                     }`}>
                       {step.number}
                     </span>
