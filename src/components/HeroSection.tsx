@@ -85,12 +85,11 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="section-headline text-foreground mb-6"
+              style={{ textShadow: '0 2px 20px rgba(255,255,255,0.8)' }}
             >
-              <span>On-Site Supplier Audits</span>
+              On-Site Supplier Audits
               <br />
-              <span>in </span>
-              <span className="text-primary">Days,</span>
-              <span> Not Weeks.</span>
+              in Days, Not Weeks.
             </motion.h1>
 
             {/* Subtitle */}
