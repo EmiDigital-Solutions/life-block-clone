@@ -69,10 +69,10 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="section-headline text-foreground mb-6"
+                className="font-medium tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-foreground mb-6"
               >
-                <span className="block">On-Site Supplier Audits</span>
-                <span className="block">in Days, Not Weeks.</span>
+                <span className="block whitespace-nowrap">On-Site Supplier Audits</span>
+                <span className="block whitespace-nowrap">in Days, Not Weeks.</span>
               </motion.h1>
 
               {/* Subtitle */}
