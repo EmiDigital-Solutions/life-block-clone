@@ -34,17 +34,17 @@ const Navigation = () => {
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-stretch h-16">
+        <div className="flex items-stretch h-20">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center px-6 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center px-8 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
@@ -52,14 +52,14 @@ const Navigation = () => {
           {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col items-center justify-center w-14 gap-1.5 hover:bg-gray-100/30 transition-colors"
+            className="flex flex-col items-center justify-center w-16 gap-2 hover:bg-gray-100/30 transition-colors"
           >
             {isMenuOpen ? (
-              <X className="w-5 h-5 text-foreground" />
+              <X className="w-6 h-6 text-foreground" />
             ) : (
               <>
-                <span className="w-6 h-0.5 bg-foreground rounded-full" />
-                <span className="w-6 h-0.5 bg-foreground rounded-full" />
+                <span className="w-7 h-0.5 bg-foreground rounded-full" />
+                <span className="w-7 h-0.5 bg-foreground rounded-full" />
               </>
             )}
           </button>
@@ -69,10 +69,10 @@ const Navigation = () => {
             href="https://calendly.com/yvoo/demo-yvoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-foreground text-white px-6 rounded-full font-medium hover:bg-foreground/90 transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-foreground text-white px-8 rounded-full font-semibold text-lg hover:bg-foreground/90 transition-all duration-300"
           >
             Book a Call
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </a>
         </div>
 
