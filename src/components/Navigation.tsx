@@ -26,15 +26,15 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.9) 100%)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06), inset 0 0 100px rgba(255,255,255,0.8), inset 0 2px 6px rgba(255,255,255,0.9)',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.65) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 100px rgba(255,255,255,0.5), inset 0 2px 6px rgba(255,255,255,0.6)',
           backdropFilter: 'blur(60px) saturate(200%)',
           WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-          border: '1px solid rgba(255,255,255,0.7)'
+          border: '1px solid rgba(255,255,255,0.5)'
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-center gap-5 px-5 py-3">
+        <div className="flex items-center gap-4 px-4 py-2">
           {/* Logo */}
           <Link 
             to="/" 
