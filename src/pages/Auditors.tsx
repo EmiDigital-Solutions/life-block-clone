@@ -796,15 +796,56 @@ const DayInLifeSection = () => {
               className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-primary/20 origin-top"
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             />
             {/* Flowing particle effect */}
             <motion.div
               className="absolute w-full h-8 bg-gradient-to-b from-white via-primary/60 to-transparent"
               initial={{ top: "-32px" }}
               animate={isInView ? { top: "100%" } : {}}
-              transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
+              transition={{ duration: 2.5, ease: "easeOut", delay: 0.3 }}
             />
+          </div>
+          
+          {/* Connecting dots between badges */}
+          <div className="absolute left-[28px] md:left-[44px] top-0 bottom-0 hidden sm:flex flex-col items-center pointer-events-none">
+            {timeline.map((_, index) => (
+              <div key={index} className="relative" style={{ marginTop: index === 0 ? '28px' : '0' }}>
+                {/* Main dot at badge position */}
+                <motion.div
+                  className="w-3 h-3 rounded-full bg-background border-2 border-border relative z-10"
+                  initial={{ scale: 0, borderColor: 'hsl(var(--border))' }}
+                  animate={isInView ? { 
+                    scale: 1, 
+                    borderColor: 'hsl(var(--primary))',
+                    backgroundColor: 'hsl(var(--primary))'
+                  } : {}}
+                  transition={{ 
+                    delay: 0.5 + index * 0.4,
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }}
+                />
+                {/* Glow effect */}
+                <motion.div
+                  className="absolute inset-0 w-3 h-3 rounded-full bg-primary"
+                  initial={{ scale: 1, opacity: 0 }}
+                  animate={isInView ? { 
+                    scale: [1, 2.5, 1],
+                    opacity: [0, 0.4, 0]
+                  } : {}}
+                  transition={{ 
+                    delay: 0.5 + index * 0.4,
+                    duration: 0.6,
+                    ease: "easeOut"
+                  }}
+                />
+                {/* Spacer to next dot (except for last) */}
+                {index < timeline.length - 1 && (
+                  <div className="h-[calc(4rem+56px)] md:h-[calc(5rem+88px)]" />
+                )}
+              </div>
+            ))}
           </div>
           
           <div className="space-y-16 md:space-y-20">
