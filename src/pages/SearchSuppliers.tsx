@@ -200,6 +200,18 @@ const SearchSuppliers = () => {
     runConversation();
   }, [currentScenario]);
 
+  // Auto-scroll when results appear
+  useEffect(() => {
+    if (showResults && chatContainerRef.current) {
+      setTimeout(() => {
+        chatContainerRef.current?.scrollTo({
+          top: chatContainerRef.current.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 200);
+    }
+  }, [showResults]);
+
   const typeAiMessage = (message: string, onComplete: () => void) => {
     setIsTyping(true);
     let currentIndex = 0;
@@ -602,12 +614,10 @@ const SearchSuppliers = () => {
                   </div>
 
                   {/* Scrollable content area - Chat + Results combined */}
-                  <motion.div 
+                  <div 
                     ref={chatContainerRef}
-                    className="flex-1 overflow-y-auto bg-gray-50 rounded-2xl p-4"
-                    style={{ maxHeight: '400px' }}
-                    animate={{ opacity: isFading ? 0 : 1 }}
-                    transition={{ duration: 0.5 }}
+                    className="flex-1 overflow-y-auto bg-gray-50 rounded-2xl p-4 scroll-smooth"
+                    style={{ maxHeight: '450px', minHeight: '300px' }}
                   >
                     {/* Conversation Messages */}
                     <div className="space-y-4">
@@ -726,7 +736,7 @@ const SearchSuppliers = () => {
                         </motion.div>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.div>
