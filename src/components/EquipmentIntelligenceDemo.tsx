@@ -136,7 +136,12 @@ export function EquipmentIntelligenceDemo() {
   ];
 
   return (
-    <div className="relative w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      className="relative w-full"
+    >
       {/* AI Computer Vision Badge - Desktop */}
       <div className="hidden lg:flex items-center gap-3 mb-4">
         <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-2 backdrop-blur-sm">
@@ -467,6 +472,6 @@ export function EquipmentIntelligenceDemo() {
       <p className="mt-4 text-sm text-white/60 max-w-[600px] leading-relaxed">
         Identify machines and assets from photos. Assess condition, compliance status, and maintenance needs instantly.
       </p>
-    </div>
+    </motion.div>
   );
 }

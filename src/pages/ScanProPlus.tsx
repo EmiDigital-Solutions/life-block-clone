@@ -2176,14 +2176,17 @@ const ScanProPlus = () => {
             </div>
 
             {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="hidden lg:block relative z-20"
               style={{ marginBottom: "-160px" }}
             >
               <div className="rounded-[32px] bg-[#0A0A0A] p-4 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
                 <EquipmentIntelligenceDemo />
               </div>
-            </div>
+            </motion.div>
           </div>
           </div>
         </div>
@@ -2244,7 +2247,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="section-headline text-foreground">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
               What CFOs and Procurement Directors see
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
