@@ -42,7 +42,7 @@ const HeroSection = () => {
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.6fr] gap-8 lg:gap-16 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
@@ -134,7 +134,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative lg:-mr-12 xl:-mr-24"
+              className="relative lg:-mr-20 xl:-mr-32 2xl:-mr-40"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
