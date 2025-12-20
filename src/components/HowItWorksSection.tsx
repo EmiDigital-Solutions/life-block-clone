@@ -9,7 +9,7 @@ const steps = [
     number: "01",
     title: "Submit",
     subtitle: "Request audit",
-    description: "One click from your dashboard or ERP. Specify supplier, standard, and timeline. That's it.",
+    description: "Select suppliers, choose audit standards, set your timeline, upload documents—then confirm and order. Done.",
     icon: MousePointerClick,
   },
   {
