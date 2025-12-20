@@ -33,6 +33,13 @@ const steps = [
     description: "Complete digital report in 24h—findings, photos, scores, action items. Ready for your QMS.",
     icon: BarChart3,
   },
+  {
+    number: "05",
+    title: "Follow up",
+    subtitle: "See demo video",
+    description: "Track corrective actions, schedule follow-up audits, and monitor supplier improvements over time.",
+    icon: FileCheck,
+  },
 ];
 
 const stats = [
