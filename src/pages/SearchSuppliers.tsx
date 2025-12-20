@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { useState, useRef, useEffect } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
+import auditorsHeroObject from "@/assets/auditors-hero-flowing-green.jpg";
 
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
@@ -424,14 +425,28 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Dark Background like ensun.io */}
+      {/* Hero Section - Dark Background with Flowing Lines */}
       <section 
         data-nav-theme="hero"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#0A0A0A] overflow-visible"
-        style={{ 
-          minHeight: "70vh"
-        }}
+        className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
       >
+        {/* Background Image - Positioned Lower with Top Gradient Blend */}
+        <div className="absolute inset-0">
+          <img 
+            src={auditorsHeroObject}
+            alt="Abstract flowing lines"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 95%', transform: 'translateY(140px)', height: 'calc(100% + 140px)' }}
+          />
+          {/* Gradient overlay to blend black top into image */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{ 
+              background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
+            }}
+          />
+        </div>
+
         <div className="container mx-auto px-6 lg:px-20 relative z-10">
           
           {/* Two-column layout - ensun.io style */}
