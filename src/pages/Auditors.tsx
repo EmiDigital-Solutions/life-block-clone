@@ -159,12 +159,10 @@ const Auditors = () => {
                 </p>
                 <a
                   href="#apply"
-                  className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
+                  className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-3 rounded-sm hover:bg-primary/90 transition-colors group"
                 >
-                  <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowRight className="w-5 h-5" />
-                  </span>
                   <span className="text-base font-medium">Apply to become YVOO Auditor</span>
+                  <ArrowRight className="w-5 h-5" />
                 </a>
               </motion.div>
             </div>
