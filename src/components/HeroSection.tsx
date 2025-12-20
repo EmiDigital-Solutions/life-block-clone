@@ -109,7 +109,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 mb-8"
             >
-              <span className="text-lg text-foreground font-medium">
+              <span className="text-lg text-foreground font-medium bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
                 Audit starts at €700
               </span>
               <a 
