@@ -958,9 +958,9 @@ const DayInLifeSection = () => {
                           {index === timeline.length - 1 && (
                             <Button 
                               size="lg" 
-                              className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 text-base font-medium ml-16"
+                              className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 text-base font-medium ml-32"
                             >
-                              Apply Now
+                              Your new way to audit
                               <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                           )}
