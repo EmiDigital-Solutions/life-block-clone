@@ -61,7 +61,7 @@ const TestimonialSection = () => {
                       style={{ zIndex: 0 }}
                     />
                   </span>
-                  <span className="block">B2B Supply Chains.</span>
+                  <span className="block whitespace-nowrap">B2B Supply Chains.</span>
                 </h2>
               </motion.div>
 
