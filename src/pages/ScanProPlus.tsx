@@ -1239,7 +1239,97 @@ const ParallaxImage = ({
   );
 };
 
-// Industry Use Cases Grid with Modal - VanMoof Masonry Style with Parallax
+// Industry Showcase Card - VanMoof Product Style
+const IndustryShowcaseCard = ({ 
+  useCase, 
+  onClick,
+  badge,
+  isLarge = false,
+  delay = 0
+}: { 
+  useCase: IndustryUseCase;
+  onClick: () => void;
+  badge: string;
+  isLarge?: boolean;
+  delay?: number;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.05, 1, 1.05]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className={`${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
+    >
+      <motion.button
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay }}
+        onClick={onClick}
+        className="group relative overflow-hidden cursor-pointer rounded-2xl w-full h-full"
+      >
+      {/* Dark container frame */}
+      <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden">
+        {/* Studio gradient background */}
+        <div 
+          className={`relative ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}
+          style={{
+            background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #2a2a2a 85%, #1a1a1a 100%)'
+          }}
+        >
+          {/* Image with parallax */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <motion.img 
+              src={useCase.image} 
+              alt={useCase.title}
+              style={{ y, scale }}
+              className={`${isLarge ? 'w-[85%] h-[85%]' : 'w-[80%] h-[80%]'} object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]`}
+            />
+          </div>
+          
+          {/* Reflection effect at bottom */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, transparent 0%, rgba(26, 26, 26, 0.8) 60%, #1a1a1a 100%)'
+            }}
+          />
+          
+          {/* Badge - VanMoof style */}
+          <div className="absolute bottom-4 left-4 z-10">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2a2a2a]/90 backdrop-blur-sm rounded-md text-xs font-medium text-white/90 uppercase tracking-wider">
+              {badge}
+            </span>
+          </div>
+        </div>
+        
+        {/* Bottom info bar */}
+        <div className="p-4 md:p-5 bg-[#1a1a1a]">
+          <h3 className={`font-semibold text-white mb-1 leading-tight line-clamp-1 ${isLarge ? 'text-lg md:text-xl' : 'text-sm md:text-base'}`}>
+            {useCase.title.split(':')[1]?.trim() || useCase.title}
+          </h3>
+          <p className={`text-white/50 line-clamp-1 ${isLarge ? 'text-sm' : 'text-xs'}`}>
+            {useCase.useCase}
+          </p>
+          <div className="flex items-center gap-1.5 mt-3 text-white/60 group-hover:text-white transition-colors">
+            <span className="text-xs font-medium">View details</span>
+            <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+          </div>
+        </div>
+      </div>
+      </motion.button>
+    </div>
+  );
+};
+
+// Industry Use Cases Grid with Modal - VanMoof Product Showcase Style
 const IndustryUseCasesGrid = () => {
   const [selectedUseCase, setSelectedUseCase] = useState<IndustryUseCase | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -1295,8 +1385,8 @@ const IndustryUseCasesGrid = () => {
   return (
     <section 
       ref={sectionRef}
-      data-nav-theme="light" 
-      className="py-24 md:py-32 bg-background"
+      data-nav-theme="dark" 
+      className="py-24 md:py-32 bg-[#0a0a0a]"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Header */}
@@ -1306,148 +1396,98 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           className="mb-12 md:mb-16 text-center"
         >
-          <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
+          <h2 className="section-headline text-white max-w-3xl mx-auto mb-4">
             How industry leaders use ScanPro+
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
             Real scenarios from automotive, aerospace, pharma, and chemical—see how teams like yours work smarter.
           </p>
         </motion.div>
 
-        {/* VanMoof-style Masonry Grid with Parallax */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-7xl mx-auto">
-          {/* Large left image - Automotive */}
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+        {/* VanMoof-style Product Showcase Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+          {/* Large card - Automotive */}
+          <IndustryShowcaseCard
+            useCase={useCases[0]}
             onClick={() => setSelectedUseCase(useCases[0])}
-            className="group relative md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto md:min-h-[500px] overflow-hidden cursor-pointer"
-          >
-            <ParallaxImage 
-              src={useCases[0].image} 
-              alt={useCases[0].title}
-              parallaxStrength={40}
-            />
-            {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-            
-            {/* Content overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10 z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 uppercase tracking-wider">
-                  Automotive
-                </span>
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-                  PPAP Validation & Tool Audits
-                </h3>
-                <p className="text-white/70 text-sm md:text-base max-w-lg line-clamp-2">
-                  {useCases[0].useCase}
-                </p>
-                <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
-                  <span className="text-sm font-medium">Explore use case</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </div>
-              </motion.div>
-            </div>
-          </motion.button>
+            badge="Automotive"
+            isLarge={true}
+            delay={0}
+          />
 
           {/* Top right - Aerospace */}
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <IndustryShowcaseCard
+            useCase={useCases[1]}
             onClick={() => setSelectedUseCase(useCases[1])}
-            className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
-          >
-            <ParallaxImage 
-              src={useCases[1].image} 
-              alt={useCases[1].title}
-              parallaxStrength={25}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-            
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 z-10">
-              <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
-                Aerospace
-              </span>
-              <h3 className="text-base md:text-lg font-bold text-white leading-tight line-clamp-2">
-                AS9100 Compliance
-              </h3>
-              <div className="flex items-center gap-1.5 mt-2 text-white/70 group-hover:text-white transition-colors">
-                <span className="text-xs font-medium">Learn more</span>
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-              </div>
-            </div>
-          </motion.button>
+            badge="Aerospace"
+            delay={0.1}
+          />
 
           {/* Bottom right - Pharma */}
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <IndustryShowcaseCard
+            useCase={useCases[2]}
             onClick={() => setSelectedUseCase(useCases[2])}
-            className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
-          >
-            <ParallaxImage 
-              src={useCases[2].image} 
-              alt={useCases[2].title}
-              parallaxStrength={25}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-            
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 z-10">
-              <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
-                Pharma
-              </span>
-              <h3 className="text-base md:text-lg font-bold text-white leading-tight line-clamp-2">
-                GMP Audits & Clean Room
-              </h3>
-              <div className="flex items-center gap-1.5 mt-2 text-white/70 group-hover:text-white transition-colors">
-                <span className="text-xs font-medium">Learn more</span>
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-              </div>
-            </div>
-          </motion.button>
+            badge="Pharma"
+            delay={0.2}
+          />
         </div>
 
-        {/* Full width bottom image - Chemical with Parallax */}
+        {/* Full width bottom card - Chemical */}
         <motion.button
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           onClick={() => setSelectedUseCase(useCases[3])}
-          className="group relative w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden cursor-pointer mt-3 md:mt-4 max-w-7xl mx-auto"
+          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
         >
-          <ParallaxImage 
-            src={useCases[3].image} 
-            alt={useCases[3].title}
-            parallaxStrength={30}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-          
-          <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
-            <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 uppercase tracking-wider w-fit">
-              Chemical & Process
-            </span>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-              REACH Compliance & Process Safety
-            </h3>
-            <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
-              {useCases[3].useCase}
-            </p>
-            <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
-              <span className="text-sm font-medium">Explore use case</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden">
+            {/* Wide studio gradient */}
+            <div 
+              className="relative aspect-[21/9] md:aspect-[3/1]"
+              style={{
+                background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 30%, #2a2a2a 80%, #1a1a1a 100%)'
+              }}
+            >
+              {/* Image */}
+              <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={useCases[3].image} 
+                  alt={useCases[3].title}
+                  className="w-[90%] h-[85%] object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
+              
+              {/* Reflection */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(180deg, transparent 0%, rgba(26, 26, 26, 0.8) 60%, #1a1a1a 100%)'
+                }}
+              />
+              
+              {/* Badge */}
+              <div className="absolute bottom-4 left-4 z-10">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2a2a2a]/90 backdrop-blur-sm rounded-md text-xs font-medium text-white/90 uppercase tracking-wider">
+                  Chemical & Process
+                </span>
+              </div>
+            </div>
+            
+            {/* Bottom info */}
+            <div className="p-5 md:p-6 bg-[#1a1a1a] flex items-center justify-between">
+              <div>
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-1 leading-tight">
+                  REACH Compliance & Process Safety
+                </h3>
+                <p className="text-sm text-white/50 line-clamp-1">
+                  {useCases[3].useCase}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-white/60 group-hover:text-white transition-colors">
+                <span className="text-sm font-medium hidden md:inline">View details</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
             </div>
           </div>
         </motion.button>
