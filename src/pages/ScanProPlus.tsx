@@ -2206,10 +2206,16 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-background"
+        className="relative py-24 md:py-32 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden"
         id="capabilities"
       >
-        <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }} />
+        
+        <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
