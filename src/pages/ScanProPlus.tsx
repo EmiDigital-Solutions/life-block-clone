@@ -1208,7 +1208,7 @@ const ComplianceStandardsGrid = () => {
   );
 };
 
-// Industry Use Cases Grid with Modal
+// Industry Use Cases Grid with Modal - VanMoof Masonry Style
 const IndustryUseCasesGrid = () => {
   const [selectedUseCase, setSelectedUseCase] = useState<IndustryUseCase | null>(null);
 
@@ -1265,67 +1265,159 @@ const IndustryUseCasesGrid = () => {
       data-nav-theme="light" 
       className="py-24 md:py-32 bg-background"
     >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-16 text-center"
         >
-          <h2 className="section-headline text-foreground max-w-2xl mb-4">
+          <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
             How industry leaders use ScanPro+
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real scenarios from automotive, aerospace, pharma, and chemical—see how teams like yours work smarter.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {useCases.map((industry, idx) => (
-            <motion.button
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              onClick={() => setSelectedUseCase(industry)}
-              className="group bg-[#ebebeb] rounded-[28px] overflow-hidden hover:bg-[#e3e3e3] transition-all duration-300 cursor-pointer text-left flex flex-col h-full"
-            >
-              {/* Image - Unified size with consistent fill */}
-              <div className="relative overflow-hidden aspect-square flex-shrink-0 bg-white rounded-t-[28px]">
-                <img 
-                  src={industry.image} 
-                  alt={industry.title}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-
-              {/* Content - Flex grow for equal heights */}
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight line-clamp-2">
-                  {industry.title}
+        {/* VanMoof-style Masonry Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-7xl mx-auto">
+          {/* Large left image - Automotive */}
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onClick={() => setSelectedUseCase(useCases[0])}
+            className="group relative md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto overflow-hidden cursor-pointer"
+          >
+            <img 
+              src={useCases[0].image} 
+              alt={useCases[0].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+            
+            {/* Content overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 uppercase tracking-wider">
+                  Automotive
+                </span>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+                  PPAP Validation & Tool Audits
                 </h3>
-                
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{industry.useCase}</p>
-                
-                <ul className="space-y-1.5 mb-4 flex-grow">
-                  {industry.solutions.slice(0, 3).map((item, i) => (
-                    <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
-                      <span className="text-primary mt-0.5">•</span>
-                      <span className="line-clamp-1">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Click indicator - Always at bottom */}
-                <div className="text-xs font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto pt-2 border-t border-foreground/10">
-                  View details
-                  <PixelIcon name="arrow-right" className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                <p className="text-white/70 text-sm md:text-base max-w-lg line-clamp-2">
+                  {useCases[0].useCase}
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+                  <span className="text-sm font-medium">Explore use case</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
+              </motion.div>
+            </div>
+          </motion.button>
+
+          {/* Top right - Aerospace */}
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            onClick={() => setSelectedUseCase(useCases[1])}
+            className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
+          >
+            <img 
+              src={useCases[1].image} 
+              alt={useCases[1].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+            
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+              <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
+                Aerospace
+              </span>
+              <h3 className="text-base md:text-lg font-bold text-white leading-tight line-clamp-2">
+                AS9100 Compliance
+              </h3>
+              <div className="flex items-center gap-1.5 mt-2 text-white/70 group-hover:text-white transition-colors">
+                <span className="text-xs font-medium">Learn more</span>
+                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
               </div>
-            </motion.button>
-          ))}
+            </div>
+          </motion.button>
+
+          {/* Bottom right - Pharma */}
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onClick={() => setSelectedUseCase(useCases[2])}
+            className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
+          >
+            <img 
+              src={useCases[2].image} 
+              alt={useCases[2].title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+            
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+              <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
+                Pharma
+              </span>
+              <h3 className="text-base md:text-lg font-bold text-white leading-tight line-clamp-2">
+                GMP Audits & Clean Room
+              </h3>
+              <div className="flex items-center gap-1.5 mt-2 text-white/70 group-hover:text-white transition-colors">
+                <span className="text-xs font-medium">Learn more</span>
+                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+              </div>
+            </div>
+          </motion.button>
         </div>
+
+        {/* Full width bottom image - Chemical */}
+        <motion.button
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          onClick={() => setSelectedUseCase(useCases[3])}
+          className="group relative w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden cursor-pointer mt-3 md:mt-4 max-w-7xl mx-auto"
+        >
+          <img 
+            src={useCases[3].image} 
+            alt={useCases[3].title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+          
+          <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl">
+            <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 uppercase tracking-wider w-fit">
+              Chemical & Process
+            </span>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+              REACH Compliance & Process Safety
+            </h3>
+            <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
+              {useCases[3].useCase}
+            </p>
+            <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+              <span className="text-sm font-medium">Explore use case</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+        </motion.button>
       </div>
 
       {/* Modal */}
