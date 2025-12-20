@@ -52,6 +52,13 @@ import worldMapGlobe from "@/assets/world-map-globe.png";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
 import auditorFemaleAsian from "@/assets/auditor-female-asian.jpg";
+import auditorFemaleAsianBwGreen from "@/assets/auditor-female-asian-bw-green.jpg";
+import auditorLatinBwGreen from "@/assets/auditor-latin-bw-green.jpg";
+import auditorFemaleEuropeanBwGreen from "@/assets/auditor-female-european-bw-green.jpg";
+import auditorEuropeanBwGreen from "@/assets/auditor-european-bw-green.jpg";
+import auditorMiddleEastBwGreen from "@/assets/auditor-middle-east-bw-green.jpg";
+import auditorSouthAsianBwGreen from "@/assets/auditor-south-asian-bw-green.jpg";
+import auditorAfricanBwGreen from "@/assets/auditor-african-bw-green.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -221,7 +228,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
 
           {/* Auditor Cards - Professional Sequential Animation */}
           <AnimatePresence>
-            {[
+{[
               { 
                 name: "Sarah Chen", 
                 title: "Lead Auditor VDA 6.3",
@@ -230,7 +237,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "East Asia",
                 availability: "Available Now",
                 rating: 4.9,
-                image: auditorFemaleAsian,
+                image: auditorFemaleAsianBwGreen,
                 top: "38%", 
                 left: "78%", 
               },
@@ -242,7 +249,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "Latin America",
                 availability: "Available in 24h",
                 rating: 4.8,
-                image: auditorLatin,
+                image: auditorLatinBwGreen,
                 top: "70%", 
                 left: "34%", 
               },
@@ -254,7 +261,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "Central Europe",
                 availability: "Available Now",
                 rating: 5.0,
-                image: auditorFemaleEuropean,
+                image: auditorFemaleEuropeanBwGreen,
                 top: "12%", 
                 left: "54%", 
               },
@@ -266,7 +273,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "United States",
                 availability: "Available in 48h",
                 rating: 4.7,
-                image: auditorEuropean,
+                image: auditorEuropeanBwGreen,
                 top: "68%", 
                 left: "18%", 
               },
@@ -278,7 +285,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "Gulf Region",
                 availability: "Available Now",
                 rating: 4.9,
-                image: auditorMiddleEast,
+                image: auditorMiddleEastBwGreen,
                 top: "30%", 
                 left: "60%", 
               },
@@ -290,7 +297,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "South Asia",
                 availability: "Available in 24h",
                 rating: 4.8,
-                image: auditorSouthAsian,
+                image: auditorSouthAsianBwGreen,
                 top: "46%", 
                 left: "70%", 
               },
@@ -302,7 +309,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 region: "West Africa",
                 availability: "Available Now",
                 rating: 4.9,
-                image: auditorAfrican,
+                image: auditorAfricanBwGreen,
                 top: "56%", 
                 left: "48%", 
               },
@@ -398,16 +405,16 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
 
             <div className="relative z-30">
 
-            {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left max-w-2xl bg-background/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg">
+            {/* Left Column: Clean Text Content - No Box */}
+            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 text-left max-w-xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">ScanPro+</span>
+                <div className="w-2 h-2 rounded-full bg-primary"></div>
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Global Network</span>
               </motion.div>
 
               <motion.h2
@@ -415,9 +422,10 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="section-headline text-foreground max-w-xl"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-[1.1]"
               >
-                Your auditor, anywhere, anytime
+                Your auditor,<br />
+                <span className="text-primary">anywhere, anytime</span>
               </motion.h2>
 
               <motion.p
@@ -425,7 +433,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg"
+                className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md"
               >
                 Stop flying auditors across continents. Access local experts certified in VDA 6.3, 
                 IATF 16949, or ISO standards—already on the ground where your suppliers operate.
@@ -436,20 +444,12 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.25 }}
-                className="text-left mb-4"
+                className="flex flex-wrap items-center gap-2 text-muted-foreground pt-2"
               >
-                <p className="text-base font-semibold text-foreground mb-2">
-                  Our auditor network includes professionals certified by:
-                </p>
-                <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
-                  <span className="text-sm">TÜV SÜD</span>
-                  <span className="text-border">•</span>
-                  <span className="text-sm">Bureau Veritas</span>
-                  <span className="text-border">•</span>
-                  <span className="text-sm">SGS</span>
-                  <span className="text-border">•</span>
-                  <span className="text-sm">DNV</span>
-                </div>
+                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">TÜV SÜD</span>
+                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">Bureau Veritas</span>
+                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">SGS</span>
+                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">DNV</span>
               </motion.div>
 
               <motion.div
@@ -457,10 +457,11 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
+                className="pt-2"
               >
-                <button className="bg-primary text-primary-foreground px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary/90 flex items-center gap-2 sm:gap-3 group">
+                <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-primary/90 flex items-center gap-2 group">
                   <span>Learn more</span>
-                  <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <PixelIcon name="arrow-right" className="w-4 h-4" />
                 </button>
               </motion.div>
             </div>
