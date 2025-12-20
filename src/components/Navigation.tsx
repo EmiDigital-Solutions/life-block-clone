@@ -22,11 +22,12 @@ const Navigation = () => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
-        className={`relative overflow-hidden transition-all duration-300 animate-[navGlow_4s_ease-in-out_infinite] ${
+        className={`relative overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
           background: 'linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.45) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 0 120px rgba(255,255,255,0.4), inset 0 1px 4px rgba(255,255,255,0.5)',
           backdropFilter: 'blur(80px) saturate(220%)',
           WebkitBackdropFilter: 'blur(80px) saturate(220%)',
           border: '1px solid rgba(255,255,255,0.4)'
