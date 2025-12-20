@@ -12,6 +12,16 @@ import { useState, useRef, useEffect } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
+// Import procurement images for hero carousel background
+import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
+import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
+import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
+import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
+import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
+import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
+import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
+
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
   const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
@@ -24,6 +34,7 @@ const SearchSuppliers = () => {
   const [currentScenario, setCurrentScenario] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
   const [selectedAIFeature, setSelectedAIFeature] = useState<{
     number: string;
     title: string;
@@ -90,6 +101,26 @@ const SearchSuppliers = () => {
       ]
     }
   ];
+
+  // Hero carousel images
+  const heroImages = [
+    { src: procurementFemaleEuropean, alt: 'Procurement Specialist - Europe' },
+    { src: procurementMaleAsian, alt: 'Supply Chain Manager - Asia' },
+    { src: procurementFemaleBlonde, alt: 'Sourcing Manager - Germany' },
+    { src: procurementMaleLatin, alt: 'Procurement Director - Latin America' },
+    { src: procurementFemaleAfrican, alt: 'Strategic Buyer - Africa' },
+    { src: procurementMaleSouthAsian, alt: 'Category Manager - South Asia' },
+    { src: procurementFemaleAsian, alt: 'Global Sourcing Lead - Asia Pacific' },
+    { src: procurementMaleEuropean, alt: 'Purchasing Manager - Europe' },
+  ];
+
+  // Auto-advance hero carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   useEffect(() => {
     // Cleanup function
@@ -424,18 +455,43 @@ const SearchSuppliers = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Dark Background like ensun.io */}
+      {/* Hero Section - Full-screen Image Carousel Background */}
       <section 
-        data-nav-theme="hero"
-        className="relative pt-32 md:pt-40 pb-20 md:pb-32 bg-[#0A0A0A] overflow-visible"
-        style={{ 
-          minHeight: "70vh"
-        }}
+        data-nav-theme="white"
+        className="relative min-h-screen flex flex-col overflow-hidden"
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10">
+        {/* Full-screen Image Carousel Background */}
+        <div className="absolute inset-0 z-0">
+          {heroImages.map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: index === heroImageIndex ? 1 : 0,
+                scale: index === heroImageIndex ? 1 : 1.1
+              }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          ))}
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
+          {/* Green accent overlay */}
+          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
+          <div className="container mx-auto px-6 lg:px-20">
           
-          {/* Two-column layout - ensun.io style */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Two-column layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             {/* Left Column - Text Content */}
             <div className="text-left">
@@ -662,6 +718,7 @@ const SearchSuppliers = () => {
                 )}
               </div>
             </motion.div>
+          </div>
           </div>
         </div>
       </section>
