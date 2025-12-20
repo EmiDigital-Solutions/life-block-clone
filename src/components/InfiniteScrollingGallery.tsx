@@ -1150,7 +1150,7 @@ const InfiniteScrollingGallery = () => {
               onMouseEnter={() => setHoveredKey(`${rowIndex}-${index}`)}
               onMouseLeave={() => setHoveredKey(null)}
               className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500 relative"
-              style={{ width: '320px', zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1 }}
+              style={{ width: '416px', zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1 }}
               initial={false}
               animate={{
                 scale: hoveredKey === `${rowIndex}-${index}` ? 1.35 : 1,
@@ -1213,11 +1213,11 @@ const InfiniteScrollingGallery = () => {
         <style>{`
           @keyframes scroll-left {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-344px * 4)); }
+            100% { transform: translateX(calc(-440px * 4)); }
           }
 
           @keyframes scroll-right {
-            0% { transform: translateX(calc(-344px * 5)); }
+            0% { transform: translateX(calc(-440px * 5)); }
             100% { transform: translateX(0); }
           }
 
