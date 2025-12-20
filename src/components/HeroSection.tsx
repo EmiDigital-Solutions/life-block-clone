@@ -132,8 +132,8 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block absolute top-1/2 -translate-y-1/2 z-10 w-[52%] xl:w-[55%] 2xl:w-[58%]"
-            style={{ right: '-2%' }}
+            className="hidden lg:block absolute top-1/2 -translate-y-1/2 z-10 w-[58%] xl:w-[62%] 2xl:w-[65%]"
+            style={{ right: '-8%' }}
           >
             <div 
               className="rounded-2xl overflow-hidden shadow-2xl"
