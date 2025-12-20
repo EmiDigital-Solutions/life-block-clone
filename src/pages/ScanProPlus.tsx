@@ -1995,7 +1995,7 @@ const ScanProPlus = () => {
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{ 
-              background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 50%, transparent 80%)' 
+              background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
             }}
           />
         </div>
