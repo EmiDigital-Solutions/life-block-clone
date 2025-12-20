@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
-import { PixelIcon } from "./PixelIcon";
+import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
@@ -37,118 +37,119 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="black"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-muted"
     >
-      {/* Video Background Container */}
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
-        >
-          <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-        </video>
-        {/* Subtle overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 flex items-center justify-start relative z-10">
-        <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-28">
-          
-          {/* Simple Headline Layout */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl lg:max-w-3xl"
-          >
-            {/* Tagline Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6"
+      {/* Main Content - Split Screen */}
+      <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column - Content */}
+            <motion.div 
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-xl"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full text-sm font-medium text-foreground shadow-sm border border-white/30">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                2,000+ Auditors · 90+ Countries · AI-Powered
-              </span>
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="section-headline text-foreground mb-6"
-              style={{ textShadow: '0 2px 20px rgba(255,255,255,0.8)' }}
-            >
-              On-Site Supplier Audits
-              <br />
-              in Days, Not Weeks.
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-lg text-foreground mb-8"
-            >
-              Physical factory assessments starting from €700
-            </motion.p>
-
-            {/* CTA with Pricing */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-4 mb-8 mt-12"
-            >
-              <span className="text-base text-foreground font-semibold bg-white/60 backdrop-blur-md px-8 py-4 rounded-full shadow-sm border border-white/30 hover:bg-white/80 hover:shadow-md hover:scale-105 transition-all duration-300 cursor-default">
-                Audit starts at €700
-              </span>
-              <a 
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+              {/* Tagline Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6"
               >
-                Order YVOO Audit
-                <span>→</span>
-              </a>
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground shadow-sm border border-border">
+                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  2,000+ Auditors · 90+ Countries · AI-Powered
+                </span>
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="section-headline text-foreground mb-6"
+              >
+                On-Site Supplier Audits
+                <br />
+                in Days, Not Weeks.
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-lg text-muted-foreground mb-8"
+              >
+                Physical factory assessments starting from €700
+              </motion.p>
+
+              {/* CTA with Pricing */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-4 mb-8"
+              >
+                <span className="text-base text-foreground font-semibold bg-white px-6 py-3 rounded-full shadow-sm border border-border">
+                  Audit starts at €700
+                </span>
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+                >
+                  Order YVOO Audit
+                  <span>→</span>
+                </a>
+              </motion.div>
+
+              {/* Certifications */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <p className="text-sm text-muted-foreground mb-3">
+                  Auditors certified by:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1.5 bg-white rounded-full text-sm font-medium text-foreground border border-border shadow-sm"
+                    >
+                      {cert}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
 
-            {/* Certifications */}
+            {/* Right Column - Demo Animation */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-24"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
             >
-              <p className="text-sm text-foreground mb-3">
-                Auditors certified by:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
-                  <span
-                    key={idx}
-                    className="px-4 py-2 bg-white/60 backdrop-blur-md rounded-full text-sm font-medium text-foreground border border-white/30 shadow-sm"
-                  >
-                    {cert}
-                  </span>
-                ))}
+              <div 
+                className="rounded-2xl overflow-hidden shadow-2xl"
+                style={{
+                  boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.15), 0 30px 60px -30px rgba(0, 0, 0, 0.2)',
+                }}
+              >
+                <PlatformDemoAnimation />
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Scrolling Client Band - Offmenu style */}
+      {/* Scrolling Client Band */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
