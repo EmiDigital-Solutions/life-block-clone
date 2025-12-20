@@ -39,22 +39,33 @@ const HeroSection = () => {
       data-nav-theme="black"
       className="relative min-h-screen flex flex-col overflow-hidden bg-white"
     >
-      {/* Video Background Container - B&W with Green Accent */}
+      {/* Video Background Container - B&W with Green Accent Effect */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Base video layer - grayscale */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover grayscale"
-          style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ 
+            transform: 'scale(1.1)', 
+            objectPosition: 'center center',
+            filter: 'grayscale(100%) contrast(1.1) brightness(1.05)'
+          }}
         >
           <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
         </video>
-        {/* Green tint overlay for selective color effect */}
-        <div className="absolute inset-0 bg-primary/15 mix-blend-multiply" />
+        {/* Green duotone overlay - creates selective green highlight effect */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'linear-gradient(180deg, hsl(var(--primary) / 0.25) 0%, hsl(var(--primary) / 0.15) 100%)',
+            mixBlendMode: 'color'
+          }} 
+        />
         {/* Subtle overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent" />
       </div>
 
       {/* Main Content */}
