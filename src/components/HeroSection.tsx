@@ -3,6 +3,16 @@ import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
+// Import auditor images for hero carousel background
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+
 const HeroSection = () => {
   const [heroContent, setHeroContent] = useState({
     tagline: "AI Computer Vision",
@@ -11,6 +21,28 @@ const HeroSection = () => {
   });
 
   const { data: heroData } = useContentByType("hero_content");
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Hero carousel images matching Auditors page
+  const heroImages = [
+    { src: auditorEuropean, alt: 'VDA 6.3 Lead Auditor - Germany', role: 'VDA 6.3 Lead Auditor', location: 'Germany' },
+    { src: auditorAsian, alt: 'ISO 9001 Specialist - Japan', role: 'ISO 9001 Specialist', location: 'Japan' },
+    { src: auditorMaleNorthAmerica, alt: 'ABS & DNV-GL Auditor - USA', role: 'ABS & DNV-GL Auditor', location: 'USA' },
+    { src: auditorMiddleEast, alt: 'API & ISO 29001 Auditor - UAE', role: 'API & ISO 29001 Auditor', location: 'UAE' },
+    { src: auditorLatin, alt: 'IATF 16949 Specialist - Mexico', role: 'IATF 16949 Specialist', location: 'Mexico' },
+    { src: auditorSouthAsian, alt: 'AS9100 Lead Auditor - India', role: 'AS9100 Lead Auditor', location: 'India' },
+    { src: auditorAfrican, alt: 'Mining & Energy Auditor - South Africa', role: 'Mining & Energy Auditor', location: 'South Africa' },
+    { src: auditorFemaleEuropean, alt: 'Pharmaceutical GMP Auditor - Switzerland', role: 'Pharmaceutical GMP Auditor', location: 'Switzerland' },
+  ];
+
+  // Auto-advance carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   useEffect(() => {
     if (heroData && heroData.length > 0) {
@@ -36,9 +68,51 @@ const HeroSection = () => {
 
   return (
     <section 
-      data-nav-theme="black"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-muted"
+      data-nav-theme="white"
+      className="relative min-h-screen flex flex-col overflow-hidden"
     >
+      {/* Full-screen Image Carousel Background */}
+      <div className="absolute inset-0 z-0">
+        {heroImages.map((image, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: index === activeIndex ? 1 : 0,
+              scale: index === activeIndex ? 1 : 1.1
+            }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        ))}
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
+        {/* Green accent overlay */}
+        <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+        
+        {/* Auditor Role & Location Overlay */}
+        <div className="absolute bottom-8 left-8 md:left-16 lg:left-20 z-10">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <p className="text-white/60 text-sm tracking-wider uppercase mb-2">
+              {heroImages[activeIndex].location}
+            </p>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-white">
+              {heroImages[activeIndex].role}
+            </h3>
+          </motion.div>
+        </div>
+      </div>
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
         <div className="container mx-auto px-4 lg:px-6">
@@ -58,7 +132,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="mb-5"
               >
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground shadow-sm border border-border">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white shadow-sm border border-white/20">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                   2,000+ Auditors · 90+ Countries · AI-Powered
                 </span>
@@ -69,7 +143,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-foreground mb-5"
+                className="font-medium tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white mb-5"
               >
                 <span className="block">On-Site Supplier Audits</span>
                 <span className="block">in Days, Not Weeks.</span>
@@ -80,7 +154,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-base text-muted-foreground mb-6"
+                className="text-base text-white/70 mb-6"
               >
                 Physical factory assessments starting from €700
               </motion.p>
@@ -92,7 +166,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex flex-wrap items-center gap-4 mb-6"
               >
-                <span className="text-base text-foreground font-medium">
+                <span className="text-base text-white font-medium">
                   Audit starts at €700
                 </span>
                 <a 
@@ -112,14 +186,14 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-sm text-white/60 mb-3">
                   Auditors certified by:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 bg-white rounded-full text-sm font-medium text-foreground border border-border shadow-sm"
+                      className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20"
                     >
                       {cert}
                     </span>
