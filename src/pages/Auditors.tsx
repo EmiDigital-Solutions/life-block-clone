@@ -125,8 +125,8 @@ const Auditors = () => {
             <img 
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 95%', transform: 'translateY(220px)', height: 'calc(100% + 220px)' }}
+              className="w-full h-auto object-contain absolute bottom-0 left-0"
+              style={{ transform: 'translateY(30%) scale(0.7)', transformOrigin: 'center bottom' }}
             />
           </div>
 
