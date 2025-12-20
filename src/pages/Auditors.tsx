@@ -114,104 +114,73 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Premium B2B Style */}
+        {/* Hero Section - VanMoof Style */}
         <section
           data-nav-theme="white"
-          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
+          className="relative h-screen flex items-center overflow-hidden bg-[#1a1a1a]"
         >
-          {/* Main Content */}
-          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
-            <div className="max-w-5xl mx-auto text-center">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={auditorSelectiveGreen1}
+              alt="Professional auditor in factory environment"
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/50" />
+          </div>
+
+          {/* Main Content - VanMoof Layout */}
+          <div className="relative z-10 w-full h-full flex flex-col justify-between px-8 lg:px-16 py-8">
+            
+            {/* Middle Content Area */}
+            <div className="flex-1 flex items-center justify-between">
               
-              {/* Eyebrow - Exclusivity signal */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-12"
-              >
-                By Invitation Only
-              </motion.p>
-
-              {/* Main Heading - Aspirational, confident */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
-              >
-                We partner with
-                <br />
-                <span className="font-medium">exceptional auditors.</span>
-              </motion.h1>
-
-              {/* Subtitle - Selective, not desperate */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-white/40 mb-16 max-w-xl mx-auto"
-              >
-                Our clients demand the highest standards.
-                <br />
-                So do we.
-              </motion.p>
-
-              {/* CTA - Simple, confident */}
+              {/* Left Side - Large Typography */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="flex-shrink-0"
               >
-                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
-                  Apply for Partnership
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                <h1 className="text-[12rem] sm:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-light text-white leading-none tracking-tighter select-none">
+                  2K+
+                </h1>
+              </motion.div>
+
+              {/* Right Side - Description & CTA */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="max-w-sm text-right"
+              >
+                <p className="text-white/90 text-lg lg:text-xl leading-relaxed mb-6">
+                  Join our elite network. Connect with high-caliber clients worldwide.
+                </p>
+                <a
+                  href="#apply"
+                  className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
+                >
+                  <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <ArrowRight className="w-5 h-5" />
+                  </span>
+                  <span className="text-base font-medium">Apply Now</span>
+                </a>
               </motion.div>
             </div>
 
-            {/* Client Logos - Show caliber */}
+            {/* Bottom Right - Status Badge */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="mt-32 pt-12 border-t border-white/10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="flex justify-end"
             >
-              <p className="text-center text-white/30 text-sm tracking-wider uppercase mb-10">
-                Our partners audit for
-              </p>
-              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
-                {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF"].map((client, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
-                    className="text-2xl lg:text-3xl font-light text-white/20 hover:text-white/40 transition-colors"
-                  >
-                    {client}
-                  </motion.span>
-                ))}
+              <div className="flex items-center gap-2 text-white/70 text-sm">
+                <span>Accepting applications</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               </div>
-            </motion.div>
-
-            {/* Minimal stats - understated confidence */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
-              className="mt-20 flex justify-center gap-16 lg:gap-24"
-            >
-              {[
-                { value: "2,000+", label: "Partners" },
-                { value: "94", label: "Countries" },
-                { value: "12K+", label: "Audits Completed" }
-              ].map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <p className="text-2xl lg:text-3xl font-light text-white/80">{stat.value}</p>
-                  <p className="text-xs text-white/30 uppercase tracking-wider mt-1">{stat.label}</p>
-                </div>
-              ))}
             </motion.div>
           </div>
         </section>
