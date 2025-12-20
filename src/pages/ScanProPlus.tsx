@@ -16,7 +16,7 @@ import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDem
 import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
-import industryMedical from "@/assets/industry-medical.jpg";
+import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
@@ -1344,7 +1344,7 @@ const IndustryUseCasesGrid = () => {
       ]
     },
     {
-      image: industryMedical,
+      image: industryPharmaBwGreen,
       title: "Pharma: GMP Audits & Clean Room Assessments",
       useCase: "GMP audit of an API manufacturer before contract signing.",
       solutions: [
