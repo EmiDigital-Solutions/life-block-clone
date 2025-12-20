@@ -164,7 +164,7 @@ const Auditors = () => {
                   <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                     <ArrowRight className="w-5 h-5" />
                   </span>
-                  <span className="text-base font-medium">Apply for Partnership</span>
+                  <span className="text-base font-medium">Apply to become YVOO Auditor</span>
                 </a>
               </motion.div>
             </div>
