@@ -819,7 +819,7 @@ const DayInLifeSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-48 bg-white overflow-hidden"
+      className="py-16 md:py-24 bg-white overflow-hidden"
     >
       <div className="container mx-auto px-6 lg:px-20">
         
