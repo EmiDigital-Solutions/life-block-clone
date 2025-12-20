@@ -49,7 +49,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-xl"
+              className="max-w-xl relative z-20 lg:pr-8"
             >
               {/* Tagline Badge */}
               <motion.div
@@ -69,10 +69,10 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-foreground mb-6"
+                className="font-medium tracking-tight leading-[1.07] text-3xl sm:text-4xl lg:text-6xl xl:text-7xl text-foreground mb-6"
               >
-                <span className="block whitespace-nowrap">On-Site Supplier Audits</span>
-                <span className="block whitespace-nowrap">in Days, Not Weeks.</span>
+                <span className="block">On-Site Supplier Audits</span>
+                <span className="block">in Days, Not Weeks.</span>
               </motion.h1>
 
               {/* Subtitle */}
@@ -133,7 +133,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative lg:-mr-20 xl:-mr-32 2xl:-mr-40"
+              className="relative z-10 mt-10 lg:mt-0 lg:-mr-20 xl:-mr-32 2xl:-mr-40"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
