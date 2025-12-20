@@ -22,11 +22,13 @@ const Navigation = () => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
-        className={`bg-white/50 backdrop-blur-2xl shadow-2xl border border-white/40 transition-all duration-300 ${
+        className={`bg-white/70 backdrop-blur-3xl shadow-2xl border border-white/50 transition-all duration-300 ${
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)'
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06)',
+          backdropFilter: 'blur(40px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(40px) saturate(180%)'
         }}
       >
         {/* Main Nav Bar */}
