@@ -36,7 +36,7 @@ const steps = [
   {
     number: "05",
     title: "Follow up",
-    subtitle: "See demo video",
+    subtitle: "Track improvements",
     description: "Track corrective actions, schedule follow-up audits, and monitor supplier improvements over time.",
     icon: FileCheck,
   },
