@@ -212,11 +212,6 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 0.7 }}
         className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
       >
-        <div className="container mx-auto px-6 mb-4">
-          <p className="text-sm text-white/60 font-medium">
-            Trusted by leading enterprises
-          </p>
-        </div>
         <div className="relative flex">
           <motion.div
             className="flex gap-16 whitespace-nowrap"
