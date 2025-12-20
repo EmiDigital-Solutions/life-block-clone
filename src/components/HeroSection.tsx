@@ -133,7 +133,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative z-10 mt-10 lg:mt-0 lg:-mr-6 xl:-mr-10 2xl:-mr-16"
+              className="relative z-10 mt-10 lg:mt-0 lg:-mr-20 xl:-mr-32 2xl:-mr-40"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
