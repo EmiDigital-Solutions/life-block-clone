@@ -126,7 +126,7 @@ const Auditors = () => {
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 95%' }}
+              style={{ objectPosition: 'center 95%', transform: 'translateY(80px)', height: 'calc(100% + 80px)' }}
             />
           </div>
 
