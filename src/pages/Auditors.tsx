@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 // Import diverse professional faces for hero grid
 import auditorBlonde1 from "@/assets/auditor-blonde-1.jpg";
@@ -964,6 +965,22 @@ const DayInLifeSection = () => {
           {/* Auditor Image - Right Side with Parallax */}
           <AuditorParallaxImage isInView={isInView} />
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="mt-16 md:mt-20 text-center"
+        >
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            Join Our Auditor Network
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </motion.div>
 
       </div>
     </section>
