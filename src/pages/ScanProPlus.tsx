@@ -2232,105 +2232,80 @@ const ScanProPlus = () => {
       <HowItWorksCarousel />
 
 
-      {/* Results Section - Homepage Style */}
+      {/* Results Section - Clean Minimalist */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-white"
+        className="py-20 md:py-28 bg-white"
         id="results"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          
+          {/* Simple Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 md:mb-20"
+            className="text-center mb-16"
           >
-            <h2 className="section-headline text-foreground max-w-2xl mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
               What CFOs and Procurement Directors see
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Measurable ROI from day one. Real savings your finance team will notice.
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              Measurable ROI from day one
             </p>
           </motion.div>
 
-          {/* Stats Section - Dark Homepage Style */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mb-12"
-          >
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-              {[
-                { value: '60%', label: 'Lower audit spend' },
-                { value: '70%', label: 'Less time coordinating' },
-                { value: '48h', label: 'From request to auditor on-site' },
-                { value: '0', label: 'Travel costs for your team' }
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
-                    {stat.value}
-                  </p>
-                  <p className="text-white/50 text-sm font-medium">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          {/* Clean Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+            {[
+              { value: '60%', label: 'Lower audit spend' },
+              { value: '70%', label: 'Less coordination time' },
+              { value: '48h', label: 'Request to on-site' },
+              { value: '€0', label: 'Team travel costs' }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <p className="text-4xl md:text-5xl font-bold text-black mb-2">
+                  {stat.value}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
 
-          {/* Chart Grid - Homepage Card Style */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
-            
-            {/* Cost Comparison Bar Chart */}
+          {/* Single Chart Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-muted/50 rounded-2xl p-6"
             >
-              <h3 className="text-xl font-semibold text-foreground mb-3">Cost Comparison</h3>
-              <p className="text-muted-foreground text-base mb-6">Traditional vs ScanPro+ per audit</p>
-              
+              <h3 className="text-lg font-semibold text-black mb-1">Cost per Audit</h3>
+              <p className="text-muted-foreground text-sm mb-4">Traditional vs ScanPro+</p>
               <BusinessImpactChart />
             </motion.div>
 
-            {/* ROI Timeline Chart */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              transition={{ delay: 0.1 }}
+              className="bg-muted/50 rounded-2xl p-6"
             >
-              <h3 className="text-xl font-semibold text-foreground mb-3">Cumulative Savings</h3>
-              <p className="text-muted-foreground text-base mb-6">12-month projection (20 audits/year)</p>
-              
+              <h3 className="text-lg font-semibold text-black mb-1">12-Month Savings</h3>
+              <p className="text-muted-foreground text-sm mb-4">Based on 20 audits/year</p>
               <ROITimelineChart />
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
-          >
-            <h3 className="text-xl font-semibold text-foreground mb-3">Time-to-Audit Comparison</h3>
-            <p className="text-muted-foreground text-base mb-6">End-to-end audit process duration</p>
-            
-            <TimeEfficiencyChart />
-          </motion.div>
 
         </div>
       </section>
