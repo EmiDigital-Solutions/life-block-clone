@@ -71,31 +71,8 @@ const BuyerPainPointsSection = () => {
   const currentContent = activeRole === "buyer" ? buyerContent : qualityContent;
 
   return (
-    <section className="relative py-12 sm:py-16 px-4 sm:px-6 bg-background overflow-hidden">
-      {/* Concentric squared background */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div 
-          className="absolute w-[1600px] h-[1600px] border border-secondary/10"
-          style={{ transform: 'rotate(0deg)' }}
-        />
-        <div 
-          className="absolute w-[1300px] h-[1300px] bg-secondary/5"
-          style={{ transform: 'rotate(0deg)' }}
-        />
-        <div 
-          className="absolute w-[1000px] h-[1000px] bg-secondary/10"
-          style={{ transform: 'rotate(0deg)' }}
-        />
-        <div 
-          className="absolute w-[700px] h-[700px] bg-secondary/15"
-          style={{ transform: 'rotate(0deg)' }}
-        />
-        <div 
-          className="absolute w-[400px] h-[400px] bg-secondary/20"
-          style={{ transform: 'rotate(0deg)' }}
-        />
-      </div>
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

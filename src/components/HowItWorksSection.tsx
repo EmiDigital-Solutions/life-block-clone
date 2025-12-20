@@ -112,9 +112,9 @@ export const HowItWorksSection = () => {
                       : 'md:flex-1'
                 }`}
               >
-                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col min-h-[280px] md:min-h-[340px]">
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
                   {/* Number */}
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between mb-auto">
                     <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-primary/80'
                     }`}>
@@ -123,7 +123,7 @@ export const HowItWorksSection = () => {
                   </div>
                   
                   {/* Content */}
-                  <div className="mt-auto">
+                  <div className="mt-12 md:mt-20">
                     <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
@@ -134,13 +134,17 @@ export const HowItWorksSection = () => {
                     </h3>
                     
                     {/* Description - Only visible on hover */}
-                    <p
-                      className={`text-lg text-muted-foreground leading-relaxed transition-opacity duration-300 ${
-                        hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                      }`}
+                    <motion.p
+                      initial={false}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        height: hoveredIndex === index ? 'auto' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="text-lg text-muted-foreground leading-relaxed overflow-hidden"
                     >
                       {step.description}
-                    </p>
+                    </motion.p>
                   </div>
                   
                   {/* Hover indicator line */}
@@ -153,72 +157,56 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Stats Section with Video Background */}
+        {/* Stats Section - dark style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-[32px] p-12 lg:p-16 mt-20 overflow-hidden"
+          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mt-20"
         >
-          {/* Video Background - Full Card */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          >
-            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-foreground/75 z-[1]" />
-          
-          {/* Content */}
-          <div className="relative z-10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
-                    {stat.value}
-                  </p>
-                  <p className="text-white/50 text-sm font-medium">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-12 pt-12 border-t border-white/10 text-center"
-            >
-              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
-                <span className="font-semibold">Your competitors already switched.</span>{" "}
-                <br className="hidden md:block" />
-                <span className="font-normal text-white/80">When will you?</span>
-              </h3>
-              <a 
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="text-center"
               >
-                Book a Demo
-                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-              </a>
-            </motion.div>
+                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
+                  {stat.value}
+                </p>
+                <p className="text-white/50 text-sm font-medium">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-12 pt-12 border-t border-white/10"
+          >
+            <h3 className="text-2xl md:text-3xl text-white mb-6">
+              <span className="font-semibold">Your competitors already switched.</span>{" "}
+              <span className="font-normal text-white/60">When will you?</span>
+            </h3>
+            <a 
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
+            >
+              Book a Demo
+              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+            </a>
+          </motion.div>
         </motion.div>
 
       </div>

@@ -20,7 +20,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
         className={`relative overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
