@@ -7,7 +7,7 @@ const TestimonialSection = () => {
     <section className="relative overflow-hidden">
       {/* Purple gradient background - midfunnel style */}
       <div 
-        className="relative py-20 md:py-32 lg:py-40"
+        className="relative py-20 md:py-32 lg:py-40 pb-24 md:pb-36 lg:pb-44"
         style={{
           background: 'linear-gradient(135deg, #7C6BF0 0%, #8B7CF7 30%, #9D8EFA 60%, #AFA0FC 100%)',
         }}
@@ -42,7 +42,7 @@ const TestimonialSection = () => {
         </div>
 
         {/* Platform Demo Animation - Floating card */}
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 mb-20 md:mb-28 lg:mb-32">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,10 +60,8 @@ const TestimonialSection = () => {
             </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Bottom section with headline and testimonial - White background */}
-      <div className="bg-white py-20 md:py-28 lg:py-32">
+        {/* Headline and testimonial - Inside purple section */}
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -74,7 +72,7 @@ const TestimonialSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-[1.1] text-foreground">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-[1.1] text-white">
                   Built for
                   <br />
                   <span className="relative inline-block">
@@ -101,12 +99,12 @@ const TestimonialSection = () => {
                 className="lg:pt-4"
               >
                 {/* Brand logo placeholder */}
-                <p className="text-xl md:text-2xl font-semibold text-primary mb-4">
+                <p className="text-xl md:text-2xl font-semibold text-white/90 mb-4">
                   ScanPro+
                 </p>
                 
                 {/* Quote */}
-                <p className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-foreground mb-6">
+                <p className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white mb-6">
                   "It's a game changer"
                 </p>
                 
@@ -115,9 +113,9 @@ const TestimonialSection = () => {
                   <img 
                     src={christophPortrait} 
                     alt="Christoph Seeholzer" 
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-white/30"
                   />
-                  <p className="text-base text-muted-foreground">
+                  <p className="text-base text-white/80">
                     Christoph Seeholzer, Director Linde
                   </p>
                 </div>
