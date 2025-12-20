@@ -118,10 +118,10 @@ const Auditors = () => {
         {/* Hero Section - Content on Black, Flowing Lines Below */}
         <section
           data-nav-theme="white"
-          className="relative min-h-screen flex flex-col overflow-hidden bg-[#0a0a0a]"
+          className="relative h-screen flex flex-col overflow-hidden bg-[#0a0a0a]"
         >
           {/* Top Content Area - Black Background */}
-          <div className="flex-1 flex items-center justify-center pt-32 pb-16 px-6 lg:px-16 relative z-10">
+          <div className="flex-1 flex items-center justify-center pt-24 px-6 lg:px-16 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               
               {/* Eyebrow */}
@@ -129,7 +129,7 @@ const Auditors = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="text-white/50 text-sm tracking-[0.3em] uppercase mb-12"
+                className="text-white/50 text-sm tracking-[0.3em] uppercase mb-8"
               >
                 By Invitation Only
               </motion.p>
@@ -139,7 +139,7 @@ const Auditors = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight leading-[1.1] mb-6 text-white"
               >
                 We partner with
                 <br />
@@ -151,7 +151,7 @@ const Auditors = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-white/50 mb-16 max-w-xl mx-auto"
+                className="text-lg text-white/50 mb-10 max-w-xl mx-auto"
               >
                 Our clients demand the highest standards.
                 <br />
@@ -164,7 +164,7 @@ const Auditors = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
+                <button className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
                   Apply for Partnership
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -174,18 +174,18 @@ const Auditors = () => {
 
           {/* Bottom - Flowing Lines Image */}
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="h-[40vh] relative"
+            className="h-[35vh] min-h-[200px] relative flex-shrink-0"
           >
             <img 
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-center"
             />
             {/* Gradient fade to black at top */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a0a0a] to-transparent" />
           </motion.div>
         </section>
 
