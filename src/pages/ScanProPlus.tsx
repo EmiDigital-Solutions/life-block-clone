@@ -1476,6 +1476,18 @@ const IndustryUseCasesGrid = () => {
 // Challenge Toggle Section
 const ChallengeToggleSection = () => {
   const [isWithScanPro, setIsWithScanPro] = useState(false);
+  const [isAutoSwitching, setIsAutoSwitching] = useState(true);
+
+  // Auto-switch every 5 seconds
+  useEffect(() => {
+    if (!isAutoSwitching) return;
+    
+    const interval = setInterval(() => {
+      setIsWithScanPro(prev => !prev);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAutoSwitching]);
 
   const withScanProContent = [
     {
@@ -1570,7 +1582,10 @@ const ChallengeToggleSection = () => {
 
           {/* Toggle Switch */}
           <button
-            onClick={() => setIsWithScanPro(!isWithScanPro)}
+            onClick={() => {
+              setIsAutoSwitching(false);
+              setIsWithScanPro(!isWithScanPro);
+            }}
             className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
               isWithScanPro ? 'bg-primary' : 'bg-destructive'
             }`}
