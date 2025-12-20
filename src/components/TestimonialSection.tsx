@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Play } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
@@ -43,20 +43,30 @@ const TestimonialSection = () => {
                 <PlatformDemoAnimation />
               </div>
 
-              {/* Play button overlay - only show when not playing */}
-              {!isDemoPlaying && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                  <motion.button
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-2xl flex items-center justify-center group-hover:shadow-3xl transition-all"
-                  >
+              {/* Play/Pause button overlay */}
+              <div 
+                className={`absolute inset-0 flex items-center justify-center transition-colors ${
+                  isDemoPlaying ? 'bg-transparent opacity-0 hover:opacity-100 hover:bg-black/10' : 'bg-black/20 group-hover:bg-black/30'
+                }`}
+              >
+                <motion.button
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-2xl flex items-center justify-center transition-all"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsDemoPlaying(!isDemoPlaying);
+                  }}
+                >
+                  {isDemoPlaying ? (
+                    <Pause className="w-8 h-8 md:w-10 md:h-10 text-foreground" fill="currentColor" />
+                  ) : (
                     <Play className="w-8 h-8 md:w-10 md:h-10 text-foreground ml-1" fill="currentColor" />
-                  </motion.button>
-                </div>
-              )}
+                  )}
+                </motion.button>
+              </div>
             </div>
           </motion.div>
         </div>
