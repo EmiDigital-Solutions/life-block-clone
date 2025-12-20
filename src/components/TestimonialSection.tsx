@@ -53,8 +53,7 @@ const TestimonialSection = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-[1.1] text-foreground">
-                  Built for
-                  <br />
+                  <span className="block">Built for</span>
                   <span className="relative inline-block">
                     <span className="relative z-10">high-performance</span>
                     <span 
@@ -62,8 +61,7 @@ const TestimonialSection = () => {
                       style={{ zIndex: 0 }}
                     />
                   </span>
-                  <br />
-                  B2B Supply Chains.
+                  <span className="block">B2B Supply Chains.</span>
                 </h2>
               </motion.div>
 
