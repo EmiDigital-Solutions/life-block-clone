@@ -55,6 +55,7 @@ export const HowItWorksSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
+    <>
     <section ref={ref} className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6 lg:px-16">
         
@@ -157,60 +158,81 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Stats Section - dark style */}
+      </div>
+    </section>
+    
+    {/* Stats Section with Video Background - Separate Section */}
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="container mx-auto px-6 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mt-20"
+          className="relative rounded-[32px] p-12 lg:p-16 overflow-hidden"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-white/50 text-sm font-medium">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-12 pt-12 border-t border-white/10"
+          {/* Video Background - Full Card */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
           >
-            <h3 className="text-2xl md:text-3xl text-white mb-6">
-              <span className="font-semibold">Your competitors already switched.</span>{" "}
-              <span className="font-normal text-white/60">When will you?</span>
-            </h3>
-            <a 
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
-            >
-              Book a Demo
-              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-            </a>
-          </motion.div>
-        </motion.div>
+            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-foreground/75 z-[1]" />
+          
+          {/* Content */}
+          <div className="relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
+                    {stat.value}
+                  </p>
+                  <p className="text-white/50 text-sm font-medium">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
 
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-12 pt-12 border-t border-white/10 text-center"
+            >
+              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
+                <span className="font-semibold">Your competitors already switched.</span>{" "}
+                <br className="hidden md:block" />
+                <span className="font-normal text-white/80">When will you?</span>
+              </h3>
+              <a 
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
+              >
+                Book a Demo
+                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
+    </>
   );
 };
 
