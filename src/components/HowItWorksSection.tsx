@@ -191,21 +191,19 @@ export const HowItWorksSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative mt-12 pt-12 border-t border-white/10 overflow-hidden rounded-2xl"
+            className="relative mt-12 border-t border-white/10 overflow-hidden rounded-2xl"
           >
-            {/* Video Background */}
-            <div className="absolute inset-0 z-0">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-foreground/70" />
-            </div>
+            {/* Video Background - Full Fill */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover z-0"
+            >
+              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-foreground/70 z-[1]" />
             
             {/* Content */}
             <div className="relative z-10 text-center py-16 px-8">
