@@ -141,9 +141,9 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-8 md:mb-12"
+          className="mb-8 md:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black md:whitespace-nowrap">
+          <h2 className="section-headline text-foreground">
             Your auditor, anywhere, anytime
           </h2>
         </motion.div>
