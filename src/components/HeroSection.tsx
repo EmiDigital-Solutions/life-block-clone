@@ -69,7 +69,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.1] text-2xl sm:text-3xl lg:text-5xl xl:text-6xl text-foreground mb-6"
+                className="font-medium tracking-tight leading-[1.15] text-xl sm:text-2xl lg:text-4xl xl:text-5xl text-foreground mb-6"
               >
                 <span className="block">On-Site Supplier Audits</span>
                 <span className="block">in Days, Not Weeks.</span>
