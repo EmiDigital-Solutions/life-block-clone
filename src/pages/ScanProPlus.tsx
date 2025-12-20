@@ -418,7 +418,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             <div className="relative z-30">
 
             {/* Clean Headline Only */}
-            <div className="flex flex-col space-y-4 text-left max-w-xl">
+            <div className="flex flex-col text-left max-w-xl">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -427,21 +427,20 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
               >
                 Your auditor, anywhere, anytime
               </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md"
-              >
-                Access local experts certified in VDA 6.3, IATF 16949, or ISO standards—already on the ground where your suppliers operate.
-              </motion.p>
             </div>
 
           </div>
         </div>
         
+        {/* Description below the globe */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl text-center mx-auto mt-8"
+        >
+          Access local experts certified in VDA 6.3, IATF 16949, or ISO standards—already on the ground where your suppliers operate.
+        </motion.p>
       </div>
     </section>
   );
