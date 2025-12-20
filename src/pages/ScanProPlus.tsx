@@ -138,91 +138,87 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
           
-          {/* Modern 3D Globe with Enhanced Effects */}
+          {/* Clean Minimal Globe Background */}
           <motion.div 
             className="absolute flex items-center justify-center pointer-events-none" 
             style={{ 
               zIndex: 0,
               width: '100%',
               height: '100%',
-              top: '20%',
+              top: '10%',
               left: 0,
               right: 0,
-              bottom: '-20%'
             }}
           >
-            {/* Globe with gradient and depth */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* Glow effect behind globe */}
+              {/* Subtle glow */}
               <motion.div
-                className="absolute w-[600px] h-[600px] rounded-full"
+                className="absolute w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, transparent 70%)',
-                  filter: 'blur(40px)'
+                  background: 'radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 60%)',
                 }}
                 animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.4, 0.2]
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 0.8, 0.5]
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
               
-              {/* Main dotted map with reduced opacity */}
-              <motion.div
-                className="absolute w-full h-full"
-                style={{ 
-                  background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-                  opacity: 0.35,
-                }}
-                animate={{ 
-                  rotateY: [0, 5, 0, -5, 0],
-                  scale: [1, 1.02, 1, 1.02, 1]
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Animated connection lines overlay */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.2 }}>
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
-                    <stop offset="50%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0.8 }} />
-                    <stop offset="100%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
-                  </linearGradient>
-                </defs>
+              {/* Globe circle with grid */}
+              <div className="relative w-[400px] h-[400px] md:w-[550px] md:h-[550px]">
+                {/* Main globe outline */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full border border-border/30"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+                />
                 
-                {/* Animated pulse lines across globe */}
-                {[...Array(6)].map((_, i) => (
-                  <motion.line
-                    key={i}
-                    x1="20%"
-                    y1={`${20 + i * 12}%`}
-                    x2="80%"
-                    y2={`${25 + i * 12}%`}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="2"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ 
-                      pathLength: [0, 1, 0],
-                      opacity: [0, 0.6, 0]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: i * 0.5,
-                      ease: "easeInOut"
+                {/* Horizontal latitude lines */}
+                {[20, 35, 50, 65, 80].map((top, i) => (
+                  <div 
+                    key={`lat-${i}`}
+                    className="absolute left-1/2 -translate-x-1/2 h-px bg-border/20"
+                    style={{ 
+                      top: `${top}%`, 
+                      width: `${90 - Math.abs(50 - top) * 1.5}%` 
                     }}
                   />
                 ))}
-              </svg>
+                
+                {/* Vertical longitude curves (simplified as lines) */}
+                <div className="absolute top-0 left-1/2 w-px h-full bg-border/20" />
+                <motion.div 
+                  className="absolute inset-[15%] rounded-full border border-border/15"
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+                />
+                <motion.div 
+                  className="absolute inset-[30%] rounded-full border border-border/10"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 240, repeat: Infinity, ease: "linear" }}
+                />
+                
+                {/* Center equator emphasis */}
+                <div className="absolute top-1/2 left-0 right-0 h-px bg-primary/20" />
+                
+                {/* Animated pulse ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-primary/30"
+                  animate={{
+                    scale: [1, 1.15, 1],
+                    opacity: [0.3, 0, 0.3]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+              </div>
             </div>
           </motion.div>
 
