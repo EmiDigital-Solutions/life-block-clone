@@ -360,41 +360,53 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   onClick={() => handleCardClick(index)}
                 >
                 <motion.div 
-                    className="bg-[#ebebeb] rounded-xl overflow-hidden w-[140px]"
+                    className="group relative overflow-hidden rounded-2xl w-[160px] bg-white border border-border/30 shadow-sm"
                     whileHover={{
-                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)",
+                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.12)",
+                      borderColor: "hsl(var(--primary) / 0.3)",
                     }}
                   >
-                    <div className="relative h-[120px] overflow-hidden">
+                    {/* Image container with gradient overlay like industry cards */}
+                    <div className="relative h-[140px] overflow-hidden">
                       <motion.img 
                         src={auditor.image} 
                         alt={auditor.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.4 }}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute top-1.5 right-1.5">
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
+                      
+                      {/* Content on image */}
+                      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+                        <h4 className="font-bold text-sm text-white mb-0.5 leading-tight">{auditor.name}</h4>
+                        <p className="text-[10px] text-white/80 leading-tight">{auditor.title}</p>
+                      </div>
+                      
+                      {/* Availability badge */}
+                      <div className="absolute top-2 right-2">
                         <motion.span 
-                          className={`px-1.5 py-0.5 rounded-full text-[8px] font-semibold ${
+                          className={`px-2 py-0.5 rounded-full text-[9px] font-medium backdrop-blur-sm ${
                             auditor.availability === "Available Now" 
-                              ? "bg-green-500 text-white" 
-                              : "bg-yellow-500 text-white"
+                              ? "bg-primary/90 text-primary-foreground" 
+                              : "bg-white/20 text-white"
                           }`}
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.3, type: "spring" }}
                         >
-                          {auditor.availability}
+                          {auditor.availability === "Available Now" ? "Available" : "24h"}
                         </motion.span>
                       </div>
                     </div>
-                    <div className="p-2.5 bg-[#ebebeb]">
-                      <h4 className="font-bold text-xs text-foreground mb-0.5 leading-tight">{auditor.name}</h4>
-                      <p className="text-[9px] text-muted-foreground mb-1.5 leading-tight">{auditor.title}</p>
-                      <p className="text-[9px] text-muted-foreground mb-1.5">{auditor.location}</p>
-                      <div className="flex items-center gap-1">
-                        <PixelIcon name="star" className="w-3 h-3" />
-                        <span className="text-[9px] font-semibold text-foreground">{auditor.rating}</span>
+                    
+                    {/* Bottom info bar */}
+                    <div className="p-2.5 bg-white border-t border-border/20">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] text-muted-foreground">{auditor.location.split(',')[0]}</span>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-3 h-3 fill-primary text-primary" />
+                          <span className="text-[10px] font-semibold text-foreground">{auditor.rating}</span>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
