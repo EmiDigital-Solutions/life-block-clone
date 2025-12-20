@@ -54,8 +54,8 @@ const TestimonialSection = () => {
               >
                 <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-[1.1] text-foreground">
                   <span className="block">Built for</span>
-                  <span className="relative inline-block">
-                    <span className="relative z-10">high-performance</span>
+                  <span className="relative inline-block whitespace-nowrap">
+                    <span className="relative z-10">high‑performance</span>
                     <span 
                       className="absolute inset-0 -inset-x-2 -inset-y-1 -skew-x-3 rounded-lg bg-accent"
                       style={{ zIndex: 0 }}
