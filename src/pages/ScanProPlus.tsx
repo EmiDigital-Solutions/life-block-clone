@@ -135,6 +135,19 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
+        {/* Headline Above Globe */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-8 md:mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black md:whitespace-nowrap">
+            Your auditor, anywhere, anytime
+          </h2>
+        </motion.div>
+        
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
           
@@ -415,45 +428,6 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
             })}
           </AnimatePresence>
 
-          {/* Centered Headline Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
-            <div className="text-center px-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="relative"
-              >
-                {/* Decorative line above */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "4rem" }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6"
-                />
-                
-                {/* Main headline with dramatic styling */}
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight md:whitespace-nowrap">
-                  <span className="text-foreground/90">Your auditor,</span>
-                  <br className="md:hidden" />
-                  <span className="text-primary"> anywhere</span>
-                  <span className="text-foreground/90">,</span>
-                  <span className="text-primary"> anytime</span>
-                </h2>
-                
-                {/* Decorative line below */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "4rem" }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6"
-                />
-              </motion.div>
-            </div>
-          </div>
         </div>
         
         {/* Description below the globe - refined */}
