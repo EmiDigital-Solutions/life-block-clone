@@ -42,7 +42,7 @@ const HeroSection = () => {
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-12 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
@@ -129,17 +129,17 @@ const HeroSection = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Demo Animation */}
+            {/* Right Column - Demo Animation (Larger) */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
+              className="relative lg:-mr-12 xl:-mr-24"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
                 style={{
-                  boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.15), 0 30px 60px -30px rgba(0, 0, 0, 0.2)',
+                  boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.25)',
                 }}
               >
                 <PlatformDemoAnimation />
