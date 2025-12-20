@@ -548,7 +548,7 @@ const SearchSuppliers = () => {
               style={{ zIndex: 20 }}
             >
               {/* Modern white card matching YVOO design - Fixed height container */}
-              <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '750px', minWidth: '480px' }}>
+              <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
                 
               {/* Modern Card Header */}
               <div className="bg-foreground px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
@@ -595,7 +595,7 @@ const SearchSuppliers = () => {
                 <motion.div 
                   ref={chatContainerRef}
                   className="space-y-4 flex-1 overflow-y-auto bg-white p-4"
-                  style={{ maxHeight: '500px' }}
+                  style={{ maxHeight: '600px' }}
                   animate={{ opacity: isFading ? 0 : 1 }}
                   transition={{ duration: 0.5 }}
                 >
