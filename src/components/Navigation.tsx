@@ -74,42 +74,79 @@ const Navigation = () => {
 
         {/* Dropdown Menu */}
         {isMenuOpen && (
-          <div className="px-8 pb-8 pt-4 animate-fade-in">
-            <nav className="space-y-2">
+          <div className="px-10 pb-10 pt-6 animate-fade-in">
+            <nav className="space-y-4">
               <Link 
                 to="/search-suppliers" 
-                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Search Suppliers
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Search Suppliers
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Find verified suppliers worldwide
+                </span>
+              </Link>
+              <Link 
+                to="/scanpro-plus" 
+                className="block group py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  ScanPro+
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  AI-powered audit intelligence
+                </span>
               </Link>
               <Link 
                 to="/ground-intelligence" 
-                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Ground Intelligence
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Ground Intelligence
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Real-time factory insights
+                </span>
               </Link>
               <Link 
                 to="/auditors" 
-                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                For Auditors
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  For Auditors
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Join our global auditor network
+                </span>
               </Link>
               <a 
                 href="#pricing" 
-                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Pricing
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Pricing
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Transparent & flexible plans
+                </span>
               </a>
               <Link 
                 to="/about-us" 
-                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                About Us
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  About Us
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Our mission & team
+                </span>
               </Link>
             </nav>
           </div>
