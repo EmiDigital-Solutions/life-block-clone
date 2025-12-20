@@ -41,8 +41,8 @@ const HeroSection = () => {
     >
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.6fr] gap-8 lg:gap-12 items-center">
+        <div className="w-full px-4 lg:px-8 lg:ml-4 xl:ml-8 2xl:ml-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1.6fr] gap-8 lg:gap-10 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
