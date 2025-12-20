@@ -191,23 +191,25 @@ export const HowItWorksSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative mt-12 overflow-hidden rounded-2xl min-h-[400px] md:min-h-[500px]"
+            className="relative mt-12 pt-12 border-t border-white/10 overflow-hidden rounded-2xl"
           >
-            {/* Video Background - Full Cover */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-foreground/60" />
+            {/* Video Background */}
+            <div className="absolute inset-0 z-0">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-foreground/70" />
+            </div>
             
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-[400px] md:min-h-[500px] text-center py-16 px-8">
-              <h3 className="text-3xl md:text-5xl lg:text-6xl text-white mb-8">
+            <div className="relative z-10 text-center py-16 px-8">
+              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
                 <span className="font-semibold">Your competitors already switched.</span>{" "}
                 <br className="hidden md:block" />
                 <span className="font-normal text-white/80">When will you?</span>
