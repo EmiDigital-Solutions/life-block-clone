@@ -13,7 +13,7 @@ const FinalCTASection = () => {
           className="max-w-4xl mx-auto text-center"
         >
           {/* Mixed weight heading - competitive urgency */}
-          <h2 className="section-headline text-foreground mb-6">
+          <h2 className="text-2xl md:text-3xl font-medium text-foreground mb-6">
             Leading OEMs already made the switch
           </h2>
           
