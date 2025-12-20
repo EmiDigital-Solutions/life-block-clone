@@ -787,46 +787,102 @@ const DayInLifeSection = () => {
 
         {/* Timeline */}
         <div className="relative max-w-5xl">
-          {/* Vertical line */}
-          <div className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block" />
+          {/* Animated Vertical line */}
+          <motion.div 
+            className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary via-primary/40 to-transparent hidden sm:block origin-top"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+          />
           
           <div className="space-y-16 md:space-y-20">
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.2, duration: 0.7, ease: "easeOut" }}
                 className="flex gap-8 md:gap-12 group"
               >
-                {/* Day badge */}
+                {/* Day badge with pulse animation */}
                 <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
-                  <div className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-full border-2 border-primary/20 items-center justify-center bg-white group-hover:border-primary/40 transition-colors duration-300">
+                  <motion.div 
+                    className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-full border-2 border-primary/20 items-center justify-center bg-white group-hover:border-primary/40 transition-colors duration-300"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                    transition={{ delay: 0.4 + index * 0.2, duration: 0.5, type: "spring", stiffness: 200 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-primary/30"
+                      animate={isInView ? { 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.5, 0, 0.5]
+                      } : {}}
+                      transition={{ 
+                        delay: 0.8 + index * 0.2,
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1
+                      }}
+                    />
                     <span className="text-sm md:text-base font-semibold text-primary tracking-wide">{item.day}</span>
-                  </div>
-                  <span className="sm:hidden text-lg font-semibold text-primary">{item.day}</span>
+                  </motion.div>
+                  <motion.span 
+                    className="sm:hidden text-lg font-semibold text-primary"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 0.4 + index * 0.2 }}
+                  >
+                    {item.day}
+                  </motion.span>
                 </div>
                 
                 {/* Content */}
                 <div className="flex-1 pt-2 md:pt-4">
-                  <div className="mb-6">
+                  <motion.div 
+                    className="mb-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.45 + index * 0.2, duration: 0.5 }}
+                  >
                     <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">{item.title}</h3>
-                  </div>
+                  </motion.div>
                   
-                  {/* Old vs New */}
+                  {/* Old vs New with staggered animation */}
                   <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center mt-0.5">
+                    <motion.div 
+                      className="flex items-start gap-4"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.55 + index * 0.2, duration: 0.5 }}
+                    >
+                      <motion.div 
+                        className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center mt-0.5"
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ delay: 0.6 + index * 0.2, type: "spring", stiffness: 300 }}
+                      >
                         <X className="w-3.5 h-3.5 text-muted-foreground" />
-                      </div>
+                      </motion.div>
                       <p className="text-muted-foreground text-base leading-relaxed">{item.oldWay}</p>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    </motion.div>
+                    <motion.div 
+                      className="flex items-start gap-4"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.65 + index * 0.2, duration: 0.5 }}
+                    >
+                      <motion.div 
+                        className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5"
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ delay: 0.7 + index * 0.2, type: "spring", stiffness: 300 }}
+                        whileHover={{ scale: 1.2 }}
+                      >
                         <Check className="w-3.5 h-3.5 text-primary" />
-                      </div>
+                      </motion.div>
                       <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
