@@ -953,7 +953,18 @@ const DayInLifeSection = () => {
                         >
                           <Check className="w-3.5 h-3.5 text-primary" />
                         </motion.div>
-                        <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
+                        <div className="flex items-center gap-4 flex-wrap">
+                          <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
+                          {index === timeline.length - 1 && (
+                            <Button 
+                              size="sm" 
+                              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 py-1 text-sm font-medium"
+                            >
+                              Apply Now
+                              <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
+                            </Button>
+                          )}
+                        </div>
                       </motion.div>
                     </div>
                   </div>
@@ -965,37 +976,6 @@ const DayInLifeSection = () => {
           {/* Auditor Image - Right Side with Parallax */}
           <AuditorParallaxImage isInView={isInView} />
         </div>
-
-        {/* CTA Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.2, duration: 0.7 }}
-          className="mt-20 md:mt-28"
-        >
-          <div className="bg-primary rounded-2xl p-8 md:p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary-foreground leading-tight mb-4">
-                Transform how you audit.
-              </h3>
-              <p className="text-primary-foreground/80 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-                No more chasing paperwork. No more waiting on logistics. Focus on what you do best—delivering expert assessments—while we handle everything else.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-white hover:bg-white/90 text-primary px-8 py-6 text-base font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Apply to Join
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <span className="text-primary-foreground/60 text-sm">
-                  Vetted auditors only
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
 
       </div>
     </section>
