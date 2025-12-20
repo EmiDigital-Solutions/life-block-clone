@@ -130,7 +130,7 @@ const Auditors = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover object-[center_20%]"
+                  className="w-full h-full object-cover object-top"
                 />
               </motion.div>
             ))}
