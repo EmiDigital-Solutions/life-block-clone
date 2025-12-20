@@ -15,7 +15,7 @@ import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseC
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
 import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryAerospace from "@/assets/industry-aerospace.jpg";
+import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
@@ -1333,7 +1333,7 @@ const IndustryUseCasesGrid = () => {
       result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
     },
     {
-      image: industryAerospace,
+      image: industryAerospaceBwGreen,
       title: "Aerospace: AS9100 Compliance & Critical Process Validation",
       useCase: "Validate welding processes at suppliers of critical aircraft components.",
       solutions: [
