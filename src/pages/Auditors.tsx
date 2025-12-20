@@ -69,6 +69,7 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
+import auditorsHeroObject from "@/assets/auditors-hero-object.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -122,8 +123,8 @@ const Auditors = () => {
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
-              src={auditorSelectiveGreen1}
-              alt="Professional auditor in factory environment"
+              src={auditorsHeroObject}
+              alt="Precision measuring instrument"
               className="w-full h-full object-cover object-center"
             />
             {/* Dark overlay for text readability */}
