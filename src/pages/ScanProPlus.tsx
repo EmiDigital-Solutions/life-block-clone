@@ -2247,7 +2247,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+            <h2 className="section-headline text-foreground">
               What CFOs and Procurement Directors see
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
