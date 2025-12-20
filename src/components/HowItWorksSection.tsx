@@ -55,7 +55,6 @@ export const HowItWorksSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <>
     <section ref={ref} className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6 lg:px-16">
         
@@ -158,18 +157,13 @@ export const HowItWorksSection = () => {
           </div>
         </div>
 
-      </div>
-    </section>
-    
-    {/* Stats Section with Video Background - Separate Section */}
-    <section className="py-16 lg:py-24 bg-white">
-      <div className="container mx-auto px-6 lg:px-16">
+        {/* Stats Section with Video Background */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-[32px] p-12 lg:p-16 overflow-hidden"
+          className="relative rounded-[32px] p-12 lg:p-16 mt-20 overflow-hidden"
         >
           {/* Video Background - Full Card */}
           <video
@@ -230,9 +224,9 @@ export const HowItWorksSection = () => {
             </motion.div>
           </div>
         </motion.div>
+
       </div>
     </section>
-    </>
   );
 };
 
