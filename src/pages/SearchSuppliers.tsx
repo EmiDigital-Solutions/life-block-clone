@@ -155,6 +155,15 @@ const SearchSuppliers = () => {
                         typeAiMessage(steps[1].aiFollowUp, () => {
                           const t6 = setTimeout(() => {
                             setShowResults(true);
+                            // Smooth scroll to results
+                            setTimeout(() => {
+                              if (chatContainerRef.current) {
+                                chatContainerRef.current.scrollTo({
+                                  top: chatContainerRef.current.scrollHeight,
+                                  behavior: 'smooth'
+                                });
+                              }
+                            }, 100);
                             // Wait 5 seconds after results, then fade out and restart
                             const t7 = setTimeout(() => {
                               setIsFading(true);
