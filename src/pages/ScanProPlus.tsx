@@ -2206,7 +2206,7 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 md:py-32 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden"
+        className="relative py-24 md:py-32 bg-white overflow-hidden"
         id="capabilities"
       >
         {/* Subtle pattern overlay */}
