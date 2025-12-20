@@ -113,7 +113,7 @@ const HeroSection = () => {
                 href="https://calendly.com/yvoo/demo-yvoo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-foreground hover:bg-foreground/90"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90"
               >
                 Order Audit
               </a>
@@ -132,7 +132,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-sm text-foreground mb-3">
                 Auditors certified by:
               </p>
               <div className="flex flex-wrap gap-2">
