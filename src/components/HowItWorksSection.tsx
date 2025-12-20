@@ -117,7 +117,7 @@ export const HowItWorksSection = () => {
                   
                   {/* Content */}
                   <div className="mt-12 md:mt-20">
-                    <span className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
+                    <span className={`text-base tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
                       {step.subtitle}
