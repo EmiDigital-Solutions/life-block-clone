@@ -120,12 +120,12 @@ const ROITimelineChart = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-primary">€17k</p>
         </div>
         
-        <div className="p-3 sm:p-4 md:p-5 bg-primary/20 rounded-lg sm:rounded-xl">
+        <div className="p-3 sm:p-4 md:p-5 bg-primary rounded-lg sm:rounded-xl">
           <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-primary" strokeWidth={3} />
-            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-700 font-bold uppercase">Savings</p>
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" strokeWidth={3} />
+            <p className="text-[9px] sm:text-[10px] md:text-xs text-primary-foreground font-bold uppercase">You Save</p>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-gray-900">€{(totalSavings / 1000).toFixed(0)}k</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-primary-foreground">−€{(totalSavings / 1000).toFixed(0)}k</p>
         </div>
       </motion.div>
     </div>
