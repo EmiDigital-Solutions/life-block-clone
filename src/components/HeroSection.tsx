@@ -237,7 +237,7 @@ const HeroSection = () => {
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-white/70 tracking-wide hover:text-white transition-colors"
+                    className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
                   >
                     {company}
                   </span>
