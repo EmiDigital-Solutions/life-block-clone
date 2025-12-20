@@ -44,7 +44,7 @@ const Navigation = () => {
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-10 w-auto object-contain"
+              className="h-14 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
