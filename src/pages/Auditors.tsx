@@ -971,7 +971,7 @@ const DayInLifeSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.8, duration: 0.6 }}
-          className="mt-12 flex justify-end pr-4 lg:pr-20"
+          className="mt-12 flex justify-center"
         >
           <Button 
             size="lg" 
