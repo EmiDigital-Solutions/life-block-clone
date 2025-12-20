@@ -50,7 +50,7 @@ const HeroSection = () => {
           style={{ 
             transform: 'scale(1.1)', 
             objectPosition: 'center center',
-            filter: 'grayscale(100%) contrast(1.1) brightness(1.05)'
+            filter: 'grayscale(100%) contrast(1.3) brightness(1.0)'
           }}
         >
           <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
