@@ -1649,32 +1649,17 @@ const HowItWorksCarousel = () => {
       title: "One click. Audit requested.",
       description: "Your procurement team submits via platform or ERP integration. No RFQs, no vendor negotiations, no calendar juggling. Done.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          {/* 3D Earth */}
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
+          <div className="relative w-full max-w-[280px] sm:max-w-[360px] h-[180px] sm:h-[280px]">
             <Earth3D width="100%" height="100%" showPins={false} />
-            
-            {/* Green Location Marker */}
             <motion.div
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '30%', left: '70%' }}
-            >
-              <div className="w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-primary border-2 border-white shadow-lg" />
-              <div className="absolute inset-0 w-2 h-2 sm:w-4 sm:h-4 rounded-full bg-primary animate-ping opacity-40" />
-            </motion.div>
-            
-            {/* 1-Click Button */}
-            <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
+              animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute"
-              style={{ top: '32%', left: '73%' }}
+              className="absolute top-1/3 right-1/4"
             >
-              <div className="bg-primary text-primary-foreground px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
+              <div className="bg-primary text-primary-foreground px-4 py-2 sm:px-5 sm:py-2.5 rounded-full flex items-center gap-2 shadow-lg">
+                <PixelIcon name="cursor" className="w-4 h-4" />
+                <span className="font-semibold text-sm">1-Click</span>
               </div>
             </motion.div>
           </div>
@@ -1686,8 +1671,8 @@ const HowItWorksCarousel = () => {
       title: "Local expert assigned instantly",
       description: "Our AI matches a certified auditor near your supplier—no travel costs, no jet lag, no delays. They know the language and the local context.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
+          <div className="relative w-full max-w-[280px] sm:max-w-[360px] h-[180px] sm:h-[280px]">
             <Earth3D width="100%" height="100%" showPins={true} />
           </div>
         </div>
@@ -1698,69 +1683,32 @@ const HowItWorksCarousel = () => {
       title: "Watch progress live",
       description: "Your quality manager sees real-time updates. Chat directly with the auditor. Know exactly what's happening without being there.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          {/* Chat Interface */}
-          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
-            {/* User Message */}
-            <div className="flex items-start gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
+          <div className="w-full max-w-[280px] sm:max-w-[320px] space-y-3">
+            {/* Message 1 */}
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <PixelIcon name="user" className="w-4 h-4" />
               </div>
-              <div className="bg-primary text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
-                <p className="text-xs sm:text-sm font-bold mb-2">You</p>
-                <div className="space-y-2">
-                  <motion.div 
-                    animate={{ width: ["0%", "80%", "80%", "0%"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1] }}
-                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
-                  />
-                  <motion.div 
-                    animate={{ width: ["0%", "100%", "100%", "0%"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.2 }}
-                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
-                  />
-                </div>
+              <div className="bg-muted rounded-2xl rounded-tl-none px-4 py-3 flex-1">
+                <div className="h-2 bg-border rounded w-3/4 mb-2"></div>
+                <div className="h-2 bg-border rounded w-1/2"></div>
               </div>
             </div>
-            
-            {/* Auditor Message */}
-            <div className="flex items-start gap-2 sm:gap-3 justify-end">
-              <div className="bg-primary/80 text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
-                <p className="text-xs sm:text-sm font-bold mb-2">Auditor</p>
-                <div className="space-y-2">
-                  <motion.div 
-                    animate={{ width: ["0%", "90%", "90%", "0%"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.2, 0.8, 1], delay: 0.5 }}
-                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
-                  />
-                  <motion.div 
-                    animate={{ width: ["0%", "100%", "100%", "0%"] }}
-                    transition={{ duration: 4, repeat: Infinity, times: [0, 0.3, 0.8, 1], delay: 0.7 }}
-                    className="h-2 sm:h-3 bg-primary-foreground/50 rounded"
-                  />
-                </div>
+            {/* Message 2 */}
+            <div className="flex items-start gap-3 flex-row-reverse">
+              <div className="w-8 h-8 rounded-full bg-primary/60 flex items-center justify-center flex-shrink-0">
+                <PixelIcon name="user" className="w-4 h-4" />
               </div>
-              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary/60 flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
+              <div className="bg-primary/10 rounded-2xl rounded-tr-none px-4 py-3 flex-1">
+                <div className="h-2 bg-primary/30 rounded w-full mb-2"></div>
+                <div className="h-2 bg-primary/30 rounded w-2/3"></div>
               </div>
             </div>
-            
-            {/* Status Icons */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center"
-              >
-                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="hsl(var(--primary))" />
-              </motion.div>
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/60 flex items-center justify-center"
-              >
-                <PixelIcon name="message" className="w-6 h-6 sm:w-8 sm:h-8" />
-              </motion.div>
+            {/* Status */}
+            <div className="flex items-center justify-center gap-2 pt-4">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+              <span className="text-sm text-muted-foreground">Live connection</span>
             </div>
           </div>
         </div>
@@ -1771,78 +1719,33 @@ const HowItWorksCarousel = () => {
       title: "Report in your inbox. Tomorrow.",
       description: "AI-structured report with photos, findings, and action items—ready for your QM system. No more waiting weeks for documentation.",
       visual: (
-        <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
-            {/* Report Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-3"
-            >
-              <div className="flex items-center justify-between mb-3 sm:mb-4">
-                <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-10 h-10 sm:w-14 sm:h-14" color="hsl(var(--primary))" />
-                </div>
-                <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-12 h-12 sm:w-18 sm:h-18" color="hsl(var(--primary))" />
+        <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
+          <div className="w-full max-w-[280px] sm:max-w-[320px] space-y-4">
+            {/* Report Preview */}
+            <div className="bg-muted rounded-xl p-4">
+              <div className="flex items-center gap-3 mb-4">
+                <PixelIcon name="analytics" className="w-6 h-6" color="hsl(var(--primary))" />
+                <div className="flex-1">
+                  <div className="h-2 bg-border rounded w-3/4 mb-1.5"></div>
+                  <div className="h-2 bg-border rounded w-1/2"></div>
                 </div>
               </div>
-              
-              {/* Report Lines */}
-              <div className="space-y-2">
-                <div className="h-2 sm:h-3 bg-border rounded w-full"></div>
-                <div className="h-2 sm:h-3 bg-border rounded w-5/6"></div>
-                <div className="h-2 sm:h-3 bg-border rounded w-4/6"></div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-background rounded-lg p-3 text-center">
+                  <div className="text-xl font-bold text-primary">95%</div>
+                  <div className="text-xs text-muted-foreground">Score</div>
+                </div>
+                <div className="bg-background rounded-lg p-3 text-center">
+                  <div className="text-xl font-bold text-primary">A+</div>
+                  <div className="text-xs text-muted-foreground">Grade</div>
+                </div>
               </div>
-            </motion.div>
-            
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="bg-primary/10 rounded-xl p-3 sm:p-4 text-center"
-              >
-                <div className="text-2xl sm:text-3xl font-black text-primary mb-2">95%</div>
-                <div className="h-1 bg-border rounded mx-auto w-12"></div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-                className="bg-primary/5 rounded-xl p-3 sm:p-4 text-center"
-              >
-                <div className="text-2xl sm:text-3xl font-bold text-primary/80 mb-2">A+</div>
-                <div className="h-1 bg-border rounded mx-auto w-12"></div>
-              </motion.div>
             </div>
-            
-            {/* Chart Bars */}
-            <div className="flex items-end gap-2 h-12 sm:h-20 mb-3">
-              {[60, 80, 95, 70].map((height, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${height}%` }}
-                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                  className={`rounded-t flex-1 ${
-                    i % 2 === 0 ? 'bg-primary' : 'bg-primary/60'
-                  }`}
-                ></motion.div>
-              ))}
+            {/* Download */}
+            <div className="bg-primary text-primary-foreground px-4 py-2.5 rounded-xl text-center font-semibold text-sm flex items-center justify-center gap-2">
+              <PixelIcon name="checkbox-on" className="w-4 h-4" />
+              Report Ready
             </div>
-            
-            {/* Download Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="bg-primary text-primary-foreground px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3"
-            >
-              <PixelIcon name="shield" className="w-4 h-4 sm:w-6 sm:h-6" />
-              <span className="text-sm sm:text-base">Report Ready</span>
-            </motion.div>
           </div>
         </div>
       )
