@@ -18,7 +18,7 @@ import industryAutomotive from "@/assets/industry-automotive.jpg";
 import industryAerospace from "@/assets/industry-aerospace.jpg";
 import industryMedical from "@/assets/industry-medical.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
-import industryCryogenicModern from "@/assets/industry-cryogenic-modern.jpg";
+import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
 import {
   Dialog,
@@ -1355,7 +1355,7 @@ const IndustryUseCasesGrid = () => {
       ]
     },
     {
-      image: industryCryogenicModern,
+      image: industryValveBwGreen,
       title: "Chemical & Process Industry: REACH Compliance & Process Safety",
       useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
       solutions: [
