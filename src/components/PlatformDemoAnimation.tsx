@@ -45,349 +45,197 @@ const WindowChrome = ({ title, children }: { title: string; children: React.Reac
   </div>
 );
 
-// Step 1: Professional AI Supplier Discovery
+// Step 1: Professional AI Supplier Discovery - Enterprise Dashboard Style
 const SupplierSearchDemo = () => {
   const [phase, setPhase] = useState<'chat' | 'searching' | 'results' | 'profile'>('chat');
-  const [chatStep, setChatStep] = useState(0);
+  const [selectedSupplier, setSelectedSupplier] = useState(0);
   
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
-    setPhase('chat');
-    setChatStep(0);
-    
-    timers.push(setTimeout(() => setChatStep(1), 300));
-    timers.push(setTimeout(() => setChatStep(2), 900));
-    timers.push(setTimeout(() => setChatStep(3), 1500));
-    timers.push(setTimeout(() => setChatStep(4), 2100));
-    timers.push(setTimeout(() => setChatStep(5), 2700));
-    timers.push(setTimeout(() => setPhase('searching'), 3200));
-    timers.push(setTimeout(() => setPhase('results'), 4000));
-    timers.push(setTimeout(() => setPhase('profile'), 5500));
-    
+    setPhase('searching');
+    timers.push(setTimeout(() => setPhase('results'), 1500));
+    timers.push(setTimeout(() => setPhase('profile'), 6000));
     return () => timers.forEach(t => clearTimeout(t));
   }, []);
 
   const suppliers = [
-    { name: "DMG MORI AG", location: "Bielefeld, Germany", certs: ["ISO 9001", "IATF 16949"], score: 98, employees: "12K+", match: 98 },
-    { name: "Precision CNC Solutions", location: "Stuttgart, Germany", certs: ["ISO 9001", "ISO 14001"], score: 94, employees: "850", match: 94 },
-    { name: "TechMold Industries", location: "Shanghai, China", certs: ["IATF 16949", "TS 16949"], score: 89, employees: "2.4K", match: 91 },
-    { name: "AutoPrecision GmbH", location: "Munich, Germany", certs: ["VDA 6.3", "IATF 16949"], score: 91, employees: "1.2K", match: 89 },
-    { name: "Jiangsu Metalworks", location: "Suzhou, China", certs: ["ISO 9001", "IATF 16949"], score: 87, employees: "3.8K", match: 86 },
-    { name: "Bavaria CNC Tech", location: "Augsburg, Germany", certs: ["ISO 9001", "AS9100"], score: 92, employees: "620", match: 84 },
+    { name: "DMG MORI AG", location: "Bielefeld, Germany", certs: ["ISO 9001", "IATF 16949"], employees: "12,000+", match: 98, revenue: "€2.5B", established: "1870" },
+    { name: "Precision CNC Solutions", location: "Stuttgart, Germany", certs: ["ISO 9001", "ISO 14001"], employees: "850", match: 94, revenue: "€85M", established: "1998" },
+    { name: "TechMold Industries", location: "Shanghai, China", certs: ["IATF 16949", "VDA 6.3"], employees: "2,400", match: 91, revenue: "€120M", established: "2005" },
+    { name: "AutoPrecision GmbH", location: "Munich, Germany", certs: ["VDA 6.3", "IATF 16949"], employees: "1,200", match: 89, revenue: "€95M", established: "1992" },
+  ];
+
+  const searchCriteria = [
+    { label: "Industry", value: "Automotive" },
+    { label: "Process", value: "CNC Machining" },
+    { label: "Certification", value: "IATF 16949" },
+    { label: "Region", value: "Germany, China" },
+    { label: "Capacity", value: "50K+ parts/year" },
   ];
 
   return (
-    <WindowChrome title="SearchPro+ — AI Supplier Discovery">
-      <div className="h-full flex">
-        {/* Left: AI Chat Interface */}
-        <div className="w-2/5 flex flex-col border-r border-[#C0C0C0]/10">
-          {/* AI Header */}
-          <div className="p-4 border-b border-[#C0C0C0]/10">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1391BF] to-[#0A7FA5] flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-white font-semibold text-sm">AIVOO Discovery</div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#7CC2A7] animate-pulse" />
-                  <span className="text-[#C0C0C0]/60 text-xs">Analyzing 25M+ suppliers</span>
-                </div>
-              </div>
+    <WindowChrome title="ScanPro+ — Supplier Discovery">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Navigation Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="text-sm font-medium text-gray-900">AI-Powered Search</span>
             </div>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="text-sm text-gray-500">Analyzing 25M+ suppliers globally</span>
           </div>
-          
-          {/* Chat Messages */}
-          <div className="flex-1 p-4 space-y-3 overflow-hidden">
-            {chatStep >= 1 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="bg-[#161616] rounded-xl rounded-tl-sm p-3 max-w-[85%]">
-                  <p className="text-white/90 text-sm leading-relaxed">Welcome! I'll help you find the perfect supplier. What are you looking for?</p>
-                </div>
-              </motion.div>
-            )}
-            
-            {chatStep >= 2 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-                <div className="bg-[#1391BF] rounded-xl rounded-tr-sm p-3 max-w-[85%]">
-                  <p className="text-white text-sm">I need CNC machining suppliers for automotive parts, IATF certified</p>
-                </div>
-              </motion.div>
-            )}
-            
-            {chatStep >= 3 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="bg-[#161616] rounded-xl rounded-tl-sm p-3 max-w-[85%]">
-                  <p className="text-white/90 text-sm leading-relaxed">Great! Do you have a preferred region? And what's your expected annual volume?</p>
-                </div>
-              </motion.div>
-            )}
-            
-            {chatStep >= 4 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-                <div className="bg-[#1391BF] rounded-xl rounded-tr-sm p-3 max-w-[85%]">
-                  <p className="text-white text-sm">Germany or China, high-volume production, 50K+ parts/year</p>
-                </div>
-              </motion.div>
-            )}
-            
-            {chatStep >= 5 && (
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="bg-[#161616] rounded-xl rounded-tl-sm p-3 max-w-[85%]">
-                  <p className="text-white/90 text-sm leading-relaxed">Perfect! Searching for IATF-certified CNC suppliers in Germany and China with high-volume capability...</p>
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {['CNC Machining', 'IATF 16949', 'Germany', 'China', '50K+ capacity'].map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 bg-[#1391BF]/20 text-[#1391BF] text-xs rounded-full">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-            
-            {phase === 'searching' && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#161616] flex items-center justify-center flex-shrink-0">
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} 
-                    className="w-4 h-4 border-2 border-[#1391BF] border-t-transparent rounded-full" 
-                  />
-                </div>
-                <div className="bg-[#161616] rounded-xl rounded-tl-sm p-3">
-                  <p className="text-[#1391BF] text-sm">Analyzing suppliers across 47 databases...</p>
-                </div>
-              </motion.div>
-            )}
-          </div>
-          
-          {/* Input */}
-          <div className="p-4 border-t border-[#C0C0C0]/10">
-            <div className="flex items-center gap-2 bg-[#161616] rounded-xl px-4 py-3">
-              <input type="text" placeholder="Describe what you're looking for..." className="flex-1 bg-transparent text-white/80 placeholder:text-[#C0C0C0]/40 outline-none text-sm" />
-              <div className="w-8 h-8 rounded-lg bg-[#1391BF] flex items-center justify-center cursor-pointer hover:bg-[#1391BF]/80 transition-colors">
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </div>
-            </div>
+          {phase !== 'searching' && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm text-emerald-600 font-medium">{suppliers.length} matches found</span>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Search Criteria Pills */}
+        <div className="px-6 py-3 bg-white border-b border-gray-100">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs text-gray-400">Filters:</span>
+            {searchCriteria.map((criteria, i) => (
+              <motion.span 
+                key={criteria.label}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className="px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md text-xs font-medium"
+              >
+                {criteria.label}: <span className="text-gray-900">{criteria.value}</span>
+              </motion.span>
+            ))}
           </div>
         </div>
         
-        {/* Right: Results */}
-        <div className="w-3/5 flex flex-col">
-          {(phase === 'results' || phase === 'profile') && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full flex flex-col">
-              {phase === 'results' && (
-                <>
-                  <div className="p-4 border-b border-[#C0C0C0]/10">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <svg className="w-5 h-5 text-[#7CC2A7]" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                        <span className="text-white font-medium">6 Matching Suppliers</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="px-2 py-1 bg-[#161616] text-[#C0C0C0]/70 rounded-lg text-xs">Sort: Match %</span>
-                        <span className="px-2 py-1 bg-[#161616] text-[#C0C0C0]/70 rounded-lg text-xs">Filter</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1 p-4 overflow-hidden">
-                    <div className="grid grid-cols-2 gap-3 h-full">
-                      {suppliers.map((supplier, i) => (
-                        <motion.div
-                          key={supplier.name}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.08 }}
-                          className={`bg-[#161616] rounded-xl p-3 cursor-pointer transition-all hover:bg-[#1a1a1a] ${i === 0 ? 'ring-2 ring-[#1391BF]' : ''}`}
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-white font-medium text-sm truncate">{supplier.name}</div>
-                              <div className="flex items-center gap-1 text-[#C0C0C0]/60 text-xs mt-0.5">
-                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                </svg>
-                                <span className="truncate">{supplier.location}</span>
-                              </div>
-                            </div>
-                            <div className="text-right ml-2">
-                              <div className="text-[#7CC2A7] font-bold text-lg">{supplier.match}%</div>
-                              <div className="text-[#C0C0C0]/40 text-[10px]">Match</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-[#C0C0C0]/50 text-xs">{supplier.employees} employees</span>
-                            <span className="text-[#C0C0C0]/30">•</span>
-                            <span className="text-[#7CC2A7] text-xs">Score: {supplier.score}</span>
-                          </div>
-                          <div className="flex gap-1 flex-wrap">
-                            {supplier.certs.map((cert) => (
-                              <span key={cert} className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] text-[10px] rounded">
-                                {cert}
-                              </span>
-                            ))}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-              
-              {phase === 'profile' && (
-                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="h-full flex flex-col p-4">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#0A0A0A] font-bold text-sm text-center leading-tight">DMG<br/>MORI</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-white font-semibold text-xl">DMG MORI AG</div>
-                      <div className="flex items-center gap-2 text-[#C0C0C0]/60 text-sm mt-1">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        </svg>
-                        <span>Bielefeld, Germany</span>
-                        <span className="px-2 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded text-xs">Verified</span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-[#7CC2A7] font-bold text-3xl">98%</div>
-                      <div className="text-[#C0C0C0]/40 text-xs">Match Score</div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-4 gap-2 mb-4">
-                    {[
-                      { label: 'Employees', value: '12K+' },
-                      { label: 'Revenue', value: '€2.5B' },
-                      { label: 'Founded', value: '1870' },
-                      { label: 'Sites', value: '154' },
-                    ].map((stat) => (
-                      <div key={stat.label} className="bg-[#161616] rounded-xl p-3 text-center">
-                        <div className="text-white font-semibold text-base">{stat.value}</div>
-                        <div className="text-[#C0C0C0]/40 text-xs">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-4 flex-1 min-h-0">
-                    <div className="flex-1 space-y-3">
-                      <div>
-                        <div className="text-[#C0C0C0]/60 text-xs mb-2">Certifications</div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {['ISO 9001', 'IATF 16949', 'ISO 14001', 'ISO 45001', 'VDA 6.3'].map((cert) => (
-                            <span key={cert} className="px-2 py-1 bg-[#7CC2A7]/15 text-[#7CC2A7] text-xs rounded-lg border border-[#7CC2A7]/30">
-                              {cert}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <div className="text-[#C0C0C0]/60 text-xs mb-2">Key Equipment</div>
-                        <div className="space-y-1.5">
-                          {['5-Axis CNC NLX 2500', 'DMC 125 FD duoBLOCK', 'CMM Zeiss PRISMO'].map((eq) => (
-                            <div key={eq} className="flex items-center gap-2 text-sm text-white/70">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#1391BF]" />
-                              <span>{eq}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1 space-y-3">
-                      <div>
-                        <div className="text-[#C0C0C0]/60 text-xs mb-2">Audit History</div>
-                        <div className="space-y-1.5">
-                          {[
-                            { date: 'Dec 2024', type: 'IATF 16949', score: 96 },
-                            { date: 'Jun 2024', type: 'VDA 6.3', score: 94 },
-                          ].map((audit, i) => (
-                            <div key={i} className="flex items-center justify-between bg-[#161616] rounded-lg p-2">
-                              <div>
-                                <div className="text-white/80 text-sm">{audit.type}</div>
-                                <div className="text-[#C0C0C0]/40 text-xs">{audit.date}</div>
-                              </div>
-                              <span className="text-[#7CC2A7] font-medium">{audit.score}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <div className="text-[#C0C0C0]/60 text-xs mb-2">Key Customers</div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {['BMW', 'Audi', 'Mercedes', 'Bosch', 'ZF'].map((customer) => (
-                            <span key={customer} className="px-2 py-1 bg-[#1391BF]/10 text-[#1391BF] text-xs rounded-lg">
-                              {customer}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <button className="w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium mt-4 flex items-center justify-center gap-2">
-                    <span>Add to Audit Order</span>
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </motion.div>
-              )}
-            </motion.div>
-          )}
-          
-          {phase === 'chat' && (
-            <div className="h-full flex items-center justify-center p-8">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-[#161616] flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-[#C0C0C0]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <div className="text-white/60 text-sm">Start a conversation to discover suppliers</div>
-                <div className="text-[#C0C0C0]/40 text-xs mt-1">AIVOO analyzes 25M+ companies worldwide</div>
-              </div>
-            </div>
-          )}
-          
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
           {phase === 'searching' && (
-            <div className="h-full flex items-center justify-center p-8">
+            <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <motion.div 
                   animate={{ rotate: 360 }} 
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="w-16 h-16 rounded-2xl bg-[#1391BF]/20 flex items-center justify-center mx-auto mb-4"
-                >
-                  <svg className="w-8 h-8 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </motion.div>
-                <div className="text-white text-sm font-medium">Searching suppliers...</div>
-                <div className="text-[#1391BF] text-xs mt-1">Analyzing 47 databases</div>
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  className="w-12 h-12 rounded-full border-3 border-[#1391BF] border-t-transparent mx-auto mb-4"
+                  style={{ borderWidth: 3 }}
+                />
+                <div className="text-gray-900 font-medium">Searching suppliers...</div>
+                <div className="text-gray-500 text-sm mt-1">Analyzing 47 databases</div>
               </div>
             </div>
+          )}
+
+          {(phase === 'results' || phase === 'profile') && (
+            <>
+              {/* Supplier List */}
+              <div className="w-2/5 bg-white border-r border-gray-100 flex flex-col">
+                <div className="p-4 border-b border-gray-100">
+                  <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Search Results</div>
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  {suppliers.map((supplier, i) => (
+                    <motion.div
+                      key={supplier.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.1 }}
+                      className={`p-4 border-b border-gray-100 cursor-pointer transition-all ${
+                        selectedSupplier === i 
+                          ? 'bg-[#1391BF]/5 border-l-2 border-l-[#1391BF]' 
+                          : 'hover:bg-gray-50'
+                      }`}
+                      onClick={() => setSelectedSupplier(i)}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{supplier.name}</div>
+                          <div className="text-xs text-gray-500 mt-0.5">{supplier.location}</div>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className={`text-sm font-bold ${supplier.match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                            {supplier.match}%
+                          </div>
+                          <span className="text-xs text-gray-400">match</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {supplier.certs.map((cert) => (
+                          <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                            {cert}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Supplier Detail */}
+              <div className="flex-1 p-6 overflow-y-auto">
+                <motion.div 
+                  key={selectedSupplier}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-5"
+                >
+                  {/* Header */}
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h2 className="text-xl font-semibold text-gray-900">{suppliers[selectedSupplier].name}</h2>
+                      <p className="text-sm text-gray-500 mt-0.5">{suppliers[selectedSupplier].location}</p>
+                    </div>
+                    <div className="text-right">
+                      <div className={`text-2xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                        {suppliers[selectedSupplier].match}%
+                      </div>
+                      <div className="text-xs text-gray-400">Match Score</div>
+                    </div>
+                  </div>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: 'Employees', value: suppliers[selectedSupplier].employees },
+                      { label: 'Revenue', value: suppliers[selectedSupplier].revenue },
+                      { label: 'Established', value: suppliers[selectedSupplier].established },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-gray-50 rounded-xl p-3 text-center">
+                        <div className="text-gray-900 font-semibold">{stat.value}</div>
+                        <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Certifications */}
+                  <div>
+                    <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
+                    <div className="flex gap-2 flex-wrap">
+                      {suppliers[selectedSupplier].certs.map((cert) => (
+                        <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg font-medium border border-emerald-200">
+                          {cert}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <motion.button 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
+                  >
+                    Add to Audit Order
+                  </motion.button>
+                </motion.div>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -395,142 +243,185 @@ const SupplierSearchDemo = () => {
   );
 };
 
-// Step 2: Order Audit
-const OrderAuditDemo = () => (
-  <WindowChrome title="ScanPro+ — Order Audit">
-    <div className="h-full flex">
-      <div className="w-1/2 p-4 flex flex-col border-r border-[#C0C0C0]/10">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-white/90 font-medium text-sm">Selected Suppliers</span>
-          <span className="px-2 py-1 bg-[#1391BF]/20 text-[#1391BF] rounded text-xs">3 Selected</span>
+// Step 2: Order Audit - Enterprise Dashboard Style
+const OrderAuditDemo = () => {
+  const [orderPhase, setOrderPhase] = useState<'configuring' | 'confirmed'>('configuring');
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setOrderPhase('confirmed'), 6000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const suppliers = [
+    { name: "DMG MORI AG", location: "Bielefeld, Germany", standard: "IATF 16949", price: "€700", days: 2 },
+    { name: "TechMold Industries", location: "Shanghai, China", standard: "VDA 6.3", price: "€700", days: 2 },
+    { name: "Precision CNC Solutions", location: "Stuttgart, Germany", standard: "ISO 9001", price: "€700", days: 2 },
+  ];
+
+  return (
+    <WindowChrome title="ScanPro+ — Order Configuration">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Navigation */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-medium text-gray-900">Audit Order</span>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="px-2 py-1 bg-[#1391BF]/10 text-[#1391BF] text-xs font-medium rounded border border-[#1391BF]/20">
+              {suppliers.length} Suppliers Selected
+            </span>
+          </div>
+          <div className="text-sm text-gray-500">Order #ORD-2025-0847</div>
         </div>
         
-        <div className="flex-1 space-y-2 overflow-hidden">
-          {[
-            { name: "DMG MORI AG", location: "Bielefeld, Germany", score: 98, standard: "IATF 16949" },
-            { name: "TechMold Industries", location: "Shanghai, China", score: 89, standard: "VDA 6.3" },
-            { name: "Precision CNC Solutions", location: "Stuttgart, Germany", score: 94, standard: "ISO 9001" },
-          ].map((supplier, i) => (
-            <motion.div
-              key={supplier.name}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.15 }}
-              className="p-3 rounded-xl bg-[#1391BF]/10 border border-[#1391BF]/30"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded bg-[#1391BF] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                  </svg>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <div className="text-white/90 text-sm font-medium truncate">{supplier.name}</div>
-                    <span className="text-[#7CC2A7] text-xs">{supplier.score}</span>
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left: Supplier List */}
+          <div className="w-1/2 bg-white border-r border-gray-100 flex flex-col">
+            <div className="p-4 border-b border-gray-100">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Selected Suppliers</div>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              {suppliers.map((supplier, i) => (
+                <motion.div
+                  key={supplier.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-4 border-b border-gray-100"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded bg-[#1391BF] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-gray-900">{supplier.name}</div>
+                        <div className="text-xs text-gray-500">{supplier.location}</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-semibold text-gray-900">{supplier.price}</div>
+                      <div className="text-xs text-gray-400">{supplier.days} days</div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-[#C0C0C0]/50">{supplier.location}</span>
-                    <span className="px-1.5 py-0.5 bg-[#7CC2A7]/15 text-[#7CC2A7] rounded text-xs">{supplier.standard}</span>
+                  <div className="ml-8">
+                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                      {supplier.standard}
+                    </span>
                   </div>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Documents */}
+            <div className="p-4 border-t border-gray-100">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Documents</div>
+              <div className="space-y-2">
+                {[
+                  { name: "IATF_Checklist_v2.pdf", type: "PDF" },
+                  { name: "Custom_Requirements.xlsx", type: "XLS" },
+                ].map((doc, i) => (
+                  <motion.div 
+                    key={doc.name}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                    className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"
+                  >
+                    <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold ${
+                      doc.type === 'PDF' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
+                    }`}>
+                      {doc.type}
+                    </div>
+                    <span className="text-xs text-gray-600 flex-1 truncate">{doc.name}</span>
+                    <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        <div className="mt-4 pt-3 border-t border-[#C0C0C0]/10">
-          <div className="text-[#C0C0C0]/60 text-xs mb-2">Uploaded Documents</div>
-          <div className="space-y-1.5">
-            {[
-              { name: "IATF_Checklist_v2.pdf", size: "2.4 MB", type: "PDF" },
-              { name: "Custom_Requirements.xlsx", size: "156 KB", type: "XLS" },
-            ].map((doc, i) => (
-              <motion.div key={doc.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + i * 0.1 }}
-                className="flex items-center gap-2 p-2 bg-[#161616] rounded-lg"
-              >
-                <div className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${doc.type === 'PDF' ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'}`}>
-                  {doc.type}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-white/80 text-xs truncate">{doc.name}</div>
-                  <div className="text-[#C0C0C0]/40 text-xs">{doc.size}</div>
-                </div>
-                <svg className="w-4 h-4 text-[#7CC2A7]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className="w-1/2 p-4 flex flex-col">
-        <div className="text-white/90 font-medium text-sm mb-4">Audit Configuration</div>
-        
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-[#161616] rounded-xl p-3">
-            <div className="text-[#C0C0C0]/50 text-xs mb-1">Start Date</div>
-            <div className="text-white text-sm font-medium">Feb 15, 2025</div>
-          </div>
-          <div className="bg-[#161616] rounded-xl p-3">
-            <div className="text-[#C0C0C0]/50 text-xs mb-1">Duration</div>
-            <div className="text-white text-sm font-medium">2 Days / Audit</div>
-          </div>
-        </div>
-        
-        <div className="mb-4">
-          <div className="text-[#C0C0C0]/60 text-xs mb-2">Assigned Auditors</div>
-          <div className="space-y-2">
-            {[
-              { name: "Dr. Schmidt", initials: "DS", role: "Germany • Lead Auditor IATF" },
-              { name: "Wei Liu", initials: "WL", role: "China • VDA 6.3 Specialist" },
-            ].map((auditor, i) => (
-              <motion.div key={auditor.name} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + i * 0.15 }}
-                className="flex items-center gap-3 p-2 bg-[#161616] rounded-xl"
-              >
-                <div className="w-8 h-8 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-xs font-bold">
-                  {auditor.initials}
-                </div>
-                <div className="flex-1">
-                  <div className="text-white/90 text-sm font-medium">{auditor.name}</div>
-                  <div className="text-[#C0C0C0]/50 text-xs">{auditor.role}</div>
-                </div>
-                <svg className="w-4 h-4 text-[#7CC2A7]" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="bg-[#161616] rounded-xl p-4 mb-4">
-          <div className="text-[#C0C0C0]/60 text-xs mb-3">Price Breakdown</div>
-          <div className="space-y-2 text-sm">
-            {[
-              { label: "DMG MORI (2 days)", price: "€700" },
-              { label: "TechMold (2 days)", price: "€700" },
-              { label: "Precision CNC (2 days)", price: "€700" },
-            ].map((item) => (
-              <div key={item.label} className="flex justify-between">
-                <span className="text-[#C0C0C0]/70">{item.label}</span>
-                <span className="text-white/90">{item.price}</span>
-              </div>
-            ))}
-            <div className="border-t border-[#C0C0C0]/10 pt-2 mt-2 flex justify-between">
-              <span className="text-white font-medium">Total (3 Audits)</span>
-              <span className="text-[#7CC2A7] font-bold text-lg">€2,100</span>
             </div>
           </div>
+          
+          {/* Right: Configuration */}
+          <div className="w-1/2 p-5 flex flex-col">
+            <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">Configuration</div>
+            
+            {/* Date & Duration */}
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              <div className="bg-white rounded-xl p-4 border border-gray-200">
+                <div className="text-xs text-gray-400 mb-1">Start Date</div>
+                <div className="text-gray-900 font-medium">Feb 15, 2025</div>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-gray-200">
+                <div className="text-xs text-gray-400 mb-1">Duration</div>
+                <div className="text-gray-900 font-medium">2 Days / Audit</div>
+              </div>
+            </div>
+            
+            {/* Auditors */}
+            <div className="mb-5">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Assigned Auditors</div>
+              <div className="space-y-2">
+                {[
+                  { name: "Dr. Klaus Schmidt", role: "Lead Auditor · IATF", region: "Germany", image: auditorGen7 },
+                  { name: "Wei Liu", role: "VDA 6.3 Specialist", region: "China", image: auditorGen2 },
+                ].map((auditor, i) => (
+                  <motion.div 
+                    key={auditor.name}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + i * 0.1 }}
+                    className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-200"
+                  >
+                    <img src={auditor.image} alt={auditor.name} className="w-10 h-10 rounded-full object-cover" />
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-gray-900">{auditor.name}</div>
+                      <div className="text-xs text-gray-500">{auditor.role}</div>
+                    </div>
+                    <span className="text-xs text-gray-400">{auditor.region}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Price Summary */}
+            <div className="bg-white rounded-xl p-4 border border-gray-200 mb-5">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Price Summary</div>
+              <div className="space-y-2">
+                {suppliers.map((s) => (
+                  <div key={s.name} className="flex justify-between text-sm">
+                    <span className="text-gray-600">{s.name}</span>
+                    <span className="text-gray-900">{s.price}</span>
+                  </div>
+                ))}
+                <div className="border-t border-gray-100 pt-2 mt-2 flex justify-between">
+                  <span className="text-gray-900 font-medium">Total</span>
+                  <span className="text-[#1391BF] font-bold text-lg">€2,100</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Action Button */}
+            <motion.button
+              className={`w-full py-3 rounded-xl text-sm font-medium transition-all ${
+                orderPhase === 'confirmed'
+                  ? 'bg-emerald-500 text-white'
+                  : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
+              }`}
+              animate={orderPhase === 'configuring' ? { scale: [1, 1.01, 1] } : {}}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              {orderPhase === 'confirmed' ? '✓ Order Confirmed' : 'Confirm & Order Audits'}
+            </motion.button>
+          </div>
         </div>
-        
-        <button className="w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium flex items-center justify-center gap-2 mt-auto">
-          Confirm & Order Audits
-        </button>
       </div>
-    </div>
-  </WindowChrome>
-);
+    </WindowChrome>
+  );
+};
 
 // Step 3: Auditor Dispatch - Professional Dashboard Style
 const AuditorDispatchDemo = () => {
@@ -794,136 +685,190 @@ const AuditorDispatchDemo = () => {
   );
 };
 
-// Step 4: Audit Execution in China
-const AuditExecutionDemo = () => (
-  <WindowChrome title="ScanPro+ — Live Audit: TechMold Industries, Shanghai">
-    <div className="h-full flex">
-      <div className="w-3/5 flex flex-col border-r border-[#C0C0C0]/10">
-        <div className="p-4 border-b border-[#C0C0C0]/10 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden">
-              <img src={factoryImage} alt="Factory" className="w-full h-full object-cover" />
+// Step 4: Audit Execution - Enterprise Dashboard Style
+const AuditExecutionDemo = () => {
+  const checklistItems = [
+    { code: "P6.1.1", item: "Process inputs defined", status: 'done', score: 9 },
+    { code: "P6.1.2", item: "Process sequence planned", status: 'done', score: 8 },
+    { code: "P6.2.1", item: "Personnel qualified", status: 'done', score: 9 },
+    { code: "P6.2.2", item: "Responsibility defined", status: 'current', score: null },
+    { code: "P6.3.1", item: "Equipment suitable", status: 'pending', score: null },
+    { code: "P6.3.2", item: "Measuring equipment", status: 'pending', score: null },
+  ];
+
+  return (
+    <WindowChrome title="ScanPro+ — Live Audit">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-sm font-medium text-emerald-600">Live Audit</span>
             </div>
-            <div>
-              <div className="text-white font-medium text-sm">TechMold Industries</div>
-              <div className="flex items-center gap-2 text-xs">
-                <span className="text-[#C0C0C0]/60">Shanghai, China</span>
-                <span className="px-1.5 py-0.5 bg-[#7CC2A7]/20 text-[#7CC2A7] rounded">VDA 6.3</span>
-              </div>
-            </div>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="text-sm text-gray-900 font-medium">TechMold Industries</span>
+            <span className="text-sm text-gray-500">Shanghai, China</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#7CC2A7] animate-pulse" />
-            <span className="text-[#7CC2A7] text-xs font-medium">Live</span>
-          </div>
+          <span className="px-2.5 py-1 bg-[#1391BF]/10 text-[#1391BF] text-xs font-medium rounded border border-[#1391BF]/20">
+            VDA 6.3
+          </span>
         </div>
         
-        <div className="flex-1 relative">
-          <img src={equipmentImage} alt="Equipment" className="w-full h-full object-cover" />
-          
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-            className="absolute inset-4 pointer-events-none"
-          >
-            <motion.div initial={{ scale: 1.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.8 }}
-              className="absolute top-4 left-4 right-[40%] bottom-[30%] border-2 border-[#7CC2A7] rounded-lg"
-            >
-              <div className="absolute -top-6 left-0 px-2 py-1 bg-[#7CC2A7] text-black text-xs font-bold rounded">
-                CNC Lathe NLX 2500 · 94%
-              </div>
-            </motion.div>
-            
-            <motion.div initial={{ scale: 1.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 1.0 }}
-              className="absolute top-[20%] right-4 w-24 h-16 border-2 border-[#1391BF] rounded-lg"
-            >
-              <div className="absolute -bottom-6 right-0 px-2 py-1 bg-[#1391BF] text-white text-xs font-bold rounded">
-                Control Panel
-              </div>
-            </motion.div>
-            
-            <motion.div initial={{ scale: 1.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 1.2 }}
-              className="absolute bottom-4 left-8 w-20 h-20 border-2 border-[#D8A860] rounded-lg"
-            >
-              <div className="absolute -top-6 left-0 px-2 py-1 bg-[#D8A860] text-black text-xs font-bold rounded">
-                Coolant System
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-      
-      <div className="w-2/5 flex flex-col">
-        <div className="p-4 border-b border-[#C0C0C0]/10">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-full bg-[#1391BF] flex items-center justify-center">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-white font-medium text-sm">AIVOO Assistant</div>
-              <div className="text-[#7CC2A7] text-xs">Active guidance</div>
-            </div>
-          </div>
-          
-          <div className="space-y-2">
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
-              className="bg-[#161616] rounded-lg p-3"
-            >
-              <p className="text-white/80 text-sm">Equipment detected: DMG MORI NLX 2500. Check calibration certificate for this machine.</p>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5 }}
-              className="bg-[#1391BF]/20 rounded-lg p-3"
-            >
-              <p className="text-white/80 text-sm">Where can I find the certificate?</p>
-            </motion.div>
-            
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5 }}
-              className="bg-[#161616] rounded-lg p-3"
-            >
-              <p className="text-white/80 text-sm">Ask the operator for the calibration folder. It should contain certificates dated within 12 months.</p>
-            </motion.div>
-          </div>
-        </div>
-        
-        <div className="flex-1 p-4 overflow-hidden">
-          <div className="text-white/90 font-medium text-sm mb-3">VDA 6.3 Checklist</div>
-          <div className="space-y-2">
-            {[
-              { item: "P6.1.1 Process inputs defined", status: 'done' },
-              { item: "P6.1.2 Process sequence planned", status: 'done' },
-              { item: "P6.2.1 Personnel qualified", status: 'done' },
-              { item: "P6.2.2 Responsibility defined", status: 'current' },
-              { item: "P6.3.1 Equipment suitable", status: 'pending' },
-              { item: "P6.3.2 Measuring equipment", status: 'pending' },
-            ].map((check, i) => (
-              <motion.div key={i} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
-                className={`flex items-center gap-3 p-2 rounded-lg ${check.status === 'current' ? 'bg-[#1391BF]/20 border border-[#1391BF]/50' : 'bg-[#161616]'}`}
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left: Live Feed */}
+          <div className="w-3/5 flex flex-col bg-gray-900">
+            <div className="flex-1 relative">
+              <img src={equipmentImage} alt="Equipment" className="w-full h-full object-cover" />
+              
+              {/* Detection Overlays */}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+                className="absolute inset-0 pointer-events-none"
               >
-                {check.status === 'done' ? (
-                  <div className="w-5 h-5 rounded bg-[#7CC2A7] flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <motion.div 
+                  initial={{ scale: 1.1, opacity: 0 }} 
+                  animate={{ scale: 1, opacity: 1 }} 
+                  transition={{ delay: 0.8 }}
+                  className="absolute top-[10%] left-[5%] right-[45%] bottom-[35%] border-2 border-emerald-400 rounded-lg bg-emerald-400/5"
+                >
+                  <div className="absolute -top-7 left-0 px-2 py-1 bg-emerald-500 text-white text-xs font-medium rounded-md flex items-center gap-1.5">
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
+                    CNC Lathe NLX 2500
                   </div>
-                ) : check.status === 'current' ? (
-                  <div className="w-5 h-5 rounded bg-[#1391BF] flex items-center justify-center">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-3 h-3 border-2 border-white border-t-transparent rounded-full"
-                    />
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ scale: 1.1, opacity: 0 }} 
+                  animate={{ scale: 1, opacity: 1 }} 
+                  transition={{ delay: 1.0 }}
+                  className="absolute top-[15%] right-[5%] w-28 h-20 border-2 border-[#1391BF] rounded-lg bg-[#1391BF]/5"
+                >
+                  <div className="absolute -bottom-7 right-0 px-2 py-1 bg-[#1391BF] text-white text-xs font-medium rounded-md">
+                    Control Panel
                   </div>
-                ) : (
-                  <div className="w-5 h-5 rounded border border-[#C0C0C0]/30" />
-                )}
-                <span className={`text-sm ${check.status === 'done' ? 'text-white/60' : 'text-white/90'}`}>{check.item}</span>
+                </motion.div>
               </motion.div>
-            ))}
+              
+              {/* Stats Overlay */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 border border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-gray-900">3/6</div>
+                        <div className="text-[10px] text-gray-400">Completed</div>
+                      </div>
+                      <div className="h-8 w-px bg-gray-200" />
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-emerald-600">26</div>
+                        <div className="text-[10px] text-gray-400">Avg Score</div>
+                      </div>
+                      <div className="h-8 w-px bg-gray-200" />
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-gray-900">47</div>
+                        <div className="text-[10px] text-gray-400">Evidence</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <img src={auditorGen2} alt="Auditor" className="w-8 h-8 rounded-full object-cover border-2 border-white" />
+                      <div>
+                        <div className="text-xs font-medium text-gray-900">Wei Liu</div>
+                        <div className="text-[10px] text-gray-400">Lead Auditor</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right: Checklist */}
+          <div className="w-2/5 bg-white flex flex-col">
+            <div className="p-4 border-b border-gray-100">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">VDA 6.3 Checklist</div>
+            </div>
+            
+            <div className="flex-1 p-4 overflow-y-auto">
+              <div className="space-y-2">
+                {checklistItems.map((check, i) => (
+                  <motion.div 
+                    key={check.code}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className={`p-3 rounded-xl border transition-all ${
+                      check.status === 'current' 
+                        ? 'bg-[#1391BF]/5 border-[#1391BF]/30' 
+                        : check.status === 'done'
+                        ? 'bg-gray-50 border-gray-100'
+                        : 'bg-white border-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      {check.status === 'done' ? (
+                        <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                          </svg>
+                        </div>
+                      ) : check.status === 'current' ? (
+                        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center flex-shrink-0">
+                          <motion.div 
+                            animate={{ rotate: 360 }} 
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="w-3 h-3 border-2 border-white border-t-transparent rounded-full"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 rounded-full border-2 border-gray-200 flex-shrink-0" />
+                      )}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-mono text-gray-400">{check.code}</span>
+                          <span className={`text-sm ${check.status === 'done' ? 'text-gray-500' : 'text-gray-900'}`}>
+                            {check.item}
+                          </span>
+                        </div>
+                      </div>
+                      {check.score && (
+                        <span className="text-sm font-bold text-emerald-600">{check.score}</span>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            {/* AI Assistant */}
+            <div className="p-4 border-t border-gray-100 bg-gray-50">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#1391BF] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-[#1391BF] mb-1">AI Assistant</div>
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="text-xs text-gray-600 leading-relaxed"
+                  >
+                    Equipment detected: DMG MORI NLX 2500. Check calibration certificate for this machine.
+                  </motion.p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </WindowChrome>
-);
+    </WindowChrome>
+  );
+};
 
 // Step 5: Professional Audit Report Generation
 const ReportDemo = () => {
@@ -1362,137 +1307,165 @@ const ReportDemo = () => {
   );
 };
 
-// Step 6: Follow-up Manager
-const FollowUpDemo = () => (
-  <WindowChrome title="ScanPro+ — Follow-up Manager">
-    <div className="h-full flex">
-      <div className="w-3/5 p-4 flex flex-col border-r border-[#C0C0C0]/10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-white font-medium text-lg">Open Actions</div>
-          <div className="flex gap-2">
-            <span className="px-2 py-1 bg-[#C4564F]/20 text-[#C4564F] rounded text-xs">3 Overdue</span>
-            <span className="px-2 py-1 bg-[#D8A860]/20 text-[#D8A860] rounded text-xs">5 In Progress</span>
+// Step 6: Follow-up Manager - Enterprise Dashboard Style
+const FollowUpDemo = () => {
+  const tasks = [
+    { title: "Update CMM calibration records", responsible: "Zhang Wei", deadline: "Feb 28, 2025", progress: 75, status: 'In Progress', priority: 'medium' },
+    { title: "Conduct operator training", responsible: "Li Ming", deadline: "Mar 5, 2025", progress: 40, status: 'In Progress', priority: 'low' },
+    { title: "Revise Process FMEA", responsible: "Chen Hui", deadline: "Feb 20, 2025", progress: 20, status: 'Overdue', priority: 'high' },
+  ];
+
+  return (
+    <WindowChrome title="ScanPro+ — Follow-up Manager">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-medium text-gray-900">Action Tracker</span>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="text-sm text-gray-500">TechMold Industries</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded border border-red-200">1 Overdue</span>
+            <span className="px-2 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded border border-amber-200">2 In Progress</span>
           </div>
         </div>
         
-        <div className="space-y-3 flex-1 overflow-hidden">
-          {[
-            { title: "Update CMM calibration records", responsible: "Zhang Wei", deadline: "Feb 28, 2025", progress: 75, status: 'In Progress', statusColor: '#D8A860', subtasks: [{ text: 'Collect certificates', done: true }, { text: 'Update database', done: true }, { text: 'Management review', done: false }] },
-            { title: "Conduct operator training", responsible: "Li Ming", deadline: "Mar 5, 2025", progress: 40, status: 'In Progress', statusColor: '#D8A860', subtasks: [{ text: 'Schedule sessions', done: true }, { text: 'Prepare materials', done: false }, { text: 'Execute training', done: false }] },
-            { title: "Revise Process FMEA", responsible: "Chen Hui", deadline: "Feb 20, 2025", progress: 20, status: 'Overdue', statusColor: '#C4564F', subtasks: [{ text: 'Gather input data', done: true }, { text: 'Risk assessment', done: false }, { text: 'Document update', done: false }] },
-          ].map((task, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + i * 0.15 }}
-              className="bg-[#161616] rounded-xl p-4"
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex-1">
-                  <div className="text-white font-medium text-sm">{task.title}</div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-xs font-bold">
-                      {task.responsible.split(' ').map(n => n[0]).join('')}
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left: Task List */}
+          <div className="w-3/5 bg-white border-r border-gray-100 flex flex-col">
+            <div className="p-4 border-b border-gray-100">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Open Actions</div>
+            </div>
+            
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto">
+              {tasks.map((task, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
+                  className={`p-4 rounded-xl border ${
+                    task.status === 'Overdue' 
+                      ? 'bg-red-50/50 border-red-200' 
+                      : 'bg-white border-gray-200'
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-medium text-gray-900">{task.title}</span>
+                        {task.priority === 'high' && (
+                          <span className="px-1.5 py-0.5 bg-red-100 text-red-600 text-[10px] rounded font-medium">High</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-[10px] font-bold">
+                          {task.responsible.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <span className="text-xs text-gray-500">{task.responsible}</span>
+                        <span className="text-gray-300">·</span>
+                        <span className={`text-xs ${task.status === 'Overdue' ? 'text-red-600' : 'text-gray-400'}`}>
+                          Due: {task.deadline}
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[#C0C0C0]/70 text-xs">{task.responsible}</span>
-                    <span className="text-[#C0C0C0]/30">•</span>
-                    <span className="text-[#C0C0C0]/50 text-xs">Due: {task.deadline}</span>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${
+                      task.status === 'Overdue' 
+                        ? 'bg-red-100 text-red-600' 
+                        : 'bg-amber-100 text-amber-600'
+                    }`}>
+                      {task.status}
+                    </span>
                   </div>
-                </div>
-                <span className="px-2 py-1 rounded text-xs font-medium" style={{ backgroundColor: `${task.statusColor}20`, color: task.statusColor }}>
-                  {task.status}
-                </span>
-              </div>
-              
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex-1 h-2 bg-[#C0C0C0]/10 rounded-full overflow-hidden">
-                  <motion.div initial={{ width: 0 }} animate={{ width: `${task.progress}%` }} transition={{ delay: 0.6 + i * 0.15, duration: 0.4 }}
-                    style={{ backgroundColor: task.statusColor }} className="h-full rounded-full"
-                  />
-                </div>
-                <span className="text-[#C0C0C0]/60 text-xs w-8 text-right">{task.progress}%</span>
-              </div>
-              
-              <div className="space-y-1">
-                {task.subtasks.map((sub, j) => (
-                  <div key={j} className={`flex items-center gap-2 text-xs ${sub.done ? 'text-[#7CC2A7]' : 'text-[#C0C0C0]/50'}`}>
-                    {sub.done ? (
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                      </svg>
-                    ) : (
-                      <div className="w-4 h-4 rounded-full border border-current" />
-                    )}
-                    <span>{sub.text}</span>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <motion.div 
+                        className={`h-full rounded-full ${
+                          task.status === 'Overdue' ? 'bg-red-400' : 'bg-amber-400'
+                        }`}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${task.progress}%` }}
+                        transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+                      />
+                    </div>
+                    <span className="text-xs font-medium text-gray-500">{task.progress}%</span>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="w-2/5 p-4 flex flex-col">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
-          className="bg-[#1391BF]/10 border border-[#1391BF]/30 rounded-xl p-4 mb-4"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#1391BF] flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-white font-medium text-sm">Re-audit Scheduled</div>
-              <div className="text-[#1391BF] text-sm">May 15, 2025</div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </motion.div>
-        
-        <div className="text-[#C0C0C0]/60 text-xs uppercase tracking-wide mb-3">Recent Comments</div>
-        <div className="bg-[#161616] rounded-xl p-4 mb-4">
-          <div className="space-y-3">
-            {[
-              { user: "ZW", text: "MES module selection completed. Starting implementation next week.", time: "2h ago" },
-              { user: "LM", text: "Calibration certificate uploaded to system.", time: "5h ago" },
-            ].map((comment, i) => (
-              <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 + i * 0.2 }} className="flex gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#1391BF]/20 flex items-center justify-center text-[#1391BF] text-xs font-bold flex-shrink-0">
-                  {comment.user}
-                </div>
-                <div className="flex-1">
-                  <div className="text-white/70 text-sm">{comment.text}</div>
-                  <div className="text-[#C0C0C0]/40 text-xs">{comment.time}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="text-[#C0C0C0]/60 text-xs uppercase tracking-wide mb-3">Activity Log</div>
-        <div className="flex-1 space-y-2 overflow-hidden">
-          {[
-            { time: '2h', text: 'Evidence photos uploaded', color: '#7CC2A7', user: 'ZW' },
-            { time: '5h', text: 'Calibration cert submitted', color: '#1391BF', user: 'LM' },
-            { time: '1d', text: 'Training task completed', color: '#7CC2A7', user: 'CH' },
-            { time: '2d', text: 'Deadline reminder sent', color: '#D8A860', user: 'SYS' },
-          ].map((activity, i) => (
-            <motion.div key={i} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5 + i * 0.1 }}
-              className="flex items-start gap-3"
+          
+          {/* Right: Details */}
+          <div className="w-2/5 p-5 flex flex-col">
+            {/* Re-audit Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="bg-[#1391BF]/5 border border-[#1391BF]/20 rounded-xl p-4 mb-5"
             >
-              <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                style={{ backgroundColor: activity.color }}
-              >
-                {activity.user}
-              </div>
-              <div className="flex-1">
-                <div className="text-white/70 text-sm">{activity.text}</div>
-                <div className="text-[#C0C0C0]/40 text-xs">{activity.time} ago</div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-gray-900 font-medium text-sm">Re-audit Scheduled</div>
+                  <div className="text-[#1391BF] text-sm font-semibold">May 15, 2025</div>
+                </div>
               </div>
             </motion.div>
-          ))}
+            
+            {/* Activity Log */}
+            <div className="flex-1">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Activity Log</div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4">
+                <div className="space-y-4">
+                  {[
+                    { user: "ZW", text: "Evidence photos uploaded", time: "2h ago", color: "bg-emerald-500" },
+                    { user: "LM", text: "Calibration cert submitted", time: "5h ago", color: "bg-[#1391BF]" },
+                    { user: "CH", text: "Training task completed", time: "1d ago", color: "bg-emerald-500" },
+                    { user: "SYS", text: "Deadline reminder sent", time: "2d ago", color: "bg-amber-500" },
+                  ].map((activity, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: -5 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.8 + i * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className={`w-6 h-6 rounded-full ${activity.color} flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0`}>
+                        {activity.user}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-sm text-gray-700">{activity.text}</div>
+                        <div className="text-xs text-gray-400">{activity.time}</div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Export Button */}
+            <motion.button 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="mt-5 w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
+            >
+              Export Action Report
+            </motion.button>
+          </div>
         </div>
       </div>
-    </div>
-  </WindowChrome>
-);
+    </WindowChrome>
+  );
+};
 
 const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
