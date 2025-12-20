@@ -227,7 +227,7 @@ const HeroSection = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 35,
+                duration: 60,
                 ease: "linear",
               },
             }}
