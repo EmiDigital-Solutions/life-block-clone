@@ -150,10 +150,9 @@ const Auditors = () => {
                 transition={{ duration: 1, delay: 0.3 }}
                 className="text-left"
               >
-                <h1 className="text-white text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light leading-[1.1] mb-8">
-                  <span className="block">We partner with</span>
-                  <span className="block">exceptional</span>
-                  <span className="block">auditors.</span>
+                <h1 className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] mb-8">
+                  <span className="block whitespace-nowrap">We partner with</span>
+                  <span className="block whitespace-nowrap">exceptional auditors.</span>
                 </h1>
                 <p className="text-white/70 text-lg lg:text-xl leading-relaxed mb-6 max-w-md">
                   Our clients demand the highest standards. So do we.
