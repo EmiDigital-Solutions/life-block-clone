@@ -39,20 +39,22 @@ const HeroSection = () => {
       data-nav-theme="black"
       className="relative min-h-screen flex flex-col overflow-hidden bg-white"
     >
-      {/* Video Background Container */}
+      {/* Video Background Container - B&W with Green Accent */}
       <div className="absolute inset-0 overflow-hidden">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover grayscale"
           style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
         >
           <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
         </video>
+        {/* Green tint overlay for selective color effect */}
+        <div className="absolute inset-0 bg-primary/15 mix-blend-multiply" />
         {/* Subtle overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent" />
       </div>
 
       {/* Main Content */}
