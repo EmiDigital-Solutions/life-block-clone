@@ -102,27 +102,24 @@ const HeroSection = () => {
               Physical factory assessments starting from €700
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA with Pricing */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 mb-8"
             >
+              <span className="text-lg text-muted-foreground italic">
+                Audit starts at €700
+              </span>
               <a 
                 href="https://calendly.com/yvoo/demo-yvoo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-foreground hover:bg-foreground/90"
               >
                 Order Audit
-              </a>
-              <a 
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 px-4 py-4 font-medium text-foreground hover:text-foreground/70 transition-colors"
-              >
-                How it works
-                <span className="text-lg">→</span>
+                <span>→</span>
               </a>
             </motion.div>
 
