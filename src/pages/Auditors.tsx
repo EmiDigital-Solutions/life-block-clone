@@ -141,19 +141,19 @@ const Auditors = () => {
           <div className="relative z-10 w-full h-full flex flex-col justify-between px-8 lg:px-16 py-8">
             
             {/* Middle Content Area */}
-            <div className="flex-1 flex items-center justify-start">
+            <div className="flex-1 flex items-start justify-start pt-24 lg:pt-32">
               
               {/* Left Side - Description & CTA */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="max-w-lg text-left"
+                className="max-w-2xl text-left"
               >
-                <h1 className="text-white text-4xl lg:text-5xl xl:text-6xl font-light leading-tight mb-6">
+                <h1 className="text-white text-5xl lg:text-7xl xl:text-8xl font-light leading-tight mb-6">
                   We partner with<br />exceptional auditors.
                 </h1>
-                <p className="text-white/80 text-lg lg:text-xl leading-relaxed mb-8">
+                <p className="text-white/80 text-xl lg:text-2xl leading-relaxed mb-8">
                   Our clients demand the highest standards. So do we.
                 </p>
                 <a
