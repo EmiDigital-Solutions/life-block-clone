@@ -1972,19 +1972,32 @@ const ScanProPlus = () => {
     }
   ];
 
+  const heroRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect for hero background
+  const { scrollYProgress: heroScrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const heroY = useTransform(heroScrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
     <div className="min-h-screen">
       <Navigation />
       
       {/* Hero Section - Dark Background with Flowing Lines */}
       <section
+        ref={heroRef}
         data-nav-theme="hero"
         id="hero"
         className="relative bg-[#0a0a0a] h-[860px] lg:h-[780px]"
         style={{ overflow: 'visible', clipPath: 'none' }}
       >
-        {/* Background Image - Positioned Lower with Top Gradient Blend */}
-        <div className="absolute inset-0">
+        {/* Background Image - Positioned Lower with Top Gradient Blend and Parallax */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{ y: heroY }}
+        >
           <img 
             src={auditorsHeroObject}
             alt="Abstract flowing lines"
@@ -1998,7 +2011,7 @@ const ScanProPlus = () => {
               background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
             }}
           />
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
           <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>

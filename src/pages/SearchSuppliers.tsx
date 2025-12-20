@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb, MessageSquare } from "lucide-react";
 import { PixelIcon } from "@/components/PixelIcon";
 import Navigation from "@/components/Navigation";
@@ -421,17 +421,30 @@ const SearchSuppliers = () => {
 
   const suppliers = getRelevantSuppliers();
 
+  const heroRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect for hero background
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section - Dark Background with Flowing Lines */}
       <section 
+        ref={heroRef}
         data-nav-theme="hero"
         className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
       >
-        {/* Background Image - Positioned Lower with Top Gradient Blend */}
-        <div className="absolute inset-0">
+        {/* Background Image - Positioned Lower with Top Gradient Blend and Parallax */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{ y: heroY }}
+        >
           <img 
             src={auditorsHeroObject}
             alt="Abstract flowing lines"
@@ -445,7 +458,7 @@ const SearchSuppliers = () => {
               background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
             }}
           />
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-6 lg:px-20 relative z-10">
           

@@ -73,11 +73,19 @@ import auditorsHeroObject from "@/assets/auditors-hero-flowing-green.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const isMobile = useIsMobile();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isFanned, setIsFanned] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Parallax effect for hero background
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const heroImages = [
     { src: auditorBlonde1, alt: 'Quality Inspector' },
@@ -117,11 +125,15 @@ const Auditors = () => {
       <div ref={containerRef}>
         {/* Hero Section - VanMoof Style with Flowing Lines Background */}
         <section
+          ref={heroRef}
           data-nav-theme="white"
           className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Background Image - Positioned Lower with Top Gradient Blend */}
-          <div className="absolute inset-0">
+          {/* Background Image - Positioned Lower with Top Gradient Blend and Parallax */}
+          <motion.div 
+            className="absolute inset-0"
+            style={{ y: heroY }}
+          >
             <img 
               src={auditorsHeroObject}
               alt="Abstract flowing lines"
@@ -135,7 +147,7 @@ const Auditors = () => {
                 background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Main Content - VanMoof Layout */}
           <div className="relative z-10 w-full h-full flex flex-col justify-between px-12 lg:px-24 xl:px-32 py-8">
