@@ -2176,17 +2176,14 @@ const ScanProPlus = () => {
             </div>
 
             {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+            <div
               className="hidden lg:block relative z-20"
               style={{ marginBottom: "-160px" }}
             >
               <div className="rounded-[32px] bg-[#0A0A0A] p-4 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
                 <EquipmentIntelligenceDemo />
               </div>
-            </motion.div>
+            </div>
           </div>
           </div>
         </div>
