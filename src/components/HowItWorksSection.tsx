@@ -181,7 +181,7 @@ export const HowItWorksSection = () => {
           >
             <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-foreground/75 z-[1]" />
+          <div className="absolute inset-0 bg-foreground/50 z-[1]" />
           
           {/* Content */}
           <div className="relative z-10">
