@@ -151,8 +151,7 @@ const Auditors = () => {
                 className="text-left"
               >
                 <h1 className="text-white text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light leading-[1.1] mb-8">
-                  <span className="block">We partner</span>
-                  <span className="block">with</span>
+                  <span className="block">We partner with</span>
                   <span className="block">exceptional</span>
                   <span className="block">auditors.</span>
                 </h1>
