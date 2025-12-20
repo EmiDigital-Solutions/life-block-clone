@@ -69,7 +69,7 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
-import FlowingLinesSVG from "@/components/FlowingLinesSVG";
+import auditorsHeroObject from "@/assets/auditors-hero-flowing-green.jpg";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -120,8 +120,22 @@ const Auditors = () => {
           data-nav-theme="white"
           className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
-          {/* Animated SVG Flowing Lines Background */}
-          <FlowingLinesSVG strokeWidth={0.5} />
+          {/* Background Image - Positioned Lower with Top Gradient Blend */}
+          <div className="absolute inset-0">
+            <img 
+              src={auditorsHeroObject}
+              alt="Abstract flowing lines"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 95%', transform: 'translateY(140px)', height: 'calc(100% + 140px)' }}
+            />
+            {/* Gradient overlay to blend black top into image */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{ 
+                background: 'linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 20%, transparent 50%)' 
+              }}
+            />
+          </div>
 
           {/* Main Content - VanMoof Layout */}
           <div className="relative z-10 w-full h-full flex flex-col justify-between px-12 lg:px-24 xl:px-32 py-8">
@@ -164,7 +178,7 @@ const Auditors = () => {
             >
               <div className="flex items-center gap-2 text-white/70 text-sm">
                 <span>By invitation only</span>
-                <span className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               </div>
             </motion.div>
           </div>
