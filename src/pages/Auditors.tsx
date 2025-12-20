@@ -116,11 +116,49 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - Premium B2B Style */}
+        {/* Hero Section - Full Screen Image Carousel Background */}
         <section
           data-nav-theme="white"
-          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
+          className="relative min-h-screen flex items-center overflow-hidden"
         >
+          {/* Full-screen Image Carousel Background */}
+          <div className="absolute inset-0 z-0">
+            {heroImages.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: index === activeIndex ? 1 : 0,
+                  scale: index === activeIndex ? 1 : 1.1
+                }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+            {/* Green accent overlay */}
+            <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+          </div>
+
+          {/* Carousel auto-advance */}
+          {(() => {
+            // Auto-advance carousel every 4 seconds
+            useEffect(() => {
+              const interval = setInterval(() => {
+                setActiveIndex((prev) => (prev + 1) % heroImages.length);
+              }, 4000);
+              return () => clearInterval(interval);
+            }, [heroImages.length]);
+            return null;
+          })()}
+
           {/* Main Content */}
           <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
@@ -213,6 +251,25 @@ const Auditors = () => {
                   <p className="text-2xl lg:text-3xl font-light text-white/80">{stat.value}</p>
                   <p className="text-xs text-white/30 uppercase tracking-wider mt-1">{stat.label}</p>
                 </div>
+              ))}
+            </motion.div>
+
+            {/* Carousel Indicators */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.8 }}
+              className="mt-16 flex justify-center gap-2"
+            >
+              {heroImages.slice(0, 8).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    idx === activeIndex % 8 ? 'bg-primary w-8' : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
               ))}
             </motion.div>
           </div>
