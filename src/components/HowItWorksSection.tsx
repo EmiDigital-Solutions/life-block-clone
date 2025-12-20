@@ -134,7 +134,7 @@ export const HowItWorksSection = () => {
                         height: hoveredIndex === index ? 'auto' : 0,
                       }}
                       transition={{ duration: 0.3 }}
-                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                      className="text-base text-muted-foreground leading-relaxed overflow-hidden"
                     >
                       {step.description}
                     </motion.p>
