@@ -458,7 +458,7 @@ const SearchSuppliers = () => {
       {/* Hero Section - Full-screen Image Carousel Background */}
       <section 
         data-nav-theme="white"
-        className="relative min-h-screen flex flex-col overflow-hidden"
+        className="relative min-h-screen flex flex-col overflow-visible"
       >
         {/* Full-screen Image Carousel Background */}
         <div className="absolute inset-0 z-0">
@@ -501,11 +501,10 @@ const SearchSuppliers = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold text-white"
               >
-                <span className="text-primary">Find suppliers</span>
-                <br />
-                <span className="text-white">worldwide in real-time.</span>
+                <span className="block">Find suppliers</span>
+                <span className="block">worldwide in real-time.</span>
               </motion.h1>
               
               {/* Vertical checkmark list */}
