@@ -1149,7 +1149,7 @@ const InfiniteScrollingGallery = () => {
               onClick={() => setSelectedCapability(item)}
               onMouseEnter={() => setHoveredKey(`${rowIndex}-${index}`)}
               onMouseLeave={() => setHoveredKey(null)}
-              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500 relative"
+              className="flex-shrink-0 cursor-pointer rounded-2xl overflow-visible bg-card transition-all duration-500 relative border border-border/50 shadow-sm"
               style={{ width: '416px', zIndex: hoveredKey === `${rowIndex}-${index}` ? 50 : 1 }}
               initial={false}
               animate={{
