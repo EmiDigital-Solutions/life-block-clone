@@ -14,7 +14,7 @@ const TestimonialSection = () => {
             viewport={{ once: true }}
             className="section-headline text-center text-foreground"
           >
-            Order Audit in minutes
+            Watch Complexity Disappear
           </motion.h2>
         </div>
 
