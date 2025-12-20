@@ -33,12 +33,9 @@ const demoSteps: DemoStep[] = [
   { id: 6, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
-// Clean Window Chrome Component
+// Clean Window Chrome Component - No dark title bar
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="w-full h-full bg-[#0A0A0A] rounded-xl overflow-hidden flex flex-col">
-    <div className="h-8 bg-[#161616] flex items-center px-4 border-b border-[#C0C0C0]/10 flex-shrink-0">
-      <span className="text-xs text-[#C0C0C0]/80 font-medium">{title}</span>
-    </div>
+  <div className="w-full h-full bg-white rounded-xl overflow-hidden flex flex-col shadow-lg">
     <div className="flex-1 overflow-hidden">
       {children}
     </div>
