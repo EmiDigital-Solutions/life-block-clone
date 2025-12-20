@@ -423,7 +423,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="section-headline text-foreground whitespace-nowrap"
+                className="section-headline text-foreground md:whitespace-nowrap"
               >
                 Your auditor, anywhere, anytime
               </motion.h2>
