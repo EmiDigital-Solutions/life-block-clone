@@ -417,65 +417,26 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
 
             <div className="relative z-30">
 
-            {/* Left Column: Clean Text Content - No Box */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 text-left max-w-xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-3"
-              >
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Global Network</span>
-              </motion.div>
-
+            {/* Clean Headline Only */}
+            <div className="flex flex-col space-y-4 text-left max-w-xl">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-[1.1]"
+                className="section-headline text-foreground"
               >
-                Your auditor,<br />
-                <span className="text-primary">anywhere, anytime</span>
+                Your auditor, anywhere, anytime
               </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.1 }}
                 className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md"
               >
-                Stop flying auditors across continents. Access local experts certified in VDA 6.3, 
-                IATF 16949, or ISO standards—already on the ground where your suppliers operate.
+                Access local experts certified in VDA 6.3, IATF 16949, or ISO standards—already on the ground where your suppliers operate.
               </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.25 }}
-                className="flex flex-wrap items-center gap-2 text-muted-foreground pt-2"
-              >
-                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">TÜV SÜD</span>
-                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">Bureau Veritas</span>
-                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">SGS</span>
-                <span className="text-xs font-medium px-3 py-1.5 rounded-full border border-border/50 bg-muted/30">DNV</span>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="pt-2"
-              >
-                <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-primary/90 flex items-center gap-2 group">
-                  <span>Learn more</span>
-                  <PixelIcon name="arrow-right" className="w-4 h-4" />
-                </button>
-              </motion.div>
             </div>
 
           </div>
