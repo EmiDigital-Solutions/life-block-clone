@@ -39,7 +39,7 @@ const HeroSection = () => {
       data-nav-theme="black"
       className="relative min-h-screen flex flex-col overflow-hidden bg-white"
     >
-      {/* Video Background Container - Pure B&W */}
+      {/* Video Background Container */}
       <div className="absolute inset-0 overflow-hidden">
         <video
           autoPlay
@@ -47,16 +47,12 @@ const HeroSection = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ 
-            transform: 'scale(1.1)', 
-            objectPosition: 'center center',
-            filter: 'grayscale(100%) contrast(1.5) brightness(1.0)'
-          }}
+          style={{ transform: 'scale(1.1)', objectPosition: 'center center' }}
         >
           <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
         </video>
         {/* Subtle overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
       </div>
 
       {/* Main Content */}
@@ -117,7 +113,7 @@ const HeroSection = () => {
                 href="https://calendly.com/yvoo/demo-yvoo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90 hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-[#0A7FA5] hover:bg-[#0A7FA5]/90"
               >
                 Order Audit
               </a>
