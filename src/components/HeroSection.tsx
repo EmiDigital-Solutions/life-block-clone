@@ -41,22 +41,22 @@ const HeroSection = () => {
     >
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.6fr] gap-8 lg:gap-16 items-center">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.6fr] gap-8 lg:gap-12 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-xl relative z-20 lg:pr-8"
+              className="max-w-lg relative z-20"
             >
               {/* Tagline Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-6"
+                className="mb-5"
               >
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground shadow-sm border border-border">
                   <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -64,12 +64,12 @@ const HeroSection = () => {
                 </span>
               </motion.div>
 
-              {/* Main Heading */}
+              {/* Main Heading - 2 lines max */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.15] text-xl sm:text-2xl lg:text-4xl xl:text-5xl text-foreground mb-6"
+                className="font-medium tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-foreground mb-5"
               >
                 <span className="block">On-Site Supplier Audits</span>
                 <span className="block">in Days, Not Weeks.</span>
@@ -80,19 +80,19 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-lg text-muted-foreground mb-8"
+                className="text-base text-muted-foreground mb-6"
               >
                 Physical factory assessments starting from €700
               </motion.p>
 
-              {/* CTA with Pricing */}
+              {/* CTA with Pricing - text only for price, next to button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-4 mb-8"
+                className="flex flex-wrap items-center gap-4 mb-6"
               >
-                <span className="text-base text-foreground font-semibold bg-white px-6 py-3 rounded-full shadow-sm border border-border">
+                <span className="text-base text-foreground font-medium">
                   Audit starts at €700
                 </span>
                 <a 
