@@ -532,308 +532,262 @@ const OrderAuditDemo = () => (
   </WindowChrome>
 );
 
-// Step 3: Auditor Dispatch - Global Network (Redesigned - Enterprise Level)
+// Step 3: Auditor Dispatch - Professional Dashboard Style
 const AuditorDispatchDemo = () => {
-  const [selectedAuditor, setSelectedAuditor] = useState(0);
-  const [dispatchPhase, setDispatchPhase] = useState<'selecting' | 'dispatching' | 'confirmed'>('selecting');
+  const [selectedAuditor, setSelectedAuditor] = useState(1);
+  const [dispatchPhase, setDispatchPhase] = useState<'matching' | 'reviewing' | 'confirmed'>('matching');
+  const [matchProgress, setMatchProgress] = useState(0);
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedAuditor(prev => (prev + 1) % 6);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-  
+    // Progress animation for matching phase
+    if (dispatchPhase === 'matching') {
+      const interval = setInterval(() => {
+        setMatchProgress(prev => {
+          if (prev >= 100) {
+            clearInterval(interval);
+            return 100;
+          }
+          return prev + 2;
+        });
+      }, 60);
+      return () => clearInterval(interval);
+    }
+  }, [dispatchPhase]);
+
   useEffect(() => {
-    const timer1 = setTimeout(() => setDispatchPhase('dispatching'), 4000);
-    const timer2 = setTimeout(() => setDispatchPhase('confirmed'), 5500);
+    const timer1 = setTimeout(() => setDispatchPhase('reviewing'), 3500);
+    const timer2 = setTimeout(() => setDispatchPhase('confirmed'), 7000);
     return () => { clearTimeout(timer1); clearTimeout(timer2); };
   }, []);
   
   const auditors = [
-    { name: "Dr. Klaus Schmidt", location: "Munich, Germany", specialty: "IATF 16949", distance: "210 km", available: "Tomorrow", rating: 4.9, audits: 847, x: 52, y: 32, region: "Europe", image: auditorGen7 },
-    { name: "Wei Liu", location: "Shanghai, China", specialty: "VDA 6.3", distance: "Local", available: "Today", rating: 4.8, audits: 623, x: 80, y: 40, region: "Asia", image: auditorGen2 },
-    { name: "Maria Santos", location: "São Paulo, Brazil", specialty: "ISO 9001", distance: "Local", available: "Next Week", rating: 4.7, audits: 412, x: 32, y: 68, region: "LatAm", image: auditorGen3 },
-    { name: "John Miller", location: "Detroit, USA", specialty: "AS9100", distance: "150 km", available: "2 Days", rating: 4.9, audits: 534, x: 22, y: 38, region: "N.America", image: auditorGen4 },
-    { name: "Raj Patel", location: "Mumbai, India", specialty: "ISO 14001", distance: "Local", available: "Today", rating: 4.6, audits: 389, x: 70, y: 48, region: "Asia", image: auditorGen5 },
-    { name: "Sarah Chen", location: "Singapore", specialty: "ISO 45001", distance: "Local", available: "Tomorrow", rating: 4.8, audits: 456, x: 82, y: 55, region: "SEA", image: auditorGen6 },
+    { name: "Wei Liu", role: "Lead Auditor", location: "Shanghai, CN", specialty: "VDA 6.3", available: "Dec 21", rating: 4.8, audits: 623, matchScore: 98, image: auditorGen2 },
+    { name: "Dr. Klaus Schmidt", role: "Senior Auditor", location: "Munich, DE", specialty: "IATF 16949", available: "Dec 22", rating: 4.9, audits: 847, matchScore: 94, image: auditorGen7 },
+    { name: "Sarah Chen", role: "Auditor", location: "Singapore, SG", specialty: "ISO 45001", available: "Dec 23", rating: 4.8, audits: 456, matchScore: 89, image: auditorGen6 },
   ];
   
+  const auditDetails = {
+    supplier: "TechMold Industries Ltd.",
+    location: "Shanghai, China",
+    standard: "VDA 6.3",
+    type: "Process Audit",
+    priority: "High",
+    requestDate: "Dec 20, 2024"
+  };
+  
   return (
-    <WindowChrome title="ScanPro+ — Global Auditor Network">
-      <div className="h-full flex">
-        {/* Map View - Refined */}
-        <div className="w-3/5 relative bg-[#0A0A0A] overflow-hidden">
-          {/* Subtle Grid Background */}
-          <div className="absolute inset-0 opacity-[0.03]">
-            <div className="w-full h-full" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-              backgroundSize: '60px 60px'
-            }} />
-          </div>
-          
-          {/* World Map */}
-          <div className="absolute inset-0 opacity-15">
-            <img src={worldMap} alt="World Map" className="w-full h-full object-cover" />
-          </div>
-          
-          {/* Minimal Pulse from Center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-            {[1, 2].map((ring) => (
-              <motion.div
-                key={ring}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#1391BF]/20"
-                initial={{ width: 60, height: 60, opacity: 0.4 }}
-                animate={{ width: [60, 400], height: [60, 400], opacity: [0.4, 0] }}
-                transition={{ duration: 5, repeat: Infinity, delay: ring * 2, ease: "easeOut" }}
-              />
-            ))}
-          </div>
-          
-          {/* Clean Connection Lines */}
-          <svg className="absolute inset-0 w-full h-full">
-            {auditors.map((auditor, i) => (
-              <motion.line
-                key={i}
-                x1="50%"
-                y1="50%"
-                x2={`${auditor.x}%`}
-                y2={`${auditor.y}%`}
-                stroke={selectedAuditor === i ? "#1391BF" : "#ffffff"}
-                strokeWidth={selectedAuditor === i ? 1.5 : 0.5}
-                strokeOpacity={selectedAuditor === i ? 0.6 : 0.1}
-                strokeDasharray={selectedAuditor === i ? "none" : "2 4"}
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1, delay: i * 0.1 }}
-              />
-            ))}
-          </svg>
-          
-          {/* Center Hub - Clean */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className="w-14 h-14 rounded-full bg-[#1391BF] flex items-center justify-center shadow-lg shadow-[#1391BF]/30">
-              <div className="w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center">
-                <span className="text-white font-semibold text-[10px] tracking-wider">YVOO</span>
-              </div>
+    <WindowChrome title="ScanPro+ — Auditor Assignment">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Navigation Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium text-gray-900">Audit Request #AR-2024-1847</span>
             </div>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="text-sm text-gray-500">{auditDetails.supplier}</span>
           </div>
-          
-          {/* Auditor Pins - Refined */}
-          {auditors.map((auditor, i) => (
-            <motion.div
-              key={i}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 + i * 0.1, type: "spring", stiffness: 300 }}
-              className={`absolute ${selectedAuditor === i ? 'z-50' : 'z-20'}`}
-              style={{ left: `${auditor.x}%`, top: `${auditor.y}%`, transform: 'translate(-50%, -50%)' }}
-            >
-              {/* Subtle Pulse for Selected */}
-              {selectedAuditor === i && (
-                <motion.div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#1391BF]/40"
-                  initial={{ width: 32, height: 32 }}
-                  animate={{ width: [32, 56], height: [32, 56], opacity: [0.6, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-              )}
-              
-              <motion.div
-                className={`relative w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-all ${
-                  selectedAuditor === i 
-                    ? 'bg-[#1391BF] ring-2 ring-[#1391BF]/30 ring-offset-2 ring-offset-[#0A0A0A]' 
-                    : 'bg-[#1e1e1e] border border-[#333] hover:border-[#1391BF]/50'
-                }`}
-                onClick={() => setSelectedAuditor(i)}
-              >
-                <span className="text-white font-medium text-[10px]">
-                  {auditor.name.split(' ')[0][0]}{auditor.name.split(' ').slice(-1)[0][0]}
-                </span>
-              </motion.div>
-              
-              {/* Clean Info Tooltip */}
-              {selectedAuditor === i && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#161616] rounded-lg p-3 whitespace-nowrap z-30 border border-[#2a2a2a] shadow-xl min-w-[160px]"
-                >
-                  <div className="text-white font-medium text-sm">{auditor.name}</div>
-                  <div className="text-[#888] text-xs mt-0.5">{auditor.location}</div>
-                  <div className="flex items-center gap-3 mt-2 pt-2 border-t border-[#2a2a2a]">
-                    <div className="flex items-center gap-1">
-                      <span className="text-[#1391BF] text-xs">★</span>
-                      <span className="text-white text-xs font-medium">{auditor.rating}</span>
-                    </div>
-                    <span className="text-[#444] text-xs">|</span>
-                    <span className="text-[#888] text-xs">{auditor.audits} audits</span>
-                  </div>
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
-          
-          {/* Stats Bar - Clean Enterprise Style */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <div className="bg-[#111]/90 backdrop-blur-sm rounded-xl border border-[#222]">
-              <div className="grid grid-cols-4 divide-x divide-[#222]">
-                {[
-                  { value: "2,000+", label: "Auditors" },
-                  { value: "90+", label: "Countries" },
-                  { value: "<48h", label: "Deployment" },
-                  { value: "100%", label: "Coverage" },
-                ].map((stat, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                    className="py-3 px-4 text-center"
-                  >
-                    <div className="text-white font-semibold text-lg">{stat.value}</div>
-                    <div className="text-[#666] text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded border border-amber-200">
+              {auditDetails.priority} Priority
+            </span>
           </div>
-          
-          {/* Network Badge - Minimal */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute top-4 left-4 flex items-center gap-2 bg-[#111]/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-[#222]"
-          >
-            <div className="w-2 h-2 rounded-full bg-[#1391BF] animate-pulse" />
-            <span className="text-white text-xs font-medium">Global Network Active</span>
-          </motion.div>
         </div>
         
-        {/* Auditor Selection Panel - Enterprise Clean */}
-        <div className="w-2/5 flex flex-col bg-[#0d0d0d]">
-          {/* Header */}
-          <div className="p-5 border-b border-[#1a1a1a]">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-white font-semibold text-base">Best Match</div>
-                <div className="text-[#666] text-xs mt-0.5">VDA 6.3 · Shanghai Region</div>
+        {/* Progress Steps */}
+        <div className="px-6 py-4 bg-white border-b border-gray-100">
+          <div className="flex items-center justify-between max-w-xl">
+            {['Matching', 'Review', 'Confirm'].map((step, i) => {
+              const isActive = i === (dispatchPhase === 'matching' ? 0 : dispatchPhase === 'reviewing' ? 1 : 2);
+              const isComplete = i < (dispatchPhase === 'matching' ? 0 : dispatchPhase === 'reviewing' ? 1 : 2);
+              return (
+                <div key={step} className="flex items-center gap-3">
+                  <motion.div 
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                      isComplete ? 'bg-emerald-500 text-white' :
+                      isActive ? 'bg-[#1391BF] text-white' : 
+                      'bg-gray-100 text-gray-400'
+                    }`}
+                    animate={isActive ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    {isComplete ? '✓' : i + 1}
+                  </motion.div>
+                  <span className={`text-sm ${isActive || isComplete ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>{step}</span>
+                  {i < 2 && <div className={`w-16 h-px ${isComplete ? 'bg-emerald-500' : 'bg-gray-200'} ml-3`} />}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left Panel - Audit Info */}
+          <div className="w-72 bg-white border-r border-gray-100 p-5 flex flex-col">
+            <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">Audit Details</div>
+            
+            <div className="space-y-4">
+              {[
+                { label: 'Supplier', value: auditDetails.supplier },
+                { label: 'Location', value: auditDetails.location },
+                { label: 'Standard', value: auditDetails.standard },
+                { label: 'Type', value: auditDetails.type },
+                { label: 'Requested', value: auditDetails.requestDate },
+              ].map((item) => (
+                <div key={item.label}>
+                  <div className="text-xs text-gray-400 mb-1">{item.label}</div>
+                  <div className="text-sm text-gray-900 font-medium">{item.value}</div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-auto pt-4 border-t border-gray-100">
+              <div className="text-xs text-gray-400 mb-2">AI Match Confidence</div>
+              <div className="flex items-center gap-3">
+                <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-[#1391BF] rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${matchProgress}%` }}
+                  />
+                </div>
+                <span className="text-sm font-semibold text-[#1391BF]">{matchProgress}%</span>
               </div>
-              <span className="px-2.5 py-1 bg-[#1391BF]/10 text-[#1391BF] rounded-md text-xs font-medium border border-[#1391BF]/20">
-                {auditors.length} Available
-              </span>
             </div>
           </div>
           
-          {/* Auditor Cards - Clean List */}
-          <div className="flex-1 p-4 space-y-2 overflow-y-auto">
-            {auditors.slice(0, 4).map((auditor, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.15 + i * 0.08 }}
-                className={`p-3.5 rounded-xl cursor-pointer transition-all ${
-                  selectedAuditor === i 
-                    ? 'bg-[#1391BF]/8 border border-[#1391BF]/30' 
-                    : 'bg-[#141414] hover:bg-[#181818] border border-transparent hover:border-[#222]'
-                }`}
-                onClick={() => setSelectedAuditor(i)}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`relative w-11 h-11 rounded-lg overflow-hidden flex-shrink-0 ${
-                    selectedAuditor === i ? 'ring-2 ring-[#1391BF]/50' : ''
-                  }`}>
-                    <img 
-                      src={auditor.image} 
-                      alt={auditor.name} 
-                      className="w-full h-full object-cover"
-                    />
+          {/* Right Panel - Auditor Selection */}
+          <div className="flex-1 p-5 overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Recommended Auditors</div>
+              <span className="text-xs text-gray-400">{auditors.length} matches found</span>
+            </div>
+            
+            {/* Auditor Table */}
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              {/* Table Header */}
+              <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <div className="col-span-4">Auditor</div>
+                <div className="col-span-2">Specialty</div>
+                <div className="col-span-2">Available</div>
+                <div className="col-span-2">Match</div>
+                <div className="col-span-2"></div>
+              </div>
+              
+              {/* Table Rows */}
+              {auditors.map((auditor, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + i * 0.15 }}
+                  className={`grid grid-cols-12 gap-4 px-4 py-4 items-center border-b border-gray-100 last:border-0 cursor-pointer transition-all ${
+                    selectedAuditor === i 
+                      ? 'bg-[#1391BF]/5' 
+                      : 'hover:bg-gray-50'
+                  }`}
+                  onClick={() => setSelectedAuditor(i)}
+                >
+                  {/* Auditor Info */}
+                  <div className="col-span-4 flex items-center gap-3">
+                    <div className="relative">
+                      <img 
+                        src={auditor.image} 
+                        alt={auditor.name} 
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      {selectedAuditor === i && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-[#1391BF] rounded-full flex items-center justify-center"
+                        >
+                          <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                          </svg>
+                        </motion.div>
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-900">{auditor.name}</div>
+                      <div className="text-xs text-gray-400">{auditor.role} · {auditor.location}</div>
+                    </div>
                   </div>
                   
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <div className="text-white font-medium text-sm truncate">{auditor.name}</div>
-                      <div className={`text-xs font-medium ${
-                        auditor.available === 'Today' ? 'text-[#4ade80]' : 
-                        auditor.available === 'Tomorrow' ? 'text-[#1391BF]' : 'text-[#888]'
-                      }`}>
-                        {auditor.available}
+                  {/* Specialty */}
+                  <div className="col-span-2">
+                    <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded">{auditor.specialty}</span>
+                  </div>
+                  
+                  {/* Available */}
+                  <div className="col-span-2 text-sm text-gray-600">{auditor.available}</div>
+                  
+                  {/* Match Score */}
+                  <div className="col-span-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full ${auditor.matchScore >= 95 ? 'bg-emerald-500' : 'bg-[#1391BF]'}`} 
+                          style={{ width: `${auditor.matchScore}%` }}
+                        />
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[#666] text-xs">{auditor.location}</span>
-                      <span className="text-[#333]">·</span>
-                      <span className="text-[#666] text-xs flex items-center gap-0.5">
-                        <span className="text-[#fbbf24]">★</span> {auditor.rating}
+                      <span className={`text-xs font-semibold ${auditor.matchScore >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                        {auditor.matchScore}%
                       </span>
                     </div>
-                    <div className="mt-2">
-                      <span className="px-2 py-0.5 bg-[#1e1e1e] text-[#aaa] text-[10px] rounded font-medium">{auditor.specialty}</span>
-                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Dispatch Status - Clean */}
-          <div className="p-4 border-t border-[#1a1a1a]">
-            <motion.div 
-              className={`p-4 rounded-xl transition-all ${
-                dispatchPhase === 'confirmed' 
-                  ? 'bg-[#4ade80]/8 border border-[#4ade80]/20' 
-                  : dispatchPhase === 'dispatching'
-                  ? 'bg-[#fbbf24]/8 border border-[#fbbf24]/20'
-                  : 'bg-[#141414] border border-[#222]'
-              }`}
-            >
-              {dispatchPhase === 'selecting' && (
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#1e1e1e] flex items-center justify-center">
-                    <svg className="w-4 h-4 text-[#888]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium text-sm">Select Auditor</div>
-                    <div className="text-[#666] text-xs mt-0.5">Choose from available experts</div>
-                  </div>
-                </div>
-              )}
-              
-              {dispatchPhase === 'dispatching' && (
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#fbbf24]/15 flex items-center justify-center">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-                      <svg className="w-4 h-4 text-[#fbbf24]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                    </motion.div>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium text-sm">Dispatching</div>
-                    <div className="text-[#fbbf24] text-xs mt-0.5">Notifying Wei Liu...</div>
-                  </div>
-                </div>
-              )}
-              
-              {dispatchPhase === 'confirmed' && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#4ade80]/15 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-[#4ade80]" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium text-sm">Confirmed</div>
-                    <div className="text-[#4ade80] text-xs mt-0.5">Wei Liu · Tomorrow 9:00 AM</div>
+                  
+                  {/* Rating */}
+                  <div className="col-span-2 flex items-center gap-1 text-xs text-gray-500">
+                    <span className="text-amber-400">★</span>
+                    <span>{auditor.rating}</span>
+                    <span className="text-gray-300">·</span>
+                    <span>{auditor.audits} audits</span>
                   </div>
                 </motion.div>
-              )}
-            </motion.div>
+              ))}
+            </div>
           </div>
+        </div>
+        
+        {/* Bottom Action Bar */}
+        <div className="px-6 py-4 bg-white border-t border-gray-200 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {dispatchPhase === 'confirmed' ? (
+              <motion.div 
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center gap-2 text-emerald-600"
+              >
+                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                </div>
+                <span className="text-sm font-medium">Assignment confirmed — Wei Liu notified</span>
+              </motion.div>
+            ) : (
+              <div className="text-sm text-gray-500">
+                Selected: <span className="font-medium text-gray-900">{auditors[selectedAuditor].name}</span>
+              </div>
+            )}
+          </div>
+          
+          <motion.button
+            className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+              dispatchPhase === 'confirmed'
+                ? 'bg-emerald-500 text-white'
+                : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
+            }`}
+            animate={dispatchPhase === 'reviewing' ? { scale: [1, 1.02, 1] } : {}}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            {dispatchPhase === 'matching' ? 'Finding Best Match...' :
+             dispatchPhase === 'reviewing' ? 'Confirm Assignment' :
+             '✓ Confirmed'}
+          </motion.button>
         </div>
       </div>
     </WindowChrome>
