@@ -49,17 +49,17 @@ const Navigation = () => {
             />
           </Link>
 
-          {/* Hamburger Menu Button - Two lines style */}
+          {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col items-center justify-center w-14 h-14 gap-2 rounded-full hover:bg-gray-100/50 transition-colors"
+            className="flex flex-col items-center justify-center w-10 h-10 gap-1.5 rounded-full hover:bg-gray-100/50 transition-colors"
           >
             {isMenuOpen ? (
-              <X className="w-7 h-7 text-foreground" />
+              <X className="w-5 h-5 text-foreground" />
             ) : (
               <>
-                <span className="w-7 h-0.5 bg-foreground rounded-full" />
-                <span className="w-7 h-0.5 bg-foreground rounded-full" />
+                <span className="w-5 h-0.5 bg-foreground rounded-full" />
+                <span className="w-5 h-0.5 bg-foreground rounded-full" />
               </>
             )}
           </button>
