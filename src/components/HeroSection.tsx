@@ -69,7 +69,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.07] text-3xl sm:text-4xl lg:text-6xl xl:text-7xl text-foreground mb-6"
+                className="font-medium tracking-tight leading-[1.1] text-2xl sm:text-3xl lg:text-5xl xl:text-6xl text-foreground mb-6"
               >
                 <span className="block">On-Site Supplier Audits</span>
                 <span className="block">in Days, Not Weeks.</span>
@@ -133,7 +133,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative z-10 mt-10 lg:mt-0 lg:-mr-20 xl:-mr-32 2xl:-mr-40"
+              className="relative z-10 mt-10 lg:mt-0 lg:-mr-6 xl:-mr-10 2xl:-mr-16"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
