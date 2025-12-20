@@ -115,10 +115,10 @@ const Auditors = () => {
       <Navigation />
       
       <div ref={containerRef}>
-        {/* Hero Section - VanMoof Style */}
+        {/* Hero Section - VanMoof Style with Centered Content */}
         <section
           data-nav-theme="white"
-          className="relative h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
+          className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]"
         >
           {/* Background Image - No overlay */}
           <div className="absolute inset-0">
@@ -129,58 +129,56 @@ const Auditors = () => {
             />
           </div>
 
-          {/* Main Content - VanMoof Layout */}
-          <div className="relative z-10 w-full h-full flex flex-col justify-between px-8 lg:px-16 py-8">
-            
-            {/* Middle Content Area */}
-            <div className="flex-1 flex items-center justify-between">
+          {/* Main Content - Centered */}
+          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
               
-              {/* Left Side - Large Typography */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="flex-shrink-0"
+              {/* Eyebrow */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-white/50 text-sm tracking-[0.3em] uppercase mb-12"
               >
-                <h1 className="text-[10rem] sm:text-[14rem] lg:text-[18rem] xl:text-[22rem] font-light text-white leading-none tracking-tighter select-none">
-                  2K+
-                </h1>
-              </motion.div>
+                By Invitation Only
+              </motion.p>
 
-              {/* Right Side - Description & CTA */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="max-w-md text-right"
+              {/* Main Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
               >
-                <p className="text-white text-lg lg:text-xl leading-relaxed mb-6">
-                  We partner with exceptional auditors. Our clients demand the highest standards. So do we.
-                </p>
-                <a
-                  href="#apply"
-                  className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
-                >
-                  <span className="w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowRight className="w-5 h-5" />
-                  </span>
-                  <span className="text-base font-medium">Apply for Partnership</span>
-                </a>
+                We partner with
+                <br />
+                <span className="font-medium">exceptional auditors.</span>
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-white/50 mb-16 max-w-xl mx-auto"
+              >
+                Our clients demand the highest standards.
+                <br />
+                So do we.
+              </motion.p>
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
+                  Apply for Partnership
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </motion.div>
             </div>
-
-            {/* Bottom Right - Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="flex justify-end"
-            >
-              <div className="flex items-center gap-2 text-white/70 text-sm">
-                <span>Accepting applications</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              </div>
-            </motion.div>
           </div>
         </section>
 
