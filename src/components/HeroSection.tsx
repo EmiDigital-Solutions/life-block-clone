@@ -56,15 +56,15 @@ const HeroSection = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-start relative z-10">
-        <div className="pl-6 lg:pl-12 xl:pl-16 pr-6 pt-24 lg:pt-32 pb-8">
+      <div className="flex-1 flex items-center justify-center relative z-10">
+        <div className="px-6 pt-24 lg:pt-32 pb-8 text-center">
           
           {/* Simple Headline Layout */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl lg:max-w-3xl"
+            className="max-w-2xl lg:max-w-3xl mx-auto"
           >
             {/* Tagline Badge */}
             <motion.div
@@ -107,7 +107,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-4 mb-8"
+              className="flex flex-wrap items-center justify-center gap-4 mb-8 mt-12"
             >
               <span className="text-base text-foreground font-semibold bg-white/60 backdrop-blur-md px-8 py-4 rounded-full shadow-sm border border-white/30">
                 Audit starts at €700
@@ -133,7 +133,7 @@ const HeroSection = () => {
               <p className="text-sm text-foreground mb-3">
                 Auditors certified by:
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center gap-2">
                 {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
                   <span
                     key={idx}
