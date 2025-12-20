@@ -1208,9 +1208,41 @@ const ComplianceStandardsGrid = () => {
   );
 };
 
-// Industry Use Cases Grid with Modal - VanMoof Masonry Style
+// Parallax Image Component
+const ParallaxImage = ({ 
+  src, 
+  alt, 
+  parallaxStrength = 20 
+}: { 
+  src: string; 
+  alt: string; 
+  parallaxStrength?: number;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [parallaxStrength, -parallaxStrength]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1.05, 1.1]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      <motion.img 
+        src={src} 
+        alt={alt}
+        style={{ y, scale }}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  );
+};
+
+// Industry Use Cases Grid with Modal - VanMoof Masonry Style with Parallax
 const IndustryUseCasesGrid = () => {
   const [selectedUseCase, setSelectedUseCase] = useState<IndustryUseCase | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const useCases: IndustryUseCase[] = [
     {
@@ -1262,6 +1294,7 @@ const IndustryUseCasesGrid = () => {
 
   return (
     <section 
+      ref={sectionRef}
       data-nav-theme="light" 
       className="py-24 md:py-32 bg-background"
     >
@@ -1281,7 +1314,7 @@ const IndustryUseCasesGrid = () => {
           </p>
         </motion.div>
 
-        {/* VanMoof-style Masonry Grid */}
+        {/* VanMoof-style Masonry Grid with Parallax */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-7xl mx-auto">
           {/* Large left image - Automotive */}
           <motion.button
@@ -1290,18 +1323,18 @@ const IndustryUseCasesGrid = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             onClick={() => setSelectedUseCase(useCases[0])}
-            className="group relative md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto overflow-hidden cursor-pointer"
+            className="group relative md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto md:min-h-[500px] overflow-hidden cursor-pointer"
           >
-            <img 
+            <ParallaxImage 
               src={useCases[0].image} 
               alt={useCases[0].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              parallaxStrength={40}
             />
             {/* Dark gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
             
             {/* Content overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10 z-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1334,14 +1367,14 @@ const IndustryUseCasesGrid = () => {
             onClick={() => setSelectedUseCase(useCases[1])}
             className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
           >
-            <img 
+            <ParallaxImage 
               src={useCases[1].image} 
               alt={useCases[1].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              parallaxStrength={25}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
             
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 z-10">
               <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
                 Aerospace
               </span>
@@ -1364,14 +1397,14 @@ const IndustryUseCasesGrid = () => {
             onClick={() => setSelectedUseCase(useCases[2])}
             className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
           >
-            <img 
+            <ParallaxImage 
               src={useCases[2].image} 
               alt={useCases[2].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              parallaxStrength={25}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
             
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 z-10">
               <span className="inline-block px-2.5 py-0.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-medium text-white/90 mb-2 uppercase tracking-wider">
                 Pharma
               </span>
@@ -1386,7 +1419,7 @@ const IndustryUseCasesGrid = () => {
           </motion.button>
         </div>
 
-        {/* Full width bottom image - Chemical */}
+        {/* Full width bottom image - Chemical with Parallax */}
         <motion.button
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1395,14 +1428,14 @@ const IndustryUseCasesGrid = () => {
           onClick={() => setSelectedUseCase(useCases[3])}
           className="group relative w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden cursor-pointer mt-3 md:mt-4 max-w-7xl mx-auto"
         >
-          <img 
+          <ParallaxImage 
             src={useCases[3].image} 
             alt={useCases[3].title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            parallaxStrength={30}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
           
-          <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl">
+          <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
             <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/90 mb-3 uppercase tracking-wider w-fit">
               Chemical & Process
             </span>
