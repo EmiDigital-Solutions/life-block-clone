@@ -13,7 +13,7 @@ import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
-import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles, Play, Pause } from "lucide-react";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
 import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
@@ -1596,6 +1596,23 @@ const ChallengeToggleSection = () => {
               animate={{ x: isWithScanPro ? 32 : 0 }}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
+          </button>
+          
+          {/* Play/Pause Button */}
+          <button
+            onClick={() => setIsAutoSwitching(!isAutoSwitching)}
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
+              isAutoSwitching 
+                ? 'bg-primary/10 text-primary hover:bg-primary/20' 
+                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+            }`}
+            aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
+          >
+            {isAutoSwitching ? (
+              <Pause className="w-4 h-4" />
+            ) : (
+              <Play className="w-4 h-4 ml-0.5" />
+            )}
           </button>
         </div>
 
