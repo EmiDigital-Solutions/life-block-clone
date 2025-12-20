@@ -5,11 +5,11 @@ import PlatformDemoAnimation from "./PlatformDemoAnimation";
 const TestimonialSection = () => {
   return (
     <section className="relative overflow-hidden">
-      {/* Purple gradient background - midfunnel style */}
+      {/* YVOO gradient background - teal/cyan primary colors */}
       <div 
         className="relative py-20 md:py-32 lg:py-40 pb-24 md:pb-36 lg:pb-44"
         style={{
-          background: 'linear-gradient(135deg, #7C6BF0 0%, #8B7CF7 30%, #9D8EFA 60%, #AFA0FC 100%)',
+          background: 'linear-gradient(135deg, hsl(195, 89%, 30%) 0%, hsl(195, 85%, 38%) 30%, hsl(190, 75%, 45%) 60%, hsl(185, 65%, 50%) 100%)',
         }}
       >
         {/* Diagonal lines pattern overlay */}
@@ -61,7 +61,7 @@ const TestimonialSection = () => {
           </motion.div>
         </div>
 
-        {/* Headline and testimonial - Inside purple section */}
+        {/* Headline and testimonial - Inside gradient section */}
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -76,13 +76,9 @@ const TestimonialSection = () => {
                   Built for
                   <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10">high-performance</span>
+                    <span className="relative z-10 text-foreground">high-performance</span>
                     <span 
-                      className="absolute inset-0 -inset-x-2 -inset-y-1 -skew-x-3 rounded-lg"
-                      style={{ 
-                        background: 'linear-gradient(90deg, #D4FF00 0%, #BFFF00 100%)',
-                        zIndex: 0,
-                      }}
+                      className="absolute inset-0 -inset-x-2 -inset-y-1 -skew-x-3 rounded-lg bg-accent"
                     />
                   </span>
                   <br />
