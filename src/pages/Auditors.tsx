@@ -178,7 +178,7 @@ const Auditors = () => {
             >
               <div className="flex items-center gap-2 text-white/70 text-sm">
                 <span>By invitation only</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                <span className="w-1 h-1 rounded-full bg-primary animate-pulse" />
               </div>
             </motion.div>
           </div>
