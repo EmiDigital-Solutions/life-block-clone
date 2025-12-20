@@ -2206,20 +2206,21 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden bg-white"
+        className="py-24 md:py-32 bg-background"
         id="capabilities"
       >
-        <div className="w-full">
+        <div className="container mx-auto px-4 md:px-8 lg:px-12">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
+            className="mb-12 md:mb-16 text-center"
           >
-            <h2 className="section-headline text-foreground max-w-2xl mb-2">
+            <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
               Give your team superpowers
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               AI capabilities that let procurement, quality & engineering focus on decisions—not paperwork.
             </p>
           </motion.div>
