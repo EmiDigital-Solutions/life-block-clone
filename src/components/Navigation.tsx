@@ -22,12 +22,15 @@ const Navigation = () => {
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
-        className={`bg-white/70 backdrop-blur-xl shadow-lg border border-white/30 transition-all duration-300 ${
-          isMenuOpen ? 'rounded-3xl' : 'rounded-full'
+        className={`bg-white/50 backdrop-blur-2xl shadow-2xl border border-white/40 transition-all duration-300 ${
+          isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
+        style={{
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)'
+        }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-center gap-2 px-2 py-2">
+        <div className="flex items-center gap-4 px-4 py-3">
           {/* Logo */}
           <Link 
             to="/" 
@@ -37,20 +40,23 @@ const Navigation = () => {
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-6 w-auto object-contain"
+              className="h-8 md:h-10 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
 
-          {/* Hamburger Menu Button */}
+          {/* Hamburger Menu Button - Two lines style */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100/50 transition-colors"
+            className="flex flex-col items-center justify-center w-12 h-12 gap-1.5 rounded-full hover:bg-gray-100/50 transition-colors"
           >
             {isMenuOpen ? (
-              <X className="w-5 h-5 text-foreground" />
+              <X className="w-6 h-6 text-foreground" />
             ) : (
-              <Menu className="w-5 h-5 text-foreground" />
+              <>
+                <span className="w-6 h-0.5 bg-foreground rounded-full" />
+                <span className="w-6 h-0.5 bg-foreground rounded-full" />
+              </>
             )}
           </button>
 
@@ -59,48 +65,48 @@ const Navigation = () => {
             href="https://calendly.com/yvoo/demo-yvoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 bg-foreground text-white px-6 py-3.5 rounded-full font-semibold text-base hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
           >
             Book a Call
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </a>
         </div>
 
         {/* Dropdown Menu */}
         {isMenuOpen && (
-          <div className="px-6 pb-6 pt-2 animate-fade-in">
-            <nav className="space-y-1">
+          <div className="px-8 pb-8 pt-4 animate-fade-in">
+            <nav className="space-y-2">
               <Link 
                 to="/search-suppliers" 
-                className="block text-2xl md:text-3xl font-light text-foreground hover:text-primary transition-colors py-1"
+                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Search Suppliers
               </Link>
               <Link 
                 to="/ground-intelligence" 
-                className="block text-2xl md:text-3xl font-light text-foreground hover:text-primary transition-colors py-1"
+                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Ground Intelligence
               </Link>
               <Link 
                 to="/auditors" 
-                className="block text-2xl md:text-3xl font-light text-foreground hover:text-primary transition-colors py-1"
+                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 For Auditors
               </Link>
               <a 
                 href="#pricing" 
-                className="block text-2xl md:text-3xl font-light text-foreground hover:text-primary transition-colors py-1"
+                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
               </a>
               <Link 
                 to="/about-us" 
-                className="block text-2xl md:text-3xl font-light text-foreground hover:text-primary transition-colors py-1"
+                className="block text-2xl md:text-3xl font-medium text-foreground/80 hover:text-foreground transition-colors py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
