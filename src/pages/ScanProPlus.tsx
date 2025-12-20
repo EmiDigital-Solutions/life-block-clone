@@ -17,7 +17,7 @@ import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, Ba
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
 import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
+import industryElectronicsBwGreen from "@/assets/industry-electronics-bw-green.jpg";
 import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
 import {
