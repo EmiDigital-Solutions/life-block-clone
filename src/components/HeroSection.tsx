@@ -37,11 +37,11 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="black"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-muted"
+      className="relative min-h-screen flex flex-col overflow-hidden lg:overflow-visible bg-muted"
     >
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
-        <div className="container mx-auto px-4 lg:px-6 relative">
+        <div className="container mx-auto px-4 lg:px-6 relative lg:pr-[62vw] xl:pr-[60vw]">
           
           {/* Left Column - Content (in normal flow) */}
           <motion.div 
@@ -127,35 +127,18 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Demo Animation (Absolute positioned, independent) */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block absolute top-1/2 -translate-y-1/2 z-10 w-[58%] xl:w-[62%] 2xl:w-[65%]"
-            style={{ right: '-8%' }}
-          >
-            <div 
-              className="rounded-2xl overflow-hidden shadow-2xl"
-              style={{
-                boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.25)',
-              }}
-            >
-              <PlatformDemoAnimation />
-            </div>
-          </motion.div>
-
-          {/* Mobile Demo (in normal flow, only shows on mobile/tablet) */}
+          {/* Demo Animation (responsive: inline on mobile, absolute on desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:hidden mt-10"
+            className="mt-10 relative z-10 lg:mt-0 lg:absolute lg:inset-y-0 lg:right-0 lg:flex lg:items-center lg:justify-end lg:w-[min(62vw,980px)] xl:w-[min(60vw,1100px)]"
           >
-            <div 
-              className="rounded-2xl overflow-hidden shadow-2xl"
+            <div
+              className="w-full rounded-2xl overflow-hidden shadow-2xl"
               style={{
-                boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.25)',
+                boxShadow:
+                  '0 50px 100px -20px rgba(0, 0, 0, 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.25)',
               }}
             >
               <PlatformDemoAnimation />
