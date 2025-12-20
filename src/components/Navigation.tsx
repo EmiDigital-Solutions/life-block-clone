@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown } from "lucide-react";
-import { PixelIcon } from "@/components/PixelIcon";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import yvooLogo from "@/assets/logo-new.svg";
@@ -8,8 +7,6 @@ import yvooLogo from "@/assets/logo-new.svg";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [navBgColor, setNavBgColor] = useState('rgba(31, 41, 55, 0.95)'); // Default dark navy with opacity
-  const [textColor, setTextColor] = useState('rgb(255, 255, 255)'); // Default white
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -24,357 +21,168 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Helper function to calculate luminance and determine text color
-  const getContrastColor = (rgb: string): string => {
-    const match = rgb.match(/\d+/g);
-    if (!match || match.length < 3) return 'rgb(255, 255, 255)';
-    
-    const [r, g, b] = match.map(Number);
-    // Calculate relative luminance
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    
-    // Return white for dark backgrounds, dark for light backgrounds
-    return luminance > 0.5 ? 'rgb(31, 41, 55)' : 'rgb(255, 255, 255)';
-  };
-
-  // Detect scroll position and extract exact section background colors (ignore cards)
+  // Close mobile menu on route change
   useEffect(() => {
-    const handleScroll = () => {
-      const navbarHeight = 80;
-      const scrollPosition = window.scrollY + navbarHeight;
-      
-      // Get all section elements (these contain the background colors we want)
-      const sections = document.querySelectorAll('section');
-      let foundSection = false;
-      
-      for (const section of sections) {
-        if (foundSection) break;
-        
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionBottom = sectionTop + rect.height;
-        
-        // Check if navbar is within this section
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          foundSection = true;
-          
-          // First check for data-nav-theme attribute (highest priority)
-          const navTheme = section.getAttribute('data-nav-theme');
-          
-          if (navTheme === 'hero') {
-            // Hero section on landing page - fully transparent nav with white text
-            setNavBgColor('rgba(0, 0, 0, 0)');
-            setTextColor('rgb(255, 255, 255)');
-            break;
-          } else if (navTheme === 'black') {
-            // Black hero section - pure black background with white text
-            setNavBgColor('rgba(10, 10, 10, 0.95)');
-            setTextColor('rgb(255, 255, 255)');
-            break;
-          } else if (navTheme === 'blue') {
-            // Blue hero section (homepage) - blue background with white text
-            setNavBgColor('rgba(10, 127, 165, 0.95)');
-            setTextColor('rgb(255, 255, 255)');
-            break;
-          } else if (navTheme === 'dark') {
-            // Dark section - use dark background with light text
-            setNavBgColor('rgba(31, 41, 55, 0.95)');
-            setTextColor('rgb(255, 255, 255)');
-            break;
-          } else if (navTheme === 'light') {
-            // Light section - use light background with dark text
-            setNavBgColor('rgba(249, 250, 251, 0.95)');
-            setTextColor('rgb(31, 41, 55)');
-            break;
-          } else if (navTheme === 'primary') {
-            // Primary section - extract and adapt to the section's background color
-            const computedStyle = window.getComputedStyle(section);
-            let bgColor = computedStyle.backgroundColor;
-            
-            // Extract RGB values and set colors to match section
-            const rgbMatch = bgColor.match(/\d+/g);
-            if (rgbMatch && rgbMatch.length >= 3) {
-              const [r, g, b] = rgbMatch.map(Number);
-              setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-              setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-            }
-            break;
-          }
-          
-          // If no data-nav-theme, fall back to color detection
-          // Get the computed style directly from the section (not its children)
-          const computedStyle = window.getComputedStyle(section);
-          let bgColor = computedStyle.backgroundColor;
-          
-          // If transparent, check for gradient background
-          if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
-            const bgImage = computedStyle.backgroundImage;
-            if (bgImage && bgImage !== 'none' && bgImage.includes('gradient')) {
-              // Extract first color from gradient
-              const colorMatch = bgImage.match(/rgba?\([^)]+\)/);
-              if (colorMatch) {
-                bgColor = colorMatch[0];
-              }
-            }
-          }
-          
-          // Also check the parent container if section is still transparent
-          if ((bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') && section.parentElement) {
-            const parentStyle = window.getComputedStyle(section.parentElement);
-            const parentBg = parentStyle.backgroundColor;
-            if (parentBg && parentBg !== 'rgba(0, 0, 0, 0)' && parentBg !== 'transparent') {
-              bgColor = parentBg;
-            }
-          }
-          
-          // Extract RGB values and set colors
-          const rgbMatch = bgColor.match(/\d+/g);
-          if (rgbMatch && rgbMatch.length >= 3) {
-            const [r, g, b] = rgbMatch.map(Number);
-            setNavBgColor(`rgba(${r}, ${g}, ${b}, 0.95)`);
-            setTextColor(getContrastColor(`rgb(${r}, ${g}, ${b})`));
-          }
-        }
-      }
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
     };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-    
-    // Also call after a short delay to ensure styles are loaded
-    setTimeout(handleScroll, 100);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Determine if we're on a light or dark background
-  const isLightBg = textColor === 'rgb(31, 41, 55)';
-  
-  // Dynamic border color based on background
-  const borderColor = isLightBg ? 'rgba(31, 41, 55, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+  }, [isMobileMenuOpen]);
 
   return (
-    <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ease-in-out shadow-sm"
-      style={{ 
-        background: navBgColor,
-        borderBottomColor: navBgColor === 'rgba(0, 0, 0, 0)' ? 'transparent' : borderColor,
-        minHeight: '64px',
-      }}
-    >
-      <div className="px-4 sm:px-6 lg:px-8 xl:pl-8 h-16">
-        <div className="flex items-center justify-between h-full">
+    <>
+      {/* Floating Pill Navigation - Off Menu Style */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="flex items-center gap-2 bg-white/80 backdrop-blur-xl rounded-full px-2 py-2 shadow-lg border border-white/20">
           {/* Logo */}
-          <Link to="/" className="flex items-center h-full hover:opacity-80 transition-opacity">
+          <Link 
+            to="/" 
+            className="flex items-center justify-center px-4 py-2 hover:opacity-80 transition-opacity"
+          >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-6 sm:h-7 lg:h-7 xl:h-8 2xl:h-10 w-auto object-contain transition-all duration-300"
-              style={{ 
-                filter: textColor === 'rgb(255, 255, 255)' 
-                  ? 'brightness(0) invert(1)' 
-                  : 'brightness(0)'
-              }}
+              className="h-6 w-auto object-contain"
+              style={{ filter: 'brightness(0)' }}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center h-full gap-6 xl:gap-8">
-            {/* Solutions Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg flex items-center gap-1 opacity-80 hover:opacity-100"
-                style={{ color: textColor }}
-              >
-                Solutions
-                <ChevronDown className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
-              </button>
-              
-              {isDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-2 w-72 rounded-lg shadow-xl border overflow-hidden transition-all duration-300 animate-fade-in"
-                  style={{ 
-                    backgroundColor: isLightBg ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)',
-                    borderColor: borderColor 
-                  }}
-                >
-                  <Link 
-                    to="/search-suppliers" 
-                    className="block px-4 py-3 transition-colors duration-300 border-b"
-                    style={{ 
-                      color: textColor,
-                      borderBottomColor: borderColor 
-                    }}
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    <div className="font-semibold">Search Suppliers</div>
-                    <div className="text-xs opacity-60 mt-0.5">Find relevant companies</div>
-                  </Link>
-                  <Link 
-                    to="/ground-intelligence" 
-                    className="block px-4 py-3 transition-colors duration-300 border-b"
-                    style={{ 
-                      color: textColor,
-                      borderBottomColor: borderColor 
-                    }}
-                  >
-                    <div className="font-semibold">Ground Intelligence</div>
-                    <div className="text-xs opacity-60 mt-0.5">On-site supplier audits</div>
-                  </Link>
-                  <Link 
-                    to="/scanpro-plus" 
-                    className="block px-4 py-3 transition-colors duration-300 border-b"
-                    style={{ 
-                      color: textColor,
-                      borderBottomColor: borderColor 
-                    }}
-                  >
-                    <div className="font-semibold">ScanPro+</div>
-                    <div className="text-xs opacity-60 mt-0.5">On-Site Supplier Audits</div>
-                  </Link>
-                  <Link 
-                    to="/be-found" 
-                    className="block px-4 py-3 transition-colors duration-300"
-                    style={{ color: textColor }}
-                  >
-                    <div className="font-semibold">Be found</div>
-                    <div className="text-xs opacity-60 mt-0.5">Reach your target audience</div>
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <a 
-              href="#pricing" 
-              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              Pricing
-            </a>
-            <Link 
-              to="/auditors" 
-              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              For auditors
-            </Link>
-            <a 
-              href="#blog" 
-              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              Blog
-            </a>
-            <Link 
-              to="/about-us" 
-              className="transition-all duration-300 font-sans text-sm xl:text-base 2xl:text-lg opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              About us
-            </Link>
-            <Link to="/auth">
-              <Button 
-                variant="outline" 
-                className="font-sans text-xs sm:text-sm px-4 lg:px-6 py-2 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md hover:scale-105"
-              >
-                Admin Login
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Hamburger Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            style={{ color: textColor }}
+            className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <Menu className="w-6 h-6" />
+            <Menu className="w-5 h-5 text-foreground" />
           </button>
-        </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 space-y-3 sm:space-y-4 animate-fade-in">
-            {/* Solutions Submenu */}
-            <div className="space-y-2">
-              <div 
-                className="font-sans text-sm font-semibold transition-all duration-300"
-                style={{ color: textColor }}
-              >
-                Solutions
+          {/* CTA Button */}
+          <a
+            href="https://calendly.com/yvoo/demo-yvoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 rounded-full font-medium text-sm hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
+          >
+            Book a Call
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </nav>
+
+      {/* Full Screen Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[60] bg-white animate-fade-in">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          >
+            <X className="w-6 h-6 text-foreground" />
+          </button>
+
+          {/* Menu Content */}
+          <div className="flex flex-col justify-center h-full px-8 md:px-16 lg:px-24">
+            <nav className="space-y-6">
+              {/* Solutions with Dropdown */}
+              <div ref={dropdownRef}>
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center gap-3 text-4xl md:text-5xl lg:text-6xl font-light text-foreground hover:text-primary transition-colors"
+                >
+                  Solutions
+                  <ChevronDown 
+                    className="w-8 h-8 transition-transform duration-300" 
+                    style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} 
+                  />
+                </button>
+                
+                {isDropdownOpen && (
+                  <div className="mt-4 ml-4 space-y-3 animate-fade-in">
+                    <Link 
+                      to="/search-suppliers" 
+                      className="block text-xl md:text-2xl text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Search Suppliers
+                    </Link>
+                    <Link 
+                      to="/ground-intelligence" 
+                      className="block text-xl md:text-2xl text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Ground Intelligence
+                    </Link>
+                    <Link 
+                      to="/scanpro-plus" 
+                      className="block text-xl md:text-2xl text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      ScanPro+
+                    </Link>
+                    <Link 
+                      to="/be-found" 
+                      className="block text-xl md:text-2xl text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Be Found
+                    </Link>
+                  </div>
+                )}
               </div>
+
               <Link 
-                to="/search-suppliers" 
-                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-                style={{ color: textColor }}
+                to="/auditors" 
+                className="block text-4xl md:text-5xl lg:text-6xl font-light text-foreground hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Search Suppliers
+                For Auditors
               </Link>
-              <Link 
-                to="/ground-intelligence" 
-                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-                style={{ color: textColor }}
+
+              <a 
+                href="#pricing" 
+                className="block text-4xl md:text-5xl lg:text-6xl font-light text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Ground Intelligence
-              </Link>
+                Pricing
+              </a>
+
               <Link 
-                to="/scanpro-plus" 
-                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-                style={{ color: textColor }}
+                to="/about-us" 
+                className="block text-4xl md:text-5xl lg:text-6xl font-light text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                ScanPro+
+                About Us
               </Link>
-              <Link 
-                to="/be-found" 
-                className="block pl-4 transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-                style={{ color: textColor }}
+
+              <a 
+                href="#blog" 
+                className="block text-4xl md:text-5xl lg:text-6xl font-light text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Be found
-              </Link>
+                Blog
+              </a>
+            </nav>
+
+            {/* Bottom CTA */}
+            <div className="mt-12">
+              <a
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-foreground text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-foreground/90 transition-all duration-300"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Book a Call
+                <ArrowRight className="w-5 h-5" />
+              </a>
             </div>
-            
-            <a 
-              href="#pricing" 
-              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              Pricing
-            </a>
-            <Link 
-              to="/auditors" 
-              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              For auditors
-            </Link>
-            <a 
-              href="#blog" 
-              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              Blog
-            </a>
-            <Link 
-              to="/about-us" 
-              className="block transition-all duration-300 font-sans text-sm opacity-80 hover:opacity-100"
-              style={{ color: textColor }}
-            >
-              About us
-            </Link>
-            <Link to="/auth" className="block">
-              <Button 
-                variant="outline" 
-                className="w-full font-sans text-sm py-3 transition-all duration-300 hover:opacity-90 bg-white text-gray-900 border-2 border-gray-200 hover:bg-gray-100 rounded-full shadow-md"
-              >
-                Admin Login
-              </Button>
-            </Link>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 };
 
