@@ -1157,12 +1157,12 @@ const InfiniteScrollingGallery = () => {
                 y: hoveredKey === `${rowIndex}-${index}` ? -30 : 0,
                 filter: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 'blur(3px)' : 'blur(0px)',
                 opacity: hoveredKey && hoveredKey !== `${rowIndex}-${index}` ? 0.7 : 1,
+                boxShadow: hoveredKey === `${rowIndex}-${index}` 
+                  ? "0 40px 80px -20px rgba(0, 0, 0, 0.5), 0 20px 40px -10px rgba(0, 0, 0, 0.3)" 
+                  : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
               }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               whileTap={{ scale: 0.95 }}
-              whileHover={{
-                boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.6)",
-              }}
             >
               <div className="aspect-square overflow-hidden rounded-t-2xl">
                 <MockupRenderer type={item.mockupType} />
