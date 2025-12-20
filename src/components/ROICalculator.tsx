@@ -252,7 +252,7 @@ const ROICalculator = () => {
             </div>
           </div>
           <div className="text-right">
-            <div className="text-4xl sm:text-5xl font-semibold text-green-400 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]">
+            <div className="text-4xl sm:text-5xl font-semibold text-green-400">
               −{formatCurrency(totalAnnualSavings)}
             </div>
             <div className="flex items-center justify-end gap-2 mt-1">
