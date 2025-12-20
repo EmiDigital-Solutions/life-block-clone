@@ -1415,8 +1415,8 @@ const FollowUpDemo = () => {
 const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
-  // Custom durations per step (ms) - search needs more time
-  const stepDurations = [12000, 10000, 10000, 10000, 10000, 10000]; // Search, Order, Dispatch, Audit, Report, Follow-up
+  // Custom durations per step (ms) - slower timing for better viewing
+  const stepDurations = [18000, 15000, 15000, 15000, 15000, 15000]; // Search, Order, Dispatch, Audit, Report, Follow-up
   
   useEffect(() => {
     const timeout = setTimeout(() => {
