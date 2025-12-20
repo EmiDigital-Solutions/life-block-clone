@@ -109,7 +109,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 mb-8"
             >
-              <span className="text-lg text-foreground font-medium bg-white/60 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-white/30">
+              <span className="text-base text-foreground font-semibold bg-white/60 backdrop-blur-md px-8 py-4 rounded-full shadow-sm border border-white/30">
                 Audit starts at €700
               </span>
               <a 
@@ -118,7 +118,7 @@ const HeroSection = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90"
               >
-                Order Audit
+                Order YVOO Audit
                 <span>→</span>
               </a>
             </motion.div>
@@ -152,7 +152,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.7 }}
-        className="bg-white/60 backdrop-blur-md py-8 overflow-hidden mt-auto relative z-10 border-t border-white/30"
+        className="bg-white py-8 overflow-hidden mt-auto relative z-10"
       >
         <div className="container mx-auto px-6 mb-4">
           <p className="text-sm text-muted-foreground font-medium">
