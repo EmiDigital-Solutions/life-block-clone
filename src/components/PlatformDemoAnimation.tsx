@@ -1445,7 +1445,7 @@ const PlatformDemoAnimation = () => {
           <button
             key={step.id}
             onClick={() => setCurrentStep(i)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
               i === currentStep 
                 ? 'bg-[#1391BF] text-white' 
                 : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
