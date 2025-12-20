@@ -49,7 +49,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-lg relative z-20"
+              className="relative z-20 overflow-visible"
             >
               {/* Tagline Badge */}
               <motion.div
