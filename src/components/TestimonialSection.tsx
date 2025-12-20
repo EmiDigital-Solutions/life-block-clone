@@ -44,7 +44,7 @@ const TestimonialSection = () => {
         {/* Headline and testimonial */}
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
               {/* Left: Headline with highlighted word */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -52,7 +52,7 @@ const TestimonialSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-[1.1] text-foreground">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] text-foreground">
                   <span className="block">Built for</span>
                   <span className="relative inline-block whitespace-nowrap">
                     <span className="relative z-10">high‑performance</span>
