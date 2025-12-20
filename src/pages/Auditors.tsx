@@ -138,7 +138,7 @@ const Auditors = () => {
           </div>
 
           {/* Main Content - VanMoof Layout */}
-          <div className="relative z-10 w-full h-full flex flex-col justify-between px-8 lg:px-16 py-8">
+          <div className="relative z-10 w-full h-full flex flex-col justify-between px-12 lg:px-24 xl:px-32 py-8">
             
             {/* Middle Content Area */}
             <div className="flex-1 flex items-start justify-start pt-16 lg:pt-20">
