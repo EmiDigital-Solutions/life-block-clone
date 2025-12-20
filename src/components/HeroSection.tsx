@@ -39,9 +39,8 @@ const HeroSection = () => {
       data-nav-theme="black"
       className="relative min-h-screen flex flex-col overflow-hidden bg-white"
     >
-      {/* Video Background Container - B&W with Green Accent Effect */}
+      {/* Video Background Container - Pure B&W */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Base video layer - grayscale */}
         <video
           autoPlay
           loop
@@ -56,14 +55,6 @@ const HeroSection = () => {
         >
           <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
         </video>
-        {/* Green duotone overlay - creates selective green highlight effect */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            background: 'linear-gradient(180deg, hsl(var(--primary) / 0.25) 0%, hsl(var(--primary) / 0.15) 100%)',
-            mixBlendMode: 'color'
-          }} 
-        />
         {/* Subtle overlay for better text contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/50 via-white/20 to-transparent" />
       </div>
