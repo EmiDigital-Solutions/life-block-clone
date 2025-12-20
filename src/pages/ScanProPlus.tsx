@@ -1275,55 +1275,55 @@ const IndustryShowcaseCard = ({
         onClick={onClick}
         className="group relative overflow-hidden cursor-pointer rounded-2xl w-full h-full"
       >
-      {/* Dark container frame */}
-      <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden">
-        {/* Studio gradient background */}
-        <div 
-          className={`relative ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}
-          style={{
-            background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 40%, #2a2a2a 85%, #1a1a1a 100%)'
-          }}
-        >
-          {/* Image with parallax */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <motion.img 
-              src={useCase.image} 
-              alt={useCase.title}
-              style={{ y, scale }}
-              className={`${isLarge ? 'w-[85%] h-[85%]' : 'w-[80%] h-[80%]'} object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]`}
-            />
-          </div>
-          
-          {/* Reflection effect at bottom */}
+        {/* Light container frame */}
+        <div className="relative bg-[#f0f0f0] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
+          {/* Studio gradient background */}
           <div 
-            className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+            className={`relative ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}
             style={{
-              background: 'linear-gradient(180deg, transparent 0%, rgba(26, 26, 26, 0.8) 60%, #1a1a1a 100%)'
+              background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f5 40%, #e0e0e0 85%, #d0d0d0 100%)'
             }}
-          />
+          >
+            {/* Image with parallax */}
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+              <motion.img 
+                src={useCase.image} 
+                alt={useCase.title}
+                style={{ y, scale }}
+                className={`${isLarge ? 'w-[85%] h-[85%]' : 'w-[80%] h-[80%]'} object-cover rounded-lg shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]`}
+              />
+            </div>
+            
+            {/* Reflection effect at bottom */}
+            <div 
+              className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+              style={{
+                background: 'linear-gradient(180deg, transparent 0%, rgba(240, 240, 240, 0.8) 60%, #f0f0f0 100%)'
+              }}
+            />
+            
+            {/* Badge - VanMoof style */}
+            <div className="absolute bottom-4 left-4 z-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-foreground/90 backdrop-blur-sm rounded-md text-xs font-medium text-white uppercase tracking-wider">
+                {badge}
+              </span>
+            </div>
+          </div>
           
-          {/* Badge - VanMoof style */}
-          <div className="absolute bottom-4 left-4 z-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2a2a2a]/90 backdrop-blur-sm rounded-md text-xs font-medium text-white/90 uppercase tracking-wider">
-              {badge}
-            </span>
+          {/* Bottom info bar */}
+          <div className="p-4 md:p-5 bg-[#f0f0f0]">
+            <h3 className={`font-semibold text-foreground mb-1 leading-tight line-clamp-1 ${isLarge ? 'text-lg md:text-xl' : 'text-sm md:text-base'}`}>
+              {useCase.title.split(':')[1]?.trim() || useCase.title}
+            </h3>
+            <p className={`text-muted-foreground line-clamp-1 ${isLarge ? 'text-sm' : 'text-xs'}`}>
+              {useCase.useCase}
+            </p>
+            <div className="flex items-center gap-1.5 mt-3 text-primary group-hover:text-primary/80 transition-colors">
+              <span className="text-xs font-medium">View details</span>
+              <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+            </div>
           </div>
         </div>
-        
-        {/* Bottom info bar */}
-        <div className="p-4 md:p-5 bg-[#1a1a1a]">
-          <h3 className={`font-semibold text-white mb-1 leading-tight line-clamp-1 ${isLarge ? 'text-lg md:text-xl' : 'text-sm md:text-base'}`}>
-            {useCase.title.split(':')[1]?.trim() || useCase.title}
-          </h3>
-          <p className={`text-white/50 line-clamp-1 ${isLarge ? 'text-sm' : 'text-xs'}`}>
-            {useCase.useCase}
-          </p>
-          <div className="flex items-center gap-1.5 mt-3 text-white/60 group-hover:text-white transition-colors">
-            <span className="text-xs font-medium">View details</span>
-            <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
-          </div>
-        </div>
-      </div>
       </motion.button>
     </div>
   );
@@ -1385,8 +1385,8 @@ const IndustryUseCasesGrid = () => {
   return (
     <section 
       ref={sectionRef}
-      data-nav-theme="dark" 
-      className="py-24 md:py-32 bg-[#0a0a0a]"
+      data-nav-theme="light" 
+      className="py-24 md:py-32 bg-background"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Header */}
@@ -1396,10 +1396,10 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           className="mb-12 md:mb-16 text-center"
         >
-          <h2 className="section-headline text-white max-w-3xl mx-auto mb-4">
+          <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
             How industry leaders use ScanPro+
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real scenarios from automotive, aerospace, pharma, and chemical—see how teams like yours work smarter.
           </p>
         </motion.div>
@@ -1441,12 +1441,12 @@ const IndustryUseCasesGrid = () => {
           onClick={() => setSelectedUseCase(useCases[3])}
           className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
         >
-          <div className="relative bg-[#1a1a1a] rounded-2xl overflow-hidden">
+          <div className="relative bg-[#f0f0f0] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
             {/* Wide studio gradient */}
             <div 
               className="relative aspect-[21/9] md:aspect-[3/1]"
               style={{
-                background: 'linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 30%, #2a2a2a 80%, #1a1a1a 100%)'
+                background: 'linear-gradient(180deg, #ffffff 0%, #f5f5f5 30%, #e0e0e0 80%, #d0d0d0 100%)'
               }}
             >
               {/* Image */}
@@ -1462,29 +1462,29 @@ const IndustryUseCasesGrid = () => {
               <div 
                 className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, transparent 0%, rgba(26, 26, 26, 0.8) 60%, #1a1a1a 100%)'
+                  background: 'linear-gradient(180deg, transparent 0%, rgba(240, 240, 240, 0.8) 60%, #f0f0f0 100%)'
                 }}
               />
               
               {/* Badge */}
               <div className="absolute bottom-4 left-4 z-10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2a2a2a]/90 backdrop-blur-sm rounded-md text-xs font-medium text-white/90 uppercase tracking-wider">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-foreground/90 backdrop-blur-sm rounded-md text-xs font-medium text-white uppercase tracking-wider">
                   Chemical & Process
                 </span>
               </div>
             </div>
             
             {/* Bottom info */}
-            <div className="p-5 md:p-6 bg-[#1a1a1a] flex items-center justify-between">
+            <div className="p-5 md:p-6 bg-[#f0f0f0] flex items-center justify-between">
               <div>
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-1 leading-tight">
+                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1 leading-tight">
                   REACH Compliance & Process Safety
                 </h3>
-                <p className="text-sm text-white/50 line-clamp-1">
+                <p className="text-sm text-muted-foreground line-clamp-1">
                   {useCases[3].useCase}
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-white/60 group-hover:text-white transition-colors">
+              <div className="flex items-center gap-2 text-primary group-hover:text-primary/80 transition-colors">
                 <span className="text-sm font-medium hidden md:inline">View details</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </div>
