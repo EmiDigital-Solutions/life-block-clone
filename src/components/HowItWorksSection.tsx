@@ -1,29 +1,35 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { FileCheck, MousePointerClick, Users, ClipboardCheck, BarChart3 } from "lucide-react";
 import { PixelIcon } from "./PixelIcon";
 
 const steps = [
   {
     number: "01",
-    title: "Submit request",
+    title: "Submit",
+    subtitle: "Request audit",
     description: "One click from your dashboard or ERP. Specify supplier, standard, and timeline. That's it.",
     icon: MousePointerClick,
   },
   {
     number: "02",
-    title: "We assign locally",
+    title: "Match",
+    subtitle: "Local auditor assigned",
     description: "Our AI matches a certified auditor near your supplier—no travel costs, no waiting.",
     icon: Users,
   },
   {
     number: "03",
-    title: "Watch it happen",
+    title: "Track",
+    subtitle: "Watch it happen",
     description: "Real-time updates during the audit. Chat directly with the auditor. Know exactly what's happening.",
     icon: ClipboardCheck,
   },
   {
     number: "04",
-    title: "Report delivered",
+    title: "Receive",
+    subtitle: "Report delivered",
     description: "Complete digital report in 24h—findings, photos, scores, action items. Ready for your QMS.",
     icon: BarChart3,
   },
@@ -37,64 +43,120 @@ const stats = [
 ];
 
 export const HowItWorksSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-24 lg:py-32 bg-white">
-      <div className="container mx-auto px-6 lg:px-20">
+    <section ref={ref} className="py-24 lg:py-32 bg-white overflow-hidden">
+      <div className="container mx-auto px-6 lg:px-16">
         
-        {/* Section Header - offmenu style mixed weight typography */}
-        <motion.div 
-          className="mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-headline text-foreground">
-            From request to report in 4 steps
-          </h2>
-        </motion.div>
-
-        {/* Steps Grid - offmenu style cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
-            >
-              {/* Step Number */}
-              <div className="text-5xl font-black text-foreground/15 mb-6">
-                {step.number}
-              </div>
-
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-full bg-foreground/5 flex items-center justify-center mb-6">
-                <step.icon className="w-6 h-6 text-foreground" strokeWidth={1.5} />
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                {step.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-muted-foreground text-base leading-relaxed">
-                {step.description}
-              </p>
-            </motion.div>
-          ))}
+        {/* Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+                The Process
+              </span>
+            </div>
+            <h2 className="section-headline text-foreground">
+              From request
+              <br />
+              to report.
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
+          >
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A streamlined process designed for procurement teams who value their time.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Stats Section - dark offmenu style */}
+        {/* Steps - Horizontal Accordion */}
+        <div className="relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+          
+          <div className="flex flex-col md:flex-row">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group relative border-b md:border-b-0 md:border-r border-border last:border-r-0 cursor-pointer transition-all duration-500 ease-out ${
+                  hoveredIndex === index 
+                    ? 'md:flex-[2.5]' 
+                    : hoveredIndex !== null 
+                      ? 'md:flex-[0.8]' 
+                      : 'md:flex-1'
+                }`}
+              >
+                <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                  {/* Number */}
+                  <div className="flex items-start justify-between mb-auto">
+                    <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 text-primary ${
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-30'
+                    }`}>
+                      {step.number}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="mt-12 md:mt-20">
+                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                      hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
+                    }`}>
+                      {step.subtitle}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description - Only visible on hover */}
+                    <motion.p
+                      initial={false}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        height: hoveredIndex === index ? 'auto' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="text-sm text-muted-foreground leading-relaxed overflow-hidden"
+                    >
+                      {step.description}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Hover indicator line */}
+                  <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ${
+                    hoveredIndex === index ? 'w-full' : 'w-0'
+                  }`} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats Section - dark style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16"
+          className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16 mt-20"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {stats.map((stat, index) => (
@@ -132,7 +194,7 @@ export const HowItWorksSection = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
             >
               Book a Demo
               <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
