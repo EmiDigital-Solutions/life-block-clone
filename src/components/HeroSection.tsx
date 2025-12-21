@@ -69,7 +69,7 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="white"
-      className="relative min-h-[110vh] flex flex-col overflow-hidden"
+      className="relative min-h-screen flex flex-col overflow-hidden"
     >
       {/* Full-screen Image Carousel Background */}
       <div className="absolute inset-0 z-0">
@@ -97,7 +97,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
       </div>
       {/* Main Content - Split Screen */}
-      <div className="flex-1 flex items-center relative z-10 pt-36 pb-16">
+      <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-6 items-center">
             
@@ -190,7 +190,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative z-10 mt-16 lg:mt-20 xl:mt-24 lg:-mr-28 xl:-mr-44 2xl:-mr-56"
+              className="relative z-10 mt-10 lg:mt-8 xl:mt-10 lg:-mr-28 xl:-mr-44 2xl:-mr-56"
             >
               <div 
                 className="rounded-2xl overflow-hidden shadow-2xl"
