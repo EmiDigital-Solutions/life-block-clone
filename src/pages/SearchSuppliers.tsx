@@ -481,106 +481,246 @@ const SearchSuppliers = () => {
             </motion.div>
           ))}
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
+          {/* Green accent overlay */}
+          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
         </div>
 
-        {/* Main Content - Bottom Left Corner */}
-        <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
-          <div className="px-6 lg:px-12 xl:px-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-20"
-            >
-              {/* Single Line Headline - Big Font */}
+        {/* Main Content */}
+        <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
+          <div className="container mx-auto px-6 lg:px-20">
+          
+            {/* Two-column layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column - Text Content */}
+            <div className="text-left">
+              
+              {/* Main Heading - Multi-line with colored words */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-bold tracking-tight leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white"
+                transition={{ duration: 0.6 }}
+                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold text-white"
               >
-                Find Suppliers Worldwide in Real-Time.
+                <span className="block">Find suppliers</span>
+                <span className="block">worldwide in real-time.</span>
               </motion.h1>
+              
+              {/* Vertical checkmark list */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex flex-col gap-3 mb-10"
+              >
+                {[
+                  "25+ million supplier profiles",
+                  "Relevant supplier data",
+                  "Save and export options"
+                ].map((text, index) => (
+                  <div key={index} className="flex items-center gap-3 text-white/80">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-base font-medium">{text}</span>
+                  </div>
+                ))}
+              </motion.div>
 
               {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-6 lg:mt-10"
+                transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <a 
-                  href="#search"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
-                >
-                  Start Searching — Free
-                  <span>→</span>
-                </a>
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90">
+                  Get Started
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
               </motion.div>
+            </div>
 
-              {/* Feature Badges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="mt-6"
-              >
-                <p className="text-white/60 text-sm mb-3">Powered by:</p>
-                <div className="flex flex-wrap gap-2">
-                  {["AI-Powered Search", "25M+ Suppliers", "94 Countries"].map((badge) => (
-                    <span
-                      key={badge}
-                      className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm border border-white/30"
-                    >
-                      {badge}
-                    </span>
-                  ))}
+            {/* Right Column - Product Demo Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="hidden lg:block relative"
+              style={{ zIndex: 20 }}
+            >
+              {/* Modern white card matching YVOO design - Fixed height container */}
+              <div className="bg-white rounded-3xl shadow-2xl overflow-visible flex flex-col" style={{ maxHeight: '600px' }}>
+                
+              {/* Modern Card Header */}
+              <div className="bg-foreground px-6 py-4 rounded-t-3xl flex items-center justify-between flex-shrink-0">
+                <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+                <div className="flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-primary" strokeWidth={2.5} />
+                  <span className="text-white text-sm">AI-Powered</span>
                 </div>
-              </motion.div>
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col overflow-hidden">
+              
+              {/* Label */}
+              <div className="mb-3 flex-shrink-0">
+                <span className="text-primary text-sm font-semibold">
+                  Interactive Demo
+                </span>
+              </div>
+              {/* Bold title/description */}
+              <h3 className="text-foreground text-xl font-bold mb-4 leading-tight flex-shrink-0">
+                AI-Powered Conversational Search
+                <span className="block text-sm font-normal text-muted-foreground mt-2">
+                  Step-by-step guidance to find your perfect supplier
+                </span>
+              </h3>
+
+              {/* Step indicators */}
+              <div className="flex items-center justify-center gap-2 mb-4 flex-shrink-0">
+                {[1, 2, 3].map((step) => (
+              <div
+                    key={step}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                      step <= currentStep
+                        ? 'bg-foreground text-white'
+                        : 'bg-[#e5e5e5] text-muted-foreground'
+                    }`}
+                  >
+                    {step}
+                  </div>
+                ))}
+              </div>
+
+                {/* Conversation Thread - Auto-scrolling with dynamic height */}
+                <motion.div 
+                  ref={chatContainerRef}
+                  className="space-y-4 flex-1 overflow-y-auto bg-white p-4"
+                  style={{ maxHeight: '600px' }}
+                  animate={{ opacity: isFading ? 0 : 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {conversationHistory.map((msg, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                          className={`max-w-[80%] p-4 rounded-2xl ${
+                            msg.role === 'user'
+                              ? 'bg-foreground text-white rounded-br-none'
+                              : 'bg-white text-foreground rounded-bl-none shadow-sm border border-[#d5d5d5]'
+                          }`}
+                        >
+                          {msg.role === 'ai' && (
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
+                                <Cpu className="w-3 h-3 text-white" />
+                              </div>
+                              <span className="text-xs font-semibold text-foreground">YVOO</span>
+                            </div>
+                          )}
+                        <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+
+                  {/* Active AI Response (Typing) */}
+                  {aiResponse && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex justify-start"
+                    >
+                      <div className="max-w-[80%] p-4 rounded-2xl bg-white text-foreground rounded-bl-none shadow-sm border border-[#d5d5d5]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
+                            <Cpu className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-xs font-semibold text-foreground">YVOO</span>
+                          {isTyping && (
+                            <div className="flex gap-1 ml-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-foreground animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                            </div>
+                          )}
+                        </div>
+                        <p className="text-sm whitespace-pre-line font-medium">{aiResponse}</p>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Active User Input (Typing) */}
+                  {userInput && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex justify-end"
+                    >
+                    <div className="max-w-[80%] p-4 rounded-2xl bg-foreground text-white rounded-br-none">
+                      <p className="text-sm font-medium">{userInput}</p>
+                    </div>
+                  </motion.div>
+                )}
+                </motion.div>
+                </div>
+
+                {/* Results section that breaks out of the card and overflows into white area */}
+                {showResults && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute left-0 right-0 top-full mt-4 px-6 pb-6 z-30"
+                  >
+                    <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                      <div className="flex items-center gap-2 mb-4">
+                        <CheckCircle2 className="w-5 h-5 text-[#6EA996]" />
+                        <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {suppliers.map((supplier) => (
+                          <button
+                            key={supplier.id}
+                            onClick={() => setSelectedSupplier(supplier)}
+                            className="text-left p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#6EA996] hover:shadow-md transition-all group"
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <h4 className="font-bold text-gray-900 group-hover:text-[#6EA996] transition-colors">
+                                {supplier.name}
+                              </h4>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#6EA996] group-hover:translate-x-1 transition-all" />
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                              <MapPin className="w-4 h-4" />
+                              <span>{supplier.location}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1.5">
+                              {supplier.certifications.slice(0, 2).map((cert, idx) => (
+                                <span
+                                  key={idx}
+                                  className="px-2 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-xs rounded-full font-medium"
+                                >
+                                  {cert}
+                                </span>
+                              ))}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             </motion.div>
+          </div>
           </div>
         </div>
-
-        {/* Scrolling Client Band */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
-        >
-          <div className="relative flex">
-            <motion.div
-              className="flex gap-16 whitespace-nowrap"
-              animate={{
-                x: [0, -1920],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 60,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...Array(3)].map((_, setIndex) => (
-                <div key={setIndex} className="flex gap-16 items-center">
-                  {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson", "Rockwell Automation", "Mitsubishi Electric"].map((company, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
       </section>
-
 
       {/* Interactive Demo Chat Section - Mobile & Tablet Only */}
       <section className="lg:hidden py-12 bg-white" data-nav-theme="light">
