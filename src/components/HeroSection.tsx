@@ -130,6 +130,26 @@ const HeroSection = () => {
                 <span>→</span>
               </a>
             </motion.div>
+
+            {/* Certification Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-6"
+            >
+              <p className="text-white/60 text-sm mb-3">Auditors certified by:</p>
+              <div className="flex flex-wrap gap-2">
+                {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                  <span
+                    key={badge}
+                    className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm border border-white/30"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
