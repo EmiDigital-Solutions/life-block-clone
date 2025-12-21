@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
+import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
 const TestimonialSection = () => {
   return (
@@ -14,17 +15,9 @@ const TestimonialSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {/* Demo Video */}
+              {/* Platform Demo */}
               <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
-                <video 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline
-                  className="w-full h-auto"
-                >
-                  <source src="/videos/hero-character-video.mp4" type="video/mp4" />
-                </video>
+                <PlatformDemoAnimation />
               </div>
               
               <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] text-foreground">
