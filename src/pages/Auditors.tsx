@@ -169,120 +169,101 @@ const Auditors = () => {
             return null;
           })()}
 
-          {/* Main Content */}
-          <div className="container mx-auto px-6 lg:px-16 pt-32 pb-20 relative z-10">
-            <div className="max-w-5xl mx-auto text-center">
-              
-              {/* Eyebrow - Exclusivity signal */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-12"
-              >
-                By Invitation Only
-              </motion.p>
-
-              {/* Main Heading - Aspirational, confident */}
+        {/* Main Content - Bottom Left Corner */}
+        <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
+          <div className="px-6 lg:px-12 xl:px-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative z-20"
+            >
+              {/* Single Line Headline - Big Font */}
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-light tracking-tight leading-[1.1] mb-8 text-white"
+                className="font-bold tracking-tight leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white"
               >
-                We partner with
-                <br />
-                <span className="font-medium">exceptional auditors.</span>
+                We Partner With Exceptional Auditors.
               </motion.h1>
 
-              {/* Subtitle - Selective, not desperate */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-white/40 mb-16 max-w-xl mx-auto"
-              >
-                Our clients demand the highest standards.
-                <br />
-                So do we.
-              </motion.p>
-
-              {/* CTA - Simple, confident */}
+              {/* CTA Button */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mt-6 lg:mt-10"
               >
-                <button className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90">
+                <a 
+                  href="#apply"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+                >
                   Apply for Partnership
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                  <span>→</span>
+                </a>
               </motion.div>
-            </div>
 
-            {/* Client Logos - Show caliber */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="mt-32 pt-12 border-t border-white/10"
-            >
-              <p className="text-center text-white/30 text-sm tracking-wider uppercase mb-10">
-                Our partners audit for
-              </p>
-              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
-                {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF"].map((client, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
-                    className="text-2xl lg:text-3xl font-light text-white/20 hover:text-white/40 transition-colors"
-                  >
-                    {client}
-                  </motion.span>
-                ))}
-              </div>
+              {/* Certification Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mt-6"
+              >
+                <p className="text-white/60 text-sm mb-3">Our auditors are certified by:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                    <span
+                      key={badge}
+                      className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm border border-white/30"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
+          </div>
+        </div>
 
-            {/* Minimal stats - understated confidence */}
+        {/* Scrolling Client Band */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
+        >
+          <div className="relative flex">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
-              className="mt-20 flex justify-center gap-16 lg:gap-24"
+              className="flex gap-16 whitespace-nowrap"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 60,
+                  ease: "linear",
+                },
+              }}
             >
-              {[
-                { value: "2,000+", label: "Partners" },
-                { value: "94", label: "Countries" },
-                { value: "12K+", label: "Audits Completed" }
-              ].map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <p className="text-2xl lg:text-3xl font-light text-white/80">{stat.value}</p>
-                  <p className="text-xs text-white/30 uppercase tracking-wider mt-1">{stat.label}</p>
+              {[...Array(3)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-16 items-center">
+                  {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF", "Volkswagen", "Daimler"].map((company, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
+                    >
+                      {company}
+                    </span>
+                  ))}
                 </div>
               ))}
             </motion.div>
-
-            {/* Carousel Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.8 }}
-              className="mt-16 flex justify-center gap-2"
-            >
-              {heroImages.slice(0, 8).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    idx === activeIndex % 8 ? 'bg-primary w-8' : 'bg-white/30 hover:bg-white/50'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </motion.div>
           </div>
+        </motion.div>
         </section>
 
         {/* Scroll-Zoom Section */}
