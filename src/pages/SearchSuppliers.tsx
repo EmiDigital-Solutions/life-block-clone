@@ -14,10 +14,13 @@ import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
 // Import procurement images for hero carousel background
 import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
+import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
 import procurementFemaleBlonde from "@/assets/procurement-female-blonde.jpg";
 import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
 import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
+import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
 
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
@@ -99,12 +102,15 @@ const SearchSuppliers = () => {
     }
   ];
 
-  // Hero carousel images - only images with visible eyes
+  // Hero carousel images
   const heroImages = [
     { src: procurementFemaleEuropean, alt: 'Procurement Specialist - Europe' },
+    { src: procurementMaleAsian, alt: 'Supply Chain Manager - Asia' },
     { src: procurementFemaleBlonde, alt: 'Sourcing Manager - Germany' },
     { src: procurementMaleLatin, alt: 'Procurement Director - Latin America' },
     { src: procurementFemaleAfrican, alt: 'Strategic Buyer - Africa' },
+    { src: procurementMaleSouthAsian, alt: 'Category Manager - South Asia' },
+    { src: procurementFemaleAsian, alt: 'Global Sourcing Lead - Asia Pacific' },
     { src: procurementMaleEuropean, alt: 'Purchasing Manager - Europe' },
   ];
 
