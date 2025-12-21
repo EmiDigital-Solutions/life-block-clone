@@ -7,6 +7,20 @@ const TestimonialSection = () => {
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
+          {/* Platform Demo - Centered above content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16 md:mb-20 lg:mb-24"
+          >
+            <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-border/20">
+              <PlatformDemoAnimation />
+            </div>
+          </motion.div>
+
+          {/* Headline and Testimonial Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left: Headline with highlighted word */}
             <motion.div
@@ -15,11 +29,6 @@ const TestimonialSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {/* Platform Demo */}
-              <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
-                <PlatformDemoAnimation />
-              </div>
-              
               <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] text-foreground">
                 <span className="block">Built for</span>
                 <span className="relative inline-block whitespace-nowrap">
