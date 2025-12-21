@@ -91,11 +91,8 @@ const HeroSection = () => {
           </motion.div>
         ))}
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
       </div>
-
-      {/* Bottom 40% - Dark background for content */}
-      <div className="absolute bottom-0 left-0 right-0 h-[40vh] bg-black z-0" />
 
       {/* Main Content - Bottom Left Corner */}
       <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
