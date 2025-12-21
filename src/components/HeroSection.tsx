@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
-import PlatformDemoAnimation from "./PlatformDemoAnimation";
 
 // Import auditor images for hero carousel background
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -99,14 +98,14 @@ const HeroSection = () => {
       {/* Main Content - Split Screen */}
       <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
         <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-6 items-center">
+          <div className="max-w-3xl">
             
             {/* Left Column - Content */}
             <motion.div 
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative z-20 overflow-visible lg:-ml-8 xl:-ml-12 2xl:-ml-16"
+              className="relative z-20 overflow-visible"
             >
               {/* Tagline Badge */}
               <motion.div
@@ -183,23 +182,6 @@ const HeroSection = () => {
                   ))}
                 </div>
               </motion.div>
-            </motion.div>
-
-            {/* Right Column - Demo Animation (Larger) */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative z-10 mt-10 lg:mt-8 xl:mt-10 lg:-mr-28 xl:-mr-44 2xl:-mr-56"
-            >
-              <div 
-                className="rounded-2xl overflow-hidden shadow-2xl"
-                style={{
-                  boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.2), 0 30px 60px -30px rgba(0, 0, 0, 0.25)',
-                }}
-              >
-                <PlatformDemoAnimation />
-              </div>
             </motion.div>
           </div>
         </div>
