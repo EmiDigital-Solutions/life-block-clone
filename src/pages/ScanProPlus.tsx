@@ -2033,6 +2033,27 @@ const HowItWorksCarousel = () => {
 const ScanProPlus = () => {
   const isMobile = useIsMobile();
   const [auditors, setAuditors] = useState(fallbackAuditors);
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
+  
+  // Hero carousel images
+  const heroImages = [
+    { src: auditorEuropean, alt: 'VDA 6.3 Lead Auditor - Germany' },
+    { src: auditorAsian, alt: 'ISO 9001 Specialist - Japan' },
+    { src: auditorMiddleEast, alt: 'API & ISO 29001 Auditor - UAE' },
+    { src: auditorLatin, alt: 'IATF 16949 Specialist - Mexico' },
+    { src: auditorSouthAsian, alt: 'AS9100 Lead Auditor - India' },
+    { src: auditorAfrican, alt: 'Mining & Energy Auditor - South Africa' },
+    { src: auditorFemaleEuropean, alt: 'Pharmaceutical GMP Auditor - Switzerland' },
+    { src: auditorFemaleAsian, alt: 'Quality Systems Auditor - China' },
+  ];
+  
+  // Auto-advance hero carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
   
   // Fetch auditor cards from CMS
   const { data: auditorCards } = useContentByType("auditor_card");
@@ -2143,85 +2164,133 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Dark Background with fixed height */}
+      {/* Hero Section - Full Screen Image Carousel Background */}
       <section
-        data-nav-theme="hero"
+        data-nav-theme="white"
         id="hero"
-        className="relative bg-[#0A0A0A] h-[860px] lg:h-[780px]"
-        style={{ overflow: 'visible', clipPath: 'none' }}
+        className="relative min-h-screen flex flex-col overflow-hidden"
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
-          <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>
-          
-          {/* Two-column layout - Demo larger */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column - Text Content */}
-            <div className="text-left pt-4">
-              
-              {/* Main Heading - Transformation-focused */}
+        {/* Full-screen Image Carousel Background */}
+        <div className="absolute inset-0 z-0">
+          {heroImages.map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: index === heroImageIndex ? 1 : 0,
+                scale: index === heroImageIndex ? 1 : 1.1
+              }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          ))}
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+        </div>
+
+        {/* Main Content - Bottom Left Corner */}
+        <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
+          <div className="px-6 lg:px-12 xl:px-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative z-20"
+            >
+              {/* Single Line Headline - Big Font */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="font-bold tracking-tight leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white"
               >
-                <span className="text-white">Transform how</span>
-                <br />
-                <span className="text-white">your team audits.</span>
+                AI-Powered On-Site Audits, From €700.
               </motion.h1>
-              
-              {/* Vertical checkmark list - Client benefits focused */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex flex-col gap-3 mb-10"
-              >
-                {[
-                  "Cut audit costs by 60%, redeploy budget strategically",
-                  "Free your engineers from coordination tasks",
-                  "Get audit-ready suppliers in 48h, not weeks"
-                ].map((text, index) => (
-                  <div key={index} className="flex items-center gap-3 text-white/80">
-                    <Check className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-base font-medium">{text}</span>
-                  </div>
-                ))}
-              </motion.div>
 
               {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mt-6 lg:mt-10"
               >
                 <a 
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
                 >
-                  See it in action
+                  Order YVOO Audit — from €700
+                  <span>→</span>
                 </a>
               </motion.div>
-            </div>
 
-            {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="hidden lg:block relative z-20"
-              style={{ marginBottom: "-160px" }}
-            >
-              <div className="rounded-[32px] bg-[#0A0A0A] p-4 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
-                <EquipmentIntelligenceDemo />
-              </div>
+              {/* Certification Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mt-6"
+              >
+                <p className="text-white/60 text-sm mb-3">Auditors certified by:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                    <span
+                      key={badge}
+                      className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm border border-white/30"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           </div>
-          </div>
         </div>
+
+        {/* Scrolling Client Band */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
+        >
+          <div className="relative flex">
+            <motion.div
+              className="flex gap-16 whitespace-nowrap"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 60,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...Array(3)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-16 items-center">
+                  {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson", "Rockwell Automation", "Mitsubishi Electric"].map((company, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
+                    >
+                      {company}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
