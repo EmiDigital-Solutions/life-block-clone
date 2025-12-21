@@ -70,8 +70,8 @@ const HeroSection = () => {
       data-nav-theme="white"
       className="relative min-h-screen flex flex-col overflow-hidden"
     >
-      {/* Full-screen Image Carousel Background */}
-      <div className="absolute inset-0 z-0">
+      {/* Image Carousel Background - 60% height */}
+      <div className="absolute top-0 left-0 right-0 h-[60vh] z-0">
         {heroImages.map((image, index) => (
           <motion.div
             key={index}
@@ -91,13 +91,15 @@ const HeroSection = () => {
           </motion.div>
         ))}
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
-        {/* Green accent overlay */}
-        <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
       </div>
+
+      {/* Bottom 40% - Dark background for content */}
+      <div className="absolute bottom-0 left-0 right-0 h-[40vh] bg-black z-0" />
+
       {/* Main Content - Bottom Left Corner */}
-      <div className="flex-1 flex items-end relative z-10 pb-32 lg:pb-40">
-        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
+      <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
+        <div className="px-6 lg:px-12 xl:px-16">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -109,7 +111,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold tracking-tight leading-[1.05] text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-white max-w-[95vw]"
+              className="font-bold tracking-tight leading-[1.05] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white"
             >
               On-Site Supplier Audits in Days, Not Weeks.
             </motion.h1>
@@ -119,7 +121,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-8 lg:mt-12"
+              className="mt-6 lg:mt-10"
             >
               <a 
                 href="https://calendly.com/yvoo/demo-yvoo"
