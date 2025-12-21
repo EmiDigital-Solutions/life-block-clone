@@ -95,95 +95,43 @@ const HeroSection = () => {
         {/* Green accent overlay */}
         <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
       </div>
-      {/* Main Content - Split Screen */}
-      <div className="flex-1 flex items-center relative z-10 pt-28 pb-8">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="max-w-3xl">
-            
-            {/* Left Column - Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-20 overflow-visible"
+      {/* Main Content - Bottom Left Corner */}
+      <div className="flex-1 flex items-end relative z-10 pb-32 lg:pb-40">
+        <div className="container mx-auto px-4 lg:px-8 xl:px-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-20"
+          >
+            {/* Single Line Headline - Big Font */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-bold tracking-tight leading-[1.05] text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-white max-w-[95vw]"
             >
-              {/* Tagline Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-5"
-              >
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white shadow-sm border border-white/20">
-                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                  2,000+ Auditors · 90+ Countries · AI-Powered
-                </span>
-              </motion.div>
+              On-Site Supplier Audits in Days, Not Weeks.
+            </motion.h1>
 
-              {/* Main Heading - 2 lines max */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-medium tracking-tight leading-[1.1] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white mb-5"
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-8 lg:mt-12"
+            >
+              <a 
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
               >
-                <span className="block">On-Site Supplier Audits</span>
-                <span className="block">in Days, Not Weeks.</span>
-              </motion.h1>
-
-              {/* Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-base text-white/70 mb-6"
-              >
-                Physical factory assessments starting from €700
-              </motion.p>
-
-              {/* CTA with Pricing - text only for price, next to button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-4 mb-6"
-              >
-                <span className="text-base text-white font-medium">
-                  Audit starts at €700
-                </span>
-                <a 
-                  href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-base text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
-                >
-                  Order YVOO Audit
-                  <span>→</span>
-                </a>
-              </motion.div>
-
-              {/* Certifications */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <p className="text-sm text-white/60 mb-3">
-                  Auditors certified by:
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((cert, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20"
-                    >
-                      {cert}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+                Order YVOO Audit — from €700
+                <span>→</span>
+              </a>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
