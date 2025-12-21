@@ -70,8 +70,8 @@ const HeroSection = () => {
       data-nav-theme="white"
       className="relative min-h-screen flex flex-col overflow-hidden"
     >
-      {/* Image Carousel Background - 60% height */}
-      <div className="absolute top-0 left-0 right-0 h-[60vh] z-0">
+      {/* Full-screen Image Carousel Background */}
+      <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
           <motion.div
             key={index}
@@ -91,7 +91,7 @@ const HeroSection = () => {
           </motion.div>
         ))}
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
       </div>
 
       {/* Main Content - Bottom Left Corner */}
