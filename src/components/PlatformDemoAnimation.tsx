@@ -26,12 +26,13 @@ interface DemoStep {
 
 const demoSteps: DemoStep[] = [
   { id: 1, title: "AI-Guided Search", label: "AI Chat" },
-  { id: 2, title: "Supplier Discovery", label: "Search" },
-  { id: 3, title: "Order Audit", label: "Order" },
-  { id: 4, title: "Auditor Dispatch", label: "Dispatch" },
-  { id: 5, title: "Audit Execution", label: "Audit" },
-  { id: 6, title: "Report Generation", label: "Report" },
-  { id: 7, title: "Follow-up Manager", label: "Follow-up" },
+  { id: 2, title: "Refine Search", label: "Refine" },
+  { id: 3, title: "Supplier Discovery", label: "Search" },
+  { id: 4, title: "Order Audit", label: "Order" },
+  { id: 5, title: "Auditor Dispatch", label: "Dispatch" },
+  { id: 6, title: "Audit Execution", label: "Audit" },
+  { id: 7, title: "Report Generation", label: "Report" },
+  { id: 8, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
 // Clean Window Chrome Component - No dark title bar
@@ -289,7 +290,358 @@ const AIChatSearchDemo = () => {
   );
 };
 
-// Step 1: Professional AI Supplier Discovery - Enterprise Dashboard Style
+// Step 1.5: Refine Search - Filter Adjustments and Supplier Profiles
+const RefineSearchDemo = () => {
+  const [phase, setPhase] = useState<'adjusting' | 'filtering' | 'results'>('adjusting');
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [selectedSupplier, setSelectedSupplier] = useState<number | null>(null);
+  
+  const filters = [
+    { id: 'cert', label: 'IATF 16949', category: 'Certification', active: true },
+    { id: 'region', label: 'Europe', category: 'Region', active: true },
+    { id: 'capacity', label: '50K+ parts/year', category: 'Capacity', active: true },
+    { id: 'material', label: 'Aluminum & Steel', category: 'Materials', active: false },
+    { id: 'leadtime', label: '< 4 weeks', category: 'Lead Time', active: false },
+    { id: 'vda', label: 'VDA 6.3 Certified', category: 'Process Audit', active: false },
+  ];
+
+  const suppliers = [
+    { 
+      name: "DMG MORI AG", 
+      location: "Bielefeld, Germany", 
+      match: 98,
+      certs: ["IATF 16949", "ISO 14001"],
+      capacity: "80,000 parts/yr",
+      leadTime: "3 weeks",
+      image: "🏭",
+      rating: 4.9,
+      audits: 12
+    },
+    { 
+      name: "Precision CNC Solutions", 
+      location: "Stuttgart, Germany", 
+      match: 94,
+      certs: ["IATF 16949", "VDA 6.3"],
+      capacity: "65,000 parts/yr",
+      leadTime: "2 weeks",
+      image: "🔧",
+      rating: 4.8,
+      audits: 8
+    },
+    { 
+      name: "AutoPrecision GmbH", 
+      location: "Munich, Germany", 
+      match: 91,
+      certs: ["IATF 16949"],
+      capacity: "55,000 parts/yr",
+      leadTime: "4 weeks",
+      image: "⚙️",
+      rating: 4.7,
+      audits: 6
+    },
+    { 
+      name: "EuroMach Industries", 
+      location: "Vienna, Austria", 
+      match: 89,
+      certs: ["ISO 9001", "IATF 16949"],
+      capacity: "52,000 parts/yr",
+      leadTime: "3 weeks",
+      image: "🛠️",
+      rating: 4.6,
+      audits: 5
+    },
+  ];
+
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+    
+    // Animate filters appearing
+    filters.forEach((filter, i) => {
+      if (filter.active) {
+        timers.push(setTimeout(() => {
+          setActiveFilters(prev => [...prev, filter.id]);
+        }, 300 + i * 200));
+      }
+    });
+    
+    timers.push(setTimeout(() => setPhase('filtering'), 2000));
+    timers.push(setTimeout(() => setPhase('results'), 3500));
+    timers.push(setTimeout(() => setSelectedSupplier(0), 5000));
+    
+    return () => timers.forEach(t => clearTimeout(t));
+  }, []);
+
+  return (
+    <WindowChrome title="ScanPro+ — Refine Search">
+      <div className="h-full flex flex-col bg-[#fafafa]">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span className="text-sm font-medium text-gray-900">Refine Results</span>
+            </div>
+            <div className="h-4 w-px bg-gray-200" />
+            <span className="text-sm text-gray-500">Based on AI conversation</span>
+          </div>
+          {phase === 'results' && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm text-emerald-600 font-medium">{suppliers.length} suppliers match</span>
+            </motion.div>
+          )}
+        </div>
+        
+        {/* Main Content */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left: Filters Panel */}
+          <div className="w-72 bg-white border-r border-gray-100 flex flex-col">
+            <div className="p-4 border-b border-gray-100">
+              <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Applied Filters</div>
+              <p className="text-xs text-gray-500">Extracted from your conversation</p>
+            </div>
+            
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto">
+              {filters.map((filter, i) => (
+                <motion.div
+                  key={filter.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ 
+                    opacity: activeFilters.includes(filter.id) || !filter.active ? 1 : 0.3, 
+                    x: 0 
+                  }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`p-3 rounded-xl border transition-all ${
+                    activeFilters.includes(filter.id)
+                      ? 'bg-[#1391BF]/5 border-[#1391BF]/30'
+                      : 'bg-gray-50 border-gray-200'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-xs text-gray-400 mb-0.5">{filter.category}</div>
+                      <div className="text-sm font-medium text-gray-900">{filter.label}</div>
+                    </div>
+                    <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                      activeFilters.includes(filter.id) ? 'bg-[#1391BF]' : 'bg-gray-200'
+                    }`}>
+                      {activeFilters.includes(filter.id) && (
+                        <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+              
+              {/* Add More Filters */}
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="w-full p-3 rounded-xl border border-dashed border-gray-300 text-sm text-gray-500 hover:border-[#1391BF] hover:text-[#1391BF] transition-colors"
+              >
+                + Add more filters
+              </motion.button>
+            </div>
+            
+            {/* Filter Summary */}
+            {phase !== 'adjusting' && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-4 border-t border-gray-100 bg-gray-50"
+              >
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-500">Active filters:</span>
+                  <span className="font-medium text-[#1391BF]">{activeFilters.length}</span>
+                </div>
+              </motion.div>
+            )}
+          </div>
+          
+          {/* Right: Supplier Results */}
+          <div className="flex-1 flex flex-col">
+            {phase === 'adjusting' && (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="text-center">
+                  <motion.div 
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="w-12 h-12 rounded-full bg-[#1391BF]/10 flex items-center justify-center mx-auto mb-4"
+                  >
+                    <svg className="w-6 h-6 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                  </motion.div>
+                  <p className="text-gray-900 font-medium">Extracting search criteria...</p>
+                  <p className="text-gray-500 text-sm mt-1">Analyzing your conversation</p>
+                </div>
+              </div>
+            )}
+            
+            {phase === 'filtering' && (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="text-center">
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    className="w-12 h-12 rounded-full border-3 border-[#1391BF] border-t-transparent mx-auto mb-4"
+                    style={{ borderWidth: 3 }}
+                  />
+                  <p className="text-gray-900 font-medium">Filtering suppliers...</p>
+                  <p className="text-gray-500 text-sm mt-1">Matching 47 candidates</p>
+                </div>
+              </div>
+            )}
+            
+            {phase === 'results' && (
+              <div className="flex-1 flex overflow-hidden">
+                {/* Supplier List */}
+                <div className="w-1/2 border-r border-gray-100 flex flex-col">
+                  <div className="p-4 border-b border-gray-100 bg-white">
+                    <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Matched Suppliers</div>
+                  </div>
+                  <div className="flex-1 overflow-y-auto">
+                    {suppliers.map((supplier, i) => (
+                      <motion.div
+                        key={supplier.name}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.15 }}
+                        className={`p-4 border-b border-gray-100 cursor-pointer transition-all ${
+                          selectedSupplier === i 
+                            ? 'bg-[#1391BF]/5 border-l-2 border-l-[#1391BF]' 
+                            : 'hover:bg-gray-50 bg-white'
+                        }`}
+                        onClick={() => setSelectedSupplier(i)}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-xl">
+                            {supplier.image}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-sm font-medium text-gray-900 truncate">{supplier.name}</span>
+                              <span className={`text-sm font-bold ${supplier.match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                                {supplier.match}%
+                              </span>
+                            </div>
+                            <div className="text-xs text-gray-500 mb-2">{supplier.location}</div>
+                            <div className="flex gap-1.5 flex-wrap">
+                              {supplier.certs.slice(0, 2).map((cert) => (
+                                <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                                  {cert}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Supplier Profile */}
+                <div className="w-1/2 p-5 overflow-y-auto bg-white">
+                  {selectedSupplier !== null && (
+                    <motion.div 
+                      key={selectedSupplier}
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="space-y-4"
+                    >
+                      {/* Profile Header */}
+                      <div className="flex items-start gap-4">
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 flex items-center justify-center text-2xl">
+                          {suppliers[selectedSupplier].image}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-gray-900">{suppliers[selectedSupplier].name}</h3>
+                          <p className="text-sm text-gray-500">{suppliers[selectedSupplier].location}</p>
+                          <div className="flex items-center gap-1 mt-1">
+                            <span className="text-amber-500">★</span>
+                            <span className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].rating}</span>
+                            <span className="text-xs text-gray-400">({suppliers[selectedSupplier].audits} audits)</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Match Score */}
+                      <div className="bg-gradient-to-r from-[#1391BF]/10 to-emerald-500/10 rounded-xl p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm text-gray-600">Match Score</span>
+                          <span className={`text-xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                            {suppliers[selectedSupplier].match}%
+                          </span>
+                        </div>
+                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <motion.div 
+                            initial={{ width: 0 }}
+                            animate={{ width: `${suppliers[selectedSupplier].match}%` }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className={`h-full rounded-full ${suppliers[selectedSupplier].match >= 95 ? 'bg-emerald-500' : 'bg-[#1391BF]'}`}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Key Metrics */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <div className="text-xs text-gray-400 mb-0.5">Capacity</div>
+                          <div className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].capacity}</div>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <div className="text-xs text-gray-400 mb-0.5">Lead Time</div>
+                          <div className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].leadTime}</div>
+                        </div>
+                      </div>
+                      
+                      {/* Certifications */}
+                      <div>
+                        <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
+                        <div className="flex gap-2 flex-wrap">
+                          {suppliers[selectedSupplier].certs.map((cert) => (
+                            <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg font-medium border border-emerald-200">
+                              {cert}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Actions */}
+                      <div className="flex gap-2 pt-2">
+                        <motion.button 
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex-1 py-2.5 bg-[#1391BF] text-white rounded-xl text-sm font-medium"
+                        >
+                          Add to Order
+                        </motion.button>
+                        <motion.button 
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium"
+                        >
+                          View Profile
+                        </motion.button>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Step 2: Professional AI Supplier Discovery - Enterprise Dashboard Style
 const SupplierSearchDemo = () => {
   const [phase, setPhase] = useState<'chat' | 'searching' | 'results' | 'profile'>('chat');
   const [selectedSupplier, setSelectedSupplier] = useState(0);
@@ -1663,7 +2015,7 @@ const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
   // Custom durations per step (ms) - slower timing for better viewing
-  const stepDurations = [15000, 18000, 15000, 15000, 15000, 15000, 15000]; // AI Chat, Search, Order, Dispatch, Audit, Report, Follow-up
+  const stepDurations = [15000, 15000, 18000, 15000, 15000, 15000, 15000, 15000]; // AI Chat, Refine, Search, Order, Dispatch, Audit, Report, Follow-up
   
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -1676,12 +2028,13 @@ const PlatformDemoAnimation = () => {
   const renderDemo = () => {
     switch (currentStep) {
       case 0: return <AIChatSearchDemo />;
-      case 1: return <SupplierSearchDemo />;
-      case 2: return <OrderAuditDemo />;
-      case 3: return <AuditorDispatchDemo />;
-      case 4: return <AuditExecutionDemo />;
-      case 5: return <ReportDemo />;
-      case 6: return <FollowUpDemo />;
+      case 1: return <RefineSearchDemo />;
+      case 2: return <SupplierSearchDemo />;
+      case 3: return <OrderAuditDemo />;
+      case 4: return <AuditorDispatchDemo />;
+      case 5: return <AuditExecutionDemo />;
+      case 6: return <ReportDemo />;
+      case 7: return <FollowUpDemo />;
       default: return <AIChatSearchDemo />;
     }
   };
