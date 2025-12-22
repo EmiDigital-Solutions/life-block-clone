@@ -25,12 +25,13 @@ interface DemoStep {
 }
 
 const demoSteps: DemoStep[] = [
-  { id: 1, title: "Supplier Discovery", label: "Search" },
-  { id: 2, title: "Order Audit", label: "Order" },
-  { id: 3, title: "Auditor Dispatch", label: "Dispatch" },
-  { id: 4, title: "Audit Execution", label: "Audit" },
-  { id: 5, title: "Report Generation", label: "Report" },
-  { id: 6, title: "Follow-up Manager", label: "Follow-up" },
+  { id: 1, title: "AI-Guided Search", label: "AI Chat" },
+  { id: 2, title: "Supplier Discovery", label: "Search" },
+  { id: 3, title: "Order Audit", label: "Order" },
+  { id: 4, title: "Auditor Dispatch", label: "Dispatch" },
+  { id: 5, title: "Audit Execution", label: "Audit" },
+  { id: 6, title: "Report Generation", label: "Report" },
+  { id: 7, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
 // Clean Window Chrome Component - No dark title bar
@@ -41,6 +42,252 @@ const WindowChrome = ({ title, children }: { title: string; children: React.Reac
     </div>
   </div>
 );
+
+// Step 0: AI Chat Guided Search - Conversational Interface
+const AIChatSearchDemo = () => {
+  const [phase, setPhase] = useState<'typing' | 'thinking' | 'response' | 'followup' | 'complete'>('typing');
+  const [typedText, setTypedText] = useState('');
+  const [showResponse, setShowResponse] = useState(false);
+  const [showFollowUp, setShowFollowUp] = useState(false);
+  const [showComplete, setShowComplete] = useState(false);
+  
+  const userQuery = "I need a CNC machining supplier in Europe with IATF 16949 certification for automotive parts production, capacity of 50,000 parts per year";
+  
+  const aiResponse = [
+    "I found 47 qualified CNC machining suppliers in Europe matching your requirements:",
+    "",
+    "✓ IATF 16949 certified",
+    "✓ Automotive industry experience",
+    "✓ 50,000+ parts/year capacity",
+    "",
+    "Top matches include DMG MORI AG (98% match), Precision CNC Solutions (94%), and AutoPrecision GmbH (89%).",
+  ];
+
+  const followUpQuestions = [
+    "Do you need specific material capabilities (aluminum, steel, titanium)?",
+    "Any preference for delivery lead times?",
+    "Would you like to see suppliers with VDA 6.3 process audits as well?",
+  ];
+
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+    
+    // Typing animation
+    let charIndex = 0;
+    const typeInterval = setInterval(() => {
+      if (charIndex < userQuery.length) {
+        setTypedText(userQuery.slice(0, charIndex + 1));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setPhase('thinking');
+      }
+    }, 40);
+    
+    timers.push(setTimeout(() => {
+      setPhase('response');
+      setShowResponse(true);
+    }, 4500));
+    
+    timers.push(setTimeout(() => {
+      setPhase('followup');
+      setShowFollowUp(true);
+    }, 8000));
+    
+    timers.push(setTimeout(() => {
+      setPhase('complete');
+      setShowComplete(true);
+    }, 11000));
+    
+    return () => {
+      clearInterval(typeInterval);
+      timers.forEach(t => clearTimeout(t));
+    };
+  }, []);
+
+  return (
+    <WindowChrome title="ScanPro+ — AI Search Assistant">
+      <div className="h-full flex flex-col bg-gradient-to-b from-[#fafafa] to-white">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <div>
+              <span className="text-sm font-medium text-gray-900">AI Search Assistant</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs text-emerald-600">Online</span>
+              </div>
+            </div>
+          </div>
+          <div className="text-xs text-gray-400">Powered by GPT-5</div>
+        </div>
+        
+        {/* Chat Area */}
+        <div className="flex-1 p-6 overflow-y-auto">
+          <div className="max-w-3xl mx-auto space-y-4">
+            {/* AI Welcome */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex gap-3"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3 max-w-md">
+                <p className="text-sm text-gray-700">
+                  Hello! I'm your AI-powered supplier search assistant. Describe what you're looking for, and I'll find the best matches from our global database of 25M+ suppliers.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* User Query */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex gap-3 justify-end"
+            >
+              <div className="bg-[#1391BF] text-white rounded-2xl rounded-tr-md px-4 py-3 max-w-md">
+                <p className="text-sm">
+                  {typedText}
+                  {phase === 'typing' && (
+                    <span className="inline-block w-0.5 h-4 bg-white ml-0.5 animate-pulse" />
+                  )}
+                </p>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+            </motion.div>
+
+            {/* Thinking Indicator */}
+            {phase === 'thinking' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex gap-3"
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-[#1391BF] border-t-transparent rounded-full"
+                    />
+                    <span className="text-sm text-gray-500">Analyzing 47 databases...</span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* AI Response */}
+            {showResponse && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex gap-3"
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3 max-w-lg">
+                  <div className="text-sm text-gray-700 whitespace-pre-line">
+                    {aiResponse.join('\n')}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Follow-up Questions */}
+            {showFollowUp && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex gap-3"
+              >
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-500 px-1">Suggested follow-up questions:</p>
+                  {followUpQuestions.map((q, i) => (
+                    <motion.button
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.15 }}
+                      className="block w-full text-left bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 hover:border-[#1391BF] hover:bg-[#1391BF]/5 transition-colors"
+                    >
+                      {q}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Complete - View Results */}
+            {showComplete && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex justify-center pt-4"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-2 px-6 py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium shadow-lg shadow-[#1391BF]/30"
+                >
+                  <span>View All 47 Suppliers</span>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </motion.button>
+              </motion.div>
+            )}
+          </div>
+        </div>
+        
+        {/* Input Area */}
+        <div className="p-4 bg-white border-t border-gray-200">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 bg-gray-100 rounded-xl px-4 py-3">
+              <input
+                type="text"
+                placeholder="Ask me anything about suppliers..."
+                className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
+                readOnly
+              />
+              <button className="w-8 h-8 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
 
 // Step 1: Professional AI Supplier Discovery - Enterprise Dashboard Style
 const SupplierSearchDemo = () => {
@@ -1416,7 +1663,7 @@ const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
   // Custom durations per step (ms) - slower timing for better viewing
-  const stepDurations = [18000, 15000, 15000, 15000, 15000, 15000]; // Search, Order, Dispatch, Audit, Report, Follow-up
+  const stepDurations = [15000, 18000, 15000, 15000, 15000, 15000, 15000]; // AI Chat, Search, Order, Dispatch, Audit, Report, Follow-up
   
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -1428,13 +1675,14 @@ const PlatformDemoAnimation = () => {
   
   const renderDemo = () => {
     switch (currentStep) {
-      case 0: return <SupplierSearchDemo />;
-      case 1: return <OrderAuditDemo />;
-      case 2: return <AuditorDispatchDemo />;
-      case 3: return <AuditExecutionDemo />;
-      case 4: return <ReportDemo />;
-      case 5: return <FollowUpDemo />;
-      default: return <SupplierSearchDemo />;
+      case 0: return <AIChatSearchDemo />;
+      case 1: return <SupplierSearchDemo />;
+      case 2: return <OrderAuditDemo />;
+      case 3: return <AuditorDispatchDemo />;
+      case 4: return <AuditExecutionDemo />;
+      case 5: return <ReportDemo />;
+      case 6: return <FollowUpDemo />;
+      default: return <AIChatSearchDemo />;
     }
   };
   
