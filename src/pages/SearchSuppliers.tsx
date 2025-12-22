@@ -1288,6 +1288,164 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
+      {/* How Procurement Teams Use YVOO Search - Industry Showcase Section */}
+      <section 
+        data-nav-theme="light" 
+        className="py-24 md:py-32 bg-background"
+      >
+        <div className="container mx-auto px-4 md:px-8 lg:px-12">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 md:mb-16 text-center"
+          >
+            <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
+              How procurement teams use YVOO Search
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              From precision components to complex assemblies—see what teams like yours are sourcing with AI.
+            </p>
+          </motion.div>
+
+          {/* Product Showcase Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+            {/* Large card - CNC Machined Parts */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer rounded-2xl"
+            >
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-[16/10]">
+                <img 
+                  src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80" 
+                  alt="CNC Machined Parts"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                  <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                    Precision Machining
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1.5 leading-tight">
+                    CNC Machined Components
+                  </h3>
+                  <p className="text-white/70 text-sm line-clamp-2 mb-3">
+                    Find IATF 16949 certified suppliers for precision automotive and aerospace parts with 5-axis capabilities.
+                  </p>
+                  <div className="flex items-center gap-1.5 text-white/80 group-hover:text-white transition-colors">
+                    <span className="text-xs font-medium">2,400+ verified suppliers</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Top right - Medical Device Components */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group relative overflow-hidden cursor-pointer rounded-2xl"
+            >
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+                <img 
+                  src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80" 
+                  alt="Medical Device Components"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                  <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                    Medical Devices
+                  </span>
+                  <h3 className="text-base md:text-lg font-bold text-white mb-1.5 leading-tight">
+                    Implantable Components
+                  </h3>
+                  <p className="text-white/70 text-xs line-clamp-2 mb-3">
+                    ISO 13485 certified cleanroom manufacturing for surgical instruments and implants.
+                  </p>
+                  <div className="flex items-center gap-1.5 text-white/80 group-hover:text-white transition-colors">
+                    <span className="text-xs font-medium">680+ suppliers</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Bottom right - Electronics */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="group relative overflow-hidden cursor-pointer rounded-2xl"
+            >
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+                <img 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" 
+                  alt="PCB Assembly"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                  <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                    Electronics
+                  </span>
+                  <h3 className="text-base md:text-lg font-bold text-white mb-1.5 leading-tight">
+                    PCB Assembly & EMS
+                  </h3>
+                  <p className="text-white/70 text-xs line-clamp-2 mb-3">
+                    IPC Class 3 certified assembly with full AOI and X-ray inspection capabilities.
+                  </p>
+                  <div className="flex items-center gap-1.5 text-white/80 group-hover:text-white transition-colors">
+                    <span className="text-xs font-medium">1,850+ suppliers</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Full width bottom card - Industrial Valves */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
+          >
+            <div className="relative overflow-hidden rounded-2xl aspect-[21/9] md:aspect-[3/1]">
+              <img 
+                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80" 
+                alt="Industrial Valves & Process Equipment"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
+                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
+                  Process Industry
+                </span>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+                  Industrial Valves & Flow Control
+                </h3>
+                <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
+                  Source cryogenic valves, safety relief systems, and control valves from API 6D and EN certified manufacturers.
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+                  <span className="text-sm font-medium">920+ verified suppliers</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ Section - Matching Homepage Style with Categories */}
       <SearchSuppliersFAQ />
 
