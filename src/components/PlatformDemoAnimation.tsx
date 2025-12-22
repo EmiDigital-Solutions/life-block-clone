@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import factoryImage from "@/assets/factory-hero-background.jpg";
@@ -44,66 +44,140 @@ const WindowChrome = ({ title, children }: { title: string; children: React.Reac
   </div>
 );
 
-// Step 0: AI Chat Guided Search - Conversational Interface
+// Step 0: AI Chat Guided Search - Conversational Interface (like SearchSuppliers page)
 const AIChatSearchDemo = () => {
-  const [phase, setPhase] = useState<'typing' | 'thinking' | 'response' | 'followup' | 'complete'>('typing');
-  const [typedText, setTypedText] = useState('');
-  const [showResponse, setShowResponse] = useState(false);
-  const [showFollowUp, setShowFollowUp] = useState(false);
-  const [showComplete, setShowComplete] = useState(false);
-  
-  const userQuery = "I need a CNC machining supplier in Europe with IATF 16949 certification for automotive parts production, capacity of 50,000 parts per year";
-  
-  const aiResponse = [
-    "I found 47 qualified CNC machining suppliers in Europe matching your requirements:",
-    "",
-    "✓ IATF 16949 certified",
-    "✓ Automotive industry experience",
-    "✓ 50,000+ parts/year capacity",
-    "",
-    "Top matches include DMG MORI AG (98% match), Precision CNC Solutions (94%), and AutoPrecision GmbH (89%).",
-  ];
+  const [currentStep, setCurrentStep] = useState(1);
+  const [userInput, setUserInput] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'ai', message: string}>>([]);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const isRunningRef = useRef(false);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
-  const followUpQuestions = [
-    "Do you need specific material capabilities (aluminum, steel, titanium)?",
-    "Any preference for delivery lead times?",
-    "Would you like to see suppliers with VDA 6.3 process audits as well?",
+  const scenario = {
+    steps: [
+      {
+        step: 1,
+        aiPrompt: "What type of product or service are you looking for?",
+        userResponse: "CNC machining for automotive",
+        aiFollowUp: "Great! For automotive CNC machining, what certifications and production volume do you need?"
+      },
+      {
+        step: 2,
+        aiPrompt: "",
+        userResponse: "ISO 9001, IATF 16949, medium to high volume production",
+        aiFollowUp: "Perfect! Let me find suppliers matching: Precision CNC machining + ISO 9001 + IATF 16949 + High-volume capacity"
+      }
+    ]
+  };
+
+  const suppliers = [
+    { name: "Precision CNC Solutions", location: "Stuttgart, Germany", certs: ["ISO 9001", "IATF 16949"] },
+    { name: "TechMold Industries", location: "Shanghai, China", certs: ["IATF 16949", "TS16949"] },
+    { name: "AutoPrecision GmbH", location: "Munich, Germany", certs: ["VDA 6.3", "ISO 9001"] },
+    { name: "DriveComponents Ltd", location: "Birmingham, UK", certs: ["IATF 16949", "ISO 14001"] },
   ];
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
-    
-    // Typing animation
-    let charIndex = 0;
-    const typeInterval = setInterval(() => {
-      if (charIndex < userQuery.length) {
-        setTypedText(userQuery.slice(0, charIndex + 1));
-        charIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setPhase('thinking');
-      }
-    }, 40);
-    
-    timers.push(setTimeout(() => {
-      setPhase('response');
-      setShowResponse(true);
-    }, 4500));
-    
-    timers.push(setTimeout(() => {
-      setPhase('followup');
-      setShowFollowUp(true);
-    }, 8000));
-    
-    timers.push(setTimeout(() => {
-      setPhase('complete');
-      setShowComplete(true);
-    }, 11000));
-    
     return () => {
-      clearInterval(typeInterval);
-      timers.forEach(t => clearTimeout(t));
+      timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+      timeoutsRef.current = [];
+      isRunningRef.current = false;
     };
+  }, []);
+
+  useEffect(() => {
+    if (isRunningRef.current) return;
+    
+    isRunningRef.current = true;
+    timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    timeoutsRef.current = [];
+
+    const typeAiMessage = (message: string, onComplete: () => void) => {
+      setIsTyping(true);
+      let currentIndex = 0;
+      
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= message.length) {
+          setAiResponse(message.slice(0, currentIndex));
+          currentIndex++;
+          if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+          }
+        } else {
+          clearInterval(typingInterval);
+          setIsTyping(false);
+          setConversationHistory(prev => [...prev, { role: 'ai', message }]);
+          setAiResponse("");
+          onComplete();
+        }
+      }, 20);
+    };
+
+    const typeUserMessage = (message: string, onComplete: () => void) => {
+      let currentIndex = 0;
+      
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= message.length) {
+          setUserInput(message.slice(0, currentIndex));
+          currentIndex++;
+          if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+          }
+        } else {
+          clearInterval(typingInterval);
+          setConversationHistory(prev => [...prev, { role: 'user', message }]);
+          setUserInput("");
+          onComplete();
+        }
+      }, 40);
+    };
+
+    const runConversation = () => {
+      const steps = scenario.steps;
+      
+      const t1 = setTimeout(() => {
+        typeAiMessage(steps[0].aiPrompt, () => {
+          const t2 = setTimeout(() => {
+            typeUserMessage(steps[0].userResponse, () => {
+              const t3 = setTimeout(() => {
+                typeAiMessage(steps[0].aiFollowUp, () => {
+                  const t4 = setTimeout(() => {
+                    setCurrentStep(2);
+                    typeUserMessage(steps[1].userResponse, () => {
+                      const t5 = setTimeout(() => {
+                        typeAiMessage(steps[1].aiFollowUp, () => {
+                          const t6 = setTimeout(() => {
+                            setShowResults(true);
+                            const t7 = setTimeout(() => {
+                              setShowResults(false);
+                              setConversationHistory([]);
+                              setCurrentStep(1);
+                              isRunningRef.current = false;
+                            }, 5000);
+                            timeoutsRef.current.push(t7);
+                          }, 1000);
+                          timeoutsRef.current.push(t6);
+                        });
+                      }, 1500);
+                      timeoutsRef.current.push(t5);
+                    });
+                  }, 1000);
+                  timeoutsRef.current.push(t4);
+                });
+              }, 1500);
+              timeoutsRef.current.push(t3);
+            });
+          }, 1000);
+          timeoutsRef.current.push(t2);
+        });
+      }, 500);
+      timeoutsRef.current.push(t1);
+    };
+
+    runConversation();
   }, []);
 
   return (
@@ -125,160 +199,129 @@ const AIChatSearchDemo = () => {
               </div>
             </div>
           </div>
-          <div className="text-xs text-gray-400">Powered by GPT-5</div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-400">Step {currentStep} of 2</span>
+          </div>
         </div>
         
         {/* Chat Area */}
-        <div className="flex-1 p-6 overflow-y-auto">
-          <div className="max-w-3xl mx-auto space-y-4">
-            {/* AI Welcome */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex gap-3"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3 max-w-md">
-                <p className="text-sm text-gray-700">
-                  Hello! I'm your AI-powered supplier search assistant. Describe what you're looking for, and I'll find the best matches from our global database of 25M+ suppliers.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* User Query */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex gap-3 justify-end"
-            >
-              <div className="bg-[#1391BF] text-white rounded-2xl rounded-tr-md px-4 py-3 max-w-md">
-                <p className="text-sm">
-                  {typedText}
-                  {phase === 'typing' && (
-                    <span className="inline-block w-0.5 h-4 bg-white ml-0.5 animate-pulse" />
-                  )}
-                </p>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-            </motion.div>
-
-            {/* Thinking Indicator */}
-            {phase === 'thinking' && (
+        <div ref={chatContainerRef} className="flex-1 p-4 overflow-y-auto">
+          <div className="max-w-2xl mx-auto space-y-3">
+            {/* Conversation History */}
+            {conversationHistory.map((msg, i) => (
               <motion.div
+                key={i}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex gap-3"
+                className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {msg.role === 'ai' && (
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                )}
+                <div className={`rounded-2xl px-3 py-2 max-w-sm ${
+                  msg.role === 'user' 
+                    ? 'bg-[#1391BF] text-white rounded-tr-md' 
+                    : 'bg-gray-100 text-gray-700 rounded-tl-md'
+                }`}>
+                  <p className="text-sm">{msg.message}</p>
+                </div>
+                {msg.role === 'user' && (
+                  <div className="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3.5 h-3.5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+
+            {/* Currently Typing AI */}
+            {isTyping && aiResponse && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
-                <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3">
-                  <div className="flex items-center gap-2">
+                <div className="bg-gray-100 rounded-2xl rounded-tl-md px-3 py-2 max-w-sm">
+                  <p className="text-sm text-gray-700">{aiResponse}<span className="inline-block w-0.5 h-3 bg-[#1391BF] ml-0.5 animate-pulse" /></p>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Currently Typing User */}
+            {userInput && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2 justify-end">
+                <div className="bg-[#1391BF] text-white rounded-2xl rounded-tr-md px-3 py-2 max-w-sm">
+                  <p className="text-sm">{userInput}<span className="inline-block w-0.5 h-3 bg-white ml-0.5 animate-pulse" /></p>
+                </div>
+                <div className="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-3.5 h-3.5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Results */}
+            {showResults && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4"
+              >
+                <div className="flex gap-2 mb-3">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div className="bg-gray-100 rounded-2xl rounded-tl-md px-3 py-2">
+                    <p className="text-sm text-gray-700 mb-2">Found <span className="font-semibold text-[#1391BF]">4 suppliers</span> matching your requirements:</p>
+                  </div>
+                </div>
+                <div className="ml-9 grid grid-cols-2 gap-2">
+                  {suppliers.map((supplier, i) => (
                     <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-4 h-4 border-2 border-[#1391BF] border-t-transparent rounded-full"
-                    />
-                    <span className="text-sm text-gray-500">Analyzing 47 databases...</span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* AI Response */}
-            {showResponse && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <div className="bg-gray-100 rounded-2xl rounded-tl-md px-4 py-3 max-w-lg">
-                  <div className="text-sm text-gray-700 whitespace-pre-line">
-                    {aiResponse.join('\n')}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Follow-up Questions */}
-            {showFollowUp && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-xs text-gray-500 px-1">Suggested follow-up questions:</p>
-                  {followUpQuestions.map((q, i) => (
-                    <motion.button
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.15 }}
-                      className="block w-full text-left bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-700 hover:border-[#1391BF] hover:bg-[#1391BF]/5 transition-colors"
+                      key={supplier.name}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="bg-white rounded-xl p-3 border border-gray-200 shadow-sm"
                     >
-                      {q}
-                    </motion.button>
+                      <div className="text-sm font-medium text-gray-900 mb-0.5">{supplier.name}</div>
+                      <div className="text-xs text-gray-500 mb-2">{supplier.location}</div>
+                      <div className="flex gap-1 flex-wrap">
+                        {supplier.certs.map((cert) => (
+                          <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[9px] rounded font-medium">
+                            {cert}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
-              </motion.div>
-            )}
-
-            {/* Complete - View Results */}
-            {showComplete && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex justify-center pt-4"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-6 py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium shadow-lg shadow-[#1391BF]/30"
-                >
-                  <span>View All 47 Suppliers</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </motion.button>
               </motion.div>
             )}
           </div>
         </div>
         
         {/* Input Area */}
-        <div className="p-4 bg-white border-t border-gray-200">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 bg-gray-100 rounded-xl px-4 py-3">
+        <div className="p-3 bg-white border-t border-gray-200">
+          <div className="max-w-2xl mx-auto">
+            <div className="flex items-center gap-2 bg-gray-100 rounded-xl px-3 py-2">
               <input
                 type="text"
-                placeholder="Ask me anything about suppliers..."
+                placeholder="Describe what you are looking for..."
                 className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
                 readOnly
               />
-              <button className="w-8 h-8 rounded-lg bg-[#1391BF] flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <button className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </button>
