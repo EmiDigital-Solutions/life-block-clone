@@ -26,13 +26,12 @@ interface DemoStep {
 
 const demoSteps: DemoStep[] = [
   { id: 1, title: "AI-Guided Search", label: "AI Chat" },
-  { id: 2, title: "Refine Search", label: "Refine" },
-  { id: 3, title: "Supplier Discovery", label: "Search" },
-  { id: 4, title: "Order Audit", label: "Order" },
-  { id: 5, title: "Auditor Dispatch", label: "Dispatch" },
-  { id: 6, title: "Audit Execution", label: "Audit" },
-  { id: 7, title: "Report Generation", label: "Report" },
-  { id: 8, title: "Follow-up Manager", label: "Follow-up" },
+  { id: 2, title: "Supplier Discovery", label: "Search" },
+  { id: 3, title: "Order Audit", label: "Order" },
+  { id: 4, title: "Auditor Dispatch", label: "Dispatch" },
+  { id: 5, title: "Audit Execution", label: "Audit" },
+  { id: 6, title: "Report Generation", label: "Report" },
+  { id: 7, title: "Follow-up Manager", label: "Follow-up" },
 ];
 
 // Clean Window Chrome Component - No dark title bar
@@ -2058,7 +2057,7 @@ const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
   // Custom durations per step (ms) - slower timing for better viewing
-  const stepDurations = [15000, 15000, 18000, 15000, 15000, 15000, 15000, 15000]; // AI Chat, Refine, Search, Order, Dispatch, Audit, Report, Follow-up
+  const stepDurations = [15000, 18000, 15000, 15000, 15000, 15000, 15000]; // AI Chat, Search, Order, Dispatch, Audit, Report, Follow-up
   
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -2071,13 +2070,12 @@ const PlatformDemoAnimation = () => {
   const renderDemo = () => {
     switch (currentStep) {
       case 0: return <AIChatSearchDemo />;
-      case 1: return <RefineSearchDemo />;
-      case 2: return <SupplierSearchDemo />;
-      case 3: return <OrderAuditDemo />;
-      case 4: return <AuditorDispatchDemo />;
-      case 5: return <AuditExecutionDemo />;
-      case 6: return <ReportDemo />;
-      case 7: return <FollowUpDemo />;
+      case 1: return <SupplierSearchDemo />;
+      case 2: return <OrderAuditDemo />;
+      case 3: return <AuditorDispatchDemo />;
+      case 4: return <AuditExecutionDemo />;
+      case 5: return <ReportDemo />;
+      case 6: return <FollowUpDemo />;
       default: return <AIChatSearchDemo />;
     }
   };
