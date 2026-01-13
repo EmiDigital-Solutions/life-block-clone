@@ -1,10 +1,23 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
-import { ArrowRight, Clock, Target, Award, CheckCircle2, TrendingDown, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+// Import images
+import liveTrackingImg from "@/assets/live-tracking-dashboard.jpg";
+import riskScoringImg from "@/assets/risk-scoring-ai.jpg";
+import erpIntegrationImg from "@/assets/erp-integration-sync.jpg";
 
 const GroundIntelligence = () => {
+  const [activeFeature, setActiveFeature] = useState(0);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -15,220 +28,225 @@ const GroundIntelligence = () => {
     }
   };
 
+  const benefits = [
+    {
+      title: "Centralize supplier data",
+      description: "Store all supplier information, risk scores, performance metrics, and audit history in one secure platform."
+    },
+    {
+      title: "Real-time monitoring",
+      description: "Track supplier performance continuously with IoT sensors and AI-powered analytics for instant visibility."
+    },
+    {
+      title: "Predictive intelligence",
+      description: "Leverage AI insights on risk patterns and capacity trends to make proactive decisions."
+    }
+  ];
+
+  const features = [
+    {
+      title: "Live monitoring dashboard",
+      description: "Monitor all your suppliers in real-time with our centralized dashboard. Track performance metrics, risk indicators, and capacity utilization across your entire supply network.",
+      image: liveTrackingImg
+    },
+    {
+      title: "AI-powered risk scoring",
+      description: "Our AI continuously analyzes supplier data to provide accurate risk scores. Identify potential issues before they impact your operations with predictive analytics.",
+      image: riskScoringImg
+    },
+    {
+      title: "Seamless ERP integrations",
+      description: "Connect Ground Intelligence with your existing ERP, MES, and QMS systems. Keep your source of truth intact while gaining enhanced visibility.",
+      image: erpIntegrationImg
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "How does Ground Intelligence monitor suppliers in real-time?",
+      answer: "Ground Intelligence combines IoT sensor data, system integrations, and AI analytics to provide continuous visibility into supplier operations. Data is collected from multiple sources and processed in real-time to detect anomalies and predict potential issues."
+    },
+    {
+      question: "How long does implementation take?",
+      answer: "Most teams are operational within 2-4 weeks. The pilot program focuses on a single critical supplier, with full network deployment following. Our team provides comprehensive support throughout the implementation process."
+    },
+    {
+      question: "Does Ground Intelligence integrate with existing systems?",
+      answer: "Yes. Ground Intelligence provides open APIs and pre-built connectors for major ERP, MES, and QMS systems. Your existing source of truth remains intact while gaining enhanced real-time visibility."
+    },
+    {
+      question: "What are the key benefits of using Ground Intelligence?",
+      answer: "Ground Intelligence reduces issue detection lead time by up to 85%, achieves 92% accuracy in delay prediction, and enables 3.2x faster response to supplier risks. The platform transforms reactive supplier management into proactive supply chain optimization."
+    }
+  ];
+
+  const relatedProducts = [
+    {
+      title: "Search",
+      description: "Find and evaluate new suppliers with AI-powered discovery and due diligence.",
+      link: "/search-suppliers",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
+    },
+    {
+      title: "ScanPro+",
+      description: "Conduct comprehensive supplier audits with AI-assisted inspection and documentation.",
+      link: "/scanpro-plus",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
+    },
+    {
+      title: "Be Found",
+      description: "Help suppliers get discovered by enterprise buyers through verified profiles.",
+      link: "/be-found",
+      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80"
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Green gradient like BeFound */}
-      <section
-        data-nav-theme="primary"
-        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-24 py-20 sm:py-24 lg:py-32 bg-primary"
-        id="hero"
-      >
-        <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col items-start justify-center space-y-6 md:space-y-8 text-left">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="section-headline text-white mb-6"
-              >
-                Transform supplier data into strategic advantage
-              </motion.h1>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col space-y-4 text-white mb-12"
-              >
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-lg font-normal leading-[1.6]">Real-time monitoring</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-lg font-normal leading-[1.6]">Predictive analytics</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                  <span className="text-lg font-normal leading-[1.6]">Risk scoring</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="w-full sm:w-auto mb-10"
-              >
-                <button 
-                  onClick={() => scrollToSection('cta')}
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-7 py-3.5 rounded-full font-semibold text-base md:text-lg hover:bg-white/95 transition-all duration-300 shadow-xl"
-                >
-                  Schedule consultation
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-base md:text-lg text-white/90 max-w-[600px] leading-[1.5] opacity-90"
-              >
-                <strong>Ground Intelligence combines on-site audits, IoT sensors, and AI analytics</strong> to give you real-time visibility into supplier performance, capacity, and risk — before issues impact your operations.
-              </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Section */}
+      {/* Hero Section - Clean white background like Archlet */}
       <section
         data-nav-theme="light"
-        className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(255, 255, 255), rgb(249, 250, 251))" }}
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        id="hero"
       >
-        <div className="container mx-auto">
-          <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-gray-600 text-xs sm:text-sm font-medium"
+        <div className="container mx-auto max-w-5xl">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
+          >
+            Ground Intelligence
+          </motion.p>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-foreground mb-8"
+          >
+            One place for all<br />
+            supplier intelligence
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
+          >
+            Monitor supplier performance, risk, and capacity in one integrated intelligence platform.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <button 
+              onClick={() => scrollToSection('cta')}
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-base hover:opacity-90 transition-all duration-300"
             >
-              Ground Intelligence — Real-time supplier visibility
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-headline text-foreground"
-            >
-              See beyond the surface
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4"
-            >
-              Traditional supplier monitoring relies on quarterly reports and annual audits — by the time you spot a problem, it's already affecting production.
-            </motion.p>
-          </div>
+              Request a demo
+            </button>
+          </motion.div>
         </div>
       </section>
 
-      {/* Product Overview Section - Dark gradient like BeFound */}
+      {/* Benefits Section - 3 columns with accent bars */}
       <section
-        data-nav-theme="dark"
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
-        id="how"
+        data-nav-theme="light"
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
       >
-        <div className="container mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="section-headline text-white mb-4">
-              How It Works
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                number: 1,
-                title: "Deploy & Connect",
-                desc: "Install IoT sensors and integrate with existing systems",
-                detail: "Set up real-time monitoring infrastructure across your supplier network. Connect with ERP, MES, QMS systems for comprehensive data collection.",
-              },
-              {
-                number: 2,
-                title: "Monitor & Analyze",
-                desc: "AI processes real-time data streams for patterns and anomalies",
-                detail: "Advanced AI algorithms continuously analyze supplier data, detecting early warning signs and predicting potential issues before they impact production.",
-              },
-              {
-                number: 3,
-                title: "Act & Optimize",
-                desc: "Receive alerts, insights, and recommendations instantly",
-                detail: "Get actionable intelligence delivered in real-time. Make data-driven decisions with confidence using predictive analytics and risk scoring.",
-              },
-            ].map((step, index) => (
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            {benefits.map((benefit, index) => (
               <motion.div
-                key={step.number}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative group"
+                transition={{ delay: index * 0.1 }}
+                className="space-y-4"
               >
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 h-full">
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
-                      {step.number}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">{step.title}</h3>
-                  </div>
-                  <p className="text-base sm:text-lg text-white/90 mb-2 sm:mb-3 font-medium">{step.desc}</p>
-                  <p className="text-sm sm:text-base text-white/70">{step.detail}</p>
-                </div>
+                {/* Accent bar - using primary color */}
+                <div className="w-16 h-1.5 bg-primary rounded-full" />
+                <h3 className="text-xl lg:text-2xl font-semibold text-foreground">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground text-base lg:text-lg leading-relaxed">
+                  {benefit.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Capabilities Section - Infinite Scrolling Gallery */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-8 sm:py-12 lg:py-16 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
-        id="capabilities"
+      {/* Feature Showcase Section - Tabbed with images */}
+      <section
+        data-nav-theme="light"
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
+        id="features"
       >
-        <div className="w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8 px-4 sm:px-6 lg:px-12 xl:px-24"
-          >
-            <h2 className="section-headline text-foreground mb-2">
-              Capabilities that modernize supplier audits
-            </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600">
-              Nine AI-driven features for consistent, actionable outcomes.
-            </p>
-          </motion.div>
-
-          <InfiniteScrollingGallery />
+        <div className="container mx-auto max-w-6xl">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className={`mb-24 last:mb-0 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+            >
+              <div className="space-y-6 mb-8">
+                <h2 className="text-3xl lg:text-4xl font-semibold text-foreground">
+                  {feature.title}
+                </h2>
+                <p className="text-muted-foreground text-lg max-w-2xl">
+                  {feature.description}
+                </p>
+              </div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="rounded-2xl overflow-hidden border border-border bg-background"
+              >
+                <img 
+                  src={feature.image} 
+                  alt={feature.title}
+                  className="w-full h-auto object-cover"
+                />
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Results Section - Dark gradient */}
+      {/* Results Section */}
       <section 
-        data-nav-theme="dark" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        data-nav-theme="light" 
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="results"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-16"
           >
-            <h2 className="section-headline text-white mb-4">
-              Results
+            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
+              Proven results
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {[
               { metric: "−85%", label: "Lead time for issue detection" },
               { metric: "92%", label: "Accuracy in delay prediction" },
@@ -239,39 +257,38 @@ const GroundIntelligence = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 transition-all"
+                transition={{ delay: index * 0.15 }}
+                className="text-center p-8"
               >
-                <div className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl 2xl:text-8xl font-black text-primary mb-2 sm:mb-3">
+                <div className="text-5xl lg:text-6xl xl:text-7xl font-bold text-primary mb-4">
                   {item.metric}
                 </div>
-                <p className="text-sm sm:text-base xl:text-base 2xl:text-xl 3xl:text-2xl text-white/90 font-medium">{item.label}</p>
+                <p className="text-muted-foreground text-lg">{item.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing - 3 Plans */}
+      {/* Pricing Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246))" }}
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
         id="pricing"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-16"
           >
-            <h2 className="section-headline text-foreground mb-4">
-              Pricing
+            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
+              Pricing plans
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               { 
                 name: "Pilot", 
@@ -296,18 +313,18 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-6 sm:p-8 rounded-xl sm:rounded-2xl border ${
+                className={`p-8 lg:p-10 rounded-2xl border ${
                   plan.highlighted 
-                    ? 'bg-white border-primary shadow-lg sm:transform sm:scale-105 border-2' 
-                    : 'bg-white/50 border-gray-200'
+                    ? 'bg-background border-primary border-2 shadow-lg' 
+                    : 'bg-background border-border'
                 }`}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{plan.description}</p>
-                <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                <h3 className="text-2xl font-semibold text-foreground mb-2">{plan.name}</h3>
+                <p className="text-muted-foreground mb-8">{plan.description}</p>
+                <ul className="space-y-4">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={3} />
+                    <li key={i} className="flex items-start gap-3 text-foreground">
+                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={2} />
                       {feature}
                     </li>
                   ))}
@@ -318,11 +335,97 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* FAQ Section */}
       <section 
-        data-nav-theme="dark" 
-        className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-24"
-        style={{ background: "linear-gradient(135deg, rgb(17, 24, 39), rgb(31, 41, 55), rgb(17, 24, 39))" }}
+        data-nav-theme="light" 
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        id="faq"
+      >
+        <div className="container mx-auto max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
+              Frequently Asked Questions
+            </h2>
+          </motion.div>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <AccordionItem 
+                  value={`item-${index}`} 
+                  className="border border-border rounded-xl px-6 py-2 bg-background"
+                >
+                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline py-4">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-base pb-4">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Related Products Section */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
+      >
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {relatedProducts.map((product, index) => (
+              <motion.a
+                key={index}
+                href={product.link}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group block"
+              >
+                <div className="rounded-2xl overflow-hidden border border-border bg-background hover:shadow-lg transition-all duration-300">
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt={product.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {product.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      {product.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                      Learn more <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section 
+        data-nav-theme="light" 
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
         id="cta"
       >
         <div className="container mx-auto max-w-4xl text-center">
@@ -330,23 +433,23 @@ const GroundIntelligence = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6 sm:space-y-8"
+            className="space-y-8"
           >
-            <h2 className="section-headline text-white mb-4">
-              Ready for real-time supplier intelligence?
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
+              Ready to transform supplier intelligence?
             </h2>
 
-            <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-3xl 3xl:text-4xl text-white/80">
-              See how Ground Intelligence transforms supplier management.
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+              See how Ground Intelligence gives you real-time visibility into your entire supply network.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button className="w-full sm:w-auto bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-white/95 shadow-xl min-h-[48px]">
-                Schedule consultation
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-base hover:opacity-90 transition-all duration-300">
+                Request a demo
               </button>
-              <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 min-h-[48px]">
-                View demo
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              <button className="inline-flex items-center justify-center gap-2 border-2 border-foreground text-foreground px-8 py-4 rounded-full font-semibold text-base hover:bg-foreground hover:text-background transition-all duration-300">
+                Contact sales
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
