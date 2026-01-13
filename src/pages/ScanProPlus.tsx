@@ -2164,11 +2164,9 @@ const ScanProPlus = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight mb-10 font-semibold"
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-white mb-10"
               >
-                <span className="text-white">Transform how</span>
-                <br />
-                <span className="text-white">your team audits.</span>
+                Transform how<br />your team audits.
               </motion.h1>
               
               {/* Vertical checkmark list - Client benefits focused */}
