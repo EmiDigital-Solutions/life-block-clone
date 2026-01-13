@@ -119,8 +119,8 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="section-headline text-foreground">
-              Building the Global B2B Platform
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-foreground">
+              Building the Global<br />B2B Platform
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               Connecting clients, suppliers, and local experts through innovative technology and human expertise.
