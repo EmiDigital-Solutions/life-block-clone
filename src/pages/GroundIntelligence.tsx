@@ -2,13 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { ArrowRight, CheckCircle2, Plus, Minus } from "lucide-react";
 
 // Import images
 import liveTrackingImg from "@/assets/live-tracking-dashboard.jpg";
@@ -61,24 +55,72 @@ const GroundIntelligence = () => {
     }
   ];
 
-  const faqs = [
+  const faqCategories = [
     {
-      question: "How does Ground Intelligence monitor suppliers in real-time?",
-      answer: "Ground Intelligence combines IoT sensor data, system integrations, and AI analytics to provide continuous visibility into supplier operations. Data is collected from multiple sources and processed in real-time to detect anomalies and predict potential issues."
+      id: "general",
+      label: "General",
+      faqs: [
+        {
+          question: "How does Ground Intelligence monitor suppliers in real-time?",
+          answer: "Ground Intelligence combines IoT sensor data, system integrations, and AI analytics to provide continuous visibility into supplier operations. Data is collected from multiple sources and processed in real-time to detect anomalies and predict potential issues."
+        },
+        {
+          question: "How long does implementation take?",
+          answer: "Most teams are operational within 2-4 weeks. The pilot program focuses on a single critical supplier, with full network deployment following. Our team provides comprehensive support throughout the implementation process."
+        },
+        {
+          question: "What are the key benefits of using Ground Intelligence?",
+          answer: "Ground Intelligence reduces issue detection lead time by up to 85%, achieves 92% accuracy in delay prediction, and enables 3.2x faster response to supplier risks. The platform transforms reactive supplier management into proactive supply chain optimization."
+        },
+      ],
     },
     {
-      question: "How long does implementation take?",
-      answer: "Most teams are operational within 2-4 weeks. The pilot program focuses on a single critical supplier, with full network deployment following. Our team provides comprehensive support throughout the implementation process."
+      id: "integrations",
+      label: "Integrations",
+      faqs: [
+        {
+          question: "Does Ground Intelligence integrate with existing systems?",
+          answer: "Yes. Ground Intelligence provides open APIs and pre-built connectors for major ERP, MES, and QMS systems. Your existing source of truth remains intact while gaining enhanced real-time visibility."
+        },
+        {
+          question: "What data sources can be connected?",
+          answer: "We support IoT sensors, ERP systems (SAP, Oracle, Microsoft Dynamics), MES platforms, QMS tools, and custom data feeds via our REST API. Data syncs continuously for real-time monitoring."
+        },
+        {
+          question: "How long does integration setup take?",
+          answer: "Standard ERP integrations can be configured in 1-2 days. IoT sensor deployment typically takes 1-2 weeks depending on supplier locations. Our integration team provides full support throughout."
+        },
+      ],
     },
     {
-      question: "Does Ground Intelligence integrate with existing systems?",
-      answer: "Yes. Ground Intelligence provides open APIs and pre-built connectors for major ERP, MES, and QMS systems. Your existing source of truth remains intact while gaining enhanced real-time visibility."
+      id: "security",
+      label: "Security",
+      faqs: [
+        {
+          question: "How is supplier data protected?",
+          answer: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We maintain SOC 2 Type II certification, GDPR compliance, and undergo regular third-party security audits."
+        },
+        {
+          question: "Who has access to the intelligence data?",
+          answer: "Access is controlled through role-based permissions. You define who can view supplier data, risk scores, and analytics. All access is logged and auditable."
+        },
+      ],
     },
-    {
-      question: "What are the key benefits of using Ground Intelligence?",
-      answer: "Ground Intelligence reduces issue detection lead time by up to 85%, achieves 92% accuracy in delay prediction, and enables 3.2x faster response to supplier risks. The platform transforms reactive supplier management into proactive supply chain optimization."
-    }
   ];
+
+  const [activeFaqCategory, setActiveFaqCategory] = useState("general");
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const activeFaqs = faqCategories.find((cat) => cat.id === activeFaqCategory)?.faqs || [];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const handleFaqCategoryChange = (categoryId: string) => {
+    setActiveFaqCategory(categoryId);
+    setOpenFaqIndex(0);
+  };
 
   const relatedProducts = [
     {
@@ -335,47 +377,92 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section - Homepage style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        className="py-24 md:py-32 bg-white"
         id="faq"
       >
-        <div className="container mx-auto max-w-3xl">
+        <div className="container mx-auto px-6 max-w-4xl">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="mb-12"
           >
-            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
-              Frequently Asked Questions
+            <h2 className="section-headline text-foreground">
+              Questions about Ground Intelligence
             </h2>
           </motion.div>
 
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+          {/* Category Tabs - pill style */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-wrap gap-3 mb-12"
+          >
+            {faqCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleFaqCategoryChange(category.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeFaqCategory === category.id
+                    ? "bg-foreground text-white"
+                    : "bg-[#e5e5e5] text-foreground hover:bg-[#d5d5d5]"
+                }`}
               >
-                <AccordionItem 
-                  value={`item-${index}`} 
-                  className="border border-border rounded-xl px-6 py-2 bg-background"
-                >
-                  <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
+                {category.label}
+              </button>
             ))}
-          </Accordion>
+          </motion.div>
+
+          {/* FAQ List */}
+          <motion.div
+            key={activeFaqCategory}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {activeFaqs.map((faq, index) => (
+              <div
+                key={index}
+                className="border-t border-[#d5d5d5]"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+                >
+                  <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                    {faq.question}
+                  </span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                    {openFaqIndex === index ? (
+                      <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                    ) : (
+                      <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                    )}
+                  </div>
+                </button>
+                
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: openFaqIndex === index ? "auto" : 0,
+                    opacity: openFaqIndex === index ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
+                    {faq.answer}
+                  </p>
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
