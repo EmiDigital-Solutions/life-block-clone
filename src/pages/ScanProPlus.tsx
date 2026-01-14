@@ -20,6 +20,7 @@ import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
 import { PixelIcon } from "@/components/PixelIcon";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -2206,14 +2207,15 @@ const ScanProPlus = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  <a 
-                    href="https://calendly.com/yvoo/demo-yvoo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
-                  >
-                    See it in action
-                  </a>
+                  <Button asChild size="lg">
+                    <a 
+                      href="https://calendly.com/yvoo/demo-yvoo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      See it in action
+                    </a>
+                  </Button>
                 </motion.div>
 
                 {/* Certification Badges */}
@@ -2604,16 +2606,17 @@ const ScanProPlus = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-base font-medium inline-flex items-center gap-2">
+              <Button size="lg">
                 Order Audit
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
-              </button>
-              <button 
-                className="border border-border text-foreground hover:bg-muted rounded-full px-8 py-6 text-base font-medium"
+              </Button>
+              <Button 
+                variant="outline"
+                size="lg"
                 onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}
               >
                 Book a Demo
-              </button>
+              </Button>
             </div>
 
             {/* Trust indicators */}

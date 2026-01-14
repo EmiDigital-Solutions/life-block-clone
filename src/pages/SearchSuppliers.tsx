@@ -537,13 +537,12 @@ const SearchSuppliers = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  <a 
-                    href="#"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
-                  >
-                    Get Started
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
+                  <Button asChild size="lg">
+                    <a href="#">
+                      Get Started
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  </Button>
                 </motion.div>
               </div>
             </motion.div>
@@ -997,10 +996,10 @@ const SearchSuppliers = () => {
               <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
                 You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
               </p>
-              <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
+              <Button size="lg" className="group">
                 Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Button>
             </motion.div>
           </div>
         </div>
@@ -1505,9 +1504,9 @@ const SearchSuppliers = () => {
                   className="flex-1 outline-none text-base text-foreground bg-transparent py-3 placeholder:text-muted-foreground"
                 />
               </div>
-              <button className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base shadow-lg text-white bg-primary hover:bg-primary/90">
+              <Button size="lg" className="group">
                 Start Search
-              </button>
+              </Button>
             </motion.div>
 
             <motion.div

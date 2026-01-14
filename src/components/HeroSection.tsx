@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
+import { Button } from "@/components/ui/button";
 
 // Import auditor images for hero carousel background
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -142,14 +143,15 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <a 
-                  href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
-                >
-                  Request a demo
-                </a>
+                <Button asChild size="lg">
+                  <a 
+                    href="https://calendly.com/yvoo/demo-yvoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Request a demo
+                  </a>
+                </Button>
               </motion.div>
 
               {/* Certification Badges */}

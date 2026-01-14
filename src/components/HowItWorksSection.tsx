@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FileCheck, MousePointerClick, Users, ClipboardCheck, BarChart3 } from "lucide-react";
 import { PixelIcon } from "./PixelIcon";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   {
@@ -218,15 +219,16 @@ export const HowItWorksSection = () => {
                 <br className="hidden md:block" />
                 <span className="font-normal text-white/80">When will you?</span>
               </h3>
-              <a 
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-all duration-300"
-              >
-                Book a Demo
-                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-              </a>
+              <Button asChild size="lg">
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Book a Demo
+                  <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+                </a>
+              </Button>
             </motion.div>
           </div>
         </motion.div>
