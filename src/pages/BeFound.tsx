@@ -10,50 +10,54 @@ const BeFound = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Large, Bold, Centered */}
+      {/* Hero Section - Clean white background like Archlet */}
       <section
-        data-nav-theme="primary"
-        className="relative min-h-[90vh] flex items-center justify-center px-6 py-32 bg-primary"
+        data-nav-theme="light"
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        id="hero"
       >
-        <div className="container mx-auto max-w-5xl text-center">
-          <motion.div
+        <div className="container mx-auto max-w-5xl">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-10"
+            className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
           >
-            <h1 className="section-headline text-white">
-              Get Discovered by Buyers
-            </h1>
-            
-            <p className="text-xl md:text-2xl lg:text-3xl text-white/90 max-w-3xl mx-auto font-light leading-relaxed">
-              7 million+ B2B decision-makers are searching for suppliers like you. 
-              Claim your free profile and start getting found.
+            Be Found
+          </motion.p>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
+          >
+            Get discovered<br />
+            by global buyers
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
+          >
+            7 million+ B2B decision-makers are searching for suppliers like you. Claim your free profile and start getting found.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-start gap-4"
+          >
+            <Button size="lg">
+              Claim Your Profile
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <p className="text-muted-foreground text-sm">
+              Free forever · Set up in 3 minutes
             </p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="pt-4"
-            >
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-white/95 text-lg px-10 py-7 h-auto rounded-lg font-semibold shadow-2xl group"
-              >
-                Claim Your Profile
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-white/70 text-sm font-light"
-            >
-              ⚡ Free forever · Set up in 3 minutes
-            </motion.p>
           </motion.div>
         </div>
       </section>
