@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { PixelIcon } from "@/components/PixelIcon";
+import { Button } from "@/components/ui/button";
 import { X, ChevronDown, ArrowLeft } from "lucide-react";
 
 // Import images - Hero images (people/team focus)
@@ -205,12 +206,9 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                   Our team can provide ongoing expertise and guidance to ensure your {standard.name} audit process remains thorough, compliant and effective.
                 </p>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
-                >
+                <Button size="lg">
                   Get In Touch
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -234,12 +232,9 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {standard.whyItMatters}
                   </p>
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-primary/90"
-                  >
+                  <Button>
                     Get In Touch
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Circular image with rings - Different image from hero */}
@@ -317,13 +312,10 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
               <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
                 Get in touch with our team to discuss how YVOO ScanPro+ can help with your supplier verification needs.
               </p>
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-primary shadow-lg transition-all hover:bg-gray-50"
-              >
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
                 Get In Touch
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </section>
         </div>
