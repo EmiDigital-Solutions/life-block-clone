@@ -131,6 +131,18 @@ const Navigation = () => {
                   Join our global auditor network
                 </span>
               </Link>
+              <Link 
+                to="/be-found" 
+                className="block group py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Be Found
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Get discovered by global buyers
+                </span>
+              </Link>
               <a 
                 href="#pricing" 
                 className="block group py-2"
