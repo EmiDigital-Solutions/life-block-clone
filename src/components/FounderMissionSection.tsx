@@ -4,6 +4,7 @@ import founderPortrait from "@/assets/founder-portrait.jpg";
 import { Factory, CheckCircle, Award, Package, Users, Clock, AlertTriangle, Cog, ArrowRight } from "lucide-react";
 import { PixelIcon } from "@/components/PixelIcon";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -229,13 +230,12 @@ const FounderMissionSection = () => {
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium mb-4">
                       We make <strong>professional on-site audits affordable and effortless</strong> for every procurement team—regardless of company size or budget.
                     </p>
-                    <a 
-                      href="/scanpro-plus#roi-calculator"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                    >
-                      Calculate Your ROI
-                      <ArrowRight className="w-5 h-5" />
-                    </a>
+                    <Button asChild size="lg">
+                      <a href="/scanpro-plus#roi-calculator">
+                        Calculate Your ROI
+                        <ArrowRight className="w-5 h-5" />
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </div>

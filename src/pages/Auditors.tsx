@@ -198,13 +198,12 @@ const Auditors = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    <a 
-                      href="#"
-                      className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
-                    >
-                      Apply for Partnership
-                      <ArrowRight className="w-5 h-5" />
-                    </a>
+                    <Button asChild size="lg">
+                      <a href="#">
+                        Apply for Partnership
+                        <ArrowRight className="w-5 h-5" />
+                      </a>
+                    </Button>
                   </motion.div>
                 </div>
 
@@ -316,13 +315,12 @@ const Auditors = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full font-medium transition-all duration-300 text-base bg-primary text-white hover:bg-primary/90"
-                >
-                  Apply for Partnership
-                  <ArrowRight className="w-5 h-5" />
-                </a>
+                <Button asChild size="lg">
+                  <a href="#">
+                    Apply for Partnership
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
+                </Button>
               </motion.div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Plus, Minus, Activity, AlertTriangle, TrendingUp, TrendingDown, Clock, Wifi, Database, Settings, BarChart3, Shield, Zap } from "lucide-react";
 
 // Window Chrome Component for mockups
@@ -537,12 +538,9 @@ const GroundIntelligence = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <button 
-              onClick={() => scrollToSection('cta')}
-              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-base hover:opacity-90 transition-all duration-300"
-            >
+            <Button size="lg" onClick={() => scrollToSection('cta')}>
               Request a demo
-            </button>
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -877,13 +875,13 @@ const GroundIntelligence = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-base hover:opacity-90 transition-all duration-300">
+              <Button size="lg">
                 Request a demo
-              </button>
-              <button className="inline-flex items-center justify-center gap-2 border-2 border-foreground text-foreground px-8 py-4 rounded-full font-semibold text-base hover:bg-foreground hover:text-background transition-all duration-300">
+              </Button>
+              <Button variant="outline" size="lg">
                 Contact sales
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </motion.div>
         </div>

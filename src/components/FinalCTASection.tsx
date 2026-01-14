@@ -22,21 +22,21 @@ const FinalCTASection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-base font-medium inline-flex items-center gap-2"
-            >
-              Book a Demo
-              <PixelIcon name="arrow-right" className="w-4 h-4" />
-            </a>
-            <a
-              href="/scanpro-plus"
-              className="border border-border text-foreground hover:bg-muted rounded-full px-8 py-6 text-base font-medium inline-flex items-center justify-center"
-            >
-              Explore ScanPro+
-            </a>
+            <Button asChild size="lg">
+              <a
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book a Demo
+                <PixelIcon name="arrow-right" className="w-4 h-4" />
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a href="/scanpro-plus">
+                Explore ScanPro+
+              </a>
+            </Button>
           </div>
 
           {/* Trust indicators */}
