@@ -2159,12 +2159,12 @@ const ScanProPlus = () => {
             {/* Left Column - Text Content */}
             <div className="text-left pt-4">
               
-              {/* Main Heading - Transformation-focused */}
+              {/* Main Heading - Archlet Style */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-white mb-10"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white mb-10"
               >
                 Transform how<br />your team audits.
               </motion.h1>
