@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import { Button } from "@/components/ui/button";
+import GeometricY from "@/components/GeometricY";
 
 // Import auditor images for hero carousel background
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -93,6 +94,29 @@ const HeroSection = () => {
         ))}
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+      </div>
+
+      {/* Geometric Y Brand Element - Hero Background */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <div className="absolute right-[-10%] top-[10%] hidden md:block">
+          <GeometricY 
+            size="xl" 
+            opacity={0.15} 
+            variant="hero"
+            animated={true}
+            color="rgba(0, 212, 255, 0.4)"
+          />
+        </div>
+        {/* Mobile version - smaller */}
+        <div className="absolute right-[-20%] top-[15%] md:hidden">
+          <GeometricY 
+            size="md" 
+            opacity={0.1} 
+            variant="hero"
+            animated={true}
+            color="rgba(0, 212, 255, 0.3)"
+          />
+        </div>
       </div>
 
       {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
