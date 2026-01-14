@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContentByType } from "@/hooks/useContentQuery";
 import { Button } from "@/components/ui/button";
+import DiagonalLines from "@/components/DiagonalLines";
 
 // Import auditor images for hero carousel background
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
@@ -94,6 +95,9 @@ const HeroSection = () => {
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
       </div>
+
+      {/* HV Capital-inspired Diagonal Lines Overlay */}
+      <DiagonalLines className="z-[5]" lineColor="hsl(var(--primary))" />
 
       {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
       <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
