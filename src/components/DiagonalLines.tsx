@@ -13,59 +13,47 @@ const DiagonalLines = ({
 }: DiagonalLinesProps) => {
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      {/* SVG container for Y-shaped union lines */}
+      {/* SVG container for YVOO Y-shaped lines */}
       <svg
-        className="absolute w-full h-full"
+        className="absolute"
         style={{ 
-          right: '-10%',
-          top: '-10%',
-          width: '120%',
-          height: '120%'
+          right: '-5%',
+          top: '10%',
+          width: '70%',
+          height: '100%'
         }}
-        viewBox="0 0 1400 1200"
-        preserveAspectRatio="xMidYMid slice"
+        viewBox="0 0 800 900"
+        preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
       >
-        {/* Curved arc at top left */}
+        {/* Left branch of Y - diagonal from top-left going to center */}
         <motion.path
-          d="M 0 100 L 200 100 Q 600 100 700 500"
+          d="M 0 0 L 400 450"
           stroke={lineColor}
           strokeWidth="1"
           strokeLinecap="round"
           fill="none"
           initial={animated ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 0.5 }}
           animate={{ pathLength: 1, opacity: 0.5 }}
-          transition={{ duration: 1.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
         />
         
-        {/* Left branch of Y - curved from top-right going down */}
+        {/* Right branch of Y - diagonal from top-right going to center */}
         <motion.path
-          d="M 1100 0 Q 900 300 700 600"
+          d="M 600 0 L 400 450"
           stroke={lineColor}
           strokeWidth="1"
           strokeLinecap="round"
           fill="none"
           initial={animated ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 0.5 }}
           animate={{ pathLength: 1, opacity: 0.5 }}
-          transition={{ duration: 1.6, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
         />
         
-        {/* Right branch of Y - diagonal line from top right */}
+        {/* Stem of Y - goes down, then right, then diagonal down-right */}
         <motion.path
-          d="M 1400 0 L 1100 400 Q 900 650 750 650"
-          stroke={lineColor}
-          strokeWidth="1"
-          strokeLinecap="round"
-          fill="none"
-          initial={animated ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 0.5 }}
-          animate={{ pathLength: 1, opacity: 0.5 }}
-          transition={{ duration: 1.5, delay: 0.7, ease: "easeOut" }}
-        />
-        
-        {/* Bottom stem of Y - angular connection going down-right */}
-        <motion.path
-          d="M 700 600 L 750 650 L 750 850 L 900 850 Q 1100 850 1200 1000 L 1400 1200"
+          d="M 400 450 L 400 600 L 550 600 L 800 850"
           stroke={lineColor}
           strokeWidth="1"
           strokeLinecap="round"
@@ -73,7 +61,7 @@ const DiagonalLines = ({
           fill="none"
           initial={animated ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 0.5 }}
           animate={{ pathLength: 1, opacity: 0.5 }}
-          transition={{ duration: 2, delay: 0.9, ease: "easeOut" }}
+          transition={{ duration: 1.8, delay: 0.7, ease: "easeOut" }}
         />
       </svg>
     </div>
