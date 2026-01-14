@@ -39,7 +39,7 @@ const BeFound = () => {
             >
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-white/95 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-2xl group"
+                className="bg-white text-gray-900 hover:bg-white/95 text-lg px-10 py-7 h-auto rounded-lg font-semibold shadow-2xl group"
               >
                 Claim Your Profile
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -118,11 +118,11 @@ const BeFound = () => {
           >
             {/* Role Toggle - Blue gradient style */}
             <div className="flex justify-center">
-              <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-[#5B7FE8]">
-                <button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#7B8FEC] to-[#5B7FE8] text-white font-medium text-sm uppercase tracking-wider shadow-sm">
+              <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-[#5B7FE8]">
+                <button className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#7B8FEC] to-[#5B7FE8] text-white font-medium text-sm uppercase tracking-wider shadow-sm">
                   Manufacturer
                 </button>
-                <button className="px-8 py-3 rounded-full text-gray-900 font-medium text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">
+                <button className="px-8 py-3 rounded-lg text-gray-900 font-medium text-sm uppercase tracking-wider hover:bg-gray-50 transition-colors">
                   Distributor
                 </button>
               </div>
@@ -181,7 +181,7 @@ const BeFound = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white rounded-lg p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                   >
                     {/* 8-bit pixel arrow */}
                     <div className="flex-shrink-0 mt-1">
@@ -228,11 +228,11 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="inline-block px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold text-gray-600 mb-4">
+              <div className="inline-block px-4 py-2 bg-gray-100 rounded-lg text-sm font-semibold text-gray-600 mb-4">
                 Without YVOO
               </div>
               
-              <div className="bg-gray-50 p-10 rounded-3xl space-y-6 border-2 border-gray-200">
+              <div className="bg-gray-50 p-10 rounded-lg space-y-6 border-2 border-gray-200">
                 <div className="space-y-4 text-gray-600">
                   <p className="leading-relaxed">
                     No online presence for procurement teams searching for suppliers.
@@ -245,19 +245,19 @@ const BeFound = () => {
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start gap-3 text-gray-600">
-                  <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-xs">✕</span>
                   </div>
                   <span>Invisible to 7M+ annual buyers</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-600">
-                  <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-xs">✕</span>
                   </div>
                   <span>No insights into buyer behavior</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-600">
-                  <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-xs">✕</span>
                   </div>
                   <span>Losing leads to competitors</span>
@@ -272,11 +272,11 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="inline-block px-4 py-2 rounded-full text-sm font-semibold text-white mb-4" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+              <div className="inline-block px-4 py-2 rounded-lg text-sm font-semibold text-white mb-4" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
                 With YVOO
               </div>
               
-              <div className="p-10 rounded-3xl space-y-6 border-2" style={{ backgroundColor: "hsl(160, 25%, 95%)", borderColor: "hsl(160, 25%, 72%)" }}>
+              <div className="p-10 rounded-lg space-y-6 border-2" style={{ backgroundColor: "hsl(160, 25%, 95%)", borderColor: "hsl(160, 25%, 72%)" }}>
                 <div className="space-y-4 text-gray-900">
                   <p className="leading-relaxed font-medium">
                     Your optimized profile appears when buyers search for your products and services.
@@ -289,19 +289,19 @@ const BeFound = () => {
 
               <div className="space-y-4 pt-4">
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>12M+ monthly profile views</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>Real-time analytics dashboard</span>
                 </div>
                 <div className="flex items-start gap-3 text-gray-900">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
+                  <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: "hsl(160, 25%, 72%)" }}>
                     <Check className="w-4 h-4 text-white" />
                   </div>
                   <span>5x visibility with premium ads</span>
@@ -359,7 +359,7 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl text-center space-y-4 hover:shadow-lg transition-shadow"
+                className="bg-white p-8 rounded-lg text-center space-y-4 hover:shadow-lg transition-shadow"
               >
                 <div className="flex justify-center" style={{ color: "hsl(160, 25%, 72%)" }}>
                   {item.icon}
@@ -480,7 +480,7 @@ const BeFound = () => {
                     {item.features.map((feature) => (
                       <div
                         key={feature}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
                         style={{ backgroundColor: "hsl(160, 25%, 95%)", color: "hsl(160, 25%, 40%)" }}
                       >
                         <Check className="w-4 h-4" />
@@ -557,7 +557,7 @@ const BeFound = () => {
             <div className="pt-4">
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-white/95 text-xl px-12 py-8 h-auto rounded-full font-semibold shadow-2xl"
+                className="bg-white text-gray-900 hover:bg-white/95 text-xl px-12 py-8 h-auto rounded-lg font-semibold shadow-2xl"
               >
                 Claim Your Free Profile
                 <ArrowRight className="ml-3 w-6 h-6" />
