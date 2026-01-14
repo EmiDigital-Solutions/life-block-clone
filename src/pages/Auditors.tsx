@@ -338,7 +338,7 @@ const Auditors = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-[#B2CDBC] text-white p-4 rounded-full shadow-lg hover:bg-[#B2CDBC]/90 transition-all z-50"
+            className="fixed bottom-8 right-8 bg-[#B2CDBC] text-white p-4 rounded-lg shadow-lg hover:bg-[#B2CDBC]/90 transition-all z-50"
           >
             <ArrowUp className="w-6 h-6" />
           </motion.button>
@@ -401,7 +401,7 @@ const ValuePropositionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-[#f5f5f5] rounded-[32px] p-10"
+            className="bg-[#f5f5f5] rounded-lg p-10"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
               Traditional Auditing
@@ -409,7 +409,7 @@ const ValuePropositionSection = () => {
             <div className="space-y-5">
               {oldWay.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
                     <X className="w-3 h-3 text-destructive" />
                   </div>
                   <span className="text-muted-foreground">{item}</span>
@@ -423,7 +423,7 @@ const ValuePropositionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="bg-[#0a0a0a] rounded-[32px] p-10"
+            className="bg-[#0a0a0a] rounded-lg p-10"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-8">
               With YVOO
@@ -431,7 +431,7 @@ const ValuePropositionSection = () => {
             <div className="space-y-5">
               {newWay.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-primary" />
                   </div>
                   <span className="text-white/80">{item}</span>
@@ -772,7 +772,7 @@ const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
       <div className="relative">
         {/* Main image container with parallax */}
         <motion.div 
-          className="relative overflow-hidden rounded-2xl"
+          className="relative overflow-hidden rounded-lg"
           style={{ y, scale }}
         >
           <img 
@@ -786,14 +786,14 @@ const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
         
         {/* Decorative elements with opposite parallax */}
         <motion.div
-          className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl"
+          className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-lg"
           style={{ y: decorY1 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.5 }}
         />
         <motion.div
-          className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-xl"
+          className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-lg"
           style={{ y: decorY2 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -1006,7 +1006,7 @@ const DayInLifeSection = () => {
         >
           <Button 
             size="lg" 
-            className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 text-base font-medium"
+            className="bg-primary hover:bg-primary/90 text-white rounded-lg px-6 py-2 text-base font-medium"
           >
             Start your new way to audit now
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -1159,7 +1159,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
                 <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
                   {faq.q}
                 </span>
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
                   {openFaq === index ? (
                     <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
                   ) : (
@@ -1236,7 +1236,7 @@ const ScrollZoomSection = () => {
         {/* Carousel */}
         <div className="relative">
           {/* Main Image */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] rounded-[32px] md:rounded-[48px] overflow-hidden">
+          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] rounded-lg overflow-hidden">
             {auditors.map((auditor, index) => (
               <motion.div
                 key={index}
@@ -1280,7 +1280,7 @@ const ScrollZoomSection = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-lg transition-all duration-300 ${
                     currentIndex === index 
                       ? 'w-8 bg-white' 
                       : 'bg-white/40 hover:bg-white/60'

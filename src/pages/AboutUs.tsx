@@ -128,7 +128,7 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
@@ -137,7 +137,7 @@ const AboutUs = () => {
         {/* Scroll indicator - hidden on mobile */}
         <div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <motion.div 
-            className="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-[#0A7FA5] flex items-center justify-center animate-bounce"
+            className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg bg-[#0A7FA5] flex items-center justify-center animate-bounce"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
@@ -263,7 +263,7 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
@@ -399,7 +399,7 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
               Get In Touch
             </Button>
           </motion.div>
@@ -480,14 +480,14 @@ const AboutUs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button 
-                className="bg-[#B2CDBC] text-black hover:bg-[#B2CDBC]/90 rounded-full px-8 py-6 text-base font-semibold"
+                className="bg-[#B2CDBC] text-black hover:bg-[#B2CDBC]/90 rounded-lg px-8 py-6 text-base font-semibold"
               >
                 Request Demo
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-full px-8 py-6 text-base font-semibold"
+                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-lg px-8 py-6 text-base font-semibold"
               >
                 Contact Sales
               </Button>
