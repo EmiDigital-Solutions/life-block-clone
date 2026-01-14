@@ -94,63 +94,84 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
       </div>
 
-      {/* Main Content - Bottom Left Corner */}
-      <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
-        <div className="px-6 lg:px-12 xl:px-16">
+      {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
+      <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+        <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="relative z-20"
           >
-            {/* Single Line Headline - Archlet Style */}
+            {/* Eyebrow Text - Archlet Style */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-white/50 text-sm tracking-widest uppercase mb-6"
+            >
+              AI-Powered Supplier Audits
+            </motion.p>
+
+            {/* Main Headline - Archlet Style */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
             >
               On-Site Supplier Audits<br />
               in Days, Not Weeks.
             </motion.h1>
 
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 lg:mt-10"
-            >
-              <a 
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+            {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
+            <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
+              {/* Subtitle */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-white/70 text-lg lg:text-xl mb-8"
               >
-                Order YVOO Audit — from €700
-                <span>→</span>
-              </a>
-            </motion.div>
+                The all-in-one platform that makes supplier qualification faster and more transparent with certified auditors worldwide.
+              </motion.p>
 
-            {/* Certification Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-6"
-            >
-              <p className="text-white/60 text-sm mb-3">Auditors certified by:</p>
-              <div className="flex flex-wrap gap-2">
-                {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
-                  <span
-                    key={badge}
-                    className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 text-white/90 backdrop-blur-sm border border-white/30"
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <a 
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-foreground bg-[#E8F051] hover:bg-[#dce648] hover:scale-105"
+                >
+                  Request a demo
+                </a>
+              </motion.div>
+
+              {/* Certification Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mt-8"
+              >
+                <p className="text-white/50 text-sm mb-3">Auditors certified by:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                    <span
+                      key={badge}
+                      className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/10 text-white/80 backdrop-blur-sm border border-white/20"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
