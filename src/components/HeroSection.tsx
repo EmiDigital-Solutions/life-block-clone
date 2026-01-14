@@ -113,14 +113,14 @@ const HeroSection = () => {
               AI-Powered Supplier Audits
             </motion.p>
 
-            {/* Main Headline - Archlet Style */}
+            {/* Main Headline - Archlet Style, 2 rows only */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
             >
-              On-Site Supplier Audits<br />
+              Supplier Audits<br />
               in Days, Not Weeks.
             </motion.h1>
 
@@ -146,7 +146,7 @@ const HeroSection = () => {
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-foreground bg-[#E8F051] hover:bg-[#dce648] hover:scale-105"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
                 >
                   Request a demo
                 </a>
