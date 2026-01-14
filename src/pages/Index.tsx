@@ -12,6 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import FullScreenProjects from "@/components/FullScreenProjects";
 import Footer from "@/components/Footer";
+import GeometricYDivider from "@/components/GeometricYDivider";
 
 const Index = () => {
   return (
@@ -19,10 +20,13 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <TestimonialSection />
+      <GeometricYDivider rotation={0} />
       <EmailComparisonSection />
       <BuyerPainPointsSection />
+      <GeometricYDivider rotation={45} />
       <ResultsBenefitsSection />
       <HowItWorksSection />
+      <GeometricYDivider rotation={90} />
       <ROICalculatorSection />
       <GlobalNetworkSection />
       <TestimonialsCarouselSection />
