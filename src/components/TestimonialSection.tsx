@@ -21,7 +21,7 @@ const TestimonialSection = () => {
             className="mb-16 md:mb-20 lg:mb-24"
           >
             <div 
-              className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              className="max-w-5xl mx-auto rounded-lg overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
               onClick={() => setIsModalOpen(true)}
             >
               <PlatformDemoAnimation />
@@ -73,7 +73,7 @@ const TestimonialSection = () => {
                 <img 
                   src={christophPortrait} 
                   alt="Christoph Seeholzer" 
-                  className="w-12 h-12 rounded-full object-cover border-2 border-border"
+                  className="w-12 h-12 rounded-lg object-cover border-2 border-border"
                 />
                 <p className="text-base text-muted-foreground">
                   Christoph Seeholzer, Director Linde
@@ -89,11 +89,11 @@ const TestimonialSection = () => {
         <DialogContent className="max-w-[95vw] w-full h-[90vh] p-0 border-none bg-transparent">
           <button
             onClick={() => setIsModalOpen(false)}
-            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+            className="absolute top-4 right-4 z-50 p-2 rounded-lg bg-black/50 text-white hover:bg-black/70 transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
-          <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
+          <div className="w-full h-full rounded-lg overflow-hidden bg-white">
             <PlatformDemoAnimation />
           </div>
         </DialogContent>

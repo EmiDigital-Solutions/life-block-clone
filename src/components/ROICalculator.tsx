@@ -76,7 +76,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <div className="bg-[#ebebeb] rounded-[32px] p-6 sm:p-8 md:p-12">
+    <div className="bg-[#ebebeb] rounded-lg p-6 sm:p-8 md:p-12">
       {/* Header */}
       <div className="mb-8">
         <motion.h3
@@ -96,7 +96,7 @@ const ROICalculator = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="bg-[#e3e3e3] rounded-[24px] p-4 sm:p-6 mb-8"
+        className="bg-[#e3e3e3] rounded-lg p-4 sm:p-6 mb-8"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Category Selection */}
@@ -106,7 +106,7 @@ const ROICalculator = () => {
               Category
             </Label>
             <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-              <SelectTrigger className="h-12 border-0 bg-white rounded-xl">
+              <SelectTrigger className="h-12 border-0 bg-white rounded-lg">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
@@ -126,7 +126,7 @@ const ROICalculator = () => {
               Audit Standard
             </Label>
             <Select value={selectedAuditId} onValueChange={setSelectedAuditId}>
-              <SelectTrigger className="h-12 border-0 bg-white rounded-xl">
+              <SelectTrigger className="h-12 border-0 bg-white rounded-lg">
                 <SelectValue placeholder="Select audit type" />
               </SelectTrigger>
               <SelectContent>
@@ -146,7 +146,7 @@ const ROICalculator = () => {
               Supplier Region
             </Label>
             <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-              <SelectTrigger className="h-12 border-0 bg-white rounded-xl">
+              <SelectTrigger className="h-12 border-0 bg-white rounded-lg">
                 <SelectValue placeholder="Select region" />
               </SelectTrigger>
               <SelectContent>
@@ -171,7 +171,7 @@ const ROICalculator = () => {
               max="500"
               value={auditsPerYear}
               onChange={(e) => setAuditsPerYear(Math.max(1, parseInt(e.target.value) || 1))}
-              className="h-12 border-0 bg-white rounded-xl text-center text-lg font-semibold"
+              className="h-12 border-0 bg-white rounded-lg text-center text-lg font-semibold"
             />
           </div>
         </div>
@@ -185,13 +185,13 @@ const ROICalculator = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-wrap items-center gap-3 mb-6"
         >
-          <span className="px-3 py-1.5 bg-foreground/10 text-foreground rounded-full text-sm font-medium">
+          <span className="px-3 py-1.5 bg-foreground/10 text-foreground rounded-lg text-sm font-medium">
             {selectedAudit.complexity} Complexity
           </span>
-          <span className="px-3 py-1.5 bg-foreground/5 text-muted-foreground rounded-full text-sm font-medium">
+          <span className="px-3 py-1.5 bg-foreground/5 text-muted-foreground rounded-lg text-sm font-medium">
             {selectedAudit.minDays}-{selectedAudit.maxDays} Days
           </span>
-          <span className="px-3 py-1.5 bg-foreground/5 text-muted-foreground rounded-full text-sm font-medium">
+          <span className="px-3 py-1.5 bg-foreground/5 text-muted-foreground rounded-lg text-sm font-medium">
             {selectedAudit.auditors} Auditor{selectedAudit.auditors > 1 ? 's' : ''}
           </span>
         </motion.div>
@@ -204,7 +204,7 @@ const ROICalculator = () => {
           key={`trad-${selectedAuditId}`}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-[20px]"
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-lg"
         >
           <div>
             <p className="text-sm text-muted-foreground mb-1">Traditional Audit Cost</p>
@@ -221,7 +221,7 @@ const ROICalculator = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-[20px]"
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-lg"
         >
           <div>
             <p className="text-sm text-muted-foreground mb-1">YVOO ScanPro+ ({selectedRegionData?.label})</p>
@@ -239,11 +239,11 @@ const ROICalculator = () => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="rounded-[24px] p-6 sm:p-8 bg-[#1a1a1a] text-white mb-6"
+        className="rounded-lg p-6 sm:p-8 bg-[#1a1a1a] text-white mb-6"
       >
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-lg bg-white/10 flex items-center justify-center">
               <DollarSign className="w-7 h-7 text-white" />
             </div>
             <div>
@@ -264,7 +264,7 @@ const ROICalculator = () => {
       </motion.div>
 
       {/* Time Savings */}
-      <div className="rounded-[20px] p-5 bg-white">
+      <div className="rounded-lg p-5 bg-white">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div className="flex items-center gap-3">
             <Clock className="w-5 h-5 text-muted-foreground" />
@@ -277,7 +277,7 @@ const ROICalculator = () => {
       </div>
 
       {/* Additional Benefits */}
-      <div className="mt-5 p-5 bg-white rounded-[20px]">
+      <div className="mt-5 p-5 bg-white rounded-lg">
         <p className="text-muted-foreground text-sm">
           <strong className="text-foreground">Additional Benefits:</strong> No travel costs, 
           standardized digital reports within 24h, local certified auditors, 

@@ -104,10 +104,10 @@ const BuyerPainPointsSection = () => {
         >
           {/* Role Toggle */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-0 p-1 rounded-full border-2 border-gray-300 bg-white">
+            <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-gray-300 bg-white">
               <button 
                 onClick={() => setActiveRole("buyer")}
-                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "buyer" 
                     ? "bg-gray-900 text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-100"
@@ -117,7 +117,7 @@ const BuyerPainPointsSection = () => {
               </button>
               <button 
                 onClick={() => setActiveRole("quality")}
-                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
+                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-medium text-xs sm:text-sm uppercase tracking-wider transition-all ${
                   activeRole === "quality" 
                     ? "bg-gray-900 text-white shadow-sm" 
                     : "text-gray-900 hover:bg-gray-100"
@@ -176,7 +176,7 @@ const BuyerPainPointsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white rounded-lg p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                   >
                     <div className="flex-shrink-0 mt-0.5 sm:mt-1">
                       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="sm:w-5 sm:h-5 md:w-6 md:h-6">
@@ -216,7 +216,7 @@ const BuyerPainPointsSection = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="absolute bg-white rounded-2xl p-6 flex items-start gap-4 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[360px] w-[360px]"
+                      className="absolute bg-white rounded-lg p-6 flex items-start gap-4 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[360px] w-[360px]"
                       style={{
                         ...position,
                         transform: position.transform || 'none'

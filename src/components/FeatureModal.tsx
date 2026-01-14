@@ -254,7 +254,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
             >
               <X className="w-5 h-5 text-gray-600" />
             </button>
@@ -286,7 +286,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
               <div className="lg:ml-[45%] lg:pl-16 space-y-6">
                 <DialogHeader className="space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-2">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-lg mb-2">
                     <span className="text-sm font-semibold text-primary">{feature.number}</span>
                   </div>
                   <DialogTitle className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
@@ -309,7 +309,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center animate-bounce">
+              <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center animate-bounce">
                 <ChevronDown className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -381,9 +381,9 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                 {services.map((service, idx) => (
                   <div 
                     key={idx} 
-                    className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm"
+                    className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-sm"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                       <PixelIcon name="checkbox-on" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700">{service}</p>
@@ -403,9 +403,9 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                 {benefits.map((benefit, idx) => (
                   <div 
                     key={idx}
-                    className="text-center p-6 rounded-3xl bg-gradient-to-br from-[#f8fafb] to-white"
+                    className="text-center p-6 rounded-lg bg-gradient-to-br from-[#f8fafb] to-white"
                   >
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
                       <PixelIcon name={benefit.iconName} className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
@@ -422,7 +422,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
                 Real-world application
               </h2>
-              <div className="bg-white rounded-3xl p-8 shadow-sm">
+              <div className="bg-white rounded-lg p-8 shadow-sm">
                 <p className="text-lg text-gray-700 leading-relaxed">
                   {feature.detailedExplanation.example}
                 </p>

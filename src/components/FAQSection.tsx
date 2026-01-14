@@ -143,7 +143,7 @@ const FAQSection = () => {
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                 activeCategory === category.id
                   ? "bg-foreground text-white"
                   : "bg-[#e5e5e5] text-foreground hover:bg-[#d5d5d5]"
@@ -173,7 +173,7 @@ const FAQSection = () => {
                 <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
                   {faq.question}
                 </span>
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
                   {openIndex === index ? (
                     <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
                   ) : (

@@ -162,7 +162,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
             >
               <X className="w-5 h-5 text-gray-600" />
             </button>
@@ -214,7 +214,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center animate-bounce">
+              <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center animate-bounce">
                 <ChevronDown className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -268,9 +268,9 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                 {standard.services.map((service, idx) => (
                   <div 
                     key={idx} 
-                    className="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm"
+                    className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-sm"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                       <PixelIcon name="checkbox-on" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700">{service}</p>
@@ -290,9 +290,9 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                 {standard.benefits.map((benefit, idx) => (
                   <div 
                     key={idx}
-                    className="text-center p-6 rounded-3xl bg-gradient-to-br from-[#f8fafb] to-white"
+                    className="text-center p-6 rounded-lg bg-gradient-to-br from-[#f8fafb] to-white"
                   >
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
                       <PixelIcon name={benefit.iconName} className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>

@@ -14,7 +14,7 @@ const GlobalNetworkSection = () => {
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="bg-[#ebebeb] rounded-[32px] p-8 md:p-12 lg:p-16">
+        <div className="bg-[#ebebeb] rounded-lg p-8 md:p-12 lg:p-16">
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
@@ -81,7 +81,7 @@ const GlobalNetworkSection = () => {
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group"
+                  className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group"
                 >
                   <span>See Coverage Map</span>
                   <PixelIcon name="arrow-right" className="w-5 h-5" />
@@ -118,7 +118,7 @@ const GlobalNetworkSection = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative aspect-square rounded-[24px] overflow-hidden bg-white">
+              <div className="relative aspect-square rounded-lg overflow-hidden bg-white">
                 <img
                   src={dottedWorldMap}
                   alt="Global auditor network coverage"
@@ -157,7 +157,7 @@ const GlobalNetworkSection = () => {
                     
                     {/* Label on hover */}
                     <div className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-                      <div className="bg-foreground text-background px-3 py-2 rounded-xl shadow-xl">
+                      <div className="bg-foreground text-background px-3 py-2 rounded-lg shadow-xl">
                         <p className="text-xs font-semibold">{region.name}</p>
                         <p className="text-xs font-bold text-primary">{region.auditors}</p>
                       </div>

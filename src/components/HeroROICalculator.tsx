@@ -88,7 +88,7 @@ const HeroROICalculator = () => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] p-6 lg:p-8 max-w-md"
+      className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-lg p-6 lg:p-8 max-w-md"
     >
       {/* Header */}
       <div className="mb-5">
@@ -207,7 +207,7 @@ const HeroROICalculator = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="rounded-2xl p-3 bg-primary"
+          className="rounded-lg p-3 bg-primary"
         >
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
@@ -220,7 +220,7 @@ const HeroROICalculator = () => {
           </div>
         </motion.div>
         
-        <div className="rounded-2xl p-3 bg-foreground">
+        <div className="rounded-lg p-3 bg-foreground">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-background" />
