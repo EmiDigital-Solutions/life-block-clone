@@ -150,60 +150,63 @@ const Auditors = () => {
             return null;
           })()}
 
-          {/* Main Content - Bottom Left Corner */}
-          <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
-            <div className="px-6 lg:px-12 xl:px-16">
+          {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
+          <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+            <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="relative z-20"
               >
-                {/* Eyebrow */}
+                {/* Eyebrow Text - Archlet Style */}
                 <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
-                  className="text-white/60 text-sm tracking-[0.2em] uppercase mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-white/50 text-sm tracking-widest uppercase mb-6"
                 >
                   By Invitation Only
                 </motion.p>
 
-                {/* Single Line Headline - Archlet Style */}
+                {/* Main Headline - Archlet Style, 2 rows only */}
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
                 >
-                  We partner with<br />exceptional auditors.
+                  We partner with<br />
+                  exceptional auditors.
                 </motion.h1>
 
-                {/* Subtitle */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-lg text-white/60 mt-4 max-w-lg"
-                >
-                  Our clients demand the highest standards.<br />So do we.
-                </motion.p>
-
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="mt-6 lg:mt-10"
-                >
-                  <a 
-                    href="#"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+                {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
+                <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
+                  {/* Subtitle */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="text-white/70 text-lg lg:text-xl mb-8"
                   >
-                    Apply for Partnership
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
-                </motion.div>
+                    Our clients demand the highest standards. So do we.
+                  </motion.p>
+
+                  {/* CTA Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    <a 
+                      href="#"
+                      className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
+                    >
+                      Apply for Partnership
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  </motion.div>
+                </div>
 
               </motion.div>
             </div>
