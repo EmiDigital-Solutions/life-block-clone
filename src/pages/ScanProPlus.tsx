@@ -2143,82 +2143,173 @@ const ScanProPlus = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section - Dark Background with fixed height */}
+      {/* Hero Section - White Background, Archlet Style */}
       <section
-        data-nav-theme="hero"
+        data-nav-theme="light"
         id="hero"
-        className="relative bg-[#0A0A0A] h-[860px] lg:h-[780px]"
-        style={{ overflow: 'visible', clipPath: 'none' }}
+        className="relative bg-white min-h-screen flex flex-col"
       >
-        <div className="container mx-auto px-6 lg:px-20 relative z-10 h-full flex items-center" style={{ overflow: 'visible' }}>
-          <div className="w-full pt-24 md:pt-28 pb-16" style={{ overflow: 'visible' }}>
-          
-          {/* Two-column layout - Demo larger */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column - Text Content */}
-            <div className="text-left pt-4">
-              
-              {/* Main Heading - Archlet Style */}
+        {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
+        <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative z-20"
+            >
+              {/* Eyebrow Text - Archlet Style */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
+              >
+                Supplier Quality Platform
+              </motion.p>
+
+              {/* Main Headline - Archlet Style, 2 rows only */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white mb-10"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
-                Transform how<br />your team audits.
+                Transform how<br />
+                your team audits.
               </motion.h1>
-              
-              {/* Vertical checkmark list - Client benefits focused */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex flex-col gap-3 mb-10"
-              >
-                {[
-                  "Cut audit costs by 60%, redeploy budget strategically",
-                  "Free your engineers from coordination tasks",
-                  "Get audit-ready suppliers in 48h, not weeks"
-                ].map((text, index) => (
-                  <div key={index} className="flex items-center gap-3 text-white/80">
-                    <Check className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-base font-medium">{text}</span>
-                  </div>
-                ))}
-              </motion.div>
 
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <a 
-                  href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-base text-foreground bg-primary hover:bg-primary/90"
+              {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
+              <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
+                {/* Subtitle with checkmarks */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="flex flex-col gap-3 mb-8"
                 >
-                  See it in action
-                </a>
-              </motion.div>
-            </div>
+                  {[
+                    "Cut audit costs by 60%",
+                    "Free engineers from coordination",
+                    "Audit-ready suppliers in 48h"
+                  ].map((text, index) => (
+                    <div key={index} className="flex items-center gap-3 text-muted-foreground">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-base font-medium">{text}</span>
+                    </div>
+                  ))}
+                </motion.div>
 
-            {/* Right Column - Equipment Intelligence Demo - Overflows into next section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="hidden lg:block relative z-20"
-              style={{ marginBottom: "-160px" }}
-            >
-              <div className="rounded-[32px] bg-[#0A0A0A] p-4 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.9)] overflow-hidden">
-                <EquipmentIntelligenceDemo />
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <a 
+                    href="https://calendly.com/yvoo/demo-yvoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105"
+                  >
+                    See it in action
+                  </a>
+                </motion.div>
+
+                {/* Certification Badges */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="mt-8"
+                >
+                  <p className="text-muted-foreground text-sm mb-3">Auditors certified by:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                      <span
+                        key={badge}
+                        className="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground border border-border"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
+        </div>
+
+        {/* Scrolling Client Band */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="bg-muted py-8 overflow-hidden mt-auto relative z-10 border-t border-border"
+        >
+          <div className="relative flex">
+            <motion.div
+              className="flex gap-16 whitespace-nowrap"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 60,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...Array(3)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-16 items-center">
+                  {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson"].map((company, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xl font-semibold text-muted-foreground/60 tracking-wide hover:text-muted-foreground transition-colors"
+                    >
+                      {company}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
           </div>
+        </motion.div>
+      </section>
+
+      {/* Demo Section - Equipment Intelligence */}
+      <section
+        data-nav-theme="light"
+        className="py-24 md:py-32 bg-white"
+      >
+        <div className="container mx-auto px-6 lg:px-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 md:mb-16"
+          >
+            <h2 className="section-headline text-foreground max-w-2xl mb-4">
+              See the platform in action
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              AI-powered equipment intelligence identifies machines and assesses compliance in real-time.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="rounded-[32px] bg-[#1a1a1a] p-6 shadow-2xl overflow-hidden">
+              <EquipmentIntelligenceDemo />
+            </div>
+          </motion.div>
         </div>
       </section>
 
