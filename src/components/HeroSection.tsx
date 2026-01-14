@@ -118,10 +118,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
             >
-              <span className="block">Supplier Audits</span>
-              <span className="block whitespace-nowrap">in Days, Not Weeks.</span>
+              Supplier Audits<br />
+              in Days, Not Weeks.
             </motion.h1>
 
             {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
