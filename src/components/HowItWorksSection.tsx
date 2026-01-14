@@ -170,7 +170,7 @@ export const HowItWorksSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-[32px] p-12 lg:p-16 overflow-hidden"
+          className="relative rounded-lg p-12 lg:p-16 overflow-hidden"
         >
           {/* Video Background - Full Card */}
           <video

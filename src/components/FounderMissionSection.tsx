@@ -106,11 +106,11 @@ const FounderMissionSection = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center lg:items-start"
           >
-            <div className="relative group w-full max-w-[250px] lg:max-w-none bg-white p-4 rounded-2xl">
+            <div className="relative group w-full max-w-[250px] lg:max-w-none bg-white p-4 rounded-lg">
               <img
                 src={founderPortrait}
                 alt="Ivo Karaula, CEO YVOO"
-                className="w-full rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-[1.02] bg-white"
+                className="w-full rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-[1.02] bg-white"
                 style={{ backgroundColor: 'white' }}
               />
             </div>
@@ -146,7 +146,7 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-white rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-xl md:text-2xl text-gray-900 leading-relaxed font-semibold mb-4">
                   "I built my career on supplier decisions. I'm not gambling yours on <strong>AI guesses</strong>."
                 </p>
@@ -179,7 +179,7 @@ const FounderMissionSection = () => {
                     onClick={() => setSelectedDetail(item)}
                     className="cursor-pointer"
                   >
-                    <Card className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
+                    <Card className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 h-full border-0 overflow-hidden hover:scale-[1.02] group">
                       <div className="flex items-start gap-0">
                         {/* Left side - Watermark area */}
                         <div className="w-28 h-28 bg-gradient-to-br from-red-50 to-red-100/30 flex items-center justify-center relative flex-shrink-0">
@@ -215,7 +215,7 @@ const FounderMissionSection = () => {
               viewport={{ once: true }}
               className="relative mt-8"
             >
-              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-white rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <p className="text-base md:text-lg font-bold text-gray-900 mb-4">
                   These aren't details. <strong>These are deal-breakers.</strong>
                 </p>
@@ -223,7 +223,7 @@ const FounderMissionSection = () => {
                   That's why we built YVOO: <strong>AI finds them. Humans verify what matters.</strong>
                 </p>
                 <div className="mt-6 pt-6 border-t border-gray-200 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
                     <CheckCircle className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
@@ -246,16 +246,16 @@ const FounderMissionSection = () => {
 
       {/* Detail Modal - Match 7 AI Features Style */}
       <Dialog open={!!selectedDetail} onOpenChange={() => setSelectedDetail(null)}>
-        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border-0 shadow-2xl">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-lg border-0 shadow-2xl">
           {selectedDetail && (
             <div className="space-y-6">
               {/* Header with Icon */}
               <DialogHeader className="flex flex-row items-start gap-6 pb-6 border-b border-gray-100">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-xl flex-shrink-0">
+                <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center shadow-xl flex-shrink-0">
                   <selectedDetail.icon className="w-10 h-10 text-white" />
                 </div>
                 <div className="flex-1">
-                  <div className="inline-block px-3 py-1 bg-red-50 rounded-full mb-3">
+                  <div className="inline-block px-3 py-1 bg-red-50 rounded-lg mb-3">
                     <span className="text-red-600 text-xs font-bold uppercase tracking-wide">AI Limitation</span>
                   </div>
                   <DialogTitle className="text-3xl font-bold text-gray-900 mb-3">
@@ -269,9 +269,9 @@ const FounderMissionSection = () => {
 
               {/* Detailed Content */}
               <div className="space-y-5 mt-8">
-                <div className="group relative bg-white rounded-3xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div className="group relative bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
                   <div className="p-6">
-                    <div className="inline-block px-3 py-1 bg-primary/10 rounded-full mb-3">
+                    <div className="inline-block px-3 py-1 bg-primary/10 rounded-lg mb-3">
                       <span className="text-primary text-xs font-bold uppercase">Why This Matters</span>
                     </div>
                     <DialogDescription className="text-gray-700 leading-relaxed text-base">

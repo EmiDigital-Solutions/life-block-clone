@@ -45,7 +45,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
             >
               <X className="w-5 h-5 text-gray-600" />
             </button>
@@ -75,7 +75,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
               <div className="lg:ml-[40%] lg:pl-16 space-y-6">
                 <DialogHeader className="space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-2">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-lg mb-2">
                     <span className="text-sm font-semibold text-primary">Success Story</span>
                   </div>
                   <DialogTitle className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -87,7 +87,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                 </DialogHeader>
 
                 <div className="flex items-center gap-4 pt-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg lg:hidden">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden border-4 border-white shadow-lg lg:hidden">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -104,7 +104,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center animate-bounce">
+              <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center animate-bounce">
                 <ChevronDown className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -116,7 +116,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
                 {/* Challenge */}
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 rounded-full">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 rounded-lg">
                     <span className="text-sm font-semibold text-red-600">The Challenge</span>
                   </div>
                   <p className="text-xl text-gray-700 leading-relaxed">
@@ -126,7 +126,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
 
                 {/* Solution */}
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 rounded-lg">
                     <span className="text-sm font-semibold text-green-600">The Solution</span>
                   </div>
                   <p className="text-xl text-gray-700 leading-relaxed">
@@ -145,7 +145,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                 dangerouslySetInnerHTML={{ __html: `"${testimonial.quote}"` }}
               />
               <div className="mt-8 flex items-center justify-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden">
+                <div className="w-12 h-12 rounded-lg overflow-hidden">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -170,10 +170,10 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                 {testimonial.useCases.map((useCase, idx) => (
                   <div 
                     key={idx} 
-                    className="bg-[#f8fafb] rounded-2xl p-6 space-y-3"
+                    className="bg-[#f8fafb] rounded-lg p-6 space-y-3"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                         <PixelIcon name="checkbox-on" className="w-5 h-5" />
                       </div>
                       <h3 className="font-semibold text-gray-900">{useCase.title}</h3>
@@ -195,9 +195,9 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                 {testimonial.results.map((result, idx) => (
                   <div 
                     key={idx} 
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center"
+                    className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center"
                   >
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center mx-auto mb-4">
                       <PixelIcon name="arrow-right" className="w-6 h-6" />
                     </div>
                     <p className="text-lg font-medium">{result}</p>

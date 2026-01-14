@@ -130,7 +130,7 @@ const TestimonialsCarouselSection = () => {
     <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
         {/* Outer container - offmenu style */}
-        <div className="bg-[#ebebeb] rounded-[32px] p-8 md:p-12 lg:p-16">
+        <div className="bg-[#ebebeb] rounded-lg p-8 md:p-12 lg:p-16">
           {/* Header - offmenu style with mixed weight typography */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -165,10 +165,10 @@ const TestimonialsCarouselSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.08 }}
-                    className="bg-white rounded-[28px] p-8 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[420px]"
+                    className="bg-white rounded-lg p-8 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[420px]"
                   >
                     {/* Icon */}
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                       <PixelIcon name={testimonial.icon as any} className="w-6 h-6" />
                     </div>
 
@@ -180,7 +180,7 @@ const TestimonialsCarouselSection = () => {
 
                     {/* Author with large image */}
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border-4 border-[#ebebeb] shadow-lg">
+                      <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-4 border-[#ebebeb] shadow-lg">
                         <img
                           src={testimonial.image}
                           alt={testimonial.name}
