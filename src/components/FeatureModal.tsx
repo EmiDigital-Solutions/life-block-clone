@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { PixelIcon } from "@/components/PixelIcon";
+import { Button } from "@/components/ui/button";
 import { X, ChevronDown, ArrowLeft } from "lucide-react";
 
 // Import images - Hero images (people/team focus)
@@ -300,12 +301,9 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                   Streamline your supplier discovery process with intelligent {feature.title.toLowerCase()} technology that adapts to your needs.
                 </p>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
-                >
+                <Button size="lg">
                   Get Started
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -441,13 +439,10 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
               <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
                 Start using YVOO SearchPro+ today and transform your supplier discovery process.
               </p>
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-primary shadow-lg transition-all hover:bg-gray-50"
-              >
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
                 Get Started
                 <PixelIcon name="arrow-right" className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </section>
         </div>

@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { PixelIcon } from "@/components/PixelIcon";
+import { Button } from "@/components/ui/button";
 import { X, ChevronDown, ArrowLeft } from "lucide-react";
 
 interface UseCase {
@@ -215,13 +216,10 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
               <p className="text-lg text-gray-600 mb-8">
                 Join {testimonial.company} and hundreds of other enterprises achieving breakthrough results with YVOO.
               </p>
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
-              >
+              <Button size="lg">
                 Get Started Today
                 <PixelIcon name="arrow-right" className="w-5 h-5" />
-              </button>
+              </Button>
             </div>
           </section>
         </div>
