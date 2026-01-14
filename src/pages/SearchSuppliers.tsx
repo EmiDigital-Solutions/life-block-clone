@@ -484,55 +484,71 @@ const SearchSuppliers = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
         </div>
 
-        {/* Main Content - Bottom Left Corner */}
-        <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
-          <div className="px-6 lg:px-12 xl:px-16">
+        {/* Main Content - Upper/Center Left - Archlet Style */}
+        <div className="flex-1 flex items-start relative z-10 pt-32 lg:pt-40">
+          <div className="px-6 lg:px-12 xl:px-16 w-full">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="relative z-20"
             >
-              {/* Single Line Headline - Archlet Style */}
+              {/* Eyebrow */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-white/60 text-sm tracking-[0.2em] uppercase mb-6"
+              >
+                AI-Powered Supplier Discovery
+              </motion.p>
+
+              {/* 2-Row Headline - Archlet Style */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
               >
-                Find suppliers worldwide<br />in real-time.
+                Find Suppliers,
+                <br />
+                <span className="text-white">Worldwide.</span>
               </motion.h1>
 
-              {/* Subtitle with checkmarks */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-wrap gap-4 mt-4"
-              >
-                {["25+ million profiles", "Verified data", "Export ready"].map((text, index) => (
-                  <div key={index} className="flex items-center gap-2 text-white/70">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-sm font-medium">{text}</span>
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="mt-6 lg:mt-10"
-              >
-                <a 
-                  href="#"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+              {/* Subtitle + CTA - Offset Right on Desktop */}
+              <div className="mt-8 lg:mt-12 lg:ml-[50%]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="flex flex-wrap gap-4"
                 >
-                  Get Started
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              </motion.div>
+                  {["25+ million profiles", "Verified data", "Export ready"].map((text, index) => (
+                    <div key={index} className="flex items-center gap-2 text-white/70">
+                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">{text}</span>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="mt-6"
+                >
+                  <a 
+                    href="https://calendly.com/yvoo/demo-yvoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
+                  >
+                    Get Started
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
