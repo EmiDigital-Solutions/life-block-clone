@@ -150,9 +150,9 @@ const Auditors = () => {
             return null;
           })()}
 
-          {/* Main Content - Upper/Center Left - Archlet Style */}
-          <div className="flex-1 flex items-start relative z-10 pt-32 lg:pt-40">
-            <div className="px-6 lg:px-12 xl:px-16 w-full">
+          {/* Main Content - Bottom Left Corner */}
+          <div className="flex-1 flex items-end relative z-10 pb-12 lg:pb-16">
+            <div className="px-6 lg:px-12 xl:px-16">
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -164,52 +164,47 @@ const Auditors = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="text-white/60 text-sm tracking-[0.2em] uppercase mb-6"
+                  className="text-white/60 text-sm tracking-[0.2em] uppercase mb-4"
                 >
                   By Invitation Only
                 </motion.p>
 
-                {/* 2-Row Headline - Archlet Style */}
+                {/* Single Line Headline - Archlet Style */}
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
                 >
-                  Exceptional Auditors,
-                  <br />
-                  <span className="text-white">Global Network.</span>
+                  We partner with<br />exceptional auditors.
                 </motion.h1>
 
-                {/* Subtitle + CTA - Offset Right on Desktop */}
-                <div className="mt-8 lg:mt-12 lg:ml-[50%]">
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-lg text-white/60 max-w-md"
-                  >
-                    Our clients demand the highest standards. So do we.
-                  </motion.p>
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-lg text-white/60 mt-4 max-w-lg"
+                >
+                  Our clients demand the highest standards.<br />So do we.
+                </motion.p>
 
-                  {/* CTA Button */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-6"
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="mt-6 lg:mt-10"
+                >
+                  <a 
+                    href="#"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
                   >
-                    <a 
-                      href="https://calendly.com/yvoo/demo-yvoo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 text-lg text-white bg-primary hover:bg-primary/90 hover:scale-105 hover:shadow-lg"
-                    >
-                      Apply for Partnership
-                      <ArrowRight className="w-5 h-5" />
-                    </a>
-                  </motion.div>
-                </div>
+                    Apply for Partnership
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
+                </motion.div>
+
               </motion.div>
             </div>
           </div>
