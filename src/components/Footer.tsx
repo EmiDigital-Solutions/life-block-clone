@@ -1,24 +1,9 @@
 import { Link } from "react-router-dom";
-import GeometricY from "@/components/GeometricY";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12 sm:py-14 lg:py-16 xl:py-20 relative overflow-hidden">
-      {/* Geometric Y Watermark - Footer Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-[-15%] bottom-[-20%] hidden lg:block">
-          <GeometricY 
-            size="lg" 
-            opacity={0.08} 
-            variant="footer"
-            rotation={180}
-            animated={false}
-            color="#00D4FF"
-          />
-        </div>
-      </div>
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <footer className="bg-black text-white py-12 sm:py-14 lg:py-16 xl:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Main Footer Content - 4 Columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 mb-8 sm:mb-12">
