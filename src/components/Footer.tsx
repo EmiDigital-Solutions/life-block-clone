@@ -2,39 +2,80 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-12 sm:py-14 lg:py-16 xl:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Main Footer Content - 4 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 lg:gap-10 xl:gap-12 mb-8 sm:mb-12">
-            
-            {/* Column 1 - Company Info */}
-            <div>
-              <h3 className="text-xl sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-bold mb-3 sm:mb-4 tracking-wide">YVOO</h3>
-              <address className="not-italic text-xs sm:text-sm xl:text-base 2xl:text-lg 3xl:text-xl text-gray-400 leading-relaxed font-medium">
-                YVOO PROJECT d.o.o.<br />
-                Novotnijeva 12<br />
-                10000 Zagreb, Croatia
-              </address>
-            </div>
+    <footer className="relative bg-background text-foreground py-16 sm:py-20 lg:py-24 overflow-hidden">
+      {/* Large YVOO Logo Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <svg 
+          width="800" 
+          height="260" 
+          viewBox="0 0 130 42" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          className="opacity-[0.04] w-[60vw] max-w-[800px] h-auto"
+        >
+          <path d="M19.9866 30.464L17.1507 21.145C15.4234 15.4838 10.2157 11.6128 4.31185 11.6128H0V17.0542H3.59643C6.90928 17.0542 9.8483 19.174 10.9053 22.3212L14.3213 32.4738H20.4958V30.4705H19.9866V30.464Z" fill="currentColor"/>
+          <path d="M22.9187 42L33.0119 11.6455H25.9415L20.1988 30.4903L19.7992 31.6277L17.002 40.029L22.9187 42Z" fill="currentColor"/>
+          <path d="M125.901 21.2681L130 8.94405L129.968 8.93113L124.051 6.96005L119.295 21.2681H125.901Z" fill="currentColor"/>
+          <path d="M41.8483 11.6455L47.591 30.4967H47.8037L53.54 11.6455H60.4815L51.8191 37.3793H43.5628L34.9004 11.6455H41.8419H41.8483Z" fill="currentColor"/>
+          <path d="M117.315 24.4803C117.315 27.4853 116.742 30.0251 115.588 32.1125C114.434 34.1999 112.881 35.7832 110.915 36.8689C108.956 37.9546 106.752 38.4975 104.315 38.4975C101.879 38.4975 99.6682 37.9482 97.7089 36.856C95.7495 35.7638 94.1962 34.1741 93.049 32.0931C91.9017 30.0122 91.3281 27.4724 91.3281 24.4803C91.3281 21.4881 91.9017 18.9354 93.049 16.848C94.1962 14.7606 95.7495 13.1773 97.7089 12.0916C99.6682 11.0059 101.866 10.463 104.315 10.463C106.764 10.463 108.949 11.0059 110.915 12.0916C112.874 13.1773 114.434 14.7606 115.588 16.848C116.742 18.9354 117.315 21.4817 117.315 24.4803ZM110.593 24.4803C110.593 22.7031 110.342 21.2038 109.839 19.9759C109.336 18.748 108.621 17.8239 107.686 17.1905C106.752 16.5572 105.63 16.247 104.315 16.247C103 16.247 101.892 16.5637 100.951 17.1905C100.01 17.8239 99.2944 18.748 98.7917 19.9759C98.289 21.2038 98.044 22.7031 98.044 24.4803C98.044 26.2575 98.2954 27.7568 98.7917 28.9847C99.2944 30.2125 100.01 31.1367 100.951 31.77C101.892 32.4033 103.013 32.7135 104.315 32.7135C105.617 32.7135 106.752 32.3969 107.686 31.77C108.621 31.1367 109.336 30.2125 109.839 28.9847C110.342 27.7568 110.593 26.2575 110.593 24.4803Z" fill="currentColor"/>
+          <path d="M71.3814 37.3792C71.8132 36.6167 72.361 36.0092 73.0249 35.5633C73.9079 34.9687 74.9649 34.6714 76.1959 34.6714C77.427 34.6714 78.4904 34.9687 79.3734 35.5633C80.0373 36.0092 80.5787 36.6167 81.0105 37.3792H87.7264C87.4815 36.6167 87.185 35.8993 86.8177 35.2401C85.7284 33.2691 84.2653 31.7762 82.4156 30.7552C80.5658 29.7341 78.4904 29.2235 76.1959 29.2235C73.9014 29.2235 71.8132 29.7341 69.9698 30.7552C68.1265 31.7762 66.657 33.2755 65.5742 35.2401C65.2068 35.9058 64.9103 36.6231 64.6719 37.3792H71.3814Z" fill="currentColor"/>
+          <path d="M89.1961 14.0172C89.1961 17.0223 88.6225 19.5621 87.4688 21.6495C86.3151 23.7369 84.7618 25.3202 82.796 26.4059C80.8367 27.4916 78.6324 28.0345 76.1961 28.0345C73.7598 28.0345 71.5491 27.4851 69.5898 26.393C67.6304 25.3008 66.0771 23.711 64.9299 21.6301C63.7826 19.5492 63.209 17.0094 63.209 14.0172C63.209 11.0251 63.7826 8.47237 64.9299 6.38498C66.0771 4.29758 67.6304 2.71426 69.5898 1.62856C71.5491 0.542852 73.7469 0 76.1961 0C78.6453 0 80.8302 0.542852 82.796 1.62856C84.7554 2.71426 86.3151 4.29758 87.4688 6.38498C88.6225 8.47237 89.1961 11.0186 89.1961 14.0172ZM82.4673 14.0172C82.4673 12.24 82.2159 10.7407 81.7132 9.51284C81.2105 8.28496 80.4951 7.36082 79.5605 6.72749C78.626 6.09416 77.5045 5.78396 76.1897 5.78396C74.8748 5.78396 73.7662 6.10063 72.8252 6.72749C71.8842 7.36082 71.1688 8.28496 70.6661 9.51284C70.1634 10.7407 69.9185 12.24 69.9185 14.0172C69.9185 15.7944 70.1698 17.2937 70.6661 18.5216C71.1688 19.7495 71.8842 20.6736 72.8252 21.307C73.7662 21.9403 74.8877 22.2505 76.1897 22.2505C77.4916 22.2505 78.626 21.9338 79.5605 21.307C80.4951 20.6801 81.2105 19.7495 81.7132 18.5216C82.2159 17.2937 82.4673 15.7944 82.4673 14.0172Z" fill="currentColor"/>
+        </svg>
+      </div>
 
-            {/* Column 2 - Solutions */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Main Footer Content - Clean Grid Layout */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 mb-16">
+            
+            {/* Column 1 - Solutions */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Solutions</h4>
-              <ul className="space-y-2 sm:space-y-3">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Solutions
+              </h4>
+              <ul className="space-y-3">
                 <li>
-                  <Link to="/search-companies" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/search-companies" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Search Companies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/audit-suppliers" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/audit-suppliers" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Audit Suppliers
                   </Link>
                 </li>
                 <li>
-                  <Link to="/become-visible" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/become-visible" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Become Visible
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2 - Product */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Product
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/search-suppliers" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    YVOO Search
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ground-intelligence" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Ground Intelligence
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/scanpro-plus" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    ScanPro+
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/be-found" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Be Found
                   </Link>
                 </li>
               </ul>
@@ -42,20 +83,22 @@ const Footer = () => {
 
             {/* Column 3 - Resources */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Resources</h4>
-              <ul className="space-y-2 sm:space-y-3">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Resources
+              </h4>
+              <ul className="space-y-3">
                 <li>
-                  <Link to="/technology" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/technology" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Technology
                   </Link>
                 </li>
                 <li>
-                  <Link to="/features" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/features" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faq" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/faq" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     FAQ
                   </Link>
                 </li>
@@ -64,49 +107,105 @@ const Footer = () => {
 
             {/* Column 4 - Company */}
             <div>
-              <h4 className="text-base sm:text-base lg:text-lg xl:text-lg 2xl:text-xl 3xl:text-2xl font-semibold mb-3 sm:mb-4 tracking-wide">Company</h4>
-              <ul className="space-y-2 sm:space-y-3">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Company
+              </h4>
+              <ul className="space-y-3">
                 <li>
-                  <Link to="/team" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/about-us" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/team" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Team
                   </Link>
                 </li>
                 <li>
-                  <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/jobs" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Jobs & Career
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors font-medium text-xs sm:text-sm xl:text-base 2xl:text-lg">
+                  <Link to="/contact" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
                     Contact
                   </Link>
                 </li>
               </ul>
             </div>
+
+            {/* Column 5 - Legal */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Legal
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/imprint" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Imprint
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/cookies" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Cookies
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                    Terms of Use
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 6 - Contact */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+                Contact
+              </h4>
+              <address className="not-italic text-sm text-foreground/80 leading-relaxed">
+                YVOO PROJECT d.o.o.<br />
+                Novotnijeva 12<br />
+                10000 Zagreb<br />
+                Croatia
+              </address>
+            </div>
           </div>
 
-          {/* Footer Bottom - Legal & Copyright */}
-          <div className="pt-6 sm:pt-8 border-t border-gray-800">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm xl:text-base 2xl:text-lg text-gray-400 font-medium">
-              <div className="flex flex-wrap justify-center sm:justify-start gap-2 tracking-wide">
-                <Link to="/imprint" className="hover:text-white transition-colors">
-                  Imprint
-                </Link>
-                <span>•</span>
-                <Link to="/privacy" className="hover:text-white transition-colors">
-                  Privacy
-                </Link>
-                <span>•</span>
-                <Link to="/cookies" className="hover:text-white transition-colors">
-                  Cookies
-                </Link>
-                <span>•</span>
-                <Link to="/terms" className="hover:text-white transition-colors">
-                  Terms of use
-                </Link>
+          {/* Footer Bottom - Copyright */}
+          <div className="pt-8 border-t border-border">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="text-sm text-muted-foreground">
+                © 2025 YVOO PROJECT d.o.o. All rights reserved.
               </div>
-              <div className="text-center sm:text-right tracking-wide">
-                © 2025 YVOO PROJECT d.o.o. • Croatia
+              <div className="flex items-center gap-6">
+                <a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+                <a 
+                  href="https://twitter.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Twitter"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
