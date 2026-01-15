@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-[#0a0a0a] text-white pt-16 sm:pt-20 lg:pt-24 pb-8 overflow-hidden">
+    <footer className="relative bg-[#1a1a1a] text-white pt-16 sm:pt-20 lg:pt-24 pb-8 overflow-hidden font-mono">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Main Footer Content - Navigation Grid */}
@@ -20,8 +20,8 @@ const Footer = () => {
             
             {/* Column 1 - Solutions */}
             <div>
-              <h4 className="text-sm font-medium mb-6 text-white border-b border-white/20 pb-3">
-                Solutions
+              <h4 className="text-sm font-bold mb-6 text-white uppercase tracking-wider">
+                SOLUTIONS
               </h4>
               <ul className="space-y-3">
                 <li>
@@ -44,8 +44,8 @@ const Footer = () => {
 
             {/* Column 2 - Product */}
             <div>
-              <h4 className="text-sm font-medium mb-6 text-white border-b border-white/20 pb-3">
-                Product
+              <h4 className="text-sm font-bold mb-6 text-white uppercase tracking-wider">
+                PRODUCT
               </h4>
               <ul className="space-y-3">
                 <li>
@@ -73,8 +73,8 @@ const Footer = () => {
 
             {/* Column 3 - Resources */}
             <div>
-              <h4 className="text-sm font-medium mb-6 text-white border-b border-white/20 pb-3">
-                Resources
+              <h4 className="text-sm font-bold mb-6 text-white uppercase tracking-wider">
+                RESOURCES
               </h4>
               <ul className="space-y-3">
                 <li>
@@ -97,8 +97,8 @@ const Footer = () => {
 
             {/* Column 4 - Company */}
             <div>
-              <h4 className="text-sm font-medium mb-6 text-white border-b border-white/20 pb-3">
-                Company
+              <h4 className="text-sm font-bold mb-6 text-white uppercase tracking-wider">
+                COMPANY
               </h4>
               <ul className="space-y-3">
                 <li>
@@ -126,8 +126,8 @@ const Footer = () => {
 
             {/* Column 5 & 6 - Newsletter Signup */}
             <div className="col-span-2">
-              <h4 className="text-sm font-medium mb-6 text-white border-b border-white/20 pb-3">
-                Newsletter
+              <h4 className="text-sm font-bold mb-6 text-white uppercase tracking-wider">
+                NEWSLETTER
               </h4>
               <p className="text-sm text-white/60 mb-4 leading-relaxed">
                 Get the latest news and updates delivered straight to your inbox.
@@ -138,12 +138,12 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your Work Email"
-                  className="flex-1 bg-transparent border border-white/30 text-white placeholder:text-white/40 px-4 py-2.5 text-sm rounded-lg focus:outline-none focus:border-white/60 transition-colors"
+                  className="flex-1 bg-transparent border border-white/30 text-white placeholder:text-white/40 px-4 py-2.5 text-sm font-mono focus:outline-none focus:border-white/60 transition-colors"
                   required
                 />
                 <button
                   type="submit"
-                  className="px-6 py-2.5 border border-white/60 text-white text-sm font-medium rounded-lg hover:bg-white hover:text-black transition-colors"
+                  className="px-6 py-2.5 border border-white text-white text-sm font-mono hover:bg-white hover:text-black transition-colors"
                 >
                   Subscribe
                 </button>
