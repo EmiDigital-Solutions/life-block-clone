@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-background text-foreground py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <footer className="relative bg-black text-white py-16 sm:py-20 lg:py-24 overflow-hidden">
       {/* Large YVOO Logo Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <svg 
@@ -30,22 +30,22 @@ const Footer = () => {
             
             {/* Column 1 - Solutions */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Solutions
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/search-companies" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/search-companies" className="text-sm text-white/70 hover:text-white transition-colors">
                     Search Companies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/audit-suppliers" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/audit-suppliers" className="text-sm text-white/70 hover:text-white transition-colors">
                     Audit Suppliers
                   </Link>
                 </li>
                 <li>
-                  <Link to="/become-visible" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/become-visible" className="text-sm text-white/70 hover:text-white transition-colors">
                     Become Visible
                   </Link>
                 </li>
@@ -54,27 +54,27 @@ const Footer = () => {
 
             {/* Column 2 - Product */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Product
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/search-suppliers" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/search-suppliers" className="text-sm text-white/70 hover:text-white transition-colors">
                     YVOO Search
                   </Link>
                 </li>
                 <li>
-                  <Link to="/ground-intelligence" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/ground-intelligence" className="text-sm text-white/70 hover:text-white transition-colors">
                     Ground Intelligence
                   </Link>
                 </li>
                 <li>
-                  <Link to="/scanpro-plus" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/scanpro-plus" className="text-sm text-white/70 hover:text-white transition-colors">
                     ScanPro+
                   </Link>
                 </li>
                 <li>
-                  <Link to="/be-found" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/be-found" className="text-sm text-white/70 hover:text-white transition-colors">
                     Be Found
                   </Link>
                 </li>
@@ -83,22 +83,22 @@ const Footer = () => {
 
             {/* Column 3 - Resources */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Resources
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/technology" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/technology" className="text-sm text-white/70 hover:text-white transition-colors">
                     Technology
                   </Link>
                 </li>
                 <li>
-                  <Link to="/features" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/features" className="text-sm text-white/70 hover:text-white transition-colors">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faq" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/faq" className="text-sm text-white/70 hover:text-white transition-colors">
                     FAQ
                   </Link>
                 </li>
@@ -107,27 +107,27 @@ const Footer = () => {
 
             {/* Column 4 - Company */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Company
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/about-us" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/about-us" className="text-sm text-white/70 hover:text-white transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link to="/team" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/team" className="text-sm text-white/70 hover:text-white transition-colors">
                     Team
                   </Link>
                 </li>
                 <li>
-                  <Link to="/jobs" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/jobs" className="text-sm text-white/70 hover:text-white transition-colors">
                     Jobs & Career
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/contact" className="text-sm text-white/70 hover:text-white transition-colors">
                     Contact
                   </Link>
                 </li>
@@ -136,27 +136,27 @@ const Footer = () => {
 
             {/* Column 5 - Legal */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Legal
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/imprint" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/imprint" className="text-sm text-white/70 hover:text-white transition-colors">
                     Imprint
                   </Link>
                 </li>
                 <li>
-                  <Link to="/privacy" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/privacy" className="text-sm text-white/70 hover:text-white transition-colors">
                     Privacy
                   </Link>
                 </li>
                 <li>
-                  <Link to="/cookies" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/cookies" className="text-sm text-white/70 hover:text-white transition-colors">
                     Cookies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms" className="text-sm text-foreground/80 hover:text-foreground transition-colors">
+                  <Link to="/terms" className="text-sm text-white/70 hover:text-white transition-colors">
                     Terms of Use
                   </Link>
                 </li>
@@ -165,10 +165,10 @@ const Footer = () => {
 
             {/* Column 6 - Contact */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-muted-foreground">
+              <h4 className="text-sm font-semibold mb-4 tracking-wide uppercase text-white/60">
                 Contact
               </h4>
-              <address className="not-italic text-sm text-foreground/80 leading-relaxed">
+              <address className="not-italic text-sm text-white/70 leading-relaxed">
                 YVOO PROJECT d.o.o.<br />
                 Novotnijeva 12<br />
                 10000 Zagreb<br />
@@ -178,9 +178,9 @@ const Footer = () => {
           </div>
 
           {/* Footer Bottom - Copyright */}
-          <div className="pt-8 border-t border-border">
+          <div className="pt-8 border-t border-white/10">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-white/50">
                 © 2025 YVOO PROJECT d.o.o. All rights reserved.
               </div>
               <div className="flex items-center gap-6">
@@ -188,7 +188,7 @@ const Footer = () => {
                   href="https://linkedin.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-white/50 hover:text-white transition-colors"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -199,7 +199,7 @@ const Footer = () => {
                   href="https://twitter.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-white/50 hover:text-white transition-colors"
                   aria-label="Twitter"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
