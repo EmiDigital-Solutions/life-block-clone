@@ -649,96 +649,6 @@ const BeFound = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* How It Works Section */}
-      <section className="py-24 md:py-32 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="section-headline text-foreground max-w-4xl">
-              From signup to sales pipeline in 5 steps
-            </h2>
-          </motion.div>
-
-          {/* Steps */}
-          <div className="space-y-0">
-            {[
-              {
-                number: "01",
-                title: "Sign up",
-                description: "Create your free account in 30 seconds. No credit card required, no commitment needed."
-              },
-              {
-                number: "02",
-                title: "Build your digital twin",
-                description: "AI guides you through creating a complete supplier profile—certifications, capabilities, equipment, and media gallery."
-              },
-              {
-                number: "03",
-                title: "Get discovered",
-                description: "Your profile appears in buyer searches. Our algorithm matches you with procurement teams looking for your exact capabilities."
-              },
-              {
-                number: "04",
-                title: "Track performance",
-                description: "Real-time analytics show who's viewing your profile, what they searched for, and how you rank against competitors."
-              },
-              {
-                number: "05",
-                title: "Convert to leads",
-                description: "Receive RFQs directly in your dashboard. Respond quickly, win more business, and grow your customer base."
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group border-t border-border py-8 md:py-10"
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
-                  {/* Step Number */}
-                  <div className="flex-shrink-0">
-                    <span className="text-5xl md:text-6xl font-bold text-primary/80 group-hover:text-primary transition-colors">
-                      {step.number}
-                    </span>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 md:pt-3">
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-border"
-          >
-            <Button size="lg">
-              Start Your Free Profile
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Benefits Cards */}
       <section className="py-16 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
@@ -975,19 +885,65 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Feature Section 1 - Profile Builder */}
+      {/* How It Works Section */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Main Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <h2 className="section-headline text-foreground max-w-3xl">
+              How it works
+            </h2>
+          </motion.div>
+
+          {/* Step 1 - Sign Up */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="section-headline text-foreground">
-                Claim and optimize your profile in minutes
-              </h2>
+              <span className="text-5xl md:text-6xl font-bold text-primary/80">01</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                Sign up in seconds
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Create your free account with just an email. No credit card required, no commitment needed. Start building your supplier presence immediately.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-muted p-12 flex items-center justify-center"
+            >
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <User className="w-10 h-10 text-primary" />
+                </div>
+                <p className="text-muted-foreground">30-second signup</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Step 2 - Profile Builder */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <span className="text-5xl md:text-6xl font-bold text-primary/80">02</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                Build your digital twin
+              </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Search for your company and take control instantly. Add products, certifications, media, and detailed capabilities. The more complete your profile, the better you rank in buyer searches.
               </p>
@@ -1002,13 +958,9 @@ const BeFound = () => {
               <ProfileBuilderMockup />
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* Feature Section 2 - Analytics */}
-      <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Step 3 - Get Discovered */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1024,20 +976,17 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <h2 className="section-headline text-foreground">
-                Track who's viewing your profile
-              </h2>
+              <span className="text-5xl md:text-6xl font-bold text-primary/80">03</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                Track performance
+              </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 See exactly which procurement teams are viewing your products, what they're searching for, and when they're most active. Make data-driven decisions to optimize your visibility.
               </p>
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* Feature Section 3 - Lead Management */}
-      <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+          {/* Step 4 - Convert Leads */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1045,9 +994,10 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="section-headline text-foreground">
-                Convert views into qualified leads
-              </h2>
+              <span className="text-5xl md:text-6xl font-bold text-primary/80">04</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                Convert to leads
+              </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Buyers can contact you directly through the platform. With premium ads, get 5x more visibility and priority placement in search results.
               </p>
