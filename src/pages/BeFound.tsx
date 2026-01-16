@@ -896,11 +896,14 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
+              <p className="text-primary text-sm font-mono tracking-wider uppercase">
+                Digital Twin
+              </p>
               <h2 className="section-headline text-foreground">
-                Claim and optimize your profile in minutes
+                Claim and build your digital twin in minutes
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Search for your company and take control instantly. Add products, certifications, media, and detailed capabilities. The more complete your profile, the better you rank in buyer searches.
+                Search for your company and take control instantly. Create a comprehensive digital representation of your business — add products, certifications, media, and detailed capabilities. Your digital twin becomes the single source of truth that buyers trust and rely on.
               </p>
             </motion.div>
             <motion.div
