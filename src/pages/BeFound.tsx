@@ -989,18 +989,17 @@ const BeFound = () => {
               {/* Icon */}
               <div className="w-12 h-12 border-2 border-primary-foreground rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
-                  <path strokeWidth="2" d="M12 6v6l4 2" />
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
               
               {/* Stat */}
               <div>
                 <p className="text-5xl md:text-6xl font-bold text-primary-foreground tracking-[-0.02em]">
-                  50%
+                  3x
                 </p>
                 <p className="text-xl text-primary-foreground/90 font-medium mt-2">
-                  cycle time reduction
+                  more qualified leads
                 </p>
               </div>
             </motion.div>
