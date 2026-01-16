@@ -733,75 +733,154 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Pain Points Section */}
-      <section className="py-32 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+      {/* Pain Points Section - Homepage Style */}
+      <section className="relative py-12 sm:py-16 px-4 sm:px-6 bg-background overflow-hidden">
+        {/* Concentric squared background */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div 
+            className="absolute w-[1600px] h-[1600px] border border-secondary/10"
+          />
+          <div 
+            className="absolute w-[1300px] h-[1300px] bg-secondary/5"
+          />
+          <div 
+            className="absolute w-[1000px] h-[1000px] bg-secondary/10"
+          />
+          <div 
+            className="absolute w-[700px] h-[700px] bg-secondary/15"
+          />
+          <div 
+            className="absolute w-[400px] h-[400px] bg-secondary/20"
+          />
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-16"
+            className="space-y-6 sm:space-y-8"
           >
-            {/* Role Toggle */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-primary">
-                <button className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider">
-                  Manufacturer
-                </button>
-                <button className="px-8 py-3 rounded-lg text-foreground font-medium text-sm uppercase tracking-wider hover:bg-muted transition-colors">
-                  Distributor
-                </button>
-              </div>
-            </div>
-
             {/* Headline */}
-            <h2 className="section-headline text-foreground text-center">
+            <h2 className="section-headline text-foreground text-center px-4">
               Imagine if you didn't have to spend time...
             </h2>
 
-            {/* Image with gradient and cards */}
-            <div className="relative flex flex-col items-center">
-              <div className="relative flex justify-center items-center mb-[-80px] z-10">
-                <div 
-                  className="absolute w-[700px] h-[700px] md:w-[800px] md:h-[800px] max-[768px]:w-[450px] max-[768px]:h-[450px] rounded-full z-0"
-                  style={{ 
-                    background: "radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, hsl(var(--muted) / 0.3) 30%, hsl(var(--secondary) / 0.2) 60%, hsl(var(--primary) / 0.1) 80%, transparent 100%)"
-                  }}
-                ></div>
-                <div className="relative z-10">
+            {/* Image with soft glowing gradient background and overlapping cards */}
+            <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[800px] lg:min-h-[800px]">
+              {/* Container for image - centered */}
+              <div className="relative flex justify-center items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 mb-[-60px] sm:mb-[-80px] lg:mb-0 z-10">
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                  className="relative z-10"
+                >
                   <img 
                     src={supplierPortraitHero} 
                     alt="Thoughtful supplier considering opportunities" 
-                    className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
+                    className="max-w-[90vw] sm:max-w-[540px] w-full h-auto object-contain mx-auto drop-shadow-2xl"
+                    style={{ filter: "grayscale(100%) contrast(1.1) drop-shadow(0 25px 50px rgba(0,0,0,0.25))" }}
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
-                {[
-                  { text: "Know when buyers search for your products", textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities." },
-                  { text: "Buyers discover you automatically", textFull: "Having buyers automatically discover your company profile without cold outreach." },
-                  { text: "See which teams viewed your profile", textFull: "Getting visibility into which procurement teams viewed your products and services." },
-                  { text: "Receive pre-qualified RFQs", textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile." }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-border"
-                  >
-                    <div className="flex-shrink-0 mt-1">
-                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-                    </div>
-                    <p className="text-base md:text-lg text-foreground leading-relaxed">
-                      <span className="md:hidden">{item.text}</span>
-                      <span className="hidden md:inline">{item.textFull}</span>
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              {/* Pain Point Cards - stacked on mobile, scattered around image on desktop */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+                className="relative z-20 w-full px-4 lg:absolute lg:inset-0 lg:px-0"
+              >
+                {/* Mobile: Stacked cards */}
+                <div className="lg:hidden space-y-2 sm:space-y-3 md:space-y-4 max-w-2xl w-full mx-auto">
+                  {[
+                    { text: "Knowing when qualified buyers are actively searching for your exact product capabilities" },
+                    { text: "Having buyers automatically discover your company profile without cold outreach" },
+                    { text: "Getting visibility into which procurement teams viewed your products and services" },
+                    { text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile" },
+                    { text: "Manually updating your company information across multiple platforms" },
+                    { text: "Missing opportunities because buyers couldn't find your capabilities" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white rounded-lg p-3 sm:p-4 md:p-6 flex items-start gap-2 sm:gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                    >
+                      <div className="flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="sm:w-5 sm:h-5 md:w-6 md:h-6">
+                          <rect x="8" y="0" width="4" height="4" fill="black"/>
+                          <rect x="12" y="4" width="4" height="4" fill="black"/>
+                          <rect x="16" y="8" width="4" height="4" fill="black"/>
+                          <rect x="12" y="12" width="4" height="4" fill="black"/>
+                          <rect x="8" y="16" width="4" height="4" fill="black"/>
+                          <rect x="0" y="8" width="16" height="4" fill="black"/>
+                        </svg>
+                      </div>
+                      <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                        {item.text}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Desktop: Scattered cards around image */}
+                <div className="hidden lg:block">
+                  {[
+                    { text: "Knowing when qualified buyers are actively searching for your exact product capabilities" },
+                    { text: "Having buyers automatically discover your company profile without cold outreach" },
+                    { text: "Getting visibility into which procurement teams viewed your products and services" },
+                    { text: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile" },
+                    { text: "Manually updating your company information across multiple platforms" },
+                    { text: "Missing opportunities because buyers couldn't find your capabilities" }
+                  ].map((item, index) => {
+                    const positions = [
+                      { top: '32%', left: '2%' },
+                      { top: '32%', right: '2%' },
+                      { top: '50%', left: '0%', transform: 'translateY(-50%)' },
+                      { top: '50%', right: '0%', transform: 'translateY(-50%)' },
+                      { top: '68%', left: '2%' },
+                      { top: '68%', right: '2%' }
+                    ];
+
+                    const position = positions[index] || positions[0];
+
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="absolute bg-white rounded-lg p-6 flex items-start gap-4 shadow-xl hover:shadow-2xl transition-all border border-gray-100 max-w-[360px] w-[360px]"
+                        style={{
+                          ...position,
+                          transform: position.transform || 'none'
+                        }}
+                      >
+                        <div className="flex-shrink-0 mt-1">
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect x="8" y="0" width="4" height="4" fill="black"/>
+                            <rect x="12" y="4" width="4" height="4" fill="black"/>
+                            <rect x="16" y="8" width="4" height="4" fill="black"/>
+                            <rect x="12" y="12" width="4" height="4" fill="black"/>
+                            <rect x="8" y="16" width="4" height="4" fill="black"/>
+                            <rect x="0" y="8" width="16" height="4" fill="black"/>
+                          </svg>
+                        </div>
+                        <p className="text-base text-gray-700 leading-snug line-clamp-2">
+                          {item.text}
+                        </p>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
