@@ -1,16 +1,402 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
+
+// Window Chrome Component for mockups
+const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <div className="w-full h-full bg-[#fafafa] rounded-lg overflow-hidden flex flex-col shadow-xl border border-gray-200">
+    <div className="h-8 bg-white flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+      <div className="flex gap-1.5 mr-3">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+      </div>
+      <span className="text-[10px] text-gray-500 font-medium">{title}</span>
+    </div>
+    <div className="flex-1 overflow-hidden">
+      {children}
+    </div>
+  </div>
+);
+
+// Profile Builder Mockup
+const ProfileBuilderMockup = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [completionPercent, setCompletionPercent] = useState(45);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 4);
+      setCompletionPercent((prev) => Math.min(100, prev + 15 > 100 ? 45 : prev + 15));
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const profileSections = [
+    { icon: Building2, label: "Company Info", completed: true },
+    { icon: Award, label: "Certifications", completed: activeStep >= 1 },
+    { icon: Image, label: "Product Gallery", completed: activeStep >= 2 },
+    { icon: FileText, label: "Capabilities", completed: activeStep >= 3 },
+  ];
+
+  return (
+    <WindowChrome title="YVOO — Profile Builder">
+      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
+        {/* Sidebar */}
+        <div className="w-36 bg-white border-r border-gray-100 p-3">
+          <div className="mb-4">
+            <div className="text-[8px] text-gray-400 uppercase tracking-wider mb-2">Profile Strength</div>
+            <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-primary rounded-full"
+                animate={{ width: `${completionPercent}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            <motion.div 
+              className="text-right text-[9px] font-semibold text-primary mt-1"
+              key={completionPercent}
+            >
+              {completionPercent}%
+            </motion.div>
+          </div>
+          
+          <div className="space-y-1">
+            {profileSections.map((section, i) => (
+              <motion.div
+                key={i}
+                className={`flex items-center gap-2 p-2 rounded ${activeStep === i ? 'bg-primary/10' : ''}`}
+                animate={{ 
+                  backgroundColor: activeStep === i ? 'rgba(10, 127, 165, 0.1)' : 'transparent'
+                }}
+              >
+                <div className={`w-4 h-4 rounded flex items-center justify-center ${section.completed ? 'bg-primary text-white' : 'bg-gray-100'}`}>
+                  {section.completed ? <Check className="w-2.5 h-2.5" /> : <section.icon className="w-2.5 h-2.5 text-gray-400" />}
+                </div>
+                <span className={section.completed ? 'text-gray-900 font-medium' : 'text-gray-400'}>{section.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 p-4">
+          <motion.div
+            key={activeStep}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-lg border border-gray-100 p-4 h-full"
+          >
+            <div className="font-semibold text-gray-900 mb-3">{profileSections[activeStep].label}</div>
+            
+            {activeStep === 0 && (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">TechManufacturing GmbH</div>
+                    <div className="text-[9px] text-gray-400">Precision Engineering</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-gray-50 rounded p-2">
+                    <div className="text-[8px] text-gray-400">Location</div>
+                    <div className="font-medium">Munich, Germany</div>
+                  </div>
+                  <div className="bg-gray-50 rounded p-2">
+                    <div className="text-[8px] text-gray-400">Employees</div>
+                    <div className="font-medium">250-500</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeStep === 1 && (
+              <div className="grid grid-cols-2 gap-2">
+                {['ISO 9001:2015', 'ISO 14001', 'IATF 16949', 'AS9100D'].map((cert, i) => (
+                  <motion.div
+                    key={cert}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-green-50 border border-green-200 rounded p-2 flex items-center gap-2"
+                  >
+                    <Award className="w-3 h-3 text-green-600" />
+                    <span className="text-green-700 font-medium">{cert}</span>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {activeStep === 2 && (
+              <div className="grid grid-cols-3 gap-2">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center"
+                  >
+                    <Image className="w-4 h-4 text-gray-400" />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {activeStep === 3 && (
+              <div className="space-y-2">
+                {['CNC Machining', 'Sheet Metal', 'Injection Molding', 'Assembly'].map((cap, i) => (
+                  <motion.div
+                    key={cap}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-center gap-2 bg-gray-50 rounded p-2"
+                  >
+                    <Check className="w-3 h-3 text-primary" />
+                    <span>{cap}</span>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Analytics Dashboard Mockup
+const AnalyticsDashboardMockup = () => {
+  const [viewCount, setViewCount] = useState(1247);
+  const [activeDay, setActiveDay] = useState(4);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setViewCount((prev) => prev + Math.floor(Math.random() * 5) + 1);
+      setActiveDay((prev) => (prev + 1) % 7);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const weekData = [65, 82, 45, 93, 78, 56, 89];
+  const recentViewers = [
+    { company: "Bosch Automotive", role: "Procurement Lead", time: "2 min ago" },
+    { company: "Siemens Energy", role: "Quality Manager", time: "15 min ago" },
+    { company: "BMW Group", role: "Supplier Dev.", time: "1 hour ago" },
+  ];
+
+  return (
+    <WindowChrome title="YVOO — Profile Analytics">
+      <div className="h-full p-4 text-[10px] bg-[#f8f9fa]">
+        {/* Stats Row */}
+        <div className="grid grid-cols-3 gap-3 mb-4">
+          {[
+            { label: "Profile Views", value: viewCount.toLocaleString(), change: "+12%", icon: Eye },
+            { label: "Unique Visitors", value: "892", change: "+8%", icon: Users },
+            { label: "Search Appearances", value: "3.4K", change: "+24%", icon: TrendingUp },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white rounded-lg p-3 border border-gray-100">
+              <div className="flex items-center gap-1 mb-1">
+                <stat.icon className="w-3 h-3 text-primary" />
+                <span className="text-gray-400 text-[8px]">{stat.label}</span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <motion.span 
+                  className="text-lg font-bold text-gray-900"
+                  key={stat.value}
+                  initial={{ opacity: 0.5 }}
+                  animate={{ opacity: 1 }}
+                >
+                  {stat.value}
+                </motion.span>
+                <span className="text-green-500 text-[9px] font-medium">{stat.change}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Chart */}
+        <div className="bg-white rounded-lg p-3 border border-gray-100 mb-4">
+          <div className="text-[9px] font-semibold text-gray-900 mb-3">Weekly Views</div>
+          <div className="flex items-end justify-between h-16 gap-1">
+            {weekData.map((value, i) => (
+              <motion.div
+                key={i}
+                className={`flex-1 rounded-t ${activeDay === i ? 'bg-primary' : 'bg-gray-200'}`}
+                animate={{ height: `${value}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            ))}
+          </div>
+          <div className="flex justify-between mt-1 text-[8px] text-gray-400">
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+              <span key={day}>{day}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Recent Viewers */}
+        <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+          <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between">
+            <span className="font-semibold text-gray-900">Recent Viewers</span>
+            <motion.div 
+              className="w-1.5 h-1.5 rounded-full bg-green-500"
+              animate={{ opacity: [1, 0.5, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+          </div>
+          <div className="divide-y divide-gray-50">
+            {recentViewers.map((viewer, i) => (
+              <motion.div
+                key={i}
+                className="px-3 py-2 flex items-center justify-between"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <User className="w-3 h-3 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">{viewer.company}</div>
+                    <div className="text-[8px] text-gray-400">{viewer.role}</div>
+                  </div>
+                </div>
+                <span className="text-[8px] text-gray-400">{viewer.time}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Lead Management Mockup
+const LeadManagementMockup = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [newLeadPulse, setNewLeadPulse] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNewLeadPulse(true);
+      setTimeout(() => setNewLeadPulse(false), 1000);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const leads = [
+    { company: "Continental AG", type: "RFQ", status: "New", priority: "high", value: "€45K" },
+    { company: "ZF Friedrichshafen", type: "Quote Request", status: "Responded", priority: "medium", value: "€28K" },
+    { company: "Schaeffler Group", type: "Information", status: "In Progress", priority: "low", value: "€12K" },
+  ];
+
+  return (
+    <WindowChrome title="YVOO — Lead Manager">
+      <div className="h-full text-[10px] bg-[#f8f9fa]">
+        {/* Tabs */}
+        <div className="flex border-b border-gray-200 bg-white">
+          {['Inbox', 'Active', 'Archived'].map((tab, i) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(i)}
+              className={`px-4 py-2 font-medium relative ${activeTab === i ? 'text-primary' : 'text-gray-400'}`}
+            >
+              {tab}
+              {i === 0 && (
+                <motion.span 
+                  className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full text-[8px] flex items-center justify-center"
+                  animate={{ scale: newLeadPulse ? [1, 1.2, 1] : 1 }}
+                >
+                  3
+                </motion.span>
+              )}
+              {activeTab === i && (
+                <motion.div layoutId="tab-indicator" className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Stats Bar */}
+        <div className="flex gap-4 p-3 bg-white border-b border-gray-100">
+          {[
+            { label: "New Leads", value: "12", color: "text-primary" },
+            { label: "Response Rate", value: "94%", color: "text-green-500" },
+            { label: "Avg. Response", value: "2.4h", color: "text-amber-500" },
+          ].map((stat, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className={`font-bold ${stat.color}`}>{stat.value}</span>
+              <span className="text-gray-400 text-[8px]">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Lead List */}
+        <div className="p-3 space-y-2">
+          {leads.map((lead, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-white rounded-lg border border-gray-100 p-3"
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${
+                    lead.priority === 'high' ? 'bg-red-500' : 
+                    lead.priority === 'medium' ? 'bg-amber-500' : 'bg-gray-300'
+                  }`} />
+                  <div>
+                    <div className="font-semibold text-gray-900">{lead.company}</div>
+                    <div className="text-[8px] text-gray-400">{lead.type}</div>
+                  </div>
+                </div>
+                <span className={`px-2 py-0.5 rounded text-[8px] font-medium ${
+                  lead.status === 'New' ? 'bg-primary/10 text-primary' :
+                  lead.status === 'Responded' ? 'bg-green-100 text-green-700' :
+                  'bg-gray-100 text-gray-600'
+                }`}>
+                  {lead.status}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1 text-gray-400">
+                    <Mail className="w-3 h-3" />
+                    <span>2</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-gray-400">
+                    <Clock className="w-3 h-3" />
+                    <span>24h</span>
+                  </div>
+                </div>
+                <span className="font-semibold text-primary">{lead.value}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
 
 const BeFound = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Clean white background like Archlet */}
+      {/* Hero Section */}
       <section
         data-nav-theme="light"
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
@@ -62,7 +448,7 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Benefits Cards - 3 Column Grid like Archlet */}
+      {/* Benefits Cards */}
       <section className="py-16 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-3 gap-6">
@@ -133,7 +519,7 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Feature Section 1 - Left aligned */}
+      {/* Feature Section 1 - Profile Builder */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -155,22 +541,15 @@ const BeFound = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-[#f5f5f5] aspect-[4/3] flex items-center justify-center"
+              className="aspect-[4/3]"
             >
-              <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-primary rounded" />
-                  </div>
-                  <p className="text-muted-foreground text-sm">Profile Builder Interface</p>
-                </div>
-              </div>
+              <ProfileBuilderMockup />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Feature Section 2 - Right aligned */}
+      {/* Feature Section 2 - Analytics */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -179,16 +558,9 @@ const BeFound = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-[#f5f5f5] aspect-[4/3] flex items-center justify-center order-2 lg:order-1"
+              className="aspect-[4/3] order-2 lg:order-1"
             >
-              <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-primary rounded" />
-                  </div>
-                  <p className="text-muted-foreground text-sm">Analytics Dashboard</p>
-                </div>
-              </div>
+              <AnalyticsDashboardMockup />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -207,7 +579,7 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Feature Section 3 - Left aligned */}
+      {/* Feature Section 3 - Lead Management */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -229,22 +601,15 @@ const BeFound = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-[#f5f5f5] aspect-[4/3] flex items-center justify-center"
+              className="aspect-[4/3]"
             >
-              <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-primary rounded" />
-                  </div>
-                  <p className="text-muted-foreground text-sm">Lead Management</p>
-                </div>
-              </div>
+              <LeadManagementMockup />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Pain Points Section - Keep as requested */}
+      {/* Pain Points Section */}
       <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-4xl">
           <motion.div
@@ -253,7 +618,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-16"
           >
-            {/* Role Toggle - Using primary color */}
+            {/* Role Toggle */}
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-primary">
                 <button className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider">
@@ -270,19 +635,15 @@ const BeFound = () => {
               Imagine if you didn't have to spend time...
             </h2>
 
-            {/* Image with soft glowing gradient background and overlapping cards */}
+            {/* Image with gradient and cards */}
             <div className="relative flex flex-col items-center">
-              {/* Container for image and gradient */}
               <div className="relative flex justify-center items-center mb-[-80px] z-10">
-                {/* Soft glowing gradient background */}
                 <div 
                   className="absolute w-[700px] h-[700px] md:w-[800px] md:h-[800px] max-[768px]:w-[450px] max-[768px]:h-[450px] rounded-full z-0"
                   style={{ 
                     background: "radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, hsl(var(--muted) / 0.3) 30%, hsl(var(--secondary) / 0.2) 60%, hsl(var(--primary) / 0.1) 80%, transparent 100%)"
                   }}
                 ></div>
-
-                {/* Photo overlay */}
                 <div className="relative z-10">
                   <img 
                     src={supplierPortraitHero} 
@@ -292,25 +653,12 @@ const BeFound = () => {
                 </div>
               </div>
 
-              {/* Pain Point Cards */}
               <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
                 {[
-                  {
-                    text: "Know when buyers search for your products",
-                    textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities."
-                  },
-                  {
-                    text: "Buyers discover you automatically",
-                    textFull: "Having buyers automatically discover your company profile without cold outreach."
-                  },
-                  {
-                    text: "See which teams viewed your profile",
-                    textFull: "Getting visibility into which procurement teams viewed your products and services."
-                  },
-                  {
-                    text: "Receive pre-qualified RFQs",
-                    textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile."
-                  }
+                  { text: "Know when buyers search for your products", textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities." },
+                  { text: "Buyers discover you automatically", textFull: "Having buyers automatically discover your company profile without cold outreach." },
+                  { text: "See which teams viewed your profile", textFull: "Getting visibility into which procurement teams viewed your products and services." },
+                  { text: "Receive pre-qualified RFQs", textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile." }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -320,7 +668,6 @@ const BeFound = () => {
                     transition={{ delay: index * 0.1 }}
                     className="bg-white rounded-lg p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-border"
                   >
-                    {/* Arrow icon */}
                     <div className="flex-shrink-0 mt-1">
                       <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                     </div>
@@ -337,7 +684,7 @@ const BeFound = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 bg-[#f5f5f5]">
+      <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
