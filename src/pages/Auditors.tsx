@@ -338,7 +338,7 @@ const Auditors = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-[#B2CDBC] text-white p-4 rounded-lg shadow-lg hover:bg-[#B2CDBC]/90 transition-all z-50"
+            className="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-lg hover:bg-primary/90 transition-all z-50"
           >
             <ArrowUp className="w-6 h-6" />
           </motion.button>
@@ -401,7 +401,7 @@ const ValuePropositionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-[#f5f5f5] rounded-lg p-10"
+            className="bg-[#ebebeb] rounded-lg p-10 hover:bg-[#e3e3e3] transition-colors duration-300"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
               Traditional Auditing
@@ -1004,12 +1004,9 @@ const DayInLifeSection = () => {
           transition={{ delay: 1.8, duration: 0.6 }}
           className="mt-20 flex justify-center"
         >
-          <Button 
-            size="lg" 
-            className="bg-primary hover:bg-primary/90 text-white rounded-lg px-6 py-2 text-base font-medium"
-          >
+          <Button size="lg">
             Start your new way to audit now
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </Button>
         </motion.div>
 

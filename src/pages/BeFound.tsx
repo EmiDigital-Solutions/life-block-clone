@@ -363,7 +363,7 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-lg text-center space-y-4 hover:shadow-lg transition-shadow"
+                className="bg-[#ebebeb] p-8 rounded-lg text-center space-y-4 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
                 <div className="flex justify-center" style={{ color: "hsl(160, 25%, 72%)" }}>
                   {item.icon}
@@ -561,10 +561,10 @@ const BeFound = () => {
             <div className="pt-4">
               <Button
                 size="lg"
-                className="bg-white text-gray-900 hover:bg-white/95 text-xl px-12 py-8 h-auto rounded-lg font-semibold shadow-2xl"
+                className="bg-white text-gray-900 hover:bg-white/95"
               >
                 Claim Your Free Profile
-                <ArrowRight className="ml-3 w-6 h-6" />
+                <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
             <p className="text-white/60 text-sm font-light">

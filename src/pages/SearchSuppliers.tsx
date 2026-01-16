@@ -1574,24 +1574,18 @@ const SearchSuppliers = () => {
 
               {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card className="rounded-2xl border-primary/20">
-                  <CardContent className="p-4">
+                <div className="bg-[#ebebeb] rounded-lg p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
                     <p className="text-lg font-bold text-primary">{selectedSupplier.experience}</p>
-                  </CardContent>
-                </Card>
-                <Card className="rounded-2xl border-primary/20">
-                  <CardContent className="p-4">
+                </div>
+                <div className="bg-[#ebebeb] rounded-lg p-4">
                     <p className="text-xs text-gray-600 mb-1">Production Capacity</p>
                     <p className="text-sm font-semibold text-gray-700">{selectedSupplier.capacity}</p>
-                  </CardContent>
-                </Card>
-                <Card className="rounded-2xl border-gray-500/20">
-                  <CardContent className="p-4">
+                </div>
+                <div className="bg-[#ebebeb] rounded-lg p-4">
                     <p className="text-xs text-gray-600 mb-1">Annual Revenue</p>
                     <p className="text-lg font-bold text-gray-700">{selectedSupplier.revenue}</p>
-                  </CardContent>
-                </Card>
+                </div>
               </div>
 
               {/* Certifications */}
@@ -1643,13 +1637,13 @@ const SearchSuppliers = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-4 border-t border-gray-200">
-                <Button className="flex-1 bg-primary hover:bg-primary/90 text-white rounded-full">
+                <Button className="flex-1" size="lg">
                   Request Quote
                 </Button>
-                <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary/10 rounded-full">
+                <Button variant="outline" className="flex-1" size="lg">
                   Schedule Audit
                 </Button>
-                <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-full">
+                <Button variant="outline">
                   <Save className="w-4 h-4" />
                 </Button>
               </div>
