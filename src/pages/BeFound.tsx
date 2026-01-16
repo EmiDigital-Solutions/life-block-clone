@@ -936,7 +936,6 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-4">Analytics Dashboard</p>
               <h2 className="section-headline text-foreground">
                 Track who's viewing your profile
               </h2>
@@ -958,7 +957,6 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-4">Lead Management</p>
               <h2 className="section-headline text-foreground">
                 Convert views into qualified leads
               </h2>
