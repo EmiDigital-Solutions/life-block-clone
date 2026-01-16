@@ -13,13 +13,12 @@ import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
-import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles, Play, Pause, Activity, Database, Settings } from "lucide-react";
+import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
 import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import industryElectronics from "@/assets/industry-electronics.jpg";
 import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
-import { PixelIcon } from "@/components/PixelIcon";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -418,7 +417,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] text-muted-foreground">{auditor.location.split(',')[0]}</span>
                         <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-primary text-primary" />
+                          <span className="text-[10px] font-semibold text-primary">★</span>
                           <span className="text-[10px] font-semibold text-foreground">{auditor.rating}</span>
                         </div>
                       </div>
@@ -671,7 +670,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
               >
               <button className="bg-white border-2 border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
-                  <PixelIcon name="arrow-right" className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </motion.div>
             </div>
@@ -1177,11 +1176,6 @@ const ComplianceStandardsGrid = () => {
               onClick={() => setSelectedStandard(standard)}
               className="group bg-[#ebebeb] p-6 hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer w-full text-left"
             >
-              {/* Icon - pixel art style */}
-              <div className="w-12 h-12 mb-4">
-                <PixelIcon name={standard.iconName} className="w-12 h-12" />
-              </div>
-
               {/* Standard name */}
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 {standard.name}
@@ -1195,7 +1189,7 @@ const ComplianceStandardsGrid = () => {
               {/* Click indicator */}
               <div className="text-xs font-medium text-primary flex items-center gap-1">
                 Learn more
-                <PixelIcon name="arrow-right" className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3" />
               </div>
             </motion.button>
           );
@@ -1641,13 +1635,6 @@ const ChallengeToggleSection = () => {
               transition={{ delay: index * 0.05 }}
               className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded-full bg-foreground/5 flex items-center justify-center mb-6">
-                <PixelIcon 
-                  name={item.icon} 
-                  className="w-6 h-6"
-                  color={isWithScanPro ? 'hsl(var(--primary))' : 'hsl(0, 84%, 60%)'}
-                />
-              </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 {item.title}
               </h3>
@@ -1706,7 +1693,6 @@ const HowItWorksCarousel = () => {
               style={{ top: '32%', left: '73%' }}
             >
               <div className="bg-primary text-primary-foreground px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full flex items-center gap-1 sm:gap-2 shadow-xl">
-                <PixelIcon name="cursor" className="w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                 <span className="font-semibold text-[10px] sm:text-sm md:text-base lg:text-lg whitespace-nowrap">1-Click</span>
               </div>
             </motion.div>
@@ -1737,7 +1723,7 @@ const HowItWorksCarousel = () => {
             {/* User Message */}
             <div className="flex items-start gap-2 sm:gap-3">
               <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
+                <span className="text-primary-foreground text-xs sm:text-sm font-bold">You</span>
               </div>
               <div className="bg-primary text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">You</p>
@@ -1774,25 +1760,25 @@ const HowItWorksCarousel = () => {
                 </div>
               </div>
               <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary/60 flex items-center justify-center flex-shrink-0">
-                <PixelIcon name="user" className="w-4 h-4 sm:w-6 sm:h-6" />
+                <span className="text-primary-foreground text-xs sm:text-sm font-bold">A</span>
               </div>
             </div>
             
-            {/* Status Icons */}
+            {/* Status Indicator */}
             <div className="flex items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center"
               >
-                <PixelIcon name="checkbox-on" className="w-5 h-5 sm:w-7 sm:h-7" color="hsl(var(--primary))" />
+                <Check className="w-5 h-5 sm:w-7 sm:h-7 text-primary" />
               </motion.div>
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/60 flex items-center justify-center"
               >
-                <PixelIcon name="message" className="w-6 h-6 sm:w-8 sm:h-8" />
+                <span className="text-primary-foreground font-bold">💬</span>
               </motion.div>
             </div>
           </div>
@@ -1814,10 +1800,10 @@ const HowItWorksCarousel = () => {
             >
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="analytics" className="w-10 h-10 sm:w-14 sm:h-14" color="hsl(var(--primary))" />
+                  <span className="text-primary text-2xl sm:text-4xl">📊</span>
                 </div>
                 <div className="flex items-center justify-center">
-                  <PixelIcon name="checkbox-on" className="w-12 h-12 sm:w-18 sm:h-18" color="hsl(var(--primary))" />
+                  <Check className="w-10 h-10 sm:w-14 sm:h-14 text-primary" />
                 </div>
               </div>
               
@@ -1873,7 +1859,6 @@ const HowItWorksCarousel = () => {
               transition={{ delay: 0.8 }}
               className="bg-primary text-primary-foreground px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-center font-bold flex items-center justify-center gap-2 sm:gap-3"
             >
-              <PixelIcon name="shield" className="w-4 h-4 sm:w-6 sm:h-6" />
               <span className="text-sm sm:text-base">Report Ready</span>
             </motion.div>
           </div>
@@ -1998,7 +1983,7 @@ const HowItWorksCarousel = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all hover:scale-110 flex items-center justify-center text-foreground"
               aria-label="Previous step"
             >
-              <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
             </button>
 
             <div className="flex items-center gap-2 sm:gap-3">
@@ -2022,7 +2007,7 @@ const HowItWorksCarousel = () => {
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all hover:scale-110 flex items-center justify-center text-foreground"
               aria-label="Next step"
             >
-              <PixelIcon name="arrow-right" className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
@@ -2582,7 +2567,7 @@ const ScanProPlus = () => {
                 rel="noopener noreferrer"
               >
                 Book a Demo
-                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+                <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
           </motion.div>
@@ -2613,7 +2598,7 @@ const ScanProPlus = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg">
                 Order Audit
-                <PixelIcon name="arrow-right" className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </Button>
               <Button 
                 variant="outline"
