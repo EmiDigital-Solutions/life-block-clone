@@ -483,39 +483,46 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Testimonial Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-muted overflow-hidden flex-shrink-0"
-            >
+      {/* Testimonial Section - Archlet Style */}
+      <section className="py-20 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center"
+          >
+            {/* Stats Badge */}
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-8">
+              <TrendingUp className="w-4 h-4" />
+              <span>300% increase in qualified inquiries</span>
+            </div>
+            
+            {/* Photo */}
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-muted overflow-hidden mb-6">
               <img 
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" 
-                alt="Testimonial"
+                alt="Michael Weber"
                 className="w-full h-full object-cover"
               />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex-1"
-            >
-              <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed mb-6">
-                "We saw a 300% increase in qualified inquiries within 3 months. YVOO's platform literally pays for itself with the quality of leads we receive."
-              </blockquote>
-              <div className="flex items-center gap-4">
-                <div>
-                  <p className="font-semibold text-foreground">Michael Weber</p>
-                  <p className="text-sm text-muted-foreground">VP Sales, TechManufacturing · Germany</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            </div>
+            
+            {/* Company Logo Placeholder */}
+            <div className="mb-6">
+              <span className="text-lg font-bold text-muted-foreground tracking-wider">TECHMANUFACTURING</span>
+            </div>
+            
+            {/* Quote */}
+            <blockquote className="text-xl md:text-2xl lg:text-3xl text-foreground leading-relaxed mb-8 max-w-3xl">
+              "YVOO's platform literally pays for itself with the quality of leads we receive. We now get discovered by buyers we never could have reached before."
+            </blockquote>
+            
+            {/* Attribution */}
+            <div>
+              <p className="font-semibold text-foreground">Michael Weber</p>
+              <p className="text-sm text-muted-foreground">VP Sales, TechManufacturing</p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -683,25 +690,24 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
+      {/* Stats Section - Archlet Style */}
+      <section className="py-24 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="section-headline text-foreground">
+            <h2 className="section-headline text-foreground max-w-3xl mx-auto">
               Known for driving supplier visibility and qualified leads.
             </h2>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {[
-              { value: "7M+", label: "Annual buyer searches", description: "Procurement professionals actively searching for suppliers" },
-              { value: "12M+", label: "Monthly profile views", description: "Supplier profiles viewed by qualified buyers" },
-              { value: "5x", label: "Visibility boost", description: "With premium placement and optimized profiles" }
+              { label: "Annual buyer searches", value: "7M+", description: "Procurement professionals actively searching for suppliers on YVOO" },
+              { label: "Visibility boost", value: "5x", description: "With premium placement and fully optimized supplier profiles" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -709,11 +715,11 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="bg-white p-8"
               >
-                <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">{stat.label}</p>
+                <p className="text-sm text-muted-foreground mb-3">{stat.label}</p>
                 <p className="text-5xl md:text-6xl font-bold text-primary mb-4">{stat.value}</p>
-                <p className="text-muted-foreground text-sm">{stat.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{stat.description}</p>
               </motion.div>
             ))}
           </div>
