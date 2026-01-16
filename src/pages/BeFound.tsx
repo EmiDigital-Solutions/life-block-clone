@@ -976,21 +976,48 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Second Testimonial - Archlet Side-by-Side Style */}
+      {/* Second Testimonial - Archlet 3-Column Style */}
       <section className="py-20 px-6 bg-white border-t border-border">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Portrait Photo - Smaller, B&W, left-aligned */}
+          <div className="grid lg:grid-cols-3 gap-0 items-stretch">
+            {/* Stat Card - Primary Color Background */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-square max-w-sm bg-muted overflow-hidden justify-self-start"
+              className="bg-primary p-8 flex flex-col justify-between aspect-square"
+            >
+              {/* Icon */}
+              <div className="w-12 h-12 border-2 border-primary-foreground rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                  <path strokeWidth="2" d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              
+              {/* Stat */}
+              <div>
+                <p className="text-5xl md:text-6xl font-bold text-primary-foreground tracking-[-0.02em]">
+                  50%
+                </p>
+                <p className="text-xl text-primary-foreground/90 font-medium mt-2">
+                  cycle time reduction
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Portrait Photo - Square */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="aspect-square bg-muted overflow-hidden"
             >
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" 
                 alt="Sarah Chen - Director of Operations"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover"
               />
             </motion.div>
             
@@ -999,7 +1026,8 @@ const BeFound = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              transition={{ delay: 0.2 }}
+              className="p-8 flex flex-col justify-center space-y-6 bg-white"
             >
               {/* Company Logo */}
               <div className="flex items-center gap-3">
@@ -1010,14 +1038,14 @@ const BeFound = () => {
               </div>
               
               {/* Quote */}
-              <blockquote className="text-lg md:text-xl text-foreground leading-relaxed">
+              <blockquote className="text-lg text-foreground leading-relaxed">
                 "Within weeks of optimizing our YVOO profile, we started receiving inquiries from OEMs we had been trying to reach for years. The platform has become our primary channel for new business development."
               </blockquote>
               
               {/* Attribution */}
               <div>
-                <p className="font-semibold text-foreground">Sarah Chen</p>
-                <p className="text-sm text-muted-foreground">Director of Operations & Business Development</p>
+                <p className="font-semibold text-foreground">Sarah Chen,</p>
+                <p className="text-sm text-primary">Director of Operations & Business Development</p>
               </div>
             </motion.div>
           </div>
