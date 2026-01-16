@@ -1056,7 +1056,7 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Integration Logos */}
+      {/* Industries Section - Archlet Style */}
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <motion.div
@@ -1069,23 +1069,43 @@ const BeFound = () => {
               Trusted by industry leaders
             </h2>
             <p className="text-muted-foreground">
-              Suppliers from leading manufacturing companies use YVOO to get discovered.
+              Suppliers from leading industries use YVOO to get discovered.
             </p>
           </motion.div>
           
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-50">
-            {["REWE", "KNORR-BREMSE", "IFM", "ABUS", "AVL", "KROMBACHER"].map((name, index) => (
-              <motion.span
-                key={name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-xl font-bold text-foreground"
-              >
-                {name}
-              </motion.span>
-            ))}
+          {/* Industry Cards Carousel */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+              {[
+                { name: "Automotive", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop" },
+                { name: "Manufacturing", image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=400&h=300&fit=crop" },
+                { name: "Aerospace", image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=400&h=300&fit=crop" },
+                { name: "Healthcare & Pharma", image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop" },
+                { name: "Chemicals", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop" },
+                { name: "Electronics", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" },
+                { name: "Energy & Utilities", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&h=300&fit=crop" },
+                { name: "Food & Beverage", image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&h=300&fit=crop" },
+              ].map((industry, index) => (
+                <motion.div
+                  key={industry.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex-shrink-0 w-[200px] aspect-[4/5] relative overflow-hidden snap-start group cursor-pointer"
+                >
+                  <img
+                    src={industry.image}
+                    alt={industry.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="text-white font-semibold text-sm">{industry.name}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
