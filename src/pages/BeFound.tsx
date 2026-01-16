@@ -948,106 +948,109 @@ const BeFound = () => {
       {/* Stats Section - Archlet Style */}
       <section className="py-32 px-6 bg-white border-t border-foreground/10">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
-            {/* Left Column - Title */}
+          {/* Header Row - Title + CTA */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="section-headline text-foreground max-w-2xl"
+            >
+              Known for driving supplier visibility and qualified leads
+            </motion.h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="lg:sticky lg:top-32"
+              transition={{ delay: 0.1 }}
             >
-              <h2 className="section-headline text-foreground">
-                Known for driving supplier visibility and qualified leads
-              </h2>
-              <div className="mt-10">
-                <a
-                  href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors rounded-lg"
-                >
-                  Read more
-                </a>
+              <a
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors rounded-lg whitespace-nowrap"
+              >
+                Read more
+              </a>
+            </motion.div>
+          </div>
+
+          {/* KPI Grid 2x2 */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4">
+            {/* KPI 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="pr-8 pb-12 border-r border-r-foreground/10"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Get discovered faster</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  5x
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  More visibility with optimized digital twin profiles
+                </p>
               </div>
             </motion.div>
 
-            {/* Right Column - KPI Grid 2x2 */}
-            <div className="grid md:grid-cols-2">
-              {/* KPI 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="pr-12 pb-12 border-r border-r-foreground/10"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Get discovered faster</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    5x
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    More visibility with optimized digital twin profiles
-                  </p>
-                </div>
-              </motion.div>
+            {/* KPI 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="px-8 pb-12 border-r border-r-foreground/10"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Increase qualified leads</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  3x
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  More RFQ submissions from verified buyers
+                </p>
+              </div>
+            </motion.div>
 
-              {/* KPI 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.05 }}
-                className="pl-12 pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Increase qualified leads</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    3x
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    More RFQ submissions from verified buyers
-                  </p>
-                </div>
-              </motion.div>
+            {/* KPI 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="px-8 pb-12 border-r border-r-foreground/10"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Buyer searches annually</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  7M+
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Procurement professionals actively searching
+                </p>
+              </div>
+            </motion.div>
 
-              {/* KPI 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="pr-12 pb-12 border-r border-r-foreground/10"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Buyer searches annually</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    7M+
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Procurement professionals actively searching
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* KPI 4 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
-                className="pl-12 pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Win more projects</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    40%
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Higher conversion rate from inquiry to contract
-                  </p>
-                </div>
-              </motion.div>
-            </div>
+            {/* KPI 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="pl-8 pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Win more projects</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  40%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Higher conversion rate from inquiry to contract
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
