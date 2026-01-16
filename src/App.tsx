@@ -13,6 +13,7 @@ import AboutUs from "./pages/AboutUs";
 import BackgroundRemoval from "./pages/BackgroundRemoval";
 import ScanProPlus from "./pages/ScanProPlus";
 import SearchSuppliers from "./pages/SearchSuppliers";
+import Features from "./pages/Features";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/ground-intelligence" element={<GroundIntelligence />} />
             <Route path="/scanpro-plus" element={<ScanProPlus />} />
             <Route path="/search-suppliers" element={<SearchSuppliers />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/auditors" element={<Auditors />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
