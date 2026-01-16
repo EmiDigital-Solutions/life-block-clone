@@ -895,7 +895,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-20 max-w-3xl"
           >
-            Stop chasing leads. Get found by buyers ready to source.
+            Stop chasing leads. Get found by buyers ready to source
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
