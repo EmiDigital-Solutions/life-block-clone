@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import dottedWorldMap from "@/assets/dotted-world-map.png";
-import { PixelIcon } from "@/components/PixelIcon";
+import { ArrowRight } from "lucide-react";
 
 const regions = [
   { name: "Europe", auditors: "2,400+", x: "48%", y: "28%" },
@@ -84,7 +84,7 @@ const GlobalNetworkSection = () => {
                   className="bg-white border-2 border-foreground text-foreground px-8 py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:bg-foreground hover:text-background flex items-center gap-3 group"
                 >
                   <span>See Coverage Map</span>
-                  <PixelIcon name="arrow-right" className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5" />
                 </a>
               </motion.div>
 

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { PixelIcon } from "./PixelIcon";
+import { ArrowRight } from "lucide-react";
 
 const FinalCTASection = () => {
   return (
@@ -29,7 +29,7 @@ const FinalCTASection = () => {
                 rel="noopener noreferrer"
               >
                 Book a Demo
-                <PixelIcon name="arrow-right" className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">

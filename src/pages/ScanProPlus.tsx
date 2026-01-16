@@ -13,7 +13,7 @@ import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
-import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles, Play, Pause } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, AlertTriangle, Target, Zap, Camera, BarChart3, Shield, TrendingUp, Globe, Link as LinkIcon, DollarSign, Calendar, CheckCheck, Search, Eye, Car, Plane, Pill, Factory, Rocket, Mail, Phone, MessageCircle, Clock, X, Mouse, UserCheck, Star, FileCheck, Lock, Award, CircleCheck, Building2, Leaf, ShieldCheck, Sparkles, Play, Pause, Activity, Database, Settings } from "lucide-react";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
 import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";

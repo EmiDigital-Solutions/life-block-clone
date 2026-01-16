@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileCheck, MousePointerClick, Users, ClipboardCheck, BarChart3 } from "lucide-react";
-import { PixelIcon } from "./PixelIcon";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const steps = [
@@ -11,35 +10,30 @@ const steps = [
     title: "Submit",
     subtitle: "Request audit",
     description: "Select suppliers, choose audit standards, set your timeline, upload documents—then confirm and order. Done.",
-    icon: MousePointerClick,
   },
   {
     number: "02",
     title: "Match",
     subtitle: "Local auditor assigned",
     description: "Our AI matches a certified auditor near your supplier—no travel costs, no waiting.",
-    icon: Users,
   },
   {
     number: "03",
     title: "Track",
     subtitle: "Watch it happen",
     description: "Real-time updates during the audit. Chat directly with the auditor. Know exactly what's happening.",
-    icon: ClipboardCheck,
   },
   {
     number: "04",
     title: "Receive",
     subtitle: "Report delivered",
     description: "Complete digital report in 24h—findings, photos, scores, action items. Ready for your QMS.",
-    icon: BarChart3,
   },
   {
     number: "05",
     title: "Follow up",
     subtitle: "Track improvements",
     description: "Track corrective actions, schedule follow-up audits, and monitor supplier improvements over time.",
-    icon: FileCheck,
   },
 ];
 
@@ -226,7 +220,7 @@ export const HowItWorksSection = () => {
                   rel="noopener noreferrer"
                 >
                   Book a Demo
-                  <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+                  <ArrowRight className="w-5 h-5" />
                 </a>
               </Button>
             </motion.div>

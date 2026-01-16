@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
@@ -205,7 +205,9 @@ const AboutUs = () => {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <div className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" strokeWidth={4} />
+                    <div className="w-5 h-5 flex-shrink-0 mt-1 bg-primary/20 rounded flex items-center justify-center">
+                      <span className="text-primary text-xs font-bold">✓</span>
+                    </div>
                     <div>
                       <h3 className="text-xl font-bold text-black mb-2">{principle.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{principle.desc}</p>
