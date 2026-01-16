@@ -363,7 +363,7 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-[#ebebeb] p-8 rounded-lg text-center space-y-4 hover:bg-[#e3e3e3] transition-colors duration-300"
+                className="bg-[#ebebeb] p-8 text-center space-y-4 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
                 <div className="flex justify-center" style={{ color: "hsl(160, 25%, 72%)" }}>
                   {item.icon}

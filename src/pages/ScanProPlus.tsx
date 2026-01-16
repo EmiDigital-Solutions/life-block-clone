@@ -2510,7 +2510,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#ebebeb] rounded-lg p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <h3 className="text-xl font-semibold text-foreground mb-6">ERP Integration</h3>
               <div className="space-y-4">
@@ -2536,7 +2536,7 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-[#ebebeb] rounded-lg p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <h3 className="text-xl font-semibold text-foreground mb-6">Global Network</h3>
               <div className="space-y-4">
@@ -2563,7 +2563,7 @@ const ScanProPlus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#1a1a1a] rounded-lg p-12 lg:p-16"
+            className="bg-[#1a1a1a] p-12 lg:p-16"
           >
             <h3 className="text-2xl md:text-3xl text-white mb-4">
               <span className="font-semibold">Your auditor is already there.</span>

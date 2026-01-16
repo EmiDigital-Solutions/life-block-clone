@@ -135,7 +135,7 @@ const ResultsBenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="bg-[#ebebeb] rounded-lg p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               {/* Icon */}
               <div className="w-14 h-14 mb-6 text-foreground">

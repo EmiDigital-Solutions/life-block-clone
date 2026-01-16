@@ -699,7 +699,7 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-8 lg:p-10 rounded-lg ${
+                className={`p-8 lg:p-10 ${
                   plan.highlighted 
                     ? 'bg-[#ebebeb] border-2 border-primary' 
                     : 'bg-[#ebebeb]'
@@ -827,7 +827,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group block"
               >
-                <div className="rounded-lg overflow-hidden bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all duration-300">
+                <div className="overflow-hidden bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all duration-300">
                   <div className="aspect-[16/10] overflow-hidden">
                     <img 
                       src={product.image} 

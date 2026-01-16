@@ -401,7 +401,7 @@ const ValuePropositionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-[#ebebeb] rounded-lg p-10 hover:bg-[#e3e3e3] transition-colors duration-300"
+            className="bg-[#ebebeb] p-10 hover:bg-[#e3e3e3] transition-colors duration-300"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
               Traditional Auditing
@@ -423,7 +423,7 @@ const ValuePropositionSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="bg-[#0a0a0a] rounded-lg p-10"
+            className="bg-[#0a0a0a] p-10"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-8">
               With YVOO
