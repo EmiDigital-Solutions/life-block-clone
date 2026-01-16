@@ -512,20 +512,20 @@ const BeFound = () => {
       </section>
 
       {/* First Testimonial - Archlet Side-by-Side Style */}
-      <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Large Portrait Photo */}
+      <section className="py-20 px-6 bg-white">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Portrait Photo - Smaller, B&W */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[4/5] bg-muted overflow-hidden"
+              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden"
             >
               <img 
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" 
                 alt="Michael Weber"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </motion.div>
             
@@ -534,25 +534,25 @@ const BeFound = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-6"
             >
               {/* Company Logo */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-foreground rounded flex items-center justify-center">
-                  <span className="text-background text-sm font-bold">TM</span>
+                <div className="w-8 h-8 bg-foreground rounded flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">TM</span>
                 </div>
-                <span className="text-xl font-bold text-foreground tracking-wide">TECHMANUFACTURING</span>
+                <span className="text-lg font-bold text-foreground tracking-wide">TECHMANUFACTURING</span>
               </div>
               
               {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed">
+              <blockquote className="text-lg md:text-xl text-foreground leading-relaxed">
                 "YVOO's platform literally pays for itself with the quality of leads we receive. We now get discovered by buyers we never could have reached before."
               </blockquote>
               
               {/* Attribution */}
               <div>
-                <p className="font-semibold text-foreground text-lg">Michael Weber</p>
-                <p className="text-muted-foreground">VP Sales, TechManufacturing</p>
+                <p className="font-semibold text-foreground">Michael Weber</p>
+                <p className="text-sm text-muted-foreground">VP Sales, TechManufacturing</p>
               </div>
             </motion.div>
           </div>
@@ -724,20 +724,20 @@ const BeFound = () => {
       </section>
 
       {/* Second Testimonial - Archlet Side-by-Side Style */}
-      <section className="py-24 px-6 bg-white border-t border-border">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Large Portrait Photo */}
+      <section className="py-20 px-6 bg-white border-t border-border">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Portrait Photo - Smaller, B&W */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[4/5] bg-muted overflow-hidden"
+              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden"
             >
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" 
                 alt="Sarah Chen - Director of Operations"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale"
               />
             </motion.div>
             
@@ -746,25 +746,25 @@ const BeFound = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-6"
             >
               {/* Company Logo */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-foreground rounded-full flex items-center justify-center">
-                  <span className="text-background text-xs font-bold">P</span>
+                <div className="w-8 h-8 bg-foreground rounded flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">PD</span>
                 </div>
-                <span className="text-xl font-bold text-foreground tracking-wide">PRECISION DYNAMICS</span>
+                <span className="text-lg font-bold text-foreground tracking-wide">PRECISION DYNAMICS</span>
               </div>
               
               {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed">
+              <blockquote className="text-lg md:text-xl text-foreground leading-relaxed">
                 "Within weeks of optimizing our YVOO profile, we started receiving inquiries from OEMs we had been trying to reach for years. The platform has become our primary channel for new business development."
               </blockquote>
               
               {/* Attribution */}
               <div>
-                <p className="font-semibold text-foreground text-lg">Sarah Chen</p>
-                <p className="text-muted-foreground">Director of Operations & Business Development</p>
+                <p className="font-semibold text-foreground">Sarah Chen</p>
+                <p className="text-sm text-muted-foreground">Director of Operations & Business Development</p>
               </div>
             </motion.div>
           </div>
