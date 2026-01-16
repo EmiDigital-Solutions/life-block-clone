@@ -84,6 +84,18 @@ const Navigation = () => {
           <div className="px-10 pb-10 pt-6 animate-fade-in">
             <nav className="space-y-4">
               <Link 
+                to="/features" 
+                className="block group py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Features
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Complete feature overview
+                </span>
+              </Link>
+              <Link 
                 to="/search-suppliers" 
                 className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
