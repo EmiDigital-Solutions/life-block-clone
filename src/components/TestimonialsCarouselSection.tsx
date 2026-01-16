@@ -130,7 +130,7 @@ const TestimonialsCarouselSection = () => {
     <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6">
         {/* Outer container - offmenu style */}
-        <div className="bg-[#ebebeb] rounded-lg p-8 md:p-12 lg:p-16">
+        <div className="bg-[#ebebeb] p-8 md:p-12 lg:p-16">
           {/* Header - offmenu style with mixed weight typography */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

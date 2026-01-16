@@ -613,7 +613,7 @@ const SearchSuppliers = () => {
             transition={{ delay: 0.2 }}
           >
             {/* Frosted Glass Card */}
-            <div className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] overflow-hidden">
+            <div className="bg-[#ebebeb] overflow-hidden">
               
               {/* Card Header */}
               <div className="bg-foreground px-6 py-4 flex items-center justify-between">
@@ -826,7 +826,7 @@ const SearchSuppliers = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
+                <Card className="bg-[#ebebeb] hover:bg-[#e3e3e3] shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
                   <CardHeader className="relative p-6 md:p-8">
                     <CardTitle className="text-foreground text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
                     <CardDescription className="text-muted-foreground text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
@@ -1269,7 +1269,7 @@ const SearchSuppliers = () => {
                 onClick={() => setSelectedAIFeature(feature)}
                 className="group cursor-pointer"
               >
-                <div className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 transition-all duration-300 hover:shadow-lg border-b-4 border-gray-100 hover:border-[#A8C5B8]">
+                <div className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-8 md:p-10 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-start gap-6">
                     {/* 8-bit Pixel Arrow */}
                     <div className="flex-shrink-0">
@@ -1494,7 +1494,7 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="bg-[#ebebeb]/90 backdrop-blur-xl rounded-[32px] shadow-lg p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
+              className="bg-[#ebebeb] shadow-lg p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
             >
               <div className="flex items-center gap-3 flex-1 px-4">
                 <Search className="w-5 h-5 text-muted-foreground" />
