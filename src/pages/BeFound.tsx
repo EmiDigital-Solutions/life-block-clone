@@ -945,55 +945,132 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Stats Section - Archlet Style */}
-      <section className="py-24 px-6 bg-white">
+      {/* Stats Section - Reference Design */}
+      <section className="py-24 px-6 bg-white border-t border-foreground/10">
         <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="section-headline text-foreground max-w-2xl">
-              Known for driving supplier visibility and qualified leads.
-            </h2>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 gap-12 max-w-3xl">
-            {/* Stat 1 */}
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-16">
+            {/* Left Column - Title */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              className="flex flex-col justify-between"
             >
-              <div className="border-t border-foreground pt-6">
-                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Annual buyer searches</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4 tracking-tight">
-                  <AnimatedCounter value={7} suffix="M+" duration={1.5} />
-                </p>
-                <p className="text-muted-foreground leading-relaxed max-w-xs">
-                  Procurement professionals actively searching for suppliers on YVOO
-                </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-[-0.02em] leading-tight">
+                Known for driving supplier visibility and qualified leads
+              </h2>
+              <div className="mt-8">
+                <a
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-foreground text-white px-6 py-3 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors rounded-lg"
+                >
+                  Read more
+                </a>
               </div>
             </motion.div>
 
-            {/* Stat 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="border-t border-foreground pt-6">
-                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Visibility boost</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-4 tracking-tight">
+            {/* Right Column - KPI Grid */}
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Row 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Get discovered faster</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
                   <AnimatedCounter value={5} suffix="x" duration={1.5} />
                 </p>
-                <p className="text-muted-foreground leading-relaxed max-w-xs">
-                  With premium placement and fully optimized supplier profiles
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  More visibility with optimized digital twin profiles
                 </p>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.05 }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Increase leads</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+                  <AnimatedCounter value={3} suffix="x" duration={1.5} />
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  More qualified RFQ submissions from verified buyers
+                </p>
+              </motion.div>
+
+              {/* Row 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Annual buyer searches</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+                  <AnimatedCounter value={7} suffix="M+" duration={1.5} />
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Procurement professionals actively searching for suppliers
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Win more projects</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+                  <AnimatedCounter value={40} suffix="%" duration={1.5} />
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Higher conversion rate from inquiry to contract
+                </p>
+              </motion.div>
+
+              {/* Row 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Response time</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+                  &lt;<AnimatedCounter value={4} suffix="h" duration={1.5} />
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Average response time wins 3x more projects
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.25 }}
+                className="border-t border-foreground/20 pt-6 pb-8 pr-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono tracking-wide mb-4">Global reach</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-tight">
+                  <AnimatedCounter value={50} suffix="+" duration={1.5} />
+                </p>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Countries with active buyers searching for suppliers
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
