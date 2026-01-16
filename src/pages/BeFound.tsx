@@ -561,7 +561,7 @@ const BeFound = () => {
 
       {/* Pain Points Section */}
       <section className="py-32 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -635,7 +635,7 @@ const BeFound = () => {
 
       {/* Feature Section 1 - Profile Builder */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -665,7 +665,7 @@ const BeFound = () => {
 
       {/* Feature Section 2 - Analytics */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -695,7 +695,7 @@ const BeFound = () => {
 
       {/* Feature Section 3 - Lead Management */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -773,7 +773,7 @@ const BeFound = () => {
 
       {/* Stats Section - Archlet Style */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -826,7 +826,7 @@ const BeFound = () => {
 
       {/* Integration Logos */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -860,7 +860,7 @@ const BeFound = () => {
 
       {/* Final CTA */}
       <section className="py-32 px-6 bg-foreground">
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-7xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
