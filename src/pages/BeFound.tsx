@@ -906,7 +906,7 @@ const BeFound = () => {
               className="space-y-6"
             >
               <h2 className="section-headline text-foreground">
-                Claim your profile and build your digital twin
+                Claim your profile and build company digital twin
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Search for your company and take control instantly. Create a comprehensive digital representation of your business — add products, certifications, media, and detailed capabilities. Your digital twin becomes the single source of truth that buyers trust and rely on.
