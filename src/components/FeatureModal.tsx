@@ -1,7 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { PixelIcon } from "@/components/PixelIcon";
 import { Button } from "@/components/ui/button";
-import { X, ChevronDown, ArrowLeft } from "lucide-react";
+import { X, ChevronDown, ArrowLeft, Check, ArrowRight } from "lucide-react";
 
 // Import images - Hero images (people/team focus)
 import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
@@ -384,7 +383,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                     className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-sm"
                   >
                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <PixelIcon name="checkbox-on" className="w-4 h-4" />
+                      <Check className="w-4 h-4 text-primary" />
                     </div>
                     <p className="text-gray-700">{service}</p>
                   </div>
@@ -405,9 +404,6 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                     key={idx}
                     className="text-center p-6 rounded-lg bg-gradient-to-br from-[#f8fafb] to-white"
                   >
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <PixelIcon name={benefit.iconName} className="w-7 h-7" />
-                    </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
                     <p className="text-gray-600 text-sm">{benefit.description}</p>
                   </div>
@@ -441,7 +437,7 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
               </p>
               <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
                 Get Started
-                <PixelIcon name="arrow-right" className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </section>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Check, TrendingUp, Target, BarChart3, Users, Globe, Zap } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -333,27 +333,21 @@ const BeFound = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Target className="w-8 h-8" />,
                 text: "Buyers can't find you in search results"
               },
               {
-                icon: <TrendingUp className="w-8 h-8" />,
                 text: "No visibility into who's viewing your company"
               },
               {
-                icon: <BarChart3 className="w-8 h-8" />,
                 text: "Missing qualified RFQ opportunities"
               },
               {
-                icon: <Users className="w-8 h-8" />,
                 text: "Competitors are capturing your leads"
               },
               {
-                icon: <Globe className="w-8 h-8" />,
                 text: "Limited international market reach"
               },
               {
-                icon: <Zap className="w-8 h-8" />,
                 text: "No data on buyer intent and behavior"
               }
             ].map((item, index) => (
@@ -365,9 +359,6 @@ const BeFound = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-[#ebebeb] p-8 text-center space-y-4 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
-                <div className="flex justify-center" style={{ color: "hsl(160, 25%, 72%)" }}>
-                  {item.icon}
-                </div>
                 <p className="text-gray-700 leading-relaxed">{item.text}</p>
               </motion.div>
             ))}

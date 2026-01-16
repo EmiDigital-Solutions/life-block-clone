@@ -1,7 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { PixelIcon } from "@/components/PixelIcon";
 import { Button } from "@/components/ui/button";
-import { X, ChevronDown, ArrowLeft } from "lucide-react";
+import { X, ChevronDown, ArrowLeft, ArrowRight, Check } from "lucide-react";
 
 interface UseCase {
   title: string;
@@ -174,7 +173,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <PixelIcon name="checkbox-on" className="w-5 h-5" />
+                        <Check className="w-5 h-5 text-primary" />
                       </div>
                       <h3 className="font-semibold text-gray-900">{useCase.title}</h3>
                     </div>
@@ -198,7 +197,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
                     className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center"
                   >
                     <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center mx-auto mb-4">
-                      <PixelIcon name="arrow-right" className="w-6 h-6" />
+                      <ArrowRight className="w-6 h-6" />
                     </div>
                     <p className="text-lg font-medium">{result}</p>
                   </div>
@@ -218,7 +217,7 @@ export const TestimonialModal = ({ testimonial, onClose }: TestimonialModalProps
               </p>
               <Button size="lg">
                 Get Started Today
-                <PixelIcon name="arrow-right" className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
           </section>

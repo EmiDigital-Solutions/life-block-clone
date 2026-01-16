@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Autoplay from "embla-carousel-autoplay";
+import { ArrowRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { PixelIcon } from "@/components/PixelIcon";
 import TestimonialModal from "@/components/TestimonialModal";
 
 import auditor1 from "@/assets/procurement-male-european.jpg";
@@ -167,12 +167,6 @@ const TestimonialsCarouselSection = () => {
                     transition={{ delay: index * 0.08 }}
                     className="bg-white rounded-lg p-8 hover:bg-[#fafafa] transition-colors duration-300 h-full flex flex-col min-h-[420px]"
                   >
-                    {/* Icon */}
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                      <PixelIcon name={testimonial.icon as any} className="w-6 h-6" />
-                    </div>
-
-                    {/* Quote */}
                     <blockquote 
                       className="text-foreground text-xl leading-relaxed mb-8 flex-grow"
                       dangerouslySetInnerHTML={{ __html: `"${testimonial.quote}"` }}
@@ -206,7 +200,7 @@ const TestimonialsCarouselSection = () => {
                       className="flex items-center gap-2 text-primary font-medium hover:underline transition-all group"
                     >
                       See full case study
-                      <PixelIcon name="arrow-right" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </motion.div>
                 </CarouselItem>
