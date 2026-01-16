@@ -1032,7 +1032,7 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Digital Twin Builder Features Section */}
       <section className="py-20 px-6 bg-white border-t border-foreground/10">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
@@ -1041,8 +1041,18 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-foreground tracking-[-0.02em] leading-tight mb-12"
           >
-            Be Found<br />features
+            Digital Twin Builder<br />features
           </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="text-lg text-foreground/60 max-w-2xl mb-16"
+          >
+            Our AI guides you step-by-step to create a comprehensive digital twin of your manufacturing capabilities—making your company discoverable by global buyers.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -1053,40 +1063,40 @@ const BeFound = () => {
           >
             {[
               {
-                title: "AI-Powered Profile Builder",
-                description: "Intelligent profile creation that suggests optimal content, keywords, and structure based on your industry and capabilities."
+                title: "AI-Guided Profile Creation",
+                description: "Our AI assistant walks you through each step, suggesting content, extracting data from documents, and ensuring your digital twin is complete and optimized."
+              },
+              {
+                title: "Equipment & Machine Registry",
+                description: "Upload photos of your machines—AI identifies models, specs, and capabilities automatically. Build a verified inventory of your production assets."
+              },
+              {
+                title: "Capability Mapping",
+                description: "AI analyzes your equipment and certifications to generate a comprehensive capability matrix that matches buyer search queries."
               },
               {
                 title: "Certification Verification",
-                description: "Verified badges for ISO, IATF, AS9100, and other certifications that build trust with procurement teams."
+                description: "Upload certificates and AI extracts validity dates, scope, and standards. Verified badges display automatically on your digital twin."
               },
               {
-                title: "Smart Keyword Optimization",
-                description: "AI analyzes buyer searches to recommend keywords that increase your visibility for relevant queries."
+                title: "Capacity & Lead Time Intelligence",
+                description: "Define production capacity, typical lead times, and availability. AI updates recommendations based on industry benchmarks."
               },
               {
-                title: "Real-Time Analytics Dashboard",
-                description: "Track profile views, search appearances, buyer engagement, and lead conversion metrics in one place."
+                title: "Product Gallery Builder",
+                description: "Upload product images and AI generates descriptions, specs, and searchable tags. Showcase your portfolio professionally."
               },
               {
-                title: "Lead Management System",
-                description: "Centralized inbox for RFQs, quote requests, and buyer inquiries with priority scoring and response tracking."
+                title: "Quality Process Documentation",
+                description: "AI helps document your quality processes, inspection capabilities, and compliance workflows in buyer-friendly formats."
               },
               {
-                title: "Automated Response Templates",
-                description: "Pre-configured templates for common inquiries to ensure fast, professional responses to buyers."
+                title: "Multi-Language Auto-Translation",
+                description: "Your digital twin automatically translates to 12+ languages, making you discoverable by buyers worldwide."
               },
               {
-                title: "Multi-Language Profiles",
-                description: "Reach global buyers with automatic profile translation in 12+ languages for international visibility."
-              },
-              {
-                title: "Product Catalog Integration",
-                description: "Upload and showcase your complete product catalog with specifications, images, and pricing."
-              },
-              {
-                title: "Buyer Match Alerts",
-                description: "Instant notifications when buyers with matching requirements search for your capabilities."
+                title: "Completeness Scoring",
+                description: "Real-time scoring shows profile strength. AI suggests improvements that increase visibility and buyer engagement."
               }
             ].map((feature, index) => (
               <motion.div
