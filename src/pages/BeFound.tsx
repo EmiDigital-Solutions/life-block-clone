@@ -985,7 +985,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-12"
           >
-            Suppliers growing with YVOO
+            From invisible to first choice
           </motion.h2>
           
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
