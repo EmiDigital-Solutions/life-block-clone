@@ -1304,9 +1304,9 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0 }}
-              className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer rounded-2xl"
+              className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-[16/10]">
+              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10]">
                 <img 
                   src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80" 
                   alt="CNC Machined Parts"
@@ -1337,9 +1337,9 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="group relative overflow-hidden cursor-pointer rounded-2xl"
+              className="group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[4/3]">
                 <img 
                   src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80" 
                   alt="Medical Device Components"
@@ -1370,9 +1370,9 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group relative overflow-hidden cursor-pointer rounded-2xl"
+              className="group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[4/3]">
                 <img 
                   src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" 
                   alt="PCB Assembly"
@@ -1404,9 +1404,9 @@ const SearchSuppliers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
+            className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto"
           >
-            <div className="relative overflow-hidden rounded-2xl aspect-[21/9] md:aspect-[3/1]">
+            <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
               <img 
                 src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80" 
                 alt="Industrial Valves & Process Equipment"
