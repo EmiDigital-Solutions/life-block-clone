@@ -905,7 +905,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="section-headline text-foreground">
+              <h2 className="section-headline-sm text-foreground">
                 Claim your profile and build company digital twin
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -944,7 +944,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <h2 className="section-headline text-foreground">
+              <h2 className="section-headline-sm text-foreground">
                 Track who's viewing your profile
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -965,7 +965,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="section-headline text-foreground">
+              <h2 className="section-headline-sm text-foreground">
                 Convert views into qualified leads
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
