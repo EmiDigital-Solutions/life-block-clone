@@ -987,18 +987,18 @@ const BeFound = () => {
               className="bg-primary p-8 flex flex-col justify-between aspect-square"
             >
               {/* Icon */}
-              <div className="w-12 h-12 border-2 border-primary-foreground rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
               
               {/* Stat */}
               <div>
-                <p className="text-5xl md:text-6xl font-bold text-primary-foreground tracking-[-0.02em]">
+                <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
                   3x
                 </p>
-                <p className="text-xl text-primary-foreground/90 font-medium mt-2">
+                <p className="text-xl text-white/90 font-medium mt-2">
                   more qualified leads
                 </p>
               </div>
