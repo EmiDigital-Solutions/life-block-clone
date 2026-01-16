@@ -1574,15 +1574,15 @@ const SearchSuppliers = () => {
 
               {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-[#ebebeb] rounded-lg p-4">
+                <div className="bg-[#ebebeb] p-4">
                     <p className="text-xs text-gray-600 mb-1">Experience</p>
                     <p className="text-lg font-bold text-primary">{selectedSupplier.experience}</p>
                 </div>
-                <div className="bg-[#ebebeb] rounded-lg p-4">
+                <div className="bg-[#ebebeb] p-4">
                     <p className="text-xs text-gray-600 mb-1">Production Capacity</p>
                     <p className="text-sm font-semibold text-gray-700">{selectedSupplier.capacity}</p>
                 </div>
-                <div className="bg-[#ebebeb] rounded-lg p-4">
+                <div className="bg-[#ebebeb] p-4">
                     <p className="text-xs text-gray-600 mb-1">Annual Revenue</p>
                     <p className="text-lg font-bold text-gray-700">{selectedSupplier.revenue}</p>
                 </div>
