@@ -976,7 +976,7 @@ const BeFound = () => {
       </section>
 
       {/* Second Testimonial - Archlet 3-Column Style */}
-      <section className="py-20 px-6 bg-white border-t border-border">
+      <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
             {/* Stat Card - Primary Color Background */}
