@@ -896,9 +896,8 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <p className="text-xs font-mono tracking-widest uppercase text-muted-foreground mb-4">Digital Twin Builder</p>
               <h2 className="section-headline text-foreground">
-                Claim your profile
+                Claim and build your digital twin
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Search for your company and take control instantly. Create a comprehensive digital representation of your business — add products, certifications, media, and detailed capabilities. Your digital twin becomes the single source of truth that buyers trust and rely on.
