@@ -964,7 +964,7 @@ const BeFound = () => {
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-foreground text-white px-6 py-3 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors rounded-lg"
                 >
                   Read more
                 </a>
@@ -978,15 +978,17 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="border-t border-foreground/20 pt-6 pb-12 pr-12 border-r border-r-foreground/10"
+                className="pr-12 pb-12 border-r border-r-foreground/10"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Get discovered faster</p>
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  5x
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  More visibility with optimized digital twin profiles
-                </p>
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Get discovered faster</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    5x
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    More visibility with optimized digital twin profiles
+                  </p>
+                </div>
               </motion.div>
 
               {/* KPI 2 */}
@@ -995,15 +997,17 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.05 }}
-                className="border-t border-foreground/20 pt-6 pb-12 pl-12"
+                className="pl-12 pb-12"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Increase qualified leads</p>
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  3x
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  More RFQ submissions from verified buyers
-                </p>
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Increase qualified leads</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    3x
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    More RFQ submissions from verified buyers
+                  </p>
+                </div>
               </motion.div>
 
               {/* KPI 3 */}
@@ -1012,15 +1016,17 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="border-t border-foreground/20 pt-6 pb-12 pr-12 border-r border-r-foreground/10"
+                className="pr-12 pb-12 border-r border-r-foreground/10"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Buyer searches annually</p>
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  7M+
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Procurement professionals actively searching
-                </p>
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Buyer searches annually</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    7M+
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Procurement professionals actively searching
+                  </p>
+                </div>
               </motion.div>
 
               {/* KPI 4 */}
@@ -1029,15 +1035,17 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="border-t border-foreground/20 pt-6 pb-12 pl-12"
+                className="pl-12 pb-12"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Win more projects</p>
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  40%
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Higher conversion rate from inquiry to contract
-                </p>
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Win more projects</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    40%
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Higher conversion rate from inquiry to contract
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
