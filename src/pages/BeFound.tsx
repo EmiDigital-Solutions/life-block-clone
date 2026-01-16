@@ -529,7 +529,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+              <h2 className="section-headline text-foreground">
                 Claim and optimize your profile in minutes
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -568,7 +568,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+              <h2 className="section-headline text-foreground">
                 Track who's viewing your profile
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -589,7 +589,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+              <h2 className="section-headline text-foreground">
                 Convert views into qualified leads
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -692,7 +692,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+            <h2 className="section-headline text-foreground">
               Known for driving supplier visibility and qualified leads.
             </h2>
           </motion.div>
@@ -729,7 +729,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2 className="section-headline text-foreground mb-4">
               Trusted by industry leaders
             </h2>
             <p className="text-muted-foreground">
@@ -763,7 +763,7 @@ const BeFound = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight">
+            <h2 className="section-headline text-background">
               Start getting discovered today
             </h2>
             <p className="text-xl text-background/80 max-w-2xl mx-auto">
