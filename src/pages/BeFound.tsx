@@ -650,6 +650,95 @@ const BeFound = () => {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="py-24 md:py-32 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="section-headline text-foreground max-w-4xl">
+              From signup to sales pipeline in 5 steps
+            </h2>
+          </motion.div>
+
+          {/* Steps */}
+          <div className="space-y-0">
+            {[
+              {
+                number: "01",
+                title: "Sign up",
+                description: "Create your free account in 30 seconds. No credit card required, no commitment needed."
+              },
+              {
+                number: "02",
+                title: "Build your digital twin",
+                description: "AI guides you through creating a complete supplier profile—certifications, capabilities, equipment, and media gallery."
+              },
+              {
+                number: "03",
+                title: "Get discovered",
+                description: "Your profile appears in buyer searches. Our algorithm matches you with procurement teams looking for your exact capabilities."
+              },
+              {
+                number: "04",
+                title: "Track performance",
+                description: "Real-time analytics show who's viewing your profile, what they searched for, and how you rank against competitors."
+              },
+              {
+                number: "05",
+                title: "Convert to leads",
+                description: "Receive RFQs directly in your dashboard. Respond quickly, win more business, and grow your customer base."
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group border-t border-border py-8 md:py-10"
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+                  {/* Step Number */}
+                  <div className="flex-shrink-0">
+                    <span className="text-5xl md:text-6xl font-bold text-primary/80 group-hover:text-primary transition-colors">
+                      {step.number}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 md:pt-3">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 pt-8 border-t border-border"
+          >
+            <Button size="lg">
+              Start Your Free Profile
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Benefits Cards */}
       <section className="py-16 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
