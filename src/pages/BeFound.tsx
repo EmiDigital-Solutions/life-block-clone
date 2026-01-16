@@ -1203,24 +1203,19 @@ const BeFound = () => {
       {/* Digital Twin Builder Features Section */}
       <section className="py-20 px-6 bg-white border-t border-foreground/10">
         <div className="container mx-auto max-w-7xl">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-foreground tracking-[-0.02em] leading-tight mb-12"
+            className="space-y-6 mb-16"
           >
-            Digital Twin Builder<br />features
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
-            className="text-lg text-foreground/60 max-w-2xl mb-16"
-          >
-            Our AI guides you step-by-step to create a comprehensive digital twin of your manufacturing capabilities—making your company discoverable by global buyers.
-          </motion.p>
+            <h2 className="section-headline text-foreground">
+              Digital Twin Builder features
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              Our AI guides you step-by-step to create a comprehensive digital twin of your manufacturing capabilities—making your company discoverable by global buyers.
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
