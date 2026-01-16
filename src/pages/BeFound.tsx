@@ -888,6 +888,16 @@ const BeFound = () => {
       {/* Feature Section 1 - Profile Builder */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground mb-20 max-w-3xl"
+          >
+            Stop chasing. Start being chosen.
+          </motion.h2>
+          
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
