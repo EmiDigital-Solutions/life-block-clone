@@ -498,8 +498,8 @@ const BeFound = () => {
               <span>300% increase in qualified inquiries</span>
             </div>
             
-            {/* Photo */}
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-muted overflow-hidden mb-6">
+            {/* Photo - Square with rounded corners */}
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted overflow-hidden mb-6">
               <img 
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" 
                 alt="Michael Weber"
@@ -521,6 +521,80 @@ const BeFound = () => {
             <div>
               <p className="font-semibold text-foreground">Michael Weber</p>
               <p className="text-sm text-muted-foreground">VP Sales, TechManufacturing</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pain Points Section */}
+      <section className="py-32 px-6 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-16"
+          >
+            {/* Role Toggle */}
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-primary">
+                <button className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider">
+                  Manufacturer
+                </button>
+                <button className="px-8 py-3 rounded-lg text-foreground font-medium text-sm uppercase tracking-wider hover:bg-muted transition-colors">
+                  Distributor
+                </button>
+              </div>
+            </div>
+
+            {/* Headline */}
+            <h2 className="section-headline text-foreground text-center">
+              Imagine if you didn't have to spend time...
+            </h2>
+
+            {/* Image with gradient and cards */}
+            <div className="relative flex flex-col items-center">
+              <div className="relative flex justify-center items-center mb-[-80px] z-10">
+                <div 
+                  className="absolute w-[700px] h-[700px] md:w-[800px] md:h-[800px] max-[768px]:w-[450px] max-[768px]:h-[450px] rounded-full z-0"
+                  style={{ 
+                    background: "radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, hsl(var(--muted) / 0.3) 30%, hsl(var(--secondary) / 0.2) 60%, hsl(var(--primary) / 0.1) 80%, transparent 100%)"
+                  }}
+                ></div>
+                <div className="relative z-10">
+                  <img 
+                    src={supplierPortraitHero} 
+                    alt="Thoughtful supplier considering opportunities" 
+                    className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
+                  />
+                </div>
+              </div>
+
+              <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
+                {[
+                  { text: "Know when buyers search for your products", textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities." },
+                  { text: "Buyers discover you automatically", textFull: "Having buyers automatically discover your company profile without cold outreach." },
+                  { text: "See which teams viewed your profile", textFull: "Getting visibility into which procurement teams viewed your products and services." },
+                  { text: "Receive pre-qualified RFQs", textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile." }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-border"
+                  >
+                    <div className="flex-shrink-0 mt-1">
+                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                    </div>
+                    <p className="text-base md:text-lg text-foreground leading-relaxed">
+                      <span className="md:hidden">{item.text}</span>
+                      <span className="hidden md:inline">{item.textFull}</span>
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -661,80 +735,6 @@ const BeFound = () => {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Pain Points Section */}
-      <section className="py-32 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-16"
-          >
-            {/* Role Toggle */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-0 p-1 rounded-lg border-2 border-primary">
-                <button className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider">
-                  Manufacturer
-                </button>
-                <button className="px-8 py-3 rounded-lg text-foreground font-medium text-sm uppercase tracking-wider hover:bg-muted transition-colors">
-                  Distributor
-                </button>
-              </div>
-            </div>
-
-            {/* Headline */}
-            <h2 className="section-headline text-foreground text-center">
-              Imagine if you didn't have to spend time...
-            </h2>
-
-            {/* Image with gradient and cards */}
-            <div className="relative flex flex-col items-center">
-              <div className="relative flex justify-center items-center mb-[-80px] z-10">
-                <div 
-                  className="absolute w-[700px] h-[700px] md:w-[800px] md:h-[800px] max-[768px]:w-[450px] max-[768px]:h-[450px] rounded-full z-0"
-                  style={{ 
-                    background: "radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, hsl(var(--muted) / 0.3) 30%, hsl(var(--secondary) / 0.2) 60%, hsl(var(--primary) / 0.1) 80%, transparent 100%)"
-                  }}
-                ></div>
-                <div className="relative z-10">
-                  <img 
-                    src={supplierPortraitHero} 
-                    alt="Thoughtful supplier considering opportunities" 
-                    className="max-w-[450px] w-full max-[768px]:max-w-[90vw] h-auto object-contain mx-auto"
-                  />
-                </div>
-              </div>
-
-              <div className="relative z-20 space-y-3 md:space-y-4 max-w-2xl w-full px-4">
-                {[
-                  { text: "Know when buyers search for your products", textFull: "Knowing when qualified buyers are actively searching for your exact product capabilities." },
-                  { text: "Buyers discover you automatically", textFull: "Having buyers automatically discover your company profile without cold outreach." },
-                  { text: "See which teams viewed your profile", textFull: "Getting visibility into which procurement teams viewed your products and services." },
-                  { text: "Receive pre-qualified RFQs", textFull: "Receiving pre-qualified RFQs from buyers who already match your ideal customer profile." }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-lg p-4 md:p-6 flex items-start gap-3 md:gap-4 shadow-lg hover:shadow-xl transition-shadow border border-border"
-                  >
-                    <div className="flex-shrink-0 mt-1">
-                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-                    </div>
-                    <p className="text-base md:text-lg text-foreground leading-relaxed">
-                      <span className="md:hidden">{item.text}</span>
-                      <span className="hidden md:inline">{item.textFull}</span>
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
