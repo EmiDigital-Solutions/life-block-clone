@@ -1032,6 +1032,83 @@ const BeFound = () => {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section className="py-20 px-6 bg-white border-t border-foreground/10">
+        <div className="container mx-auto max-w-7xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-bold text-foreground tracking-[-0.02em] leading-tight mb-12"
+          >
+            Be Found<br />features
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"
+          >
+            {[
+              {
+                title: "AI-Powered Profile Builder",
+                description: "Intelligent profile creation that suggests optimal content, keywords, and structure based on your industry and capabilities."
+              },
+              {
+                title: "Certification Verification",
+                description: "Verified badges for ISO, IATF, AS9100, and other certifications that build trust with procurement teams."
+              },
+              {
+                title: "Smart Keyword Optimization",
+                description: "AI analyzes buyer searches to recommend keywords that increase your visibility for relevant queries."
+              },
+              {
+                title: "Real-Time Analytics Dashboard",
+                description: "Track profile views, search appearances, buyer engagement, and lead conversion metrics in one place."
+              },
+              {
+                title: "Lead Management System",
+                description: "Centralized inbox for RFQs, quote requests, and buyer inquiries with priority scoring and response tracking."
+              },
+              {
+                title: "Automated Response Templates",
+                description: "Pre-configured templates for common inquiries to ensure fast, professional responses to buyers."
+              },
+              {
+                title: "Multi-Language Profiles",
+                description: "Reach global buyers with automatic profile translation in 12+ languages for international visibility."
+              },
+              {
+                title: "Product Catalog Integration",
+                description: "Upload and showcase your complete product catalog with specifications, images, and pricing."
+              },
+              {
+                title: "Buyer Match Alerts",
+                description: "Instant notifications when buyers with matching requirements search for your capabilities."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.05 * index }}
+                className="py-8 pr-8 border-t border-foreground/10"
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-foreground/60 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <BeFoundFAQ />
 
