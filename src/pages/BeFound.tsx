@@ -978,6 +978,16 @@ const BeFound = () => {
       {/* Second Testimonial - Archlet 3-Column Style */}
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground mb-12"
+          >
+            Suppliers growing with YVOO
+          </motion.h2>
+          
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
             {/* Stat Card - Primary Color Background */}
             <motion.div
@@ -1051,7 +1061,7 @@ const BeFound = () => {
       </section>
 
       {/* Stats Section - Archlet Style */}
-      <section className="py-32 px-6 bg-white border-t border-foreground/10">
+      <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           {/* Headline */}
           <motion.h2
