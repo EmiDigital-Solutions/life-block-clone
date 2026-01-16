@@ -2505,7 +2505,7 @@ const ScanProPlus = () => {
                   { title: 'Microsoft Dynamics', desc: 'Full system integration' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <PixelIcon name="arrow-right" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <ArrowRight className="w-5 h-5 flex-shrink-0 mt-0.5 text-foreground" />
                     <div>
                       <h4 className="font-medium text-foreground">{item.title}</h4>
                       <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -2531,7 +2531,7 @@ const ScanProPlus = () => {
                   { title: 'Quality Assured', desc: 'Rating system & tracking' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <PixelIcon name="arrow-right" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <ArrowRight className="w-5 h-5 flex-shrink-0 mt-0.5 text-foreground" />
                     <div>
                       <h4 className="font-medium text-foreground">{item.title}</h4>
                       <p className="text-sm text-muted-foreground">{item.desc}</p>

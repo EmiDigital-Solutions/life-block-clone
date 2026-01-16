@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Plus, Minus, Activity, AlertTriangle, TrendingUp, TrendingDown, Clock, Wifi, Database, Settings, BarChart3, Shield, Zap } from "lucide-react";
+import { ArrowRight, Check, Plus, Minus, Activity, AlertTriangle, TrendingUp, TrendingDown, Clock, Wifi, Database, Settings, BarChart3, Shield, Zap } from "lucide-react";
 
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -710,7 +710,7 @@ const GroundIntelligence = () => {
                 <ul className="space-y-4">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-foreground">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={2} />
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={2} />
                       {feature}
                     </li>
                   ))}
