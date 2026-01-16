@@ -76,7 +76,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <div className="bg-[#ebebeb] rounded-lg p-6 sm:p-8 md:p-12">
+    <div className="bg-[#ebebeb] p-6 sm:p-8 md:p-12">
       {/* Header */}
       <div className="mb-8">
         <motion.h3

@@ -37,7 +37,7 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="rounded-2xl rounded-tl-sm p-4 w-full relative bg-gray-200"
+                className="p-4 w-full relative bg-gray-200"
               >
                 <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-gray-400 animate-pulse"></div>
                 <p className="text-sm text-gray-700 leading-relaxed pl-6">
@@ -70,7 +70,7 @@ const EmailComparisonSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl rounded-tl-sm p-5 w-full relative bg-[#0A7FA5]"
+                className="p-5 w-full relative bg-[#0A7FA5]"
               >
                 <div className="absolute left-5 top-7 w-3 h-3 rounded-full bg-white animate-pulse"></div>
                 <div className="absolute left-5 top-1/2 w-3 h-3 rounded-full bg-white animate-pulse" style={{ animationDelay: "0.3s" }}></div>

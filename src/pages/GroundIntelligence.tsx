@@ -605,7 +605,7 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="rounded-2xl overflow-hidden border border-border bg-background h-[400px] lg:h-[450px]"
+                className="overflow-hidden border border-border bg-background h-[400px] lg:h-[450px]"
               >
                 {feature.mockup}
               </motion.div>

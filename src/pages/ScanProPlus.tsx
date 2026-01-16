@@ -374,7 +374,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
                   onClick={() => handleCardClick(index)}
                 >
                 <motion.div 
-                    className="group relative overflow-hidden rounded-2xl w-[160px] bg-white border border-border/30 shadow-sm"
+                    className="group relative overflow-hidden w-[160px] bg-white border border-border/30 shadow-sm"
                     whileHover={{
                       boxShadow: "0 20px 40px rgba(0, 0, 0, 0.12)",
                       borderColor: "hsl(var(--primary) / 0.3)",
@@ -714,7 +714,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                         }}
                       >
                         <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
+                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
                           style={{
                             boxShadow: `
                               0 25px 50px -12px rgba(0, 0, 0, 0.5),
@@ -752,7 +752,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                           </div>
 
                           <div 
-                            className="absolute inset-0 pointer-events-none rounded-3xl"
+                            className="absolute inset-0 pointer-events-none"
                             style={{
                               background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
                             }}
@@ -1175,7 +1175,7 @@ const ComplianceStandardsGrid = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               onClick={() => setSelectedStandard(standard)}
-              className="group bg-[#ebebeb] rounded-[28px] p-6 hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer w-full text-left"
+              className="group bg-[#ebebeb] p-6 hover:bg-[#e3e3e3] transition-colors duration-300 cursor-pointer w-full text-left"
             >
               {/* Icon - pixel art style */}
               <div className="w-12 h-12 mb-4">
@@ -1276,10 +1276,10 @@ const IndustryShowcaseCard = ({
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay }}
         onClick={onClick}
-        className="group relative overflow-hidden cursor-pointer rounded-2xl w-full h-full"
+        className="group relative overflow-hidden cursor-pointer w-full h-full"
       >
         {/* Full-bleed image container */}
-        <div className={`relative overflow-hidden rounded-2xl ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}>
+        <div className={`relative overflow-hidden ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}>
           {/* Full-bleed image with parallax */}
           <motion.img 
             src={useCase.image} 
@@ -1427,10 +1427,10 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           onClick={() => setSelectedUseCase(useCases[3])}
-          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto rounded-2xl"
+          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto"
         >
           {/* Full-bleed image container */}
-          <div className="relative overflow-hidden rounded-2xl aspect-[21/9] md:aspect-[3/1]">
+          <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
             {/* Full-bleed image */}
             <img 
               src={useCases[3].image} 
@@ -1639,7 +1639,7 @@ const ChallengeToggleSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <div className="w-12 h-12 rounded-full bg-foreground/5 flex items-center justify-center mb-6">
                 <PixelIcon 
@@ -1733,13 +1733,13 @@ const HowItWorksCarousel = () => {
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Chat Interface */}
-          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
+          <div className="bg-[#ebebeb] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] relative z-10 flex flex-col justify-center gap-4">
             {/* User Message */}
             <div className="flex items-start gap-2 sm:gap-3">
               <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                 <PixelIcon name="message" className="w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <div className="bg-primary text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tl-none flex-1">
+              <div className="bg-primary text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">You</p>
                 <div className="space-y-2">
                   <motion.div 
@@ -1758,7 +1758,7 @@ const HowItWorksCarousel = () => {
             
             {/* Auditor Message */}
             <div className="flex items-start gap-2 sm:gap-3 justify-end">
-              <div className="bg-primary/80 text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 rounded-2xl rounded-tr-none flex-1">
+              <div className="bg-primary/80 text-primary-foreground px-3 py-2 sm:px-4 sm:py-3 flex-1">
                 <p className="text-xs sm:text-sm font-bold mb-2">Auditor</p>
                 <div className="space-y-2">
                   <motion.div 
@@ -1805,7 +1805,7 @@ const HowItWorksCarousel = () => {
       description: "AI-structured report with photos, findings, and action items—ready for your QM system. No more waiting weeks for documentation.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
-          <div className="bg-[#ebebeb] rounded-xl sm:rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
+          <div className="bg-[#ebebeb] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
             {/* Report Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -1951,11 +1951,11 @@ const HowItWorksCarousel = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
+                    className="bg-[#ebebeb] hover:bg-[#e3e3e3] shadow-xl overflow-visible mx-auto max-w-6xl h-[480px] sm:h-auto"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center overflow-visible h-full">
                       {/* Left Side - Visual */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-l-2xl sm:rounded-l-3xl p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
+                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-3 sm:p-8 md:p-8 min-h-[200px] sm:min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-visible">
                         {step.visual}
                         
                         <div className="absolute top-1 sm:top-4 left-1 sm:left-4 text-[40px] sm:text-[80px] font-bold text-[#A8C5B8]/10 leading-none">
@@ -2308,7 +2308,7 @@ const ScanProPlus = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="rounded-[32px] bg-[#1a1a1a] p-6 shadow-2xl overflow-hidden">
+            <div className="bg-[#1a1a1a] p-6 shadow-2xl overflow-hidden">
               <EquipmentIntelligenceDemo />
             </div>
           </motion.div>
@@ -2412,7 +2412,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-muted/50 rounded-2xl p-6"
+              className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-6"
             >
               <h3 className="text-lg font-semibold text-black mb-1">Cost per Audit</h3>
               <p className="text-muted-foreground text-sm mb-4">Traditional vs ScanPro+</p>
@@ -2424,7 +2424,7 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-muted/50 rounded-2xl p-6"
+              className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-6"
             >
               <h3 className="text-lg font-semibold text-black mb-1">12-Month Savings</h3>
               <p className="text-muted-foreground text-sm mb-4">Based on 20 audits/year</p>
