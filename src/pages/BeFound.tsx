@@ -694,7 +694,7 @@ const BeFound = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden justify-self-start"
+              className="aspect-square max-w-sm bg-muted overflow-hidden justify-self-start"
             >
               <img 
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" 
@@ -906,7 +906,7 @@ const BeFound = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden justify-self-start"
+              className="aspect-square max-w-sm bg-muted overflow-hidden justify-self-start"
             >
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" 
@@ -1083,7 +1083,7 @@ const BeFound = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 40,
+                duration: 60,
                 ease: "linear",
               },
             }}
@@ -1091,18 +1091,18 @@ const BeFound = () => {
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex gap-4">
                 {[
-                  { name: "Automotive", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=400&fit=crop" },
-                  { name: "Manufacturing", image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=500&h=400&fit=crop" },
-                  { name: "Aerospace", image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=500&h=400&fit=crop" },
-                  { name: "Healthcare & Pharma", image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&h=400&fit=crop" },
-                  { name: "Chemicals", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&h=400&fit=crop" },
-                  { name: "Electronics", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=400&fit=crop" },
-                  { name: "Energy & Utilities", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500&h=400&fit=crop" },
-                  { name: "Food & Beverage", image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=500&h=400&fit=crop" },
+                  { name: "Automotive", image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&h=500&fit=crop" },
+                  { name: "Manufacturing", image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=500&h=500&fit=crop" },
+                  { name: "Aerospace", image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=500&h=500&fit=crop" },
+                  { name: "Healthcare & Pharma", image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&h=500&fit=crop" },
+                  { name: "Chemicals", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&h=500&fit=crop" },
+                  { name: "Electronics", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=500&fit=crop" },
+                  { name: "Energy & Utilities", image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500&h=500&fit=crop" },
+                  { name: "Food & Beverage", image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=500&h=500&fit=crop" },
                 ].map((industry) => (
                   <div
                     key={`${setIndex}-${industry.name}`}
-                    className="flex-shrink-0 w-[240px] aspect-[4/5] relative overflow-hidden group cursor-pointer"
+                    className="flex-shrink-0 w-[240px] aspect-square relative overflow-hidden group cursor-pointer"
                   >
                     <img
                       src={industry.image}
