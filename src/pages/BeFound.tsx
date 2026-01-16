@@ -523,7 +523,7 @@ const BeFound = () => {
               className="aspect-[3/4] max-w-sm bg-muted overflow-hidden"
             >
               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" 
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" 
                 alt="Michael Weber"
                 className="w-full h-full object-cover grayscale"
               />
