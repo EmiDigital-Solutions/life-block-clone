@@ -649,6 +649,7 @@ const BeFound = () => {
           </motion.div>
         </div>
       </section>
+
       {/* Benefits Cards */}
       <section className="py-16 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
@@ -885,65 +886,19 @@ const BeFound = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Feature Section 1 - Profile Builder */}
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
-          {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <h2 className="section-headline text-foreground max-w-3xl">
-              How it works
-            </h2>
-          </motion.div>
-
-          {/* Step 1 - Sign Up */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <span className="text-5xl md:text-6xl font-bold text-primary/80">01</span>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Sign up in seconds
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Create your free account with just an email. No credit card required, no commitment needed. Start building your supplier presence immediately.
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-muted p-12 flex items-center justify-center"
-            >
-              <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <User className="w-10 h-10 text-primary" />
-                </div>
-                <p className="text-muted-foreground">30-second signup</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Step 2 - Profile Builder */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <span className="text-5xl md:text-6xl font-bold text-primary/80">02</span>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Build your digital twin
-              </h3>
+              <h2 className="section-headline text-foreground">
+                Claim and optimize your profile in minutes
+              </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Search for your company and take control instantly. Add products, certifications, media, and detailed capabilities. The more complete your profile, the better you rank in buyer searches.
               </p>
@@ -958,9 +913,13 @@ const BeFound = () => {
               <ProfileBuilderMockup />
             </motion.div>
           </div>
+        </div>
+      </section>
 
-          {/* Step 3 - Get Discovered */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24 pb-24 border-b border-border">
+      {/* Feature Section 2 - Analytics */}
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -976,17 +935,20 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <span className="text-5xl md:text-6xl font-bold text-primary/80">03</span>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Track performance
-              </h3>
+              <h2 className="section-headline text-foreground">
+                Track who's viewing your profile
+              </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 See exactly which procurement teams are viewing your products, what they're searching for, and when they're most active. Make data-driven decisions to optimize your visibility.
               </p>
             </motion.div>
           </div>
+        </div>
+      </section>
 
-          {/* Step 4 - Convert Leads */}
+      {/* Feature Section 3 - Lead Management */}
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -994,10 +956,9 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <span className="text-5xl md:text-6xl font-bold text-primary/80">04</span>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Convert to leads
-              </h3>
+              <h2 className="section-headline text-foreground">
+                Convert views into qualified leads
+              </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Buyers can contact you directly through the platform. With premium ads, get 5x more visibility and priority placement in search results.
               </p>
