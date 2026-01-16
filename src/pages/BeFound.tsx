@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock } from "lucide-react";
+import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock, Plus, Minus } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -416,6 +416,180 @@ const LeadManagementMockup = () => {
         </div>
       </div>
     </WindowChrome>
+  );
+};
+
+// FAQ Categories and Data for BeFound
+const beFoundFaqCategories = [
+  {
+    id: "profiles",
+    label: "Profiles",
+    faqs: [
+      {
+        question: "Is creating a supplier profile free?",
+        answer: "Yes, basic profiles are completely free forever. You can claim your company, add products, certifications, and capabilities at no cost. Premium features like priority placement and analytics require a subscription.",
+      },
+      {
+        question: "How do I claim my company profile?",
+        answer: "Search for your company name on YVOO. If it exists, click 'Claim This Profile' and verify ownership via email domain or documentation. If not found, create a new profile in under 5 minutes.",
+      },
+      {
+        question: "What information should I include in my profile?",
+        answer: "Complete profiles rank higher. Include company overview, certifications (ISO, IATF, etc.), product categories, manufacturing capabilities, equipment list, capacity, and high-quality images of your facility and products.",
+      },
+      {
+        question: "Can I update my profile anytime?",
+        answer: "Yes, you have full control. Update products, add new certifications, change images, and modify capabilities whenever needed. Changes go live immediately.",
+      },
+    ],
+  },
+  {
+    id: "visibility",
+    label: "Visibility",
+    faqs: [
+      {
+        question: "How do buyers find my profile?",
+        answer: "Buyers search by product category, capability, certification, location, and industry. Our AI matches their requirements to relevant suppliers. Complete profiles with verified certifications rank higher in search results.",
+      },
+      {
+        question: "What is premium placement?",
+        answer: "Premium suppliers appear at the top of search results, get featured in buyer newsletters, and receive priority visibility in relevant categories. This typically results in 5x more profile views.",
+      },
+      {
+        question: "How can I improve my search ranking?",
+        answer: "Complete all profile sections, verify certifications, add detailed product descriptions, upload quality images, respond quickly to inquiries, and maintain high response rates. Profile completeness directly impacts ranking.",
+      },
+      {
+        question: "Can I see which buyers viewed my profile?",
+        answer: "Premium accounts see detailed analytics: which companies viewed your profile, what they searched for, time spent on your profile, and geographic distribution of viewers.",
+      },
+    ],
+  },
+  {
+    id: "leads",
+    label: "Lead Generation",
+    faqs: [
+      {
+        question: "How do I receive inquiries from buyers?",
+        answer: "Buyers can contact you directly through the platform via RFQ forms, quote requests, or direct messages. You receive instant notifications via email and dashboard. Premium users get priority lead routing.",
+      },
+      {
+        question: "What qualifies as a lead?",
+        answer: "Leads include RFQ submissions, quote requests, capability inquiries, and direct contact requests from verified procurement professionals. All leads include buyer company info and specific requirements.",
+      },
+      {
+        question: "How quickly should I respond to inquiries?",
+        answer: "We recommend responding within 24 hours. Fast response rates improve your profile ranking and buyer satisfaction. Our analytics show suppliers with <4 hour response times win 3x more projects.",
+      },
+      {
+        question: "Can I filter or qualify leads?",
+        answer: "Yes, you can set preferences for lead types, minimum order values, geographic regions, and industries. Premium accounts can auto-decline leads that don't match your criteria.",
+      },
+    ],
+  },
+];
+
+// BeFound FAQ Component
+const BeFoundFAQ = () => {
+  const [activeCategory, setActiveCategory] = useState("profiles");
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const activeFaqs = beFoundFaqCategories.find((cat) => cat.id === activeCategory)?.faqs || [];
+
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    setOpenIndex(0);
+  };
+
+  return (
+    <section className="py-24 md:py-32 px-6 bg-white">
+      <div className="container mx-auto max-w-7xl">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="section-headline text-foreground">
+            Questions suppliers ask
+          </h2>
+        </motion.div>
+
+        {/* Category Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-wrap gap-3 mb-12"
+        >
+          {beFoundFaqCategories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => handleCategoryChange(category.id)}
+              className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                activeCategory === category.id
+                  ? "bg-foreground text-white"
+                  : "bg-muted text-foreground hover:bg-muted/80"
+              }`}
+            >
+              {category.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* FAQ List */}
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="max-w-4xl"
+        >
+          {activeFaqs.map((faq, index) => (
+            <div
+              key={index}
+              className="border-t border-border"
+            >
+              <button
+                onClick={() => toggleFaq(index)}
+                className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+              >
+                <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                  {faq.question}
+                </span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted flex items-center justify-center transition-colors duration-200 group-hover:bg-muted/80">
+                  {openIndex === index ? (
+                    <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  ) : (
+                    <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                  )}
+                </div>
+              </button>
+              
+              <motion.div
+                initial={false}
+                animate={{
+                  height: openIndex === index ? "auto" : 0,
+                  opacity: openIndex === index ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
@@ -857,6 +1031,9 @@ const BeFound = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <BeFoundFAQ />
 
       {/* Final CTA */}
       <section className="py-32 px-6 bg-foreground">
