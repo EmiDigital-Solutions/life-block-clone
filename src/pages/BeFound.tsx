@@ -946,7 +946,7 @@ const BeFound = () => {
       </section>
 
       {/* Stats Section - Archlet Style */}
-      <section className="py-32 px-6 bg-white border-t border-foreground">
+      <section className="py-32 px-6 bg-white border-t border-foreground/10">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
             {/* Left Column - Title */}
@@ -956,7 +956,7 @@ const BeFound = () => {
               viewport={{ once: true }}
               className="lg:sticky lg:top-32"
             >
-              <h2 className="text-3xl sm:text-4xl font-black text-foreground tracking-[-0.03em] leading-[1.1]">
+              <h2 className="section-headline text-foreground">
                 Known for driving supplier visibility and qualified leads
               </h2>
               <div className="mt-10">
@@ -964,7 +964,7 @@ const BeFound = () => {
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-foreground text-white px-8 py-4 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
+                  className="inline-flex items-center justify-center bg-foreground text-white px-6 py-3 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
                 >
                   Read more
                 </a>
@@ -978,13 +978,13 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="border-t border-foreground pt-6 pb-12 pr-12 border-r border-r-foreground/10"
+                className="border-t border-foreground/20 pt-6 pb-12 pr-12 border-r border-r-foreground/10"
               >
-                <p className="text-sm text-foreground/60 font-mono tracking-wide mb-6">Get discovered faster</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-[-0.04em]">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Get discovered faster</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
                   5x
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/60 leading-relaxed text-sm">
                   More visibility with optimized digital twin profiles
                 </p>
               </motion.div>
@@ -995,13 +995,13 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.05 }}
-                className="border-t border-foreground pt-6 pb-12 pl-12"
+                className="border-t border-foreground/20 pt-6 pb-12 pl-12"
               >
-                <p className="text-sm text-foreground/60 font-mono tracking-wide mb-6">Increase qualified leads</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-[-0.04em]">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Increase qualified leads</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
                   3x
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/60 leading-relaxed text-sm">
                   More RFQ submissions from verified buyers
                 </p>
               </motion.div>
@@ -1012,13 +1012,13 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="border-t border-foreground pt-6 pb-12 pr-12 border-r border-r-foreground/10"
+                className="border-t border-foreground/20 pt-6 pb-12 pr-12 border-r border-r-foreground/10"
               >
-                <p className="text-sm text-foreground/60 font-mono tracking-wide mb-6">Buyer searches annually</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-[-0.04em]">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Buyer searches annually</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
                   7M+
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/60 leading-relaxed text-sm">
                   Procurement professionals actively searching
                 </p>
               </motion.div>
@@ -1029,13 +1029,13 @@ const BeFound = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="border-t border-foreground pt-6 pb-12 pl-12"
+                className="border-t border-foreground/20 pt-6 pb-12 pl-12"
               >
-                <p className="text-sm text-foreground/60 font-mono tracking-wide mb-6">Win more projects</p>
-                <p className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-[-0.04em]">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-6">Win more projects</p>
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
                   40%
                 </p>
-                <p className="text-foreground/60 leading-relaxed">
+                <p className="text-foreground/60 leading-relaxed text-sm">
                   Higher conversion rate from inquiry to contract
                 </p>
               </motion.div>
