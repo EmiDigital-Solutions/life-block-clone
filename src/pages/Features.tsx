@@ -5,61 +5,61 @@ import { ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// Feature categories with their features
+// Feature categories with their features - Based on official YVOO tech sheets
 const featureCategories = [
   {
     id: "search-suppliers",
-    name: "Search Suppliers",
-    headline: "Search Suppliers\nfeatures",
+    name: "SearchPro+",
+    headline: "SearchPro+\nfeatures",
     link: "/search-suppliers",
     features: [
       {
-        title: "AI-Powered Search",
-        description: "Find suppliers using natural language queries and intelligent matching."
+        title: "AI Preference Engine",
+        description: "AI automatically recognizes your requirements and preferences based on your profile and usage patterns."
       },
       {
-        title: "Global Coverage",
-        description: "Access verified suppliers across 50+ countries worldwide."
+        title: "Intelligent Requirement Capture",
+        description: "AI extracts specifications from natural language or uploaded documents like CAD drawings and datasheets."
       },
       {
-        title: "Smart Filters",
-        description: "Filter by certification, capacity, industry, and location."
+        title: "Triple-Source Search Architecture",
+        description: "Simultaneous search across verified supplier database, company research database, and real-time web discovery."
       },
       {
-        title: "Capability Matching",
-        description: "Match your requirements to supplier capabilities automatically."
+        title: "Multi-Factor Matching",
+        description: "Evaluation by industry, location, certifications, capacity, and specific technical requirements."
       },
       {
-        title: "Risk Scoring",
-        description: "View supplier risk profiles and compliance status instantly."
+        title: "Explainable AI",
+        description: "Transparent reasoning for supplier recommendations with match percentages and qualification details."
       },
       {
-        title: "Verified Profiles",
-        description: "Access supplier data validated through on-site audits."
+        title: "Smart Deduplication",
+        description: "Automatic detection and merging of duplicate supplier entries across different data sources."
       },
       {
-        title: "Instant Shortlists",
-        description: "Create and export supplier shortlists in seconds."
+        title: "Dynamic Results",
+        description: "Delivers only genuinely relevant matches, no filler results to pad the list."
       },
       {
-        title: "Historical Data",
-        description: "Leverage past audit data for better sourcing decisions."
+        title: "Context-Aware Suggestions",
+        description: "Industry-specific recommendations based on usage patterns and search history."
       },
       {
-        title: "Integration Ready",
-        description: "Connect with your existing procurement systems seamlessly."
+        title: "Alternative Term Discovery",
+        description: "Identifies related terms and synonyms for complete market coverage across languages."
       },
       {
-        title: "Custom Alerts",
-        description: "Get notified when new matching suppliers are verified."
+        title: "Real-Time Data Enrichment",
+        description: "Continuous supplier data updates including new certifications, expansions, and risk signals."
       },
       {
-        title: "Comparison Tools",
-        description: "Compare multiple suppliers side-by-side with ease."
+        title: "One-Click Audit Ordering",
+        description: "Direct on-site audit ordering with AI-powered facility analysis, equipment recognition, and compliance verification."
       },
       {
-        title: "Export & Share",
-        description: "Share supplier profiles and reports with stakeholders."
+        title: "Integrated RFQ Management",
+        description: "Send standardized RFQs to multiple suppliers directly from search results with one click."
       }
     ]
   },
@@ -70,52 +70,52 @@ const featureCategories = [
     link: "/scanpro-plus",
     features: [
       {
-        title: "One-Click Dispatch",
-        description: "Deploy auditors to any factory with a single click."
+        title: "Flexible Audit Templates",
+        description: "Customizable audit frameworks for any industry, standard, or customer requirement."
       },
       {
-        title: "AI Copilot",
-        description: "Get intelligent audit recommendations and analysis."
+        title: "AI Equipment Recognition",
+        description: "Point camera at machines for instant identification, age, maintenance status, and compliance assessment."
       },
       {
-        title: "Live Tracking",
-        description: "Monitor audit progress in real-time from anywhere."
+        title: "Global Auditor Network (Uber Principle)",
+        description: "On-demand access to certified auditors worldwide with same-day and next-day availability."
       },
       {
-        title: "Compliance Standards",
-        description: "Support for 200+ international compliance standards."
+        title: "Smart Auditor Matching",
+        description: "Automatic selection of optimal auditors based on your industry and specific requirements."
       },
       {
-        title: "Evidence Collection",
-        description: "Capture and verify audit evidence digitally."
+        title: "Dynamic Scoring Systems",
+        description: "Configurable evaluation criteria with industry-specific weightings for Pharma, Automotive, Aerospace."
       },
       {
-        title: "Smart Scheduling",
-        description: "Optimize auditor deployment with AI-powered scheduling."
+        title: "Intelligent Evidence Collection",
+        description: "Automatic categorization and analysis of audit evidence by quality control, safety, environmental standards."
       },
       {
-        title: "Multi-Language Reports",
-        description: "Generate audit reports in 15+ languages automatically."
+        title: "Real-Time Progress Tracking",
+        description: "Live updates with milestone notifications during audit execution."
       },
       {
-        title: "Root Cause Analysis",
-        description: "Identify systemic issues with AI-powered analysis."
+        title: "Predictive Risk Scoring",
+        description: "Risk prediction based on historical audit data identifying quality risks from equipment and processes."
       },
       {
-        title: "Corrective Actions",
-        description: "Track and verify corrective action implementation."
+        title: "Automated Improvement Tracking",
+        description: "Monitor supplier development with milestone oversight and automatic reminders for corrective actions."
       },
       {
-        title: "Audit Templates",
-        description: "Use industry-specific audit templates and checklists."
+        title: "Comparative Benchmarking",
+        description: "Analyze suppliers against industry peers with percentage-based quality and environmental scoring."
       },
       {
-        title: "Photo Documentation",
-        description: "Geo-tagged, timestamped evidence with AI verification."
+        title: "AI-Powered Audit Planning",
+        description: "Optimal resource allocation, duration estimation, and specialist requirements for each audit."
       },
       {
-        title: "Instant Reports",
-        description: "Receive comprehensive audit reports within 24 hours."
+        title: "Template Marketplace",
+        description: "Share and discover certified audit frameworks from industry leaders."
       }
     ]
   },
@@ -127,39 +127,39 @@ const featureCategories = [
     features: [
       {
         title: "Real-Time Monitoring",
-        description: "Continuous visibility into factory operations and performance."
+        description: "Continuous visibility into factory operations and performance with live data feeds."
       },
       {
-        title: "Risk Scoring",
-        description: "Dynamic risk assessment updated with live data."
+        title: "Predictive Risk Scoring",
+        description: "Dynamic risk assessment updated with live data anticipating issues before impact."
       },
       {
         title: "ERP Integration",
-        description: "Seamless connection with your enterprise systems."
+        description: "Seamless connection with SAP, Oracle, Microsoft Dynamics, Infor, and Epicor systems."
       },
       {
-        title: "Predictive Analytics",
-        description: "Anticipate issues before they impact your supply chain."
+        title: "Quality Management Integration",
+        description: "Direct data exchange with Trackwise, MasterControl, Pilgrim, and ETQ systems."
       },
       {
-        title: "Alert System",
-        description: "Customizable alerts for quality and compliance events."
+        title: "Automated Red-Flag Alerts",
+        description: "Immediate notification for security violations, quality defects, or compliance issues."
       },
       {
         title: "Performance Dashboards",
-        description: "Visual insights into supplier performance metrics."
-      },
-      {
-        title: "Trend Analysis",
-        description: "Track supplier performance trends over time."
+        description: "Visual insights into supplier performance metrics and trend analysis over time."
       },
       {
         title: "Benchmark Comparison",
-        description: "Compare supplier performance against industry benchmarks."
+        description: "Compare supplier performance against industry benchmarks and standards."
       },
       {
-        title: "Document Management",
-        description: "Centralized repository for all supplier documentation."
+        title: "Supplier Portal Integration",
+        description: "Audit status and results visible to suppliers in your existing portal."
+      },
+      {
+        title: "CAPA System Integration",
+        description: "Non-conformance reports automatically transferred to your corrective action system."
       }
     ]
   },
@@ -171,27 +171,27 @@ const featureCategories = [
     features: [
       {
         title: "Global Coverage",
-        description: "Access to 500+ certified auditors in 50+ countries."
+        description: "Access to certified auditors in 50+ countries with local expertise and language skills."
       },
       {
-        title: "Industry Expertise",
-        description: "Specialists in automotive, aerospace, pharma, and more."
-      },
-      {
-        title: "Certification Verified",
-        description: "All auditors verified for relevant certifications."
+        title: "Industry Specialists",
+        description: "Experts in Automotive (IATF 16949), Aerospace (AS9100), Pharma (GMP), and Chemical (REACH)."
       },
       {
         title: "Fast Deployment",
-        description: "Auditors on-site within 48 hours in most regions."
+        description: "Same-day and next-day audits available. Auditors on-site within 24-48 hours."
       },
       {
-        title: "Quality Assurance",
-        description: "Continuous auditor performance monitoring and training."
+        title: "Transparent Fixed Pricing",
+        description: "Audits from €700 fixed price with no hidden costs or renegotiations."
       },
       {
-        title: "Local Language",
-        description: "Native speakers for effective factory communication."
+        title: "Rating System",
+        description: "Continuous auditor performance monitoring with quality assurance and training."
+      },
+      {
+        title: "GPS Tracking",
+        description: "Real-time auditor location tracking with live status updates during audits."
       }
     ]
   },
@@ -202,24 +202,28 @@ const featureCategories = [
     link: "#",
     features: [
       {
-        title: "REST API",
-        description: "Full API access for custom integrations and automation."
+        title: "ERP Connectors",
+        description: "Pre-built connectors for SAP, Oracle, Microsoft Dynamics, Infor, and Epicor."
       },
       {
-        title: "ERP Connectors",
-        description: "Pre-built connectors for SAP, Oracle, and more."
+        title: "Quality Management Systems",
+        description: "Direct integration with Trackwise, MasterControl, Pilgrim Quality Solutions, and ETQ."
+      },
+      {
+        title: "Supplier Portal Integration",
+        description: "Embed audit status and results into your existing supplier portal infrastructure."
       },
       {
         title: "SSO Integration",
-        description: "Enterprise single sign-on with SAML and OAuth."
+        description: "Enterprise single sign-on with SAML and OAuth for secure access management."
       },
       {
-        title: "Webhook Events",
-        description: "Real-time event notifications to your systems."
+        title: "REST API",
+        description: "Full API access for custom integrations and automation workflows."
       },
       {
-        title: "Data Export",
-        description: "Flexible data export in multiple formats."
+        title: "Compliance & Certifications",
+        description: "GDPR-compliant, SOC2-certified with complete audit trail for FDA, ISO 9001, TS16949, AS9100."
       }
     ]
   }
