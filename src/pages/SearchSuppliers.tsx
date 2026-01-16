@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { Check, Search, Save, FileText, Globe, Cpu, TrendingUp, Users, Clock, Target, Zap, Shield, CheckCircle2, ArrowRight, Sparkles, MapPin, Award, Factory, X, Settings, ShoppingCart, Lightbulb, MessageSquare } from "lucide-react";
-import { PixelIcon } from "@/components/PixelIcon";
+import { Check, ArrowRight, X } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -619,7 +618,6 @@ const SearchSuppliers = () => {
               <div className="bg-foreground px-6 py-4 flex items-center justify-between">
                 <h2 className="text-white text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
-                  <Cpu className="w-5 h-5 text-primary" />
                   <span className="text-white text-sm">AI-Powered</span>
                 </div>
               </div>
@@ -682,7 +680,7 @@ const SearchSuppliers = () => {
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
                           <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
-                            <Cpu className="w-3 h-3 text-white" />
+                            <span className="text-[8px] text-white font-bold">AI</span>
                           </div>
                           <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                         </div>
@@ -702,7 +700,7 @@ const SearchSuppliers = () => {
                     <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
-                          <Cpu className="w-3 h-3 text-white" />
+                          <span className="text-[8px] text-white font-bold">AI</span>
                         </div>
                         <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
                         {isTyping && (
@@ -741,7 +739,7 @@ const SearchSuppliers = () => {
                   className="mt-6"
                 >
                   <div className="flex items-center gap-2 mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-primary" strokeWidth={3} />
+                    <Check className="w-5 h-5 text-primary" strokeWidth={3} />
                     <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
                   </div>
                   
@@ -759,7 +757,6 @@ const SearchSuppliers = () => {
                           <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                          <MapPin className="w-4 h-4" />
                           <span>{supplier.location}</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
@@ -879,9 +876,9 @@ const SearchSuppliers = () => {
           {/* Tabs */}
           <div className="flex gap-2 md:gap-4 mb-6 md:mb-8 flex-wrap">
             {[
-              { id: "search", label: "1 Search", icon: Search },
-              { id: "save", label: "2 Save", icon: Save },
-              { id: "export", label: "3 Export", icon: FileText }
+              { id: "search", label: "1 Search" },
+              { id: "save", label: "2 Save" },
+              { id: "export", label: "3 Export" }
             ].map((tab, index) => (
               <motion.button
                 key={tab.id}
@@ -896,11 +893,6 @@ const SearchSuppliers = () => {
                     : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
                 }`}
               >
-                <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center ${
-                  activeTab === tab.id ? "bg-primary/10" : "bg-gray-100"
-                }`}>
-                  <tab.icon className={`w-3 h-3 md:w-4 md:h-4 ${activeTab === tab.id ? "text-primary" : "text-gray-500"}`} />
-                </div>
                 {tab.label}
               </motion.button>
             ))}
@@ -931,7 +923,7 @@ const SearchSuppliers = () => {
                         className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl hover:from-primary/10 transition-all group"
                       >
                         <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <CheckCircle2 className="w-5 h-5 text-primary" />
+                          <Check className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1">
                           <p className="font-semibold text-gray-900">{company.name}</p>
@@ -950,7 +942,7 @@ const SearchSuppliers = () => {
                   <div className="p-6 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl border border-primary/20">
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                        <Save className="w-5 h-5 text-primary" />
+                        <span className="text-primary font-bold text-sm">📋</span>
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-gray-900 mb-2">Local List - Automotive Supplier EMEA</p>
@@ -977,7 +969,6 @@ const SearchSuppliers = () => {
                         transition={{ delay: index * 0.1 }}
                       >
                         <Button variant="outline" className="rounded-full border-primary/30 text-primary hover:bg-primary/10 px-6 py-3">
-                          <FileText className="w-4 h-4 mr-2" />
                           {format}
                         </Button>
                       </motion.div>
@@ -1039,11 +1030,6 @@ const SearchSuppliers = () => {
                 01
               </div>
               
-              {/* Icon */}
-              <div className="mb-6">
-                <MessageSquare className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
-              </div>
-              
               {/* Content */}
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
                 AI Conversational Workflow
@@ -1076,11 +1062,6 @@ const SearchSuppliers = () => {
                 02
               </div>
               
-              {/* Icon */}
-              <div className="mb-6">
-                <Globe className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
-              </div>
-              
               {/* Content */}
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
                 Triple-Source Architecture
@@ -1111,11 +1092,6 @@ const SearchSuppliers = () => {
               {/* Number Badge */}
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 03
-              </div>
-              
-              {/* Icon */}
-              <div className="mb-6">
-                <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-gray-900" strokeWidth={1.5} />
               </div>
               
               {/* Content */}
@@ -1271,11 +1247,10 @@ const SearchSuppliers = () => {
               >
                 <div className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-8 md:p-10 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-start gap-6">
-                    {/* 8-bit Pixel Arrow */}
+                    {/* Arrow indicator */}
                     <div className="flex-shrink-0">
-                      <PixelIcon 
-                        name="arrow-right" 
-                        className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:translate-x-1"
+                      <ArrowRight 
+                        className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:translate-x-1 text-foreground"
                       />
                     </div>
                     
@@ -1497,7 +1472,6 @@ const SearchSuppliers = () => {
               className="bg-[#ebebeb] shadow-lg p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-3xl mx-auto mb-8"
             >
               <div className="flex items-center gap-3 flex-1 px-4">
-                <Search className="w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="What are you looking for? (e.g., CNC machining, ISO 9001...)"
@@ -1550,18 +1524,9 @@ const SearchSuppliers = () => {
                       {selectedSupplier.name}
                     </DialogTitle>
                     <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                        <span>{selectedSupplier.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                        <span>{selectedSupplier.employees} employees</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Factory className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-                        <span>Founded {selectedSupplier.founded}</span>
-                      </div>
+                      <span>{selectedSupplier.location}</span>
+                      <span>{selectedSupplier.employees} employees</span>
+                      <span>Founded {selectedSupplier.founded}</span>
                     </div>
                   </div>
                 </div>
@@ -1590,8 +1555,7 @@ const SearchSuppliers = () => {
 
               {/* Certifications */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Certifications & Standards
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -1605,14 +1569,13 @@ const SearchSuppliers = () => {
 
               {/* Capabilities */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Core Capabilities
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {selectedSupplier.capabilities.map((capability: string) => (
                     <div key={capability} className="flex items-center gap-2 text-sm text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                      <Check className="w-4 h-4 text-primary flex-shrink-0" />
                       <span>{capability}</span>
                     </div>
                   ))}
@@ -1621,8 +1584,7 @@ const SearchSuppliers = () => {
 
               {/* Equipment */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Equipment & Technology
                 </h3>
                 <div className="space-y-2">
@@ -1642,9 +1604,6 @@ const SearchSuppliers = () => {
                 </Button>
                 <Button variant="outline" className="flex-1" size="lg">
                   Schedule Audit
-                </Button>
-                <Button variant="outline">
-                  <Save className="w-4 h-4" />
                 </Button>
               </div>
             </div>
