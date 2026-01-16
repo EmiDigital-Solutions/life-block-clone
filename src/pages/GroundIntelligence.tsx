@@ -699,11 +699,11 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-8 lg:p-10 rounded-2xl border ${
+                className={`p-8 lg:p-10 rounded-lg ${
                   plan.highlighted 
-                    ? 'bg-background border-primary border-2 shadow-lg' 
-                    : 'bg-background border-border'
-                }`}
+                    ? 'bg-[#ebebeb] border-2 border-primary' 
+                    : 'bg-[#ebebeb]'
+                } hover:bg-[#e3e3e3] transition-colors duration-300`}
               >
                 <h3 className="text-2xl font-semibold text-foreground mb-2">{plan.name}</h3>
                 <p className="text-muted-foreground mb-8">{plan.description}</p>
@@ -827,7 +827,7 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group block"
               >
-                <div className="rounded-2xl overflow-hidden border border-border bg-background hover:shadow-lg transition-all duration-300">
+                <div className="rounded-lg overflow-hidden bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all duration-300">
                   <div className="aspect-[16/10] overflow-hidden">
                     <img 
                       src={product.image} 
@@ -877,10 +877,10 @@ const GroundIntelligence = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg">
                 Request a demo
+                <ArrowRight className="w-5 h-5" />
               </Button>
               <Button variant="outline" size="lg">
                 Contact sales
-                <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </motion.div>

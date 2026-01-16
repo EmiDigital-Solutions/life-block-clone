@@ -128,8 +128,9 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button size="lg">
               Get In Touch
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </motion.div>
         </div>
@@ -263,8 +264,9 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button size="lg">
               Get In Touch
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </motion.div>
         </div>
@@ -399,8 +401,9 @@ const AboutUs = () => {
             <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
             </p>
-            <Button className="bg-[#0A7FA5] text-white hover:bg-[#0A7FA5]/90 rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg">
+            <Button size="lg">
               Get In Touch
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </motion.div>
         </div>
@@ -479,16 +482,11 @@ const AboutUs = () => {
               Join leading enterprises achieving 70% cost reduction and 80% time savings.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button 
-                className="bg-[#B2CDBC] text-black hover:bg-[#B2CDBC]/90 rounded-lg px-8 py-6 text-base font-semibold"
-              >
+              <Button size="lg">
                 Request Demo
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="w-5 h-5" />
               </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-black rounded-lg px-8 py-6 text-base font-semibold"
-              >
+              <Button variant="outline" size="lg">
                 Contact Sales
               </Button>
             </div>

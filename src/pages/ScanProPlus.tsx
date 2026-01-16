@@ -2510,7 +2510,7 @@ const ScanProPlus = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] rounded-lg p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <h3 className="text-xl font-semibold text-foreground mb-6">ERP Integration</h3>
               <div className="space-y-4">
@@ -2536,7 +2536,7 @@ const ScanProPlus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-[#ebebeb] rounded-[28px] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-[#ebebeb] rounded-lg p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
             >
               <h3 className="text-xl font-semibold text-foreground mb-6">Global Network</h3>
               <div className="space-y-4">
@@ -2563,7 +2563,7 @@ const ScanProPlus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#1a1a1a] rounded-[32px] p-12 lg:p-16"
+            className="bg-[#1a1a1a] rounded-lg p-12 lg:p-16"
           >
             <h3 className="text-2xl md:text-3xl text-white mb-4">
               <span className="font-semibold">Your auditor is already there.</span>
@@ -2571,15 +2571,20 @@ const ScanProPlus = () => {
             <p className="text-white/60 text-lg mb-8 max-w-2xl">
               Need a VDA 6.3 audit at your supplier in Shenzhen? No flights, no hotel costs, no time lost. Book a local expert—on-site within 24 hours.
             </p>
-            <a 
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-foreground font-medium rounded-full hover:bg-white/90 transition-all duration-300"
+            <Button 
+              asChild
+              size="lg"
+              className="bg-white text-foreground hover:bg-white/90"
             >
-              Book a Demo
-              <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
-            </a>
+              <a 
+                href="https://calendly.com/yvoo/demo-yvoo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book a Demo
+                <PixelIcon name="arrow-right" className="w-5 h-5" color="currentColor" />
+              </a>
+            </Button>
           </motion.div>
         </div>
       </section>
