@@ -513,14 +513,14 @@ const BeFound = () => {
 
       {/* First Testimonial - Archlet Side-by-Side Style */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Portrait Photo - Smaller, B&W */}
+            {/* Portrait Photo - Smaller, B&W, left-aligned */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden"
+              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden justify-self-start"
             >
               <img 
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" 
@@ -725,14 +725,14 @@ const BeFound = () => {
 
       {/* Second Testimonial - Archlet Side-by-Side Style */}
       <section className="py-20 px-6 bg-white border-t border-border">
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Portrait Photo - Smaller, B&W */}
+            {/* Portrait Photo - Smaller, B&W, left-aligned */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden"
+              className="aspect-[3/4] max-w-sm bg-muted overflow-hidden justify-self-start"
             >
               <img 
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" 
