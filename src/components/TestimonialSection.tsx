@@ -12,12 +12,31 @@ const TestimonialSection = () => {
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
+          {/* Beyond Discovery Headline - Psychological anchor */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8 md:mb-12"
+          >
+            <p className="text-sm font-mono text-primary uppercase tracking-widest mb-4">
+              The complete supplier platform
+            </p>
+            <h2 className="section-headline text-foreground max-w-3xl mx-auto">
+              Beyond discovery
+            </h2>
+            <p className="text-lg text-muted-foreground mt-4 max-w-xl mx-auto">
+              Others stop at search results. We deliver verified partnerships through audits, intelligence, and development.
+            </p>
+          </motion.div>
+
           {/* Platform Demo - Centered above content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-16 md:mb-20 lg:mb-24"
           >
             <div 
