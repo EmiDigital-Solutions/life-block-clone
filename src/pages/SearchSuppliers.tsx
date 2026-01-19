@@ -780,364 +780,275 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - BeFound KPI Style */}
       <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-white" data-nav-theme="light">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20">
+        <div className="container mx-auto px-4 md:px-6 lg:px-20 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mb-8 md:mb-16"
           >
-            <h2 className="section-headline text-foreground mb-3 px-4 max-w-3xl">
+            <h2 className="section-headline text-foreground mb-3 max-w-3xl">
               Your next supplier, just a click away
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          {/* KPI Grid 3 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
             {[
               {
+                category: "Research efficiency",
                 stat: "10x",
-                title: "faster supplier research",
-                features: ["Filtered results", "AI-based ranking systems", "Always up-to-date"],
-                gradient: "from-[#A8BFC5] to-[#96ADB8]"
+                description: "Faster supplier research with AI-based ranking and always up-to-date data"
               },
               {
+                category: "Global coverage",
                 stat: "25M+",
-                title: "supplier profiles",
-                features: ["Global transparency", "Niche technologies", "Cross-sector searches"],
-                gradient: "from-[#B2CDBC] to-[#A0B9A9]"
+                description: "Supplier profiles across industries and niche technologies worldwide"
               },
               {
+                category: "Search depth",
                 stat: "100x",
-                title: "more results per query with SearchPro+",
-                features: ["Greater variety in supplier profiles", "Better comparison opportunities", "Higher match rate"],
-                gradient: "from-[#A8BFC5] to-[#96ADB8]"
+                description: "More results per query with SearchPro+ for greater variety and higher match rates"
               }
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+                transition={{ delay: index * 0.05 }}
+                className="pb-12"
               >
-                <Card className="bg-[#ebebeb] hover:bg-[#e3e3e3] shadow-lg hover:shadow-2xl transition-all h-full border-0 overflow-hidden relative">
-                  <CardHeader className="relative p-6 md:p-8">
-                    <CardTitle className="text-foreground text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 relative z-10">{item.stat}</CardTitle>
-                    <CardDescription className="text-muted-foreground text-base md:text-lg lg:text-xl font-semibold relative z-10">{item.title}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-6 md:p-8 pt-0">
-                    <ul className="space-y-2 md:space-y-3">
-                      {item.features.map((feature, i) => (
-                        <motion.li
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.2 + i * 0.1 }}
-                          className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base"
-                        >
-                          <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
-                          <span>{feature}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                <p className="text-sm text-foreground/50 font-mono tracking-wide uppercase mb-2">
+                  {item.category}
+                </p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                    {item.stat}
+                  </p>
+                  <p className="text-foreground/60 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Product Overview Section */}
-      <section 
-        className="py-8 md:py-20 bg-white"
-        data-nav-theme="light"
-      >
-        <div className="container mx-auto px-4 md:px-6 lg:px-20">
-          <motion.div
+      {/* Product Overview Section - BeFound Style */}
+      <section className="py-24 px-6 bg-white" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 md:mb-12"
+            className="section-headline text-foreground mb-20 max-w-3xl"
           >
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary"></div>
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Process</span>
-            </div>
-            <h2 className="section-headline text-foreground">
-              Product Overview
-            </h2>
-          </motion.div>
+            Find, save, and export suppliers in three simple steps
+          </motion.h2>
+          
+          {/* Feature 1 - Search */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Search with AI precision
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Describe your requirements naturally or upload specifications. Our AI interprets your needs and finds matching suppliers from a database of 25M+ profiles.
+              </p>
+              <ul className="space-y-3">
+                {["AI-powered natural language search", "Technical spec extraction from documents", "Multi-factor matching across 20+ criteria"].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-muted p-8"
+            >
+              <div className="space-y-3">
+                {[
+                  { name: "Kenna Metal Inc.", location: "Chicago, USA", year: "1973" },
+                  { name: "DuPont SARL", location: "Paris, France", year: "1896" },
+                  { name: "CRH Automotive", location: "Munich, Germany", year: "2005" }
+                ].map((company, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-4 bg-white"
+                  >
+                    <div className="w-10 h-10 bg-primary/20 flex items-center justify-center">
+                      <Check className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">{company.name}</p>
+                      <p className="text-sm text-gray-500">{company.location} • {company.year}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Tabs */}
-          <div className="flex gap-2 md:gap-4 mb-6 md:mb-8 flex-wrap">
+          {/* Feature 2 - Save */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-muted p-8 order-2 lg:order-1"
+            >
+              <div className="p-6 bg-white border border-foreground/10">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-10 h-10 bg-primary/20 flex items-center justify-center">
+                    <span className="text-primary font-bold text-sm">📋</span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-gray-900 mb-1">Automotive Supplier EMEA</p>
+                    <p className="text-sm text-gray-500">12 suppliers • Updated today</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <span className="px-3 py-1 bg-muted text-sm">Share</span>
+                  <span className="px-3 py-1 bg-muted text-sm">Edit</span>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6 order-1 lg:order-2"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Organize and collaborate
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Create custom lists tailored to your business needs. Share with your team and collaborate in real-time—everyone stays aligned on supplier selection.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Feature 3 - Export */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Export to your systems
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Seamlessly integrate with your existing procurement workflows. Export supplier data in multiple formats for use in your ERP, SRM, or BI tools.
+              </p>
+              <div className="flex gap-3 flex-wrap">
+                {["CSV", "Excel", "PDF", "JSON"].map((format) => (
+                  <span key={format} className="px-4 py-2 bg-muted text-foreground font-medium">
+                    {format}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-muted p-8"
+            >
+              <div className="bg-white p-6 border border-foreground/10">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary flex items-center justify-center">
+                    <ArrowRight className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground">Export Complete</p>
+                    <p className="text-sm text-muted-foreground">12 suppliers exported to Excel</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Section - BeFound Style Benefits Cards */}
+      <section className="py-16 px-6 bg-white" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              { id: "search", label: "1 Search" },
-              { id: "save", label: "2 Save" },
-              { id: "export", label: "3 Export" }
-            ].map((tab, index) => (
-              <motion.button
-                key={tab.id}
+              {
+                title: "AI Conversational Workflow",
+                description: "7-step intelligent dialogue that transforms vague requirements into precise technical specifications with materials and certifications."
+              },
+              {
+                title: "Triple-Source Architecture",
+                description: "Simultaneous search across verified databases, research platforms, and real-time web discovery for comprehensive market coverage."
+              },
+              {
+                title: "Smart Preference Engine",
+                description: "AI learns your industry requirements and automatically prioritizes suppliers with relevant certifications and experience."
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-2xl text-sm md:text-base font-semibold transition-all flex items-center gap-2 ${
-                  activeTab === tab.id
-                    ? "bg-white text-primary shadow-lg border-2 border-primary/20 scale-105"
-                    : "bg-white/50 text-gray-600 hover:bg-white hover:shadow-md"
-                }`}
+                className="relative overflow-hidden"
               >
-                {tab.label}
-              </motion.button>
+                <div className="h-2 bg-primary w-full mb-6" />
+                <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+              </motion.div>
             ))}
           </div>
-
-          {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-2xl border border-gray-100"
-            >
-              {activeTab === "search" && (
-                <div className="space-y-6">
-                  <div className="space-y-3">
-                    {[
-                      { name: "Kenna Metal Inc.", location: "Chicago, USA", year: "1973" },
-                      { name: "DuPont SARL", location: "Paris, France", year: "1896" },
-                      { name: "CRH Automotive", location: "Munich, Germany", year: "2005" }
-                    ].map((company, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl hover:from-primary/10 transition-all group"
-                      >
-                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <Check className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-semibold text-gray-900">{company.name}</p>
-                          <p className="text-sm text-gray-500">{company.location} • {company.year}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <Button className="bg-gradient-to-r from-[#B2CDBC] to-[#A0B9A9] text-white hover:from-[#A0B9A9] hover:to-[#8EA5A0] rounded-full w-full py-6 shadow-lg hover:shadow-xl transition-all hover:scale-105">
-                    Save to list
-                  </Button>
-                </div>
-              )}
-              {activeTab === "save" && (
-                <div className="space-y-4">
-                  <div className="p-6 bg-gradient-to-br from-primary/5 to-gray-50 rounded-2xl border border-primary/20">
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-bold text-sm">📋</span>
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-gray-900 mb-2">Local List - Automotive Supplier EMEA</p>
-                        <p className="text-sm text-gray-600">Contains all contacts gathered during the Automotive Sector for Europe.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <Button variant="outline" size="sm" className="rounded-full text-primary border-primary/30 hover:bg-primary/10">Share</Button>
-                      <Button variant="outline" size="sm" className="rounded-full text-primary border-primary/30 hover:bg-primary/10">Edit</Button>
-                      <Button variant="outline" size="sm" className="rounded-full text-red-500 border-red-300 hover:bg-red-50">Delete</Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {activeTab === "export" && (
-                <div className="space-y-6">
-                  <p className="text-gray-600 leading-relaxed">Export your supplier lists in multiple formats for seamless integration with your existing systems.</p>
-                  <div className="flex gap-3 flex-wrap">
-                    {["CSV", "Excel", "PDF", "JSON"].map((format, index) => (
-                      <motion.div
-                        key={format}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Button variant="outline" className="rounded-full border-primary/30 text-primary hover:bg-primary/10 px-6 py-3">
-                          {format}
-                        </Button>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Key suppliers always in sight</h3>
-              <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
-                You can easily create lists of suppliers tailored to your business needs and continuously add new ones as you discover them. Your entire team can access the platform and collaborate effortlessly – keeping everyone on the same page and fully aligned.
-              </p>
-              <Button size="lg" className="group">
-                Get Started
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* Technology Section - Minimalist Design */}
-      <section className="py-16 md:py-32 bg-white relative" data-nav-theme="light">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20">
+      {/* 8 AI Features Section - BeFound Style */}
+      <section className="py-24 md:py-32 bg-white" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl px-6">
           
           {/* Section Header */}
-          <motion.div
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl mb-16 md:mb-24"
+            className="section-headline text-foreground mb-6 max-w-3xl"
           >
-            <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">Technology Stack</p>
-            <h2 className="section-headline text-foreground max-w-2xl">
-              Built for precision, powered by AI
-            </h2>
-          </motion.div>
-
-          {/* Technology Flow */}
-          <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
-            
-            {/* Feature 1 - AI Conversational Workflow */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative"
-            >
-              {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                01
-              </div>
-              
-              {/* Content */}
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                AI Conversational Workflow
-              </h3>
-              <p className="text-base text-gray-600 leading-relaxed">
-                7-step intelligent dialogue that transforms vague requirements into precise technical specifications with materials and certifications.
-              </p>
-              
-              {/* Hover Arrow */}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 0 }}
-                whileHover={{ opacity: 1, x: 0 }}
-                className="hidden md:block absolute -right-6 top-20 text-gray-300"
-              >
-                <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
-              </motion.div>
-            </motion.div>
-
-            {/* Feature 2 - Triple-Source Search */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="group relative"
-            >
-              {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                02
-              </div>
-              
-              {/* Content */}
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                Triple-Source Architecture
-              </h3>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Simultaneous search across verified databases, research platforms, and real-time web discovery for comprehensive market coverage.
-              </p>
-              
-              {/* Hover Arrow */}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 0 }}
-                whileHover={{ opacity: 1, x: 0 }}
-                className="hidden md:block absolute -right-6 top-20 text-gray-300"
-              >
-                <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
-              </motion.div>
-            </motion.div>
-
-            {/* Feature 3 - Smart Preference Engine */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="group"
-            >
-              {/* Number Badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-900 font-bold text-lg mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                03
-              </div>
-              
-              {/* Content */}
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
-                Smart Preference Engine
-              </h3>
-              <p className="text-base text-gray-600 leading-relaxed">
-                AI learns your industry requirements and automatically prioritizes suppliers with relevant certifications and experience.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Bottom Accent Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-16 md:mt-24 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent origin-left"
-          />
-        </div>
-      </section>
-
-      {/* 7 AI Features Section - Minimalist Design */}
-      <section className="py-16 md:py-32 bg-gradient-to-b from-gray-50 to-white" data-nav-theme="light">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20">
-          
-          {/* Section Header */}
-          <motion.div
+            Eight features that transform procurement
+          </motion.h2>
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mb-16 md:mb-24"
+            transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground mb-16 max-w-2xl"
           >
-            <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide uppercase">AI Capabilities</p>
-            <h2 className="section-headline text-foreground mb-6 max-w-2xl">
-              Eight features that transform procurement
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Built to eliminate manual work and deliver precision matching across global supplier networks.
-            </p>
-          </motion.div>
+            Built to eliminate manual work and deliver precision matching across global supplier networks.
+          </motion.p>
 
-          {/* Features List */}
-          <div className="space-y-4 md:space-y-6">
+          {/* Features Grid - 2x4 Layout */}
+          <div className="grid md:grid-cols-2 gap-6">
             {[
               {
                 number: "01",
@@ -1145,10 +1056,10 @@ const SearchSuppliers = () => {
                 description: "Automatically recognizes your requirements and preferences based on your profile, prioritizing certified suppliers for your industry.",
                 detailedExplanation: {
                   overview: "The AI Preference Engine learns from your search history, industry focus, and organizational requirements to intelligently prioritize supplier recommendations.",
-                  forEngineers: "Advanced machine learning algorithms analyze technical specifications, material requirements, and process capabilities from your past searches to predict ideal supplier matches. The system maintains a technical profile that evolves with each interaction, ensuring increasingly accurate recommendations.",
-                  forBuyers: "The engine automatically filters suppliers based on your company's preferred certifications, geographic preferences, and volume requirements. This eliminates manual screening and accelerates qualified supplier identification.",
-                  forAuditors: "Compliance-first filtering ensures recommended suppliers meet your industry's mandatory certifications before presentation. The system tracks which quality standards your organization typically requires (ISO 9001, IATF 16949, AS9100, etc.) and prioritizes accordingly.",
-                  example: "Example: Automotive procurement teams searching for precision components will automatically see TS16949-certified suppliers ranked higher, while pharmaceutical buyers will see GMP-certified manufacturers prioritized—without manual filter configuration."
+                  forEngineers: "Advanced machine learning algorithms analyze technical specifications, material requirements, and process capabilities from your past searches to predict ideal supplier matches.",
+                  forBuyers: "The engine automatically filters suppliers based on your company's preferred certifications, geographic preferences, and volume requirements.",
+                  forAuditors: "Compliance-first filtering ensures recommended suppliers meet your industry's mandatory certifications before presentation.",
+                  example: "Automotive procurement teams searching for precision components will automatically see TS16949-certified suppliers ranked higher."
                 }
               },
               {
@@ -1156,11 +1067,11 @@ const SearchSuppliers = () => {
                 title: "Intelligent Requirement Capture",
                 description: "Extracts specifications from natural language or uploaded documents, converting CAD drawings into searchable requirements.",
                 detailedExplanation: {
-                  overview: "Transform unstructured information—whether typed descriptions, uploaded PDFs, or technical drawings—into precise, searchable supplier requirements automatically.",
-                  forEngineers: "Upload technical drawings (PDF, DWG, STEP files) and the AI extracts tolerances, material specifications (e.g., 'AISI 316L stainless steel'), surface finish requirements (Ra values), and geometric tolerances (GD&T symbols). Natural language processing converts phrases like 'high-strength aluminum alloy' into specific standards (e.g., 6061-T6, 7075-T651).",
-                  forBuyers: "Eliminate hours of manual RFQ preparation. Simply describe what you need in plain language or forward a technical email from engineering, and the system structures all requirements automatically. This accelerates your RFQ cycles significantly.",
-                  forAuditors: "Automatically identify compliance requirements embedded in technical documents. The system flags certifications, testing standards (e.g., 'ASTM E8 tensile testing'), and regulatory references (e.g., 'FDA 21 CFR Part 820'), ensuring nothing is overlooked in supplier qualification.",
-                  example: "Example: An engineer uploads a valve assembly drawing with technical annotations. The AI extracts: '316L stainless steel, pressure rating PN40, DIN EN 12516-2 compliance, helium leak test to 1×10⁻⁹ mbar·l/s' and immediately searches for suppliers with these exact capabilities."
+                  overview: "Transform unstructured information into precise, searchable supplier requirements automatically.",
+                  forEngineers: "Upload technical drawings and the AI extracts tolerances, material specifications, and geometric tolerances.",
+                  forBuyers: "Eliminate hours of manual RFQ preparation. Simply describe what you need in plain language.",
+                  forAuditors: "Automatically identify compliance requirements embedded in technical documents.",
+                  example: "Upload a valve assembly drawing and the AI extracts material specs, compliance requirements, and testing standards."
                 }
               },
               {
@@ -1168,11 +1079,11 @@ const SearchSuppliers = () => {
                 title: "Multi-Factor Matching",
                 description: "Evaluates suppliers across 20+ criteria including industry, location, certifications, capacity, and experience simultaneously.",
                 detailedExplanation: {
-                  overview: "Simultaneous evaluation across 20+ criteria including technical capabilities, certifications, geographic proximity, production capacity, and industry experience to identify optimal supplier matches.",
-                  forEngineers: "Technical matching evaluates: material processing capabilities (e.g., 'titanium machining'), tolerance capabilities (±0.005mm), surface treatments (anodizing, passivation), testing equipment (CMM, X-ray, ultrasonic), and process certifications (welding qualifications, heat treatment procedures). Weight factors can be adjusted for critical vs. desirable capabilities.",
-                  forBuyers: "Strategic sourcing criteria include: minimum order quantities (MOQs), payment terms, Incoterms preferences, and multi-site production capacity. Location-based matching considers logistics costs, trade compliance, and supply chain risk diversification (e.g., 'two qualified suppliers minimum 500km apart').",
-                  forAuditors: "Compliance matching cross-references: industry certifications (automotive, aerospace, medical device), environmental standards (ISO 14001, RoHS, REACH), social responsibility audits (SMETA, SA8000), and customer-specific approvals. The system flags suppliers with recent certification renewals and clean audit histories.",
-                  example: "Example: Sourcing a complex stamped part requiring: automotive steel (HSLA), 8,000 tons press capacity, TS16949 + ISO 14001, within 300km of assembly plant, capable of 50,000 units/month. The system returns only 3 suppliers meeting ALL criteria, not 200 partial matches."
+                  overview: "Simultaneous evaluation across 20+ criteria to identify optimal supplier matches.",
+                  forEngineers: "Technical matching evaluates material processing capabilities, tolerance capabilities, and testing equipment.",
+                  forBuyers: "Strategic sourcing criteria include MOQs, payment terms, Incoterms, and multi-site capacity.",
+                  forAuditors: "Compliance matching cross-references industry certifications and environmental standards.",
+                  example: "Sourcing a complex part returns only suppliers meeting ALL criteria, not partial matches."
                 }
               },
               {
@@ -1180,11 +1091,11 @@ const SearchSuppliers = () => {
                 title: "Explainable AI",
                 description: "Transparent reasoning for every recommendation, showing exactly why suppliers match your requirements.",
                 detailedExplanation: {
-                  overview: "Every supplier recommendation includes a detailed justification showing exactly why the AI selected that supplier, with transparency into matching scores, strengths, and potential gaps.",
-                  forEngineers: "See technical match percentages for each requirement: '95% capability match—has 5-axis CNC (required), titanium experience (required), but lacks NADCAP heat treatment (optional)'. This allows informed decisions about whether gaps are acceptable or deal-breakers. No black box recommendations.",
-                  forBuyers: "Understand trade-offs clearly: 'Supplier A: 95% match vs. Supplier B: 85% match'. Explanations highlight which requirements are not met in lower-scored options, enabling strategic sourcing decisions rather than just picking the top score.",
-                  forAuditors: "Compliance transparency shows certification status, audit dates, and gaps: 'ISO 9001 valid until 2026, IATF audit passed March 2024 with zero major findings, ISO 14001 pending renewal (expires June 2025)'. This enables risk assessment and pre-qualification prioritization.",
-                  example: "Example: Why Supplier X recommended for brake component: Technical match 94% (has required friction testing per ECE R90), Location +15 points (within regional proximity), Certification +20 points (IATF 16949:2016 current), Experience +10 points (5 years automotive brake systems), Capacity verified for required volume. Gap: No in-house coating, uses qualified subcontractor."
+                  overview: "Every recommendation includes detailed justification with matching scores and potential gaps.",
+                  forEngineers: "See technical match percentages for each requirement with clear gap analysis.",
+                  forBuyers: "Understand trade-offs clearly with explanations of why lower-scored options differ.",
+                  forAuditors: "Compliance transparency shows certification status, audit dates, and gaps.",
+                  example: "Why Supplier X recommended: Technical match 94%, Location +15 points, Certification +20 points."
                 }
               },
               {
@@ -1192,11 +1103,11 @@ const SearchSuppliers = () => {
                 title: "Smart Deduplication",
                 description: "Automatically recognizes and merges identical suppliers listed under different names or variations.",
                 detailedExplanation: {
-                  overview: "Advanced entity resolution technology identifies when different company names, addresses, or records refer to the same supplier, preventing duplicate outreach and consolidating supplier information.",
-                  forEngineers: "Consolidates technical data from multiple sources: if 'Müller GmbH' appears in your ERP, 'Mueller Precision Engineering' in a certification database, and 'Müller Group' on their website, the system merges all capability data into one complete profile. This ensures you see all equipment, certifications, and technical capabilities in a single view.",
-                  forBuyers: "Prevents embarrassing duplicate RFQs to the same supplier under different names. Consolidates past performance data and contract terms across all name variations. Also identifies subsidiary relationships—knowing that 'ABC Components' is owned by 'XYZ Corporation' helps with spend consolidation and strategic sourcing decisions.",
-                  forAuditors: "Links certification records across name variations, ensuring audit histories aren't fragmented. Identifies when a supplier operates multiple facilities under different names, allowing proper audit planning for all locations. Also flags company name changes due to acquisitions or restructuring that might affect certification validity.",
-                  example: "Example: A procurement team has interacted with: 'Müller GmbH' (2019 contract), 'J. Müller Metallverarbeitung' (2021 quote), and 'Mueller Group' (2023 capability inquiry). The system recognizes these as the same entity, merges all interaction history, and shows: one consolidated supplier profile with complete history, avoiding duplicate outreach."
+                  overview: "Entity resolution identifies when different records refer to the same supplier.",
+                  forEngineers: "Consolidates technical data from multiple sources into one complete profile.",
+                  forBuyers: "Prevents duplicate RFQs and consolidates past performance data.",
+                  forAuditors: "Links certification records across name variations for complete audit histories.",
+                  example: "System recognizes 'Müller GmbH' and 'Mueller Group' as the same entity."
                 }
               },
               {
@@ -1204,11 +1115,11 @@ const SearchSuppliers = () => {
                 title: "Dynamic Results",
                 description: "Returns only genuinely relevant matches—no filler. If 7 suppliers meet criteria, you see 7, not 50 with poor matches.",
                 detailedExplanation: {
-                  overview: "Quality over quantity: the system returns only suppliers that genuinely meet your requirements, even if that's just 3 suppliers instead of padding results to 50 with poor matches.",
-                  forEngineers: "No more sifting through 100+ irrelevant suppliers to find 5 qualified ones. If you need 'titanium investment casting with NADCAP approval', and only 8 suppliers globally meet this, you get those 8—not 92 steel casting companies to hit a 100-result quota. This respects your technical judgment and time.",
-                  forBuyers: "Dramatically reduces qualification effort. Instead of reviewing 50+ suppliers to shortlist 5, you receive a pre-qualified list of 5-12 that actually meet requirements. For highly specialized needs (e.g., 'aerospace honeycomb panel fabrication'), seeing '4 suppliers match your criteria' is more valuable than artificially inflating to 40 poor matches.",
-                  forAuditors: "Only audit-ready suppliers appear in results. If you require ISO 13485 + FDA registration + cleanroom manufacturing, and only 6 suppliers meet this, you audit 6 qualified candidates—not waste resources pre-qualifying 30 companies missing critical certifications. This optimizes audit scheduling and resource allocation.",
-                  example: "Search: 'LNG cryogenic valves, -196°C rated, EN 1626 certified, ASME VIII Div 1, minimum DN50, European manufacturing'. Result: 3 suppliers shown. Because only 3 suppliers globally meet ALL criteria. Not 47 results with footnotes like '*DN25 maximum' or '*ASME certification pending' just to show more names."
+                  overview: "Quality over quantity: returns only suppliers that genuinely meet requirements.",
+                  forEngineers: "No more sifting through irrelevant suppliers to find qualified ones.",
+                  forBuyers: "Receive a pre-qualified list instead of reviewing 50+ suppliers to shortlist 5.",
+                  forAuditors: "Only audit-ready suppliers appear, optimizing resource allocation.",
+                  example: "Search for specialized valves returns 3 suppliers because only 3 meet ALL criteria."
                 }
               },
               {
@@ -1216,23 +1127,23 @@ const SearchSuppliers = () => {
                 title: "Real-Time Data Enrichment",
                 description: "Continuous updating of supplier profiles with verified capabilities, certifications, and ground truth data from audits.",
                 detailedExplanation: {
-                  overview: "YVOO maintains a continuously updated database of supplier capabilities, certifications, and performance metrics. After audits and site visits, supplier profiles are enriched with verified ground truth data.",
-                  forEngineers: "Engineers need confidence that supplier certifications and capabilities are current. YVOO updates supplier profiles after site visits with verified equipment details, actual production capabilities, and real facility observations. When capabilities are verified through on-site inspection, this validated information is reflected in search results.",
-                  forBuyers: "Procurement teams can access supplier data that has been verified through actual site visits and audits. YVOO enriches profiles with real-world observations about capacity, financial stability indicators, and facility conditions. This reduces supplier qualification time and minimizes the risk of engaging with suppliers whose claimed capabilities don't match reality.",
-                  forAuditors: "Quality assurance teams contribute to and benefit from a growing database of verified supplier information. After completing audits, findings are used to update supplier profiles with actual compliance status, facility conditions, and quality system maturity. Full audit reports are only available after audits are completed. This creates a knowledge base of verified supplier intelligence that improves over time.",
-                  example: "Example: After completing a facility audit, YVOO updates the supplier profile to reflect the actual production equipment observed, verified certifications seen on-site, and real facility conditions. Future searches benefit from this ground truth data rather than relying solely on supplier-provided claims."
+                  overview: "Continuously updated database with verified ground truth from audits.",
+                  forEngineers: "Supplier profiles updated after site visits with verified equipment details.",
+                  forBuyers: "Access supplier data verified through actual site visits and audits.",
+                  forAuditors: "Contribute to and benefit from a growing database of verified information.",
+                  example: "After facility audit, profile reflects actual equipment and certifications observed."
                 }
               },
               {
                 number: "08",
                 title: "Alternative Term Discovery",
-                description: "Identifies related terms for complete market coverage. 'Die casting' automatically expands to 'Pressure Die Casting', 'Permanent Mold Casting', etc.",
+                description: "Identifies related terms for complete market coverage. 'Die casting' expands to include global equivalents.",
                 detailedExplanation: {
-                  overview: "Manufacturing processes and materials are described differently across regions, industries, and languages. The AI automatically searches all equivalent terms to ensure no qualified suppliers are missed due to terminology differences.",
-                  forEngineers: "Technical synonym expansion ensures comprehensive results: 'CNC milling' also searches 'machining center', 'Fraesen' (German), 'fraisage' (French). Material variations: 'aluminum' finds 'aluminium' (UK/EU), '6061-T6' also searches 'AlMgSi1 T6' (European designation). Process equivalents: 'anodizing' includes 'anodising', 'eloxal' (German), 'sulfuric anodize Type II', ensuring global supplier coverage.",
-                  forBuyers: "Prevents missed sourcing opportunities due to regional naming: 'sheet metal fabrication' automatically includes 'metal stamping', 'presswork', 'panel beating'. Industry-specific terms: 'aerospace machining' also searches 'aviation components', 'flight hardware manufacturing'. This maximizes competitive bidding and finds niche specialists using non-standard terminology.",
-                  forAuditors: "Certification name variations: 'ISO 9001' search includes 'ISO 9001:2015', 'ISO 9001:2008 (transition)', 'EN ISO 9001', ensuring suppliers with equivalent certifications aren't excluded. Process audit coverage: 'welding qualification' includes 'EN 1090', 'AWS D1.1', 'ISO 3834', capturing all relevant welding certification schemes.",
-                  example: "Search: 'investment casting'. System automatically expands to search: 'Investment casting', 'Lost wax casting', 'Precision casting', 'Feinguss' (German), 'Microfusione' (Italian), 'Cire perdue' (French), 'Vacuum casting', 'Ceramic mold casting'. Result: finds 47 qualified suppliers globally instead of 12 using only 'investment casting', including a specialized foundry listing services as '精密鋳造' (precision casting)."
+                  overview: "AI searches all equivalent terms across regions and languages.",
+                  forEngineers: "'CNC milling' also searches 'machining center', 'Fraesen', 'fraisage'.",
+                  forBuyers: "'Sheet metal fabrication' includes 'metal stamping', 'presswork'.",
+                  forAuditors: "'ISO 9001' includes '2015', '2008 transition', 'EN ISO 9001' variants.",
+                  example: "'Investment casting' finds 47 suppliers globally vs 12 with exact term only."
                 }
               }
             ].map((feature, index) => (
@@ -1243,29 +1154,20 @@ const SearchSuppliers = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedAIFeature(feature)}
-                className="group cursor-pointer"
+                className="group cursor-pointer border-t border-foreground/10 pt-6"
               >
-                <div className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-8 md:p-10 transition-all duration-300 hover:shadow-lg">
-                  <div className="flex items-start gap-6">
-                    {/* Arrow indicator */}
-                    <div className="flex-shrink-0">
-                      <ArrowRight 
-                        className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:translate-x-1 text-foreground"
-                      />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 transition-colors duration-300">
-                        {feature.title}
-                      </h3>
-                      <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-4">
-                        {feature.description}
-                      </p>
-                      <div className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                        <span>Learn more</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
-                      </div>
+                <div className="flex items-start gap-4">
+                  <span className="text-sm font-mono text-muted-foreground">{feature.number}</span>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed mb-3">
+                      {feature.description}
+                    </p>
+                    <div className="inline-flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
+                      <span>Learn more</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
                     </div>
                   </div>
                 </div>
