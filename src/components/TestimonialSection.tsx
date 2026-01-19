@@ -3,7 +3,6 @@ import { useState } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
-import yvooLogo from "@/assets/logo-new.svg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -90,9 +89,8 @@ const TestimonialSection = () => {
             viewport={{ once: true }}
             className="mb-8 md:mb-12"
           >
-            <h2 className="section-headline text-foreground max-w-3xl flex items-center gap-4 flex-wrap">
-              Your audit intelligence, powered by
-              <img src={yvooLogo} alt="YVOO" className="h-10 md:h-12 inline-block" />
+            <h2 className="section-headline text-foreground max-w-3xl">
+              Your audit intelligence, powered by YVOO
             </h2>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
               From supplier discovery to final report—AIVOO understands context, surfaces insights, and eliminates the friction that slows procurement teams down.
