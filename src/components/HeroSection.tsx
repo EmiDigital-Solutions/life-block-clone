@@ -137,21 +137,35 @@ const HeroSection = () => {
                 The all-in-one platform that makes supplier qualification faster and more transparent with certified auditors worldwide.
               </motion.p>
 
-              {/* CTA Button */}
+              {/* CTA Button + Urgency Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
+                className="space-y-4"
               >
-                <Button asChild size="lg">
-                  <a 
-                    href="https://calendly.com/yvoo/demo-yvoo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Request a demo
-                  </a>
-                </Button>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <Button asChild size="lg">
+                    <a 
+                      href="https://calendly.com/yvoo/demo-yvoo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Request a demo
+                    </a>
+                  </Button>
+                  
+                  {/* Urgency Counter Badge */}
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    <span className="text-sm text-white/90 font-medium">
+                      47 audits booked this week
+                    </span>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Certification Badges */}
