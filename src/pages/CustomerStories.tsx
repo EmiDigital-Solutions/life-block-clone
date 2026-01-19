@@ -12,18 +12,21 @@ import procurementFemaleMiddleEast from "@/assets/procurement-female-middle-east
 // KPI Stats data
 const kpiStats = [
   {
-    stat: "50% reduction",
-    description: "in sourcing cycle time",
+    category: "Time saved",
+    stat: "60%",
+    description: "faster supplier qualification cycles",
     logo: "Linde"
   },
   {
-    stat: "Over 1,000 audits",
-    description: "completed per year with YVOO",
+    category: "Cost reduction",
+    stat: "€2.4M",
+    description: "annual savings in audit costs",
     logo: "Siemens"
   },
   {
-    stat: "100% usage",
-    description: "by all sourcing teams",
+    category: "Risk mitigation",
+    stat: "94%",
+    description: "reduction in supplier-related incidents",
     logo: "BMW"
   }
 ];
@@ -194,12 +197,15 @@ const CustomerStories = () => {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="pb-12"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
-                  {item.description}
+                <p className="text-sm text-foreground/50 font-mono tracking-wide uppercase mb-2">
+                  {item.category}
                 </p>
                 <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-[-0.02em]">
                     {item.stat}
+                  </p>
+                  <p className="text-foreground/60 text-sm mb-2">
+                    {item.description}
                   </p>
                   <p className="text-foreground/40 uppercase text-xs font-mono tracking-wider">
                     {item.logo}
