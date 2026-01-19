@@ -35,7 +35,7 @@ const demoSteps: DemoStep[] = [
 
 // Clean Window Chrome Component - No dark title bar
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="w-full h-full bg-white rounded-xl overflow-hidden flex flex-col shadow-lg">
+  <div className="w-full h-full bg-white overflow-hidden flex flex-col shadow-lg">
     <div className="flex-1 overflow-hidden">
       {children}
     </div>
@@ -289,7 +289,7 @@ const AIChatSearchDemo = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.1 }}
-                      className="bg-white rounded-xl p-3 border border-gray-200 shadow-sm"
+                      className="bg-white p-3 border border-gray-200 shadow-sm"
                     >
                       <div className="text-sm font-medium text-gray-900 mb-0.5">{supplier.name}</div>
                       <div className="text-xs text-gray-500 mb-2">{supplier.location}</div>
@@ -318,7 +318,7 @@ const AIChatSearchDemo = () => {
                 className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
                 readOnly
               />
-              <button className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                <button className="w-7 h-7 bg-[#1391BF] flex items-center justify-center">
                 <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
@@ -483,7 +483,7 @@ const RefineSearchDemo = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="w-full p-3 rounded-xl border border-dashed border-gray-300 text-sm text-gray-500 hover:border-[#1391BF] hover:text-[#1391BF] transition-colors"
+                className="w-full p-3 border border-dashed border-gray-300 text-sm text-gray-500 hover:border-[#1391BF] hover:text-[#1391BF] transition-colors"
               >
                 + Add more filters
               </motion.button>
@@ -597,7 +597,7 @@ const RefineSearchDemo = () => {
                     >
                       {/* Profile Header */}
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 flex items-center justify-center text-2xl">
+                        <div className="w-14 h-14 bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 flex items-center justify-center text-2xl">
                           {suppliers[selectedSupplier].image}
                         </div>
                         <div className="flex-1">
@@ -612,7 +612,7 @@ const RefineSearchDemo = () => {
                       </div>
                       
                       {/* Match Score */}
-                      <div className="bg-gradient-to-r from-[#1391BF]/10 to-emerald-500/10 rounded-xl p-4">
+                      <div className="bg-gradient-to-r from-[#1391BF]/10 to-emerald-500/10 p-4">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm text-gray-600">Match Score</span>
                           <span className={`text-xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
@@ -631,11 +631,11 @@ const RefineSearchDemo = () => {
                       
                       {/* Key Metrics */}
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-gray-50 rounded-xl p-3">
+                        <div className="bg-gray-50 p-3">
                           <div className="text-xs text-gray-400 mb-0.5">Capacity</div>
                           <div className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].capacity}</div>
                         </div>
-                        <div className="bg-gray-50 rounded-xl p-3">
+                        <div className="bg-gray-50 p-3">
                           <div className="text-xs text-gray-400 mb-0.5">Lead Time</div>
                           <div className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].leadTime}</div>
                         </div>
@@ -646,7 +646,7 @@ const RefineSearchDemo = () => {
                         <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
                         <div className="flex gap-2 flex-wrap">
                           {suppliers[selectedSupplier].certs.map((cert) => (
-                            <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg font-medium border border-emerald-200">
+                          <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium border border-emerald-200">
                               {cert}
                             </span>
                           ))}
@@ -658,14 +658,14 @@ const RefineSearchDemo = () => {
                         <motion.button 
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex-1 py-2.5 bg-[#1391BF] text-white rounded-xl text-sm font-medium"
+                          className="flex-1 py-2.5 bg-[#1391BF] text-white text-sm font-medium"
                         >
                           Add to Order
                         </motion.button>
                         <motion.button 
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium"
+                          className="px-4 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium"
                         >
                           View Profile
                         </motion.button>
@@ -1033,7 +1033,7 @@ const SupplierSearchDemo = () => {
                       { label: 'Revenue', value: suppliers[selectedSupplier].revenue },
                       { label: 'Established', value: suppliers[selectedSupplier].established },
                     ].map((stat) => (
-                      <div key={stat.label} className="bg-gray-50 rounded-xl p-3 text-center">
+                      <div key={stat.label} className="bg-gray-50 p-3 text-center">
                         <div className="text-gray-900 font-semibold">{stat.value}</div>
                         <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
                       </div>
@@ -1045,7 +1045,7 @@ const SupplierSearchDemo = () => {
                     <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
                     <div className="flex gap-2 flex-wrap">
                       {suppliers[selectedSupplier].certs.map((cert) => (
-                        <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs rounded-lg font-medium border border-emerald-200">
+                        <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium border border-emerald-200">
                           {cert}
                         </span>
                       ))}
@@ -1057,7 +1057,7 @@ const SupplierSearchDemo = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
+                    className="w-full py-3 bg-[#1391BF] text-white text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
                   >
                     Add to Audit Order
                   </motion.button>
@@ -1078,7 +1078,7 @@ const SupplierSearchDemo = () => {
                   className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
                   readOnly
                 />
-                <button className="w-7 h-7 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                <button className="w-7 h-7 bg-[#1391BF] flex items-center justify-center">
                   <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
@@ -1177,7 +1177,7 @@ const OrderAuditDemo = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 + i * 0.1 }}
-                    className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"
+                    className="flex items-center gap-3 p-2 bg-gray-50"
                   >
                     <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold ${
                       doc.type === 'PDF' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
@@ -1200,11 +1200,11 @@ const OrderAuditDemo = () => {
             
             {/* Date & Duration */}
             <div className="grid grid-cols-2 gap-3 mb-5">
-              <div className="bg-white rounded-xl p-4 border border-gray-200">
+              <div className="bg-white p-4 border border-gray-200">
                 <div className="text-xs text-gray-400 mb-1">Start Date</div>
                 <div className="text-gray-900 font-medium">Feb 15, 2025</div>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-gray-200">
+              <div className="bg-white p-4 border border-gray-200">
                 <div className="text-xs text-gray-400 mb-1">Duration</div>
                 <div className="text-gray-900 font-medium">2 Days / Audit</div>
               </div>
@@ -1223,7 +1223,7 @@ const OrderAuditDemo = () => {
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
-                    className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-200"
+                    className="flex items-center gap-3 p-3 bg-white border border-gray-200"
                   >
                     <img src={auditor.image} alt={auditor.name} className="w-10 h-10 rounded-full object-cover" />
                     <div className="flex-1">
@@ -1237,7 +1237,7 @@ const OrderAuditDemo = () => {
             </div>
             
             {/* Price Summary */}
-            <div className="bg-white rounded-xl p-4 border border-gray-200 mb-5">
+            <div className="bg-white p-4 border border-gray-200 mb-5">
               <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Price Summary</div>
               <div className="space-y-2">
                 {suppliers.map((s) => (
@@ -1255,7 +1255,7 @@ const OrderAuditDemo = () => {
             
             {/* Action Button */}
             <motion.button
-              className={`w-full py-3 rounded-xl text-sm font-medium transition-all ${
+              className={`w-full py-3 text-sm font-medium transition-all ${
                 orderPhase === 'confirmed'
                   ? 'bg-emerald-500 text-white'
                   : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
@@ -1406,7 +1406,7 @@ const AuditorDispatchDemo = () => {
             </div>
             
             {/* Auditor Table */}
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div className="bg-white border border-gray-200 overflow-hidden">
               {/* Table Header */}
               <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <div className="col-span-4">Auditor</div>
@@ -1516,7 +1516,7 @@ const AuditorDispatchDemo = () => {
           </div>
           
           <motion.button
-            className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`px-5 py-2 text-sm font-medium transition-all ${
               dispatchPhase === 'confirmed'
                 ? 'bg-emerald-500 text-white'
                 : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
@@ -1648,7 +1648,7 @@ const AuditExecutionDemo = () => {
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className={`p-3 rounded-xl border transition-all ${
+                    className={`p-3 border transition-all ${
                       check.status === 'current' 
                         ? 'bg-[#1391BF]/5 border-[#1391BF]/30' 
                         : check.status === 'done'
@@ -1694,7 +1694,7 @@ const AuditExecutionDemo = () => {
             {/* AI Assistant */}
             <div className="p-4 border-t border-gray-100 bg-gray-50">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#1391BF] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-[#1391BF] flex items-center justify-center flex-shrink-0">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -1863,7 +1863,7 @@ const ReportDemo = () => {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 + i * 0.05 }}
-                          className={`rounded-lg p-3 text-center border border-gray-100 ${bgColor}`}
+                          className={`p-3 text-center border border-gray-100 ${bgColor}`}
                         >
                           <div className="text-gray-400 text-[10px] font-medium mb-1">{el.code}</div>
                           <div className={`text-lg font-bold ${color}`}>{el.score}%</div>
@@ -1884,7 +1884,7 @@ const ReportDemo = () => {
                       <span className="px-2 py-0.5 bg-blue-50 text-blue-600 rounded text-[10px] font-medium">1 OFI</span>
                     </div>
                   </div>
-                  <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <div className="bg-white border border-gray-200 overflow-hidden">
                     <table className="w-full text-xs">
                       <thead>
                         <tr className="border-b border-gray-100 bg-gray-50">
@@ -1926,7 +1926,7 @@ const ReportDemo = () => {
                 {/* Score History Chart */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Audit Score History</h3>
-                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                  <div className="bg-white border border-gray-200 p-4">
                     <div className="flex items-end justify-around h-32">
                       {historicalScores.map((item, i) => {
                         const heightPx = ((item.score - 50) / 50) * 100;
@@ -1953,7 +1953,7 @@ const ReportDemo = () => {
                 {/* Process Element Analysis */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Process Element Analysis</h3>
-                  <div className="bg-white rounded-lg border border-gray-200 p-4 space-y-2">
+                  <div className="bg-white border border-gray-200 p-4 space-y-2">
                     {processElements.map((el, i) => {
                       const color = el.score >= 90 ? '#10b981' : el.score >= 80 ? '#1391BF' : '#f59e0b';
                       return (
@@ -1984,7 +1984,7 @@ const ReportDemo = () => {
                 {/* Industry Benchmark */}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Industry Benchmark</h3>
-                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                  <div className="bg-white border border-gray-200 p-4">
                     <div className="flex items-end justify-around h-24">
                       {benchmarkData.map((item, i) => {
                         const isThisSupplier = item.category === 'This Supplier';
@@ -2031,7 +2031,7 @@ const ReportDemo = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 + i * 0.05 }}
-                    className="aspect-square rounded-md relative overflow-hidden"
+                    className="aspect-square relative overflow-hidden"
                   >
                     <img 
                       src={evidenceImages[i]} 
@@ -2075,7 +2075,7 @@ const ReportDemo = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="w-full py-2 bg-gray-900 text-white rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 mb-2"
+                className="w-full py-2 bg-gray-900 text-white text-xs font-medium flex items-center justify-center gap-1.5 mb-2"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -2086,7 +2086,7 @@ const ReportDemo = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="w-full py-2 bg-white text-gray-600 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 border border-gray-200"
+                className="w-full py-2 bg-white text-gray-600 text-xs font-medium flex items-center justify-center gap-1.5 border border-gray-200"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
@@ -2143,7 +2143,7 @@ const FollowUpDemo = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.1 }}
-                  className={`p-4 rounded-xl border ${
+                  className={`p-4 border ${
                     task.status === 'Overdue' 
                       ? 'bg-red-50/50 border-red-200' 
                       : 'bg-white border-gray-200'
@@ -2202,10 +2202,10 @@ const FollowUpDemo = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-[#1391BF]/5 border border-[#1391BF]/20 rounded-xl p-4 mb-5"
+              className="bg-[#1391BF]/5 border border-[#1391BF]/20 p-4 mb-5"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[#1391BF] flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#1391BF] flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -2220,7 +2220,7 @@ const FollowUpDemo = () => {
             {/* Activity Log */}
             <div className="flex-1">
               <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Activity Log</div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4">
+              <div className="bg-white border border-gray-200 p-4">
                 <div className="space-y-4">
                   {[
                     { user: "ZW", text: "Evidence photos uploaded", time: "2h ago", color: "bg-emerald-500" },
@@ -2253,7 +2253,7 @@ const FollowUpDemo = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
-              className="mt-5 w-full py-3 bg-[#1391BF] text-white rounded-xl text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
+              className="mt-5 w-full py-3 bg-[#1391BF] text-white text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
             >
               Export Action Report
             </motion.button>
@@ -2292,13 +2292,6 @@ const PlatformDemoAnimation = () => {
   
   return (
     <div className="w-full">
-      {/* End-to-End Journey Indicator */}
-      <div className="text-center mb-8">
-        <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-foreground">
-          Beyond discovery — the complete supplier journey
-        </h3>
-      </div>
-      
       {/* Step Navigation with Progress Connectors */}
       <div className="relative flex items-center justify-center mb-6">
         {/* Background Progress Track */}
@@ -2370,7 +2363,7 @@ const PlatformDemoAnimation = () => {
         </div>
       </div>
       
-      <div className="relative bg-[#0A0A0A] rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden">
+      <div className="relative bg-[#0A0A0A] shadow-2xl overflow-hidden">
         <div className="aspect-video relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
