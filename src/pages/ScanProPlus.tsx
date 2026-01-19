@@ -2420,6 +2420,184 @@ const ScanProPlus = () => {
         </div>
       </section>
 
+      {/* Testimonial Section - Be Found 3-Column Style */}
+      <section className="py-20 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground mb-12"
+          >
+            What changes for your team
+          </motion.h2>
+          
+          <div className="grid lg:grid-cols-3 gap-0 items-stretch">
+            {/* Portrait Photo - Square with Grayscale */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="aspect-square bg-muted overflow-hidden max-w-sm"
+            >
+              <img 
+                src={auditorFemaleEuropean}
+                alt="Maria Schneider - Head of Supplier Quality"
+                className="w-full h-full object-cover grayscale"
+              />
+            </motion.div>
+            
+            {/* Stat Card - Primary Color Background */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-primary p-8 flex flex-col justify-between aspect-square"
+            >
+              {/* Icon */}
+              <div className="w-12 h-12 border-2 border-white flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              {/* Stat */}
+              <div>
+                <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
+                  72%
+                </p>
+                <p className="text-xl text-white/90 font-medium mt-2">
+                  faster audit cycles
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Quote Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="p-8 flex flex-col justify-center space-y-6 bg-white"
+            >
+              {/* Company Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-foreground flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">VM</span>
+                </div>
+                <span className="text-lg font-bold text-foreground tracking-wide">VALVE MANUFACTURING</span>
+              </div>
+              
+              {/* Quote */}
+              <blockquote className="text-lg text-foreground leading-relaxed">
+                "ScanPro+ transformed how we manage supplier audits. What used to take weeks now happens in days, with complete digital documentation and real-time visibility into every step."
+              </blockquote>
+              
+              {/* Attribution */}
+              <div>
+                <p className="font-semibold text-foreground">Maria Schneider,</p>
+                <p className="text-sm text-primary">Head of Supplier Quality Management</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Measurable ROI Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          {/* Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground max-w-2xl mb-16"
+          >
+            Measurable ROI from day one
+          </motion.h2>
+
+          {/* KPI Grid 2x2 */}
+          <div className="grid md:grid-cols-2 gap-x-12">
+            {/* KPI 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  60%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Lower cost per audit compared to traditional agencies and consultants
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  5 days
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Average time from order to completed audit report, down from 3-4 weeks
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Quality assurance</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  100%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Digital evidence capture with AI-verified documentation and audit trails
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Global coverage</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  50+
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Countries with certified local auditors available within 24-48 hours
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Industry Use Cases - Homepage Style */}
       <IndustryUseCasesGrid />
 
