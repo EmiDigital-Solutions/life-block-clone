@@ -5,16 +5,7 @@ import { ArrowRight, Play, Plus, Minus } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// Import industry images
-import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryAerospace from "@/assets/industry-aerospace.jpg";
-import industryChemical from "@/assets/industry-chemical-modern.jpg";
-import industryPharma from "@/assets/industry-pharma-bw-green.jpg";
-import industryCryogenic from "@/assets/industry-cryogenic-modern.jpg";
-import industryValve from "@/assets/industry-valve-bw-green.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
-import industryMedical from "@/assets/industry-medical.jpg";
-import cncMachine from "@/assets/cnc-machine-dmg-nlx.jpg";
+// Import person images for featured/video sections
 import testimonialChristoph from "@/assets/testimonial-christoph-seeholzer.jpg";
 import procurementFemaleMiddleEast from "@/assets/procurement-female-middle-east.jpg";
 
@@ -37,11 +28,11 @@ const kpiStats = [
   }
 ];
 
-// Customer stories data with industry images
+// Customer stories data with industry images (Unsplash style like BeFound page)
 const customerStories = [
   {
     id: "linde",
-    image: industryCryogenic,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop", // Cryogenic/industrial gas
     personImage: testimonialChristoph,
     companyLogo: "LINDE",
     title: "Linde cuts supplier qualification time by 60% with YVOO",
@@ -52,60 +43,60 @@ const customerStories = [
     darkOverlay: true
   },
   {
-    id: "siemens",
-    image: industryElectronics,
-    companyLogo: "SIEMENS",
-    title: "Siemens runs sourcing with YVOO across 50 categories",
+    id: "pepsico",
+    image: "https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?w=600&h=450&fit=crop", // Cola/beverage
+    companyLogo: "PEPSICO",
+    title: "PepsiCo runs sourcing with YVOO across 50 categories",
     description: "Read success story →",
     darkOverlay: true
   },
   {
-    id: "bosch",
-    image: cncMachine,
-    companyLogo: "BOSCH",
-    title: "Bosch drives efficient, transparent sourcing with YVOO",
+    id: "swisslog",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=450&fit=crop", // Robotics/automation
+    companyLogo: "SWISSLOG",
+    title: "Swisslog drives efficient, transparent sourcing with YVOO",
     description: "Read success story →",
     darkOverlay: true
   },
   {
-    id: "bmw",
-    image: industryAutomotive,
-    companyLogo: "BMW",
-    title: "BMW enhances sourcing decisions by combining YVOO with SAP",
+    id: "omv",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=450&fit=crop", // Chemicals/oil bubbles
+    companyLogo: "OMV",
+    title: "OMV enhances sourcing decisions by combining YVOO with SAP",
     description: "Read success story →",
     darkOverlay: false
   },
   {
-    id: "basf",
-    image: industryChemical,
-    companyLogo: "BASF",
-    title: "BASF accelerates sourcing with YVOO",
+    id: "gordon",
+    image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&h=450&fit=crop", // Fresh vegetables/food
+    companyLogo: "GORDON",
+    title: "Gordon Food Service accelerates sourcing with YVOO",
     description: "Read success story →",
     darkOverlay: false
   },
   {
-    id: "bayer",
-    image: industryPharma,
-    companyLogo: "BAYER",
-    title: "Bayer turns days into seconds with YVOO's AI-driven audit analysis",
+    id: "stada",
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=450&fit=crop", // Pharma pills
+    companyLogo: "STADA",
+    title: "Stada turns days into seconds with YVOO's AI-driven audit analysis",
     description: "Read success story →",
     darkOverlay: false
   },
   {
-    id: "airbus",
-    image: industryAerospace,
-    companyLogo: "AIRBUS",
-    title: "Airbus transforms sourcing with YVOO to boost savings",
+    id: "coop",
+    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&h=450&fit=crop", // Fruits/berries
+    companyLogo: "COOP",
+    title: "Coop transforms sourcing with YVOO to boost savings",
     description: "Read success story →",
     darkOverlay: false
   },
   {
-    id: "thyssenkrupp",
-    image: industryValve,
-    companyLogo: "THYSSENKRUPP",
-    title: "ThyssenKrupp makes sourcing simpler for buyers and suppliers alike",
+    id: "egger",
+    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=450&fit=crop", // Manufacturing
+    companyLogo: "EGGER",
+    title: "Egger makes sourcing simpler for buyers and suppliers alike",
     description: "Read success story →",
-    darkOverlay: false
+    darkOverlay: true
   }
 ];
 
