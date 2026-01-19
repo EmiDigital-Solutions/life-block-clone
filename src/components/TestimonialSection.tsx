@@ -82,6 +82,21 @@ const TestimonialSection = () => {
             ))}
           </div>
 
+          {/* AI Demo Section - Archlet "Meet Spark" Style */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 md:mb-12"
+          >
+            <h2 className="section-headline text-foreground max-w-3xl">
+              Meet AIVOO, the AI copilot for smarter auditing
+            </h2>
+            <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
+              AIVOO powers every step of the audit journey—from supplier discovery to report generation. It understands your requirements, delivers smart recommendations, and automates routine tasks.
+            </p>
+          </motion.div>
+
           {/* Platform Demo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
