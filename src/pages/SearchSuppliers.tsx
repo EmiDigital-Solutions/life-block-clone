@@ -57,7 +57,7 @@ const AISearchMockup = () => {
   ];
 
   return (
-    <WindowChrome title="SearchPro+ — AI Assistant">
+    <WindowChrome title="SearchPro+ — AI Discovery">
       <div className="h-full bg-white p-4 flex flex-col">
         <div className="flex-1 space-y-3 overflow-hidden">
           {messages.slice(0, step + 1).map((msg, i) => (
@@ -91,11 +91,11 @@ const AISearchMockup = () => {
               transition={{ delay: 0.5 }}
               className="mt-4 p-3 bg-primary/5 border border-primary/20"
             >
-              <p className="text-xs font-medium text-primary mb-2">Searching 25M+ suppliers...</p>
+              <p className="text-xs font-medium text-primary mb-2">Found 47 matching suppliers</p>
               <div className="flex gap-2">
                 <span className="px-2 py-1 bg-white text-[10px] border">IATF 16949</span>
                 <span className="px-2 py-1 bg-white text-[10px] border">50K units</span>
-                <span className="px-2 py-1 bg-white text-[10px] border">Automotive</span>
+                <span className="px-2 py-1 bg-white text-[10px] border">Verified ✓</span>
               </div>
             </motion.div>
           )}
@@ -113,7 +113,255 @@ const AISearchMockup = () => {
   );
 };
 
-// Supplier Profile Mockup Component
+// Audit Order Mockup Component
+const AuditOrderMockup = () => {
+  const [orderStep, setOrderStep] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOrderStep((prev) => (prev + 1) % 4);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const suppliers = [
+    { name: "Precision Metalworks GmbH", location: "Munich, Germany", selected: true },
+    { name: "AutoParts Bavaria", location: "Stuttgart, Germany", selected: orderStep >= 1 },
+    { name: "CNC Masters Ltd", location: "Birmingham, UK", selected: orderStep >= 2 },
+  ];
+
+  return (
+    <WindowChrome title="ScanPro+ — Order Audit">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="mb-4 pb-3 border-b border-gray-100">
+          <h3 className="font-bold text-gray-900 text-sm">Schedule On-Site Audit</h3>
+          <p className="text-[10px] text-gray-500 mt-1">Select suppliers for ground truth verification</p>
+        </div>
+
+        {/* Supplier Selection */}
+        <div className="space-y-2 mb-4">
+          {suppliers.map((supplier, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className={`p-3 border ${supplier.selected ? 'border-primary bg-primary/5' : 'border-gray-100'} transition-all`}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium text-gray-900">{supplier.name}</p>
+                  <p className="text-[10px] text-gray-500">{supplier.location}</p>
+                </div>
+                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                  supplier.selected ? 'bg-primary border-primary' : 'border-gray-200'
+                }`}>
+                  {supplier.selected && <Check className="w-3 h-3 text-white" />}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Audit Options */}
+        <div className="bg-gray-50 p-3 mb-4">
+          <p className="text-[10px] text-gray-500 mb-2">Audit Type</p>
+          <div className="flex gap-2">
+            <span className="px-2 py-1 bg-primary text-white text-[10px] font-medium">Process Audit</span>
+            <span className="px-2 py-1 bg-white border text-[10px]">Quality Audit</span>
+            <span className="px-2 py-1 bg-white border text-[10px]">Full Assessment</span>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <button className="w-full py-2.5 bg-primary text-white text-xs font-medium flex items-center justify-center gap-2">
+          Order Audit for {suppliers.filter(s => s.selected).length} Suppliers
+          <ArrowRight className="w-3 h-3" />
+        </button>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Ground Truth Intelligence Mockup Component  
+const GroundTruthMockup = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <WindowChrome title="YVOO — Ground Truth Intelligence">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="flex items-start gap-3 mb-4 pb-3 border-b border-gray-100">
+          <div className="w-10 h-10 bg-secondary/20 flex items-center justify-center">
+            <Check className="w-5 h-5 text-secondary" />
+          </div>
+          <div>
+            <h3 className="font-bold text-gray-900 text-sm">Verified Ground Truth</h3>
+            <p className="text-[10px] text-gray-500">Last audit: 3 days ago • Auditor: M. Schmidt</p>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-4 mb-4 border-b border-gray-100">
+          {['Equipment', 'Certificates', 'Capacity'].map((tab, i) => (
+            <button
+              key={tab}
+              className={`pb-2 text-xs font-medium transition-colors ${
+                activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-gray-400'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="space-y-2"
+        >
+          {activeTab === 0 && (
+            <>
+              {['DMG MORI NLX 2500 • Verified ✓', 'Zeiss CMM Contura • Verified ✓', 'TRUMPF TruLaser • Verified ✓'].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 p-2 bg-secondary/10">
+                  <div className="w-2 h-2 rounded-full bg-secondary" />
+                  <span className="text-xs text-gray-900">{item}</span>
+                </div>
+              ))}
+            </>
+          )}
+          {activeTab === 1 && (
+            <>
+              {[
+                { cert: 'IATF 16949:2016', status: 'Valid', date: '2026' },
+                { cert: 'ISO 9001:2015', status: 'Valid', date: '2025' },
+                { cert: 'ISO 14001', status: 'Valid', date: '2025' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center justify-between p-2 bg-gray-50">
+                  <span className="text-xs font-medium">{item.cert}</span>
+                  <span className="text-[10px] text-secondary font-medium">Verified until {item.date}</span>
+                </div>
+              ))}
+            </>
+          )}
+          {activeTab === 2 && (
+            <div className="space-y-3">
+              <div className="p-3 bg-gray-50">
+                <p className="text-[10px] text-gray-500 mb-1">Production Capacity</p>
+                <p className="text-lg font-bold text-gray-900">60,000 <span className="text-sm font-normal">units/month</span></p>
+                <p className="text-[10px] text-secondary mt-1">✓ Verified on-site</p>
+              </div>
+              <div className="p-3 bg-gray-50">
+                <p className="text-[10px] text-gray-500 mb-1">Current Utilization</p>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full w-[72%] bg-primary rounded-full" />
+                </div>
+                <p className="text-[10px] text-gray-600 mt-1">72% — Available capacity confirmed</p>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Supplier Development Mockup Component
+const SupplierDevelopmentMockup = () => {
+  const [progress, setProgress] = useState(65);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => prev >= 95 ? 65 : prev + 10);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const actions = [
+    { task: "Implement 5S methodology", status: "completed", due: "Completed" },
+    { task: "Update quality control procedure", status: "in-progress", due: "Due in 5 days" },
+    { task: "Add CMM inspection station", status: "pending", due: "Due in 2 weeks" },
+  ];
+
+  return (
+    <WindowChrome title="YVOO — Supplier Development">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-bold text-gray-900 text-sm">Development Progress</h3>
+            <motion.span 
+              key={progress}
+              className="text-lg font-bold text-primary"
+            >
+              {progress}%
+            </motion.span>
+          </div>
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <motion.div 
+              className="h-full bg-primary rounded-full"
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.5 }}
+            />
+          </div>
+        </div>
+
+        {/* Improvement Actions */}
+        <div className="space-y-2 mb-4">
+          <p className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Improvement Actions</p>
+          {actions.map((action, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="p-3 border border-gray-100"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex items-start gap-2">
+                  <div className={`w-4 h-4 rounded mt-0.5 flex items-center justify-center ${
+                    action.status === 'completed' ? 'bg-secondary' :
+                    action.status === 'in-progress' ? 'bg-primary' : 'bg-gray-200'
+                  }`}>
+                    {action.status === 'completed' && <Check className="w-2.5 h-2.5 text-white" />}
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-900">{action.task}</p>
+                    <p className="text-[10px] text-gray-500">{action.due}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Next Audit */}
+        <div className="bg-primary/5 border border-primary/20 p-3">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+              <span className="text-[10px] text-primary font-bold">📋</span>
+            </div>
+            <div>
+              <p className="text-xs font-medium text-gray-900">Follow-up Audit Scheduled</p>
+              <p className="text-[10px] text-primary">Feb 15, 2026 • Verify improvements</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Supplier Profile Mockup Component (kept for reference)
 const SupplierProfileMockup = () => {
   const [activeProfileTab, setActiveProfileTab] = useState(0);
   
@@ -301,14 +549,7 @@ const ComparisonMockup = () => {
         {/* Actions */}
         <div className="mt-4 flex gap-2">
           <button className="flex-1 py-2 bg-gray-100 text-xs font-medium">Add to List</button>
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Send RFQ</button>
-        </div>
-
-        {/* Export formats */}
-        <div className="mt-3 flex gap-2">
-          {['CSV', 'Excel', 'PDF'].map((fmt) => (
-            <span key={fmt} className="px-2 py-1 bg-gray-50 text-[10px] text-gray-600">{fmt}</span>
-          ))}
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Order Audits</button>
         </div>
       </div>
     </WindowChrome>
@@ -1425,7 +1666,7 @@ const ComparisonMockup = () => {
         </div>
       </section>
 
-      {/* Product Overview Section - Detailed Mockups */}
+      {/* Product Overview Section - Beyond Discovery */}
       <section className="py-24 px-6 bg-white" data-nav-theme="light">
         <div className="container mx-auto max-w-7xl">
           {/* Section Headline */}
@@ -1433,12 +1674,21 @@ const ComparisonMockup = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-headline text-foreground mb-20 max-w-3xl"
+            className="section-headline text-foreground mb-6 max-w-3xl"
           >
-            From requirement to qualified supplier in minutes
+            Beyond discovery: from search to verified partnership
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground mb-20 max-w-2xl"
+          >
+            Other platforms stop at search results. We take you from discovery through on-site verification to continuous supplier development.
+          </motion.p>
           
-          {/* Feature 1 - AI Conversational Search */}
+          {/* Step 1 - AI Discovery */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1446,17 +1696,21 @@ const ComparisonMockup = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">01</span>
+                <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Discovery</span>
+              </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Describe what you need in plain language
+                AI-powered supplier discovery
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our AI guides you through a conversational workflow, extracting technical specifications, certifications, and capacity requirements from your natural language input.
+                Describe your requirements in plain language. Our AI extracts technical specifications, certifications, and capacity needs to find matching suppliers from 25M+ profiles.
               </p>
               <ul className="space-y-3">
                 {[
-                  "7-step intelligent dialogue captures all requirements",
-                  "Extracts specs from uploaded drawings and documents",
-                  "Converts vague needs into precise technical criteria"
+                  "Conversational search understands complex requirements",
+                  "Multi-factor matching across 20+ criteria",
+                  "Real-time results from verified databases"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
@@ -1471,12 +1725,11 @@ const ComparisonMockup = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              {/* AI Chat Mockup */}
               <AISearchMockup />
             </motion.div>
           </div>
 
-          {/* Feature 2 - Supplier Analysis */}
+          {/* Step 2 - On-Site Audits */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1485,8 +1738,7 @@ const ComparisonMockup = () => {
               transition={{ delay: 0.2 }}
               className="order-2 lg:order-1"
             >
-              {/* Supplier Profile Mockup */}
-              <SupplierProfileMockup />
+              <AuditOrderMockup />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1494,17 +1746,21 @@ const ComparisonMockup = () => {
               viewport={{ once: true }}
               className="space-y-6 order-1 lg:order-2"
             >
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">02</span>
+                <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Verification</span>
+              </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Deep supplier intelligence at your fingertips
+                Order on-site audits instantly
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Access comprehensive supplier profiles with verified certifications, equipment lists, production capacity, and quality metrics—all enriched with ground truth data from audits.
+                Don't rely on self-reported data. Order professional on-site audits directly from the platform. Our certified auditors verify equipment, certifications, and capabilities in person.
               </p>
               <ul className="space-y-3">
                 {[
-                  "25M+ supplier profiles with verified data",
-                  "Equipment and capability verification",
-                  "Match scoring with transparent reasoning"
+                  "2,500+ certified auditors in 95+ countries",
+                  "Process, quality, and full assessment options",
+                  "Reports delivered within 5 business days"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
@@ -1515,25 +1771,29 @@ const ComparisonMockup = () => {
             </motion.div>
           </div>
 
-          {/* Feature 3 - Compare & Export */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Step 3 - Ground Truth Intelligence */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">03</span>
+                <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Intelligence</span>
+              </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Compare, shortlist, and take action
+                Ground truth data you can trust
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Build comparison tables, save suppliers to project lists, and export data to your ERP. Seamlessly transition from search to RFQ or order an audit directly.
+                Every audit generates verified intelligence: confirmed equipment, validated certifications, actual production capacity. No more guessing—know exactly what your suppliers can deliver.
               </p>
               <ul className="space-y-3">
                 {[
-                  "Side-by-side capability comparison",
-                  "Export to CSV, Excel, PDF, or JSON",
-                  "Direct integration with ScanPro+ audits"
+                  "Equipment verified through on-site inspection",
+                  "Certificates validated for authenticity and scope",
+                  "Capacity confirmed with production evidence"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
@@ -1548,8 +1808,49 @@ const ComparisonMockup = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              {/* Comparison Mockup */}
-              <ComparisonMockup />
+              <GroundTruthMockup />
+            </motion.div>
+          </div>
+
+          {/* Step 4 - Supplier Development */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="order-2 lg:order-1"
+            >
+              <SupplierDevelopmentMockup />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6 order-1 lg:order-2"
+            >
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">04</span>
+                <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Development</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Continuous supplier development
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Turn audit findings into improvement actions. Track progress, schedule follow-ups, and monitor supplier development over time. Build partnerships, not just transactions.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Structured improvement action tracking",
+                  "Automated follow-up audit scheduling",
+                  "Performance trending and risk monitoring"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </div>
