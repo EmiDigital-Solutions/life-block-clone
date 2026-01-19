@@ -456,7 +456,7 @@ const CustomerStoryDetail = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <span className="inline-block px-4 py-1.5 bg-red-50 text-red-600 text-xs font-medium uppercase tracking-wider">
+              <span className="inline-block px-4 py-1.5 bg-destructive/10 text-destructive text-xs font-medium uppercase tracking-wider">
                 {story.challenge.title}
               </span>
               <p className="text-lg text-foreground/80 leading-relaxed">
@@ -465,7 +465,7 @@ const CustomerStoryDetail = () => {
               <ul className="space-y-3">
                 {story.challenge.points.map((point, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2.5 shrink-0" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-destructive mt-2.5 shrink-0" />
                     <span className="text-foreground/70">{point}</span>
                   </li>
                 ))}
@@ -479,7 +479,7 @@ const CustomerStoryDetail = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <span className="inline-block px-4 py-1.5 bg-green-50 text-green-600 text-xs font-medium uppercase tracking-wider">
+              <span className="inline-block px-4 py-1.5 bg-secondary/15 text-secondary text-xs font-medium uppercase tracking-wider">
                 {story.solution.title}
               </span>
               <p className="text-lg text-foreground/80 leading-relaxed">
