@@ -179,6 +179,18 @@ const Navigation = () => {
                   Our mission & team
                 </span>
               </Link>
+              <Link 
+                to="/customer-stories" 
+                className="block group py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Customer Stories
+                </span>
+                <span className="block text-sm text-foreground/60 mt-0.5">
+                  Success stories from our clients
+                </span>
+              </Link>
             </nav>
           </div>
         )}
