@@ -335,8 +335,46 @@ const CustomerStoryDetail = () => {
     <div className="min-h-screen bg-white" data-nav-theme="light">
       <Navigation />
       
+      {/* Secondary Navigation Bar - Sticky */}
+      <div className="fixed top-24 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-foreground/10">
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="flex items-center justify-between h-12">
+            <Link 
+              to="/customer-stories"
+              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="text-sm font-medium">Back to Customer Stories</span>
+            </Link>
+            
+            {/* Story navigation */}
+            <div className="flex items-center gap-4">
+              {prevStory && (
+                <Link
+                  to={`/customer-stories/${prevStory.id}`}
+                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  ← {prevStory.companyName}
+                </Link>
+              )}
+              {prevStory && nextStory && (
+                <span className="text-foreground/20">|</span>
+              )}
+              {nextStory && (
+                <Link
+                  to={`/customer-stories/${nextStory.id}`}
+                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  {nextStory.companyName} →
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {/* Hero Section - Full bleed image with overlay */}
-      <section className="relative min-h-[70vh] flex items-end">
+      <section className="relative min-h-[70vh] flex items-end pt-12">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -349,15 +387,6 @@ const CustomerStoryDetail = () => {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto max-w-7xl px-6 pb-16 pt-40">
-          {/* Back link */}
-          <Link 
-            to="/customer-stories"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Customer Stories</span>
-          </Link>
-
           {/* Industry badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
