@@ -1904,12 +1904,12 @@ const ReportDemo = () => {
                             className="border-b border-gray-50 last:border-0"
                           >
                             <td className="py-2.5 px-3 font-mono text-gray-400">{nc.id}</td>
-                            <td className="py-2.5 px-3 text-[#1391BF] font-medium">{nc.element}</td>
+                            <td className="py-2.5 px-3 text-[#0A7FA5] font-medium">{nc.element}</td>
                             <td className="py-2.5 px-3 text-gray-700">{nc.finding}</td>
                             <td className="py-2.5 px-3">
-                              <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium uppercase ${
-                                nc.severity === 'major' ? 'bg-red-50 text-red-600' : 
-                                nc.severity === 'minor' ? 'bg-amber-50 text-amber-600' : 'bg-blue-50 text-blue-600'
+                              <span className={`px-1.5 py-0.5 text-[10px] font-medium uppercase ${
+                                nc.severity === 'major' ? 'bg-[#AD3D3D]/10 text-[#AD3D3D]' : 
+                                nc.severity === 'minor' ? 'bg-[#E39B5C]/10 text-[#E39B5C]' : 'bg-[#0A7FA5]/10 text-[#0A7FA5]'
                               }`}>
                                 {nc.severity === 'observation' ? 'OFI' : nc.severity}
                               </span>
@@ -1934,7 +1934,7 @@ const ReportDemo = () => {
                           <div key={item.year} className="flex flex-col items-center">
                             <span className="text-xs font-bold text-gray-900 mb-1">{item.score}%</span>
                             <motion.div 
-                              className="w-10 rounded-t bg-[#1391BF]"
+                              className="w-10 bg-[#0A7FA5]"
                               initial={{ height: 0 }}
                               animate={{ height: heightPx }}
                               transition={{ delay: 0.2 + i * 0.1, duration: 0.4 }}
@@ -1955,7 +1955,7 @@ const ReportDemo = () => {
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Process Element Analysis</h3>
                   <div className="bg-white border border-gray-200 p-4 space-y-2">
                     {processElements.map((el, i) => {
-                      const color = el.score >= 90 ? '#10b981' : el.score >= 80 ? '#1391BF' : '#f59e0b';
+                      const color = el.score >= 90 ? '#6EA996' : el.score >= 80 ? '#0A7FA5' : '#E39B5C';
                       return (
                         <motion.div 
                           key={el.code}
@@ -1965,9 +1965,9 @@ const ReportDemo = () => {
                           className="flex items-center gap-3"
                         >
                           <span className="text-gray-400 text-[10px] font-mono w-6">{el.code}</span>
-                          <div className="flex-1 h-5 bg-gray-100 rounded-full overflow-hidden">
+                          <div className="flex-1 h-5 bg-gray-100 overflow-hidden">
                             <motion.div 
-                              className="h-full rounded-full"
+                              className="h-full"
                               style={{ backgroundColor: color }}
                               initial={{ width: 0 }}
                               animate={{ width: `${el.score}%` }}
@@ -1988,7 +1988,7 @@ const ReportDemo = () => {
                     <div className="flex items-end justify-around h-24">
                       {benchmarkData.map((item, i) => {
                         const isThisSupplier = item.category === 'This Supplier';
-                        const color = isThisSupplier ? '#1391BF' : item.category === 'Top 10%' ? '#10b981' : '#9ca3af';
+                        const color = isThisSupplier ? '#0A7FA5' : item.category === 'Top 10%' ? '#6EA996' : '#9ca3af';
                         return (
                           <motion.div 
                             key={item.category}
@@ -1998,13 +1998,13 @@ const ReportDemo = () => {
                             transition={{ delay: 0.4 + i * 0.1 }}
                           >
                             <motion.div 
-                              className={`w-14 rounded-t ${isThisSupplier ? 'ring-2 ring-[#1391BF]/30' : ''}`}
+                              className={`w-14 ${isThisSupplier ? 'ring-2 ring-[#0A7FA5]/30' : ''}`}
                               style={{ backgroundColor: color }}
                               initial={{ height: 0 }}
                               animate={{ height: `${(item.score / 100) * 70}px` }}
                               transition={{ delay: 0.6 + i * 0.1, duration: 0.3 }}
                             />
-                            <span className={`text-xs font-bold mt-2 ${isThisSupplier ? 'text-[#1391BF]' : 'text-gray-500'}`}>{item.score}%</span>
+                            <span className={`text-xs font-bold mt-2 ${isThisSupplier ? 'text-[#0A7FA5]' : 'text-gray-500'}`}>{item.score}%</span>
                             <span className="text-gray-400 text-[9px] text-center mt-0.5">{item.category}</span>
                           </motion.div>
                         );
@@ -2043,7 +2043,7 @@ const ReportDemo = () => {
                       <div className="text-white text-[7px] font-medium truncate">{item.label}</div>
                     </div>
                     {item.verified && (
-                      <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-emerald-500 flex items-center justify-center">
+                      <div className="absolute top-1 right-1 w-3 h-3 bg-[#6EA996] flex items-center justify-center">
                         <svg className="w-2 h-2 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
@@ -2058,14 +2058,14 @@ const ReportDemo = () => {
             <div className="p-4 border-b border-gray-100">
               <h4 className="text-xs font-semibold text-gray-900 mb-2">Lead Auditor</h4>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#1391BF] flex items-center justify-center text-white font-bold text-[10px]">
+                <div className="w-8 h-8 bg-[#0A7FA5] flex items-center justify-center text-white font-bold text-[10px]">
                   WL
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-gray-900 font-medium text-xs">Wei Liu</div>
                   <div className="text-gray-400 text-[10px]">VDA 6.3 Licensed</div>
                 </div>
-                <div className="text-emerald-600 text-[10px] font-medium">✓</div>
+                <div className="text-[#6EA996] text-[10px] font-medium">✓</div>
               </div>
             </div>
             
@@ -2123,8 +2123,8 @@ const FollowUpDemo = () => {
             <span className="text-sm text-gray-500">TechMold Industries</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="px-2 py-1 bg-red-50 text-red-600 text-xs font-medium rounded border border-red-200">1 Overdue</span>
-            <span className="px-2 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded border border-amber-200">2 In Progress</span>
+            <span className="px-2 py-1 bg-[#AD3D3D]/10 text-[#AD3D3D] text-xs font-medium border border-[#AD3D3D]/20">1 Overdue</span>
+            <span className="px-2 py-1 bg-[#E39B5C]/10 text-[#E39B5C] text-xs font-medium border border-[#E39B5C]/20">2 In Progress</span>
           </div>
         </div>
         
@@ -2145,7 +2145,7 @@ const FollowUpDemo = () => {
                   transition={{ delay: 0.1 + i * 0.1 }}
                   className={`p-4 border ${
                     task.status === 'Overdue' 
-                      ? 'bg-red-50/50 border-red-200' 
+                      ? 'bg-[#AD3D3D]/5 border-[#AD3D3D]/30' 
                       : 'bg-white border-gray-200'
                   }`}
                 >
@@ -2154,34 +2154,34 @@ const FollowUpDemo = () => {
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-medium text-gray-900">{task.title}</span>
                         {task.priority === 'high' && (
-                          <span className="px-1.5 py-0.5 bg-red-100 text-red-600 text-[10px] rounded font-medium">High</span>
+                          <span className="px-1.5 py-0.5 bg-[#AD3D3D]/10 text-[#AD3D3D] text-[10px] font-medium">High</span>
                         )}
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center text-white text-[10px] font-bold">
+                        <div className="w-6 h-6 bg-[#0A7FA5] flex items-center justify-center text-white text-[10px] font-bold">
                           {task.responsible.split(' ').map(n => n[0]).join('')}
                         </div>
                         <span className="text-xs text-gray-500">{task.responsible}</span>
                         <span className="text-gray-300">·</span>
-                        <span className={`text-xs ${task.status === 'Overdue' ? 'text-red-600' : 'text-gray-400'}`}>
+                        <span className={`text-xs ${task.status === 'Overdue' ? 'text-[#AD3D3D]' : 'text-gray-400'}`}>
                           Due: {task.deadline}
                         </span>
                       </div>
                     </div>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
+                    <span className={`px-2 py-1 text-xs font-medium ${
                       task.status === 'Overdue' 
-                        ? 'bg-red-100 text-red-600' 
-                        : 'bg-amber-100 text-amber-600'
+                        ? 'bg-[#AD3D3D]/10 text-[#AD3D3D]' 
+                        : 'bg-[#E39B5C]/10 text-[#E39B5C]'
                     }`}>
                       {task.status}
                     </span>
                   </div>
                   
                   <div className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="flex-1 h-2 bg-gray-100 overflow-hidden">
                       <motion.div 
-                        className={`h-full rounded-full ${
-                          task.status === 'Overdue' ? 'bg-red-400' : 'bg-amber-400'
+                        className={`h-full ${
+                          task.status === 'Overdue' ? 'bg-[#AD3D3D]' : 'bg-[#E39B5C]'
                         }`}
                         initial={{ width: 0 }}
                         animate={{ width: `${task.progress}%` }}
@@ -2202,17 +2202,17 @@ const FollowUpDemo = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-[#1391BF]/5 border border-[#1391BF]/20 p-4 mb-5"
+              className="bg-[#0A7FA5]/5 border border-[#0A7FA5]/20 p-4 mb-5"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#1391BF] flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#0A7FA5] flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
                   <div className="text-gray-900 font-medium text-sm">Re-audit Scheduled</div>
-                  <div className="text-[#1391BF] text-sm font-semibold">May 15, 2025</div>
+                  <div className="text-[#0A7FA5] text-sm font-semibold">May 15, 2025</div>
                 </div>
               </div>
             </motion.div>
@@ -2223,10 +2223,10 @@ const FollowUpDemo = () => {
               <div className="bg-white border border-gray-200 p-4">
                 <div className="space-y-4">
                   {[
-                    { user: "ZW", text: "Evidence photos uploaded", time: "2h ago", color: "bg-emerald-500" },
-                    { user: "LM", text: "Calibration cert submitted", time: "5h ago", color: "bg-[#1391BF]" },
-                    { user: "CH", text: "Training task completed", time: "1d ago", color: "bg-emerald-500" },
-                    { user: "SYS", text: "Deadline reminder sent", time: "2d ago", color: "bg-amber-500" },
+                    { user: "ZW", text: "Evidence photos uploaded", time: "2h ago", color: "bg-[#6EA996]" },
+                    { user: "LM", text: "Calibration cert submitted", time: "5h ago", color: "bg-[#0A7FA5]" },
+                    { user: "CH", text: "Training task completed", time: "1d ago", color: "bg-[#6EA996]" },
+                    { user: "SYS", text: "Deadline reminder sent", time: "2d ago", color: "bg-[#E39B5C]" },
                   ].map((activity, i) => (
                     <motion.div 
                       key={i}
