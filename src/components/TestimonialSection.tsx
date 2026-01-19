@@ -40,7 +40,7 @@ const TestimonialSection = () => {
             className="mb-12 md:mb-16"
           >
             <h2 className="section-headline text-foreground max-w-3xl">
-              One platform for every audit need
+              From discovery to verified partnership
             </h2>
           </motion.div>
 
