@@ -4,11 +4,6 @@ import { ArrowRight } from "lucide-react";
 import TestimonialModal from "@/components/TestimonialModal";
 
 import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
-import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
-import industryAutomotive from "@/assets/industry-automotive.jpg";
-import industryAerospace from "@/assets/industry-aerospace.jpg";
-import industryMedical from "@/assets/industry-medical.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
 
 // Use Case Card Component
 const UseCaseCard = ({ 
@@ -107,25 +102,25 @@ const TestimonialsCarouselSection = () => {
 
   const useCases = [
     {
-      image: industryAutomotive,
+      image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop",
       badge: "Automotive",
       title: "Supplier Qualification & PPAP",
       description: "Qualify new Tier-2 suppliers for precision parts in days, not weeks."
     },
     {
-      image: industryAerospace,
+      image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=600&fit=crop",
       badge: "Aerospace",
       title: "AS9100 Compliance Audits",
       description: "Validate critical processes at aerospace component suppliers."
     },
     {
-      image: industryMedical,
-      badge: "Medical",
-      title: "ISO 13485 Verification",
-      description: "Ensure medical device suppliers meet regulatory requirements."
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=600&fit=crop",
+      badge: "Healthcare & Pharma",
+      title: "GMP & ISO 13485 Verification",
+      description: "Ensure medical device and pharma suppliers meet regulatory requirements."
     },
     {
-      image: industryElectronics,
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
       badge: "Electronics",
       title: "Component Traceability",
       description: "Verify authenticity and quality of electronic components."
