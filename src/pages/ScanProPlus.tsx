@@ -2434,30 +2434,15 @@ const ScanProPlus = () => {
           </motion.h2>
           
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
-            {/* Portrait Photo - Square with Grayscale */}
+            {/* Stat Card - Primary Color Background */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="aspect-square bg-muted overflow-hidden max-w-sm"
-            >
-              <img 
-                src={auditorFemaleEuropean}
-                alt="Maria Schneider - Head of Supplier Quality"
-                className="w-full h-full object-cover grayscale"
-              />
-            </motion.div>
-            
-            {/* Stat Card - Primary Color Background */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
               className="bg-primary p-8 flex flex-col justify-between aspect-square"
             >
               {/* Icon */}
-              <div className="w-12 h-12 border-2 border-white flex items-center justify-center">
+              <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -2474,6 +2459,21 @@ const ScanProPlus = () => {
               </div>
             </motion.div>
             
+            {/* Portrait Photo - Square */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="aspect-square bg-muted overflow-hidden"
+            >
+              <img 
+                src={auditorFemaleEuropean}
+                alt="Maria Schneider - Head of Supplier Quality"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+            
             {/* Quote Content */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -2484,7 +2484,7 @@ const ScanProPlus = () => {
             >
               {/* Company Logo */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-foreground flex items-center justify-center">
+                <div className="w-8 h-8 bg-foreground rounded flex items-center justify-center">
                   <span className="text-background text-xs font-bold">VM</span>
                 </div>
                 <span className="text-lg font-bold text-foreground tracking-wide">VALVE MANUFACTURING</span>
