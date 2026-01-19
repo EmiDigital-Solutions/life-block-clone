@@ -335,35 +335,32 @@ const CustomerStoryDetail = () => {
     <div className="min-h-screen bg-white" data-nav-theme="light">
       <Navigation />
       
-      {/* Secondary Navigation Bar - With background for visibility */}
-      <div className="fixed top-24 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm border-b border-foreground/5">
+      {/* Secondary Navigation Bar - Transparent with button */}
+      <div className="fixed top-24 left-0 right-0 z-40">
         <div className="container mx-auto max-w-7xl px-6">
-          <div className="flex items-center justify-between h-10">
+          <div className="flex items-center justify-between h-12">
             <Link 
               to="/customer-stories"
-              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm text-foreground/80 hover:text-foreground hover:bg-white transition-colors text-sm font-medium shadow-sm"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="text-sm">Back to Customer Stories</span>
+              <span>Back to Customer Stories</span>
             </Link>
             
             {/* Story navigation */}
-            <div className="flex items-center gap-3 text-sm">
+            <div className="flex items-center gap-2 text-sm">
               {prevStory && (
                 <Link
                   to={`/customer-stories/${prevStory.id}`}
-                  className="text-foreground/50 hover:text-foreground transition-colors"
+                  className="px-3 py-2 bg-white/90 backdrop-blur-sm text-foreground/70 hover:text-foreground hover:bg-white transition-colors font-medium shadow-sm"
                 >
                   ← {prevStory.companyName}
                 </Link>
               )}
-              {prevStory && nextStory && (
-                <span className="text-foreground/30">|</span>
-              )}
               {nextStory && (
                 <Link
                   to={`/customer-stories/${nextStory.id}`}
-                  className="text-foreground/50 hover:text-foreground transition-colors"
+                  className="px-3 py-2 bg-white/90 backdrop-blur-sm text-foreground/70 hover:text-foreground hover:bg-white transition-colors font-medium shadow-sm"
                 >
                   {nextStory.companyName} →
                 </Link>
@@ -501,31 +498,41 @@ const CustomerStoryDetail = () => {
         </div>
       </section>
 
-      {/* Results Section */}
-      <section className="py-20 px-6 bg-foreground text-white">
+      {/* Results Section - BeFound Stats Style */}
+      <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
+          {/* Section headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-center mb-16"
+            className="section-headline text-foreground max-w-2xl mb-16"
           >
             Measurable Results
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* Stats Grid - 3 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
             {story.results.map((result, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="text-center"
+                transition={{ delay: idx * 0.05 }}
+                className="pb-12"
               >
-                <p className="text-5xl sm:text-6xl font-bold text-primary mb-2">
-                  {result.stat}
-                </p>
-                <p className="text-white/70">{result.label}</p>
+                <div className="border-t border-foreground/20 pt-6">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                    {result.stat}
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm mb-4">
+                    {result.label}
+                  </p>
+                  <p className="text-xs text-foreground/40 font-mono tracking-wider uppercase">
+                    {story.companyLogo}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
