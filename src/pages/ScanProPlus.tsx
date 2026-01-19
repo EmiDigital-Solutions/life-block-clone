@@ -2598,9 +2598,6 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* Industry Use Cases - Homepage Style */}
-      <IndustryUseCasesGrid />
-
       {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
@@ -2645,6 +2642,9 @@ const ScanProPlus = () => {
           <ComplianceStandardsGrid />
         </div>
       </section>
+
+      {/* Industry Use Cases - Homepage Style */}
+      <IndustryUseCasesGrid />
 
       {/* Global Network - Homepage Style */}
       <section 
