@@ -79,10 +79,10 @@ const WhyYVOOSection = () => {
             className="max-w-4xl"
           >
             <h2 className="section-headline text-foreground mb-6">
-              The way you audit sends a message
+              How you audit shapes how suppliers see you
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              Visionary procurement leaders are changing how they qualify suppliers. Here's why.
+              Your suppliers remember every audit. The question is: what will they remember about yours?
             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}
@@ -117,10 +117,10 @@ const WhyYVOOSection = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-4xl mb-8">
-                  The way you audit<br />sends a message
+                  How you audit shapes<br />how suppliers see you
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-xl">
-                  Why visionary procurement leaders are changing how they qualify suppliers.
+                  Your suppliers remember every audit. The question is: what will they remember about yours?
                 </p>
               </motion.div>
             </div>
