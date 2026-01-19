@@ -564,75 +564,99 @@ const CustomerStoryDetail = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* More Success Stories Section */}
       <section className="py-20 px-6 border-t border-foreground/10">
-        <div className="container mx-auto max-w-4xl text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
-          >
-            Ready to achieve similar results?
-          </motion.h2>
+        <div className="container mx-auto max-w-7xl">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground mb-8"
+            className="text-sm font-mono text-muted-foreground uppercase tracking-wider mb-8"
           >
-            Join {story.companyName} and hundreds of other enterprises transforming supplier quality with YVOO.
+            More success stories
           </motion.p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {storyIds
+              .filter(id => id !== storyId)
+              .slice(0, 3)
+              .map((id, idx) => {
+                const relatedStory = customerStoriesData[id];
+                // Get industry image for each story
+                const storyImages: Record<string, string> = {
+                  pepsico: "https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?w=600&h=400&fit=crop",
+                  swisslog: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+                  omv: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop",
+                  gordon: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&h=400&fit=crop",
+                  stada: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=400&fit=crop",
+                  coop: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&h=400&fit=crop"
+                };
+                
+                return (
+                  <motion.div
+                    key={id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
+                    <Link to={`/customer-stories/${id}`} className="block group">
+                      {/* Image with logo overlay */}
+                      <div className="relative aspect-[4/3] overflow-hidden bg-foreground/5 mb-4">
+                        <img
+                          src={storyImages[id] || relatedStory.heroImage}
+                          alt={relatedStory.companyName}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/30" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-white font-bold text-2xl tracking-wider">
+                            {relatedStory.companyLogo}
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
+                        {relatedStory.headline}
+                      </h3>
+                      <p className="text-muted-foreground text-sm font-mono flex items-center gap-1 group-hover:text-foreground transition-colors">
+                        Read more →
+                      </p>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Archlet style */}
+      <section className="py-24 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground tracking-[-0.02em] leading-[1.1] mb-8"
+          >
+            Ready to<br />
+            change the way<br />
+            you source?
+          </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
           >
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-8 py-4 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
+              className="inline-flex items-center justify-center bg-[#E8E84A] text-foreground px-8 py-4 font-mono text-sm font-medium hover:bg-[#E8E84A]/90 transition-colors min-w-[200px]"
             >
               Request a demo
-              <ArrowRight className="w-4 h-4" />
             </a>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Navigation to other stories */}
-      <section className="py-12 px-6 bg-muted/30 border-t border-foreground/10">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex justify-between items-center">
-            {prevStory ? (
-              <Link
-                to={`/customer-stories/${prevStory.id}`}
-                className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Previous</p>
-                  <p className="font-medium">{prevStory.companyName}</p>
-                </div>
-              </Link>
-            ) : <div />}
-            
-            {nextStory ? (
-              <Link
-                to={`/customer-stories/${nextStory.id}`}
-                className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors text-right"
-              >
-                <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Next</p>
-                  <p className="font-medium">{nextStory.companyName}</p>
-                </div>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            ) : <div />}
-          </div>
         </div>
       </section>
 
