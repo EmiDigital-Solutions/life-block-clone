@@ -335,13 +335,13 @@ const CustomerStoryDetail = () => {
     <div className="min-h-screen bg-white" data-nav-theme="light">
       <Navigation />
       
-      {/* Secondary Navigation Bar - Transparent overlay */}
-      <div className="fixed top-24 left-0 right-0 z-40">
+      {/* Secondary Navigation Bar - With background for visibility */}
+      <div className="fixed top-24 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm border-b border-foreground/5">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="flex items-center justify-between h-10">
             <Link 
               to="/customer-stories"
-              className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span className="text-sm">Back to Customer Stories</span>
@@ -352,18 +352,18 @@ const CustomerStoryDetail = () => {
               {prevStory && (
                 <Link
                   to={`/customer-stories/${prevStory.id}`}
-                  className="text-foreground/40 hover:text-foreground transition-colors"
+                  className="text-foreground/50 hover:text-foreground transition-colors"
                 >
                   ← {prevStory.companyName}
                 </Link>
               )}
               {prevStory && nextStory && (
-                <span className="text-foreground/20">|</span>
+                <span className="text-foreground/30">|</span>
               )}
               {nextStory && (
                 <Link
                   to={`/customer-stories/${nextStory.id}`}
-                  className="text-foreground/40 hover:text-foreground transition-colors"
+                  className="text-foreground/50 hover:text-foreground transition-colors"
                 >
                   {nextStory.companyName} →
                 </Link>
