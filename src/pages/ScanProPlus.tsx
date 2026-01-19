@@ -59,6 +59,7 @@ import auditorEuropeanBwGreen from "@/assets/auditor-european-bw-green.jpg";
 import auditorMiddleEastBwGreen from "@/assets/auditor-middle-east-bw-green.jpg";
 import auditorSouthAsianBwGreen from "@/assets/auditor-south-asian-bw-green.jpg";
 import auditorAfricanBwGreen from "@/assets/auditor-african-bw-green.jpg";
+import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -2430,7 +2431,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-12"
           >
-            What changes for your team
+            Trusted by quality leaders worldwide
           </motion.h2>
           
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
@@ -2444,7 +2445,7 @@ const ScanProPlus = () => {
               {/* Icon */}
               <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
               
@@ -2468,8 +2469,8 @@ const ScanProPlus = () => {
               className="aspect-square bg-muted overflow-hidden"
             >
               <img 
-                src={auditorFemaleEuropean}
-                alt="Maria Schneider - Head of Supplier Quality"
+                src={procurementFemaleEuropean}
+                alt="Dr. Julia Hartmann - VP Quality & Compliance"
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -2484,10 +2485,10 @@ const ScanProPlus = () => {
             >
               {/* Company Logo */}
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-foreground rounded flex items-center justify-center">
-                  <span className="text-background text-xs font-bold">VM</span>
+                <div className="w-8 h-8 bg-foreground flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">LP</span>
                 </div>
-                <span className="text-lg font-bold text-foreground tracking-wide">VALVE MANUFACTURING</span>
+                <span className="text-lg font-bold text-foreground tracking-wide">LINDE PRECISION</span>
               </div>
               
               {/* Quote */}
@@ -2497,8 +2498,8 @@ const ScanProPlus = () => {
               
               {/* Attribution */}
               <div>
-                <p className="font-semibold text-foreground">Maria Schneider,</p>
-                <p className="text-sm text-primary">Head of Supplier Quality Management</p>
+                <p className="font-semibold text-foreground">Dr. Julia Hartmann,</p>
+                <p className="text-sm text-primary">VP Quality & Compliance</p>
               </div>
             </motion.div>
           </div>
