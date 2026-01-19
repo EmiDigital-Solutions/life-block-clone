@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { X, Search, ClipboardCheck, BarChart3, ArrowRight } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
@@ -8,21 +8,18 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const capabilities = [
   {
-    icon: Search,
     title: "Search Suppliers",
-    pain: "Stop screening 200+ suppliers to find one qualified option",
+    description: "AI-powered discovery to find and qualify the right suppliers in minutes, not months.",
     link: "/search-suppliers"
   },
   {
-    icon: ClipboardCheck,
     title: "ScanPro+",
-    pain: "Stop flying engineers to one-day factory visits",
+    description: "On-site audits with certified local auditors. No flights, no delays, consistent quality.",
     link: "/scanpro-plus"
   },
   {
-    icon: BarChart3,
     title: "Ground Intelligence",
-    pain: "Stop chasing audit reports in email threads",
+    description: "Real-time supplier monitoring, risk scoring, and corrective action tracking.",
     link: "/ground-intelligence"
   }
 ];
@@ -34,27 +31,21 @@ const TestimonialSection = () => {
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Beyond Discovery Headline */}
+          {/* Headline - Archlet Style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 md:mb-16"
           >
-            <p className="text-sm font-mono text-primary uppercase tracking-widest mb-4">
-              The complete supplier platform
-            </p>
-            <h2 className="section-headline text-foreground max-w-3xl mx-auto">
-              Beyond discovery
+            <h2 className="section-headline text-foreground max-w-3xl">
+              One platform for every audit need
             </h2>
-            <p className="text-lg text-muted-foreground mt-4 max-w-xl mx-auto">
-              Others stop at search results. We deliver verified partnerships through audits, intelligence, and development.
-            </p>
           </motion.div>
 
-          {/* 3 Capability Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16 md:mb-20">
+          {/* 3 Capability Cards - Archlet Style with border-left accent */}
+          <div className="grid md:grid-cols-3 gap-0 border-t border-foreground/10 mb-16 md:mb-20">
             {capabilities.map((cap, index) => (
               <motion.div
                 key={index}
@@ -62,30 +53,29 @@ const TestimonialSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
               >
                 <Link
                   to={cap.link}
-                  className="group block h-full p-8 bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                  className="group block h-full p-8 md:p-10 hover:bg-secondary/20 transition-colors"
                 >
-                  {/* Icon */}
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-6">
-                    <cap.icon className="w-6 h-6 text-primary" />
+                  {/* Title with left accent bar on hover */}
+                  <div className="relative">
+                    <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                      {cap.title}
+                    </h3>
                   </div>
                   
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {cap.title}
-                  </h3>
-                  
-                  {/* Pain-solving subtitle */}
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {cap.pain}
+                  {/* Description */}
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {cap.description}
                   </p>
                   
                   {/* Link */}
-                  <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
                     <span className="text-sm">Learn more</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               </motion.div>
