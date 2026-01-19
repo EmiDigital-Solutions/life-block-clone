@@ -12,13 +12,13 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Mixed weight heading - competitive urgency */}
+          {/* Aspirational close - Archlet style */}
           <h2 className="section-headline text-foreground mb-6">
-            Leading OEMs already made the switch
+            It's time to rewrite the story
           </h2>
           
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-            Companies like Bosch, Continental, and ZF trust YVOO to audit faster, cheaper, and smarter. See how we can transform your supplier quality operations.
+            YVOO helps visionary leaders elevate supplier quality beyond admin. Send a clear message that audits can be rapid, consistent, and strategic.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
