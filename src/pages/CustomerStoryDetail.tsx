@@ -499,7 +499,7 @@ const CustomerStoryDetail = () => {
       </section>
 
       {/* Results Section - BeFound Stats Style */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-32 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           {/* Section headline */}
           <motion.h2
@@ -511,7 +511,7 @@ const CustomerStoryDetail = () => {
             Measurable Results
           </motion.h2>
           
-          {/* Stats Grid - 3 columns */}
+          {/* Stats Grid - 3 columns matching reference style */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
             {story.results.map((result, idx) => (
               <motion.div
@@ -522,14 +522,14 @@ const CustomerStoryDetail = () => {
                 transition={{ delay: idx * 0.05 }}
                 className="pb-12"
               >
-                <div className="border-t border-foreground/20 pt-6">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
+                  {result.label}
+                </p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
                     {result.stat}
                   </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm mb-4">
-                    {result.label}
-                  </p>
-                  <p className="text-xs text-foreground/40 font-mono tracking-wider uppercase">
+                  <p className="text-foreground/40 uppercase text-xs font-mono tracking-wider">
                     {story.companyLogo}
                   </p>
                 </div>
