@@ -15,6 +15,7 @@ import ScanProPlus from "./pages/ScanProPlus";
 import SearchSuppliers from "./pages/SearchSuppliers";
 import Features from "./pages/Features";
 import CustomerStories from "./pages/CustomerStories";
+import CustomerStoryDetail from "./pages/CustomerStoryDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/admin" element={<Admin />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/customer-stories" element={<CustomerStories />} />
+            <Route path="/customer-stories/:storyId" element={<CustomerStoryDetail />} />
             <Route path="/bg-removal" element={<BackgroundRemoval />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

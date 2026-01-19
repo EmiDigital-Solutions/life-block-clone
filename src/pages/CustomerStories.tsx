@@ -28,7 +28,7 @@ const kpiStats = [
   }
 ];
 
-// Customer stories data with industry images (Unsplash style like BeFound page)
+// Customer stories data with industry images (Unsplash style like BeFound page) - 6 stories
 const customerStories = [
   {
     id: "linde",
@@ -89,14 +89,6 @@ const customerStories = [
     title: "Coop transforms sourcing with YVOO to boost savings",
     description: "Read success story →",
     darkOverlay: false
-  },
-  {
-    id: "egger",
-    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=450&fit=crop", // Manufacturing
-    companyLogo: "EGGER",
-    title: "Egger makes sourcing simpler for buyers and suppliers alike",
-    description: "Read success story →",
-    darkOverlay: true
   }
 ];
 
