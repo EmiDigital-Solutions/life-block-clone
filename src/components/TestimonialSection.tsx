@@ -90,7 +90,7 @@ const TestimonialSection = () => {
             className="mb-8 md:mb-12"
           >
             <h2 className="section-headline text-foreground max-w-3xl">
-              Your audit intelligence, amplified by AIVOO
+              Your audit intelligence, powered by AIVOO
             </h2>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
               From supplier discovery to final report—AIVOO understands context, surfaces insights, and eliminates the friction that slows procurement teams down.
