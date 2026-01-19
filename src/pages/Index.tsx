@@ -11,6 +11,7 @@ import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSectio
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import FullScreenProjects from "@/components/FullScreenProjects";
+import BeyondDiscoverySection from "@/components/BeyondDiscoverySection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
       <HeroSection />
       <TestimonialSection />
       <EmailComparisonSection />
+      <BeyondDiscoverySection />
       <BuyerPainPointsSection />
       <ResultsBenefitsSection />
       <HowItWorksSection />
@@ -35,3 +37,4 @@ const Index = () => {
 };
 
 export default Index;
+
