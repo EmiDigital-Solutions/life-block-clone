@@ -21,6 +21,300 @@ import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
 import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
 
+// Window Chrome Component for mockups
+const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <div className="w-full h-full bg-[#fafafa] overflow-hidden flex flex-col shadow-xl border border-gray-200">
+    <div className="h-8 bg-white flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+      <div className="flex gap-1.5 mr-3">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+      </div>
+      <span className="text-[10px] text-gray-500 font-medium">{title}</span>
+    </div>
+    <div className="flex-1 overflow-hidden">
+      {children}
+    </div>
+  </div>
+);
+
+// AI Search Mockup Component
+const AISearchMockup = () => {
+  const [step, setStep] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStep((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const messages = [
+    { role: 'ai', text: "What type of product or service are you looking for?" },
+    { role: 'user', text: "CNC machining for automotive brake components" },
+    { role: 'ai', text: "For automotive brake components, what certifications do you require?" },
+    { role: 'user', text: "IATF 16949, ISO 9001, capacity for 50,000 units/month" },
+  ];
+
+  return (
+    <WindowChrome title="SearchPro+ — AI Assistant">
+      <div className="h-full bg-white p-4 flex flex-col">
+        <div className="flex-1 space-y-3 overflow-hidden">
+          {messages.slice(0, step + 1).map((msg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`max-w-[80%] p-3 text-sm ${
+                msg.role === 'user' 
+                  ? 'bg-primary text-white' 
+                  : 'bg-gray-100 text-gray-900'
+              }`}>
+                {msg.role === 'ai' && (
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <div className="w-4 h-4 bg-primary/20 flex items-center justify-center">
+                      <span className="text-[6px] text-primary font-bold">AI</span>
+                    </div>
+                    <span className="text-[10px] font-medium text-primary">YVOO</span>
+                  </div>
+                )}
+                <p className="leading-relaxed">{msg.text}</p>
+              </div>
+            </motion.div>
+          ))}
+          {step === 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-4 p-3 bg-primary/5 border border-primary/20"
+            >
+              <p className="text-xs font-medium text-primary mb-2">Searching 25M+ suppliers...</p>
+              <div className="flex gap-2">
+                <span className="px-2 py-1 bg-white text-[10px] border">IATF 16949</span>
+                <span className="px-2 py-1 bg-white text-[10px] border">50K units</span>
+                <span className="px-2 py-1 bg-white text-[10px] border">Automotive</span>
+              </div>
+            </motion.div>
+          )}
+        </div>
+        <div className="mt-4 flex gap-2">
+          <div className="flex-1 h-10 bg-gray-50 border border-gray-200 flex items-center px-3">
+            <span className="text-gray-400 text-sm">Type your requirements...</span>
+          </div>
+          <div className="w-10 h-10 bg-primary flex items-center justify-center">
+            <ArrowRight className="w-4 h-4 text-white" />
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Supplier Profile Mockup Component
+const SupplierProfileMockup = () => {
+  const [activeProfileTab, setActiveProfileTab] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveProfileTab((prev) => (prev + 1) % 3);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <WindowChrome title="SearchPro+ — Supplier Profile">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="flex items-start gap-3 mb-4 pb-4 border-b border-gray-100">
+          <div className="w-12 h-12 bg-gray-100 flex items-center justify-center">
+            <span className="text-lg font-bold text-gray-600">PM</span>
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <h3 className="font-bold text-gray-900">Precision Metalworks GmbH</h3>
+              <span className="px-1.5 py-0.5 bg-secondary/20 text-secondary text-[10px] font-medium">94% Match</span>
+            </div>
+            <p className="text-xs text-gray-500">Munich, Germany • Est. 1987</p>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-4 mb-4 border-b border-gray-100">
+          {['Capabilities', 'Certifications', 'Equipment'].map((tab, i) => (
+            <button
+              key={tab}
+              className={`pb-2 text-xs font-medium transition-colors ${
+                activeProfileTab === i ? 'text-primary border-b-2 border-primary' : 'text-gray-400'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <motion.div
+          key={activeProfileTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="space-y-2"
+        >
+          {activeProfileTab === 0 && (
+            <>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">5-Axis CNC Machining</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">Precision Grinding (±0.005mm)</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">Brake Component Expertise</span>
+              </div>
+            </>
+          )}
+          {activeProfileTab === 1 && (
+            <>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">IATF 16949:2016</span>
+                <span className="text-[10px] text-secondary">Valid until 2026</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">ISO 9001:2015</span>
+                <span className="text-[10px] text-secondary">Valid until 2025</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">ISO 14001</span>
+                <span className="text-[10px] text-secondary">Valid until 2025</span>
+              </div>
+            </>
+          )}
+          {activeProfileTab === 2 && (
+            <>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">DMG MORI NLX 2500</p>
+                <p className="text-[10px] text-gray-500">5-Axis CNC • 2021</p>
+              </div>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">Zeiss CMM Contura</p>
+                <p className="text-[10px] text-gray-500">Quality Measurement • 2022</p>
+              </div>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">Surface Grinder Okamoto</p>
+                <p className="text-[10px] text-gray-500">Precision Grinding • 2019</p>
+              </div>
+            </>
+          )}
+        </motion.div>
+
+        {/* CTA */}
+        <div className="mt-4 flex gap-2">
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">
+            Request Quote
+          </button>
+          <button className="flex-1 py-2 border border-gray-200 text-xs font-medium">
+            Order Audit
+          </button>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Comparison Mockup Component
+const ComparisonMockup = () => {
+  const [selectedCount, setSelectedCount] = useState(2);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedCount((prev) => prev === 2 ? 3 : 2);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const suppliers = [
+    { name: "Precision Metalworks", match: 94, cert: "IATF 16949", capacity: "60K/mo" },
+    { name: "AutoParts Bavaria", match: 89, cert: "IATF 16949", capacity: "45K/mo" },
+    { name: "CNC Masters", match: 82, cert: "ISO 9001", capacity: "80K/mo" },
+  ];
+
+  return (
+    <WindowChrome title="SearchPro+ — Compare Suppliers">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="font-bold text-gray-900 text-sm">Comparison Table</h3>
+            <p className="text-[10px] text-gray-500">{selectedCount} suppliers selected</p>
+          </div>
+          <div className="flex gap-2">
+            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1">
+              Export
+              <ArrowRight className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* Comparison Grid */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-gray-100">
+                <th className="text-left py-2 font-medium text-gray-500">Criteria</th>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <th key={i} className="text-left py-2 font-medium text-gray-900">{s.name}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Match Score</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">
+                    <span className={`font-bold ${s.match >= 90 ? 'text-secondary' : 'text-primary'}`}>
+                      {s.match}%
+                    </span>
+                  </td>
+                ))}
+              </tr>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Certification</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">{s.cert}</td>
+                ))}
+              </tr>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Capacity</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">{s.capacity}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-4 flex gap-2">
+          <button className="flex-1 py-2 bg-gray-100 text-xs font-medium">Add to List</button>
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Send RFQ</button>
+        </div>
+
+        {/* Export formats */}
+        <div className="mt-3 flex gap-2">
+          {['CSV', 'Excel', 'PDF'].map((fmt) => (
+            <span key={fmt} className="px-2 py-1 bg-gray-50 text-[10px] text-gray-600">{fmt}</span>
+          ))}
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
 const SearchSuppliers = () => {
   const [activeTab, setActiveTab] = useState<"search" | "save" | "export">("search");
   const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
@@ -232,6 +526,299 @@ const SearchSuppliers = () => {
     }, 40);
   };
 
+// Window Chrome Component for mockups
+const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <div className="w-full h-full bg-[#fafafa] overflow-hidden flex flex-col shadow-xl border border-gray-200">
+    <div className="h-8 bg-white flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+      <div className="flex gap-1.5 mr-3">
+        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+      </div>
+      <span className="text-[10px] text-gray-500 font-medium">{title}</span>
+    </div>
+    <div className="flex-1 overflow-hidden">
+      {children}
+    </div>
+  </div>
+);
+
+// AI Search Mockup Component
+const AISearchMockup = () => {
+  const [step, setStep] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStep((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const messages = [
+    { role: 'ai', text: "What type of product or service are you looking for?" },
+    { role: 'user', text: "CNC machining for automotive brake components" },
+    { role: 'ai', text: "For automotive brake components, what certifications do you require?" },
+    { role: 'user', text: "IATF 16949, ISO 9001, capacity for 50,000 units/month" },
+  ];
+
+  return (
+    <WindowChrome title="SearchPro+ — AI Assistant">
+      <div className="h-full bg-white p-4 flex flex-col">
+        <div className="flex-1 space-y-3 overflow-hidden">
+          {messages.slice(0, step + 1).map((msg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`max-w-[80%] p-3 text-sm ${
+                msg.role === 'user' 
+                  ? 'bg-primary text-white' 
+                  : 'bg-gray-100 text-gray-900'
+              }`}>
+                {msg.role === 'ai' && (
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <div className="w-4 h-4 bg-primary/20 flex items-center justify-center">
+                      <span className="text-[6px] text-primary font-bold">AI</span>
+                    </div>
+                    <span className="text-[10px] font-medium text-primary">YVOO</span>
+                  </div>
+                )}
+                <p className="leading-relaxed">{msg.text}</p>
+              </div>
+            </motion.div>
+          ))}
+          {step === 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-4 p-3 bg-primary/5 border border-primary/20"
+            >
+              <p className="text-xs font-medium text-primary mb-2">Searching 25M+ suppliers...</p>
+              <div className="flex gap-2">
+                <span className="px-2 py-1 bg-white text-[10px] border">IATF 16949</span>
+                <span className="px-2 py-1 bg-white text-[10px] border">50K units</span>
+                <span className="px-2 py-1 bg-white text-[10px] border">Automotive</span>
+              </div>
+            </motion.div>
+          )}
+        </div>
+        <div className="mt-4 flex gap-2">
+          <div className="flex-1 h-10 bg-gray-50 border border-gray-200 flex items-center px-3">
+            <span className="text-gray-400 text-sm">Type your requirements...</span>
+          </div>
+          <div className="w-10 h-10 bg-primary flex items-center justify-center">
+            <ArrowRight className="w-4 h-4 text-white" />
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Supplier Profile Mockup Component
+const SupplierProfileMockup = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % 3);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <WindowChrome title="SearchPro+ — Supplier Profile">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="flex items-start gap-3 mb-4 pb-4 border-b border-gray-100">
+          <div className="w-12 h-12 bg-gray-100 flex items-center justify-center">
+            <span className="text-lg font-bold text-gray-600">PM</span>
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <h3 className="font-bold text-gray-900">Precision Metalworks GmbH</h3>
+              <span className="px-1.5 py-0.5 bg-secondary/20 text-secondary text-[10px] font-medium">94% Match</span>
+            </div>
+            <p className="text-xs text-gray-500">Munich, Germany • Est. 1987</p>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-4 mb-4 border-b border-gray-100">
+          {['Capabilities', 'Certifications', 'Equipment'].map((tab, i) => (
+            <button
+              key={tab}
+              className={`pb-2 text-xs font-medium transition-colors ${
+                activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-gray-400'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="space-y-2"
+        >
+          {activeTab === 0 && (
+            <>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">5-Axis CNC Machining</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">Precision Grinding (±0.005mm)</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-gray-50">
+                <Check className="w-3 h-3 text-primary" />
+                <span className="text-xs">Brake Component Expertise</span>
+              </div>
+            </>
+          )}
+          {activeTab === 1 && (
+            <>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">IATF 16949:2016</span>
+                <span className="text-[10px] text-secondary">Valid until 2026</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">ISO 9001:2015</span>
+                <span className="text-[10px] text-secondary">Valid until 2025</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50">
+                <span className="text-xs font-medium">ISO 14001</span>
+                <span className="text-[10px] text-secondary">Valid until 2025</span>
+              </div>
+            </>
+          )}
+          {activeTab === 2 && (
+            <>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">DMG MORI NLX 2500</p>
+                <p className="text-[10px] text-gray-500">5-Axis CNC • 2021</p>
+              </div>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">Zeiss CMM Contura</p>
+                <p className="text-[10px] text-gray-500">Quality Measurement • 2022</p>
+              </div>
+              <div className="p-2 bg-gray-50">
+                <p className="text-xs font-medium">Surface Grinder Okamoto</p>
+                <p className="text-[10px] text-gray-500">Precision Grinding • 2019</p>
+              </div>
+            </>
+          )}
+        </motion.div>
+
+        {/* CTA */}
+        <div className="mt-4 flex gap-2">
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">
+            Request Quote
+          </button>
+          <button className="flex-1 py-2 border border-gray-200 text-xs font-medium">
+            Order Audit
+          </button>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+// Comparison Mockup Component
+const ComparisonMockup = () => {
+  const [selectedCount, setSelectedCount] = useState(2);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedCount((prev) => prev === 2 ? 3 : 2);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const suppliers = [
+    { name: "Precision Metalworks", match: 94, cert: "IATF 16949", capacity: "60K/mo" },
+    { name: "AutoParts Bavaria", match: 89, cert: "IATF 16949", capacity: "45K/mo" },
+    { name: "CNC Masters", match: 82, cert: "ISO 9001", capacity: "80K/mo" },
+  ];
+
+  return (
+    <WindowChrome title="SearchPro+ — Compare Suppliers">
+      <div className="h-full bg-white p-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="font-bold text-gray-900 text-sm">Comparison Table</h3>
+            <p className="text-[10px] text-gray-500">{selectedCount} suppliers selected</p>
+          </div>
+          <div className="flex gap-2">
+            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1">
+              Export
+              <ArrowRight className="w-3 h-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* Comparison Grid */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-gray-100">
+                <th className="text-left py-2 font-medium text-gray-500">Criteria</th>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <th key={i} className="text-left py-2 font-medium text-gray-900">{s.name}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Match Score</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">
+                    <span className={`font-bold ${s.match >= 90 ? 'text-secondary' : 'text-primary'}`}>
+                      {s.match}%
+                    </span>
+                  </td>
+                ))}
+              </tr>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Certification</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">{s.cert}</td>
+                ))}
+              </tr>
+              <tr className="border-b border-gray-50">
+                <td className="py-2 text-gray-500">Capacity</td>
+                {suppliers.slice(0, selectedCount).map((s, i) => (
+                  <td key={i} className="py-2">{s.capacity}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-4 flex gap-2">
+          <button className="flex-1 py-2 bg-gray-100 text-xs font-medium">Add to List</button>
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Send RFQ</button>
+        </div>
+
+        {/* Export formats */}
+        <div className="mt-3 flex gap-2">
+          {['CSV', 'Excel', 'PDF'].map((fmt) => (
+            <span key={fmt} className="px-2 py-1 bg-gray-50 text-[10px] text-gray-600">{fmt}</span>
+          ))}
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
 
   // Supplier database organized by industry/scenario
   const allSuppliers = {
@@ -838,7 +1425,7 @@ const SearchSuppliers = () => {
         </div>
       </section>
 
-      {/* Product Overview Section - BeFound Style */}
+      {/* Product Overview Section - Detailed Mockups */}
       <section className="py-24 px-6 bg-white" data-nav-theme="light">
         <div className="container mx-auto max-w-7xl">
           {/* Section Headline */}
@@ -848,10 +1435,10 @@ const SearchSuppliers = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-20 max-w-3xl"
           >
-            Find, save, and export suppliers in three simple steps
+            From requirement to qualified supplier in minutes
           </motion.h2>
           
-          {/* Feature 1 - Search */}
+          {/* Feature 1 - AI Conversational Search */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -860,13 +1447,17 @@ const SearchSuppliers = () => {
               className="space-y-6"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Search with AI precision
+                Describe what you need in plain language
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Describe your requirements naturally or upload specifications. Our AI interprets your needs and finds matching suppliers from a database of 25M+ profiles.
+                Our AI guides you through a conversational workflow, extracting technical specifications, certifications, and capacity requirements from your natural language input.
               </p>
               <ul className="space-y-3">
-                {["AI-powered natural language search", "Technical spec extraction from documents", "Multi-factor matching across 20+ criteria"].map((item, i) => (
+                {[
+                  "7-step intelligent dialogue captures all requirements",
+                  "Extracts specs from uploaded drawings and documents",
+                  "Converts vague needs into precise technical criteria"
+                ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                     <span className="text-foreground/70">{item}</span>
@@ -879,55 +1470,23 @@ const SearchSuppliers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-muted p-8"
             >
-              <div className="space-y-3">
-                {[
-                  { name: "Kenna Metal Inc.", location: "Chicago, USA", year: "1973" },
-                  { name: "DuPont SARL", location: "Paris, France", year: "1896" },
-                  { name: "CRH Automotive", location: "Munich, Germany", year: "2005" }
-                ].map((company, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-4 bg-white"
-                  >
-                    <div className="w-10 h-10 bg-primary/20 flex items-center justify-center">
-                      <Check className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-gray-900">{company.name}</p>
-                      <p className="text-sm text-gray-500">{company.location} • {company.year}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {/* AI Chat Mockup */}
+              <AISearchMockup />
             </motion.div>
           </div>
 
-          {/* Feature 2 - Save */}
+          {/* Feature 2 - Supplier Analysis */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-muted p-8 order-2 lg:order-1"
+              className="order-2 lg:order-1"
             >
-              <div className="p-6 bg-white border border-foreground/10">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-10 h-10 bg-primary/20 flex items-center justify-center">
-                    <span className="text-primary font-bold text-sm">📋</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-gray-900 mb-1">Automotive Supplier EMEA</p>
-                    <p className="text-sm text-gray-500">12 suppliers • Updated today</p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <span className="px-3 py-1 bg-muted text-sm">Share</span>
-                  <span className="px-3 py-1 bg-muted text-sm">Edit</span>
-                </div>
-              </div>
+              {/* Supplier Profile Mockup */}
+              <SupplierProfileMockup />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -936,15 +1495,27 @@ const SearchSuppliers = () => {
               className="space-y-6 order-1 lg:order-2"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Organize and collaborate
+                Deep supplier intelligence at your fingertips
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Create custom lists tailored to your business needs. Share with your team and collaborate in real-time—everyone stays aligned on supplier selection.
+                Access comprehensive supplier profiles with verified certifications, equipment lists, production capacity, and quality metrics—all enriched with ground truth data from audits.
               </p>
+              <ul className="space-y-3">
+                {[
+                  "25M+ supplier profiles with verified data",
+                  "Equipment and capability verification",
+                  "Match scoring with transparent reasoning"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
 
-          {/* Feature 3 - Export */}
+          {/* Feature 3 - Compare & Export */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -953,37 +1524,32 @@ const SearchSuppliers = () => {
               className="space-y-6"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Export to your systems
+                Compare, shortlist, and take action
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Seamlessly integrate with your existing procurement workflows. Export supplier data in multiple formats for use in your ERP, SRM, or BI tools.
+                Build comparison tables, save suppliers to project lists, and export data to your ERP. Seamlessly transition from search to RFQ or order an audit directly.
               </p>
-              <div className="flex gap-3 flex-wrap">
-                {["CSV", "Excel", "PDF", "JSON"].map((format) => (
-                  <span key={format} className="px-4 py-2 bg-muted text-foreground font-medium">
-                    {format}
-                  </span>
+              <ul className="space-y-3">
+                {[
+                  "Side-by-side capability comparison",
+                  "Export to CSV, Excel, PDF, or JSON",
+                  "Direct integration with ScanPro+ audits"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-muted p-8"
             >
-              <div className="bg-white p-6 border border-foreground/10">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary flex items-center justify-center">
-                    <ArrowRight className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Export Complete</p>
-                    <p className="text-sm text-muted-foreground">12 suppliers exported to Excel</p>
-                  </div>
-                </div>
-              </div>
+              {/* Comparison Mockup */}
+              <ComparisonMockup />
             </motion.div>
           </div>
         </div>
