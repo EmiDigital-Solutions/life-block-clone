@@ -25,12 +25,12 @@ interface DemoStep {
 }
 
 const demoSteps: DemoStep[] = [
-  { id: 1, title: "Supplier Discovery", label: "Search" },
-  { id: 2, title: "Order Audit", label: "Order" },
+  { id: 1, title: "AI-Powered Discovery", label: "Discover" },
+  { id: 2, title: "Order On-Site Audit", label: "Verify" },
   { id: 3, title: "Auditor Dispatch", label: "Dispatch" },
   { id: 4, title: "Audit Execution", label: "Audit" },
-  { id: 5, title: "Report Generation", label: "Report" },
-  { id: 6, title: "Follow-up Manager", label: "Follow-up" },
+  { id: 5, title: "Ground Truth Report", label: "Intelligence" },
+  { id: 6, title: "Supplier Development", label: "Develop" },
 ];
 
 // Clean Window Chrome Component - No dark title bar
@@ -2292,6 +2292,17 @@ const PlatformDemoAnimation = () => {
   
   return (
     <div className="w-full">
+      {/* End-to-End Journey Indicator */}
+      <div className="flex items-center justify-center gap-1 mb-4">
+        <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          Beyond discovery
+        </span>
+        <span className="text-xs text-muted-foreground mx-2">—</span>
+        <span className="text-xs text-muted-foreground">
+          The complete supplier journey
+        </span>
+      </div>
+      
       <div className="flex items-center justify-center gap-2 mb-6">
         {demoSteps.map((step, i) => (
           <button
@@ -2299,8 +2310,10 @@ const PlatformDemoAnimation = () => {
             onClick={() => setCurrentStep(i)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
               i === currentStep 
-                ? 'bg-[#1391BF] text-white' 
-                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                ? 'bg-primary text-white' 
+                : i < currentStep
+                  ? 'bg-secondary/20 text-secondary'
+                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
             }`}
           >
             {step.label}
@@ -2325,10 +2338,24 @@ const PlatformDemoAnimation = () => {
         </div>
       </div>
       
+      {/* Step Progress with End-to-End Messaging */}
       <div className="text-center mt-4">
-        <p className="text-sm text-gray-500">
-          Step {currentStep + 1} of {demoSteps.length}: <span className="font-medium text-gray-700">{demoSteps[currentStep].title}</span>
+        <p className="text-sm text-muted-foreground">
+          <span className="font-mono text-primary">{String(currentStep + 1).padStart(2, '0')}</span>
+          <span className="mx-2 text-gray-300">/</span>
+          <span className="font-mono text-gray-400">{String(demoSteps.length).padStart(2, '0')}</span>
+          <span className="mx-3 text-gray-300">—</span>
+          <span className="font-medium text-foreground">{demoSteps[currentStep].title}</span>
         </p>
+        {currentStep === demoSteps.length - 1 && (
+          <motion.p 
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-xs text-secondary mt-2 font-medium"
+          >
+            ✓ From search to verified partnership — the complete journey
+          </motion.p>
+        )}
       </div>
     </div>
   );
