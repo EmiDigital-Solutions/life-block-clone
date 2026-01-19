@@ -335,24 +335,24 @@ const CustomerStoryDetail = () => {
     <div className="min-h-screen bg-white" data-nav-theme="light">
       <Navigation />
       
-      {/* Secondary Navigation Bar - Sticky */}
-      <div className="fixed top-24 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-foreground/10">
+      {/* Secondary Navigation Bar - Transparent overlay */}
+      <div className="fixed top-24 left-0 right-0 z-40">
         <div className="container mx-auto max-w-7xl px-6">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex items-center justify-between h-10">
             <Link 
               to="/customer-stories"
-              className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Back to Customer Stories</span>
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span className="text-sm">Back to Customer Stories</span>
             </Link>
             
             {/* Story navigation */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 text-sm">
               {prevStory && (
                 <Link
                   to={`/customer-stories/${prevStory.id}`}
-                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                  className="text-foreground/40 hover:text-foreground transition-colors"
                 >
                   ← {prevStory.companyName}
                 </Link>
@@ -363,7 +363,7 @@ const CustomerStoryDetail = () => {
               {nextStory && (
                 <Link
                   to={`/customer-stories/${nextStory.id}`}
-                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                  className="text-foreground/40 hover:text-foreground transition-colors"
                 >
                   {nextStory.companyName} →
                 </Link>
@@ -652,7 +652,7 @@ const CustomerStoryDetail = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-[#E8E84A] text-foreground px-8 py-4 font-mono text-sm font-medium hover:bg-[#E8E84A]/90 transition-colors min-w-[200px]"
+              className="inline-flex items-center justify-center bg-primary text-white px-8 py-4 font-mono text-sm font-medium hover:bg-primary/90 transition-colors min-w-[200px]"
             >
               Request a demo
             </a>
