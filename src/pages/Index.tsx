@@ -10,7 +10,6 @@ import GlobalNetworkSection from "@/components/GlobalNetworkSection";
 import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
-import FullScreenProjects from "@/components/FullScreenProjects";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -28,7 +27,6 @@ const Index = () => {
       <TestimonialsCarouselSection />
       <FAQSection />
       <FinalCTASection />
-      <FullScreenProjects />
       <Footer />
     </div>
   );
