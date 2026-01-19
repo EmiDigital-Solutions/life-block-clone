@@ -1,9 +1,9 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import TestimonialSection from "@/components/TestimonialSection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
 import BuyerPainPointsSection from "@/components/BuyerPainPointsSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
+import TestimonialSection from "@/components/TestimonialSection";
 import TransformationPillarsSection from "@/components/TransformationPillarsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
@@ -20,37 +20,37 @@ const Index = () => {
       {/* 1. ATTENTION: Bold promise, visual impact */}
       <HeroSection />
       
-      {/* 2. PLATFORM DEMO: Show capability with "Beyond Discovery" positioning */}
-      <TestimonialSection />
-      
-      {/* 3. HOOK: Provocative statement with modal ("Tell me more") */}
+      {/* 2. HOOK: Provocative statement with modal ("Tell me more") */}
       <WhyYVOOSection />
       
-      {/* 4. PROBLEM: Empathy - show you understand their pain */}
+      {/* 3. PROBLEM: Empathy - show you understand their pain */}
       <BuyerPainPointsSection />
       
       {/* 4. CONTRAST: Before/After - visualize the stakes */}
       <EmailComparisonSection />
       
-      {/* 5. SOLUTION: 3 transformation pillars */}
+      {/* 5. SOLUTION DEMO: Show capability after stakes are clear */}
+      <TestimonialSection />
+      
+      {/* 6. TRANSFORMATION: 3 value pillars */}
       <TransformationPillarsSection />
       
-      {/* 6. GUIDE: Simple path forward */}
+      {/* 7. GUIDE: Simple path forward */}
       <HowItWorksSection />
       
-      {/* 7. CREDIBILITY: Prove capability */}
+      {/* 8. CREDIBILITY: Prove capability */}
       <GlobalNetworkSection />
       
-      {/* 8. AUTHORITY: Stats + third-party validation */}
+      {/* 9. AUTHORITY: Stats + third-party validation */}
       <StatsWithQuoteSection />
       
-      {/* 9. PROOF: Customer testimonials + use cases */}
+      {/* 10. PROOF: Customer testimonials + use cases */}
       <TestimonialsCarouselSection />
       
-      {/* 10. OBJECTIONS: Remove friction */}
+      {/* 11. OBJECTIONS: Remove friction */}
       <FAQSection />
       
-      {/* 11. ACTION: Aspirational close */}
+      {/* 12. ACTION: Aspirational close */}
       <FinalCTASection />
       
       <Footer />
