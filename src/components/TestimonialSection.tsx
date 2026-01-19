@@ -1,9 +1,31 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, Search, ClipboardCheck, BarChart3, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+
+const capabilities = [
+  {
+    icon: Search,
+    title: "Search Suppliers",
+    pain: "Stop screening 200+ suppliers to find one qualified option",
+    link: "/search-suppliers"
+  },
+  {
+    icon: ClipboardCheck,
+    title: "ScanPro+",
+    pain: "Stop flying engineers to one-day factory visits",
+    link: "/scanpro-plus"
+  },
+  {
+    icon: BarChart3,
+    title: "Ground Intelligence",
+    pain: "Stop chasing audit reports in email threads",
+    link: "/ground-intelligence"
+  }
+];
 
 const TestimonialSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,13 +34,13 @@ const TestimonialSection = () => {
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Beyond Discovery Headline - Psychological anchor */}
+          {/* Beyond Discovery Headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-8 md:mb-12"
+            className="text-center mb-12 md:mb-16"
           >
             <p className="text-sm font-mono text-primary uppercase tracking-widest mb-4">
               The complete supplier platform
@@ -31,7 +53,46 @@ const TestimonialSection = () => {
             </p>
           </motion.div>
 
-          {/* Platform Demo - Centered above content */}
+          {/* 3 Capability Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-16 md:mb-20">
+            {capabilities.map((cap, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link
+                  to={cap.link}
+                  className="group block h-full p-8 bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                >
+                  {/* Icon */}
+                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-6">
+                    <cap.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-foreground mb-3">
+                    {cap.title}
+                  </h3>
+                  
+                  {/* Pain-solving subtitle */}
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {cap.pain}
+                  </p>
+                  
+                  {/* Link */}
+                  <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                    <span className="text-sm">Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Platform Demo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +101,7 @@ const TestimonialSection = () => {
             className="mb-16 md:mb-20 lg:mb-24"
           >
             <div 
-              className="max-w-5xl mx-auto rounded-lg overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
               onClick={() => setIsModalOpen(true)}
             >
               <PlatformDemoAnimation />
