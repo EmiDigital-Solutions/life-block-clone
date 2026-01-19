@@ -1743,6 +1743,55 @@ const ComparisonMockup = () => {
         </div>
       </section>
 
+      {/* End-to-End Differentiator Section */}
+      <section className="py-20 px-6 bg-background" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground mb-6 max-w-3xl"
+          >
+            Beyond discovery: the only end-to-end supplier platform
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-muted-foreground mb-16 max-w-2xl"
+          >
+            Competitors stop at search results. We deliver verified ground truth through audits, continuous intelligence, and supplier development.
+          </motion.p>
+
+          {/* End-to-End Pipeline Visual */}
+          <div className="grid md:grid-cols-5 gap-4 mb-16">
+            {[
+              { step: "01", title: "Discovery", description: "AI-powered search across 25M+ suppliers", icon: "🔍" },
+              { step: "02", title: "Audits", description: "On-site verification by certified auditors", icon: "✓" },
+              { step: "03", title: "Intelligence", description: "Ground truth data from real facility visits", icon: "📊" },
+              { step: "04", title: "Development", description: "Continuous supplier improvement tracking", icon: "📈" },
+              { step: "05", title: "Control", description: "Ongoing compliance and performance monitoring", icon: "🛡️" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="h-2 bg-primary w-full mb-4" />
+                <span className="text-xs font-mono text-muted-foreground">{item.step}</span>
+                <h3 className="text-lg font-bold text-foreground mt-1 mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonial Section - BeFound 3-Column Style */}
       <section className="py-20 px-6 bg-white" data-nav-theme="light">
         <div className="container mx-auto max-w-7xl">
@@ -1751,9 +1800,9 @@ const ComparisonMockup = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-headline text-foreground mb-12"
+            className="section-headline text-foreground mb-12 max-w-3xl"
           >
-            From months of research to minutes
+            From database searches to verified partnerships
           </motion.h2>
           
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
@@ -1767,17 +1816,17 @@ const ComparisonMockup = () => {
               {/* Icon */}
               <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               
               {/* Stat */}
               <div>
                 <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
-                  85%
+                  100%
                 </p>
                 <p className="text-xl text-white/90 font-medium mt-2">
-                  reduction in research time
+                  verified ground truth data
                 </p>
               </div>
             </motion.div>
@@ -1815,7 +1864,7 @@ const ComparisonMockup = () => {
               
               {/* Quote */}
               <blockquote className="text-lg text-foreground leading-relaxed">
-                "What used to take our team weeks of manual research now happens in minutes. The AI understands exactly what we need and surfaces suppliers we never would have found through traditional methods."
+                "Other platforms gave us lists. YVOO gave us verified partners. The on-site audits and continuous intelligence mean we're not just finding suppliers—we're building relationships based on real data, not claims."
               </blockquote>
               
               {/* Attribution */}
@@ -1828,7 +1877,7 @@ const ComparisonMockup = () => {
         </div>
       </section>
 
-      {/* Stats Section - BeFound KPI 2x2 Style */}
+      {/* Stats Section - End-to-End Value KPIs */}
       <section className="py-32 px-6 bg-white" data-nav-theme="light">
         <div className="container mx-auto max-w-7xl">
           {/* Headline */}
@@ -1836,9 +1885,9 @@ const ComparisonMockup = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="section-headline text-foreground max-w-2xl mb-16"
+            className="section-headline text-foreground max-w-3xl mb-16"
           >
-            Built for procurement excellence
+            The complete supplier lifecycle in one platform
           </motion.h2>
 
           {/* KPI Grid 2x2 */}
@@ -1850,13 +1899,13 @@ const ComparisonMockup = () => {
               viewport={{ once: true }}
               className="pb-12"
             >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Supplier coverage</p>
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Discovery to verification</p>
               <div className="border-t border-foreground/20 pt-4">
                 <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  25M+
+                  5 days
                 </p>
                 <p className="text-foreground/60 leading-relaxed text-sm">
-                  Verified supplier profiles across 150+ countries and all major industries
+                  From supplier search to on-site audit completion with verified ground truth
                 </p>
               </div>
             </motion.div>
@@ -1869,13 +1918,13 @@ const ComparisonMockup = () => {
               transition={{ delay: 0.05 }}
               className="pb-12"
             >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Ground truth audits</p>
               <div className="border-t border-foreground/20 pt-4">
                 <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  85%
+                  12K+
                 </p>
                 <p className="text-foreground/60 leading-relaxed text-sm">
-                  Reduction in supplier research and qualification time
+                  On-site audits completed with verified equipment, certifications, and capabilities
                 </p>
               </div>
             </motion.div>
@@ -1888,13 +1937,13 @@ const ComparisonMockup = () => {
               transition={{ delay: 0.1 }}
               className="pb-12"
             >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Match accuracy</p>
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Supplier development</p>
               <div className="border-t border-foreground/20 pt-4">
                 <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  94%
+                  35%
                 </p>
                 <p className="text-foreground/60 leading-relaxed text-sm">
-                  Accuracy rate for AI-powered supplier matching and recommendations
+                  Average improvement in supplier performance through continuous monitoring
                 </p>
               </div>
             </motion.div>
@@ -1907,13 +1956,13 @@ const ComparisonMockup = () => {
               transition={{ delay: 0.15 }}
               className="pb-12"
             >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Risk reduction</p>
               <div className="border-t border-foreground/20 pt-4">
                 <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  40%
+                  60%
                 </p>
                 <p className="text-foreground/60 leading-relaxed text-sm">
-                  Average reduction in sourcing costs through better supplier discovery
+                  Reduction in supplier quality incidents through proactive intelligence
                 </p>
               </div>
             </motion.div>
@@ -1933,7 +1982,7 @@ const ComparisonMockup = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors rounded-lg"
             >
-              Book a demo
+              See the full platform
             </a>
           </motion.div>
         </div>
