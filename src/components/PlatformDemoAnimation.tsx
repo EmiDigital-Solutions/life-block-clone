@@ -2293,14 +2293,10 @@ const PlatformDemoAnimation = () => {
   return (
     <div className="w-full">
       {/* End-to-End Journey Indicator */}
-      <div className="flex items-center justify-center gap-1 mb-4">
-        <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-          Beyond discovery
-        </span>
-        <span className="text-xs text-muted-foreground mx-2">—</span>
-        <span className="text-xs text-muted-foreground">
-          The complete supplier journey
-        </span>
+      <div className="text-center mb-8">
+        <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-foreground">
+          Beyond discovery — the complete supplier journey
+        </h3>
       </div>
       
       {/* Step Navigation with Progress Connectors */}
