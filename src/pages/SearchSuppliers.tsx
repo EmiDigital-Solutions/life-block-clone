@@ -1743,6 +1743,202 @@ const ComparisonMockup = () => {
         </div>
       </section>
 
+      {/* Testimonial Section - BeFound 3-Column Style */}
+      <section className="py-20 px-6 bg-white" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl">
+          {/* Section Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground mb-12"
+          >
+            From months of research to minutes
+          </motion.h2>
+          
+          <div className="grid lg:grid-cols-3 gap-0 items-stretch">
+            {/* Stat Card - Primary Color Background */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-primary p-8 flex flex-col justify-between aspect-square"
+            >
+              {/* Icon */}
+              <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              {/* Stat */}
+              <div>
+                <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
+                  85%
+                </p>
+                <p className="text-xl text-white/90 font-medium mt-2">
+                  reduction in research time
+                </p>
+              </div>
+            </motion.div>
+            
+            {/* Portrait Photo - Square */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="aspect-square bg-muted overflow-hidden"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" 
+                alt="Michael Weber - VP of Procurement"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+            
+            {/* Quote Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="p-8 flex flex-col justify-center space-y-6 bg-white"
+            >
+              {/* Company Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-foreground rounded flex items-center justify-center">
+                  <span className="text-background text-xs font-bold">TI</span>
+                </div>
+                <span className="text-lg font-bold text-foreground tracking-wide">TECHNIK INDUSTRIES</span>
+              </div>
+              
+              {/* Quote */}
+              <blockquote className="text-lg text-foreground leading-relaxed">
+                "What used to take our team weeks of manual research now happens in minutes. The AI understands exactly what we need and surfaces suppliers we never would have found through traditional methods."
+              </blockquote>
+              
+              {/* Attribution */}
+              <div>
+                <p className="font-semibold text-foreground">Michael Weber,</p>
+                <p className="text-sm text-primary">VP of Global Procurement</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - BeFound KPI 2x2 Style */}
+      <section className="py-32 px-6 bg-white" data-nav-theme="light">
+        <div className="container mx-auto max-w-7xl">
+          {/* Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-headline text-foreground max-w-2xl mb-16"
+          >
+            Built for procurement excellence
+          </motion.h2>
+
+          {/* KPI Grid 2x2 */}
+          <div className="grid md:grid-cols-2 gap-x-12">
+            {/* KPI 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Supplier coverage</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  25M+
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Verified supplier profiles across 150+ countries and all major industries
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  85%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Reduction in supplier research and qualification time
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Match accuracy</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  94%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Accuracy rate for AI-powered supplier matching and recommendations
+                </p>
+              </div>
+            </motion.div>
+
+            {/* KPI 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              className="pb-12"
+            >
+              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
+              <div className="border-t border-foreground/20 pt-4">
+                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                  40%
+                </p>
+                <p className="text-foreground/60 leading-relaxed text-sm">
+                  Average reduction in sourcing costs through better supplier discovery
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-8"
+          >
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors rounded-lg"
+            >
+              Book a demo
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How Procurement Teams Use YVOO Search - Industry Showcase Section */}
       <section 
         data-nav-theme="light" 
