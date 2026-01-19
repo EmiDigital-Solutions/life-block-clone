@@ -5,16 +5,18 @@ import { ArrowRight, Play, Plus, Minus } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-// Import testimonial images
+// Import industry images
+import industryAutomotive from "@/assets/industry-automotive.jpg";
+import industryAerospace from "@/assets/industry-aerospace.jpg";
+import industryChemical from "@/assets/industry-chemical-modern.jpg";
+import industryPharma from "@/assets/industry-pharma-bw-green.jpg";
+import industryCryogenic from "@/assets/industry-cryogenic-modern.jpg";
+import industryValve from "@/assets/industry-valve-bw-green.jpg";
+import industryElectronics from "@/assets/industry-electronics.jpg";
+import industryMedical from "@/assets/industry-medical.jpg";
+import cncMachine from "@/assets/cnc-machine-dmg-nlx.jpg";
 import testimonialChristoph from "@/assets/testimonial-christoph-seeholzer.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
-import procurementMaleAsian from "@/assets/procurement-male-asian.jpg";
-import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
-import procurementFemaleAsian from "@/assets/procurement-female-asian.jpg";
-import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
-import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
 import procurementFemaleMiddleEast from "@/assets/procurement-female-middle-east.jpg";
-import procurementMaleOceania from "@/assets/procurement-male-oceania.jpg";
 
 // KPI Stats data
 const kpiStats = [
@@ -35,58 +37,75 @@ const kpiStats = [
   }
 ];
 
-// Customer stories data
+// Customer stories data with industry images
 const customerStories = [
   {
     id: "linde",
-    image: testimonialChristoph,
+    image: industryCryogenic,
+    personImage: testimonialChristoph,
+    companyLogo: "LINDE",
     title: "Linde cuts supplier qualification time by 60% with YVOO",
     quote: "YVOO helps us simplify supplier audits in international commerce. We now make faster decisions in complex events and use data much more.",
     name: "Christoph Seeholzer",
     role: "Director Supplier Quality, Linde",
-    featured: true
+    featured: true,
+    darkOverlay: true
   },
   {
     id: "siemens",
-    image: procurementMaleEuropean,
+    image: industryElectronics,
+    companyLogo: "SIEMENS",
     title: "Siemens runs sourcing with YVOO across 50 categories",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: true
   },
   {
     id: "bosch",
-    image: procurementFemaleAsian,
+    image: cncMachine,
+    companyLogo: "BOSCH",
     title: "Bosch drives efficient, transparent sourcing with YVOO",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: true
   },
   {
     id: "bmw",
-    image: procurementMaleAsian,
+    image: industryAutomotive,
+    companyLogo: "BMW",
     title: "BMW enhances sourcing decisions by combining YVOO with SAP",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: false
   },
   {
     id: "basf",
-    image: procurementFemaleEuropean,
+    image: industryChemical,
+    companyLogo: "BASF",
     title: "BASF accelerates sourcing with YVOO",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: false
   },
   {
     id: "bayer",
-    image: procurementMaleLatin,
+    image: industryPharma,
+    companyLogo: "BAYER",
     title: "Bayer turns days into seconds with YVOO's AI-driven audit analysis",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: false
   },
   {
-    id: "henkel",
-    image: procurementFemaleAfrican,
-    title: "Henkel transforms sourcing with YVOO to boost savings",
-    description: "Read success story →"
+    id: "airbus",
+    image: industryAerospace,
+    companyLogo: "AIRBUS",
+    title: "Airbus transforms sourcing with YVOO to boost savings",
+    description: "Read success story →",
+    darkOverlay: false
   },
   {
     id: "thyssenkrupp",
-    image: procurementMaleOceania,
+    image: industryValve,
+    companyLogo: "THYSSENKRUPP",
     title: "ThyssenKrupp makes sourcing simpler for buyers and suppliers alike",
-    description: "Read success story →"
+    description: "Read success story →",
+    darkOverlay: false
   }
 ];
 
@@ -248,7 +267,7 @@ const CustomerStories = () => {
       {/* Stories Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularStories.map((story, index) => (
               <motion.div
                 key={story.id}
@@ -258,17 +277,26 @@ const CustomerStories = () => {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link to={`/customer-stories/${story.id}`} className="block group">
-                  <div className="aspect-[4/3] overflow-hidden bg-foreground/5 mb-4">
+                  {/* Image with logo overlay */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-foreground/5 mb-4">
                     <img
                       src={story.image}
                       alt={story.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
+                    {/* Dark overlay for better logo visibility */}
+                    <div className={`absolute inset-0 ${story.darkOverlay ? 'bg-black/40' : 'bg-black/20'}`} />
+                    {/* Company logo */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-white font-bold text-2xl md:text-3xl tracking-wider drop-shadow-lg">
+                        {story.companyLogo}
+                      </span>
+                    </div>
                   </div>
                   <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
                     {story.title}
                   </h3>
-                  <p className="text-foreground/60 text-sm flex items-center gap-1">
+                  <p className="text-foreground/60 text-sm font-mono flex items-center gap-1">
                     {story.description}
                   </p>
                 </Link>
