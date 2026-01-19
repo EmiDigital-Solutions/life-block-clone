@@ -181,28 +181,30 @@ const CustomerStories = () => {
         </div>
       </section>
 
-      {/* KPI Stats Strip */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-y border-foreground/10">
+      {/* KPI Stats Strip - BeFound Style */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-foreground/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
             {kpiStats.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center md:px-8 first:md:pl-0 last:md:pr-0"
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="pb-12"
               >
-                <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                  {item.stat}
-                </p>
-                <p className="text-foreground/60 text-sm mb-4">
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
                   {item.description}
                 </p>
-                <p className="font-mono text-sm text-foreground/40 uppercase tracking-wider">
-                  {item.logo}
-                </p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    {item.stat}
+                  </p>
+                  <p className="text-foreground/40 uppercase text-xs font-mono tracking-wider">
+                    {item.logo}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
