@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X, ChevronDown, ArrowLeft, Check, ArrowRight } from "lucide-react";
+import { X, ArrowLeft, Check, ArrowRight, Quote } from "lucide-react";
+import { motion } from "framer-motion";
 
 // Import images - Hero images (people/team focus)
 import digitalWorkflowTeam from "@/assets/digital-workflow-team.jpg";
@@ -11,13 +12,6 @@ import riskScoringAi from "@/assets/risk-scoring-ai.jpg";
 import liveTrackingDashboard from "@/assets/live-tracking-dashboard.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.jpg";
 import supplierNetworking from "@/assets/supplier-networking.jpg";
-
-// Import images - Secondary images (object/process focus)
-import scanproDashboard from "@/assets/scanpro-ai-dashboard.jpg";
-import erpIntegration from "@/assets/erp-integration-sync.jpg";
-import oneClickDispatch from "@/assets/one-click-dispatch.jpg";
-import tripleSourceVerified from "@/assets/triple-source-verified.jpg";
-import realtimeAlerts from "@/assets/realtime-alerts.jpg";
 
 interface FeatureDetail {
   overview: string;
@@ -72,42 +66,6 @@ const heroImageMap: Record<string, { src: string; alt: string }> = {
   "Alternative Term Discovery": {
     src: supplierNetworking,
     alt: "Global supplier discovery across languages and regions.",
-  },
-};
-
-// Secondary images - object/process focused for circular section
-const secondaryImageMap: Record<string, { src: string; alt: string }> = {
-  "AI Preference Engine": {
-    src: scanproDashboard,
-    alt: "AI preference engine dashboard showing personalized results.",
-  },
-  "Intelligent Requirement Capture": {
-    src: oneClickDispatch,
-    alt: "Document processing and requirement extraction interface.",
-  },
-  "Multi-Factor Matching": {
-    src: tripleSourceVerified,
-    alt: "Multi-criteria matching visualization.",
-  },
-  "Explainable AI": {
-    src: riskScoringAi,
-    alt: "AI explanation and reasoning breakdown.",
-  },
-  "Smart Deduplication": {
-    src: erpIntegration,
-    alt: "Entity resolution and deduplication system.",
-  },
-  "Dynamic Results": {
-    src: scanproDashboard,
-    alt: "Dynamic search results optimization.",
-  },
-  "Real-Time Data Enrichment": {
-    src: realtimeAlerts,
-    alt: "Real-time data updates and enrichment.",
-  },
-  "Alternative Term Discovery": {
-    src: tripleSourceVerified,
-    alt: "Multi-language term discovery system.",
   },
 };
 
@@ -182,263 +140,317 @@ const getServicesForFeature = (title: string): string[] => {
   return servicesMap[title] || [];
 };
 
-// Generate benefits based on feature
-const getBenefitsForFeature = (title: string) => {
-  const benefitsMap: Record<string, { iconName: string; title: string; description: string }[]> = {
+// Generate stats/results for feature
+const getStatsForFeature = (title: string) => {
+  const statsMap: Record<string, { category: string; stat: string; description: string }[]> = {
     "AI Preference Engine": [
-      { iconName: "target", title: "Personalized Results", description: "Search results tailored to your organization's specific needs and preferences." },
-      { iconName: "clock", title: "Time Savings", description: "Eliminate manual filter configuration with intelligent preference learning." },
-      { iconName: "certificate", title: "Compliance First", description: "Automatically prioritize suppliers with required certifications." },
+      { category: "Time saved", stat: "70%", description: "reduction in manual filter configuration" },
+      { category: "Accuracy", stat: "95%", description: "match rate for preferred certifications" },
+      { category: "Efficiency", stat: "3x", description: "faster qualified supplier identification" },
     ],
     "Intelligent Requirement Capture": [
-      { iconName: "document", title: "Document Intelligence", description: "Extract specifications from any document format automatically." },
-      { iconName: "lightning", title: "Instant Structuring", description: "Convert unstructured requirements into searchable criteria." },
-      { iconName: "code", title: "Technical Precision", description: "Accurate extraction of tolerances, materials, and standards." },
+      { category: "Processing", stat: "90%", description: "automated spec extraction accuracy" },
+      { category: "Time saved", stat: "4hrs", description: "saved per RFQ preparation" },
+      { category: "Coverage", stat: "50+", description: "document formats supported" },
     ],
     "Multi-Factor Matching": [
-      { iconName: "scale", title: "Comprehensive Scoring", description: "Evaluate suppliers across 20+ criteria simultaneously." },
-      { iconName: "filter", title: "Precise Filtering", description: "Only see suppliers that meet ALL your requirements." },
-      { iconName: "chart-line", title: "Weighted Analysis", description: "Adjust importance of different criteria for your needs." },
+      { category: "Criteria", stat: "20+", description: "simultaneous evaluation factors" },
+      { category: "Precision", stat: "98%", description: "requirement matching accuracy" },
+      { category: "Speed", stat: "10x", description: "faster than manual screening" },
     ],
     "Explainable AI": [
-      { iconName: "eye", title: "Full Transparency", description: "See exactly why each supplier was recommended." },
-      { iconName: "list", title: "Gap Analysis", description: "Understand which requirements aren't fully met." },
-      { iconName: "check-circle", title: "Confident Decisions", description: "Make informed choices with clear justifications." },
+      { category: "Transparency", stat: "100%", description: "of recommendations explained" },
+      { category: "Confidence", stat: "85%", description: "increase in decision confidence" },
+      { category: "Audit", stat: "Full", description: "decision trail documentation" },
     ],
     "Smart Deduplication": [
-      { iconName: "users", title: "Unified Profiles", description: "Single view of suppliers across all name variations." },
-      { iconName: "history", title: "Complete History", description: "Consolidated interaction data and contract terms." },
-      { iconName: "link", title: "Relationship Mapping", description: "Understand subsidiary and ownership structures." },
+      { category: "Accuracy", stat: "99%", description: "entity resolution precision" },
+      { category: "Reduction", stat: "40%", description: "fewer duplicate supplier records" },
+      { category: "Consolidation", stat: "5x", description: "faster data merging" },
     ],
     "Dynamic Results": [
-      { iconName: "target", title: "Quality Over Quantity", description: "Only genuinely matching suppliers, no filler results." },
-      { iconName: "clock", title: "Reduced Screening", description: "Pre-qualified lists ready for immediate evaluation." },
-      { iconName: "award", title: "True Matches", description: "Every result meets your exact specifications." },
+      { category: "Quality", stat: "Zero", description: "filler results in searches" },
+      { category: "Precision", stat: "100%", description: "requirement match guarantee" },
+      { category: "Screening", stat: "80%", description: "less qualification effort" },
     ],
     "Real-Time Data Enrichment": [
-      { iconName: "refresh", title: "Current Information", description: "Always up-to-date supplier capabilities and certifications." },
-      { iconName: "certificate", title: "Verified Data", description: "Ground truth from actual site visits and audits." },
-      { iconName: "shield", title: "Reduced Risk", description: "Confidence in supplier claims through verification." },
+      { category: "Freshness", stat: "24hr", description: "maximum data staleness" },
+      { category: "Verification", stat: "85%", description: "profiles with verified data" },
+      { category: "Updates", stat: "Daily", description: "certification status checks" },
     ],
     "Alternative Term Discovery": [
-      { iconName: "globe", title: "Global Coverage", description: "Find suppliers regardless of regional terminology." },
-      { iconName: "language", title: "Multi-Language", description: "Automatic translation and term expansion." },
-      { iconName: "search", title: "Complete Results", description: "No qualified suppliers missed due to naming differences." },
+      { category: "Coverage", stat: "300%", description: "more suppliers discovered" },
+      { category: "Languages", stat: "40+", description: "regional terms supported" },
+      { category: "Synonyms", stat: "1000+", description: "manufacturing term mappings" },
     ],
   };
-  return benefitsMap[title] || [];
+  return statsMap[title] || [];
 };
 
 export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
   if (!feature) return null;
 
   const heroImage = heroImageMap[feature.title];
-  const secondaryImage = secondaryImageMap[feature.title];
   const services = getServicesForFeature(feature.title);
-  const benefits = getBenefitsForFeature(feature.title);
+  const stats = getStatsForFeature(feature.title);
 
   return (
     <Dialog open={!!feature} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-none w-screen h-screen sm:rounded-none p-0 bg-white border-none overflow-hidden [&>button]:hidden">
-        {/* Navigation bar with back button */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        {/* Secondary Navigation - CustomerStory Style */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-foreground/10">
+          <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
             <button
               onClick={onClose}
-              className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors font-medium"
+              className="px-4 py-2 bg-white border border-foreground/20 text-foreground text-sm font-medium hover:bg-muted transition-colors flex items-center gap-2"
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="hidden sm:inline">Back to SearchPro+</span>
-              <span className="sm:hidden">Back</span>
+              <ArrowLeft className="w-4 h-4" />
+              Back to SearchPro+
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              className="w-9 h-9 bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors"
             >
-              <X className="w-5 h-5 text-gray-600" />
+              <X className="w-4 h-4 text-foreground" />
             </button>
           </div>
         </div>
 
-        <div className="h-full overflow-y-auto pt-16">
-          {/* Hero Section */}
-          <section className="relative min-h-[70vh] lg:min-h-[80vh] bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
-            {/* Left side image - clipped circle */}
-            <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
-              <div 
-                className="absolute inset-0"
-                style={{
-                  clipPath: 'ellipse(100% 100% at 0% 50%)',
-                }}
-              >
-                {heroImage && (
-                  <img
-                    src={heroImage.src}
-                    alt={heroImage.alt}
-                    className="h-full w-full object-cover"
-                  />
-                )}
-              </div>
+        <div className="h-full overflow-y-auto pt-14">
+          {/* Hero Section - Full-screen image with dark overlay */}
+          <section className="relative min-h-[60vh] lg:min-h-[70vh] flex items-end">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              {heroImage && (
+                <img
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  className="w-full h-full object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
             </div>
 
             {/* Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-              <div className="lg:ml-[45%] lg:pl-16 space-y-6">
-                <DialogHeader className="space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-lg mb-2">
-                    <span className="text-sm font-semibold text-primary">{feature.number}</span>
-                  </div>
-                  <DialogTitle className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                    {feature.title}
-                  </DialogTitle>
-                  <DialogDescription className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed">
-                    {feature.detailedExplanation.overview}
-                  </DialogDescription>
-                </DialogHeader>
+            <div className="relative z-10 container mx-auto max-w-7xl px-6 pb-16 pt-40">
+              {/* Feature Number Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-sm text-xs font-medium text-white uppercase tracking-wider mb-4">
+                  Feature {feature.number}
+                </span>
+              </motion.div>
 
-                <p className="text-base text-gray-500 max-w-xl">
-                  Streamline your supplier discovery process with intelligent {feature.title.toLowerCase()} technology that adapts to your needs.
-                </p>
+              {/* Category */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-white/60 font-bold text-xl tracking-wider mb-4"
+              >
+                SearchPro+ AI
+              </motion.p>
 
-                <Button size="lg">
-                  Get Started
-                </Button>
-              </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center animate-bounce">
-                <ChevronDown className="w-6 h-6 text-white" />
-              </div>
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-[-0.02em] leading-[1.1] max-w-4xl"
+              >
+                {feature.title}
+              </motion.h1>
             </div>
           </section>
 
-          {/* Role-Specific Benefits Section */}
-          <section className="py-20 lg:py-28 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                {/* Text content */}
-                <div className="space-y-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                    How it helps your team
-                  </h2>
-                  
-                  {/* For Engineers */}
-                  <div className="border-l-4 border-gray-900 pl-6 py-2">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-gray-900 mb-2">Engineers</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+          {/* Quote/Overview Section */}
+          <section className="py-20 px-6 bg-muted/30">
+            <div className="container mx-auto max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center"
+              >
+                <Quote className="w-12 h-12 text-primary/30 mb-6" />
+                <blockquote className="text-2xl sm:text-3xl font-medium text-foreground leading-relaxed mb-8">
+                  "{feature.detailedExplanation.overview}"
+                </blockquote>
+                <p className="text-muted-foreground">
+                  {feature.description}
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Role-Specific Benefits - Challenge/Solution Style */}
+          <section className="py-20 px-6">
+            <div className="container mx-auto max-w-7xl">
+              <div className="grid lg:grid-cols-2 gap-16">
+                {/* Engineers & Procurement */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="space-y-8"
+                >
+                  {/* Engineers */}
+                  <div className="space-y-4">
+                    <span className="inline-block px-4 py-1.5 bg-foreground/10 text-foreground text-xs font-medium uppercase tracking-wider">
+                      For Engineers
+                    </span>
+                    <p className="text-lg text-foreground/80 leading-relaxed">
                       {feature.detailedExplanation.forEngineers}
                     </p>
                   </div>
 
-                  {/* For Procurement */}
-                  <div className="border-l-4 border-primary pl-6 py-2">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-primary mb-2">Procurement</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                  {/* Procurement */}
+                  <div className="space-y-4">
+                    <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-medium uppercase tracking-wider">
+                      For Procurement
+                    </span>
+                    <p className="text-lg text-foreground/80 leading-relaxed">
                       {feature.detailedExplanation.forBuyers}
                     </p>
                   </div>
+                </motion.div>
 
-                  {/* For Quality */}
-                  <div className="border-l-4 border-accent pl-6 py-2">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-accent mb-2">Quality</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                {/* Quality/Auditors */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="space-y-8"
+                >
+                  {/* Quality */}
+                  <div className="space-y-4">
+                    <span className="inline-block px-4 py-1.5 bg-secondary/15 text-secondary text-xs font-medium uppercase tracking-wider">
+                      For Quality Teams
+                    </span>
+                    <p className="text-lg text-foreground/80 leading-relaxed">
                       {feature.detailedExplanation.forAuditors}
                     </p>
                   </div>
-                </div>
 
-                {/* Circular image with rings */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative">
-                    {/* Outer ring */}
-                    <div className="absolute -inset-8 rounded-full border-[20px] border-[#e8f4f8]" />
-                    {/* Image circle */}
-                    <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
-                      {secondaryImage && (
-                        <img
-                          src={secondaryImage.src}
-                          alt={secondaryImage.alt}
-                          className="h-full w-full object-cover"
-                        />
-                      )}
-                    </div>
+                  {/* Example */}
+                  <div className="space-y-4">
+                    <span className="inline-block px-4 py-1.5 bg-muted text-muted-foreground text-xs font-medium uppercase tracking-wider">
+                      Real-World Example
+                    </span>
+                    <p className="text-foreground/70 leading-relaxed">
+                      {feature.detailedExplanation.example}
+                    </p>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Services Section */}
-          <section className="py-16 lg:py-24 bg-white">
-            <div className="max-w-5xl mx-auto px-6 lg:px-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
-                Capabilities included
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {services.map((service, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-sm"
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-primary" />
-                    </div>
-                    <p className="text-gray-700">{service}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Benefits Section */}
-          <section className="py-16 lg:py-24 bg-white">
-            <div className="max-w-5xl mx-auto px-6 lg:px-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
-                Key benefits
-              </h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {benefits.map((benefit, idx) => (
-                  <div 
+          {/* Results Section - BeFound Stats Style */}
+          <section className="py-32 px-6 bg-white">
+            <div className="container mx-auto max-w-7xl">
+              {/* Section headline */}
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl sm:text-5xl font-bold text-foreground tracking-[-0.02em] max-w-2xl mb-16"
+              >
+                Measurable Impact
+              </motion.h2>
+              
+              {/* Stats Grid - 3 columns matching BeFound style */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
+                {stats.map((result, idx) => (
+                  <motion.div
                     key={idx}
-                    className="text-center p-6 rounded-lg bg-gradient-to-br from-[#f8fafb] to-white"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="pb-12"
                   >
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600 text-sm">{benefit.description}</p>
-                  </div>
+                    <p className="text-sm text-foreground/50 font-mono tracking-wide uppercase mb-2">
+                      {result.category}
+                    </p>
+                    <div className="border-t border-foreground/20 pt-4">
+                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                        {result.stat}
+                      </p>
+                      <p className="text-foreground/60 text-sm">
+                        {result.description}
+                      </p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* Example Section */}
-          <section className="py-16 lg:py-24 bg-white">
-            <div className="max-w-4xl mx-auto px-6 lg:px-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
-                Real-world application
-              </h2>
-              <div className="bg-white rounded-lg p-8 shadow-sm">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  {feature.detailedExplanation.example}
-                </p>
+          {/* Capabilities Section */}
+          <section className="py-20 px-6 bg-muted/30">
+            <div className="container mx-auto max-w-7xl">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl sm:text-4xl font-bold text-foreground mb-12"
+              >
+                Included Capabilities
+              </motion.h2>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {services.map((service, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="flex items-start gap-3 p-4 bg-white"
+                  >
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{service}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 lg:py-20 bg-primary">
-            <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-                Ready to experience {feature.title}?
-              </h2>
-              <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-                Start using YVOO SearchPro+ today and transform your supplier discovery process.
-              </p>
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
-                Get Started
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+          <section className="py-20 px-6 bg-primary">
+            <div className="container mx-auto max-w-4xl text-center">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-[-0.02em]"
+              >
+                Ready to transform your supplier discovery?
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-white/80 text-lg mb-8 max-w-2xl mx-auto"
+              >
+                Experience {feature.title} with YVOO SearchPro+ and find qualified suppliers faster.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                  Get Started
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </motion.div>
             </div>
           </section>
         </div>
