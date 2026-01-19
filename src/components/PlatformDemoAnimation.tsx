@@ -184,7 +184,7 @@ const AIChatSearchDemo = () => {
         {/* Top Bar */}
         <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
@@ -192,8 +192,8 @@ const AIChatSearchDemo = () => {
             <div>
               <span className="text-sm font-medium text-gray-900">AI Search Assistant</span>
               <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs text-emerald-600">Online</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-pulse" />
+                <span className="text-xs text-[#6EA996]">Online</span>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@ const AIChatSearchDemo = () => {
                 className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}
               >
                 {msg.role === 'ai' && (
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center flex-shrink-0">
                     <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
@@ -222,7 +222,7 @@ const AIChatSearchDemo = () => {
                 )}
                 <div className={`rounded-2xl px-3 py-2 max-w-sm ${
                   msg.role === 'user' 
-                    ? 'bg-[#1391BF] text-white rounded-tr-md' 
+                    ? 'bg-[#0A7FA5] text-white rounded-tr-md' 
                     : 'bg-gray-100 text-gray-700 rounded-tl-md'
                 }`}>
                   <p className="text-sm">{msg.message}</p>
@@ -240,13 +240,13 @@ const AIChatSearchDemo = () => {
             {/* Currently Typing AI */}
             {isTyping && aiResponse && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center flex-shrink-0">
                   <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
                 <div className="bg-gray-100 rounded-2xl rounded-tl-md px-3 py-2 max-w-sm">
-                  <p className="text-sm text-gray-700">{aiResponse}<span className="inline-block w-0.5 h-3 bg-[#1391BF] ml-0.5 animate-pulse" /></p>
+                  <p className="text-sm text-gray-700">{aiResponse}<span className="inline-block w-0.5 h-3 bg-[#0A7FA5] ml-0.5 animate-pulse" /></p>
                 </div>
               </motion.div>
             )}
@@ -254,7 +254,7 @@ const AIChatSearchDemo = () => {
             {/* Currently Typing User */}
             {userInput && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2 justify-end">
-                <div className="bg-[#1391BF] text-white rounded-2xl rounded-tr-md px-3 py-2 max-w-sm">
+                <div className="bg-[#0A7FA5] text-white rounded-2xl rounded-tr-md px-3 py-2 max-w-sm">
                   <p className="text-sm">{userInput}<span className="inline-block w-0.5 h-3 bg-white ml-0.5 animate-pulse" /></p>
                 </div>
                 <div className="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
@@ -273,13 +273,13 @@ const AIChatSearchDemo = () => {
                 className="mt-4"
               >
                 <div className="flex gap-2 mb-3">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center flex-shrink-0">
                     <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
                   <div className="bg-gray-100 rounded-2xl rounded-tl-md px-3 py-2">
-                    <p className="text-sm text-gray-700 mb-2">Found <span className="font-semibold text-[#1391BF]">4 suppliers</span> matching your requirements:</p>
+                    <p className="text-sm text-gray-700 mb-2">Found <span className="font-semibold text-[#0A7FA5]">4 suppliers</span> matching your requirements:</p>
                   </div>
                 </div>
                 <div className="ml-9 grid grid-cols-2 gap-2">
@@ -295,7 +295,7 @@ const AIChatSearchDemo = () => {
                       <div className="text-xs text-gray-500 mb-2">{supplier.location}</div>
                       <div className="flex gap-1 flex-wrap">
                         {supplier.certs.map((cert) => (
-                          <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[9px] rounded font-medium">
+                          <span key={cert} className="px-1.5 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-[9px] rounded font-medium">
                             {cert}
                           </span>
                         ))}
@@ -318,7 +318,7 @@ const AIChatSearchDemo = () => {
                 className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
                 readOnly
               />
-                <button className="w-7 h-7 bg-[#1391BF] flex items-center justify-center">
+                <button className="w-7 h-7 bg-[#0A7FA5] flex items-center justify-center">
                 <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
@@ -419,7 +419,7 @@ const RefineSearchDemo = () => {
         <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-[#0A7FA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
               </svg>
               <span className="text-sm font-medium text-gray-900">Refine Results</span>
@@ -429,8 +429,8 @@ const RefineSearchDemo = () => {
           </div>
           {phase === 'results' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-sm text-emerald-600 font-medium">{suppliers.length} suppliers match</span>
+              <div className="w-2 h-2 rounded-full bg-[#6EA996]" />
+              <span className="text-sm text-[#6EA996] font-medium">{suppliers.length} suppliers match</span>
             </motion.div>
           )}
         </div>
@@ -456,7 +456,7 @@ const RefineSearchDemo = () => {
                   transition={{ delay: i * 0.1 }}
                   className={`p-3 rounded-xl border transition-all ${
                     activeFilters.includes(filter.id)
-                      ? 'bg-[#1391BF]/5 border-[#1391BF]/30'
+                      ? 'bg-[#0A7FA5]/5 border-[#0A7FA5]/30'
                       : 'bg-gray-50 border-gray-200'
                   }`}
                 >
@@ -466,7 +466,7 @@ const RefineSearchDemo = () => {
                       <div className="text-sm font-medium text-gray-900">{filter.label}</div>
                     </div>
                     <div className={`w-5 h-5 rounded flex items-center justify-center ${
-                      activeFilters.includes(filter.id) ? 'bg-[#1391BF]' : 'bg-gray-200'
+                      activeFilters.includes(filter.id) ? 'bg-[#0A7FA5]' : 'bg-gray-200'
                     }`}>
                       {activeFilters.includes(filter.id) && (
                         <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -483,7 +483,7 @@ const RefineSearchDemo = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="w-full p-3 border border-dashed border-gray-300 text-sm text-gray-500 hover:border-[#1391BF] hover:text-[#1391BF] transition-colors"
+                className="w-full p-3 border border-dashed border-gray-300 text-sm text-gray-500 hover:border-[#0A7FA5] hover:text-[#0A7FA5] transition-colors"
               >
                 + Add more filters
               </motion.button>
@@ -498,7 +498,7 @@ const RefineSearchDemo = () => {
               >
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-500">Active filters:</span>
-                  <span className="font-medium text-[#1391BF]">{activeFilters.length}</span>
+                  <span className="font-medium text-[#0A7FA5]">{activeFilters.length}</span>
                 </div>
               </motion.div>
             )}
@@ -512,9 +512,9 @@ const RefineSearchDemo = () => {
                   <motion.div 
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-12 h-12 rounded-full bg-[#1391BF]/10 flex items-center justify-center mx-auto mb-4"
+                    className="w-12 h-12 rounded-full bg-[#0A7FA5]/10 flex items-center justify-center mx-auto mb-4"
                   >
-                    <svg className="w-6 h-6 text-[#1391BF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 text-[#0A7FA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                     </svg>
                   </motion.div>
@@ -530,7 +530,7 @@ const RefineSearchDemo = () => {
                   <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    className="w-12 h-12 rounded-full border-3 border-[#1391BF] border-t-transparent mx-auto mb-4"
+                    className="w-12 h-12 rounded-full border-3 border-[#0A7FA5] border-t-transparent mx-auto mb-4"
                     style={{ borderWidth: 3 }}
                   />
                   <p className="text-gray-900 font-medium">Filtering suppliers...</p>
@@ -555,7 +555,7 @@ const RefineSearchDemo = () => {
                         transition={{ delay: i * 0.15 }}
                         className={`p-4 border-b border-gray-100 cursor-pointer transition-all ${
                           selectedSupplier === i 
-                            ? 'bg-[#1391BF]/5 border-l-2 border-l-[#1391BF]' 
+                            ? 'bg-[#0A7FA5]/5 border-l-2 border-l-[#0A7FA5]' 
                             : 'hover:bg-gray-50 bg-white'
                         }`}
                         onClick={() => setSelectedSupplier(i)}
@@ -567,14 +567,14 @@ const RefineSearchDemo = () => {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between mb-1">
                               <span className="text-sm font-medium text-gray-900 truncate">{supplier.name}</span>
-                              <span className={`text-sm font-bold ${supplier.match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                              <span className={`text-sm font-bold ${supplier.match >= 95 ? 'text-[#6EA996]' : 'text-[#0A7FA5]'}`}>
                                 {supplier.match}%
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mb-2">{supplier.location}</div>
                             <div className="flex gap-1.5 flex-wrap">
                               {supplier.certs.slice(0, 2).map((cert) => (
-                                <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                                <span key={cert} className="px-1.5 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-[10px] rounded font-medium">
                                   {cert}
                                 </span>
                               ))}
@@ -597,14 +597,14 @@ const RefineSearchDemo = () => {
                     >
                       {/* Profile Header */}
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-gradient-to-br from-[#1391BF]/20 to-[#1391BF]/5 flex items-center justify-center text-2xl">
+                        <div className="w-14 h-14 bg-gradient-to-br from-[#0A7FA5]/20 to-[#0A7FA5]/5 flex items-center justify-center text-2xl">
                           {suppliers[selectedSupplier].image}
                         </div>
                         <div className="flex-1">
                           <h3 className="text-lg font-semibold text-gray-900">{suppliers[selectedSupplier].name}</h3>
                           <p className="text-sm text-gray-500">{suppliers[selectedSupplier].location}</p>
                           <div className="flex items-center gap-1 mt-1">
-                            <span className="text-amber-500">★</span>
+                            <span className="text-[#E39B5C]">★</span>
                             <span className="text-sm font-medium text-gray-900">{suppliers[selectedSupplier].rating}</span>
                             <span className="text-xs text-gray-400">({suppliers[selectedSupplier].audits} audits)</span>
                           </div>
@@ -612,10 +612,10 @@ const RefineSearchDemo = () => {
                       </div>
                       
                       {/* Match Score */}
-                      <div className="bg-gradient-to-r from-[#1391BF]/10 to-emerald-500/10 p-4">
+                      <div className="bg-gradient-to-r from-[#0A7FA5]/10 to-[#6EA996]/10 p-4">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm text-gray-600">Match Score</span>
-                          <span className={`text-xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                          <span className={`text-xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-[#6EA996]' : 'text-[#0A7FA5]'}`}>
                             {suppliers[selectedSupplier].match}%
                           </span>
                         </div>
@@ -624,7 +624,7 @@ const RefineSearchDemo = () => {
                             initial={{ width: 0 }}
                             animate={{ width: `${suppliers[selectedSupplier].match}%` }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className={`h-full rounded-full ${suppliers[selectedSupplier].match >= 95 ? 'bg-emerald-500' : 'bg-[#1391BF]'}`}
+                            className={`h-full rounded-full ${suppliers[selectedSupplier].match >= 95 ? 'bg-[#6EA996]' : 'bg-[#0A7FA5]'}`}
                           />
                         </div>
                       </div>
@@ -646,7 +646,7 @@ const RefineSearchDemo = () => {
                         <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
                         <div className="flex gap-2 flex-wrap">
                           {suppliers[selectedSupplier].certs.map((cert) => (
-                          <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium border border-emerald-200">
+                          <span key={cert} className="px-3 py-1.5 bg-[#6EA996]/10 text-[#6EA996] text-xs font-medium border border-[#6EA996]/30">
                               {cert}
                             </span>
                           ))}
@@ -658,7 +658,7 @@ const RefineSearchDemo = () => {
                         <motion.button 
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex-1 py-2.5 bg-[#1391BF] text-white text-sm font-medium"
+                          className="flex-1 py-2.5 bg-[#0A7FA5] text-white text-sm font-medium"
                         >
                           Add to Order
                         </motion.button>
@@ -833,15 +833,15 @@ const SupplierSearchDemo = () => {
         <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center">
                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </div>
               <span className="text-sm font-medium text-gray-900">AI-Powered Search</span>
               <div className="flex items-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs text-emerald-600">Online</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996] animate-pulse" />
+                <span className="text-xs text-[#6EA996]">Online</span>
               </div>
             </div>
             <div className="h-4 w-px bg-gray-200" />
@@ -849,8 +849,8 @@ const SupplierSearchDemo = () => {
           </div>
           {(phase === 'results' || phase === 'profile') && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-sm text-emerald-600 font-medium">{suppliers.length} matches</span>
+              <div className="w-2 h-2 rounded-full bg-[#6EA996]" />
+              <span className="text-sm text-[#6EA996] font-medium">{suppliers.length} matches</span>
             </motion.div>
           )}
         </div>
@@ -870,7 +870,7 @@ const SupplierSearchDemo = () => {
                     className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}
                   >
                     {msg.role === 'ai' && (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center flex-shrink-0">
                         <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
@@ -878,7 +878,7 @@ const SupplierSearchDemo = () => {
                     )}
                     <div className={`rounded-2xl px-3 py-2 max-w-sm ${
                       msg.role === 'user' 
-                        ? 'bg-[#1391BF] text-white rounded-tr-md' 
+                        ? 'bg-[#0A7FA5] text-white rounded-tr-md' 
                         : 'bg-gray-100 text-gray-700 rounded-tl-md'
                     }`}>
                       <p className="text-sm">{msg.message}</p>
@@ -896,13 +896,13 @@ const SupplierSearchDemo = () => {
                 {/* Currently Typing AI */}
                 {isTyping && aiResponse && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#1391BF] to-[#0e7ba3] flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0A7FA5] to-[#087A96] flex items-center justify-center flex-shrink-0">
                       <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                       </svg>
                     </div>
                     <div className="bg-gray-100 rounded-2xl rounded-tl-md px-3 py-2 max-w-sm">
-                      <p className="text-sm text-gray-700">{aiResponse}<span className="inline-block w-0.5 h-3 bg-[#1391BF] ml-0.5 animate-pulse" /></p>
+                      <p className="text-sm text-gray-700">{aiResponse}<span className="inline-block w-0.5 h-3 bg-[#0A7FA5] ml-0.5 animate-pulse" /></p>
                     </div>
                   </motion.div>
                 )}
@@ -910,7 +910,7 @@ const SupplierSearchDemo = () => {
                 {/* Currently Typing User */}
                 {userInput && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2 justify-end">
-                    <div className="bg-[#1391BF] text-white rounded-2xl rounded-tr-md px-3 py-2 max-w-sm">
+                    <div className="bg-[#0A7FA5] text-white rounded-2xl rounded-tr-md px-3 py-2 max-w-sm">
                       <p className="text-sm">{userInput}<span className="inline-block w-0.5 h-3 bg-white ml-0.5 animate-pulse" /></p>
                     </div>
                     <div className="w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
@@ -931,7 +931,7 @@ const SupplierSearchDemo = () => {
                 <motion.div 
                   animate={{ rotate: 360 }} 
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="w-12 h-12 rounded-full border-3 border-[#1391BF] border-t-transparent mx-auto mb-4"
+                  className="w-12 h-12 rounded-full border-3 border-[#0A7FA5] border-t-transparent mx-auto mb-4"
                   style={{ borderWidth: 3 }}
                 />
                 <div className="text-gray-900 font-medium">Searching suppliers...</div>
@@ -975,7 +975,7 @@ const SupplierSearchDemo = () => {
                       transition={{ delay: 0.1 + i * 0.1 }}
                       className={`p-4 border-b border-gray-100 cursor-pointer transition-all ${
                         selectedSupplier === i 
-                          ? 'bg-[#1391BF]/5 border-l-2 border-l-[#1391BF]' 
+                          ? 'bg-[#0A7FA5]/5 border-l-2 border-l-[#0A7FA5]' 
                           : 'hover:bg-gray-50'
                       }`}
                       onClick={() => setSelectedSupplier(i)}
@@ -986,7 +986,7 @@ const SupplierSearchDemo = () => {
                           <div className="text-xs text-gray-500 mt-0.5">{supplier.location}</div>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <div className={`text-sm font-bold ${supplier.match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                          <div className={`text-sm font-bold ${supplier.match >= 95 ? 'text-[#6EA996]' : 'text-[#0A7FA5]'}`}>
                             {supplier.match}%
                           </div>
                           <span className="text-xs text-gray-400">match</span>
@@ -994,7 +994,7 @@ const SupplierSearchDemo = () => {
                       </div>
                       <div className="flex gap-1.5 flex-wrap">
                         {supplier.certs.map((cert) => (
-                          <span key={cert} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                          <span key={cert} className="px-1.5 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-[10px] rounded font-medium">
                             {cert}
                           </span>
                         ))}
@@ -1019,7 +1019,7 @@ const SupplierSearchDemo = () => {
                       <p className="text-sm text-gray-500 mt-0.5">{suppliers[selectedSupplier].location}</p>
                     </div>
                     <div className="text-right">
-                      <div className={`text-2xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                      <div className={`text-2xl font-bold ${suppliers[selectedSupplier].match >= 95 ? 'text-[#6EA996]' : 'text-[#0A7FA5]'}`}>
                         {suppliers[selectedSupplier].match}%
                       </div>
                       <div className="text-xs text-gray-400">Match Score</div>
@@ -1045,7 +1045,7 @@ const SupplierSearchDemo = () => {
                     <div className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Certifications</div>
                     <div className="flex gap-2 flex-wrap">
                       {suppliers[selectedSupplier].certs.map((cert) => (
-                        <span key={cert} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-medium border border-emerald-200">
+                        <span key={cert} className="px-3 py-1.5 bg-[#6EA996]/10 text-[#6EA996] text-xs font-medium border border-[#6EA996]/30">
                           {cert}
                         </span>
                       ))}
@@ -1057,7 +1057,7 @@ const SupplierSearchDemo = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="w-full py-3 bg-[#1391BF] text-white text-sm font-medium hover:bg-[#0e7ba3] transition-colors"
+                    className="w-full py-3 bg-[#0A7FA5] text-white text-sm font-medium hover:bg-[#087A96] transition-colors"
                   >
                     Add to Audit Order
                   </motion.button>
@@ -1078,7 +1078,7 @@ const SupplierSearchDemo = () => {
                   className="flex-1 bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
                   readOnly
                 />
-                <button className="w-7 h-7 bg-[#1391BF] flex items-center justify-center">
+                <button className="w-7 h-7 bg-[#0A7FA5] flex items-center justify-center">
                   <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
@@ -1115,7 +1115,7 @@ const OrderAuditDemo = () => {
           <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-gray-900">Audit Order</span>
             <div className="h-4 w-px bg-gray-200" />
-            <span className="px-2 py-1 bg-[#1391BF]/10 text-[#1391BF] text-xs font-medium rounded border border-[#1391BF]/20">
+            <span className="px-2 py-1 bg-[#0A7FA5]/10 text-[#0A7FA5] text-xs font-medium rounded border border-[#0A7FA5]/20">
               {suppliers.length} Suppliers Selected
             </span>
           </div>
@@ -1140,7 +1140,7 @@ const OrderAuditDemo = () => {
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded bg-[#1391BF] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded bg-[#0A7FA5] flex items-center justify-center flex-shrink-0 mt-0.5">
                         <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
@@ -1156,7 +1156,7 @@ const OrderAuditDemo = () => {
                     </div>
                   </div>
                   <div className="ml-8">
-                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] rounded font-medium">
+                    <span className="px-2 py-0.5 bg-[#6EA996]/10 text-[#6EA996] text-[10px] rounded font-medium">
                       {supplier.standard}
                     </span>
                   </div>
@@ -1180,12 +1180,12 @@ const OrderAuditDemo = () => {
                     className="flex items-center gap-3 p-2 bg-gray-50"
                   >
                     <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold ${
-                      doc.type === 'PDF' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'
+                      doc.type === 'PDF' ? 'bg-[#AD3D3D]/10 text-[#AD3D3D]' : 'bg-[#6EA996]/10 text-[#6EA996]'
                     }`}>
                       {doc.type}
                     </div>
                     <span className="text-xs text-gray-600 flex-1 truncate">{doc.name}</span>
-                    <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="w-4 h-4 text-[#6EA996]" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
                   </motion.div>
@@ -1248,7 +1248,7 @@ const OrderAuditDemo = () => {
                 ))}
                 <div className="border-t border-gray-100 pt-2 mt-2 flex justify-between">
                   <span className="text-gray-900 font-medium">Total</span>
-                  <span className="text-[#1391BF] font-bold text-lg">€2,100</span>
+                  <span className="text-[#0A7FA5] font-bold text-lg">€2,100</span>
                 </div>
               </div>
             </div>
@@ -1257,8 +1257,8 @@ const OrderAuditDemo = () => {
             <motion.button
               className={`w-full py-3 text-sm font-medium transition-all ${
                 orderPhase === 'confirmed'
-                  ? 'bg-emerald-500 text-white'
-                  : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
+                  ? 'bg-[#6EA996] text-white'
+                  : 'bg-[#0A7FA5] text-white hover:bg-[#087A96]'
               }`}
               animate={orderPhase === 'configuring' ? { scale: [1, 1.01, 1] } : {}}
               transition={{ duration: 2, repeat: Infinity }}
@@ -1322,14 +1322,14 @@ const AuditorDispatchDemo = () => {
         <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <div className="w-2 h-2 rounded-full bg-[#6EA996]" />
               <span className="text-sm font-medium text-gray-900">Audit Request #AR-2024-1847</span>
             </div>
             <div className="h-4 w-px bg-gray-200" />
             <span className="text-sm text-gray-500">{auditDetails.supplier}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="px-2 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded border border-amber-200">
+            <span className="px-2 py-1 bg-[#E39B5C]/10 text-[#E39B5C] text-xs font-medium rounded border border-[#E39B5C]/30">
               {auditDetails.priority} Priority
             </span>
           </div>
@@ -1345,8 +1345,8 @@ const AuditorDispatchDemo = () => {
                 <div key={step} className="flex items-center gap-3">
                   <motion.div 
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
-                      isComplete ? 'bg-emerald-500 text-white' :
-                      isActive ? 'bg-[#1391BF] text-white' : 
+                      isComplete ? 'bg-[#6EA996] text-white' :
+                      isActive ? 'bg-[#0A7FA5] text-white' : 
                       'bg-gray-100 text-gray-400'
                     }`}
                     animate={isActive ? { scale: [1, 1.05, 1] } : {}}
@@ -1355,7 +1355,7 @@ const AuditorDispatchDemo = () => {
                     {isComplete ? '✓' : i + 1}
                   </motion.div>
                   <span className={`text-sm ${isActive || isComplete ? 'text-gray-900 font-medium' : 'text-gray-400'}`}>{step}</span>
-                  {i < 2 && <div className={`w-16 h-px ${isComplete ? 'bg-emerald-500' : 'bg-gray-200'} ml-3`} />}
+                  {i < 2 && <div className={`w-16 h-px ${isComplete ? 'bg-[#6EA996]' : 'bg-gray-200'} ml-3`} />}
                 </div>
               );
             })}
@@ -1388,12 +1388,12 @@ const AuditorDispatchDemo = () => {
               <div className="flex items-center gap-3">
                 <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-[#1391BF] rounded-full"
+                    className="h-full bg-[#0A7FA5] rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: `${matchProgress}%` }}
                   />
                 </div>
-                <span className="text-sm font-semibold text-[#1391BF]">{matchProgress}%</span>
+                <span className="text-sm font-semibold text-[#0A7FA5]">{matchProgress}%</span>
               </div>
             </div>
           </div>
@@ -1425,7 +1425,7 @@ const AuditorDispatchDemo = () => {
                   transition={{ delay: 0.5 + i * 0.15 }}
                   className={`grid grid-cols-12 gap-4 px-4 py-4 items-center border-b border-gray-100 last:border-0 cursor-pointer transition-all ${
                     selectedAuditor === i 
-                      ? 'bg-[#1391BF]/5' 
+                      ? 'bg-[#0A7FA5]/5' 
                       : 'hover:bg-gray-50'
                   }`}
                   onClick={() => setSelectedAuditor(i)}
@@ -1442,7 +1442,7 @@ const AuditorDispatchDemo = () => {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-[#1391BF] rounded-full flex items-center justify-center"
+                          className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-[#0A7FA5] rounded-full flex items-center justify-center"
                         >
                           <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
@@ -1469,11 +1469,11 @@ const AuditorDispatchDemo = () => {
                     <div className="flex items-center gap-2">
                       <div className="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                         <div 
-                          className={`h-full rounded-full ${auditor.matchScore >= 95 ? 'bg-emerald-500' : 'bg-[#1391BF]'}`} 
+                          className={`h-full rounded-full ${auditor.matchScore >= 95 ? 'bg-[#6EA996]' : 'bg-[#0A7FA5]'}`} 
                           style={{ width: `${auditor.matchScore}%` }}
                         />
                       </div>
-                      <span className={`text-xs font-semibold ${auditor.matchScore >= 95 ? 'text-emerald-600' : 'text-[#1391BF]'}`}>
+                      <span className={`text-xs font-semibold ${auditor.matchScore >= 95 ? 'text-[#6EA996]' : 'text-[#0A7FA5]'}`}>
                         {auditor.matchScore}%
                       </span>
                     </div>
@@ -1481,7 +1481,7 @@ const AuditorDispatchDemo = () => {
                   
                   {/* Rating */}
                   <div className="col-span-2 flex items-center gap-1 text-xs text-gray-500">
-                    <span className="text-amber-400">★</span>
+                    <span className="text-[#E39B5C]">★</span>
                     <span>{auditor.rating}</span>
                     <span className="text-gray-300">·</span>
                     <span>{auditor.audits} audits</span>
@@ -1499,9 +1499,9 @@ const AuditorDispatchDemo = () => {
               <motion.div 
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-2 text-emerald-600"
+                className="flex items-center gap-2 text-[#6EA996]"
               >
-                <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-[#6EA996] flex items-center justify-center">
                   <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                   </svg>
@@ -1518,8 +1518,8 @@ const AuditorDispatchDemo = () => {
           <motion.button
             className={`px-5 py-2 text-sm font-medium transition-all ${
               dispatchPhase === 'confirmed'
-                ? 'bg-emerald-500 text-white'
-                : 'bg-[#1391BF] text-white hover:bg-[#0e7ba3]'
+                ? 'bg-[#6EA996] text-white'
+                : 'bg-[#0A7FA5] text-white hover:bg-[#087A96]'
             }`}
             animate={dispatchPhase === 'reviewing' ? { scale: [1, 1.02, 1] } : {}}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -1552,14 +1552,14 @@ const AuditExecutionDemo = () => {
         <div className="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-sm font-medium text-emerald-600">Live Audit</span>
+              <div className="w-2 h-2 rounded-full bg-[#6EA996] animate-pulse" />
+              <span className="text-sm font-medium text-[#6EA996]">Live Audit</span>
             </div>
             <div className="h-4 w-px bg-gray-200" />
             <span className="text-sm text-gray-900 font-medium">TechMold Industries</span>
             <span className="text-sm text-gray-500">Shanghai, China</span>
           </div>
-          <span className="px-2.5 py-1 bg-[#1391BF]/10 text-[#1391BF] text-xs font-medium rounded border border-[#1391BF]/20">
+          <span className="px-2.5 py-1 bg-[#0A7FA5]/10 text-[#0A7FA5] text-xs font-medium rounded border border-[#0A7FA5]/20">
             VDA 6.3
           </span>
         </div>
@@ -1579,9 +1579,9 @@ const AuditExecutionDemo = () => {
                   initial={{ scale: 1.1, opacity: 0 }} 
                   animate={{ scale: 1, opacity: 1 }} 
                   transition={{ delay: 0.8 }}
-                  className="absolute top-[10%] left-[5%] right-[45%] bottom-[35%] border-2 border-emerald-400 rounded-lg bg-emerald-400/5"
+                  className="absolute top-[10%] left-[5%] right-[45%] bottom-[35%] border-2 border-[#6EA996] rounded-lg bg-[#6EA996]/5"
                 >
-                  <div className="absolute -top-7 left-0 px-2 py-1 bg-emerald-500 text-white text-xs font-medium rounded-md flex items-center gap-1.5">
+                  <div className="absolute -top-7 left-0 px-2 py-1 bg-[#6EA996] text-white text-xs font-medium rounded-md flex items-center gap-1.5">
                     <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
@@ -1593,9 +1593,9 @@ const AuditExecutionDemo = () => {
                   initial={{ scale: 1.1, opacity: 0 }} 
                   animate={{ scale: 1, opacity: 1 }} 
                   transition={{ delay: 1.0 }}
-                  className="absolute top-[15%] right-[5%] w-28 h-20 border-2 border-[#1391BF] rounded-lg bg-[#1391BF]/5"
+                  className="absolute top-[15%] right-[5%] w-28 h-20 border-2 border-[#0A7FA5] rounded-lg bg-[#0A7FA5]/5"
                 >
-                  <div className="absolute -bottom-7 right-0 px-2 py-1 bg-[#1391BF] text-white text-xs font-medium rounded-md">
+                  <div className="absolute -bottom-7 right-0 px-2 py-1 bg-[#0A7FA5] text-white text-xs font-medium rounded-md">
                     Control Panel
                   </div>
                 </motion.div>
@@ -1612,7 +1612,7 @@ const AuditExecutionDemo = () => {
                       </div>
                       <div className="h-8 w-px bg-gray-200" />
                       <div className="text-center">
-                        <div className="text-lg font-bold text-emerald-600">26</div>
+                        <div className="text-lg font-bold text-[#6EA996]">26</div>
                         <div className="text-[10px] text-gray-400">Avg Score</div>
                       </div>
                       <div className="h-8 w-px bg-gray-200" />
@@ -1650,7 +1650,7 @@ const AuditExecutionDemo = () => {
                     transition={{ delay: i * 0.1 }}
                     className={`p-3 border transition-all ${
                       check.status === 'current' 
-                        ? 'bg-[#1391BF]/5 border-[#1391BF]/30' 
+                        ? 'bg-[#0A7FA5]/5 border-[#0A7FA5]/30' 
                         : check.status === 'done'
                         ? 'bg-gray-50 border-gray-100'
                         : 'bg-white border-gray-100'
@@ -1658,13 +1658,13 @@ const AuditExecutionDemo = () => {
                   >
                     <div className="flex items-center gap-3">
                       {check.status === 'done' ? (
-                        <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                        <div className="w-6 h-6 rounded-full bg-[#6EA996] flex items-center justify-center flex-shrink-0">
                           <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                           </svg>
                         </div>
                       ) : check.status === 'current' ? (
-                        <div className="w-6 h-6 rounded-full bg-[#1391BF] flex items-center justify-center flex-shrink-0">
+                        <div className="w-6 h-6 rounded-full bg-[#0A7FA5] flex items-center justify-center flex-shrink-0">
                           <motion.div 
                             animate={{ rotate: 360 }} 
                             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -1683,7 +1683,7 @@ const AuditExecutionDemo = () => {
                         </div>
                       </div>
                       {check.score && (
-                        <span className="text-sm font-bold text-emerald-600">{check.score}</span>
+                        <span className="text-sm font-bold text-[#6EA996]">{check.score}</span>
                       )}
                     </div>
                   </motion.div>
@@ -1694,13 +1694,13 @@ const AuditExecutionDemo = () => {
             {/* AI Assistant */}
             <div className="p-4 border-t border-gray-100 bg-gray-50">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-[#1391BF] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-[#0A7FA5] flex items-center justify-center flex-shrink-0">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs font-medium text-[#1391BF] mb-1">AI Assistant</div>
+                  <div className="text-xs font-medium text-[#0A7FA5] mb-1">AI Assistant</div>
                   <motion.p 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -2318,7 +2318,7 @@ const PlatformDemoAnimation = () => {
             <div key={step.id} className="flex items-center">
               <button
                 onClick={() => setCurrentStep(i)}
-                className={`relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`relative z-10 px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   i === currentStep 
                     ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-105' 
                     : i < currentStep
