@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import TestimonialSection from "@/components/TestimonialSection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
 import BuyerPainPointsSection from "@/components/BuyerPainPointsSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
@@ -19,10 +20,13 @@ const Index = () => {
       {/* 1. ATTENTION: Bold promise, visual impact */}
       <HeroSection />
       
-      {/* 2. HOOK: Provocative statement with modal ("Tell me more") */}
+      {/* 2. PLATFORM DEMO: Show capability with "Beyond Discovery" positioning */}
+      <TestimonialSection />
+      
+      {/* 3. HOOK: Provocative statement with modal ("Tell me more") */}
       <WhyYVOOSection />
       
-      {/* 3. PROBLEM: Empathy - show you understand their pain */}
+      {/* 4. PROBLEM: Empathy - show you understand their pain */}
       <BuyerPainPointsSection />
       
       {/* 4. CONTRAST: Before/After - visualize the stakes */}
