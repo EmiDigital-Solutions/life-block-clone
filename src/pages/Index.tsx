@@ -4,7 +4,7 @@ import WhyYVOOSection from "@/components/WhyYVOOSection";
 import BuyerPainPointsSection from "@/components/BuyerPainPointsSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import TestimonialSection from "@/components/TestimonialSection";
-
+import TransformationPillarsSection from "@/components/TransformationPillarsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
 import StatsWithQuoteSection from "@/components/StatsWithQuoteSection";
@@ -32,6 +32,8 @@ const Index = () => {
       {/* 5. SOLUTION DEMO: Show capability after stakes are clear */}
       <TestimonialSection />
       
+      {/* 6. TRANSFORMATION: 3 value pillars */}
+      <TransformationPillarsSection />
       
       {/* 7. GUIDE: Simple path forward */}
       <HowItWorksSection />
