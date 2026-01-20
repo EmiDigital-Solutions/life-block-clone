@@ -36,7 +36,7 @@ const UseCaseCard = ({
   return (
     <div 
       ref={containerRef}
-      className={`${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
+      className=""
     >
       <motion.button
         initial={{ opacity: 0, y: 30 }}
@@ -47,7 +47,7 @@ const UseCaseCard = ({
         className="group relative overflow-hidden cursor-pointer w-full h-full text-left"
       >
         {/* Full-bleed image container */}
-        <div className={`relative overflow-hidden ${isLarge ? 'aspect-[4/3] md:aspect-[16/10]' : 'aspect-[4/3]'}`}>
+        <div className="relative overflow-hidden aspect-square">
           {/* Full-bleed image with parallax */}
           <motion.img 
             src={image} 
@@ -265,18 +265,17 @@ const TestimonialsCarouselSection = () => {
 
         {/* VanMoof-style Product Showcase Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {/* Large card - Automotive */}
+          {/* Automotive */}
           <UseCaseCard
             image={useCases[0].image}
             badge="Automotive"
             title={useCases[0].title.split(':')[1]?.trim() || useCases[0].title}
             description={useCases[0].useCase}
-            isLarge={true}
             delay={0}
             onClick={() => setSelectedUseCase(useCases[0])}
           />
 
-          {/* Top right - Aerospace */}
+          {/* Aerospace */}
           <UseCaseCard
             image={useCases[1].image}
             badge="Aerospace"
@@ -286,7 +285,7 @@ const TestimonialsCarouselSection = () => {
             onClick={() => setSelectedUseCase(useCases[1])}
           />
 
-          {/* Bottom right - Pharma */}
+          {/* Pharma */}
           <UseCaseCard
             image={useCases[2].image}
             badge="Pharma"
