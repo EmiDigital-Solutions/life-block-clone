@@ -246,22 +246,36 @@ const TestimonialsCarouselSection = () => {
           </motion.div>
         </div>
 
-        {/* Industry Use Cases Header */}
-
-        {/* Industry Use Cases - ScanPro+ Style */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 md:mb-16 text-center"
-        >
-          <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
-            How teams use YVOO
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real scenarios from automotive, aerospace, medical, and electronics industries.
-          </p>
-        </motion.div>
+        {/* Industry Use Cases - offmenu.design "Projects" Style */}
+        <div className="relative mb-12 md:mb-16">
+          {/* Giant Background Text */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0 flex items-start justify-center pointer-events-none overflow-hidden"
+          >
+            <span 
+              className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[300px] font-bold text-foreground/[0.04] leading-none tracking-[-0.02em] select-none whitespace-nowrap"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+            >
+              Projects
+            </span>
+          </motion.div>
+          
+          {/* Actual Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative z-10 pt-16 sm:pt-24 md:pt-32 lg:pt-40"
+          >
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center">
+              Real scenarios from automotive, aerospace, medical, and electronics industries.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Product Showcase Grid - Matching SearchSuppliers Design */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
