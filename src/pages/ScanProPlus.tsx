@@ -1373,18 +1373,22 @@ const IndustryUseCasesGrid = () => {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Header - offmenu.design "Projects" Style */}
-        <div className="relative mb-12 md:mb-16">
-          {/* Giant Background Text */}
+        <div className="relative mb-12 md:mb-16 overflow-visible">
+          {/* Giant Background Text with Parallax */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex items-start justify-center pointer-events-none overflow-hidden"
+            style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -100]) }}
+            className="absolute inset-0 flex items-start justify-center pointer-events-none overflow-visible -top-8"
           >
             <span 
-              className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[300px] font-bold text-foreground/[0.04] leading-none tracking-[-0.02em] select-none whitespace-nowrap"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+              className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[300px] font-bold leading-none tracking-[-0.02em] select-none whitespace-nowrap bg-clip-text text-transparent"
+              style={{ 
+                fontFamily: 'Inter, system-ui, sans-serif',
+                backgroundImage: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.12) 0%, rgba(10, 10, 10, 0.03) 100%)'
+              }}
             >
               Projects
             </span>
