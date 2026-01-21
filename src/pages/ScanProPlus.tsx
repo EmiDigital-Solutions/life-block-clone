@@ -1373,33 +1373,33 @@ const IndustryUseCasesGrid = () => {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Header - offmenu.design "Projects" Style */}
-        <div className="relative mb-12 md:mb-16 overflow-visible">
-          {/* Giant Background Text with Parallax */}
+        <div className="relative overflow-visible -mt-8 md:-mt-16">
+          {/* Giant Background Text with Parallax - positioned to overlap above section */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -100]) }}
-            className="absolute inset-0 flex items-start justify-center pointer-events-none overflow-visible -top-8"
+            style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -80]), top: '-60px' }}
+            className="absolute left-0 right-0 flex items-start justify-center pointer-events-none overflow-visible"
           >
             <span 
-              className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[300px] font-bold leading-none tracking-[-0.02em] select-none whitespace-nowrap bg-clip-text text-transparent"
+              className="text-[140px] sm:text-[200px] md:text-[280px] lg:text-[340px] font-bold leading-[0.85] tracking-[-0.03em] select-none whitespace-nowrap bg-clip-text text-transparent"
               style={{ 
                 fontFamily: 'Inter, system-ui, sans-serif',
-                backgroundImage: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.12) 0%, rgba(10, 10, 10, 0.03) 100%)'
+                backgroundImage: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.08) 40%, rgba(10, 10, 10, 0.02) 80%, rgba(10, 10, 10, 0) 100%)'
               }}
             >
               Projects
             </span>
           </motion.div>
           
-          {/* Actual Content */}
+          {/* Actual Content - positioned below the giant text */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative z-10 pt-16 sm:pt-24 md:pt-32 lg:pt-40"
+            className="relative z-10 pt-32 sm:pt-40 md:pt-52 lg:pt-64 pb-8 md:pb-12"
           >
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center">
               Real scenarios from automotive, aerospace, pharma, and chemical—see how teams like yours work smarter.
