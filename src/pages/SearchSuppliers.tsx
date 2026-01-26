@@ -2296,37 +2296,32 @@ const ComparisonMockup = () => {
       >
         <div className="container mx-auto px-4 md:px-8 lg:px-12">
           {/* Header - offmenu.design "Projects" Style */}
-          <div className="relative overflow-visible -mt-8 md:-mt-16">
-            {/* Giant Background Text with Parallax - positioned to overlap above section */}
+          <div className="relative">
+            {/* Giant Background Text - positioned to sit just above the cards */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -80]), top: '-60px' }}
-              className="absolute left-0 right-0 flex items-start justify-center pointer-events-none overflow-visible"
+              className="relative flex items-end justify-center pointer-events-none overflow-visible mb-[-40px] sm:mb-[-60px] md:mb-[-100px] lg:mb-[-140px]"
             >
-              <span 
-                className="text-[140px] sm:text-[200px] md:text-[280px] lg:text-[340px] font-bold leading-[0.85] tracking-[-0.03em] select-none whitespace-nowrap bg-clip-text text-transparent"
-                style={{ 
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  backgroundImage: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.08) 40%, rgba(10, 10, 10, 0.02) 80%, rgba(10, 10, 10, 0) 100%)'
-                }}
+              <motion.span 
+                style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -60]) }}
+                className="text-[120px] sm:text-[180px] md:text-[260px] lg:text-[340px] font-bold leading-[0.75] tracking-[-0.04em] select-none whitespace-nowrap bg-clip-text text-transparent"
               >
-                Projects
-              </span>
-            </motion.div>
-            
-            {/* Actual Content - positioned below the giant text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative z-10 pt-32 sm:pt-40 md:pt-52 lg:pt-64 pb-8 md:pb-12"
-            >
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center">
-                From precision components to complex assemblies—see what teams like yours are sourcing with AI.
-              </p>
+                <span
+                  style={{ 
+                    fontFamily: 'Inter, system-ui, sans-serif',
+                    fontWeight: 700,
+                    backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.08) 30%, rgba(0, 0, 0, 0.03) 70%, rgba(0, 0, 0, 0) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    color: 'transparent'
+                  }}
+                >
+                  Projects
+                </span>
+              </motion.span>
             </motion.div>
           </div>
 
