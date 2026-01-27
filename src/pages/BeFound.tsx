@@ -601,10 +601,39 @@ const BeFound = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="light"
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        <div className="container mx-auto max-w-5xl">
+        {/* YVOO Logo Y - Geometric Background Element */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.svg
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            viewBox="0 0 42 42"
+            className="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] xl:w-[1200px] xl:h-[1200px]"
+            style={{ opacity: 0.04 }}
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {/* Y shape from YVOO logo - exact paths scaled */}
+            <g transform="translate(0, 0) scale(1.27)">
+              {/* Left arm of Y */}
+              <path 
+                d="M19.9866 30.464L17.1507 21.145C15.4234 15.4838 10.2157 11.6128 4.31185 11.6128H0V17.0542H3.59643C6.90928 17.0542 9.8483 19.174 10.9053 22.3212L14.3213 32.4738H20.4958V30.4705H19.9866V30.464Z" 
+                fill="currentColor"
+                className="text-foreground"
+              />
+              {/* Right arm of Y */}
+              <path 
+                d="M22.9187 42L33.0119 11.6455H25.9415L20.1988 30.4903L19.7992 31.6277L17.002 40.029L22.9187 42Z" 
+                fill="currentColor"
+                className="text-foreground"
+              />
+            </g>
+          </motion.svg>
+        </div>
+
+        <div className="container mx-auto max-w-5xl relative z-10">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
