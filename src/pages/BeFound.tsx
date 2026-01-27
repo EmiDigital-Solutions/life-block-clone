@@ -604,63 +604,34 @@ const BeFound = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        {/* Geometric Line Background - Archlet Style */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* YVOO Logo Y - Fine Line Geometric Background */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
           <svg
-            className="absolute inset-0 w-full h-full"
-            style={{ opacity: 0.15 }}
-            preserveAspectRatio="xMidYMid slice"
+            viewBox="0 0 100 120"
+            className="w-[500px] h-[600px] md:w-[650px] md:h-[780px] lg:w-[800px] lg:h-[960px] xl:w-[900px] xl:h-[1080px]"
+            style={{ opacity: 0.12 }}
+            fill="none"
+            preserveAspectRatio="xMidYMid meet"
           >
-            {/* Diagonal lines forming X pattern */}
+            {/* Y shape - left diagonal arm going down to center */}
             <line 
-              x1="30%" y1="0%" x2="70%" y2="100%" 
+              x1="20" y1="10" x2="50" y2="70" 
               stroke="currentColor" 
-              strokeWidth="0.5"
+              strokeWidth="0.3"
               className="text-foreground"
             />
+            {/* Y shape - right diagonal arm going down to center */}
             <line 
-              x1="70%" y1="0%" x2="30%" y2="100%" 
+              x1="80" y1="10" x2="50" y2="70" 
               stroke="currentColor" 
-              strokeWidth="0.5"
+              strokeWidth="0.3"
               className="text-foreground"
             />
-            {/* Vertical center line */}
+            {/* Y shape - vertical stem going down from center */}
             <line 
-              x1="50%" y1="0%" x2="50%" y2="100%" 
+              x1="50" y1="70" x2="50" y2="110" 
               stroke="currentColor" 
-              strokeWidth="0.5"
-              className="text-foreground"
-            />
-            {/* Corner arcs - top left */}
-            <path 
-              d="M 0 30% Q 15% 30%, 15% 0%" 
-              fill="none"
-              stroke="currentColor" 
-              strokeWidth="0.5"
-              className="text-foreground"
-            />
-            {/* Corner arcs - top right */}
-            <path 
-              d="M 100% 30% Q 85% 30%, 85% 0%" 
-              fill="none"
-              stroke="currentColor" 
-              strokeWidth="0.5"
-              className="text-foreground"
-            />
-            {/* Corner arcs - bottom left */}
-            <path 
-              d="M 0 70% Q 15% 70%, 15% 100%" 
-              fill="none"
-              stroke="currentColor" 
-              strokeWidth="0.5"
-              className="text-foreground"
-            />
-            {/* Corner arcs - bottom right */}
-            <path 
-              d="M 100% 70% Q 85% 70%, 85% 100%" 
-              fill="none"
-              stroke="currentColor" 
-              strokeWidth="0.5"
+              strokeWidth="0.3"
               className="text-foreground"
             />
           </svg>
