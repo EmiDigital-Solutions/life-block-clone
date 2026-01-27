@@ -604,38 +604,66 @@ const BeFound = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        {/* YVOO Logo Y - Fine Line Geometric Background Element */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <motion.svg
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            viewBox="0 0 35 44"
-            className="w-[400px] h-[500px] md:w-[500px] md:h-[620px] lg:w-[600px] lg:h-[750px] xl:w-[700px] xl:h-[870px]"
-            style={{ opacity: 0.12 }}
-            preserveAspectRatio="xMidYMid meet"
-            fill="none"
+        {/* Geometric Line Background - Archlet Style */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg
+            className="absolute inset-0 w-full h-full"
+            style={{ opacity: 0.15 }}
+            preserveAspectRatio="xMidYMid slice"
           >
-            {/* Y shape from YVOO logo - fine stroke lines */}
-            <g>
-              {/* Left arm of Y */}
-              <path 
-                d="M19.9866 30.464L17.1507 21.145C15.4234 15.4838 10.2157 11.6128 4.31185 11.6128H0V17.0542H3.59643C6.90928 17.0542 9.8483 19.174 10.9053 22.3212L14.3213 32.4738H20.4958V30.4705H19.9866V30.464Z" 
-                stroke="currentColor"
-                strokeWidth="0.5"
-                fill="none"
-                className="text-foreground"
-              />
-              {/* Right arm of Y */}
-              <path 
-                d="M22.9187 42L33.0119 11.6455H25.9415L20.1988 30.4903L19.7992 31.6277L17.002 40.029L22.9187 42Z" 
-                stroke="currentColor"
-                strokeWidth="0.5"
-                fill="none"
-                className="text-foreground"
-              />
-            </g>
-          </motion.svg>
+            {/* Diagonal lines forming X pattern */}
+            <line 
+              x1="30%" y1="0%" x2="70%" y2="100%" 
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            <line 
+              x1="70%" y1="0%" x2="30%" y2="100%" 
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            {/* Vertical center line */}
+            <line 
+              x1="50%" y1="0%" x2="50%" y2="100%" 
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            {/* Corner arcs - top left */}
+            <path 
+              d="M 0 30% Q 15% 30%, 15% 0%" 
+              fill="none"
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            {/* Corner arcs - top right */}
+            <path 
+              d="M 100% 30% Q 85% 30%, 85% 0%" 
+              fill="none"
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            {/* Corner arcs - bottom left */}
+            <path 
+              d="M 0 70% Q 15% 70%, 15% 100%" 
+              fill="none"
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+            {/* Corner arcs - bottom right */}
+            <path 
+              d="M 100% 70% Q 85% 70%, 85% 100%" 
+              fill="none"
+              stroke="currentColor" 
+              strokeWidth="0.5"
+              className="text-foreground"
+            />
+          </svg>
         </div>
 
         <div className="container mx-auto max-w-5xl relative z-10">
