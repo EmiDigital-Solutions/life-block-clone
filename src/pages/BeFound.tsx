@@ -604,29 +604,34 @@ const BeFound = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        {/* YVOO Logo Y - Geometric Background Element */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* YVOO Logo Y - Fine Line Geometric Background Element */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
           <motion.svg
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            viewBox="0 0 42 42"
-            className="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] xl:w-[1200px] xl:h-[1200px]"
-            style={{ opacity: 0.04 }}
+            viewBox="0 0 35 44"
+            className="w-[400px] h-[500px] md:w-[500px] md:h-[620px] lg:w-[600px] lg:h-[750px] xl:w-[700px] xl:h-[870px]"
+            style={{ opacity: 0.12 }}
             preserveAspectRatio="xMidYMid meet"
+            fill="none"
           >
-            {/* Y shape from YVOO logo - exact paths scaled */}
-            <g transform="translate(0, 0) scale(1.27)">
+            {/* Y shape from YVOO logo - fine stroke lines */}
+            <g>
               {/* Left arm of Y */}
               <path 
                 d="M19.9866 30.464L17.1507 21.145C15.4234 15.4838 10.2157 11.6128 4.31185 11.6128H0V17.0542H3.59643C6.90928 17.0542 9.8483 19.174 10.9053 22.3212L14.3213 32.4738H20.4958V30.4705H19.9866V30.464Z" 
-                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                fill="none"
                 className="text-foreground"
               />
               {/* Right arm of Y */}
               <path 
                 d="M22.9187 42L33.0119 11.6455H25.9415L20.1988 30.4903L19.7992 31.6277L17.002 40.029L22.9187 42Z" 
-                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth="0.5"
+                fill="none"
                 className="text-foreground"
               />
             </g>
