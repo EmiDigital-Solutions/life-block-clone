@@ -604,34 +604,27 @@ const BeFound = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        {/* YVOO Logo Y - Fine Line Geometric Background */}
+        {/* YVOO Logo Y - Exact Shape as Fine Lines */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
           <svg
-            viewBox="0 0 100 120"
-            className="w-[500px] h-[600px] md:w-[650px] md:h-[780px] lg:w-[800px] lg:h-[960px] xl:w-[900px] xl:h-[1080px]"
-            style={{ opacity: 0.12 }}
+            viewBox="0 0 33 42"
+            className="w-[400px] h-[510px] md:w-[550px] md:h-[700px] lg:w-[700px] lg:h-[890px] xl:w-[850px] xl:h-[1080px]"
+            style={{ opacity: 0.15 }}
             fill="none"
             preserveAspectRatio="xMidYMid meet"
           >
-            {/* Y shape - left diagonal arm going down to center */}
-            <line 
-              x1="20" y1="10" x2="50" y2="70" 
-              stroke="currentColor" 
-              strokeWidth="0.3"
+            {/* Left arm of Y - exact logo path as stroke */}
+            <path 
+              d="M19.9866 30.464L17.1507 21.145C15.4234 15.4838 10.2157 11.6128 4.31185 11.6128H0V17.0542H3.59643C6.90928 17.0542 9.8483 19.174 10.9053 22.3212L14.3213 32.4738H20.4958V30.4705H19.9866V30.464Z" 
+              stroke="currentColor"
+              strokeWidth="0.15"
               className="text-foreground"
             />
-            {/* Y shape - right diagonal arm going down to center */}
-            <line 
-              x1="80" y1="10" x2="50" y2="70" 
-              stroke="currentColor" 
-              strokeWidth="0.3"
-              className="text-foreground"
-            />
-            {/* Y shape - vertical stem going down from center */}
-            <line 
-              x1="50" y1="70" x2="50" y2="110" 
-              stroke="currentColor" 
-              strokeWidth="0.3"
+            {/* Right arm of Y - exact logo path as stroke */}
+            <path 
+              d="M22.9187 42L33.0119 11.6455H25.9415L20.1988 30.4903L19.7992 31.6277L17.002 40.029L22.9187 42Z" 
+              stroke="currentColor"
+              strokeWidth="0.15"
               className="text-foreground"
             />
           </svg>
