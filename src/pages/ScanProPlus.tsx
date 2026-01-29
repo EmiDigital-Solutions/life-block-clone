@@ -3,6 +3,7 @@ import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import TechnicalDrawingBackground from "@/components/TechnicalDrawingBackground";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
 import Earth3D from "@/components/Earth3D";
@@ -132,7 +133,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-white"
+      className="relative py-12 sm:py-16 md:py-20 bg-white/90"
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
@@ -1571,7 +1572,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white"
+      className="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white/90"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2142,107 +2143,20 @@ const ScanProPlus = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Global Technical Drawing Background - Automotive Industry Style */}
+      <TechnicalDrawingBackground opacity={0.08} className="fixed z-0" />
+      
       <Navigation />
       
       {/* Hero Section - White Background, Archlet Style */}
       <section
         data-nav-theme="light"
         id="hero"
-        className="relative bg-white min-h-screen flex flex-col overflow-hidden"
+        className="relative bg-white/95 min-h-screen flex flex-col overflow-hidden"
       >
-        {/* Workshop/Technical Drawing Style Background Lines */}
-        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.12 }}>
-          <svg
-            viewBox="0 0 1920 1080"
-            className="w-full h-full"
-            preserveAspectRatio="xMidYMid slice"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {/* Vertical dimension lines - left side */}
-            <line x1="80" y1="120" x2="80" y2="960" strokeWidth="0.5" strokeDasharray="8 4" className="text-foreground" />
-            <line x1="70" y1="120" x2="90" y2="120" strokeWidth="0.8" className="text-foreground" />
-            <line x1="70" y1="960" x2="90" y2="960" strokeWidth="0.8" className="text-foreground" />
-            {/* Arrow markers */}
-            <path d="M80 130 L75 145 M80 130 L85 145" strokeWidth="0.8" className="text-foreground" />
-            <path d="M80 950 L75 935 M80 950 L85 935" strokeWidth="0.8" className="text-foreground" />
-            
-            {/* Horizontal dimension line - top */}
-            <line x1="200" y1="60" x2="1720" y2="60" strokeWidth="0.5" strokeDasharray="8 4" className="text-foreground" />
-            <line x1="200" y1="50" x2="200" y2="70" strokeWidth="0.8" className="text-foreground" />
-            <line x1="1720" y1="50" x2="1720" y2="70" strokeWidth="0.8" className="text-foreground" />
-            {/* Arrow markers */}
-            <path d="M210 60 L225 55 M210 60 L225 65" strokeWidth="0.8" className="text-foreground" />
-            <path d="M1710 60 L1695 55 M1710 60 L1695 65" strokeWidth="0.8" className="text-foreground" />
-            
-            {/* Diagonal construction lines - top left */}
-            <line x1="0" y1="0" x2="400" y2="400" strokeWidth="0.4" className="text-foreground" />
-            <line x1="100" y1="0" x2="500" y2="400" strokeWidth="0.3" strokeDasharray="4 8" className="text-foreground" />
-            
-            {/* Diagonal construction lines - top right */}
-            <line x1="1920" y1="0" x2="1520" y2="400" strokeWidth="0.4" className="text-foreground" />
-            <line x1="1820" y1="0" x2="1420" y2="400" strokeWidth="0.3" strokeDasharray="4 8" className="text-foreground" />
-            
-            {/* Center vertical axis with markers */}
-            <line x1="960" y1="0" x2="960" y2="300" strokeWidth="0.5" strokeDasharray="12 6" className="text-foreground" />
-            <line x1="950" y1="300" x2="970" y2="300" strokeWidth="0.6" className="text-foreground" />
-            <circle cx="960" cy="300" r="3" strokeWidth="0.5" className="text-foreground" />
-            
-            {/* Right side vertical reference */}
-            <line x1="1840" y1="200" x2="1840" y2="880" strokeWidth="0.5" strokeDasharray="8 4" className="text-foreground" />
-            <line x1="1830" y1="200" x2="1850" y2="200" strokeWidth="0.8" className="text-foreground" />
-            <line x1="1830" y1="880" x2="1850" y2="880" strokeWidth="0.8" className="text-foreground" />
-            
-            {/* Grid reference marks - corner brackets */}
-            {/* Top left corner */}
-            <path d="M160 140 L160 160 L180 160" strokeWidth="0.6" className="text-foreground" />
-            <path d="M165 145 L165 155 L175 155" strokeWidth="0.4" className="text-foreground" />
-            
-            {/* Top right corner */}
-            <path d="M1760 140 L1760 160 L1740 160" strokeWidth="0.6" className="text-foreground" />
-            <path d="M1755 145 L1755 155 L1745 155" strokeWidth="0.4" className="text-foreground" />
-            
-            {/* Bottom left corner */}
-            <path d="M160 940 L160 920 L180 920" strokeWidth="0.6" className="text-foreground" />
-            
-            {/* Bottom right corner */}
-            <path d="M1760 940 L1760 920 L1740 920" strokeWidth="0.6" className="text-foreground" />
-            
-            {/* Horizontal construction lines */}
-            <line x1="0" y1="540" x2="300" y2="540" strokeWidth="0.4" className="text-foreground" />
-            <line x1="1620" y1="540" x2="1920" y2="540" strokeWidth="0.4" className="text-foreground" />
-            
-            {/* Cross markers at intersections */}
-            <line x1="280" y1="280" x2="320" y2="320" strokeWidth="0.4" className="text-foreground" />
-            <line x1="320" y1="280" x2="280" y2="320" strokeWidth="0.4" className="text-foreground" />
-            
-            <line x1="1600" y1="280" x2="1640" y2="320" strokeWidth="0.4" className="text-foreground" />
-            <line x1="1640" y1="280" x2="1600" y2="320" strokeWidth="0.4" className="text-foreground" />
-            
-            {/* Bottom horizontal dimension */}
-            <line x1="400" y1="1020" x2="1520" y2="1020" strokeWidth="0.5" strokeDasharray="8 4" className="text-foreground" />
-            <line x1="400" y1="1010" x2="400" y2="1030" strokeWidth="0.8" className="text-foreground" />
-            <line x1="1520" y1="1010" x2="1520" y2="1030" strokeWidth="0.8" className="text-foreground" />
-            
-            {/* Reference circles */}
-            <circle cx="300" cy="180" r="8" strokeWidth="0.5" className="text-foreground" />
-            <circle cx="300" cy="180" r="4" strokeWidth="0.4" className="text-foreground" />
-            
-            <circle cx="1620" cy="180" r="8" strokeWidth="0.5" className="text-foreground" />
-            <circle cx="1620" cy="180" r="4" strokeWidth="0.4" className="text-foreground" />
-            
-            {/* Tick marks along edges */}
-            {[...Array(10)].map((_, i) => (
-              <g key={`tick-${i}`}>
-                <line x1={200 + i * 152} y1="100" x2={200 + i * 152} y2="110" strokeWidth="0.4" className="text-foreground" />
-                <line x1={200 + i * 152} y1="970" x2={200 + i * 152} y2="980" strokeWidth="0.4" className="text-foreground" />
-              </g>
-            ))}
-          </svg>
-        </div>
+        {/* Hero-specific stronger technical lines overlay */}
+        <TechnicalDrawingBackground opacity={0.15} />
 
         {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
@@ -2378,7 +2292,7 @@ const ScanProPlus = () => {
       {/* Demo Section - Equipment Intelligence */}
       <section
         data-nav-theme="light"
-        className="py-24 md:py-32 bg-white"
+        className="relative py-24 md:py-32 bg-white/90"
       >
         <div className="container mx-auto px-6 lg:px-20">
           <motion.div
@@ -2410,7 +2324,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white">
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white/90 relative">
         <HeroROICalculator />
       </div>
 
@@ -2423,7 +2337,7 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 md:py-32 bg-white overflow-hidden"
+        className="relative py-24 md:py-32 bg-white/90 overflow-hidden"
         id="capabilities"
       >
         
@@ -2454,7 +2368,7 @@ const ScanProPlus = () => {
       {/* Results Section - Clean Minimalist */}
       <section 
         data-nav-theme="light" 
-        className="py-20 md:py-28 bg-white"
+        className="relative py-20 md:py-28 bg-white/90"
         id="results"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2530,7 +2444,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Testimonial Section - Be Found 3-Column Style */}
-      <section className="py-20 px-6 bg-white">
+      <section className="relative py-20 px-6 bg-white/90">
         <div className="container mx-auto max-w-7xl">
           {/* Section Headline */}
           <motion.h2
@@ -2615,7 +2529,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Measurable ROI Section */}
-      <section className="py-24 px-6 bg-white">
+      <section className="relative py-24 px-6 bg-white/90">
         <div className="container mx-auto max-w-7xl">
           {/* Headline */}
           <motion.h2
@@ -2710,7 +2624,7 @@ const ScanProPlus = () => {
       {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-white"
+        className="relative py-24 md:py-32 bg-white/90"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
