@@ -2325,7 +2325,7 @@ const ComparisonMockup = () => {
             </motion.div>
           </div>
 
-          {/* Product Showcase Grid - B&W + Green Effect */}
+          {/* Product Showcase Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
             {/* Large card - CNC Machined Parts */}
             <motion.div
@@ -2335,17 +2335,11 @@ const ComparisonMockup = () => {
               transition={{ duration: 0.6, delay: 0 }}
               className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-200">
-                {/* B&W base image */}
+              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10]">
                 <img 
                   src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80" 
                   alt="CNC Machined Parts"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale"
-                />
-                {/* Green tinted overlay for selective color effect */}
-                <div 
-                  className="absolute inset-0 mix-blend-multiply opacity-40"
-                  style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(110, 169, 150, 0.6) 50%, transparent 70%)' }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
@@ -2374,17 +2368,11 @@ const ComparisonMockup = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200">
-                {/* B&W base image */}
+              <div className="relative overflow-hidden aspect-[4/3]">
                 <img 
                   src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80" 
                   alt="Medical Device Components"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale"
-                />
-                {/* Green tinted overlay for selective color effect */}
-                <div 
-                  className="absolute inset-0 mix-blend-multiply opacity-40"
-                  style={{ background: 'linear-gradient(135deg, transparent 20%, rgba(110, 169, 150, 0.6) 45%, transparent 70%)' }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
@@ -2413,17 +2401,11 @@ const ComparisonMockup = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="group relative overflow-hidden cursor-pointer"
             >
-              <div className="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200">
-                {/* B&W base image */}
+              <div className="relative overflow-hidden aspect-[4/3]">
                 <img 
                   src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" 
                   alt="PCB Assembly"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale"
-                />
-                {/* Green tinted overlay for selective color effect */}
-                <div 
-                  className="absolute inset-0 mix-blend-multiply opacity-40"
-                  style={{ background: 'linear-gradient(135deg, transparent 25%, rgba(110, 169, 150, 0.6) 50%, transparent 75%)' }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
@@ -2453,17 +2435,11 @@ const ComparisonMockup = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto"
           >
-            <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1] bg-gradient-to-br from-gray-100 to-gray-200">
-              {/* B&W base image */}
+            <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
               <img 
                 src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80" 
                 alt="Industrial Valves & Process Equipment"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale"
-              />
-              {/* Green tinted overlay for selective color effect */}
-              <div 
-                className="absolute inset-0 mix-blend-multiply opacity-40"
-                style={{ background: 'linear-gradient(90deg, transparent 10%, rgba(110, 169, 150, 0.6) 40%, rgba(110, 169, 150, 0.4) 60%, transparent 90%)' }}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
               <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">

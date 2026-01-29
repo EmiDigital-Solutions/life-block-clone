@@ -3,7 +3,6 @@ import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import TechnicalDrawingBackground from "@/components/TechnicalDrawingBackground";
 import ROICalculator from "@/components/ROICalculator";
 import HeroROICalculator from "@/components/HeroROICalculator";
 import Earth3D from "@/components/Earth3D";
@@ -133,7 +132,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
     <section 
       ref={sectionRef}
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-white/90"
+      className="relative py-12 sm:py-16 md:py-20 bg-white"
     >
       <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
         
@@ -1572,7 +1571,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white/90"
+      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white"
       id="challenge"
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2143,21 +2142,15 @@ const ScanProPlus = () => {
   ];
 
   return (
-    <div className="min-h-screen relative">
-      {/* Global Technical Drawing Background - Automotive Industry Style */}
-      <TechnicalDrawingBackground opacity={0.08} className="fixed z-0" />
-      
+    <div className="min-h-screen">
       <Navigation />
       
       {/* Hero Section - White Background, Archlet Style */}
       <section
         data-nav-theme="light"
         id="hero"
-        className="relative bg-white/95 min-h-screen flex flex-col overflow-hidden"
+        className="relative bg-white min-h-screen flex flex-col"
       >
-        {/* Hero-specific stronger technical lines overlay */}
-        <TechnicalDrawingBackground opacity={0.15} />
-
         {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
           <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
@@ -2292,7 +2285,7 @@ const ScanProPlus = () => {
       {/* Demo Section - Equipment Intelligence */}
       <section
         data-nav-theme="light"
-        className="relative py-24 md:py-32 bg-white/90"
+        className="py-24 md:py-32 bg-white"
       >
         <div className="container mx-auto px-6 lg:px-20">
           <motion.div
@@ -2324,7 +2317,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white/90 relative">
+      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white">
         <HeroROICalculator />
       </div>
 
@@ -2337,7 +2330,7 @@ const ScanProPlus = () => {
       {/* Capabilities Section */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 md:py-32 bg-white/90 overflow-hidden"
+        className="relative py-24 md:py-32 bg-white overflow-hidden"
         id="capabilities"
       >
         
@@ -2368,7 +2361,7 @@ const ScanProPlus = () => {
       {/* Results Section - Clean Minimalist */}
       <section 
         data-nav-theme="light" 
-        className="relative py-20 md:py-28 bg-white/90"
+        className="py-20 md:py-28 bg-white"
         id="results"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -2444,7 +2437,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Testimonial Section - Be Found 3-Column Style */}
-      <section className="relative py-20 px-6 bg-white/90">
+      <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           {/* Section Headline */}
           <motion.h2
@@ -2529,7 +2522,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Measurable ROI Section */}
-      <section className="relative py-24 px-6 bg-white/90">
+      <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           {/* Headline */}
           <motion.h2
@@ -2624,7 +2617,7 @@ const ScanProPlus = () => {
       {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
-        className="relative py-24 md:py-32 bg-white/90"
+        className="py-24 md:py-32 bg-white"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
