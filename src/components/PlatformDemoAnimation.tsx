@@ -2263,10 +2263,33 @@ const FollowUpDemo = () => {
 
 const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Loading statuses for each step
+  const stepLoadingStatuses: Record<number, string[]> = {
+    0: ["Initializing AI search...", "Connecting to databases...", "Loading supplier network..."],
+    1: ["Processing order request...", "Validating audit scope...", "Preparing audit form..."],
+    2: ["Finding available auditors...", "Matching expertise...", "Calculating proximity...", "Selecting optimal auditor..."],
+    3: ["Collecting evidence...", "Analyzing documentation...", "Processing VDA criteria...", "Evaluating compliance..."],
+    4: ["Generating insights...", "Compiling findings...", "Calculating risk scores...", "Building report..."],
+    5: ["Loading action items...", "Tracking deadlines...", "Syncing follow-ups..."],
+  };
   
   // Custom durations per step (ms) - slower timing for better viewing
   const stepDurations = [25000, 15000, 15000, 15000, 15000, 15000]; // Search (with AI chat), Order, Dispatch, Audit, Report, Follow-up
+  const loadingDuration = 3500; // Show AI spinner for 3.5 seconds
   
+  // Show loading spinner at the start of each step
+  useEffect(() => {
+    setIsLoading(true);
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, loadingDuration);
+    
+    return () => clearTimeout(loadingTimeout);
+  }, [currentStep]);
+  
+  // Progress to next step after step duration
   useEffect(() => {
     const timeout = setTimeout(() => {
       setCurrentStep((prev) => (prev + 1) % demoSteps.length);
@@ -2276,6 +2299,19 @@ const PlatformDemoAnimation = () => {
   }, [currentStep]);
   
   const renderDemo = () => {
+    // Show AI loading spinner during loading phase
+    if (isLoading) {
+      return (
+        <div className="h-full w-full flex items-center justify-center bg-white">
+          <AILoadingSpinner 
+            statuses={stepLoadingStatuses[currentStep] || ["Processing..."]}
+            size="lg"
+            interval={800}
+          />
+        </div>
+      );
+    }
+    
     switch (currentStep) {
       case 0: return <SupplierSearchDemo />;
       case 1: return <OrderAuditDemo />;
