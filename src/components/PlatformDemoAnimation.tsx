@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AILoadingSpinner } from "@/components/AILoadingSpinner";
 import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import factoryImage from "@/assets/factory-hero-background.jpg";
 import worldMap from "@/assets/dotted-world-map.png";
@@ -507,35 +508,30 @@ const RefineSearchDemo = () => {
           {/* Right: Supplier Results */}
           <div className="flex-1 flex flex-col">
             {phase === 'adjusting' && (
-              <div className="flex-1 flex items-center justify-center">
-                <div className="text-center">
-                  <motion.div 
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-12 h-12 rounded-full bg-[#0A7FA5]/10 flex items-center justify-center mx-auto mb-4"
-                  >
-                    <svg className="w-6 h-6 text-[#0A7FA5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg>
-                  </motion.div>
-                  <p className="text-gray-900 font-medium">Extracting search criteria...</p>
-                  <p className="text-gray-500 text-sm mt-1">Analyzing your conversation</p>
-                </div>
+              <div className="flex-1 flex items-center justify-center bg-white">
+                <AILoadingSpinner 
+                  statuses={[
+                    "Extracting search criteria...",
+                    "Analyzing conversation...",
+                    "Building filter set...",
+                  ]}
+                  size="md"
+                  interval={1500}
+                />
               </div>
             )}
             
             {phase === 'filtering' && (
-              <div className="flex-1 flex items-center justify-center">
-                <div className="text-center">
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    className="w-12 h-12 rounded-full border-3 border-[#0A7FA5] border-t-transparent mx-auto mb-4"
-                    style={{ borderWidth: 3 }}
-                  />
-                  <p className="text-gray-900 font-medium">Filtering suppliers...</p>
-                  <p className="text-gray-500 text-sm mt-1">Matching 47 candidates</p>
-                </div>
+              <div className="flex-1 flex items-center justify-center bg-white">
+                <AILoadingSpinner 
+                  statuses={[
+                    "Filtering suppliers...",
+                    "Matching 47 candidates...",
+                    "Scoring results...",
+                  ]}
+                  size="md"
+                  interval={1200}
+                />
               </div>
             )}
             
@@ -926,17 +922,18 @@ const SupplierSearchDemo = () => {
 
           {/* Searching Phase */}
           {phase === 'searching' && (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <motion.div 
-                  animate={{ rotate: 360 }} 
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="w-12 h-12 rounded-full border-3 border-[#0A7FA5] border-t-transparent mx-auto mb-4"
-                  style={{ borderWidth: 3 }}
-                />
-                <div className="text-gray-900 font-medium">Searching suppliers...</div>
-                <div className="text-gray-500 text-sm mt-1">Analyzing 47 databases</div>
-              </div>
+            <div className="flex-1 flex items-center justify-center bg-white">
+              <AILoadingSpinner 
+                statuses={[
+                  "Analyzing requirements...",
+                  "Scanning 47 databases...",
+                  "Matching certifications...",
+                  "Filtering geographies...",
+                  "Ranking suppliers...",
+                ]}
+                size="lg"
+                interval={1200}
+              />
             </div>
           )}
 
