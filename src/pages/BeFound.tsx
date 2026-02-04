@@ -602,11 +602,11 @@ const BeFound = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="light"
-        className="relative pt-28 pb-8 lg:pt-32 lg:pb-12 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
+        className="relative pt-24 pb-12 lg:pt-28 lg:pb-16 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="hero"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="lg:max-w-[50%]">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Column - Text Content */}
             <div>
               <motion.p
@@ -651,22 +651,22 @@ const BeFound = () => {
                 </Button>
               </motion.div>
             </div>
+
+            {/* Right Column - Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="hidden lg:flex items-center justify-end"
+            >
+              <img
+                src={beFoundHeroBinoculars}
+                alt="AI-powered supplier discovery"
+                className="w-full max-w-xl xl:max-w-2xl object-contain"
+              />
+            </motion.div>
           </div>
         </div>
-
-        {/* Right Side - Hero Image (Absolute positioned, aligned with text top) */}
-        <motion.div
-          initial={{ opacity: 0, x: 60, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="absolute top-28 lg:top-32 right-0 w-1/2 hidden lg:flex items-start justify-center pointer-events-none"
-        >
-          <img
-            src={beFoundHeroBinoculars}
-            alt="AI-powered supplier discovery"
-            className="w-[85%] xl:w-[80%] 2xl:w-[75%] max-w-none object-contain drop-shadow-2xl"
-          />
-        </motion.div>
       </section>
 
       {/* Benefits Cards */}
