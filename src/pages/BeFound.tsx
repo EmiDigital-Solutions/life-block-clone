@@ -602,11 +602,11 @@ const BeFound = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="light"
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
+        className="relative min-h-[90vh] lg:min-h-screen pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="lg:max-w-[50%]">
             {/* Left Column - Text Content */}
             <div>
               <motion.p
@@ -651,22 +651,22 @@ const BeFound = () => {
                 </Button>
               </motion.div>
             </div>
-
-            {/* Right Column - Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:flex justify-center items-center"
-            >
-              <img
-                src={beFoundHeroBinoculars}
-                alt="AI-powered supplier discovery"
-                className="w-full max-w-lg xl:max-w-xl object-contain drop-shadow-2xl"
-              />
-            </motion.div>
           </div>
         </div>
+
+        {/* Right Side - Hero Image (Absolute positioned to cover 50% of hero) */}
+        <motion.div
+          initial={{ opacity: 0, x: 60, scale: 0.9 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="absolute top-0 right-0 w-1/2 h-full hidden lg:flex items-center justify-center pointer-events-none"
+        >
+          <img
+            src={beFoundHeroBinoculars}
+            alt="AI-powered supplier discovery"
+            className="w-[90%] xl:w-[85%] 2xl:w-[80%] max-w-none object-contain drop-shadow-2xl"
+          />
+        </motion.div>
       </section>
 
       {/* Benefits Cards */}
