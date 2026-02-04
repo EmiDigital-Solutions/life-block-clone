@@ -602,7 +602,7 @@ const BeFound = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="light"
-        className="relative min-h-[90vh] lg:min-h-screen pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
+        className="relative pt-28 pb-8 lg:pt-32 lg:pb-12 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -613,7 +613,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
+                className="text-muted-foreground text-sm font-mono tracking-wider mb-4"
               >
                 Be Found
               </motion.p>
@@ -622,7 +622,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-6"
               >
                 Get discovered by global buyers
               </motion.h1>
@@ -631,7 +631,7 @@ const BeFound = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
+                className="text-base sm:text-lg text-muted-foreground max-w-xl mb-8"
               >
                 7 million+ B2B decision-makers are searching for suppliers like you. Claim your free profile and start getting found.
               </motion.p>
@@ -654,23 +654,23 @@ const BeFound = () => {
           </div>
         </div>
 
-        {/* Right Side - Hero Image (Absolute positioned to cover 50% of hero) */}
+        {/* Right Side - Hero Image (Absolute positioned, aligned with text top) */}
         <motion.div
           initial={{ opacity: 0, x: 60, scale: 0.9 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="absolute top-0 right-0 w-1/2 h-full hidden lg:flex items-center justify-center pointer-events-none"
+          className="absolute top-28 lg:top-32 right-0 w-1/2 hidden lg:flex items-start justify-center pointer-events-none"
         >
           <img
             src={beFoundHeroBinoculars}
             alt="AI-powered supplier discovery"
-            className="w-[90%] xl:w-[85%] 2xl:w-[80%] max-w-none object-contain drop-shadow-2xl"
+            className="w-[85%] xl:w-[80%] 2xl:w-[75%] max-w-none object-contain drop-shadow-2xl"
           />
         </motion.div>
       </section>
 
       {/* Benefits Cards */}
-      <section className="py-16 px-6 bg-white">
+      <section className="py-8 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -695,9 +695,9 @@ const BeFound = () => {
                 transition={{ delay: index * 0.1 }}
                 className="relative overflow-hidden"
               >
-                <div className="h-2 bg-primary w-full mb-6" />
-                <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+                <div className="h-1.5 bg-primary w-full mb-4" />
+                <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
