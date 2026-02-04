@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
+import beFoundHeroBinoculars from "@/assets/be-found-hero-binoculars.png";
 
 // Animated Counter Component
 const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
@@ -601,51 +602,70 @@ const BeFound = () => {
       {/* Hero Section */}
       <section
         data-nav-theme="light"
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background overflow-hidden"
         id="hero"
       >
-        <div className="container mx-auto max-w-5xl">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
-          >
-            Be Found
-          </motion.p>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
-          >
-            Get discovered by global buyers
-          </motion.h1>
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
+              >
+                Be Found
+              </motion.p>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
+              >
+                Get discovered by global buyers
+              </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
-          >
-            7 million+ B2B decision-makers are searching for suppliers like you. Claim your free profile and start getting found.
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
+              >
+                7 million+ B2B decision-makers are searching for suppliers like you. Claim your free profile and start getting found.
+              </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
-          >
-            <Button size="lg">
-              Claim Your Profile
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-foreground text-foreground hover:bg-foreground hover:text-background">
-              See How It Works
-            </Button>
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-start gap-4"
+              >
+                <Button size="lg">
+                  Claim Your Profile
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button size="lg" variant="outline" className="border-foreground text-foreground hover:bg-foreground hover:text-background">
+                  See How It Works
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden lg:flex justify-center items-center"
+            >
+              <img
+                src={beFoundHeroBinoculars}
+                alt="AI-powered supplier discovery"
+                className="w-full max-w-lg xl:max-w-xl object-contain drop-shadow-2xl"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
