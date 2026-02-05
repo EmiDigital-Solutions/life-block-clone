@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 
 const DualEngineSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-[#0a0a0a] overflow-hidden" data-nav-theme="dark">
+    <section className="py-20 md:py-28 bg-[#0a0a0a] overflow-hidden" data-nav-theme="dark">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-10 md:mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-white mb-3">
             From Vague Ideas to Verified Reality in Days
           </h2>
           <p className="text-lg md:text-xl text-gray-400">
@@ -19,7 +19,7 @@ const DualEngineSection = () => {
           </p>
         </motion.div>
 
-        {/* Infinity Diagram Container */}
+        {/* Infinity Diagram */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -28,227 +28,188 @@ const DualEngineSection = () => {
           className="relative max-w-6xl mx-auto"
         >
           {/* Desktop Layout */}
-          <div className="hidden lg:block relative" style={{ height: '500px' }}>
-            
-            {/* Left Features */}
-            {/* AI-Powered B2B Discovery - Top Left */}
-            <div className="absolute left-0 top-8 flex items-center gap-3">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-300">AI-Powered</p>
-                <p className="text-sm text-gray-400">B2B Discovery</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z" />
-                  <path d="M5 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" />
-                  <path d="M18 14l.75 1.5 1.5.75-1.5.75-.75 1.5-.75-1.5-1.5-.75 1.5-.75.75-1.5z" />
-                </svg>
-              </div>
-              <div className="w-20 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
-            </div>
+          <div className="hidden lg:block">
+            <svg
+              viewBox="0 0 1200 550"
+              className="w-full h-auto"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Glow filters */}
+              <defs>
+                <filter id="glow-blue" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="10" result="blur1"/>
+                  <feGaussianBlur stdDeviation="5" result="blur2"/>
+                  <feMerge>
+                    <feMergeNode in="blur1"/>
+                    <feMergeNode in="blur2"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="glow-green" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="10" result="blur1"/>
+                  <feGaussianBlur stdDeviation="5" result="blur2"/>
+                  <feMerge>
+                    <feMergeNode in="blur1"/>
+                    <feMergeNode in="blur2"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
 
-            {/* 90% Time Savings - Mid Left */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-3">
-              <div className="text-right">
-                <p className="text-sm font-medium text-[#4a9ead]">90% Time</p>
-                <p className="text-sm text-gray-400">Savings</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 6v6l4 2" />
-                  <path d="M5 4l2 2M19 4l-2 2M12 2v2" />
-                  <path d="M6.5 17.5L5 22h14l-1.5-4.5" />
-                  <path d="M6 12a6 6 0 1 0 12 0 6 6 0 0 0-12 0z" />
-                </svg>
-              </div>
-              <div className="w-16 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
-            </div>
-
-            {/* 100% Market Coverage - Bottom Left */}
-            <div className="absolute left-0 bottom-8 flex items-center gap-3">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-300">100% Market</p>
-                <p className="text-sm text-gray-400">Coverage</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-              </div>
-              <div className="w-20 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
-            </div>
-
-            {/* Right Features */}
-            {/* AI-Guided On-Site Audits - Top Right */}
-            <div className="absolute right-0 top-8 flex items-center gap-3 flex-row-reverse">
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-300">AI-Guided</p>
-                <p className="text-sm text-gray-400">On-Site Audits</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="M21 21l-4.35-4.35" />
-                </svg>
-              </div>
-              <div className="w-20 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
-            </div>
-
-            {/* 60% Cost Reduction - Mid Right */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-3 flex-row-reverse">
-              <div className="text-left">
-                <p className="text-sm font-medium text-[#6ea996]">60% Cost</p>
-                <p className="text-sm text-gray-400">Reduction</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 6v12" />
-                  <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2.5 3 2.5 3 1 3 2.5-1.5 2.5-3 2.5" />
-                  <path d="M8 8l8 8" />
-                </svg>
-              </div>
-              <div className="w-16 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
-            </div>
-
-            {/* Actionable Intelligence - Bottom Right */}
-            <div className="absolute right-0 bottom-8 flex items-center gap-3 flex-row-reverse">
-              <div className="text-left">
-                <p className="text-sm font-medium text-gray-300">Actionable</p>
-                <p className="text-sm text-gray-400">Intelligence</p>
-              </div>
-              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
-                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="5" cy="6" r="2" />
-                  <circle cx="12" cy="18" r="2" />
-                  <circle cx="19" cy="6" r="2" />
-                  <path d="M5 8v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" />
-                  <path d="M12 14v2" />
-                </svg>
-              </div>
-              <div className="w-20 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
-            </div>
-
-            {/* Infinity Symbol - Center */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ width: '700px', height: '400px' }}>
-              <svg
-                viewBox="0 0 700 400"
-                className="w-full h-full"
+              {/* Left Loop (FIND) - Blue/Teal - Teardrop shape */}
+              <path 
+                d="M600 275 
+                   C540 170, 420 90, 300 90 
+                   C180 90, 100 170, 100 275 
+                   C100 380, 180 460, 300 460 
+                   C420 460, 540 380, 600 275"
+                stroke="#4a9ead"
+                strokeWidth="2.5"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Glow filters */}
-                <defs>
-                  <filter id="glow-blue" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur stdDeviation="12" result="blur"/>
-                    <feMerge>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="glow-green" x="-100%" y="-100%" width="300%" height="300%">
-                    <feGaussianBlur stdDeviation="12" result="blur"/>
-                    <feMerge>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#4a9ead" stopOpacity="0.8"/>
-                    <stop offset="100%" stopColor="#4a9ead" stopOpacity="1"/>
-                  </linearGradient>
-                  <linearGradient id="green-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6ea996" stopOpacity="0.8"/>
-                    <stop offset="100%" stopColor="#6ea996" stopOpacity="1"/>
-                  </linearGradient>
-                </defs>
+                filter="url(#glow-blue)"
+              />
+              
+              {/* Right Loop (VERIFY) - Green - Teardrop shape */}
+              <path 
+                d="M600 275 
+                   C660 380, 780 460, 900 460 
+                   C1020 460, 1100 380, 1100 275 
+                   C1100 170, 1020 90, 900 90 
+                   C780 90, 660 170, 600 275"
+                stroke="#6ea996"
+                strokeWidth="2.5"
+                fill="none"
+                filter="url(#glow-green)"
+              />
 
-                {/* Left Loop (FIND) - Blue/Teal - Figure 8 style */}
-                <path 
-                  d="M350 200 
-                     C350 120, 280 60, 200 60 
-                     C120 60, 50 120, 50 200 
-                     C50 280, 120 340, 200 340 
-                     C280 340, 350 280, 350 200"
-                  stroke="url(#blue-gradient)"
-                  strokeWidth="2.5"
-                  fill="none"
-                  filter="url(#glow-blue)"
-                />
-                
-                {/* Right Loop (VERIFY) - Green - Figure 8 style */}
-                <path 
-                  d="M350 200 
-                     C350 280, 420 340, 500 340 
-                     C580 340, 650 280, 650 200 
-                     C650 120, 580 60, 500 60 
-                     C420 60, 350 120, 350 200"
-                  stroke="url(#green-gradient)"
-                  strokeWidth="2.5"
-                  fill="none"
-                  filter="url(#glow-green)"
-                />
+              {/* === LEFT SIDE FEATURES === */}
+              
+              {/* AI-Powered B2B Discovery - Top Left */}
+              <text x="45" y="75" textAnchor="start" fill="#e5e5e5" fontSize="15" fontWeight="500">AI-Powered</text>
+              <text x="45" y="95" textAnchor="start" fill="#888888" fontSize="15">B2B Discovery</text>
+              <circle cx="175" cy="85" r="26" fill="#0a0a0a" stroke="#4a9ead" strokeWidth="1.2"/>
+              <g transform="translate(163, 73)">
+                <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z" stroke="#4a9ead" strokeWidth="1.2" fill="none"/>
+                <path d="M5 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" stroke="#4a9ead" strokeWidth="1" fill="none"/>
+              </g>
+              {/* Curved connector line */}
+              <path d="M201 85 C260 85, 270 110, 260 150" stroke="#4a9ead" strokeWidth="1" fill="none" opacity="0.6"/>
 
-                {/* FIND Label */}
-                <text x="200" y="160" textAnchor="middle" fill="white" fontWeight="700" fontSize="24" letterSpacing="0.05em">
-                  FIND
-                </text>
-                
-                {/* Engine 1: SearchPro+ */}
-                <text x="200" y="200" textAnchor="middle" fill="#888888" fontSize="14">
-                  Engine 1:
-                </text>
-                <text x="200" y="225" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="18">
-                  SearchPro+
-                </text>
+              {/* 90% Time Savings - Mid Left */}
+              <text x="20" y="265" textAnchor="start" fill="#4a9ead" fontSize="15" fontWeight="500">90% Time</text>
+              <text x="20" y="285" textAnchor="start" fill="#888888" fontSize="15">Savings</text>
+              <circle cx="145" cy="275" r="26" fill="#0a0a0a" stroke="#4a9ead" strokeWidth="1.2"/>
+              <g transform="translate(133, 263)">
+                <path d="M12 6v6l4 2" stroke="#4a9ead" strokeWidth="1.2" fill="none"/>
+                <path d="M5 4l2 2M19 4l-2 2M12 2v2" stroke="#4a9ead" strokeWidth="1" fill="none"/>
+                <path d="M6 12a6 6 0 1 0 12 0 6 6 0 0 0-12 0z" stroke="#4a9ead" strokeWidth="1.2" fill="none"/>
+              </g>
+              {/* Connector line */}
+              <path d="M171 275 L210 275" stroke="#4a9ead" strokeWidth="1" fill="none" opacity="0.6"/>
 
-                {/* VERIFY Label */}
-                <text x="500" y="160" textAnchor="middle" fill="white" fontWeight="700" fontSize="24" letterSpacing="0.05em">
-                  VERIFY
-                </text>
-                
-                {/* Engine 2: ScanPro+ */}
-                <text x="500" y="200" textAnchor="middle" fill="#888888" fontSize="14">
-                  Engine 2:
-                </text>
-                <text x="500" y="225" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="18">
-                  ScanPro+
-                </text>
+              {/* 100% Market Coverage - Bottom Left */}
+              <text x="45" y="455" textAnchor="start" fill="#e5e5e5" fontSize="15" fontWeight="500">100% Market</text>
+              <text x="45" y="475" textAnchor="start" fill="#888888" fontSize="15">Coverage</text>
+              <circle cx="175" cy="465" r="26" fill="#0a0a0a" stroke="#4a9ead" strokeWidth="1.2"/>
+              <g transform="translate(163, 453)">
+                <circle cx="12" cy="12" r="10" stroke="#4a9ead" strokeWidth="1.2" fill="none"/>
+                <path d="M2 12h20" stroke="#4a9ead" strokeWidth="1" fill="none"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#4a9ead" strokeWidth="1" fill="none"/>
+              </g>
+              {/* Curved connector line */}
+              <path d="M201 465 C260 465, 270 440, 260 400" stroke="#4a9ead" strokeWidth="1" fill="none" opacity="0.6"/>
 
-                {/* Ground Truth - Center */}
-                <text x="350" y="190" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="16">
-                  Ground
-                </text>
-                <text x="350" y="215" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="16">
-                  Truth
-                </text>
-              </svg>
-            </div>
+              {/* === RIGHT SIDE FEATURES === */}
+              
+              {/* AI-Guided On-Site Audits - Top Right */}
+              <text x="1155" y="75" textAnchor="end" fill="#e5e5e5" fontSize="15" fontWeight="500">AI-Guided</text>
+              <text x="1155" y="95" textAnchor="end" fill="#888888" fontSize="15">On-Site Audits</text>
+              <circle cx="1025" cy="85" r="26" fill="#0a0a0a" stroke="#6ea996" strokeWidth="1.2"/>
+              <g transform="translate(1013, 73)">
+                <circle cx="11" cy="11" r="8" stroke="#6ea996" strokeWidth="1.2" fill="none"/>
+                <path d="M21 21l-4.35-4.35" stroke="#6ea996" strokeWidth="1.2" fill="none"/>
+              </g>
+              {/* Curved connector line */}
+              <path d="M999 85 C940 85, 930 110, 940 150" stroke="#6ea996" strokeWidth="1" fill="none" opacity="0.6"/>
+
+              {/* 60% Cost Reduction - Mid Right */}
+              <text x="1180" y="265" textAnchor="end" fill="#6ea996" fontSize="15" fontWeight="500">60% Cost</text>
+              <text x="1180" y="285" textAnchor="end" fill="#888888" fontSize="15">Reduction</text>
+              <circle cx="1055" cy="275" r="26" fill="#0a0a0a" stroke="#6ea996" strokeWidth="1.2"/>
+              <g transform="translate(1043, 263)">
+                <circle cx="12" cy="12" r="10" stroke="#6ea996" strokeWidth="1.2" fill="none"/>
+                <path d="M12 6v12" stroke="#6ea996" strokeWidth="1" fill="none"/>
+                <path d="M8 8l8 8" stroke="#6ea996" strokeWidth="1" fill="none"/>
+              </g>
+              {/* Connector line */}
+              <path d="M1029 275 L990 275" stroke="#6ea996" strokeWidth="1" fill="none" opacity="0.6"/>
+
+              {/* Actionable Intelligence - Bottom Right */}
+              <text x="1155" y="455" textAnchor="end" fill="#e5e5e5" fontSize="15" fontWeight="500">Actionable</text>
+              <text x="1155" y="475" textAnchor="end" fill="#888888" fontSize="15">Intelligence</text>
+              <circle cx="1025" cy="465" r="26" fill="#0a0a0a" stroke="#6ea996" strokeWidth="1.2"/>
+              <g transform="translate(1013, 453)">
+                <circle cx="5" cy="6" r="2" stroke="#6ea996" strokeWidth="1" fill="none"/>
+                <circle cx="12" cy="18" r="2" stroke="#6ea996" strokeWidth="1" fill="none"/>
+                <circle cx="19" cy="6" r="2" stroke="#6ea996" strokeWidth="1" fill="none"/>
+                <path d="M5 8v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" stroke="#6ea996" strokeWidth="1" fill="none"/>
+                <path d="M12 14v2" stroke="#6ea996" strokeWidth="1" fill="none"/>
+              </g>
+              {/* Curved connector line */}
+              <path d="M999 465 C940 465, 930 440, 940 400" stroke="#6ea996" strokeWidth="1" fill="none" opacity="0.6"/>
+
+              {/* === CENTER LABELS === */}
+              
+              {/* FIND Label - Left Loop */}
+              <text x="300" y="255" textAnchor="middle" fill="white" fontWeight="700" fontSize="28" letterSpacing="0.1em">
+                FIND
+              </text>
+              <text x="300" y="290" textAnchor="middle" fill="#888888" fontSize="14">
+                Engine 1:
+              </text>
+              <text x="300" y="315" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="20">
+                SearchPro+
+              </text>
+
+              {/* Ground Truth - Center crossing */}
+              <text x="600" y="260" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="18">
+                Ground
+              </text>
+              <text x="600" y="285" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="18">
+                Truth
+              </text>
+
+              {/* VERIFY Label - Right Loop */}
+              <text x="900" y="255" textAnchor="middle" fill="white" fontWeight="700" fontSize="28" letterSpacing="0.1em">
+                VERIFY
+              </text>
+              <text x="900" y="290" textAnchor="middle" fill="#888888" fontSize="14">
+                Engine 2:
+              </text>
+              <text x="900" y="315" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="20">
+                ScanPro+
+              </text>
+            </svg>
           </div>
 
           {/* Mobile Layout */}
           <div className="lg:hidden">
-            {/* Simplified Mobile View */}
-            <div className="flex flex-col items-center gap-8">
-              {/* Infinity Symbol Mobile */}
+            <div className="flex flex-col items-center gap-6">
               <svg
-                viewBox="0 0 400 250"
-                className="w-full max-w-md h-auto"
+                viewBox="0 0 400 220"
+                className="w-full max-w-sm h-auto"
                 fill="none"
               >
                 <defs>
-                  <filter id="glow-blue-mobile" x="-50%" y="-50%" width="200%" height="200%">
+                  <filter id="glow-blue-m" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="4" result="blur"/>
                     <feMerge>
                       <feMergeNode in="blur"/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                   </filter>
-                  <filter id="glow-green-mobile" x="-50%" y="-50%" width="200%" height="200%">
+                  <filter id="glow-green-m" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="4" result="blur"/>
                     <feMerge>
                       <feMergeNode in="blur"/>
@@ -257,49 +218,44 @@ const DualEngineSection = () => {
                   </filter>
                 </defs>
 
-                {/* Left Loop */}
                 <path 
-                  d="M200 125 
-                     C200 75, 155 35, 110 35 
-                     C65 35, 20 75, 20 125 
-                     C20 175, 65 215, 110 215 
-                     C155 215, 200 175, 200 125"
+                  d="M200 110 
+                     C175 60, 130 30, 90 30 
+                     C50 30, 20 60, 20 110 
+                     C20 160, 50 190, 90 190 
+                     C130 190, 175 160, 200 110"
                   stroke="#4a9ead"
                   strokeWidth="2"
                   fill="none"
-                  filter="url(#glow-blue-mobile)"
+                  filter="url(#glow-blue-m)"
                 />
-                {/* Right Loop */}
                 <path 
-                  d="M200 125 
-                     C200 175, 245 215, 290 215 
-                     C335 215, 380 175, 380 125 
-                     C380 75, 335 35, 290 35 
-                     C245 35, 200 75, 200 125"
+                  d="M200 110 
+                     C225 160, 270 190, 310 190 
+                     C350 190, 380 160, 380 110 
+                     C380 60, 350 30, 310 30 
+                     C270 30, 225 60, 200 110"
                   stroke="#6ea996"
                   strokeWidth="2"
                   fill="none"
-                  filter="url(#glow-green-mobile)"
+                  filter="url(#glow-green-m)"
                 />
 
-                {/* Labels */}
-                <text x="110" y="110" textAnchor="middle" fill="white" fontWeight="700" fontSize="16">FIND</text>
-                <text x="110" y="130" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="11">SearchPro+</text>
+                <text x="90" y="100" textAnchor="middle" fill="white" fontWeight="700" fontSize="14">FIND</text>
+                <text x="90" y="118" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="10">SearchPro+</text>
                 
-                <text x="290" y="110" textAnchor="middle" fill="white" fontWeight="700" fontSize="16">VERIFY</text>
-                <text x="290" y="130" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="11">ScanPro+</text>
+                <text x="310" y="100" textAnchor="middle" fill="white" fontWeight="700" fontSize="14">VERIFY</text>
+                <text x="310" y="118" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="10">ScanPro+</text>
                 
-                <text x="200" y="118" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="11">Ground</text>
-                <text x="200" y="135" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="11">Truth</text>
+                <text x="200" y="105" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="10">Ground</text>
+                <text x="200" y="120" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="10">Truth</text>
               </svg>
 
-              {/* Mobile Features Grid */}
-              <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-                {/* Left Column - SearchPro+ Features */}
-                <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3 w-full max-w-sm px-2">
+                <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-9 h-9 rounded-full border border-[#4a9ead] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z" />
                       </svg>
                     </div>
@@ -309,10 +265,10 @@ const DualEngineSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
+                    <div className="w-9 h-9 rounded-full border border-[#4a9ead] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M12 6v6l4 2" />
+                        <circle cx="12" cy="12" r="10" />
                       </svg>
                     </div>
                     <div>
@@ -321,8 +277,8 @@ const DualEngineSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-9 h-9 rounded-full border border-[#4a9ead] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M2 12h20" />
                       </svg>
@@ -334,11 +290,10 @@ const DualEngineSection = () => {
                   </div>
                 </div>
 
-                {/* Right Column - ScanPro+ Features */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-9 h-9 rounded-full border border-[#6ea996] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <circle cx="11" cy="11" r="8" />
                         <path d="M21 21l-4.35-4.35" />
                       </svg>
@@ -349,10 +304,11 @@ const DualEngineSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-9 h-9 rounded-full border border-[#6ea996] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v12" />
+                        <path d="M8 8l8 8" />
                       </svg>
                     </div>
                     <div className="text-right">
@@ -361,8 +317,8 @@ const DualEngineSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
-                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-9 h-9 rounded-full border border-[#6ea996] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <circle cx="5" cy="6" r="2" />
                         <circle cx="12" cy="18" r="2" />
                         <circle cx="19" cy="6" r="2" />
