@@ -52,7 +52,7 @@ const generateStreamParticles = (count: number) => {
 
 const HeroSection = () => {
   const funnelParticles = useMemo(() => generateFunnelParticles(320), []);
-  const streamParticles = useMemo(() => generateStreamParticles(140), []);
+  const streamParticles = useMemo(() => generateStreamParticles(220), []);
 
   const companies = [
     "Siemens",
