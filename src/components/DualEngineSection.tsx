@@ -2,20 +2,20 @@ import { motion } from "framer-motion";
 
 const DualEngineSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden" data-nav-theme="light">
+    <section className="py-24 md:py-32 bg-[#0a0a0a] overflow-hidden" data-nav-theme="dark">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-white mb-4">
             From Vague Ideas to Verified Reality in Days
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            The YVOO Dual-Engine Ecosystem
+          <p className="text-lg md:text-xl text-gray-400">
+            The Supplier Dual-Engine Ecosystem
           </p>
         </motion.div>
 
@@ -28,92 +28,99 @@ const DualEngineSection = () => {
           className="relative max-w-6xl mx-auto"
         >
           {/* Desktop Layout */}
-          <div className="hidden lg:block relative" style={{ height: '400px' }}>
+          <div className="hidden lg:block relative" style={{ height: '500px' }}>
             
             {/* Left Features */}
             {/* AI-Powered B2B Discovery - Top Left */}
-            <div className="absolute left-0 top-4 flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full border-2 border-secondary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="absolute left-0 top-8 flex items-center gap-3">
+              <div className="text-right">
+                <p className="text-sm font-medium text-gray-300">AI-Powered</p>
+                <p className="text-sm text-gray-400">B2B Discovery</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z" />
                   <path d="M5 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" />
                   <path d="M18 14l.75 1.5 1.5.75-1.5.75-.75 1.5-.75-1.5-1.5-.75 1.5-.75.75-1.5z" />
                 </svg>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">AI-Powered</p>
-                <p className="text-sm text-muted-foreground">B2B Discovery</p>
-              </div>
-              <div className="w-16 h-px bg-secondary/40" />
+              <div className="w-20 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
             </div>
 
             {/* 90% Time Savings - Mid Left */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full border-2 border-secondary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <div className="text-right">
+                <p className="text-sm font-medium text-[#4a9ead]">90% Time</p>
+                <p className="text-sm text-gray-400">Savings</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M12 6v6l4 2" />
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                  <path d="M5 4l2 2M19 4l-2 2M12 2v2" />
+                  <path d="M6.5 17.5L5 22h14l-1.5-4.5" />
+                  <path d="M6 12a6 6 0 1 0 12 0 6 6 0 0 0-12 0z" />
                 </svg>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">90% Time</p>
-                <p className="text-sm text-muted-foreground">Savings</p>
-              </div>
-              <div className="w-12 h-px bg-secondary/40" />
+              <div className="w-16 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
             </div>
 
             {/* 100% Market Coverage - Bottom Left */}
-            <div className="absolute left-0 bottom-4 flex items-center gap-3">
-              <div className="w-14 h-14 rounded-full border-2 border-secondary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="absolute left-0 bottom-8 flex items-center gap-3">
+              <div className="text-right">
+                <p className="text-sm font-medium text-gray-300">100% Market</p>
+                <p className="text-sm text-gray-400">Coverage</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#4a9ead] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M2 12h20" />
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">100% Market</p>
-                <p className="text-sm text-muted-foreground">Coverage</p>
-              </div>
-              <div className="w-16 h-px bg-secondary/40" />
+              <div className="w-20 h-px bg-gradient-to-r from-[#4a9ead]/60 to-transparent" />
             </div>
 
             {/* Right Features */}
             {/* AI-Guided On-Site Audits - Top Right */}
-            <div className="absolute right-0 top-4 flex items-center gap-3 flex-row-reverse">
-              <div className="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="absolute right-0 top-8 flex items-center gap-3 flex-row-reverse">
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-300">AI-Guided</p>
+                <p className="text-sm text-gray-400">On-Site Audits</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="11" cy="11" r="8" />
                   <path d="M21 21l-4.35-4.35" />
                 </svg>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-foreground">AI-Guided</p>
-                <p className="text-sm text-muted-foreground">On-Site Audits</p>
-              </div>
-              <div className="w-16 h-px bg-primary/40" />
+              <div className="w-20 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
             </div>
 
             {/* 60% Cost Reduction - Mid Right */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-3 flex-row-reverse">
-              <div className="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <div className="text-left">
+                <p className="text-sm font-medium text-[#6ea996]">60% Cost</p>
+                <p className="text-sm text-gray-400">Reduction</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M12 6v12" />
                   <path d="M15 9.5c0-1.5-1.5-2.5-3-2.5s-3 1-3 2.5 1.5 2.5 3 2.5 3 1 3 2.5-1.5 2.5-3 2.5" />
+                  <path d="M8 8l8 8" />
                 </svg>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-foreground">60% Cost</p>
-                <p className="text-sm text-muted-foreground">Reduction</p>
-              </div>
-              <div className="w-12 h-px bg-primary/40" />
+              <div className="w-16 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
             </div>
 
             {/* Actionable Intelligence - Bottom Right */}
-            <div className="absolute right-0 bottom-4 flex items-center gap-3 flex-row-reverse">
-              <div className="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center bg-white shadow-sm">
-                <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="absolute right-0 bottom-8 flex items-center gap-3 flex-row-reverse">
+              <div className="text-left">
+                <p className="text-sm font-medium text-gray-300">Actionable</p>
+                <p className="text-sm text-gray-400">Intelligence</p>
+              </div>
+              <div className="w-12 h-12 rounded-full border border-[#6ea996] flex items-center justify-center bg-[#0a0a0a]">
+                <svg className="w-5 h-5 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="5" cy="6" r="2" />
                   <circle cx="12" cy="18" r="2" />
                   <circle cx="19" cy="6" r="2" />
@@ -121,95 +128,100 @@ const DualEngineSection = () => {
                   <path d="M12 14v2" />
                 </svg>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-foreground">Actionable</p>
-                <p className="text-sm text-muted-foreground">Intelligence</p>
-              </div>
-              <div className="w-16 h-px bg-primary/40" />
+              <div className="w-20 h-px bg-gradient-to-l from-[#6ea996]/60 to-transparent" />
             </div>
 
             {/* Infinity Symbol - Center */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ width: '600px', height: '300px' }}>
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ width: '700px', height: '400px' }}>
               <svg
-                viewBox="0 0 600 300"
+                viewBox="0 0 700 400"
                 className="w-full h-full"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 {/* Glow filters */}
                 <defs>
-                  <filter id="glow-blue-light" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                  <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
                   </filter>
-                  <filter id="glow-green-light" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                  <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
                   </filter>
+                  <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#4a9ead" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#4a9ead" stopOpacity="1"/>
+                  </linearGradient>
+                  <linearGradient id="green-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6ea996" stopOpacity="0.8"/>
+                    <stop offset="100%" stopColor="#6ea996" stopOpacity="1"/>
+                  </linearGradient>
                 </defs>
 
-                {/* Left Loop (FIND) - Blue/Teal */}
-                <ellipse 
-                  cx="175" 
-                  cy="150" 
-                  rx="130" 
-                  ry="110"
-                  stroke="hsl(var(--secondary))"
-                  strokeWidth="3"
+                {/* Left Loop (FIND) - Blue/Teal - Figure 8 style */}
+                <path 
+                  d="M350 200 
+                     C350 120, 280 60, 200 60 
+                     C120 60, 50 120, 50 200 
+                     C50 280, 120 340, 200 340 
+                     C280 340, 350 280, 350 200"
+                  stroke="url(#blue-gradient)"
+                  strokeWidth="2.5"
                   fill="none"
-                  opacity="0.9"
+                  filter="url(#glow-blue)"
                 />
                 
-                {/* Right Loop (VERIFY) - Green */}
-                <ellipse 
-                  cx="425" 
-                  cy="150" 
-                  rx="130" 
-                  ry="110"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="3"
+                {/* Right Loop (VERIFY) - Green - Figure 8 style */}
+                <path 
+                  d="M350 200 
+                     C350 280, 420 340, 500 340 
+                     C580 340, 650 280, 650 200 
+                     C650 120, 580 60, 500 60 
+                     C420 60, 350 120, 350 200"
+                  stroke="url(#green-gradient)"
+                  strokeWidth="2.5"
                   fill="none"
-                  opacity="0.9"
+                  filter="url(#glow-green)"
                 />
 
-                {/* Center crossing mask - white background to create infinity effect */}
-                <rect x="270" y="100" width="60" height="100" fill="white" />
-
-                {/* Crossing lines */}
-                <line x1="270" y1="100" x2="330" y2="200" stroke="hsl(var(--secondary))" strokeWidth="3" />
-                <line x1="270" y1="200" x2="330" y2="100" stroke="hsl(var(--primary))" strokeWidth="3" />
-
                 {/* FIND Label */}
-                <text x="175" y="130" textAnchor="middle" fill="hsl(var(--foreground))" fontWeight="700" fontSize="18">
+                <text x="200" y="160" textAnchor="middle" fill="white" fontWeight="700" fontSize="24" letterSpacing="0.05em">
                   FIND
                 </text>
                 
                 {/* Engine 1: SearchPro+ */}
-                <text x="175" y="155" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="12">
+                <text x="200" y="200" textAnchor="middle" fill="#888888" fontSize="14">
                   Engine 1:
                 </text>
-                <text x="175" y="175" textAnchor="middle" fill="hsl(var(--secondary))" fontWeight="600" fontSize="14">
+                <text x="200" y="225" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="18">
                   SearchPro+
                 </text>
 
                 {/* VERIFY Label */}
-                <text x="425" y="130" textAnchor="middle" fill="hsl(var(--foreground))" fontWeight="700" fontSize="18">
+                <text x="500" y="160" textAnchor="middle" fill="white" fontWeight="700" fontSize="24" letterSpacing="0.05em">
                   VERIFY
                 </text>
                 
                 {/* Engine 2: ScanPro+ */}
-                <text x="425" y="155" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontSize="12">
+                <text x="500" y="200" textAnchor="middle" fill="#888888" fontSize="14">
                   Engine 2:
                 </text>
-                <text x="425" y="175" textAnchor="middle" fill="hsl(var(--primary))" fontWeight="600" fontSize="14">
+                <text x="500" y="225" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="18">
                   ScanPro+
                 </text>
 
                 {/* Ground Truth - Center */}
-                <text x="300" y="145" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontStyle="italic" fontSize="14">
+                <text x="350" y="190" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="16">
                   Ground
                 </text>
-                <text x="300" y="165" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontStyle="italic" fontSize="14">
+                <text x="350" y="215" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="16">
                   Truth
                 </text>
               </svg>
@@ -222,31 +234,61 @@ const DualEngineSection = () => {
             <div className="flex flex-col items-center gap-8">
               {/* Infinity Symbol Mobile */}
               <svg
-                viewBox="0 0 400 200"
+                viewBox="0 0 400 250"
                 className="w-full max-w-md h-auto"
                 fill="none"
               >
+                <defs>
+                  <filter id="glow-blue-mobile" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <filter id="glow-green-mobile" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
                 {/* Left Loop */}
-                <ellipse cx="115" cy="100" rx="85" ry="70" stroke="hsl(var(--secondary))" strokeWidth="2.5" fill="none" />
+                <path 
+                  d="M200 125 
+                     C200 75, 155 35, 110 35 
+                     C65 35, 20 75, 20 125 
+                     C20 175, 65 215, 110 215 
+                     C155 215, 200 175, 200 125"
+                  stroke="#4a9ead"
+                  strokeWidth="2"
+                  fill="none"
+                  filter="url(#glow-blue-mobile)"
+                />
                 {/* Right Loop */}
-                <ellipse cx="285" cy="100" rx="85" ry="70" stroke="hsl(var(--primary))" strokeWidth="2.5" fill="none" />
-                
-                {/* Center mask */}
-                <rect x="175" y="60" width="50" height="80" fill="white" />
-                
-                {/* Crossing */}
-                <line x1="175" y1="60" x2="225" y2="140" stroke="hsl(var(--secondary))" strokeWidth="2.5" />
-                <line x1="175" y1="140" x2="225" y2="60" stroke="hsl(var(--primary))" strokeWidth="2.5" />
+                <path 
+                  d="M200 125 
+                     C200 175, 245 215, 290 215 
+                     C335 215, 380 175, 380 125 
+                     C380 75, 335 35, 290 35 
+                     C245 35, 200 75, 200 125"
+                  stroke="#6ea996"
+                  strokeWidth="2"
+                  fill="none"
+                  filter="url(#glow-green-mobile)"
+                />
 
                 {/* Labels */}
-                <text x="115" y="90" textAnchor="middle" fill="hsl(var(--foreground))" fontWeight="700" fontSize="14">FIND</text>
-                <text x="115" y="108" textAnchor="middle" fill="hsl(var(--secondary))" fontWeight="600" fontSize="10">SearchPro+</text>
+                <text x="110" y="110" textAnchor="middle" fill="white" fontWeight="700" fontSize="16">FIND</text>
+                <text x="110" y="130" textAnchor="middle" fill="#4a9ead" fontWeight="600" fontSize="11">SearchPro+</text>
                 
-                <text x="285" y="90" textAnchor="middle" fill="hsl(var(--foreground))" fontWeight="700" fontSize="14">VERIFY</text>
-                <text x="285" y="108" textAnchor="middle" fill="hsl(var(--primary))" fontWeight="600" fontSize="10">ScanPro+</text>
+                <text x="290" y="110" textAnchor="middle" fill="white" fontWeight="700" fontSize="16">VERIFY</text>
+                <text x="290" y="130" textAnchor="middle" fill="#6ea996" fontWeight="600" fontSize="11">ScanPro+</text>
                 
-                <text x="200" y="95" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontStyle="italic" fontSize="10">Ground</text>
-                <text x="200" y="110" textAnchor="middle" fill="hsl(var(--muted-foreground))" fontStyle="italic" fontSize="10">Truth</text>
+                <text x="200" y="118" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="11">Ground</text>
+                <text x="200" y="135" textAnchor="middle" fill="#888888" fontStyle="italic" fontSize="11">Truth</text>
               </svg>
 
               {/* Mobile Features Grid */}
@@ -254,38 +296,38 @@ const DualEngineSection = () => {
                 {/* Left Column - SearchPro+ Features */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border-2 border-secondary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-foreground">AI-Powered</p>
-                      <p className="text-xs text-muted-foreground">B2B Discovery</p>
+                      <p className="text-xs font-medium text-gray-300">AI-Powered</p>
+                      <p className="text-xs text-gray-500">B2B Discovery</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border-2 border-secondary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v6l4 2" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-foreground">90% Time</p>
-                      <p className="text-xs text-muted-foreground">Savings</p>
+                      <p className="text-xs font-medium text-[#4a9ead]">90% Time</p>
+                      <p className="text-xs text-gray-500">Savings</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full border-2 border-secondary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#4a9ead] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#4a9ead]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M2 12h20" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-foreground">100% Market</p>
-                      <p className="text-xs text-muted-foreground">Coverage</p>
+                      <p className="text-xs font-medium text-gray-300">100% Market</p>
+                      <p className="text-xs text-gray-500">Coverage</p>
                     </div>
                   </div>
                 </div>
@@ -293,40 +335,40 @@ const DualEngineSection = () => {
                 {/* Right Column - ScanPro+ Features */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="11" cy="11" r="8" />
                         <path d="M21 21l-4.35-4.35" />
                       </svg>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-semibold text-foreground">AI-Guided</p>
-                      <p className="text-xs text-muted-foreground">On-Site Audits</p>
+                      <p className="text-xs font-medium text-gray-300">AI-Guided</p>
+                      <p className="text-xs text-gray-500">On-Site Audits</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v12" />
                       </svg>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-semibold text-foreground">60% Cost</p>
-                      <p className="text-xs text-muted-foreground">Reduction</p>
+                      <p className="text-xs font-medium text-[#6ea996]">60% Cost</p>
+                      <p className="text-xs text-gray-500">Reduction</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-row-reverse">
-                    <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center">
-                      <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-10 h-10 rounded-full border border-[#6ea996] flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#6ea996]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="5" cy="6" r="2" />
                         <circle cx="12" cy="18" r="2" />
                         <circle cx="19" cy="6" r="2" />
                       </svg>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-semibold text-foreground">Actionable</p>
-                      <p className="text-xs text-muted-foreground">Intelligence</p>
+                      <p className="text-xs font-medium text-gray-300">Actionable</p>
+                      <p className="text-xs text-gray-500">Intelligence</p>
                     </div>
                   </div>
                 </div>
