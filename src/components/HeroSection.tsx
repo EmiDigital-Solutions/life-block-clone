@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
 
 // Generate static funnel-shaped particles (wide on left, converging to right)
@@ -31,6 +31,7 @@ const generateFunnelParticles = (count: number) => {
       size,
       isGreen,
       opacity,
+      delay: Math.random() * 4,
     };
   });
 };
@@ -57,7 +58,7 @@ const HeroSection = () => {
       {/* Static Particle Background - Funnel Shape */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {particles.map((particle) => (
-          <div
+          <motion.div
             key={particle.id}
             className={`absolute rounded-full ${
               particle.isGreen 
@@ -69,7 +70,16 @@ const HeroSection = () => {
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
-              opacity: particle.opacity,
+            }}
+            animate={{ 
+              opacity: [particle.opacity * 0.3, particle.opacity, particle.opacity * 0.5, particle.opacity],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              delay: particle.delay,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
             }}
           />
         ))}
@@ -79,8 +89,10 @@ const HeroSection = () => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 25;
           const size = 1.5 + Math.random() * 3;
+          const baseOpacity = 0.6 + Math.random() * 0.4;
+          const delay = Math.random() * 3;
           return (
-            <div
+            <motion.div
               key={`cluster-${i}`}
               className="absolute rounded-full bg-primary"
               style={{
@@ -88,7 +100,16 @@ const HeroSection = () => {
                 height: size,
                 left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-                opacity: 0.6 + Math.random() * 0.4,
+              }}
+              animate={{
+                opacity: [baseOpacity * 0.4, baseOpacity, baseOpacity * 0.6, baseOpacity],
+              }}
+              transition={{
+                duration: 2.5 + Math.random() * 1.5,
+                delay: delay,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
               }}
             />
           );
