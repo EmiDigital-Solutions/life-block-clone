@@ -1,59 +1,22 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { useContentByType } from "@/hooks/useContentQuery";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 
-// Import auditor images for hero carousel background
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import auditorAsian from "@/assets/auditor-real-asian.jpg";
-import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
-import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
-import auditorLatin from "@/assets/auditor-real-latin.jpg";
-import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
-import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
+// Generate random particles
+const generateParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 60, // Left 60% of screen
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    color: Math.random() > 0.6 ? "primary" : "white",
+    delay: Math.random() * 2,
+    duration: Math.random() * 3 + 2,
+  }));
+};
 
 const HeroSection = () => {
-  const [heroContent, setHeroContent] = useState({
-    tagline: "AI Computer Vision",
-    heading: "Supplier Audits in days, not weeks.",
-    subtitle: "",
-  });
-
-  const { data: heroData } = useContentByType("hero_content");
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Hero carousel images matching Auditors page
-  const heroImages = [
-    { src: auditorEuropean, alt: 'VDA 6.3 Lead Auditor - Germany', role: 'VDA 6.3 Lead Auditor', location: 'Germany' },
-    { src: auditorAsian, alt: 'ISO 9001 Specialist - Japan', role: 'ISO 9001 Specialist', location: 'Japan' },
-    { src: auditorMaleNorthAmerica, alt: 'ABS & DNV-GL Auditor - USA', role: 'ABS & DNV-GL Auditor', location: 'USA' },
-    { src: auditorMiddleEast, alt: 'API & ISO 29001 Auditor - UAE', role: 'API & ISO 29001 Auditor', location: 'UAE' },
-    { src: auditorLatin, alt: 'IATF 16949 Specialist - Mexico', role: 'IATF 16949 Specialist', location: 'Mexico' },
-    { src: auditorSouthAsian, alt: 'AS9100 Lead Auditor - India', role: 'AS9100 Lead Auditor', location: 'India' },
-    { src: auditorAfrican, alt: 'Mining & Energy Auditor - South Africa', role: 'Mining & Energy Auditor', location: 'South Africa' },
-    { src: auditorFemaleEuropean, alt: 'Pharmaceutical GMP Auditor - Switzerland', role: 'Pharmaceutical GMP Auditor', location: 'Switzerland' },
-  ];
-
-  // Auto-advance carousel every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [heroImages.length]);
-
-  useEffect(() => {
-    if (heroData && heroData.length > 0) {
-      const mainHero = heroData[0];
-      setHeroContent({
-        tagline: mainHero.body?.tagline || heroContent.tagline,
-        heading: mainHero.title || heroContent.heading,
-        subtitle: mainHero.body?.subtitle || heroContent.subtitle,
-      });
-    }
-  }, [heroData]);
+  const particles = useMemo(() => generateParticles(150), []);
 
   const companies = [
     "Siemens",
@@ -69,126 +32,169 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="white"
-      className="relative min-h-screen flex flex-col overflow-hidden"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
     >
-      {/* Full-screen Image Carousel Background */}
-      <div className="absolute inset-0 z-0">
-        {heroImages.map((image, index) => (
+      {/* Particle Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {particles.map((particle) => (
           <motion.div
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: index === activeIndex ? 1 : 0,
-              scale: index === activeIndex ? 1 : 1.1
+            key={particle.id}
+            className={`absolute rounded-full ${
+              particle.color === "primary" 
+                ? "bg-primary" 
+                : "bg-white/80"
+            }`}
+            style={{
+              width: particle.size,
+              height: particle.size,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
             }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0, 0.8, 0.4, 0.8, 0],
+              scale: [0.5, 1, 0.8, 1, 0.5],
+            }}
+            transition={{
+              duration: particle.duration,
+              delay: particle.delay,
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          />
         ))}
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+
+        {/* Converging particle stream toward laser */}
+        {Array.from({ length: 40 }, (_, i) => {
+          const size = 2 + Math.random() * 2;
+          return (
+            <motion.div
+              key={`stream-${i}`}
+              className="absolute rounded-full bg-primary"
+              style={{
+                width: size,
+                height: size,
+                left: "55%",
+                top: "50%",
+              }}
+              initial={{ 
+                x: Math.random() * 400 - 200,
+                y: Math.random() * 200 - 100,
+                opacity: 0,
+              }}
+              animate={{ 
+                x: [null, 0],
+                y: [null, 0],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                delay: Math.random() * 3,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+            />
+          );
+        })}
+
+        {/* Green Laser Beam */}
+        <motion.div
+          className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
+          style={{
+            left: "55%",
+            background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 20%, transparent 100%)",
+            boxShadow: "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))",
+          }}
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "45%", opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+        />
+
+        {/* Laser Glow Point */}
+        <motion.div
+          className="absolute top-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            left: "55%",
+            width: 12,
+            height: 12,
+            background: "hsl(var(--primary))",
+            boxShadow: "0 0 30px 15px hsl(var(--primary) / 0.6), 0 0 60px 30px hsl(var(--primary) / 0.3)",
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: [1, 1.3, 1], opacity: 1 }}
+          transition={{ 
+            scale: { duration: 2, repeat: Infinity, repeatType: "reverse" },
+            opacity: { duration: 0.5, delay: 0.5 }
+          }}
+        />
       </div>
 
-      {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
+      {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
         <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-20"
-          >
-            {/* Eyebrow Text - Archlet Style */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Main Headline */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-white/50 text-sm tracking-widest uppercase mb-6"
+              transition={{ duration: 0.8 }}
+              className="relative z-20"
             >
-              AI-Powered Supplier Audits
-            </motion.p>
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
+              >
+                YVOO<br />
+                Intelligence<br />
+                Platform
+              </motion.h1>
 
-            {/* Main Headline - Archlet Style, 2 rows only */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
-            >
-              Supplier Audits<br />
-              in Days, Not Weeks.
-            </motion.h1>
-
-            {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
-            <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
               {/* Subtitle */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-white/70 text-lg lg:text-xl mb-8"
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-white/60 text-xl lg:text-2xl mt-8 max-w-lg"
               >
-                The all-in-one platform that makes supplier qualification faster and more transparent with certified auditors worldwide.
+                The Future of AI-Driven<br />
+                Supplier Search & Audit
               </motion.p>
 
-              {/* CTA Button + Urgency Badge */}
+              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="space-y-4"
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-10"
               >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <Button asChild size="lg">
-                    <a 
-                      href="https://calendly.com/yvoo/demo-yvoo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Request a demo
-                    </a>
-                  </Button>
-                </div>
-                
-                {/* Urgency Counter - Below CTA */}
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                  </span>
-                  <span className="text-sm text-white/60">
-                    47 audits booked this week
-                  </span>
-                </div>
+                <Button asChild size="lg">
+                  <a 
+                    href="https://calendly.com/yvoo/demo-yvoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Request a demo
+                  </a>
+                </Button>
               </motion.div>
+            </motion.div>
 
-              {/* Certification Badges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="mt-8"
-              >
-                <p className="text-white/50 text-sm mb-3">Auditors certified by:</p>
-                <div className="flex flex-wrap gap-2">
-                  {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
-                    <span
-                      key={badge}
-                      className="px-4 py-1.5 rounded-full text-sm font-medium bg-white/10 text-white/80 backdrop-blur-sm border border-white/20"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+            {/* Right Column - Tagline */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="hidden lg:block lg:pl-20"
+            >
+              <p className="text-white/70 text-lg lg:text-xl leading-relaxed">
+                Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data<br />
+                for critical business decisions.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
 
@@ -196,7 +202,7 @@ const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.7 }}
+        transition={{ duration: 1, delay: 1 }}
         className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
       >
         <div className="relative flex">
