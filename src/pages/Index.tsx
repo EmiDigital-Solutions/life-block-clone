@@ -4,6 +4,7 @@ import WhyYVOOSection from "@/components/WhyYVOOSection";
 import BuyerPainPointsSection from "@/components/BuyerPainPointsSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import TestimonialSection from "@/components/TestimonialSection";
+import DualEngineSection from "@/components/DualEngineSection";
 
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
@@ -26,10 +27,13 @@ const Index = () => {
       {/* 3. PROBLEM: Empathy - show you understand their pain */}
       <BuyerPainPointsSection />
       
-      {/* 4. CONTRAST: Before/After - visualize the stakes */}
+      {/* 5. CONTRAST: Before/After - visualize the stakes */}
       <EmailComparisonSection />
       
-      {/* 5. SOLUTION DEMO: Show capability after stakes are clear */}
+      {/* 5.5 DUAL ENGINE: Show the ecosystem */}
+      <DualEngineSection />
+      
+      {/* 6. SOLUTION DEMO: Show capability after stakes are clear */}
       <TestimonialSection />
       
       
