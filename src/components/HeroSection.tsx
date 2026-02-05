@@ -2,21 +2,28 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 
-// Generate random particles
+// Generate random particles with density gradient (more on left)
 const generateParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: Math.random() * 60, // Left 60% of screen
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    color: Math.random() > 0.6 ? "primary" : "white",
-    delay: Math.random() * 2,
-    duration: Math.random() * 3 + 2,
-  }));
+  return Array.from({ length: count }, (_, i) => {
+    // Create density gradient - more particles on left (0-60%), fewer on right
+    const densityFactor = Math.random();
+    const xPosition = Math.pow(densityFactor, 1.5) * 65; // Skews more to left
+    
+    return {
+      id: i,
+      x: xPosition,
+      y: Math.random() * 100,
+      size: Math.random() * 3.5 + 0.5,
+      color: Math.random() > 0.7 ? "primary" : "white",
+      delay: Math.random() * 4,
+      duration: Math.random() * 4 + 3,
+      opacity: Math.random() * 0.6 + 0.3,
+    };
+  });
 };
 
 const HeroSection = () => {
-  const particles = useMemo(() => generateParticles(150), []);
+  const particles = useMemo(() => generateParticles(280), []);
 
   const companies = [
     "Siemens",
@@ -52,21 +59,22 @@ const HeroSection = () => {
             }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
-              opacity: [0, 0.8, 0.4, 0.8, 0],
-              scale: [0.5, 1, 0.8, 1, 0.5],
+              opacity: [0, particle.opacity, particle.opacity * 0.6, 0],
+              scale: [0.3, 1, 0.9, 0.3],
             }}
             transition={{
               duration: particle.duration,
               delay: particle.delay,
               repeat: Infinity,
               repeatType: "loop",
+              ease: "easeInOut",
             }}
           />
         ))}
 
         {/* Converging particle stream toward laser */}
-        {Array.from({ length: 40 }, (_, i) => {
-          const size = 2 + Math.random() * 2;
+        {Array.from({ length: 80 }, (_, i) => {
+          const size = 1 + Math.random() * 3;
           return (
             <motion.div
               key={`stream-${i}`}
@@ -78,20 +86,21 @@ const HeroSection = () => {
                 top: "50%",
               }}
               initial={{ 
-                x: Math.random() * 400 - 200,
-                y: Math.random() * 200 - 100,
+                x: Math.random() * 600 - 300,
+                y: Math.random() * 300 - 150,
                 opacity: 0,
               }}
               animate={{ 
                 x: [null, 0],
                 y: [null, 0],
-                opacity: [0, 1, 1, 0],
+                opacity: [0, 0.7, 0.7, 0],
               }}
               transition={{
-                duration: 2 + Math.random() * 2,
-                delay: Math.random() * 3,
+                duration: 3 + Math.random() * 2,
+                delay: Math.random() * 4,
                 repeat: Infinity,
                 repeatType: "loop",
+                ease: "easeInOut",
               }}
             />
           );
@@ -99,15 +108,15 @@ const HeroSection = () => {
 
         {/* Green Laser Beam */}
         <motion.div
-          className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
+          className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
           style={{
             left: "55%",
-            background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 20%, transparent 100%)",
-            boxShadow: "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--primary))",
+            background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
+            boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
           }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "45%", opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
         />
 
         {/* Laser Glow Point */}
@@ -115,16 +124,16 @@ const HeroSection = () => {
           className="absolute top-1/2 -translate-y-1/2 rounded-full"
           style={{
             left: "55%",
-            width: 12,
-            height: 12,
+            width: 14,
+            height: 14,
             background: "hsl(var(--primary))",
-            boxShadow: "0 0 30px 15px hsl(var(--primary) / 0.6), 0 0 60px 30px hsl(var(--primary) / 0.3)",
+            boxShadow: "0 0 35px 20px hsl(var(--primary) / 0.5), 0 0 70px 35px hsl(var(--primary) / 0.25)",
           }}
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [1, 1.3, 1], opacity: 1 }}
+          animate={{ scale: [1, 1.4, 1], opacity: [1, 1, 1] }}
           transition={{ 
-            scale: { duration: 2, repeat: Infinity, repeatType: "reverse" },
-            opacity: { duration: 0.5, delay: 0.5 }
+            scale: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+            opacity: { duration: 0.4, delay: 0.3 }
           }}
         />
       </div>
