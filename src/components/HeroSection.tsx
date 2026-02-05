@@ -51,8 +51,8 @@ const generateStreamParticles = (count: number) => {
 };
 
 const HeroSection = () => {
-  const funnelParticles = useMemo(() => generateFunnelParticles(800), []);
-  const streamParticles = useMemo(() => generateStreamParticles(600), []);
+  const funnelParticles = useMemo(() => generateFunnelParticles(400), []);
+  const streamParticles = useMemo(() => generateStreamParticles(180), []);
 
   const companies = [
     "Siemens",
@@ -134,7 +134,7 @@ const HeroSection = () => {
         ))}
 
         {/* Dense convergence cluster at laser origin */}
-        {Array.from({ length: 250 }, (_, i) => {
+        {Array.from({ length: 120 }, (_, i) => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 8;
           return (
