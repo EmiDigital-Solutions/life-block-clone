@@ -141,16 +141,18 @@ const DualEngineSection = () => {
               >
                 {/* Glow filters */}
                 <defs>
-                  <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                  <filter id="glow-blue" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur stdDeviation="12" result="blur"/>
                     <feMerge>
+                      <feMergeNode in="blur"/>
                       <feMergeNode in="blur"/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                   </filter>
-                  <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                  <filter id="glow-green" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur stdDeviation="12" result="blur"/>
                     <feMerge>
+                      <feMergeNode in="blur"/>
                       <feMergeNode in="blur"/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
