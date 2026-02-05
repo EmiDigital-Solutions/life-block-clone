@@ -2,57 +2,41 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 
-// Generate funnel-shaped particles (wide on left, converging to right)
+// Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
     // X position: 0% to 55% (left side to laser point)
-    const xProgress = Math.random(); // 0 to 1
+    const xProgress = Math.random();
     const x = xProgress * 55;
     
     // Y spread: wide on left (0), narrow at laser point (1)
-    // Creates funnel shape - vertical spread decreases as x increases
-    const maxYSpread = 50 - (xProgress * 40); // 50% spread at left, 10% at right
+    const maxYSpread = 50 - (xProgress * 42);
     const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
-    const y = 50 + yOffset; // Center at 50%
+    const y = 50 + yOffset;
     
-    // Density: more particles cluster near the convergence point
-    const densityBoost = xProgress > 0.6 ? 1.5 : 1;
+    // Larger particles, varying size based on position
+    const baseSize = 2 + Math.random() * 4;
+    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
+    
+    // More green particles near the laser
+    const isGreen = xProgress > 0.5 ? Math.random() > 0.4 : Math.random() > 0.7;
+    
+    // Higher opacity for visibility
+    const opacity = 0.5 + Math.random() * 0.5;
     
     return {
       id: i,
       x,
       y,
-      size: Math.random() * 3 + 0.5,
-      color: Math.random() > 0.65 ? "primary" : "white",
-      delay: Math.random() * 5,
-      duration: Math.random() * 4 + 4,
-      opacity: (0.3 + Math.random() * 0.5) * densityBoost,
-    };
-  });
-};
-
-// Generate streaming particles that flow toward the laser
-const generateStreamParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => {
-    // Start position in funnel area
-    const startX = Math.random() * 40; // Start from left 40%
-    const startYSpread = 50 - (startX / 40) * 35;
-    const startYOffset = (Math.random() - 0.5) * 2 * startYSpread;
-    
-    return {
-      id: i,
-      startX: startX,
-      startY: 50 + startYOffset,
-      size: Math.random() * 2.5 + 1,
-      delay: Math.random() * 6,
-      duration: 4 + Math.random() * 3,
+      size,
+      isGreen,
+      opacity,
     };
   });
 };
 
 const HeroSection = () => {
-  const funnelParticles = useMemo(() => generateFunnelParticles(400), []);
-  const streamParticles = useMemo(() => generateStreamParticles(180), []);
+  const particles = useMemo(() => generateFunnelParticles(600), []);
 
   const companies = [
     "Siemens",
@@ -70,94 +54,41 @@ const HeroSection = () => {
       data-nav-theme="white"
       className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
     >
-      {/* Particle Background - Funnel Shape */}
+      {/* Static Particle Background - Funnel Shape */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Static funnel particles with subtle pulsing */}
-        {funnelParticles.map((particle) => (
-          <motion.div
+        {particles.map((particle) => (
+          <div
             key={particle.id}
             className={`absolute rounded-full ${
-              particle.color === "primary" 
+              particle.isGreen 
                 ? "bg-primary" 
-                : "bg-white/80"
+                : "bg-white"
             }`}
             style={{
               width: particle.size,
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-              opacity: [0, particle.opacity, particle.opacity * 0.7, particle.opacity, 0],
-              scale: [0.5, 1, 0.9, 1, 0.5],
-            }}
-            transition={{
-              duration: particle.duration,
-              delay: particle.delay,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
+              opacity: particle.opacity,
             }}
           />
         ))}
 
-        {/* Flowing stream particles - move from funnel toward laser */}
-        {streamParticles.map((particle) => (
-          <motion.div
-            key={`stream-${particle.id}`}
-            className="absolute rounded-full bg-primary"
-            style={{
-              width: particle.size,
-              height: particle.size,
-            }}
-            initial={{ 
-              left: `${particle.startX}%`,
-              top: `${particle.startY}%`,
-              opacity: 0,
-              scale: 0.5,
-            }}
-            animate={{ 
-              left: ["", "55%"],
-              top: ["", "50%"],
-              opacity: [0, 0.8, 0.9, 0],
-              scale: [0.5, 1, 1.2, 0.3],
-            }}
-            transition={{
-              duration: particle.duration,
-              delay: particle.delay,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeIn",
-            }}
-          />
-        ))}
-
-        {/* Dense convergence cluster at laser origin */}
-        {Array.from({ length: 120 }, (_, i) => {
+        {/* Dense cluster at convergence point */}
+        {Array.from({ length: 150 }, (_, i) => {
           const angle = Math.random() * Math.PI * 2;
-          const radius = Math.random() * 8;
+          const radius = Math.random() * 25;
+          const size = 1.5 + Math.random() * 3;
           return (
-            <motion.div
+            <div
               key={`cluster-${i}`}
               className="absolute rounded-full bg-primary"
               style={{
-                width: 1 + Math.random() * 2,
-                height: 1 + Math.random() * 2,
+                width: size,
+                height: size,
                 left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0.3, 0.9, 0.5, 0.9, 0.3],
-                scale: [0.8, 1.2, 1, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 2 + Math.random() * 2,
-                delay: Math.random() * 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
+                opacity: 0.6 + Math.random() * 0.4,
               }}
             />
           );
@@ -177,20 +108,14 @@ const HeroSection = () => {
         />
 
         {/* Laser Glow Point */}
-        <motion.div
+        <div
           className="absolute top-1/2 -translate-y-1/2 rounded-full"
           style={{
             left: "55%",
-            width: 16,
-            height: 16,
+            width: 18,
+            height: 18,
             background: "hsl(var(--primary))",
             boxShadow: "0 0 40px 25px hsl(var(--primary) / 0.5), 0 0 80px 40px hsl(var(--primary) / 0.25)",
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [1, 1.5, 1], opacity: [1, 1, 1] }}
-          transition={{ 
-            scale: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-            opacity: { duration: 0.4, delay: 0.3 }
           }}
         />
       </div>
