@@ -1460,17 +1460,68 @@ const ComparisonMockup = () => {
             />
           </div>
 
-          {/* Laser Glow Point - Blue */}
+          {/* AI Processing Focal Point Animation */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 rounded-full"
-            style={{
-              left: "55%",
-              width: 18,
-              height: 18,
-              background: "#0A7FA5",
-              boxShadow: "0 0 30px 18px rgba(10, 127, 165, 0.5), 0 0 60px 30px rgba(10, 127, 165, 0.25)",
-            }}
-          />
+            className="absolute top-1/2 -translate-y-1/2"
+            style={{ left: "55%" }}
+          >
+            {/* Outer rotating ring */}
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary/30"
+              style={{ width: 60, height: 60 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            >
+              {/* Ring segments */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary" />
+            </motion.div>
+            
+            {/* Middle counter-rotating ring */}
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-secondary/40"
+              style={{ width: 40, height: 40 }}
+              animate={{ rotate: -360 }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary" />
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary" />
+            </motion.div>
+            
+            {/* Inner pulsing core */}
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
+              style={{ width: 18, height: 18 }}
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [1, 0.7, 1],
+              }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            
+            {/* Core glow */}
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{
+                width: 18,
+                height: 18,
+                background: "#0A7FA5",
+                boxShadow: "0 0 30px 18px rgba(10, 127, 165, 0.4), 0 0 60px 30px rgba(10, 127, 165, 0.2)",
+              }}
+            />
+            
+            {/* Scanning lines */}
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
+              animate={{ rotate: [0, 180] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-[1px] bg-gradient-to-r from-transparent via-secondary to-transparent"
+              animate={{ rotate: [90, 270] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
         </div>
 
         {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
