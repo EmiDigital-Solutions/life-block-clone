@@ -624,16 +624,15 @@ const BeFound = () => {
                 Be Found
               </motion.p>
 
-              {/* Main Headline - Archlet Style, 2 rows */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
-              >
-                Get discovered by<br />
-                global buyers
-              </motion.h1>
+               {/* Main Headline - Archlet Style, 2 rows */}
+               <motion.h1
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.8, delay: 0.2 }}
+                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+               >
+                 Get discovered by global buyers
+               </motion.h1>
 
               {/* Subtitle + CTA Container - Right aligned below headline */}
               <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
