@@ -218,8 +218,13 @@ const HeroSection = () => {
                 const angle = (i / 24) * 360;
                 const radians = (angle * Math.PI) / 180;
                 const radius = 18;
-                const isAccent = [0, 4, 8, 12, 16, 20].includes(i);
-                const colors = ["#0A7FA5", "#6EA996", "#E39B5C", "#1391BF", "#AD3D3D", "#87CEAB"];
+                
+                // Mostly blue with 1 red, 1 green, 1 amber accent
+                let barColor: string;
+                if (i === 6) barColor = "#AD3D3D"; // red
+                else if (i === 12) barColor = "#6EA996"; // green
+                else if (i === 18) barColor = "#E39B5C"; // amber
+                else barColor = "#0A7FA5"; // blue
                 
                 return (
                   <div
@@ -227,8 +232,8 @@ const HeroSection = () => {
                     className="absolute rounded-full"
                     style={{
                       width: 3,
-                      height: isAccent ? 10 : 8,
-                      backgroundColor: isAccent ? colors[i / 4] : "rgba(255,255,255,0.25)",
+                      height: 8,
+                      backgroundColor: barColor,
                       left: "50%",
                       top: "50%",
                       transform: `translate(-50%, -50%) translate(${Math.sin(radians) * radius}px, ${-Math.cos(radians) * radius}px) rotate(${angle}deg)`,
