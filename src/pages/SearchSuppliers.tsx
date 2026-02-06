@@ -1578,7 +1578,7 @@ const ComparisonMockup = () => {
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
               >
                 AI-guided<br />
-                supplier discovery.
+                supplier discovery
               </motion.h1>
 
               {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
