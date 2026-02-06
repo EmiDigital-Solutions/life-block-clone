@@ -53,9 +53,9 @@ const HeroSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-background dark:bg-hero-background"
     >
-      {/* Static Particle Background - Funnel Shape (Light Theme) */}
+      {/* Static Particle Background - Funnel Shape */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {particles.map((particle) => (
           <motion.div
@@ -66,9 +66,6 @@ const HeroSection = () => {
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
-              backgroundColor: particle.isGreen 
-                ? "hsl(var(--primary))" 
-                : "#0A0A0A",
             }}
             animate={{ 
               opacity: [0.15, 1, 0.2, 0.9, 0.15],
@@ -80,7 +77,15 @@ const HeroSection = () => {
               repeatType: "loop",
               ease: "easeInOut",
             }}
-          />
+          >
+            <div 
+              className={`w-full h-full rounded-full ${
+                particle.isGreen 
+                  ? "bg-primary" 
+                  : "bg-foreground"
+              }`}
+            />
+          </motion.div>
         ))}
 
         {/* Dense cluster at convergence point - Mixed particles */}
@@ -99,7 +104,6 @@ const HeroSection = () => {
                 height: size,
                 left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-                backgroundColor: isBlue ? "#0A7FA5" : "#0A0A0A",
               }}
               animate={{
                 opacity: [0.3, 1, 0.4, 0.95, 0.3],
@@ -111,13 +115,15 @@ const HeroSection = () => {
                 repeatType: "loop",
                 ease: "easeInOut",
               }}
-            />
+            >
+              <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-foreground"}`} />
+            </motion.div>
           );
         })}
 
         {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 50 }, (_, i) => {
-          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8; // Mostly pointing left/backwards
+          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8;
           const startRadius = 15;
           const endRadius = 80 + Math.random() * 60;
           const size = 2 + Math.random() * 3;
@@ -127,11 +133,10 @@ const HeroSection = () => {
           return (
             <motion.div
               key={`red-${i}`}
-              className="absolute rounded-full"
+              className="absolute rounded-full bg-destructive"
               style={{
                 width: size,
                 height: size,
-                backgroundColor: "#AD3D3D",
               }}
               initial={{
                 left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
