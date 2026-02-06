@@ -122,13 +122,13 @@ const HeroSection = () => {
         })}
 
         {/* Red particles pushed away backwards from focal point */}
-        {Array.from({ length: 50 }, (_, i) => {
-          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8;
+        {Array.from({ length: 120 }, (_, i) => {
+          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
           const startRadius = 15;
-          const endRadius = 80 + Math.random() * 60;
-          const size = 2 + Math.random() * 3;
-          const duration = 2 + Math.random() * 1.5;
-          const delay = Math.random() * 3;
+          const endRadius = 100 + Math.random() * 80;
+          const size = 2 + Math.random() * 4;
+          const duration = 1.5 + Math.random() * 2;
+          const delay = Math.random() * 4;
           
           return (
             <motion.div
@@ -167,17 +167,30 @@ const HeroSection = () => {
         })}
 
 
-        <motion.div
-          className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
-          style={{
-            left: "55%",
-            background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
-            boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
-          }}
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: "45%", opacity: 1 }}
-          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-        />
+        {/* Laser beam with label */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
+          {/* Approved Suppliers label */}
+          <motion.span
+            className="absolute -top-6 left-8 text-xs tracking-widest uppercase text-primary/80 whitespace-nowrap"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+          >
+            Approved Suppliers →
+          </motion.span>
+          
+          {/* The laser beam */}
+          <motion.div
+            className="h-[3px] w-full"
+            style={{
+              background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
+              boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
+            }}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "45vw", opacity: 1 }}
+            transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+          />
+        </div>
 
         {/* Laser Glow Point - Blue */}
         <div
