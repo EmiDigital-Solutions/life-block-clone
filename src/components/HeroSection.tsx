@@ -52,8 +52,8 @@ const HeroSection = () => {
 
   return (
     <section 
-      data-nav-theme="light"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-background dark:bg-hero-background"
+      data-nav-theme="dark"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
     >
       {/* Static Particle Background - Funnel Shape */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -82,7 +82,7 @@ const HeroSection = () => {
               className={`w-full h-full rounded-full ${
                 particle.isGreen 
                   ? "bg-primary" 
-                  : "bg-foreground"
+                  : "bg-white"
               }`}
             />
           </motion.div>
@@ -116,7 +116,7 @@ const HeroSection = () => {
                 ease: "easeInOut",
               }}
             >
-              <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-foreground"}`} />
+              <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-white"}`} />
             </motion.div>
           );
         })}
@@ -206,7 +206,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
+              className="text-white/60 text-sm tracking-widest uppercase mb-6"
             >
               AI-Powered Intelligence Platform
             </motion.p>
@@ -216,7 +216,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
             >
               Supplier Intelligence<br />
               Platform
@@ -229,7 +229,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-muted-foreground text-lg lg:text-xl mb-8"
+                className="text-white/60 text-lg lg:text-xl mb-8"
               >
                 The Future of AI-Driven Supplier Search & Audit
               </motion.p>
@@ -239,7 +239,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-muted-foreground text-base lg:text-lg mb-8"
+                className="text-white/60 text-base lg:text-lg mb-8"
               >
                 Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
               </motion.p>
@@ -270,7 +270,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="bg-foreground/5 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
+        className="bg-white/5 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
       >
         <div className="relative flex">
           <motion.div
@@ -292,7 +292,7 @@ const HeroSection = () => {
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
+                    className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
                   >
                     {company}
                   </span>
