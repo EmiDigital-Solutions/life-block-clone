@@ -1324,8 +1324,8 @@ const ComparisonMockup = () => {
         data-nav-theme="white"
         className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
       >
-        {/* Static Particle Background - Funnel Shape */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Static Particle Background - Funnel Shape - Hidden on small laptops */}
+        <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           {particles.map((particle) => (
             <motion.div
               key={particle.id}
@@ -1337,7 +1337,8 @@ const ComparisonMockup = () => {
               style={{
                 width: particle.size,
                 height: particle.size,
-                left: `${particle.x}%`,
+                // Scale x position: particles span 0-60% but we shift right on laptops
+                left: `${particle.x * 0.85 + 15}%`,
                 top: `${particle.y}%`,
               }}
               animate={{ 
@@ -1353,7 +1354,7 @@ const ComparisonMockup = () => {
             />
           ))}
 
-          {/* Dense cluster at convergence point - at 60% */}
+          {/* Dense cluster at convergence point - responsive: 65% on lg, 55% on xl+ */}
           {Array.from({ length: 150 }, (_, i) => {
             const angle = Math.random() * Math.PI * 2;
             const radius = Math.random() * 25;
@@ -1363,11 +1364,11 @@ const ComparisonMockup = () => {
             return (
               <motion.div
                 key={`cluster-${i}`}
-                className="absolute rounded-full bg-primary"
+                className="absolute rounded-full bg-primary left-[65%] xl:left-[55%]"
                 style={{
                   width: size,
                   height: size,
-                  left: `calc(60% + ${Math.cos(angle) * radius}px)`,
+                  marginLeft: `${Math.cos(angle) * radius}px`,
                   top: `calc(50% + ${Math.sin(angle) * radius}px)`,
                 }}
                 animate={{
@@ -1384,24 +1385,22 @@ const ComparisonMockup = () => {
             );
           })}
 
-          {/* Green Laser Beam - starts at 60% */}
+          {/* Green Laser Beam - responsive position */}
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
+            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px] left-[65%] xl:left-[55%]"
             style={{
-              left: "60%",
               background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
               boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
             }}
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "40%", opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
           />
 
-          {/* Laser Glow Point - at 60% */}
+          {/* Laser Glow Point - responsive position */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 rounded-full"
+            className="absolute top-1/2 -translate-y-1/2 rounded-full left-[65%] xl:left-[55%]"
             style={{
-              left: "60%",
               width: 18,
               height: 18,
               background: "hsl(var(--primary))",
