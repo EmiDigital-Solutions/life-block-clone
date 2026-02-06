@@ -1430,8 +1430,8 @@ const ComparisonMockup = () => {
 
           {/* AI Iris Wheel at Focal Point */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-            style={{ left: "55%" }}
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
+            style={{ left: "55%", width: 100, height: 100 }}
           >
             {/* Subtle outer glow */}
             <div
@@ -1439,16 +1439,13 @@ const ComparisonMockup = () => {
               style={{
                 width: 140,
                 height: 140,
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
                 background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
               }}
             />
             
             {/* Rotating iris wheel with outward bars */}
             <motion.div
-              className="relative"
+              className="absolute"
               style={{ width: 100, height: 100 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -1456,8 +1453,8 @@ const ComparisonMockup = () => {
               {Array.from({ length: 48 }, (_, i) => {
                 const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const innerRadius = 28; // Start point (hollow center)
-                const barLength = 16; // Length of each bar outward
+                const innerRadius = 28; // Distance from center to bar start
+                const barLength = 16; // Length of each bar
                 
                 // Specific colored bar positions (scattered like the reference)
                 const coloredBars: { [key: number]: string } = {
@@ -1478,6 +1475,10 @@ const ComparisonMockup = () => {
                 const barWidth = isColored ? 5 : 3;
                 const barHeight = isColored ? barLength + 2 : barLength;
                 
+                // Position bar at center, then translate outward and rotate
+                const x = Math.sin(radians) * (innerRadius + barHeight / 2);
+                const y = -Math.cos(radians) * (innerRadius + barHeight / 2);
+                
                 return (
                   <div
                     key={i}
@@ -1489,8 +1490,7 @@ const ComparisonMockup = () => {
                       borderRadius: 2,
                       left: "50%",
                       top: "50%",
-                      transformOrigin: `50% ${-innerRadius + barHeight/2}px`,
-                      transform: `translate(-50%, ${innerRadius}px) rotate(${angle}deg)`,
+                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${angle}deg)`,
                       opacity: isColored ? 1 : 0.6,
                     }}
                   />
@@ -1498,9 +1498,9 @@ const ComparisonMockup = () => {
               })}
             </motion.div>
             
-            {/* Empty center - the "iris" hollow */}
+            {/* Empty center - the "iris" hollow - positioned at exact center */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="absolute rounded-full"
               style={{
                 width: 52,
                 height: 52,
