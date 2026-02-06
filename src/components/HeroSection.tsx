@@ -71,10 +71,10 @@ const HeroSection = () => {
                 : "#0A0A0A",
             }}
             animate={{ 
-              opacity: [particle.opacity * 0.5, particle.opacity, particle.opacity * 0.6, particle.opacity],
+              opacity: [0.15, 1, 0.2, 0.9, 0.15],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 1.5 + Math.random() * 1.5,
               delay: particle.delay,
               repeat: Infinity,
               repeatType: "loop",
@@ -88,7 +88,6 @@ const HeroSection = () => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 25;
           const size = 1.5 + Math.random() * 3;
-          const baseOpacity = 0.6 + Math.random() * 0.4;
           const delay = Math.random() * 3;
           return (
             <motion.div
@@ -101,10 +100,10 @@ const HeroSection = () => {
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
               }}
               animate={{
-                opacity: [baseOpacity * 0.5, baseOpacity, baseOpacity * 0.6, baseOpacity],
+                opacity: [0.2, 1, 0.3, 0.95, 0.2],
               }}
               transition={{
-                duration: 2.5 + Math.random() * 1.5,
+                duration: 1 + Math.random() * 1,
                 delay: delay,
                 repeat: Infinity,
                 repeatType: "loop",
