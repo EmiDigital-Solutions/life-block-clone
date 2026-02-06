@@ -115,7 +115,38 @@ const HeroSection = () => {
           );
         })}
 
-        {/* Laser Beam - 20% Blue to 80% Green gradient */}
+        {/* Red particles at focal point - stay in place, don't pass through */}
+        {Array.from({ length: 40 }, (_, i) => {
+          const angle = Math.random() * Math.PI * 2;
+          const radius = 8 + Math.random() * 25;
+          const size = 2 + Math.random() * 3;
+          const delay = Math.random() * 2;
+          return (
+            <motion.div
+              key={`red-${i}`}
+              className="absolute rounded-full"
+              style={{
+                width: size,
+                height: size,
+                left: `calc(55% + ${Math.cos(angle) * radius}px)`,
+                top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+                backgroundColor: "#AD3D3D",
+              }}
+              animate={{
+                opacity: [0.4, 1, 0.5, 0.9, 0.4],
+              }}
+              transition={{
+                duration: 1.5 + Math.random() * 1,
+                delay: delay,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            />
+          );
+        })}
+
+
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
           style={{
