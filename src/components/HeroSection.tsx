@@ -131,7 +131,7 @@ const HeroSection = () => {
               style={{
                 width: size,
                 height: size,
-                backgroundColor: "#E39B5C", // Amber = rejected/filtered out suppliers
+                backgroundColor: "#AD3D3D",
               }}
               initial={{
                 left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
