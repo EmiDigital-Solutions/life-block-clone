@@ -7,9 +7,43 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
+
+// Generate static funnel-shaped particles (wide on left, converging to right)
+const generateFunnelParticles = (count: number) => {
+  return Array.from({ length: count }, (_, i) => {
+    // X position: 0% to 55% (left side to laser point)
+    const xProgress = Math.random();
+    const x = xProgress * 55;
+    
+    // Y spread: wide on left (0), narrow at laser point (1)
+    const maxYSpread = 50 - (xProgress * 42);
+    const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
+    const y = 50 + yOffset;
+    
+    // Larger particles, varying size based on position
+    const baseSize = 2 + Math.random() * 4;
+    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
+    
+    // More green particles near the laser
+    const isGreen = xProgress > 0.5 ? Math.random() > 0.4 : Math.random() > 0.7;
+    
+    // Higher opacity for visibility
+    const opacity = 0.5 + Math.random() * 0.5;
+    
+    return {
+      id: i,
+      x,
+      y,
+      size,
+      isGreen,
+      opacity,
+      delay: Math.random() * 4,
+    };
+  });
+};
 
 // Import procurement images for hero carousel background
 import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
@@ -583,6 +617,9 @@ const SearchSuppliers = () => {
   } | null>(null);
   const isRunningRef = useRef(false);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  
+  // Generate particles for hero section
+  const particles = useMemo(() => generateFunnelParticles(600), []);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -1282,33 +1319,95 @@ const ComparisonMockup = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Full-screen Image Carousel Background */}
+      {/* Hero Section - Particle Funnel Background (like Homepage) */}
       <section 
         data-nav-theme="white"
-        className="relative min-h-screen flex flex-col overflow-hidden"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
       >
-        {/* Full-screen Image Carousel Background */}
-        <div className="absolute inset-0 z-0">
-          {heroImages.map((image, index) => (
+        {/* Static Particle Background - Funnel Shape */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {particles.map((particle) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: index === heroImageIndex ? 1 : 0,
-                scale: index === heroImageIndex ? 1 : 1.1
+              key={particle.id}
+              className={`absolute rounded-full ${
+                particle.isGreen 
+                  ? "bg-primary" 
+                  : "bg-white"
+              }`}
+              style={{
+                width: particle.size,
+                height: particle.size,
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
               }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
+              animate={{ 
+                opacity: [particle.opacity * 0.3, particle.opacity, particle.opacity * 0.5, particle.opacity],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                delay: particle.delay,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            />
           ))}
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/40" />
+
+          {/* Dense cluster at convergence point */}
+          {Array.from({ length: 150 }, (_, i) => {
+            const angle = Math.random() * Math.PI * 2;
+            const radius = Math.random() * 25;
+            const size = 1.5 + Math.random() * 3;
+            const baseOpacity = 0.6 + Math.random() * 0.4;
+            const delay = Math.random() * 3;
+            return (
+              <motion.div
+                key={`cluster-${i}`}
+                className="absolute rounded-full bg-primary"
+                style={{
+                  width: size,
+                  height: size,
+                  left: `calc(55% + ${Math.cos(angle) * radius}px)`,
+                  top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+                }}
+                animate={{
+                  opacity: [baseOpacity * 0.4, baseOpacity, baseOpacity * 0.6, baseOpacity],
+                }}
+                transition={{
+                  duration: 2.5 + Math.random() * 1.5,
+                  delay: delay,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut",
+                }}
+              />
+            );
+          })}
+
+          {/* Green Laser Beam */}
+          <motion.div
+            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
+            style={{
+              left: "55%",
+              background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
+              boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
+            }}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "45%", opacity: 1 }}
+            transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+          />
+
+          {/* Laser Glow Point */}
+          <div
+            className="absolute top-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              left: "55%",
+              width: 18,
+              height: 18,
+              background: "hsl(var(--primary))",
+              boxShadow: "0 0 40px 25px hsl(var(--primary) / 0.5), 0 0 80px 40px hsl(var(--primary) / 0.25)",
+            }}
+          />
         </div>
 
         {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
