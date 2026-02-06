@@ -114,28 +114,28 @@ const HeroSection = () => {
           );
         })}
 
-        {/* Laser Beam - Blue to Green gradient */}
+        {/* Laser Beam - Blue to Green gradient (left to right) */}
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
           style={{
             left: "55%",
-            background: "linear-gradient(90deg, #6EA996 0%, #0A7FA5 40%, #0A7FA5 70%, transparent 100%)",
-            boxShadow: "0 0 20px rgba(110, 169, 150, 0.6), 0 0 40px rgba(10, 127, 165, 0.4)",
+            background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 20%, #6EA996 60%, #6EA996 80%, transparent 100%)",
+            boxShadow: "0 0 20px rgba(10, 127, 165, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
           }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "45%", opacity: 1 }}
           transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
         />
 
-        {/* Laser Glow Point - Green */}
+        {/* Laser Glow Point - Blue */}
         <div
           className="absolute top-1/2 -translate-y-1/2 rounded-full"
           style={{
             left: "55%",
             width: 18,
             height: 18,
-            background: "#6EA996",
-            boxShadow: "0 0 30px 18px rgba(110, 169, 150, 0.5), 0 0 60px 30px rgba(110, 169, 150, 0.25)",
+            background: "#0A7FA5",
+            boxShadow: "0 0 30px 18px rgba(10, 127, 165, 0.5), 0 0 60px 30px rgba(10, 127, 165, 0.25)",
           }}
         />
       </div>
