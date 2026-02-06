@@ -11,12 +11,12 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// Generate static funnel-shaped particles (wide on left, converging to 60% right)
+// Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 60% (left side to laser point)
+    // X position: 0% to 55% (left side to laser point)
     const xProgress = Math.random();
-    const x = xProgress * 60;
+    const x = xProgress * 55;
     
     // Y spread: wide on left (0), narrow at laser point (1)
     const maxYSpread = 50 - (xProgress * 42);
@@ -25,10 +25,10 @@ const generateFunnelParticles = (count: number) => {
     
     // Larger particles, varying size based on position
     const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.75 ? baseSize * 0.7 : baseSize;
+    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
     
-    // More green particles near the laser
-    const isGreen = xProgress > 0.55 ? Math.random() > 0.4 : Math.random() > 0.7;
+    // More green particles throughout - higher probability
+    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
     
     // Higher opacity for visibility
     const opacity = 0.5 + Math.random() * 0.5;
@@ -619,7 +619,7 @@ const SearchSuppliers = () => {
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   
   // Generate particles for hero section
-  const particles = useMemo(() => generateFunnelParticles(600), []);
+  const particles = useMemo(() => generateFunnelParticles(1200), []);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -1321,19 +1321,15 @@ const ComparisonMockup = () => {
       
       {/* Hero Section - Particle Funnel Background (like Homepage) */}
       <section 
-        data-nav-theme="white"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
+        data-nav-theme="dark"
+        className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
       >
         {/* Static Particle Background - Funnel Shape */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           {particles.map((particle) => (
             <motion.div
               key={particle.id}
-              className={`absolute rounded-full ${
-                particle.isGreen 
-                  ? "bg-primary" 
-                  : "bg-white"
-              }`}
+              className="absolute rounded-full"
               style={{
                 width: particle.size,
                 height: particle.size,
@@ -1341,69 +1337,138 @@ const ComparisonMockup = () => {
                 top: `${particle.y}%`,
               }}
               animate={{ 
-                opacity: [particle.opacity * 0.3, particle.opacity, particle.opacity * 0.5, particle.opacity],
+                opacity: [0.15, 1, 0.2, 0.9, 0.15],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 1.5 + Math.random() * 1.5,
                 delay: particle.delay,
                 repeat: Infinity,
                 repeatType: "loop",
                 ease: "easeInOut",
               }}
-            />
+            >
+              <div 
+                className={`w-full h-full rounded-full ${
+                  particle.isGreen 
+                    ? "bg-primary" 
+                    : "bg-white"
+                }`}
+              />
+            </motion.div>
           ))}
 
-          {/* Dense cluster at convergence point - 70% on laptop (lg), 60% on wide (xl+) */}
-          {Array.from({ length: 150 }, (_, i) => {
+          {/* Dense cluster at convergence point - Mixed particles */}
+          {Array.from({ length: 200 }, (_, i) => {
             const angle = Math.random() * Math.PI * 2;
-            const radius = Math.random() * 25;
-            const size = 1.5 + Math.random() * 3;
-            const baseOpacity = 0.6 + Math.random() * 0.4;
+            const radius = Math.random() * 30;
+            const size = 2 + Math.random() * 4;
             const delay = Math.random() * 3;
+            const isBlue = Math.random() > 0.5;
             return (
               <motion.div
                 key={`cluster-${i}`}
-                className="absolute rounded-full bg-primary left-[70%] xl:left-[60%]"
+                className="absolute rounded-full"
                 style={{
                   width: size,
                   height: size,
-                  marginLeft: `${Math.cos(angle) * radius}px`,
+                  left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                   top: `calc(50% + ${Math.sin(angle) * radius}px)`,
                 }}
                 animate={{
-                  opacity: [baseOpacity * 0.4, baseOpacity, baseOpacity * 0.6, baseOpacity],
+                  opacity: [0.3, 1, 0.4, 0.95, 0.3],
                 }}
                 transition={{
-                  duration: 2.5 + Math.random() * 1.5,
+                  duration: 1 + Math.random() * 1,
                   delay: delay,
                   repeat: Infinity,
                   repeatType: "loop",
                   ease: "easeInOut",
                 }}
+              >
+                <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-white"}`} />
+              </motion.div>
+            );
+          })}
+
+          {/* Red particles pushed away backwards from focal point */}
+          {Array.from({ length: 120 }, (_, i) => {
+            const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
+            const startRadius = 15;
+            const endRadius = 100 + Math.random() * 80;
+            const size = 2 + Math.random() * 4;
+            const duration = 1.5 + Math.random() * 2;
+            const delay = Math.random() * 4;
+            
+            return (
+              <motion.div
+                key={`red-${i}`}
+                className="absolute rounded-full bg-destructive"
+                style={{
+                  width: size,
+                  height: size,
+                }}
+                initial={{
+                  left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                  top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                  opacity: 0,
+                }}
+                animate={{
+                  left: [
+                    `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                    `calc(55% + ${Math.cos(angle) * endRadius}px)`,
+                  ],
+                  top: [
+                    `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                    `calc(50% + ${Math.sin(angle) * endRadius}px)`,
+                  ],
+                  opacity: [0, 1, 0.8, 0],
+                  scale: [0.5, 1, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: duration,
+                  delay: delay,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeOut",
+                }}
               />
             );
           })}
 
-          {/* Green Laser Beam - 70% on laptop, 60% on wide */}
-          <motion.div
-            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px] left-[70%] xl:left-[60%]"
-            style={{
-              background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
-              boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-          />
+          {/* Laser beam with label */}
+          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
+            {/* Approved Suppliers label */}
+            <motion.span
+              className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+            >
+              Approved Suppliers
+            </motion.span>
+            
+            {/* The laser beam */}
+            <motion.div
+              className="h-[3px] w-full"
+              style={{
+                background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
+                boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
+              }}
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "45vw", opacity: 1 }}
+              transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+            />
+          </div>
 
-          {/* Laser Glow Point - 70% on laptop, 60% on wide */}
+          {/* Laser Glow Point - Blue */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 rounded-full left-[70%] xl:left-[60%]"
+            className="absolute top-1/2 -translate-y-1/2 rounded-full"
             style={{
+              left: "55%",
               width: 18,
               height: 18,
-              background: "hsl(var(--primary))",
-              boxShadow: "0 0 40px 25px hsl(var(--primary) / 0.5), 0 0 80px 40px hsl(var(--primary) / 0.25)",
+              background: "#0A7FA5",
+              boxShadow: "0 0 30px 18px rgba(10, 127, 165, 0.5), 0 0 60px 30px rgba(10, 127, 165, 0.25)",
             }}
           />
         </div>
