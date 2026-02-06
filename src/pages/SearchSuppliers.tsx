@@ -11,39 +11,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// Generate static funnel-shaped particles (wide on left, converging to right)
-const generateFunnelParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 55% (left side to laser point)
-    const xProgress = Math.random();
-    const x = xProgress * 55;
-    
-    // Y spread: wide on left (0), narrow at laser point (1)
-    const maxYSpread = 50 - (xProgress * 42);
-    const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
-    const y = 50 + yOffset;
-    
-    // Larger particles, varying size based on position
-    const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
-    
-    // More green particles throughout - higher probability
-    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
-    
-    // Higher opacity for visibility
-    const opacity = 0.5 + Math.random() * 0.5;
-    
-    return {
-      id: i,
-      x,
-      y,
-      size,
-      isGreen,
-      opacity,
-      delay: Math.random() * 4,
-    };
-  });
-};
+// Hero background uses AI spinner wheel instead of particles
 
 // Import procurement images for hero carousel background
 import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
@@ -617,9 +585,6 @@ const SearchSuppliers = () => {
   } | null>(null);
   const isRunningRef = useRef(false);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
-  
-  // Generate particles for hero section
-  const particles = useMemo(() => generateFunnelParticles(1200), []);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
@@ -1319,186 +1284,51 @@ const ComparisonMockup = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Particle Funnel Background (like Homepage) */}
+      {/* Hero Section - Clean with AI Spinner */}
       <section 
         data-nav-theme="dark"
         className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
       >
-        {/* Static Particle Background - Funnel Shape */}
+        {/* AI Spinner Wheel - Right Side */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute rounded-full"
-              style={{
-                width: particle.size,
-                height: particle.size,
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-              }}
-              animate={{ 
-                opacity: [0.15, 1, 0.2, 0.9, 0.15],
-              }}
-              transition={{
-                duration: 1.5 + Math.random() * 1.5,
-                delay: particle.delay,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <div 
-                className={`w-full h-full rounded-full ${
-                  particle.isGreen 
-                    ? "bg-primary" 
-                    : "bg-white"
-                }`}
-              />
-            </motion.div>
-          ))}
-
-          {/* Dense cluster at convergence point - Mixed particles */}
-          {Array.from({ length: 200 }, (_, i) => {
-            const angle = Math.random() * Math.PI * 2;
-            const radius = Math.random() * 30;
-            const size = 2 + Math.random() * 4;
-            const delay = Math.random() * 3;
-            const isBlue = Math.random() > 0.5;
-            return (
-              <motion.div
-                key={`cluster-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  width: size,
-                  height: size,
-                  left: `calc(55% + ${Math.cos(angle) * radius}px)`,
-                  top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.4, 0.95, 0.3],
-                }}
-                transition={{
-                  duration: 1 + Math.random() * 1,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                }}
-              >
-                <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-white"}`} />
-              </motion.div>
-            );
-          })}
-
-          {/* Red particles pushed away backwards from focal point */}
-          {Array.from({ length: 120 }, (_, i) => {
-            const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
-            const startRadius = 15;
-            const endRadius = 100 + Math.random() * 80;
-            const size = 2 + Math.random() * 4;
-            const duration = 1.5 + Math.random() * 2;
-            const delay = Math.random() * 4;
-            
-            return (
-              <motion.div
-                key={`red-${i}`}
-                className="absolute rounded-full bg-destructive"
-                style={{
-                  width: size,
-                  height: size,
-                }}
-                initial={{
-                  left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
-                  top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                  opacity: 0,
-                }}
-                animate={{
-                  left: [
-                    `calc(55% + ${Math.cos(angle) * startRadius}px)`,
-                    `calc(55% + ${Math.cos(angle) * endRadius}px)`,
-                  ],
-                  top: [
-                    `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                    `calc(50% + ${Math.sin(angle) * endRadius}px)`,
-                  ],
-                  opacity: [0, 1, 0.8, 0],
-                  scale: [0.5, 1, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: duration,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeOut",
-                }}
-              />
-            );
-          })}
-
-          {/* Laser beam with label */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
-            {/* Approved Suppliers label */}
-            <motion.span
-              className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.5 }}
-            >
-              Approved Suppliers
-            </motion.span>
-            
-            {/* The laser beam */}
-            <motion.div
-              className="h-[3px] w-full"
-              style={{
-                background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
-                boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
-              }}
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "45vw", opacity: 1 }}
-              transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-            />
-          </div>
-
-          {/* AI Processing Focal Point - Smooth Spinner Wheel */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-            style={{ left: "55%" }}
+            className="absolute top-1/2 right-[15%] lg:right-[20%] -translate-y-1/2"
           >
             {/* Outer glow */}
             <div
-              className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="absolute rounded-full"
               style={{
-                width: 80,
-                height: 80,
+                width: 400,
+                height: 400,
                 left: "50%",
                 top: "50%",
-                background: "radial-gradient(circle, rgba(10, 127, 165, 0.3) 0%, transparent 70%)",
+                transform: "translate(-50%, -50%)",
+                background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, rgba(110, 169, 150, 0.08) 40%, transparent 70%)",
               }}
             />
             
             {/* Rotating wheel with bars */}
             <motion.div
               className="relative"
-              style={{ width: 50, height: 50 }}
+              style={{ width: 200, height: 200 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 24 }, (_, i) => {
-                const angle = (i / 24) * 360;
+              {Array.from({ length: 48 }, (_, i) => {
+                const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const radius = 18;
-                const isAccent = [0, 4, 8, 12, 16, 20].includes(i);
-                const colors = ["#0A7FA5", "#6EA996", "#E39B5C", "#1391BF", "#AD3D3D", "#87CEAB"];
+                const radius = 80;
+                const isAccent = i % 6 === 0;
+                const colors = ["#0A7FA5", "#6EA996", "#E39B5C", "#1391BF", "#AD3D3D", "#87CEAB", "#B2CDBC", "#ACC5D9"];
                 
                 return (
                   <div
                     key={i}
                     className="absolute rounded-full"
                     style={{
-                      width: 3,
-                      height: isAccent ? 10 : 8,
-                      backgroundColor: isAccent ? colors[i / 4] : "rgba(255,255,255,0.25)",
+                      width: isAccent ? 5 : 3,
+                      height: isAccent ? 24 : 16,
+                      backgroundColor: isAccent ? colors[(i / 6) % colors.length] : "rgba(255,255,255,0.12)",
                       left: "50%",
                       top: "50%",
                       transform: `translate(-50%, -50%) translate(${Math.sin(radians) * radius}px, ${-Math.cos(radians) * radius}px) rotate(${angle}deg)`,
@@ -1512,10 +1342,10 @@ const ComparisonMockup = () => {
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{
-                width: 12,
-                height: 12,
-                background: "#0A7FA5",
-                boxShadow: "0 0 20px 8px rgba(10, 127, 165, 0.5), 0 0 40px 16px rgba(10, 127, 165, 0.25)",
+                width: 40,
+                height: 40,
+                background: "radial-gradient(circle, #0A7FA5 0%, #6EA996 100%)",
+                boxShadow: "0 0 40px 20px rgba(10, 127, 165, 0.4), 0 0 80px 40px rgba(10, 127, 165, 0.2)",
               }}
             />
           </div>
