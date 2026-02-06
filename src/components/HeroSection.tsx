@@ -175,8 +175,8 @@ const HeroSection = () => {
           const startRadius = 15;
           const endRadius = 100 + Math.random() * 80;
           const size = 2 + Math.random() * 4;
-          const duration = 3 + Math.random() * 3; // Slower push-away
-          const delay = Math.random() * 4;
+          const duration = 6 + Math.random() * 5; // Very slow, smooth push-away
+          const delay = Math.random() * 6;
           
           return (
             <motion.div
@@ -220,8 +220,8 @@ const HeroSection = () => {
           const endX = 75 + Math.random() * 20; // End along the laser line
           const yOffset = (Math.random() - 0.5) * 6; // Slight vertical variation
           const size = 3 + Math.random() * 3;
-          const duration = 5 + Math.random() * 3; // Slower flow
-          const delay = Math.random() * 5;
+          const duration = 8 + Math.random() * 4; // Very slow, smooth flow
+          const delay = Math.random() * 8;
           
           return (
             <motion.div
