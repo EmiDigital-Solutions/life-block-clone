@@ -52,10 +52,10 @@ const HeroSection = () => {
 
   return (
     <section 
-      data-nav-theme="white"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-[#0A0A0A]"
+      data-nav-theme="light"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-background"
     >
-      {/* Static Particle Background - Funnel Shape */}
+      {/* Static Particle Background - Funnel Shape (Light Theme) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {particles.map((particle) => (
           <motion.div
@@ -63,7 +63,7 @@ const HeroSection = () => {
             className={`absolute rounded-full ${
               particle.isGreen 
                 ? "bg-primary" 
-                : "bg-white"
+                : "bg-foreground/30"
             }`}
             style={{
               width: particle.size,
@@ -72,7 +72,7 @@ const HeroSection = () => {
               top: `${particle.y}%`,
             }}
             animate={{ 
-              opacity: [particle.opacity * 0.3, particle.opacity, particle.opacity * 0.5, particle.opacity],
+              opacity: [particle.opacity * 0.2, particle.opacity * 0.6, particle.opacity * 0.3, particle.opacity * 0.6],
             }}
             transition={{
               duration: 3 + Math.random() * 2,
@@ -89,7 +89,7 @@ const HeroSection = () => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 25;
           const size = 1.5 + Math.random() * 3;
-          const baseOpacity = 0.6 + Math.random() * 0.4;
+          const baseOpacity = 0.4 + Math.random() * 0.4;
           const delay = Math.random() * 3;
           return (
             <motion.div
@@ -102,7 +102,7 @@ const HeroSection = () => {
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
               }}
               animate={{
-                opacity: [baseOpacity * 0.4, baseOpacity, baseOpacity * 0.6, baseOpacity],
+                opacity: [baseOpacity * 0.3, baseOpacity * 0.8, baseOpacity * 0.4, baseOpacity * 0.8],
               }}
               transition={{
                 duration: 2.5 + Math.random() * 1.5,
@@ -121,7 +121,7 @@ const HeroSection = () => {
           style={{
             left: "55%",
             background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
-            boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
+            boxShadow: "0 0 15px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.3)",
           }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "45%", opacity: 1 }}
@@ -133,10 +133,10 @@ const HeroSection = () => {
           className="absolute top-1/2 -translate-y-1/2 rounded-full"
           style={{
             left: "55%",
-            width: 18,
-            height: 18,
+            width: 14,
+            height: 14,
             background: "hsl(var(--primary))",
-            boxShadow: "0 0 40px 25px hsl(var(--primary) / 0.5), 0 0 80px 40px hsl(var(--primary) / 0.25)",
+            boxShadow: "0 0 25px 15px hsl(var(--primary) / 0.4), 0 0 50px 25px hsl(var(--primary) / 0.2)",
           }}
         />
       </div>
@@ -155,7 +155,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-white/50 text-sm tracking-widest uppercase mb-6"
+              className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
             >
               AI-Powered Intelligence Platform
             </motion.p>
@@ -165,7 +165,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               Supplier Intelligence<br />
               Platform
@@ -178,7 +178,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-white/70 text-lg lg:text-xl mb-8"
+                className="text-muted-foreground text-lg lg:text-xl mb-8"
               >
                 The Future of AI-Driven Supplier Search & Audit
               </motion.p>
@@ -188,7 +188,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-white/60 text-base lg:text-lg mb-8"
+                className="text-muted-foreground text-base lg:text-lg mb-8"
               >
                 Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
               </motion.p>
@@ -219,7 +219,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
+        className="bg-foreground/5 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
       >
         <div className="relative flex">
           <motion.div
@@ -241,7 +241,7 @@ const HeroSection = () => {
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
+                    className="text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
                   >
                     {company}
                   </span>
