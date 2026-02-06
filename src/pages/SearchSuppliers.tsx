@@ -1410,7 +1410,7 @@ const ComparisonMockup = () => {
 
         {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
-          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+          <div className="px-6 lg:pl-6 lg:pr-12 xl:pl-12 xl:pr-24 w-full max-w-7xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
