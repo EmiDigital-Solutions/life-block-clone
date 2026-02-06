@@ -190,7 +190,7 @@ const HeroSection = () => {
             animate={{ width: "45vw", opacity: 1 }}
             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
           />
-          {/* AI Particle Wheel at Focal Point - 2x size like Search Suppliers */}
+          {/* AI Particle Wheel - Concentric Rings */}
           <div
             className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
             style={{ left: "55%", width: 200, height: 200 }}
@@ -205,61 +205,56 @@ const HeroSection = () => {
               }}
             />
             
-            {/* Rotating particle wheel */}
+            {/* Rotating concentric particle rings */}
             <motion.div
               className="absolute"
               style={{ width: 200, height: 200 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 48 }, (_, spoke) => {
-                const angle = (spoke / 48) * 360;
-                const radians = (angle * Math.PI) / 180;
-                
-                // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
-                let spokeColor: string;
-                if (spoke === 12) spokeColor = "#AD3D3D"; // red
-                else if (spoke === 24) spokeColor = "#6EA996"; // green
-                else if (spoke === 36) spokeColor = "#E39B5C"; // amber
-                else spokeColor = "#0A7FA5"; // blue
-                
-                // Generate 5 particles per spoke at different radii
-                return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 42;
-                  const particleSpacing = 10;
-                  const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 5 + (4 - p) * 0.5;
-                  
-                  const x = Math.sin(radians) * radius;
-                  const y = -Math.cos(radians) * radius;
+              {/* Ring configurations: [radius, particleCount, color] */}
+              {[
+                { radius: 90, count: 40, color: "#0A7FA5" },
+                { radius: 75, count: 32, color: "#0A7FA5" },
+                { radius: 60, count: 28, color: "#0A7FA5" },
+                { radius: 48, count: 22, color: "#6EA996" },
+                { radius: 38, count: 18, color: "#E39B5C" },
+                { radius: 28, count: 14, color: "#E39B5C" },
+              ].map((ring, ringIndex) => (
+                Array.from({ length: ring.count }, (_, i) => {
+                  const angle = (i / ring.count) * 360;
+                  const radians = (angle * Math.PI) / 180;
+                  const x = Math.sin(radians) * ring.radius;
+                  const y = -Math.cos(radians) * ring.radius;
+                  const particleSize = ringIndex < 3 ? 4 : 3.5;
                   
                   return (
                     <div
-                      key={`${spoke}-${p}`}
+                      key={`ring-${ringIndex}-${i}`}
                       className="absolute rounded-full"
                       style={{
                         width: particleSize,
                         height: particleSize,
-                        backgroundColor: spokeColor,
+                        backgroundColor: ring.color,
                         left: "50%",
                         top: "50%",
                         transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 0.9 - p * 0.1,
+                        opacity: 0.85,
                       }}
                     />
                   );
-                });
-              })}
+                })
+              ))}
             </motion.div>
             
-            {/* Smaller center point */}
+            {/* Glowing center point */}
             <div
               className="absolute rounded-full"
               style={{
-                width: 18,
-                height: 18,
-                background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
+                width: 16,
+                height: 16,
+                background: "radial-gradient(circle, rgba(110, 169, 150, 0.9) 0%, rgba(10, 127, 165, 0.6) 60%, transparent 100%)",
+                boxShadow: "0 0 15px 5px rgba(110, 169, 150, 0.4), 0 0 30px 10px rgba(10, 127, 165, 0.2)",
               }}
             />
           </div>
