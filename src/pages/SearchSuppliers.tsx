@@ -1403,6 +1403,47 @@ const ComparisonMockup = () => {
             );
           })}
 
+          {/* Particles passing through the iris wheel to the laser line */}
+          {Array.from({ length: 30 }, (_, i) => {
+            const isGreen = i % 2 === 0; // Alternate green and blue
+            const startX = 55; // Start at iris wheel center
+            const endX = 75 + Math.random() * 20; // End along the laser line
+            const yOffset = (Math.random() - 0.5) * 6; // Slight vertical variation
+            const size = 3 + Math.random() * 3;
+            const duration = 2 + Math.random() * 1.5;
+            const delay = Math.random() * 5;
+            
+            return (
+              <motion.div
+                key={`through-${i}`}
+                className={`absolute rounded-full ${isGreen ? 'bg-primary' : 'bg-accent'}`}
+                style={{
+                  width: size,
+                  height: size,
+                  backgroundColor: isGreen ? '#6EA996' : '#0A7FA5',
+                }}
+                initial={{
+                  left: `${startX}%`,
+                  top: `calc(50% + ${yOffset}px)`,
+                  opacity: 0,
+                  scale: 0.5,
+                }}
+                animate={{
+                  left: [`${startX}%`, `${endX}%`],
+                  opacity: [0, 1, 1, 0.8, 0],
+                  scale: [0.5, 1.2, 1, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: duration,
+                  delay: delay,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeOut",
+                }}
+              />
+            );
+          })}
+
           {/* Laser beam with label */}
           <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
             {/* Approved Suppliers label */}
