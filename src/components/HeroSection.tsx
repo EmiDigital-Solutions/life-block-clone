@@ -207,39 +207,50 @@ const HeroSection = () => {
               }}
             />
             
-            {/* Rotating wheel with bars */}
+            {/* Rotating particle wheel */}
             <motion.div
               className="relative"
               style={{ width: 50, height: 50 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 24 }, (_, i) => {
-                const angle = (i / 24) * 360;
+              {Array.from({ length: 24 }, (_, spoke) => {
+                const angle = (spoke / 24) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const radius = 18;
                 
                 // Mostly blue with 1 red, 1 green, 1 amber accent
-                let barColor: string;
-                if (i === 6) barColor = "#AD3D3D"; // red
-                else if (i === 12) barColor = "#6EA996"; // green
-                else if (i === 18) barColor = "#E39B5C"; // amber
-                else barColor = "#0A7FA5"; // blue
+                let spokeColor: string;
+                if (spoke === 6) spokeColor = "#AD3D3D"; // red
+                else if (spoke === 12) spokeColor = "#6EA996"; // green
+                else if (spoke === 18) spokeColor = "#E39B5C"; // amber
+                else spokeColor = "#0A7FA5"; // blue
                 
-                return (
-                  <div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                      width: 3,
-                      height: 8,
-                      backgroundColor: barColor,
-                      left: "50%",
-                      top: "50%",
-                      transform: `translate(-50%, -50%) translate(${Math.sin(radians) * radius}px, ${-Math.cos(radians) * radius}px) rotate(${angle}deg)`,
-                    }}
-                  />
-                );
+                // Generate 3 particles per spoke at different radii
+                return Array.from({ length: 3 }, (_, p) => {
+                  const innerRadius = 10;
+                  const particleSpacing = 5;
+                  const radius = innerRadius + p * particleSpacing;
+                  const particleSize = 3 + (2 - p) * 0.3;
+                  
+                  const x = Math.sin(radians) * radius;
+                  const y = -Math.cos(radians) * radius;
+                  
+                  return (
+                    <div
+                      key={`${spoke}-${p}`}
+                      className="absolute rounded-full"
+                      style={{
+                        width: particleSize,
+                        height: particleSize,
+                        backgroundColor: spokeColor,
+                        left: "50%",
+                        top: "50%",
+                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                        opacity: 0.9 - p * 0.1,
+                      }}
+                    />
+                  );
+                });
               })}
             </motion.div>
             
