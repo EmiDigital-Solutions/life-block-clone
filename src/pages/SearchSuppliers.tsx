@@ -1495,7 +1495,7 @@ const ComparisonMockup = () => {
                 const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
                 const innerRadius = 42; // 25% smaller: Distance from center to bar start
-                const barLength = 32; // 2x: Length of each bar
+                const barLength = 46; // Increased to maintain outer diameter
                 
                 // Brand colors: 25% each (12 bars per color)
                 // Blue (#0A7FA5): 0-11, Amber (#E39B5C): 12-23, Green (#6EA996): 24-35, Red (#AD3D3D): 36-47
