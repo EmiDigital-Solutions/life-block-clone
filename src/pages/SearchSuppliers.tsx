@@ -1460,66 +1460,63 @@ const ComparisonMockup = () => {
             />
           </div>
 
-          {/* AI Processing Focal Point Animation */}
+          {/* AI Processing Focal Point - Smooth Spinner Wheel */}
           <div
-            className="absolute top-1/2 -translate-y-1/2"
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
             style={{ left: "55%" }}
           >
-            {/* Outer rotating ring */}
-            <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary/30"
-              style={{ width: 60, height: 60 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            >
-              {/* Ring segments */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary" />
-            </motion.div>
-            
-            {/* Middle counter-rotating ring */}
-            <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-secondary/40"
-              style={{ width: 40, height: 40 }}
-              animate={{ rotate: -360 }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary" />
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary" />
-            </motion.div>
-            
-            {/* Inner pulsing core */}
-            <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
-              style={{ width: 18, height: 18 }}
-              animate={{ 
-                scale: [1, 1.3, 1],
-                opacity: [1, 0.7, 1],
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Core glow */}
+            {/* Outer glow */}
             <div
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{
-                width: 18,
-                height: 18,
-                background: "#0A7FA5",
-                boxShadow: "0 0 30px 18px rgba(10, 127, 165, 0.4), 0 0 60px 30px rgba(10, 127, 165, 0.2)",
+                width: 80,
+                height: 80,
+                left: "50%",
+                top: "50%",
+                background: "radial-gradient(circle, rgba(10, 127, 165, 0.3) 0%, transparent 70%)",
               }}
             />
             
-            {/* Scanning lines */}
+            {/* Rotating wheel with bars */}
             <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
-              animate={{ rotate: [0, 180] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-[1px] bg-gradient-to-r from-transparent via-secondary to-transparent"
-              animate={{ rotate: [90, 270] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="relative"
+              style={{ width: 50, height: 50 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            >
+              {Array.from({ length: 24 }, (_, i) => {
+                const angle = (i / 24) * 360;
+                const radians = (angle * Math.PI) / 180;
+                const radius = 18;
+                const isAccent = [0, 4, 8, 12, 16, 20].includes(i);
+                const colors = ["#0A7FA5", "#6EA996", "#E39B5C", "#1391BF", "#AD3D3D", "#87CEAB"];
+                
+                return (
+                  <div
+                    key={i}
+                    className="absolute rounded-full"
+                    style={{
+                      width: 3,
+                      height: isAccent ? 10 : 8,
+                      backgroundColor: isAccent ? colors[i / 4] : "rgba(255,255,255,0.25)",
+                      left: "50%",
+                      top: "50%",
+                      transform: `translate(-50%, -50%) translate(${Math.sin(radians) * radius}px, ${-Math.cos(radians) * radius}px) rotate(${angle}deg)`,
+                    }}
+                  />
+                );
+              })}
+            </motion.div>
+            
+            {/* Inner core glow */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{
+                width: 12,
+                height: 12,
+                background: "#0A7FA5",
+                boxShadow: "0 0 20px 8px rgba(10, 127, 165, 0.5), 0 0 40px 16px rgba(10, 127, 165, 0.25)",
+              }}
             />
           </div>
         </div>
