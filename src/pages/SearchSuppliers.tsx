@@ -1497,8 +1497,7 @@ const ComparisonMockup = () => {
                 const innerRadius = 42; // 25% smaller: Distance from center to bar start
                 const barLength = 46; // Increased to maintain outer diameter
                 
-                // Brand colors: 25% each (12 bars per color)
-                // Blue (#0A7FA5): 0-11, Amber (#E39B5C): 12-23, Green (#6EA996): 24-35, Red (#AD3D3D): 36-47
+                // Mostly blue with 1 red, 1 green, 1 yellow accent
                 const brandColors = {
                   blue: "#0A7FA5",
                   amber: "#E39B5C",
@@ -1507,14 +1506,14 @@ const ComparisonMockup = () => {
                 };
                 
                 let barColor: string;
-                if (i < 12) {
-                  barColor = brandColors.blue;
-                } else if (i < 24) {
-                  barColor = brandColors.amber;
-                } else if (i < 36) {
-                  barColor = brandColors.green;
-                } else {
+                if (i === 12) {
                   barColor = brandColors.red;
+                } else if (i === 24) {
+                  barColor = brandColors.green;
+                } else if (i === 36) {
+                  barColor = brandColors.amber;
+                } else {
+                  barColor = brandColors.blue;
                 }
                 
                 const barWidth = 6; // 2x width
