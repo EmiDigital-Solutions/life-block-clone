@@ -18,8 +18,8 @@ const generateFunnelParticles = (count: number) => {
     const baseSize = 2 + Math.random() * 4;
     const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
     
-    // More green particles near the laser
-    const isGreen = xProgress > 0.5 ? Math.random() > 0.4 : Math.random() > 0.7;
+    // More green particles throughout - higher probability
+    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
     
     // Higher opacity for visibility
     const opacity = 0.5 + Math.random() * 0.5;
