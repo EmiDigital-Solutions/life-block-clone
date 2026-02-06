@@ -1487,15 +1487,15 @@ const ComparisonMockup = () => {
             {/* Rotating iris wheel with outward bars - 2x size */}
             <motion.div
               className="absolute"
-              style={{ width: 170, height: 170 }}
+              style={{ width: 200, height: 200 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
               {Array.from({ length: 48 }, (_, i) => {
                 const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const innerRadius = 36; // 15% smaller
-                const barLength = 39; // 15% smaller
+                const innerRadius = 42; // 25% smaller: Distance from center to bar start
+                const barLength = 46; // Increased to maintain outer diameter
                 
                 // Mostly blue with 1 red, 1 green, 1 yellow accent
                 const brandColors = {
@@ -1516,7 +1516,7 @@ const ComparisonMockup = () => {
                   barColor = brandColors.blue;
                 }
                 
-                const barWidth = 5; // 15% smaller
+                const barWidth = 6; // 2x width
                 const barHeight = barLength;
                 
                 // Position bar at center, then translate outward and rotate
@@ -1546,8 +1546,8 @@ const ComparisonMockup = () => {
             <div
               className="absolute rounded-full"
               style={{
-                width: 15,
-                height: 15,
+                width: 18,
+                height: 18,
                 background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
                 boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
               }}
