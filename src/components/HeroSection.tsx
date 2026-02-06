@@ -83,24 +83,25 @@ const HeroSection = () => {
           />
         ))}
 
-        {/* Dense cluster at convergence point */}
-        {Array.from({ length: 150 }, (_, i) => {
+        {/* Dense cluster at convergence point - Green particles */}
+        {Array.from({ length: 200 }, (_, i) => {
           const angle = Math.random() * Math.PI * 2;
-          const radius = Math.random() * 25;
-          const size = 1.5 + Math.random() * 3;
+          const radius = Math.random() * 30;
+          const size = 2 + Math.random() * 4;
           const delay = Math.random() * 3;
           return (
             <motion.div
               key={`cluster-${i}`}
-              className="absolute rounded-full bg-primary"
+              className="absolute rounded-full"
               style={{
                 width: size,
                 height: size,
                 left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+                backgroundColor: "#6EA996",
               }}
               animate={{
-                opacity: [0.2, 1, 0.3, 0.95, 0.2],
+                opacity: [0.3, 1, 0.4, 0.95, 0.3],
               }}
               transition={{
                 duration: 1 + Math.random() * 1,
@@ -113,28 +114,28 @@ const HeroSection = () => {
           );
         })}
 
-        {/* Green Laser Beam */}
+        {/* Laser Beam - Blue to Green gradient */}
         <motion.div
-          className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
+          className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
           style={{
             left: "55%",
-            background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
-            boxShadow: "0 0 15px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.3)",
+            background: "linear-gradient(90deg, #6EA996 0%, #0A7FA5 40%, #0A7FA5 70%, transparent 100%)",
+            boxShadow: "0 0 20px rgba(110, 169, 150, 0.6), 0 0 40px rgba(10, 127, 165, 0.4)",
           }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "45%", opacity: 1 }}
           transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
         />
 
-        {/* Laser Glow Point */}
+        {/* Laser Glow Point - Green */}
         <div
           className="absolute top-1/2 -translate-y-1/2 rounded-full"
           style={{
             left: "55%",
-            width: 14,
-            height: 14,
-            background: "hsl(var(--primary))",
-            boxShadow: "0 0 25px 15px hsl(var(--primary) / 0.4), 0 0 50px 25px hsl(var(--primary) / 0.2)",
+            width: 18,
+            height: 18,
+            background: "#6EA996",
+            boxShadow: "0 0 30px 18px rgba(110, 169, 150, 0.5), 0 0 60px 30px rgba(110, 169, 150, 0.25)",
           }}
         />
       </div>
