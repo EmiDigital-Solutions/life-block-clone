@@ -60,19 +60,18 @@ const HeroSection = () => {
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className={`absolute rounded-full ${
-              particle.isGreen 
-                ? "bg-primary" 
-                : "bg-foreground/30"
-            }`}
+            className="absolute rounded-full"
             style={{
               width: particle.size,
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
+              backgroundColor: particle.isGreen 
+                ? "hsl(var(--primary))" 
+                : "#0A0A0A",
             }}
             animate={{ 
-              opacity: [particle.opacity * 0.2, particle.opacity * 0.6, particle.opacity * 0.3, particle.opacity * 0.6],
+              opacity: [particle.opacity * 0.5, particle.opacity, particle.opacity * 0.6, particle.opacity],
             }}
             transition={{
               duration: 3 + Math.random() * 2,
@@ -89,7 +88,7 @@ const HeroSection = () => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 25;
           const size = 1.5 + Math.random() * 3;
-          const baseOpacity = 0.4 + Math.random() * 0.4;
+          const baseOpacity = 0.6 + Math.random() * 0.4;
           const delay = Math.random() * 3;
           return (
             <motion.div
@@ -102,7 +101,7 @@ const HeroSection = () => {
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
               }}
               animate={{
-                opacity: [baseOpacity * 0.3, baseOpacity * 0.8, baseOpacity * 0.4, baseOpacity * 0.8],
+                opacity: [baseOpacity * 0.5, baseOpacity, baseOpacity * 0.6, baseOpacity],
               }}
               transition={{
                 duration: 2.5 + Math.random() * 1.5,
