@@ -1484,20 +1484,18 @@ const ComparisonMockup = () => {
               }}
             />
             
-            {/* Rotating iris wheel with outward bars - 2x size */}
+            {/* Rotating particle wheel - 2x size */}
             <motion.div
               className="absolute"
               style={{ width: 200, height: 200 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 48 }, (_, i) => {
-                const angle = (i / 48) * 360;
+              {Array.from({ length: 48 }, (_, spoke) => {
+                const angle = (spoke / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const innerRadius = 42; // 25% smaller: Distance from center to bar start
-                const barLength = 46; // Increased to maintain outer diameter
                 
-                // Mostly blue with 1 red, 1 green, 1 yellow accent
+                // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
                 const brandColors = {
                   blue: "#0A7FA5",
                   amber: "#E39B5C",
@@ -1505,40 +1503,38 @@ const ComparisonMockup = () => {
                   red: "#AD3D3D",
                 };
                 
-                let barColor: string;
-                if (i === 12) {
-                  barColor = brandColors.red;
-                } else if (i === 24) {
-                  barColor = brandColors.green;
-                } else if (i === 36) {
-                  barColor = brandColors.amber;
-                } else {
-                  barColor = brandColors.blue;
-                }
+                let spokeColor: string;
+                if (spoke === 12) spokeColor = brandColors.red;
+                else if (spoke === 24) spokeColor = brandColors.green;
+                else if (spoke === 36) spokeColor = brandColors.amber;
+                else spokeColor = brandColors.blue;
                 
-                const barWidth = 6; // 2x width
-                const barHeight = barLength;
-                
-                // Position bar at center, then translate outward and rotate
-                const x = Math.sin(radians) * (innerRadius + barHeight / 2);
-                const y = -Math.cos(radians) * (innerRadius + barHeight / 2);
-                
-                return (
-                  <div
-                    key={i}
-                    className="absolute"
-                    style={{
-                      width: barWidth,
-                      height: barHeight,
-                      backgroundColor: barColor,
-                      borderRadius: 3,
-                      left: "50%",
-                      top: "50%",
-                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${angle}deg)`,
-                      opacity: 1,
-                    }}
-                  />
-                );
+                // Generate 5 particles per spoke at different radii
+                return Array.from({ length: 5 }, (_, p) => {
+                  const innerRadius = 42;
+                  const particleSpacing = 10;
+                  const radius = innerRadius + p * particleSpacing;
+                  const particleSize = 5 + (4 - p) * 0.5; // Slightly larger near center
+                  
+                  const x = Math.sin(radians) * radius;
+                  const y = -Math.cos(radians) * radius;
+                  
+                  return (
+                    <div
+                      key={`${spoke}-${p}`}
+                      className="absolute rounded-full"
+                      style={{
+                        width: particleSize,
+                        height: particleSize,
+                        backgroundColor: spokeColor,
+                        left: "50%",
+                        top: "50%",
+                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                        opacity: 0.9 - p * 0.1,
+                      }}
+                    />
+                  );
+                });
               })}
             </motion.div>
             
