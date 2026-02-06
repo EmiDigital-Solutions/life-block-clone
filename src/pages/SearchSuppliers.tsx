@@ -1357,38 +1357,6 @@ const ComparisonMockup = () => {
             </motion.div>
           ))}
 
-          {/* Dense cluster at convergence point - Mixed particles */}
-          {Array.from({ length: 200 }, (_, i) => {
-            const angle = Math.random() * Math.PI * 2;
-            const radius = Math.random() * 30;
-            const size = 2 + Math.random() * 4;
-            const delay = Math.random() * 3;
-            const isBlue = Math.random() > 0.5;
-            return (
-              <motion.div
-                key={`cluster-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  width: size,
-                  height: size,
-                  left: `calc(55% + ${Math.cos(angle) * radius}px)`,
-                  top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.4, 0.95, 0.3],
-                }}
-                transition={{
-                  duration: 1 + Math.random() * 1,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                }}
-              >
-                <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-white"}`} />
-              </motion.div>
-            );
-          })}
 
           {/* Red particles pushed away backwards from focal point */}
           {Array.from({ length: 120 }, (_, i) => {
