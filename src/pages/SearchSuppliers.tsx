@@ -1428,63 +1428,84 @@ const ComparisonMockup = () => {
             />
           </div>
 
-          {/* AI Spinner Wheel at Focal Point */}
+          {/* AI Iris Wheel at Focal Point */}
           <div
             className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
             style={{ left: "55%" }}
           >
-            {/* Outer glow */}
+            {/* Subtle outer glow */}
             <div
               className="absolute rounded-full"
               style={{
-                width: 120,
-                height: 120,
+                width: 140,
+                height: 140,
                 left: "50%",
                 top: "50%",
                 transform: "translate(-50%, -50%)",
-                background: "radial-gradient(circle, rgba(10, 127, 165, 0.3) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
               }}
             />
             
-            {/* Rotating wheel with bars */}
+            {/* Rotating iris wheel with outward bars */}
             <motion.div
               className="relative"
-              style={{ width: 70, height: 70 }}
+              style={{ width: 100, height: 100 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 32 }, (_, i) => {
-                const angle = (i / 32) * 360;
+              {Array.from({ length: 48 }, (_, i) => {
+                const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const radius = 28;
-                const isAccent = i % 4 === 0;
-                const colors = ["#0A7FA5", "#6EA996", "#E39B5C", "#1391BF", "#AD3D3D", "#87CEAB", "#B2CDBC", "#ACC5D9"];
+                const innerRadius = 28; // Start point (hollow center)
+                const barLength = 16; // Length of each bar outward
+                
+                // Specific colored bar positions (scattered like the reference)
+                const coloredBars: { [key: number]: string } = {
+                  0: "#0066CC",   // Blue (top)
+                  6: "#0A7FA5",   // Teal
+                  8: "#0A9A8A",   // Cyan-teal
+                  16: "#E39B5C",  // Orange
+                  20: "#1391BF",  // Light blue
+                  24: "#F59E0B",  // Amber
+                  30: "#E07347",  // Red-orange
+                  36: "#CDDC39",  // Yellow-green
+                  38: "#6EA996",  // Green
+                  42: "#F5A623",  // Orange
+                };
+                
+                const isColored = coloredBars[i] !== undefined;
+                const barColor = isColored ? coloredBars[i] : "rgba(255, 255, 255, 0.5)";
+                const barWidth = isColored ? 5 : 3;
+                const barHeight = isColored ? barLength + 2 : barLength;
                 
                 return (
                   <div
                     key={i}
-                    className="absolute rounded-full"
+                    className="absolute"
                     style={{
-                      width: isAccent ? 4 : 2,
-                      height: isAccent ? 14 : 10,
-                      backgroundColor: isAccent ? colors[(i / 4) % colors.length] : "rgba(255,255,255,0.2)",
+                      width: barWidth,
+                      height: barHeight,
+                      backgroundColor: barColor,
+                      borderRadius: 2,
                       left: "50%",
                       top: "50%",
-                      transform: `translate(-50%, -50%) translate(${Math.sin(radians) * radius}px, ${-Math.cos(radians) * radius}px) rotate(${angle}deg)`,
+                      transformOrigin: `50% ${-innerRadius + barHeight/2}px`,
+                      transform: `translate(-50%, ${innerRadius}px) rotate(${angle}deg)`,
+                      opacity: isColored ? 1 : 0.6,
                     }}
                   />
                 );
               })}
             </motion.div>
             
-            {/* Inner core glow */}
+            {/* Empty center - the "iris" hollow */}
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{
-                width: 16,
-                height: 16,
-                background: "radial-gradient(circle, #0A7FA5 0%, #6EA996 100%)",
-                boxShadow: "0 0 25px 12px rgba(10, 127, 165, 0.5), 0 0 50px 25px rgba(10, 127, 165, 0.25)",
+                width: 52,
+                height: 52,
+                background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
+                boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
               }}
             />
           </div>
