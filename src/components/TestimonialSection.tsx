@@ -1,35 +1,10 @@
 import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-
-// Generate static funnel-shaped particles for dark section background
-const generateFunnelParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => {
-    const xProgress = Math.random();
-    const x = xProgress * 55;
-    const maxYSpread = 50 - (xProgress * 42);
-    const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
-    const y = 50 + yOffset;
-    const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
-    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
-    const opacity = 0.5 + Math.random() * 0.5;
-    
-    return {
-      id: i,
-      x,
-      y,
-      size,
-      isGreen,
-      opacity,
-      delay: Math.random() * 4,
-    };
-  });
-};
 
 const capabilities = [
   {
@@ -51,7 +26,6 @@ const capabilities = [
 
 const TestimonialSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const particles = useMemo(() => generateFunnelParticles(600), []);
 
   return (
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
@@ -107,181 +81,40 @@ const TestimonialSection = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Dark Background Platform Demo Section */}
-      <div className="relative bg-hero-background py-20 md:py-28 overflow-hidden">
-        {/* Particle Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute rounded-full"
-              style={{
-                width: particle.size,
-                height: particle.size,
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-              }}
-              animate={{ 
-                opacity: [0.15, 1, 0.2, 0.9, 0.15],
-              }}
-              transition={{
-                duration: 1.5 + Math.random() * 1.5,
-                delay: particle.delay,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <div 
-                className={`w-full h-full rounded-full ${
-                  particle.isGreen 
-                    ? "bg-primary" 
-                    : "bg-white"
-                }`}
-              />
-            </motion.div>
-          ))}
-
-          {/* AI Iris Wheel at Focal Point */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-            style={{ left: "55%", width: 200, height: 200 }}
+          {/* AI Demo Section - Archlet "Meet Spark" Style */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 md:mb-12"
           >
-            {/* Subtle outer glow */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 280,
-                height: 280,
-                background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
-              }}
-            />
-            
-            {/* Rotating particle wheel */}
-            <motion.div
-              className="absolute"
-              style={{ width: 200, height: 200 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            <h2 className="section-headline text-foreground max-w-3xl">
+              Your audit intelligence, powered by YVOO
+            </h2>
+            <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
+              From supplier discovery to final report—YVOO understands context, surfaces insights, and eliminates the friction that slows procurement teams down.
+            </p>
+          </motion.div>
+
+          {/* Platform Demo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-16 md:mb-20 lg:mb-24"
+          >
+            <div 
+              className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              onClick={() => setIsModalOpen(true)}
             >
-              {Array.from({ length: 48 }, (_, spoke) => {
-                const angle = (spoke / 48) * 360;
-                const radians = (angle * Math.PI) / 180;
-                
-                const brandColors = {
-                  blue: "#0A7FA5",
-                  amber: "#E39B5C",
-                  green: "#6EA996",
-                  red: "#AD3D3D",
-                };
-                
-                let spokeColor: string;
-                if (spoke === 12) spokeColor = brandColors.red;
-                else if (spoke === 24) spokeColor = brandColors.green;
-                else if (spoke === 36) spokeColor = brandColors.amber;
-                else spokeColor = brandColors.blue;
-                
-                return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 42;
-                  const particleSpacing = 10;
-                  const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 5 + (4 - p) * 0.5;
-                  
-                  const x = Math.sin(radians) * radius;
-                  const y = -Math.cos(radians) * radius;
-                  
-                  return (
-                    <div
-                      key={`${spoke}-${p}`}
-                      className="absolute rounded-full"
-                      style={{
-                        width: particleSize,
-                        height: particleSize,
-                        backgroundColor: spokeColor,
-                        left: "50%",
-                        top: "50%",
-                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 0.9 - p * 0.1,
-                      }}
-                    />
-                  );
-                });
-              })}
-            </motion.div>
-            
-            {/* Center point */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 18,
-                height: 18,
-                background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
-              }}
-            />
-          </div>
+              <PlatformDemoAnimation />
+            </div>
+          </motion.div>
 
-          {/* Laser beam */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
-            <motion.div
-              className="h-[3px] w-full"
-              style={{
-                background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
-                boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
-              }}
-              initial={{ width: 0, opacity: 0 }}
-              whileInView={{ width: "45vw", opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            {/* AI Demo Section Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-8 md:mb-12"
-            >
-              <h2 className="section-headline text-white max-w-3xl">
-                Your audit intelligence, powered by YVOO
-              </h2>
-              <p className="text-lg text-white/60 mt-4 max-w-2xl">
-                From supplier discovery to final report—YVOO understands context, surfaces insights, and eliminates the friction that slows procurement teams down.
-              </p>
-            </motion.div>
-
-            {/* Platform Demo */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div 
-                className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-white/10 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
-                onClick={() => setIsModalOpen(true)}
-              >
-                <PlatformDemoAnimation />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* White Background Section continues */}
-      <div className="bg-white py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-7xl mx-auto">
-            {/* Headline and Testimonial Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Headline and Testimonial Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left: Headline with highlighted word */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -332,7 +165,6 @@ const TestimonialSection = () => {
                 </p>
               </div>
             </motion.div>
-            </div>
           </div>
         </div>
       </div>
