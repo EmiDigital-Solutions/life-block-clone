@@ -11,12 +11,12 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// Generate static funnel-shaped particles (wide on left, converging to right)
+// Generate static funnel-shaped particles (wide on left, converging to 70% right)
 const generateFunnelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 55% (left side to laser point)
+    // X position: 0% to 70% (left side to laser point)
     const xProgress = Math.random();
-    const x = xProgress * 55;
+    const x = xProgress * 70;
     
     // Y spread: wide on left (0), narrow at laser point (1)
     const maxYSpread = 50 - (xProgress * 42);
@@ -25,10 +25,10 @@ const generateFunnelParticles = (count: number) => {
     
     // Larger particles, varying size based on position
     const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
+    const size = xProgress > 0.8 ? baseSize * 0.7 : baseSize;
     
     // More green particles near the laser
-    const isGreen = xProgress > 0.5 ? Math.random() > 0.4 : Math.random() > 0.7;
+    const isGreen = xProgress > 0.6 ? Math.random() > 0.4 : Math.random() > 0.7;
     
     // Higher opacity for visibility
     const opacity = 0.5 + Math.random() * 0.5;
@@ -1353,7 +1353,7 @@ const ComparisonMockup = () => {
             />
           ))}
 
-          {/* Dense cluster at convergence point */}
+          {/* Dense cluster at convergence point - moved to 70% */}
           {Array.from({ length: 150 }, (_, i) => {
             const angle = Math.random() * Math.PI * 2;
             const radius = Math.random() * 25;
@@ -1367,7 +1367,7 @@ const ComparisonMockup = () => {
                 style={{
                   width: size,
                   height: size,
-                  left: `calc(55% + ${Math.cos(angle) * radius}px)`,
+                  left: `calc(70% + ${Math.cos(angle) * radius}px)`,
                   top: `calc(50% + ${Math.sin(angle) * radius}px)`,
                 }}
                 animate={{
@@ -1384,24 +1384,24 @@ const ComparisonMockup = () => {
             );
           })}
 
-          {/* Green Laser Beam */}
+          {/* Green Laser Beam - starts at 70% */}
           <motion.div
             className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
             style={{
-              left: "55%",
+              left: "70%",
               background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
               boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
             }}
             initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "45%", opacity: 1 }}
+            animate={{ width: "30%", opacity: 1 }}
             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
           />
 
-          {/* Laser Glow Point */}
+          {/* Laser Glow Point - at 70% */}
           <div
             className="absolute top-1/2 -translate-y-1/2 rounded-full"
             style={{
-              left: "55%",
+              left: "70%",
               width: 18,
               height: 18,
               background: "hsl(var(--primary))",
