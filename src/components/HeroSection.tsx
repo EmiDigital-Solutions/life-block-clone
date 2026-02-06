@@ -83,12 +83,13 @@ const HeroSection = () => {
           />
         ))}
 
-        {/* Dense cluster at convergence point - Green particles */}
+        {/* Dense cluster at convergence point - Mixed particles */}
         {Array.from({ length: 200 }, (_, i) => {
           const angle = Math.random() * Math.PI * 2;
           const radius = Math.random() * 30;
           const size = 2 + Math.random() * 4;
           const delay = Math.random() * 3;
+          const isBlue = Math.random() > 0.5;
           return (
             <motion.div
               key={`cluster-${i}`}
@@ -98,7 +99,7 @@ const HeroSection = () => {
                 height: size,
                 left: `calc(55% + ${Math.cos(angle) * radius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-                backgroundColor: "#6EA996",
+                backgroundColor: isBlue ? "#0A7FA5" : "#0A0A0A",
               }}
               animate={{
                 opacity: [0.3, 1, 0.4, 0.95, 0.3],
@@ -114,13 +115,13 @@ const HeroSection = () => {
           );
         })}
 
-        {/* Laser Beam - Blue to Green gradient (left to right) */}
+        {/* Laser Beam - 20% Blue to 80% Green gradient */}
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 right-0 h-[3px]"
           style={{
             left: "55%",
-            background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 20%, #6EA996 60%, #6EA996 80%, transparent 100%)",
-            boxShadow: "0 0 20px rgba(10, 127, 165, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
+            background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
+            boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
           }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "45%", opacity: 1 }}
