@@ -171,12 +171,12 @@ const HeroSection = () => {
         <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
           {/* Approved Suppliers label */}
           <motion.span
-            className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-primary whitespace-nowrap"
+            className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
           >
-            Approved Suppliers →
+            Approved Suppliers
           </motion.span>
           
           {/* The laser beam */}
