@@ -1494,7 +1494,7 @@ const ComparisonMockup = () => {
               {Array.from({ length: 48 }, (_, i) => {
                 const angle = (i / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
-                const innerRadius = 56; // 2x: Distance from center to bar start
+                const innerRadius = 42; // 25% smaller: Distance from center to bar start
                 const barLength = 32; // 2x: Length of each bar
                 
                 // Brand colors: 25% each (12 bars per color)
