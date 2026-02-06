@@ -88,38 +88,86 @@ const HeroSection = () => {
           </motion.div>
         ))}
 
-        {/* Dense cluster at convergence point - Mixed particles */}
-        {Array.from({ length: 200 }, (_, i) => {
-          const angle = Math.random() * Math.PI * 2;
-          const radius = Math.random() * 30;
-          const size = 2 + Math.random() * 4;
-          const delay = Math.random() * 3;
-          const isBlue = Math.random() > 0.5;
-          return (
-            <motion.div
-              key={`cluster-${i}`}
-              className="absolute rounded-full"
-              style={{
-                width: size,
-                height: size,
-                left: `calc(55% + ${Math.cos(angle) * radius}px)`,
-                top: `calc(50% + ${Math.sin(angle) * radius}px)`,
-              }}
-              animate={{
-                opacity: [0.3, 1, 0.4, 0.95, 0.3],
-              }}
-              transition={{
-                duration: 1 + Math.random() * 1,
-                delay: delay,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <div className={`w-full h-full rounded-full ${isBlue ? "bg-primary" : "bg-white"}`} />
-            </motion.div>
-          );
-        })}
+        {/* AI Iris Wheel at Focal Point - positioned at convergence */}
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
+          style={{ left: "55%", width: 200, height: 200 }}
+        >
+          {/* Subtle outer glow */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 280,
+              height: 280,
+              background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
+            }}
+          />
+          
+          {/* Rotating particle wheel */}
+          <motion.div
+            className="absolute"
+            style={{ width: 200, height: 200 }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            {Array.from({ length: 48 }, (_, spoke) => {
+              const angle = (spoke / 48) * 360;
+              const radians = (angle * Math.PI) / 180;
+              
+              // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
+              const brandColors = {
+                blue: "#0A7FA5",
+                amber: "#E39B5C",
+                green: "#6EA996",
+                red: "#AD3D3D",
+              };
+              
+              let spokeColor: string;
+              if (spoke === 12) spokeColor = brandColors.red;
+              else if (spoke === 24) spokeColor = brandColors.green;
+              else if (spoke === 36) spokeColor = brandColors.amber;
+              else spokeColor = brandColors.blue;
+              
+              // Generate 5 particles per spoke at different radii
+              return Array.from({ length: 5 }, (_, p) => {
+                const innerRadius = 42;
+                const particleSpacing = 10;
+                const radius = innerRadius + p * particleSpacing;
+                const particleSize = 5 + (4 - p) * 0.5;
+                
+                const x = Math.sin(radians) * radius;
+                const y = -Math.cos(radians) * radius;
+                
+                return (
+                  <div
+                    key={`${spoke}-${p}`}
+                    className="absolute rounded-full"
+                    style={{
+                      width: particleSize,
+                      height: particleSize,
+                      backgroundColor: spokeColor,
+                      left: "50%",
+                      top: "50%",
+                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                      opacity: 0.9 - p * 0.1,
+                    }}
+                  />
+                );
+              });
+            })}
+          </motion.div>
+          
+          {/* Smaller center point */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 18,
+              height: 18,
+              background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
+              boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
+            }}
+          />
+        </div>
 
         {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 120 }, (_, i) => {
@@ -166,7 +214,6 @@ const HeroSection = () => {
           );
         })}
 
-
         {/* Laser beam with label */}
         <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
           {/* Approved Suppliers label */}
@@ -190,86 +237,6 @@ const HeroSection = () => {
             animate={{ width: "45vw", opacity: 1 }}
             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
           />
-          {/* AI Iris Wheel at Focal Point - 2x size */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
-            style={{ left: "55%", width: 200, height: 200 }}
-          >
-            {/* Subtle outer glow - 2x size */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 280,
-                height: 280,
-                background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
-              }}
-            />
-            
-            {/* Rotating particle wheel - 2x size */}
-            <motion.div
-              className="absolute"
-              style={{ width: 200, height: 200 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {Array.from({ length: 48 }, (_, spoke) => {
-                const angle = (spoke / 48) * 360;
-                const radians = (angle * Math.PI) / 180;
-                
-                // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
-                const brandColors = {
-                  blue: "#0A7FA5",
-                  amber: "#E39B5C",
-                  green: "#6EA996",
-                  red: "#AD3D3D",
-                };
-                
-                let spokeColor: string;
-                if (spoke === 12) spokeColor = brandColors.red;
-                else if (spoke === 24) spokeColor = brandColors.green;
-                else if (spoke === 36) spokeColor = brandColors.amber;
-                else spokeColor = brandColors.blue;
-                
-                // Generate 5 particles per spoke at different radii
-                return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 42;
-                  const particleSpacing = 10;
-                  const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 5 + (4 - p) * 0.5;
-                  
-                  const x = Math.sin(radians) * radius;
-                  const y = -Math.cos(radians) * radius;
-                  
-                  return (
-                    <div
-                      key={`${spoke}-${p}`}
-                      className="absolute rounded-full"
-                      style={{
-                        width: particleSize,
-                        height: particleSize,
-                        backgroundColor: spokeColor,
-                        left: "50%",
-                        top: "50%",
-                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 0.9 - p * 0.1,
-                      }}
-                    />
-                  );
-                });
-              })}
-            </motion.div>
-            
-            {/* Smaller center point */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 18,
-                height: 18,
-                background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
-              }}
-            />
-          </div>
         </div>
       </div>
 
