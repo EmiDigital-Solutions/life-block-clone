@@ -1353,7 +1353,7 @@ const ComparisonMockup = () => {
             />
           ))}
 
-          {/* Dense cluster at convergence point */}
+          {/* Dense cluster at convergence point - 70% on laptop (lg), 60% on wide (xl+) */}
           {Array.from({ length: 150 }, (_, i) => {
             const angle = Math.random() * Math.PI * 2;
             const radius = Math.random() * 25;
@@ -1363,11 +1363,11 @@ const ComparisonMockup = () => {
             return (
               <motion.div
                 key={`cluster-${i}`}
-                className="absolute rounded-full bg-primary"
+                className="absolute rounded-full bg-primary left-[70%] xl:left-[60%]"
                 style={{
                   width: size,
                   height: size,
-                  left: `calc(60% + ${Math.cos(angle) * radius}px)`,
+                  marginLeft: `${Math.cos(angle) * radius}px`,
                   top: `calc(50% + ${Math.sin(angle) * radius}px)`,
                 }}
                 animate={{
@@ -1384,24 +1384,22 @@ const ComparisonMockup = () => {
             );
           })}
 
-          {/* Green Laser Beam */}
+          {/* Green Laser Beam - 70% on laptop, 60% on wide */}
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px]"
+            className="absolute top-1/2 -translate-y-1/2 right-0 h-[2px] left-[70%] xl:left-[60%]"
             style={{
-              left: "60%",
               background: "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 30%, transparent 100%)",
               boxShadow: "0 0 25px hsl(var(--primary)), 0 0 50px hsl(var(--primary)), 0 0 80px hsl(var(--primary))",
             }}
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "40%", opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
           />
 
-          {/* Laser Glow Point */}
+          {/* Laser Glow Point - 70% on laptop, 60% on wide */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 rounded-full"
+            className="absolute top-1/2 -translate-y-1/2 rounded-full left-[70%] xl:left-[60%]"
             style={{
-              left: "60%",
               width: 18,
               height: 18,
               background: "hsl(var(--primary))",
