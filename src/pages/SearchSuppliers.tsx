@@ -1547,8 +1547,8 @@ const ComparisonMockup = () => {
             <div
               className="absolute rounded-full"
               style={{
-                width: 24,
-                height: 24,
+                width: 18,
+                height: 18,
                 background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
                 boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
               }}
