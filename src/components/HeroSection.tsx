@@ -115,12 +115,15 @@ const HeroSection = () => {
           );
         })}
 
-        {/* Red particles at focal point - stay in place, don't pass through */}
-        {Array.from({ length: 40 }, (_, i) => {
-          const angle = Math.random() * Math.PI * 2;
-          const radius = 8 + Math.random() * 25;
+        {/* Red particles pushed away backwards from focal point */}
+        {Array.from({ length: 50 }, (_, i) => {
+          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.8; // Mostly pointing left/backwards
+          const startRadius = 15;
+          const endRadius = 80 + Math.random() * 60;
           const size = 2 + Math.random() * 3;
-          const delay = Math.random() * 2;
+          const duration = 2 + Math.random() * 1.5;
+          const delay = Math.random() * 3;
+          
           return (
             <motion.div
               key={`red-${i}`}
@@ -128,19 +131,31 @@ const HeroSection = () => {
               style={{
                 width: size,
                 height: size,
-                left: `calc(55% + ${Math.cos(angle) * radius}px)`,
-                top: `calc(50% + ${Math.sin(angle) * radius}px)`,
                 backgroundColor: "#AD3D3D",
               }}
+              initial={{
+                left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                opacity: 0,
+              }}
               animate={{
-                opacity: [0.4, 1, 0.5, 0.9, 0.4],
+                left: [
+                  `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                  `calc(55% + ${Math.cos(angle) * endRadius}px)`,
+                ],
+                top: [
+                  `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                  `calc(50% + ${Math.sin(angle) * endRadius}px)`,
+                ],
+                opacity: [0, 1, 0.8, 0],
+                scale: [0.5, 1, 0.8, 0.3],
               }}
               transition={{
-                duration: 1.5 + Math.random() * 1,
+                duration: duration,
                 delay: delay,
                 repeat: Infinity,
                 repeatType: "loop",
-                ease: "easeInOut",
+                ease: "easeOut",
               }}
             />
           );
