@@ -47,24 +47,36 @@ export function AILoadingSpinner({
     return () => clearInterval(timer);
   }, [statuses.length, interval]);
   
-  // Generate bar positions
-  const bars = Array.from({ length: numberOfBars }, (_, i) => {
-    const angle = (i / numberOfBars) * 360;
+  // Generate particle wheel positions - spokes with multiple particles each
+  const particleSpokes = Array.from({ length: 48 }, (_, spoke) => {
+    const angle = (spoke / 48) * 360;
     const radians = (angle * Math.PI) / 180;
     
-    // Determine if this bar should be colored (random pattern)
-    const isColored = [0, 3, 5, 8, 12, 15, 19, 23, 27, 30].includes(i);
-    const colorIndex = Math.floor(Math.random() * barColors.length);
+    // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
+    let spokeColor: string;
+    if (spoke === 12) spokeColor = "#AD3D3D"; // red
+    else if (spoke === 24) spokeColor = "#6EA996"; // green
+    else if (spoke === 36) spokeColor = "#E39B5C"; // amber
+    else spokeColor = "#0A7FA5"; // blue
     
-    return {
-      id: i,
-      angle,
-      x: Math.sin(radians) * radius,
-      y: -Math.cos(radians) * radius,
-      isColored,
-      color: isColored ? barColors[i % barColors.length] : "#E5E7EB",
-    };
-  });
+    // Generate particles along each spoke
+    return Array.from({ length: 4 }, (_, p) => {
+      const innerRadius = config.diameter * 0.25;
+      const particleSpacing = config.diameter * 0.08;
+      const radiusPos = innerRadius + p * particleSpacing;
+      const particleSize = config.barWidth - p * 0.3;
+      
+      return {
+        id: `${spoke}-${p}`,
+        angle,
+        x: Math.sin(radians) * radiusPos,
+        y: -Math.cos(radians) * radiusPos,
+        size: particleSize,
+        color: spokeColor,
+        opacity: 0.9 - p * 0.15,
+      };
+    });
+  }).flat();
 
   return (
     <div className={`flex flex-col items-center gap-4 ${className}`}>
@@ -73,6 +85,14 @@ export function AILoadingSpinner({
         className="relative"
         style={{ width: config.diameter, height: config.diameter }}
       >
+        {/* Outer glow */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
+          }}
+        />
+        
         <motion.div
           className="absolute inset-0"
           animate={{ rotate: 360 }}
@@ -82,39 +102,37 @@ export function AILoadingSpinner({
             ease: "linear" 
           }}
         >
-          {bars.map((bar) => (
-            <motion.div
-              key={bar.id}
+          {particleSpokes.map((particle) => (
+            <div
+              key={particle.id}
               className="absolute rounded-full"
               style={{
-                width: config.barWidth,
-                height: config.barHeight,
-                backgroundColor: bar.color,
+                width: particle.size,
+                height: particle.size,
+                backgroundColor: particle.color,
                 left: "50%",
                 top: "50%",
-                transform: `translate(-50%, -50%) translate(${bar.x}px, ${bar.y}px) rotate(${bar.angle}deg)`,
-                opacity: bar.isColored ? 1 : 0.4,
-              }}
-              animate={bar.isColored ? {
-                opacity: [0.7, 1, 0.7],
-                scale: [0.95, 1.05, 0.95],
-              } : {}}
-              transition={{
-                duration: 1.5 + Math.random(),
-                repeat: Infinity,
-                delay: Math.random() * 0.5,
+                transform: `translate(-50%, -50%) translate(${particle.x}px, ${particle.y}px)`,
+                opacity: particle.opacity,
               }}
             />
           ))}
         </motion.div>
         
-        {/* Center glow */}
+        {/* Center point */}
         <div 
           className="absolute inset-0 flex items-center justify-center"
-          style={{
-            background: "radial-gradient(circle, rgba(10, 127, 165, 0.05) 0%, transparent 70%)",
-          }}
-        />
+        >
+          <div
+            className="rounded-full"
+            style={{
+              width: config.diameter * 0.12,
+              height: config.diameter * 0.12,
+              background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
+              boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
+            }}
+          />
+        </div>
       </div>
       
       {/* Status Text */}
