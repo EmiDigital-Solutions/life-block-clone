@@ -1424,7 +1424,7 @@ const ComparisonMockup = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-white/50 text-sm tracking-widest uppercase mb-6"
               >
-                Global Supplier Database
+                Conversational Search
               </motion.p>
 
               {/* Main Headline - Archlet Style, 2 rows only */}
@@ -1434,8 +1434,8 @@ const ComparisonMockup = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
               >
-                Find suppliers<br />
-                worldwide in real-time.
+                AI-guided<br />
+                supplier discovery.
               </motion.h1>
 
               {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
