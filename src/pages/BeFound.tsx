@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
-import beFoundHeroHands from "@/assets/be-found-hero-hands-blue.png";
+import beFoundHeroHands from "@/assets/be-found-hero-hands.png";
 
 
 // Animated Counter Component
@@ -612,7 +612,7 @@ const BeFound = () => {
           style={{
             backgroundImage: `url(${beFoundHeroHands})`,
             backgroundSize: 'contain',
-            backgroundPosition: 'center center',
+            backgroundPosition: 'center right',
             backgroundRepeat: 'no-repeat',
           }}
         />
