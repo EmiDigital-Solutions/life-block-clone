@@ -612,7 +612,7 @@ const BeFound = () => {
           style={{
             backgroundImage: `url(${beFoundHeroHands})`,
             backgroundSize: 'contain',
-            backgroundPosition: 'center right',
+            backgroundPosition: 'calc(100%) calc(50% - 50px)',
             backgroundRepeat: 'no-repeat',
           }}
         />
