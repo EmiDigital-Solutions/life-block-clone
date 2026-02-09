@@ -611,8 +611,8 @@ const BeFound = () => {
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url(${beFoundHeroHands})`,
-            backgroundSize: '60%',
-            backgroundPosition: 'right -5%',
+            backgroundSize: 'contain',
+            backgroundPosition: 'center right',
             backgroundRepeat: 'no-repeat',
           }}
         />
