@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
+import beFoundHeroHands from "@/assets/be-found-hero-hands.png";
 
 
 // Animated Counter Component
@@ -605,6 +606,17 @@ const BeFound = () => {
         className="relative min-h-screen flex flex-col overflow-hidden bg-background"
         id="hero"
       >
+        {/* Background Image - Hands */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${beFoundHeroHands})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center right',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
           <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
