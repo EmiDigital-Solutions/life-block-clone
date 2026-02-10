@@ -14,9 +14,9 @@ import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 // Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 55% (left side to laser point)
+    // X position: 0% to 60% (left side to laser point)
     const xProgress = Math.random();
-    const x = xProgress * 55;
+    const x = xProgress * 60;
     
     // Y spread: wide on left (0), narrow at laser point (1)
     const maxYSpread = 50 - (xProgress * 42);
@@ -1361,9 +1361,9 @@ const ComparisonMockup = () => {
           {/* Red particles pushed away backwards from focal point */}
           {Array.from({ length: 120 }, (_, i) => {
             const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
-            const startRadius = 15;
-            const endRadius = 100 + Math.random() * 80;
-            const size = 2 + Math.random() * 4;
+            const startRadius = 30;
+            const endRadius = 200 + Math.random() * 160;
+            const size = 3 + Math.random() * 5;
             const duration = 1.5 + Math.random() * 2;
             const delay = Math.random() * 4;
             
@@ -1376,14 +1376,14 @@ const ComparisonMockup = () => {
                   height: size,
                 }}
                 initial={{
-                  left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                  left: `calc(60% + ${Math.cos(angle) * startRadius}px)`,
                   top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
                   opacity: 0,
                 }}
                 animate={{
                   left: [
-                    `calc(55% + ${Math.cos(angle) * startRadius}px)`,
-                    `calc(55% + ${Math.cos(angle) * endRadius}px)`,
+                    `calc(60% + ${Math.cos(angle) * startRadius}px)`,
+                    `calc(60% + ${Math.cos(angle) * endRadius}px)`,
                   ],
                   top: [
                     `calc(50% + ${Math.sin(angle) * startRadius}px)`,
@@ -1406,10 +1406,10 @@ const ComparisonMockup = () => {
           {/* Particles passing through the iris wheel to the laser line */}
           {Array.from({ length: 30 }, (_, i) => {
             const isGreen = i % 2 === 0; // Alternate green and blue
-            const startX = 55; // Start at iris wheel center
-            const endX = 75 + Math.random() * 20; // End along the laser line
-            const yOffset = (Math.random() - 0.5) * 6; // Slight vertical variation
-            const size = 3 + Math.random() * 3;
+            const startX = 60;
+            const endX = 75 + Math.random() * 20;
+            const yOffset = (Math.random() - 0.5) * 12;
+            const size = 4 + Math.random() * 4;
             const duration = 2 + Math.random() * 1.5;
             const delay = Math.random() * 5;
             
@@ -1445,7 +1445,7 @@ const ComparisonMockup = () => {
           })}
 
           {/* Laser beam with label */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
+          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "60%" }}>
             {/* Approved Suppliers label */}
             <motion.span
               className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
@@ -1472,22 +1472,22 @@ const ComparisonMockup = () => {
           {/* AI Iris Wheel at Focal Point - 2x size */}
           <div
             className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
-            style={{ left: "55%", width: 200, height: 200 }}
+            style={{ left: "60%", width: 400, height: 400 }}
           >
-            {/* Subtle outer glow - 2x size */}
+            {/* Subtle outer glow */}
             <div
               className="absolute rounded-full"
               style={{
-                width: 280,
-                height: 280,
+                width: 560,
+                height: 560,
                 background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
               }}
             />
             
-            {/* Rotating particle wheel - 2x size */}
+            {/* Rotating particle wheel */}
             <motion.div
               className="absolute"
-              style={{ width: 200, height: 200 }}
+              style={{ width: 400, height: 400 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
@@ -1495,7 +1495,6 @@ const ComparisonMockup = () => {
                 const angle = (spoke / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
                 
-                // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
                 const brandColors = {
                   blue: "#0A7FA5",
                   amber: "#E39B5C",
@@ -1509,12 +1508,11 @@ const ComparisonMockup = () => {
                 else if (spoke === 36) spokeColor = brandColors.amber;
                 else spokeColor = brandColors.blue;
                 
-                // Generate 5 particles per spoke at different radii
                 return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 42;
-                  const particleSpacing = 10;
+                  const innerRadius = 84;
+                  const particleSpacing = 20;
                   const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 5 + (4 - p) * 0.5; // Slightly larger near center
+                  const particleSize = 8 + (4 - p) * 1;
                   
                   const x = Math.sin(radians) * radius;
                   const y = -Math.cos(radians) * radius;
@@ -1538,14 +1536,14 @@ const ComparisonMockup = () => {
               })}
             </motion.div>
             
-            {/* Smaller center point */}
+            {/* Center point */}
             <div
               className="absolute rounded-full"
               style={{
-                width: 18,
-                height: 18,
+                width: 36,
+                height: 36,
                 background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
+                boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
               }}
             />
           </div>
