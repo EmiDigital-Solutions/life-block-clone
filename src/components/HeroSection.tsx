@@ -91,14 +91,14 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "55%", width: 200, height: 200 }}
+          style={{ left: "55%", width: 400, height: 400 }}
         >
           {/* Subtle outer glow */}
           <div
             className="absolute rounded-full"
             style={{
-              width: 280,
-              height: 280,
+              width: 560,
+              height: 560,
               background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
             }}
           />
@@ -106,7 +106,7 @@ const HeroSection = () => {
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 200, height: 200 }}
+            style={{ width: 400, height: 400 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -114,7 +114,6 @@ const HeroSection = () => {
               const angle = (spoke / 48) * 360;
               const radians = (angle * Math.PI) / 180;
               
-              // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
               const brandColors = {
                 blue: "#0A7FA5",
                 amber: "#E39B5C",
@@ -128,12 +127,11 @@ const HeroSection = () => {
               else if (spoke === 36) spokeColor = brandColors.amber;
               else spokeColor = brandColors.blue;
               
-              // Generate 5 particles per spoke at different radii
               return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 42;
-                const particleSpacing = 10;
+                const innerRadius = 84;
+                const particleSpacing = 20;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 5 + (4 - p) * 0.5;
+                const particleSize = 8 + (4 - p) * 1;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -157,14 +155,14 @@ const HeroSection = () => {
             })}
           </motion.div>
           
-          {/* Smaller center point */}
+          {/* Center point */}
           <div
             className="absolute rounded-full"
             style={{
-              width: 18,
-              height: 18,
+              width: 36,
+              height: 36,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
+              boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
             }}
           />
         </div>
@@ -172,10 +170,10 @@ const HeroSection = () => {
         {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 120 }, (_, i) => {
           const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
-          const startRadius = 15;
-          const endRadius = 100 + Math.random() * 80;
-          const size = 2 + Math.random() * 4;
-          const duration = 6 + Math.random() * 5; // Very slow, smooth push-away
+          const startRadius = 30;
+          const endRadius = 200 + Math.random() * 160;
+          const size = 3 + Math.random() * 5;
+          const duration = 6 + Math.random() * 5;
           const delay = Math.random() * 6;
           
           return (
@@ -218,8 +216,8 @@ const HeroSection = () => {
         {Array.from({ length: 30 }, (_, i) => {
           const startX = 55; // Start at wheel center
           const endX = 75 + Math.random() * 20; // End along the laser line
-          const yOffset = (Math.random() - 0.5) * 6; // Slight vertical variation
-          const size = 3 + Math.random() * 3;
+          const yOffset = (Math.random() - 0.5) * 12;
+          const size = 4 + Math.random() * 4;
           const duration = 8 + Math.random() * 4; // Very slow, smooth flow
           const delay = Math.random() * 8;
           
