@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import yvooPlatformDisc from "@/assets/yvoo-platform-disc.png";
 
 // Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
@@ -88,86 +89,22 @@ const HeroSection = () => {
           </motion.div>
         ))}
 
-        {/* AI Iris Wheel at Focal Point - positioned at convergence */}
-        <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "55%", width: 200, height: 200 }}
+        {/* YVOO Platform Disc at Focal Point */}
+        <motion.div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
+          style={{ left: "55%", width: 240, height: 240 }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          {/* Subtle outer glow */}
-          <div
-            className="absolute rounded-full"
+          <img
+            src={yvooPlatformDisc}
+            alt="YVOO Platform"
+            className="w-full h-full object-contain"
             style={{
-              width: 280,
-              height: 280,
-              background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
+              filter: "drop-shadow(0 0 30px rgba(10, 127, 165, 0.3))",
             }}
           />
-          
-          {/* Rotating particle wheel */}
-          <motion.div
-            className="absolute"
-            style={{ width: 200, height: 200 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            {Array.from({ length: 48 }, (_, spoke) => {
-              const angle = (spoke / 48) * 360;
-              const radians = (angle * Math.PI) / 180;
-              
-              // Color scheme: mostly blue with 1 red, 1 green, 1 amber accent spoke
-              const brandColors = {
-                blue: "#0A7FA5",
-                amber: "#E39B5C",
-                green: "#6EA996",
-                red: "#AD3D3D",
-              };
-              
-              let spokeColor: string;
-              if (spoke === 12) spokeColor = brandColors.red;
-              else if (spoke === 24) spokeColor = brandColors.green;
-              else if (spoke === 36) spokeColor = brandColors.amber;
-              else spokeColor = brandColors.blue;
-              
-              // Generate 5 particles per spoke at different radii
-              return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 42;
-                const particleSpacing = 10;
-                const radius = innerRadius + p * particleSpacing;
-                const particleSize = 5 + (4 - p) * 0.5;
-                
-                const x = Math.sin(radians) * radius;
-                const y = -Math.cos(radians) * radius;
-                
-                return (
-                  <div
-                    key={`${spoke}-${p}`}
-                    className="absolute rounded-full"
-                    style={{
-                      width: particleSize,
-                      height: particleSize,
-                      backgroundColor: spokeColor,
-                      left: "50%",
-                      top: "50%",
-                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                      opacity: 0.9 - p * 0.1,
-                    }}
-                  />
-                );
-              });
-            })}
-          </motion.div>
-          
-          {/* Smaller center point */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 18,
-              height: 18,
-              background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 10px rgba(10, 127, 165, 0.3)",
-            }}
-          />
-        </div>
+        </motion.div>
 
         {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 120 }, (_, i) => {
