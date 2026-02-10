@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 // Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 55% (left side to laser point)
+    // X position: 0% to 60% (left side to laser point)
     const xProgress = Math.random();
-    const x = xProgress * 55;
+    const x = xProgress * 60;
     
     // Y spread: wide on left (0), narrow at laser point (1)
     const maxYSpread = 50 - (xProgress * 42);
@@ -91,7 +91,7 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "55%", width: 400, height: 400 }}
+          style={{ left: "60%", width: 400, height: 400 }}
         >
           {/* Subtle outer glow */}
           <div
@@ -185,14 +185,14 @@ const HeroSection = () => {
                 height: size,
               }}
               initial={{
-                left: `calc(55% + ${Math.cos(angle) * startRadius}px)`,
+                left: `calc(60% + ${Math.cos(angle) * startRadius}px)`,
                 top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
                 opacity: 0,
               }}
               animate={{
                 left: [
-                  `calc(55% + ${Math.cos(angle) * startRadius}px)`,
-                  `calc(55% + ${Math.cos(angle) * endRadius}px)`,
+                  `calc(60% + ${Math.cos(angle) * startRadius}px)`,
+                  `calc(60% + ${Math.cos(angle) * endRadius}px)`,
                 ],
                 top: [
                   `calc(50% + ${Math.sin(angle) * startRadius}px)`,
@@ -214,7 +214,7 @@ const HeroSection = () => {
 
         {/* Green particles passing through the wheel to the laser line */}
         {Array.from({ length: 30 }, (_, i) => {
-          const startX = 55; // Start at wheel center
+          const startX = 60;
           const endX = 75 + Math.random() * 20; // End along the laser line
           const yOffset = (Math.random() - 0.5) * 12;
           const size = 4 + Math.random() * 4;
@@ -252,7 +252,7 @@ const HeroSection = () => {
           );
         })}
 
-        <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "55%" }}>
+        <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "60%" }}>
           {/* Approved Suppliers label */}
           <motion.span
             className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
