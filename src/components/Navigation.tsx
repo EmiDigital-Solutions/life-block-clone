@@ -100,10 +100,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Features
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Complete feature overview
                 </span>
               </Link>
@@ -112,10 +112,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Search Suppliers
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Find verified suppliers worldwide
                 </span>
               </Link>
@@ -124,10 +124,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   ScanPro+
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   AI-powered audit intelligence
                 </span>
               </Link>
@@ -136,10 +136,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Ground Intelligence
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Real-time factory insights
                 </span>
               </Link>
@@ -148,10 +148,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   For Auditors
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Join our global auditor network
                 </span>
               </Link>
@@ -160,10 +160,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Be Found
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Get discovered by global buyers
                 </span>
               </Link>
@@ -172,10 +172,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Pricing
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Transparent & flexible plans
                 </span>
               </a>
@@ -184,10 +184,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   About Us
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Our mission & team
                 </span>
               </Link>
@@ -196,10 +196,10 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-base md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Customer Stories
                 </span>
-                <span className="block text-[10px] md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
                   Success stories from our clients
                 </span>
               </Link>
