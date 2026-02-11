@@ -92,14 +92,14 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "60%", width: 560, height: 560 }}
+          style={{ left: "60%", width: 448, height: 448 }}
         >
           {/* Outer glow */}
           <div
             className="absolute rounded-full"
             style={{
-              width: 770,
-              height: 770,
+              width: 620,
+              height: 620,
               background: "radial-gradient(circle, rgba(10, 150, 200, 0.15) 0%, transparent 70%)",
             }}
           />
@@ -107,7 +107,7 @@ const HeroSection = () => {
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 560, height: 560 }}
+            style={{ width: 448, height: 448 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -129,8 +129,8 @@ const HeroSection = () => {
               else spokeColor = brandColors.blue;
               
               return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 118;
-                const particleSpacing = 42;
+                const innerRadius = 110;
+                const particleSpacing = 28;
                 const radius = innerRadius + p * particleSpacing;
                 const particleSize = 14 + (4 - p) * 2;
                 
