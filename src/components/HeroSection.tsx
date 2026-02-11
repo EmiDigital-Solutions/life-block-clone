@@ -128,11 +128,11 @@ const HeroSection = () => {
               else if (spoke === 36) spokeColor = brandColors.amber;
               else spokeColor = brandColors.white;
               
-              return Array.from({ length: 6 }, (_, p) => {
-                const innerRadius = 140;
-                const particleSpacing = 40;
+              return Array.from({ length: 8 }, (_, p) => {
+                const innerRadius = 100;
+                const particleSpacing = 24;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 14 + (5 - p) * 1;
+                const particleSize = 14;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
