@@ -1484,7 +1484,7 @@ const ComparisonMockup = () => {
               }}
             />
             
-            {/* Static particle wheel */}
+            {/* Rotating particle wheel - squares counter-rotate to stay axis-aligned */}
             <motion.div
               className="absolute"
               style={{ width: 800, height: 800 }}
@@ -1518,7 +1518,7 @@ const ComparisonMockup = () => {
                   const y = -Math.cos(radians) * radius;
                   
                   return (
-                    <div
+                    <motion.div
                       key={`${spoke}-${p}`}
                       className="absolute"
                       style={{
@@ -1527,9 +1527,11 @@ const ComparisonMockup = () => {
                         backgroundColor: spokeColor,
                         left: "50%",
                         top: "50%",
-                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 1,
+                        x: x - particleSize / 2,
+                        y: y - particleSize / 2,
                       }}
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                     />
                   );
                 });
