@@ -16,9 +16,6 @@ All colors MUST be HSL.
 
     --hero-background: 0 0% 87%;
 
-    /* Iris wheel (kept white in all themes for contrast on hero bg) */
-    --iris-particle: 0 0% 100%;
-
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
 
@@ -74,9 +71,6 @@ All colors MUST be HSL.
     --foreground: 0 0% 100%;
 
     --hero-background: 0 0% 5%;
-
-    /* Iris wheel (kept white in all themes for contrast) */
-    --iris-particle: 0 0% 100%;
 
     --card: 0 0% 10%;
     --card-foreground: 0 0% 100%;
