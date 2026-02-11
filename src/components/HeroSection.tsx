@@ -148,7 +148,7 @@ const HeroSection = () => {
                       left: "50%",
                       top: "50%",
                       transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                      opacity: 0.9 - p * 0.08,
+                      opacity: 1,
                     }}
                   />
                 );
