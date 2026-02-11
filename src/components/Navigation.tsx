@@ -61,7 +61,7 @@ const Navigation = () => {
           </Link>
 
           <div className="flex items-center">
-            {/* Hamburger Menu Button */}
+            {/* Hamburger Menu Button - centered stripes */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-5 gap-1.5 md:gap-2 hover:bg-gray-100/30 transition-colors"
@@ -69,19 +69,22 @@ const Navigation = () => {
               {isMenuOpen ? (
                 <X className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
               ) : (
-                <>
+                <div className="flex flex-col items-center gap-1.5 md:gap-2">
                   <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
                   <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
-                </>
+                </div>
               )}
             </button>
 
-            {/* CTA Button - visible on all screens */}
+            {/* Spacer - hidden on mobile */}
+            <div className="hidden md:block w-4" />
+
+            {/* CTA Button - round on all screens */}
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 font-medium text-sm md:text-lg hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-sm md:text-lg hover:bg-foreground/90 transition-all duration-300"
             >
               Demo
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
