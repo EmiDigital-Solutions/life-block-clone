@@ -157,11 +157,11 @@ const HeroSection = () => {
           </motion.div>
           
           {/* Center point */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 72,
-              height: 72,
+            <div
+              className="absolute rounded-full"
+              style={{
+                width: 22,
+                height: 22,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
               boxShadow: "inset 0 0 30px rgba(14, 170, 216, 0.4)",
             }}
