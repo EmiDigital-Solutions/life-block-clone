@@ -4,7 +4,9 @@ import { X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
+import MobilePlatformDemo from "./MobilePlatformDemo";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const capabilities = [
   {
@@ -26,6 +28,7 @@ const capabilities = [
 
 const TestimonialSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
@@ -105,12 +108,18 @@ const TestimonialSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-16 md:mb-20 lg:mb-24"
           >
-            <div 
-              className="max-w-5xl mx-auto overflow-hidden shadow-lg md:shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <PlatformDemoAnimation />
-            </div>
+            {isMobile ? (
+              <div className="max-w-sm mx-auto">
+                <MobilePlatformDemo />
+              </div>
+            ) : (
+              <div 
+                className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+                onClick={() => setIsModalOpen(true)}
+              >
+                <PlatformDemoAnimation />
+              </div>
+            )}
           </motion.div>
 
           {/* Headline and Testimonial Grid */}
