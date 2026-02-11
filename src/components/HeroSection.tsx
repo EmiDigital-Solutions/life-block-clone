@@ -95,14 +95,7 @@ const HeroSection = () => {
           style={{ left: "60%", width: 800, height: 800 }}
         >
           {/* Outer glow */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 1100,
-              height: 1100,
-              background: "radial-gradient(circle, rgba(10, 150, 200, 0.25) 0%, transparent 70%)",
-            }}
-          />
+          {/* Outer glow removed */}
           
           {/* Rotating particle wheel */}
           <motion.div
