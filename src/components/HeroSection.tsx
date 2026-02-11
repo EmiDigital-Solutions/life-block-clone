@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 
 // Generate static funnel-shaped particles (wide on left, converging to right)
@@ -38,7 +39,17 @@ const generateFunnelParticles = (count: number) => {
 };
 
 const HeroSection = () => {
+  const isMobile = useIsMobile();
   const particles = useMemo(() => generateFunnelParticles(1200), []);
+  
+  // Responsive wheel dimensions
+  const wheelSize = isMobile ? 250 : 500;
+  const innerRadius = isMobile ? 52 : 105;
+  const particleSpacing = isMobile ? 12 : 25;
+  const baseParticleSize = isMobile ? 5 : 9;
+  const particleSizeDecrement = isMobile ? 0.8 : 1.5;
+  const centerSize = isMobile ? 22 : 45;
+  const centerShadow = isMobile ? 10 : 20;
 
   const companies = [
     "Siemens",
@@ -92,7 +103,7 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "60%", width: 500, height: 500 }}
+          style={{ left: "60%", width: wheelSize, height: wheelSize }}
         >
           {/* Outer glow */}
           {/* Outer glow removed */}
@@ -100,7 +111,7 @@ const HeroSection = () => {
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 500, height: 500 }}
+            style={{ width: wheelSize, height: wheelSize }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -122,10 +133,9 @@ const HeroSection = () => {
               else spokeColor = brandColors.blue;
               
                return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 105;
-                const particleSpacing = 25;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 9 + (4 - p) * 1.5;
+                const pSize = baseParticleSize + (4 - p) * particleSizeDecrement;
+                const particleSize = pSize;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -153,10 +163,10 @@ const HeroSection = () => {
           <div
             className="absolute rounded-full"
             style={{
-              width: 45,
-              height: 45,
+              width: centerSize,
+              height: centerSize,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 20px rgba(14, 170, 216, 0.4)",
+              boxShadow: `inset 0 0 ${centerShadow}px rgba(14, 170, 216, 0.4)`,
             }}
           />
         </div>
