@@ -117,9 +117,9 @@ const HeroSection = () => {
               
               const brandColors = {
                 blue: "#0EAAD8",
-                amber: "#F5A623",
-                green: "#3DC88E",
-                red: "#E04545",
+                amber: "#E39B5C",
+                green: "#6EA996",
+                red: "#AD3D3D",
               };
               
               let spokeColor: string;
