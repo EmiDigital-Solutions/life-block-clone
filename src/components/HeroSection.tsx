@@ -130,9 +130,9 @@ const HeroSection = () => {
               
               return Array.from({ length: 8 }, (_, p) => {
                 const innerRadius = 120;
-                const particleSpacing = 28;
+                const particleSpacing = 32;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 8 + (7 - p) * 0.5;
+                const particleSize = 16 + (7 - p) * 1;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -158,10 +158,10 @@ const HeroSection = () => {
           
           {/* Center point */}
           <div
-            className="absolute"
+            className="absolute rounded-full"
             style={{
-              width: 48,
-              height: 48,
+              width: 64,
+              height: 64,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
               boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
             }}
