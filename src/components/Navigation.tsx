@@ -30,7 +30,7 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] md:w-auto" ref={menuRef}>
+    <nav className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[75%] md:w-auto" ref={menuRef}>
       <div 
         className={`relative overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'rounded-[1.125rem] md:rounded-[2rem]' : 'rounded-full'
@@ -55,7 +55,7 @@ const Navigation = () => {
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-7 md:h-14 w-auto object-contain"
+              className="h-9 md:h-14 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
@@ -83,7 +83,7 @@ const Navigation = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-lg md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-xl md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
               Demo
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
