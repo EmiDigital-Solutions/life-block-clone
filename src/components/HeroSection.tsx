@@ -67,27 +67,27 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
     >
-      {/* Mobile: Mini iris wheel + accent elements */}
+      {/* Mobile: Iris wheel behind text + accent elements */}
       <div className="absolute inset-0 z-0 md:hidden overflow-hidden">
-        {/* Mini rotating iris wheel - bottom right */}
-        <div className="absolute bottom-28 right-4 w-[160px] h-[160px] flex items-center justify-center">
+        {/* Large iris wheel overlapping behind headline area */}
+        <div className="absolute top-[30%] right-[-30px] w-[260px] h-[260px] flex items-center justify-center opacity-[0.18]">
           <motion.div
-            className="absolute w-[160px] h-[160px]"
+            className="absolute w-[260px] h-[260px]"
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
-            {Array.from({ length: 24 }, (_, spoke) => {
-              const angle = (spoke / 24) * 360;
+            {Array.from({ length: 36 }, (_, spoke) => {
+              const angle = (spoke / 36) * 360;
               const radians = (angle * Math.PI) / 180;
               const brandColors = { blue: "#0EAAD8", amber: "#F5A623", green: "#3DC88E", red: "#E04545" };
               let spokeColor = brandColors.blue;
-              if (spoke === 6) spokeColor = brandColors.red;
-              else if (spoke === 12) spokeColor = brandColors.green;
-              else if (spoke === 18) spokeColor = brandColors.amber;
+              if (spoke === 9) spokeColor = brandColors.red;
+              else if (spoke === 18) spokeColor = brandColors.green;
+              else if (spoke === 27) spokeColor = brandColors.amber;
               
-              return Array.from({ length: 3 }, (_, p) => {
-                const radius = 30 + p * 14;
-                const pSize = 5 + (2 - p) * 1;
+              return Array.from({ length: 4 }, (_, p) => {
+                const radius = 40 + p * 18;
+                const pSize = 6 + (3 - p) * 1.2;
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
                 return (
@@ -99,43 +99,31 @@ const HeroSection = () => {
                       backgroundColor: spokeColor,
                       left: "50%", top: "50%",
                       transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                      opacity: 1 - p * 0.15,
+                      opacity: 1 - p * 0.12,
                     }}
                   />
                 );
               });
             })}
           </motion.div>
-          {/* Center dot */}
-          <div className="absolute w-[14px] h-[14px] rounded-full" style={{
+          <div className="absolute w-[18px] h-[18px] rounded-full" style={{
             background: "radial-gradient(circle, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 100%)",
-            boxShadow: "inset 0 0 8px rgba(14,170,216,0.4)",
+            boxShadow: "inset 0 0 10px rgba(14,170,216,0.4)",
           }} />
         </div>
 
-        {/* Thin accent line from wheel */}
-        <motion.div
-          className="absolute bottom-[108px] right-0 h-[2px]"
-          style={{
-            background: "linear-gradient(270deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 40%, transparent 100%)",
-          }}
-          initial={{ width: 0, opacity: 0 }}
-          animate={{ width: "40%", opacity: 0.35 }}
-          transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-        />
-
-        {/* Scattered subtle particles */}
-        {Array.from({ length: 40 }, (_, i) => {
+        {/* Scattered subtle particles across lower half */}
+        {Array.from({ length: 50 }, (_, i) => {
           const x = Math.random() * 100;
-          const y = 40 + Math.random() * 50;
-          const size = 1.5 + Math.random() * 2.5;
+          const y = 25 + Math.random() * 60;
+          const size = 1.5 + Math.random() * 3;
           const isGreen = Math.random() > 0.5;
           return (
             <motion.div
               key={`mp-${i}`}
               className={`absolute rounded-full ${isGreen ? 'bg-primary' : 'bg-foreground'}`}
               style={{ width: size, height: size, left: `${x}%`, top: `${y}%` }}
-              animate={{ opacity: [0.1, 0.5, 0.15] }}
+              animate={{ opacity: [0.08, 0.4, 0.1] }}
               transition={{ duration: 2 + Math.random() * 2, delay: Math.random() * 3, repeat: Infinity, ease: "easeInOut" }}
             />
           );
@@ -380,7 +368,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[2.75rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+              className="text-[3.25rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-[-0.03em] leading-[0.92] text-foreground max-w-5xl"
             >
               Supplier Intelligence<br />
               Platform
@@ -432,11 +420,11 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="bg-foreground/5 py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
+        className="bg-foreground/5 py-4 md:py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
       >
         <div className="relative flex">
           <motion.div
-            className="flex gap-16 whitespace-nowrap"
+            className="flex gap-8 md:gap-16 whitespace-nowrap"
             animate={{
               x: [0, -1920],
             }}
@@ -450,11 +438,11 @@ const HeroSection = () => {
             }}
           >
             {[...Array(3)].map((_, setIndex) => (
-              <div key={setIndex} className="flex gap-16 items-center">
+              <div key={setIndex} className="flex gap-8 md:gap-16 items-center">
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
+                    className="text-base md:text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
                   >
                     {company}
                   </span>
