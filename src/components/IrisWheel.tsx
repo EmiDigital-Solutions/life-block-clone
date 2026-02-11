@@ -1,4 +1,4 @@
-import { motion, animate, useMotionValue, useTransform } from "framer-motion";
+import { motion, animate, useMotionValue } from "framer-motion";
 import { useEffect, useMemo } from "react";
 
 type IrisWheelProps = {
@@ -18,6 +18,10 @@ type IrisWheelProps = {
   className?: string;
 };
 
+type WheelStyle = React.CSSProperties & {
+  ["--wheel-rot"]?: number;
+};
+
 export default function IrisWheel({
   size = 800,
   durationSeconds = 30,
@@ -29,10 +33,10 @@ export default function IrisWheel({
   className,
 }: IrisWheelProps) {
   const wheelRotate = useMotionValue(0);
-  const particleRotate = useTransform(wheelRotate, (v) => -v);
 
   useEffect(() => {
-    const controls = animate(wheelRotate, 360, {
+    // Animate a shared numeric motion value (degrees) so we can reuse it in CSS var math
+    const controls = animate(wheelRotate, [0, 360], {
       duration: durationSeconds,
       repeat: Infinity,
       ease: "linear",
@@ -40,13 +44,15 @@ export default function IrisWheel({
     return () => controls.stop();
   }, [durationSeconds, wheelRotate]);
 
+  const effectiveSpacing = Math.max(particleSpacing, particleSize + 6);
+
   const particles = useMemo(() => {
     const out: Array<{ id: string; x: number; y: number }> = [];
 
     for (let spoke = 0; spoke < spokes; spoke++) {
       const angle = (spoke / spokes) * Math.PI * 2;
       for (let p = 0; p < particlesPerSpoke; p++) {
-        const radius = innerRadius + p * particleSpacing;
+        const radius = innerRadius + p * effectiveSpacing;
         const x = Math.sin(angle) * radius;
         const y = -Math.cos(angle) * radius;
         out.push({ id: `${spoke}-${p}`, x, y });
@@ -54,26 +60,31 @@ export default function IrisWheel({
     }
 
     return out;
-  }, [innerRadius, particleSpacing, particlesPerSpoke, spokes]);
+  }, [effectiveSpacing, innerRadius, particlesPerSpoke, spokes]);
 
   return (
     <motion.div
       className={className}
-      style={{ width: size, height: size, rotate: wheelRotate }}
+      style={{
+        width: size,
+        height: size,
+        rotate: wheelRotate,
+        ["--wheel-rot" as any]: wheelRotate,
+      } as unknown as React.CSSProperties}
     >
       {particles.map((pt) => (
-        <motion.div
+        <div
           key={pt.id}
           className="absolute"
           style={{
             width: particleSize,
             height: particleSize,
-            backgroundColor: "hsl(var(--primary-foreground))",
+            backgroundColor: "hsl(var(--iris-particle))",
             left: "50%",
             top: "50%",
-            x: pt.x - particleSize / 2,
-            y: pt.y - particleSize / 2,
-            rotate: particleRotate,
+            // IMPORTANT: counter-rotate using the SAME CSS variable as the wheel.
+            // This guarantees squares stay axis-aligned (never become diamonds).
+            transform: `translate(-50%, -50%) translate(${pt.x}px, ${pt.y}px) rotate(calc(var(--wheel-rot) * -1deg))`,
             opacity: 1,
           }}
         />
@@ -81,3 +92,4 @@ export default function IrisWheel({
     </motion.div>
   );
 }
+
