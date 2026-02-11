@@ -76,18 +76,15 @@ const Navigation = () => {
               )}
             </button>
 
-            {/* Spacer - hidden on mobile */}
-            <div className="hidden md:block w-12" />
-
-            {/* CTA Button */}
+            {/* CTA Button - visible on all screens */}
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-3 bg-foreground text-white pl-8 pr-7 py-6 my-1.5 mr-1.5 rounded-full font-medium text-lg hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 font-medium text-sm md:text-lg hover:bg-foreground/90 transition-all duration-300"
             >
-              Book a Call
-              <ArrowRight className="w-5 h-5" />
+              Demo
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </a>
           </div>
         </div>
