@@ -92,7 +92,7 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "60%", width: 800, height: 800 }}
+          style={{ left: "60%", width: 500, height: 500 }}
         >
           {/* Outer glow */}
           {/* Outer glow removed */}
@@ -100,7 +100,7 @@ const HeroSection = () => {
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 800, height: 800 }}
+            style={{ width: 500, height: 500 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -121,11 +121,11 @@ const HeroSection = () => {
               else if (spoke === 36) spokeColor = brandColors.amber;
               else spokeColor = brandColors.blue;
               
-              return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 168;
-                const particleSpacing = 40;
+               return Array.from({ length: 5 }, (_, p) => {
+                const innerRadius = 105;
+                const particleSpacing = 25;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 14 + (4 - p) * 2;
+                const particleSize = 9 + (4 - p) * 1.5;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -153,10 +153,10 @@ const HeroSection = () => {
           <div
             className="absolute rounded-full"
             style={{
-              width: 72,
-              height: 72,
+              width: 45,
+              height: 45,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 30px rgba(14, 170, 216, 0.4)",
+              boxShadow: "inset 0 0 20px rgba(14, 170, 216, 0.4)",
             }}
           />
         </div>
