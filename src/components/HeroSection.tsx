@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
+import IrisWheel from "@/components/IrisWheel";
 import { Button } from "@/components/ui/button";
 
 
@@ -100,63 +101,11 @@ const HeroSection = () => {
             style={{
               width: 1120,
               height: 1120,
-              background: "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%)",
             }}
           />
-          
-          {/* Rotating particle wheel - squares counter-rotate to stay axis-aligned */}
-          <motion.div
-            className="absolute"
-            style={{ width: 800, height: 800 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          >
-            {Array.from({ length: 48 }, (_, spoke) => {
-              const angle = (spoke / 48) * 360;
-              const radians = (angle * Math.PI) / 180;
-              
-              const brandColors = {
-                white: "#FFFFFF",
-                amber: "#E39B5C",
-                green: "#6EA996",
-                red: "#AD3D3D",
-              };
-              
-              let spokeColor: string;
-              if (spoke === 12) spokeColor = brandColors.red;
-              else if (spoke === 24) spokeColor = brandColors.green;
-              else if (spoke === 36) spokeColor = brandColors.amber;
-              else spokeColor = brandColors.white;
-              
-              return Array.from({ length: 8 }, (_, p) => {
-                const innerRadius = 100;
-                const particleSpacing = 24;
-                const radius = innerRadius + p * particleSpacing;
-                const particleSize = 14;
-                
-                const x = Math.sin(radians) * radius;
-                const y = -Math.cos(radians) * radius;
-                
-                return (
-                  <motion.div
-                    key={`${spoke}-${p}`}
-                    className="absolute"
-                    style={{
-                      width: particleSize,
-                      height: particleSize,
-                      backgroundColor: spokeColor,
-                      left: "50%",
-                      top: "50%",
-                      x: x - particleSize / 2,
-                      y: y - particleSize / 2,
-                    }}
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  />
-                );
-              });
-            })}
-          </motion.div>
+
+          <IrisWheel className="absolute" size={800} durationSeconds={30} spokes={48} particlesPerSpoke={8} innerRadius={140} particleSpacing={20} particleSize={14} />
           
           {/* Center point */}
           <div
@@ -169,6 +118,7 @@ const HeroSection = () => {
             }}
           />
         </div>
+
 
         {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 120 }, (_, i) => {
