@@ -111,8 +111,8 @@ const HeroSection = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
-            {Array.from({ length: 48 }, (_, spoke) => {
-              const angle = (spoke / 48) * 360;
+            {Array.from({ length: 24 }, (_, spoke) => {
+              const angle = (spoke / 24) * 360;
               const radians = (angle * Math.PI) / 180;
               
               const brandColors = {
