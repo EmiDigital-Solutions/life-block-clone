@@ -111,8 +111,8 @@ const HeroSection = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
-            {Array.from({ length: 24 }, (_, spoke) => {
-              const angle = (spoke / 24) * 360;
+            {Array.from({ length: 48 }, (_, spoke) => {
+              const angle = (spoke / 48) * 360;
               const radians = (angle * Math.PI) / 180;
               
               const brandColors = {
@@ -128,11 +128,11 @@ const HeroSection = () => {
               else if (spoke === 36) spokeColor = brandColors.amber;
               else spokeColor = brandColors.blue;
               
-              return Array.from({ length: 3 }, (_, p) => {
-                const innerRadius = 118;
-                const particleSpacing = 28;
+              return Array.from({ length: 5 }, (_, p) => {
+                const innerRadius = 168;
+                const particleSpacing = 40;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 14 + (2 - p) * 2;
+                const particleSize = 14 + (4 - p) * 2;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -157,11 +157,11 @@ const HeroSection = () => {
           </motion.div>
           
           {/* Center point */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 22,
-                height: 22,
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: 72,
+              height: 72,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
               boxShadow: "inset 0 0 30px rgba(14, 170, 216, 0.4)",
             }}
