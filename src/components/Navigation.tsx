@@ -60,31 +60,30 @@ const Navigation = () => {
             />
           </Link>
 
-          <div className="flex items-center">
-            {/* Hamburger Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center justify-center px-4 md:px-6 py-4 md:py-5 hover:bg-gray-100/30 transition-colors"
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
-              ) : (
-                <div className="flex flex-col justify-center items-center gap-1.5 md:gap-2">
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
-                </div>
-              )}
-            </button>
-
-            {/* Spacer - hidden on mobile */}
-            <div className="hidden md:block w-4" />
+          <div className="flex-1 flex items-center justify-end">
+            {/* Hamburger Menu Button - centered between logo and CTA */}
+            <div className="flex-1 flex items-center justify-center">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex items-center justify-center p-3 md:p-4 hover:bg-gray-100/30 transition-colors"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+                ) : (
+                  <div className="flex flex-col justify-center items-center gap-1.5 md:gap-2">
+                    <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
+                    <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
+                  </div>
+                )}
+              </button>
+            </div>
 
             {/* CTA Button */}
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-foreground text-white pl-6 pr-5 py-4 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-base md:text-lg hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-foreground text-white pl-6 pr-5 py-4 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-xl md:text-xl hover:bg-foreground/90 transition-all duration-300"
             >
               Demo
               <ArrowRight className="w-5 h-5" />
