@@ -1484,15 +1484,15 @@ const ComparisonMockup = () => {
               }}
             />
             
-            {/* Rotating particle wheel */}
+            {/* Static particle wheel */}
             <motion.div
               className="absolute"
               style={{ width: 800, height: 800 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
-              {Array.from({ length: 96 }, (_, spoke) => {
-                const angle = (spoke / 96) * 360;
+              {Array.from({ length: 48 }, (_, spoke) => {
+                const angle = (spoke / 48) * 360;
                 const radians = (angle * Math.PI) / 180;
                 
                 const brandColors = {
@@ -1503,16 +1503,16 @@ const ComparisonMockup = () => {
                 };
                 
                 let spokeColor: string;
-                if (spoke === 24) spokeColor = brandColors.red;
-                else if (spoke === 48) spokeColor = brandColors.green;
-                else if (spoke === 72) spokeColor = brandColors.amber;
+                if (spoke === 12) spokeColor = brandColors.red;
+                else if (spoke === 24) spokeColor = brandColors.green;
+                else if (spoke === 36) spokeColor = brandColors.amber;
                 else spokeColor = brandColors.white;
                 
-                return Array.from({ length: 8 }, (_, p) => {
-                  const innerRadius = 120;
-                  const particleSpacing = 32;
+                return Array.from({ length: 6 }, (_, p) => {
+                  const innerRadius = 140;
+                  const particleSpacing = 40;
                   const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 16 + (7 - p) * 1;
+                  const particleSize = 14 + (5 - p) * 1;
                   
                   const x = Math.sin(radians) * radius;
                   const y = -Math.cos(radians) * radius;
