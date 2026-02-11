@@ -130,7 +130,7 @@ const HeroSection = () => {
               
               return Array.from({ length: 5 }, (_, p) => {
                 const innerRadius = 168;
-                const particleSpacing = 40;
+                const particleSpacing = 24;
                 const radius = innerRadius + p * particleSpacing;
                 const particleSize = 14 + (4 - p) * 2;
                 
