@@ -62,7 +62,7 @@ const Navigation = () => {
 
           <div className="flex-1 flex items-center justify-end">
             {/* Hamburger Menu Button - centered between logo and CTA */}
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex-1 flex items-center justify-center pr-4 md:pr-0">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center justify-center p-2 md:p-4 hover:bg-gray-100/30 transition-colors"
