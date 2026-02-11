@@ -19,33 +19,22 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [isMenuOpen]);
-
   return (
-    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-auto" ref={menuRef}>
+    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50" ref={menuRef}>
       <div 
         className={`relative overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'rounded-[1.5rem] md:rounded-[2rem]' : 'rounded-full'
+          isMenuOpen ? 'rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
           background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.7) 100%)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 60px rgba(255,255,255,0.4)',
           backdropFilter: 'blur(50px) saturate(180%)',
           WebkitBackdropFilter: 'blur(50px) saturate(180%)',
-          border: '3px solid rgba(255,255,255,0.9)',
-          maxHeight: isMenuOpen ? '85vh' : 'auto',
+          border: '3px solid rgba(255,255,255,0.9)'
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           {/* Logo */}
           <Link 
             to="/" 
@@ -55,167 +44,153 @@ const Navigation = () => {
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-10 md:h-14 w-auto object-contain"
+              className="h-9 md:h-14 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
 
-          <div className="flex items-center">
-            {/* Hamburger Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-5 gap-1.5 md:gap-2 hover:bg-gray-100/30 transition-colors"
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
-              ) : (
-                <>
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
-                </>
-              )}
-            </button>
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex flex-col items-center justify-center px-4 md:px-6 py-3 md:py-5 gap-1.5 md:gap-2 hover:bg-gray-100/30 transition-colors"
+          >
+            {isMenuOpen ? (
+              <X className="w-5 h-5 md:w-7 md:h-7 text-foreground" />
+            ) : (
+              <>
+                <span className="w-6 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full" />
+                <span className="w-6 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full" />
+              </>
+            )}
+          </button>
 
-            {/* Spacer - hidden on mobile */}
-            <div className="hidden md:block w-12" />
+          {/* Spacer */}
+          <div className="w-4 md:w-12" />
 
-            {/* CTA Button */}
-            <a
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-3 bg-foreground text-white pl-8 pr-7 py-6 my-1.5 mr-1.5 rounded-full font-medium text-lg hover:bg-foreground/90 transition-all duration-300"
-            >
-              Book a Call
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </div>
+          {/* CTA Button */}
+          <a
+            href="https://calendly.com/yvoo/demo-yvoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-5 md:pl-8 pr-4 md:pr-7 py-3.5 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-sm md:text-lg hover:bg-foreground/90 transition-all duration-300"
+          >
+            Book a Call
+            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+          </a>
         </div>
 
         {/* Dropdown Menu */}
         {isMenuOpen && (
-          <div className="px-6 md:px-10 pb-8 md:pb-10 pt-4 md:pt-6 animate-fade-in overflow-y-auto" style={{ maxHeight: 'calc(85vh - 70px)' }}>
+          <div className="px-6 md:px-10 pb-8 md:pb-10 pt-4 md:pt-6 animate-fade-in">
             <nav className="space-y-3 md:space-y-4">
               <Link 
                 to="/features" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Features
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Complete feature overview
                 </span>
               </Link>
               <Link 
                 to="/search-suppliers" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Search Suppliers
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Find verified suppliers worldwide
                 </span>
               </Link>
               <Link 
                 to="/scanpro-plus" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   ScanPro+
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   AI-powered audit intelligence
                 </span>
               </Link>
               <Link 
                 to="/ground-intelligence" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Ground Intelligence
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Real-time factory insights
                 </span>
               </Link>
               <Link 
                 to="/auditors" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   For Auditors
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Join our global auditor network
                 </span>
               </Link>
               <Link 
                 to="/be-found" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Be Found
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Get discovered by global buyers
                 </span>
               </Link>
               <a 
                 href="#pricing" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Pricing
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Transparent & flexible plans
                 </span>
               </a>
               <Link 
                 to="/about-us" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   About Us
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Our mission & team
                 </span>
               </Link>
               <Link 
                 to="/customer-stories" 
-                className="block group py-1.5 md:py-2"
+                className="block group py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-2xl md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   Customer Stories
                 </span>
-                <span className="block text-xs md:text-sm text-foreground/60 mt-0.5">
+                <span className="block text-sm text-foreground/60 mt-0.5">
                   Success stories from our clients
                 </span>
               </Link>
-
-              {/* Mobile CTA */}
-              <a
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="md:hidden flex items-center justify-center gap-2 bg-foreground text-white px-6 py-4 mt-4 rounded-full font-medium text-base hover:bg-foreground/90 transition-all duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Book a Call
-                <ArrowRight className="w-4 h-4" />
-              </a>
             </nav>
           </div>
         )}
