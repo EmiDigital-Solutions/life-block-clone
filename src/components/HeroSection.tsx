@@ -67,71 +67,8 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
     >
-      {/* Mobile: Iris wheel behind text + accent elements */}
-      <div className="absolute inset-0 z-0 md:hidden overflow-hidden">
-        {/* Large iris wheel overlapping behind headline area */}
-        <div className="absolute top-[30%] right-[-30px] w-[260px] h-[260px] flex items-center justify-center opacity-[0.18]">
-          <motion.div
-            className="absolute w-[260px] h-[260px]"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          >
-            {Array.from({ length: 36 }, (_, spoke) => {
-              const angle = (spoke / 36) * 360;
-              const radians = (angle * Math.PI) / 180;
-              const brandColors = { blue: "#0EAAD8", amber: "#F5A623", green: "#3DC88E", red: "#E04545" };
-              let spokeColor = brandColors.blue;
-              if (spoke === 9) spokeColor = brandColors.red;
-              else if (spoke === 18) spokeColor = brandColors.green;
-              else if (spoke === 27) spokeColor = brandColors.amber;
-              
-              return Array.from({ length: 4 }, (_, p) => {
-                const radius = 40 + p * 18;
-                const pSize = 6 + (3 - p) * 1.2;
-                const x = Math.sin(radians) * radius;
-                const y = -Math.cos(radians) * radius;
-                return (
-                  <div
-                    key={`m-${spoke}-${p}`}
-                    className="absolute rounded-full"
-                    style={{
-                      width: pSize, height: pSize,
-                      backgroundColor: spokeColor,
-                      left: "50%", top: "50%",
-                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                      opacity: 1 - p * 0.12,
-                    }}
-                  />
-                );
-              });
-            })}
-          </motion.div>
-          <div className="absolute w-[18px] h-[18px] rounded-full" style={{
-            background: "radial-gradient(circle, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 100%)",
-            boxShadow: "inset 0 0 10px rgba(14,170,216,0.4)",
-          }} />
-        </div>
-
-        {/* Scattered subtle particles across lower half */}
-        {Array.from({ length: 50 }, (_, i) => {
-          const x = Math.random() * 100;
-          const y = 25 + Math.random() * 60;
-          const size = 1.5 + Math.random() * 3;
-          const isGreen = Math.random() > 0.5;
-          return (
-            <motion.div
-              key={`mp-${i}`}
-              className={`absolute rounded-full ${isGreen ? 'bg-primary' : 'bg-foreground'}`}
-              style={{ width: size, height: size, left: `${x}%`, top: `${y}%` }}
-              animate={{ opacity: [0.08, 0.4, 0.1] }}
-              transition={{ duration: 2 + Math.random() * 2, delay: Math.random() * 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-          );
-        })}
-      </div>
-
-      {/* Static Particle Background - Funnel Shape (Desktop Only) */}
-      <div className="absolute inset-0 z-0 overflow-hidden hidden md:block">
+      {/* Static Particle Background - Funnel Shape */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -163,9 +100,9 @@ const HeroSection = () => {
           </motion.div>
         ))}
 
-        {/* AI Iris Wheel at Focal Point (Desktop Only) - positioned at convergence */}
+        {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10 hidden md:flex"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
           style={{ left: "60%", width: wheelSize, height: wheelSize }}
         >
           {/* Outer glow */}
@@ -234,119 +171,119 @@ const HeroSection = () => {
           />
         </div>
 
-        {/* Red particles pushed away backwards from focal point (Desktop Only) */}
+        {/* Red particles pushed away backwards from focal point */}
         {Array.from({ length: 120 }, (_, i) => {
-           const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
-           const startRadius = 30;
-           const endRadius = 200 + Math.random() * 160;
-           const size = 3 + Math.random() * 5;
-           const duration = 6 + Math.random() * 5;
-           const delay = Math.random() * 6;
-           
-           return (
-             <motion.div
-               key={`red-${i}`}
-               className="absolute rounded-full bg-destructive hidden md:block"
-               style={{
-                 width: size,
-                 height: size,
-               }}
-               initial={{
-                 left: `calc(60% + ${Math.cos(angle) * startRadius}px)`,
-                 top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                 opacity: 0,
-               }}
-               animate={{
-                 left: [
-                   `calc(60% + ${Math.cos(angle) * startRadius}px)`,
-                   `calc(60% + ${Math.cos(angle) * endRadius}px)`,
-                 ],
-                 top: [
-                   `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                   `calc(50% + ${Math.sin(angle) * endRadius}px)`,
-                 ],
-                 opacity: [0, 1, 0.8, 0],
-                 scale: [0.5, 1, 0.8, 0.3],
-               }}
-               transition={{
-                 duration: duration,
-                 delay: delay,
-                 repeat: Infinity,
-                 repeatType: "loop",
-                 ease: "easeOut",
-               }}
-             />
-           );
-         })}
+          const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
+          const startRadius = 30;
+          const endRadius = 200 + Math.random() * 160;
+          const size = 3 + Math.random() * 5;
+          const duration = 6 + Math.random() * 5;
+          const delay = Math.random() * 6;
+          
+          return (
+            <motion.div
+              key={`red-${i}`}
+              className="absolute rounded-full bg-destructive"
+              style={{
+                width: size,
+                height: size,
+              }}
+              initial={{
+                left: `calc(60% + ${Math.cos(angle) * startRadius}px)`,
+                top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                opacity: 0,
+              }}
+              animate={{
+                left: [
+                  `calc(60% + ${Math.cos(angle) * startRadius}px)`,
+                  `calc(60% + ${Math.cos(angle) * endRadius}px)`,
+                ],
+                top: [
+                  `calc(50% + ${Math.sin(angle) * startRadius}px)`,
+                  `calc(50% + ${Math.sin(angle) * endRadius}px)`,
+                ],
+                opacity: [0, 1, 0.8, 0],
+                scale: [0.5, 1, 0.8, 0.3],
+              }}
+              transition={{
+                duration: duration,
+                delay: delay,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeOut",
+              }}
+            />
+          );
+        })}
 
-        {/* Green particles passing through the wheel to the laser line (Desktop Only) */}
+        {/* Green particles passing through the wheel to the laser line */}
         {Array.from({ length: 30 }, (_, i) => {
-           const startX = 60;
-           const endX = 75 + Math.random() * 20; // End along the laser line
-           const yOffset = (Math.random() - 0.5) * 12;
-           const size = 4 + Math.random() * 4;
-           const duration = 8 + Math.random() * 4; // Very slow, smooth flow
-           const delay = Math.random() * 8;
-           
-           return (
-             <motion.div
-               key={`through-${i}`}
-               className="absolute rounded-full hidden md:block"
-               style={{
-                 width: size,
-                 height: size,
-                 backgroundColor: '#6EA996',
-               }}
-               initial={{
-                 left: `${startX}%`,
-                 top: `calc(50% + ${yOffset}px)`,
-                 opacity: 0,
-                 scale: 0.5,
-               }}
-               animate={{
-                 left: [`${startX}%`, `${endX}%`],
-                 opacity: [0, 1, 1, 0.8, 0],
-                 scale: [0.5, 1.2, 1, 0.8, 0.3],
-               }}
-               transition={{
-                 duration: duration,
-                 delay: delay,
-                 repeat: Infinity,
-                 repeatType: "loop",
-                 ease: "easeOut",
-               }}
-             />
-           );
-         })}
+          const startX = 60;
+          const endX = 75 + Math.random() * 20; // End along the laser line
+          const yOffset = (Math.random() - 0.5) * 12;
+          const size = 4 + Math.random() * 4;
+          const duration = 8 + Math.random() * 4; // Very slow, smooth flow
+          const delay = Math.random() * 8;
+          
+          return (
+            <motion.div
+              key={`through-${i}`}
+              className="absolute rounded-full"
+              style={{
+                width: size,
+                height: size,
+                backgroundColor: '#6EA996',
+              }}
+              initial={{
+                left: `${startX}%`,
+                top: `calc(50% + ${yOffset}px)`,
+                opacity: 0,
+                scale: 0.5,
+              }}
+              animate={{
+                left: [`${startX}%`, `${endX}%`],
+                opacity: [0, 1, 1, 0.8, 0],
+                scale: [0.5, 1.2, 1, 0.8, 0.3],
+              }}
+              transition={{
+                duration: duration,
+                delay: delay,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeOut",
+              }}
+            />
+          );
+        })}
 
-        <div className="absolute top-1/2 -translate-y-1/2 right-0 hidden md:block" style={{ left: "60%" }}>
-           {/* Approved Suppliers label */}
-           <motion.span
-             className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-foreground/60 whitespace-nowrap"
-             initial={{ opacity: 0, x: -10 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8, delay: 1.5 }}
-           >
-             Approved Suppliers
-           </motion.span>
-           
-           {/* The laser beam */}
-           <motion.div
-             className="h-[3px] w-full"
-             style={{
-               background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
-               boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
-             }}
-             initial={{ width: 0, opacity: 0 }}
-             animate={{ width: "45vw", opacity: 1 }}
-             transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-           />
-         </div>
+        <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "60%" }}>
+          {/* Approved Suppliers label */}
+          <motion.span
+            className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-foreground/60 whitespace-nowrap"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+          >
+            Approved Suppliers
+          </motion.span>
+          
+          {/* The laser beam */}
+          <motion.div
+            className="h-[3px] w-full"
+            style={{
+              background: "linear-gradient(90deg, #0A7FA5 0%, #0A7FA5 10%, #6EA996 20%, #6EA996 85%, transparent 100%)",
+              boxShadow: "0 0 20px rgba(110, 169, 150, 0.5), 0 0 40px rgba(110, 169, 150, 0.3)",
+            }}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "45vw", opacity: 1 }}
+            transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+          />
+        </div>
       </div>
 
       {/* Main Content - Archlet Style */}
-      <div className="flex-1 flex items-center relative z-10 pt-16 sm:pt-20 md:pt-32 lg:pt-40">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+      <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+        <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -358,7 +295,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-foreground/60 text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-6"
+              className="text-foreground/60 text-sm tracking-widest uppercase mb-6"
             >
               AI-Powered Intelligence Platform
             </motion.p>
@@ -368,19 +305,19 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[3.25rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-[-0.03em] leading-[0.92] text-foreground max-w-5xl"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               Supplier Intelligence<br />
               Platform
             </motion.h1>
 
-            {/* Subtitle + CTA Container - Full width on mobile, right aligned on desktop */}
-            <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16 w-full md:lg:ml-[50%] max-w-2xl md:max-w-xl">
+            {/* Subtitle + CTA Container - Right aligned below headline */}
+            <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-foreground/60 text-base sm:text-lg md:text-xl mb-4 sm:mb-8"
+                className="text-foreground/60 text-lg lg:text-xl mb-8"
               >
                 The Future of AI-Driven Supplier Search & Audit
               </motion.p>
@@ -389,7 +326,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-foreground/60 text-sm sm:text-base md:text-lg mb-6 sm:mb-8"
+                className="text-foreground/60 text-base lg:text-lg mb-8"
               >
                 Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
               </motion.p>
@@ -420,11 +357,11 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="bg-foreground/5 py-4 md:py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
+        className="bg-foreground/5 py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
       >
         <div className="relative flex">
           <motion.div
-            className="flex gap-8 md:gap-16 whitespace-nowrap"
+            className="flex gap-16 whitespace-nowrap"
             animate={{
               x: [0, -1920],
             }}
@@ -438,11 +375,11 @@ const HeroSection = () => {
             }}
           >
             {[...Array(3)].map((_, setIndex) => (
-              <div key={setIndex} className="flex gap-8 md:gap-16 items-center">
+              <div key={setIndex} className="flex gap-16 items-center">
                 {companies.map((company, idx) => (
                   <span
                     key={idx}
-                    className="text-base md:text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
+                    className="text-xl font-semibold text-foreground/40 tracking-wide hover:text-foreground/60 transition-colors"
                   >
                     {company}
                   </span>
