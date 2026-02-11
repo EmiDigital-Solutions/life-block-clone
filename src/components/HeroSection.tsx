@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import yvooRobot from "@/assets/yvoo-robot-character.png";
 
 // Generate static funnel-shaped particles (wide on left, converging to right)
 const generateFunnelParticles = (count: number) => {
@@ -277,76 +278,91 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Main Content - Archlet Style */}
+      {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
         <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-20"
-          >
-            {/* Eyebrow Text */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left Column - Text */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-white/60 text-sm tracking-widest uppercase mb-6"
+              transition={{ duration: 0.8 }}
+              className="relative z-20"
             >
-              AI-Powered Intelligence Platform
-            </motion.p>
+              {/* Eyebrow Text */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-white/60 text-sm tracking-widest uppercase mb-6"
+              >
+                AI-Powered Intelligence Platform
+              </motion.p>
 
-            {/* Main Headline - Archlet Style, 2 rows */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
-            >
-              Supplier Intelligence<br />
-              Platform
-            </motion.h1>
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-white"
+              >
+                Supplier Intelligence<br />
+                Platform
+              </motion.h1>
 
-            {/* Subtitle + CTA Container - Right aligned below headline */}
-            <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
               {/* Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-white/60 text-lg lg:text-xl mb-8"
-              >
-                The Future of AI-Driven Supplier Search & Audit
-              </motion.p>
+              <div className="mt-10 lg:mt-12 max-w-xl">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-white/60 text-lg lg:text-xl mb-6"
+                >
+                  The Future of AI-Driven Supplier Search & Audit
+                </motion.p>
 
-              {/* Tagline */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-white/60 text-base lg:text-lg mb-8"
-              >
-                Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
-              </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-white/60 text-base lg:text-lg mb-8"
+                >
+                  Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
+                </motion.p>
 
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <Button asChild size="lg">
-                  <a 
-                    href="https://calendly.com/yvoo/demo-yvoo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Request a demo
-                  </a>
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <Button asChild size="lg">
+                    <a 
+                      href="https://calendly.com/yvoo/demo-yvoo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Request a demo
+                    </a>
+                  </Button>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Robot Character */}
+            <motion.div
+              initial={{ opacity: 0, x: 60, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              className="relative z-20 hidden lg:flex items-end justify-center"
+            >
+              <img
+                src={yvooRobot}
+                alt="YVOO AI Robot Assistant"
+                className="w-full max-w-md xl:max-w-lg drop-shadow-[0_0_40px_rgba(10,127,165,0.3)]"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
 
