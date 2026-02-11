@@ -106,7 +106,7 @@ const TestimonialSection = () => {
             className="mb-16 md:mb-20 lg:mb-24"
           >
             <div 
-              className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+              className="max-w-5xl mx-auto overflow-hidden shadow-lg md:shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
               onClick={() => setIsModalOpen(true)}
             >
               <PlatformDemoAnimation />
