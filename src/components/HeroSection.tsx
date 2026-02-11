@@ -129,8 +129,8 @@ const HeroSection = () => {
               else spokeColor = brandColors.blue;
               
               return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 110;
-                const particleSpacing = 28;
+                const innerRadius = 95;
+                const particleSpacing = 50;
                 const radius = innerRadius + p * particleSpacing;
                 const particleSize = 14 + (4 - p) * 2;
                 
