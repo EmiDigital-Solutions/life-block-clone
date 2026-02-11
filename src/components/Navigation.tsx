@@ -61,17 +61,17 @@ const Navigation = () => {
           </Link>
 
           <div className="flex items-center">
-            {/* Hamburger Menu Button - centered stripes */}
+            {/* Hamburger Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-5 gap-1.5 md:gap-2 hover:bg-gray-100/30 transition-colors"
+              className="flex items-center justify-center px-4 md:px-6 py-4 md:py-5 hover:bg-gray-100/30 transition-colors"
             >
               {isMenuOpen ? (
                 <X className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
               ) : (
-                <div className="flex flex-col items-center gap-1.5 md:gap-2">
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
-                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full" />
+                <div className="flex flex-col justify-center items-center gap-1.5 md:gap-2">
+                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
+                  <span className="w-6 md:w-8 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
                 </div>
               )}
             </button>
@@ -79,15 +79,15 @@ const Navigation = () => {
             {/* Spacer - hidden on mobile */}
             <div className="hidden md:block w-4" />
 
-            {/* CTA Button - round on all screens */}
+            {/* CTA Button */}
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-sm md:text-lg hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-semibold text-[1.25rem] md:text-lg hover:bg-foreground/90 transition-all duration-300"
             >
               Demo
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+              <ArrowRight className="w-5 h-5" />
             </a>
           </div>
         </div>
