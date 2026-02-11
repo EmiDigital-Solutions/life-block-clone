@@ -68,11 +68,11 @@ const Navigation = () => {
                 className="flex items-center justify-center p-2 md:p-4 hover:bg-gray-100/30 transition-colors"
               >
                 {isMenuOpen ? (
-                  <X className="w-4.5 h-4.5 md:w-7 md:h-7 text-foreground" />
+                  <X className="w-5 h-5 md:w-7 md:h-7 text-foreground" />
                 ) : (
-                  <div className="flex flex-col justify-center items-center gap-1 md:gap-2">
-                    <span className="w-4.5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
-                    <span className="w-4.5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
+                  <div className="flex flex-col justify-center items-center gap-[3px] md:gap-2">
+                    <span className="w-5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
+                    <span className="w-5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
                   </div>
                 )}
               </button>
