@@ -2326,15 +2326,15 @@ const PlatformDemoAnimation = () => {
   return (
     <div className="w-full">
       {/* Step Navigation with Progress Connectors */}
-      <div className="relative flex items-center justify-center mb-6">
-        {/* Background Progress Track */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-0.5 bg-gray-200 rounded-full" 
+      <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-x-auto scrollbar-hide px-2 md:px-0">
+        {/* Background Progress Track - hidden on mobile */}
+        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-0.5 bg-gray-200 rounded-full" 
           style={{ width: `calc(${(demoSteps.length - 1) * 120}px)` }} 
         />
         
-        {/* Animated Progress Fill */}
+        {/* Animated Progress Fill - hidden on mobile */}
         <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-full origin-left"
+          className="hidden md:block absolute top-1/2 left-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-full origin-left"
           style={{ 
             marginLeft: `-${((demoSteps.length - 1) * 120) / 2}px`,
           }}
@@ -2346,12 +2346,12 @@ const PlatformDemoAnimation = () => {
         />
         
         {/* Step Buttons */}
-        <div className="relative flex items-center gap-0">
+        <div className="relative flex items-center gap-0 flex-nowrap min-w-max md:min-w-0">
           {demoSteps.map((step, i) => (
             <div key={step.id} className="flex items-center">
               <button
                 onClick={() => setCurrentStep(i)}
-                className={`relative z-10 px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`relative z-10 px-2 py-1.5 text-[10px] md:px-4 md:py-2 md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                   i === currentStep 
                     ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-105' 
                     : i < currentStep
@@ -2359,9 +2359,9 @@ const PlatformDemoAnimation = () => {
                       : 'bg-white text-gray-500 hover:bg-gray-50 border border-gray-200'
                 }`}
               >
-                <span className="flex items-center gap-1.5">
+                <span className="flex items-center gap-1 md:gap-1.5">
                   {i < currentStep && (
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-2.5 h-2.5 md:w-3 md:h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   )}
@@ -2371,9 +2371,9 @@ const PlatformDemoAnimation = () => {
               
               {/* Arrow Connector */}
               {i < demoSteps.length - 1 && (
-                <div className="flex items-center mx-1">
+                <div className="flex items-center mx-0.5 md:mx-1">
                   <motion.svg 
-                    className={`w-5 h-5 transition-colors duration-300 ${
+                    className={`w-3 h-3 md:w-5 md:h-5 transition-colors duration-300 ${
                       i < currentStep ? 'text-secondary' : 'text-gray-300'
                     }`}
                     viewBox="0 0 24 24" 
@@ -2414,8 +2414,8 @@ const PlatformDemoAnimation = () => {
       </div>
       
       {/* Step Progress with End-to-End Messaging */}
-      <div className="text-center mt-4">
-        <p className="text-sm text-muted-foreground">
+      <div className="text-center mt-3 md:mt-4">
+        <p className="text-xs md:text-sm text-muted-foreground">
           <span className="font-mono text-primary">{String(currentStep + 1).padStart(2, '0')}</span>
           <span className="mx-2 text-gray-300">/</span>
           <span className="font-mono text-gray-400">{String(demoSteps.length).padStart(2, '0')}</span>
