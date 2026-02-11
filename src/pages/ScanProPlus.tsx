@@ -2151,95 +2151,116 @@ const ScanProPlus = () => {
         id="hero"
         className="relative bg-white min-h-screen flex flex-col"
       >
-        {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
+        {/* Main Content - Two column layout with video */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
           <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-20"
-            >
-              {/* Eyebrow Text - Archlet Style */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Column - Text Content */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
+                transition={{ duration: 0.8 }}
+                className="relative z-20"
               >
-                Supplier Quality Platform
-              </motion.p>
-
-              {/* Main Headline - Archlet Style, 2 rows only */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
-              >
-                Transform how<br />
-                your team audits.
-              </motion.h1>
-
-              {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
-              <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
-                {/* Subtitle with checkmarks */}
-                <motion.div
+                {/* Eyebrow Text - Archlet Style */}
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="flex flex-col gap-3 mb-8"
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
                 >
-                  {[
-                    "Cut audit costs by 60%",
-                    "Free engineers from coordination",
-                    "Audit-ready suppliers in 48h"
-                  ].map((text, index) => (
-                    <div key={index} className="flex items-center gap-3 text-muted-foreground">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-base font-medium">{text}</span>
-                    </div>
-                  ))}
-                </motion.div>
+                  Supplier Quality Platform
+                </motion.p>
 
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                {/* Main Headline - Archlet Style, 2 rows only */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground"
                 >
-                  <Button asChild size="lg">
-                    <a 
-                      href="https://calendly.com/yvoo/demo-yvoo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      See it in action
-                    </a>
-                  </Button>
-                </motion.div>
+                  Transform how<br />
+                  your team audits.
+                </motion.h1>
 
-                {/* Certification Badges */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="mt-8"
-                >
-                  <p className="text-muted-foreground text-sm mb-3">Auditors certified by:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
-                      <span
-                        key={badge}
-                        className="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground border border-border"
-                      >
-                        {badge}
-                      </span>
+                {/* Subtitle + CTA Container */}
+                <div className="mt-10 lg:mt-12 max-w-xl">
+                  {/* Subtitle with checkmarks */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="flex flex-col gap-3 mb-8"
+                  >
+                    {[
+                      "Cut audit costs by 60%",
+                      "Free engineers from coordination",
+                      "Audit-ready suppliers in 48h"
+                    ].map((text, index) => (
+                      <div key={index} className="flex items-center gap-3 text-muted-foreground">
+                        <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-base font-medium">{text}</span>
+                      </div>
                     ))}
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                  </motion.div>
+
+                  {/* CTA Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    <Button asChild size="lg">
+                      <a 
+                        href="https://calendly.com/yvoo/demo-yvoo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        See it in action
+                      </a>
+                    </Button>
+                  </motion.div>
+
+                  {/* Certification Badges */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="mt-8"
+                  >
+                    <p className="text-muted-foreground text-sm mb-3">Auditors certified by:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
+                        <span
+                          key={badge}
+                          className="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground border border-border"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Right Column - Video */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="relative z-20 hidden lg:block"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30">
+                  <video
+                    autoPlay
+                    loop
+                    playsInline
+                    className="w-full h-auto"
+                    src="/videos/scanpro-hero-demo.mp4"
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
 
