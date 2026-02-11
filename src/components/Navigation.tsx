@@ -84,7 +84,7 @@ const Navigation = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-semibold text-[1.25rem] md:text-lg hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-foreground text-white pl-6 pr-5 py-4 md:pl-8 md:pr-7 md:py-6 my-1.5 mr-1.5 rounded-full font-medium text-base md:text-lg hover:bg-foreground/90 transition-all duration-300"
             >
               Demo
               <ArrowRight className="w-5 h-5" />
