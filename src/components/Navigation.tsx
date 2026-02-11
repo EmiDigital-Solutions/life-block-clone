@@ -49,13 +49,13 @@ const Navigation = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center pl-2 md:pl-6 pr-2 md:pr-8 py-1 md:py-4 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center pl-3 md:pl-6 pr-3 md:pr-8 py-2 md:py-4 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-14 md:h-14 w-auto object-contain"
+              className="h-9 md:h-14 w-auto object-contain scale-[1.4] md:scale-100 origin-left"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
