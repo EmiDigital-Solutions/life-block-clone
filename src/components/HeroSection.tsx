@@ -92,22 +92,22 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "60%", width: 800, height: 800 }}
+          style={{ left: "60%", width: 560, height: 560 }}
         >
           {/* Outer glow */}
           <div
             className="absolute rounded-full"
             style={{
-              width: 1100,
-              height: 1100,
-              background: "radial-gradient(circle, rgba(10, 150, 200, 0.25) 0%, transparent 70%)",
+              width: 770,
+              height: 770,
+              background: "radial-gradient(circle, rgba(10, 150, 200, 0.15) 0%, transparent 70%)",
             }}
           />
           
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 800, height: 800 }}
+            style={{ width: 560, height: 560 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -129,8 +129,8 @@ const HeroSection = () => {
               else spokeColor = brandColors.blue;
               
               return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 168;
-                const particleSpacing = 40;
+                const innerRadius = 118;
+                const particleSpacing = 28;
                 const radius = innerRadius + p * particleSpacing;
                 const particleSize = 14 + (4 - p) * 2;
                 
@@ -160,10 +160,9 @@ const HeroSection = () => {
           <div
             className="absolute rounded-full"
             style={{
-              width: 72,
-              height: 72,
+              width: 50,
+              height: 50,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 30px rgba(14, 170, 216, 0.4)",
             }}
           />
         </div>
