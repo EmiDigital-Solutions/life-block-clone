@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { AILoadingSpinner } from "@/components/AILoadingSpinner";
 import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import factoryImage from "@/assets/factory-hero-background.jpg";
@@ -2265,7 +2264,6 @@ const FollowUpDemo = () => {
 const PlatformDemoAnimation = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useIsMobile();
   
   // Loading statuses for each step
   const stepLoadingStatuses: Record<number, string[]> = {
@@ -2327,122 +2325,79 @@ const PlatformDemoAnimation = () => {
   
   return (
     <div className="w-full">
-      {/* Mobile: Step title + dot navigation */}
-      {isMobile ? (
-        <div className="mb-3">
-          {/* Current step title */}
-          <div className="text-center mb-3">
-            <p className="text-xs font-medium text-primary tracking-wider uppercase">
-              Step {currentStep + 1} of {demoSteps.length}
-            </p>
-            <p className="text-sm font-semibold text-foreground mt-1">
-              {demoSteps[currentStep].title}
-            </p>
-          </div>
-          {/* Dot indicators */}
-          <div className="flex items-center justify-center gap-2">
-            {demoSteps.map((step, i) => (
+      {/* Step Navigation with Progress Connectors */}
+      <div className="relative flex items-center justify-center mb-6">
+        {/* Background Progress Track */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-0.5 bg-gray-200 rounded-full" 
+          style={{ width: `calc(${(demoSteps.length - 1) * 120}px)` }} 
+        />
+        
+        {/* Animated Progress Fill */}
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-full origin-left"
+          style={{ 
+            marginLeft: `-${((demoSteps.length - 1) * 120) / 2}px`,
+          }}
+          initial={{ width: 0 }}
+          animate={{ 
+            width: `${(currentStep / (demoSteps.length - 1)) * ((demoSteps.length - 1) * 120)}px`
+          }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        />
+        
+        {/* Step Buttons */}
+        <div className="relative flex items-center gap-0">
+          {demoSteps.map((step, i) => (
+            <div key={step.id} className="flex items-center">
               <button
-                key={step.id}
                 onClick={() => setCurrentStep(i)}
-                className="relative"
+                className={`relative z-10 px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  i === currentStep 
+                    ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-105' 
+                    : i < currentStep
+                      ? 'bg-secondary text-white'
+                      : 'bg-white text-gray-500 hover:bg-gray-50 border border-gray-200'
+                }`}
               >
-                <motion.div
-                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    i === currentStep
-                      ? 'bg-primary scale-125'
-                      : i < currentStep
-                        ? 'bg-secondary'
-                        : 'bg-muted-foreground/30'
-                  }`}
-                  animate={i === currentStep ? { scale: [1, 1.3, 1] } : {}}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                {i < currentStep && (
-                  <svg className="absolute -top-0.5 -left-0.5 w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
+                <span className="flex items-center gap-1.5">
+                  {i < currentStep && (
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                  {step.label}
+                </span>
               </button>
-            ))}
-          </div>
+              
+              {/* Arrow Connector */}
+              {i < demoSteps.length - 1 && (
+                <div className="flex items-center mx-1">
+                  <motion.svg 
+                    className={`w-5 h-5 transition-colors duration-300 ${
+                      i < currentStep ? 'text-secondary' : 'text-gray-300'
+                    }`}
+                    viewBox="0 0 24 24" 
+                    fill="none"
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: i < currentStep ? 1 : 0.5 }}
+                  >
+                    <path 
+                      d="M9 5l7 7-7 7" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    />
+                  </motion.svg>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      ) : (
-        /* Desktop: Original horizontal step navigation */
-        <div className="relative flex items-center justify-center mb-6">
-          {/* Background Progress Track */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-0.5 bg-gray-200 rounded-full" 
-            style={{ width: `calc(${(demoSteps.length - 1) * 120}px)` }} 
-          />
-          
-          {/* Animated Progress Fill */}
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-full origin-left"
-            style={{ 
-              marginLeft: `-${((demoSteps.length - 1) * 120) / 2}px`,
-            }}
-            initial={{ width: 0 }}
-            animate={{ 
-              width: `${(currentStep / (demoSteps.length - 1)) * ((demoSteps.length - 1) * 120)}px`
-            }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          />
-          
-          {/* Step Buttons */}
-          <div className="relative flex items-center gap-0">
-            {demoSteps.map((step, i) => (
-              <div key={step.id} className="flex items-center">
-                <button
-                  onClick={() => setCurrentStep(i)}
-                  className={`relative z-10 px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                    i === currentStep 
-                      ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-105' 
-                      : i < currentStep
-                        ? 'bg-secondary text-white'
-                        : 'bg-white text-gray-500 hover:bg-gray-50 border border-gray-200'
-                  }`}
-                >
-                  <span className="flex items-center gap-1.5">
-                    {i < currentStep && (
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
-                    {step.label}
-                  </span>
-                </button>
-                
-                {/* Arrow Connector */}
-                {i < demoSteps.length - 1 && (
-                  <div className="flex items-center mx-1">
-                    <motion.svg 
-                      className={`w-5 h-5 transition-colors duration-300 ${
-                        i < currentStep ? 'text-secondary' : 'text-gray-300'
-                      }`}
-                      viewBox="0 0 24 24" 
-                      fill="none"
-                      initial={{ opacity: 0.5 }}
-                      animate={{ opacity: i < currentStep ? 1 : 0.5 }}
-                    >
-                      <path 
-                        d="M9 5l7 7-7 7" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round"
-                      />
-                    </motion.svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
       
-      {/* Demo Content Area */}
       <div className="relative bg-[#0A0A0A] shadow-2xl overflow-hidden">
-        <div className={`${isMobile ? 'aspect-[3/4]' : 'aspect-video'} relative overflow-hidden`}>
+        <div className="aspect-video relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -2458,38 +2413,25 @@ const PlatformDemoAnimation = () => {
         </div>
       </div>
       
-      {/* Step Progress - Desktop only */}
-      {!isMobile && (
-        <div className="text-center mt-4">
-          <p className="text-sm text-muted-foreground">
-            <span className="font-mono text-primary">{String(currentStep + 1).padStart(2, '0')}</span>
-            <span className="mx-2 text-gray-300">/</span>
-            <span className="font-mono text-gray-400">{String(demoSteps.length).padStart(2, '0')}</span>
-            <span className="mx-3 text-gray-300">—</span>
-            <span className="font-medium text-foreground">{demoSteps[currentStep].title}</span>
-          </p>
-          {currentStep === demoSteps.length - 1 && (
-            <motion.p 
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xs text-secondary mt-2 font-medium"
-            >
-              ✓ From search to verified partnership — the complete journey
-            </motion.p>
-          )}
-        </div>
-      )}
-
-      {/* Mobile: Completion message */}
-      {isMobile && currentStep === demoSteps.length - 1 && (
-        <motion.p 
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-xs text-secondary mt-2 font-medium text-center"
-        >
-          ✓ From search to verified partnership
-        </motion.p>
-      )}
+      {/* Step Progress */}
+      <div className="text-center mt-4">
+        <p className="text-sm text-muted-foreground">
+          <span className="font-mono text-primary">{String(currentStep + 1).padStart(2, '0')}</span>
+          <span className="mx-2 text-gray-300">/</span>
+          <span className="font-mono text-gray-400">{String(demoSteps.length).padStart(2, '0')}</span>
+          <span className="mx-3 text-gray-300">—</span>
+          <span className="font-medium text-foreground">{demoSteps[currentStep].title}</span>
+        </p>
+        {currentStep === demoSteps.length - 1 && (
+          <motion.p 
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-xs text-secondary mt-2 font-medium"
+          >
+            ✓ From search to verified partnership — the complete journey
+          </motion.p>
+        )}
+      </div>
     </div>
   );
 };
