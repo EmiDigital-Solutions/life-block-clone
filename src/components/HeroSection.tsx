@@ -92,22 +92,22 @@ const HeroSection = () => {
         {/* AI Iris Wheel at Focal Point - positioned at convergence */}
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-          style={{ left: "60%", width: 400, height: 400 }}
+          style={{ left: "60%", width: 800, height: 800 }}
         >
-          {/* Subtle outer glow */}
+          {/* Outer glow */}
           <div
             className="absolute rounded-full"
             style={{
-              width: 560,
-              height: 560,
-              background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
+              width: 1100,
+              height: 1100,
+              background: "radial-gradient(circle, rgba(10, 150, 200, 0.25) 0%, transparent 70%)",
             }}
           />
           
           {/* Rotating particle wheel */}
           <motion.div
             className="absolute"
-            style={{ width: 400, height: 400 }}
+            style={{ width: 800, height: 800 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -116,10 +116,10 @@ const HeroSection = () => {
               const radians = (angle * Math.PI) / 180;
               
               const brandColors = {
-                blue: "#0A7FA5",
-                amber: "#E39B5C",
-                green: "#6EA996",
-                red: "#AD3D3D",
+                blue: "#0EAAD8",
+                amber: "#F5A623",
+                green: "#3DC88E",
+                red: "#E04545",
               };
               
               let spokeColor: string;
@@ -129,10 +129,10 @@ const HeroSection = () => {
               else spokeColor = brandColors.blue;
               
               return Array.from({ length: 5 }, (_, p) => {
-                const innerRadius = 84;
-                const particleSpacing = 20;
+                const innerRadius = 168;
+                const particleSpacing = 40;
                 const radius = innerRadius + p * particleSpacing;
-                const particleSize = 8 + (4 - p) * 1;
+                const particleSize = 14 + (4 - p) * 2;
                 
                 const x = Math.sin(radians) * radius;
                 const y = -Math.cos(radians) * radius;
@@ -148,7 +148,7 @@ const HeroSection = () => {
                       left: "50%",
                       top: "50%",
                       transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                      opacity: 0.9 - p * 0.1,
+                      opacity: 1 - p * 0.1,
                     }}
                   />
                 );
@@ -160,10 +160,10 @@ const HeroSection = () => {
           <div
             className="absolute rounded-full"
             style={{
-              width: 36,
-              height: 36,
+              width: 72,
+              height: 72,
               background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-              boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
+              boxShadow: "inset 0 0 30px rgba(14, 170, 216, 0.4)",
             }}
           />
         </div>
