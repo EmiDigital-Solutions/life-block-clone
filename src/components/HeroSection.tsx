@@ -67,6 +67,81 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
     >
+      {/* Mobile: Mini iris wheel + accent elements */}
+      <div className="absolute inset-0 z-0 md:hidden overflow-hidden">
+        {/* Mini rotating iris wheel - bottom right */}
+        <div className="absolute bottom-28 right-4 w-[160px] h-[160px] flex items-center justify-center">
+          <motion.div
+            className="absolute w-[160px] h-[160px]"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            {Array.from({ length: 24 }, (_, spoke) => {
+              const angle = (spoke / 24) * 360;
+              const radians = (angle * Math.PI) / 180;
+              const brandColors = { blue: "#0EAAD8", amber: "#F5A623", green: "#3DC88E", red: "#E04545" };
+              let spokeColor = brandColors.blue;
+              if (spoke === 6) spokeColor = brandColors.red;
+              else if (spoke === 12) spokeColor = brandColors.green;
+              else if (spoke === 18) spokeColor = brandColors.amber;
+              
+              return Array.from({ length: 3 }, (_, p) => {
+                const radius = 30 + p * 14;
+                const pSize = 5 + (2 - p) * 1;
+                const x = Math.sin(radians) * radius;
+                const y = -Math.cos(radians) * radius;
+                return (
+                  <div
+                    key={`m-${spoke}-${p}`}
+                    className="absolute rounded-full"
+                    style={{
+                      width: pSize, height: pSize,
+                      backgroundColor: spokeColor,
+                      left: "50%", top: "50%",
+                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                      opacity: 1 - p * 0.15,
+                    }}
+                  />
+                );
+              });
+            })}
+          </motion.div>
+          {/* Center dot */}
+          <div className="absolute w-[14px] h-[14px] rounded-full" style={{
+            background: "radial-gradient(circle, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 100%)",
+            boxShadow: "inset 0 0 8px rgba(14,170,216,0.4)",
+          }} />
+        </div>
+
+        {/* Thin accent line from wheel */}
+        <motion.div
+          className="absolute bottom-[108px] right-0 h-[2px]"
+          style={{
+            background: "linear-gradient(270deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 40%, transparent 100%)",
+          }}
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "40%", opacity: 0.35 }}
+          transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
+        />
+
+        {/* Scattered subtle particles */}
+        {Array.from({ length: 40 }, (_, i) => {
+          const x = Math.random() * 100;
+          const y = 40 + Math.random() * 50;
+          const size = 1.5 + Math.random() * 2.5;
+          const isGreen = Math.random() > 0.5;
+          return (
+            <motion.div
+              key={`mp-${i}`}
+              className={`absolute rounded-full ${isGreen ? 'bg-primary' : 'bg-foreground'}`}
+              style={{ width: size, height: size, left: `${x}%`, top: `${y}%` }}
+              animate={{ opacity: [0.1, 0.5, 0.15] }}
+              transition={{ duration: 2 + Math.random() * 2, delay: Math.random() * 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          );
+        })}
+      </div>
+
       {/* Static Particle Background - Funnel Shape (Desktop Only) */}
       <div className="absolute inset-0 z-0 overflow-hidden hidden md:block">
         {particles.map((particle) => (
@@ -305,7 +380,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+              className="text-[2.75rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               Supplier Intelligence<br />
               Platform
