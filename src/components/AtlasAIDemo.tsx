@@ -11,7 +11,6 @@ const AtlasAIDemo = () => {
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 
-  // 5 frames, 15s total
   const frameDurations = [2500, 3000, 3500, 3000, 3000];
 
   const advanceFrame = useCallback(() => {
@@ -30,8 +29,7 @@ const AtlasAIDemo = () => {
       {/* Pause button */}
       <button
         onClick={() => setIsPaused(!isPaused)}
-        className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center text-xs"
-        style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "#9CA3AF" }}
+        className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center text-xs bg-card/50 text-muted-foreground hover:bg-card/80 transition-colors"
         aria-label={isPaused ? "Play animation" : "Pause animation"}
       >
         {isPaused ? "▶" : "❚❚"}
@@ -39,63 +37,65 @@ const AtlasAIDemo = () => {
 
       {/* Main container */}
       <div
-        className="w-full rounded-2xl overflow-hidden"
-        style={{
-          backgroundColor: "#111827",
-          aspectRatio: "16/9",
-          boxShadow: "0 25px 70px rgba(0,0,0,0.2)",
-        }}
+        className="w-full rounded-2xl overflow-hidden border border-border bg-card"
+        style={{ aspectRatio: "16/9" }}
       >
         {/* Header bar */}
-        <div className="flex items-center justify-between px-3 md:px-5 py-2" style={{ backgroundColor: "#0D1117", borderBottom: "1px solid #1F2937" }}>
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between px-4 md:px-5 py-2.5 bg-foreground/[0.03]" style={{ borderBottom: "1px solid hsl(var(--border))" }}>
+          <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: "#EF4444" }} />
-              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: "#F59E0B" }} />
-              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: "#10B981" }} />
+              <span className="w-2.5 h-2.5 rounded-full bg-destructive" />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "hsl(var(--warning))" }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "hsl(var(--accent))" }} />
             </div>
-            <span className="text-[10px] font-semibold ml-2" style={{ color: "#FFFFFF" }}>YVOO Auditor Interface</span>
+            <span className="text-xs font-semibold text-foreground">YVOO Auditor Interface</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[9px]" style={{ color: "#6B7280" }}>IATF 16949 Audit</span>
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ backgroundColor: "#1F2937" }}>
-              <span className="text-[9px]" style={{ color: "#10B981" }}>● Live</span>
+            <span className="text-[10px] text-muted-foreground hidden md:inline">IATF 16949 Audit</span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted">
+              <span className="text-[10px] font-medium" style={{ color: "hsl(var(--accent))" }}>● Live</span>
             </div>
           </div>
         </div>
 
         {/* 3-Panel Layout */}
-        <div className="flex h-[calc(100%-32px)]">
+        <div className="flex h-[calc(100%-38px)]">
           {/* Left Panel - Checklist */}
-          <div className="hidden md:block" style={{ width: "22%", backgroundColor: "#111827" }}>
+          <div className="hidden md:block bg-card" style={{ width: "24%" }}>
             <ChecklistPanel frame={frame} />
           </div>
 
           {/* Middle Panel - AI Guidance */}
-          <div style={{ flex: 1, backgroundColor: "#1A1F2E" }}>
+          <div className="flex-1 bg-card">
             <AIGuidancePanel frame={frame} />
           </div>
 
           {/* Right Panel - Intelligence */}
-          <div className="hidden md:block" style={{ width: "25%", backgroundColor: "#111827" }}>
+          <div className="hidden md:block bg-card" style={{ width: "26%" }}>
             <IntelligencePanel frame={frame} />
           </div>
         </div>
       </div>
 
       {/* Frame indicator */}
-      <div className="flex justify-center gap-1.5 mt-3">
-        {frameDurations.map((_, i) => (
+      <div className="flex justify-center items-center gap-2 mt-4">
+        {["Voice Input", "Analyzing", "AI Guidance", "Evidence", "Summary"].map((label, i) => (
           <button
             key={i}
             onClick={() => setFrame(i)}
-            className="w-2 h-2 rounded-full transition-all"
+            className="flex items-center gap-1.5 px-2 py-1 rounded-full transition-all text-[10px]"
             style={{
-              backgroundColor: i === frame ? "#2563EB" : "#374151",
-              transform: i === frame ? "scale(1.3)" : "scale(1)",
+              backgroundColor: i === frame ? "hsl(var(--primary) / 0.1)" : "transparent",
+              color: i === frame ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+              fontWeight: i === frame ? 600 : 400,
             }}
-            aria-label={`Go to frame ${i + 1}`}
-          />
+            aria-label={`Go to frame: ${label}`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{
+              backgroundColor: i === frame ? "hsl(var(--primary))" : "hsl(var(--border))",
+            }} />
+            <span className="hidden md:inline">{label}</span>
+          </button>
         ))}
       </div>
     </div>

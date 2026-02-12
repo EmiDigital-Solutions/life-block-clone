@@ -19,55 +19,62 @@ const ChecklistPanel = ({ frame }: ChecklistPanelProps) => {
   return (
     <div className="h-full flex flex-col text-left" style={{ minWidth: 0 }}>
       {/* Header */}
-      <div className="px-3 py-2" style={{ borderBottom: "1px solid #374151" }}>
-        <div className="flex items-center gap-1.5 mb-1">
-          <span className="text-xs">📋</span>
-          <span className="text-[10px] font-semibold" style={{ color: "#FFFFFF" }}>Audit Checklist</span>
+      <div className="px-4 py-3" style={{ borderBottom: "1px solid hsl(var(--border))" }}>
+        <div className="flex items-center gap-2 mb-1.5">
+          <span className="text-sm">📋</span>
+          <span className="text-xs font-semibold text-foreground">Audit Checklist</span>
         </div>
-        <div className="text-[9px] space-y-0.5" style={{ color: "#9CA3AF" }}>
-          <div>Supplier: Precision Parts GmbH</div>
-          <div>Standard: IATF 16949</div>
+        <div className="text-[10px] md:text-xs space-y-0.5 text-muted-foreground">
+          <div>Supplier: <span className="text-foreground/90 font-medium">Precision Parts GmbH</span></div>
+          <div>Standard: <span className="text-foreground/90 font-medium">IATF 16949</span></div>
         </div>
         {/* Progress bar */}
-        <div className="mt-1.5 flex items-center gap-2">
-          <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "#374151" }}>
+        <div className="mt-2 flex items-center gap-2">
+          <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ backgroundColor: "hsl(var(--muted))" }}>
             <motion.div
-              className="h-full rounded-full"
-              style={{ backgroundColor: "#2563EB" }}
+              className="h-full rounded-full bg-primary"
               animate={{ width: frame >= 4 ? "52%" : "45%" }}
               transition={{ duration: 0.8 }}
             />
           </div>
-          <span className="text-[9px] font-medium" style={{ color: "#9CA3AF" }}>
+          <span className="text-[10px] md:text-xs font-semibold text-primary">
             {frame >= 4 ? "52%" : "45%"}
           </span>
         </div>
       </div>
 
       {/* Checklist items */}
-      <div className="flex-1 overflow-hidden px-1 py-1">
-        {checklistItems.map((item, i) => (
+      <div className="flex-1 overflow-hidden px-2 py-2">
+        {checklistItems.map((item) => (
           <motion.div
             key={item.id}
-            className="flex items-center gap-1 py-[3px] px-2 rounded text-[9px]"
+            className="flex items-center gap-1.5 py-1 px-2 rounded text-[10px] md:text-xs"
             style={{
-              paddingLeft: item.sub ? "16px" : "8px",
-              backgroundColor: item.status === "current" ? "rgba(37, 99, 235, 0.15)" : "transparent",
-              color: item.status === "done" ? "#6B7280" : item.status === "current" ? "#FFFFFF" : "#9CA3AF",
+              paddingLeft: item.sub ? "20px" : "8px",
+              backgroundColor: item.status === "current" ? "hsl(var(--primary) / 0.1)" : "transparent",
+              color: item.status === "done"
+                ? "hsl(var(--muted-foreground))"
+                : item.status === "current"
+                  ? "hsl(var(--foreground))"
+                  : "hsl(var(--muted-foreground) / 0.7)",
             }}
             animate={item.status === "current" && frame >= 0 ? {
-              backgroundColor: ["rgba(37, 99, 235, 0.1)", "rgba(37, 99, 235, 0.2)", "rgba(37, 99, 235, 0.1)"],
+              backgroundColor: ["hsl(var(--primary) / 0.05)", "hsl(var(--primary) / 0.15)", "hsl(var(--primary) / 0.05)"],
             } : {}}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="w-3 text-center">
-              {item.status === "done" ? "✓" : item.status === "current" ? "→" : "○"}
+            <span className="w-4 text-center">
+              {item.status === "done" ? (
+                <span style={{ color: "hsl(var(--accent))" }}>✓</span>
+              ) : item.status === "current" ? (
+                <span className="text-primary">→</span>
+              ) : "○"}
             </span>
             <span className={item.section ? "font-semibold" : ""}>
               {item.id} {item.label}
             </span>
             {item.status === "current" && (
-              <span className="ml-auto text-[8px] px-1 rounded" style={{ backgroundColor: "#DC2626", color: "#FFF" }}>
+              <span className="ml-auto text-[9px] md:text-[10px] px-1.5 py-0.5 rounded font-semibold bg-destructive text-destructive-foreground">
                 HIGH
               </span>
             )}
