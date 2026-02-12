@@ -1,22 +1,54 @@
 import { motion } from "framer-motion";
-import { Mic, Brain, Camera, ArrowRight, X, Check } from "lucide-react";
-import AtlasAIDemo from "./AtlasAIDemo";
+import { ArrowRight, X, Check, Brain } from "lucide-react";
+import checklistMockup from "@/assets/atlas-checklist-mockup.jpg";
+import guidanceMockup from "@/assets/atlas-ai-guidance-mockup.jpg";
+import evidenceMockup from "@/assets/atlas-evidence-mockup.jpg";
+import intelligenceMockup from "@/assets/atlas-intelligence-mockup.jpg";
 
-const featureCards = [
+const featureBlocks = [
   {
-    icon: Mic,
-    title: "Voice-Guided Auditing",
-    description: "Hands-free voice input with real-time transcription. Auditors stay focused on the inspection while Atlas captures every detail.",
+    title: "AI-powered audit checklist",
+    description: "Standards auto-loaded with real-time progress tracking. Atlas knows your IATF 16949, ISO 9001, or any framework — and guides auditors through each clause with priority indicators and completion status.",
+    bullets: [
+      "Auto-loaded standards frameworks",
+      "Live progress tracking at 45%+ completion",
+      "Priority flags for high-risk clauses",
+    ],
+    image: checklistMockup,
+    alt: "Atlas AI audit checklist interface showing IATF 16949 standard with progress tracking",
   },
   {
-    icon: Brain,
-    title: "AI Intelligence Engine",
-    description: "Powered by 47+ similar audit patterns, Atlas delivers contextual guidance, risk correlations, and client-specific priorities in real time.",
+    title: "Real-time AI guidance",
+    description: "Atlas analyzes 47+ similar audits to deliver contextual findings, risk correlations, and client-specific intelligence — while the auditor is still on-site.",
+    bullets: [
+      "Voice-guided hands-free auditing",
+      "Pattern detection from similar audits",
+      "Client-specific priority alerts (BMW, Siemens)",
+    ],
+    image: guidanceMockup,
+    alt: "Atlas AI Copilot panel showing real-time AI findings and risk correlations",
   },
   {
-    icon: Camera,
-    title: "Smart Evidence Capture",
-    description: "Photo recognition, text extraction, and automatic linking to standard requirements. Evidence is verified and catalogued instantly.",
+    title: "Smart evidence capture",
+    description: "Photo recognition and text extraction with automatic linking to standard requirements. Evidence is verified, catalogued, and tagged to findings instantly.",
+    bullets: [
+      "Auto-tagging photos to requirements",
+      "OCR text extraction from documents",
+      "Instant evidence verification",
+    ],
+    image: evidenceMockup,
+    alt: "Atlas AI evidence capture interface with photo thumbnails and auto-tagging",
+  },
+  {
+    title: "Intelligence insights dashboard",
+    description: "Real-time risk scoring, pattern detection, and maturity-level assessment. Atlas surfaces correlations between findings and predicts audit outcomes before the report is written.",
+    bullets: [
+      "78% calibration correlation detected",
+      "Live findings summary (Major/Minor NC)",
+      "Predictive outcome: Approved with conditions",
+    ],
+    image: intelligenceMockup,
+    alt: "Atlas AI intelligence insights dashboard with risk scoring and findings summary",
   },
 ];
 
@@ -41,11 +73,11 @@ const AtlasAISection = () => {
     <section className="w-full bg-background">
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-20 md:py-[120px]">
         {/* Hero */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-24">
           <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-4 block">
             Atlas AI
           </span>
-          <h2 className="text-4xl md:text-[56px] font-bold text-foreground tracking-[-0.02em] leading-[1.1] mb-6 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-[56px] font-bold text-foreground tracking-[-0.03em] leading-[0.95] mb-6 max-w-3xl mx-auto">
             Meet Atlas, the AI Copilot for smarter auditing
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
@@ -60,39 +92,47 @@ const AtlasAISection = () => {
           </a>
         </div>
 
-        {/* 3 Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-          {featureCards.map((card, i) => (
+        {/* Feature Sections - Archlet style alternating */}
+        <div className="space-y-24 md:space-y-32 mb-24">
+          {featureBlocks.map((block, i) => (
             <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={block.title}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="bg-muted p-8 border border-border"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+              className={`flex flex-col gap-10 md:gap-16 items-center ${
+                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
             >
-              <div className="w-12 h-12 flex items-center justify-center bg-primary/10 mb-5">
-                <card.icon className="w-6 h-6 text-primary" />
+              {/* Text */}
+              <div className="flex-1 max-w-lg">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-[-0.02em] leading-[1.1] mb-4">
+                  {block.title}
+                </h3>
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                  {block.description}
+                </p>
+                <ul className="space-y-3">
+                  {block.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-3 text-sm">
+                      <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "hsl(var(--accent))" }} />
+                      <span className="text-foreground/80">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+
+              {/* Image */}
+              <div className="flex-1 w-full">
+                <img
+                  src={block.image}
+                  alt={block.alt}
+                  className="w-full h-auto border border-border"
+                />
+              </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Animated Demo */}
-        <div className="mb-20">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              See Atlas in action
-            </h3>
-            <p className="text-muted-foreground">
-              Watch how Atlas guides an IATF 16949 audit in real time
-            </p>
-          </div>
-          <div className="max-w-[1100px] mx-auto">
-            <AtlasAIDemo />
-          </div>
         </div>
 
         {/* Traditional vs Atlas AI Comparison */}
@@ -102,8 +142,8 @@ const AtlasAISection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-[-0.02em] mb-3">
               Why auditors choose Atlas
             </h3>
             <p className="text-muted-foreground">
