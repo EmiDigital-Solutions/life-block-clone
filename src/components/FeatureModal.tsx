@@ -446,9 +446,9 @@ export const FeatureModal = ({ feature, onClose }: FeatureModalProps) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                  Get Started
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                 <Button size="lg" variant="outline">
+                   Get Started
+                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </motion.div>
             </div>

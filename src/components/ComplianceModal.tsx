@@ -308,7 +308,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
               <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
                 Get in touch with our team to discuss how YVOO ScanPro+ can help with your supplier verification needs.
               </p>
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
+               <Button size="lg" variant="outline">
                 Get In Touch
                 <ArrowRight className="w-4 h-4" />
               </Button>

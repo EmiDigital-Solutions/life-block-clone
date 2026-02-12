@@ -299,7 +299,7 @@ export const IndustryUseCaseModal = ({ useCase, onClose }: IndustryUseCaseModalP
               <p className="text-foreground/60 text-lg mb-8 max-w-2xl mx-auto">
                 Get in touch with our team to discuss how YVOO ScanPro+ can help with your industry-specific audit needs.
               </p>
-              <Button size="lg" className="bg-foreground text-white hover:bg-foreground/90">
+                <Button size="lg" variant="default">
                 Get In Touch
                 <ArrowRight className="w-4 h-4" />
               </Button>
