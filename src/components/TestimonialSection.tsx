@@ -51,7 +51,7 @@ const TestimonialSection = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-[#EA580C] hover:bg-[#EA580C]/90 text-white px-10 py-5 text-lg rounded-lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-5 text-lg"
               >
                 <a
                   href="https://calendly.com/yvoo/demo-yvoo"
