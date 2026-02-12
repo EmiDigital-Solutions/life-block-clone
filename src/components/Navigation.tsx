@@ -196,7 +196,7 @@ const Navigation = () => {
                 className="block group py-1 md:py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-foreground/60 transition-colors">
                   Customer Stories
                 </span>
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">

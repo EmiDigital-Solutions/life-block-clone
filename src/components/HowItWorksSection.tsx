@@ -112,7 +112,7 @@ export const HowItWorksSection = () => {
                   {/* Number */}
                   <div className="flex items-start justify-between mb-auto">
                     <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
-                      hoveredIndex === index ? 'text-primary' : 'text-primary/80'
+                      hoveredIndex === index ? 'text-foreground' : 'text-foreground/40'
                     }`}>
                       {step.number}
                     </span>
@@ -144,7 +144,7 @@ export const HowItWorksSection = () => {
                   </div>
                   
                   {/* Hover indicator line */}
-                  <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ${
+                  <div className={`absolute bottom-0 left-0 h-[2px] bg-foreground transition-all duration-500 ${
                     hoveredIndex === index ? 'w-full' : 'w-0'
                   }`} />
                 </div>
