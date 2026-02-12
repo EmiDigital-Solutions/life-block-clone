@@ -85,9 +85,9 @@ const Navigation = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-xl md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
-              Book a Call
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-            </a>
+               Demo
+               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+             </a>
           </div>
         </div>
 
@@ -212,7 +212,7 @@ const Navigation = () => {
                 className="md:hidden flex items-center justify-center gap-2 bg-foreground text-white px-4 py-3 mt-3 rounded-full font-medium text-sm hover:bg-foreground/90 transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Book a Call
+                Demo
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </nav>
