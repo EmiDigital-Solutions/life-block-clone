@@ -65,7 +65,8 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-lg lg:text-xl mb-8"
               >
-                €15,000 → €700 per audit. Weeks → 3 days. AI-powered verification with 99% accuracy—so you never get burned by a bad supplier again.
+                €15,000 → €700 per audit. Weeks → 3 days.<br />
+                AI-powered audits with 99% accuracy.
               </motion.p>
 
               <motion.div
