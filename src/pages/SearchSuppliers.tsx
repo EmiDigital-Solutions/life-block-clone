@@ -1342,11 +1342,8 @@ const ComparisonMockup = () => {
               }}
             >
               <div 
-                className={`w-full h-full rounded-full ${
-                  particle.isGreen 
-                    ? "bg-primary" 
-                    : "bg-white"
-                }`}
+                className="w-full h-full rounded-full"
+                style={{ backgroundColor: "#0EAAD8" }}
               />
             </motion.div>
           ))}
@@ -1463,25 +1460,15 @@ const ComparisonMockup = () => {
             />
           </div>
 
-          {/* AI Iris Wheel at Focal Point - 2x size */}
+          {/* AI Iris Wheel at Focal Point */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center"
-            style={{ left: "60%", width: 400, height: 400 }}
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
+            style={{ left: "60%", width: 500, height: 500 }}
           >
-            {/* Subtle outer glow */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 560,
-                height: 560,
-                background: "radial-gradient(circle, rgba(10, 127, 165, 0.15) 0%, transparent 70%)",
-              }}
-            />
-            
             {/* Rotating particle wheel */}
             <motion.div
               className="absolute"
-              style={{ width: 400, height: 400 }}
+              style={{ width: 500, height: 500 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
@@ -1490,10 +1477,10 @@ const ComparisonMockup = () => {
                 const radians = (angle * Math.PI) / 180;
                 
                 const brandColors = {
-                  blue: "#0A7FA5",
-                  amber: "#E39B5C",
-                  green: "#6EA996",
-                  red: "#AD3D3D",
+                  blue: "#0EAAD8",
+                  amber: "#F5A623",
+                  green: "#3DC88E",
+                  red: "#E04545",
                 };
                 
                 let spokeColor: string;
@@ -1503,10 +1490,10 @@ const ComparisonMockup = () => {
                 else spokeColor = brandColors.blue;
                 
                 return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 84;
-                  const particleSpacing = 20;
+                  const innerRadius = 105;
+                  const particleSpacing = 25;
                   const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 8 + (4 - p) * 1;
+                  const particleSize = 9 + (4 - p) * 1.5;
                   
                   const x = Math.sin(radians) * radius;
                   const y = -Math.cos(radians) * radius;
@@ -1522,7 +1509,7 @@ const ComparisonMockup = () => {
                         left: "50%",
                         top: "50%",
                         transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 0.9 - p * 0.1,
+                        opacity: 1 - p * 0.1,
                       }}
                     />
                   );
@@ -1534,10 +1521,10 @@ const ComparisonMockup = () => {
             <div
               className="absolute rounded-full"
               style={{
-                width: 36,
-                height: 36,
+                width: 45,
+                height: 45,
                 background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 20px rgba(10, 127, 165, 0.3)",
+                boxShadow: "inset 0 0 20px rgba(14, 170, 216, 0.4)",
               }}
             />
           </div>
