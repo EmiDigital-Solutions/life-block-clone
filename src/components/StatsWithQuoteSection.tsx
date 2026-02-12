@@ -18,7 +18,7 @@ const StatsWithQuoteSection = () => {
           viewport={{ once: true }}
           className="section-headline text-foreground max-w-2xl mb-16"
         >
-          Trusted by industry leaders worldwide
+          Built for Enterprise Scale
         </motion.h2>
 
         {/* KPI Grid 2x2 */}
