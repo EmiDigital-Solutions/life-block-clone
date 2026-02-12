@@ -11,38 +11,32 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// Generate static funnel-shaped particles (wide on left, converging to right)
-const generateFunnelParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 60% (left side to laser point)
-    const xProgress = Math.random();
-    const x = xProgress * 60;
-    
-    // Y spread: wide on left (0), narrow at laser point (1)
-    const maxYSpread = 50 - (xProgress * 42);
-    const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
-    const y = 50 + yOffset;
-    
-    // Larger particles, varying size based on position
-    const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
-    
-    // More green particles throughout - higher probability
-    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
-    
-    // Higher opacity for visibility
-    const opacity = 0.5 + Math.random() * 0.5;
-    
-    return {
-      id: i,
-      x,
-      y,
-      size,
-      isGreen,
-      opacity,
-      delay: Math.random() * 4,
-    };
-  });
+// Generate particles in a straight channel matching the wheel diameter
+const generateChannelParticles = () => {
+  const particles: Array<{ id: number; x: number; y: number; size: number; isGreen: boolean; opacity: number; delay: number }> = [];
+  const channelHalfHeight = 17.5;
+  const cols = 60;
+  const rows = 20;
+  const size = 9;
+  let id = 0;
+
+  for (let col = 0; col < cols; col++) {
+    const x = (col / cols) * 58;
+    for (let row = 0; row < rows; row++) {
+      const yOffset = ((row / (rows - 1)) * 2 - 1) * channelHalfHeight;
+      const y = 50 + yOffset;
+      particles.push({
+        id: id++,
+        x,
+        y,
+        size,
+        isGreen: false,
+        opacity: 0.6 + (row % 2) * 0.2,
+        delay: (col * 0.07) + (row * 0.03),
+      });
+    }
+  }
+  return particles;
 };
 
 // Import procurement images for hero carousel background
@@ -619,7 +613,7 @@ const SearchSuppliers = () => {
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   
   // Generate particles for hero section
-  const particles = useMemo(() => generateFunnelParticles(1200), []);
+  const particles = useMemo(() => generateChannelParticles(), []);
 
   // Three different search scenarios - rotating industries
   const scenarios = [
