@@ -76,7 +76,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button asChild size="lg" className="w-full sm:w-auto text-sm sm:text-base">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <a
                     href="https://calendly.com/yvoo/demo-yvoo"
                     target="_blank"
@@ -86,7 +86,7 @@ const HeroSection = () => {
                     <span className="hidden sm:inline">Get Your First Audit Free</span>
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-base" onClick={() => setShowROIModal(true)}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={() => setShowROIModal(true)}>
                   <span className="sm:hidden">Calculate ROI</span>
                   <span className="hidden sm:inline">Calculate Your ROI</span>
                 </Button>
