@@ -1,6 +1,21 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
+const marqueeItems = [
+  "Built for high‑performance B2B Supply Chains",
+  "Automotive",
+  "Aerospace",
+  "Medical Devices",
+  "Pharma",
+  "Electronics",
+  "Energy",
+  "Chemical",
+  "Industrial Manufacturing",
+  "Precision Engineering",
+  "Defense",
+  "Rail & Transport",
+];
+
 const HeroSection = () => {
   return (
     <section
@@ -76,6 +91,30 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Scrolling Industry Band */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="relative z-10 border-t border-foreground/10 overflow-hidden py-5"
+      >
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span
+              key={i}
+              className={`mx-6 md:mx-10 text-sm md:text-base tracking-widest uppercase ${
+                item.startsWith("Built")
+                  ? "font-bold text-foreground"
+                  : "font-medium text-foreground/40"
+              }`}
+            >
+              {item}
+              <span className="ml-6 md:ml-10 text-foreground/20">·</span>
+            </span>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
