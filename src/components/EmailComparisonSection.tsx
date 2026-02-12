@@ -113,51 +113,6 @@ const EmailComparisonSection = () => {
         </motion.div>
       </div>
 
-      {/* CTA Section */}
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="py-12 md:py-16 lg:py-20 text-center"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">
-            €15,000 → €700{" "}
-            <span className="text-foreground/40 mx-2">|</span>{" "}
-            3 Weeks → 3 Days
-          </h2>
-
-          <Button
-            size="lg"
-            onClick={() => {
-              const demoSection = document.getElementById('platform-demo');
-              if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            See How YVOO Works
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
-            >
-              Book Expert Call
-            </a>
-            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
-            <button
-              onClick={() => setShowROIModal(true)}
-              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
-            >
-              Calculate Your ROI
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
       {/* ROI Calculator Modal */}
       <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
