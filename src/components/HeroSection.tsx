@@ -286,8 +286,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-foreground/60 text-sm tracking-widest uppercase mb-6"
-            >
-              AI-Powered Intelligence Platform
+              >
+              AI-Powered Supplier Verification
             </motion.p>
 
             {/* Main Headline */}
@@ -297,8 +297,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              Supplier Intelligence<br />
-              Platform
+              Verify Suppliers<br />
+              in Days, Not Weeks
             </motion.h1>
 
             {/* Subtitle + CTA Container - Right aligned below headline */}
@@ -309,23 +309,15 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-lg lg:text-xl mb-8"
               >
-                The Future of AI-Driven Supplier Search & Audit
+                Reduce supplier risk by 85%. Cut verification from 14 days to 3. AI-powered audits with 99% accuracy—so you never get burned by a bad supplier again.
               </motion.p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-foreground/60 text-base lg:text-lg mb-8"
-              >
-                Always <span className="text-primary font-medium">Ground Truth</span>. Verifiable data for critical business decisions.
-              </motion.p>
-
-              {/* CTA Button */}
+              {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4"
               >
                 <Button asChild size="lg">
                   <a 
@@ -333,7 +325,16 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Request a demo
+                    Get Your First Audit Free
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <a 
+                    href="https://calendly.com/yvoo/demo-yvoo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    See How We'd Verify Your Supplier
                   </a>
                 </Button>
               </motion.div>
@@ -349,6 +350,9 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 1 }}
         className="bg-foreground/5 py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
       >
+        <p className="text-center text-foreground/40 text-xs tracking-widest uppercase mb-5">
+          Built for procurement teams at companies like
+        </p>
         <div className="relative flex">
           <motion.div
             className="flex gap-16 whitespace-nowrap"
