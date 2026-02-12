@@ -22,7 +22,7 @@ const TestimonialSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="section-headline text-foreground mb-10 md:mb-14 max-w-3xl"
+            className="section-headline text-foreground mb-10 md:mb-14"
           >
             See the platform in action
           </motion.h2>
