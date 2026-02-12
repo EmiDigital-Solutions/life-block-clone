@@ -16,12 +16,11 @@ const generateFunnelParticles = (count: number) => {
     const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
     const y = 50 + yOffset;
     
-    // Larger particles, varying size based on position
-    const baseSize = 2 + Math.random() * 4;
-    const size = xProgress > 0.7 ? baseSize * 0.7 : baseSize;
+    // Size matches outer ring dots of the wheel (baseParticleSize = 9 desktop)
+    const size = 9;
     
-    // More green particles throughout - higher probability
-    const isGreen = xProgress > 0.3 ? Math.random() > 0.2 : Math.random() > 0.4;
+    // All particles are blue like the wheel
+    const isGreen = false;
     
     // Higher opacity for visibility
     const opacity = 0.5 + Math.random() * 0.5;
