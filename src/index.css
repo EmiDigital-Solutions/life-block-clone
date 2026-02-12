@@ -23,7 +23,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 195 91% 45%; /* YVOO Blue #0EAAD8 */
+    --primary: 195 88.5714% 34.3137%; /* YVOO Blue #0EAAD8 */
     --primary-foreground: 0 0% 0%;
 
     --secondary: 161 25.5411% 54.7059%; /* BlueGrey Light #ACC5D9 */
@@ -84,7 +84,7 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 195 91% 45%; /* YVOO Blue #0EAAD8 */
+    --primary: 196 81.9048% 41.1765%; /* YVOO Blue #0EAAD8 */
     --primary-foreground: 0 0% 0%;
 
     --secondary: 192 20% 72%; /* BlueGrey Light #ACC5D9 */
