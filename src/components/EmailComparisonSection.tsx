@@ -104,7 +104,7 @@ const EmailComparisonSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="bg-muted p-8 hover:bg-muted/80 transition-colors duration-300 aspect-square flex flex-col justify-center"
+              className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
               <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
               <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
