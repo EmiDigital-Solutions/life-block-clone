@@ -1544,7 +1544,7 @@ const ComparisonMockup = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-white/50 text-sm tracking-widest uppercase mb-6"
+                className="text-foreground/60 text-sm tracking-widest uppercase mb-6"
               >
                 Conversational Search
               </motion.p>
@@ -1554,7 +1554,7 @@ const ComparisonMockup = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
                 AI-guided<br />
                 supplier discovery
@@ -1570,7 +1570,7 @@ const ComparisonMockup = () => {
                   className="flex flex-wrap gap-4 mb-8"
                 >
                   {["25+ million profiles", "Verified data", "Export ready"].map((text, index) => (
-                    <div key={index} className="flex items-center gap-2 text-white/70">
+                    <div key={index} className="flex items-center gap-2 text-foreground/70">
                       <Check className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm font-medium">{text}</span>
                     </div>
