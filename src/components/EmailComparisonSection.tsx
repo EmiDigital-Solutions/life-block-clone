@@ -129,7 +129,7 @@ const EmailComparisonSection = () => {
 
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 h-auto font-bold"
+            className="bg-primary text-white hover:bg-primary/90 text-lg px-12 py-7 h-auto font-bold"
             onClick={() => {
               const demoSection = document.getElementById('platform-demo');
               if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
