@@ -107,10 +107,10 @@ const HeroSection = () => {
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
               key={i}
-              className={`mx-6 md:mx-10 text-sm md:text-base tracking-widest uppercase ${
+              className={`mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase ${
                 item.startsWith("Built")
                   ? "font-bold text-foreground"
-                  : "font-medium text-foreground/40"
+                  : "font-bold text-foreground/80"
               }`}
             >
               {item}
