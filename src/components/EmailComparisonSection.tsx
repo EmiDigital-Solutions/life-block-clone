@@ -130,17 +130,43 @@ const EmailComparisonSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Experience the €700 Difference
           </h2>
+          
+          {/* Primary CTA - Large Orange Button */}
           <div className="mt-8">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 h-auto"
-              onClick={() => window.open("https://calendly.com/yvoo", "_blank")}
+              className="bg-[#F5A623] text-white hover:bg-[#E09510] text-lg px-12 py-7 h-auto font-bold"
+              onClick={() => window.open("https://calendly.com/yvoo/demo-yvoo", "_blank")}
             >
               Claim Your Free Audit
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
-          <p className="text-white/60 text-sm mt-6 max-w-lg mx-auto">
+
+          {/* Secondary - Text link */}
+          <button
+            onClick={() => {
+              const demoSection = document.getElementById('platform-demo');
+              if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="mt-6 text-white/80 hover:text-white text-base underline underline-offset-4 transition-colors"
+          >
+            → See how it works first (2min demo)
+          </button>
+
+          {/* Tertiary - Smallest text */}
+          <p className="mt-4">
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white/70 text-sm transition-colors"
+            >
+              Need to discuss first? Book a call
+            </a>
+          </p>
+
+          <p className="text-white/60 text-sm mt-8 max-w-lg mx-auto">
             Limited: First 10 customers get complete supplier audit free + money-back guarantee. 6 spots remaining.
           </p>
         </motion.div>
