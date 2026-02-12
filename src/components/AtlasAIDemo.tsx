@@ -110,7 +110,7 @@ const AtlasAIDemo = () => {
       <div
         className="w-full rounded-2xl md:rounded-2xl rounded-xl overflow-hidden"
         style={{
-          backgroundColor: "#1F2937",
+          backgroundColor: "rgba(31, 41, 55, 0.85)",
           aspectRatio: "16/9",
           boxShadow: "0 25px 70px rgba(0,0,0,0.12)",
         }}
