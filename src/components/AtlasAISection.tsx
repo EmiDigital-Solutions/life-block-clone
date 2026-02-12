@@ -1,3 +1,5 @@
+import AtlasAIDemo from "./AtlasAIDemo";
+
 const AtlasAISection = () => {
   return (
     <section className="w-full bg-background">
@@ -9,13 +11,14 @@ const AtlasAISection = () => {
           Expert guidance. Every auditor.
         </p>
 
-        {/* Image Container */}
-        <div className="max-w-[1200px] mx-auto rounded-2xl md:rounded-2xl rounded-xl shadow-[0_25px_70px_rgba(0,0,0,0.12)] overflow-hidden">
-          {/* Placeholder – replace src with your uploaded atlas-ai-action.png */}
-          <div className="w-full aspect-video bg-[hsl(var(--navy-deep))] flex items-center justify-center">
-            <span className="text-muted-foreground text-lg">Atlas AI Interface</span>
-          </div>
+        {/* Animated Demo */}
+        <div className="max-w-[1200px] mx-auto">
+          <AtlasAIDemo />
         </div>
+
+        <p className="text-sm text-muted-foreground mt-8">
+          Voice-guided auditing with real-time AI intelligence
+        </p>
       </div>
     </section>
   );
