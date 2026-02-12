@@ -119,11 +119,11 @@ const EmailComparisonSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-foreground p-12 md:p-16 lg:p-20 text-center"
+          className="py-12 md:py-16 lg:py-20 text-center"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-10">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">
             €15,000 → €700{" "}
-            <span className="text-background/40 mx-2">|</span>{" "}
+            <span className="text-foreground/40 mx-2">|</span>{" "}
             3 Weeks → 3 Days
           </h2>
 
@@ -143,14 +143,14 @@ const EmailComparisonSection = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/70 hover:text-background text-base underline underline-offset-4 transition-colors"
+              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
             >
               Book Expert Call
             </a>
-            <span className="text-background/30 hidden sm:inline">|</span>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
             <button
               onClick={() => setShowROIModal(true)}
-              className="text-background/70 hover:text-background text-base underline underline-offset-4 transition-colors"
+              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
             >
               Calculate Your ROI
             </button>
