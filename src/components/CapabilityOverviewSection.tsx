@@ -22,7 +22,7 @@ const capabilities = [
 
 const CapabilityOverviewSection = () => {
   return (
-    <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-6 md:pb-8">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
