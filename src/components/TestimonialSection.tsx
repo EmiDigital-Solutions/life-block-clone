@@ -15,7 +15,7 @@ const TestimonialSection = () => {
   return (
     <section id="platform-demo" className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
-        <div className="max-w-[1100px] mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           {/* Platform Demo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -40,8 +40,11 @@ const TestimonialSection = () => {
             )}
 
             {/* Below video text */}
-            <p className="text-lg text-muted-foreground text-center mt-6 mb-6">
-              Complete supplier intelligence. From matching to final report.
+            <h3 className="text-xl font-medium text-foreground text-center mt-8 mb-4">
+              From Search to Intelligence. All in One Platform.
+            </h3>
+            <p className="text-base text-muted-foreground text-center mb-8">
+              AI-powered supplier discovery, on-demand audits, real-time intelligence
             </p>
 
             {/* CTA Button */}
@@ -49,14 +52,14 @@ const TestimonialSection = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-[#EA580C] hover:bg-[#EA580C]/90 text-white px-8 py-4"
+                className="bg-[#EA580C] hover:bg-[#EA580C]/90 text-white px-10 py-5 text-lg rounded-lg"
               >
                 <a
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  See It In Action
+                  Experience the Platform
                 </a>
               </Button>
             </div>
