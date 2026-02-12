@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section
       data-nav-theme="light"
-      className="relative min-h-screen flex flex-col bg-[#DFDFDF]"
+      className="relative min-h-screen flex flex-col bg-white"
     >
       {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
