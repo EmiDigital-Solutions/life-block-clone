@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import ROICalculator from "./ROICalculator";
 
 const marqueeItems = [
   "Built for high‑performance B2B Supply Chains",
@@ -17,7 +20,10 @@ const marqueeItems = [
 ];
 
 const HeroSection = () => {
+  const [showROIModal, setShowROIModal] = useState(false);
+
   return (
+    <>
     <section
       data-nav-theme="light"
       className="relative min-h-screen flex flex-col bg-white"
@@ -87,6 +93,20 @@ const HeroSection = () => {
                   </a>
                 </Button>
               </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="mt-4"
+              >
+                <button
+                  onClick={() => setShowROIModal(true)}
+                  className="text-muted-foreground hover:text-foreground text-base font-mono tracking-wide underline underline-offset-4 transition-colors"
+                >
+                  Calculate Your ROI
+                </button>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -116,6 +136,17 @@ const HeroSection = () => {
         </div>
       </motion.div>
     </section>
+
+    {/* ROI Calculator Modal */}
+    <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold">Calculate Your ROI</DialogTitle>
+        </DialogHeader>
+        <ROICalculator />
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 
