@@ -60,9 +60,9 @@ const Navigation = () => {
             />
           </Link>
 
-          <div className="flex-1 flex items-center justify-end">
-            {/* Hamburger Menu Button - centered between logo and CTA */}
-            <div className="flex-1 flex items-center justify-center pr-4 md:pr-0">
+          <div className="flex-1 flex items-center justify-between gap-4">
+            {/* Hamburger Menu Button - centered with spacing */}
+            <div className="flex-1 flex items-center justify-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center justify-center p-2 md:p-4 hover:bg-gray-100/30 transition-colors"
@@ -70,9 +70,9 @@ const Navigation = () => {
                 {isMenuOpen ? (
                   <X className="w-5 h-5 md:w-7 md:h-7 text-foreground" />
                 ) : (
-                  <div className="flex flex-col justify-center items-center gap-[3px] md:gap-2">
-                    <span className="w-5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
-                    <span className="w-5 md:w-8 h-[2px] md:h-[3px] bg-foreground rounded-full block" />
+                  <div className="flex flex-col justify-center items-center gap-[4px] md:gap-2.5">
+                    <span className="w-6 md:w-9 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
+                    <span className="w-6 md:w-9 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
                   </div>
                 )}
               </button>
