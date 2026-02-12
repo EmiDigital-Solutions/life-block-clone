@@ -29,7 +29,7 @@ const HeroSection = () => {
       className="relative min-h-screen flex flex-col bg-white"
     >
       {/* Main Content */}
-      <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+      <div className="flex-1 flex items-center relative z-10 pt-24 md:pt-32 lg:pt-40">
         <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -41,7 +41,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-sm text-foreground/50 font-mono tracking-wide mb-6"
+              className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
               AI-Powered Supplier Verification
             </motion.p>
@@ -51,19 +51,19 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+              className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               Verify Suppliers<br />
               in Days, Not Weeks
             </motion.h1>
 
-            {/* Subtitle + CTA */}
-            <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
+            {/* Subtitle + CTA - right-offset on mobile like Archlet */}
+            <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-foreground/60 text-lg lg:text-xl mb-8"
+                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
                 €15,000 → €700 per audit <span className="mx-3 text-foreground/30">|</span> Weeks → 3 days.<br />
                 AI-powered audits with 99% accuracy.<br />
@@ -76,7 +76,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <a
                     href="https://calendly.com/yvoo/demo-yvoo"
                     target="_blank"
@@ -85,7 +85,7 @@ const HeroSection = () => {
                     Get Your First Audit Free
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" onClick={() => setShowROIModal(true)}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={() => setShowROIModal(true)}>
                   Calculate Your ROI
                 </Button>
               </motion.div>
