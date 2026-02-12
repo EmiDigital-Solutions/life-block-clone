@@ -1,4 +1,4 @@
-import AtlasAIDemo from "./AtlasAIDemo";
+import atlasAiImage from "@/assets/atlas-ai-action.png";
 
 const AtlasAISection = () => {
   return (
@@ -11,14 +11,14 @@ const AtlasAISection = () => {
           Expert guidance. Every auditor.
         </p>
 
-        {/* Animated Demo */}
+        {/* Static Image */}
         <div className="max-w-[1200px] mx-auto">
-          <AtlasAIDemo />
+          <img
+            src={atlasAiImage}
+            alt="Atlas AI voice-guided auditing interface showing Auditor View with Atlas Copilot, evidence upload, and AI findings"
+            className="w-full h-auto rounded-2xl"
+          />
         </div>
-
-        <p className="text-sm text-muted-foreground mt-8">
-          Voice-guided auditing with real-time AI intelligence
-        </p>
       </div>
     </section>
   );
