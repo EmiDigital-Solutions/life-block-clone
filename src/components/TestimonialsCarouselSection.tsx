@@ -207,9 +207,9 @@ const TestimonialsCarouselSection = () => {
               className="w-full h-full object-cover"
             />
             {/* Decorative blue blocks overlay */}
-            <div className="absolute top-[15%] right-0 w-[45%] h-[8%] bg-primary" />
-            <div className="absolute top-[25%] left-[30%] w-[18%] h-[8%] bg-primary" />
-            <div className="absolute bottom-[12%] left-0 w-[55%] h-[10%] bg-primary" />
+            <div className="absolute top-[8%] right-0 w-[40%] h-[7%] bg-primary" />
+            <div className="absolute bottom-[22%] right-[10%] w-[50%] h-[8%] bg-primary" />
+            <div className="absolute bottom-[5%] left-0 w-[45%] h-[9%] bg-primary" />
           </motion.div>
           
           {/* Quote Content */}
