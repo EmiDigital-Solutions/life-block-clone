@@ -135,7 +135,7 @@ const EmailComparisonSection = () => {
           <div className="mt-8">
             <Button
               size="lg"
-              className="bg-[#F5A623] text-white hover:bg-[#E09510] text-lg px-12 py-7 h-auto font-bold"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 h-auto font-bold"
               onClick={() => window.open("https://calendly.com/yvoo/demo-yvoo", "_blank")}
             >
               Claim Your Free Audit
