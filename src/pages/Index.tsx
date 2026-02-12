@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import AtlasAISection from "@/components/AtlasAISection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
@@ -18,7 +17,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <AtlasAISection />
       <WhyYVOOSection />
       <TestimonialSection />
       <CapabilityOverviewSection />
