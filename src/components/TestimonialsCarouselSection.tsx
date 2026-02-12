@@ -246,34 +246,16 @@ const TestimonialsCarouselSection = () => {
           </motion.div>
         </div>
 
-        {/* Industry Use Cases - offmenu.design "Projects" Style */}
-        <div className="relative mt-16 md:mt-24">
-          {/* Giant Background Text - positioned to sit just above the cards */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        {/* Industry Projects Header */}
+        <div className="mt-16 md:mt-24 mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative flex items-end justify-center pointer-events-none overflow-visible mb-[-40px] sm:mb-[-60px] md:mb-[-100px] lg:mb-[-140px]"
+            className="section-headline text-foreground"
           >
-            <motion.span 
-              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -60]) }}
-              className="text-[120px] sm:text-[180px] md:text-[260px] lg:text-[340px] font-bold leading-[0.75] tracking-[-0.04em] select-none whitespace-nowrap bg-clip-text text-transparent"
-            >
-              <span
-                style={{ 
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  fontWeight: 700,
-                  backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.08) 30%, rgba(0, 0, 0, 0.03) 70%, rgba(0, 0, 0, 0) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  color: 'transparent'
-                }}
-              >
-                Projects
-              </span>
-            </motion.span>
-          </motion.div>
+            Industry Projects
+          </motion.h2>
         </div>
 
         {/* Product Showcase Grid - Matching SearchSuppliers Design */}
