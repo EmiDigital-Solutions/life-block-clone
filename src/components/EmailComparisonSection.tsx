@@ -1,32 +1,19 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, ArrowRight, X, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Play, Pause, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { z } from "zod";
-
-const auditRequestSchema = z.object({
-  supplierCompany: z.string().trim().min(1, "Company name is required").max(200),
-  supplierCountry: z.string().trim().min(1, "Country is required").max(100),
-  industry: z.string().min(1, "Please select an industry"),
-  yourName: z.string().trim().min(1, "Your name is required").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  yourCompany: z.string().trim().min(1, "Your company is required").max(200),
-});
-
-type AuditRequestForm = z.infer<typeof auditRequestSchema>;
-
-const INDUSTRIES = ["Automotive", "Aerospace", "Pharma", "Chemical", "Electronics", "Medical Devices", "Other"];
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ROICalculator from "./ROICalculator";
 
 const EmailComparisonSection = () => {
   const [isWithScanPro, setIsWithScanPro] = useState(false);
   const [isAutoSwitching, setIsAutoSwitching] = useState(true);
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState<AuditRequestForm>({
-    supplierCompany: "", supplierCountry: "", industry: "",
-    yourName: "", email: "", yourCompany: "",
-  });
-  const [errors, setErrors] = useState<Partial<Record<keyof AuditRequestForm, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [showROIModal, setShowROIModal] = useState(false);
 
   useEffect(() => {
     if (!isAutoSwitching) return;
@@ -34,28 +21,6 @@ const EmailComparisonSection = () => {
     return () => clearInterval(interval);
   }, [isAutoSwitching]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = auditRequestSchema.safeParse(formData);
-    if (!result.success) {
-      const fieldErrors: Partial<Record<keyof AuditRequestForm, string>> = {};
-      result.error.errors.forEach(err => {
-        const field = err.path[0] as keyof AuditRequestForm;
-        fieldErrors[field] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-    setErrors({});
-    setSubmitted(true);
-  };
-
-  const updateField = (field: keyof AuditRequestForm, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }));
-  };
-
-  // ... keep existing code (withScanProContent, traditionalContent, currentContent)
   const withScanProContent = [
     { title: "€700 flat—budget secured", description: "Finance approves instantly. No surprises." },
     { title: "Auditor on-site in 48h", description: "Your supplier issues don't wait—neither should you." },
@@ -156,137 +121,53 @@ const EmailComparisonSection = () => {
           viewport={{ once: true }}
           className="bg-foreground p-12 md:p-16 lg:p-20 text-center"
         >
-          <AnimatePresence mode="wait">
-            {!showForm ? (
-              <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6">
-                  Experience the €700 Difference
-                </h2>
-                <div className="mt-8">
-                  <Button
-                    size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 h-auto font-bold"
-                    onClick={() => setShowForm(true)}
-                  >
-                    Claim Your Free Audit
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </div>
-                <button
-                  onClick={() => {
-                    const demoSection = document.getElementById('platform-demo');
-                    if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="mt-6 block mx-auto text-background/70 hover:text-background text-base underline underline-offset-4 transition-colors"
-                >
-                  → See how it works first (2min demo)
-                </button>
-                <p className="mt-4">
-                  <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer"
-                    className="text-background/40 hover:text-background/60 text-sm transition-colors">
-                    Need to discuss first? Book a call
-                  </a>
-                </p>
-                <p className="text-background/50 text-sm mt-8 max-w-lg mx-auto">
-                  Limited: First 10 customers get complete supplier audit free + money-back guarantee. 6 spots remaining.
-                </p>
-              </motion.div>
-            ) : !submitted ? (
-              <motion.div key="form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                className="max-w-xl mx-auto text-left"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-background">Complete Your Free Audit Request</h3>
-                  <button onClick={() => setShowForm(false)} className="text-background/50 hover:text-background transition-colors">
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-10">
+            €15,000 → €700{" "}
+            <span className="text-background/40 mx-2">|</span>{" "}
+            3 Weeks → 3 Days
+          </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <p className="text-background/60 text-sm font-semibold uppercase tracking-wider mb-4">Supplier Details</p>
-                    <div className="space-y-4">
-                      <div>
-                        <input type="text" placeholder="Company name" value={formData.supplierCompany}
-                          onChange={e => updateField('supplierCompany', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background placeholder:text-background/40 px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors"
-                        />
-                        {errors.supplierCompany && <p className="text-destructive text-sm mt-1">{errors.supplierCompany}</p>}
-                      </div>
-                      <div>
-                        <input type="text" placeholder="Country" value={formData.supplierCountry}
-                          onChange={e => updateField('supplierCountry', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background placeholder:text-background/40 px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors"
-                        />
-                        {errors.supplierCountry && <p className="text-destructive text-sm mt-1">{errors.supplierCountry}</p>}
-                      </div>
-                      <div className="relative">
-                        <select value={formData.industry} onChange={e => updateField('industry', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
-                        >
-                          <option value="" className="bg-foreground text-background">Select industry</option>
-                          {INDUSTRIES.map(ind => (
-                            <option key={ind} value={ind} className="bg-foreground text-background">{ind}</option>
-                          ))}
-                        </select>
-                        {errors.industry && <p className="text-destructive text-sm mt-1">{errors.industry}</p>}
-                      </div>
-                    </div>
-                  </div>
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 h-auto font-bold"
+            onClick={() => {
+              const demoSection = document.getElementById('platform-demo');
+              if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            See How YVOO Works
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
 
-                  <div>
-                    <p className="text-background/60 text-sm font-semibold uppercase tracking-wider mb-4">Your Details</p>
-                    <div className="space-y-4">
-                      <div>
-                        <input type="text" placeholder="Your name" value={formData.yourName}
-                          onChange={e => updateField('yourName', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background placeholder:text-background/40 px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors"
-                        />
-                        {errors.yourName && <p className="text-destructive text-sm mt-1">{errors.yourName}</p>}
-                      </div>
-                      <div>
-                        <input type="email" placeholder="Email" value={formData.email}
-                          onChange={e => updateField('email', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background placeholder:text-background/40 px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors"
-                        />
-                        {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
-                      </div>
-                      <div>
-                        <input type="text" placeholder="Your company" value={formData.yourCompany}
-                          onChange={e => updateField('yourCompany', e.target.value)}
-                          className="w-full bg-background/10 border border-background/20 text-background placeholder:text-background/40 px-4 py-3 text-base focus:outline-none focus:border-primary transition-colors"
-                        />
-                        {errors.yourCompany && <p className="text-destructive text-sm mt-1">{errors.yourCompany}</p>}
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button type="submit" size="lg"
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-lg py-6 h-auto font-bold"
-                  >
-                    Claim My Free Audit
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </form>
-
-                <p className="text-background/40 text-sm mt-6 text-center">
-                  We'll assign a certified auditor and email you within 2 hours
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8"
-              >
-                <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-                <h3 className="text-3xl font-bold text-background mb-4">You're In!</h3>
-                <p className="text-background/70 text-lg max-w-md mx-auto">
-                  We're assigning a certified auditor now. Expect an email at <span className="text-primary font-semibold">{formData.email}</span> within 2 hours.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/70 hover:text-background text-base underline underline-offset-4 transition-colors"
+            >
+              Book Expert Call
+            </a>
+            <span className="text-background/30 hidden sm:inline">|</span>
+            <button
+              onClick={() => setShowROIModal(true)}
+              className="text-background/70 hover:text-background text-base underline underline-offset-4 transition-colors"
+            >
+              Calculate Your ROI
+            </button>
+          </div>
         </motion.div>
       </div>
+
+      {/* ROI Calculator Modal */}
+      <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Calculate Your ROI</DialogTitle>
+          </DialogHeader>
+          <ROICalculator />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
