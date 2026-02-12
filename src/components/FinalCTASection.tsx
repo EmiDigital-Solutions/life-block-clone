@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ROICalculator from "./ROICalculator";
 
 const FinalCTASection = () => {
+  const [showROIModal, setShowROIModal] = useState(false);
+
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-6">
@@ -12,31 +22,39 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Aspirational close - Archlet style */}
-          <h2 className="section-headline text-foreground mb-6">
-            It's time to rewrite the story
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">
+            €15,000 → €700{" "}
+            <span className="text-foreground/40 mx-2">|</span>{" "}
+            3 Weeks → 3 Days
           </h2>
-          
-          <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-            YVOO helps visionary leaders elevate supplier quality beyond admin. Send a clear message that audits can be rapid, consistent, and strategic.
-          </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg">
-              <a
-                href="https://calendly.com/yvoo/demo-yvoo"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book a Demo
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="/scanpro-plus">
-                Explore ScanPro+
-              </a>
-            </Button>
+          <Button
+            size="lg"
+            onClick={() => {
+              const demoSection = document.getElementById('platform-demo');
+              if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            See How YVOO Works
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
+            >
+              Book Expert Call
+            </a>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
+            <button
+              onClick={() => setShowROIModal(true)}
+              className="text-muted-foreground hover:text-foreground text-base underline underline-offset-4 transition-colors"
+            >
+              Calculate Your ROI
+            </button>
           </div>
 
           {/* Trust indicators */}
@@ -56,6 +74,16 @@ const FinalCTASection = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* ROI Calculator Modal */}
+      <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Calculate Your ROI</DialogTitle>
+          </DialogHeader>
+          <ROICalculator />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
