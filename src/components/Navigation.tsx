@@ -85,7 +85,7 @@ const Navigation = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-xl md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
-              Demo
+              Book a Call
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </a>
           </div>
