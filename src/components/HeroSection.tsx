@@ -263,7 +263,6 @@ const HeroSection = () => {
             className="h-[3px] w-full"
             style={{
               background: "linear-gradient(90deg, #0EAAD8 0%, #0EAAD8 85%, transparent 100%)",
-              boxShadow: "0 0 20px rgba(14, 170, 216, 0.6), 0 0 40px rgba(14, 170, 216, 0.4), 0 0 80px rgba(14, 170, 216, 0.2)",
             }}
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "45vw", opacity: 1 }}
