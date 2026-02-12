@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,10 +23,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 195 88.5714% 34.3137%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 161 25.5411% 54.7059%;
+    --secondary: 21 90% 48%;
     --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 96%;
