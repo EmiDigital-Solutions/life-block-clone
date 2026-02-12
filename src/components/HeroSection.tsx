@@ -66,7 +66,8 @@ const HeroSection = () => {
                 className="text-foreground/60 text-lg lg:text-xl mb-8"
               >
                 €15,000 → €700 per audit. Weeks → 3 days.<br />
-                AI-powered audits with 99% accuracy.
+                AI-powered audits with 99% accuracy.<br />
+                So you never get burned by a bad supplier again.
               </motion.p>
 
               <motion.div
