@@ -10,8 +10,8 @@ const generateChannelParticles = (count: number) => {
     // X position: 0% to 58% (left edge to just before the wheel)
     const x = Math.random() * 58;
     
-    // Y spread: strictly matching wheel diameter (500px on ~1080px viewport ≈ 23%)
-    const channelHalfHeight = 23;
+    // Y spread: strictly matching wheel diameter (500px on ~1080px viewport ≈ 19.5%)
+    const channelHalfHeight = 19.5;
     const yOffset = (Math.random() - 0.5) * 2 * channelHalfHeight;
     const y = 50 + yOffset;
     
