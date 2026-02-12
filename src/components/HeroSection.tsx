@@ -259,10 +259,11 @@ const HeroSection = () => {
           </motion.span>
           
           {/* The laser beam */}
-          <motion.div
-            className="h-[3px] w-full"
-            style={{
-              background: "linear-gradient(90deg, #0EAAD8 0%, #0EAAD8 85%, transparent 100%)",
+            <motion.div
+              className="h-[2px] w-full"
+              style={{
+                background: "linear-gradient(90deg, #0EAAD8 0%, #4FC3F7 50%, #0EAAD8 85%, transparent 100%)",
+                boxShadow: "0 0 6px #0EAAD8, 0 0 15px #0EAAD8, 0 0 30px rgba(14, 170, 216, 0.7), 0 0 60px rgba(14, 170, 216, 0.4)",
             }}
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "45vw", opacity: 1 }}
