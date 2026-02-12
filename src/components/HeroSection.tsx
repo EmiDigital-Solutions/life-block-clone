@@ -5,35 +5,36 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 
 // Generate particles in a straight channel matching the wheel diameter
-const generateChannelParticles = (count: number) => {
-  return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 58% (left edge to just before the wheel)
-    const x = Math.random() * 58;
-    
-    // Y spread: exactly matching wheel radius in viewport percentage
-    const channelHalfHeight = 17.5;
-    const yOffset = (Math.random() - 0.5) * 2 * channelHalfHeight;
-    const y = 50 + yOffset;
-    
-    const size = 9;
-    const isGreen = false;
-    const opacity = 0.5 + Math.random() * 0.5;
-    
-    return {
-      id: i,
-      x,
-      y,
-      size,
-      isGreen,
-      opacity,
-      delay: Math.random() * 4,
-    };
-  });
+const generateChannelParticles = () => {
+  const particles: Array<{ id: number; x: number; y: number; size: number; isGreen: boolean; opacity: number; delay: number }> = [];
+  const channelHalfHeight = 17.5;
+  const cols = 60; // number of columns across the channel
+  const rows = 20; // number of rows in the channel
+  const size = 9;
+  let id = 0;
+
+  for (let col = 0; col < cols; col++) {
+    const x = (col / cols) * 58; // 0% to 58%
+    for (let row = 0; row < rows; row++) {
+      const yOffset = ((row / (rows - 1)) * 2 - 1) * channelHalfHeight;
+      const y = 50 + yOffset;
+      particles.push({
+        id: id++,
+        x,
+        y,
+        size,
+        isGreen: false,
+        opacity: 0.6 + (row % 2) * 0.2,
+        delay: (col * 0.07) + (row * 0.03),
+      });
+    }
+  }
+  return particles;
 };
 
 const HeroSection = () => {
   const isMobile = useIsMobile();
-  const particles = useMemo(() => generateChannelParticles(1200), []);
+  const particles = useMemo(() => generateChannelParticles(), []);
   
   // Responsive wheel dimensions
   const wheelSize = isMobile ? 250 : 500;
