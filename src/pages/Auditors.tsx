@@ -139,7 +139,7 @@ const Auditors = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-white/50 text-sm tracking-widest uppercase mb-6"
+                  className="text-sm text-white/50 font-mono tracking-wide mb-6"
                 >
                   By Invitation Only
                 </motion.p>
