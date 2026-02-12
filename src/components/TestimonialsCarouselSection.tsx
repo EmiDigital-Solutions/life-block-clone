@@ -168,30 +168,30 @@ const TestimonialsCarouselSection = () => {
         </motion.h2>
         
         <div className="grid lg:grid-cols-3 gap-0 items-stretch mb-24">
-          {/* Stat Card - Primary Color Background */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-primary p-8 flex flex-col justify-between aspect-square"
-          >
-            {/* Icon */}
-            <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            </div>
-            
-            {/* Stat */}
-            <div>
-              <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
-                87%
-              </p>
-              <p className="text-xl text-white/90 font-medium mt-2">
-                faster audit deployment
-              </p>
-            </div>
-          </motion.div>
+           {/* Stat Card - Neutral Design */}
+           <motion.div
+             initial={{ opacity: 0, x: -20 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             viewport={{ once: true }}
+             className="bg-white border border-foreground/10 p-8 flex flex-col justify-between aspect-square"
+           >
+             {/* Icon */}
+             <div className="w-12 h-12 border-2 border-foreground/20 rounded-full flex items-center justify-center">
+               <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+               </svg>
+             </div>
+             
+             {/* Stat */}
+             <div>
+               <p className="text-5xl md:text-6xl font-bold text-foreground tracking-[-0.02em]">
+                 87%
+               </p>
+               <p className="text-xl text-foreground/70 font-medium mt-2">
+                 faster audit deployment
+               </p>
+             </div>
+           </motion.div>
           
           {/* Portrait Photo - Square */}
           <motion.div
@@ -229,11 +229,11 @@ const TestimonialsCarouselSection = () => {
               "YVOO reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers."
             </blockquote>
             
-            {/* Attribution */}
-            <div>
-              <p className="font-semibold text-foreground">Marcus Weber,</p>
-              <p className="text-sm text-primary">Head of Supplier Quality</p>
-            </div>
+             {/* Attribution */}
+             <div>
+               <p className="font-semibold text-foreground">Marcus Weber,</p>
+               <p className="text-sm text-foreground/60">Head of Supplier Quality</p>
+             </div>
             
             {/* See More Button */}
             <button

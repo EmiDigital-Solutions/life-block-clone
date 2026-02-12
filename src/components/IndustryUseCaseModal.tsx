@@ -291,15 +291,15 @@ export const IndustryUseCaseModal = ({ useCase, onClose }: IndustryUseCaseModalP
           )}
 
           {/* CTA Section */}
-          <section className="py-16 lg:py-20 bg-primary">
+          <section className="py-16 lg:py-20 bg-white border-t border-foreground/10">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4">
                 Ready to transform your supplier audits?
               </h2>
-              <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-foreground/60 text-lg mb-8 max-w-2xl mx-auto">
                 Get in touch with our team to discuss how YVOO ScanPro+ can help with your industry-specific audit needs.
               </p>
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-50">
+              <Button size="lg" className="bg-foreground text-white hover:bg-foreground/90">
                 Get In Touch
                 <ArrowRight className="w-4 h-4" />
               </Button>
