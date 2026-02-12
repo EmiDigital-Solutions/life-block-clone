@@ -193,19 +193,23 @@ const TestimonialsCarouselSection = () => {
              </div>
            </motion.div>
           
-          {/* Portrait Photo - Square */}
+          {/* Portrait Photo - Square with Archlet-style blue blocks */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="aspect-square bg-muted overflow-hidden"
+            className="aspect-square bg-muted overflow-hidden relative"
           >
             <img 
               src={procurementMaleEuropean}
               alt="Marcus Weber - Head of Supplier Quality"
               className="w-full h-full object-cover"
             />
+            {/* Decorative blue blocks overlay */}
+            <div className="absolute top-[15%] right-0 w-[45%] h-[8%] bg-primary" />
+            <div className="absolute top-[25%] left-[30%] w-[18%] h-[8%] bg-primary" />
+            <div className="absolute bottom-[12%] left-0 w-[55%] h-[10%] bg-primary" />
           </motion.div>
           
           {/* Quote Content */}
