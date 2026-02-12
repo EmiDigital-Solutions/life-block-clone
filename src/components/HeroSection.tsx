@@ -90,11 +90,8 @@ const HeroSection = () => {
             }}
           >
             <div 
-              className={`w-full h-full rounded-full ${
-                particle.isGreen 
-                  ? "bg-primary" 
-                  : "bg-foreground"
-              }`}
+              className="w-full h-full rounded-full bg-blue-600"
+              style={{ backgroundColor: "#0EAAD8" }}
             />
           </motion.div>
         ))}
