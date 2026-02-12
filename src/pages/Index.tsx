@@ -18,10 +18,10 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <WhyYVOOSection />
+      <TestimonialSection />
       <CapabilityOverviewSection />
       <EmailComparisonSection />
       <GlobalNetworkSection />
-      <TestimonialSection />
       <HowItWorksSection />
       <StatsWithQuoteSection />
       <TestimonialsCarouselSection />
