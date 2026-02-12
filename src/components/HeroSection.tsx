@@ -11,7 +11,7 @@ const generateChannelParticles = (count: number) => {
     const x = Math.random() * 58;
     
     // Y spread: exactly matching wheel radius in viewport percentage
-    const channelHalfHeight = 16;
+    const channelHalfHeight = 17.5;
     const yOffset = (Math.random() - 0.5) * 2 * channelHalfHeight;
     const y = 50 + yOffset;
     
