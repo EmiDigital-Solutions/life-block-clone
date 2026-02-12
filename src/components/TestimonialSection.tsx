@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import christophPortrait from "@/assets/testimonial-christoph-seeholzer.jpg";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 import MobilePlatformDemo from "./MobilePlatformDemo";
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -12,31 +13,15 @@ const TestimonialSection = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
+    <section id="platform-demo" className="relative overflow-hidden bg-white py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* AI Demo Section - Archlet "Meet Spark" Style */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8 md:mb-12"
-          >
-            <h2 className="section-headline text-foreground max-w-3xl">
-              Your audit intelligence, powered by YVOO
-            </h2>
-            <p className="text-lg text-muted-foreground mt-4 max-w-2xl">
-              From supplier discovery to final report—YVOO understands context, surfaces insights, and eliminates the friction that slows procurement teams down.
-            </p>
-          </motion.div>
-
+        <div className="max-w-[1100px] mx-auto">
           {/* Platform Demo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-16 md:mb-20 lg:mb-24"
+            transition={{ duration: 0.6 }}
           >
             {isMobile ? (
               <div className="max-w-sm mx-auto">
@@ -44,13 +29,41 @@ const TestimonialSection = () => {
               </div>
             ) : (
               <div 
-                className="max-w-5xl mx-auto overflow-hidden shadow-2xl border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+                className="mx-auto overflow-hidden border border-border/20 cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
+                style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.08)' }}
                 onClick={() => setIsModalOpen(true)}
               >
-                <PlatformDemoAnimation />
+                <div className="aspect-[16/9]">
+                  <PlatformDemoAnimation />
+                </div>
               </div>
             )}
+
+            {/* Below video text */}
+            <p className="text-lg text-muted-foreground text-center mt-6 mb-6">
+              Complete supplier intelligence. From matching to final report.
+            </p>
+
+            {/* CTA Button */}
+            <div className="text-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#EA580C] hover:bg-[#EA580C]/90 text-white px-8 py-4"
+              >
+                <a
+                  href="https://calendly.com/yvoo/demo-yvoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  See It In Action
+                </a>
+              </Button>
+            </div>
           </motion.div>
+
+          {/* Spacer */}
+          <div className="mt-16 md:mt-20 lg:mt-24" />
 
           {/* Headline and Testimonial Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
@@ -82,17 +95,12 @@ const TestimonialSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:pt-4"
             >
-              {/* Brand logo placeholder */}
               <p className="text-xl md:text-2xl font-semibold text-primary mb-4">
                 ScanPro+
               </p>
-              
-              {/* Quote */}
               <p className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-foreground mb-6">
                 "It's a game changer"
               </p>
-              
-              {/* Author */}
               <div className="flex items-center gap-4">
                 <img 
                   src={christophPortrait} 
