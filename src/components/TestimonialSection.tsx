@@ -13,7 +13,7 @@ const TestimonialSection = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section id="platform-demo" className="relative overflow-hidden bg-white py-12 md:py-16 lg:py-20">
+    <section id="platform-demo" className="relative overflow-hidden bg-white py-6 md:py-8 lg:py-10">
       <div className="container mx-auto px-6">
         <div className="max-w-[1200px] mx-auto">
           {/* Platform Demo */}
