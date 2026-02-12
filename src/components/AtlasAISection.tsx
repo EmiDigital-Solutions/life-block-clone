@@ -1,5 +1,4 @@
 import AtlasAIDemo from "./AtlasAIDemo";
-import factoryBg from "@/assets/atlas-ai-factory-bg.jpg";
 
 const AtlasAISection = () => {
   return (
@@ -12,17 +11,8 @@ const AtlasAISection = () => {
           Expert guidance. Every auditor.
         </p>
 
-        {/* Demo with factory background */}
-        <div className="max-w-[1200px] mx-auto relative rounded-2xl overflow-hidden">
-          <img
-            src={factoryBg}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
-            aria-hidden="true"
-          />
-          <div className="relative z-10">
-            <AtlasAIDemo />
-          </div>
+        <div className="max-w-[1200px] mx-auto">
+          <AtlasAIDemo />
         </div>
       </div>
     </section>
