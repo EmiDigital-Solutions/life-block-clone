@@ -76,28 +76,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Client Band */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="py-8 overflow-hidden mt-auto relative z-10 border-t border-foreground/10"
-      >
-        <p className="text-center text-foreground/40 text-xs tracking-widest uppercase mb-5">
-          Built for procurement teams at companies like
-        </p>
-        <div className="flex justify-center gap-10 md:gap-16 flex-wrap px-6">
-          {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson", "Rockwell Automation", "Mitsubishi Electric"].map((company) => (
-            <span
-              key={company}
-              className="text-lg md:text-xl font-semibold text-foreground/30 tracking-wide"
-            >
-              {company}
-            </span>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 };
