@@ -83,29 +83,9 @@ const HeroSection = () => {
                     Get Your First Audit Free
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a
-                    href="https://calendly.com/yvoo/demo-yvoo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    See How We'd Verify Your Supplier
-                  </a>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="mt-4"
-              >
-                <button
-                  onClick={() => setShowROIModal(true)}
-                  className="text-muted-foreground hover:text-foreground text-base font-mono tracking-wide underline underline-offset-4 transition-colors"
-                >
+                <Button variant="outline" size="lg" onClick={() => setShowROIModal(true)}>
                   Calculate Your ROI
-                </button>
+                </Button>
               </motion.div>
             </div>
           </motion.div>
