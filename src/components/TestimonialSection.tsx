@@ -48,11 +48,7 @@ const TestimonialSection = () => {
 
             {/* CTA Button */}
             <div className="text-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-white px-10 py-5 text-lg"
-              >
+              <Button asChild size="lg">
                 <a
                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
