@@ -2167,7 +2167,7 @@ const ScanProPlus = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-muted-foreground text-sm tracking-widest uppercase mb-6"
+                  className="text-sm text-foreground/50 font-mono tracking-wide mb-6"
                 >
                   Supplier Quality Platform
                 </motion.p>
