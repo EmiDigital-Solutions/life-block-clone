@@ -26,10 +26,10 @@ const HeroSection = () => {
     <>
     <section
       data-nav-theme="light"
-      className="relative min-h-screen flex flex-col bg-white"
+      className="relative min-h-[100dvh] flex flex-col bg-white"
     >
       {/* Main Content */}
-      <div className="flex-1 flex items-center relative z-10 pt-24 md:pt-32 lg:pt-40">
+      <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
         <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -101,7 +101,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        className="relative z-10 border-t border-foreground/10 overflow-hidden py-5"
+        className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0"
       >
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
