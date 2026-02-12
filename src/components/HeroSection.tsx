@@ -4,25 +4,19 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 
-// Generate static funnel-shaped particles (wide on left, converging to right)
-const generateFunnelParticles = (count: number) => {
+// Generate particles in a straight channel matching the wheel diameter
+const generateChannelParticles = (count: number) => {
   return Array.from({ length: count }, (_, i) => {
-    // X position: 0% to 60% (left side to laser point)
-    const xProgress = Math.random();
-    const x = xProgress * 60;
+    // X position: 0% to 58% (left edge to just before the wheel)
+    const x = Math.random() * 58;
     
-    // Y spread: wide on left (0), narrow at laser point (1)
-    const maxYSpread = 50 - (xProgress * 42);
-    const yOffset = (Math.random() - 0.5) * 2 * maxYSpread;
+    // Y spread: constant channel height matching wheel diameter (~500px ≈ 28% of viewport)
+    const channelHalfHeight = 28;
+    const yOffset = (Math.random() - 0.5) * 2 * channelHalfHeight;
     const y = 50 + yOffset;
     
-    // Size matches outer ring dots of the wheel (baseParticleSize = 9 desktop)
     const size = 9;
-    
-    // All particles are blue like the wheel
     const isGreen = false;
-    
-    // Higher opacity for visibility
     const opacity = 0.5 + Math.random() * 0.5;
     
     return {
@@ -39,7 +33,7 @@ const generateFunnelParticles = (count: number) => {
 
 const HeroSection = () => {
   const isMobile = useIsMobile();
-  const particles = useMemo(() => generateFunnelParticles(1200), []);
+  const particles = useMemo(() => generateChannelParticles(1200), []);
   
   // Responsive wheel dimensions
   const wheelSize = isMobile ? 250 : 500;
