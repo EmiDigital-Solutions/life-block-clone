@@ -252,9 +252,8 @@ const TestimonialsCarouselSection = () => {
           </motion.h2>
         </div>
 
-        {/* Product Showcase Grid — contained within inner 4 grids */}
+        {/* Product Showcase Grid — left-aligned within inner 4 grids, 25% reduced height */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-0">
-          <div className="hidden md:block md:col-span-1" />
           <div className="md:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Large card - Automotive: 2 cols, spans 2 rows */}
             <motion.button
@@ -265,7 +264,7 @@ const TestimonialsCarouselSection = () => {
               onClick={() => setSelectedUseCase(useCases[0])}
               className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer text-left"
             >
-              <div className="relative overflow-hidden h-full min-h-[300px]">
+              <div className="relative overflow-hidden h-full min-h-[225px]">
                 <img 
                   src={useCases[0].image} 
                   alt={useCases[0].title}
@@ -299,7 +298,7 @@ const TestimonialsCarouselSection = () => {
               onClick={() => setSelectedUseCase(useCases[1])}
               className="md:col-span-2 group relative overflow-hidden cursor-pointer text-left"
             >
-              <div className="relative overflow-hidden aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[16/9]">
                 <img 
                   src={useCases[1].image} 
                   alt={useCases[1].title}
@@ -330,7 +329,7 @@ const TestimonialsCarouselSection = () => {
               onClick={() => setSelectedUseCase(useCases[2])}
               className="md:col-span-2 group relative overflow-hidden cursor-pointer text-left"
             >
-              <div className="relative overflow-hidden aspect-[4/3]">
+              <div className="relative overflow-hidden aspect-[16/9]">
                 <img 
                   src={useCases[2].image} 
                   alt={useCases[2].title}
@@ -361,7 +360,7 @@ const TestimonialsCarouselSection = () => {
               onClick={() => setSelectedUseCase(useCases[3])}
               className="md:col-span-4 group relative overflow-hidden cursor-pointer text-left"
             >
-              <div className="relative overflow-hidden aspect-[21/9]">
+              <div className="relative overflow-hidden aspect-[3/1]">
                 <img 
                   src={useCases[3].image} 
                   alt={useCases[3].title}
