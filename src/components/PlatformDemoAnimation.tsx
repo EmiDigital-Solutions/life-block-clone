@@ -230,32 +230,109 @@ const DiscoverScreen = () => {
           </motion.div>
         )}
 
-        {/* Step 5: AI-generated intelligence profile */}
-        {phase >= 3 && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-            <GlassCard highlight layer={2} className="p-3">
-              <div className="flex items-center justify-between mb-2">
-                <div>
-                  <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
-                  <div className="text-[10px] text-background/60">Stuttgart, Germany</div>
-                </div>
-                <div className="flex items-center gap-1 px-2 py-0.5 border border-primary/40">
-                  <div className="w-1.5 h-1.5 bg-primary" />
-                  <span className="text-[8px] text-primary font-bold uppercase">AI Verified</span>
-                </div>
-              </div>
-              <div className="space-y-1">
-                {profileFields.map((f, i) => (
-                  <motion.div key={f.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.08 }}
-                    className="flex items-start gap-2">
-                    <span className="text-[9px] text-background/50 w-20 flex-shrink-0 uppercase">{f.label}</span>
-                    <span className="text-[11px] text-background font-medium">{f.value}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </GlassCard>
-          </motion.div>
-        )}
+         {/* Step 5: AI-generated intelligence profile with analytics */}
+         {phase >= 3 && (
+           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+             <GlassCard highlight layer={2} className="p-3">
+               <div className="flex items-center justify-between mb-2">
+                 <div>
+                   <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
+                   <div className="text-[10px] text-background/60">Stuttgart, Germany</div>
+                 </div>
+                 <div className="flex items-center gap-1 px-2 py-0.5 border border-primary/40">
+                   <div className="w-1.5 h-1.5 bg-primary" />
+                   <span className="text-[8px] text-primary font-bold uppercase">AI Verified</span>
+                 </div>
+               </div>
+               <div className="space-y-1 mb-3">
+                 {profileFields.map((f, i) => (
+                   <motion.div key={f.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.08 }}
+                     className="flex items-start gap-2">
+                     <span className="text-[9px] text-background/50 w-20 flex-shrink-0 uppercase">{f.label}</span>
+                     <span className="text-[11px] text-background font-medium">{f.value}</span>
+                   </motion.div>
+                 ))}
+               </div>
+
+               {/* Analytics Section */}
+               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
+                 className="border-t border-background/15 pt-2.5 space-y-2.5">
+                 <div className="text-[8px] text-background/50 uppercase tracking-wider font-semibold">AI Assessment Analytics</div>
+
+                 {/* Risk score bars */}
+                 <div className="flex gap-2">
+                   {[
+                     { label: "Quality", score: 92, color: "hsl(199,91%,64%)" },
+                     { label: "Delivery", score: 88, color: "hsl(199,91%,64%)" },
+                     { label: "Financial", score: 76, color: "hsl(37,91%,55%)" },
+                   ].map((item, i) => (
+                     <div key={item.label} className="flex-1">
+                       <div className="flex items-baseline justify-between mb-0.5">
+                         <span className="text-[7px] text-background/60 uppercase">{item.label}</span>
+                         <span className="text-[9px] text-background font-bold">{item.score}</span>
+                       </div>
+                       <div className="h-1 bg-background/15 w-full">
+                         <motion.div className="h-full" style={{ backgroundColor: item.color }}
+                           initial={{ width: 0 }} animate={{ width: `${item.score}%` }}
+                           transition={{ duration: 0.8, delay: 0.5 + i * 0.15 }} />
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+
+                 {/* Sparkline trend + mini donut */}
+                 <div className="flex items-center gap-3">
+                   {/* Trend sparkline */}
+                   <div className="flex-1">
+                     <div className="text-[7px] text-background/50 uppercase mb-1">Audit History Trend</div>
+                     <svg viewBox="0 0 120 28" className="w-full h-6">
+                       <motion.polyline
+                         points="0,22 15,20 30,18 45,21 60,14 75,12 90,10 105,8 120,5"
+                         fill="none" stroke="hsl(199,91%,64%)" strokeWidth="1.5"
+                         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                         transition={{ duration: 1.2, delay: 0.6 }}
+                       />
+                       {[0,15,30,45,60,75,90,105,120].map((x, i) => {
+                         const y = [22,20,18,21,14,12,10,8,5][i];
+                         return (
+                           <motion.circle key={i} cx={x} cy={y} r="1.5" fill="hsl(199,91%,64%)"
+                             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                             transition={{ delay: 0.7 + i * 0.08 }} />
+                         );
+                       })}
+                     </svg>
+                   </div>
+                   {/* Mini risk donut */}
+                   <div className="flex flex-col items-center">
+                     <div className="text-[7px] text-background/50 uppercase mb-1">Risk</div>
+                     <div className="relative w-10 h-10 flex items-center justify-center">
+                       <svg className="absolute inset-0" viewBox="0 0 40 40">
+                         <circle cx="20" cy="20" r="14" fill="none" stroke="hsl(0,0%,55%)" strokeWidth="3" />
+                         <motion.circle cx="20" cy="20" r="14" fill="none"
+                           stroke="hsl(199,91%,64%)" strokeWidth="3" strokeLinecap="square"
+                           transform="rotate(-90 20 20)"
+                           initial={{ strokeDasharray: 88, strokeDashoffset: 88 }}
+                           animate={{ strokeDashoffset: 88 * (1 - 0.18) }}
+                           transition={{ duration: 0.8, delay: 0.8 }}
+                         />
+                       </svg>
+                       <span className="text-[8px] font-bold text-primary z-10">Low</span>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Data source badges */}
+                 <div className="flex gap-1.5">
+                   {["12 Audits", "3 Certs", "47 Data Points"].map((badge) => (
+                     <div key={badge} className="px-1.5 py-0.5 border border-background/20 text-[7px] text-background/70 uppercase tracking-wide">
+                       {badge}
+                     </div>
+                   ))}
+                 </div>
+               </motion.div>
+             </GlassCard>
+           </motion.div>
+         )}
 
         {/* Step 4: Upload checklists */}
         {phase >= 3 && (
