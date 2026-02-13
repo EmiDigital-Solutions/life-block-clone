@@ -54,7 +54,7 @@ const AtlasAISection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground leading-relaxed mb-8"
+              className="text-base text-muted-foreground leading-relaxed mb-8"
             >
               Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
             </motion.p>
