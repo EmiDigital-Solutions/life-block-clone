@@ -1572,7 +1572,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white"
+      className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white"
       id="challenge"
     >
       <div className="mx-auto max-w-[1400px] px-8">
@@ -1585,63 +1585,49 @@ const ChallengeToggleSection = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-headline">
-              <span className="text-foreground">{isWithScanPro ? 'With' : 'Traditional'}</span>{" "}
+              <span className="text-foreground">{isWithScanPro ? 'With' : 'The Old'}</span>{" "}
               <span className={isWithScanPro ? 'text-primary' : 'text-destructive'}>
-                {isWithScanPro ? 'ScanPro+' : 'Providers'}
+                {isWithScanPro ? 'ScanPro+' : 'Way'}
               </span>
             </h2>
           </motion.div>
 
-          {/* Toggle Switch */}
-          <button
-            onClick={() => {
-              setIsAutoSwitching(false);
-              setIsWithScanPro(!isWithScanPro);
-            }}
-            className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
-              isWithScanPro ? 'bg-primary' : 'bg-destructive'
-            }`}
-            aria-label="Toggle comparison"
-          >
-            <motion.div
-              className="absolute top-0.5 left-0.5 w-7 h-7 bg-white rounded-full"
-              animate={{ x: isWithScanPro ? 32 : 0 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            />
-          </button>
-          
-          {/* Play/Pause Button */}
-          <button
-            onClick={() => setIsAutoSwitching(!isAutoSwitching)}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
-              isAutoSwitching 
-                ? 'bg-primary/10 text-primary hover:bg-primary/20' 
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
-            }`}
-            aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
-          >
-            {isAutoSwitching ? (
-              <Pause className="w-4 h-4" />
-            ) : (
-              <Play className="w-4 h-4 ml-0.5" />
-            )}
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
+              className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-primary' : 'bg-destructive'}`}
+              aria-label="Toggle comparison"
+            >
+              <motion.div
+                className="absolute top-0.5 left-0.5 w-7 h-7 bg-white"
+                animate={{ x: isWithScanPro ? 32 : 0 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            </button>
+            <button
+              onClick={() => setIsAutoSwitching(!isAutoSwitching)}
+              className={`w-8 h-8 flex items-center justify-center transition-colors duration-300 ${
+                isAutoSwitching ? 'bg-primary/10 text-primary hover:bg-primary/20' : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+              aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
+            >
+              {isAutoSwitching ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+            </button>
+          </div>
         </div>
 
-        {/* Description */}
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
             ? "What procurement directors, quality managers, and CFOs see when they switch."
             : "The hidden cost of 'we've always done it this way.'"}
         </p>
 
-        {/* Grid - Homepage Card Style */}
         <motion.div
           key={isWithScanPro ? 'with' : 'traditional'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {currentContent.map((item, index) => (
             <motion.div
@@ -1650,14 +1636,10 @@ const ChallengeToggleSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
+              className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                {item.title}
-              </h3>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                {item.description}
-              </p>
+              <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
+              <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>
