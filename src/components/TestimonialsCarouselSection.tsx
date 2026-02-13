@@ -252,25 +252,25 @@ const TestimonialsCarouselSection = () => {
           </motion.h2>
         </div>
 
-        {/* Product Showcase Grid — Automotive left 2 cols, smaller cards in middle 4 grids */}
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4">
-          {/* Large card - Automotive: spans 2 cols */}
+        {/* Product Showcase Grid — Original asymmetric: large 4-col + 2 stacked 2-col */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          {/* Large card - Automotive: 4 cols, spans 2 rows */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0 }}
             onClick={() => setSelectedUseCase(useCases[0])}
-            className="lg:col-span-2 lg:row-span-2 group relative overflow-hidden cursor-pointer text-left"
+            className="md:col-span-4 md:row-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
-            <div className="relative overflow-hidden h-full min-h-[300px]">
+            <div className="relative overflow-hidden h-full min-h-[400px]">
               <img 
                 src={useCases[0].image} 
                 alt={useCases[0].title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 z-10">
                 <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3">
                   Automotive
                 </span>
@@ -288,14 +288,14 @@ const TestimonialsCarouselSection = () => {
             </div>
           </motion.button>
 
-          {/* Aerospace — 2 cols */}
+          {/* Top right - Aerospace: 2 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             onClick={() => setSelectedUseCase(useCases[1])}
-            className="lg:col-span-2 group relative overflow-hidden cursor-pointer text-left"
+            className="md:col-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
             <div className="relative overflow-hidden aspect-[4/3]">
               <img 
@@ -322,14 +322,14 @@ const TestimonialsCarouselSection = () => {
             </div>
           </motion.button>
 
-          {/* Pharma — 2 cols */}
+          {/* Bottom right - Pharma: 2 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onClick={() => setSelectedUseCase(useCases[2])}
-            className="lg:col-span-2 group relative overflow-hidden cursor-pointer text-left"
+            className="md:col-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
             <div className="relative overflow-hidden aspect-[4/3]">
               <img 
@@ -356,31 +356,30 @@ const TestimonialsCarouselSection = () => {
             </div>
           </motion.button>
 
-          {/* Chemical — middle 4 grids */}
-          <div className="hidden lg:block lg:col-span-1" />
+          {/* Full width - Chemical: 6 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
             onClick={() => setSelectedUseCase(useCases[3])}
-            className="lg:col-span-4 group relative overflow-hidden cursor-pointer text-left"
+            className="md:col-span-6 group relative overflow-hidden cursor-pointer text-left"
           >
-            <div className="relative overflow-hidden aspect-[21/9]">
+            <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
               <img 
                 src={useCases[3].image} 
                 alt={useCases[3].title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 max-w-xl z-10">
+              <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
                 <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
                   Chemical & Process
                 </span>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
                   {useCases[3].title.split(':')[1]?.trim() || useCases[3].title}
                 </h3>
-                <p className="text-white/70 text-sm line-clamp-2 hidden md:block">
+                <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
                   {useCases[3].useCase}
                 </p>
                 <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
