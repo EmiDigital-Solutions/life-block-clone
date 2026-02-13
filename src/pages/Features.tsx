@@ -15,51 +15,52 @@ const featureCategories = [
     features: [
       {
         title: "AI Preference Engine",
-        description: "AI automatically recognizes your requirements and preferences based on your profile and usage patterns."
+        description: "Core intelligence layer that learns your company profile, industry context, and usage patterns to auto-detect requirements, recognize technical entities (materials, certificates, tests), and deliver pre-filtered results.",
+        highlighted: true
       },
       {
-        title: "Intelligent Requirement Capture",
-        description: "AI extracts specifications from natural language or uploaded documents like CAD drawings and datasheets."
+        title: "AI Company Finder",
+        description: "Real-time company search with AI-powered scraping, enrichment, profile auto-population, and automatic industry and capability detection."
       },
       {
-        title: "Triple-Source Search Architecture",
-        description: "Simultaneous search across verified supplier database, company research database, and real-time web discovery."
+        title: "AI Agent Sessions",
+        description: "Conversational supplier discovery with 10+ specialized agents: Supplier Discovery, Product Research, Market Analysis, Risk Assessment, Price Comparison, Compliance Check, Sourcing Strategy, and more."
       },
       {
-        title: "Multi-Factor Matching",
-        description: "Evaluation by industry, location, certifications, capacity, and specific technical requirements."
+        title: "Intelligent Matching",
+        description: "AI-powered compatibility scoring using semantic vector embeddings across industry match, location proximity, certification alignment, capacity fit, risk assessment, and quality scores."
       },
       {
-        title: "Explainable AI",
-        description: "Transparent reasoning for supplier recommendations with match percentages and qualification details."
+        title: "Reverse Matching",
+        description: "Suppliers are automatically matched to buyers with recommendation confidence scores for both directions."
       },
       {
-        title: "Smart Deduplication",
-        description: "Automatic detection and merging of duplicate supplier entries across different data sources."
+        title: "Comprehensive Supplier Profiles",
+        description: "Business verification, manufacturing capabilities, multi-location support, production capacity, quality control processes, shipping methods, and premium verification badges."
       },
       {
-        title: "Dynamic Results",
-        description: "Delivers only genuinely relevant matches, no filler results to pad the list."
+        title: "Certification Tracking",
+        description: "ISO standards tracking (9001, 14001, 45001), industry certifications (FDA, CE, ROHS), expiry monitoring, and compliance verification."
       },
       {
-        title: "Context-Aware Suggestions",
-        description: "Industry-specific recommendations based on usage patterns and search history."
+        title: "Supplier Product Catalog",
+        description: "Product listings with material types, technical specifications, images, MOQs, lead times, and pricing — all searchable and filterable."
       },
       {
-        title: "Alternative Term Discovery",
-        description: "Identifies related terms and synonyms for complete market coverage across languages."
+        title: "Performance Metrics",
+        description: "Rating and reliability scores, quality performance tracking, delivery performance, and communication responsiveness."
       },
       {
-        title: "Real-Time Data Enrichment",
-        description: "Continuous supplier data updates including new certifications, expansions, and risk signals."
+        title: "RFQ System",
+        description: "Multi-line item RFQs with specifications, target pricing, delivery dates, attachments, and sample requirements. Open or targeted distribution."
       },
       {
-        title: "One-Click Audit Ordering",
-        description: "Direct on-site audit ordering with AI-powered facility analysis, equipment recognition, and compliance verification."
+        title: "Auto-Match RFQs to Suppliers",
+        description: "Automatic supplier matching for RFQs with invitation tracking and targeted supplier selection."
       },
       {
-        title: "Integrated RFQ Management",
-        description: "Send standardized RFQs to multiple suppliers directly from search results with one click."
+        title: "RFQ Response Management",
+        description: "Supplier quote submissions, specification compliance, alternative proposals, payment terms, certificate uploads, and sample availability tracking."
       }
     ]
   },
@@ -324,12 +325,20 @@ const Features = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.05 * index }}
-                  className="py-8 pr-8 border-t border-foreground/10"
+                  className={`py-8 pr-8 border-t border-foreground/10 ${
+                    (feature as any).highlighted
+                      ? "md:col-span-2 lg:col-span-3 bg-primary/5 pl-8 border-l-4 border-l-primary"
+                      : ""
+                  }`}
                 >
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <h3 className={`font-semibold text-foreground mb-3 ${
+                    (feature as any).highlighted ? "text-2xl" : "text-xl"
+                  }`}>
                     {feature.title}
                   </h3>
-                  <p className="text-foreground/60 text-sm leading-relaxed">
+                  <p className={`text-foreground/60 leading-relaxed ${
+                    (feature as any).highlighted ? "text-base max-w-3xl" : "text-sm"
+                  }`}>
                     {feature.description}
                   </p>
                 </motion.div>
