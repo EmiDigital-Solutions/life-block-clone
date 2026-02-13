@@ -16,16 +16,16 @@ const UNIT = SQUARE_SIZE + GAP;
 
 // Formation definitions — each square gets {x, y} offsets and opacity
 const formations = {
-  // Cluster: 2x2 grid with one offset square (like the reference image)
-  cluster: [
-    { x: 0, y: 0 },
-    { x: UNIT, y: 0 },
-    { x: 0, y: UNIT },
+  // Triangle: pyramid shape pointing up
+  triangle: [
+    { x: UNIT * 1.5, y: 0 },
     { x: UNIT, y: UNIT },
-    { x: -UNIT, y: UNIT * 2 },
-    { x: 0, y: UNIT * 2 },
-    { x: UNIT * 2, y: -UNIT },
-    { x: -UNIT, y: 0 },
+    { x: UNIT * 2, y: UNIT },
+    { x: UNIT * 0.5, y: UNIT * 2 },
+    { x: UNIT * 1.5, y: UNIT * 2 },
+    { x: UNIT * 2.5, y: UNIT * 2 },
+    { x: 0, y: UNIT * 3 },
+    { x: UNIT * 3, y: UNIT * 3 },
   ],
   // Checkmark shape
   checkmark: [
@@ -52,7 +52,7 @@ const formations = {
 };
 
 type Formation = keyof typeof formations;
-const formationOrder: Formation[] = ["cluster", "checkmark", "magnifyingGlass"];
+const formationOrder: Formation[] = ["triangle", "checkmark", "magnifyingGlass"];
 
 interface HeroSquaresAnimationProps {
   className?: string;
