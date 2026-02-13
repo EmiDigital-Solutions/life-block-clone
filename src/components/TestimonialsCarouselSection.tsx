@@ -254,6 +254,7 @@ const TestimonialsCarouselSection = () => {
 
         {/* Product Showcase Grid — left-aligned within inner 4 grids, 25% reduced height */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-0">
+          <div className="hidden md:block md:col-span-1" />
           <div className="md:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Large card - Automotive: 2 cols, spans 2 rows */}
             <motion.button
