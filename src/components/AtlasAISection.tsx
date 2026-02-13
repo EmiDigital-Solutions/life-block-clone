@@ -28,9 +28,6 @@ const AtlasAISection = () => {
 
   return (
     <section className="relative bg-white py-24 md:py-32 px-6">
-      {/* Center line — Archlet reference */}
-      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/[0.06]" />
-
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
@@ -124,7 +121,7 @@ const AtlasAISection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-full aspect-[4/3] overflow-hidden"
+              className="w-full aspect-[16/10] overflow-hidden"
             >
               <AtlasAIDemoAnimation />
             </motion.div>

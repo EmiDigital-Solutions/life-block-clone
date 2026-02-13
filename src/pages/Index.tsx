@@ -15,7 +15,9 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Center line — full page vertical reference */}
+      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/[0.06] z-10 pointer-events-none" />
       <Navigation />
       <HeroSection />
       <CapabilityOverviewSection />
