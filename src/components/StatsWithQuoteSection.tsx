@@ -10,7 +10,7 @@ const stats = [
 const StatsWithQuoteSection = () => {
   return (
     <section className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Section Header */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ const StatsWithQuoteSection = () => {
         </motion.h2>
 
         {/* KPI Grid 2x2 */}
-        <div className="grid md:grid-cols-2 gap-x-12 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={index}

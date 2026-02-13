@@ -23,8 +23,7 @@ const capabilities = [
 const CapabilityOverviewSection = () => {
   return (
     <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-6 md:pb-8">
-      <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
+       <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +36,7 @@ const CapabilityOverviewSection = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-0 border-t border-foreground/10">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
             {capabilities.map((cap, index) => (
               <motion.div
                 key={index}
@@ -45,7 +44,7 @@ const CapabilityOverviewSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
+                className="lg:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
               >
                 <Link
                   to={cap.link}
@@ -68,7 +67,6 @@ const CapabilityOverviewSection = () => {
               </motion.div>
             ))}
           </div>
-        </div>
       </div>
     </section>
   );
