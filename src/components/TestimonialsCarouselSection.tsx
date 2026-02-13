@@ -252,18 +252,18 @@ const TestimonialsCarouselSection = () => {
           </motion.h2>
         </div>
 
-        {/* Product Showcase Grid - Matching SearchSuppliers Design */}
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-          {/* Large card - Automotive */}
+        {/* Product Showcase Grid — Automotive left 2 cols, smaller cards in middle 4 grids */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4">
+          {/* Large card - Automotive: spans 2 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0 }}
             onClick={() => setSelectedUseCase(useCases[0])}
-            className="lg:col-span-4 lg:row-span-2 group relative overflow-hidden cursor-pointer text-left"
+            className="lg:col-span-2 lg:row-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
-            <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10]">
+            <div className="relative overflow-hidden h-full min-h-[300px]">
               <img 
                 src={useCases[0].image} 
                 alt={useCases[0].title}
@@ -271,7 +271,7 @@ const TestimonialsCarouselSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
-                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3">
                   Automotive
                 </span>
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-1.5 leading-tight">
@@ -288,7 +288,7 @@ const TestimonialsCarouselSection = () => {
             </div>
           </motion.button>
 
-          {/* Top right - Aerospace */}
+          {/* Aerospace — 2 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -305,7 +305,7 @@ const TestimonialsCarouselSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
-                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3">
                   Aerospace
                 </span>
                 <h3 className="text-base md:text-lg font-bold text-white mb-1.5 leading-tight">
@@ -322,7 +322,7 @@ const TestimonialsCarouselSection = () => {
             </div>
           </motion.button>
 
-          {/* Bottom right - Pharma */}
+          {/* Pharma — 2 cols */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -339,7 +339,7 @@ const TestimonialsCarouselSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
-                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3">
+                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3">
                   Pharma
                 </span>
                 <h3 className="text-base md:text-lg font-bold text-white mb-1.5 leading-tight">
@@ -355,41 +355,42 @@ const TestimonialsCarouselSection = () => {
               </div>
             </div>
           </motion.button>
-        </div>
 
-        {/* Full width bottom card - Chemical */}
-        <motion.button
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          onClick={() => setSelectedUseCase(useCases[3])}
-          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-0 text-left"
-        >
-          <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
-            <img 
-              src={useCases[3].image} 
-              alt={useCases[3].title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
-            <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
-              <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
-                Chemical & Process
-              </span>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-                {useCases[3].title.split(':')[1]?.trim() || useCases[3].title}
-              </h3>
-              <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
-                {useCases[3].useCase}
-              </p>
-              <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
-                <span className="text-sm font-medium">Explore use case</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          {/* Chemical — middle 4 grids */}
+          <div className="hidden lg:block lg:col-span-1" />
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            onClick={() => setSelectedUseCase(useCases[3])}
+            className="lg:col-span-4 group relative overflow-hidden cursor-pointer text-left"
+          >
+            <div className="relative overflow-hidden aspect-[21/9]">
+              <img 
+                src={useCases[3].image} 
+                alt={useCases[3].title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 max-w-xl z-10">
+                <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
+                  Chemical & Process
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+                  {useCases[3].title.split(':')[1]?.trim() || useCases[3].title}
+                </h3>
+                <p className="text-white/70 text-sm line-clamp-2 hidden md:block">
+                  {useCases[3].useCase}
+                </p>
+                <div className="flex items-center gap-2 mt-4 text-white/80 group-hover:text-white transition-colors">
+                  <span className="text-sm font-medium">Explore use case</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </div>
               </div>
             </div>
-          </div>
-        </motion.button>
+          </motion.button>
+        </div>
 
       </div>
 
