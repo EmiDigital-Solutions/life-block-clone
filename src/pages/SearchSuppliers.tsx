@@ -135,21 +135,21 @@ const DemoChatbot = () => {
         </div>
       </div>
 
-      <div className="p-3 space-y-1.5 flex-1 overflow-hidden">
+      <div className="p-3 space-y-2 flex-1 overflow-hidden">
         {/* Step 1: Preference Engine auto-detects buyer context */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit max-w-[92%]">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Context Detected</span>
-              <div className="flex gap-1.5 flex-wrap">
+            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
+              <div className="flex gap-2 flex-wrap">
                 {[
                   { label: "Automotive OEM", type: "Industry" },
                   { label: "Germany / EU", type: "Region" },
                   { label: "IATF Required", type: "Standard" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
-                    <span className="px-1 py-0.5 text-[7px] font-bold uppercase tracking-wider bg-[hsl(0,0%,25%)] text-[hsl(0,0%,60%)] rounded-none">{item.type}</span>
-                    <span className="text-[10px] font-semibold text-white">{item.label}</span>
+                    <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,25%)] text-[hsl(0,0%,70%)] rounded-none">{item.type}</span>
+                    <span className="text-[11px] font-semibold text-white">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -157,12 +157,12 @@ const DemoChatbot = () => {
           </motion.div>
         )}
 
-        {/* Step 2: User simple input — no technical details, just what they need */}
+        {/* Step 2: User simple input — adaptive width */}
         {step >= 2 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit ml-auto">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">I need aluminum brake calipers</p>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
+            <div className="p-2.5 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">You</span>
+              <p className="text-[12px] font-semibold text-white leading-relaxed">I need aluminum brake calipers</p>
             </div>
           </motion.div>
         )}
@@ -170,21 +170,21 @@ const DemoChatbot = () => {
         {/* Step 3: AI analyzing indicator */}
         {step >= 3 && step < 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
+            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-                <span className="text-[10px] text-primary font-bold">Preference Engine analyzing requirements...</span>
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-[11px] text-primary font-bold">Preference Engine analyzing requirements...</span>
               </div>
             </div>
           </motion.div>
         )}
 
-        {/* Step 4: AI full breakdown — recognized everything from simple input */}
+        {/* Step 4: AI full breakdown — all recognized entities */}
         {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit max-w-[92%]">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — I identified the following</span>
-              <div className="flex flex-wrap gap-1">
+            <div className="p-3 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
+              <div className="flex flex-wrap gap-1.5">
                 {[
                   { tag: "5-Axis CNC", cat: "Capability" },
                   { tag: "Al 6061/7075", cat: "Material" },
@@ -193,36 +193,37 @@ const DemoChatbot = () => {
                   { tag: "Salt Spray", cat: "Testing" },
                   { tag: "Brake Calipers", cat: "Product" },
                   { tag: "CMM Inspection", cat: "QC" },
-                  { tag: "Ppap Lvl 3", cat: "Standard" },
+                  { tag: "PPAP Lvl 3", cat: "Standard" },
+                  { tag: "EU / Germany", cat: "Shipment" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-0.5">
-                    <span className="px-1 py-0.5 text-[7px] font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-none">{item.cat}</span>
-                    <span className="text-[9px] font-semibold text-white">{item.tag}</span>
+                  <div key={i} className="flex items-center gap-1">
+                    <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-none">{item.cat}</span>
+                    <span className="text-[11px] font-semibold text-white">{item.tag}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-1.5 pt-1.5 border-t border-[hsl(0,0%,28%)]">
-                <span className="text-[8px] font-bold uppercase tracking-wider text-primary/70 block mb-1">Also recommended</span>
-                <div className="flex gap-1 flex-wrap">
+              <div className="mt-2 pt-2 border-t border-[hsl(0,0%,28%)]">
+                <span className="text-[9px] font-bold uppercase tracking-wider text-primary/80 block mb-1">Also recommended</span>
+                <div className="flex gap-1.5 flex-wrap">
                   {["ISO 14001", "X-Ray NDT", "Tensile Test", "ISO 45001"].map((opt, i) => (
-                    <span key={i} className="px-1.5 py-0.5 text-[8px] font-semibold rounded-none bg-primary/10 text-primary border border-primary/20">+ {opt}</span>
+                    <span key={i} className="px-2 py-0.5 text-[9px] font-semibold rounded-none bg-primary/10 text-primary border border-primary/25">+ {opt}</span>
                   ))}
                 </div>
               </div>
-              <p className="text-[9px] text-[hsl(0,0%,60%)] mt-1.5 font-medium">Please confirm or add additional requirements ↓</p>
+              <p className="text-[10px] text-[hsl(0,0%,65%)] mt-2 font-medium">Please confirm or add additional requirements ↓</p>
             </div>
           </motion.div>
         )}
 
-        {/* Step 5: User confirms and adds extra requirement */}
+        {/* Step 5: User confirms and adds — adaptive width */}
         {step >= 5 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit ml-auto">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
+            <div className="p-2.5 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">You</span>
               <div className="flex items-center gap-1.5 mb-1">
-                <span className="px-1.5 py-0.5 text-[8px] font-bold bg-primary/30 text-primary rounded-none">✓ Confirmed</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary rounded-none">✓ Confirmed</span>
               </div>
-              <p className="text-[10px] font-semibold text-white leading-relaxed">Also need capacity &gt;50K/month and PPAP Level 3</p>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">Also need capacity &gt;50K/month and PPAP Level 3</p>
             </div>
           </motion.div>
         )}
@@ -230,12 +231,12 @@ const DemoChatbot = () => {
         {/* Step 6: AI confirms ready to search */}
         {step >= 6 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Ready to Search</span>
-              <div className="flex gap-1.5 flex-wrap">
-                <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ 50K/mo min</span>
-                <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ PPAP Lvl 3</span>
-                <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ ISO 14001 ✓</span>
+            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
+              <div className="flex gap-2 flex-wrap">
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary rounded-none">+ 50K/mo min</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary rounded-none">+ PPAP Lvl 3</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary rounded-none">+ ISO 14001 ✓</span>
               </div>
             </div>
           </motion.div>
