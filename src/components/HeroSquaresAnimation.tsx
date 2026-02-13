@@ -29,7 +29,7 @@ const formations = {
     { x: UNIT * 3, y: UNIT * 2 },
     { x: UNIT * 4, y: UNIT * 3 },
   ],
-  // Checkmark shape (8 + 2 hidden)
+  // Checkmark shape
   checkmark: [
     { x: -UNIT * 0.5, y: UNIT * 1.5 },
     { x: 0, y: UNIT * 2 },
@@ -39,21 +39,25 @@ const formations = {
     { x: UNIT * 2, y: UNIT },
     { x: UNIT * 2.5, y: UNIT * 0.5 },
     { x: UNIT * 3, y: 0 },
-    { x: UNIT * 3.5, y: -UNIT * 0.5, opacity: 0 },
-    { x: UNIT * 4, y: -UNIT, opacity: 0 },
+    { x: UNIT * 0.5, y: UNIT * 2.5, opacity: 0 },
+    { x: UNIT * 1, y: UNIT * 2, opacity: 0 },
   ],
-  // Magnifying glass: circle + handle (8 + 2 hidden)
+  // Magnifying glass: round lens (6 squares) + diagonal handle (4 squares)
   magnifyingGlass: [
-    { x: UNIT * 0.5, y: 0 },
-    { x: UNIT * 1.5, y: 0 },
-    { x: 0, y: UNIT },
-    { x: UNIT * 2, y: UNIT },
-    { x: UNIT * 0.5, y: UNIT * 2 },
-    { x: UNIT * 1.5, y: UNIT * 2 },
+    // Lens - top
+    { x: UNIT, y: 0 },
+    { x: UNIT * 2, y: 0 },
+    // Lens - sides
+    { x: UNIT * 0.5, y: UNIT },
+    { x: UNIT * 2.5, y: UNIT },
+    // Lens - bottom
+    { x: UNIT, y: UNIT * 2 },
+    { x: UNIT * 2, y: UNIT * 2 },
+    // Handle - diagonal
     { x: UNIT * 2.5, y: UNIT * 2.5 },
     { x: UNIT * 3, y: UNIT * 3 },
-    { x: UNIT * 3.5, y: UNIT * 3.5, opacity: 0 },
-    { x: UNIT * 4, y: UNIT * 4, opacity: 0 },
+    { x: UNIT * 3.5, y: UNIT * 3.5 },
+    { x: UNIT * 4, y: UNIT * 4 },
   ],
 };
 
