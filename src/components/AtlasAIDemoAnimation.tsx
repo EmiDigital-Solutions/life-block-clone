@@ -1,335 +1,364 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SCREEN_DURATION = 5000;
 const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
 
-/* Solid dark cards — matching PlatformDemoAnimation */
-const Card = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
-  const layerBg = layer === 1
+/* Solid dark cards — matching PlatformDemoAnimation design system */
+const C = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
+  const bg = layer === 1
     ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]'
     : layer === 2
     ? 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)]'
     : 'bg-[hsl(0,0%,32%)] border-[hsl(0,0%,28%)]';
   return (
-    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : layerBg} ${className}`}>
+    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : bg} ${className}`}>
       {children}
     </div>
   );
 };
 
-/* ── Progress bar ── */
-const ProgressBar = ({ value, color = "bg-primary", delay = 0 }: { value: number; color?: string; delay?: number }) => (
+const Bar = ({ value, color = "bg-primary", delay = 0 }: { value: number; color?: string; delay?: number }) => (
   <div className="h-1 w-full bg-background/10 overflow-hidden">
-    <motion.div
-      initial={{ width: 0 }}
-      animate={{ width: `${value}%` }}
-      transition={{ duration: 1.2, delay }}
-      className={`h-full ${color}`}
-    />
+    <motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: 1.2, delay }} className={`h-full ${color}`} />
   </div>
 );
 
-/* ── SCREEN 1: Checklist Panel ── */
-const ChecklistScreen = () => {
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const items = [
-    { section: "4. QUALITY MGMT", items: ["4.1 General Req.", "4.1.1 Process", "4.2 Documentation"] },
-    { section: "5. MANAGEMENT", items: ["5.1 Commitment", "5.2 Policy"] }
-  ];
+const Check = ({ done = false }: { done?: boolean }) => (
+  <div className={`w-2 h-2 border flex items-center justify-center shrink-0 ${done ? 'bg-[#3DC88E] border-[#3DC88E]' : 'border-background/30'}`}>
+    {done && <svg className="w-1.5 h-1.5 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M2 6l3 3 5-5" /></svg>}
+  </div>
+);
 
+/* ── LEFT PANEL: Standards Checklist ── */
+const LeftPanel = () => {
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
-    const timers = [600, 1200, 2000, 2800, 3600].map((d, i) =>
-      setTimeout(() => setCheckedItems(prev => [...prev, i]), d)
-    );
-    return () => timers.forEach(clearTimeout);
+    const t = setTimeout(() => setProgress(45), 400);
+    return () => clearTimeout(t);
   }, []);
 
-  let itemIndex = 0;
-
   return (
-    <div className="w-full h-full flex">
-      {/* Left sidebar - Checklist */}
-      <div className="w-[35%] p-3 flex flex-col gap-2 border-r border-muted-foreground/10">
-        <Card layer={2} className="p-2 mb-1">
-          <span className="text-[9px] font-bold text-background uppercase tracking-wider">Audit Checklist</span>
-          <div className="mt-1"><ProgressBar value={60} /></div>
-          <span className="text-[8px] text-background/50 mt-0.5 block">IATF 16949 · 60%</span>
-        </Card>
-        {items.map((group) => (
-          <div key={group.section} className="space-y-0.5">
-            <span className="text-[8px] font-semibold text-foreground/60 uppercase tracking-wider">{group.section}</span>
-            {group.items.map((item) => {
-              const idx = itemIndex++;
-              const checked = checkedItems.includes(idx);
-              return (
-                <motion.div
-                  key={item}
-                  className="flex items-center gap-1.5 py-0.5"
-                  animate={checked ? { x: [0, 2, 0] } : {}}
-                >
-                  <div className={`w-2.5 h-2.5 border flex items-center justify-center transition-colors ${
-                    checked ? 'bg-primary border-primary' : 'border-foreground/20 bg-transparent'
-                  }`}>
-                    {checked && (
-                      <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-2 h-2 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={2}>
-                        <path d="M2 6l3 3 5-5" />
-                      </motion.svg>
-                    )}
-                  </div>
-                  <span className={`text-[8px] ${checked ? 'text-foreground/80 line-through' : 'text-foreground/50'}`}>{item}</span>
-                </motion.div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
+    <div className="h-full flex flex-col p-2 gap-1.5 overflow-hidden">
+      <C layer={2} className="p-1.5">
+        <span className="text-[7px] font-bold text-background uppercase tracking-wider">Audit Checklist</span>
+        <div className="text-[6px] text-background/50 mt-0.5">Supplier: Precision Parts</div>
+        <div className="text-[6px] text-background/50">Standard: IATF 16949</div>
+        <div className="mt-1"><Bar value={progress} /></div>
+        <div className="text-[6px] text-background/40 mt-0.5">Progress: 45%</div>
+      </C>
 
-      {/* Right - AI Context */}
-      <div className="flex-1 p-3 flex flex-col gap-2">
-        <div className="flex items-center gap-1.5 mb-1">
-          <div className="w-1.5 h-1.5 bg-primary" />
-          <span className="text-[10px] font-bold text-foreground/80">4.2.3 Control of Documents</span>
-        </div>
+      <div className="flex-1 overflow-hidden space-y-0.5 text-[6px]">
+        {/* Section 4 */}
+        <div className="text-[7px] font-bold text-foreground/60 mt-1">▼ 4. QUALITY MGMT</div>
+        <div className="pl-2 space-y-0.5">
+          <div className="text-foreground/40">4.1 General Req.</div>
+          <div className="pl-2 flex items-center gap-1"><Check done /> <span className="text-foreground/50">4.1.1 Process</span></div>
+          <div className="pl-4 text-[5px] text-[#3DC88E]">Completed</div>
 
-        <Card highlight className="p-2">
-          <span className="text-[8px] font-bold text-primary uppercase tracking-wider">AI Context</span>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-[8px] text-background/70 mt-1 leading-relaxed"
-          >
-            BMW Tier-2 has rejected 2 previous suppliers for document control gaps. Focus on revision control and obsolete document handling.
-          </motion.p>
-        </Card>
+          <div className="text-foreground/50 font-semibold">▼ 4.2 Documentation</div>
+          <div className="pl-2 space-y-0.5">
+            <div className="flex items-center gap-1"><Check done /> <span className="text-foreground/50">4.2.1 General</span></div>
+            <div className="flex items-center gap-1"><Check done /> <span className="text-foreground/50">4.2.2 Manual</span></div>
 
-        <Card layer={1} className="p-2">
-          <span className="text-[8px] font-semibold text-background/80">Standard Requirement</span>
-          <p className="text-[7px] text-background/50 mt-0.5 leading-relaxed">
-            Documents required by the QMS shall be controlled. Approve, review, update, and re-approve documents.
-          </p>
-        </Card>
-
-        <Card layer={1} className="p-2">
-          <span className="text-[8px] font-semibold text-background/80">What to Check</span>
-          <div className="space-y-0.5 mt-1">
-            {["Document Control Procedure", "Approval signatures on samples", "Revision history tracking"].map((item, i) => (
-              <motion.div key={item} initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5 + i * 0.3 }} className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-primary/60" />
-                <span className="text-[7px] text-background/60">{item}</span>
-              </motion.div>
-            ))}
-          </div>
-        </Card>
-      </div>
-    </div>
-  );
-};
-
-/* ── SCREEN 2: AI Copilot Conversation ── */
-const CopilotScreen = () => {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const timers = [400, 1200, 2200, 3200, 4000].map((d, i) =>
-      setTimeout(() => setStep(i + 1), d)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const messages = [
-    { role: "ai", text: "I'll guide you through Section 4.2.3. Let's start with document control procedures." },
-    { role: "user", text: "Found the procedure manual at reception desk." },
-    { role: "ai", text: "Good. Check revision dates — last 3 audits show 68% had outdated versions. Verify current revision number." },
-    { role: "user", text: "Revision is from 2022, last update overdue." },
-    { role: "ai", text: "⚠️ Generating Minor NC: Document revision overdue. Recommend capturing evidence photo of the revision page." },
-  ];
-
-  return (
-    <div className="w-full h-full flex flex-col p-3">
-      <div className="flex items-center gap-2 mb-2 pb-2 border-b border-muted-foreground/10">
-        <div className="w-5 h-5 bg-primary flex items-center justify-center">
-          <span className="text-[8px] font-bold text-white">AI</span>
-        </div>
-        <span className="text-[10px] font-bold text-foreground/80">Atlas Copilot</span>
-        <div className="ml-auto flex items-center gap-1">
-          <div className="w-1.5 h-1.5 bg-[#3DC88E] rounded-full" />
-          <span className="text-[8px] text-foreground/50">Voice Active</span>
-        </div>
-      </div>
-
-      <div className="flex-1 space-y-1.5 overflow-hidden">
-        {messages.map((msg, i) => (
-          i < step && (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <Card
-                layer={msg.role === "ai" ? 2 : 1}
-                highlight={msg.role === "ai" && i === 4}
-                className={`p-2 max-w-[80%] ${msg.role === "user" ? "bg-[hsl(0,0%,50%)] border-[hsl(0,0%,45%)]" : ""}`}
-              >
-                <p className={`text-[8px] leading-relaxed ${
-                  i === 4 ? "text-primary font-semibold" : "text-background/70"
-                }`}>{msg.text}</p>
-              </Card>
-            </motion.div>
-          )
-        ))}
-      </div>
-
-      {/* Input bar */}
-      <div className="mt-2 pt-2 border-t border-muted-foreground/10">
-        <Card layer={1} className="p-1.5 flex items-center gap-2">
-          <div className="w-4 h-4 bg-primary/20 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-primary" />
-          </div>
-          <span className="text-[8px] text-background/40">Speak or type your observation...</span>
-        </Card>
-      </div>
-    </div>
-  );
-};
-
-/* ── SCREEN 3: Intelligence Dashboard ── */
-const IntelligenceScreen = () => {
-  const findings = [
-    { type: "Major NC", label: "Document revision overdue", severity: "bg-[#E04545]" },
-    { type: "Minor NC", label: "Calibration cert missing date", severity: "bg-[#F5A623]" },
-    { type: "OFI", label: "Digital records recommended", severity: "bg-primary" },
-  ];
-
-  return (
-    <div className="w-full h-full flex">
-      {/* Left: Score + findings */}
-      <div className="w-[55%] p-3 flex flex-col gap-2 border-r border-muted-foreground/10">
-        <span className="text-[9px] font-bold text-foreground/70 uppercase tracking-wider">Audit Score</span>
-
-        <Card layer={2} className="p-3 flex items-center gap-3">
-          {/* Score circle */}
-          <div className="relative w-14 h-14 shrink-0">
-            <svg viewBox="0 0 56 56" className="w-full h-full">
-              <circle cx="28" cy="28" r="22" fill="none" stroke="hsl(0,0%,30%)" strokeWidth="4" />
-              <motion.circle
-                cx="28" cy="28" r="22" fill="none" stroke="hsl(199,91%,64%)" strokeWidth="4"
-                strokeDasharray={`${2 * Math.PI * 22}`}
-                strokeDashoffset={`${2 * Math.PI * 22 * (1 - 0.72)}`}
-                strokeLinecap="butt"
-                initial={{ strokeDashoffset: 2 * Math.PI * 22 }}
-                animate={{ strokeDashoffset: 2 * Math.PI * 22 * (1 - 0.72) }}
-                transition={{ duration: 1.5, delay: 0.3 }}
-                transform="rotate(-90 28 28)"
-              />
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-sm font-bold text-background">72%</span>
-            </div>
-          </div>
-          <div>
-            <span className="text-[10px] font-bold text-background">Conditional Pass</span>
-            <p className="text-[7px] text-background/50 mt-0.5">1 Major · 1 Minor · 1 OFI</p>
-          </div>
-        </Card>
-
-        <span className="text-[8px] font-semibold text-foreground/60 uppercase tracking-wider mt-1">Findings</span>
-        <div className="space-y-1">
-          {findings.map((f, i) => (
-            <motion.div key={f.label} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 + i * 0.3 }}>
-              <Card layer={1} className="p-1.5 flex items-center gap-2">
-                <div className={`w-1.5 h-4 ${f.severity}`} />
-                <div>
-                  <span className="text-[7px] font-bold text-background/80 uppercase">{f.type}</span>
-                  <p className="text-[7px] text-background/50">{f.label}</p>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right: Benchmark + CAPA */}
-      <div className="flex-1 p-3 flex flex-col gap-2">
-        <span className="text-[9px] font-bold text-foreground/70 uppercase tracking-wider">Benchmark</span>
-
-        <Card layer={1} className="p-2 space-y-1.5">
-          {[
-            { label: "This Supplier", val: 72, color: "bg-primary" },
-            { label: "Industry Avg", val: 81, color: "bg-background/30" },
-          ].map((b, i) => (
-            <div key={b.label}>
-              <div className="flex justify-between">
-                <span className="text-[7px] text-background/60">{b.label}</span>
-                <span className="text-[7px] font-bold text-background/80">{b.val}%</span>
+            {/* Active item */}
+            <C highlight className="p-1 -ml-1">
+              <div className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-primary animate-pulse" />
+                <span className="text-[6px] font-bold text-background">4.2.3 Control</span>
               </div>
-              <ProgressBar value={b.val} color={b.color} delay={0.5 + i * 0.3} />
-            </div>
-          ))}
-        </Card>
+              <div className="flex items-center gap-1 mt-0.5 pl-2.5">
+                <span className="text-[5px] text-primary">In Progress</span>
+                <span className="text-[5px] px-0.5 bg-[#E04545] text-white font-bold">HIGH</span>
+              </div>
+            </C>
 
-        <span className="text-[8px] font-semibold text-foreground/60 uppercase tracking-wider mt-1">CAPA Status</span>
-        <Card highlight className="p-2">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 bg-[#F5A623]" />
-            <span className="text-[8px] font-bold text-background/80">Action Required</span>
+            <div className="flex items-center gap-1 text-foreground/30"><div className="w-2 h-2 border border-foreground/20" /> <span>4.2.4 Records</span></div>
+            <div className="pl-4 text-[5px] text-foreground/25">Not Started</div>
           </div>
-          <p className="text-[7px] text-background/50 mt-1">30-day corrective action window. Root cause analysis due in 14 days.</p>
-        </Card>
+        </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}>
-          <Card layer={2} className="p-2 mt-auto">
-            <span className="text-[7px] font-semibold text-primary">AI Recommendation</span>
-            <p className="text-[7px] text-background/50 mt-0.5">Schedule follow-up audit in 60 days. Focus areas: document control, calibration records.</p>
-          </Card>
-        </motion.div>
+        {/* Section 5 */}
+        <div className="text-[7px] font-bold text-foreground/60 mt-1">▼ 5. MANAGEMENT</div>
+        <div className="pl-2 flex items-center gap-1 text-foreground/30">
+          <div className="w-2 h-2 border border-foreground/20" /> <span>5.1 Commitment</span>
+        </div>
       </div>
+    </div>
+  );
+};
+
+/* ── MIDDLE PANEL: AI Guidance & Documentation ── */
+const MiddlePanel = () => {
+  const [visibleSections, setVisibleSections] = useState(0);
+
+  useEffect(() => {
+    const timers = [300, 800, 1500, 2200, 3000, 3800, 4500].map((d, i) =>
+      setTimeout(() => setVisibleSections(i + 1), d)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  return (
+    <div className="h-full flex flex-col p-2.5 gap-1.5 overflow-y-auto overflow-x-hidden">
+      {/* Title */}
+      <div>
+        <span className="text-[9px] font-bold text-foreground/80">4.2.3 Control of Documents</span>
+        <div className="text-[5px] text-foreground/40 mt-0.5">IATF 16949:2016 Clause 4.2.3 · ISO 9001:2015 7.5.3</div>
+      </div>
+
+      {/* AI Context */}
+      {visibleSections >= 1 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C highlight className="p-1.5">
+            <span className="text-[6px] font-bold text-primary uppercase tracking-wider">AI Context</span>
+            <div className="flex items-center gap-1 mt-0.5">
+              <span className="text-[5px] px-0.5 bg-[#E04545] text-white font-bold">HIGH PRIORITY</span>
+              <span className="text-[5px] text-background/50">for this client</span>
+            </div>
+            <p className="text-[5.5px] text-background/60 mt-0.5 leading-relaxed">
+              BMW Tier-2 has rejected 2 previous suppliers for document control gaps. Based on 47 similar automotive audits, issues appear in 73% of cases.
+            </p>
+            <div className="mt-1 space-y-0.5">
+              {["Revision control (82%)", "Obsolete document control (68%)", "Approval signatures (54%)"].map(t => (
+                <div key={t} className="flex items-center gap-1">
+                  <div className="w-0.5 h-0.5 bg-primary" />
+                  <span className="text-[5px] text-background/50">{t}</span>
+                </div>
+              ))}
+            </div>
+          </C>
+        </motion.div>
+      )}
+
+      {/* Standard Requirement */}
+      {visibleSections >= 2 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C layer={1} className="p-1.5">
+            <span className="text-[6px] font-semibold text-background/70 uppercase tracking-wider">Standard Requirement</span>
+            <p className="text-[5px] text-background/50 mt-0.5 leading-relaxed">
+              Documents required by the QMS shall be controlled. Approve documents before issue, review and re-approve, ensure changes identified, ensure relevant versions available.
+            </p>
+          </C>
+        </motion.div>
+      )}
+
+      {/* What to Check */}
+      {visibleSections >= 3 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C layer={1} className="p-1.5">
+            <span className="text-[6px] font-semibold text-background/70 uppercase tracking-wider">What to Check</span>
+            <div className="mt-1 space-y-1">
+              {[
+                { q: "Documented procedure for document control?", hint: 'Ask to see: "Document Control Procedure"' },
+                { q: "How are documents approved before release?", hint: "Check: Approval signatures on samples" },
+                { q: "How is revision history tracked?", hint: "Ask to see: Document register/master list" },
+                { q: "How are obsolete documents controlled?", hint: "Critical: Old versions removed or marked?" },
+              ].map((item, i) => (
+                <div key={i} className="space-y-0">
+                  <div className="flex items-start gap-1">
+                    <span className="text-[5px] text-primary font-bold shrink-0">{i + 1}.</span>
+                    <span className="text-[5px] text-background/60">{item.q}</span>
+                  </div>
+                  <div className="pl-2 text-[4.5px] text-background/40">→ {item.hint}</div>
+                </div>
+              ))}
+            </div>
+          </C>
+        </motion.div>
+      )}
+
+      {/* Best Practices */}
+      {visibleSections >= 4 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C layer={2} className="p-1.5">
+            <span className="text-[6px] font-semibold text-background/70 uppercase tracking-wider">Best Practices</span>
+            <div className="mt-0.5 space-y-0.5">
+              {[
+                "Master list: title, revision #, date, approval",
+                'Stamp "CONTROLLED COPY" with copy numbers',
+                "Use PDM/PLM with access controls",
+                'Mark obsolete as "DO NOT USE"',
+              ].map(t => (
+                <div key={t} className="flex items-start gap-1">
+                  <div className="w-0.5 h-0.5 bg-[#3DC88E] mt-[2px] shrink-0" />
+                  <span className="text-[5px] text-background/50">{t}</span>
+                </div>
+              ))}
+            </div>
+          </C>
+        </motion.div>
+      )}
+
+      {/* Common Issues */}
+      {visibleSections >= 5 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C layer={1} className="p-1.5">
+            <span className="text-[6px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues (47 Audits)</span>
+            <div className="mt-0.5 space-y-0.5">
+              {[
+                { issue: "Register exists but not used (73%)", verify: "Check 3-4 recent revisions" },
+                { issue: "Obsolete docs on shared drives (68%)", verify: "Check archived folders" },
+                { issue: "No approval signatures (54%)", verify: "Review 5 sample documents" },
+              ].map((item, i) => (
+                <div key={i}>
+                  <span className="text-[5px] text-background/60">{item.issue}</span>
+                  <div className="text-[4.5px] text-background/40 pl-1">→ {item.verify}</div>
+                </div>
+              ))}
+            </div>
+          </C>
+        </motion.div>
+      )}
+
+      {/* Evidence to Collect */}
+      {visibleSections >= 6 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C layer={2} className="p-1.5">
+            <span className="text-[6px] font-semibold text-background/70 uppercase tracking-wider">Evidence to Collect</span>
+            <div className="mt-0.5 grid grid-cols-2 gap-x-2 gap-y-0.5">
+              {["Document control procedure", "Document register", "Approved document sample", "Obsolete doc control", "Approval authority matrix"].map(t => (
+                <div key={t} className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 border border-background/20 shrink-0" />
+                  <span className="text-[4.5px] text-background/50">{t}</span>
+                </div>
+              ))}
+            </div>
+          </C>
+        </motion.div>
+      )}
+
+      {/* Assessment bar */}
+      {visibleSections >= 7 && (
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+          <C highlight className="p-1.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[6px] font-semibold text-background/70 uppercase tracking-wider">Assessment</span>
+              <div className="flex gap-1">
+                {["Compliant", "Minor NC", "Major NC", "Observation"].map(s => (
+                  <span key={s} className={`text-[4.5px] px-1 py-0.5 border ${s === "Minor NC" ? 'border-[#F5A623] text-[#F5A623]' : 'border-background/20 text-background/40'}`}>{s}</span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-1 p-1 bg-background/5 border border-background/10">
+              <span className="text-[5px] text-primary font-semibold">AI Suggested:</span>
+              <p className="text-[4.5px] text-background/50 mt-0.5 leading-relaxed">
+                "Document control register is not current. Last 4 revisions not reflected in master list."
+              </p>
+            </div>
+          </C>
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
+/* ── RIGHT PANEL: Intelligence Insights ── */
+const RightPanel = () => {
+  return (
+    <div className="h-full flex flex-col p-2 gap-1.5 overflow-hidden">
+      <span className="text-[7px] font-bold text-foreground/60 uppercase tracking-wider">Intelligence Insights</span>
+
+      {/* Priority */}
+      <C highlight className="p-1.5">
+        <span className="text-[6px] font-bold text-[#E04545] uppercase">Priority</span>
+        <div className="mt-0.5 text-[5px] text-background/60">
+          <div className="font-semibold text-background/70">Pattern detected</div>
+          <div>Doc issues correlate:</div>
+          <div className="pl-1">• Calibration (78%)</div>
+          <div className="pl-1">• Training (62%)</div>
+          <div className="text-primary mt-0.5">→ Check proactively</div>
+        </div>
+      </C>
+
+      {/* Client Focus */}
+      <C layer={1} className="p-1.5">
+        <span className="text-[6px] font-bold text-background/70 uppercase">Client Focus</span>
+        <div className="text-[5px] text-background/50 mt-0.5 space-y-0.5">
+          <div className="flex items-center gap-1"><span className="text-[5px] px-0.5 bg-[#E04545] text-white font-bold">1</span> Documentation — 67% rejection</div>
+          <div className="flex items-center gap-1"><span className="text-[5px] px-0.5 bg-[#E04545] text-white font-bold">2</span> Calibration — Required</div>
+          <div className="flex items-center gap-1"><span className="text-[5px] px-0.5 bg-[#F5A623] text-white font-bold">3</span> Process Cap.</div>
+        </div>
+      </C>
+
+      {/* Photo evidence */}
+      <C layer={2} className="p-1.5">
+        <span className="text-[6px] font-bold text-background/70 uppercase">Photo</span>
+        <div className="text-[5px] text-background/40 mt-0.5">Doc Control Board · 2 min ago</div>
+        <div className="mt-0.5 space-y-0.5 text-[5px]">
+          <div className="text-[#3DC88E]">✓ Register visible</div>
+          <div className="text-[#3DC88E]">✓ Procedure posted</div>
+          <div className="text-[#F5A623]">⚠ Signatures unclear</div>
+          <div className="text-[#F5A623]">⚠ Date not visible</div>
+          <div className="text-primary mt-0.5">→ Take closer shot</div>
+        </div>
+      </C>
+
+      {/* Progress */}
+      <C layer={1} className="p-1.5">
+        <span className="text-[6px] font-bold text-background/70 uppercase">Progress</span>
+        <div className="mt-0.5"><Bar value={45} delay={0.5} /></div>
+        <div className="text-[5px] text-background/40 mt-0.5">2h 15m elapsed · 2h 45m remaining</div>
+        <div className="mt-1 space-y-0.5 text-[5px] text-background/50">
+          <div>• Major NC: <span className="text-[#E04545] font-bold">1</span></div>
+          <div>• Minor NC: <span className="text-[#F5A623] font-bold">3</span></div>
+          <div>• Observations: <span className="text-background/70 font-bold">2</span></div>
+        </div>
+      </C>
+
+      {/* AI Tips */}
+      <C highlight className="p-1.5">
+        <span className="text-[6px] font-bold text-primary uppercase">AI Tips</span>
+        <div className="mt-0.5 space-y-0.5 text-[5px] text-background/50">
+          <div>1. Check calibration — 78%</div>
+          <div>2. Verify training — 62%</div>
+        </div>
+      </C>
+
+      {/* Benchmark */}
+      <C layer={2} className="p-1.5 mt-auto">
+        <span className="text-[6px] font-bold text-background/70 uppercase">Benchmark</span>
+        <div className="mt-0.5 space-y-0.5">
+          <div className="flex justify-between text-[5px]"><span className="text-background/50">This</span><span className="text-background/70 font-bold">7.2/10</span></div>
+          <Bar value={72} delay={0.3} />
+          <div className="flex justify-between text-[5px]"><span className="text-background/50">Industry</span><span className="text-background/70 font-bold">8.1/10</span></div>
+          <Bar value={81} color="bg-background/30" delay={0.5} />
+        </div>
+        <div className="text-[5px] text-[#3DC88E] font-semibold mt-1">Likely: Approved with conditions</div>
+      </C>
     </div>
   );
 };
 
 /* ── MAIN COMPONENT ── */
 const AtlasAIDemoAnimation = () => {
-  const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [ChecklistScreen, CopilotScreen, IntelligenceScreen];
-  const labels = ["Brain", "Copilot", "Intelligence"];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 3);
-    }, SCREEN_DURATION);
-    return () => clearTimeout(timer);
-  }, [currentScreen]);
-
-  const CurrentScreenComponent = screens[currentScreen];
-
   return (
     <div className={`w-full h-full flex flex-col ${SCREEN_BG} overflow-hidden`}>
-      {/* Top bar — progress steps */}
-      <div className="flex items-center gap-1 px-4 py-2 border-b border-muted-foreground/10">
-        {labels.map((label, i) => (
-          <div key={label} className="flex items-center gap-1 flex-1">
-            <div className={`h-1 flex-1 transition-colors duration-500 ${
-              i <= currentScreen ? 'bg-primary' : 'bg-muted-foreground/15'
-            }`} />
-            <span className={`text-[10px] font-medium transition-colors duration-300 ${
-              i === currentScreen ? 'text-primary' : 'text-muted-foreground'
-            }`}>{label}</span>
-          </div>
-        ))}
+      {/* Top bar — 3 panel labels */}
+      <div className="flex items-center px-3 py-1.5 border-b border-muted-foreground/10">
+        <div className="flex-[22] text-center">
+          <span className="text-[7px] font-medium text-foreground/50 uppercase tracking-wider">Standards Checklist</span>
+        </div>
+        <div className="w-px h-3 bg-muted-foreground/10" />
+        <div className="flex-[50] text-center">
+          <span className="text-[7px] font-medium text-primary uppercase tracking-wider">AI Guidance & Documentation</span>
+        </div>
+        <div className="w-px h-3 bg-muted-foreground/10" />
+        <div className="flex-[28] text-center">
+          <span className="text-[7px] font-medium text-foreground/50 uppercase tracking-wider">Intelligence Insights</span>
+        </div>
       </div>
 
-      {/* Screen content */}
-      <div className="flex-1 relative overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div key={currentScreen} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="absolute inset-0">
-            <CurrentScreenComponent />
-          </motion.div>
-        </AnimatePresence>
+      {/* Three panels */}
+      <div className="flex-1 flex overflow-hidden min-h-0">
+        <div className="flex-[22] border-r border-muted-foreground/10 overflow-hidden">
+          <LeftPanel />
+        </div>
+        <div className="flex-[50] border-r border-muted-foreground/10 overflow-hidden">
+          <MiddlePanel />
+        </div>
+        <div className="flex-[28] overflow-hidden">
+          <RightPanel />
+        </div>
       </div>
     </div>
   );
