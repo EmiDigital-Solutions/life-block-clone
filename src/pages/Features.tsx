@@ -116,12 +116,6 @@ const featureCategories = [
         ]
       },
       {
-        clusterName: "Evidence Management",
-        features: [
-          { title: "Evidence Collection", description: "Multi-file upload, evidence linking to questions, audits, and NCs, file type/size validation, and evidence galleries." }
-        ]
-      },
-      {
         clusterName: "Connections & Communication",
         features: [
           { title: "Supplier Connections", description: "Connection requests (buyer or supplier initiated), status workflow (Pending → Accepted/Rejected/Blocked), relationship tracking, preferred supplier flags, and contract status." },
@@ -193,6 +187,7 @@ const featureCategories = [
       {
         clusterName: "Evidence Management",
         features: [
+          { title: "Evidence Collection", description: "Multi-file upload, evidence linking to questions, audits, and NCs, file type/size validation, and evidence galleries." },
           { title: "Evidence Workflow", description: "Status tracking (Pending → Accepted/Rejected/Needs Clarification), AI evidence analysis, relevance scoring, and extracted data from documents and images." }
         ]
       },
