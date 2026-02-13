@@ -29,7 +29,7 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-[100dvh] flex flex-col bg-white"
     >
-      <HeroSquaresAnimation className="top-[60px] right-12 md:top-[72px] md:right-20 lg:top-[84px] lg:right-24" />
+      <HeroSquaresAnimation className="top-[79px] right-12 md:top-[91px] md:right-20 lg:top-[103px] lg:right-24" />
       {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-[106px] md:pt-[154px] lg:pt-[186px] min-h-0">
         <div className="px-8 w-full max-w-[1400px] mx-auto">
