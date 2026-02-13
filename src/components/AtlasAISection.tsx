@@ -108,7 +108,7 @@ const AtlasAISection = () => {
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                     className="w-full flex items-center justify-between py-4 text-left group"
                   >
-                    <span className={`text-base font-medium transition-colors ${
+                    <span className={`text-lg font-medium transition-colors ${
                       openIndex === index ? "text-foreground" : "text-foreground/60"
                     } group-hover:text-foreground`}>
                       {feature.title}
@@ -128,7 +128,7 @@ const AtlasAISection = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <p className="text-sm text-muted-foreground leading-relaxed pb-4 max-w-sm">
+                        <p className="text-base text-muted-foreground leading-relaxed pb-4 max-w-sm">
                           {feature.description}
                         </p>
                       </motion.div>
