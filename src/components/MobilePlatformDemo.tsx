@@ -245,14 +245,21 @@ const MobileIntelligenceScreen = () => {
   useEffect(() => {
     const timers = [
       setTimeout(() => setPhase(1), 400),
-      setTimeout(() => setPhase(2), 1000),
-      setTimeout(() => setPhase(3), 1800),
-      setTimeout(() => setPhase(4), 2600),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 2200),
+      setTimeout(() => setPhase(4), 3200),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const kpis = [
+  const scores = [
+    { name: "Quality", score: 93 },
+    { name: "Equipment", score: 89 },
+    { name: "Docs", score: 94 },
+    { name: "Process", score: 88 },
+  ];
+
+  const auditKpis = [
     { label: "Calibration Compliance", value: "97", unit: "%", delta: "+4", bars: [60, 68, 78, 87, 93, 95, 97] },
     { label: "NCR Close-out Rate", value: "94", unit: "%", delta: "+8", bars: [55, 65, 75, 84, 90, 93, 94] },
     { label: "Process Capability", value: "1.67", unit: "Cpk", delta: "+0.3", bars: [40, 55, 68, 78, 87, 93, 96] },
@@ -260,18 +267,48 @@ const MobileIntelligenceScreen = () => {
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-1.5`}>
+       {/* Overall score with donut */}
        <GlassCard layer={2} className="p-2.5 flex items-center gap-3 overflow-hidden relative">
          <div className="-ml-4 -my-3 flex-shrink-0">
            <DonutScore score={91} size={80} />
          </div>
          <div className="flex-1">
-           <div className="text-sm font-semibold text-background">91.3%</div>
-           <div className="text-[10px] text-background/60">Overall Score</div>
+           <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
+           <div className="text-[11px] text-background/60">ISO 9001 Report</div>
+           <div className="flex items-baseline gap-1 mt-1">
+             <span className="text-lg font-bold text-background">91.3</span>
+             <span className="text-[10px] text-background/60">%</span>
+             <span className="text-[9px] text-primary font-semibold -translate-y-1">+2.1</span>
+           </div>
          </div>
        </GlassCard>
 
-       {kpis.map((kpi, idx) => (
-         phase >= idx + 1 && (
+       {/* Process scores */}
+       {phase >= 1 && (
+         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+           <GlassCard layer={3} className="p-2.5">
+             <div className="flex items-end justify-between gap-2">
+               {scores.map((p) => (
+                 <div key={p.name} className="text-center">
+                   <div className="flex items-baseline justify-center gap-0.5">
+                     <span className="text-lg font-bold text-background">{p.score}</span>
+                     <span className="text-[9px] text-background/70">%</span>
+                   </div>
+                   <span className="text-[8px] text-background/70 uppercase">{p.name}</span>
+                 </div>
+               ))}
+             </div>
+             <div className="flex mt-2 border border-background/20 overflow-hidden">
+               <div className="px-2.5 py-1 text-[9px] font-semibold bg-background text-foreground flex-1 text-center">0 Major</div>
+               <div className="px-2.5 py-1 text-[9px] font-semibold bg-transparent text-background/70 flex-1 text-center">1 Minor</div>
+             </div>
+           </GlassCard>
+         </motion.div>
+       )}
+
+       {/* Audit KPI bar charts */}
+       {auditKpis.map((kpi, idx) => (
+         phase >= idx + 2 && (
            <motion.div key={kpi.label} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
              <GlassCard layer={2} className="p-2">
                <div className="flex items-center justify-between mb-0.5">
@@ -294,21 +331,6 @@ const MobileIntelligenceScreen = () => {
            </motion.div>
          )
        ))}
-
-       {phase >= 4 && (
-         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
-           <div className="flex gap-1.5">
-             <GlassCard layer={1} className="px-2 py-1 flex-1 text-center">
-               <span className="text-sm font-bold text-background">0</span>
-               <span className="text-[8px] text-background/70 uppercase block">Major</span>
-             </GlassCard>
-             <GlassCard layer={1} className="px-2 py-1 flex-1 text-center">
-               <span className="text-sm font-bold text-background">1</span>
-               <span className="text-[8px] text-background/70 uppercase block">Minor</span>
-             </GlassCard>
-           </div>
-         </motion.div>
-       )}
     </div>
   );
 };
