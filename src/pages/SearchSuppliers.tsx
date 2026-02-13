@@ -11,6 +11,404 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
+// 3-Window Demo: Chatbot → Search Results → Full Supplier Profile
+const SearchProDemoWindows = () => {
+  const [activeWindow, setActiveWindow] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveWindow((prev) => (prev + 1) % 3);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const windowTitles = [
+    "SearchPro+ — AI Chatbot",
+    "SearchPro+ — Search Results",
+    "SearchPro+ — Supplier Profile"
+  ];
+
+  const stepLabels = ["Discover", "Results", "Profile"];
+
+  return (
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[600px] flex flex-col">
+      {/* Window chrome bar */}
+      <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
+        <div className="flex gap-1.5 mr-3">
+          <div className="w-2.5 h-2.5 rounded-none bg-[#ff5f57]" />
+          <div className="w-2.5 h-2.5 rounded-none bg-[#febc2e]" />
+          <div className="w-2.5 h-2.5 rounded-none bg-[#28c840]" />
+        </div>
+        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">
+          {windowTitles[activeWindow]}
+        </span>
+        <div className="ml-auto flex gap-1">
+          {stepLabels.map((label, i) => (
+            <span
+              key={i}
+              className={`px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider rounded-none transition-colors ${
+                activeWindow === i
+                  ? 'bg-primary text-white'
+                  : 'bg-[hsl(0,0%,78%)] text-[hsl(0,0%,45%)]'
+              }`}
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Content area */}
+      <div className="flex-1 overflow-hidden relative">
+        <motion.div
+          key={activeWindow}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0"
+        >
+          {activeWindow === 0 && <DemoChatbot />}
+          {activeWindow === 1 && <DemoSearchResults />}
+          {activeWindow === 2 && <DemoSupplierProfile />}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// Window 1: Chatbot
+const DemoChatbot = () => {
+  const [visibleMsgs, setVisibleMsgs] = useState(0);
+
+  useEffect(() => {
+    setVisibleMsgs(0);
+    const timers = [500, 1200, 2200, 3200, 4500].map((delay, i) =>
+      setTimeout(() => setVisibleMsgs(i + 1), delay)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const messages = [
+    { role: 'ai', text: "What are you sourcing today?" },
+    { role: 'user', text: "Precision CNC brake calipers for our EV program" },
+    { role: 'ai', text: "EV brake calipers — I'll filter for IATF 16949, aluminum machining, and 50K+ monthly capacity." },
+    { role: 'user', text: "Also need suppliers with in-house surface treatment" },
+    { role: 'ai', text: "Found 23 verified suppliers matching all criteria. Showing top results now..." },
+  ];
+
+  return (
+    <div className="h-full bg-[hsl(0,0%,85%)] p-4 md:p-6 flex flex-col">
+      <div className="flex-1 space-y-3 overflow-y-auto min-h-0">
+        {messages.slice(0, visibleMsgs).map((msg, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+          >
+            <div className={`max-w-[80%] p-3 rounded-none border ${
+              msg.role === 'user'
+                ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]'
+                : 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]'
+            }`}>
+              <span className={`text-[9px] font-semibold uppercase tracking-wider block mb-1 ${
+                msg.role === 'ai' ? 'text-primary' : 'text-[hsl(0,0%,70%)]'
+              }`}>
+                {msg.role === 'ai' ? 'SearchPro+ AI' : 'You'}
+              </span>
+              <p className="text-xs font-medium leading-relaxed">{msg.text}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="mt-4 flex gap-2 flex-shrink-0">
+        <div className="flex-1 h-9 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none flex items-center px-3">
+          <span className="text-[hsl(0,0%,65%)] text-xs">Describe what you need...</span>
+        </div>
+        <div className="w-9 h-9 bg-primary flex items-center justify-center rounded-none">
+          <ArrowRight className="w-3.5 h-3.5 text-white" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Window 2: Search Results List
+const DemoSearchResults = () => {
+  const results = [
+    { name: "Precision Metalworks GmbH", location: "Munich, Germany", match: 96, certs: ["IATF 16949", "ISO 14001"], capacity: "65K/mo", speciality: "Aluminum brake calipers" },
+    { name: "TechForm Automotive S.r.l.", location: "Turin, Italy", match: 93, certs: ["IATF 16949", "ISO 9001"], capacity: "50K/mo", speciality: "EV powertrain housings" },
+    { name: "Apex CNC Solutions Ltd", location: "Birmingham, UK", match: 89, certs: ["ISO 9001", "AS9100D"], capacity: "40K/mo", speciality: "Multi-axis brake components" },
+    { name: "Dongyang Precision Co.", location: "Incheon, South Korea", match: 87, certs: ["IATF 16949", "ISO 9001"], capacity: "120K/mo", speciality: "High-volume caliper machining" },
+    { name: "AutoParts Bavaria AG", location: "Stuttgart, Germany", match: 84, certs: ["IATF 16949"], capacity: "55K/mo", speciality: "Surface-treated brake parts" },
+  ];
+
+  return (
+    <div className="h-full bg-[hsl(0,0%,85%)] p-4 md:p-6 flex flex-col">
+      <div className="flex items-center justify-between mb-4 flex-shrink-0">
+        <div>
+          <p className="text-[9px] text-[hsl(0,0%,45%)] uppercase tracking-wider font-semibold">23 Suppliers Found</p>
+          <p className="text-[10px] text-[hsl(0,0%,55%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
+        </div>
+        <div className="flex gap-2">
+          <span className="px-2 py-1 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[9px] text-[hsl(0,0%,80%)] rounded-none">Sort: Match Score</span>
+        </div>
+      </div>
+      <div className="flex-1 space-y-2 overflow-y-auto min-h-0">
+        {results.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.15 }}
+            className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none"
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <p className="text-sm font-semibold text-[hsl(0,0%,95%)]">{s.name}</p>
+                  <span className="text-[9px] font-bold text-primary">{s.match}%</span>
+                </div>
+                <p className="text-[10px] text-[hsl(0,0%,65%)] mb-1.5">{s.location} · {s.speciality}</p>
+                <div className="flex gap-1.5 flex-wrap">
+                  {s.certs.map((c, j) => (
+                    <span key={j} className="px-1.5 py-0.5 border border-primary/30 text-primary text-[8px] font-bold uppercase">{c}</span>
+                  ))}
+                  <span className="px-1.5 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,75%)] text-[8px] font-medium">{s.capacity}</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Window 3: Full Supplier Profile
+const DemoSupplierProfile = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const tabs = [0, 1, 2, 3, 4, 5];
+    let i = 0;
+    const interval = setInterval(() => {
+      i = (i + 1) % tabs.length;
+      setActiveTab(tabs[i]);
+    }, 900);
+    return () => clearInterval(interval);
+  }, []);
+
+  const tabLabels = ["Overview", "Audit Reports", "Intelligence", "RFQ", "Audit Order", "News"];
+
+  return (
+    <div className="h-full bg-[hsl(0,0%,85%)] flex flex-col">
+      {/* Supplier header */}
+      <div className="p-4 md:px-6 md:pt-5 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] flex items-center justify-center rounded-none">
+            <span className="text-sm font-bold text-[hsl(0,0%,90%)]">PM</span>
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-bold text-[hsl(0,0%,20%)]">Precision Metalworks GmbH</h3>
+              <span className="px-1.5 py-0.5 bg-primary text-white text-[9px] font-bold rounded-none">96% Match</span>
+            </div>
+            <p className="text-[10px] text-[hsl(0,0%,50%)]">Munich, Germany · Est. 1987 · 280 employees</p>
+          </div>
+          <div className="flex gap-2">
+            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium rounded-none">Request Quote</button>
+            <button className="px-3 py-1.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[hsl(0,0%,90%)] text-[10px] font-medium rounded-none">Order Audit</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex gap-0 border-b border-[hsl(0,0%,78%)] px-4 md:px-6 flex-shrink-0 overflow-x-auto">
+        {tabLabels.map((tab, i) => (
+          <button
+            key={tab}
+            className={`px-3 py-2 text-[10px] font-medium transition-colors whitespace-nowrap ${
+              activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-[hsl(0,0%,55%)]'
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab content */}
+      <div className="flex-1 overflow-y-auto min-h-0 p-4 md:p-6">
+        <motion.div key={activeTab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+
+          {/* Overview */}
+          {activeTab === 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { label: "Capacity", value: "65,000 units/mo" },
+                { label: "Lead Time", value: "4–6 weeks" },
+                { label: "Surface Treatment", value: "In-house anodizing" },
+                { label: "Quality Score", value: "94/100" },
+              ].map((item, i) => (
+                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                  <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-1">{item.label}</p>
+                  <p className="text-sm font-bold text-[hsl(0,0%,95%)]">{item.value}</p>
+                </div>
+              ))}
+              <div className="col-span-2 md:col-span-4 p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Certifications</p>
+                <div className="flex gap-2 flex-wrap">
+                  {["IATF 16949:2016", "ISO 14001:2015", "ISO 9001:2015", "REACH Compliant"].map((c, i) => (
+                    <span key={i} className="px-2 py-1 border border-primary/30 text-primary text-[9px] font-bold uppercase">{c}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Audit Reports */}
+          {activeTab === 1 && (
+            <div className="space-y-2">
+              {[
+                { type: "Process Audit", date: "Jan 2026", score: "92/100", auditor: "M. Schmidt", status: "Completed" },
+                { type: "Quality System Audit", date: "Nov 2025", score: "88/100", auditor: "K. Tanaka", status: "Completed" },
+                { type: "Product Audit — Brake Caliper", date: "Sep 2025", score: "95/100", auditor: "L. Chen", status: "Completed" },
+              ].map((audit, i) => (
+                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-xs font-semibold text-[hsl(0,0%,95%)]">{audit.type}</p>
+                    <span className="text-[9px] font-bold text-primary">{audit.score}</span>
+                  </div>
+                  <p className="text-[10px] text-[hsl(0,0%,65%)]">{audit.date} · Auditor: {audit.auditor}</p>
+                  <div className="mt-2 h-1.5 bg-[hsl(0,0%,35%)] rounded-none overflow-hidden">
+                    <div className="h-full bg-primary rounded-none" style={{ width: audit.score.split('/')[0] + '%' }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Intelligence */}
+          {activeTab === 2 && (
+            <div className="space-y-3">
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { label: "Risk Score", value: "Low", color: "text-secondary" },
+                  { label: "Financial Health", value: "Stable", color: "text-primary" },
+                  { label: "Delivery Rating", value: "97.2%", color: "text-primary" },
+                ].map((kpi, i) => (
+                  <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none text-center">
+                    <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-1">{kpi.label}</p>
+                    <p className={`text-sm font-bold ${kpi.color}`}>{kpi.value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Geopolitical Exposure</p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-secondary/20 text-secondary text-[9px] font-bold rounded-none">EU — Low Risk</span>
+                  <span className="px-2 py-1 bg-[hsl(0,0%,55%)] text-[hsl(0,0%,90%)] text-[9px] font-medium rounded-none">No sanctions</span>
+                </div>
+              </div>
+              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Equipment Verified</p>
+                {["DMG MORI NLX 2500 — 5-Axis CNC", "Zeiss CMM Contura — Quality", "Anodizing Line — In-house"].map((eq, i) => (
+                  <p key={i} className="text-[10px] text-[hsl(0,0%,90%)] py-1 border-b border-[hsl(0,0%,38%)] last:border-0">{eq}</p>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* RFQ */}
+          {activeTab === 3 && (
+            <div className="space-y-3">
+              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Quick RFQ</p>
+                <div className="space-y-2">
+                  {[
+                    { field: "Product", value: "CNC Brake Caliper — Aluminum 6082" },
+                    { field: "Volume", value: "50,000 units / month" },
+                    { field: "Tolerance", value: "±0.01mm" },
+                    { field: "Surface", value: "Hard anodized, Type III" },
+                    { field: "Delivery", value: "DDP Frankfurt, Incoterms 2020" },
+                  ].map((row, i) => (
+                    <div key={i} className="flex items-center justify-between py-1.5 border-b border-[hsl(0,0%,38%)] last:border-0">
+                      <span className="text-[10px] text-[hsl(0,0%,65%)]">{row.field}</span>
+                      <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <button className="w-full py-2.5 bg-primary text-white text-xs font-medium rounded-none">
+                Send RFQ to Supplier
+              </button>
+            </div>
+          )}
+
+          {/* Audit Order */}
+          {activeTab === 4 && (
+            <div className="space-y-3">
+              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Order On-Site Audit</p>
+                <div className="flex gap-2 mb-3">
+                  {["Process Audit", "Quality Audit", "Product Audit"].map((type, i) => (
+                    <span key={i} className={`px-2 py-1 text-[9px] font-medium rounded-none ${
+                      i === 0 ? 'bg-primary text-white' : 'bg-[hsl(0,0%,55%)] border border-[hsl(0,0%,50%)] text-[hsl(0,0%,90%)]'
+                    }`}>{type}</span>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between py-1.5 border-b border-[hsl(0,0%,38%)]">
+                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Audit Standard</span>
+                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">VDA 6.3</span>
+                  </div>
+                  <div className="flex justify-between py-1.5 border-b border-[hsl(0,0%,38%)]">
+                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Duration</span>
+                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">2 days on-site</span>
+                  </div>
+                  <div className="flex justify-between py-1.5">
+                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Earliest Date</span>
+                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">March 10, 2026</span>
+                  </div>
+                </div>
+              </div>
+              <button className="w-full py-2.5 bg-primary text-white text-xs font-medium rounded-none">
+                Schedule Audit Now
+              </button>
+            </div>
+          )}
+
+          {/* News Flash */}
+          {activeTab === 5 && (
+            <div className="space-y-2">
+              {[
+                { headline: "Precision Metalworks expands EV production line", date: "Feb 10, 2026", tag: "Company" },
+                { headline: "German automotive suppliers face new EU supply chain regulations", date: "Feb 8, 2026", tag: "Regulatory" },
+                { headline: "Aluminum prices stabilize after Q4 volatility", date: "Feb 5, 2026", tag: "Commodity" },
+                { headline: "IATF 16949 revision expected in 2027 — key changes outlined", date: "Jan 30, 2026", tag: "Industry" },
+              ].map((news, i) => (
+                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`px-1.5 py-0.5 text-[8px] font-bold uppercase rounded-none ${
+                      news.tag === 'Company' ? 'bg-primary/20 text-primary' :
+                      news.tag === 'Regulatory' ? 'bg-[hsl(30,80%,50%)]/20 text-[hsl(30,80%,60%)]' :
+                      news.tag === 'Commodity' ? 'bg-secondary/20 text-secondary' :
+                      'bg-[hsl(0,0%,55%)] text-[hsl(0,0%,85%)]'
+                    }`}>{news.tag}</span>
+                    <span className="text-[9px] text-[hsl(0,0%,60%)]">{news.date}</span>
+                  </div>
+                  <p className="text-xs font-medium text-[hsl(0,0%,92%)] leading-relaxed">{news.headline}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 
 // Import procurement images for hero carousel background
 import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
@@ -1392,7 +1790,7 @@ const ComparisonMockup = () => {
               Try SearchPro+ in Action
             </h2>
             <p className="text-muted-foreground text-lg">
-              Experience AI-powered conversational search
+              From conversational search to verified supplier intelligence
             </p>
           </motion.div>
 
@@ -1402,129 +1800,7 @@ const ComparisonMockup = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Demo card — same style as PlatformDemoAnimation */}
-            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[560px] flex flex-col">
-
-              {/* Window chrome bar */}
-              <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
-                <div className="flex gap-1.5 mr-3">
-                  <div className="w-2.5 h-2.5 rounded-none bg-[#ff5f57]" />
-                  <div className="w-2.5 h-2.5 rounded-none bg-[#febc2e]" />
-                  <div className="w-2.5 h-2.5 rounded-none bg-[#28c840]" />
-                </div>
-                <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">SearchPro+ — AI Discovery</span>
-              </div>
-
-              <div className="p-4 md:p-6 flex-1 overflow-hidden flex flex-col">
-
-              {/* Conversation Thread */}
-              <motion.div 
-                ref={chatContainerRef}
-                className="space-y-3 mb-4 overflow-y-auto flex-1 min-h-0"
-                animate={{ opacity: isFading ? 0 : 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {conversationHistory.map((msg, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div
-                      className={`max-w-[80%] p-3 rounded-none border ${
-                        msg.role === 'user'
-                          ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]'
-                          : 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]'
-                      }`}
-                    >
-                      {msg.role === 'ai' && (
-                        <span className="text-[9px] font-semibold text-primary uppercase tracking-wider block mb-1">SearchPro+ AI</span>
-                      )}
-                      {msg.role === 'user' && (
-                        <span className="text-[9px] font-semibold text-[hsl(0,0%,70%)] uppercase tracking-wider block mb-1">Buyer</span>
-                      )}
-                      <p className="text-xs whitespace-pre-line font-medium leading-relaxed">{msg.message}</p>
-                    </div>
-                  </motion.div>
-                ))}
-
-                {/* Active AI Response (Typing) */}
-                {aiResponse && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-start"
-                  >
-                    <div className="max-w-[80%] p-3 rounded-none bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[9px] font-semibold text-primary uppercase tracking-wider">SearchPro+ AI</span>
-                        {isTyping && (
-                          <div className="flex gap-1 ml-1">
-                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                          </div>
-                        )}
-                      </div>
-                      <p className="text-xs whitespace-pre-line font-medium leading-relaxed">{aiResponse}</p>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Active User Input (Typing) */}
-                {userInput && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-end"
-                  >
-                    <div className="max-w-[80%] p-3 rounded-none bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]">
-                      <span className="text-[9px] font-semibold text-[hsl(0,0%,70%)] uppercase tracking-wider block mb-1">Buyer</span>
-                      <p className="text-xs font-medium leading-relaxed">{userInput}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-
-              {/* Results section */}
-              {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: isFading ? 0 : 1, y: isFading ? 10 : 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="text-[9px] text-[hsl(0,0%,35%)] uppercase tracking-wider font-semibold mb-3">4 Matching Suppliers</div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {suppliers.map((supplier) => (
-                      <button
-                        key={supplier.id}
-                        onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none hover:border-primary transition-all group"
-                      >
-                        <div className="text-sm font-semibold text-[hsl(0,0%,95%)] mb-0.5 group-hover:text-primary transition-colors">
-                          {supplier.name}
-                        </div>
-                        <div className="text-[10px] text-[hsl(0,0%,70%)] mb-2">{supplier.location}</div>
-                        <div className="flex flex-wrap gap-1">
-                          {supplier.certifications.slice(0, 2).map((cert, idx) => (
-                            <span
-                              key={idx}
-                              className="px-1.5 py-0.5 border border-primary/30 text-primary text-[8px] font-bold uppercase"
-                            >
-                              {cert}
-                            </span>
-                          ))}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-              </div>
-            </div>
+            <SearchProDemoWindows />
           </motion.div>
         </div>
       </section>
