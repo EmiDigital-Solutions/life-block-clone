@@ -223,7 +223,7 @@ const DiscoverScreen = () => {
 
         {phase >= 6 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 4 · Discover</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 5 · Discover</span>
           </motion.div>
         )}
       </div>
@@ -313,7 +313,7 @@ const MatchScreen = () => {
 
       {phase >= 4 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 4 · Match</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 5 · Match</span>
         </motion.div>
       )}
     </div>
@@ -418,7 +418,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 4 · Audit</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 5 · Audit</span>
           </div>
         </div>
       </div>
@@ -553,7 +553,167 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 5: INSIGHTS (KPI Charts) ────────────────────────────
+const InsightsScreen = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 400),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 2000),
+      setTimeout(() => setPhase(4), 3200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const costBars = [100, 85, 70, 55, 42, 30, 22, 15, 10, 5, 3.5, 3.5];
+  const timeBars = [100, 90, 75, 60, 48, 35, 25, 18, 12, 8, 5, 4];
+  const qualityBars = [40, 50, 58, 65, 72, 78, 83, 87, 90, 92, 94, 96];
+
+  return (
+    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
+      <div className="px-3 py-2 border-b border-foreground/10 flex items-center justify-between">
+        <div>
+          <div className="text-sm font-semibold text-foreground">Business Impact</div>
+          <div className="text-xs text-foreground/60">12-Month ROI Overview</div>
+        </div>
+        <span className="text-[10px] text-foreground/60 uppercase tracking-wider">Analytics</span>
+      </div>
+
+      <div className="flex-1 flex">
+        {/* Left: 3 KPI charts */}
+        <div className="w-3/5 p-3 flex flex-col gap-2 overflow-hidden">
+          {/* KPI 1: Cost Reduction */}
+          {phase >= 1 && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard layer={2} className="p-3">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Cost per Audit</span>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-lg font-bold text-background">−96</span>
+                    <span className="text-[10px] text-background/70">%</span>
+                  </div>
+                </div>
+                <div className="flex items-end gap-[3px] h-12">
+                  {costBars.map((h, i) => (
+                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                      transition={{ duration: 0.4, delay: i * 0.04 }}
+                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[8px] text-background/50">€20,000</span>
+                  <span className="text-[8px] text-primary font-semibold">€700</span>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* KPI 2: Time to Qualify */}
+          {phase >= 2 && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard layer={2} className="p-3">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Time to Qualify</span>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-lg font-bold text-background">3</span>
+                    <span className="text-[10px] text-background/70">days</span>
+                  </div>
+                </div>
+                <div className="flex items-end gap-[3px] h-12">
+                  {timeBars.map((h, i) => (
+                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                      transition={{ duration: 0.4, delay: i * 0.04 }}
+                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[8px] text-background/50">45 days avg.</span>
+                  <span className="text-[8px] text-primary font-semibold">3 days</span>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* KPI 3: Quality Score Trend */}
+          {phase >= 3 && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard layer={2} className="p-3">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Supplier Quality</span>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-lg font-bold text-background">96</span>
+                    <span className="text-[10px] text-background/70">%</span>
+                    <span className="text-[9px] text-primary font-semibold ml-0.5 -translate-y-1">+12</span>
+                  </div>
+                </div>
+                <div className="flex items-end gap-[3px] h-12">
+                  {qualityBars.map((h, i) => (
+                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                      transition={{ duration: 0.4, delay: i * 0.04 }}
+                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-[8px] text-background/50">Month 1</span>
+                  <span className="text-[8px] text-primary font-semibold">Month 12</span>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Right: Summary */}
+        <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col p-3 gap-2">
+          {phase >= 2 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={3} className="p-3 text-center">
+                <span className="text-[9px] text-background/60 uppercase tracking-wider block mb-1">Annual Savings</span>
+                <div className="flex items-baseline justify-center gap-0.5">
+                  <span className="text-2xl font-bold text-background">€383k</span>
+                </div>
+                <span className="text-[9px] text-primary font-semibold">vs. traditional auditing</span>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {phase >= 3 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={3} className="p-3 text-center">
+                <span className="text-[9px] text-background/60 uppercase tracking-wider block mb-1">Audits Completed</span>
+                <div className="flex items-baseline justify-center gap-0.5">
+                  <span className="text-2xl font-bold text-background">24</span>
+                  <span className="text-[10px] text-background/70">/yr</span>
+                </div>
+                <span className="text-[9px] text-primary font-semibold">4× more capacity</span>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {phase >= 4 && (
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-auto">
+              <GlassCard highlight className="p-3 flex items-center gap-2">
+                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <span className="text-xs font-semibold text-background">ROI achieved in 30 days</span>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          <div className="px-2 py-2 border-t border-muted-foreground/10 text-center mt-auto">
+            <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 5 of 5 · Insights</span>
           </div>
         </div>
       </div>
@@ -564,12 +724,12 @@ const IntelligenceScreen = () => {
 // ─── MAIN COMPONENT ─────────────────────────────────────────────
 const PlatformDemoAnimation = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen];
-  const labels = ["Discover", "Match", "Audit", "Intelligence"];
+  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen, InsightsScreen];
+  const labels = ["Discover", "Match", "Audit", "Intel", "Insights"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 4);
+      setCurrentScreen((prev) => (prev + 1) % 5);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
