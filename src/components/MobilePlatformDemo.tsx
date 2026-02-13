@@ -82,7 +82,7 @@ const MobileDiscoverScreen = () => {
   }, []);
 
   return (
-     <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-2`}>
+     <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-1.5`}>
        <div className="text-xs text-foreground/60 uppercase tracking-wider">SearchPro+ · AI-Powered</div>
 
        <div className="flex gap-2">
@@ -151,7 +151,7 @@ const MobileMatchScreen = () => {
   const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70];
 
   return (
-    <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
+     <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-2`}>
       <div className="text-xs text-muted-foreground uppercase tracking-wider">Auditor Matching</div>
 
        <GlassCard layer={2} className="p-3">
@@ -249,7 +249,7 @@ const MobileIntelligenceScreen = () => {
   ];
 
   return (
-    <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-2`}>
        <GlassCard layer={2} className="p-3 flex items-center gap-3 overflow-hidden relative">
          <div className="-ml-4 -my-3 flex-shrink-0">
            <DonutScore score={91} size={90} />
