@@ -77,57 +77,126 @@ const SearchProDemoWindows = () => {
   );
 };
 
-// Window 1: Chatbot
+// Window 1: Enterprise AI Assistant with suggestion tables
 const DemoChatbot = () => {
-  const [visibleMsgs, setVisibleMsgs] = useState(0);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    setVisibleMsgs(0);
-    const timers = [500, 1200, 2200, 3200, 4500].map((delay, i) =>
-      setTimeout(() => setVisibleMsgs(i + 1), delay)
+    setStep(0);
+    const timers = [600, 1800, 3500, 5500, 7500].map((delay, i) =>
+      setTimeout(() => setStep(i + 1), delay)
     );
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const messages = [
-    { role: 'ai', text: "What are you sourcing today?" },
-    { role: 'user', text: "Precision CNC brake calipers for our EV program" },
-    { role: 'ai', text: "EV brake calipers — I'll filter for IATF 16949, aluminum machining, and 50K+ monthly capacity." },
-    { role: 'user', text: "Also need suppliers with in-house surface treatment" },
-    { role: 'ai', text: "Found 23 verified suppliers matching all criteria. Showing top results now..." },
-  ];
-
   return (
-    <div className="h-full bg-[hsl(0,0%,85%)] p-4 md:p-6 flex flex-col">
-      <div className="flex-1 space-y-3 overflow-y-auto min-h-0">
-        {messages.slice(0, visibleMsgs).map((msg, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div className={`max-w-[80%] p-3 rounded-none border ${
-              msg.role === 'user'
-                ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]'
-                : 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]'
-            }`}>
-              <span className={`text-[9px] font-semibold uppercase tracking-wider block mb-1 ${
-                msg.role === 'ai' ? 'text-primary' : 'text-[hsl(0,0%,70%)]'
-              }`}>
-                {msg.role === 'ai' ? 'SearchPro+ AI' : 'You'}
-              </span>
-              <p className="text-xs font-medium leading-relaxed">{msg.text}</p>
+    <div className="h-full bg-[hsl(0,0%,85%)] flex flex-col">
+      {/* Top toolbar */}
+      <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
+        <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">SearchPro+ AI Assistant</span>
+        <div className="flex gap-1.5">
+          <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Automotive</span>
+          <span className="px-2 py-0.5 bg-[hsl(0,0%,75%)] text-[hsl(0,0%,35%)] text-[10px] font-medium rounded-none">EV Program</span>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
+        {/* User query */}
+        {step >= 1 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-3 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-white/60 block mb-1">Your Request</span>
+              <p className="text-sm font-semibold text-white leading-relaxed">Precision CNC brake calipers for our EV program — need in-house surface treatment</p>
             </div>
           </motion.div>
-        ))}
+        )}
+
+        {/* AI parsed requirements table */}
+        {step >= 2 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary block mb-2">AI-Parsed Requirements</span>
+              <div className="space-y-0">
+                {[
+                  { param: "Product", value: "CNC Brake Caliper" },
+                  { param: "Material", value: "Aluminum 6082-T6" },
+                  { param: "Certification", value: "IATF 16949 Required" },
+                  { param: "Volume", value: "50,000+ units/month" },
+                  { param: "Surface", value: "In-house anodizing" },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-center border-b border-[hsl(0,0%,33%)] last:border-0">
+                    <span className="text-[11px] font-semibold text-[hsl(0,0%,70%)] w-[100px] py-1.5 flex-shrink-0">{row.param}</span>
+                    <span className="text-[11px] font-bold text-white py-1.5">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* AI suggested categories */}
+        {step >= 3 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary block mb-2">Suggested Commodity Match</span>
+              <div className="grid grid-cols-2 gap-1.5">
+                {[
+                  { cat: "Precision CNC Machining", match: "98%" },
+                  { cat: "Aluminum Die Casting", match: "85%" },
+                  { cat: "Surface Treatment", match: "92%" },
+                  { cat: "EV Powertrain Components", match: "88%" },
+                ].map((item, i) => (
+                  <div key={i} className={`p-2 rounded-none border ${i === 0 ? 'bg-primary/15 border-primary/40' : 'bg-[hsl(0,0%,34%)] border-[hsl(0,0%,30%)]'}`}>
+                    <p className={`text-[11px] font-bold ${i === 0 ? 'text-primary' : 'text-white'}`}>{item.cat}</p>
+                    <p className={`text-[10px] font-semibold mt-0.5 ${i === 0 ? 'text-primary/80' : 'text-[hsl(0,0%,65%)]'}`}>{item.match} match</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* AI search status */}
+        {step >= 4 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary block mb-2">Search Intelligence</span>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center">
+                  <p className="text-lg font-bold text-white">23</p>
+                  <p className="text-[10px] text-[hsl(0,0%,65%)] font-medium">Verified Matches</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-bold text-white">8</p>
+                  <p className="text-[10px] text-[hsl(0,0%,65%)] font-medium">IATF Certified</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-lg font-bold text-white">5</p>
+                  <p className="text-[10px] text-[hsl(0,0%,65%)] font-medium">Surface In-House</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Results preview */}
+        {step >= 5 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-3 bg-primary/10 border border-primary/30 rounded-none">
+              <p className="text-[11px] font-bold text-primary">Top match: Precision Metalworks GmbH — 96% fit</p>
+              <p className="text-[10px] text-[hsl(0,0%,40%)] mt-0.5">Munich, Germany · IATF 16949 · 65K/mo · In-house anodizing</p>
+            </div>
+          </motion.div>
+        )}
       </div>
-      <div className="mt-4 flex gap-2 flex-shrink-0">
-        <div className="flex-1 h-9 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none flex items-center px-3">
-          <span className="text-[hsl(0,0%,65%)] text-xs">Describe what you need...</span>
+
+      {/* Input bar */}
+      <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)]">
+        <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] rounded-none flex items-center px-3">
+          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what you need...</span>
         </div>
         <div className="w-9 h-9 bg-primary flex items-center justify-center rounded-none">
-          <ArrowRight className="w-3.5 h-3.5 text-white" />
+          <ArrowRight className="w-4 h-4 text-white" />
         </div>
       </div>
     </div>
@@ -150,18 +219,18 @@ const DemoSearchResults = () => {
   return (
     <div className="h-full bg-[hsl(0,0%,85%)] flex">
       {/* Left sidebar navigation */}
-      <div className="w-[100px] md:w-[120px] bg-[hsl(0,0%,32%)] border-r border-[hsl(0,0%,28%)] flex flex-col flex-shrink-0">
-        <div className="p-2 border-b border-[hsl(0,0%,28%)]">
-          <span className="text-[8px] text-[hsl(0,0%,55%)] uppercase tracking-widest font-semibold">SearchPro+</span>
+      <div className="w-[100px] md:w-[120px] bg-[hsl(0,0%,28%)] border-r border-[hsl(0,0%,22%)] flex flex-col flex-shrink-0">
+        <div className="p-2.5 border-b border-[hsl(0,0%,22%)]">
+          <span className="text-[10px] text-[hsl(0,0%,60%)] uppercase tracking-widest font-bold">SearchPro+</span>
         </div>
         <div className="flex-1 py-1">
           {menuItems.map((item, i) => (
             <div
               key={i}
-              className={`px-3 py-1.5 text-[9px] font-medium cursor-default ${
+              className={`px-3 py-2 text-[11px] font-medium cursor-default ${
                 activeMenu === i
                   ? 'bg-primary/20 text-primary border-l-2 border-primary'
-                  : 'text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,80%)]'
+                  : 'text-[hsl(0,0%,65%)]'
               }`}
             >
               {item}
@@ -173,55 +242,55 @@ const DemoSearchResults = () => {
       {/* Main content area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top toolbar */}
-        <div className="px-3 py-2 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
+        <div className="px-3 py-2.5 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
           <div>
-            <p className="text-[9px] text-[hsl(0,0%,40%)] uppercase tracking-wider font-semibold">23 Suppliers Found</p>
-            <p className="text-[9px] text-[hsl(0,0%,55%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
+            <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">23 Suppliers Found</p>
+            <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
           </div>
           <div className="flex gap-1.5">
-            <span className="px-2 py-0.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[8px] text-[hsl(0,0%,80%)] rounded-none">Sort: Match</span>
-            <span className="px-2 py-0.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[8px] text-[hsl(0,0%,80%)] rounded-none">Export</span>
+            <span className="px-2 py-1 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[10px] text-white font-medium rounded-none">Sort: Match</span>
+            <span className="px-2 py-1 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[10px] text-white font-medium rounded-none">Export</span>
           </div>
         </div>
 
         <div className="flex-1 flex overflow-hidden">
           {/* Filter sidebar */}
-          <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2 flex-shrink-0 overflow-y-auto">
-            <p className="text-[8px] text-[hsl(0,0%,40%)] uppercase tracking-widest font-bold mb-2">Filters</p>
+          <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0 overflow-y-auto">
+            <p className="text-[10px] text-[hsl(0,0%,30%)] uppercase tracking-widest font-bold mb-2.5">Filters</p>
             {[
               { label: "Certification", values: ["IATF 16949", "ISO 9001", "AS9100D"] },
               { label: "Region", values: ["Europe", "Asia", "Americas"] },
               { label: "Capacity", values: [">50K/mo", ">100K/mo"] },
             ].map((filter, i) => (
-              <div key={i} className="mb-2">
-                <p className="text-[8px] text-[hsl(0,0%,45%)] font-semibold uppercase mb-1">{filter.label}</p>
+              <div key={i} className="mb-2.5">
+                <p className="text-[10px] text-[hsl(0,0%,35%)] font-bold uppercase mb-1">{filter.label}</p>
                 {filter.values.map((v, j) => (
-                  <div key={j} className="flex items-center gap-1 py-0.5">
-                    <div className={`w-2.5 h-2.5 border rounded-none flex items-center justify-center ${
-                      j === 0 ? 'border-primary bg-primary/20' : 'border-[hsl(0,0%,60%)]'
+                  <div key={j} className="flex items-center gap-1.5 py-0.5">
+                    <div className={`w-3 h-3 border rounded-none flex items-center justify-center ${
+                      j === 0 ? 'border-primary bg-primary/20' : 'border-[hsl(0,0%,55%)]'
                     }`}>
-                      {j === 0 && <Check className="w-1.5 h-1.5 text-primary" />}
+                      {j === 0 && <Check className="w-2 h-2 text-primary" />}
                     </div>
-                    <span className="text-[8px] text-[hsl(0,0%,40%)]">{v}</span>
+                    <span className="text-[10px] text-[hsl(0,0%,30%)] font-medium">{v}</span>
                   </div>
                 ))}
               </div>
             ))}
             <div className="mb-2">
-              <p className="text-[8px] text-[hsl(0,0%,45%)] font-semibold uppercase mb-1">Match Score</p>
-              <div className="h-1 bg-[hsl(0,0%,70%)] rounded-none relative">
+              <p className="text-[10px] text-[hsl(0,0%,35%)] font-bold uppercase mb-1">Match Score</p>
+              <div className="h-1.5 bg-[hsl(0,0%,70%)] rounded-none relative">
                 <div className="h-full bg-primary rounded-none" style={{ width: '80%' }} />
               </div>
-              <p className="text-[7px] text-[hsl(0,0%,50%)] mt-0.5">Min: 80%</p>
+              <p className="text-[9px] text-[hsl(0,0%,45%)] mt-0.5 font-medium">Min: 80%</p>
             </div>
           </div>
 
           {/* Results list */}
-          <div className="flex-1 overflow-y-auto p-2 space-y-1.5">
+          <div className="flex-1 overflow-y-auto p-2.5 space-y-1.5">
             {/* Score explanation banner */}
-            <div className="p-2 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] rounded-none mb-1">
-              <p className="text-[8px] text-[hsl(0,0%,40%)] leading-relaxed">
-                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on certification match, production capability, quality history, geographic proximity, and commodity expertise.
+            <div className="p-2.5 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] rounded-none mb-1.5">
+              <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
+                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on certification, production capability, quality history, proximity, and commodity expertise.
               </p>
             </div>
 
@@ -231,31 +300,31 @@ const DemoSearchResults = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.15 }}
-                className="p-2.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none flex items-start gap-2"
+                className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none flex items-start gap-2.5"
               >
                 {/* Numbering */}
-                <div className="w-5 h-5 bg-[hsl(0,0%,35%)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-[10px] font-bold text-[hsl(0,0%,75%)]">{i + 1}</span>
+                <div className="w-6 h-6 bg-[hsl(0,0%,30%)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-[11px] font-bold text-white">{i + 1}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <p className="text-xs font-semibold text-[hsl(0,0%,95%)] truncate">{s.name}</p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-[13px] font-bold text-white truncate">{s.name}</p>
                   </div>
-                  <p className="text-[9px] text-[hsl(0,0%,65%)] mb-1">{s.location} · {s.speciality}</p>
-                  <div className="flex gap-1 flex-wrap">
+                  <p className="text-[11px] text-[hsl(0,0%,72%)] font-medium mb-1.5">{s.location} · {s.speciality}</p>
+                  <div className="flex gap-1.5 flex-wrap">
                     {s.certs.map((c, j) => (
-                      <span key={j} className="px-1 py-0.5 border border-primary/30 text-primary text-[7px] font-bold uppercase">{c}</span>
+                      <span key={j} className="px-1.5 py-0.5 border border-primary/40 text-primary text-[9px] font-bold uppercase">{c}</span>
                     ))}
-                    <span className="px-1 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,75%)] text-[7px] font-medium">{s.capacity}</span>
+                    <span className="px-1.5 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,80%)] text-[9px] font-semibold">{s.capacity}</span>
                   </div>
                 </div>
 
                 {/* Score column */}
                 <div className="flex flex-col items-center flex-shrink-0 gap-0.5">
-                  <span className="text-lg font-bold text-primary leading-none">{s.match}</span>
-                  <span className="text-[7px] text-[hsl(0,0%,60%)] uppercase tracking-wider">Score</span>
-                  <div className="w-8 h-1 bg-[hsl(0,0%,35%)] rounded-none mt-0.5">
+                  <span className="text-xl font-bold text-primary leading-none">{s.match}</span>
+                  <span className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider font-medium">Score</span>
+                  <div className="w-10 h-1.5 bg-[hsl(0,0%,30%)] rounded-none mt-0.5">
                     <div className="h-full bg-primary rounded-none" style={{ width: `${s.match}%` }} />
                   </div>
                 </div>
@@ -287,21 +356,21 @@ const DemoSupplierProfile = () => {
   return (
     <div className="h-full bg-[hsl(0,0%,85%)] flex flex-col">
       {/* Supplier header */}
-      <div className="p-4 md:px-6 md:pt-5 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
+      <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] flex items-center justify-center rounded-none">
-            <span className="text-sm font-bold text-[hsl(0,0%,90%)]">PM</span>
+          <div className="w-10 h-10 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] flex items-center justify-center rounded-none">
+            <span className="text-sm font-bold text-white">PM</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-[hsl(0,0%,20%)]">Precision Metalworks GmbH</h3>
-              <span className="px-1.5 py-0.5 bg-primary text-white text-[9px] font-bold rounded-none">96% Match</span>
+              <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Precision Metalworks GmbH</h3>
+              <span className="px-2 py-0.5 bg-primary text-white text-[10px] font-bold rounded-none">96% Match</span>
             </div>
-            <p className="text-[10px] text-[hsl(0,0%,50%)]">Munich, Germany · Est. 1987 · 280 employees</p>
+            <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Munich, Germany · Est. 1987 · 280 employees</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium rounded-none">Request Quote</button>
-            <button className="px-3 py-1.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[hsl(0,0%,90%)] text-[10px] font-medium rounded-none">Order Audit</button>
+            <button className="px-3 py-1.5 bg-primary text-white text-[11px] font-semibold rounded-none">Request Quote</button>
+            <button className="px-3 py-1.5 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-white text-[11px] font-semibold rounded-none">Order Audit</button>
           </div>
         </div>
       </div>
@@ -311,8 +380,8 @@ const DemoSupplierProfile = () => {
         {tabLabels.map((tab, i) => (
           <button
             key={tab}
-            className={`px-3 py-2 text-[10px] font-medium transition-colors whitespace-nowrap ${
-              activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-[hsl(0,0%,55%)]'
+            className={`px-3 py-2.5 text-[11px] font-semibold transition-colors whitespace-nowrap ${
+              activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-[hsl(0,0%,50%)]'
             }`}
           >
             {tab}
@@ -321,7 +390,7 @@ const DemoSupplierProfile = () => {
       </div>
 
       {/* Tab content */}
-      <div className="flex-1 overflow-y-auto min-h-0 p-4 md:p-6">
+      <div className="flex-1 overflow-y-auto min-h-0 p-4 md:p-5">
         <motion.div key={activeTab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
 
           {/* Overview */}
@@ -333,16 +402,16 @@ const DemoSupplierProfile = () => {
                 { label: "Surface Treatment", value: "In-house anodizing" },
                 { label: "Quality Score", value: "94/100" },
               ].map((item, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                  <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-1">{item.label}</p>
-                  <p className="text-sm font-bold text-[hsl(0,0%,95%)]">{item.value}</p>
+                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                  <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-1">{item.label}</p>
+                  <p className="text-[14px] font-bold text-white">{item.value}</p>
                 </div>
               ))}
-              <div className="col-span-2 md:col-span-4 p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Certifications</p>
+              <div className="col-span-2 md:col-span-4 p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Certifications</p>
                 <div className="flex gap-2 flex-wrap">
                   {["IATF 16949:2016", "ISO 14001:2015", "ISO 9001:2015", "REACH Compliant"].map((c, i) => (
-                    <span key={i} className="px-2 py-1 border border-primary/30 text-primary text-[9px] font-bold uppercase">{c}</span>
+                    <span key={i} className="px-2 py-1 border border-primary/40 text-primary text-[10px] font-bold uppercase">{c}</span>
                   ))}
                 </div>
               </div>
@@ -351,19 +420,19 @@ const DemoSupplierProfile = () => {
 
           {/* Audit Reports */}
           {activeTab === 1 && (
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {[
                 { type: "Process Audit", date: "Jan 2026", score: "92/100", auditor: "M. Schmidt", status: "Completed" },
                 { type: "Quality System Audit", date: "Nov 2025", score: "88/100", auditor: "K. Tanaka", status: "Completed" },
                 { type: "Product Audit — Brake Caliper", date: "Sep 2025", score: "95/100", auditor: "L. Chen", status: "Completed" },
               ].map((audit, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-xs font-semibold text-[hsl(0,0%,95%)]">{audit.type}</p>
-                    <span className="text-[9px] font-bold text-primary">{audit.score}</span>
+                    <p className="text-[13px] font-bold text-white">{audit.type}</p>
+                    <span className="text-[11px] font-bold text-primary">{audit.score}</span>
                   </div>
-                  <p className="text-[10px] text-[hsl(0,0%,65%)]">{audit.date} · Auditor: {audit.auditor}</p>
-                  <div className="mt-2 h-1.5 bg-[hsl(0,0%,35%)] rounded-none overflow-hidden">
+                  <p className="text-[11px] text-[hsl(0,0%,72%)] font-medium">{audit.date} · Auditor: {audit.auditor}</p>
+                  <div className="mt-2 h-2 bg-[hsl(0,0%,30%)] rounded-none overflow-hidden">
                     <div className="h-full bg-primary rounded-none" style={{ width: audit.score.split('/')[0] + '%' }} />
                   </div>
                 </div>
@@ -380,23 +449,23 @@ const DemoSupplierProfile = () => {
                   { label: "Financial Health", value: "Stable", color: "text-primary" },
                   { label: "Delivery Rating", value: "97.2%", color: "text-primary" },
                 ].map((kpi, i) => (
-                  <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none text-center">
-                    <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-1">{kpi.label}</p>
-                    <p className={`text-sm font-bold ${kpi.color}`}>{kpi.value}</p>
+                  <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none text-center">
+                    <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-1">{kpi.label}</p>
+                    <p className={`text-[14px] font-bold ${kpi.color}`}>{kpi.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Geopolitical Exposure</p>
+              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Geopolitical Exposure</p>
                 <div className="flex gap-2">
-                  <span className="px-2 py-1 bg-secondary/20 text-secondary text-[9px] font-bold rounded-none">EU — Low Risk</span>
-                  <span className="px-2 py-1 bg-[hsl(0,0%,55%)] text-[hsl(0,0%,90%)] text-[9px] font-medium rounded-none">No sanctions</span>
+                  <span className="px-2.5 py-1 bg-secondary/20 text-secondary text-[10px] font-bold rounded-none">EU — Low Risk</span>
+                  <span className="px-2.5 py-1 bg-[hsl(0,0%,50%)] text-white text-[10px] font-semibold rounded-none">No sanctions</span>
                 </div>
               </div>
-              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Equipment Verified</p>
+              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Equipment Verified</p>
                 {["DMG MORI NLX 2500 — 5-Axis CNC", "Zeiss CMM Contura — Quality", "Anodizing Line — In-house"].map((eq, i) => (
-                  <p key={i} className="text-[10px] text-[hsl(0,0%,90%)] py-1 border-b border-[hsl(0,0%,38%)] last:border-0">{eq}</p>
+                  <p key={i} className="text-[11px] text-white font-medium py-1.5 border-b border-[hsl(0,0%,33%)] last:border-0">{eq}</p>
                 ))}
               </div>
             </div>
@@ -405,9 +474,9 @@ const DemoSupplierProfile = () => {
           {/* RFQ */}
           {activeTab === 3 && (
             <div className="space-y-3">
-              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Quick RFQ</p>
-                <div className="space-y-2">
+              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Quick RFQ</p>
+                <div className="space-y-0">
                   {[
                     { field: "Product", value: "CNC Brake Caliper — Aluminum 6082" },
                     { field: "Volume", value: "50,000 units / month" },
@@ -415,14 +484,14 @@ const DemoSupplierProfile = () => {
                     { field: "Surface", value: "Hard anodized, Type III" },
                     { field: "Delivery", value: "DDP Frankfurt, Incoterms 2020" },
                   ].map((row, i) => (
-                    <div key={i} className="flex items-center justify-between py-1.5 border-b border-[hsl(0,0%,38%)] last:border-0">
-                      <span className="text-[10px] text-[hsl(0,0%,65%)]">{row.field}</span>
-                      <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">{row.value}</span>
+                    <div key={i} className="flex items-center justify-between py-2 border-b border-[hsl(0,0%,33%)] last:border-0">
+                      <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">{row.field}</span>
+                      <span className="text-[11px] font-bold text-white">{row.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <button className="w-full py-2.5 bg-primary text-white text-xs font-medium rounded-none">
+              <button className="w-full py-2.5 bg-primary text-white text-[12px] font-semibold rounded-none">
                 Send RFQ to Supplier
               </button>
             </div>
@@ -431,31 +500,31 @@ const DemoSupplierProfile = () => {
           {/* Audit Order */}
           {activeTab === 4 && (
             <div className="space-y-3">
-              <div className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
-                <p className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider mb-2">Order On-Site Audit</p>
+              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Order On-Site Audit</p>
                 <div className="flex gap-2 mb-3">
                   {["Process Audit", "Quality Audit", "Product Audit"].map((type, i) => (
-                    <span key={i} className={`px-2 py-1 text-[9px] font-medium rounded-none ${
-                      i === 0 ? 'bg-primary text-white' : 'bg-[hsl(0,0%,55%)] border border-[hsl(0,0%,50%)] text-[hsl(0,0%,90%)]'
+                    <span key={i} className={`px-2.5 py-1 text-[10px] font-semibold rounded-none ${
+                      i === 0 ? 'bg-primary text-white' : 'bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] text-white'
                     }`}>{type}</span>
                   ))}
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between py-1.5 border-b border-[hsl(0,0%,38%)]">
-                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Audit Standard</span>
-                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">VDA 6.3</span>
+                <div className="space-y-0">
+                  <div className="flex justify-between py-2 border-b border-[hsl(0,0%,33%)]">
+                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Audit Standard</span>
+                    <span className="text-[11px] font-bold text-white">VDA 6.3</span>
                   </div>
-                  <div className="flex justify-between py-1.5 border-b border-[hsl(0,0%,38%)]">
-                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Duration</span>
-                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">2 days on-site</span>
+                  <div className="flex justify-between py-2 border-b border-[hsl(0,0%,33%)]">
+                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Duration</span>
+                    <span className="text-[11px] font-bold text-white">2 days on-site</span>
                   </div>
-                  <div className="flex justify-between py-1.5">
-                    <span className="text-[10px] text-[hsl(0,0%,65%)]">Earliest Date</span>
-                    <span className="text-[10px] font-medium text-[hsl(0,0%,92%)]">March 10, 2026</span>
+                  <div className="flex justify-between py-2">
+                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Earliest Date</span>
+                    <span className="text-[11px] font-bold text-white">March 10, 2026</span>
                   </div>
                 </div>
               </div>
-              <button className="w-full py-2.5 bg-primary text-white text-xs font-medium rounded-none">
+              <button className="w-full py-2.5 bg-primary text-white text-[12px] font-semibold rounded-none">
                 Schedule Audit Now
               </button>
             </div>
@@ -463,24 +532,24 @@ const DemoSupplierProfile = () => {
 
           {/* News Flash */}
           {activeTab === 5 && (
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {[
                 { headline: "Precision Metalworks expands EV production line", date: "Feb 10, 2026", tag: "Company" },
                 { headline: "German automotive suppliers face new EU supply chain regulations", date: "Feb 8, 2026", tag: "Regulatory" },
                 { headline: "Aluminum prices stabilize after Q4 volatility", date: "Feb 5, 2026", tag: "Commodity" },
                 { headline: "IATF 16949 revision expected in 2027 — key changes outlined", date: "Jan 30, 2026", tag: "Industry" },
               ].map((news, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none">
+                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={`px-1.5 py-0.5 text-[8px] font-bold uppercase rounded-none ${
+                    <span className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded-none ${
                       news.tag === 'Company' ? 'bg-primary/20 text-primary' :
                       news.tag === 'Regulatory' ? 'bg-[hsl(30,80%,50%)]/20 text-[hsl(30,80%,60%)]' :
                       news.tag === 'Commodity' ? 'bg-secondary/20 text-secondary' :
-                      'bg-[hsl(0,0%,55%)] text-[hsl(0,0%,85%)]'
+                      'bg-[hsl(0,0%,50%)] text-white'
                     }`}>{news.tag}</span>
-                    <span className="text-[9px] text-[hsl(0,0%,60%)]">{news.date}</span>
+                    <span className="text-[10px] text-[hsl(0,0%,65%)] font-medium">{news.date}</span>
                   </div>
-                  <p className="text-xs font-medium text-[hsl(0,0%,92%)] leading-relaxed">{news.headline}</p>
+                  <p className="text-[13px] font-semibold text-white leading-relaxed">{news.headline}</p>
                 </div>
               ))}
             </div>
