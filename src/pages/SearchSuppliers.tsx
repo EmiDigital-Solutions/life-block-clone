@@ -18,19 +18,23 @@ const SearchProDemoWindows = () => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    if (isPaused) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
     }
-    if (!isPaused) {
-      intervalRef.current = setInterval(() => {
-        setActiveWindow((prev) => (prev + 1) % 3);
-      }, 10000);
-    }
+    intervalRef.current = setInterval(() => {
+      setActiveWindow((prev) => (prev + 1) % 3);
+    }, 10000);
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
-  }, [isPaused, activeWindow]);
+  }, [isPaused]);
 
   const handlePauseToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
