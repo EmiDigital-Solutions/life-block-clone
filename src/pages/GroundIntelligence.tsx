@@ -743,7 +743,7 @@ const GroundIntelligence = () => {
             </h2>
           </motion.div>
 
-          {/* Category Tabs - pill style */}
+          {/* Category Tabs - matching homepage */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -755,7 +755,7 @@ const GroundIntelligence = () => {
               <button
                 key={category.id}
                 onClick={() => handleFaqCategoryChange(category.id)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeFaqCategory === category.id
                     ? "bg-foreground text-white"
                     : "bg-[#e5e5e5] text-foreground hover:bg-[#d5d5d5]"
@@ -766,50 +766,54 @@ const GroundIntelligence = () => {
             ))}
           </motion.div>
 
-          {/* FAQ List */}
-          <motion.div
-            key={activeFaqCategory}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {activeFaqs.map((faq, index) => (
-              <div
-                key={index}
-                className="border-t border-[#d5d5d5]"
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+          {/* FAQ List — shifted one grid column right */}
+          <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+            <div className="hidden lg:block lg:col-span-1" />
+            <motion.div
+              key={activeFaqCategory}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:col-span-5"
+            >
+              {activeFaqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border-t border-[#d5d5d5]"
                 >
-                  <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
-                    {faq.question}
-                  </span>
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
-                    {openFaqIndex === index ? (
-                      <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    ) : (
-                      <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    )}
-                  </div>
-                </button>
-                
-                <motion.div
-                  initial={false}
-                  animate={{
-                    height: openFaqIndex === index ? "auto" : 0,
-                    opacity: openFaqIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                  <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
-                    {faq.answer}
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </motion.div>
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+                  >
+                    <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                      {faq.question}
+                    </span>
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                      {openFaqIndex === index ? (
+                        <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                      ) : (
+                        <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                      )}
+                    </div>
+                  </button>
+                  
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: openFaqIndex === index ? "auto" : 0,
+                      opacity: openFaqIndex === index ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
