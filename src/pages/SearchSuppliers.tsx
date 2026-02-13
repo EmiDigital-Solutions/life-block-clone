@@ -1403,7 +1403,7 @@ const ComparisonMockup = () => {
             transition={{ delay: 0.2 }}
           >
             {/* Demo card — same style as PlatformDemoAnimation */}
-            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)]">
+            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[560px] flex flex-col">
 
               {/* Window chrome bar */}
               <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
@@ -1415,13 +1415,12 @@ const ComparisonMockup = () => {
                 <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">SearchPro+ — AI Discovery</span>
               </div>
 
-              <div className="p-4 md:p-6">
+              <div className="p-4 md:p-6 flex-1 overflow-hidden flex flex-col">
 
               {/* Conversation Thread */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-3 mb-4 overflow-y-auto"
-                style={{ maxHeight: '500px' }}
+                className="space-y-3 mb-4 overflow-y-auto flex-1 min-h-0"
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
