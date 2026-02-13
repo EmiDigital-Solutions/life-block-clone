@@ -15,26 +15,27 @@ import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 const SearchProDemoWindows = () => {
   const [activeWindow, setActiveWindow] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const durations = [6000, 3000, 6000]; // Chat 6s, Results 3s, Profile 6s = 15s
 
   useEffect(() => {
     if (isPaused) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
       }
       return;
     }
-    intervalRef.current = setInterval(() => {
+    timerRef.current = setTimeout(() => {
       setActiveWindow((prev) => (prev + 1) % 3);
-    }, 5000);
+    }, durations[activeWindow]);
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
       }
     };
-  }, [isPaused]);
+  }, [isPaused, activeWindow]);
 
   const handlePauseToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
