@@ -4,11 +4,12 @@ interface PortraitWithBlueBlocksProps {
   src: string;
   alt: string;
   className?: string;
-  variant?: "default" | "left" | "right" | "circle";
+  variant?: "default" | "left" | "right";
 }
 
 /**
- * Portrait image with Archlet-style Ion Blue geometric rectangular overlays.
+ * Portrait image with Archlet-style scattered square blocks overlay.
+ * Inspired by the checkerboard pixel-grid pattern from the reference design.
  * Blocks are positioned to avoid overlapping the face/head area.
  */
 const PortraitWithBlueBlocks = ({ 
@@ -17,32 +18,49 @@ const PortraitWithBlueBlocks = ({
   className = "aspect-square",
   variant = "default"
 }: PortraitWithBlueBlocksProps) => {
+  // Square size as percentage of container
+  const sq = "w-[8%] aspect-square";
+
   const blockVariants = {
     default: (
       <>
-        <div className="absolute top-[8%] right-0 w-[40%] h-[7%] bg-primary" />
-        <div className="absolute bottom-[22%] right-[10%] w-[50%] h-[8%] bg-primary" />
-        <div className="absolute bottom-[5%] left-0 w-[45%] h-[9%] bg-primary" />
+        {/* Bottom-left cluster */}
+        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[13%] left-[20%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[22%] left-[11%] ${sq} bg-primary`} />
+        {/* Top-right cluster */}
+        <div className={`absolute top-[6%] right-[3%] ${sq} bg-primary`} />
+        <div className={`absolute top-[6%] right-[12%] ${sq} bg-primary`} />
+        <div className={`absolute top-[15%] right-[3%] ${sq} bg-primary`} />
       </>
     ),
     left: (
       <>
-        <div className="absolute top-[6%] left-0 w-[35%] h-[7%] bg-primary" />
-        <div className="absolute bottom-[18%] left-0 w-[45%] h-[8%] bg-primary" />
-        <div className="absolute bottom-[4%] right-0 w-[40%] h-[9%] bg-primary" />
+        {/* Bottom-right cluster */}
+        <div className={`absolute bottom-[4%] right-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[4%] right-[11%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[13%] right-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[13%] right-[20%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[22%] right-[11%] ${sq} bg-primary`} />
+        {/* Top-left cluster */}
+        <div className={`absolute top-[6%] left-[3%] ${sq} bg-primary`} />
+        <div className={`absolute top-[6%] left-[12%] ${sq} bg-primary`} />
+        <div className={`absolute top-[15%] left-[3%] ${sq} bg-primary`} />
       </>
     ),
     right: (
       <>
-        <div className="absolute top-[10%] right-0 w-[38%] h-[6%] bg-primary" />
-        <div className="absolute bottom-[25%] right-0 w-[50%] h-[7%] bg-primary" />
-        <div className="absolute bottom-[6%] left-[5%] w-[42%] h-[8%] bg-primary" />
-      </>
-    ),
-    circle: (
-      <>
-        <div className="absolute top-[5%] right-[-5%] w-[35%] h-[8%] bg-primary" />
-        <div className="absolute bottom-[15%] left-[-5%] w-[40%] h-[7%] bg-primary" />
+        {/* Bottom-left cluster */}
+        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
+        {/* Top-right scattered */}
+        <div className={`absolute top-[4%] right-[2%] ${sq} bg-primary`} />
+        <div className={`absolute top-[13%] right-[11%] ${sq} bg-primary`} />
+        <div className={`absolute top-[4%] right-[11%] ${sq} bg-primary`} />
+        <div className={`absolute top-[13%] right-[2%] ${sq} bg-primary`} />
       </>
     ),
   };
