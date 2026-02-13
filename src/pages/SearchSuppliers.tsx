@@ -1900,7 +1900,7 @@ const ComparisonMockup = () => {
         data-nav-theme="light"
         className="relative min-h-[100dvh] flex flex-col bg-white"
       >
-        <HeroSquaresAnimation className="top-24 right-4 md:top-28 md:right-20 lg:top-32 lg:right-24" />
+        <HeroSquaresAnimation className="top-24 right-8 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
           <div className="px-8 w-full max-w-[1400px] mx-auto">

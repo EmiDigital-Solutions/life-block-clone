@@ -67,7 +67,7 @@ const AboutUs = () => {
       
       {/* HERO SECTION - Compliance Modal Style */}
       <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
-        <HeroSquaresAnimation className="top-24 right-4 md:top-28 md:right-20 lg:top-32 lg:right-24" />
+        <HeroSquaresAnimation className="top-24 right-8 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         {/* Mobile/Tablet Image - Top */}
         <motion.div 
           className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"

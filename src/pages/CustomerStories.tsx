@@ -142,7 +142,7 @@ const CustomerStories = () => {
       
       {/* Hero Section */}
       <section className="relative pt-40 pb-16 px-8">
-        <HeroSquaresAnimation className="top-12 right-4 md:top-16 md:right-20 lg:top-20 lg:right-24" />
+        <HeroSquaresAnimation className="top-12 right-8 md:top-16 md:right-20 lg:top-20 lg:right-24" />
         <div className="mx-auto max-w-[1400px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
