@@ -134,7 +134,7 @@ const DemoChatbot = () => {
   );
 };
 
-// Window 2: Search Results List
+// Window 2: Search Results — Classic Enterprise Software UI
 const DemoSearchResults = () => {
   const results = [
     { name: "Precision Metalworks GmbH", location: "Munich, Germany", match: 96, certs: ["IATF 16949", "ISO 14001"], capacity: "65K/mo", speciality: "Aluminum brake calipers" },
@@ -144,43 +144,125 @@ const DemoSearchResults = () => {
     { name: "AutoParts Bavaria AG", location: "Stuttgart, Germany", match: 84, certs: ["IATF 16949"], capacity: "55K/mo", speciality: "Surface-treated brake parts" },
   ];
 
+  const menuItems = ["Dashboard", "Search", "Saved Lists", "RFQ Manager", "Audit Orders", "Reports"];
+  const activeMenu = 1;
+
   return (
-    <div className="h-full bg-[hsl(0,0%,85%)] p-4 md:p-6 flex flex-col">
-      <div className="flex items-center justify-between mb-4 flex-shrink-0">
-        <div>
-          <p className="text-[9px] text-[hsl(0,0%,45%)] uppercase tracking-wider font-semibold">23 Suppliers Found</p>
-          <p className="text-[10px] text-[hsl(0,0%,55%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
+    <div className="h-full bg-[hsl(0,0%,85%)] flex">
+      {/* Left sidebar navigation */}
+      <div className="w-[100px] md:w-[120px] bg-[hsl(0,0%,32%)] border-r border-[hsl(0,0%,28%)] flex flex-col flex-shrink-0">
+        <div className="p-2 border-b border-[hsl(0,0%,28%)]">
+          <span className="text-[8px] text-[hsl(0,0%,55%)] uppercase tracking-widest font-semibold">SearchPro+</span>
         </div>
-        <div className="flex gap-2">
-          <span className="px-2 py-1 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[9px] text-[hsl(0,0%,80%)] rounded-none">Sort: Match Score</span>
+        <div className="flex-1 py-1">
+          {menuItems.map((item, i) => (
+            <div
+              key={i}
+              className={`px-3 py-1.5 text-[9px] font-medium cursor-default ${
+                activeMenu === i
+                  ? 'bg-primary/20 text-primary border-l-2 border-primary'
+                  : 'text-[hsl(0,0%,60%)] hover:text-[hsl(0,0%,80%)]'
+              }`}
+            >
+              {item}
+            </div>
+          ))}
         </div>
       </div>
-      <div className="flex-1 space-y-2 overflow-y-auto min-h-0">
-        {results.map((s, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.15 }}
-            className="p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none"
-          >
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <p className="text-sm font-semibold text-[hsl(0,0%,95%)]">{s.name}</p>
-                  <span className="text-[9px] font-bold text-primary">{s.match}%</span>
-                </div>
-                <p className="text-[10px] text-[hsl(0,0%,65%)] mb-1.5">{s.location} · {s.speciality}</p>
-                <div className="flex gap-1.5 flex-wrap">
-                  {s.certs.map((c, j) => (
-                    <span key={j} className="px-1.5 py-0.5 border border-primary/30 text-primary text-[8px] font-bold uppercase">{c}</span>
-                  ))}
-                  <span className="px-1.5 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,75%)] text-[8px] font-medium">{s.capacity}</span>
-                </div>
+
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top toolbar */}
+        <div className="px-3 py-2 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
+          <div>
+            <p className="text-[9px] text-[hsl(0,0%,40%)] uppercase tracking-wider font-semibold">23 Suppliers Found</p>
+            <p className="text-[9px] text-[hsl(0,0%,55%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
+          </div>
+          <div className="flex gap-1.5">
+            <span className="px-2 py-0.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[8px] text-[hsl(0,0%,80%)] rounded-none">Sort: Match</span>
+            <span className="px-2 py-0.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] text-[8px] text-[hsl(0,0%,80%)] rounded-none">Export</span>
+          </div>
+        </div>
+
+        <div className="flex-1 flex overflow-hidden">
+          {/* Filter sidebar */}
+          <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2 flex-shrink-0 overflow-y-auto">
+            <p className="text-[8px] text-[hsl(0,0%,40%)] uppercase tracking-widest font-bold mb-2">Filters</p>
+            {[
+              { label: "Certification", values: ["IATF 16949", "ISO 9001", "AS9100D"] },
+              { label: "Region", values: ["Europe", "Asia", "Americas"] },
+              { label: "Capacity", values: [">50K/mo", ">100K/mo"] },
+            ].map((filter, i) => (
+              <div key={i} className="mb-2">
+                <p className="text-[8px] text-[hsl(0,0%,45%)] font-semibold uppercase mb-1">{filter.label}</p>
+                {filter.values.map((v, j) => (
+                  <div key={j} className="flex items-center gap-1 py-0.5">
+                    <div className={`w-2.5 h-2.5 border rounded-none flex items-center justify-center ${
+                      j === 0 ? 'border-primary bg-primary/20' : 'border-[hsl(0,0%,60%)]'
+                    }`}>
+                      {j === 0 && <Check className="w-1.5 h-1.5 text-primary" />}
+                    </div>
+                    <span className="text-[8px] text-[hsl(0,0%,40%)]">{v}</span>
+                  </div>
+                ))}
               </div>
+            ))}
+            <div className="mb-2">
+              <p className="text-[8px] text-[hsl(0,0%,45%)] font-semibold uppercase mb-1">Match Score</p>
+              <div className="h-1 bg-[hsl(0,0%,70%)] rounded-none relative">
+                <div className="h-full bg-primary rounded-none" style={{ width: '80%' }} />
+              </div>
+              <p className="text-[7px] text-[hsl(0,0%,50%)] mt-0.5">Min: 80%</p>
             </div>
-          </motion.div>
-        ))}
+          </div>
+
+          {/* Results list */}
+          <div className="flex-1 overflow-y-auto p-2 space-y-1.5">
+            {/* Score explanation banner */}
+            <div className="p-2 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] rounded-none mb-1">
+              <p className="text-[8px] text-[hsl(0,0%,40%)] leading-relaxed">
+                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on certification match, production capability, quality history, geographic proximity, and commodity expertise.
+              </p>
+            </div>
+
+            {results.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.15 }}
+                className="p-2.5 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none flex items-start gap-2"
+              >
+                {/* Numbering */}
+                <div className="w-5 h-5 bg-[hsl(0,0%,35%)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-[10px] font-bold text-[hsl(0,0%,75%)]">{i + 1}</span>
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <p className="text-xs font-semibold text-[hsl(0,0%,95%)] truncate">{s.name}</p>
+                  </div>
+                  <p className="text-[9px] text-[hsl(0,0%,65%)] mb-1">{s.location} · {s.speciality}</p>
+                  <div className="flex gap-1 flex-wrap">
+                    {s.certs.map((c, j) => (
+                      <span key={j} className="px-1 py-0.5 border border-primary/30 text-primary text-[7px] font-bold uppercase">{c}</span>
+                    ))}
+                    <span className="px-1 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,75%)] text-[7px] font-medium">{s.capacity}</span>
+                  </div>
+                </div>
+
+                {/* Score column */}
+                <div className="flex flex-col items-center flex-shrink-0 gap-0.5">
+                  <span className="text-lg font-bold text-primary leading-none">{s.match}</span>
+                  <span className="text-[7px] text-[hsl(0,0%,60%)] uppercase tracking-wider">Score</span>
+                  <div className="w-8 h-1 bg-[hsl(0,0%,35%)] rounded-none mt-0.5">
+                    <div className="h-full bg-primary rounded-none" style={{ width: `${s.match}%` }} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -196,7 +278,7 @@ const DemoSupplierProfile = () => {
     const interval = setInterval(() => {
       i = (i + 1) % tabs.length;
       setActiveTab(tabs[i]);
-    }, 900);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
