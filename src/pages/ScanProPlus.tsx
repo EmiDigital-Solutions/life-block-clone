@@ -2486,82 +2486,85 @@ const ScanProPlus = () => {
             Measurable ROI from day one
           </motion.h2>
 
-          {/* KPI Grid 2x2 */}
-          <div className="grid md:grid-cols-2 gap-x-12">
-            {/* KPI 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="pb-12"
-            >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
-              <div className="border-t border-foreground/20 pt-4">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  60%
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Lower cost per audit compared to traditional agencies and consultants
-                </p>
-              </div>
-            </motion.div>
+          {/* KPI Grid 2x2 — shifted one grid right */}
+          <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+            <div className="hidden lg:block lg:col-span-1" />
+            <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
+              {/* KPI 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="pb-12"
+              >
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    60%
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Lower cost per audit compared to traditional agencies and consultants
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* KPI 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="pb-12"
-            >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
-              <div className="border-t border-foreground/20 pt-4">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  5 days
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Average time from order to completed audit report, down from 3-4 weeks
-                </p>
-              </div>
-            </motion.div>
+              {/* KPI 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.05 }}
+                className="pb-12"
+              >
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    5 days
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Average time from order to completed audit report, down from 3-4 weeks
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* KPI 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="pb-12"
-            >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Quality assurance</p>
-              <div className="border-t border-foreground/20 pt-4">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  100%
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Digital evidence capture with AI-verified documentation and audit trails
-                </p>
-              </div>
-            </motion.div>
+              {/* KPI 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="pb-12"
+              >
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Quality assurance</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    100%
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Digital evidence capture with AI-verified documentation and audit trails
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* KPI 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="pb-12"
-            >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Global coverage</p>
-              <div className="border-t border-foreground/20 pt-4">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  50+
-                </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  Countries with certified local auditors available within 24-48 hours
-                </p>
-              </div>
-            </motion.div>
+              {/* KPI 4 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+                className="pb-12"
+              >
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Global coverage</p>
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    50+
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    Countries with certified local auditors available within 24-48 hours
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
