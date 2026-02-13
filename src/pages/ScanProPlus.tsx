@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
@@ -1371,7 +1372,7 @@ const IndustryUseCasesGrid = () => {
       data-nav-theme="light" 
       className="py-24 md:py-32 bg-background"
     >
-      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Header - offmenu.design "Projects" Style */}
         <div className="relative">
           {/* Giant Background Text - positioned to sit just above the cards */}
@@ -1403,7 +1404,7 @@ const IndustryUseCasesGrid = () => {
         </div>
 
         {/* VanMoof-style Product Showcase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[1400px] mx-auto">
           {/* Large card - Automotive */}
           <IndustryShowcaseCard
             useCase={useCases[0]}
@@ -1437,7 +1438,7 @@ const IndustryUseCasesGrid = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           onClick={() => setSelectedUseCase(useCases[3])}
-          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto"
+          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-[1400px] mx-auto"
         >
           {/* Full-bleed image container */}
           <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
@@ -1574,7 +1575,7 @@ const ChallengeToggleSection = () => {
       className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-72 bg-white"
       id="challenge"
     >
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header with Toggle */}
         <div className="flex items-center justify-between mb-12">
@@ -1917,7 +1918,7 @@ const HowItWorksCarousel = () => {
       data-nav-theme="light"
       className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12 bg-background"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Section Header - Homepage Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -2142,7 +2143,9 @@ const ScanProPlus = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section - White Background, Archlet Style */}
@@ -2153,7 +2156,7 @@ const ScanProPlus = () => {
       >
         {/* Main Content - Two column layout with video */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
-          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+          <div className="px-8 w-full max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Column - Text Content */}
               <motion.div 
@@ -2308,7 +2311,7 @@ const ScanProPlus = () => {
         data-nav-theme="light"
         className="py-24 md:py-32 bg-white"
       >
-        <div className="container mx-auto px-6 lg:px-20">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2355,7 +2358,7 @@ const ScanProPlus = () => {
         id="capabilities"
       >
         
-        <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+        <div className="mx-auto max-w-[1400px] px-8 relative z-10">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -2385,7 +2388,7 @@ const ScanProPlus = () => {
         className="py-20 md:py-28 bg-white"
         id="results"
       >
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px] px-8">
           
           {/* Simple Header */}
           <motion.div
@@ -2459,7 +2462,7 @@ const ScanProPlus = () => {
 
       {/* Testimonial Section - Be Found 3-Column Style */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2544,7 +2547,7 @@ const ScanProPlus = () => {
 
       {/* Measurable ROI Section */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2640,7 +2643,7 @@ const ScanProPlus = () => {
         data-nav-theme="light" 
         className="py-24 md:py-32 bg-white"
       >
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2688,7 +2691,7 @@ const ScanProPlus = () => {
         data-nav-theme="light" 
         className="py-24 md:py-32 bg-background"
       >
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2795,7 +2798,7 @@ const ScanProPlus = () => {
         className="py-24 md:py-32 bg-background"
         id="cta"
       >
-        <div className="container mx-auto px-6 max-w-4xl text-center">
+        <div className="mx-auto max-w-[1400px] px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2844,6 +2847,7 @@ const ScanProPlus = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };

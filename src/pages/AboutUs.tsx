@@ -1,3 +1,4 @@
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -58,7 +59,9 @@ const AboutUs = () => {
   const selectedLocationData = locations[selectedLocation as keyof typeof locations];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* HERO SECTION - Compliance Modal Style */}
@@ -111,7 +114,7 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center pointer-events-none">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center pointer-events-none">
           <motion.div 
             className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6 pointer-events-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -152,7 +155,7 @@ const AboutUs = () => {
 
       {/* MISSION STATEMENT - Full Width */}
       <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div 
             className="text-center space-y-8"
             initial={{ opacity: 0, y: 20 }}
@@ -175,7 +178,7 @@ const AboutUs = () => {
 
       {/* CORE PRINCIPLES - Minimal List */}
       <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -248,7 +251,7 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
           <motion.div 
             className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
             initial={{ opacity: 0, y: 20 }}
@@ -276,7 +279,7 @@ const AboutUs = () => {
 
       {/* TIMELINE - Minimal Horizontal */}
       <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -385,7 +388,7 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
           <motion.div 
             className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
             initial={{ opacity: 0, y: 20 }}
@@ -413,7 +416,7 @@ const AboutUs = () => {
 
       {/* LOCATIONS - Minimal List */}
       <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -469,7 +472,7 @@ const AboutUs = () => {
 
       {/* CTA SECTION - Full Width */}
       <section data-nav-theme="light" className="py-32 bg-black text-white">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -497,6 +500,7 @@ const AboutUs = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };

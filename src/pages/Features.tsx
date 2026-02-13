@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -324,12 +325,14 @@ const Features = () => {
   const currentCategory = featureCategories.find(cat => cat.id === activeCategory);
 
   return (
-    <div className="min-h-screen bg-white" data-nav-theme="light">
+    <div className="min-h-screen bg-white relative" data-nav-theme="light">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl">
+      <section className="pt-40 pb-16 px-8">
+        <div className="mx-auto max-w-[1400px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -364,8 +367,8 @@ const Features = () => {
       </section>
 
       {/* Category Tabs */}
-      <section className="px-4 sm:px-6 lg:px-8 border-t border-foreground/10">
-        <div className="container mx-auto max-w-7xl">
+      <section className="px-8 border-t border-foreground/10">
+        <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-wrap gap-0">
             {featureCategories.map((category) => (
               <button
@@ -386,8 +389,8 @@ const Features = () => {
 
       {/* Features Grid */}
       {currentCategory && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-7xl">
+        <section className="py-16 px-8">
+          <div className="mx-auto max-w-[1400px]">
             {/* Category Headline */}
             <motion.h2
               key={currentCategory.id}
@@ -495,8 +498,8 @@ const Features = () => {
       )}
 
       {/* API Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-16 px-8 bg-muted/30">
+        <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
@@ -519,8 +522,8 @@ const Features = () => {
       </section>
 
       {/* Looking for more details */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl text-center">
+      <section className="py-24 px-8">
+        <div className="mx-auto max-w-[1400px] text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-[-0.02em] mb-6">
             Looking for more details?
           </h2>
@@ -540,6 +543,7 @@ const Features = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Plus, Minus } from "lucide-react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -133,12 +134,14 @@ const CustomerStories = () => {
   const regularStories = customerStories.filter(story => !story.featured);
 
   return (
-    <div className="min-h-screen bg-white" data-nav-theme="light">
+    <div className="min-h-screen bg-white relative" data-nav-theme="light">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl">
+      <section className="pt-40 pb-16 px-8">
+        <div className="mx-auto max-w-[1400px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -159,8 +162,8 @@ const CustomerStories = () => {
       </section>
 
       {/* Hero Video/Image Section */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="container mx-auto max-w-7xl">
+      <section className="px-8 pb-16">
+        <div className="mx-auto max-w-[1400px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -185,8 +188,8 @@ const CustomerStories = () => {
       </section>
 
       {/* KPI Stats Strip - BeFound Style */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-24 px-8">
+        <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12">
             {kpiStats.map((item, index) => (
               <motion.div
@@ -219,8 +222,8 @@ const CustomerStories = () => {
 
       {/* Featured Story */}
       {featuredStory && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-7xl">
+        <section className="py-16 px-8">
+          <div className="mx-auto max-w-[1400px]">
             <Link to={`/customer-stories/${featuredStory.id}`} className="block group">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -256,8 +259,8 @@ const CustomerStories = () => {
       )}
 
       {/* Stories Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-16 px-8">
+        <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularStories.map((story, index) => (
               <motion.div
@@ -298,8 +301,8 @@ const CustomerStories = () => {
       </section>
 
       {/* Video Testimonial Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-16 px-8 bg-muted/30">
+        <div className="mx-auto max-w-[1400px]">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Stats and Quote */}
             <motion.div
@@ -364,8 +367,8 @@ const CustomerStories = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      <section className="py-24 px-8">
+        <div className="mx-auto max-w-[1400px]">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -418,8 +421,8 @@ const CustomerStories = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-foreground/10">
-        <div className="container mx-auto max-w-7xl text-center">
+      <section className="py-24 px-8 border-t border-foreground/10">
+        <div className="mx-auto max-w-[1400px] text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -458,6 +461,7 @@ const CustomerStories = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };
