@@ -223,7 +223,7 @@ const DiscoverScreen = () => {
 
         {phase >= 6 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 5 · Discover</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 4 · Discover</span>
           </motion.div>
         )}
       </div>
@@ -313,7 +313,7 @@ const MatchScreen = () => {
 
       {phase >= 4 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 5 · Match</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 4 · Match</span>
         </motion.div>
       )}
     </div>
@@ -418,7 +418,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 5 · Audit</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 4 · Audit</span>
           </div>
         </div>
       </div>
@@ -426,23 +426,26 @@ const AuditScreen = () => {
   );
 };
 
-// ─── SCREEN 4: INTELLIGENCE ─────────────────────────────────────
+// ─── SCREEN 4: INTELLIGENCE (with Audit KPIs) ──────────────────
 const IntelligenceScreen = () => {
   const [showElements, setShowElements] = useState(0);
-  const [activeSegment, setActiveSegment] = useState(0);
 
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowElements(1), 400),
-      setTimeout(() => setShowElements(2), 1200),
-      setTimeout(() => setShowElements(3), 2200),
-      setTimeout(() => setShowElements(4), 3200),
-      setTimeout(() => { setShowElements(5); setActiveSegment(2); }, 4200),
+      setTimeout(() => setShowElements(2), 1000),
+      setTimeout(() => setShowElements(3), 1800),
+      setTimeout(() => setShowElements(4), 2600),
+      setTimeout(() => setShowElements(5), 3400),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2];
+  const kpis = [
+    { label: "Calibration Compliance", value: 97, unit: "%", delta: "+4", bars: [60, 68, 74, 78, 83, 87, 90, 93, 95, 97] },
+    { label: "NCR Close-out Rate", value: 94, unit: "%", delta: "+8", bars: [55, 62, 70, 75, 80, 84, 88, 91, 93, 94] },
+    { label: "Process Capability (Cpk)", value: 1.67, unit: "", delta: "+0.3", bars: [40, 50, 58, 65, 72, 78, 83, 87, 92, 96] },
+  ];
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
@@ -458,64 +461,59 @@ const IntelligenceScreen = () => {
        </div>
 
       <div className="flex-1 flex">
+        {/* Left: Overall score + KPI charts */}
         <div className="w-3/5 p-3 flex flex-col gap-2 overflow-hidden">
-          {/* Main score — ORION donut + stat card layered */}
+          {/* Main score */}
           {showElements >= 1 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-4 flex items-center gap-4 overflow-hidden relative">
-                <div className="-ml-6 -my-4 flex-shrink-0">
-                  <DonutScore score={91} size={140} />
+              <GlassCard layer={2} className="p-3 flex items-center gap-3 overflow-hidden relative">
+                <div className="-ml-5 -my-3 flex-shrink-0">
+                  <DonutScore score={91} size={110} />
                 </div>
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
                    <span className="text-[10px] text-background/60 uppercase tracking-wider">Overall Score</span>
-                   <div className="flex items-center gap-1 text-primary text-xs font-medium mt-1">
-                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
-                     trending up
-                   </div>
                  </div>
               </GlassCard>
             </motion.div>
           )}
 
-          {/* Process stats — ORION "Candidates Online" style, deeper layer */}
-          {showElements >= 2 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <GlassCard layer={3} className="p-3">
-               <div className="text-sm font-semibold text-background mb-3">Process Scores</div>
-                 <div className="flex items-end justify-between gap-2">
-                   {[
-                     { label: "Quality", val: 93 },
-                     { label: "Equipment", val: 89 },
-                     { label: "Docs", val: 94 },
-                     { label: "Process", val: 88 },
-                   ].map((p) => (
-                     <div key={p.label} className="text-center">
-                       <div className="flex items-baseline justify-center gap-0.5">
-                         <span className="text-xl font-bold text-background">{p.val}</span>
-                         <span className="text-[10px] text-background/70">%</span>
-                       </div>
-                       <span className="text-[9px] text-background/70 uppercase">{p.label}</span>
-                     </div>
-                   ))}
-                 </div>
-                <div className="mt-3">
-                  <SegmentedToggle items={["ISO 9001", "AS9100", "IATF"]} activeIndex={activeSegment} />
-                </div>
-              </GlassCard>
-            </motion.div>
-          )}
+          {/* 3 Audit KPI mini-charts */}
+          {kpis.map((kpi, idx) => (
+            showElements >= idx + 2 && (
+              <motion.div key={kpi.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+                <GlassCard layer={2} className="p-2.5">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[9px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
+                    <div className="flex items-baseline gap-0.5">
+                      <span className="text-base font-bold text-background">{kpi.value}</span>
+                      <span className="text-[9px] text-background/70">{kpi.unit}</span>
+                      <span className="text-[8px] text-primary font-semibold ml-0.5 -translate-y-1">{kpi.delta}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-end gap-[3px] h-8">
+                    {kpi.bars.map((h, i) => (
+                      <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                        transition={{ duration: 0.3, delay: i * 0.03 }}
+                        className={`flex-1 ${i >= 8 ? 'bg-primary' : 'bg-background/30'}`}
+                      />
+                    ))}
+                  </div>
+                </GlassCard>
+              </motion.div>
+            )
+          ))}
 
           {/* Non-conformances */}
-          {showElements >= 4 && (
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-auto">
+          {showElements >= 5 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
               <div className="flex gap-2">
-                 <GlassCard layer={1} className="px-3 py-2 flex-1 text-center">
-                   <span className="text-lg font-bold text-background">0</span>
+                 <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
+                   <span className="text-base font-bold text-background">0</span>
                    <span className="text-[9px] text-background/70 uppercase block">Major</span>
                  </GlassCard>
-                 <GlassCard layer={1} className="px-3 py-2 flex-1 text-center">
-                   <span className="text-lg font-bold text-background">1</span>
+                 <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
+                   <span className="text-base font-bold text-background">1</span>
                    <span className="text-[9px] text-background/70 uppercase block">Minor</span>
                  </GlassCard>
               </div>
@@ -526,10 +524,10 @@ const IntelligenceScreen = () => {
         {/* Right: Evidence + Auditor */}
         <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col">
           {showElements >= 3 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 flex-1">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-3 flex-1">
                <div className="text-[10px] font-semibold text-foreground/60 uppercase tracking-wider mb-2">Evidence Gallery</div>
               <div className="grid grid-cols-4 gap-1">
-                {evidenceImages.map((img, i) => (
+                {[evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2].map((img, i) => (
                   <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.08 }} className="aspect-square overflow-hidden">
                     <img src={img} alt={`Evidence ${i + 1}`} className="w-full h-full object-cover" />
@@ -540,9 +538,9 @@ const IntelligenceScreen = () => {
           )}
 
           {showElements >= 5 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 border-t border-muted-foreground/10">
-               <GlassCard layer={2} className="flex items-center gap-3 p-3">
-                 <img src={auditorGen2} alt="M. Hoffmann" className="w-10 h-10 object-cover" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-3 border-t border-muted-foreground/10">
+               <GlassCard layer={2} className="flex items-center gap-3 p-2.5">
+                 <img src={auditorGen2} alt="M. Hoffmann" className="w-9 h-9 object-cover" />
                  <div className="flex-1">
                    <div className="text-sm font-medium text-background">Markus Hoffmann</div>
                    <div className="text-[11px] text-background/70">ISO 9001 Lead Auditor</div>
@@ -552,168 +550,8 @@ const IntelligenceScreen = () => {
             </motion.div>
           )}
 
-          <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// ─── SCREEN 5: INSIGHTS (KPI Charts) ────────────────────────────
-const InsightsScreen = () => {
-  const [phase, setPhase] = useState(0);
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setPhase(1), 400),
-      setTimeout(() => setPhase(2), 1200),
-      setTimeout(() => setPhase(3), 2000),
-      setTimeout(() => setPhase(4), 3200),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const costBars = [100, 85, 70, 55, 42, 30, 22, 15, 10, 5, 3.5, 3.5];
-  const timeBars = [100, 90, 75, 60, 48, 35, 25, 18, 12, 8, 5, 4];
-  const qualityBars = [40, 50, 58, 65, 72, 78, 83, 87, 90, 92, 94, 96];
-
-  return (
-    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
-      <div className="px-3 py-2 border-b border-foreground/10 flex items-center justify-between">
-        <div>
-          <div className="text-sm font-semibold text-foreground">Business Impact</div>
-          <div className="text-xs text-foreground/60">12-Month ROI Overview</div>
-        </div>
-        <span className="text-[10px] text-foreground/60 uppercase tracking-wider">Analytics</span>
-      </div>
-
-      <div className="flex-1 flex">
-        {/* Left: 3 KPI charts */}
-        <div className="w-3/5 p-3 flex flex-col gap-2 overflow-hidden">
-          {/* KPI 1: Cost Reduction */}
-          {phase >= 1 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-3">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Cost per Audit</span>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-lg font-bold text-background">−96</span>
-                    <span className="text-[10px] text-background/70">%</span>
-                  </div>
-                </div>
-                <div className="flex items-end gap-[3px] h-12">
-                  {costBars.map((h, i) => (
-                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                      transition={{ duration: 0.4, delay: i * 0.04 }}
-                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
-                    />
-                  ))}
-                </div>
-                <div className="flex justify-between mt-1">
-                  <span className="text-[8px] text-background/50">€20,000</span>
-                  <span className="text-[8px] text-primary font-semibold">€700</span>
-                </div>
-              </GlassCard>
-            </motion.div>
-          )}
-
-          {/* KPI 2: Time to Qualify */}
-          {phase >= 2 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-3">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Time to Qualify</span>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-lg font-bold text-background">3</span>
-                    <span className="text-[10px] text-background/70">days</span>
-                  </div>
-                </div>
-                <div className="flex items-end gap-[3px] h-12">
-                  {timeBars.map((h, i) => (
-                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                      transition={{ duration: 0.4, delay: i * 0.04 }}
-                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
-                    />
-                  ))}
-                </div>
-                <div className="flex justify-between mt-1">
-                  <span className="text-[8px] text-background/50">45 days avg.</span>
-                  <span className="text-[8px] text-primary font-semibold">3 days</span>
-                </div>
-              </GlassCard>
-            </motion.div>
-          )}
-
-          {/* KPI 3: Quality Score Trend */}
-          {phase >= 3 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-3">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] text-background/60 uppercase tracking-wider font-semibold">Supplier Quality</span>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-lg font-bold text-background">96</span>
-                    <span className="text-[10px] text-background/70">%</span>
-                    <span className="text-[9px] text-primary font-semibold ml-0.5 -translate-y-1">+12</span>
-                  </div>
-                </div>
-                <div className="flex items-end gap-[3px] h-12">
-                  {qualityBars.map((h, i) => (
-                    <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                      transition={{ duration: 0.4, delay: i * 0.04 }}
-                      className={`flex-1 ${i >= 10 ? 'bg-primary' : 'bg-background/30'}`}
-                    />
-                  ))}
-                </div>
-                <div className="flex justify-between mt-1">
-                  <span className="text-[8px] text-background/50">Month 1</span>
-                  <span className="text-[8px] text-primary font-semibold">Month 12</span>
-                </div>
-              </GlassCard>
-            </motion.div>
-          )}
-        </div>
-
-        {/* Right: Summary */}
-        <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col p-3 gap-2">
-          {phase >= 2 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <GlassCard layer={3} className="p-3 text-center">
-                <span className="text-[9px] text-background/60 uppercase tracking-wider block mb-1">Annual Savings</span>
-                <div className="flex items-baseline justify-center gap-0.5">
-                  <span className="text-2xl font-bold text-background">€383k</span>
-                </div>
-                <span className="text-[9px] text-primary font-semibold">vs. traditional auditing</span>
-              </GlassCard>
-            </motion.div>
-          )}
-
-          {phase >= 3 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <GlassCard layer={3} className="p-3 text-center">
-                <span className="text-[9px] text-background/60 uppercase tracking-wider block mb-1">Audits Completed</span>
-                <div className="flex items-baseline justify-center gap-0.5">
-                  <span className="text-2xl font-bold text-background">24</span>
-                  <span className="text-[10px] text-background/70">/yr</span>
-                </div>
-                <span className="text-[9px] text-primary font-semibold">4× more capacity</span>
-              </GlassCard>
-            </motion.div>
-          )}
-
-          {phase >= 4 && (
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-auto">
-              <GlassCard highlight className="p-3 flex items-center gap-2">
-                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-                <span className="text-xs font-semibold text-background">ROI achieved in 30 days</span>
-              </GlassCard>
-            </motion.div>
-          )}
-
-          <div className="px-2 py-2 border-t border-muted-foreground/10 text-center mt-auto">
-            <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 5 of 5 · Insights</span>
+          <div className="px-4 py-2 border-t border-muted-foreground/10 text-center">
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
           </div>
         </div>
       </div>
@@ -724,12 +562,12 @@ const InsightsScreen = () => {
 // ─── MAIN COMPONENT ─────────────────────────────────────────────
 const PlatformDemoAnimation = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen, InsightsScreen];
-  const labels = ["Discover", "Match", "Audit", "Intel", "Insights"];
+  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen];
+  const labels = ["Discover", "Match", "Audit", "Intelligence"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 5);
+      setCurrentScreen((prev) => (prev + 1) % 4);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
