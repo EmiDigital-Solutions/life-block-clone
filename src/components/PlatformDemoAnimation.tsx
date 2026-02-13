@@ -426,25 +426,28 @@ const AuditScreen = () => {
   );
 };
 
-// ─── SCREEN 4: INTELLIGENCE (with Audit KPIs) ──────────────────
+// ─── SCREEN 4: INTELLIGENCE ─────────────────────────────────────
 const IntelligenceScreen = () => {
   const [showElements, setShowElements] = useState(0);
+  const [activeSegment, setActiveSegment] = useState(0);
 
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowElements(1), 400),
-      setTimeout(() => setShowElements(2), 1000),
-      setTimeout(() => setShowElements(3), 1800),
-      setTimeout(() => setShowElements(4), 2600),
-      setTimeout(() => setShowElements(5), 3400),
+      setTimeout(() => setShowElements(2), 1200),
+      setTimeout(() => setShowElements(3), 2200),
+      setTimeout(() => setShowElements(4), 3200),
+      setTimeout(() => { setShowElements(5); setActiveSegment(2); }, 4200),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const kpis = [
-    { label: "Calibration Compliance", value: 97, unit: "%", delta: "+4", bars: [60, 68, 74, 78, 83, 87, 90, 93, 95, 97] },
-    { label: "NCR Close-out Rate", value: 94, unit: "%", delta: "+8", bars: [55, 62, 70, 75, 80, 84, 88, 91, 93, 94] },
-    { label: "Process Capability (Cpk)", value: 1.67, unit: "", delta: "+0.3", bars: [40, 50, 58, 65, 72, 78, 83, 87, 92, 96] },
+  const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2];
+
+  const auditKpis = [
+    { label: "Calibration Compliance", value: "97", unit: "%", delta: "+4", bars: [60, 68, 74, 78, 83, 87, 90, 93, 95, 97] },
+    { label: "NCR Close-out Rate", value: "94", unit: "%", delta: "+8", bars: [55, 62, 70, 75, 80, 84, 88, 91, 93, 94] },
+    { label: "Process Capability (Cpk)", value: "1.67", unit: "", delta: "+0.3", bars: [40, 50, 58, 65, 72, 78, 83, 87, 92, 96] },
   ];
 
   return (
@@ -461,9 +464,8 @@ const IntelligenceScreen = () => {
        </div>
 
       <div className="flex-1 flex">
-        {/* Left: Overall score + KPI charts */}
         <div className="w-3/5 p-3 flex flex-col gap-2 overflow-hidden">
-          {/* Main score */}
+          {/* Main score — donut + stat */}
           {showElements >= 1 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
               <GlassCard layer={2} className="p-3 flex items-center gap-3 overflow-hidden relative">
@@ -473,36 +475,70 @@ const IntelligenceScreen = () => {
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
                    <span className="text-[10px] text-background/60 uppercase tracking-wider">Overall Score</span>
+                   <div className="flex items-center gap-1 text-primary text-xs font-medium mt-1">
+                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
+                     trending up
+                   </div>
                  </div>
               </GlassCard>
             </motion.div>
           )}
 
-          {/* 3 Audit KPI mini-charts */}
-          {kpis.map((kpi, idx) => (
-            showElements >= idx + 2 && (
-              <motion.div key={kpi.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-                <GlassCard layer={2} className="p-2.5">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[9px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
-                    <div className="flex items-baseline gap-0.5">
-                      <span className="text-base font-bold text-background">{kpi.value}</span>
-                      <span className="text-[9px] text-background/70">{kpi.unit}</span>
-                      <span className="text-[8px] text-primary font-semibold ml-0.5 -translate-y-1">{kpi.delta}</span>
+          {/* Process scores + segmented toggle */}
+          {showElements >= 2 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={3} className="p-2.5">
+               <div className="text-xs font-semibold text-background mb-2">Process Scores</div>
+                 <div className="flex items-end justify-between gap-2">
+                   {[
+                     { label: "Quality", val: 93 },
+                     { label: "Equipment", val: 89 },
+                     { label: "Docs", val: 94 },
+                     { label: "Process", val: 88 },
+                   ].map((p) => (
+                     <div key={p.label} className="text-center">
+                       <div className="flex items-baseline justify-center gap-0.5">
+                         <span className="text-lg font-bold text-background">{p.val}</span>
+                         <span className="text-[9px] text-background/70">%</span>
+                       </div>
+                       <span className="text-[8px] text-background/70 uppercase">{p.label}</span>
+                     </div>
+                   ))}
+                 </div>
+                <div className="mt-2">
+                  <SegmentedToggle items={["ISO 9001", "AS9100", "IATF"]} activeIndex={activeSegment} />
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* Audit KPI bar charts */}
+          {showElements >= 4 && (
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
+              {auditKpis.map((kpi, idx) => (
+                <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.15 }}>
+                  <GlassCard layer={2} className="px-2.5 py-2">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[8px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
+                      <div className="flex items-baseline gap-0.5">
+                        <span className="text-sm font-bold text-background">{kpi.value}</span>
+                        <span className="text-[8px] text-background/70">{kpi.unit}</span>
+                        <span className="text-[7px] text-primary font-semibold ml-0.5 -translate-y-1">{kpi.delta}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-end gap-[3px] h-8">
-                    {kpi.bars.map((h, i) => (
-                      <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.3, delay: i * 0.03 }}
-                        className={`flex-1 ${i >= 8 ? 'bg-primary' : 'bg-background/30'}`}
-                      />
-                    ))}
-                  </div>
-                </GlassCard>
-              </motion.div>
-            )
-          ))}
+                    <div className="flex items-end gap-[2px] h-6">
+                      {kpi.bars.map((h, i) => (
+                        <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                          transition={{ duration: 0.3, delay: i * 0.03 }}
+                          className={`flex-1 ${i >= 8 ? 'bg-primary' : 'bg-background/30'}`}
+                        />
+                      ))}
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
           {/* Non-conformances */}
           {showElements >= 5 && (
@@ -527,7 +563,7 @@ const IntelligenceScreen = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-3 flex-1">
                <div className="text-[10px] font-semibold text-foreground/60 uppercase tracking-wider mb-2">Evidence Gallery</div>
               <div className="grid grid-cols-4 gap-1">
-                {[evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2].map((img, i) => (
+                {evidenceImages.map((img, i) => (
                   <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.08 }} className="aspect-square overflow-hidden">
                     <img src={img} alt={`Evidence ${i + 1}`} className="w-full h-full object-cover" />
