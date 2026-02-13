@@ -8,10 +8,9 @@ interface PortraitWithBlueBlocksProps {
 }
 
 /**
- * Portrait image with Archlet-style scattered checkerboard square overlay.
- * Exact clone of reference: diagonal checkerboard grid of small squares,
- * forming triangular dissolve clusters at two opposite corners.
- * Squares overflow outside the image boundary.
+ * Portrait with Archlet-style checkerboard staircase overlay.
+ * Reference: strict grid of squares forming a stepped diagonal band
+ * along bottom-right and top-left edges. Squares overflow outside image.
  */
 const PortraitWithBlueBlocks = ({ 
   src, 
@@ -19,94 +18,75 @@ const PortraitWithBlueBlocks = ({
   className = "aspect-square",
   variant = "default"
 }: PortraitWithBlueBlocksProps) => {
-  // Square size as % of container
-  const S = 7;
-  // Step = size (no visible gap, checkerboard pattern creates gaps)
-  const STEP = S;
+  const S = 8; // square size as % of container
 
-  // Helper: render a single square at grid coordinates
-  // Grid origin is a corner; row/col are grid indices
-  // Checkerboard: only render if (row+col) is even
   const Square = ({ style }: { style: React.CSSProperties }) => (
-    <div 
-      className="absolute bg-primary" 
-      style={{ width: `${S}%`, height: `${S}%`, ...style }} 
-    />
+    <div className="absolute bg-primary" style={{ width: `${S}%`, height: `${S}%`, ...style }} />
   );
 
-  // Bottom-left cluster: triangular dissolve
-  // Squares anchored from bottom-left, some overflow outside (negative values)
-  // Triangle shape: more squares near corner, fewer toward center
-  const bottomLeftSquares = [
-    // Row 0 (bottommost, partially outside)
-    { bottom: `${-STEP}%`, left: `${0}%` },
-    { bottom: `${-STEP}%`, left: `${STEP * 2}%` },
-    // Row 1
-    { bottom: `${0}%`, left: `${-STEP}%` },
-    { bottom: `${0}%`, left: `${STEP}%` },
-    { bottom: `${0}%`, left: `${STEP * 3}%` },
-    // Row 2
-    { bottom: `${STEP}%`, left: `${0}%` },
-    { bottom: `${STEP}%`, left: `${STEP * 2}%` },
-    { bottom: `${STEP}%`, left: `${STEP * 4}%` },
-    // Row 3
-    { bottom: `${STEP * 2}%`, left: `${-STEP}%` },
-    { bottom: `${STEP * 2}%`, left: `${STEP}%` },
-    { bottom: `${STEP * 2}%`, left: `${STEP * 3}%` },
-    // Row 4
-    { bottom: `${STEP * 3}%`, left: `${0}%` },
-    { bottom: `${STEP * 3}%`, left: `${STEP * 2}%` },
+  // Bottom-right staircase: checkerboard band stepping up from right to left
+  // Like reference: horizontal row of squares at bottom, stepping up diagonally
+  const bottomRightStaircase: React.CSSProperties[] = [
+    // Bottom row (extends outside right edge)
+    { bottom: `${-S}%`, right: `${0}%` },
+    { bottom: `${-S}%`, right: `${S * 2}%` },
+    // Row 1 - at bottom edge
+    { bottom: `${0}%`, right: `${-S}%` },
+    { bottom: `${0}%`, right: `${S}%` },
+    { bottom: `${0}%`, right: `${S * 3}%` },
+    { bottom: `${0}%`, right: `${S * 5}%` },
+    // Row 2 - one step up
+    { bottom: `${S}%`, right: `${0}%` },
+    { bottom: `${S}%`, right: `${S * 2}%` },
+    { bottom: `${S}%`, right: `${S * 4}%` },
+    // Row 3 - two steps up (fewer squares, dissolving)
+    { bottom: `${S * 2}%`, right: `${S}%` },
+    { bottom: `${S * 2}%`, right: `${S * 3}%` },
+    // Row 4 - three steps up (single squares)
+    { bottom: `${S * 3}%`, right: `${0}%` },
+    { bottom: `${S * 3}%`, right: `${S * 2}%` },
     // Row 5
-    { bottom: `${STEP * 4}%`, left: `${STEP}%` },
-    // Row 6 (topmost of cluster, single square)
-    { bottom: `${STEP * 5}%`, left: `${0}%` },
+    { bottom: `${S * 4}%`, right: `${S}%` },
   ];
 
-  // Top-right cluster: triangular dissolve (mirror of bottom-left)
-  const topRightSquares = [
-    // Row 0 (topmost, partially outside)
-    { top: `${-STEP}%`, right: `${0}%` },
-    { top: `${-STEP}%`, right: `${STEP * 2}%` },
+  // Top-left staircase: mirror of bottom-right
+  const topLeftStaircase: React.CSSProperties[] = [
+    // Top row (extends outside)
+    { top: `${-S}%`, left: `${0}%` },
+    { top: `${-S}%`, left: `${S * 2}%` },
     // Row 1
-    { top: `${0}%`, right: `${-STEP}%` },
-    { top: `${0}%`, right: `${STEP}%` },
-    { top: `${0}%`, right: `${STEP * 3}%` },
+    { top: `${0}%`, left: `${-S}%` },
+    { top: `${0}%`, left: `${S}%` },
+    { top: `${0}%`, left: `${S * 3}%` },
     // Row 2
-    { top: `${STEP}%`, right: `${0}%` },
-    { top: `${STEP}%`, right: `${STEP * 2}%` },
-    { top: `${STEP}%`, right: `${STEP * 4}%` },
+    { top: `${S}%`, left: `${0}%` },
+    { top: `${S}%`, left: `${S * 2}%` },
     // Row 3
-    { top: `${STEP * 2}%`, right: `${-STEP}%` },
-    { top: `${STEP * 2}%`, right: `${STEP}%` },
-    { top: `${STEP * 2}%`, right: `${STEP * 3}%` },
+    { top: `${S * 2}%`, left: `${S}%` },
+    { top: `${S * 2}%`, left: `${S * 3}%` },
     // Row 4
-    { top: `${STEP * 3}%`, right: `${0}%` },
-    { top: `${STEP * 3}%`, right: `${STEP * 2}%` },
-    // Row 5
-    { top: `${STEP * 4}%`, right: `${STEP}%` },
-    // Row 6
-    { top: `${STEP * 5}%`, right: `${0}%` },
+    { top: `${S * 3}%`, left: `${0}%` },
   ];
 
-  // Variant: left = bottom-right + top-left (mirrored)
-  const bottomRightSquares = bottomLeftSquares.map((s, i) => {
+  // Flipped variants for "left" orientation
+  const bottomLeftStaircase: React.CSSProperties[] = bottomRightStaircase.map(s => {
     const mapped: React.CSSProperties = {};
-    if ('bottom' in s) mapped.bottom = s.bottom;
-    if ('left' in s) mapped.right = s.left; // flip left→right
+    if (s.bottom !== undefined) mapped.bottom = s.bottom;
+    if (s.right !== undefined) mapped.left = s.right;
     return mapped;
   });
 
-  const topLeftSquares = topRightSquares.map((s) => {
+  const topRightStaircase: React.CSSProperties[] = topLeftStaircase.map(s => {
     const mapped: React.CSSProperties = {};
-    if ('top' in s) mapped.top = s.top;
-    if ('right' in s) mapped.left = s.right; // flip right→left
+    if (s.top !== undefined) mapped.top = s.top;
+    if (s.left !== undefined) mapped.right = s.left;
     return mapped;
   });
 
   const clusterMap: Record<string, React.CSSProperties[][]> = {
-    default: [bottomLeftSquares, topRightSquares],
-    right: [bottomLeftSquares, topRightSquares],
-    left: [bottomRightSquares, topLeftSquares],
+    default: [bottomRightStaircase, topLeftStaircase],
+    right: [bottomRightStaircase, topLeftStaircase],
+    left: [bottomLeftStaircase, topRightStaircase],
   };
 
   const clusters = clusterMap[variant] || clusterMap.default;
