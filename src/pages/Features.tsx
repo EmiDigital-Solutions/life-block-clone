@@ -118,16 +118,7 @@ const featureCategories = [
       {
         clusterName: "Evidence Management",
         features: [
-          { title: "Evidence Collection", description: "Multi-file upload, evidence linking to questions, audits, and NCs, file type/size validation, and evidence galleries." },
-          { title: "Evidence Workflow", description: "Status tracking (Pending → Accepted/Rejected/Needs Clarification), AI evidence analysis, relevance scoring, and extracted data from documents and images." }
-        ]
-      },
-      {
-        clusterName: "Supplier QuickScan Assessment",
-        features: [
-          { title: "Quick Evaluation", description: "Rapid supplier assessment questionnaire with 25+ evaluation categories, supply potential assessment, and production ability evaluation." },
-          { title: "AI-Assisted Completion", description: "AI auto-completion, progress tracking, and smart suggestions for faster assessments." },
-          { title: "Scoring & Reports", description: "Maturity level scoring (Initial → Optimizing), category-specific scores, overall assessment, report generation, and key strengths/concerns." }
+          { title: "Evidence Collection", description: "Multi-file upload, evidence linking to questions, audits, and NCs, file type/size validation, and evidence galleries." }
         ]
       },
       {
@@ -197,6 +188,20 @@ const featureCategories = [
           { title: "Authentication", description: "JWT-based authentication, OAuth integration (Google, LinkedIn), session management, and password reset/recovery." },
           { title: "Multi-Factor Authentication", description: "MFA setup and management, QR code generation, and backup codes." },
           { title: "Access Control", description: "Role-based permissions, multi-tenant support, and token-based sharing." }
+        ]
+      },
+      {
+        clusterName: "Evidence Management",
+        features: [
+          { title: "Evidence Workflow", description: "Status tracking (Pending → Accepted/Rejected/Needs Clarification), AI evidence analysis, relevance scoring, and extracted data from documents and images." }
+        ]
+      },
+      {
+        clusterName: "Supplier QuickScan Assessment",
+        features: [
+          { title: "Quick Evaluation", description: "Rapid supplier assessment questionnaire with 25+ evaluation categories, supply potential assessment, and production ability evaluation." },
+          { title: "AI-Assisted Completion", description: "AI auto-completion, progress tracking, and smart suggestions for faster assessments." },
+          { title: "Scoring & Reports", description: "Maturity level scoring (Initial → Optimizing), category-specific scores, overall assessment, report generation, and key strengths/concerns." }
         ]
       },
       {
