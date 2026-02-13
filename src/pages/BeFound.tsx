@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
-import beFoundHeroHands from "@/assets/be-found-hero-hands.png";
+
 import PortraitWithBlueBlocks from "@/components/PortraitWithBlueBlocks";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 
@@ -615,16 +615,6 @@ const BeFound = () => {
         id="hero"
       >
         <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
-        {/* Background Image - Hands */}
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${beFoundHeroHands})`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'calc(100%) calc(50% - 50px)',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
         
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
