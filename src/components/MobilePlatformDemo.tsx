@@ -24,7 +24,7 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
     {bars.map((h, i) => (
       <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
         transition={{ duration: 0.3, delay: i * 0.02 }}
-        className={`w-[2px] ${i === accentIndex ? 'bg-primary' : 'bg-background/20'}`}
+        className={`w-[2px] ${i === accentIndex ? 'bg-primary' : 'bg-background/40'}`}
       />
     ))}
   </div>
@@ -51,11 +51,11 @@ const DonutScore = ({ score, size = 80 }: { score: number; size?: number }) => {
           const y2 = cy + Math.sin(rad) * tickR;
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke={i / tickCount <= score / 100 ? 'hsl(0,0%,40%)' : 'hsl(0,0%,75%)'}
+              stroke={i / tickCount <= score / 100 ? 'hsl(199,91%,64%)' : 'hsl(0,0%,60%)'}
               strokeWidth={0.6} strokeLinecap="square" />
           );
         })}
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,78%)" strokeWidth={strokeW} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
         <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
           stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
