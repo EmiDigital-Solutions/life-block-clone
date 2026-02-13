@@ -52,7 +52,7 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[680px] flex flex-col relative">
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
         onClick={handlePauseToggle}
@@ -94,15 +94,14 @@ const SearchProDemoWindows = () => {
         </div>
       </div>
 
-      {/* Content area — fixed size, internal scroll */}
-      <div className="flex-1 overflow-hidden relative">
+      {/* Content area — expands to fit */}
+      <div className="flex-1">
         <motion.div
           key={activeWindow}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {activeWindow === 0 && <DemoChatbot key={`chat-${activeWindow}`} />}
           {activeWindow === 1 && <DemoSearchResults />}
@@ -126,14 +125,14 @@ const DemoChatbot = () => {
   }, []);
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] flex flex-col">
+    <div className="bg-[hsl(0,0%,85%)] flex flex-col h-full">
       {/* Top toolbar */}
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
         <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">SearchPro+ AI Assistant</span>
         <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Preference Engine</span>
       </div>
 
-      <div className="p-3 space-y-2">
+      <div className="p-3 space-y-2 flex-1">
         {/* Step 1: Preference Engine detects company profile */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
@@ -270,8 +269,8 @@ const DemoChatbot = () => {
         )}
       </div>
 
-      {/* Input bar */}
-      <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)]">
+      {/* Input bar — always at bottom */}
+      <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)] mt-auto">
         <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] rounded-none flex items-center px-3">
           <span className="text-[hsl(0,0%,55%)] text-[11px]">Or type your requirements...</span>
         </div>
