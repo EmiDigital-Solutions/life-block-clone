@@ -253,7 +253,7 @@ const TestimonialsCarouselSection = () => {
         </div>
 
         {/* Product Showcase Grid - Matching SearchSuppliers Design */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
           {/* Large card - Automotive */}
           <motion.button
             initial={{ opacity: 0, y: 30 }}
@@ -261,7 +261,7 @@ const TestimonialsCarouselSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0 }}
             onClick={() => setSelectedUseCase(useCases[0])}
-            className="md:col-span-2 md:row-span-2 group relative overflow-hidden cursor-pointer text-left"
+            className="lg:col-span-4 lg:row-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
             <div className="relative overflow-hidden aspect-[4/3] md:aspect-[16/10]">
               <img 
@@ -295,7 +295,7 @@ const TestimonialsCarouselSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             onClick={() => setSelectedUseCase(useCases[1])}
-            className="group relative overflow-hidden cursor-pointer text-left"
+            className="lg:col-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
             <div className="relative overflow-hidden aspect-[4/3]">
               <img 
@@ -329,7 +329,7 @@ const TestimonialsCarouselSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onClick={() => setSelectedUseCase(useCases[2])}
-            className="group relative overflow-hidden cursor-pointer text-left"
+            className="lg:col-span-2 group relative overflow-hidden cursor-pointer text-left"
           >
             <div className="relative overflow-hidden aspect-[4/3]">
               <img 
@@ -364,7 +364,7 @@ const TestimonialsCarouselSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           onClick={() => setSelectedUseCase(useCases[3])}
-          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 text-left max-w-7xl mx-auto"
+          className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-0 text-left"
         >
           <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
             <img 
