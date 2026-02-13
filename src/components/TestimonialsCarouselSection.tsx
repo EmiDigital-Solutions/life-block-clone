@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import TestimonialModal from "@/components/TestimonialModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
+import PortraitWithBlueBlocks from "@/components/PortraitWithBlueBlocks";
 
 import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 
@@ -194,23 +195,12 @@ const TestimonialsCarouselSection = () => {
            </motion.div>
           
           {/* Portrait Photo - Square with Archlet-style blue blocks */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="aspect-square bg-muted overflow-hidden relative"
-          >
-            <img 
-              src={procurementMaleEuropean}
-              alt="Marcus Weber - Head of Supplier Quality"
-              className="w-full h-full object-cover"
-            />
-            {/* Decorative blue blocks overlay */}
-            <div className="absolute top-[8%] right-0 w-[40%] h-[7%] bg-primary" />
-            <div className="absolute bottom-[22%] right-[10%] w-[50%] h-[8%] bg-primary" />
-            <div className="absolute bottom-[5%] left-0 w-[45%] h-[9%] bg-primary" />
-          </motion.div>
+          <PortraitWithBlueBlocks
+            src={procurementMaleEuropean}
+            alt="Marcus Weber - Head of Supplier Quality"
+            className="aspect-square"
+            variant="default"
+          />
           
           {/* Quote Content */}
           <motion.div

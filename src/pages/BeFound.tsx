@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import supplierPortraitHero from "@/assets/supplier-portrait-hero.png";
 import beFoundHeroHands from "@/assets/be-found-hero-hands.png";
+import PortraitWithBlueBlocks from "@/components/PortraitWithBlueBlocks";
 
 
 // Animated Counter Component
@@ -718,19 +719,15 @@ const BeFound = () => {
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Portrait Photo - Smaller, B&W, left-aligned */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="aspect-square max-w-sm bg-muted overflow-hidden justify-self-start"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" 
+            {/* Portrait Photo - Smaller, B&W with blue blocks, left-aligned */}
+            <div className="max-w-sm justify-self-start">
+              <PortraitWithBlueBlocks
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80"
                 alt="Michael Weber"
-                className="w-full h-full object-cover grayscale"
+                className="aspect-square"
+                variant="left"
               />
-            </motion.div>
+            </div>
             
             {/* Quote Content */}
             <motion.div
