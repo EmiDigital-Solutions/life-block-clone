@@ -27,7 +27,7 @@ const SearchProDemoWindows = () => {
     }
     intervalRef.current = setInterval(() => {
       setActiveWindow((prev) => (prev + 1) % 3);
-    }, 10000);
+    }, 5000);
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -118,8 +118,8 @@ const DemoChatbot = () => {
 
   useEffect(() => {
     setStep(0);
-    // 6 steps: context → simple input → AI analyzing → full breakdown → user confirms+adds → complete
-    const timers = [300, 900, 1800, 2600, 3800, 5200].map((delay, i) =>
+    // 6 steps within 5s window
+    const timers = [200, 700, 1400, 2100, 3200, 4200].map((delay, i) =>
       setTimeout(() => setStep(i + 1), delay)
     );
     return () => timers.forEach(clearTimeout);
