@@ -592,9 +592,9 @@ const SearchSuppliers = () => {
           userResponse: "",
           aiFollowUp: "",
           aiSuggestions: [
-            "🔧 Precision CNC Brake Calipers — IATF 16949 certified",
-            "⚙️ Hydraulic Valve Bodies — ISO 9001 + PPAP Level 3",
-            "🛡️ Brake Disc Carriers — Aluminum & Steel, high-volume"
+            "Precision CNC Brake Calipers — IATF 16949 certified",
+            "Hydraulic Valve Bodies — ISO 9001 + PPAP Level 3",
+            "Brake Disc Carriers — Aluminum & Steel, high-volume"
           ]
         }
       ]
@@ -613,9 +613,9 @@ const SearchSuppliers = () => {
           userResponse: "",
           aiFollowUp: "",
           aiSuggestions: [
-            "🏥 Titanium Bone Screws — ISO 13485 + FDA registered",
-            "🔬 Spinal Cage Implants — Cleanroom Class 7, Ti-6Al-4V",
-            "💎 Dental Abutments — Medical-grade, CNC 5-axis"
+            "Titanium Bone Screws — ISO 13485 + FDA registered",
+            "Spinal Cage Implants — Cleanroom Class 7, Ti-6Al-4V",
+            "Dental Abutments — Medical-grade, CNC 5-axis"
           ]
         }
       ]
@@ -634,9 +634,9 @@ const SearchSuppliers = () => {
           userResponse: "",
           aiFollowUp: "",
           aiSuggestions: [
-            "📡 Multi-layer HDI PCBs — IPC Class 3, AS9100D",
-            "🛰️ RF/Microwave Boards — PTFE substrate, space-qualified",
-            "⚡ Flex-Rigid Assemblies — Hi-Rel, conformal coated"
+            "Multi-layer HDI PCBs — IPC Class 3, AS9100D",
+            "RF/Microwave Boards — PTFE substrate, space-qualified",
+            "Flex-Rigid Assemblies — Hi-Rel, conformal coated"
           ]
         }
       ]
@@ -1402,15 +1402,25 @@ const ComparisonMockup = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Clean minimal demo card */}
-            <div className="bg-white overflow-hidden rounded-none border border-foreground/10">
+            {/* Demo card — same style as PlatformDemoAnimation */}
+            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)]">
 
-              <div className="p-6 md:p-10">
+              {/* Window chrome bar */}
+              <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
+                <div className="flex gap-1.5 mr-3">
+                  <div className="w-2.5 h-2.5 rounded-none bg-[#ff5f57]" />
+                  <div className="w-2.5 h-2.5 rounded-none bg-[#febc2e]" />
+                  <div className="w-2.5 h-2.5 rounded-none bg-[#28c840]" />
+                </div>
+                <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">SearchPro+ — AI Discovery</span>
+              </div>
+
+              <div className="p-4 md:p-6">
 
               {/* Conversation Thread */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-3 mb-6 overflow-y-auto"
+                className="space-y-3 mb-4 overflow-y-auto"
                 style={{ maxHeight: '500px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
@@ -1418,25 +1428,25 @@ const ComparisonMockup = () => {
                 {conversationHistory.map((msg, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] px-5 py-3 rounded-none ${
+                      className={`max-w-[80%] p-3 rounded-none border ${
                         msg.role === 'user'
-                          ? 'bg-foreground text-background'
-                          : 'bg-[hsl(0,0%,92%)] text-foreground'
+                          ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]'
+                          : 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]'
                       }`}
                     >
                       {msg.role === 'ai' && (
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">SearchPro+ AI</span>
+                        <span className="text-[9px] font-semibold text-primary uppercase tracking-wider block mb-1">SearchPro+ AI</span>
                       )}
                       {msg.role === 'user' && (
-                        <span className="text-[10px] font-bold text-background/60 uppercase tracking-wider block mb-1">You</span>
+                        <span className="text-[9px] font-semibold text-[hsl(0,0%,70%)] uppercase tracking-wider block mb-1">Buyer</span>
                       )}
-                      <p className="text-sm whitespace-pre-line font-medium leading-relaxed">{msg.message}</p>
+                      <p className="text-xs whitespace-pre-line font-medium leading-relaxed">{msg.message}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -1444,22 +1454,22 @@ const ComparisonMockup = () => {
                 {/* Active AI Response (Typing) */}
                 {aiResponse && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="max-w-[80%] px-5 py-3 rounded-none bg-[hsl(0,0%,92%)] text-foreground">
+                    <div className="max-w-[80%] p-3 rounded-none bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[hsl(0,0%,95%)]">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">SearchPro+ AI</span>
+                        <span className="text-[9px] font-semibold text-primary uppercase tracking-wider">SearchPro+ AI</span>
                         {isTyping && (
                           <div className="flex gap-1 ml-1">
-                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1 h-1 bg-primary animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                           </div>
                         )}
                       </div>
-                      <p className="text-sm whitespace-pre-line font-medium leading-relaxed">{aiResponse}</p>
+                      <p className="text-xs whitespace-pre-line font-medium leading-relaxed">{aiResponse}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1467,13 +1477,13 @@ const ComparisonMockup = () => {
                 {/* Active User Input (Typing) */}
                 {userInput && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-end"
                   >
-                    <div className="max-w-[80%] px-5 py-3 rounded-none bg-foreground text-background">
-                      <span className="text-[10px] font-bold text-background/60 uppercase tracking-wider block mb-1">You</span>
-                      <p className="text-sm font-medium leading-relaxed">{userInput}</p>
+                    <div className="max-w-[80%] p-3 rounded-none bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-[hsl(0,0%,95%)]">
+                      <span className="text-[9px] font-semibold text-[hsl(0,0%,70%)] uppercase tracking-wider block mb-1">Buyer</span>
+                      <p className="text-xs font-medium leading-relaxed">{userInput}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1482,29 +1492,28 @@ const ComparisonMockup = () => {
               {/* Results section */}
               {showResults && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: isFading ? 0 : 1, y: isFading ? 10 : 0 }}
                   transition={{ duration: 0.5 }}
-                  className="pt-6 border-t border-foreground/10"
                 >
-                  <span className="text-sm font-bold text-foreground mb-4 block">4 Matching Suppliers Found</span>
+                  <div className="text-[9px] text-[hsl(0,0%,35%)] uppercase tracking-wider font-semibold mb-3">4 Matching Suppliers</div>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {suppliers.map((supplier) => (
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-[hsl(0,0%,96%)] border border-foreground/10 rounded-none hover:border-foreground transition-all group"
+                        className="text-left p-3 bg-[hsl(0,0%,42%)] border border-[hsl(0,0%,37%)] rounded-none hover:border-primary transition-all group"
                       >
-                        <h4 className="font-bold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">
+                        <div className="text-sm font-semibold text-[hsl(0,0%,95%)] mb-0.5 group-hover:text-primary transition-colors">
                           {supplier.name}
-                        </h4>
-                        <span className="text-xs text-muted-foreground">{supplier.location}</span>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
+                        </div>
+                        <div className="text-[10px] text-[hsl(0,0%,70%)] mb-2">{supplier.location}</div>
+                        <div className="flex flex-wrap gap-1">
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-foreground/5 text-foreground/70 text-[10px] rounded-none font-medium"
+                              className="px-1.5 py-0.5 border border-primary/30 text-primary text-[8px] font-bold uppercase"
                             >
                               {cert}
                             </span>
