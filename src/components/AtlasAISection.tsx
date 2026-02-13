@@ -79,8 +79,8 @@ const AtlasAISection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
           <div className="hidden lg:block lg:col-span-1" />
 
-          {/* Demo video — 2 cols, reduced size */}
-          <div className="lg:col-span-2">
+          {/* Demo video — 3 cols */}
+          <div className="lg:col-span-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -92,8 +92,8 @@ const AtlasAISection = () => {
             </motion.div>
           </div>
 
-          {/* Accordion features — right of demo, 3 cols */}
-          <div className="lg:col-span-3 lg:pl-8 mt-8 lg:mt-0">
+          {/* Accordion features — right of demo, 2 cols */}
+          <div className="lg:col-span-2 lg:pl-8 mt-8 lg:mt-0">
             <div className="border-t border-foreground/10">
               {atlasFeatures.map((feature, index) => (
                 <motion.div
