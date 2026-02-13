@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 
 const atlasFeatures = [
   {
@@ -67,22 +68,15 @@ const AtlasAISection = () => {
               </Link>
             </motion.div>
 
-            {/* Demo video */}
+            {/* Demo animation — same design as PlatformDemoAnimation */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="aspect-video bg-[hsl(0,0%,93%)] overflow-hidden"
+              className="aspect-[16/9] overflow-hidden"
             >
-              <video
-                src="/videos/atlas-ai-demo.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
+              <AtlasAIDemoAnimation />
             </motion.div>
           </div>
 
