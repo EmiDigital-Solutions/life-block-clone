@@ -52,7 +52,7 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] overflow-visible rounded-none border border-[hsl(0,0%,80%)] min-h-[600px] flex flex-col relative">
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[680px] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
         onClick={handlePauseToggle}
@@ -94,14 +94,15 @@ const SearchProDemoWindows = () => {
         </div>
       </div>
 
-      {/* Content area */}
-      <div className="flex-1">
+      {/* Content area — fixed size, internal scroll */}
+      <div className="flex-1 overflow-hidden relative">
         <motion.div
           key={activeWindow}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          className="absolute inset-0 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {activeWindow === 0 && <DemoChatbot key={`chat-${activeWindow}`} />}
           {activeWindow === 1 && <DemoSearchResults />}
