@@ -52,7 +52,7 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[520px] flex flex-col relative">
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] aspect-[16/9] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
         onClick={handlePauseToggle}
@@ -69,11 +69,6 @@ const SearchProDemoWindows = () => {
 
       {/* Window chrome bar */}
       <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
-        <div className="flex gap-1.5 mr-3">
-          <div className="w-2.5 h-2.5 rounded-none bg-[#ff5f57]" />
-          <div className="w-2.5 h-2.5 rounded-none bg-[#febc2e]" />
-          <div className="w-2.5 h-2.5 rounded-none bg-[#28c840]" />
-        </div>
         <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">
           {windowTitles[activeWindow]}
         </span>
