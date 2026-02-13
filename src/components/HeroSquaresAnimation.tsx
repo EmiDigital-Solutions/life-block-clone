@@ -69,7 +69,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
       aria-hidden="true"
     >
       <div className="relative" style={{ width: UNIT * 4, height: UNIT * 4 }}>
-        {activeFormation.map((pos, i) => (
+        {activeFormation?.map((pos, i) => (
           <motion.div
             key={i}
             className="absolute bg-primary"
