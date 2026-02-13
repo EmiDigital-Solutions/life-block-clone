@@ -118,7 +118,7 @@ const FAQSection = () => {
 
   return (
     <section className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-6 max-w-4xl">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Header - offmenu style mixed weight typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

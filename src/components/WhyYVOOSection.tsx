@@ -71,7 +71,7 @@ const WhyYVOOSection = () => {
     <>
       {/* Homepage Section - Provocative Hook */}
       <section className="py-24 md:py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-7xl">
+         <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

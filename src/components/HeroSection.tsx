@@ -30,7 +30,7 @@ const HeroSection = () => {
     >
       {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
-        <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+        <div className="px-8 w-full max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

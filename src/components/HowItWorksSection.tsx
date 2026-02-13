@@ -52,15 +52,15 @@ export const HowItWorksSection = () => {
   return (
     <>
     <section ref={ref} className="py-24 lg:py-32 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-16">
+       <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-5"
+            className="lg:col-span-3"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
@@ -79,7 +79,7 @@ export const HowItWorksSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
+            className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
               A streamlined process designed for procurement teams who value their time.
@@ -158,7 +158,7 @@ export const HowItWorksSection = () => {
     
     {/* Stats Section with Video Background - Separate Section */}
     <section className="py-16 lg:py-24 bg-white">
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

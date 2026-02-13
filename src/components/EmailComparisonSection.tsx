@@ -43,7 +43,7 @@ const EmailComparisonSection = () => {
 
   return (
     <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header with Toggle */}
         <div className="flex items-center justify-between mb-12">
@@ -95,7 +95,7 @@ const EmailComparisonSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"
         >
           {currentContent.map((item, index) => (
             <motion.div

@@ -27,8 +27,8 @@ const AtlasAISection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="relative bg-white py-24 md:py-32 px-6">
-      <div className="container mx-auto max-w-7xl">
+    <section className="relative bg-white py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
 
           {/* Left column — headline, description, CTA (2 of 6 cols) */}
