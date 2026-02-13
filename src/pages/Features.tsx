@@ -71,56 +71,94 @@ const featureCategories = [
   {
     id: "scanpro-plus",
     name: "ScanPro+",
-    headline: "ScanPro+\nfeatures",
+    headline: "ScanPro+\nfor Clients",
     link: "/scanpro-plus",
-    features: [
+    clusters: [
       {
-        title: "Flexible Audit Templates",
-        description: "Customizable audit frameworks for any industry, standard, or customer requirement."
+        clusterName: "Audit Management System",
+        features: [
+          { title: "Audit Templates", description: "Reusable templates with version control, section/question hierarchy, scoring criteria, public/private access, and standard-template mapping." },
+          { title: "Multi-Standard Support", description: "20+ ISO and industry standards including ISO 9001, 14001, 45001, IATF 16949, AS9100, ISO 13485, ISO 22000 — with complexity levels and auditor requirements per standard." },
+          { title: "Audit Lifecycle Management", description: "Full workflow from Scheduled → Document Review → On-site → Technical Review → Decision → Completed. 14 distinct status states, auditor assignment, and multi-company audit support." },
+          { title: "Question & Answer System", description: "8 question types (Text, Number, Scale, Multiple Choice, Checkbox, Yes/No, Date, File Upload) with weighting, critical flags, auto-scoring, and auto-NC generation triggers." }
+        ]
       },
       {
-        title: "AI Equipment Recognition",
-        description: "Point camera at machines for instant identification, age, maintenance status, and compliance assessment."
+        clusterName: "Audit Ordering & Payments",
+        features: [
+          { title: "Audit Order System", description: "Multi-company orders, standard-template pairing, urgent audit handling with priority pricing, custom orders with company finder, per-company scheduling, and special instructions." },
+          { title: "Regional Pricing", description: "10 pricing tiers (DACH, West EU, East EU, Turkey, China, India, SEA, USA, LATAM) with regional detection, overrides, and savings calculations vs traditional pricing." },
+          { title: "Payment Processing", description: "Stripe integration with payment status workflow, 30-day reminders, 7-day payment window, auditor revenue tracking, payout management, and refund handling." }
+        ]
       },
       {
-        title: "Global Auditor Network (Uber Principle)",
-        description: "On-demand access to certified auditors worldwide with same-day and next-day availability."
+        clusterName: "Report Generation & Versioning",
+        features: [
+          { title: "Multi-Version Reports", description: "Report versioning per audit with types: Initial Certification, Surveillance, Recertification, Follow-up, Special Investigation, Scope Extension, and Gap Analysis." },
+          { title: "Report Content", description: "Compliance level calculation (High/Medium/Low/Critical), certification recommendations, section-level scoring, and auditor observations including positive findings, concerns, and recommendations." },
+          { title: "Report Delivery", description: "PDF generation and storage, client acknowledgment tracking, shareable report links, and token-based access." }
+        ]
       },
       {
-        title: "Smart Auditor Matching",
-        description: "Automatic selection of optimal auditors based on your industry and specific requirements."
+        clusterName: "CAPA / Non-Conformance Management",
+        features: [
+          { title: "NC Creation & Tracking", description: "Three severity levels (Major, Minor, Observation), automatic NC from critical answers, AI-generated titles and descriptions, and evidence tracking with file uploads." },
+          { title: "CAPA Workflow", description: "Root cause analysis, corrective and preventive action documentation, implementation date tracking, NC status workflow (Open → Under Review → Closed), and auditor review." },
+          { title: "AI-Powered NC Detection", description: "Auto-generated NCs from template triggers (Major), AI-detected non-conformances (Minor), and AI-generated CAPA guidance." }
+        ]
       },
       {
-        title: "Dynamic Scoring Systems",
-        description: "Configurable evaluation criteria with industry-specific weightings for Pharma, Automotive, Aerospace."
+        clusterName: "Equipment Management",
+        features: [
+          { title: "Equipment Registry", description: "18+ equipment types, identification and serial numbers, technical specs including power, dimensions, materials processed, and capabilities." },
+          { title: "Calibration Tracking", description: "Status monitoring, last/next calibration dates, calibration provider, and certificate documentation." },
+          { title: "Equipment Analysis", description: "Condition assessment, maintenance scheduling and history, performance capabilities, AI analysis with confidence scores, ROI calculation, and documentation." }
+        ]
       },
       {
-        title: "Intelligent Evidence Collection",
-        description: "Automatic categorization and analysis of audit evidence by quality control, safety, environmental standards."
+        clusterName: "Evidence Management",
+        features: [
+          { title: "Evidence Collection", description: "Multi-file upload, evidence linking to questions, audits, and NCs, file type/size validation, and evidence galleries." },
+          { title: "Evidence Workflow", description: "Status tracking (Pending → Accepted/Rejected/Needs Clarification), AI evidence analysis, relevance scoring, and extracted data from documents and images." }
+        ]
       },
       {
-        title: "Real-Time Progress Tracking",
-        description: "Live updates with milestone notifications during audit execution."
+        clusterName: "Supplier QuickScan Assessment",
+        features: [
+          { title: "Quick Evaluation", description: "Rapid supplier assessment questionnaire with 25+ evaluation categories, supply potential assessment, and production ability evaluation." },
+          { title: "AI-Assisted Completion", description: "AI auto-completion, progress tracking, and smart suggestions for faster assessments." },
+          { title: "Scoring & Reports", description: "Maturity level scoring (Initial → Optimizing), category-specific scores, overall assessment, report generation, and key strengths/concerns." }
+        ]
       },
       {
-        title: "Predictive Risk Scoring",
-        description: "Risk prediction based on historical audit data identifying quality risks from equipment and processes."
+        clusterName: "Connections & Communication",
+        features: [
+          { title: "Supplier Connections", description: "Connection requests (buyer or supplier initiated), status workflow (Pending → Accepted/Rejected/Blocked), relationship tracking, preferred supplier flags, and contract status." },
+          { title: "Messaging System", description: "Direct buyer-supplier messaging with text, document, RFQ, and quote types. Threading, replies, attachments, read receipts, and archiving." },
+          { title: "Bookmarks & Favorites", description: "Bookmark suppliers/buyers, organize into collections, and quick access lists." }
+        ]
       },
       {
-        title: "Automated Improvement Tracking",
-        description: "Monitor supplier development with milestone oversight and automatic reminders for corrective actions."
+        clusterName: "Reviews & Ratings",
+        features: [
+          { title: "Supplier Reviews", description: "5-star rating system with detailed category ratings (Quality, Delivery, Communication, Value, Service), written comments, verified badges, and public/private options." },
+          { title: "Rating Aggregation", description: "Average rating calculation, rating distribution analysis, and review count tracking." }
+        ]
       },
       {
-        title: "Comparative Benchmarking",
-        description: "Analyze suppliers against industry peers with percentage-based quality and environmental scoring."
+        clusterName: "Market Intelligence",
+        features: [
+          { title: "Market Opportunities", description: "Curated opportunities for suppliers, opportunity-supplier matching scores, and lead recommendations." },
+          { title: "Industry Insights", description: "Market research and trends, industry analysis, and competitive positioning." },
+          { title: "Price Intelligence", description: "Product category pricing data with monthly, quarterly, and yearly trends, seasonality analysis, and price benchmarking." }
+        ]
       },
       {
-        title: "AI-Powered Audit Planning",
-        description: "Optimal resource allocation, duration estimation, and specialist requirements for each audit."
-      },
-      {
-        title: "Template Marketplace",
-        description: "Share and discover certified audit frameworks from industry leaders."
+        clusterName: "Notifications System",
+        features: [
+          { title: "15+ Notification Types", description: "Search alerts, new supplier/buyer notifications, RFQ updates, messages, audit status, risk changes, market updates, connection requests, reviews, profile views, and payment reminders." },
+          { title: "Delivery Options", description: "Real-time push and email notifications with frequency preferences (Real-time, Daily, Weekly, Monthly) and bulk actions (mark read, archive, delete)." }
+        ]
       }
     ]
   },
@@ -315,7 +353,38 @@ const Features = () => {
               {currentCategory.headline}
             </motion.h2>
 
-            {/* Features Grid */}
+            {/* Features Grid - Standard or Clustered */}
+            {'clusters' in currentCategory && currentCategory.clusters ? (
+              <motion.div
+                key={`clusters-${currentCategory.id}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="space-y-12"
+              >
+                {currentCategory.clusters.map((cluster, clusterIdx) => (
+                  <div key={cluster.clusterName}>
+                    <h3 className="text-lg font-mono font-semibold text-primary uppercase tracking-wide mb-6 border-b border-primary/20 pb-3">
+                      {cluster.clusterName}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+                      {cluster.features.map((feature, index) => (
+                        <motion.div
+                          key={feature.title}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.03 * index + clusterIdx * 0.05 }}
+                          className="py-6 pr-8 border-t border-foreground/10"
+                        >
+                          <h4 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h4>
+                          <p className="text-sm text-foreground/60 leading-relaxed">{feature.description}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            ) : (
             <motion.div
               key={`grid-${currentCategory.id}`}
               initial={{ opacity: 0 }}
@@ -323,7 +392,7 @@ const Features = () => {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"
             >
-              {currentCategory.features.map((feature, index) => (
+              {'features' in currentCategory && currentCategory.features?.map((feature, index) => (
                 <motion.div
                   key={feature.title}
                   initial={{ opacity: 0, y: 20 }}
@@ -348,6 +417,7 @@ const Features = () => {
                 </motion.div>
               ))}
             </motion.div>
+            )}
 
             {/* Learn More Link */}
             {currentCategory.link !== "#" && (
