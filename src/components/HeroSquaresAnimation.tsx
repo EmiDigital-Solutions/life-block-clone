@@ -86,7 +86,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
 
   return (
     <div
-      className={`absolute pointer-events-none z-[5] ${className}`}
+      className={`absolute pointer-events-none z-[5] origin-top-right scale-[0.55] md:scale-100 ${className}`}
       aria-hidden="true"
     >
       <div className="relative" style={{ width: UNIT * 4, height: UNIT * 4 }}>
