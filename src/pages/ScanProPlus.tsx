@@ -13,6 +13,7 @@ import TimeEfficiencyChart from "@/components/charts/TimeEfficiencyChart";
 import InfiniteScrollingGallery from "@/components/InfiniteScrollingGallery";
 import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
+import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
 import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
@@ -2135,6 +2136,7 @@ const ScanProPlus = () => {
         id="hero"
         className="relative min-h-[100dvh] flex flex-col bg-white"
       >
+        <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
           <div className="px-8 w-full max-w-[1400px] mx-auto">
