@@ -21,30 +21,33 @@ const StatsWithQuoteSection = () => {
           Built for Enterprise Scale
         </motion.h2>
 
-        {/* KPI Grid 2x2 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 mb-16">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="pb-12"
-            >
-              <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
-                {stat.category}
-              </p>
-              <div className="border-t border-foreground/20 pt-4">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                  {stat.value}
+        {/* KPI Grid 2x2 — shifted one grid right */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-16">
+          <div className="hidden lg:block lg:col-span-1" />
+          <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="pb-12"
+              >
+                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
+                  {stat.category}
                 </p>
-                <p className="text-foreground/60 leading-relaxed text-sm">
-                  {stat.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="border-t border-foreground/20 pt-4">
+                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                    {stat.value}
+                  </p>
+                  <p className="text-foreground/60 leading-relaxed text-sm">
+                    {stat.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Authority Quote */}
