@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const atlasFeatures = [
@@ -30,18 +30,16 @@ const AtlasAISection = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
-          {/* Left column — headline, description, CTA, visual */}
+          {/* Left column — headline, description, CTA */}
           <div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-primary tracking-[-0.03em] leading-[0.95] mb-6"
+              className="section-headline text-foreground max-w-xl mb-6"
             >
-              Meet Atlas, the AI
-              <br />
-              engine for auditing
+              Meet Atlas, the AI engine for auditing
             </motion.h2>
 
             <motion.p
@@ -51,7 +49,7 @@ const AtlasAISection = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-muted-foreground leading-relaxed mb-8 max-w-md"
             >
-              Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time — so your team delivers consistent, high-quality audits every time.
+              Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
             </motion.p>
 
             <motion.div
@@ -65,80 +63,26 @@ const AtlasAISection = () => {
                 to="/features"
                 className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
               >
-                Explore Atlas AI
+                explore atlas ai
               </Link>
             </motion.div>
 
-            {/* Minimal visual — three-panel mockup */}
+            {/* Demo video */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-[hsl(0,0%,93%)] aspect-[4/3] relative overflow-hidden"
+              className="aspect-video bg-[hsl(0,0%,93%)] overflow-hidden"
             >
-              {/* Simplified three-panel layout sketch */}
-              <div className="absolute inset-4 flex gap-[2px]">
-                {/* Left panel */}
-                <div className="w-[22%] bg-[hsl(0,0%,96%)] p-3 flex flex-col gap-2">
-                  <div className="h-2 w-16 bg-foreground/20" />
-                  <div className="h-1.5 w-12 bg-foreground/10" />
-                  <div className="mt-2 space-y-1.5">
-                    <div className="h-1.5 w-full bg-foreground/8" />
-                    <div className="h-1.5 w-4/5 bg-primary/20" />
-                    <div className="h-1.5 w-full bg-foreground/8" />
-                    <div className="h-1.5 w-3/4 bg-foreground/8" />
-                    <div className="h-1.5 w-full bg-foreground/8" />
-                  </div>
-                  <div className="mt-auto">
-                    <div className="h-1 w-8 bg-primary/30" />
-                  </div>
-                </div>
-
-                {/* Middle panel */}
-                <div className="flex-1 bg-white p-4 flex flex-col gap-2">
-                  <div className="h-2.5 w-32 bg-foreground/15" />
-                  <div className="h-1.5 w-24 bg-foreground/8" />
-                  <div className="mt-2 p-2 bg-primary/5 border-l-2 border-primary/30">
-                    <div className="h-1.5 w-20 bg-primary/20 mb-1" />
-                    <div className="h-1 w-full bg-foreground/6" />
-                    <div className="h-1 w-4/5 bg-foreground/6 mt-0.5" />
-                  </div>
-                  <div className="mt-2 space-y-1">
-                    <div className="h-1.5 w-24 bg-foreground/12" />
-                    <div className="h-1 w-full bg-foreground/5" />
-                    <div className="h-1 w-full bg-foreground/5" />
-                    <div className="h-1 w-3/4 bg-foreground/5" />
-                  </div>
-                  <div className="mt-2 space-y-1">
-                    <div className="h-1.5 w-20 bg-foreground/12" />
-                    <div className="h-1 w-full bg-foreground/5" />
-                    <div className="h-1 w-full bg-foreground/5" />
-                  </div>
-                </div>
-
-                {/* Right panel */}
-                <div className="w-[24%] bg-[hsl(0,0%,96%)] p-3 flex flex-col gap-2">
-                  <div className="h-2 w-14 bg-foreground/15" />
-                  <div className="space-y-1.5 mt-1">
-                    <div className="h-1 w-full bg-foreground/8" />
-                    <div className="h-1 w-3/4 bg-foreground/8" />
-                  </div>
-                  <div className="mt-2">
-                    <div className="h-1.5 w-12 bg-primary/25" />
-                    <div className="h-1 w-full bg-foreground/6 mt-1" />
-                    <div className="h-1 w-4/5 bg-foreground/6 mt-0.5" />
-                  </div>
-                  <div className="mt-2">
-                    <div className="h-1.5 w-10 bg-foreground/12" />
-                    <div className="h-1 w-full bg-foreground/6 mt-1" />
-                  </div>
-                  <div className="mt-auto">
-                    <div className="h-1.5 w-14 bg-[#3DC88E]/30" />
-                    <div className="h-1 w-10 bg-foreground/6 mt-1" />
-                  </div>
-                </div>
-              </div>
+              <video
+                src="/videos/atlas-ai-demo.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           </div>
 
