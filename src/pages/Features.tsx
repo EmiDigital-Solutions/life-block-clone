@@ -148,7 +148,7 @@ const featureCategories = [
   {
     id: "ai-audit-app",
     name: "AI Audit APP",
-    headline: "AI Audit APP\nfor Clients",
+    headline: "AI Audit APP\nfeatures",
     link: "#",
     clusters: [
       {
