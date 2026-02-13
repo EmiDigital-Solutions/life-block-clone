@@ -29,6 +29,24 @@ const formations = {
     { x: UNIT * 3, y: UNIT * 2 },
     { x: UNIT * 4, y: UNIT * 3 },
   ],
+  // Person / Auditor: head (1) + body (torso + arms + legs)
+  person: [
+    // Head
+    { x: UNIT * 2, y: 0 },
+    // Shoulders
+    { x: UNIT, y: UNIT },
+    { x: UNIT * 2, y: UNIT },
+    { x: UNIT * 3, y: UNIT },
+    // Torso
+    { x: UNIT * 2, y: UNIT * 2 },
+    // Arms
+    { x: UNIT * 0.5, y: UNIT * 2 },
+    { x: UNIT * 3.5, y: UNIT * 2 },
+    // Legs
+    { x: UNIT * 1.5, y: UNIT * 3 },
+    { x: UNIT * 2.5, y: UNIT * 3 },
+    { x: UNIT * 2, y: UNIT * 3, opacity: 0 },
+  ],
   // Checkmark shape
   checkmark: [
     { x: -UNIT * 0.5, y: UNIT * 1.5 },
@@ -45,7 +63,7 @@ const formations = {
 };
 
 type Formation = keyof typeof formations;
-const formationOrder: Formation[] = ["triangle", "checkmark"];
+const formationOrder: Formation[] = ["triangle", "person", "checkmark"];
 
 interface HeroSquaresAnimationProps {
   className?: string;
