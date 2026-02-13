@@ -129,10 +129,10 @@ const DiscoverScreen = () => {
   }, []);
 
   const suppliers = [
-    { name: "MediParts GmbH", location: "Munich, Germany", certs: "ISO 13485, ISO 9001" },
-    { name: "BioTech Precision SA", location: "Geneva, Switzerland", certs: "ISO 13485, FDA" },
-    { name: "MedTech Components Inc", location: "Boston, USA", certs: "ISO 13485, FDA" },
-    { name: "SurgiPrecision Ltd", location: "Dublin, Ireland", certs: "ISO 13485, CE" },
+    { name: "PräzisionsTech GmbH", location: "Stuttgart, Germany", certs: "ISO 9001, AS9100" },
+    { name: "Alpine CNC Solutions", location: "Zurich, Switzerland", certs: "ISO 9001, IATF 16949" },
+    { name: "EuroMach Industries", location: "Milan, Italy", certs: "ISO 9001, EN 9100" },
+    { name: "Nordic Precision AB", location: "Gothenburg, Sweden", certs: "ISO 9001, ISO 14001" },
   ];
 
   return (
@@ -164,7 +164,7 @@ const DiscoverScreen = () => {
         {phase >= 1 && (
          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
              <GlassCard className="px-3 py-2 text-xs text-background max-w-[75%]">
-               Implantable medical device components
+               CNC-machined precision components for aerospace
              </GlassCard>
            </motion.div>
         )}
@@ -175,7 +175,7 @@ const DiscoverScreen = () => {
                <span className="text-[9px] font-bold text-foreground">AI</span>
              </div>
              <GlassCard className="px-3 py-2 text-xs text-background max-w-[80%]">
-               What certifications and materials do you require?
+               What tolerances and materials do you require?
              </GlassCard>
            </motion.div>
         )}
@@ -183,7 +183,7 @@ const DiscoverScreen = () => {
         {phase >= 3 && (
          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
              <GlassCard className="px-3 py-2 text-xs text-background max-w-[75%]">
-               ISO 13485, FDA registered, titanium and medical-grade steel
+               AS9100 certified, ±0.01mm tolerance, titanium and Inconel
              </GlassCard>
            </motion.div>
         )}
@@ -194,7 +194,7 @@ const DiscoverScreen = () => {
                <span className="text-[9px] font-bold text-foreground">AI</span>
              </div>
              <GlassCard className="px-3 py-2 text-xs text-background max-w-[85%]">
-               Searching: Implantable + ISO 13485 + FDA + Titanium…
+               Searching: CNC + AS9100 + Titanium + ±0.01mm…
              </GlassCard>
            </motion.div>
         )}
@@ -243,9 +243,9 @@ const MatchScreen = () => {
   }, []);
 
   const auditors = [
-    { name: "Dr. Klaus Schmidt", match: 94, cert: "ISO 13485 · Munich · 15 yrs", img: auditorGen2 },
-    { name: "Dr. Anna Weber", match: 91, cert: "ISO 13485 · Frankfurt · 12 yrs", img: auditorGen3 },
-    { name: "Thomas Richter", match: 88, cert: "ISO 13485 · Stuttgart · 9 yrs", img: auditorGen4 },
+    { name: "Markus Hoffmann", match: 94, cert: "ISO 9001 · Stuttgart · 15 yrs", img: auditorGen2 },
+    { name: "Dr. Anna Weber", match: 91, cert: "AS9100 · Frankfurt · 12 yrs", img: auditorGen3 },
+    { name: "Thomas Richter", match: 88, cert: "IATF 16949 · Munich · 9 yrs", img: auditorGen4 },
   ];
 
   const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70, 60, 55, 45, 35, 30];
@@ -338,10 +338,10 @@ const AuditScreen = () => {
   }, []);
 
   const checklistItems = [
-    "Sterile environment validated",
+    "CNC machine calibration verified",
     "Quality management system active",
     "Traceability documentation complete",
-    "Personnel qualified",
+    "Operator certifications valid",
   ];
 
   return (
@@ -350,17 +350,17 @@ const AuditScreen = () => {
          <div className="flex items-center gap-2">
            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
            <span className="text-sm font-semibold text-foreground">Live Audit</span>
-           <span className="text-xs text-foreground/60">· MediParts GmbH</span>
+           <span className="text-xs text-foreground/60">· PräzisionsTech GmbH</span>
          </div>
          <div className="flex items-center gap-2">
-           <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
-           <span className="text-xs text-foreground/60">Dr. Schmidt</span>
+           <img src={auditorGen2} alt="M. Hoffmann" className="w-6 h-6 object-cover" />
+           <span className="text-xs text-foreground/60">M. Hoffmann</span>
          </div>
        </div>
 
       <div className="flex-1 flex">
         <div className="w-1/2 relative overflow-hidden">
-          <img src={equipmentImage} alt="Cleanroom" className="w-full h-full object-cover" />
+          <img src={equipmentImage} alt="CNC Machine" className="w-full h-full object-cover" />
           <AnimatePresence>
             {flash && (
               <motion.div initial={{ opacity: 0.8 }} animate={{ opacity: 0 }} exit={{ opacity: 0 }}
@@ -375,19 +375,19 @@ const AuditScreen = () => {
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                  </svg>
-                 <span className="text-xs font-semibold text-primary">Clean Room Class 7</span>
+                 <span className="text-xs font-semibold text-primary">DMG MORI NLX 2500</span>
                </div>
-               <span className="text-[10px] text-background/70 mt-1 block">Computer Vision Detected</span>
+               <span className="text-[10px] text-background/70 mt-1 block">AI Equipment Detection</span>
              </GlassCard>
           </motion.div>
           <div className="absolute bottom-3 left-3">
-            <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">Control Panel</div>
+            <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">CNC Turning Center</div>
           </div>
         </div>
 
         <div className="w-1/2 flex flex-col border-l border-muted-foreground/10">
            <div className="px-3 py-2 border-b border-foreground/10">
-             <div className="text-xs font-semibold text-foreground/60 uppercase tracking-wider">ISO 13485 Checklist</div>
+             <div className="text-xs font-semibold text-foreground/60 uppercase tracking-wider">ISO 9001 Checklist</div>
            </div>
           <div className="flex-1 p-3 space-y-2">
              {checklistItems.map((item, i) => (
@@ -448,12 +448,12 @@ const IntelligenceScreen = () => {
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
        <div className="px-3 py-2 border-b border-foreground/10 flex items-center justify-between">
          <div>
-           <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
-           <div className="text-xs text-foreground/60">ISO 13485 Audit Report</div>
+           <div className="text-sm font-semibold text-foreground">PräzisionsTech GmbH</div>
+           <div className="text-xs text-foreground/60">ISO 9001 Audit Report</div>
          </div>
          <div className="flex items-center gap-2">
-           <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
-           <span className="text-xs text-foreground/60">Dr. Schmidt</span>
+           <img src={auditorGen2} alt="M. Hoffmann" className="w-6 h-6 object-cover" />
+           <span className="text-xs text-foreground/60">M. Hoffmann</span>
          </div>
        </div>
 
@@ -500,7 +500,7 @@ const IntelligenceScreen = () => {
                    ))}
                  </div>
                 <div className="mt-3">
-                  <SegmentedToggle items={["ISO 13485", "FDA", "CE Mark"]} activeIndex={activeSegment} />
+                  <SegmentedToggle items={["ISO 9001", "AS9100", "IATF"]} activeIndex={activeSegment} />
                 </div>
               </GlassCard>
             </motion.div>
@@ -542,10 +542,10 @@ const IntelligenceScreen = () => {
           {showElements >= 5 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 border-t border-muted-foreground/10">
                <GlassCard layer={2} className="flex items-center gap-3 p-3">
-                 <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
+                 <img src={auditorGen2} alt="M. Hoffmann" className="w-10 h-10 object-cover" />
                  <div className="flex-1">
-                   <div className="text-sm font-medium text-background">Dr. Klaus Schmidt</div>
-                   <div className="text-[11px] text-background/70">ISO 13485 Certified</div>
+                   <div className="text-sm font-medium text-background">Markus Hoffmann</div>
+                   <div className="text-[11px] text-background/70">ISO 9001 Lead Auditor</div>
                  </div>
                  <span className="text-[10px] text-primary font-semibold">24h</span>
                </GlassCard>
