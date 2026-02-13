@@ -1402,54 +1402,16 @@ const ComparisonMockup = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Frosted Glass Card - Light transparent */}
-            <div className="bg-[hsl(0,0%,96%)] overflow-hidden rounded-none border border-border">
-              
-              {/* Card Header */}
-              <div className="bg-[hsl(0,0%,100%/0.8)] backdrop-blur-xl px-6 py-4 flex items-center justify-between border-b border-border">
-                <h2 className="text-foreground text-xl font-bold">SearchPro+</h2>
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground text-sm">AI-Powered</span>
-                </div>
-              </div>
+            {/* Clean minimal demo card */}
+            <div className="bg-white overflow-hidden rounded-none border border-foreground/10">
 
-              <div className="p-6">
-              
-              {/* Label */}
-              <div className="mb-3 flex-shrink-0">
-                <span className="text-primary text-sm font-semibold">
-                  Interactive Demo
-                </span>
-              </div>
-              {/* Bold title/description */}
-              <h3 className="text-foreground text-xl font-bold mb-6 leading-tight">
-                AI understands your needs — and suggests the right products
-                <span className="block text-sm font-normal text-muted-foreground mt-2">
-                  Watch how SearchPro+ guides buyers to verified suppliers
-                </span>
-              </h3>
-
-              {/* Step indicators */}
-              <div className="flex items-center justify-center gap-2 mb-6">
-                {[1, 2].map((step) => (
-                  <div
-                    key={step}
-                    className={`w-10 h-10 rounded-none flex items-center justify-center text-sm font-bold transition-all ${
-                      step <= currentStep
-                        ? 'bg-foreground text-background'
-                        : 'bg-muted text-muted-foreground'
-                    }`}
-                  >
-                    {step}
-                  </div>
-                ))}
-              </div>
+              <div className="p-6 md:p-10">
 
               {/* Conversation Thread */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 overflow-y-auto bg-[hsl(0,0%,100%/0.5)] backdrop-blur-sm p-4 rounded-none border border-border"
-                style={{ maxHeight: '600px' }}
+                className="space-y-3 mb-6 overflow-y-auto"
+                style={{ maxHeight: '500px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
               >
@@ -1459,38 +1421,23 @@ const ComparisonMockup = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {/* AI Avatar */}
-                    {msg.role === 'ai' && (
-                      <div className="w-8 h-8 rounded-none bg-foreground flex-shrink-0 flex items-center justify-center">
-                        <span className="text-[9px] text-background font-bold">AI</span>
-                      </div>
-                    )}
                     <div
-                      className={`max-w-[75%] p-4 rounded-none backdrop-blur-md ${
+                      className={`max-w-[80%] px-5 py-3 rounded-none ${
                         msg.role === 'user'
-                          ? 'bg-foreground/90 text-background border border-foreground/20'
-                          : 'bg-[hsl(0,0%,100%/0.7)] text-foreground border border-border'
+                          ? 'bg-foreground text-background'
+                          : 'bg-[hsl(0,0%,92%)] text-foreground'
                       }`}
                     >
                       {msg.role === 'ai' && (
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs font-bold text-primary">YVOO SearchPro+</span>
-                        </div>
+                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-1">SearchPro+ AI</span>
                       )}
-                      <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
+                      {msg.role === 'user' && (
+                        <span className="text-[10px] font-bold text-background/60 uppercase tracking-wider block mb-1">You</span>
+                      )}
+                      <p className="text-sm whitespace-pre-line font-medium leading-relaxed">{msg.message}</p>
                     </div>
-                    {/* User Avatar */}
-                    {msg.role === 'user' && (
-                      <div className="w-8 h-8 rounded-none overflow-hidden flex-shrink-0 border border-border">
-                        <img 
-                          src={heroImages[currentScenario % heroImages.length].src} 
-                          alt="Buyer" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
                   </motion.div>
                 ))}
 
@@ -1499,23 +1446,20 @@ const ComparisonMockup = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-start gap-3 justify-start"
+                    className="flex justify-start"
                   >
-                    <div className="w-8 h-8 rounded-none bg-foreground flex-shrink-0 flex items-center justify-center">
-                      <span className="text-[9px] text-background font-bold">AI</span>
-                    </div>
-                    <div className="max-w-[75%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,100%/0.7)] text-foreground border border-border">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-bold text-primary">YVOO SearchPro+</span>
+                    <div className="max-w-[80%] px-5 py-3 rounded-none bg-[hsl(0,0%,92%)] text-foreground">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">SearchPro+ AI</span>
                         {isTyping && (
-                          <div className="flex gap-1 ml-2">
-                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                          <div className="flex gap-1 ml-1">
+                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1 h-1 rounded-none bg-muted-foreground animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                           </div>
                         )}
                       </div>
-                      <p className="text-sm whitespace-pre-line font-medium">{aiResponse}</p>
+                      <p className="text-sm whitespace-pre-line font-medium leading-relaxed">{aiResponse}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1525,17 +1469,11 @@ const ComparisonMockup = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-start gap-3 justify-end"
+                    className="flex justify-end"
                   >
-                    <div className="max-w-[75%] p-4 rounded-none backdrop-blur-md bg-foreground/90 text-background border border-foreground/20">
-                      <p className="text-sm font-medium">{userInput}</p>
-                    </div>
-                    <div className="w-8 h-8 rounded-none overflow-hidden flex-shrink-0 border border-border">
-                      <img 
-                        src={heroImages[currentScenario % heroImages.length].src} 
-                        alt="Buyer" 
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="max-w-[80%] px-5 py-3 rounded-none bg-foreground text-background">
+                      <span className="text-[10px] font-bold text-background/60 uppercase tracking-wider block mb-1">You</span>
+                      <p className="text-sm font-medium leading-relaxed">{userInput}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1547,34 +1485,26 @@ const ComparisonMockup = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isFading ? 0 : 1, y: isFading ? 20 : 0 }}
                   transition={{ duration: 0.5 }}
-                  className="mt-6"
+                  className="pt-6 border-t border-foreground/10"
                 >
-                  <div className="flex items-center gap-2 mb-4">
-                    <Check className="w-5 h-5 text-primary" strokeWidth={3} />
-                    <span className="font-semibold text-foreground">4 Matching Suppliers Found</span>
-                  </div>
+                  <span className="text-sm font-bold text-foreground mb-4 block">4 Matching Suppliers Found</span>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {suppliers.map((supplier) => (
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 backdrop-blur-md bg-[hsl(0,0%,100%/0.7)] border border-border rounded-none hover:border-primary transition-all group"
+                        className="text-left p-4 bg-[hsl(0,0%,96%)] border border-foreground/10 rounded-none hover:border-foreground transition-all group"
                       >
-                        <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-black text-foreground group-hover:text-primary transition-colors">
-                            {supplier.name}
-                          </h4>
-                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
-                        </div>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                          <span>{supplier.location}</span>
-                        </div>
-                        <div className="flex flex-wrap gap-1.5">
+                        <h4 className="font-bold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">
+                          {supplier.name}
+                        </h4>
+                        <span className="text-xs text-muted-foreground">{supplier.location}</span>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-none font-bold"
+                              className="px-2 py-0.5 bg-foreground/5 text-foreground/70 text-[10px] rounded-none font-medium"
                             >
                               {cert}
                             </span>
