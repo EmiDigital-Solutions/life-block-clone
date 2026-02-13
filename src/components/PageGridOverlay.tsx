@@ -4,7 +4,7 @@
  */
 const PageGridOverlay = () => (
   <div className="fixed inset-0 z-[2] pointer-events-none" aria-hidden="true">
-    <div className="mx-auto max-w-[1400px] h-full px-8">
+    <div className="mx-auto max-w-[1400px] h-full px-4 md:px-8">
       <div className="relative h-full">
         {/* Mobile: 4 columns (5 lines) */}
         {[...Array(5)].map((_, i) => (
