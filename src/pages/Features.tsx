@@ -157,12 +157,49 @@ const featureCategories = [
   {
     id: "ai-audit-app",
     name: "AI Audit APP",
-    headline: "AI Audit APP\nfeatures",
+    headline: "AI Audit APP\nfor Clients",
     link: "#",
-    features: [
+    clusters: [
       {
-        title: "Coming soon",
-        description: "Details for the AI Audit APP will be added here."
+        clusterName: "YVOO Atlas AI",
+        highlighted: true,
+        features: [
+          { title: "Atlas Brain — Intelligent Knowledge Panel", description: "Auto-generated audit context per question with client-specific priorities, standard requirements in plain language, What to Check verification points, Best Practices, Common Issues, Evidence Checklist, and real-time Activity Log.", highlighted: true },
+          { title: "Atlas Copilot — AI-Guided Assessment", description: "Conversational audit execution with step-by-step AI guidance, voice input (hands-free), smart evidence requests, automatic evidence analysis, equipment photo recognition, maturity level recommendations, auditor override, AI-generated findings, and minor NC detection.", highlighted: true },
+          { title: "Cross-Audit Intelligence", description: "Pattern recognition from historical data, industry benchmarking, predictive insights, and continuous learning from feedback.", highlighted: true }
+        ]
+      },
+      {
+        clusterName: "Auditor Management",
+        features: [
+          { title: "Auditor Profiles", description: "Registration and verification workflow, certification tracking per standard, auditor levels (Internal, Auditor, Lead Auditor, Principal), years of experience, completed audits count, and specializations." },
+          { title: "Auditor Verification", description: "Document verification (ID, passport, certificates), verification status (Pending → Approved/Rejected/Suspended), and admin notes with feedback." },
+          { title: "Revenue & Payouts", description: "Revenue tracking per auditor, bank account and PayPal setup, payout management, and payment history." }
+        ]
+      },
+      {
+        clusterName: "Dashboards & Analytics",
+        features: [
+          { title: "Buyer Dashboard", description: "Active RFQs overview, recommended suppliers, recent activity feed, performance charts, and spending analytics." },
+          { title: "Supplier Dashboard", description: "Connection overview, RFQ invitations, lead metrics, profile view tracking, and performance summary." },
+          { title: "Auditor Dashboard", description: "Accepted audits, available audits, nearby audits map, revenue charts, and recent activity." },
+          { title: "Client Dashboard", description: "Ordered audits, active RFQs, recommended suppliers, audit scoring displays, and spending analytics." }
+        ]
+      },
+      {
+        clusterName: "Security & Authentication",
+        features: [
+          { title: "Authentication", description: "JWT-based authentication, OAuth integration (Google, LinkedIn), session management, and password reset/recovery." },
+          { title: "Multi-Factor Authentication", description: "MFA setup and management, QR code generation, and backup codes." },
+          { title: "Access Control", description: "Role-based permissions, multi-tenant support, and token-based sharing." }
+        ]
+      },
+      {
+        clusterName: "File & Document Management",
+        features: [
+          { title: "File Storage", description: "Cloud storage (AWS S3), secure file upload/download, file type validation, and size limits." },
+          { title: "Document Tracking", description: "Required documents checklist, document verification, and document linking to audits and evidence." }
+        ]
       }
     ]
   },
@@ -367,8 +404,12 @@ const Features = () => {
                 className="space-y-12"
               >
                 {currentCategory.clusters.map((cluster, clusterIdx) => (
-                  <div key={cluster.clusterName}>
-                    <h3 className="text-lg font-mono font-semibold text-primary uppercase tracking-wide mb-6 border-b border-primary/20 pb-3">
+                  <div key={cluster.clusterName} className={(cluster as any).highlighted ? "bg-primary/5 p-8 border-l-4 border-l-primary" : ""}>
+                    <h3 className={`font-mono font-semibold uppercase tracking-wide mb-6 border-b pb-3 ${
+                      (cluster as any).highlighted
+                        ? "text-xl text-primary border-primary/30"
+                        : "text-lg text-primary border-primary/20"
+                    }`}>
                       {cluster.clusterName}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
@@ -378,10 +419,14 @@ const Features = () => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: 0.03 * index + clusterIdx * 0.05 }}
-                          className="py-6 pr-8 border-t border-foreground/10"
+                          className={`py-6 pr-8 border-t border-foreground/10 ${
+                            (feature as any).highlighted
+                              ? "md:col-span-2 lg:col-span-3"
+                              : ""
+                          }`}
                         >
-                          <h4 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h4>
-                          <p className="text-sm text-foreground/60 leading-relaxed">{feature.description}</p>
+                          <h4 className={`font-semibold text-foreground mb-2 ${(feature as any).highlighted ? "text-xl" : "text-lg"}`}>{feature.title}</h4>
+                          <p className={`text-foreground/60 leading-relaxed ${(feature as any).highlighted ? "text-base max-w-3xl" : "text-sm"}`}>{feature.description}</p>
                         </motion.div>
                       ))}
                     </div>
