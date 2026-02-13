@@ -1119,45 +1119,49 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
           </h2>
         </motion.div>
 
-        <div>
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.05 }}
-              className="border-t border-[#d5d5d5]"
-            >
-              <button
-                onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full py-6 flex items-start justify-between gap-6 text-left group"
-              >
-                <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
-                  {faq.q}
-                </span>
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
-                  {openFaq === index ? (
-                    <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                  ) : (
-                    <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                  )}
-                </div>
-              </button>
+        {/* FAQ List — shifted one grid column right */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+          <div className="hidden lg:block lg:col-span-1" />
+          <div className="lg:col-span-5">
+            {faqs.map((faq, index) => (
               <motion.div
-                initial={false}
-                animate={{
-                  height: openFaq === index ? "auto" : 0,
-                  opacity: openFaq === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.05 }}
+                className="border-t border-[#d5d5d5]"
               >
-                <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
-                  {faq.a}
-                </p>
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+                >
+                  <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                    {faq.q}
+                  </span>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                    {openFaq === index ? (
+                      <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                    ) : (
+                      <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                    )}
+                  </div>
+                </button>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: openFaq === index ? "auto" : 0,
+                    opacity: openFaq === index ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
+                    {faq.a}
+                  </p>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

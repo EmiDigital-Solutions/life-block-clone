@@ -366,56 +366,61 @@ const CustomerStories = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 px-8">
-        <div className="mx-auto max-w-[1400px]">
-          <motion.h2
+      {/* FAQ Section - matching homepage */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-bold text-foreground tracking-[-0.02em] mb-12 text-center"
+            className="mb-12"
           >
-            Frequently Asked Questions
-          </motion.h2>
+            <h2 className="section-headline text-foreground">
+              Frequently asked questions
+            </h2>
+          </motion.div>
 
-          <div className="divide-y divide-foreground/10">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="py-6"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-start justify-between gap-4 text-left"
+          {/* FAQ List — shifted one grid column right */}
+          <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+            <div className="hidden lg:block lg:col-span-1" />
+            <div className="lg:col-span-5">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border-t border-[#d5d5d5]"
                 >
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {faq.question}
-                  </h3>
-                  <div className="shrink-0 mt-1">
-                    {openFaq === index ? (
-                      <Minus className="w-5 h-5 text-foreground/60" />
-                    ) : (
-                      <Plus className="w-5 h-5 text-foreground/60" />
-                    )}
-                  </div>
-                </button>
-                {openFaq === index && (
-                  <motion.p
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="mt-4 text-foreground/70 leading-relaxed"
+                  <button
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="w-full py-6 flex items-start justify-between gap-6 text-left group"
                   >
-                    {faq.answer}
-                  </motion.p>
-                )}
-              </motion.div>
-            ))}
+                    <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                      {faq.question}
+                    </span>
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                      {openFaq === index ? (
+                        <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                      ) : (
+                        <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                      )}
+                    </div>
+                  </button>
+                  
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: openFaq === index ? "auto" : 0,
+                      opacity: openFaq === index ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
