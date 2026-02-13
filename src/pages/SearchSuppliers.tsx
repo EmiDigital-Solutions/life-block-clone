@@ -576,21 +576,26 @@ const SearchSuppliers = () => {
   const isRunningRef = useRef(false);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   
-  // Three different search scenarios - rotating industries
+  // Three different search scenarios - AI understands preferences and suggests products
   const scenarios = [
     {
       steps: [
         {
           step: 1,
-          aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "CNC machining for automotive",
-          aiFollowUp: "Great! For automotive CNC machining, what certifications and production volume do you need?"
+          aiPrompt: "Hi! Tell me what you're sourcing — I'll guide you to the best match.",
+          userResponse: "We need precision CNC parts for our EV brake system",
+          aiFollowUp: "Got it — EV brake components require tight tolerances and automotive-grade quality. Based on your needs, I'd recommend these product categories:"
         },
         {
           step: 2,
           aiPrompt: "",
-          userResponse: "ISO 9001, IATF 16949, medium to high volume production",
-          aiFollowUp: "Perfect! Let me find suppliers matching: Precision CNC machining + ISO 9001 + IATF 16949 + High-volume capacity"
+          userResponse: "",
+          aiFollowUp: "",
+          aiSuggestions: [
+            "🔧 Precision CNC Brake Calipers — IATF 16949 certified",
+            "⚙️ Hydraulic Valve Bodies — ISO 9001 + PPAP Level 3",
+            "🛡️ Brake Disc Carriers — Aluminum & Steel, high-volume"
+          ]
         }
       ]
     },
@@ -598,15 +603,20 @@ const SearchSuppliers = () => {
       steps: [
         {
           step: 1,
-          aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "Implantable medical device components",
-          aiFollowUp: "Perfect! For implantable medical components, what certifications and materials do you require?"
+          aiPrompt: "Hi! Tell me what you're sourcing — I'll guide you to the best match.",
+          userResponse: "Looking for titanium implant components, FDA approved",
+          aiFollowUp: "Understood — implantable devices need cleanroom manufacturing and biocompatible materials. Here are my top suggestions:"
         },
         {
           step: 2,
           aiPrompt: "",
-          userResponse: "ISO 13485, FDA registered, titanium and medical-grade steel",
-          aiFollowUp: "Excellent! Searching for suppliers with: Implantable components + ISO 13485 + FDA + Cleanroom + Titanium/Steel expertise"
+          userResponse: "",
+          aiFollowUp: "",
+          aiSuggestions: [
+            "🏥 Titanium Bone Screws — ISO 13485 + FDA registered",
+            "🔬 Spinal Cage Implants — Cleanroom Class 7, Ti-6Al-4V",
+            "💎 Dental Abutments — Medical-grade, CNC 5-axis"
+          ]
         }
       ]
     },
@@ -614,15 +624,20 @@ const SearchSuppliers = () => {
       steps: [
         {
           step: 1,
-          aiPrompt: "What type of product or service are you looking for?",
-          userResponse: "PCB assembly for aerospace applications",
-          aiFollowUp: "Great! For aerospace PCB assembly, what quality standards and testing capabilities do you need?"
+          aiPrompt: "Hi! Tell me what you're sourcing — I'll guide you to the best match.",
+          userResponse: "High-reliability PCBs for satellite communication",
+          aiFollowUp: "Space-grade electronics — that means stringent testing and AS9100 compliance. Based on your requirements, I suggest:"
         },
         {
           step: 2,
           aiPrompt: "",
-          userResponse: "IPC-A-610 Class 3, AS9100, with full AOI and X-ray inspection",
-          aiFollowUp: "Perfect! Searching for suppliers with: PCB Assembly + IPC-A-610 Class 3 + AS9100 + Full testing capabilities"
+          userResponse: "",
+          aiFollowUp: "",
+          aiSuggestions: [
+            "📡 Multi-layer HDI PCBs — IPC Class 3, AS9100D",
+            "🛰️ RF/Microwave Boards — PTFE substrate, space-qualified",
+            "⚡ Flex-Rigid Assemblies — Hi-Rel, conformal coated"
+          ]
         }
       ]
     }
@@ -676,30 +691,28 @@ const SearchSuppliers = () => {
                 typeAiMessage(steps[0].aiFollowUp, () => {
                   const t4 = setTimeout(() => {
                     setCurrentStep(2);
-                    typeUserMessage(steps[1].userResponse, () => {
-                      const t5 = setTimeout(() => {
-                        typeAiMessage(steps[1].aiFollowUp, () => {
-                          const t6 = setTimeout(() => {
-                            setShowResults(true);
-                            const t7 = setTimeout(() => {
-                              setIsFading(true);
-                              const t8 = setTimeout(() => {
-                                setShowResults(false);
-                                setConversationHistory([]);
-                                setCurrentStep(1);
-                                setIsFading(false);
-                                isRunningRef.current = false;
-                                setCurrentScenario((prev) => (prev + 1) % scenarios.length);
-                              }, 400);
-                              timeoutsRef.current.push(t8);
-                            }, 3000);
-                            timeoutsRef.current.push(t7);
-                          }, 600);
-                          timeoutsRef.current.push(t6);
-                        });
-                      }, 800);
-                      timeoutsRef.current.push(t5);
-                    });
+                    // AI suggests products instead of user typing again
+                    const suggestions = (steps[1] as any).aiSuggestions as string[];
+                    if (suggestions) {
+                      setConversationHistory(prev => [...prev, { role: 'ai', message: suggestions.join('\n') }]);
+                    }
+                    const t5 = setTimeout(() => {
+                      setShowResults(true);
+                      const t6 = setTimeout(() => {
+                        setIsFading(true);
+                        const t7 = setTimeout(() => {
+                          setShowResults(false);
+                          setConversationHistory([]);
+                          setCurrentStep(1);
+                          setIsFading(false);
+                          isRunningRef.current = false;
+                          setCurrentScenario((prev) => (prev + 1) % scenarios.length);
+                        }, 400);
+                        timeoutsRef.current.push(t7);
+                      }, 3000);
+                      timeoutsRef.current.push(t6);
+                    }, 1200);
+                    timeoutsRef.current.push(t5);
                   }, 700);
                   timeoutsRef.current.push(t4);
                 });
@@ -1389,14 +1402,14 @@ const ComparisonMockup = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* Frosted Glass Card */}
-            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none">
+            {/* Frosted Glass Card - Light transparent */}
+            <div className="bg-[hsl(0,0%,96%)] overflow-hidden rounded-none border border-border">
               
               {/* Card Header */}
-              <div className="bg-[hsl(0,0%,25%/0.65)] backdrop-blur-xl px-6 py-4 flex items-center justify-between border-b border-[hsl(0,0%,50%/0.2)]">
-                <h2 className="text-[hsl(0,0%,95%)] text-xl font-bold">SearchPro+</h2>
+              <div className="bg-[hsl(0,0%,100%/0.8)] backdrop-blur-xl px-6 py-4 flex items-center justify-between border-b border-border">
+                <h2 className="text-foreground text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
-                  <span className="text-[hsl(0,0%,80%)] text-sm">AI-Powered</span>
+                  <span className="text-muted-foreground text-sm">AI-Powered</span>
                 </div>
               </div>
 
@@ -1410,21 +1423,21 @@ const ComparisonMockup = () => {
               </div>
               {/* Bold title/description */}
               <h3 className="text-foreground text-xl font-bold mb-6 leading-tight">
-                AI-Powered Conversational Search
+                AI understands your needs — and suggests the right products
                 <span className="block text-sm font-normal text-muted-foreground mt-2">
-                  Step-by-step guidance to find your perfect supplier
+                  Watch how SearchPro+ guides buyers to verified suppliers
                 </span>
               </h3>
 
               {/* Step indicators */}
               <div className="flex items-center justify-center gap-2 mb-6">
-                {[1, 2, 3].map((step) => (
+                {[1, 2].map((step) => (
                   <div
                     key={step}
                     className={`w-10 h-10 rounded-none flex items-center justify-center text-sm font-bold transition-all ${
                       step <= currentStep
-                        ? 'backdrop-blur-md bg-[hsl(0,0%,25%/0.65)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]'
-                        : 'bg-[hsl(0,0%,75%)] text-[hsl(0,0%,50%)]'
+                        ? 'bg-foreground text-background'
+                        : 'bg-muted text-muted-foreground'
                     }`}
                   >
                     {step}
@@ -1435,7 +1448,7 @@ const ComparisonMockup = () => {
               {/* Conversation Thread */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 overflow-y-auto bg-[hsl(0,0%,80%)] p-4 rounded-none"
+                className="space-y-4 mb-6 overflow-y-auto bg-[hsl(0,0%,100%/0.5)] backdrop-blur-sm p-4 rounded-none border border-border"
                 style={{ maxHeight: '600px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
@@ -1446,25 +1459,38 @@ const ComparisonMockup = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
+                    {/* AI Avatar */}
+                    {msg.role === 'ai' && (
+                      <div className="w-8 h-8 rounded-none bg-foreground flex-shrink-0 flex items-center justify-center">
+                        <span className="text-[9px] text-background font-bold">AI</span>
+                      </div>
+                    )}
                     <div
-                      className={`max-w-[80%] p-4 rounded-none backdrop-blur-md ${
+                      className={`max-w-[75%] p-4 rounded-none backdrop-blur-md ${
                         msg.role === 'user'
-                          ? 'bg-[hsl(0,0%,30%/0.7)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]'
-                          : 'bg-[hsl(0,0%,25%/0.6)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.25)]'
+                          ? 'bg-foreground/90 text-background border border-foreground/20'
+                          : 'bg-[hsl(0,0%,100%/0.7)] text-foreground border border-border'
                       }`}
                     >
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded-none bg-primary/30 backdrop-blur-sm flex items-center justify-center">
-                            <span className="text-[8px] text-primary font-bold">AI</span>
-                          </div>
-                          <span className="text-xs font-bold text-primary">YVOO</span>
+                          <span className="text-xs font-bold text-primary">YVOO SearchPro+</span>
                         </div>
                       )}
                       <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
                     </div>
+                    {/* User Avatar */}
+                    {msg.role === 'user' && (
+                      <div className="w-8 h-8 rounded-none overflow-hidden flex-shrink-0 border border-border">
+                        <img 
+                          src={heroImages[currentScenario % heroImages.length].src} 
+                          alt="Buyer" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
                   </motion.div>
                 ))}
 
@@ -1473,14 +1499,14 @@ const ComparisonMockup = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-start"
+                    className="flex items-start gap-3 justify-start"
                   >
-                    <div className="max-w-[80%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,25%/0.6)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.25)]">
+                    <div className="w-8 h-8 rounded-none bg-foreground flex-shrink-0 flex items-center justify-center">
+                      <span className="text-[9px] text-background font-bold">AI</span>
+                    </div>
+                    <div className="max-w-[75%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,100%/0.7)] text-foreground border border-border">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded-none bg-primary/30 backdrop-blur-sm flex items-center justify-center">
-                          <span className="text-[8px] text-primary font-bold">AI</span>
-                        </div>
-                        <span className="text-xs font-bold text-primary">YVOO</span>
+                        <span className="text-xs font-bold text-primary">YVOO SearchPro+</span>
                         {isTyping && (
                           <div className="flex gap-1 ml-2">
                             <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0s' }}></div>
@@ -1499,16 +1525,23 @@ const ComparisonMockup = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex justify-end"
+                    className="flex items-start gap-3 justify-end"
                   >
-                    <div className="max-w-[80%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,30%/0.7)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]">
+                    <div className="max-w-[75%] p-4 rounded-none backdrop-blur-md bg-foreground/90 text-background border border-foreground/20">
                       <p className="text-sm font-medium">{userInput}</p>
+                    </div>
+                    <div className="w-8 h-8 rounded-none overflow-hidden flex-shrink-0 border border-border">
+                      <img 
+                        src={heroImages[currentScenario % heroImages.length].src} 
+                        alt="Buyer" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </motion.div>
                 )}
               </motion.div>
 
-              {/* Results section that overlays next page */}
+              {/* Results section */}
               {showResults && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -1526,15 +1559,15 @@ const ComparisonMockup = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 backdrop-blur-md bg-[hsl(0,0%,30%/0.7)] border border-[hsl(0,0%,50%/0.3)] rounded-none hover:border-primary transition-all group"
+                        className="text-left p-4 backdrop-blur-md bg-[hsl(0,0%,100%/0.7)] border border-border rounded-none hover:border-primary transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-black text-[hsl(0,0%,95%)] group-hover:text-primary transition-colors">
+                          <h4 className="font-black text-foreground group-hover:text-primary transition-colors">
                             {supplier.name}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-[hsl(0,0%,70%)] group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
+                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-[hsl(0,0%,70%)] mb-2">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                           <span>{supplier.location}</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
