@@ -93,7 +93,7 @@ const Auditors = () => {
           data-nav-theme="white"
           className="relative min-h-screen flex flex-col overflow-hidden"
         >
-          <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
+          <HeroSquaresAnimation className="top-24 right-4 md:top-28 md:right-20 lg:top-32 lg:right-24" />
           {/* Full-screen Image Carousel Background */}
           <div className="absolute inset-0 z-0">
             {heroImages.map((image, index) => (

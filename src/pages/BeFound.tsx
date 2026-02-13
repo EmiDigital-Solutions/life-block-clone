@@ -614,7 +614,7 @@ const BeFound = () => {
         className="relative min-h-screen flex flex-col overflow-hidden bg-background"
         id="hero"
       >
-        <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
+        <HeroSquaresAnimation className="top-24 right-4 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
