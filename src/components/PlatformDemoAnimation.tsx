@@ -119,9 +119,9 @@ const DiscoverScreen = () => {
   useEffect(() => {
     const timers = [
       setTimeout(() => setPhase(1), 400),
-      setTimeout(() => setPhase(2), 1200),
-      setTimeout(() => setPhase(3), 2000),
-      setTimeout(() => setPhase(4), 2800),
+      setTimeout(() => setPhase(2), 1000),
+      setTimeout(() => setPhase(3), 1800),
+      setTimeout(() => setPhase(4), 2600),
       setTimeout(() => setPhase(5), 3400),
       setTimeout(() => setPhase(6), 4200),
     ];
@@ -179,24 +179,59 @@ const DiscoverScreen = () => {
           </motion.div>
         )}
 
-        {/* Step 2: AI generating profile */}
+        {/* Step 2: AI searching for suppliers */}
         {phase >= 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
             <motion.div animate={{ rotate: phase < 2 ? 360 : 0 }} transition={{ repeat: phase < 2 ? Infinity : 0, duration: 1, ease: "linear" }}
               className={`w-4 h-4 border-2 border-primary ${phase < 2 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
-            {phase < 2 ? "AI building supplier profile…" : (
+            {phase < 2 ? "AI searching suppliers…" : (
               <span className="flex items-center gap-1">
                 <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                 </svg>
-                Full profile created
+                Found 1 match
               </span>
             )}
           </motion.div>
         )}
 
-        {/* Step 3: AI-generated profile */}
+        {/* Step 3: Search results showing supplier match */}
         {phase >= 2 && (
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard layer={2} className="p-3">
+              <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold mb-2">Search Results</div>
+              <GlassCard highlight className="p-2.5 flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
+                  <div className="text-[10px] text-background/70">Stuttgart, Germany · Aerospace</div>
+                </div>
+                <div className="flex items-center gap-1 px-1.5 py-0.5 border border-primary/40 bg-primary/5">
+                  <span className="text-lg font-bold text-primary">94</span>
+                  <span className="text-[8px] text-primary">%</span>
+                </div>
+              </GlassCard>
+            </GlassCard>
+          </motion.div>
+        )}
+
+        {/* Step 4: AI generating intelligence profile */}
+        {phase >= 2 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
+            <motion.div animate={{ rotate: phase < 3 ? 360 : 0 }} transition={{ repeat: phase < 3 ? Infinity : 0, duration: 1, ease: "linear" }}
+              className={`w-4 h-4 border-2 border-primary ${phase < 3 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
+            {phase < 3 ? "AI building intelligence profile…" : (
+              <span className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Intelligence profile created
+              </span>
+            )}
+          </motion.div>
+        )}
+
+        {/* Step 5: AI-generated intelligence profile */}
+        {phase >= 3 && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
             <GlassCard highlight layer={2} className="p-3">
               <div className="flex items-center justify-between mb-2">
