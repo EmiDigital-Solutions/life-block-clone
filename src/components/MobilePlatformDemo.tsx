@@ -73,10 +73,11 @@ const MobileDiscoverScreen = () => {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 500),
-      setTimeout(() => setPhase(2), 1200),
-      setTimeout(() => setPhase(3), 2200),
-      setTimeout(() => setPhase(4), 3200),
+      setTimeout(() => setPhase(1), 400),
+      setTimeout(() => setPhase(2), 1000),
+      setTimeout(() => setPhase(3), 1800),
+      setTimeout(() => setPhase(4), 2600),
+      setTimeout(() => setPhase(5), 3400),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -98,48 +99,91 @@ const MobileDiscoverScreen = () => {
              <span className="text-[10px] text-background font-medium border-b border-background/20 flex-1 pb-0.5">{f.value}</span>
            </div>
          ))}
-       </GlassCard>
+        </GlassCard>
 
-       {/* AI profile generation */}
-       {phase >= 1 && (
-         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-           <GlassCard highlight layer={2} className="p-2.5">
-             <div className="flex items-center justify-between mb-1">
-               <span className="text-[10px] text-background font-semibold">PräzisionsTech GmbH</span>
-               <span className="text-[7px] text-primary font-bold uppercase px-1 py-0.5 border border-primary/40">AI Verified</span>
-             </div>
-             <div className="text-[9px] text-background/70 leading-tight">Aerospace · CNC, 5-Axis · ISO 9001, AS9100</div>
-           </GlassCard>
-         </motion.div>
-       )}
+        {/* AI searching for suppliers */}
+        {phase >= 1 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-[11px] text-primary">
+            <motion.div animate={{ rotate: phase < 2 ? 360 : 0 }} transition={{ repeat: phase < 2 ? Infinity : 0, duration: 1, ease: "linear" }}
+              className={`w-3 h-3 border-2 border-primary ${phase < 2 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
+            {phase < 2 ? "AI searching suppliers…" : "Found 1 match"}
+          </motion.div>
+        )}
 
-       {/* Upload checklists */}
-       {phase >= 2 && (
-         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-           <GlassCard layer={2} className="p-2 space-y-1">
-             <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold">Checklists Uploaded</div>
-             {["ISO_9001_Checklist.pdf", "Custom_Req.xlsx"].map((file) => (
-               <div key={file} className="flex items-center gap-1.5 text-[9px] text-background">
-                 <svg className="w-3 h-3 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                 {file}
-               </div>
-             ))}
-           </GlassCard>
-         </motion.div>
-       )}
+        {/* Search results showing supplier match */}
+        {phase >= 2 && (
+          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard layer={2} className="p-2.5">
+              <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold mb-1.5">Search Results</div>
+              <GlassCard highlight className="p-2">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex-1">
+                    <div className="text-[10px] font-semibold text-background">PräzisionsTech GmbH</div>
+                    <div className="text-[8px] text-background/70">Stuttgart, Germany · Aerospace</div>
+                  </div>
+                  <div className="flex items-center gap-0.5 px-1 py-0.5 border border-primary/40 bg-primary/5">
+                    <span className="text-sm font-bold text-primary">94</span>
+                    <span className="text-[7px] text-primary">%</span>
+                  </div>
+                </div>
+              </GlassCard>
+            </GlassCard>
+          </motion.div>
+        )}
 
-       {/* Order confirmed */}
-       {phase >= 3 && (
-         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-           <GlassCard highlight className="p-2 flex items-center gap-2">
-             <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-             <div>
-               <span className="text-[10px] font-semibold text-background">Audit Order Confirmed</span>
-               <div className="text-[8px] text-background/60">Timeline: 3 days</div>
-             </div>
-           </GlassCard>
-         </motion.div>
-       )}
+        {/* AI generating intelligence profile */}
+        {phase >= 2 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-[11px] text-primary">
+            <motion.div animate={{ rotate: phase < 3 ? 360 : 0 }} transition={{ repeat: phase < 3 ? Infinity : 0, duration: 1, ease: "linear" }}
+              className={`w-3 h-3 border-2 border-primary ${phase < 3 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
+            {phase < 3 ? "Building intelligence profile…" : "Intelligence profile created"}
+          </motion.div>
+        )}
+
+        {/* AI-generated intelligence profile */}
+        {phase >= 3 && (
+          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard highlight layer={2} className="p-2.5">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[10px] text-background font-semibold">PräzisionsTech GmbH</span>
+                <span className="text-[7px] text-primary font-bold uppercase px-1 py-0.5 border border-primary/40">AI Verified</span>
+              </div>
+              <div className="text-[9px] text-background/70 leading-tight space-y-0.5">
+                <div><span className="text-background/50">Industry:</span> <span className="text-background font-medium">Aerospace & Defense</span></div>
+                <div><span className="text-background/50">Capabilities:</span> <span className="text-background font-medium">CNC, 5-Axis, EDM</span></div>
+                <div><span className="text-background/50">Certifications:</span> <span className="text-background font-medium">ISO 9001, AS9100</span></div>
+              </div>
+            </GlassCard>
+          </motion.div>
+        )}
+
+        {/* Upload checklists */}
+        {phase >= 4 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard layer={2} className="p-2 space-y-1">
+              <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold">Checklists Uploaded</div>
+              {["ISO_9001_Checklist.pdf", "Custom_Req.xlsx"].map((file) => (
+                <div key={file} className="flex items-center gap-1.5 text-[9px] text-background">
+                  <svg className="w-3 h-3 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  {file}
+                </div>
+              ))}
+            </GlassCard>
+          </motion.div>
+        )}
+
+        {/* Order confirmed */}
+        {phase >= 5 && (
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+            <GlassCard highlight className="p-2 flex items-center gap-2">
+              <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <div>
+                <span className="text-[10px] font-semibold text-background">Audit Order Confirmed</span>
+                <div className="text-[8px] text-background/60">Timeline: 3 days</div>
+              </div>
+            </GlassCard>
+          </motion.div>
+        )}
 
       {phase >= 4 && (
          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
