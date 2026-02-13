@@ -155,6 +155,18 @@ const featureCategories = [
     ]
   },
   {
+    id: "ai-audit-app",
+    name: "AI Audit APP",
+    headline: "AI Audit APP\nfeatures",
+    link: "#",
+    features: [
+      {
+        title: "Coming soon",
+        description: "Details for the AI Audit APP will be added here."
+      }
+    ]
+  },
+  {
     id: "ground-intelligence",
     name: "Ground Intelligence",
     headline: "Ground Intelligence\nfeatures",
