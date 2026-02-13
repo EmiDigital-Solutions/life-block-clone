@@ -146,14 +146,6 @@ const featureCategories = [
         ]
       },
       {
-        clusterName: "Market Intelligence",
-        features: [
-          { title: "Market Opportunities", description: "Curated opportunities for suppliers, opportunity-supplier matching scores, and lead recommendations." },
-          { title: "Industry Insights", description: "Market research and trends, industry analysis, and competitive positioning." },
-          { title: "Price Intelligence", description: "Product category pricing data with monthly, quarterly, and yearly trends, seasonality analysis, and price benchmarking." }
-        ]
-      },
-      {
         clusterName: "Notifications System",
         features: [
           { title: "15+ Notification Types", description: "Search alerts, new supplier/buyer notifications, RFQ updates, messages, audit status, risk changes, market updates, connection requests, reviews, profile views, and payment reminders." },
