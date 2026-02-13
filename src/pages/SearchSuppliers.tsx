@@ -15,14 +15,33 @@ import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 const SearchProDemoWindows = () => {
   const [activeWindow, setActiveWindow] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setActiveWindow((prev) => (prev + 1) % 3);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [isPaused]);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    if (!isPaused) {
+      intervalRef.current = setInterval(() => {
+        setActiveWindow((prev) => (prev + 1) % 3);
+      }, 10000);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, activeWindow]);
+
+  const handlePauseToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPaused((prev) => !prev);
+  };
+
+  const handleStepClick = (i: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveWindow(i);
+    setIsPaused(true);
+  };
 
   const windowTitles = [
     "SearchPro+ — AI Chatbot",
@@ -36,9 +55,10 @@ const SearchProDemoWindows = () => {
     <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[600px] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
-        onClick={() => setIsPaused(!isPaused)}
-        className="absolute top-2 right-2 z-20 w-7 h-7 bg-[hsl(0,0%,30%)] hover:bg-[hsl(0,0%,25%)] flex items-center justify-center rounded-none transition-colors"
+        onClick={handlePauseToggle}
+        className="absolute top-1.5 right-1.5 z-30 w-7 h-7 bg-[hsl(0,0%,30%)] hover:bg-[hsl(0,0%,20%)] flex items-center justify-center rounded-none transition-colors cursor-pointer"
         aria-label={isPaused ? "Play" : "Pause"}
+        style={{ pointerEvents: 'auto' }}
       >
         {isPaused ? (
           <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><polygon points="0,0 10,6 0,12" fill="white" /></svg>
@@ -57,11 +77,11 @@ const SearchProDemoWindows = () => {
         <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">
           {windowTitles[activeWindow]}
         </span>
-        <div className="ml-auto flex gap-1 mr-8">
+        <div className="ml-auto flex gap-1 mr-9">
           {stepLabels.map((label, i) => (
             <button
               key={i}
-              onClick={() => { setActiveWindow(i); setIsPaused(true); }}
+              onClick={(e) => handleStepClick(i, e)}
               className={`px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider rounded-none transition-colors cursor-pointer ${
                 activeWindow === i
                   ? 'bg-primary text-white'
