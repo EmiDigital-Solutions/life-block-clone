@@ -194,7 +194,7 @@ const RightPanel = () => (
 
 /* ── MAIN ── */
 const AtlasAIDemoAnimation = () => (
-  <div className={`w-full h-full flex flex-col ${SCREEN_BG} overflow-hidden`} style={{ transform: 'scale(0.78)', transformOrigin: 'top center' }}>
+  <div className={`w-full h-full flex flex-col ${SCREEN_BG} overflow-hidden`}>
     <div className="flex items-center px-4 py-2 border-b border-muted-foreground/10">
       <div className="flex-[22] text-center">
         <span className="text-[9px] font-medium text-foreground/50 uppercase tracking-wider">Checklist</span>
