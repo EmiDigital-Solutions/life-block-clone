@@ -97,7 +97,7 @@ const MobileDiscoverScreen = () => {
        {phase >= 1 && (
          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end">
            <GlassCard className="px-2.5 py-1.5 text-[11px] text-background max-w-[80%]">
-             Implantable medical device components
+             CNC-machined precision components
            </GlassCard>
          </motion.div>
        )}
@@ -108,7 +108,7 @@ const MobileDiscoverScreen = () => {
              <span className="text-[8px] font-bold text-background">AI</span>
            </div>
            <GlassCard className="px-2.5 py-1.5 text-[11px] text-background">
-             Searching: ISO 13485 + FDA + Titanium…
+             Searching: AS9100 + CNC + Titanium…
            </GlassCard>
          </motion.div>
        )}
@@ -121,7 +121,7 @@ const MobileDiscoverScreen = () => {
              </svg>
              <span className="text-[11px] font-semibold text-foreground">4 Suppliers Found</span>
            </div>
-           {["MediParts GmbH · Munich", "BioTech Precision SA · Geneva"].map((s, i) => (
+           {["PräzisionsTech GmbH · Stuttgart", "Alpine CNC Solutions · Zurich"].map((s, i) => (
              <motion.div key={s} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}>
                <GlassCard highlight={i === 0} className="px-2.5 py-1.5 text-[10px] text-background">
                  {s}
@@ -168,10 +168,10 @@ const MobileMatchScreen = () => {
       {phase >= 1 && (
          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
            <GlassCard highlight className="p-3 flex items-center gap-3">
-             <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
+             <img src={auditorGen2} alt="M. Hoffmann" className="w-10 h-10 object-cover" />
              <div className="flex-1">
-               <div className="text-sm font-semibold text-background">Dr. Klaus Schmidt</div>
-               <div className="text-[11px] text-background/70">ISO 13485 Certified</div>
+               <div className="text-sm font-semibold text-background">Markus Hoffmann</div>
+               <div className="text-[11px] text-background/70">ISO 9001 Lead Auditor</div>
              </div>
              <div className="flex items-baseline gap-0.5">
                <span className="text-lg font-bold text-background">94</span>
@@ -207,7 +207,7 @@ const MobileAuditScreen = () => {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const items = ["Sterile environment validated", "Quality management active", "Traceability complete", "Personnel qualified"];
+  const items = ["CNC calibration verified", "Quality management active", "Traceability complete", "Operator certifications valid"];
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
@@ -222,7 +222,7 @@ const MobileAuditScreen = () => {
          </motion.div>
        </div>
        <div className="flex-1 p-3 space-y-2">
-         <div className="text-[10px] font-semibold text-foreground/60 uppercase tracking-wider">ISO 13485 Checklist</div>
+         <div className="text-[10px] font-semibold text-foreground/60 uppercase tracking-wider">ISO 9001 Checklist</div>
          {items.map((item, i) => (
            <div key={item} className="flex items-center gap-2">
              <div className={`w-4 h-4 flex items-center justify-center ${i < checked ? 'bg-foreground' : 'border border-foreground/20'}`}>
@@ -255,8 +255,8 @@ const MobileIntelligenceScreen = () => {
            <DonutScore score={91} size={90} />
          </div>
          <div className="flex-1">
-           <div className="text-sm font-semibold text-background">MediParts GmbH</div>
-           <div className="text-[11px] text-background/60">ISO 13485 Report</div>
+           <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
+           <div className="text-[11px] text-background/60">ISO 9001 Report</div>
            <div className="flex items-baseline gap-1 mt-1">
              <span className="text-lg font-bold text-background">91.3</span>
              <span className="text-[10px] text-background/60">%</span>
