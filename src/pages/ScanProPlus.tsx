@@ -669,7 +669,7 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-              <button className="bg-white border-2 border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary hover:text-white flex items-center gap-2 sm:gap-3 group">
+              <button className="bg-white border-2 border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary hover:text-white flex items-center gap-2 sm:gap-3 group">
                   <span>Learn more</span>
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -2325,7 +2325,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+            <h2 className="section-headline text-foreground mb-4 max-w-3xl mx-auto">
               What CFOs and Procurement Directors see
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
@@ -2474,7 +2474,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Measurable ROI Section */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-24 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Headline */}
           <motion.h2
