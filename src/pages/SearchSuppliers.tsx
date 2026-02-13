@@ -11,16 +11,18 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// 3-Window Demo: Chatbot → Search Results → Full Supplier Profile
+// 3-Window Demo: Chatbot → Search Results → Full Supplier Profile (Interactive)
 const SearchProDemoWindows = () => {
   const [activeWindow, setActiveWindow] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setActiveWindow((prev) => (prev + 1) % 3);
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
   const windowTitles = [
     "SearchPro+ — AI Chatbot",
@@ -31,7 +33,20 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[600px] flex flex-col">
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[600px] flex flex-col relative">
+      {/* Pause/Play button — top right corner */}
+      <button
+        onClick={() => setIsPaused(!isPaused)}
+        className="absolute top-2 right-2 z-20 w-7 h-7 bg-[hsl(0,0%,30%)] hover:bg-[hsl(0,0%,25%)] flex items-center justify-center rounded-none transition-colors"
+        aria-label={isPaused ? "Play" : "Pause"}
+      >
+        {isPaused ? (
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><polygon points="0,0 10,6 0,12" fill="white" /></svg>
+        ) : (
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="0" y="0" width="3" height="12" fill="white" /><rect x="7" y="0" width="3" height="12" fill="white" /></svg>
+        )}
+      </button>
+
       {/* Window chrome bar */}
       <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
         <div className="flex gap-1.5 mr-3">
@@ -42,18 +57,19 @@ const SearchProDemoWindows = () => {
         <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">
           {windowTitles[activeWindow]}
         </span>
-        <div className="ml-auto flex gap-1">
+        <div className="ml-auto flex gap-1 mr-8">
           {stepLabels.map((label, i) => (
-            <span
+            <button
               key={i}
-              className={`px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider rounded-none transition-colors ${
+              onClick={() => { setActiveWindow(i); setIsPaused(true); }}
+              className={`px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider rounded-none transition-colors cursor-pointer ${
                 activeWindow === i
                   ? 'bg-primary text-white'
-                  : 'bg-[hsl(0,0%,78%)] text-[hsl(0,0%,45%)]'
+                  : 'bg-[hsl(0,0%,78%)] text-[hsl(0,0%,45%)] hover:bg-[hsl(0,0%,72%)]'
               }`}
             >
               {label}
-            </span>
+            </button>
           ))}
         </div>
       </div>
@@ -68,7 +84,7 @@ const SearchProDemoWindows = () => {
           transition={{ duration: 0.5 }}
           className="absolute inset-0"
         >
-          {activeWindow === 0 && <DemoChatbot />}
+          {activeWindow === 0 && <DemoChatbot key={`chat-${activeWindow}`} />}
           {activeWindow === 1 && <DemoSearchResults />}
           {activeWindow === 2 && <DemoSupplierProfile />}
         </motion.div>
