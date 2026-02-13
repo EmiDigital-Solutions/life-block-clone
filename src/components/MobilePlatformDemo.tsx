@@ -286,14 +286,76 @@ const MobileIntelligenceScreen = () => {
   );
 };
 
+// ─── SCREEN 5: INSIGHTS (Mobile) ────────────────────────────────
+const MobileInsightsScreen = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 500),
+      setTimeout(() => setPhase(2), 1400),
+      setTimeout(() => setPhase(3), 2300),
+      setTimeout(() => setPhase(4), 3200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const kpis = [
+    { label: "Cost per Audit", value: "−96", unit: "%", sub: "€20k → €700", bars: [100, 80, 60, 40, 25, 12, 5, 3.5] },
+    { label: "Time to Qualify", value: "3", unit: "days", sub: "45 days → 3 days", bars: [100, 85, 65, 45, 30, 18, 8, 4] },
+    { label: "Supplier Quality", value: "96", unit: "%", sub: "+12% improvement", bars: [40, 55, 65, 75, 83, 89, 93, 96] },
+  ];
+
+  return (
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-1.5`}>
+      <div className="text-xs text-foreground/60 uppercase tracking-wider">Business Impact · 12-Month ROI</div>
+
+      {kpis.map((kpi, idx) => (
+        phase >= idx + 1 && (
+          <motion.div key={kpi.label} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard layer={2} className="p-2.5">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[9px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
+                <div className="flex items-baseline gap-0.5">
+                  <span className="text-sm font-bold text-background">{kpi.value}</span>
+                  <span className="text-[9px] text-background/70">{kpi.unit}</span>
+                </div>
+              </div>
+              <div className="flex items-end gap-[2px] h-6">
+                {kpi.bars.map((h, i) => (
+                  <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+                    transition={{ duration: 0.3, delay: i * 0.03 }}
+                    className={`flex-1 ${i >= 6 ? 'bg-primary' : 'bg-background/30'}`}
+                  />
+                ))}
+              </div>
+              <span className="text-[8px] text-primary font-semibold mt-0.5 block">{kpi.sub}</span>
+            </GlassCard>
+          </motion.div>
+        )
+      ))}
+
+      {phase >= 4 && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
+          <GlassCard highlight className="p-2 flex items-center gap-2">
+            <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span className="text-[10px] font-semibold text-background">ROI achieved in 30 days</span>
+          </GlassCard>
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
 const MobilePlatformDemo = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [MobileDiscoverScreen, MobileMatchScreen, MobileAuditScreen, MobileIntelligenceScreen];
-  const labels = ["Discover", "Match", "Audit", "Intel"];
+  const screens = [MobileDiscoverScreen, MobileMatchScreen, MobileAuditScreen, MobileIntelligenceScreen, MobileInsightsScreen];
+  const labels = ["Discover", "Match", "Audit", "Intel", "Insights"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 4);
+      setCurrentScreen((prev) => (prev + 1) % 5);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
@@ -321,7 +383,7 @@ const MobilePlatformDemo = () => {
       </div>
 
       <div className="py-2 text-center border-t border-muted-foreground/10">
-         <span className="text-[10px] text-foreground/60">Discover → Match → Audit → Intelligence. All in 3 days.</span>
+         <span className="text-[10px] text-foreground/60">Discover → Match → Audit → Intelligence → Insights. All in 3 days.</span>
       </div>
     </div>
   );
