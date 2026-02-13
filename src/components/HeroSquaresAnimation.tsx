@@ -25,6 +25,7 @@ const formations = {
     { x: -UNIT, y: UNIT * 2 },
     { x: 0, y: UNIT * 2 },
     { x: UNIT * 2, y: -UNIT },
+    { x: -UNIT, y: 0 },
   ],
   // Checkmark shape
   checkmark: [
@@ -35,6 +36,7 @@ const formations = {
     { x: UNIT * 1.5, y: UNIT * 1.5 },
     { x: UNIT * 2, y: UNIT },
     { x: UNIT * 2.5, y: UNIT * 0.5 },
+    { x: UNIT * 3, y: 0 },
   ],
   // Magnifying glass: circle + handle
   magnifyingGlass: [
@@ -45,6 +47,7 @@ const formations = {
     { x: UNIT * 0.5, y: UNIT * 2 },
     { x: UNIT * 1.5, y: UNIT * 2 },
     { x: UNIT * 2.5, y: UNIT * 2.5 },
+    { x: UNIT * 3, y: UNIT * 3 },
   ],
 };
 
