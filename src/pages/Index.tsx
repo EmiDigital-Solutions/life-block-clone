@@ -16,8 +16,20 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* Center line — full page vertical reference */}
-      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/[0.06] z-10 pointer-events-none" />
+      {/* 6-column background grid lines — Archlet style */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="container mx-auto max-w-7xl h-full relative">
+          <div className="absolute inset-0 grid grid-cols-6">
+            {[...Array(7)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute top-0 bottom-0 w-px bg-foreground/[0.06]"
+                style={{ left: `${(i / 6) * 100}%` }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
       <Navigation />
       <HeroSection />
       <CapabilityOverviewSection />

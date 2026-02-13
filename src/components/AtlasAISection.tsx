@@ -29,10 +29,10 @@ const AtlasAISection = () => {
   return (
     <section className="relative bg-white py-24 md:py-32 px-6">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
 
-          {/* Left column — headline, description, CTA (5 cols, left of center) */}
-          <div className="lg:col-span-5">
+          {/* Left column — headline, description, CTA (2 of 6 cols) */}
+          <div className="lg:col-span-2 lg:pr-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -114,8 +114,8 @@ const AtlasAISection = () => {
             </div>
           </div>
 
-          {/* Right column — Demo (7 cols, right of center, larger) */}
-          <div className="lg:col-span-7 flex items-start">
+          {/* Right column — Demo (4 of 6 cols, aligned to grid) */}
+          <div className="lg:col-span-4 flex items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
