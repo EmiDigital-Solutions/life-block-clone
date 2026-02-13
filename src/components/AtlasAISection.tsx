@@ -7,19 +7,19 @@ import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 const atlasFeatures = [
   {
     title: "Atlas Brain",
-    description: "Auto-generated audit context per question. Client-specific priorities, standard requirements, verification points, best practices, common issues, and evidence checklists — all in real time."
+    description: "Auto-generated audit context per question. Client-specific priorities, standard requirements, verification points, and evidence checklists — all in real time."
   },
   {
     title: "Atlas Copilot",
-    description: "Conversational audit execution with voice input, smart evidence requests, equipment photo recognition, AI-generated findings, and maturity level recommendations."
+    description: "Conversational audit execution with voice input, smart evidence requests, equipment photo recognition, and AI-generated findings."
   },
   {
     title: "Cross-Audit Intelligence",
-    description: "Pattern recognition from historical audits. Industry benchmarking, predictive insights, and continuous learning from every completed assessment."
+    description: "Pattern recognition from historical audits. Industry benchmarking, predictive insights, and continuous learning."
   },
   {
     title: "Evidence Analysis",
-    description: "Automatic evidence categorization, relevance scoring, document data extraction, and AI-powered acceptance recommendations."
+    description: "Automatic evidence categorization, relevance scoring, and AI-powered acceptance recommendations."
   }
 ];
 
@@ -28,11 +28,14 @@ const AtlasAISection = () => {
 
   return (
     <section className="relative bg-white py-24 md:py-32 px-6">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      {/* Center line — Archlet reference */}
+      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-foreground/[0.06]" />
 
-          {/* Left column — headline, description, CTA */}
-          <div>
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+
+          {/* Left column — headline, description, CTA (5 cols, left of center) */}
+          <div className="lg:col-span-5">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -68,21 +71,8 @@ const AtlasAISection = () => {
               </Link>
             </motion.div>
 
-            {/* Demo animation — 3-panel auditor interface, 25% larger */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="aspect-[4/3] overflow-hidden"
-            >
-              <AtlasAIDemoAnimation />
-            </motion.div>
-          </div>
-
-          {/* Right column — accordion features */}
-          <div className="flex flex-col justify-end">
-            <div className="border-t border-foreground/10">
+            {/* Accordion features — below CTA on left side */}
+            <div className="border-t border-foreground/10 mt-4">
               {atlasFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -94,9 +84,9 @@ const AtlasAISection = () => {
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                    className="w-full flex items-center justify-between py-5 text-left group"
+                    className="w-full flex items-center justify-between py-4 text-left group"
                   >
-                    <span className={`text-lg font-medium transition-colors ${
+                    <span className={`text-base font-medium transition-colors ${
                       openIndex === index ? "text-foreground" : "text-foreground/60"
                     } group-hover:text-foreground`}>
                       {feature.title}
@@ -116,7 +106,7 @@ const AtlasAISection = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <p className="text-sm text-muted-foreground leading-relaxed pb-5 max-w-md">
+                        <p className="text-sm text-muted-foreground leading-relaxed pb-4 max-w-sm">
                           {feature.description}
                         </p>
                       </motion.div>
@@ -125,6 +115,19 @@ const AtlasAISection = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+
+          {/* Right column — Demo (7 cols, right of center, larger) */}
+          <div className="lg:col-span-7 flex items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-full aspect-[4/3] overflow-hidden"
+            >
+              <AtlasAIDemoAnimation />
+            </motion.div>
           </div>
 
         </div>
