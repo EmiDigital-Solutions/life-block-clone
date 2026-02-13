@@ -108,13 +108,13 @@ const SearchProDemoWindows = () => {
   );
 };
 
-// Window 1: Guided Wizard Chat with Preference Engine (compact 4-step, 6s loop)
+// Window 1: Guided Wizard Chat — recognizes capabilities, materials, certs, tests
 const DemoChatbot = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     setStep(0);
-    const timers = [500, 1800, 3200, 4800].map((delay, i) =>
+    const timers = [400, 1400, 2400, 3400, 4400, 5400].map((delay, i) =>
       setTimeout(() => setStep(i + 1), delay)
     );
     return () => timers.forEach(clearTimeout);
@@ -128,20 +128,34 @@ const DemoChatbot = () => {
         <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Preference Engine</span>
       </div>
 
-      <div className="p-3 space-y-2 flex-1">
-        {/* Step 1: Profile detected */}
+      <div className="p-3 space-y-1.5 flex-1">
+        {/* Step 1: User describes need in natural language */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[85%] ml-auto">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">I need a supplier for 5-axis CNC aluminum brake calipers, hard anodized, IATF certified, with salt spray testing capability</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Step 2: AI parses and recognizes structured entities */}
+        {step >= 2 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1.5">Profile Detected</span>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-0">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1.5">AI Entity Recognition</span>
+              <div className="flex flex-wrap gap-1.5">
                 {[
-                  { label: "Company", value: "ElectraDrive GmbH" },
-                  { label: "Industry", value: "Automotive — EV" },
+                  { tag: "5-Axis CNC", cat: "Capability" },
+                  { tag: "Aluminum 6061/7075", cat: "Material" },
+                  { tag: "Hard Anodizing", cat: "Process" },
+                  { tag: "IATF 16949", cat: "Certificate" },
+                  { tag: "Salt Spray Test", cat: "Testing" },
+                  { tag: "Brake Calipers", cat: "Product" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 py-1 border-b border-[hsl(0,0%,28%)]">
-                    <span className="text-[10px] text-[hsl(0,0%,60%)] font-medium w-[60px] flex-shrink-0">{item.label}</span>
-                    <span className="text-[10px] font-bold text-white">{item.value}</span>
+                  <div key={i} className="flex items-center gap-1">
+                    <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-none">{item.cat}</span>
+                    <span className="text-[10px] font-semibold text-white">{item.tag}</span>
                   </div>
                 ))}
               </div>
@@ -149,59 +163,69 @@ const DemoChatbot = () => {
           </motion.div>
         )}
 
-        {/* Step 2: AI suggests categories */}
-        {step >= 2 && (
+        {/* Step 3: AI auto-expands with related certs & tests */}
+        {step >= 3 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
-            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[90%]">
+            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[92%]">
               <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">SearchPro+ AI</span>
-              <p className="text-[11px] font-semibold text-white">Based on your EV program, I recommend:</p>
+              <p className="text-[10px] font-semibold text-white leading-relaxed">Auto-adding related requirements from your industry profile:</p>
             </div>
-            <div className="flex gap-1.5 flex-wrap pl-1">
-              {["CNC Brake Calipers", "Motor Housings", "Battery Trays"].map((opt, i) => (
-                <span key={i} className={`px-2 py-1 text-[10px] font-semibold rounded-none cursor-default ${
-                  i === 0 ? 'bg-primary text-white' : 'bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] text-white'
-                }`}>{opt}</span>
+            <div className="flex gap-1 flex-wrap pl-1">
+              {[
+                { label: "ISO 14001", type: "cert" },
+                { label: "CMM Inspection", type: "cap" },
+                { label: "X-Ray NDT", type: "test" },
+                { label: "Tensile Test", type: "test" },
+              ].map((opt, i) => (
+                <span key={i} className="px-2 py-0.5 text-[9px] font-semibold rounded-none bg-primary/15 text-primary border border-primary/25">
+                  + {opt.label}
+                </span>
               ))}
             </div>
           </motion.div>
         )}
 
-        {/* Step 3: User selects + AI asks certs */}
-        {step >= 3 && (
+        {/* Step 4: User confirms volume */}
+        {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[65%] ml-auto">
+            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[55%] ml-auto">
               <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
-              <p className="text-[11px] font-semibold text-white">CNC Brake Calipers</p>
-            </div>
-            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[90%]">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">SearchPro+ AI</span>
-              <p className="text-[11px] font-semibold text-white">IATF 16949 pre-selected. Volume: 50K–100K. Searching…</p>
+              <p className="text-[10px] font-semibold text-white">50K–100K units/month</p>
             </div>
           </motion.div>
         )}
 
-        {/* Step 4: Search complete summary */}
-        {step >= 4 && (
+        {/* Step 5: AI confirms full search criteria */}
+        {step >= 5 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1.5">Search Complete</span>
-              <div className="grid grid-cols-3 gap-1.5 mb-2">
-                <div className="text-center p-1.5 bg-[hsl(0,0%,28%)] rounded-none">
-                  <p className="text-sm font-bold text-white">23</p>
-                  <p className="text-[8px] text-[hsl(0,0%,60%)] font-semibold uppercase">Matches</p>
-                </div>
-                <div className="text-center p-1.5 bg-[hsl(0,0%,28%)] rounded-none">
-                  <p className="text-sm font-bold text-white">8</p>
-                  <p className="text-[8px] text-[hsl(0,0%,60%)] font-semibold uppercase">IATF</p>
-                </div>
-                <div className="text-center p-1.5 bg-[hsl(0,0%,28%)] rounded-none">
-                  <p className="text-sm font-bold text-primary">96%</p>
-                  <p className="text-[8px] text-[hsl(0,0%,60%)] font-semibold uppercase">Top Score</p>
-                </div>
+            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[92%]">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">SearchPro+ AI</span>
+              <p className="text-[10px] font-semibold text-white">Searching with 6 capabilities · 3 certificates · 3 tests · 50K+ volume…</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Step 6: Search complete */}
+        {step >= 6 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Search Complete</span>
+              <div className="grid grid-cols-4 gap-1 mb-1.5">
+                {[
+                  { val: "23", label: "Matches" },
+                  { val: "6", label: "Capabilities" },
+                  { val: "3", label: "Certs" },
+                  { val: "3", label: "Tests" },
+                ].map((s, i) => (
+                  <div key={i} className="text-center p-1 bg-[hsl(0,0%,28%)] rounded-none">
+                    <p className="text-xs font-bold text-white">{s.val}</p>
+                    <p className="text-[7px] text-[hsl(0,0%,60%)] font-semibold uppercase">{s.label}</p>
+                  </div>
+                ))}
               </div>
-              <div className="p-2 bg-primary/10 border border-primary/30 rounded-none">
-                <p className="text-[11px] font-bold text-primary">Precision Metalworks GmbH — 96%</p>
-                <p className="text-[9px] text-[hsl(0,0%,40%)] font-medium mt-0.5">Munich · IATF 16949 · 65K/mo · Anodizing in-house</p>
+              <div className="p-1.5 bg-primary/10 border border-primary/30 rounded-none">
+                <p className="text-[10px] font-bold text-primary">Precision Metalworks GmbH — 96%</p>
+                <p className="text-[8px] text-[hsl(0,0%,40%)] font-medium">Munich · IATF 16949 · 5-Axis · Salt Spray · 65K/mo</p>
               </div>
             </div>
           </motion.div>
@@ -211,7 +235,7 @@ const DemoChatbot = () => {
       {/* Input bar — pinned at bottom */}
       <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)] mt-auto">
         <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] rounded-none flex items-center px-3">
-          <span className="text-[hsl(0,0%,55%)] text-[11px]">Or type your requirements...</span>
+          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what you need...</span>
         </div>
         <div className="w-9 h-9 bg-primary flex items-center justify-center rounded-none">
           <ArrowRight className="w-4 h-4 text-white" />
