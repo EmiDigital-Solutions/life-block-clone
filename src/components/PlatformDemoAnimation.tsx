@@ -14,17 +14,17 @@ import auditorGen4 from "@/assets/auditor-gen-4.jpg";
 const SCREEN_DURATION = 5000;
 
 /* Light grey background color for all screens */
-const SCREEN_BG = "bg-[hsl(0,0%,90%)]";
+const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
 
 /* ── Solid dark grey cards — no glass, no shadow, no blur ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-[hsl(0,0%,72%)] border-[hsl(0,0%,65%)]'
+    ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]'
     : layer === 2
-    ? 'bg-[hsl(0,0%,62%)] border-[hsl(0,0%,55%)]'
-    : 'bg-[hsl(0,0%,52%)] border-[hsl(0,0%,46%)]';
+    ? 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)]'
+    : 'bg-[hsl(0,0%,32%)] border-[hsl(0,0%,28%)]';
   return (
-    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,68%)]' : layerBg} ${className}`}>
+    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -144,9 +144,9 @@ const DiscoverScreen = () => {
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
              </svg>
            </div>
-           <span className="text-sm font-semibold text-background">SearchPro+</span>
+           <span className="text-sm font-semibold text-foreground">SearchPro+</span>
          </div>
-         <span className="text-[10px] text-background/70 uppercase tracking-wider">AI-Powered</span>
+         <span className="text-[10px] text-foreground/60 uppercase tracking-wider">AI-Powered</span>
        </div>
 
       <div className="flex-1 flex flex-col gap-2 overflow-hidden">
@@ -205,7 +205,7 @@ const DiscoverScreen = () => {
                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                </svg>
-               <span className="text-xs font-semibold text-background">4 Matching Suppliers</span>
+             <span className="text-xs font-semibold text-foreground">4 Matching Suppliers</span>
              </div>
              {suppliers.map((s, i) => (
                <motion.div key={s.name} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}>
@@ -223,7 +223,7 @@ const DiscoverScreen = () => {
 
         {phase >= 6 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-           <span className="text-[10px] text-background/70 tracking-wider uppercase">Step 1 of 4 · Discover</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 4 · Discover</span>
           </motion.div>
         )}
       </div>
@@ -253,8 +253,8 @@ const MatchScreen = () => {
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
        <div className="flex items-center justify-between">
-         <span className="text-sm font-semibold text-background">Auditor Matching</span>
-         <span className="text-[10px] text-background/70 uppercase tracking-wider">ScanPro+</span>
+         <span className="text-sm font-semibold text-foreground">Auditor Matching</span>
+         <span className="text-[10px] text-foreground/60 uppercase tracking-wider">ScanPro+</span>
        </div>
 
       {/* Stat card with bar chart — layer 2 for depth */}
@@ -313,7 +313,7 @@ const MatchScreen = () => {
 
       {phase >= 4 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-           <span className="text-[10px] text-background/70 tracking-wider uppercase">Step 2 of 4 · Match</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 4 · Match</span>
         </motion.div>
       )}
     </div>
@@ -346,15 +346,15 @@ const AuditScreen = () => {
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
-       <div className="px-4 py-2.5 border-b border-muted-foreground/10 flex items-center justify-between">
+       <div className="px-4 py-2.5 border-b border-foreground/10 flex items-center justify-between">
          <div className="flex items-center gap-2">
            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-           <span className="text-sm font-semibold text-background">Live Audit</span>
-           <span className="text-xs text-background/70">· MediParts GmbH</span>
+           <span className="text-sm font-semibold text-foreground">Live Audit</span>
+           <span className="text-xs text-foreground/60">· MediParts GmbH</span>
          </div>
          <div className="flex items-center gap-2">
            <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
-           <span className="text-xs text-background/70">Dr. Schmidt</span>
+           <span className="text-xs text-foreground/60">Dr. Schmidt</span>
          </div>
        </div>
 
@@ -386,24 +386,24 @@ const AuditScreen = () => {
         </div>
 
         <div className="w-1/2 flex flex-col border-l border-muted-foreground/10">
-           <div className="px-4 py-3 border-b border-muted-foreground/10">
-             <div className="text-xs font-semibold text-background/70 uppercase tracking-wider">ISO 13485 Checklist</div>
+           <div className="px-4 py-3 border-b border-foreground/10">
+             <div className="text-xs font-semibold text-foreground/60 uppercase tracking-wider">ISO 13485 Checklist</div>
            </div>
           <div className="flex-1 p-4 space-y-3">
              {checklistItems.map((item, i) => (
                <motion.div key={item} initial={{ opacity: 0.4 }} animate={{ opacity: i < checkedItems ? 1 : 0.4 }}
                  className="flex items-center gap-3">
                  <div className={`w-5 h-5 flex items-center justify-center transition-colors duration-300 ${
-                   i < checkedItems ? 'bg-background' : 'border border-background/20'
+                   i < checkedItems ? 'bg-foreground' : 'border border-foreground/20'
                  }`}>
                    {i < checkedItems && (
                      <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }}
-                       className="w-3 h-3 text-foreground" viewBox="0 0 24 24" fill="currentColor">
+                       className="w-3 h-3 text-background" viewBox="0 0 24 24" fill="currentColor">
                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                      </motion.svg>
                    )}
                  </div>
-                 <span className={`text-sm ${i < checkedItems ? 'text-background font-medium' : 'text-background/70'}`}>{item}</span>
+                 <span className={`text-sm ${i < checkedItems ? 'text-foreground font-medium' : 'text-foreground/50'}`}>{item}</span>
                </motion.div>
              ))}
           </div>
@@ -418,7 +418,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-background/70 tracking-wider uppercase">Step 3 of 4 · Audit</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 4 · Audit</span>
           </div>
         </div>
       </div>
@@ -446,14 +446,14 @@ const IntelligenceScreen = () => {
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
-       <div className="px-4 py-3 border-b border-muted-foreground/10 flex items-center justify-between">
+       <div className="px-4 py-3 border-b border-foreground/10 flex items-center justify-between">
          <div>
-           <div className="text-sm font-semibold text-background">MediParts GmbH</div>
-           <div className="text-xs text-background/70">ISO 13485 Audit Report</div>
+           <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
+           <div className="text-xs text-foreground/60">ISO 13485 Audit Report</div>
          </div>
          <div className="flex items-center gap-2">
            <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
-           <span className="text-xs text-background/70">Dr. Schmidt</span>
+           <span className="text-xs text-foreground/60">Dr. Schmidt</span>
          </div>
        </div>
 
@@ -468,7 +468,7 @@ const IntelligenceScreen = () => {
                 </div>
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
-                   <span className="text-[10px] text-background/70 uppercase tracking-wider">Overall Score</span>
+                   <span className="text-[10px] text-background/60 uppercase tracking-wider">Overall Score</span>
                    <div className="flex items-center gap-1 text-primary text-xs font-medium mt-1">
                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
                      trending up
@@ -527,7 +527,7 @@ const IntelligenceScreen = () => {
         <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col">
           {showElements >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 flex-1">
-               <div className="text-[10px] font-semibold text-background/70 uppercase tracking-wider mb-2">Evidence Gallery</div>
+               <div className="text-[10px] font-semibold text-foreground/60 uppercase tracking-wider mb-2">Evidence Gallery</div>
               <div className="grid grid-cols-4 gap-1">
                 {evidenceImages.map((img, i) => (
                   <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
@@ -553,7 +553,7 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-background/70 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
           </div>
         </div>
       </div>
