@@ -27,7 +27,7 @@ const FinalCTASection = () => {
           </h2>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-10">
-            Reduce average €15,000 audit cost to €700. <span className="mx-2 text-muted-foreground/40">|</span> Don't wait weeks if you can get it in a few days.
+            €15,000 → €700 per audit <span className="mx-2 text-muted-foreground/40">|</span> Weeks → 3 Days
           </p>
 
           <Button

@@ -67,9 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Starts at €700 per audit <span className="mx-3 text-foreground/30">|</span> Audit start in 3 days.<br />
-                AI-powered audits with 99% accuracy.<br />
-                So you never get burned by a bad supplier again.
+                Reduce average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Don't wait weeks if you can get it in a few days.
               </motion.p>
 
               <motion.div
