@@ -221,19 +221,20 @@ const MobileDiscoverScreen = () => {
                    </svg>
                  </div>
 
-                 {/* Macro risk + Client KPIs */}
-                 <div className="flex gap-1.5">
-                   {[
-                     { label: "Currency", value: "Stable" },
-                     { label: "Supply Ch.", value: "Moderate" },
-                     { label: "Regulatory", value: "Low" },
-                   ].map((item) => (
-                     <div key={item.label} className="flex-1 text-center">
-                       <span className="text-[7px] text-background font-semibold block">{item.value}</span>
-                       <span className="text-[5px] text-background/50 uppercase">{item.label}</span>
-                     </div>
-                   ))}
-                 </div>
+                  {/* Macro risk + Client KPIs */}
+                  <div className="grid grid-cols-4 gap-1">
+                    {[
+                      { label: "Currency", value: "Stable" },
+                      { label: "Supply Ch.", value: "Moderate" },
+                      { label: "Regulatory", value: "Low" },
+                      { label: "Geopolit.", value: "Clear" },
+                    ].map((item) => (
+                      <div key={item.label} className="text-center">
+                        <span className="text-[7px] text-background font-semibold block">{item.value}</span>
+                        <span className="text-[5px] text-background/50 uppercase">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
 
                  <div className="flex gap-1.5 border-t border-background/10 pt-1.5">
                    {[

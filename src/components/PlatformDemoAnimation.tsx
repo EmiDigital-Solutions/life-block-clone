@@ -343,24 +343,25 @@ const DiscoverScreen = () => {
                    </svg>
                  </div>
 
-                 {/* Row 3: Macro/Micro economic risk indicators */}
-                 <div>
-                   <div className="text-[7px] text-background/50 uppercase mb-1">Macroeconomic Risk Assessment</div>
-                   <div className="grid grid-cols-4 gap-1.5">
-                     {[
-                       { label: "Currency", value: "Stable", risk: "low" },
-                       { label: "Supply Chain", value: "Moderate", risk: "mid" },
-                       { label: "Regulatory", value: "Low", risk: "low" },
-                       { label: "Market", value: "Growing", risk: "low" },
-                     ].map((item) => (
-                       <div key={item.label} className="text-center">
-                         <div className={`w-2 h-2 mx-auto mb-0.5 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
-                         <span className="text-[7px] text-background font-semibold block">{item.value}</span>
-                         <span className="text-[6px] text-background/50 uppercase">{item.label}</span>
-                       </div>
-                     ))}
-                   </div>
-                 </div>
+                  {/* Row 3: Macro/Micro economic risk indicators */}
+                  <div>
+                    <div className="text-[7px] text-background/50 uppercase mb-1">Macroeconomic Risk Assessment</div>
+                    <div className="grid grid-cols-5 gap-1.5">
+                      {[
+                        { label: "Currency", value: "Stable", risk: "low" },
+                        { label: "Supply Chain", value: "Moderate", risk: "mid" },
+                        { label: "Regulatory", value: "Low", risk: "low" },
+                        { label: "Market", value: "Growing", risk: "low" },
+                        { label: "Geopolitical", value: "Clear", risk: "low" },
+                      ].map((item) => (
+                        <div key={item.label} className="text-center">
+                          <div className={`w-2 h-2 mx-auto mb-0.5 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
+                          <span className="text-[7px] text-background font-semibold block">{item.value}</span>
+                          <span className="text-[6px] text-background/50 uppercase">{item.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
                  {/* Row 4: Client-specific KPIs */}
                  <div className="flex gap-2 border-t border-background/10 pt-2">
