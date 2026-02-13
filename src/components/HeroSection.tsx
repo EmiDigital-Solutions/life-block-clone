@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Reduce average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Don't wait weeks if you can get physical on-site audits in few days.
+                Reduce your average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Why wait weeks when you can get physical on-site audits in days?
               </motion.p>
 
               <motion.div
