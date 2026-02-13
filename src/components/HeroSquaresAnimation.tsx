@@ -16,18 +16,20 @@ const UNIT = SQUARE_SIZE + GAP;
 
 // Formation definitions — each square gets {x, y} offsets and opacity
 const formations = {
-  // Triangle: pyramid shape pointing up
+  // Triangle: 45° pointing to upper-right corner
   triangle: [
-    { x: UNIT * 1.5, y: 0 },
-    { x: UNIT, y: UNIT },
+    { x: UNIT * 4, y: 0 },
+    { x: UNIT * 3, y: 0 },
+    { x: UNIT * 4, y: UNIT },
+    { x: UNIT * 2, y: 0 },
+    { x: UNIT * 3, y: UNIT },
+    { x: UNIT * 4, y: UNIT * 2 },
+    { x: UNIT, y: 0 },
     { x: UNIT * 2, y: UNIT },
-    { x: UNIT * 0.5, y: UNIT * 2 },
-    { x: UNIT * 1.5, y: UNIT * 2 },
-    { x: UNIT * 2.5, y: UNIT * 2 },
-    { x: 0, y: UNIT * 3 },
-    { x: UNIT * 3, y: UNIT * 3 },
+    { x: UNIT * 3, y: UNIT * 2 },
+    { x: UNIT * 4, y: UNIT * 3 },
   ],
-  // Checkmark shape
+  // Checkmark shape (8 + 2 hidden)
   checkmark: [
     { x: -UNIT * 0.5, y: UNIT * 1.5 },
     { x: 0, y: UNIT * 2 },
@@ -37,8 +39,10 @@ const formations = {
     { x: UNIT * 2, y: UNIT },
     { x: UNIT * 2.5, y: UNIT * 0.5 },
     { x: UNIT * 3, y: 0 },
+    { x: UNIT * 3.5, y: -UNIT * 0.5, opacity: 0 },
+    { x: UNIT * 4, y: -UNIT, opacity: 0 },
   ],
-  // Magnifying glass: circle + handle
+  // Magnifying glass: circle + handle (8 + 2 hidden)
   magnifyingGlass: [
     { x: UNIT * 0.5, y: 0 },
     { x: UNIT * 1.5, y: 0 },
@@ -48,6 +52,8 @@ const formations = {
     { x: UNIT * 1.5, y: UNIT * 2 },
     { x: UNIT * 2.5, y: UNIT * 2.5 },
     { x: UNIT * 3, y: UNIT * 3 },
+    { x: UNIT * 3.5, y: UNIT * 3.5, opacity: 0 },
+    { x: UNIT * 4, y: UNIT * 4, opacity: 0 },
   ],
 };
 
@@ -87,7 +93,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
             animate={{
               x: pos.x,
               y: pos.y,
-              opacity: 1,
+              opacity: (pos as any).opacity !== undefined ? (pos as any).opacity : 1,
             }}
             initial={false}
             transition={{
