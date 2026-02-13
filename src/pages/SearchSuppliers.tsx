@@ -2076,7 +2076,7 @@ const ComparisonMockup = () => {
       </section>
 
       {/* Product Overview Section - Beyond Discovery */}
-      <section className="py-24 px-6 bg-white" data-nav-theme="light">
+      <section className="py-24 bg-white" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
@@ -2266,7 +2266,7 @@ const ComparisonMockup = () => {
       </section>
 
       {/* Technology Section - BeFound Style Benefits Cards */}
-      <section className="py-16 px-6 bg-white" data-nav-theme="light">
+      <section className="py-16 bg-white" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -2454,7 +2454,7 @@ const ComparisonMockup = () => {
       </section>
 
       {/* End-to-End Differentiator Section */}
-      <section className="py-20 px-6 bg-background" data-nav-theme="light">
+      <section className="py-20 bg-background" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
@@ -2503,7 +2503,7 @@ const ComparisonMockup = () => {
       </section>
 
       {/* Testimonial Section - BeFound 3-Column Style */}
-      <section className="py-20 px-6 bg-white" data-nav-theme="light">
+      <section className="py-20 bg-white" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
@@ -2588,7 +2588,7 @@ const ComparisonMockup = () => {
       </section>
 
       {/* Stats Section - End-to-End Value KPIs */}
-      <section className="py-32 px-6 bg-white" data-nav-theme="light">
+      <section className="py-32 bg-white" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Headline */}
           <motion.h2

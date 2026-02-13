@@ -135,7 +135,7 @@ const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[]
       data-nav-theme="light"
       className="relative py-12 sm:py-16 md:py-20 bg-white"
     >
-      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+        <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Headline Above Globe */}
         <motion.div
@@ -611,10 +611,9 @@ const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
     <section
       id="auditor-network"
       data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 pb-20 sm:pb-24 md:pb-32 overflow-visible"
-      style={{ background: "transparent" }}
+      className="relative py-12 sm:py-16 md:py-20 pb-20 sm:pb-24 md:pb-32 overflow-visible bg-white"
     >
-      <div className="max-w-[2000px] mx-auto px-4 sm:px-6 md:px-8" style={{ paddingLeft: "5%", paddingRight: "5%" }}>
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Auditor Network Section - Horizontal Layout */}
         <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
           
@@ -1898,7 +1897,7 @@ const HowItWorksCarousel = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12 bg-background"
+      className="relative py-12 sm:py-20 md:py-28 bg-background"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Section Header - Homepage Style */}
@@ -2270,7 +2269,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden px-4 sm:px-6 py-6 sm:py-8 bg-white">
+      <div className="lg:hidden py-6 sm:py-8 bg-white">
         <HeroROICalculator />
       </div>
 
@@ -2390,7 +2389,7 @@ const ScanProPlus = () => {
       </section>
 
       {/* Testimonial Section - Be Found 3-Column Style */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
