@@ -8,9 +8,9 @@ interface PortraitWithBlueBlocksProps {
 }
 
 /**
- * Portrait image with Archlet-style scattered square blocks overlay.
- * Inspired by the checkerboard pixel-grid pattern from the reference design.
- * Blocks are positioned to avoid overlapping the face/head area.
+ * Portrait image with Archlet-style scattered checkerboard square overlay.
+ * Matches reference: diagonal grid of small squares, some filled with primary color,
+ * creating a pixel-mosaic dissolve effect at edges. Squares avoid face/head area.
  */
 const PortraitWithBlueBlocks = ({ 
   src, 
@@ -18,51 +18,92 @@ const PortraitWithBlueBlocks = ({
   className = "aspect-square",
   variant = "default"
 }: PortraitWithBlueBlocksProps) => {
-  // Square size as percentage of container
-  const sq = "w-[8%] aspect-square";
+  // Each square is ~6% of container width, gap between = ~6% (checkerboard spacing)
+  const s = 6; // square size %
+  const g = s; // gap = same as size for checkerboard
 
-  const blockVariants = {
-    default: (
-      <>
-        {/* Bottom-left cluster */}
-        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[20%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[22%] left-[11%] ${sq} bg-primary`} />
-        {/* Top-right cluster */}
-        <div className={`absolute top-[6%] right-[3%] ${sq} bg-primary`} />
-        <div className={`absolute top-[6%] right-[12%] ${sq} bg-primary`} />
-        <div className={`absolute top-[15%] right-[3%] ${sq} bg-primary`} />
-      </>
-    ),
-    left: (
-      <>
-        {/* Bottom-right cluster */}
-        <div className={`absolute bottom-[4%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] right-[20%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[22%] right-[11%] ${sq} bg-primary`} />
-        {/* Top-left cluster */}
-        <div className={`absolute top-[6%] left-[3%] ${sq} bg-primary`} />
-        <div className={`absolute top-[6%] left-[12%] ${sq} bg-primary`} />
-        <div className={`absolute top-[15%] left-[3%] ${sq} bg-primary`} />
-      </>
-    ),
-    right: (
-      <>
-        {/* Bottom-left cluster */}
-        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
-        {/* Top-right scattered */}
-        <div className={`absolute top-[4%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute top-[13%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute top-[4%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute top-[13%] right-[2%] ${sq} bg-primary`} />
-      </>
-    ),
+  // Generate a checkerboard grid of squares at given origin, with some cells filled
+  // Pattern mimics the reference: diagonal dissolve from corner
+  const renderSquareCluster = (
+    originX: number, 
+    originY: number, 
+    pattern: boolean[][], 
+    anchorRight = false,
+    anchorBottom = false
+  ) => {
+    const squares: JSX.Element[] = [];
+    pattern.forEach((row, rowIdx) => {
+      row.forEach((filled, colIdx) => {
+        if (!filled) return;
+        const x = originX + colIdx * g;
+        const y = originY + rowIdx * g;
+        const style: React.CSSProperties = {
+          position: 'absolute',
+          width: `${s}%`,
+          aspectRatio: '1',
+        };
+        if (anchorRight) {
+          style.right = `${x}%`;
+        } else {
+          style.left = `${x}%`;
+        }
+        if (anchorBottom) {
+          style.bottom = `${y}%`;
+        } else {
+          style.top = `${y}%`;
+        }
+        squares.push(
+          <div key={`${rowIdx}-${colIdx}`} className="bg-primary" style={style} />
+        );
+      });
+    });
+    return squares;
+  };
+
+  // Checkerboard dissolve patterns (true = filled square)
+  // Mimics the reference diagonal pixel scatter
+  const bottomLeftPattern = [
+    [false, true,  false, false, false],
+    [true,  false, true,  false, false],
+    [false, true,  false, true,  false],
+    [true,  false, true,  false, true ],
+    [false, true,  false, true,  false],
+  ];
+
+  const topRightPattern = [
+    [false, true,  false, true ],
+    [true,  false, true,  false],
+    [false, true,  false, false],
+    [true,  false, false, false],
+  ];
+
+  const bottomRightPattern = [
+    [false, false, false, true ],
+    [false, false, true,  false],
+    [false, true,  false, true ],
+    [true,  false, true,  false],
+    [false, true,  false, true ],
+  ];
+
+  const topLeftPattern = [
+    [true,  false, true,  false],
+    [false, true,  false, false],
+    [true,  false, false, false],
+  ];
+
+  const variants: Record<string, JSX.Element[]> = {
+    default: [
+      ...renderSquareCluster(0, 0, bottomLeftPattern, false, true),
+      ...renderSquareCluster(0, 0, topRightPattern, true, false),
+    ],
+    left: [
+      ...renderSquareCluster(0, 0, bottomRightPattern, true, true),
+      ...renderSquareCluster(0, 0, topLeftPattern, false, false),
+    ],
+    right: [
+      ...renderSquareCluster(0, 0, bottomLeftPattern, false, true),
+      ...renderSquareCluster(0, 0, topRightPattern, true, false),
+    ],
   };
 
   return (
@@ -70,14 +111,14 @@ const PortraitWithBlueBlocks = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`relative overflow-hidden bg-muted ${className}`}
+      className={`relative overflow-visible bg-muted ${className}`}
     >
       <img 
         src={src}
         alt={alt}
         className="w-full h-full object-cover grayscale"
       />
-      {blockVariants[variant]}
+      {variants[variant]}
     </motion.div>
   );
 };
