@@ -690,26 +690,26 @@ const SearchSuppliers = () => {
                                 setIsFading(false);
                                 isRunningRef.current = false;
                                 setCurrentScenario((prev) => (prev + 1) % scenarios.length);
-                              }, 300);
+                              }, 400);
                               timeoutsRef.current.push(t8);
-                            }, 2000);
+                            }, 3000);
                             timeoutsRef.current.push(t7);
-                          }, 300);
+                          }, 600);
                           timeoutsRef.current.push(t6);
                         });
-                      }, 300);
+                      }, 800);
                       timeoutsRef.current.push(t5);
                     });
-                  }, 300);
+                  }, 700);
                   timeoutsRef.current.push(t4);
                 });
-              }, 300);
+              }, 800);
               timeoutsRef.current.push(t3);
             });
-          }, 300);
+          }, 600);
           timeoutsRef.current.push(t2);
         });
-      }, 200);
+      }, 400);
       timeoutsRef.current.push(t1);
     };
 
@@ -723,7 +723,7 @@ const SearchSuppliers = () => {
     const typingInterval = setInterval(() => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
-        currentIndex += 3;
+        currentIndex += 2;
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
@@ -734,7 +734,7 @@ const SearchSuppliers = () => {
         setAiResponse("");
         onComplete();
       }
-    }, 10);
+    }, 15);
   };
 
   const typeUserMessage = (message: string, onComplete: () => void) => {
@@ -743,7 +743,7 @@ const SearchSuppliers = () => {
     const typingInterval = setInterval(() => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
-        currentIndex += 3;
+        currentIndex += 2;
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
@@ -753,7 +753,7 @@ const SearchSuppliers = () => {
         setUserInput("");
         onComplete();
       }
-    }, 15);
+    }, 25);
   };
 
 // Window Chrome Component for mockups
@@ -1393,7 +1393,7 @@ const ComparisonMockup = () => {
             <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none">
               
               {/* Card Header */}
-              <div className="bg-[hsl(0,0%,45%)] px-6 py-4 flex items-center justify-between border-b border-[hsl(0,0%,40%)]">
+              <div className="bg-[hsl(0,0%,25%/0.65)] backdrop-blur-xl px-6 py-4 flex items-center justify-between border-b border-[hsl(0,0%,50%/0.2)]">
                 <h2 className="text-[hsl(0,0%,95%)] text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
                   <span className="text-[hsl(0,0%,80%)] text-sm">AI-Powered</span>
@@ -1423,7 +1423,7 @@ const ComparisonMockup = () => {
                     key={step}
                     className={`w-10 h-10 rounded-none flex items-center justify-center text-sm font-bold transition-all ${
                       step <= currentStep
-                        ? 'bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]'
+                        ? 'backdrop-blur-md bg-[hsl(0,0%,25%/0.65)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]'
                         : 'bg-[hsl(0,0%,75%)] text-[hsl(0,0%,50%)]'
                     }`}
                   >
@@ -1449,15 +1449,15 @@ const ComparisonMockup = () => {
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-4 rounded-none ${
+                      className={`max-w-[80%] p-4 rounded-none backdrop-blur-md ${
                         msg.role === 'user'
-                          ? 'bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]'
-                          : 'bg-[hsl(0,0%,42%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,37%)]'
+                          ? 'bg-[hsl(0,0%,30%/0.7)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]'
+                          : 'bg-[hsl(0,0%,25%/0.6)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.25)]'
                       }`}
                     >
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded-none bg-primary/30 flex items-center justify-center">
+                          <div className="w-5 h-5 rounded-none bg-primary/30 backdrop-blur-sm flex items-center justify-center">
                             <span className="text-[8px] text-primary font-bold">AI</span>
                           </div>
                           <span className="text-xs font-bold text-primary">YVOO</span>
@@ -1475,9 +1475,9 @@ const ComparisonMockup = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="max-w-[80%] p-4 rounded-none bg-[hsl(0,0%,42%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,37%)]">
+                    <div className="max-w-[80%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,25%/0.6)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.25)]">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded-none bg-primary/30 flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-none bg-primary/30 backdrop-blur-sm flex items-center justify-center">
                           <span className="text-[8px] text-primary font-bold">AI</span>
                         </div>
                         <span className="text-xs font-bold text-primary">YVOO</span>
@@ -1501,7 +1501,7 @@ const ComparisonMockup = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-end"
                   >
-                    <div className="max-w-[80%] p-4 rounded-none bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]">
+                    <div className="max-w-[80%] p-4 rounded-none backdrop-blur-md bg-[hsl(0,0%,30%/0.7)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,50%/0.3)]">
                       <p className="text-sm font-medium">{userInput}</p>
                     </div>
                   </motion.div>
@@ -1526,7 +1526,7 @@ const ComparisonMockup = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] rounded-none hover:border-primary transition-all group"
+                        className="text-left p-4 backdrop-blur-md bg-[hsl(0,0%,30%/0.7)] border border-[hsl(0,0%,50%/0.3)] rounded-none hover:border-primary transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
                           <h4 className="font-black text-[hsl(0,0%,95%)] group-hover:text-primary transition-colors">
