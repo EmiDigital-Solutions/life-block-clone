@@ -18,7 +18,7 @@ const SearchProDemoWindows = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveWindow((prev) => (prev + 1) % 3);
-    }, 6000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
