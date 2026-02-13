@@ -16,9 +16,9 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* 6-column background grid lines — Archlet style, always visible behind content */}
-      <div className="fixed inset-0 z-[5] pointer-events-none" aria-hidden="true">
-        <div className="mx-auto max-w-7xl h-full px-6">
+      {/* 6-column background grid lines — Archlet style, behind all content */}
+      <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div className="mx-auto max-w-[1400px] h-full px-8">
           <div className="relative h-full">
             {[...Array(7)].map((_, i) => (
               <div
@@ -30,20 +30,23 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <Navigation />
-      <HeroSection />
-      <CapabilityOverviewSection />
-      <TestimonialSection />
-      <WhyYVOOSection />
-      <AtlasAISection />
-      <EmailComparisonSection />
-      <GlobalNetworkSection />
-      <HowItWorksSection />
-      <StatsWithQuoteSection />
-      <TestimonialsCarouselSection />
-      <FAQSection />
-      <FinalCTASection />
-      <Footer />
+      {/* All content sits above grid lines */}
+      <div className="relative z-[1]">
+        <Navigation />
+        <HeroSection />
+        <CapabilityOverviewSection />
+        <TestimonialSection />
+        <WhyYVOOSection />
+        <AtlasAISection />
+        <EmailComparisonSection />
+        <GlobalNetworkSection />
+        <HowItWorksSection />
+        <StatsWithQuoteSection />
+        <TestimonialsCarouselSection />
+        <FAQSection />
+        <FinalCTASection />
+        <Footer />
+      </div>
     </div>
   );
 };
