@@ -4,13 +4,19 @@ import equipmentImage from "@/assets/cnc-machine-dmg-nlx.jpg";
 import auditorGen2 from "@/assets/auditor-gen-2.jpg";
 
 const SCREEN_DURATION = 5000;
+const SCREEN_BG = "bg-[hsl(0,0%,90%)]";
 
-/* Dashboard card — muted bg, squared */
-const DashCard = ({ children, className = "", highlight = false }: { children: React.ReactNode; className?: string; highlight?: boolean }) => (
-  <div className={`border ${highlight ? 'border-primary/20 bg-primary/5' : 'border-border bg-muted/60'} ${className}`}>
-    {children}
-  </div>
-);
+/* ── ORION Glass Card — dark grey milky glass ── */
+const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
+  const layerBg = layer === 1
+    ? 'bg-[hsl(0,0%,55%)/0.3] border-[hsl(0,0%,70%)/0.25] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
+    : 'bg-[hsl(0,0%,48%)/0.35] border-[hsl(0,0%,65%)/0.2] shadow-[0_4px_20px_rgba(0,0,0,0.1)]';
+  return (
+    <div className={`border backdrop-blur-xl ${highlight ? 'border-primary/30 bg-primary/8 backdrop-blur-xl' : layerBg} ${className}`}>
+      {children}
+    </div>
+  );
+};
 
 /* Mini bar chart */
 const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: number }) => (
@@ -18,11 +24,50 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
     {bars.map((h, i) => (
       <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
         transition={{ duration: 0.3, delay: i * 0.02 }}
-        className={`w-[2px] ${i === accentIndex ? 'bg-primary' : 'bg-muted-foreground/25'}`}
+        className={`w-[2px] ${i === accentIndex ? 'bg-primary' : 'bg-muted-foreground/20'}`}
       />
     ))}
   </div>
 );
+
+/* ORION donut */
+const DonutScore = ({ score, size = 56 }: { score: number; size?: number }) => {
+  const strokeW = 5;
+  const r = (size - strokeW * 2) / 2;
+  const circ = 2 * Math.PI * r;
+  const tickCount = 40;
+  const tickR = r + strokeW + 1;
+  return (
+    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
+        {Array.from({ length: tickCount }).map((_, i) => {
+          const angle = (i / tickCount) * 360 - 90;
+          const rad = (angle * Math.PI) / 180;
+          const cx = size / 2;
+          const cy = size / 2;
+          const x1 = cx + Math.cos(rad) * (tickR - 2);
+          const y1 = cy + Math.sin(rad) * (tickR - 2);
+          const x2 = cx + Math.cos(rad) * tickR;
+          const y2 = cy + Math.sin(rad) * tickR;
+          return (
+            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+              stroke={i / tickCount <= score / 100 ? 'hsl(0,0%,45%)' : 'hsl(0,0%,78%)'}
+              strokeWidth={0.6} strokeLinecap="round" />
+          );
+        })}
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
+        <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
+          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="round"
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
+          animate={{ strokeDashoffset: circ * (1 - score / 100) }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        />
+      </svg>
+      <span className="text-sm font-bold text-foreground z-10">{score}%</span>
+    </div>
+  );
+};
 
 const MobileDiscoverScreen = () => {
   const [phase, setPhase] = useState(0);
@@ -37,23 +82,23 @@ const MobileDiscoverScreen = () => {
   }, []);
 
   return (
-    <div className="h-full flex flex-col bg-background p-4 gap-2">
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-2`}>
       <div className="text-xs text-muted-foreground uppercase tracking-wider">SearchPro+ · AI-Powered</div>
 
       <div className="flex gap-2">
         <div className="w-5 h-5 bg-foreground flex items-center justify-center flex-shrink-0">
           <span className="text-[8px] font-bold text-background">AI</span>
         </div>
-        <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground">
+        <GlassCard className="px-2.5 py-1.5 text-[11px] text-foreground">
           What are you looking for?
-        </DashCard>
+        </GlassCard>
       </div>
 
       {phase >= 1 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end">
-          <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground max-w-[80%]">
+          <GlassCard className="px-2.5 py-1.5 text-[11px] text-foreground max-w-[80%]">
             Implantable medical device components
-          </DashCard>
+          </GlassCard>
         </motion.div>
       )}
 
@@ -62,9 +107,9 @@ const MobileDiscoverScreen = () => {
           <div className="w-5 h-5 bg-foreground flex items-center justify-center flex-shrink-0">
             <span className="text-[8px] font-bold text-background">AI</span>
           </div>
-          <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground">
+          <GlassCard className="px-2.5 py-1.5 text-[11px] text-foreground">
             Searching: ISO 13485 + FDA + Titanium…
-          </DashCard>
+          </GlassCard>
         </motion.div>
       )}
 
@@ -78,9 +123,9 @@ const MobileDiscoverScreen = () => {
           </div>
           {["MediParts GmbH · Munich", "BioTech Precision SA · Geneva"].map((s, i) => (
             <motion.div key={s} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}>
-              <DashCard highlight={i === 0} className="px-2.5 py-1.5 text-[10px] text-foreground">
+              <GlassCard highlight={i === 0} className="px-2.5 py-1.5 text-[10px] text-foreground">
                 {s}
-              </DashCard>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -106,10 +151,10 @@ const MobileMatchScreen = () => {
   const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70];
 
   return (
-    <div className="h-full flex flex-col bg-background p-4 gap-3">
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
       <div className="text-xs text-muted-foreground uppercase tracking-wider">Auditor Matching</div>
 
-      <DashCard className="p-3">
+      <GlassCard layer={2} className="p-3">
         <div className="flex items-baseline gap-1 mb-1">
           <span className="text-xl font-bold text-foreground">3</span>
           <span className="text-[10px] text-primary font-semibold -translate-y-1.5">+3</span>
@@ -118,11 +163,11 @@ const MobileMatchScreen = () => {
         <div className="mt-2">
           <BarChart bars={matchBars} accentIndex={12} />
         </div>
-      </DashCard>
+      </GlassCard>
 
       {phase >= 1 && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          <DashCard highlight className="p-3 flex items-center gap-3">
+          <GlassCard highlight className="p-3 flex items-center gap-3">
             <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
             <div className="flex-1">
               <div className="text-sm font-semibold text-foreground">Dr. Klaus Schmidt</div>
@@ -132,18 +177,18 @@ const MobileMatchScreen = () => {
               <span className="text-lg font-bold text-foreground">94</span>
               <span className="text-[10px] text-muted-foreground">%</span>
             </div>
-          </DashCard>
+          </GlassCard>
         </motion.div>
       )}
 
       {phase >= 2 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <DashCard highlight className="flex items-center gap-2 p-2.5">
+          <GlassCard highlight className="flex items-center gap-2 p-2.5">
             <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
             </svg>
             <span className="text-xs font-semibold text-foreground">Confirmed — On-site Dec 22</span>
-          </DashCard>
+          </GlassCard>
         </motion.div>
       )}
     </div>
@@ -165,7 +210,7 @@ const MobileAuditScreen = () => {
   const items = ["Sterile environment validated", "Quality management active", "Traceability complete", "Personnel qualified"];
 
   return (
-    <div className="h-full flex flex-col bg-background">
+    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
       <div className="relative h-28 overflow-hidden">
         <img src={equipmentImage} alt="Cleanroom" className="w-full h-full object-cover" />
         <div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 bg-foreground/70 text-background text-[10px]">
@@ -180,7 +225,7 @@ const MobileAuditScreen = () => {
         <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">ISO 13485 Checklist</div>
         {items.map((item, i) => (
           <div key={item} className="flex items-center gap-2">
-            <div className={`w-4 h-4 flex items-center justify-center ${i < checked ? 'bg-foreground' : 'border border-border'}`}>
+            <div className={`w-4 h-4 flex items-center justify-center ${i < checked ? 'bg-foreground' : 'border border-muted-foreground/20'}`}>
               {i < checked && (
                 <svg className="w-2.5 h-2.5 text-background" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
@@ -196,7 +241,6 @@ const MobileAuditScreen = () => {
 };
 
 const MobileIntelligenceScreen = () => {
-  const scoreBars = [40, 55, 45, 60, 50, 65, 70, 55, 75, 80, 60, 85, 70, 90, 91];
   const scores = [
     { name: "Quality", score: 93 },
     { name: "Equipment", score: 89 },
@@ -205,23 +249,21 @@ const MobileIntelligenceScreen = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col bg-background p-4 gap-3">
-      <DashCard className="p-3">
-        <div className="flex items-center justify-between mb-2">
-          <div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-foreground">91.3</span>
-              <span className="text-sm text-muted-foreground">%</span>
-              <span className="text-[10px] text-primary font-semibold -translate-y-2">+2.1</span>
-            </div>
-            <span className="text-[9px] text-muted-foreground uppercase">Overall Score</span>
-          </div>
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
+      <GlassCard layer={2} className="p-3 flex items-center gap-3">
+        <DonutScore score={91} size={64} />
+        <div className="flex-1">
           <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
+          <div className="text-[11px] text-muted-foreground">ISO 13485 Report</div>
+          <div className="flex items-baseline gap-1 mt-1">
+            <span className="text-lg font-bold text-foreground">91.3</span>
+            <span className="text-[10px] text-muted-foreground">%</span>
+            <span className="text-[9px] text-primary font-semibold -translate-y-1">+2.1</span>
+          </div>
         </div>
-        <BarChart bars={scoreBars} accentIndex={14} />
-      </DashCard>
+      </GlassCard>
 
-      <DashCard className="p-3">
+      <GlassCard layer={3} className="p-3">
         <div className="flex items-end justify-between gap-2">
           {scores.map((p) => (
             <div key={p.name} className="text-center">
@@ -233,11 +275,11 @@ const MobileIntelligenceScreen = () => {
             </div>
           ))}
         </div>
-        <div className="flex mt-3 border border-border overflow-hidden">
+        <div className="flex mt-3 border border-muted-foreground/20 overflow-hidden">
           <div className="px-2.5 py-1 text-[9px] font-semibold bg-foreground text-background flex-1 text-center">0 Major</div>
-          <div className="px-2.5 py-1 text-[9px] font-semibold bg-background text-muted-foreground flex-1 text-center">1 Minor</div>
+          <div className="px-2.5 py-1 text-[9px] font-semibold bg-transparent text-muted-foreground flex-1 text-center">1 Minor</div>
         </div>
-      </DashCard>
+      </GlassCard>
     </div>
   );
 };
@@ -257,11 +299,11 @@ const MobilePlatformDemo = () => {
   const Screen = screens[currentScreen];
 
   return (
-    <div className="w-full aspect-[3/4] border border-border shadow-xl overflow-hidden flex flex-col bg-background">
-      <div className="flex items-center justify-center gap-3 py-2 bg-muted/20 border-b border-border">
+    <div className={`w-full aspect-[3/4] border border-muted-foreground/15 shadow-xl overflow-hidden flex flex-col ${SCREEN_BG}`}>
+      <div className="flex items-center justify-center gap-3 py-2 border-b border-muted-foreground/10">
         {labels.map((label, i) => (
           <div key={label} className="flex items-center gap-1.5">
-            <div className={`w-2 h-2 transition-colors ${i === currentScreen ? 'bg-primary' : 'bg-border'}`} />
+            <div className={`w-2 h-2 transition-colors ${i === currentScreen ? 'bg-primary' : 'bg-muted-foreground/15'}`} />
             <span className={`text-[10px] font-medium ${i === currentScreen ? 'text-primary' : 'text-muted-foreground'}`}>{label}</span>
           </div>
         ))}
@@ -276,7 +318,7 @@ const MobilePlatformDemo = () => {
         </AnimatePresence>
       </div>
 
-      <div className="py-2 text-center bg-muted/20 border-t border-border">
+      <div className="py-2 text-center border-t border-muted-foreground/10">
         <span className="text-[10px] text-muted-foreground">Discover → Match → Audit → Intelligence. All in 3 days.</span>
       </div>
     </div>
