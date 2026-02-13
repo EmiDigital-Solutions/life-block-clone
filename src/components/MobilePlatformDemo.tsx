@@ -140,22 +140,66 @@ const MobileDiscoverScreen = () => {
           </motion.div>
         )}
 
-        {/* AI-generated intelligence profile */}
-        {phase >= 3 && (
-          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-            <GlassCard highlight layer={2} className="p-2.5">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] text-background font-semibold">PräzisionsTech GmbH</span>
-                <span className="text-[7px] text-primary font-bold uppercase px-1 py-0.5 border border-primary/40">AI Verified</span>
-              </div>
-              <div className="text-[9px] text-background/70 leading-tight space-y-0.5">
-                <div><span className="text-background/50">Industry:</span> <span className="text-background font-medium">Aerospace & Defense</span></div>
-                <div><span className="text-background/50">Capabilities:</span> <span className="text-background font-medium">CNC, 5-Axis, EDM</span></div>
-                <div><span className="text-background/50">Certifications:</span> <span className="text-background font-medium">ISO 9001, AS9100</span></div>
-              </div>
-            </GlassCard>
-          </motion.div>
-        )}
+         {/* AI-generated intelligence profile with analytics */}
+         {phase >= 3 && (
+           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+             <GlassCard highlight layer={2} className="p-2.5">
+               <div className="flex items-center justify-between mb-1.5">
+                 <span className="text-[10px] text-background font-semibold">PräzisionsTech GmbH</span>
+                 <span className="text-[7px] text-primary font-bold uppercase px-1 py-0.5 border border-primary/40">AI Verified</span>
+               </div>
+               <div className="text-[9px] text-background/70 leading-tight space-y-0.5 mb-2">
+                 <div><span className="text-background/50">Industry:</span> <span className="text-background font-medium">Aerospace & Defense</span></div>
+                 <div><span className="text-background/50">Capabilities:</span> <span className="text-background font-medium">CNC, 5-Axis, EDM</span></div>
+                 <div><span className="text-background/50">Certifications:</span> <span className="text-background font-medium">ISO 9001, AS9100</span></div>
+               </div>
+
+               {/* Analytics */}
+               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+                 className="border-t border-background/15 pt-2 space-y-2">
+                 <div className="text-[7px] text-background/50 uppercase tracking-wider font-semibold">AI Assessment</div>
+                 {/* Risk bars */}
+                 <div className="flex gap-1.5">
+                   {[
+                     { label: "Quality", score: 92, color: "hsl(199,91%,64%)" },
+                     { label: "Delivery", score: 88, color: "hsl(199,91%,64%)" },
+                     { label: "Financial", score: 76, color: "hsl(37,91%,55%)" },
+                   ].map((item, i) => (
+                     <div key={item.label} className="flex-1">
+                       <div className="flex items-baseline justify-between mb-0.5">
+                         <span className="text-[6px] text-background/60 uppercase">{item.label}</span>
+                         <span className="text-[8px] text-background font-bold">{item.score}</span>
+                       </div>
+                       <div className="h-1 bg-background/15 w-full">
+                         <motion.div className="h-full" style={{ backgroundColor: item.color }}
+                           initial={{ width: 0 }} animate={{ width: `${item.score}%` }}
+                           transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }} />
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+                 {/* Sparkline + Risk */}
+                 <div className="flex items-center gap-2">
+                   <div className="flex-1">
+                     <svg viewBox="0 0 100 20" className="w-full h-4">
+                       <motion.polyline
+                         points="0,16 12,14 25,13 37,15 50,10 62,8 75,7 87,5 100,3"
+                         fill="none" stroke="hsl(199,91%,64%)" strokeWidth="1.2"
+                         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                         transition={{ duration: 1, delay: 0.5 }}
+                       />
+                     </svg>
+                   </div>
+                   <div className="flex gap-1">
+                     {["12 Audits", "47 Pts"].map((b) => (
+                       <span key={b} className="px-1 py-0.5 border border-background/20 text-[6px] text-background/60 uppercase">{b}</span>
+                     ))}
+                   </div>
+                 </div>
+               </motion.div>
+             </GlassCard>
+           </motion.div>
+         )}
 
         {/* Upload checklists */}
         {phase >= 4 && (
