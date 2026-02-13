@@ -314,9 +314,9 @@ const MobileIntelligenceScreen = () => {
   ];
 
   const auditKpis = [
-    { label: "Calibration Compliance", value: "97", unit: "%", delta: "+4", bars: [60, 68, 78, 87, 93, 95, 97] },
-    { label: "NCR Close-out Rate", value: "94", unit: "%", delta: "+8", bars: [55, 65, 75, 84, 90, 93, 94] },
-    { label: "Process Capability", value: "1.67", unit: "Cpk", delta: "+0.3", bars: [40, 55, 68, 78, 87, 93, 96] },
+    { label: "Calibration", value: 97, delta: "+4" },
+    { label: "NCR Close-out", value: 94, delta: "+8" },
+    { label: "Process Cap.", value: 87, delta: "+0.3" },
   ];
 
   return (
@@ -360,31 +360,42 @@ const MobileIntelligenceScreen = () => {
          </motion.div>
        )}
 
-       {/* Audit KPI bar charts */}
-       {auditKpis.map((kpi, idx) => (
-         phase >= idx + 2 && (
-           <motion.div key={kpi.label} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-             <GlassCard layer={2} className="p-2">
-               <div className="flex items-center justify-between mb-0.5">
-                 <span className="text-[8px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
-                 <div className="flex items-baseline gap-0.5">
-                   <span className="text-xs font-bold text-background">{kpi.value}</span>
-                   <span className="text-[8px] text-background/70">{kpi.unit}</span>
-                   <span className="text-[7px] text-primary font-semibold ml-0.5 -translate-y-1">{kpi.delta}</span>
-                 </div>
-               </div>
-               <div className="flex items-end gap-[2px] h-5">
-                 {kpi.bars.map((h, i) => (
-                   <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                     transition={{ duration: 0.3, delay: i * 0.03 }}
-                     className={`flex-1 ${i >= 5 ? 'bg-primary' : 'bg-background/30'}`}
-                   />
-                 ))}
-               </div>
-             </GlassCard>
-           </motion.div>
-         )
-       ))}
+       {/* Audit KPI pie charts — 3 in one card */}
+       {phase >= 2 && (
+         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+           <GlassCard layer={2} className="p-2.5">
+             <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
+             <div className="flex items-center justify-between">
+               {auditKpis.map((kpi, idx) => {
+                 const size = 56;
+                 const strokeW = 4;
+                 const r = (size - strokeW * 2) / 2;
+                 const circ = 2 * Math.PI * r;
+                 return (
+                   <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.2 }}
+                     className="flex flex-col items-center gap-0.5">
+                     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+                       <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
+                         <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
+                         <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
+                           stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
+                           transform={`rotate(-90 ${size / 2} ${size / 2})`}
+                           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
+                           animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
+                           transition={{ duration: 1.2, ease: "easeOut", delay: idx * 0.2 }}
+                         />
+                       </svg>
+                       <span className="text-[10px] font-bold text-background z-10">{kpi.value}%</span>
+                     </div>
+                     <span className="text-[7px] text-background/70 uppercase">{kpi.label}</span>
+                     <span className="text-[6px] text-primary font-semibold">{kpi.delta}</span>
+                   </motion.div>
+                 );
+               })}
+             </div>
+           </GlassCard>
+         </motion.div>
+       )}
     </div>
   );
 };

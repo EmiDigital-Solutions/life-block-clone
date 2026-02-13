@@ -519,9 +519,9 @@ const IntelligenceScreen = () => {
   const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2];
 
   const auditKpis = [
-    { label: "Calibration Compliance", value: "97", unit: "%", delta: "+4", bars: [60, 68, 74, 78, 83, 87, 90, 93, 95, 97] },
-    { label: "NCR Close-out Rate", value: "94", unit: "%", delta: "+8", bars: [55, 62, 70, 75, 80, 84, 88, 91, 93, 94] },
-    { label: "Process Capability (Cpk)", value: "1.67", unit: "", delta: "+0.3", bars: [40, 50, 58, 65, 72, 78, 83, 87, 92, 96] },
+    { label: "Calibration", value: 97, delta: "+4" },
+    { label: "NCR Close-out", value: 94, delta: "+8" },
+    { label: "Process Cap.", value: 87, delta: "+0.3" },
   ];
 
   return (
@@ -586,31 +586,44 @@ const IntelligenceScreen = () => {
             </motion.div>
           )}
 
-          {/* Audit KPI bar charts */}
+          {/* Audit KPI pie charts — 3 in one card */}
           {showElements >= 4 && (
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
-              {auditKpis.map((kpi, idx) => (
-                <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.15 }}>
-                  <GlassCard layer={2} className="px-2.5 py-2">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[8px] text-background/60 uppercase tracking-wider font-semibold">{kpi.label}</span>
-                      <div className="flex items-baseline gap-0.5">
-                        <span className="text-sm font-bold text-background">{kpi.value}</span>
-                        <span className="text-[8px] text-background/70">{kpi.unit}</span>
-                        <span className="text-[7px] text-primary font-semibold ml-0.5 -translate-y-1">{kpi.delta}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-end gap-[2px] h-6">
-                      {kpi.bars.map((h, i) => (
-                        <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                          transition={{ duration: 0.3, delay: i * 0.03 }}
-                          className={`flex-1 ${i >= 8 ? 'bg-primary' : 'bg-background/30'}`}
-                        />
-                      ))}
-                    </div>
-                  </GlassCard>
-                </motion.div>
-              ))}
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard layer={2} className="p-3">
+                <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
+                <div className="flex items-center justify-between">
+                  {auditKpis.map((kpi, idx) => {
+                    const size = 70;
+                    const strokeW = 5;
+                    const r = (size - strokeW * 2) / 2;
+                    const circ = 2 * Math.PI * r;
+                    return (
+                      <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.2 }}
+                        className="flex flex-col items-center gap-1">
+                        <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+                          <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
+                            <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
+                            <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
+                              stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
+                              transform={`rotate(-90 ${size / 2} ${size / 2})`}
+                              initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
+                              animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
+                              transition={{ duration: 1.2, ease: "easeOut", delay: idx * 0.2 }}
+                            />
+                          </svg>
+                          <div className="text-center z-10">
+                            <span className="text-sm font-bold text-background">{kpi.value}%</span>
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-[8px] text-background/70 uppercase block">{kpi.label}</span>
+                          <span className="text-[7px] text-primary font-semibold">{kpi.delta}</span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </GlassCard>
             </motion.div>
           )}
 
