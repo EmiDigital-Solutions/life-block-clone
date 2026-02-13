@@ -214,6 +214,16 @@ All colors MUST be HSL.
     @apply text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1];
   }
 
+  /* Mobile grid alignment: reduce horizontal padding to match 4-column grid */
+  @media (max-width: 767px) {
+    .max-w-\[1400px\].px-8,
+    section.px-8 > .max-w-\[1400px\],
+    section.px-8 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
   @keyframes gradient {
     0%, 100% {
       background-position: 0% 50%;
