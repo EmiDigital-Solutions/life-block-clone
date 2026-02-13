@@ -16,15 +16,15 @@ const SCREEN_DURATION = 5000;
 /* Light grey background color for all screens */
 const SCREEN_BG = "bg-[hsl(0,0%,90%)]";
 
-/* ── ORION Glass Card — dark grey milky glass with layered depth ── */
+/* ── Solid dark grey cards — no glass, no shadow, no blur ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-[hsl(0,0%,55%)/0.3] border-[hsl(0,0%,70%)/0.25] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
+    ? 'bg-[hsl(0,0%,72%)] border-[hsl(0,0%,65%)]'
     : layer === 2
-    ? 'bg-[hsl(0,0%,48%)/0.35] border-[hsl(0,0%,65%)/0.2] shadow-[0_4px_20px_rgba(0,0,0,0.1)]'
-    : 'bg-[hsl(0,0%,42%)/0.4] border-[hsl(0,0%,60%)/0.18] shadow-[0_6px_28px_rgba(0,0,0,0.14)]';
+    ? 'bg-[hsl(0,0%,62%)] border-[hsl(0,0%,55%)]'
+    : 'bg-[hsl(0,0%,52%)] border-[hsl(0,0%,46%)]';
   return (
-    <div className={`border backdrop-blur-xl ${highlight ? 'border-primary/30 bg-primary/8 backdrop-blur-xl shadow-[0_2px_16px_rgba(79,195,247,0.08)]' : layerBg} ${className}`}>
+    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,68%)]' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -54,9 +54,9 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
   </div>
 );
 
-/* ORION-style donut/pie chart with tick marks */
-const DonutScore = ({ score, size = 120 }: { score: number; size?: number }) => {
-  const strokeW = 8;
+/* Overflowing donut chart — clips at card boundary */
+const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => {
+  const strokeW = 10;
   const r = (size - strokeW * 2) / 2;
   const circ = 2 * Math.PI * r;
   const tickCount = 60;
@@ -65,7 +65,6 @@ const DonutScore = ({ score, size = 120 }: { score: number; size?: number }) => 
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
       <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
-        {/* Tick marks around outside */}
         {Array.from({ length: tickCount }).map((_, i) => {
           const angle = (i / tickCount) * 360 - 90;
           const rad = (angle * Math.PI) / 180;
@@ -78,17 +77,15 @@ const DonutScore = ({ score, size = 120 }: { score: number; size?: number }) => 
           const filled = i / tickCount <= score / 100;
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke={filled ? 'hsl(0,0%,45%)' : 'hsl(0,0%,78%)'}
-              strokeWidth={0.8} strokeLinecap="round" />
+              stroke={filled ? 'hsl(0,0%,40%)' : 'hsl(0,0%,75%)'}
+              strokeWidth={0.8} strokeLinecap="square" />
           );
         })}
-        {/* Background track */}
         <circle cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
-        {/* Primary arc */}
+          stroke="hsl(0,0%,78%)" strokeWidth={strokeW} />
         <motion.circle
           cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="round"
+          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
           animate={{ strokeDashoffset: circ * (1 - score / 100) }}
@@ -96,7 +93,7 @@ const DonutScore = ({ score, size = 120 }: { score: number; size?: number }) => 
         />
       </svg>
       <div className="text-center z-10">
-        <div className="text-xl font-bold text-foreground leading-none">{score}%</div>
+        <div className="text-2xl font-bold text-foreground leading-none">{score}%</div>
         <div className="text-[8px] text-muted-foreground uppercase tracking-wider mt-0.5">Score</div>
       </div>
     </div>
@@ -465,8 +462,10 @@ const IntelligenceScreen = () => {
           {/* Main score — ORION donut + stat card layered */}
           {showElements >= 1 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-4 flex items-center gap-4">
-                <DonutScore score={91} size={100} />
+              <GlassCard layer={2} className="p-4 flex items-center gap-4 overflow-hidden relative">
+                <div className="-ml-6 -my-4 flex-shrink-0">
+                  <DonutScore score={91} size={140} />
+                </div>
                 <div className="flex-1">
                   <BigStat value="91.3" unit="%" delta="+2.1" />
                   <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Overall Score</span>

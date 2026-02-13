@@ -6,13 +6,13 @@ import auditorGen2 from "@/assets/auditor-gen-2.jpg";
 const SCREEN_DURATION = 5000;
 const SCREEN_BG = "bg-[hsl(0,0%,90%)]";
 
-/* ── ORION Glass Card — dark grey milky glass ── */
+/* ── Solid dark grey cards — no glass, no shadow, no blur ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-[hsl(0,0%,55%)/0.3] border-[hsl(0,0%,70%)/0.25] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
-    : 'bg-[hsl(0,0%,48%)/0.35] border-[hsl(0,0%,65%)/0.2] shadow-[0_4px_20px_rgba(0,0,0,0.1)]';
+    ? 'bg-[hsl(0,0%,72%)] border-[hsl(0,0%,65%)]'
+    : 'bg-[hsl(0,0%,62%)] border-[hsl(0,0%,55%)]';
   return (
-    <div className={`border backdrop-blur-xl ${highlight ? 'border-primary/30 bg-primary/8 backdrop-blur-xl' : layerBg} ${className}`}>
+    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,68%)]' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -30,9 +30,9 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
   </div>
 );
 
-/* ORION donut */
-const DonutScore = ({ score, size = 56 }: { score: number; size?: number }) => {
-  const strokeW = 5;
+/* Overflowing donut chart */
+const DonutScore = ({ score, size = 80 }: { score: number; size?: number }) => {
+  const strokeW = 6;
   const r = (size - strokeW * 2) / 2;
   const circ = 2 * Math.PI * r;
   const tickCount = 40;
@@ -51,13 +51,13 @@ const DonutScore = ({ score, size = 56 }: { score: number; size?: number }) => {
           const y2 = cy + Math.sin(rad) * tickR;
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke={i / tickCount <= score / 100 ? 'hsl(0,0%,45%)' : 'hsl(0,0%,78%)'}
-              strokeWidth={0.6} strokeLinecap="round" />
+              stroke={i / tickCount <= score / 100 ? 'hsl(0,0%,40%)' : 'hsl(0,0%,75%)'}
+              strokeWidth={0.6} strokeLinecap="square" />
           );
         })}
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,78%)" strokeWidth={strokeW} />
         <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="round"
+          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
           animate={{ strokeDashoffset: circ * (1 - score / 100) }}
@@ -250,8 +250,10 @@ const MobileIntelligenceScreen = () => {
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG} p-4 gap-3`}>
-      <GlassCard layer={2} className="p-3 flex items-center gap-3">
-        <DonutScore score={91} size={64} />
+      <GlassCard layer={2} className="p-3 flex items-center gap-3 overflow-hidden relative">
+        <div className="-ml-4 -my-3 flex-shrink-0">
+          <DonutScore score={91} size={90} />
+        </div>
         <div className="flex-1">
           <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
           <div className="text-[11px] text-muted-foreground">ISO 13485 Report</div>
