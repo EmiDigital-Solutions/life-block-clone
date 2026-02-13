@@ -146,6 +146,12 @@ const featureCategories = [
         ]
       },
       {
+        clusterName: "Dashboards & Analytics",
+        features: [
+          { title: "Buyer Dashboard", description: "Active RFQs overview, recommended suppliers, recent activity feed, performance charts, and spending analytics." }
+        ]
+      },
+      {
         clusterName: "Notifications System",
         features: [
           { title: "15+ Notification Types", description: "Search alerts, new supplier/buyer notifications, RFQ updates, messages, audit status, risk changes, market updates, connection requests, reviews, profile views, and payment reminders." },
@@ -180,7 +186,6 @@ const featureCategories = [
       {
         clusterName: "Dashboards & Analytics",
         features: [
-          { title: "Buyer Dashboard", description: "Active RFQs overview, recommended suppliers, recent activity feed, performance charts, and spending analytics." },
           { title: "Supplier Dashboard", description: "Connection overview, RFQ invitations, lead metrics, profile view tracking, and performance summary." },
           { title: "Auditor Dashboard", description: "Accepted audits, available audits, nearby audits map, revenue charts, and recent activity." },
           { title: "Client Dashboard", description: "Ordered audits, active RFQs, recommended suppliers, audit scoring displays, and spending analytics." }
