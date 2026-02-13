@@ -360,42 +360,61 @@ const MobileIntelligenceScreen = () => {
          </motion.div>
        )}
 
-       {/* Audit KPI pie charts — 3 in one card */}
-       {phase >= 2 && (
-         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-           <GlassCard layer={2} className="p-2.5">
-             <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
-             <div className="flex items-center justify-between">
-               {auditKpis.map((kpi, idx) => {
-                 const size = 56;
-                 const strokeW = 4;
-                 const r = (size - strokeW * 2) / 2;
-                 const circ = 2 * Math.PI * r;
-                 return (
-                   <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.2 }}
-                     className="flex flex-col items-center gap-0.5">
-                     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-                       <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
-                         <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
-                         <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-                           stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
-                           transform={`rotate(-90 ${size / 2} ${size / 2})`}
-                           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
-                           animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
-                           transition={{ duration: 1.2, ease: "easeOut", delay: idx * 0.2 }}
-                         />
-                       </svg>
-                       <span className="text-[10px] font-bold text-background z-10">{kpi.value}%</span>
-                     </div>
-                     <span className="text-[7px] text-background/70 uppercase">{kpi.label}</span>
-                     <span className="text-[6px] text-primary font-semibold">{kpi.delta}</span>
-                   </motion.div>
-                 );
-               })}
-             </div>
-           </GlassCard>
-         </motion.div>
-       )}
+        {/* Audit KPI pie charts — 3 in one card */}
+        {phase >= 2 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <GlassCard layer={2} className="p-2.5">
+              <div className="text-[8px] text-background/60 uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
+              <div className="flex items-center justify-between">
+                {auditKpis.map((kpi, idx) => {
+                  const size = 56;
+                  const strokeW = 4;
+                  const r = (size - strokeW * 2) / 2;
+                  const circ = 2 * Math.PI * r;
+                  const tickCount = 20;
+                  const tickR = r + strokeW + 1.5;
+                  return (
+                    <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.2 }}
+                      className="flex flex-col items-center gap-0.5">
+                      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+                        <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
+                          {/* Tick marks */}
+                          {Array.from({ length: tickCount }).map((_, i) => {
+                            const angle = (i / tickCount) * 360 - 90;
+                            const rad = (angle * Math.PI) / 180;
+                            const cx = size / 2;
+                            const cy = size / 2;
+                            const x1 = cx + Math.cos(rad) * (tickR - 1.5);
+                            const y1 = cy + Math.sin(rad) * (tickR - 1.5);
+                            const x2 = cx + Math.cos(rad) * (tickR + 0.8);
+                            const y2 = cy + Math.sin(rad) * (tickR + 0.8);
+                            const filled = i / tickCount <= kpi.value / 100;
+                            return (
+                              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                                stroke={filled ? 'hsl(199,91%,64%)' : 'hsl(0,0%,60%)'}
+                                strokeWidth={0.6} strokeLinecap="square" />
+                            );
+                          })}
+                          <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
+                          <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
+                            stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
+                            transform={`rotate(-90 ${size / 2} ${size / 2})`}
+                            initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
+                            animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
+                            transition={{ duration: 1.2, ease: "easeOut", delay: idx * 0.2 }}
+                          />
+                        </svg>
+                        <span className="text-[10px] font-bold text-background z-10">{kpi.value}%</span>
+                      </div>
+                      <span className="text-[7px] text-background/70 uppercase">{kpi.label}</span>
+                      <span className="text-[6px] text-primary font-semibold">{kpi.delta}</span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </GlassCard>
+          </motion.div>
+        )}
     </div>
   );
 };
