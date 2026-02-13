@@ -33,35 +33,35 @@ const formations = {
   // Person / Auditor: head (1) + body (torso + arms + legs)
   person: [
     // Head
-    { x: UNIT * 2, y: 0 },
+    { x: UNIT * 2.5, y: 0 },
     // Shoulders
-    { x: UNIT, y: UNIT },
-    { x: UNIT * 2, y: UNIT },
-    { x: UNIT * 3, y: UNIT },
+    { x: UNIT * 1.5, y: UNIT },
+    { x: UNIT * 2.5, y: UNIT },
+    { x: UNIT * 3.5, y: UNIT },
     // Torso
-    { x: UNIT * 2, y: UNIT * 2 },
+    { x: UNIT * 2.5, y: UNIT * 2 },
     // Arms
-    { x: UNIT * 0.5, y: UNIT * 2 },
-    { x: UNIT * 3.5, y: UNIT * 2 },
+    { x: UNIT * 1, y: UNIT * 2 },
+    { x: UNIT * 4, y: UNIT * 2 },
     // Legs + feet
-    { x: UNIT * 1.5, y: UNIT * 3 },
-    { x: UNIT * 2.5, y: UNIT * 3 },
-    { x: UNIT * 1.5, y: UNIT * 4 },
-    { x: UNIT * 2.5, y: UNIT * 4 },
+    { x: UNIT * 2, y: UNIT * 3 },
+    { x: UNIT * 3, y: UNIT * 3 },
+    { x: UNIT * 2, y: UNIT * 4 },
+    { x: UNIT * 3, y: UNIT * 4 },
   ],
   // Checkmark shape
   checkmark: [
-    { x: -UNIT * 0.5, y: UNIT * 1.5 },
-    { x: 0, y: UNIT * 2 },
-    { x: UNIT * 0.5, y: UNIT * 2.5 },
+    { x: UNIT * 0.5, y: UNIT * 1.5 },
     { x: UNIT * 1, y: UNIT * 2 },
-    { x: UNIT * 1.5, y: UNIT * 1.5 },
-    { x: UNIT * 2, y: UNIT },
-    { x: UNIT * 2.5, y: UNIT * 0.5 },
-    { x: UNIT * 3, y: 0 },
-    { x: UNIT * 0.5, y: UNIT * 2.5, opacity: 0 },
-    { x: UNIT * 1, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 1.5, y: UNIT * 1.5, opacity: 0 },
+    { x: UNIT * 1.5, y: UNIT * 2.5 },
+    { x: UNIT * 2, y: UNIT * 2 },
+    { x: UNIT * 2.5, y: UNIT * 1.5 },
+    { x: UNIT * 3, y: UNIT },
+    { x: UNIT * 3.5, y: UNIT * 0.5 },
+    { x: UNIT * 4, y: 0 },
+    { x: UNIT * 1.5, y: UNIT * 2.5, opacity: 0 },
+    { x: UNIT * 2, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 2.5, y: UNIT * 1.5, opacity: 0 },
   ],
 };
 
