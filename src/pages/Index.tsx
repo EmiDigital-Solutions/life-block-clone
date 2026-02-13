@@ -16,14 +16,14 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* 6-column background grid lines — Archlet style */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="container mx-auto max-w-7xl h-full relative">
-          <div className="absolute inset-0 grid grid-cols-6">
+      {/* 6-column background grid lines — Archlet style, always visible behind content */}
+      <div className="fixed inset-0 z-[5] pointer-events-none" aria-hidden="true">
+        <div className="mx-auto max-w-7xl h-full px-6">
+          <div className="relative h-full">
             {[...Array(7)].map((_, i) => (
               <div
                 key={i}
-                className="absolute top-0 bottom-0 w-px bg-foreground/[0.06]"
+                className="absolute top-0 bottom-0 w-px bg-foreground/[0.07]"
                 style={{ left: `${(i / 6) * 100}%` }}
               />
             ))}
