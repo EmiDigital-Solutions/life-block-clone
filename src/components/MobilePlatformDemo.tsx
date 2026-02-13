@@ -335,14 +335,102 @@ const MobileIntelligenceScreen = () => {
   );
 };
 
+// ─── SCREEN 5: CAPA (Mobile) ────────────────────────────────────
+const MobileCAPAScreen = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 500),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 2000),
+      setTimeout(() => setPhase(4), 3000),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const findings = [
+    { id: "NC-001", type: "Major NC", title: "Calibration records incomplete", status: "overdue", progress: 60 },
+    { id: "NC-002", type: "Minor NC", title: "Operator training log missing", status: "in-progress", progress: 80 },
+    { id: "OFI-001", type: "OFI", title: "Improve traceability labeling", status: "in-progress", progress: 45 },
+    { id: "OFI-002", type: "OFI", title: "Update SPC charts", status: "open", progress: 10 },
+  ];
+
+  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-primary" : "bg-background/40";
+  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-background" : "text-primary";
+
+  return (
+    <div className={`h-full flex flex-col ${SCREEN_BG} p-3 gap-1.5`}>
+      <div className="text-xs text-foreground/60 uppercase tracking-wider">CAPA Tracker · Findings</div>
+
+      {/* Summary */}
+      {phase >= 1 && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div className="flex gap-1.5">
+            <GlassCard layer={2} className="px-2 py-1 flex-1 text-center">
+              <span className="text-sm font-bold text-destructive">1</span>
+              <span className="text-[7px] text-background/70 uppercase block">Major</span>
+            </GlassCard>
+            <GlassCard layer={2} className="px-2 py-1 flex-1 text-center">
+              <span className="text-sm font-bold text-background">1</span>
+              <span className="text-[7px] text-background/70 uppercase block">Minor</span>
+            </GlassCard>
+            <GlassCard layer={2} className="px-2 py-1 flex-1 text-center">
+              <span className="text-sm font-bold text-primary">2</span>
+              <span className="text-[7px] text-background/70 uppercase block">OFI</span>
+            </GlassCard>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Findings */}
+      {findings.map((f, idx) => (
+        phase >= 2 && idx <= phase && (
+          <motion.div key={f.id} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.08 }}>
+            <GlassCard highlight={f.status === "overdue"} layer={2} className="p-2">
+              <div className="flex items-center justify-between mb-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[8px] font-bold text-background/50">{f.id}</span>
+                  <span className={`text-[8px] font-bold uppercase ${typeColor(f.type)}`}>{f.type}</span>
+                </div>
+                <div className={`w-1.5 h-1.5 rounded-full ${statusColor(f.status)}`} />
+              </div>
+              <div className="text-[10px] text-background font-medium mb-1 leading-tight">{f.title}</div>
+              <div className="flex items-center gap-1.5">
+                <div className="flex-1 h-1 bg-background/20 overflow-hidden">
+                  <motion.div initial={{ width: 0 }} animate={{ width: `${f.progress}%` }}
+                    transition={{ duration: 0.6 }}
+                    className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-primary"}`}
+                  />
+                </div>
+                <span className="text-[7px] text-background/60 font-semibold">{f.progress}%</span>
+              </div>
+            </GlassCard>
+          </motion.div>
+        )
+      ))}
+
+      {phase >= 4 && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
+          <GlassCard highlight className="p-2 flex items-center gap-2">
+            <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span className="text-[9px] font-semibold text-background">Client notified — NC-001 overdue</span>
+          </GlassCard>
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
 const MobilePlatformDemo = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [MobileDiscoverScreen, MobileMatchScreen, MobileAuditScreen, MobileIntelligenceScreen];
-  const labels = ["Discover", "Match", "Audit", "Intel"];
+  const screens = [MobileDiscoverScreen, MobileMatchScreen, MobileAuditScreen, MobileIntelligenceScreen, MobileCAPAScreen];
+  const labels = ["Discover", "Match", "Audit", "Intel", "CAPA"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 4);
+      setCurrentScreen((prev) => (prev + 1) % 5);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
@@ -370,7 +458,7 @@ const MobilePlatformDemo = () => {
       </div>
 
       <div className="py-2 text-center border-t border-muted-foreground/10">
-         <span className="text-[10px] text-foreground/60">Discover → Match → Audit → Intelligence. All in 3 days.</span>
+         <span className="text-[10px] text-foreground/60">Discover → Match → Audit → Intel → CAPA. All in 3 days.</span>
       </div>
     </div>
   );

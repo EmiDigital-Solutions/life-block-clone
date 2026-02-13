@@ -223,7 +223,7 @@ const DiscoverScreen = () => {
 
         {phase >= 6 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 4 · Discover</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 1 of 5 · Discover</span>
           </motion.div>
         )}
       </div>
@@ -313,7 +313,7 @@ const MatchScreen = () => {
 
       {phase >= 4 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 4 · Match</span>
+           <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 2 of 5 · Match</span>
         </motion.div>
       )}
     </div>
@@ -418,7 +418,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-4 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 4 · Audit</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 3 of 5 · Audit</span>
           </div>
         </div>
       </div>
@@ -587,7 +587,156 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-4 py-2 border-t border-muted-foreground/10 text-center">
-             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
+             <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 5: CAPA / FINDINGS ──────────────────────────────────
+const CAPAScreen = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 400),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 2000),
+      setTimeout(() => setPhase(4), 2800),
+      setTimeout(() => setPhase(5), 3600),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const findings = [
+    { id: "NC-001", type: "Major NC", title: "Calibration records incomplete for CNC #3", owner: "PräzisionsTech", due: "Jan 15", status: "overdue", progress: 60 },
+    { id: "NC-002", type: "Minor NC", title: "Operator training log missing signatures", owner: "PräzisionsTech", due: "Jan 22", status: "in-progress", progress: 80 },
+    { id: "OFI-001", type: "OFI", title: "Improve traceability labeling on raw materials", owner: "PräzisionsTech", due: "Feb 05", status: "in-progress", progress: 45 },
+    { id: "OFI-002", type: "OFI", title: "Update SPC charts for critical dimensions", owner: "PräzisionsTech", due: "Feb 12", status: "open", progress: 10 },
+  ];
+
+  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-primary" : "bg-background/40";
+  const statusLabel = (s: string) => s === "overdue" ? "Overdue" : s === "in-progress" ? "In Progress" : "Open";
+  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-background" : "text-primary";
+
+  return (
+    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
+       <div className="px-3 py-2 border-b border-foreground/10 flex items-center justify-between">
+         <div>
+           <div className="text-sm font-semibold text-foreground">CAPA Tracker</div>
+           <div className="text-xs text-foreground/60">PräzisionsTech GmbH · Findings</div>
+         </div>
+         <div className="flex items-center gap-2">
+           <img src={auditorGen2} alt="M. Hoffmann" className="w-6 h-6 object-cover" />
+           <span className="text-xs text-foreground/60">Monitored</span>
+         </div>
+       </div>
+
+      <div className="flex-1 flex">
+        {/* Left: Findings list */}
+        <div className="w-3/5 p-3 flex flex-col gap-1.5 overflow-hidden">
+          {/* Summary stats */}
+          {phase >= 1 && (
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="flex gap-2 mb-1">
+                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
+                  <span className="text-lg font-bold text-destructive">1</span>
+                  <span className="text-[8px] text-background/70 uppercase block">Major NC</span>
+                </GlassCard>
+                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
+                  <span className="text-lg font-bold text-background">1</span>
+                  <span className="text-[8px] text-background/70 uppercase block">Minor NC</span>
+                </GlassCard>
+                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
+                  <span className="text-lg font-bold text-primary">2</span>
+                  <span className="text-[8px] text-background/70 uppercase block">OFI</span>
+                </GlassCard>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Findings cards */}
+          {findings.map((f, idx) => (
+            phase >= idx + 2 && (
+              <motion.div key={f.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}>
+                <GlassCard highlight={f.status === "overdue"} layer={2} className="p-2.5">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] font-bold text-background/50">{f.id}</span>
+                      <span className={`text-[9px] font-bold uppercase ${typeColor(f.type)}`}>{f.type}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className={`w-1.5 h-1.5 rounded-full ${statusColor(f.status)}`} />
+                      <span className="text-[8px] text-background/60 font-semibold">{statusLabel(f.status)}</span>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-background font-medium mb-1.5 leading-tight">{f.title}</div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-1.5 bg-background/20 overflow-hidden">
+                      <motion.div initial={{ width: 0 }} animate={{ width: `${f.progress}%` }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-primary"}`}
+                      />
+                    </div>
+                    <span className="text-[8px] text-background/60 font-semibold">{f.progress}%</span>
+                    <span className="text-[8px] text-background/50">Due {f.due}</span>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            )
+          ))}
+        </div>
+
+        {/* Right: Timeline + status */}
+        <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col p-3 gap-2">
+          {phase >= 2 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={3} className="p-3">
+                <div className="text-[10px] font-semibold text-background/60 uppercase tracking-wider mb-2">Close-out Progress</div>
+                <DonutScore score={49} size={100} />
+                <div className="text-center mt-1">
+                  <span className="text-[9px] text-background/60">2 of 4 findings addressed</span>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {phase >= 4 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={2} className="p-2.5">
+                <div className="text-[9px] font-semibold text-background/60 uppercase tracking-wider mb-1.5">Activity</div>
+                {[
+                  { time: "2h ago", text: "Calibration evidence uploaded", actor: "Supplier" },
+                  { time: "5h ago", text: "Training records requested", actor: "Client" },
+                  { time: "1d ago", text: "NC-001 response submitted", actor: "Supplier" },
+                ].map((a, i) => (
+                  <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.15 }}
+                    className="flex items-start gap-2 mb-1.5 last:mb-0">
+                    <div className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                    <div>
+                      <div className="text-[10px] text-background font-medium leading-tight">{a.text}</div>
+                      <div className="text-[8px] text-background/50">{a.actor} · {a.time}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {phase >= 5 && (
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-auto">
+              <GlassCard highlight className="p-2.5 flex items-center gap-2">
+                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span className="text-[10px] font-semibold text-background">Client notified — NC-001 overdue</span>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          <div className="px-2 py-2 border-t border-muted-foreground/10 text-center mt-auto">
+            <span className="text-[10px] text-foreground/60 tracking-wider uppercase">Step 5 of 5 · CAPA</span>
           </div>
         </div>
       </div>
@@ -598,12 +747,12 @@ const IntelligenceScreen = () => {
 // ─── MAIN COMPONENT ─────────────────────────────────────────────
 const PlatformDemoAnimation = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen];
-  const labels = ["Discover", "Match", "Audit", "Intelligence"];
+  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen, CAPAScreen];
+  const labels = ["Discover", "Match", "Audit", "Intel", "CAPA"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 4);
+      setCurrentScreen((prev) => (prev + 1) % 5);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
