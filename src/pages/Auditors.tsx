@@ -9,6 +9,7 @@ import {
   Plus,
   Minus
 } from "lucide-react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -80,7 +81,9 @@ const Auditors = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       <div ref={containerRef}>
@@ -127,7 +130,7 @@ const Auditors = () => {
 
           {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
           <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
-            <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+            <div className="px-8 w-full max-w-[1400px] mx-auto">
               <motion.div 
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -252,7 +255,7 @@ const Auditors = () => {
           data-nav-theme="white"
           className="py-32 md:py-40 bg-[#0a0a0a]"
         >
-          <div className="container mx-auto px-6 lg:px-16">
+          <div className="mx-auto max-w-[1400px] px-8">
             <div className="max-w-3xl mx-auto text-center">
               <motion.p
                 initial={{ opacity: 0 }}
@@ -319,6 +322,7 @@ const Auditors = () => {
           </motion.button>
         )}
       </div>
+      </div>
     </div>
   );
 };
@@ -348,7 +352,7 @@ const ValuePropositionSection = () => {
       data-nav-theme="light"
       className="py-32 md:py-40 bg-white"
     >
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <motion.div
@@ -480,7 +484,7 @@ const TimelineSection = () => {
 
   return (
     <section ref={ref} id="how-it-works" className="py-32 md:py-40 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
@@ -604,7 +608,7 @@ const QualificationsSection = () => {
       data-nav-theme="white"
       className="py-32 md:py-40 bg-[#0a0a0a]"
     >
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           
           {/* Left - Message */}
@@ -679,7 +683,7 @@ const TechnologyFeaturesSection = () => {
       data-nav-theme="light"
       className="py-32 md:py-40 bg-[#f5f5f5]"
     >
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <motion.div
@@ -828,7 +832,7 @@ const DayInLifeSection = () => {
       data-nav-theme="light"
       className="py-12 md:py-16 bg-white overflow-hidden"
     >
-      <div className="container mx-auto px-6 lg:px-20">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <motion.div
@@ -1022,7 +1026,7 @@ const SuccessStoriesSection = () => {
       data-nav-theme="light"
       className="py-32 md:py-40 bg-white"
     >
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1104,7 +1108,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
       data-nav-theme="light"
       className="py-24 md:py-32 bg-white"
     >
-      <div className="container mx-auto px-6 max-w-4xl">
+      <div className="mx-auto max-w-[1400px] px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -1186,7 +1190,7 @@ const ScrollZoomSection = () => {
 
   return (
     <section ref={sectionRef} className="py-32 md:py-40 bg-[#f5f5f5] overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-16">
+      <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <motion.div

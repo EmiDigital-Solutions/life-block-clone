@@ -1,3 +1,4 @@
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
@@ -16,20 +17,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* 6-column background grid lines — Archlet style, visible through sections */}
-      <div className="fixed inset-0 z-[2] pointer-events-none" aria-hidden="true">
-        <div className="mx-auto max-w-[1400px] h-full px-8">
-          <div className="relative h-full">
-            {[...Array(7)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute top-0 bottom-0 w-px bg-foreground/[0.07]"
-                style={{ left: `${(i / 6) * 100}%` }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      <PageGridOverlay />
       {/* Content — no z-index wrapper so lines show through */}
       <div className="relative">
         <Navigation />

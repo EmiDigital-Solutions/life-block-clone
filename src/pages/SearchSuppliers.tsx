@@ -1,5 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -1888,7 +1889,9 @@ const ComparisonMockup = () => {
   const suppliers = getRelevantSuppliers();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section - Clean White, matching Homepage */}
@@ -1898,7 +1901,7 @@ const ComparisonMockup = () => {
       >
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
-          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+          <div className="px-8 w-full max-w-[1400px] mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1987,7 +1990,7 @@ const ComparisonMockup = () => {
 
         {/* Interactive Demo Section - White Background */}
         <section className="py-24 bg-white" data-nav-theme="light">
-          <div className="container mx-auto px-6 lg:px-20">
+          <div className="mx-auto max-w-[1400px] px-8">
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -2016,7 +2019,7 @@ const ComparisonMockup = () => {
 
       {/* Stats Section - BeFound KPI Style */}
       <section className="pt-16 md:pt-96 pb-8 md:pb-20 bg-white" data-nav-theme="light">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20 max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2074,7 +2077,7 @@ const ComparisonMockup = () => {
 
       {/* Product Overview Section - Beyond Discovery */}
       <section className="py-24 px-6 bg-white" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2264,7 +2267,7 @@ const ComparisonMockup = () => {
 
       {/* Technology Section - BeFound Style Benefits Cards */}
       <section className="py-16 px-6 bg-white" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
@@ -2299,7 +2302,7 @@ const ComparisonMockup = () => {
 
       {/* 8 AI Features Section - BeFound Style */}
       <section className="py-24 md:py-32 bg-white" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-[1400px] px-8">
           
           {/* Section Header */}
           <motion.h2
@@ -2452,7 +2455,7 @@ const ComparisonMockup = () => {
 
       {/* End-to-End Differentiator Section */}
       <section className="py-20 px-6 bg-background" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2501,7 +2504,7 @@ const ComparisonMockup = () => {
 
       {/* Testimonial Section - BeFound 3-Column Style */}
       <section className="py-20 px-6 bg-white" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2586,7 +2589,7 @@ const ComparisonMockup = () => {
 
       {/* Stats Section - End-to-End Value KPIs */}
       <section className="py-32 px-6 bg-white" data-nav-theme="light">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -2700,7 +2703,7 @@ const ComparisonMockup = () => {
         data-nav-theme="light" 
         className="py-24 md:py-32 bg-background"
       >
-        <div className="container mx-auto px-4 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Header - offmenu.design "Projects" Style */}
           <div className="relative">
             {/* Giant Background Text - positioned to sit just above the cards */}
@@ -2732,7 +2735,7 @@ const ComparisonMockup = () => {
           </div>
 
           {/* Product Showcase Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[1400px] mx-auto">
             {/* Large card - CNC Machined Parts */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -2839,7 +2842,7 @@ const ComparisonMockup = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-7xl mx-auto"
+            className="group relative w-full overflow-hidden cursor-pointer mt-4 md:mt-6 max-w-[1400px] mx-auto"
           >
             <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
               <img 
@@ -2876,7 +2879,7 @@ const ComparisonMockup = () => {
         data-nav-theme="light"
         className="relative py-20 md:py-32 overflow-hidden bg-white"
       >
-        <div className="container mx-auto px-6 md:px-4 sm:px-6 lg:px-20">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="max-w-4xl mx-auto text-center">
             
             <motion.div
@@ -3045,6 +3048,7 @@ const ComparisonMockup = () => {
           )}
         </DialogContent>
       </Dialog>
+      </div>
     </div>
   );
 };

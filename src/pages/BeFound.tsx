@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock, Plus, Minus } from "lucide-react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -510,7 +511,7 @@ const BeFoundFAQ = () => {
 
   return (
     <section className="py-24 md:py-32 px-6 bg-white">
-      <div className="container mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[1400px] px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -598,7 +599,9 @@ const BeFoundFAQ = () => {
 
 const BeFound = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section - Archlet Style */}
@@ -620,7 +623,7 @@ const BeFound = () => {
         
         {/* Main Content */}
         <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
-          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
+          <div className="px-8 w-full max-w-[1400px] mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -682,7 +685,7 @@ const BeFound = () => {
 
       {/* Benefits Cards */}
       <section className="py-8 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
@@ -717,7 +720,7 @@ const BeFound = () => {
 
       {/* First Testimonial - Archlet Side-by-Side Style */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Portrait Photo - Smaller, B&W with blue blocks, left-aligned */}
             <div className="max-w-sm justify-self-start">
@@ -780,7 +783,7 @@ const BeFound = () => {
           />
         </div>
         
-        <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="mx-auto max-w-[1400px] px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -914,7 +917,7 @@ const BeFound = () => {
 
       {/* Feature Section 1 - Profile Builder */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -954,7 +957,7 @@ const BeFound = () => {
 
       {/* Feature Section 2 - Analytics */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -984,7 +987,7 @@ const BeFound = () => {
 
       {/* Feature Section 3 - Lead Management */}
       <section className="py-24 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1014,7 +1017,7 @@ const BeFound = () => {
 
       {/* Second Testimonial - Archlet 3-Column Style */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -1099,7 +1102,7 @@ const BeFound = () => {
 
       {/* Stats Section - Archlet Style */}
       <section className="py-32 px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Headline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -1210,7 +1213,7 @@ const BeFound = () => {
 
       {/* Industries Section - Auto-scrolling */}
       <section className="py-20 bg-white overflow-hidden">
-        <div className="container mx-auto max-w-7xl px-6 mb-12">
+        <div className="mx-auto max-w-[1400px] px-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1275,7 +1278,7 @@ const BeFound = () => {
 
       {/* Digital Twin Builder Features Section */}
       <section className="py-20 px-6 bg-white border-t border-foreground/10">
-        <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1360,7 +1363,7 @@ const BeFound = () => {
 
       {/* Final CTA */}
       <section className="py-32 px-6 bg-foreground">
-        <div className="container mx-auto max-w-7xl text-center">
+        <div className="mx-auto max-w-[1400px] px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1397,6 +1400,7 @@ const BeFound = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };

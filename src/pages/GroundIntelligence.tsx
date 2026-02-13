@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -495,7 +496,9 @@ const GroundIntelligence = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <PageGridOverlay />
+      <div className="relative">
       <Navigation />
       
       {/* Hero Section - Clean white background like Archlet */}
@@ -504,7 +507,7 @@ const GroundIntelligence = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="hero"
       >
-        <div className="container mx-auto max-w-5xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -550,7 +553,7 @@ const GroundIntelligence = () => {
         data-nav-theme="light"
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {benefits.map((benefit, index) => (
               <motion.div
@@ -581,7 +584,7 @@ const GroundIntelligence = () => {
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
         id="features"
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -620,7 +623,7 @@ const GroundIntelligence = () => {
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="results"
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -662,7 +665,7 @@ const GroundIntelligence = () => {
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
         id="pricing"
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -727,7 +730,7 @@ const GroundIntelligence = () => {
         className="py-24 md:py-32 bg-white"
         id="faq"
       >
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -815,7 +818,7 @@ const GroundIntelligence = () => {
         data-nav-theme="light" 
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
       >
-        <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[1400px] px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {relatedProducts.map((product, index) => (
               <motion.a
@@ -859,7 +862,7 @@ const GroundIntelligence = () => {
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
         id="cta"
       >
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-[1400px] px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -888,6 +891,7 @@ const GroundIntelligence = () => {
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 };
