@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 
 // Feature categories with their features - Based on official YVOO tech sheets
 const featureCategories = [
@@ -331,7 +332,8 @@ const Features = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-16 px-8">
+      <section className="relative pt-40 pb-16 px-8">
+        <HeroSquaresAnimation className="top-12 right-12 md:top-16 md:right-20 lg:top-20 lg:right-24" />
         <div className="mx-auto max-w-[1400px]">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

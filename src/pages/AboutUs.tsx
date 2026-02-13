@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
@@ -66,6 +67,7 @@ const AboutUs = () => {
       
       {/* HERO SECTION - Compliance Modal Style */}
       <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         {/* Mobile/Tablet Image - Top */}
         <motion.div 
           className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"

@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Plus, Minus, Activity, AlertTriangle, TrendingUp, TrendingDown, Clock, Wifi, Database, Settings, BarChart3, Shield, Zap } from "lucide-react";
+import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -507,6 +508,7 @@ const GroundIntelligence = () => {
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="hero"
       >
+        <HeroSquaresAnimation className="top-24 right-12 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         <div className="mx-auto max-w-[1400px] px-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
