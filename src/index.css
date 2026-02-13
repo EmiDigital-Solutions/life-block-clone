@@ -217,10 +217,15 @@ All colors MUST be HSL.
   /* Mobile grid alignment: reduce horizontal padding to match 4-column grid */
   @media (max-width: 767px) {
     .max-w-\[1400px\].px-8,
+    .max-w-\[1400px\].px-6,
+    section.px-8,
+    section.px-6,
     section.px-8 > .max-w-\[1400px\],
-    section.px-8 {
-      padding-left: 1rem;
-      padding-right: 1rem;
+    section.px-6 > .max-w-\[1400px\],
+    section > .max-w-\[1400px\].px-8,
+    section > .max-w-\[1400px\].px-6 {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
   }
 
