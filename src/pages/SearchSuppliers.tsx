@@ -681,7 +681,6 @@ const SearchSuppliers = () => {
                         typeAiMessage(steps[1].aiFollowUp, () => {
                           const t6 = setTimeout(() => {
                             setShowResults(true);
-                            // Wait 5 seconds after results, then fade out and restart
                             const t7 = setTimeout(() => {
                               setIsFading(true);
                               const t8 = setTimeout(() => {
@@ -691,26 +690,26 @@ const SearchSuppliers = () => {
                                 setIsFading(false);
                                 isRunningRef.current = false;
                                 setCurrentScenario((prev) => (prev + 1) % scenarios.length);
-                              }, 500);
+                              }, 300);
                               timeoutsRef.current.push(t8);
-                            }, 5000);
+                            }, 2000);
                             timeoutsRef.current.push(t7);
-                          }, 1000);
+                          }, 300);
                           timeoutsRef.current.push(t6);
                         });
-                      }, 1500);
+                      }, 300);
                       timeoutsRef.current.push(t5);
                     });
-                  }, 1000);
+                  }, 300);
                   timeoutsRef.current.push(t4);
                 });
-              }, 1500);
+              }, 300);
               timeoutsRef.current.push(t3);
             });
-          }, 1000);
+          }, 300);
           timeoutsRef.current.push(t2);
         });
-      }, 500);
+      }, 200);
       timeoutsRef.current.push(t1);
     };
 
@@ -724,8 +723,7 @@ const SearchSuppliers = () => {
     const typingInterval = setInterval(() => {
       if (currentIndex <= message.length) {
         setAiResponse(message.slice(0, currentIndex));
-        currentIndex++;
-        // Auto-scroll to bottom
+        currentIndex += 3;
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
@@ -736,7 +734,7 @@ const SearchSuppliers = () => {
         setAiResponse("");
         onComplete();
       }
-    }, 20);
+    }, 10);
   };
 
   const typeUserMessage = (message: string, onComplete: () => void) => {
@@ -745,8 +743,7 @@ const SearchSuppliers = () => {
     const typingInterval = setInterval(() => {
       if (currentIndex <= message.length) {
         setUserInput(message.slice(0, currentIndex));
-        currentIndex++;
-        // Auto-scroll to bottom
+        currentIndex += 3;
         if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
@@ -756,7 +753,7 @@ const SearchSuppliers = () => {
         setUserInput("");
         onComplete();
       }
-    }, 40);
+    }, 15);
   };
 
 // Window Chrome Component for mockups
@@ -1393,13 +1390,13 @@ const ComparisonMockup = () => {
             transition={{ delay: 0.2 }}
           >
             {/* Frosted Glass Card */}
-            <div className="bg-[#ebebeb] overflow-hidden">
+            <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none">
               
               {/* Card Header */}
-              <div className="bg-foreground px-6 py-4 flex items-center justify-between">
-                <h2 className="text-white text-xl font-bold">SearchPro+</h2>
+              <div className="bg-[hsl(0,0%,45%)] px-6 py-4 flex items-center justify-between border-b border-[hsl(0,0%,40%)]">
+                <h2 className="text-[hsl(0,0%,95%)] text-xl font-bold">SearchPro+</h2>
                 <div className="flex items-center gap-2">
-                  <span className="text-white text-sm">AI-Powered</span>
+                  <span className="text-[hsl(0,0%,80%)] text-sm">AI-Powered</span>
                 </div>
               </div>
 
@@ -1424,10 +1421,10 @@ const ComparisonMockup = () => {
                 {[1, 2, 3].map((step) => (
                   <div
                     key={step}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                    className={`w-10 h-10 rounded-none flex items-center justify-center text-sm font-bold transition-all ${
                       step <= currentStep
-                        ? 'bg-foreground text-white'
-                        : 'bg-[#d5d5d5] text-muted-foreground'
+                        ? 'bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]'
+                        : 'bg-[hsl(0,0%,75%)] text-[hsl(0,0%,50%)]'
                     }`}
                   >
                     {step}
@@ -1435,10 +1432,10 @@ const ComparisonMockup = () => {
                 ))}
               </div>
 
-              {/* Conversation Thread - Auto-scrolling with dynamic height */}
+              {/* Conversation Thread */}
               <motion.div 
                 ref={chatContainerRef}
-                className="space-y-4 mb-6 overflow-y-auto bg-white p-4"
+                className="space-y-4 mb-6 overflow-y-auto bg-[hsl(0,0%,80%)] p-4 rounded-none"
                 style={{ maxHeight: '600px' }}
                 animate={{ opacity: isFading ? 0 : 1 }}
                 transition={{ duration: 0.5 }}
@@ -1452,18 +1449,18 @@ const ComparisonMockup = () => {
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-4 rounded-2xl ${
+                      className={`max-w-[80%] p-4 rounded-none ${
                         msg.role === 'user'
-                          ? 'bg-[#A8C5B8] text-white rounded-br-none'
-                          : 'bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200'
+                          ? 'bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]'
+                          : 'bg-[hsl(0,0%,42%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,37%)]'
                       }`}
                     >
                       {msg.role === 'ai' && (
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
-                            <span className="text-[8px] text-white font-bold">AI</span>
+                          <div className="w-5 h-5 rounded-none bg-primary/30 flex items-center justify-center">
+                            <span className="text-[8px] text-primary font-bold">AI</span>
                           </div>
-                          <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
+                          <span className="text-xs font-bold text-primary">YVOO</span>
                         </div>
                       )}
                       <p className="text-sm whitespace-pre-line font-medium">{msg.message}</p>
@@ -1478,17 +1475,17 @@ const ComparisonMockup = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="max-w-[80%] p-4 rounded-2xl bg-white text-gray-900 rounded-bl-none shadow-sm border border-gray-200">
+                    <div className="max-w-[80%] p-4 rounded-none bg-[hsl(0,0%,42%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,37%)]">
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-5 h-5 rounded bg-gradient-to-br from-[#B2CDBC] to-[#A0B9A9] flex items-center justify-center">
-                          <span className="text-[8px] text-white font-bold">AI</span>
+                        <div className="w-5 h-5 rounded-none bg-primary/30 flex items-center justify-center">
+                          <span className="text-[8px] text-primary font-bold">AI</span>
                         </div>
-                        <span className="text-xs font-bold text-[#A8C5B8]">YVOO</span>
+                        <span className="text-xs font-bold text-primary">YVOO</span>
                         {isTyping && (
                           <div className="flex gap-1 ml-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#A8C5B8] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="w-1.5 h-1.5 rounded-none bg-primary animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                           </div>
                         )}
                       </div>
@@ -1504,7 +1501,7 @@ const ComparisonMockup = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-end"
                   >
-                    <div className="max-w-[80%] p-4 rounded-2xl bg-[#A8C5B8] text-white rounded-br-none">
+                    <div className="max-w-[80%] p-4 rounded-none bg-[hsl(0,0%,45%)] text-[hsl(0,0%,95%)] border border-[hsl(0,0%,40%)]">
                       <p className="text-sm font-medium">{userInput}</p>
                     </div>
                   </motion.div>
@@ -1521,7 +1518,7 @@ const ComparisonMockup = () => {
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <Check className="w-5 h-5 text-primary" strokeWidth={3} />
-                    <span className="font-semibold text-gray-900">4 Matching Suppliers Found</span>
+                    <span className="font-semibold text-foreground">4 Matching Suppliers Found</span>
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1529,22 +1526,22 @@ const ComparisonMockup = () => {
                       <button
                         key={supplier.id}
                         onClick={() => setSelectedSupplier(supplier)}
-                        className="text-left p-4 bg-white border-2 border-gray-200 rounded-2xl hover:border-primary hover:shadow-md transition-all group"
+                        className="text-left p-4 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] rounded-none hover:border-primary transition-all group"
                       >
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-black text-gray-900 group-hover:text-primary transition-colors drop-shadow-sm">
+                          <h4 className="font-black text-[hsl(0,0%,95%)] group-hover:text-primary transition-colors">
                             {supplier.name}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
+                          <ArrowRight className="w-4 h-4 text-[hsl(0,0%,70%)] group-hover:text-primary group-hover:translate-x-1 transition-all" strokeWidth={3} />
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center gap-2 text-sm text-[hsl(0,0%,70%)] mb-2">
                           <span>{supplier.location}</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {supplier.certifications.slice(0, 2).map((cert, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full font-bold shadow-sm"
+                              className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-none font-bold"
                             >
                               {cert}
                             </span>
