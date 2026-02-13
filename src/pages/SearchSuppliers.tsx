@@ -108,13 +108,13 @@ const SearchProDemoWindows = () => {
   );
 };
 
-// Window 1: Guided Wizard Chat — recognizes capabilities, materials, certs, tests
+// Window 1: Guided Wizard Chat — Preference Engine + Entity Recognition + Agent Sessions
 const DemoChatbot = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     setStep(0);
-    const timers = [400, 1400, 2400, 3400, 4400, 5400].map((delay, i) =>
+    const timers = [300, 1200, 2200, 3200, 4200, 5200, 5800].map((delay, i) =>
       setTimeout(() => setStep(i + 1), delay)
     );
     return () => timers.forEach(clearTimeout);
@@ -122,35 +122,62 @@ const DemoChatbot = () => {
 
   return (
     <div className="bg-[hsl(0,0%,85%)] flex flex-col h-full">
-      {/* Top toolbar */}
+      {/* Top toolbar — Preference Engine prominently branded */}
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
-        <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">SearchPro+ AI Assistant</span>
-        <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Preference Engine</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">AI Agent</span>
+          <span className="text-[10px] text-[hsl(0,0%,55%)]">Supplier Discovery</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+          <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Preference Engine Active</span>
+        </div>
       </div>
 
-      <div className="p-3 space-y-1.5 flex-1">
-        {/* Step 1: User describes need in natural language */}
+      <div className="p-3 space-y-1.5 flex-1 overflow-hidden">
+        {/* Step 1: Preference Engine auto-detects context */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[85%] ml-auto">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">I need a supplier for 5-axis CNC aluminum brake calipers, hard anodized, IATF certified, with salt spray testing capability</p>
+            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Context Detected</span>
+              <div className="flex gap-1.5 flex-wrap">
+                {[
+                  { label: "Automotive OEM", type: "Industry" },
+                  { label: "Germany / EU", type: "Region" },
+                  { label: "IATF Required", type: "Standard" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-1">
+                    <span className="px-1 py-0.5 text-[7px] font-bold uppercase tracking-wider bg-[hsl(0,0%,25%)] text-[hsl(0,0%,60%)] rounded-none">{item.type}</span>
+                    <span className="text-[10px] font-semibold text-white">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
 
-        {/* Step 2: AI parses and recognizes structured entities */}
+        {/* Step 2: User natural language input */}
         {step >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[85%] ml-auto">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
+              <p className="text-[11px] font-semibold text-white leading-relaxed">5-axis CNC aluminum brake calipers, hard anodized, salt spray tested</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Step 3: AI entity recognition — capabilities, materials, certs, tests */}
+        {step >= 3 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1.5">AI Entity Recognition</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1.5">Entity Recognition</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
                   { tag: "5-Axis CNC", cat: "Capability" },
-                  { tag: "Aluminum 6061/7075", cat: "Material" },
+                  { tag: "Al 6061/7075", cat: "Material" },
                   { tag: "Hard Anodizing", cat: "Process" },
                   { tag: "IATF 16949", cat: "Certificate" },
-                  { tag: "Salt Spray Test", cat: "Testing" },
+                  { tag: "Salt Spray", cat: "Testing" },
                   { tag: "Brake Calipers", cat: "Product" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
@@ -163,59 +190,56 @@ const DemoChatbot = () => {
           </motion.div>
         )}
 
-        {/* Step 3: AI auto-expands with related certs & tests */}
-        {step >= 3 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
-            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[92%]">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">SearchPro+ AI</span>
-              <p className="text-[10px] font-semibold text-white leading-relaxed">Auto-adding related requirements from your industry profile:</p>
-            </div>
-            <div className="flex gap-1 flex-wrap pl-1">
-              {[
-                { label: "ISO 14001", type: "cert" },
-                { label: "CMM Inspection", type: "cap" },
-                { label: "X-Ray NDT", type: "test" },
-                { label: "Tensile Test", type: "test" },
-              ].map((opt, i) => (
-                <span key={i} className="px-2 py-0.5 text-[9px] font-semibold rounded-none bg-primary/15 text-primary border border-primary/25">
-                  + {opt.label}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Step 4: User confirms volume */}
+        {/* Step 4: Intelligent matching scoring preview */}
         {step >= 4 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-1.5">
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[55%] ml-auto">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
-              <p className="text-[10px] font-semibold text-white">50K–100K units/month</p>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-1">Multi-Factor Scoring</span>
+              <div className="grid grid-cols-3 gap-1">
+                {[
+                  { label: "Industry", pct: 98 },
+                  { label: "Capability", pct: 95 },
+                  { label: "Certification", pct: 92 },
+                  { label: "Capacity", pct: 88 },
+                  { label: "Quality", pct: 94 },
+                  { label: "Location", pct: 85 },
+                ].map((f, i) => (
+                  <div key={i} className="flex items-center gap-1">
+                    <span className="text-[8px] text-[hsl(0,0%,60%)] font-medium w-14 truncate">{f.label}</span>
+                    <div className="flex-1 h-1 bg-[hsl(0,0%,28%)] rounded-none">
+                      <div className="h-full bg-primary rounded-none" style={{ width: `${f.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
 
-        {/* Step 5: AI confirms full search criteria */}
+        {/* Step 5: Auto-expand related requirements */}
         {step >= 5 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <div className="p-2 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none max-w-[92%]">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">SearchPro+ AI</span>
-              <p className="text-[10px] font-semibold text-white">Searching with 6 capabilities · 3 certificates · 3 tests · 50K+ volume…</p>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-primary block mb-0.5">Preference Engine — Auto-Expanded</span>
+              <div className="flex gap-1 flex-wrap">
+                {["ISO 14001", "CMM Inspection", "X-Ray NDT", "Tensile Test"].map((opt, i) => (
+                  <span key={i} className="px-1.5 py-0.5 text-[9px] font-semibold rounded-none bg-primary/15 text-primary border border-primary/25">+ {opt}</span>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
 
-        {/* Step 6: Search complete */}
+        {/* Step 6: Triple-source search results */}
         {step >= 6 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Search Complete</span>
-              <div className="grid grid-cols-4 gap-1 mb-1.5">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Triple-Source Search Complete</span>
+              <div className="grid grid-cols-3 gap-1 mb-1.5">
                 {[
-                  { val: "23", label: "Matches" },
-                  { val: "6", label: "Capabilities" },
-                  { val: "3", label: "Certs" },
-                  { val: "3", label: "Tests" },
+                  { val: "12", label: "Verified DB" },
+                  { val: "6", label: "Research DB" },
+                  { val: "5", label: "Web Discovery" },
                 ].map((s, i) => (
                   <div key={i} className="text-center p-1 bg-[hsl(0,0%,28%)] rounded-none">
                     <p className="text-xs font-bold text-white">{s.val}</p>
@@ -230,9 +254,21 @@ const DemoChatbot = () => {
             </div>
           </motion.div>
         )}
+
+        {/* Step 7: RFQ + Evaluation prompt */}
+        {step >= 7 && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="flex gap-1.5">
+              <button className="px-2 py-1 bg-primary text-white text-[9px] font-bold rounded-none">Send RFQ</button>
+              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Compare</button>
+              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Order Audit</button>
+              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Award</button>
+            </div>
+          </motion.div>
+        )}
       </div>
 
-      {/* Input bar — pinned at bottom */}
+      {/* Input bar */}
       <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)] mt-auto">
         <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] rounded-none flex items-center px-3">
           <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what you need...</span>

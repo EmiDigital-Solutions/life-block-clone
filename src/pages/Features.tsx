@@ -61,6 +61,10 @@ const featureCategories = [
       {
         title: "RFQ Response Management",
         description: "Supplier quote submissions, specification compliance, alternative proposals, payment terms, certificate uploads, and sample availability tracking."
+      },
+      {
+        title: "Evaluation & Award",
+        description: "Response comparison tools, buyer evaluation and rating, award decision workflow, and automatic notification to winners."
       }
     ]
   },
