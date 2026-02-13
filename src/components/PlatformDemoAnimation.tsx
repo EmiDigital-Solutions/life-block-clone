@@ -13,42 +13,29 @@ import auditorGen4 from "@/assets/auditor-gen-4.jpg";
 
 const SCREEN_DURATION = 5000;
 
-/* Shared dark-glass card */
-const GlassCard = ({ children, className = "", accent = false }: { children: React.ReactNode; className?: string; accent?: boolean }) => (
-  <div className={`rounded-2xl border ${accent ? 'border-primary/40 bg-primary/10' : 'border-white/10 bg-white/5'} backdrop-blur-md ${className}`}>
-    {children}
-  </div>
-);
-
-/* Pill tag */
-const Pill = ({ children, active = false }: { children: React.ReactNode; active?: boolean }) => (
-  <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-wide ${
-    active ? 'bg-primary text-white' : 'bg-white/10 text-white/60'
+const Tag = ({ children, active = false }: { children: React.ReactNode; active?: boolean }) => (
+  <span className={`inline-flex items-center px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${
+    active ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
   }`}>
     {children}
   </span>
 );
 
-/* Circular progress ring */
-const CircleScore = ({ score, size = 80, label }: { score: number; size?: number; label?: string }) => {
+const ScoreBar = ({ score, size = 80 }: { score: number; size?: number }) => {
   const r = (size - 8) / 2;
   const circ = 2 * Math.PI * r;
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
       <svg className="absolute inset-0 -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={4} />
-        <motion.circle
-          cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(199, 91%, 64%)" strokeWidth={4} strokeLinecap="round"
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(var(--border))" strokeWidth={3} />
+        <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
+          stroke="hsl(var(--primary))" strokeWidth={3} strokeLinecap="square"
           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
           animate={{ strokeDashoffset: circ * (1 - score / 100) }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
       </svg>
-      <div className="text-center">
-        <span className="text-lg font-bold text-white">{score}%</span>
-        {label && <span className="block text-[8px] text-white/50 uppercase tracking-wider">{label}</span>}
-      </div>
+      <span className="text-lg font-bold text-foreground">{score}%</span>
     </div>
   );
 };
@@ -56,7 +43,6 @@ const CircleScore = ({ score, size = 80, label }: { score: number; size?: number
 // ─── SCREEN 1: DISCOVER ────────────────────────────────────────
 const DiscoverScreen = () => {
   const [phase, setPhase] = useState(0);
-
   useEffect(() => {
     const timers = [
       setTimeout(() => setPhase(1), 400),
@@ -77,95 +63,87 @@ const DiscoverScreen = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col p-4 gap-3">
-      {/* Header */}
+    <div className="h-full flex flex-col bg-background p-4 gap-2.5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-xl bg-primary flex items-center justify-center">
-            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-6 h-6 bg-primary flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <span className="text-sm font-semibold text-white">SearchPro+</span>
+          <span className="text-sm font-semibold text-foreground">SearchPro+</span>
         </div>
-        <Pill active>AI-Powered</Pill>
+        <span className="text-xs text-muted-foreground">AI-Powered</span>
       </div>
 
-      {/* Chat */}
       <div className="flex-1 flex flex-col gap-2 overflow-hidden">
         {phase >= 0 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-            <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-[9px] font-bold text-primary">AI</span>
+            <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <GlassCard className="px-3 py-2 text-xs text-white/80 max-w-[80%]">
+            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[80%]">
               What type of product or service are you looking for?
-            </GlassCard>
+            </div>
           </motion.div>
         )}
 
         {phase >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <GlassCard accent className="px-3 py-2 text-xs text-white max-w-[75%]">
+            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[75%]">
               Implantable medical device components
-            </GlassCard>
+            </div>
           </motion.div>
         )}
 
         {phase >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-            <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-[9px] font-bold text-primary">AI</span>
+            <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <GlassCard className="px-3 py-2 text-xs text-white/80 max-w-[80%]">
+            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[80%]">
               What certifications and materials do you require?
-            </GlassCard>
+            </div>
           </motion.div>
         )}
 
         {phase >= 3 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <GlassCard accent className="px-3 py-2 text-xs text-white max-w-[75%]">
+            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[75%]">
               ISO 13485, FDA registered, titanium and medical-grade steel
-            </GlassCard>
+            </div>
           </motion.div>
         )}
 
         {phase >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2">
-            <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-[9px] font-bold text-primary">AI</span>
+            <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <GlassCard className="px-3 py-2 text-xs text-white/70 max-w-[85%]">
+            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[85%]">
               Searching: Implantable + ISO 13485 + FDA + Titanium…
-            </GlassCard>
+            </div>
           </motion.div>
         )}
 
         {phase >= 5 && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-1.5 mt-1">
             <div className="flex items-center gap-2 mb-0.5">
-              <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center">
-                <svg className="w-2.5 h-2.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-              </div>
-              <span className="text-xs font-semibold text-white">4 Matching Suppliers</span>
+              <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              <span className="text-xs font-semibold text-foreground">4 Matching Suppliers</span>
             </div>
             {suppliers.map((s, i) => (
-              <motion.div
-                key={s.name}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <GlassCard accent={i === 0} className="px-3 py-2 text-[11px] flex items-center justify-between">
-                  <div>
-                    <span className="font-semibold text-white">{s.name}</span>
-                    <span className="text-white/40 ml-1.5">· {s.location}</span>
-                  </div>
-                  <span className="text-[10px] text-white/40">{s.certs}</span>
-                </GlassCard>
+              <motion.div key={s.name} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
+                className={`px-3 py-2 border text-[11px] flex items-center justify-between ${
+                  i === 0 ? 'border-primary/30 bg-primary/5' : 'border-border bg-background'
+                }`}>
+                <div>
+                  <span className="font-semibold text-foreground">{s.name}</span>
+                  <span className="text-muted-foreground ml-1.5">· {s.location}</span>
+                </div>
+                <span className="text-[10px] text-muted-foreground">{s.certs}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -173,7 +151,7 @@ const DiscoverScreen = () => {
 
         {phase >= 6 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-            <span className="text-[10px] text-white/30 tracking-wider uppercase">Step 1 of 4 · Discover</span>
+            <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Step 1 of 4 · Discover</span>
           </motion.div>
         )}
       </div>
@@ -184,7 +162,6 @@ const DiscoverScreen = () => {
 // ─── SCREEN 2: MATCH ────────────────────────────────────────────
 const MatchScreen = () => {
   const [phase, setPhase] = useState(0);
-
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 600);
     const t2 = setTimeout(() => setPhase(2), 1500);
@@ -200,29 +177,26 @@ const MatchScreen = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col p-4 gap-3">
+    <div className="h-full flex flex-col bg-background p-4 gap-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-xl bg-primary flex items-center justify-center">
-            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-6 h-6 bg-primary flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
-          <span className="text-sm font-semibold text-white">Auditor Matching</span>
+          <span className="text-sm font-semibold text-foreground">Auditor Matching</span>
         </div>
-        <Pill>ScanPro+</Pill>
+        <span className="text-xs text-muted-foreground">ScanPro+</span>
       </div>
 
-      <GlassCard className="p-3">
-        <div className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Verification Request</div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm font-medium text-white">
-          Verify MediParts GmbH, Munich, ISO 13485
-        </motion.div>
-      </GlassCard>
+      <div className="bg-muted border border-border p-3">
+        <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Verification Request</div>
+        <div className="text-sm font-medium text-foreground">Verify MediParts GmbH, Munich, ISO 13485</div>
+      </div>
 
       {phase >= 1 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="flex items-center gap-2 text-xs text-primary">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
           <motion.div animate={{ rotate: 360 }} transition={{ repeat: phase < 2 ? Infinity : 0, duration: 1, ease: "linear" }}
             className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full" />
           {phase < 2 ? "Matching auditors…" : "3 auditors matched"}
@@ -232,38 +206,36 @@ const MatchScreen = () => {
       {phase >= 2 && (
         <div className="space-y-2 flex-1">
           {auditors.map((a, i) => (
-            <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
-              <GlassCard accent={i === 0} className="flex items-center gap-3 p-3">
-                <img src={a.img} alt={a.name} className="w-10 h-10 rounded-xl object-cover" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white truncate">{a.name}</span>
-                    <Pill active={i === 0}>{a.match}%</Pill>
-                  </div>
-                  <div className="text-[11px] text-white/40 truncate">{a.cert}</div>
+            <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}
+              className={`flex items-center gap-3 p-3 border ${
+                i === 0 ? 'border-primary/30 bg-primary/5' : 'border-border'
+              }`}>
+              <img src={a.img} alt={a.name} className="w-10 h-10 object-cover" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
+                  <Tag active={i === 0}>{a.match}%</Tag>
                 </div>
-              </GlassCard>
+                <div className="text-[11px] text-muted-foreground truncate">{a.cert}</div>
+              </div>
             </motion.div>
           ))}
         </div>
       )}
 
       {phase >= 3 && (
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-          <GlassCard accent className="flex items-center gap-3 p-3">
-            <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-            </div>
-            <span className="text-sm font-semibold text-white">Auditor confirmed: On-site Dec 22</span>
-          </GlassCard>
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+          className="flex items-center gap-3 p-3 border border-primary/30 bg-primary/5">
+          <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span className="text-sm font-semibold text-foreground">Auditor confirmed: On-site Dec 22</span>
         </motion.div>
       )}
 
       {phase >= 4 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-          <span className="text-[10px] text-white/30 tracking-wider uppercase">Step 2 of 4 · Match</span>
+          <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Step 2 of 4 · Match</span>
         </motion.div>
       )}
     </div>
@@ -295,84 +267,71 @@ const AuditScreen = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Top bar */}
-      <div className="px-4 py-2.5 flex items-center justify-between border-b border-white/5">
+    <div className="h-full flex flex-col bg-background">
+      <div className="px-4 py-2.5 border-b border-border flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-sm font-semibold text-white">Live Audit</span>
-          <span className="text-xs text-white/30">· MediParts GmbH</span>
+          <div className="w-2 h-2 rounded-full bg-destructive animate-pulse" />
+          <span className="text-sm font-semibold text-foreground">Live Audit</span>
+          <span className="text-xs text-muted-foreground">· MediParts GmbH</span>
         </div>
         <div className="flex items-center gap-2">
-          <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 rounded-full object-cover" />
-          <span className="text-xs text-white/40">Dr. Schmidt</span>
+          <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
+          <span className="text-xs text-muted-foreground">Dr. Schmidt</span>
         </div>
       </div>
 
       <div className="flex-1 flex">
-        {/* Left: Factory photo */}
         <div className="w-1/2 relative overflow-hidden">
-          <img src={equipmentImage} alt="Cleanroom" className="w-full h-full object-cover brightness-75" />
-
+          <img src={equipmentImage} alt="Cleanroom" className="w-full h-full object-cover" />
           <AnimatePresence>
             {flash && (
               <motion.div initial={{ opacity: 0.8 }} animate={{ opacity: 0 }} exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }} className="absolute inset-0 bg-white" />
+                transition={{ duration: 0.2 }} className="absolute inset-0 bg-background" />
             )}
           </AnimatePresence>
-
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }} className="absolute top-3 left-3 right-3">
-            <div className="rounded-xl border border-primary/40 p-2.5 bg-black/60 backdrop-blur-md">
+            <div className="border border-primary bg-primary/10 backdrop-blur-sm p-2">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
+                <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
                 <span className="text-xs font-semibold text-primary">Clean Room Class 7</span>
               </div>
-              <span className="text-[10px] text-white/40 mt-1 block">Computer Vision Detected</span>
+              <span className="text-[10px] text-primary/70 mt-1 block">Computer Vision Detected</span>
             </div>
           </motion.div>
-
           <div className="absolute bottom-3 left-3">
-            <div className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-sm text-white/60 text-[10px] font-medium">
-              Control Panel
-            </div>
+            <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">Control Panel</div>
           </div>
         </div>
 
-        {/* Right: Checklist */}
-        <div className="w-1/2 flex flex-col border-l border-white/5">
-          <div className="px-4 py-3 border-b border-white/5">
-            <div className="text-xs font-semibold text-white/50 uppercase tracking-wider">ISO 13485 Checklist</div>
+        <div className="w-1/2 flex flex-col border-l border-border">
+          <div className="px-4 py-3 border-b border-border">
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">ISO 13485 Checklist</div>
           </div>
           <div className="flex-1 p-4 space-y-3">
             {checklistItems.map((item, i) => (
-              <motion.div key={item} initial={{ opacity: 0.3 }} animate={{ opacity: i < checkedItems ? 1 : 0.3 }}
+              <motion.div key={item} initial={{ opacity: 0.4 }} animate={{ opacity: i < checkedItems ? 1 : 0.4 }}
                 className="flex items-center gap-3">
-                <div className={`w-5 h-5 rounded-lg flex items-center justify-center transition-colors duration-300 ${
-                  i < checkedItems ? 'bg-primary' : 'border border-white/15'
+                <div className={`w-5 h-5 flex items-center justify-center transition-colors duration-300 ${
+                  i < checkedItems ? 'bg-foreground' : 'border border-border'
                 }`}>
                   {i < checkedItems && (
                     <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }}
-                      className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      className="w-3 h-3 text-background" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </motion.svg>
                   )}
                 </div>
-                <span className={`text-sm ${i < checkedItems ? 'text-white font-medium' : 'text-white/30'}`}>
-                  {item}
-                </span>
+                <span className={`text-sm ${i < checkedItems ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>{item}</span>
               </motion.div>
             ))}
           </div>
-
           {checkedItems >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="px-4 py-2 border-t border-white/5 flex items-center gap-2">
+              className="px-4 py-2 border-t border-border flex items-center gap-2">
               <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -380,9 +339,8 @@ const AuditScreen = () => {
               <span className="text-[10px] text-primary font-medium">Evidence photos capturing…</span>
             </motion.div>
           )}
-
-          <div className="px-4 py-3 border-t border-white/5 text-center">
-            <span className="text-[10px] text-white/30 tracking-wider uppercase">Step 3 of 4 · Audit</span>
+          <div className="px-4 py-3 bg-muted/30 border-t border-border text-center">
+            <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Step 3 of 4 · Audit</span>
           </div>
         </div>
       </div>
@@ -393,7 +351,6 @@ const AuditScreen = () => {
 // ─── SCREEN 4: INTELLIGENCE ─────────────────────────────────────
 const IntelligenceScreen = () => {
   const [showElements, setShowElements] = useState(0);
-
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowElements(1), 400),
@@ -414,31 +371,28 @@ const IntelligenceScreen = () => {
   ];
 
   const certs = ["ISO 13485:2016", "FDA Registered", "CE Mark"];
-
   const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2];
 
   return (
-    <div className="h-full flex flex-col">
-      <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
+    <div className="h-full flex flex-col bg-background">
+      <div className="px-4 py-3 border-b border-border flex items-center justify-between">
         <div>
-          <div className="text-sm font-semibold text-white">MediParts GmbH</div>
-          <div className="text-xs text-white/30">ISO 13485 Audit Report</div>
+          <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
+          <div className="text-xs text-muted-foreground">ISO 13485 Audit Report</div>
         </div>
         <div className="flex items-center gap-2">
-          <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 rounded-full object-cover" />
-          <span className="text-xs text-white/40">Dr. Schmidt</span>
+          <img src={auditorGen2} alt="Dr. Schmidt" className="w-6 h-6 object-cover" />
+          <span className="text-xs text-muted-foreground">Dr. Schmidt</span>
         </div>
       </div>
 
       <div className="flex-1 flex">
-        {/* Left: Scores */}
         <div className="w-3/5 p-4 flex flex-col gap-3 overflow-hidden">
           {showElements >= 1 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-4 mb-1">
-              <CircleScore score={91} size={72} label="Overall" />
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4 mb-1">
+              <ScoreBar score={91} size={72} />
               <div>
-                <div className="text-2xl font-bold text-white">91.3%</div>
+                <div className="text-3xl font-bold text-foreground">91.3%</div>
                 <div className="flex items-center gap-1 text-primary text-xs font-medium">
                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
                   trending up
@@ -449,17 +403,17 @@ const IntelligenceScreen = () => {
 
           {showElements >= 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
-              <div className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-1">Process Scores</div>
+              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">Process Scores</div>
               {processScores.map((p, i) => (
                 <motion.div key={p.name} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }} className="flex items-center gap-2">
-                  <span className="text-xs text-white/70 flex-1 truncate">{p.name}</span>
-                  <div className="w-24 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <span className="text-xs text-foreground flex-1 truncate">{p.name}</span>
+                  <div className="w-24 h-1.5 bg-muted overflow-hidden">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${p.score}%` }}
                       transition={{ duration: 0.6, delay: i * 0.08 }}
-                      className="h-full rounded-full bg-primary" />
+                      className={`h-full ${p.score >= 92 ? 'bg-foreground' : 'bg-muted-foreground'}`} />
                   </div>
-                  <span className="text-xs font-bold w-8 text-right text-primary">{p.score}%</span>
+                  <span className="text-xs font-bold w-8 text-right text-foreground">{p.score}%</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -467,10 +421,10 @@ const IntelligenceScreen = () => {
 
           {showElements >= 3 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-1.5">Certifications</div>
+              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Certifications</div>
               <div className="flex flex-wrap gap-2">
                 {certs.map((c) => (
-                  <Pill key={c} active>{c}</Pill>
+                  <Tag key={c}>{c}</Tag>
                 ))}
               </div>
             </motion.div>
@@ -478,25 +432,24 @@ const IntelligenceScreen = () => {
 
           {showElements >= 4 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-auto">
-              <div className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-2">Non-Conformances</div>
+              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Non-Conformances</div>
               <div className="flex gap-2">
-                <Pill active>0 Major</Pill>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold bg-amber-500/20 text-amber-400">1 Minor</span>
+                <Tag>0 Major</Tag>
+                <Tag>1 Minor</Tag>
               </div>
             </motion.div>
           )}
         </div>
 
-        {/* Right: Evidence + Auditor */}
-        <div className="w-2/5 border-l border-white/5 flex flex-col">
+        <div className="w-2/5 border-l border-border flex flex-col">
           {showElements >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 flex-1">
-              <div className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-2">Evidence Gallery</div>
+              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Evidence Gallery</div>
               <div className="grid grid-cols-4 gap-1">
                 {evidenceImages.map((img, i) => (
                   <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.08 }} className="aspect-square rounded-lg overflow-hidden">
-                    <img src={img} alt={`Evidence ${i + 1}`} className="w-full h-full object-cover brightness-75" />
+                    transition={{ delay: i * 0.08 }} className="aspect-square overflow-hidden">
+                    <img src={img} alt={`Evidence ${i + 1}`} className="w-full h-full object-cover" />
                   </motion.div>
                 ))}
               </div>
@@ -504,20 +457,20 @@ const IntelligenceScreen = () => {
           )}
 
           {showElements >= 5 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 border-t border-white/5">
-              <GlassCard className="flex items-center gap-3 p-3">
-                <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 rounded-xl object-cover" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 border-t border-border">
+              <div className="flex items-center gap-3">
+                <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
                 <div className="flex-1">
-                  <div className="text-sm font-medium text-white">Dr. Klaus Schmidt</div>
-                  <div className="text-[11px] text-white/40">ISO 13485 Certified</div>
+                  <div className="text-sm font-medium text-foreground">Dr. Klaus Schmidt</div>
+                  <div className="text-[11px] text-muted-foreground">ISO 13485 Certified</div>
                 </div>
-                <Pill active>24h</Pill>
-              </GlassCard>
+                <span className="text-[10px] text-primary font-semibold">Report: 24h</span>
+              </div>
             </motion.div>
           )}
 
-          <div className="px-4 py-3 border-t border-white/5 text-center">
-            <span className="text-[10px] text-white/30 tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
+          <div className="px-4 py-3 bg-muted/30 border-t border-border text-center">
+            <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Step 4 of 4 · Intelligence</span>
           </div>
         </div>
       </div>
@@ -541,34 +494,24 @@ const PlatformDemoAnimation = () => {
   const CurrentScreenComponent = screens[currentScreen];
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#0d0d0d] rounded-2xl overflow-hidden">
-      {/* Progress indicators */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+    <div className="w-full h-full flex flex-col bg-background overflow-hidden">
+      <div className="flex items-center gap-1 px-4 py-2 bg-muted/30 border-b border-border">
         {labels.map((label, i) => (
-          <div key={label} className="flex items-center gap-1.5 flex-1">
-            <div className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-              i <= currentScreen ? 'bg-primary' : 'bg-white/8'
+          <div key={label} className="flex items-center gap-1 flex-1">
+            <div className={`h-1 flex-1 transition-colors duration-500 ${
+              i <= currentScreen ? 'bg-primary' : 'bg-border'
             }`} />
             <span className={`text-[10px] font-medium transition-colors duration-300 ${
-              i === currentScreen ? 'text-primary' : 'text-white/25'
-            }`}>
-              {label}
-            </span>
+              i === currentScreen ? 'text-primary' : 'text-muted-foreground'
+            }`}>{label}</span>
           </div>
         ))}
       </div>
 
-      {/* Screen content */}
       <div className="flex-1 relative overflow-hidden">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={currentScreen}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0"
-          >
+          <motion.div key={currentScreen} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="absolute inset-0">
             <CurrentScreenComponent />
           </motion.div>
         </AnimatePresence>
