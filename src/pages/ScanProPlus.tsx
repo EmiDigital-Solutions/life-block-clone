@@ -2148,142 +2148,107 @@ const ScanProPlus = () => {
       <div className="relative">
       <Navigation />
       
-      {/* Hero Section - White Background, Archlet Style */}
+      {/* Hero Section - White Background, Archlet Style (matching Homepage) */}
       <section
         data-nav-theme="light"
         id="hero"
-        className="relative bg-white min-h-screen flex flex-col"
+        className="relative min-h-[100dvh] flex flex-col bg-white"
       >
-        {/* Main Content - Two column layout with video */}
-        <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
+        {/* Main Content */}
+        <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
           <div className="px-8 w-full max-w-[1400px] mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left Column - Text Content */}
-              <motion.div 
-                initial={{ opacity: 0, y: 40 }}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Eyebrow */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative z-20"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
-                {/* Eyebrow Text - Archlet Style */}
+                Supplier Quality Platform
+              </motion.p>
+
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+              >
+                Transform how<br />
+                your team audits.
+              </motion.h1>
+
+              {/* Subtitle + CTA - right-offset like Homepage */}
+              <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-sm text-foreground/50 font-mono tracking-wide mb-6"
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
                 >
-                  Supplier Quality Platform
+                  Cut audit costs by 60% <span className="mx-3 text-foreground/30">|</span> Audit-ready in 48h.<br />
+                  Free your engineers from coordination tasks.<br />
+                  AI-powered quality audits at enterprise scale.
                 </motion.p>
 
-                {/* Main Headline - Archlet Style, 2 rows only */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground"
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4"
                 >
-                  Transform how<br />
-                  your team audits.
-                </motion.h1>
-
-                {/* Subtitle + CTA Container */}
-                <div className="mt-10 lg:mt-12 max-w-xl">
-                  {/* Subtitle with checkmarks */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-col gap-3 mb-8"
-                  >
-                    {[
-                      "Cut audit costs by 60%",
-                      "Free engineers from coordination",
-                      "Audit-ready suppliers in 48h"
-                    ].map((text, index) => (
-                      <div key={index} className="flex items-center gap-3 text-muted-foreground">
-                        <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-base font-medium">{text}</span>
-                      </div>
-                    ))}
-                  </motion.div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    <Button asChild size="lg">
-                      <a 
-                        href="https://calendly.com/yvoo/demo-yvoo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        See it in action
-                      </a>
-                    </Button>
-                  </motion.div>
-
-                  {/* Certification Badges */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mt-8"
-                  >
-                    <p className="text-muted-foreground text-sm mb-3">Auditors certified by:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {["TÜV SÜD", "Bureau Veritas", "SGS", "DNV"].map((badge) => (
-                        <span
-                          key={badge}
-                          className="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground border border-border"
-                        >
-                          {badge}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
+                  <Button asChild size="lg" className="w-full sm:w-auto text-lg">
+                    <a
+                      href="https://calendly.com/yvoo/demo-yvoo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="sm:hidden">See Demo</span>
+                      <span className="hidden sm:inline">See it in action</span>
+                    </a>
+                  </Button>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Scrolling Client Band */}
+        {/* Scrolling Industry Band - matching Homepage */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="bg-muted py-8 overflow-hidden mt-auto relative z-10 border-t border-border"
+          transition={{ duration: 1, delay: 1 }}
+          className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0"
         >
-          <div className="relative flex">
-            <motion.div
-              className="flex gap-16 whitespace-nowrap"
-              animate={{
-                x: [0, -1920],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 60,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...Array(3)].map((_, setIndex) => (
-                <div key={setIndex} className="flex gap-16 items-center">
-                  {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson"].map((company, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xl font-semibold text-muted-foreground/60 tracking-wide hover:text-muted-foreground transition-colors"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...[
+              "Built for high‑performance B2B Supply Chains",
+              "Automotive", "Aerospace", "Medical Devices", "Pharma",
+              "Electronics", "Energy", "Chemical", "Industrial Manufacturing",
+              "Precision Engineering", "Defense", "Rail & Transport",
+            ], ...[
+              "Built for high‑performance B2B Supply Chains",
+              "Automotive", "Aerospace", "Medical Devices", "Pharma",
+              "Electronics", "Energy", "Chemical", "Industrial Manufacturing",
+              "Precision Engineering", "Defense", "Rail & Transport",
+            ]].map((item, i) => (
+              <span
+                key={i}
+                className={`mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase ${
+                  item.startsWith("Built")
+                    ? "font-bold text-foreground"
+                    : "font-bold text-foreground/80"
+                }`}
+              >
+                {item}
+                <span className="ml-6 md:ml-10 text-foreground/20">·</span>
+              </span>
+            ))}
           </div>
         </motion.div>
       </section>
