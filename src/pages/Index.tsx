@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
+import AtlasAISection from "@/components/AtlasAISection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
@@ -20,6 +21,7 @@ const Index = () => {
       <CapabilityOverviewSection />
       <TestimonialSection />
       <WhyYVOOSection />
+      <AtlasAISection />
       <EmailComparisonSection />
       <GlobalNetworkSection />
       <HowItWorksSection />
