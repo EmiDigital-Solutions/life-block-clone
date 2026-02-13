@@ -49,16 +49,21 @@ import procurementMaleEuropean from "@/assets/procurement-male-european.jpg";
 import procurementMaleLatin from "@/assets/procurement-male-latin.jpg";
 import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg";
 
+// Design tokens
+const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
+const GLASS_CARD_LAYER1 = "bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]";
+const GLASS_CARD_LAYER2 = "bg-[hsl(0,0%,42%)] border-[hsl(0,0%,37%)]";
+
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="w-full h-full bg-[#fafafa] overflow-hidden flex flex-col shadow-xl border border-gray-200">
-    <div className="h-8 bg-white flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+  <div className="w-full h-full bg-[hsl(0,0%,85%)] overflow-hidden flex flex-col rounded-none shadow-none border border-[hsl(0,0%,80%)]">
+    <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
       <div className="flex gap-1.5 mr-3">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+        <div className="w-2.5 h-2.5 rounded-none bg-[#ff5f57]" />
+        <div className="w-2.5 h-2.5 rounded-none bg-[#febc2e]" />
+        <div className="w-2.5 h-2.5 rounded-none bg-[#28c840]" />
       </div>
-      <span className="text-[10px] text-gray-500 font-medium">{title}</span>
+      <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">{title}</span>
     </div>
     <div className="flex-1 overflow-hidden">
       {children}
@@ -73,7 +78,7 @@ const AISearchMockup = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setStep((prev) => (prev + 1) % 4);
-    }, 3000);
+    }, 1500); // 6 seconds total (4 steps × 1.5s)
     return () => clearInterval(interval);
   }, []);
 
@@ -86,7 +91,7 @@ const AISearchMockup = () => {
 
   return (
     <WindowChrome title="SearchPro+ — AI Discovery">
-      <div className="h-full bg-white p-4 flex flex-col">
+      <div className={`h-full ${SCREEN_BG} p-4 flex flex-col`}>
         <div className="flex-1 space-y-3 overflow-hidden">
           {messages.slice(0, step + 1).map((msg, i) => (
             <motion.div
@@ -95,14 +100,14 @@ const AISearchMockup = () => {
               animate={{ opacity: 1, y: 0 }}
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`max-w-[80%] p-3 text-sm ${
+              <div className={`max-w-[80%] p-3 text-sm rounded-none border ${
                 msg.role === 'user' 
-                  ? 'bg-primary text-white' 
-                  : 'bg-gray-100 text-gray-900'
+                  ? `${GLASS_CARD_LAYER1} text-white` 
+                  : `bg-[hsl(0,0%,55%)] border-[hsl(0,0%,50%)] text-[hsl(0,0%,95%)]`
               }`}>
                 {msg.role === 'ai' && (
                   <div className="flex items-center gap-1.5 mb-1.5">
-                    <div className="w-4 h-4 bg-primary/20 flex items-center justify-center">
+                    <div className="w-4 h-4 bg-primary/30 flex items-center justify-center rounded-none">
                       <span className="text-[6px] text-primary font-bold">AI</span>
                     </div>
                     <span className="text-[10px] font-medium text-primary">YVOO</span>
@@ -116,23 +121,23 @@ const AISearchMockup = () => {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="mt-4 p-3 bg-primary/5 border border-primary/20"
+              transition={{ delay: 0.3 }}
+              className={`mt-4 p-3 ${GLASS_CARD_LAYER2} border rounded-none`}
             >
               <p className="text-xs font-medium text-primary mb-2">Found 47 matching suppliers</p>
               <div className="flex gap-2">
-                <span className="px-2 py-1 bg-white text-[10px] border">IATF 16949</span>
-                <span className="px-2 py-1 bg-white text-[10px] border">50K units</span>
-                <span className="px-2 py-1 bg-white text-[10px] border">Verified ✓</span>
+                <span className="px-2 py-1 bg-[hsl(0,0%,60%)] text-[10px] border border-[hsl(0,0%,50%)] rounded-none text-[hsl(0,0%,95%)]">IATF 16949</span>
+                <span className="px-2 py-1 bg-[hsl(0,0%,60%)] text-[10px] border border-[hsl(0,0%,50%)] rounded-none text-[hsl(0,0%,95%)]">50K units</span>
+                <span className="px-2 py-1 bg-[hsl(0,0%,60%)] text-[10px] border border-[hsl(0,0%,50%)] rounded-none text-[hsl(0,0%,95%)]">Verified ✓</span>
               </div>
             </motion.div>
           )}
         </div>
         <div className="mt-4 flex gap-2">
-          <div className="flex-1 h-10 bg-gray-50 border border-gray-200 flex items-center px-3">
-            <span className="text-gray-400 text-sm">Type your requirements...</span>
+          <div className={`flex-1 h-10 ${GLASS_CARD_LAYER2} border rounded-none flex items-center px-3`}>
+            <span className="text-[hsl(0,0%,70%)] text-sm">Type your requirements...</span>
           </div>
-          <div className="w-10 h-10 bg-primary flex items-center justify-center">
+          <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-none">
             <ArrowRight className="w-4 h-4 text-white" />
           </div>
         </div>
@@ -148,7 +153,7 @@ const AuditOrderMockup = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setOrderStep((prev) => (prev + 1) % 4);
-    }, 2500);
+    }, 1500); // 6 seconds total (4 steps × 1.5s)
     return () => clearInterval(interval);
   }, []);
 
@@ -160,29 +165,27 @@ const AuditOrderMockup = () => {
 
   return (
     <WindowChrome title="ScanPro+ — Order Audit">
-      <div className="h-full bg-white p-4">
-        {/* Header */}
-        <div className="mb-4 pb-3 border-b border-gray-100">
-          <h3 className="font-bold text-gray-900 text-sm">Schedule On-Site Audit</h3>
-          <p className="text-[10px] text-gray-500 mt-1">Select suppliers for ground truth verification</p>
+      <div className={`h-full ${SCREEN_BG} p-4`}>
+        <div className="mb-4 pb-3 border-b border-[hsl(0,0%,75%)]">
+          <h3 className="font-bold text-[hsl(0,0%,20%)] text-sm">Schedule On-Site Audit</h3>
+          <p className="text-[10px] text-[hsl(0,0%,50%)] mt-1">Select suppliers for ground truth verification</p>
         </div>
 
-        {/* Supplier Selection */}
         <div className="space-y-2 mb-4">
           {suppliers.map((supplier, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`p-3 border ${supplier.selected ? 'border-primary bg-primary/5' : 'border-gray-100'} transition-all`}
+              className={`p-3 border rounded-none transition-all ${supplier.selected ? `${GLASS_CARD_LAYER1}` : `bg-[hsl(0,0%,75%)] border-[hsl(0,0%,70%)]`}`}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-gray-900">{supplier.name}</p>
-                  <p className="text-[10px] text-gray-500">{supplier.location}</p>
+                  <p className={`text-xs font-medium ${supplier.selected ? 'text-white' : 'text-[hsl(0,0%,30%)]'}`}>{supplier.name}</p>
+                  <p className={`text-[10px] ${supplier.selected ? 'text-[hsl(0,0%,80%)]' : 'text-[hsl(0,0%,50%)]'}`}>{supplier.location}</p>
                 </div>
-                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
-                  supplier.selected ? 'bg-primary border-primary' : 'border-gray-200'
+                <div className={`w-5 h-5 rounded-none border-2 flex items-center justify-center ${
+                  supplier.selected ? 'bg-primary border-primary' : 'border-[hsl(0,0%,60%)]'
                 }`}>
                   {supplier.selected && <Check className="w-3 h-3 text-white" />}
                 </div>
@@ -191,18 +194,16 @@ const AuditOrderMockup = () => {
           ))}
         </div>
 
-        {/* Audit Options */}
-        <div className="bg-gray-50 p-3 mb-4">
-          <p className="text-[10px] text-gray-500 mb-2">Audit Type</p>
+        <div className={`${GLASS_CARD_LAYER2} p-3 mb-4 border rounded-none`}>
+          <p className="text-[10px] text-[hsl(0,0%,80%)] mb-2">Audit Type</p>
           <div className="flex gap-2">
-            <span className="px-2 py-1 bg-primary text-white text-[10px] font-medium">Process Audit</span>
-            <span className="px-2 py-1 bg-white border text-[10px]">Quality Audit</span>
-            <span className="px-2 py-1 bg-white border text-[10px]">Full Assessment</span>
+            <span className="px-2 py-1 bg-primary text-white text-[10px] font-medium rounded-none">Process Audit</span>
+            <span className="px-2 py-1 bg-[hsl(0,0%,60%)] border border-[hsl(0,0%,50%)] text-[10px] rounded-none text-[hsl(0,0%,95%)]">Quality Audit</span>
+            <span className="px-2 py-1 bg-[hsl(0,0%,60%)] border border-[hsl(0,0%,50%)] text-[10px] rounded-none text-[hsl(0,0%,95%)]">Full Assessment</span>
           </div>
         </div>
 
-        {/* CTA */}
-        <button className="w-full py-2.5 bg-primary text-white text-xs font-medium flex items-center justify-center gap-2">
+        <button className="w-full py-2.5 bg-primary text-white text-xs font-medium flex items-center justify-center gap-2 rounded-none">
           Order Audit for {suppliers.filter(s => s.selected).length} Suppliers
           <ArrowRight className="w-3 h-3" />
         </button>
@@ -218,31 +219,29 @@ const GroundTruthMockup = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % 3);
-    }, 3000);
+    }, 2000); // 6 seconds total (3 tabs × 2s)
     return () => clearInterval(interval);
   }, []);
 
   return (
     <WindowChrome title="YVOO — Ground Truth Intelligence">
-      <div className="h-full bg-white p-4">
-        {/* Header */}
-        <div className="flex items-start gap-3 mb-4 pb-3 border-b border-gray-100">
-          <div className="w-10 h-10 bg-secondary/20 flex items-center justify-center">
+      <div className={`h-full ${SCREEN_BG} p-4`}>
+        <div className="flex items-start gap-3 mb-4 pb-3 border-b border-[hsl(0,0%,75%)]">
+          <div className="w-10 h-10 bg-secondary/30 flex items-center justify-center rounded-none">
             <Check className="w-5 h-5 text-secondary" />
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 text-sm">Verified Ground Truth</h3>
-            <p className="text-[10px] text-gray-500">Last audit: 3 days ago • Auditor: M. Schmidt</p>
+            <h3 className="font-bold text-[hsl(0,0%,20%)] text-sm">Verified Ground Truth</h3>
+            <p className="text-[10px] text-[hsl(0,0%,50%)]">Last audit: 3 days ago • Auditor: M. Schmidt</p>
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-4 mb-4 border-b border-gray-100">
+        <div className="flex gap-4 mb-4 border-b border-[hsl(0,0%,75%)]">
           {['Equipment', 'Certificates', 'Capacity'].map((tab, i) => (
             <button
               key={tab}
-              className={`pb-2 text-xs font-medium transition-colors ${
-                activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-gray-400'
+              className={`pb-2 text-xs font-medium transition-colors rounded-none ${
+                activeTab === i ? 'text-primary border-b-2 border-primary' : 'text-[hsl(0,0%,60%)]'
               }`}
             >
               {tab}
@@ -250,7 +249,6 @@ const GroundTruthMockup = () => {
           ))}
         </div>
 
-        {/* Content */}
         <motion.div
           key={activeTab}
           initial={{ opacity: 0 }}
@@ -260,9 +258,9 @@ const GroundTruthMockup = () => {
           {activeTab === 0 && (
             <>
               {['DMG MORI NLX 2500 • Verified ✓', 'Zeiss CMM Contura • Verified ✓', 'TRUMPF TruLaser • Verified ✓'].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 p-2 bg-secondary/10">
-                  <div className="w-2 h-2 rounded-full bg-secondary" />
-                  <span className="text-xs text-gray-900">{item}</span>
+                <div key={i} className={`flex items-center gap-2 p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                  <div className="w-2 h-2 rounded-none bg-secondary" />
+                  <span className="text-xs text-[hsl(0,0%,95%)]">{item}</span>
                 </div>
               ))}
             </>
@@ -274,8 +272,8 @@ const GroundTruthMockup = () => {
                 { cert: 'ISO 9001:2015', status: 'Valid', date: '2025' },
                 { cert: 'ISO 14001', status: 'Valid', date: '2025' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between p-2 bg-gray-50">
-                  <span className="text-xs font-medium">{item.cert}</span>
+                <div key={i} className={`flex items-center justify-between p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                  <span className="text-xs font-medium text-[hsl(0,0%,95%)]">{item.cert}</span>
                   <span className="text-[10px] text-secondary font-medium">Verified until {item.date}</span>
                 </div>
               ))}
@@ -283,17 +281,17 @@ const GroundTruthMockup = () => {
           )}
           {activeTab === 2 && (
             <div className="space-y-3">
-              <div className="p-3 bg-gray-50">
-                <p className="text-[10px] text-gray-500 mb-1">Production Capacity</p>
-                <p className="text-lg font-bold text-gray-900">60,000 <span className="text-sm font-normal">units/month</span></p>
+              <div className={`p-3 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <p className="text-[10px] text-[hsl(0,0%,70%)] mb-1">Production Capacity</p>
+                <p className="text-lg font-bold text-[hsl(0,0%,95%)]">60,000 <span className="text-sm font-normal">units/month</span></p>
                 <p className="text-[10px] text-secondary mt-1">✓ Verified on-site</p>
               </div>
-              <div className="p-3 bg-gray-50">
-                <p className="text-[10px] text-gray-500 mb-1">Current Utilization</p>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full w-[72%] bg-primary rounded-full" />
+              <div className={`p-3 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <p className="text-[10px] text-[hsl(0,0%,70%)] mb-1">Current Utilization</p>
+                <div className="h-2 bg-[hsl(0,0%,35%)] rounded-none overflow-hidden">
+                  <div className="h-full w-[72%] bg-primary rounded-none" />
                 </div>
-                <p className="text-[10px] text-gray-600 mt-1">72% — Available capacity confirmed</p>
+                <p className="text-[10px] text-[hsl(0,0%,70%)] mt-1">72% — Available capacity confirmed</p>
               </div>
             </div>
           )}
@@ -389,41 +387,39 @@ const SupplierDevelopmentMockup = () => {
   );
 };
 
-// Supplier Profile Mockup Component (kept for reference)
+// Supplier Profile Mockup Component
 const SupplierProfileMockup = () => {
   const [activeProfileTab, setActiveProfileTab] = useState(0);
   
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveProfileTab((prev) => (prev + 1) % 3);
-    }, 2500);
+    }, 2000); // 6 seconds total (3 tabs × 2s)
     return () => clearInterval(interval);
   }, []);
 
   return (
     <WindowChrome title="SearchPro+ — Supplier Profile">
-      <div className="h-full bg-white p-4">
-        {/* Header */}
-        <div className="flex items-start gap-3 mb-4 pb-4 border-b border-gray-100">
-          <div className="w-12 h-12 bg-gray-100 flex items-center justify-center">
-            <span className="text-lg font-bold text-gray-600">PM</span>
+      <div className={`h-full ${SCREEN_BG} p-4`}>
+        <div className="flex items-start gap-3 mb-4 pb-4 border-b border-[hsl(0,0%,75%)]">
+          <div className={`w-12 h-12 ${GLASS_CARD_LAYER1} flex items-center justify-center rounded-none`}>
+            <span className="text-lg font-bold text-[hsl(0,0%,95%)]">PM</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="font-bold text-gray-900">Precision Metalworks GmbH</h3>
-              <span className="px-1.5 py-0.5 bg-secondary/20 text-secondary text-[10px] font-medium">94% Match</span>
+              <h3 className="font-bold text-[hsl(0,0%,20%)]">Precision Metalworks GmbH</h3>
+              <span className={`px-1.5 py-0.5 bg-secondary/30 text-secondary text-[10px] font-medium rounded-none`}>94% Match</span>
             </div>
-            <p className="text-xs text-gray-500">Munich, Germany • Est. 1987</p>
+            <p className="text-xs text-[hsl(0,0%,50%)]">Munich, Germany • Est. 1987</p>
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-4 mb-4 border-b border-gray-100">
+        <div className="flex gap-4 mb-4 border-b border-[hsl(0,0%,75%)]">
           {['Capabilities', 'Certifications', 'Equipment'].map((tab, i) => (
             <button
               key={tab}
-              className={`pb-2 text-xs font-medium transition-colors ${
-                activeProfileTab === i ? 'text-primary border-b-2 border-primary' : 'text-gray-400'
+              className={`pb-2 text-xs font-medium transition-colors rounded-none ${
+                activeProfileTab === i ? 'text-primary border-b-2 border-primary' : 'text-[hsl(0,0%,60%)]'
               }`}
             >
               {tab}
@@ -431,7 +427,6 @@ const SupplierProfileMockup = () => {
           ))}
         </div>
 
-        {/* Content */}
         <motion.div
           key={activeProfileTab}
           initial={{ opacity: 0 }}
@@ -440,60 +435,59 @@ const SupplierProfileMockup = () => {
         >
           {activeProfileTab === 0 && (
             <>
-              <div className="flex items-center gap-2 p-2 bg-gray-50">
+              <div className={`flex items-center gap-2 p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
                 <Check className="w-3 h-3 text-primary" />
-                <span className="text-xs">5-Axis CNC Machining</span>
+                <span className="text-xs text-[hsl(0,0%,95%)]">5-Axis CNC Machining</span>
               </div>
-              <div className="flex items-center gap-2 p-2 bg-gray-50">
+              <div className={`flex items-center gap-2 p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
                 <Check className="w-3 h-3 text-primary" />
-                <span className="text-xs">Precision Grinding (±0.005mm)</span>
+                <span className="text-xs text-[hsl(0,0%,95%)]">Precision Grinding (±0.005mm)</span>
               </div>
-              <div className="flex items-center gap-2 p-2 bg-gray-50">
+              <div className={`flex items-center gap-2 p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
                 <Check className="w-3 h-3 text-primary" />
-                <span className="text-xs">Brake Component Expertise</span>
+                <span className="text-xs text-[hsl(0,0%,95%)]">Brake Component Expertise</span>
               </div>
             </>
           )}
           {activeProfileTab === 1 && (
             <>
-              <div className="flex items-center justify-between p-2 bg-gray-50">
-                <span className="text-xs font-medium">IATF 16949:2016</span>
+              <div className={`flex items-center justify-between p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <span className="text-xs font-medium text-[hsl(0,0%,95%)]">IATF 16949:2016</span>
                 <span className="text-[10px] text-secondary">Valid until 2026</span>
               </div>
-              <div className="flex items-center justify-between p-2 bg-gray-50">
-                <span className="text-xs font-medium">ISO 9001:2015</span>
+              <div className={`flex items-center justify-between p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <span className="text-xs font-medium text-[hsl(0,0%,95%)]">ISO 9001:2015</span>
                 <span className="text-[10px] text-secondary">Valid until 2025</span>
               </div>
-              <div className="flex items-center justify-between p-2 bg-gray-50">
-                <span className="text-xs font-medium">ISO 14001</span>
+              <div className={`flex items-center justify-between p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <span className="text-xs font-medium text-[hsl(0,0%,95%)]">ISO 14001</span>
                 <span className="text-[10px] text-secondary">Valid until 2025</span>
               </div>
             </>
           )}
           {activeProfileTab === 2 && (
             <>
-              <div className="p-2 bg-gray-50">
-                <p className="text-xs font-medium">DMG MORI NLX 2500</p>
-                <p className="text-[10px] text-gray-500">5-Axis CNC • 2021</p>
+              <div className={`p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <p className="text-xs font-medium text-[hsl(0,0%,95%)]">DMG MORI NLX 2500</p>
+                <p className="text-[10px] text-[hsl(0,0%,70%)]">5-Axis CNC • 2021</p>
               </div>
-              <div className="p-2 bg-gray-50">
-                <p className="text-xs font-medium">Zeiss CMM Contura</p>
-                <p className="text-[10px] text-gray-500">Quality Measurement • 2022</p>
+              <div className={`p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <p className="text-xs font-medium text-[hsl(0,0%,95%)]">Zeiss CMM Contura</p>
+                <p className="text-[10px] text-[hsl(0,0%,70%)]">Quality Measurement • 2022</p>
               </div>
-              <div className="p-2 bg-gray-50">
-                <p className="text-xs font-medium">Surface Grinder Okamoto</p>
-                <p className="text-[10px] text-gray-500">Precision Grinding • 2019</p>
+              <div className={`p-2 ${GLASS_CARD_LAYER2} border rounded-none`}>
+                <p className="text-xs font-medium text-[hsl(0,0%,95%)]">Surface Grinder Okamoto</p>
+                <p className="text-[10px] text-[hsl(0,0%,70%)]">Precision Grinding • 2019</p>
               </div>
             </>
           )}
         </motion.div>
 
-        {/* CTA */}
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium rounded-none">
             Request Quote
           </button>
-          <button className="flex-1 py-2 border border-gray-200 text-xs font-medium">
+          <button className={`flex-1 py-2 border rounded-none text-xs font-medium bg-[hsl(0,0%,65%)] border-[hsl(0,0%,55%)] text-[hsl(0,0%,95%)]`}>
             Order Audit
           </button>
         </div>
@@ -509,7 +503,7 @@ const ComparisonMockup = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedCount((prev) => prev === 2 ? 3 : 2);
-    }, 3000);
+    }, 3000); // 6 seconds total (2 states × 3s)
     return () => clearInterval(interval);
   }, []);
 
@@ -521,35 +515,33 @@ const ComparisonMockup = () => {
 
   return (
     <WindowChrome title="SearchPro+ — Compare Suppliers">
-      <div className="h-full bg-white p-4">
-        {/* Header */}
+      <div className={`h-full ${SCREEN_BG} p-4`}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="font-bold text-gray-900 text-sm">Comparison Table</h3>
-            <p className="text-[10px] text-gray-500">{selectedCount} suppliers selected</p>
+            <h3 className="font-bold text-[hsl(0,0%,20%)] text-sm">Comparison Table</h3>
+            <p className="text-[10px] text-[hsl(0,0%,50%)]">{selectedCount} suppliers selected</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1">
+            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1 rounded-none">
               Export
               <ArrowRight className="w-3 h-3" />
             </button>
           </div>
         </div>
 
-        {/* Comparison Grid */}
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left py-2 font-medium text-gray-500">Criteria</th>
+              <tr className={`border-b border-[hsl(0,0%,75%)]`}>
+                <th className="text-left py-2 font-medium text-[hsl(0,0%,60%)]">Criteria</th>
                 {suppliers.slice(0, selectedCount).map((s, i) => (
-                  <th key={i} className="text-left py-2 font-medium text-gray-900">{s.name}</th>
+                  <th key={i} className="text-left py-2 font-medium text-[hsl(0,0%,20%)]">{s.name}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-50">
-                <td className="py-2 text-gray-500">Match Score</td>
+              <tr className={`border-b border-[hsl(0,0%,70%)]`}>
+                <td className="py-2 text-[hsl(0,0%,50%)]">Match Score</td>
                 {suppliers.slice(0, selectedCount).map((s, i) => (
                   <td key={i} className="py-2">
                     <span className={`font-bold ${s.match >= 90 ? 'text-secondary' : 'text-primary'}`}>
@@ -558,26 +550,25 @@ const ComparisonMockup = () => {
                   </td>
                 ))}
               </tr>
-              <tr className="border-b border-gray-50">
-                <td className="py-2 text-gray-500">Certification</td>
+              <tr className={`border-b border-[hsl(0,0%,70%)]`}>
+                <td className="py-2 text-[hsl(0,0%,50%)]">Certification</td>
                 {suppliers.slice(0, selectedCount).map((s, i) => (
-                  <td key={i} className="py-2">{s.cert}</td>
+                  <td key={i} className="py-2 text-[hsl(0,0%,30%)]">{s.cert}</td>
                 ))}
               </tr>
-              <tr className="border-b border-gray-50">
-                <td className="py-2 text-gray-500">Capacity</td>
+              <tr className={`border-b border-[hsl(0,0%,70%)]`}>
+                <td className="py-2 text-[hsl(0,0%,50%)]">Capacity</td>
                 {suppliers.slice(0, selectedCount).map((s, i) => (
-                  <td key={i} className="py-2">{s.capacity}</td>
+                  <td key={i} className="py-2 text-[hsl(0,0%,30%)]">{s.capacity}</td>
                 ))}
               </tr>
             </tbody>
           </table>
         </div>
 
-        {/* Actions */}
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 py-2 bg-gray-100 text-xs font-medium">Add to List</button>
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Order Audits</button>
+          <button className={`flex-1 py-2 text-xs font-medium rounded-none ${GLASS_CARD_LAYER2} border text-[hsl(0,0%,95%)]`}>Add to List</button>
+          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium rounded-none">Order Audits</button>
         </div>
       </div>
     </WindowChrome>
