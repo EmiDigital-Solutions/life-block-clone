@@ -5,32 +5,24 @@ import auditorGen2 from "@/assets/auditor-gen-2.jpg";
 
 const SCREEN_DURATION = 5000;
 
-const Tag = ({ children, active = false }: { children: React.ReactNode; active?: boolean }) => (
-  <span className={`inline-flex items-center px-2 py-0.5 text-[9px] font-semibold ${
-    active ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-  }`}>
+/* Dashboard card — muted bg, squared */
+const DashCard = ({ children, className = "", highlight = false }: { children: React.ReactNode; className?: string; highlight?: boolean }) => (
+  <div className={`border ${highlight ? 'border-primary/20 bg-primary/5' : 'border-border bg-muted/60'} ${className}`}>
     {children}
-  </span>
+  </div>
 );
 
-const ScoreRing = ({ score, size = 56 }: { score: number; size?: number }) => {
-  const r = (size - 6) / 2;
-  const circ = 2 * Math.PI * r;
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg className="absolute inset-0 -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(var(--border))" strokeWidth={3} />
-        <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(var(--primary))" strokeWidth={3} strokeLinecap="square"
-          initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
-          animate={{ strokeDashoffset: circ * (1 - score / 100) }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        />
-      </svg>
-      <span className="text-sm font-bold text-foreground">{score}%</span>
-    </div>
-  );
-};
+/* Mini bar chart */
+const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: number }) => (
+  <div className="flex items-end gap-[2px] h-8">
+    {bars.map((h, i) => (
+      <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
+        transition={{ duration: 0.3, delay: i * 0.02 }}
+        className={`w-[2px] ${i === accentIndex ? 'bg-primary' : 'bg-muted-foreground/25'}`}
+      />
+    ))}
+  </div>
+);
 
 const MobileDiscoverScreen = () => {
   const [phase, setPhase] = useState(0);
@@ -52,16 +44,16 @@ const MobileDiscoverScreen = () => {
         <div className="w-5 h-5 bg-foreground flex items-center justify-center flex-shrink-0">
           <span className="text-[8px] font-bold text-background">AI</span>
         </div>
-        <div className="bg-muted border border-border px-2.5 py-1.5 text-[11px] text-foreground">
+        <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground">
           What are you looking for?
-        </div>
+        </DashCard>
       </div>
 
       {phase >= 1 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end">
-          <div className="bg-muted border border-border px-2.5 py-1.5 text-[11px] text-foreground max-w-[80%]">
+          <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground max-w-[80%]">
             Implantable medical device components
-          </div>
+          </DashCard>
         </motion.div>
       )}
 
@@ -70,9 +62,9 @@ const MobileDiscoverScreen = () => {
           <div className="w-5 h-5 bg-foreground flex items-center justify-center flex-shrink-0">
             <span className="text-[8px] font-bold text-background">AI</span>
           </div>
-          <div className="bg-muted border border-border px-2.5 py-1.5 text-[11px] text-foreground">
+          <DashCard className="px-2.5 py-1.5 text-[11px] text-foreground">
             Searching: ISO 13485 + FDA + Titanium…
-          </div>
+          </DashCard>
         </motion.div>
       )}
 
@@ -85,9 +77,10 @@ const MobileDiscoverScreen = () => {
             <span className="text-[11px] font-semibold text-foreground">4 Suppliers Found</span>
           </div>
           {["MediParts GmbH · Munich", "BioTech Precision SA · Geneva"].map((s, i) => (
-            <motion.div key={s} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}
-              className={`px-2.5 py-1.5 border text-[10px] ${i === 0 ? 'border-primary/30 bg-primary/5 font-medium' : 'border-border'} text-foreground`}>
-              {s}
+            <motion.div key={s} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}>
+              <DashCard highlight={i === 0} className="px-2.5 py-1.5 text-[10px] text-foreground">
+                {s}
+              </DashCard>
             </motion.div>
           ))}
         </motion.div>
@@ -110,30 +103,47 @@ const MobileMatchScreen = () => {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
+  const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70];
+
   return (
     <div className="h-full flex flex-col bg-background p-4 gap-3">
       <div className="text-xs text-muted-foreground uppercase tracking-wider">Auditor Matching</div>
-      <div className="bg-muted border border-border p-3">
-        <div className="text-xs text-muted-foreground mb-1">Verify</div>
-        <div className="text-sm font-medium text-foreground">MediParts GmbH, Munich, ISO 13485</div>
-      </div>
+
+      <DashCard className="p-3">
+        <div className="flex items-baseline gap-1 mb-1">
+          <span className="text-xl font-bold text-foreground">3</span>
+          <span className="text-[10px] text-primary font-semibold -translate-y-1.5">+3</span>
+        </div>
+        <span className="text-[9px] text-muted-foreground uppercase">Auditors Matched</span>
+        <div className="mt-2">
+          <BarChart bars={matchBars} accentIndex={12} />
+        </div>
+      </DashCard>
+
       {phase >= 1 && (
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          className="border border-primary/30 bg-primary/5 p-3 flex items-center gap-3">
-          <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
-          <div className="flex-1">
-            <div className="text-sm font-semibold text-foreground">Dr. Klaus Schmidt <Tag active>94%</Tag></div>
-            <div className="text-[11px] text-muted-foreground">ISO 13485 Certified</div>
-          </div>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+          <DashCard highlight className="p-3 flex items-center gap-3">
+            <img src={auditorGen2} alt="Dr. Schmidt" className="w-10 h-10 object-cover" />
+            <div className="flex-1">
+              <div className="text-sm font-semibold text-foreground">Dr. Klaus Schmidt</div>
+              <div className="text-[11px] text-muted-foreground">ISO 13485 Certified</div>
+            </div>
+            <div className="flex items-baseline gap-0.5">
+              <span className="text-lg font-bold text-foreground">94</span>
+              <span className="text-[10px] text-muted-foreground">%</span>
+            </div>
+          </DashCard>
         </motion.div>
       )}
+
       {phase >= 2 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="flex items-center gap-2 p-2 border border-border bg-muted">
-          <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-          </svg>
-          <span className="text-xs font-semibold text-foreground">Confirmed — On-site Dec 22</span>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <DashCard highlight className="flex items-center gap-2 p-2.5">
+            <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span className="text-xs font-semibold text-foreground">Confirmed — On-site Dec 22</span>
+          </DashCard>
         </motion.div>
       )}
     </div>
@@ -186,39 +196,48 @@ const MobileAuditScreen = () => {
 };
 
 const MobileIntelligenceScreen = () => {
+  const scoreBars = [40, 55, 45, 60, 50, 65, 70, 55, 75, 80, 60, 85, 70, 90, 91];
   const scores = [
-    { name: "Quality Mgmt", score: 93 },
+    { name: "Quality", score: 93 },
     { name: "Equipment", score: 89 },
-    { name: "Documentation", score: 94 },
-    { name: "Process Control", score: 88 },
+    { name: "Docs", score: 94 },
+    { name: "Process", score: 88 },
   ];
 
   return (
     <div className="h-full flex flex-col bg-background p-4 gap-3">
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
-          <div className="text-[11px] text-muted-foreground">ISO 13485 Report</div>
-        </div>
-        <ScoreRing score={91} size={56} />
-      </div>
-      <div className="space-y-2">
-        {scores.map((p, i) => (
-          <motion.div key={p.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.15 }}
-            className="flex items-center gap-2">
-            <span className="text-xs text-foreground flex-1">{p.name}</span>
-            <div className="w-16 h-1.5 bg-muted overflow-hidden">
-              <motion.div initial={{ width: 0 }} animate={{ width: `${p.score}%` }} transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`h-full ${p.score >= 92 ? 'bg-foreground' : 'bg-muted-foreground'}`} />
+      <DashCard className="p-3">
+        <div className="flex items-center justify-between mb-2">
+          <div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-bold text-foreground">91.3</span>
+              <span className="text-sm text-muted-foreground">%</span>
+              <span className="text-[10px] text-primary font-semibold -translate-y-2">+2.1</span>
             </div>
-            <span className="text-xs font-bold w-8 text-right text-foreground">{p.score}%</span>
-          </motion.div>
-        ))}
-      </div>
-      <div className="flex gap-2 mt-1">
-        <Tag>0 Major</Tag>
-        <Tag>1 Minor</Tag>
-      </div>
+            <span className="text-[9px] text-muted-foreground uppercase">Overall Score</span>
+          </div>
+          <div className="text-sm font-semibold text-foreground">MediParts GmbH</div>
+        </div>
+        <BarChart bars={scoreBars} accentIndex={14} />
+      </DashCard>
+
+      <DashCard className="p-3">
+        <div className="flex items-end justify-between gap-2">
+          {scores.map((p) => (
+            <div key={p.name} className="text-center">
+              <div className="flex items-baseline justify-center gap-0.5">
+                <span className="text-lg font-bold text-foreground">{p.score}</span>
+                <span className="text-[9px] text-muted-foreground">%</span>
+              </div>
+              <span className="text-[8px] text-muted-foreground uppercase">{p.name}</span>
+            </div>
+          ))}
+        </div>
+        <div className="flex mt-3 border border-border overflow-hidden">
+          <div className="px-2.5 py-1 text-[9px] font-semibold bg-foreground text-background flex-1 text-center">0 Major</div>
+          <div className="px-2.5 py-1 text-[9px] font-semibold bg-background text-muted-foreground flex-1 text-center">1 Minor</div>
+        </div>
+      </DashCard>
     </div>
   );
 };
@@ -242,7 +261,7 @@ const MobilePlatformDemo = () => {
       <div className="flex items-center justify-center gap-3 py-2 bg-muted/20 border-b border-border">
         {labels.map((label, i) => (
           <div key={label} className="flex items-center gap-1.5">
-            <div className={`w-2 h-2 rounded-full transition-colors ${i === currentScreen ? 'bg-primary' : 'bg-border'}`} />
+            <div className={`w-2 h-2 transition-colors ${i === currentScreen ? 'bg-primary' : 'bg-border'}`} />
             <span className={`text-[10px] font-medium ${i === currentScreen ? 'text-primary' : 'text-muted-foreground'}`}>{label}</span>
           </div>
         ))}

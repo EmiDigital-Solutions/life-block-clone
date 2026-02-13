@@ -13,32 +13,52 @@ import auditorGen4 from "@/assets/auditor-gen-4.jpg";
 
 const SCREEN_DURATION = 5000;
 
-const Tag = ({ children, active = false }: { children: React.ReactNode; active?: boolean }) => (
-  <span className={`inline-flex items-center px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${
-    active ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-  }`}>
+/* Dashboard card — muted bg, squared */
+const DashCard = ({ children, className = "", highlight = false }: { children: React.ReactNode; className?: string; highlight?: boolean }) => (
+  <div className={`border ${highlight ? 'border-primary/20 bg-primary/5' : 'border-border bg-muted/60'} ${className}`}>
     {children}
-  </span>
+  </div>
 );
 
-const ScoreBar = ({ score, size = 80 }: { score: number; size?: number }) => {
-  const r = (size - 8) / 2;
-  const circ = 2 * Math.PI * r;
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-      <svg className="absolute inset-0 -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(var(--border))" strokeWidth={3} />
-        <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(var(--primary))" strokeWidth={3} strokeLinecap="square"
-          initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
-          animate={{ strokeDashoffset: circ * (1 - score / 100) }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        />
-      </svg>
-      <span className="text-lg font-bold text-foreground">{score}%</span>
+/* Stat with superscript delta */
+const BigStat = ({ value, delta, label, unit = "" }: { value: string; delta?: string; label?: string; unit?: string }) => (
+  <div>
+    <div className="flex items-baseline gap-0.5">
+      <span className="text-2xl font-bold text-foreground tracking-tight">{value}</span>
+      {unit && <span className="text-sm font-medium text-muted-foreground">{unit}</span>}
+      {delta && <span className="text-[10px] font-semibold text-primary ml-0.5 -translate-y-2">{delta}</span>}
     </div>
-  );
-};
+    {label && <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{label}</span>}
+  </div>
+);
+
+/* Mini bar chart */
+const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: number }) => (
+  <div className="flex items-end gap-[2px] h-10">
+    {bars.map((h, i) => (
+      <motion.div
+        key={i}
+        initial={{ height: 0 }}
+        animate={{ height: `${h}%` }}
+        transition={{ duration: 0.4, delay: i * 0.03 }}
+        className={`w-[3px] ${i === accentIndex ? 'bg-primary' : 'bg-muted-foreground/30'}`}
+      />
+    ))}
+  </div>
+);
+
+/* Segmented toggle pills — squared */
+const SegmentedToggle = ({ items, activeIndex }: { items: string[]; activeIndex: number }) => (
+  <div className="flex border border-border overflow-hidden">
+    {items.map((item, i) => (
+      <div key={item} className={`px-3 py-1.5 text-[10px] font-semibold tracking-wide transition-colors ${
+        i === activeIndex ? 'bg-foreground text-background' : 'bg-background text-muted-foreground'
+      }`}>
+        {item}
+      </div>
+    ))}
+  </div>
+);
 
 // ─── SCREEN 1: DISCOVER ────────────────────────────────────────
 const DiscoverScreen = () => {
@@ -66,14 +86,14 @@ const DiscoverScreen = () => {
     <div className="h-full flex flex-col bg-background p-4 gap-2.5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-primary flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-6 h-6 bg-foreground flex items-center justify-center">
+            <svg className="w-3 h-3 text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
           <span className="text-sm font-semibold text-foreground">SearchPro+</span>
         </div>
-        <span className="text-xs text-muted-foreground">AI-Powered</span>
+        <span className="text-[10px] text-muted-foreground uppercase tracking-wider">AI-Powered</span>
       </div>
 
       <div className="flex-1 flex flex-col gap-2 overflow-hidden">
@@ -82,17 +102,17 @@ const DiscoverScreen = () => {
             <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
               <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[80%]">
+            <DashCard className="px-3 py-2 text-xs text-foreground max-w-[80%]">
               What type of product or service are you looking for?
-            </div>
+            </DashCard>
           </motion.div>
         )}
 
         {phase >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[75%]">
+            <DashCard className="px-3 py-2 text-xs text-foreground max-w-[75%]">
               Implantable medical device components
-            </div>
+            </DashCard>
           </motion.div>
         )}
 
@@ -101,17 +121,17 @@ const DiscoverScreen = () => {
             <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
               <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[80%]">
+            <DashCard className="px-3 py-2 text-xs text-foreground max-w-[80%]">
               What certifications and materials do you require?
-            </div>
+            </DashCard>
           </motion.div>
         )}
 
         {phase >= 3 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[75%]">
+            <DashCard className="px-3 py-2 text-xs text-foreground max-w-[75%]">
               ISO 13485, FDA registered, titanium and medical-grade steel
-            </div>
+            </DashCard>
           </motion.div>
         )}
 
@@ -120,9 +140,9 @@ const DiscoverScreen = () => {
             <div className="w-6 h-6 bg-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
               <span className="text-[9px] font-bold text-background">AI</span>
             </div>
-            <div className="bg-muted border border-border px-3 py-2 text-xs text-foreground max-w-[85%]">
+            <DashCard className="px-3 py-2 text-xs text-foreground max-w-[85%]">
               Searching: Implantable + ISO 13485 + FDA + Titanium…
-            </div>
+            </DashCard>
           </motion.div>
         )}
 
@@ -135,15 +155,14 @@ const DiscoverScreen = () => {
               <span className="text-xs font-semibold text-foreground">4 Matching Suppliers</span>
             </div>
             {suppliers.map((s, i) => (
-              <motion.div key={s.name} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
-                className={`px-3 py-2 border text-[11px] flex items-center justify-between ${
-                  i === 0 ? 'border-primary/30 bg-primary/5' : 'border-border bg-background'
-                }`}>
-                <div>
-                  <span className="font-semibold text-foreground">{s.name}</span>
-                  <span className="text-muted-foreground ml-1.5">· {s.location}</span>
-                </div>
-                <span className="text-[10px] text-muted-foreground">{s.certs}</span>
+              <motion.div key={s.name} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}>
+                <DashCard highlight={i === 0} className="px-3 py-2 text-[11px] flex items-center justify-between">
+                  <div>
+                    <span className="font-semibold text-foreground">{s.name}</span>
+                    <span className="text-muted-foreground ml-1.5">· {s.location}</span>
+                  </div>
+                  <span className="text-[10px] text-muted-foreground">{s.certs}</span>
+                </DashCard>
               </motion.div>
             ))}
           </motion.div>
@@ -176,24 +195,27 @@ const MatchScreen = () => {
     { name: "Thomas Richter", match: 88, cert: "ISO 13485 · Stuttgart · 9 yrs", img: auditorGen4 },
   ];
 
+  const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70, 60, 55, 45, 35, 30];
+
   return (
     <div className="h-full flex flex-col bg-background p-4 gap-3">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-primary flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
-          <span className="text-sm font-semibold text-foreground">Auditor Matching</span>
-        </div>
-        <span className="text-xs text-muted-foreground">ScanPro+</span>
+        <span className="text-sm font-semibold text-foreground">Auditor Matching</span>
+        <span className="text-[10px] text-muted-foreground uppercase tracking-wider">ScanPro+</span>
       </div>
 
-      <div className="bg-muted border border-border p-3">
-        <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Verification Request</div>
-        <div className="text-sm font-medium text-foreground">Verify MediParts GmbH, Munich, ISO 13485</div>
-      </div>
+      {/* Stat card with bar chart — ORION style */}
+      <DashCard className="p-3">
+        <div className="flex items-center justify-between mb-2">
+          <BigStat value="3" delta="+3" label="Auditors Matched" />
+          <div className="w-6 h-6 border border-border flex items-center justify-center">
+            <svg className="w-3 h-3 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </div>
+        </div>
+        <BarChart bars={matchBars} accentIndex={12} />
+      </DashCard>
 
       {phase >= 1 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
@@ -206,30 +228,33 @@ const MatchScreen = () => {
       {phase >= 2 && (
         <div className="space-y-2 flex-1">
           {auditors.map((a, i) => (
-            <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}
-              className={`flex items-center gap-3 p-3 border ${
-                i === 0 ? 'border-primary/30 bg-primary/5' : 'border-border'
-              }`}>
-              <img src={a.img} alt={a.name} className="w-10 h-10 object-cover" />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
-                  <Tag active={i === 0}>{a.match}%</Tag>
+            <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
+              <DashCard highlight={i === 0} className="flex items-center gap-3 p-3">
+                <img src={a.img} alt={a.name} className="w-10 h-10 object-cover" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground truncate">{a.cert}</div>
                 </div>
-                <div className="text-[11px] text-muted-foreground truncate">{a.cert}</div>
-              </div>
+                <div className="flex items-baseline gap-0.5">
+                  <span className="text-lg font-bold text-foreground">{a.match}</span>
+                  <span className="text-[10px] text-muted-foreground">%</span>
+                </div>
+              </DashCard>
             </motion.div>
           ))}
         </div>
       )}
 
       {phase >= 3 && (
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-          className="flex items-center gap-3 p-3 border border-primary/30 bg-primary/5">
-          <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-          </svg>
-          <span className="text-sm font-semibold text-foreground">Auditor confirmed: On-site Dec 22</span>
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+          <DashCard highlight className="flex items-center gap-3 p-3">
+            <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span className="text-sm font-semibold text-foreground">Auditor confirmed: On-site Dec 22</span>
+          </DashCard>
         </motion.div>
       )}
 
@@ -291,7 +316,7 @@ const AuditScreen = () => {
           </AnimatePresence>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }} className="absolute top-3 left-3 right-3">
-            <div className="border border-primary bg-primary/10 backdrop-blur-sm p-2">
+            <DashCard highlight className="p-2">
               <div className="flex items-center gap-2">
                 <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -299,8 +324,8 @@ const AuditScreen = () => {
                 </svg>
                 <span className="text-xs font-semibold text-primary">Clean Room Class 7</span>
               </div>
-              <span className="text-[10px] text-primary/70 mt-1 block">Computer Vision Detected</span>
-            </div>
+              <span className="text-[10px] text-muted-foreground mt-1 block">Computer Vision Detected</span>
+            </DashCard>
           </motion.div>
           <div className="absolute bottom-3 left-3">
             <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">Control Panel</div>
@@ -351,26 +376,20 @@ const AuditScreen = () => {
 // ─── SCREEN 4: INTELLIGENCE ─────────────────────────────────────
 const IntelligenceScreen = () => {
   const [showElements, setShowElements] = useState(0);
+  const [activeSegment, setActiveSegment] = useState(0);
+
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowElements(1), 400),
       setTimeout(() => setShowElements(2), 1200),
       setTimeout(() => setShowElements(3), 2200),
       setTimeout(() => setShowElements(4), 3200),
-      setTimeout(() => setShowElements(5), 4200),
+      setTimeout(() => { setShowElements(5); setActiveSegment(2); }, 4200),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const processScores = [
-    { name: "Quality Management", score: 93 },
-    { name: "Equipment & Facilities", score: 89 },
-    { name: "Documentation", score: 94 },
-    { name: "Personnel", score: 91 },
-    { name: "Process Control", score: 88 },
-  ];
-
-  const certs = ["ISO 13485:2016", "FDA Registered", "CE Mark"];
+  const scoreBars = [40, 55, 45, 60, 50, 65, 70, 55, 75, 80, 60, 85, 70, 90, 88, 75, 65, 55, 50, 45, 40, 60, 70, 80, 91, 85, 70];
   const evidenceImages = [evidenceCNC, evidenceCMM, evidenceControlPlan, evidenceAssembly, evidenceCertification, evidenceInspector, equipmentImage, auditorGen2];
 
   return (
@@ -388,59 +407,84 @@ const IntelligenceScreen = () => {
 
       <div className="flex-1 flex">
         <div className="w-3/5 p-4 flex flex-col gap-3 overflow-hidden">
+          {/* Main score card with bar chart — ORION style */}
           {showElements >= 1 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4 mb-1">
-              <ScoreBar score={91} size={72} />
-              <div>
-                <div className="text-3xl font-bold text-foreground">91.3%</div>
-                <div className="flex items-center gap-1 text-primary text-xs font-medium">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
-                  trending up
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {showElements >= 2 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
-              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">Process Scores</div>
-              {processScores.map((p, i) => (
-                <motion.div key={p.name} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }} className="flex items-center gap-2">
-                  <span className="text-xs text-foreground flex-1 truncate">{p.name}</span>
-                  <div className="w-24 h-1.5 bg-muted overflow-hidden">
-                    <motion.div initial={{ width: 0 }} animate={{ width: `${p.score}%` }}
-                      transition={{ duration: 0.6, delay: i * 0.08 }}
-                      className={`h-full ${p.score >= 92 ? 'bg-foreground' : 'bg-muted-foreground'}`} />
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <DashCard className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <BigStat value="91.3" unit="%" delta="+2.1" label="Overall Score" />
+                  <div className="w-6 h-6 border border-border flex items-center justify-center">
+                    <svg className="w-3 h-3 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
                   </div>
-                  <span className="text-xs font-bold w-8 text-right text-foreground">{p.score}%</span>
-                </motion.div>
-              ))}
+                </div>
+                <BarChart bars={scoreBars} accentIndex={24} />
+              </DashCard>
             </motion.div>
           )}
 
-          {showElements >= 3 && (
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Certifications</div>
-              <div className="flex flex-wrap gap-2">
-                {certs.map((c) => (
-                  <Tag key={c}>{c}</Tag>
-                ))}
-              </div>
+          {/* Process stats row — ORION "Candidates Online" style */}
+          {showElements >= 2 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <DashCard className="p-3">
+                <div className="text-sm font-semibold text-foreground mb-3">Process Scores</div>
+                <div className="flex items-end justify-between gap-2">
+                  <div className="text-center">
+                    <div className="flex items-baseline justify-center gap-0.5">
+                      <span className="text-xl font-bold text-foreground">93</span>
+                      <span className="text-[10px] text-muted-foreground">%</span>
+                    </div>
+                    <span className="text-[9px] text-muted-foreground uppercase">Quality</span>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-baseline justify-center gap-0.5">
+                      <span className="text-xl font-bold text-foreground">89</span>
+                      <span className="text-[10px] text-muted-foreground">%</span>
+                    </div>
+                    <span className="text-[9px] text-muted-foreground uppercase">Equipment</span>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-baseline justify-center gap-0.5">
+                      <span className="text-xl font-bold text-foreground">94</span>
+                      <span className="text-[10px] text-muted-foreground">%</span>
+                    </div>
+                    <span className="text-[9px] text-muted-foreground uppercase">Docs</span>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-baseline justify-center gap-0.5">
+                      <span className="text-xl font-bold text-foreground">88</span>
+                      <span className="text-[10px] text-muted-foreground">%</span>
+                    </div>
+                    <span className="text-[9px] text-muted-foreground uppercase">Process</span>
+                  </div>
+                </div>
+                {/* Segmented toggle */}
+                <div className="mt-3">
+                  <SegmentedToggle items={["ISO 13485", "FDA", "CE Mark"]} activeIndex={activeSegment} />
+                </div>
+              </DashCard>
             </motion.div>
           )}
 
+          {/* Non-conformances */}
           {showElements >= 4 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-auto">
-              <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Non-Conformances</div>
               <div className="flex gap-2">
-                <Tag>0 Major</Tag>
-                <Tag>1 Minor</Tag>
+                <DashCard className="px-3 py-2 flex-1 text-center">
+                  <span className="text-lg font-bold text-foreground">0</span>
+                  <span className="text-[9px] text-muted-foreground uppercase block">Major</span>
+                </DashCard>
+                <DashCard className="px-3 py-2 flex-1 text-center">
+                  <span className="text-lg font-bold text-foreground">1</span>
+                  <span className="text-[9px] text-muted-foreground uppercase block">Minor</span>
+                </DashCard>
               </div>
             </motion.div>
           )}
         </div>
 
+        {/* Right: Evidence + Auditor */}
         <div className="w-2/5 border-l border-border flex flex-col">
           {showElements >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 flex-1">
@@ -464,7 +508,7 @@ const IntelligenceScreen = () => {
                   <div className="text-sm font-medium text-foreground">Dr. Klaus Schmidt</div>
                   <div className="text-[11px] text-muted-foreground">ISO 13485 Certified</div>
                 </div>
-                <span className="text-[10px] text-primary font-semibold">Report: 24h</span>
+                <span className="text-[10px] text-primary font-semibold">24h</span>
               </div>
             </motion.div>
           )}
