@@ -52,7 +52,7 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] h-[600px] flex flex-col relative">
+    <div className="bg-[hsl(0,0%,85%)] overflow-visible rounded-none border border-[hsl(0,0%,80%)] min-h-[600px] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
         onClick={handlePauseToggle}
@@ -95,14 +95,13 @@ const SearchProDemoWindows = () => {
       </div>
 
       {/* Content area */}
-      <div className="flex-1 overflow-hidden relative">
+      <div className="flex-1">
         <motion.div
           key={activeWindow}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0"
         >
           {activeWindow === 0 && <DemoChatbot key={`chat-${activeWindow}`} />}
           {activeWindow === 1 && <DemoSearchResults />}
@@ -126,14 +125,14 @@ const DemoChatbot = () => {
   }, []);
 
   return (
-    <div className="h-full bg-[hsl(0,0%,85%)] flex flex-col">
+    <div className="bg-[hsl(0,0%,85%)] flex flex-col">
       {/* Top toolbar */}
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
         <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">SearchPro+ AI Assistant</span>
         <span className="px-2 py-0.5 bg-primary/15 text-primary text-[10px] font-bold rounded-none">Preference Engine</span>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0">
+      <div className="p-3 space-y-2">
         {/* Step 1: Preference Engine detects company profile */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
@@ -297,7 +296,7 @@ const DemoSearchResults = () => {
   const activeMenu = 1;
 
   return (
-    <div className="h-full bg-[hsl(0,0%,85%)] flex">
+    <div className="bg-[hsl(0,0%,85%)] flex">
       {/* Left sidebar navigation */}
       <div className="w-[100px] md:w-[120px] bg-[hsl(0,0%,28%)] border-r border-[hsl(0,0%,22%)] flex flex-col flex-shrink-0">
         <div className="p-2.5 border-b border-[hsl(0,0%,22%)]">
@@ -335,7 +334,7 @@ const DemoSearchResults = () => {
 
         <div className="flex-1 flex overflow-hidden">
           {/* Filter sidebar */}
-          <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0 overflow-y-auto">
+          <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0">
             <p className="text-[10px] text-[hsl(0,0%,30%)] uppercase tracking-widest font-bold mb-2.5">Filters</p>
             {[
               { label: "Certification", values: ["IATF 16949", "ISO 9001", "AS9100D"] },
@@ -366,7 +365,7 @@ const DemoSearchResults = () => {
           </div>
 
           {/* Results list */}
-          <div className="flex-1 overflow-y-auto p-2.5 space-y-1.5">
+          <div className="flex-1 p-2.5 space-y-1.5">
             {/* Score explanation banner */}
             <div className="p-2.5 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] rounded-none mb-1.5">
               <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
@@ -434,7 +433,7 @@ const DemoSupplierProfile = () => {
   const tabLabels = ["Overview", "Audit Reports", "Intelligence", "RFQ", "Audit Order", "News"];
 
   return (
-    <div className="h-full bg-[hsl(0,0%,85%)] flex flex-col">
+    <div className="bg-[hsl(0,0%,85%)] flex flex-col">
       {/* Supplier header */}
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
@@ -470,7 +469,7 @@ const DemoSupplierProfile = () => {
       </div>
 
       {/* Tab content */}
-      <div className="flex-1 overflow-y-auto min-h-0 p-4 md:p-5">
+      <div className="p-4 md:p-5">
         <motion.div key={activeTab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
 
           {/* Overview */}
