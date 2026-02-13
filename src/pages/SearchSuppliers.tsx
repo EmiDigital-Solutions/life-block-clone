@@ -11,33 +11,6 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 
-// Generate particles in a straight channel matching the wheel diameter
-const generateChannelParticles = () => {
-  const particles: Array<{ id: number; x: number; y: number; size: number; isGreen: boolean; opacity: number; delay: number }> = [];
-  const channelHalfHeight = 17.5;
-  const cols = 60;
-  const rows = 20;
-  const size = 9;
-  let id = 0;
-
-  for (let col = 0; col < cols; col++) {
-    const x = (col / cols) * 58;
-    for (let row = 0; row < rows; row++) {
-      const yOffset = ((row / (rows - 1)) * 2 - 1) * channelHalfHeight;
-      const y = 50 + yOffset;
-      particles.push({
-        id: id++,
-        x,
-        y,
-        size,
-        isGreen: false,
-        opacity: 0.6 + (row % 2) * 0.2,
-        delay: (col * 0.07) + (row * 0.03),
-      });
-    }
-  }
-  return particles;
-};
 
 // Import procurement images for hero carousel background
 import procurementFemaleAfrican from "@/assets/procurement-female-african.jpg";
@@ -603,9 +576,6 @@ const SearchSuppliers = () => {
   const isRunningRef = useRef(false);
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   
-  // Generate particles for hero section
-  const particles = useMemo(() => generateChannelParticles(), []);
-
   // Three different search scenarios - rotating industries
   const scenarios = [
     {
@@ -1304,260 +1274,48 @@ const ComparisonMockup = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Hero Section - Particle Funnel with AI Wheel */}
+      {/* Hero Section - Clean White, matching Homepage */}
       <section 
-        data-nav-theme="dark"
-        className="relative min-h-screen flex flex-col overflow-hidden bg-hero-background"
+        data-nav-theme="light"
+        className="relative min-h-[100dvh] flex flex-col bg-white"
       >
-        {/* Static Particle Background - Funnel Shape */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute rounded-full"
-              style={{
-                width: particle.size,
-                height: particle.size,
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-              }}
-              animate={{ 
-                opacity: [0.15, 1, 0.2, 0.9, 0.15],
-              }}
-              transition={{
-                duration: 1.5 + Math.random() * 1.5,
-                delay: particle.delay,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            >
-              <div 
-                className="w-full h-full rounded-full"
-                style={{ backgroundColor: "#0EAAD8" }}
-              />
-            </motion.div>
-          ))}
-
-
-          {/* Red particles pushed away backwards from focal point */}
-          {Array.from({ length: 120 }, (_, i) => {
-            const angle = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
-            const startRadius = 30;
-            const endRadius = 200 + Math.random() * 160;
-            const size = 3 + Math.random() * 5;
-            const duration = 1.5 + Math.random() * 2;
-            const delay = Math.random() * 4;
-            
-            return (
-              <motion.div
-                key={`red-${i}`}
-                className="absolute rounded-full bg-destructive"
-                style={{
-                  width: size,
-                  height: size,
-                }}
-                initial={{
-                  left: `calc(60% + ${Math.cos(angle) * startRadius}px)`,
-                  top: `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                  opacity: 0,
-                }}
-                animate={{
-                  left: [
-                    `calc(60% + ${Math.cos(angle) * startRadius}px)`,
-                    `calc(60% + ${Math.cos(angle) * endRadius}px)`,
-                  ],
-                  top: [
-                    `calc(50% + ${Math.sin(angle) * startRadius}px)`,
-                    `calc(50% + ${Math.sin(angle) * endRadius}px)`,
-                  ],
-                  opacity: [0, 1, 0.8, 0],
-                  scale: [0.5, 1, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: duration,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeOut",
-                }}
-              />
-            );
-          })}
-
-          {/* Particles passing through the iris wheel to the laser line */}
-          {Array.from({ length: 30 }, (_, i) => {
-            const isGreen = i % 2 === 0; // Alternate green and blue
-            const startX = 60;
-            const endX = 75 + Math.random() * 20;
-            const yOffset = (Math.random() - 0.5) * 12;
-            const size = 4 + Math.random() * 4;
-            const duration = 2 + Math.random() * 1.5;
-            const delay = Math.random() * 5;
-            
-            return (
-              <motion.div
-                key={`through-${i}`}
-                className={`absolute rounded-full ${isGreen ? 'bg-primary' : 'bg-accent'}`}
-                style={{
-                  width: size,
-                  height: size,
-                  backgroundColor: isGreen ? '#6EA996' : '#0A7FA5',
-                }}
-                initial={{
-                  left: `${startX}%`,
-                  top: `calc(50% + ${yOffset}px)`,
-                  opacity: 0,
-                  scale: 0.5,
-                }}
-                animate={{
-                  left: [`${startX}%`, `${endX}%`],
-                  opacity: [0, 1, 1, 0.8, 0],
-                  scale: [0.5, 1.2, 1, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: duration,
-                  delay: delay,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeOut",
-                }}
-              />
-            );
-          })}
-
-          {/* Laser beam with label */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-0" style={{ left: "60%" }}>
-            {/* Approved Suppliers label */}
-            <motion.span
-              className="absolute -top-7 left-[11vw] text-sm font-medium tracking-wider uppercase text-white/60 whitespace-nowrap"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.5 }}
-            >
-              Approved Suppliers
-            </motion.span>
-            
-            {/* The laser beam */}
-            <motion.div
-              className="h-[3px] w-full"
-              style={{
-                background: "linear-gradient(90deg, #0EAAD8 0%, #0EAAD8 85%, transparent 100%)",
-              }}
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "45vw", opacity: 1 }}
-              transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-            />
-          </div>
-
-          {/* AI Iris Wheel at Focal Point */}
-          <div
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center z-10"
-            style={{ left: "60%", width: 500, height: 500 }}
-          >
-            {/* Rotating particle wheel */}
-            <motion.div
-              className="absolute"
-              style={{ width: 500, height: 500 }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {Array.from({ length: 48 }, (_, spoke) => {
-                const angle = (spoke / 48) * 360;
-                const radians = (angle * Math.PI) / 180;
-                
-                const brandColors = {
-                  blue: "#0EAAD8",
-                  amber: "#F5A623",
-                  green: "#3DC88E",
-                  red: "#E04545",
-                };
-                
-                let spokeColor: string;
-                if (spoke === 12) spokeColor = brandColors.red;
-                else if (spoke === 24) spokeColor = brandColors.green;
-                else if (spoke === 36) spokeColor = brandColors.amber;
-                else spokeColor = brandColors.blue;
-                
-                return Array.from({ length: 5 }, (_, p) => {
-                  const innerRadius = 105;
-                  const particleSpacing = 25;
-                  const radius = innerRadius + p * particleSpacing;
-                  const particleSize = 9 + (4 - p) * 1.5;
-                  
-                  const x = Math.sin(radians) * radius;
-                  const y = -Math.cos(radians) * radius;
-                  
-                  return (
-                    <div
-                      key={`${spoke}-${p}`}
-                      className="absolute rounded-full"
-                      style={{
-                        width: particleSize,
-                        height: particleSize,
-                        backgroundColor: spokeColor,
-                        left: "50%",
-                        top: "50%",
-                        transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                        opacity: 1 - p * 0.1,
-                      }}
-                    />
-                  );
-                });
-              })}
-            </motion.div>
-            
-            {/* Center point */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                width: 45,
-                height: 45,
-                background: "radial-gradient(circle, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%)",
-                boxShadow: "inset 0 0 20px rgba(14, 170, 216, 0.4)",
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Main Content - Archlet Style: Centered vertically, left-aligned */}
-        <div className="flex-1 flex items-center relative z-10 pt-32 lg:pt-40">
-          <div className="px-6 lg:pl-6 lg:pr-12 xl:pl-12 xl:pr-24 w-full max-w-7xl mx-auto">
+        {/* Main Content */}
+        <div className="flex-1 flex items-center relative z-10 pt-20 md:pt-32 lg:pt-40 min-h-0">
+          <div className="px-6 lg:px-12 xl:px-24 w-full max-w-7xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative z-20"
             >
-              {/* Eyebrow Text - Archlet Style */}
+              {/* Eyebrow */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-sm text-foreground/50 font-mono tracking-wide mb-6"
+                className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
                 Conversational Search
               </motion.p>
 
-              {/* Main Headline - Archlet Style, 2 rows only */}
+              {/* Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+                className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
                 AI-guided<br />
                 supplier discovery
               </motion.h1>
 
-              {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
-              <div className="mt-12 lg:mt-16 lg:ml-[50%] max-w-xl">
+              {/* Subtitle + CTA - right-offset like Archlet */}
+              <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
                 {/* Subtitle with checkmarks */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="flex flex-wrap gap-4 mb-8"
+                  className="flex flex-wrap gap-4 mb-6 md:mb-8"
                 >
                   {["25+ million profiles", "Verified data", "Export ready"].map((text, index) => (
                     <div key={index} className="flex items-center gap-2 text-foreground/70">
@@ -1567,13 +1325,13 @@ const ComparisonMockup = () => {
                   ))}
                 </motion.div>
 
-                {/* CTA Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4"
                 >
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" className="w-full sm:w-auto text-lg">
                     <a href="#">
                       Get Started
                       <ArrowRight className="w-5 h-5" />
@@ -1585,41 +1343,27 @@ const ComparisonMockup = () => {
           </div>
         </div>
 
-        {/* Scrolling Client Band */}
+        {/* Scrolling Industry Band */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="bg-black/40 backdrop-blur-sm py-8 overflow-hidden mt-auto relative z-10 border-t border-white/10"
+          transition={{ duration: 1, delay: 1 }}
+          className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0"
         >
-          <div className="relative flex">
-            <motion.div
-              className="flex gap-16 whitespace-nowrap"
-              animate={{
-                x: [0, -1920],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 60,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...Array(3)].map((_, setIndex) => (
-                <div key={setIndex} className="flex gap-16 items-center">
-                  {["Siemens", "Bosch", "Schneider Electric", "ABB", "Honeywell", "Emerson"].map((company, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
-                    >
-                      {company}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...["Built for high‑performance B2B Supply Chains", "Automotive", "Aerospace", "Medical Devices", "Pharma", "Electronics", "Energy", "Chemical", "Industrial Manufacturing", "Precision Engineering", "Defense", "Rail & Transport"], ...["Built for high‑performance B2B Supply Chains", "Automotive", "Aerospace", "Medical Devices", "Pharma", "Electronics", "Energy", "Chemical", "Industrial Manufacturing", "Precision Engineering", "Defense", "Rail & Transport"]].map((item, i) => (
+              <span
+                key={i}
+                className={`mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase ${
+                  item.startsWith("Built")
+                    ? "font-bold text-foreground"
+                    : "font-bold text-foreground/80"
+                }`}
+              >
+                {item}
+                <span className="ml-6 md:ml-10 text-foreground/20">·</span>
+              </span>
+            ))}
           </div>
         </motion.div>
       </section>
