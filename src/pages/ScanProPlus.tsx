@@ -2245,24 +2245,6 @@ const ScanProPlus = () => {
                   </motion.div>
                 </div>
               </motion.div>
-
-              {/* Right Column - Video */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="relative z-20 hidden lg:block"
-              >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30">
-                  <video
-                    autoPlay
-                    loop
-                    playsInline
-                    className="w-full h-auto"
-                    src="/videos/scanpro-hero-demo.mp4"
-                  />
-                </div>
-              </motion.div>
             </div>
           </div>
         </div>
