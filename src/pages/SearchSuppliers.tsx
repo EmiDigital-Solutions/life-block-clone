@@ -114,8 +114,8 @@ const DemoChatbot = () => {
 
   useEffect(() => {
     setStep(0);
-    // 8 steps: context → simple input → AI analyzing → full breakdown → suggestions → user confirms + adds → search launched → results
-    const timers = [300, 900, 1800, 2600, 3600, 4400, 5200, 5700].map((delay, i) =>
+    // 6 steps: context → simple input → AI analyzing → full breakdown → user confirms+adds → complete
+    const timers = [300, 900, 1800, 2600, 3800, 5200].map((delay, i) =>
       setTimeout(() => setStep(i + 1), delay)
     );
     return () => timers.forEach(clearTimeout);
@@ -139,7 +139,7 @@ const DemoChatbot = () => {
         {/* Step 1: Preference Engine auto-detects buyer context */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit max-w-[92%]">
               <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Context Detected</span>
               <div className="flex gap-1.5 flex-wrap">
                 {[
@@ -160,7 +160,7 @@ const DemoChatbot = () => {
         {/* Step 2: User simple input — no technical details, just what they need */}
         {step >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[80%] ml-auto">
+            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit ml-auto">
               <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
               <p className="text-[11px] font-semibold text-white leading-relaxed">I need aluminum brake calipers</p>
             </div>
@@ -170,7 +170,7 @@ const DemoChatbot = () => {
         {/* Step 3: AI analyzing indicator */}
         {step >= 3 && step < 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
                 <span className="text-[10px] text-primary font-bold">Preference Engine analyzing requirements...</span>
@@ -182,7 +182,7 @@ const DemoChatbot = () => {
         {/* Step 4: AI full breakdown — recognized everything from simple input */}
         {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit max-w-[92%]">
               <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1">
                 {[
@@ -217,7 +217,7 @@ const DemoChatbot = () => {
         {/* Step 5: User confirms and adds extra requirement */}
         {step >= 5 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none max-w-[80%] ml-auto">
+            <div className="p-2 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit ml-auto">
               <span className="text-[9px] font-bold uppercase tracking-wider text-white/60 block mb-0.5">You</span>
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-1.5 py-0.5 text-[8px] font-bold bg-primary/30 text-primary rounded-none">✓ Confirmed</span>
@@ -227,50 +227,16 @@ const DemoChatbot = () => {
           </motion.div>
         )}
 
-        {/* Step 6: AI updates and launches search */}
+        {/* Step 6: AI confirms ready to search */}
         {step >= 6 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Updated & Searching</span>
-              <div className="flex gap-1.5 flex-wrap mb-1.5">
+            <div className="p-2 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-primary block mb-1">Preference Engine — Ready to Search</span>
+              <div className="flex gap-1.5 flex-wrap">
                 <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ 50K/mo min</span>
                 <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ PPAP Lvl 3</span>
                 <span className="px-1 py-0.5 text-[8px] font-bold bg-primary/25 text-primary rounded-none">+ ISO 14001 ✓</span>
               </div>
-              <div className="grid grid-cols-3 gap-1">
-                {[
-                  { val: "12", label: "Verified DB" },
-                  { val: "6", label: "Research DB" },
-                  { val: "5", label: "Web Discovery" },
-                ].map((s, i) => (
-                  <div key={i} className="text-center p-1 bg-[hsl(0,0%,28%)] rounded-none">
-                    <p className="text-xs font-bold text-white">{s.val}</p>
-                    <p className="text-[7px] text-[hsl(0,0%,60%)] font-semibold uppercase">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Step 7: Top result preview */}
-        {step >= 7 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-1.5 bg-primary/10 border border-primary/30 rounded-none">
-              <p className="text-[10px] font-bold text-primary">Precision Metalworks GmbH — 96%</p>
-              <p className="text-[8px] text-[hsl(0,0%,40%)] font-medium">Munich · IATF 16949 · 5-Axis · Salt Spray · 65K/mo · PPAP 3</p>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Step 8: Action buttons */}
-        {step >= 8 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex gap-1.5">
-              <button className="px-2 py-1 bg-primary text-white text-[9px] font-bold rounded-none">Send RFQ</button>
-              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Compare</button>
-              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Order Audit</button>
-              <button className="px-2 py-1 bg-[hsl(0,0%,45%)] border border-[hsl(0,0%,40%)] text-white text-[9px] font-semibold rounded-none">Award</button>
             </div>
           </motion.div>
         )}
