@@ -154,14 +154,17 @@ const FAQSection = () => {
           ))}
         </motion.div>
 
-        {/* FAQ List */}
-        <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          {activeFaqs.map((faq, index) => (
+        {/* FAQ List — shifted one grid column right */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+          <div className="hidden lg:block lg:col-span-1" />
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:col-span-5"
+          >
+            {activeFaqs.map((faq, index) => (
             <div
               key={index}
               className="border-t border-[#d5d5d5]"
@@ -197,7 +200,8 @@ const FAQSection = () => {
               </motion.div>
             </div>
           ))}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

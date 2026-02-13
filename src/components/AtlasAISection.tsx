@@ -29,26 +29,32 @@ const AtlasAISection = () => {
   return (
     <section className="relative bg-white py-24 md:py-32">
       <div className="mx-auto max-w-[1400px] px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-
-          {/* Left column — headline, description, CTA (2 of 6 cols) */}
-          <div className="lg:col-span-2 lg:pr-8">
+        {/* Row 1: Headline starting at 2nd grid line, spanning 2 cols */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-8">
+          <div className="hidden lg:block lg:col-span-1" />
+          <div className="lg:col-span-2">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="section-headline text-foreground max-w-xl mb-6"
+              className="section-headline text-foreground"
             >
               Meet Atlas, the AI engine for auditing
             </motion.h2>
+          </div>
+        </div>
 
+        {/* Row 2: Description + CTA at 2nd grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-10">
+          <div className="hidden lg:block lg:col-span-1" />
+          <div className="lg:col-span-2">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground leading-relaxed mb-8 max-w-md"
+              className="text-muted-foreground leading-relaxed mb-8"
             >
               Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
             </motion.p>
@@ -58,7 +64,6 @@ const AtlasAISection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="mb-10"
             >
               <Link
                 to="/features"
@@ -67,9 +72,29 @@ const AtlasAISection = () => {
                 explore atlas ai
               </Link>
             </motion.div>
+          </div>
+        </div>
 
-            {/* Accordion features — below CTA on left side */}
-            <div className="border-t border-foreground/10 mt-4">
+        {/* Row 3: Demo video (smaller, at 2nd grid) + Accordion on right */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+          <div className="hidden lg:block lg:col-span-1" />
+
+          {/* Demo video — 2 cols, reduced size */}
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-full aspect-[4/3] overflow-hidden"
+            >
+              <AtlasAIDemoAnimation />
+            </motion.div>
+          </div>
+
+          {/* Accordion features — right of demo, 3 cols */}
+          <div className="lg:col-span-3 lg:pl-8 mt-8 lg:mt-0">
+            <div className="border-t border-foreground/10">
               {atlasFeatures.map((feature, index) => (
                 <motion.div
                   key={feature.title}
@@ -113,20 +138,6 @@ const AtlasAISection = () => {
               ))}
             </div>
           </div>
-
-          {/* Right column — Demo (4 of 6 cols, aligned to grid) */}
-          <div className="lg:col-span-4 flex items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-full aspect-[16/10] overflow-hidden"
-            >
-              <AtlasAIDemoAnimation />
-            </motion.div>
-          </div>
-
         </div>
       </div>
     </section>
