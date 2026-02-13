@@ -68,13 +68,13 @@ const AtlasAISection = () => {
               </Link>
             </motion.div>
 
-            {/* Demo animation — same design as PlatformDemoAnimation */}
+            {/* Demo animation — 3-panel auditor interface, 25% larger */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="aspect-[16/9] overflow-hidden"
+              className="aspect-[4/3] overflow-hidden"
             >
               <AtlasAIDemoAnimation />
             </motion.div>
