@@ -157,44 +157,96 @@ const MobileDiscoverScreen = () => {
                {/* Analytics */}
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
                  className="border-t border-background/15 pt-2 space-y-2">
-                 <div className="text-[7px] text-background/50 uppercase tracking-wider font-semibold">AI Assessment</div>
-                 {/* Risk bars */}
+                 <div className="text-[7px] text-background/50 uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
+
+                 {/* 3 Pie charts */}
+                 <div className="flex items-center justify-between">
+                   {[
+                     { label: "Quality", value: 92 },
+                     { label: "On-Time", value: 88 },
+                     { label: "Compliance", value: 95 },
+                   ].map((kpi, idx) => {
+                     const sz = 40;
+                     const sw = 3;
+                     const r = (sz - sw * 2) / 2;
+                     const c = 2 * Math.PI * r;
+                     const ticks = 16;
+                     const tR = r + sw + 1;
+                     return (
+                       <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 + idx * 0.12 }}
+                         className="flex flex-col items-center gap-0.5">
+                         <div className="relative flex items-center justify-center" style={{ width: sz, height: sz }}>
+                           <svg className="absolute inset-0" viewBox={`0 0 ${sz} ${sz}`}>
+                             {Array.from({ length: ticks }).map((_, i) => {
+                               const angle = (i / ticks) * 360 - 90;
+                               const rad = (angle * Math.PI) / 180;
+                               const cx = sz / 2; const cy = sz / 2;
+                               return <line key={i}
+                                 x1={cx + Math.cos(rad) * (tR - 1)} y1={cy + Math.sin(rad) * (tR - 1)}
+                                 x2={cx + Math.cos(rad) * (tR + 0.6)} y2={cy + Math.sin(rad) * (tR + 0.6)}
+                                 stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
+                                 strokeWidth={0.5} strokeLinecap="square" />;
+                             })}
+                             <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={sw} />
+                             <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
+                               stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
+                               transform={`rotate(-90 ${sz/2} ${sz/2})`}
+                               initial={{ strokeDasharray: c, strokeDashoffset: c }}
+                               animate={{ strokeDashoffset: c * (1 - kpi.value / 100) }}
+                               transition={{ duration: 0.8, delay: 0.4 + idx * 0.12 }}
+                             />
+                           </svg>
+                           <span className="text-[7px] font-bold text-background z-10">{kpi.value}%</span>
+                         </div>
+                         <span className="text-[6px] text-background/60 uppercase">{kpi.label}</span>
+                       </motion.div>
+                     );
+                   })}
+                 </div>
+
+                 {/* Score trend line */}
+                 <div>
+                   <div className="flex items-center justify-between mb-0.5">
+                     <span className="text-[6px] text-background/50 uppercase">Score Trend</span>
+                     <span className="text-[7px] text-primary font-semibold">+12.4%</span>
+                   </div>
+                   <svg viewBox="0 0 100 20" className="w-full h-4">
+                     <motion.path d="M0,16 L14,14 28,13 42,15 56,10 70,8 84,7 100,3 L100,20 L0,20 Z"
+                       fill="hsl(var(--primary))" fillOpacity="0.1"
+                       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} />
+                     <motion.polyline points="0,16 14,14 28,13 42,15 56,10 70,8 84,7 100,3"
+                       fill="none" stroke="hsl(var(--primary))" strokeWidth="1.2"
+                       initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                       transition={{ duration: 1, delay: 0.5 }} />
+                   </svg>
+                 </div>
+
+                 {/* Macro risk + Client KPIs */}
                  <div className="flex gap-1.5">
                    {[
-                     { label: "Quality", score: 92, color: "hsl(199,91%,64%)" },
-                     { label: "Delivery", score: 88, color: "hsl(199,91%,64%)" },
-                     { label: "Financial", score: 76, color: "hsl(37,91%,55%)" },
-                   ].map((item, i) => (
-                     <div key={item.label} className="flex-1">
-                       <div className="flex items-baseline justify-between mb-0.5">
-                         <span className="text-[6px] text-background/60 uppercase">{item.label}</span>
-                         <span className="text-[8px] text-background font-bold">{item.score}</span>
-                       </div>
-                       <div className="h-1 bg-background/15 w-full">
-                         <motion.div className="h-full" style={{ backgroundColor: item.color }}
-                           initial={{ width: 0 }} animate={{ width: `${item.score}%` }}
-                           transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }} />
-                       </div>
+                     { label: "Currency", value: "Stable" },
+                     { label: "Supply Ch.", value: "Moderate" },
+                     { label: "Regulatory", value: "Low" },
+                   ].map((item) => (
+                     <div key={item.label} className="flex-1 text-center">
+                       <span className="text-[7px] text-background font-semibold block">{item.value}</span>
+                       <span className="text-[5px] text-background/50 uppercase">{item.label}</span>
                      </div>
                    ))}
                  </div>
-                 {/* Sparkline + Risk */}
-                 <div className="flex items-center gap-2">
-                   <div className="flex-1">
-                     <svg viewBox="0 0 100 20" className="w-full h-4">
-                       <motion.polyline
-                         points="0,16 12,14 25,13 37,15 50,10 62,8 75,7 87,5 100,3"
-                         fill="none" stroke="hsl(199,91%,64%)" strokeWidth="1.2"
-                         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-                         transition={{ duration: 1, delay: 0.5 }}
-                       />
-                     </svg>
-                   </div>
-                   <div className="flex gap-1">
-                     {["12 Audits", "47 Pts"].map((b) => (
-                       <span key={b} className="px-1 py-0.5 border border-background/20 text-[6px] text-background/60 uppercase">{b}</span>
-                     ))}
-                   </div>
+
+                 <div className="flex gap-1.5 border-t border-background/10 pt-1.5">
+                   {[
+                     { label: "Qual. Time", value: "14d", delta: "−60%" },
+                     { label: "Cost", value: "€2.8K", delta: "−32%" },
+                     { label: "Defects", value: "0.4%", delta: "−0.8pp" },
+                   ].map((kpi) => (
+                     <div key={kpi.label} className="flex-1 text-center">
+                       <span className="text-[8px] font-bold text-background block">{kpi.value}</span>
+                       <span className="text-[6px] text-primary font-semibold block">{kpi.delta}</span>
+                       <span className="text-[5px] text-background/50 uppercase">{kpi.label}</span>
+                     </div>
+                   ))}
                  </div>
                </motion.div>
              </GlassCard>

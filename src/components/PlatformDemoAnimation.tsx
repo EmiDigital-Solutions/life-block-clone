@@ -257,75 +257,122 @@ const DiscoverScreen = () => {
                {/* Analytics Section */}
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
                  className="border-t border-background/15 pt-2.5 space-y-2.5">
-                 <div className="text-[8px] text-background/50 uppercase tracking-wider font-semibold">AI Assessment Analytics</div>
+                 <div className="text-[8px] text-background/50 uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
 
-                 {/* Risk score bars */}
-                 <div className="flex gap-2">
+                 {/* Row 1: 3 Pie charts — Quality, Delivery, Compliance */}
+                 <div className="flex items-center justify-between">
                    {[
-                     { label: "Quality", score: 92, color: "hsl(199,91%,64%)" },
-                     { label: "Delivery", score: 88, color: "hsl(199,91%,64%)" },
-                     { label: "Financial", score: 76, color: "hsl(37,91%,55%)" },
-                   ].map((item, i) => (
-                     <div key={item.label} className="flex-1">
-                       <div className="flex items-baseline justify-between mb-0.5">
-                         <span className="text-[7px] text-background/60 uppercase">{item.label}</span>
-                         <span className="text-[9px] text-background font-bold">{item.score}</span>
-                       </div>
-                       <div className="h-1 bg-background/15 w-full">
-                         <motion.div className="h-full" style={{ backgroundColor: item.color }}
-                           initial={{ width: 0 }} animate={{ width: `${item.score}%` }}
-                           transition={{ duration: 0.8, delay: 0.5 + i * 0.15 }} />
-                       </div>
-                     </div>
-                   ))}
+                     { label: "Quality", value: 92 },
+                     { label: "On-Time Del.", value: 88 },
+                     { label: "Compliance", value: 95 },
+                   ].map((kpi, idx) => {
+                     const sz = 52;
+                     const sw = 4;
+                     const r = (sz - sw * 2) / 2;
+                     const c = 2 * Math.PI * r;
+                     const ticks = 20;
+                     const tR = r + sw + 1.5;
+                     return (
+                       <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + idx * 0.15 }}
+                         className="flex flex-col items-center gap-0.5">
+                         <div className="relative flex items-center justify-center" style={{ width: sz, height: sz }}>
+                           <svg className="absolute inset-0" viewBox={`0 0 ${sz} ${sz}`}>
+                             {Array.from({ length: ticks }).map((_, i) => {
+                               const angle = (i / ticks) * 360 - 90;
+                               const rad = (angle * Math.PI) / 180;
+                               const cx = sz / 2; const cy = sz / 2;
+                               const x1 = cx + Math.cos(rad) * (tR - 1.5);
+                               const y1 = cy + Math.sin(rad) * (tR - 1.5);
+                               const x2 = cx + Math.cos(rad) * (tR + 0.8);
+                               const y2 = cy + Math.sin(rad) * (tR + 0.8);
+                               return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                                 stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
+                                 strokeWidth={0.6} strokeLinecap="square" />;
+                             })}
+                             <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={sw} />
+                             <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
+                               stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
+                               transform={`rotate(-90 ${sz/2} ${sz/2})`}
+                               initial={{ strokeDasharray: c, strokeDashoffset: c }}
+                               animate={{ strokeDashoffset: c * (1 - kpi.value / 100) }}
+                               transition={{ duration: 1, ease: "easeOut", delay: 0.5 + idx * 0.15 }}
+                             />
+                           </svg>
+                           <span className="text-[9px] font-bold text-background z-10">{kpi.value}%</span>
+                         </div>
+                         <span className="text-[7px] text-background/60 uppercase">{kpi.label}</span>
+                       </motion.div>
+                     );
+                   })}
                  </div>
 
-                 {/* Sparkline trend + mini donut */}
-                 <div className="flex items-center gap-3">
-                   {/* Trend sparkline */}
-                   <div className="flex-1">
-                     <div className="text-[7px] text-background/50 uppercase mb-1">Audit History Trend</div>
-                     <svg viewBox="0 0 120 28" className="w-full h-6">
-                       <motion.polyline
-                         points="0,22 15,20 30,18 45,21 60,14 75,12 90,10 105,8 120,5"
-                         fill="none" stroke="hsl(199,91%,64%)" strokeWidth="1.5"
-                         initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-                         transition={{ duration: 1.2, delay: 0.6 }}
-                       />
-                       {[0,15,30,45,60,75,90,105,120].map((x, i) => {
-                         const y = [22,20,18,21,14,12,10,8,5][i];
-                         return (
-                           <motion.circle key={i} cx={x} cy={y} r="1.5" fill="hsl(199,91%,64%)"
-                             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                             transition={{ delay: 0.7 + i * 0.08 }} />
-                         );
-                       })}
-                     </svg>
+                 {/* Row 2: Score trend line chart */}
+                 <div>
+                   <div className="flex items-center justify-between mb-1">
+                     <span className="text-[7px] text-background/50 uppercase">Score Trend (Last 8 Audits)</span>
+                     <span className="text-[8px] text-primary font-semibold">+12.4%</span>
                    </div>
-                   {/* Mini risk donut */}
-                   <div className="flex flex-col items-center">
-                     <div className="text-[7px] text-background/50 uppercase mb-1">Risk</div>
-                     <div className="relative w-10 h-10 flex items-center justify-center">
-                       <svg className="absolute inset-0" viewBox="0 0 40 40">
-                         <circle cx="20" cy="20" r="14" fill="none" stroke="hsl(0,0%,55%)" strokeWidth="3" />
-                         <motion.circle cx="20" cy="20" r="14" fill="none"
-                           stroke="hsl(199,91%,64%)" strokeWidth="3" strokeLinecap="square"
-                           transform="rotate(-90 20 20)"
-                           initial={{ strokeDasharray: 88, strokeDashoffset: 88 }}
-                           animate={{ strokeDashoffset: 88 * (1 - 0.18) }}
-                           transition={{ duration: 0.8, delay: 0.8 }}
-                         />
-                       </svg>
-                       <span className="text-[8px] font-bold text-primary z-10">Low</span>
-                     </div>
+                   <svg viewBox="0 0 140 32" className="w-full h-7">
+                     {/* Grid lines */}
+                     {[8, 16, 24].map(y => (
+                       <line key={y} x1="0" y1={y} x2="140" y2={y} stroke="hsl(0,0%,55%)" strokeWidth="0.3" strokeDasharray="2,2" />
+                     ))}
+                     {/* Filled area */}
+                     <motion.path
+                       d="M0,26 L20,24 40,22 60,25 80,18 100,14 120,11 140,6 L140,32 L0,32 Z"
+                       fill="hsl(var(--primary))" fillOpacity="0.1"
+                       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                       transition={{ duration: 0.8, delay: 0.8 }}
+                     />
+                     {/* Line */}
+                     <motion.polyline
+                       points="0,26 20,24 40,22 60,25 80,18 100,14 120,11 140,6"
+                       fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5"
+                       initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                       transition={{ duration: 1.2, delay: 0.6 }}
+                     />
+                     {/* Data points */}
+                     {[[0,26],[20,24],[40,22],[60,25],[80,18],[100,14],[120,11],[140,6]].map(([x,y], i) => (
+                       <motion.circle key={i} cx={x} cy={y} r="2" fill="hsl(var(--primary))"
+                         initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}
+                         transition={{ delay: 0.7 + i * 0.08 }} />
+                     ))}
+                     {/* Y-axis labels */}
+                     <text x="2" y="7" fill="hsl(0,0%,70%)" fontSize="3">95</text>
+                     <text x="2" y="28" fill="hsl(0,0%,70%)" fontSize="3">70</text>
+                   </svg>
+                 </div>
+
+                 {/* Row 3: Macro/Micro economic risk indicators */}
+                 <div>
+                   <div className="text-[7px] text-background/50 uppercase mb-1">Macroeconomic Risk Assessment</div>
+                   <div className="grid grid-cols-4 gap-1.5">
+                     {[
+                       { label: "Currency", value: "Stable", risk: "low" },
+                       { label: "Supply Chain", value: "Moderate", risk: "mid" },
+                       { label: "Regulatory", value: "Low", risk: "low" },
+                       { label: "Market", value: "Growing", risk: "low" },
+                     ].map((item) => (
+                       <div key={item.label} className="text-center">
+                         <div className={`w-2 h-2 mx-auto mb-0.5 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
+                         <span className="text-[7px] text-background font-semibold block">{item.value}</span>
+                         <span className="text-[6px] text-background/50 uppercase">{item.label}</span>
+                       </div>
+                     ))}
                    </div>
                  </div>
 
-                 {/* Data source badges */}
-                 <div className="flex gap-1.5">
-                   {["12 Audits", "3 Certs", "47 Data Points"].map((badge) => (
-                     <div key={badge} className="px-1.5 py-0.5 border border-background/20 text-[7px] text-background/70 uppercase tracking-wide">
-                       {badge}
+                 {/* Row 4: Client-specific KPIs */}
+                 <div className="flex gap-2 border-t border-background/10 pt-2">
+                   {[
+                     { label: "Qualification Time", value: "14 days", delta: "60% faster" },
+                     { label: "Cost / Audit", value: "€2.8K", delta: "−32%" },
+                     { label: "Defect Rate", value: "0.4%", delta: "−0.8pp" },
+                   ].map((kpi) => (
+                     <div key={kpi.label} className="flex-1 text-center">
+                       <span className="text-[10px] font-bold text-background block">{kpi.value}</span>
+                       <span className="text-[7px] text-primary font-semibold block">{kpi.delta}</span>
+                       <span className="text-[6px] text-background/50 uppercase">{kpi.label}</span>
                      </div>
                    ))}
                  </div>
