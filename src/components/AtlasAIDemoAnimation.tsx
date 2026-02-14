@@ -14,71 +14,70 @@ const AtlasAIDemoAnimation = () => {
   const [auditorMaturity, setAuditorMaturity] = useState<number | null>(null);
   const [copilotSpeaking, setCopilotSpeaking] = useState(false);
   const [copilotText, setCopilotText] = useState("");
-  const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const speechRef = useRef<number[]>([]);
   const middleScrollRef = useRef<HTMLDivElement>(null);
 
-  const riskAlertText = "BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits. Recommend thorough check of document control procedures, approval signatures, and revision history.";
+  // Split into short sentences to avoid Chrome's speechSynthesis timeout bug
+  const riskAlertSentences = [
+    "BMW Tier 2 rejected 2 suppliers for document control gaps.",
+    "Issues found in 73 percent of 47 similar audits.",
+    "Recommend thorough check of document control procedures, approval signatures, and revision history.",
+  ];
 
   const speakRiskAlert = useCallback(() => {
     if (copilotSpeaking) {
       window.speechSynthesis.cancel();
+      speechRef.current.forEach(clearTimeout);
+      speechRef.current = [];
       setCopilotSpeaking(false);
       setCopilotText("");
       return;
     }
 
-    // Cancel any ongoing speech first
     window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(riskAlertText);
-    utterance.rate = 0.95;
-    utterance.pitch = 1.0;
-    utterance.lang = "en-US";
-    
-    // Force English voice
+    // Get English voice once
     const voices = window.speechSynthesis.getVoices();
     const englishVoices = voices.filter(v => v.lang.startsWith("en"));
-    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
-    if (preferred) utterance.voice = preferred;
+    const preferredVoice = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
 
-    utterance.onstart = () => {
-      setCopilotSpeaking(true);
-      setCopilotText("Reading risk alert...");
-    };
+    setCopilotSpeaking(true);
+    setCopilotText("Reading risk alert...");
 
-    const segments = [
-      { time: 1500, text: "BMW Tier-2 rejected 2 suppliers for document control gaps." },
-      { time: 4000, text: "Issues found in 73% of similar audits." },
-      { time: 6500, text: "Recommend thorough check of procedures and signatures." },
-    ];
-    const segmentTimers: number[] = [];
-    segments.forEach(s => {
-      segmentTimers.push(window.setTimeout(() => setCopilotText(s.text), s.time));
-    });
+    let sentenceIndex = 0;
 
-    // Chrome bug workaround: pause/resume every 10s to prevent cutoff
-    const keepAlive = window.setInterval(() => {
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.resume();
+    const speakNext = () => {
+      if (sentenceIndex >= riskAlertSentences.length) {
+        setCopilotSpeaking(false);
+        setCopilotText("");
+        return;
       }
-    }, 5000);
 
-    utterance.onend = () => {
-      segmentTimers.forEach(clearTimeout);
-      clearInterval(keepAlive);
-      setCopilotSpeaking(false);
-      setCopilotText("");
+      const text = riskAlertSentences[sentenceIndex];
+      setCopilotText(text);
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.95;
+      utterance.pitch = 1.0;
+      utterance.lang = "en-US";
+      if (preferredVoice) utterance.voice = preferredVoice;
+
+      utterance.onend = () => {
+        sentenceIndex++;
+        // Small gap between sentences
+        const timer = window.setTimeout(speakNext, 300);
+        speechRef.current.push(timer);
+      };
+
+      utterance.onerror = () => {
+        setCopilotSpeaking(false);
+        setCopilotText("");
+      };
+
+      window.speechSynthesis.speak(utterance);
     };
 
-    utterance.onerror = () => {
-      segmentTimers.forEach(clearTimeout);
-      clearInterval(keepAlive);
-      setCopilotSpeaking(false);
-      setCopilotText("");
-    };
-
-    speechRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
+    speakNext();
   }, [copilotSpeaking]);
 
   // Single animation run (no loop)
