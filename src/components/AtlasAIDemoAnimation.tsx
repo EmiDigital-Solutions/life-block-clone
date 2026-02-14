@@ -7,7 +7,7 @@ const AtlasAIDemoAnimation = () => {
   const [micActive, setMicActive] = useState(false);
   const [vis, setVis] = useState(0);
   const [photoFlash, setPhotoFlash] = useState(false);
-  const [guidanceOpen, setGuidanceOpen] = useState(false);
+  const [chatStep, setChatStep] = useState(0);
   const [evidenceComplete, setEvidenceComplete] = useState(false);
   const [showMaturity, setShowMaturity] = useState(false);
   const [atlasMaturity, setAtlasMaturity] = useState<number | null>(null);
@@ -69,10 +69,12 @@ const AtlasAIDemoAnimation = () => {
     return () => t.forEach(clearTimeout);
   }, []);
 
-  // Auto-open guidance after insights load
+  // Auto-animate chat messages
   useEffect(() => {
-    const t = setTimeout(() => setGuidanceOpen(true), 1200);
-    return () => clearTimeout(t);
+    const timers = [1200, 2800, 4500].map((d, i) =>
+      setTimeout(() => setChatStep(i + 1), d)
+    );
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   // Cleanup speech on unmount
@@ -225,60 +227,54 @@ const AtlasAIDemoAnimation = () => {
               </p>
             </motion.div>
 
-            {/* AI Guidance — collapsible */}
-            <div className="flex-1 overflow-y-auto px-6 py-4">
-              <button
-                onClick={() => setGuidanceOpen(!guidanceOpen)}
-                className="w-full flex items-center justify-between py-2 mb-2 group"
-              >
-                <span className="text-[12px] font-bold text-white/40 uppercase tracking-wider group-hover:text-white/60 transition-colors">AI Guidance</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-white/25">{vis} insights</span>
-                  <svg className={`w-3.5 h-3.5 text-white/30 transition-transform ${guidanceOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </div>
-              </button>
+            {/* AI Guidance — auto-animated chat */}
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+              <span className="text-[12px] font-bold text-white/40 uppercase tracking-wider block mb-3">AI Guidance</span>
 
               <AnimatePresence>
-                {guidanceOpen && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="space-y-3 overflow-hidden">
-                    {vis >= 1 && (
-                      <div className="bg-[#E04545]/8 border border-[#E04545]/20 rounded-lg p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[12px] font-bold text-[#E04545] uppercase tracking-wider">Risk Alert</span>
+                {chatStep >= 1 && (
+                  <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
+                    className="bg-[#E04545]/8 border border-[#E04545]/20 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[12px] font-bold text-[#E04545] uppercase tracking-wider">Risk Alert</span>
+                    </div>
+                    <p className="text-[12px] text-white/50 leading-[1.5]">
+                      BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {chatStep >= 2 && (
+                  <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
+                    className="bg-white/5 rounded-lg p-4">
+                    <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
+                    <div className="mt-2 space-y-2">
+                      {["Document control procedure exists?", "Approval signatures on documents?", "Revision history tracked?"].map((q, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
+                          <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
                         </div>
-                        <p className="text-[12px] text-white/50 leading-[1.5]">
-                          BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits.
-                        </p>
-                      </div>
-                    )}
-                    {vis >= 2 && (
-                      <div className="bg-white/5 rounded-lg p-4">
-                        <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
-                        <div className="mt-2 space-y-2">
-                          {["Document control procedure exists?", "Approval signatures on documents?", "Revision history tracked?"].map((q, i) => (
-                            <div key={i} className="flex items-start gap-2">
-                              <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
-                              <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
-                            </div>
-                          ))}
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {chatStep >= 3 && (
+                  <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
+                    className="bg-white/5 rounded-lg p-4">
+                    <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
+                    <div className="mt-2 space-y-2">
+                      {["Register not used (73%)", "Obsolete docs accessible (68%)", "Missing signatures (54%)"].map(t => (
+                        <div key={t} className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
+                          <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
                         </div>
-                      </div>
-                    )}
-                    {vis >= 3 && (
-                      <div className="bg-white/5 rounded-lg p-4">
-                        <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
-                        <div className="mt-2 space-y-2">
-                          {["Register not used (73%)", "Obsolete docs accessible (68%)", "Missing signatures (54%)"].map(t => (
-                            <div key={t} className="flex items-center gap-2">
-                              <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
-                              <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
