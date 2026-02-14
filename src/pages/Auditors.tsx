@@ -236,11 +236,11 @@ const Auditors = () => {
         {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
 
-        {/* Experts Carousel */}
-        <ScrollZoomSection />
-
         {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
+
+        {/* Experts Carousel */}
+        <ScrollZoomSection />
 
         {/* 4. PROCESS - "From application to first audit" */}
         <TimelineSection />
