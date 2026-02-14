@@ -88,9 +88,9 @@ const AuditDifferenceSection = () => {
               How an Atlas audit works
             </span>
           </div>
-          <h2 className="section-headline-sm text-foreground max-w-3xl">
-            From request to verified report —{" "}
-            <span className="text-primary">in days, not months.</span>
+          <h2 className="section-headline text-foreground max-w-4xl">
+            Computer vision AI that sees{" "}
+            <span className="text-primary">everything.</span>
           </h2>
         </motion.div>
 
