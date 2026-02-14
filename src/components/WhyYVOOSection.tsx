@@ -135,7 +135,7 @@ const WhyYVOOSection = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="section-headline text-foreground mb-6">
-                  The audit nightmare everyone accepts
+                  The nightmare everyone accepts
                 </h2>
                 <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
                   Billions in supplier spend are still audited with clipboards, Excel, and crossed fingers. Everyone feels the pain—nobody questions the process.
@@ -189,7 +189,7 @@ const WhyYVOOSection = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="section-headline text-foreground mb-6">
-                  Leaders who refuse the audit nightmare
+                  Leaders who refuse the nightmare
                 </h2>
                 <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
                   Visionary procurement leaders replaced the chaos with a click. Local auditors, AI-powered workflows, results in days—not months.
