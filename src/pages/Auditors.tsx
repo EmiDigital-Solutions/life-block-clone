@@ -50,7 +50,7 @@ import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
 import AtlasAIDemoAnimation from "@/components/AtlasAIDemoAnimation";
 import EarningsPotentialSection from "@/components/auditors/EarningsPotentialSection";
-import CommunitySection from "@/components/auditors/CommunitySection";
+
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -239,8 +239,7 @@ const Auditors = () => {
         {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
 
-        {/* Experts Carousel */}
-        <ScrollZoomSection />
+        {/* Experts Carousel - removed (redundant with hero) */}
 
         {/* 4. PROCESS - "From application to first audit" */}
         <TimelineSection />
@@ -254,8 +253,7 @@ const Auditors = () => {
         {/* 7. PAYMENT PROCESS + REAL OPPORTUNITIES */}
         <EarningsPotentialSection />
 
-        {/* 8. COMMUNITY */}
-        <CommunitySection />
+        {/* 8. COMMUNITY merged into TESTIMONIALS */}
 
         {/* 9. SUCCESS STORIES / TESTIMONIALS */}
         <SuccessStoriesSection />
@@ -430,24 +428,6 @@ const ValuePropositionSection = () => {
           </motion.div>
         </div>
 
-        {/* Value Props */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-border"
-        >
-          {[
-            { title: "Transparent fees", desc: "View audit fees upfront—accept or decline. No negotiation, no surprises." },
-            { title: "Immediate payment", desc: "Payment released upon report submission. No invoicing required." },
-            { title: "Work locally", desc: "Assignments matched near you. Atlas AI handles documentation." },
-          ].map((item, idx) => (
-            <div key={idx}>
-              <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
-              <p className="text-muted-foreground">{item.desc}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
@@ -1042,6 +1022,12 @@ const SuccessStoriesSection = () => {
     },
   ];
 
+  const communityItems = [
+    { title: "Access exclusive training", desc: "Continuous professional development and certification support." },
+    { title: "Learn from top auditors globally", desc: "Connect with peers and share best practices." },
+    { title: "Get standards updates first", desc: "Stay ahead with early access to regulatory and standards changes." },
+  ];
+
   return (
     <section 
       ref={ref} 
@@ -1067,7 +1053,7 @@ const SuccessStoriesSection = () => {
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-16">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -1087,6 +1073,29 @@ const SuccessStoriesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Community — More than a platform */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
+          className="pt-12 border-t border-border"
+        >
+          <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
+            More than a platform
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {communityItems.map((item, idx) => (
+              <div key={idx}>
+                <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-lg text-muted-foreground leading-relaxed italic mt-10 max-w-2xl">
+            "We seek auditors who are curious, precise, and ethical. Join professionals who care about quality, not just paychecks."
+          </p>
+        </motion.div>
       </div>
     </section>
   );
