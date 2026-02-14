@@ -296,6 +296,34 @@ const WhyYVOOSection = () => {
             </div>
           </div>
 
+          {/* Transparency Manifesto */}
+          <div className="py-24 bg-foreground text-background">
+            <div className="container mx-auto px-6 max-w-7xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="max-w-3xl"
+              >
+                <p className="text-sm font-mono tracking-wide text-background/50 mb-6">
+                  What we believe
+                </p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[1.05] mb-8">
+                  Radical transparency is not a feature. It's a principle.
+                </h2>
+                <p className="text-lg text-background/70 leading-relaxed mb-6">
+                  Traditional audits hide behind "professional judgment." A single auditor's opinion, scribbled on a clipboard, submitted weeks later. You pay €15,000 for a black box.
+                </p>
+                <p className="text-lg text-background/70 leading-relaxed mb-6">
+                  We show you every data point, every photo, every AI analysis. Every piece of equipment documented. Every process scored. Full transparency. You decide.
+                </p>
+                <p className="text-xl font-semibold text-background">
+                  That's not a feature. That's how audits should have always worked.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
           {/* Final CTA */}
           <div className="py-24 bg-white">
             <div className="container mx-auto px-6 max-w-7xl">

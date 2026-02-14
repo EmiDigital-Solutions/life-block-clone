@@ -82,8 +82,8 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="sm:hidden">Get Audit Free</span>
-                    <span className="hidden sm:inline">Get Your First Audit Free</span>
+                    <span className="sm:hidden">See the Future</span>
+                    <span className="hidden sm:inline">See the Future of Audits</span>
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>
