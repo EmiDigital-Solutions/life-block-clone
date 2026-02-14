@@ -26,7 +26,7 @@ const GlobalNetworkSection = () => {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-foreground"></div>
                 <span className="section-eyebrow">Global Coverage</span>
               </motion.div>
 
@@ -139,7 +139,7 @@ const GlobalNetworkSection = () => {
                   >
                     {/* Pulse effect */}
                     <motion.div
-                      className="absolute rounded-full bg-primary"
+                      className="absolute rounded-full bg-foreground"
                       animate={{
                         scale: [1, 2.2, 1],
                         opacity: [0.7, 0, 0.7],
@@ -153,13 +153,13 @@ const GlobalNetworkSection = () => {
                     />
                     
                     {/* Marker dot */}
-                    <div className="relative w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg z-10" />
+                    <div className="relative w-4 h-4 bg-foreground rounded-full border-2 border-white shadow-lg z-10" />
                     
                     {/* Label on hover */}
                     <div className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
                       <div className="bg-foreground text-background px-3 py-2 rounded-lg shadow-xl">
                         <p className="text-xs font-semibold">{region.name}</p>
-                        <p className="text-xs font-bold text-primary">{region.auditors}</p>
+                        <p className="text-xs font-bold text-foreground">{region.auditors}</p>
                       </div>
                     </div>
                   </motion.div>
