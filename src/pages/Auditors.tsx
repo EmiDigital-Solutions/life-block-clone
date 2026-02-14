@@ -218,7 +218,7 @@ const Auditors = () => {
               >
                 {[...Array(3)].map((_, setIndex) => (
                   <div key={setIndex} className="flex gap-16 items-center">
-                    {["Siemens", "BMW", "Airbus", "Bosch", "Mercedes-Benz", "BASF"].map((company, idx) => (
+                    {["Built for automotive OEMs", "Aerospace suppliers", "Precision engineering", "Medical devices", "Chemical & pharma", "Energy & utilities"].map((company, idx) => (
                       <span
                         key={idx}
                         className="text-xl font-semibold text-white/40 tracking-wide hover:text-white/60 transition-colors"
@@ -282,9 +282,9 @@ const Auditors = () => {
                 viewport={{ once: true }}
                 className="section-headline text-white mb-6"
               >
-                Let's discuss
+                See how it works.
                 <br />
-                your partnership.
+                No commitment.
               </motion.h2>
               
               <motion.p
@@ -292,19 +292,9 @@ const Auditors = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="text-primary text-base font-medium mb-4"
+                className="text-white/50 text-lg mb-8 max-w-md mx-auto"
               >
-                Onboarding 50 auditors this quarter. Limited spots available.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-white/40 text-lg mb-8"
-              >
-                15-minute conversation. No commitment.
+                15-minute intro call. View real opportunities. Decide if it fits.
               </motion.p>
 
               <motion.div
@@ -312,26 +302,14 @@ const Auditors = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="mb-8"
               >
                 <Button asChild size="lg">
                   <a href="#">
-                    Apply for Partnership
+                    Schedule intro call
                     <ArrowRight className="w-5 h-5" />
                   </a>
                 </Button>
               </motion.div>
-
-              {/* Risk Reversal */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="text-white/30 text-sm max-w-md mx-auto"
-              >
-                Complete your first audit. If not satisfied, we part ways professionally. No questions asked.
-              </motion.p>
             </div>
           </div>
         </section>
@@ -372,10 +350,10 @@ const ValuePropositionSection = () => {
   ];
 
   const newWay = [
-    "Work locally, audit globally",
-    "AI writes reports as you work",
-    "Payment in 14 days, guaranteed",
-    "Premium clients, steady pipeline",
+    "Work locally—assignments near you",
+    "Atlas AI handles documentation",
+    "Payment released upon report submission",
+    "You choose your schedule and workload",
   ];
 
   return (
@@ -460,9 +438,9 @@ const ValuePropositionSection = () => {
           className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-border"
         >
           {[
-            { title: "Premium clients", desc: "Built for Fortune 500 manufacturers, automotive OEMs, aerospace suppliers." },
-            { title: "AI co-pilot", desc: "Computer vision, smart templates, real-time guidance at your fingertips." },
-            { title: "Focus on expertise", desc: "You audit. AI handles documentation. 70% less admin work." },
+            { title: "Transparent fees", desc: "View audit fees upfront—accept or decline. No negotiation, no surprises." },
+            { title: "Immediate payment", desc: "Payment released upon report submission. No invoicing required." },
+            { title: "Work locally", desc: "Assignments matched near you. Atlas AI handles documentation." },
           ].map((item, idx) => (
             <div key={idx}>
               <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
@@ -510,7 +488,7 @@ const TimelineSection = () => {
       number: "05",
       title: "Earn",
       subtitle: "Fast payment",
-      description: "Compensation within 14 days. Transparent terms, no hidden fees.",
+      description: "Payment released upon report submission. Transparent terms, no hidden fees.",
     },
   ];
 
@@ -706,7 +684,7 @@ const TechnologyFeaturesSection = () => {
     { title: "Equipment Recognition", desc: "Camera scans machines. AI identifies manufacturer, model, condition." },
     { title: "Smart Templates", desc: "Upload specs. AI generates your audit framework automatically." },
     { title: "Live Documentation", desc: "Photos auto-categorize. Findings auto-format. Reports write themselves." },
-    { title: "Instant Payments", desc: "14-day processing. Transparent rates. No invoice chasing." },
+    { title: "Immediate Payment", desc: "Payment released upon report submission. No invoicing required." },
   ];
 
   return (
@@ -865,8 +843,8 @@ const DayInLifeSection = () => {
       day: "Day 6-8",
       title: "Payment received",
       oldWay: "Send invoice, wait 60-90 days, chase payment",
-      newWay: "Automatic processing. Bank transfer confirmed. No invoicing.",
-      highlight: "3 days max",
+      newWay: "Report submitted → payment auto-released same business day. No invoicing.",
+      highlight: "Same day",
     },
   ];
 
@@ -1121,28 +1099,28 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
 
   const faqs = [
     {
-      q: "What is the compensation structure for partner auditors?",
-      a: "Partner auditors earn €2,500–€4,500 per assignment depending on audit type and complexity. Standard ISO audits start at €2,500, while specialized audits (VDA 6.3, IATF 16949, AS9100) command €3,500–€4,500. Payments are processed within 14 days via direct bank transfer. No platform fees or commission deductions—you keep 100% of your quoted rate."
+      q: "How does payment work?",
+      a: "Once your audit report is submitted and validated, payment is auto-released the same business day via direct bank transfer. There is no invoicing required on your end—the platform handles everything. You see the fee upfront before accepting any assignment."
     },
     {
-      q: "How does YVOO differ from gig economy platforms?",
-      a: "YVOO partners with Fortune 500 manufacturers and Tier-1 suppliers who require certified professionals—not freelancers racing against the clock. Key differences: premium compensation (3–5× typical gig rates), sustainable workload (3–5 audits/month vs. daily grind), long-term client relationships, and professional development investment. We reject 70% of client requests that do not meet our quality standards."
+      q: "How does YVOO differ from traditional audit firms?",
+      a: "You work as an independent professional, not an employee. You see each assignment's fee and location upfront and choose what fits your schedule. Atlas AI handles documentation, so you spend more time auditing and less on admin. There are no exclusivity requirements—you decide your workload."
     },
     {
-      q: "What types of clients will I work with?",
-      a: "Our client portfolio includes automotive OEMs (BMW, Mercedes, Volkswagen Group), aerospace manufacturers (Airbus suppliers, Safran), medical device companies, and precision engineering firms. All clients are pre-vetted enterprises with established quality management systems. You will never be assigned to startups, small workshops, or companies seeking cut-rate audits."
+      q: "What types of clients are on the platform?",
+      a: "Our client base includes automotive OEMs, aerospace manufacturers, medical device companies, and precision engineering firms. All clients are pre-vetted enterprises with established quality management systems seeking certified auditors for specific standards."
+    },
+    {
+      q: "How are assignments matched to me?",
+      a: "Our matching system considers your certifications, industry specialization, and location to surface relevant opportunities near you. You review each assignment's details—standard, location, fee—and accept or decline with no obligation."
     },
     {
       q: "What professional development support is provided?",
-      a: "We invest €2,000+ annually per partner in professional development: CPE credits for maintaining certifications, quarterly webinars on emerging standards (IATF updates, VDA revisions), access to our auditor knowledge base with 500+ case studies, and annual partner summit with industry experts. Top performers receive sponsored certifications and conference attendance."
-    },
-    {
-      q: "How many assignments can I expect per month?",
-      a: "Active partners typically complete 3–5 enterprise audits monthly, representing €10,000–€18,000 in earnings. You set your own availability—accept assignments that fit your schedule, decline without penalty. Our AI matching system prioritizes auditors based on specialization, location, and client preferences, ensuring consistent high-quality opportunities."
+      a: "Partners have access to CPE credits, quarterly webinars on emerging standards (IATF updates, VDA revisions), and our auditor knowledge base. We invest in keeping our network current with evolving industry requirements."
     },
     {
       q: "What is the application and verification process?",
-      a: "Step 1: Submit credentials and certifications online (10 minutes). Step 2: Background verification and reference checks (5–7 days). Step 3: Technical interview with our audit director (30 minutes). Step 4: Onboarding and platform training (2 hours). Total timeline: 7–10 business days. Acceptance rate: approximately 15% of applicants meet our standards."
+      a: "Step 1: Submit credentials and certifications online (10 minutes). Step 2: Background verification and reference checks (5–7 days). Step 3: Technical interview with our audit director (30 minutes). Step 4: Onboarding and platform training (2 hours). Total timeline: 7–10 business days."
     }
   ];
 
