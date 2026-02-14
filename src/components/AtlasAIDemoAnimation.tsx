@@ -407,7 +407,7 @@ const AtlasAIDemoAnimation = () => {
           {/* RIGHT — Copilot + Intelligence */}
           <div className="flex-[30] flex flex-col overflow-hidden">
             {/* Atlas Copilot Voice — animated speaker */}
-            <div className="px-4 py-4 flex flex-col items-center">
+            <div className="px-4 py-4 flex flex-col items-center min-h-[180px] overflow-visible">
               <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
               <div className="relative flex items-center justify-center">
                 <AnimatePresence>
@@ -449,27 +449,24 @@ const AtlasAIDemoAnimation = () => {
               <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/30"}`}>
                 {copilotSpeaking ? "Speaking..." : "Tap to speak"}
               </span>
-              {/* Waveform */}
-              <AnimatePresence>
-                {copilotSpeaking && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-0.5 mt-2">
-                    {[...Array(16)].map((_, i) => (
-                      <motion.div key={i} className="w-[3px] rounded-full bg-[#3DC88E]"
-                        animate={{ height: [2, Math.random() * 16 + 4, 2] }}
-                        transition={{ duration: 0.25 + Math.random() * 0.25, repeat: Infinity, repeatType: "reverse", delay: i * 0.03 }} />
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {/* Copilot speech text */}
-              <AnimatePresence mode="wait">
+              {/* Waveform — always rendered, visibility toggled */}
+              <div className="flex items-center gap-0.5 mt-2 h-5">
+                {copilotSpeaking && [...Array(16)].map((_, i) => (
+                  <motion.div key={i} className="w-[3px] rounded-full bg-[#3DC88E]"
+                    initial={{ height: 2 }}
+                    animate={{ height: [2, Math.random() * 16 + 4, 2] }}
+                    transition={{ duration: 0.25 + Math.random() * 0.25, repeat: Infinity, repeatType: "reverse", delay: i * 0.03 }} />
+                ))}
+              </div>
+              {/* Copilot speech text — fixed height container */}
+              <div className="h-8 mt-2 flex items-start justify-center">
                 {copilotText && (
-                  <motion.p key={copilotText} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                    className="text-[10px] text-white/40 text-center mt-3 px-2 leading-[1.5] max-w-[200px]">
+                  <motion.p key={copilotText} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="text-[10px] text-white/40 text-center px-2 leading-[1.5] max-w-[200px]">
                     {copilotText}
                   </motion.p>
                 )}
-              </AnimatePresence>
+              </div>
             </div>
 
             {/* Intelligence Cards */}
