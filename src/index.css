@@ -212,7 +212,7 @@ All colors MUST be HSL.
 
   /* Section Headlines - bfl.ai inspired clean, semi-bold typography */
   .section-headline {
-    @apply text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1];
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1];
   }
 
   .section-headline-lg {
