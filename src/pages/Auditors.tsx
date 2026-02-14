@@ -159,8 +159,8 @@ const Auditors = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-white max-w-5xl"
                 >
-                  We partner with<br />
-                  exceptional auditors.
+                  Audit on your terms.<br />
+                  Get paid same day.
                 </motion.h1>
 
                 {/* Subtitle + CTA Container - Right aligned below headline like Archlet */}
@@ -233,31 +233,31 @@ const Auditors = () => {
           </motion.div>
         </section>
 
-        {/* Earnings Potential - NEW */}
-        <EarningsPotentialSection />
-
-        {/* Scroll-Zoom Section */}
-        <ScrollZoomSection />
-
-        {/* Value Proposition Section */}
+        {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
 
-        {/* How It Works Timeline */}
-        <TimelineSection />
+        {/* Experts Carousel */}
+        <ScrollZoomSection />
 
-        {/* Qualifications Section */}
-        <QualificationsSection />
-
-        {/* Technology Features - New Design */}
+        {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
 
-        {/* Day in the Life */}
+        {/* 4. PROCESS - "From application to first audit" */}
+        <TimelineSection />
+
+        {/* 5. REQUIREMENTS - "We're selective" */}
+        <QualificationsSection />
+
+        {/* 6. WORKFLOW - "Same audit. Less friction" */}
         <DayInLifeSection />
 
-        {/* Community Section */}
+        {/* 7. PAYMENT PROCESS + REAL OPPORTUNITIES */}
+        <EarningsPotentialSection />
+
+        {/* 8. COMMUNITY */}
         <CommunitySection />
 
-        {/* Success Stories */}
+        {/* 9. SUCCESS STORIES / TESTIMONIALS */}
         <SuccessStoriesSection />
 
         {/* Final CTA Section - Premium B2B Style */}
