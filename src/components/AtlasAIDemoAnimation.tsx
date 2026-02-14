@@ -38,14 +38,7 @@ const AtlasAIDemoAnimation = () => {
 
     const voices = window.speechSynthesis.getVoices();
     const englishVoices = voices.filter(v => v.lang.startsWith("en"));
-    // Prefer male voices — Daniel, Google UK Male, Aaron, David, Alex
-    const preferred = englishVoices.find(v => v.name.includes("Daniel")) 
-      || englishVoices.find(v => v.name.includes("Google UK English Male"))
-      || englishVoices.find(v => v.name.includes("Aaron"))
-      || englishVoices.find(v => v.name.includes("David"))
-      || englishVoices.find(v => v.name.includes("Alex"))
-      || englishVoices.find(v => v.name.toLowerCase().includes("male"))
-      || englishVoices[0];
+    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
 
     setCopilotSpeaking(true);
 
