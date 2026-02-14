@@ -246,36 +246,44 @@ const DiscoverScreen = () => {
             </motion.div>
           )}
 
-          {/* 3 Supplier Cards — stacked vertically */}
+          {/* 3 Supplier Cards — square, side by side */}
           {phase >= 5 && (
-            <div className="flex flex-col gap-2 flex-1 overflow-auto">
+            <div className="grid grid-cols-3 gap-2 flex-1">
               {suppliers.map((s, i) => {
                 const riskWidths = [[88, 82, 95], [84, 90, 87], [79, 85, 92]];
                 return (
                   <motion.div key={s.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.12 }}>
-                    <GlassCard highlight={i === 0} layer={2} className="p-3 flex items-center gap-3">
-                      {/* Score badge */}
-                      <div className={`w-10 h-10 flex items-center justify-center flex-shrink-0 ${i === 0 ? 'bg-primary text-white' : 'bg-foreground/10 text-foreground'}`}>
-                        <span className="text-sm font-bold">{s.score}%</span>
-                      </div>
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-foreground truncate">{s.name}</span>
-                          {i === 0 && <span className="text-[8px] text-primary font-bold uppercase flex-shrink-0">Best Match</span>}
+                    <GlassCard highlight={i === 0} layer={2} className="p-2.5 flex flex-col aspect-square">
+                      {/* Score badge top */}
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className={`px-1.5 py-0.5 text-[10px] font-bold ${i === 0 ? 'bg-primary text-white' : 'bg-foreground/10 text-foreground'}`}>
+                          {s.score}%
                         </div>
-                        <div className="text-[10px] text-muted-foreground">{s.location} · {s.industry}</div>
-                        <div className="text-[10px] text-foreground/60">{s.certs}</div>
+                        {i === 0 && <span className="text-[7px] text-primary font-bold uppercase">Top</span>}
                       </div>
-                      {/* Mini risk bars */}
-                      <div className="flex gap-1.5 flex-shrink-0">
-                        {["Qual", "Del", "Comp"].map((r, ri) => (
-                          <div key={r} className="text-center w-8">
-                            <div className="w-full h-1 bg-primary/20 mb-0.5"><div className="h-full bg-primary" style={{ width: `${riskWidths[i][ri]}%` }} /></div>
-                            <span className="text-[7px] text-muted-foreground">{r}</span>
-                          </div>
-                        ))}
+                      {/* Name & location */}
+                      <div className="text-xs font-semibold text-foreground leading-tight">{s.name}</div>
+                      <div className="text-[9px] text-muted-foreground mt-0.5">{s.location}</div>
+                      {/* Details */}
+                      <div className="border-t border-foreground/8 pt-1.5 mt-auto space-y-1">
+                        <div>
+                          <span className="text-[8px] text-muted-foreground uppercase block">Industry</span>
+                          <span className="text-[9px] text-foreground font-medium">{s.industry}</span>
+                        </div>
+                        <div>
+                          <span className="text-[8px] text-muted-foreground uppercase block">Certs</span>
+                          <span className="text-[9px] text-foreground font-medium">{s.certs}</span>
+                        </div>
+                        {/* Risk bars */}
+                        <div className="flex gap-1 pt-0.5">
+                          {["Qual", "Del", "Comp"].map((r, ri) => (
+                            <div key={r} className="flex-1">
+                              <div className="w-full h-1 bg-primary/15"><div className="h-full bg-primary" style={{ width: `${riskWidths[i][ri]}%` }} /></div>
+                              <span className="text-[6px] text-muted-foreground block text-center mt-0.5">{r}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </GlassCard>
                   </motion.div>
