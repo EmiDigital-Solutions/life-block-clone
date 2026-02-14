@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Check, ArrowRight } from "lucide-react";
+import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -225,6 +226,17 @@ const GroundTruthMockup = () => {
 };
 
 // Supplier Development Mockup
+// Atlas AI Audit Mockup
+const AtlasAuditMockup = () => {
+  return (
+    <WindowChrome title="Atlas AI — Audit Copilot">
+      <div className="h-full overflow-hidden">
+        <AtlasAIDemoAnimation />
+      </div>
+    </WindowChrome>
+  );
+};
+
 const SupplierDevelopmentMockup = () => {
   const [progress, setProgress] = useState(65);
   
@@ -321,6 +333,18 @@ const BeyondDiscoverySection = () => {
     },
     {
       number: "03",
+      label: "AI Audit",
+      title: "Atlas AI guides every audit in real time",
+      description: "Our AI copilot provides context-aware guidance, auto-generates findings, recognizes equipment from photos, and ensures consistent audit quality.",
+      features: [
+        "Real-time audit guidance with Atlas Brain",
+        "Voice input and AI-generated findings",
+        "Equipment photo recognition and evidence analysis"
+      ],
+      Mockup: AtlasAuditMockup
+    },
+    {
+      number: "04",
       label: "Intelligence",
       title: "Ground truth data you can trust",
       description: "Every audit generates verified intelligence: confirmed equipment, validated certifications, actual production capacity.",
@@ -332,7 +356,7 @@ const BeyondDiscoverySection = () => {
       Mockup: GroundTruthMockup
     },
     {
-      number: "04",
+      number: "05",
       label: "Development",
       title: "Continuous supplier development",
       description: "Turn audit findings into improvement actions. Track progress, schedule follow-ups, and monitor development over time.",
