@@ -141,7 +141,7 @@ const AtlasAIDemoAnimation = () => {
         </AnimatePresence>
 
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-6 md:px-8 py-3 border-b border-white/8">
+        <div className="flex items-center justify-between px-6 md:px-8 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-[#3DC88E]" />
             <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
@@ -160,7 +160,7 @@ const AtlasAIDemoAnimation = () => {
 
           {/* LEFT — Checklist + Evidence */}
           <div className="flex-[25] border-r border-white/6 flex flex-col overflow-hidden">
-            <div className="px-4 py-3 border-b border-white/6">
+            <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
               <div className="text-[10px] text-white/25 mt-1">IATF 16949 · Precision Parts</div>
             </div>
@@ -185,7 +185,7 @@ const AtlasAIDemoAnimation = () => {
             </div>
 
             {/* Evidence */}
-            <div className="border-t border-white/6 px-4 py-4">
+            <div className="px-4 py-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Evidence</span>
                 <span className={`text-[12px] font-bold ${evidenceComplete ? "text-[#3DC88E]" : "text-[#F5A623]"}`}>
@@ -233,7 +233,7 @@ const AtlasAIDemoAnimation = () => {
           {/* MIDDLE — Question + Maturity */}
           <div className="flex-[45] border-r border-white/6 flex flex-col overflow-hidden">
             {/* Question */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-8 py-6 border-b border-white/6">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-8 py-6">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[12px] font-semibold text-white/40 uppercase tracking-wider">Question</span>
                 <div className="flex gap-2">
@@ -306,7 +306,7 @@ const AtlasAIDemoAnimation = () => {
                 {showMaturity && (
                   <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 180 }}
                     className="mt-6 space-y-4">
-                    <div className="border-t border-white/8 pt-4">
+                    <div className="pt-4">
                       <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Maturity Assessment</span>
                     </div>
 
@@ -387,7 +387,7 @@ const AtlasAIDemoAnimation = () => {
             </div>
 
             {/* Chat Input */}
-            <div className="border-t border-white/6 px-6 py-4">
+            <div className="px-6 py-4">
               <div className="flex items-center gap-2">
                 <button className={`w-10 h-10 flex items-center justify-center rounded-lg shrink-0 transition-all ${micActive ? "bg-[#3DC88E]/15 border border-[#3DC88E]" : "bg-white/5 border border-white/10 hover:border-white/20"}`}>
                   <svg className={`w-4 h-4 ${micActive ? "text-[#3DC88E]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -407,7 +407,7 @@ const AtlasAIDemoAnimation = () => {
           {/* RIGHT — Copilot + Intelligence */}
           <div className="flex-[30] flex flex-col overflow-hidden">
             {/* Atlas Copilot Voice — animated speaker */}
-            <div className="px-4 py-4 border-b border-white/6 flex flex-col items-center">
+            <div className="px-4 py-4 flex flex-col items-center">
               <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
               <div className="relative flex items-center justify-center">
                 <AnimatePresence>
