@@ -1,33 +1,42 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { X, Check, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 
-const timeline = [
+const phases = [
   {
-    day: "Day 1",
-    label: "Scoping",
-    title: "Your audit is scoped by intelligence, not guesswork",
-    oldWay: "Call agencies. Wait for quotes. Hope the auditor understands your industry. No context, no preparation — just a generic checklist.",
-    newWay: "Atlas AI builds a tailored audit framework from your supplier's profile, industry risks, and applicable standards. Your auditor arrives with deep context — knowing exactly what to verify, what to challenge, and where risks hide.",
-    highlight: "AI-prepared, industry-specific scope",
-  },
-  {
-    day: "Day 2",
-    label: "Execution",
-    title: "Auditor + Atlas AI: precision on the shop floor",
-    oldWay: "One person with a clipboard and subjective judgment. Photos lost on a phone. Findings written from memory hours later. No standardization, no traceability.",
-    newWay: "Your auditor works hand-in-hand with Atlas AI — equipment is auto-recognized, evidence photos are linked to findings in real time, maturity scores are benchmarked against industry data. Every observation is structured, traceable, and verified on the spot.",
-    highlight: "Expert judgment + AI verification, together",
-  },
-  {
-    day: "Day 3",
+    phase: "Before arrival",
     label: "Intelligence",
-    title: "Verified intelligence, not a PDF. Plus CAPA tracking built in.",
-    oldWay: "Wait 6–10 weeks for a subjective PDF. No risk scores, no benchmarks, no corrective action plan. Import manually into your QMS. Then start guessing what to do next.",
-    newWay: "Within 24 hours: a complete audit intelligence package — risk-scored findings, photo-verified evidence, supplier maturity benchmarks, and a structured CAPA plan with assigned actions, deadlines, and automatic follow-up tracking.",
-    highlight: "From audit to action — in 24 hours",
+    title: "Your auditor arrives knowing more than your own team.",
+    points: [
+      "Atlas AI analyzes your supplier's certifications, past audit history, industry benchmarks, and applicable standards — before anyone boards a plane.",
+      "A tailored audit framework is generated: risk-weighted focus areas, equipment-specific checkpoints, and compliance gaps identified from public and proprietary data sources.",
+      "Your auditor receives a structured briefing — not a generic checklist, but a precision-engineered assessment plan built for this specific supplier, this specific scope.",
+    ],
+    accent: "Every audit starts with more preparation than most audits ever get.",
+  },
+  {
+    phase: "On the shop floor",
+    label: "Execution",
+    title: "Human expertise, amplified by machine precision.",
+    points: [
+      "Atlas AI recognizes equipment models in real time — CNC machines, CMMs, testing rigs — and cross-references calibration records, maintenance logs, and capability data automatically.",
+      "Evidence photos are linked to findings the moment they're captured. No lost images. No ambiguity. Every observation is geo-tagged, timestamped, and traceable.",
+      "Maturity scoring runs live against industry benchmarks. Your auditor sees exactly where this supplier stands relative to peers — not based on opinion, but on data from thousands of assessments.",
+    ],
+    accent: "The result: audit depth that would normally require a team of three, delivered by one expert with Atlas.",
+  },
+  {
+    phase: "Within 24 hours",
+    label: "Intelligence",
+    title: "A complete audit intelligence package. Not a PDF.",
+    points: [
+      "Risk-scored findings with photo-verified evidence, supplier maturity benchmarks, and clear severity classifications — structured for immediate decision-making.",
+      "A CAPA plan is generated automatically: corrective actions assigned, deadlines set, responsibilities defined. Your team doesn't interpret findings — they act on them.",
+      "Follow-up tracking is built in. Automated reminders, evidence re-verification, and close-out confirmation — so no finding ever gets lost in a spreadsheet.",
+    ],
+    accent: "From audit to action — with full traceability, zero manual effort.",
   },
 ];
 
@@ -39,12 +48,12 @@ const AuditDifferenceSection = () => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const advanceTab = useCallback(() => {
-    setActiveTab((prev) => (prev + 1) % timeline.length);
+    setActiveTab((prev) => (prev + 1) % phases.length);
   }, []);
 
   useEffect(() => {
     if (isPlaying && isInView) {
-      intervalRef.current = setInterval(advanceTab, 5000);
+      intervalRef.current = setInterval(advanceTab, 7000);
     }
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -57,7 +66,7 @@ const AuditDifferenceSection = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
   };
 
-  const active = timeline[activeTab];
+  const active = phases[activeTab];
 
   return (
     <section
@@ -75,17 +84,18 @@ const AuditDifferenceSection = () => {
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-px bg-primary" />
-            <span className="section-eyebrow">
-              the difference
+            <span className="section-eyebrow-primary">
+              Anatomy of an Atlas Audit
             </span>
           </div>
-          <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-3xl">
-            Clipboard vs.{" "}
-            <span className="font-medium">Atlas AI</span>
+          <h2 className="section-headline text-foreground max-w-3xl">
+            This is what a{" "}
+            <span className="text-primary">real audit</span>{" "}
+            looks like.
           </h2>
         </motion.div>
 
-        {/* Two-column layout: Tabs + Image */}
+        {/* Two-column layout: Content + Image */}
         <div className="grid lg:grid-cols-[1fr,340px] gap-12 lg:gap-16 items-start">
           {/* Left: Tabs + Content */}
           <motion.div
@@ -94,9 +104,9 @@ const AuditDifferenceSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {/* Tab Bar */}
-            <div className="flex items-center border-b border-border mb-8">
+            <div className="flex items-center border-b border-border mb-10">
               <div className="flex flex-1">
-                {timeline.map((item, index) => (
+                {phases.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
@@ -106,14 +116,11 @@ const AuditDifferenceSection = () => {
                         : "text-muted-foreground hover:text-foreground/70"
                     }`}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <span className={`text-sm font-medium tracking-wide ${
                         activeTab === index ? "text-primary" : "text-muted-foreground/50"
                       }`}>
-                        {item.day}
-                      </span>
-                      <span className="hidden sm:inline text-sm font-medium">
-                        {item.label}
+                        {item.phase}
                       </span>
                     </div>
                     {activeTab === index && (
@@ -128,7 +135,7 @@ const AuditDifferenceSection = () => {
               </div>
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-muted-foreground/50 hover:text-foreground transition-colors"
+                className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors"
                 aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
               >
                 {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -139,54 +146,44 @@ const AuditDifferenceSection = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="space-y-6"
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="space-y-8"
               >
-                {/* Title + Highlight */}
-                <div>
-                  <h3 className="text-xl md:text-2xl font-medium text-foreground leading-snug mb-2">
-                    {active.title}
-                  </h3>
-                  <span className="section-eyebrow-primary">
-                    {active.highlight}
-                  </span>
+                {/* Title */}
+                <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-snug max-w-2xl">
+                  {active.title}
+                </h3>
+
+                {/* Detail points */}
+                <div className="space-y-5">
+                  {active.points.map((point, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
+                      className="flex gap-4"
+                    >
+                      <div className="flex-shrink-0 w-6 h-px bg-primary mt-3" />
+                      <p className="text-base text-foreground/70 leading-relaxed">
+                        {point}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
 
-                {/* Old vs New — equal height cards */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {/* Old Way */}
-                  <div className="p-5 bg-muted/30 border border-border/50 flex flex-col">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="w-5 h-5 bg-muted flex items-center justify-center flex-shrink-0">
-                        <X className="w-3 h-3 text-muted-foreground" />
-                      </div>
-                      <span className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
-                        Traditional
-                      </span>
-                    </div>
-                    <p className="text-base text-muted-foreground leading-relaxed flex-1">
-                      {active.oldWay}
-                    </p>
-                  </div>
-
-                  {/* New Way */}
-                  <div className="p-5 bg-primary/[0.03] border border-primary/10 flex flex-col">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="w-5 h-5 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium tracking-wider text-primary uppercase">
-                        With Atlas AI
-                      </span>
-                    </div>
-                    <p className="text-base text-foreground leading-relaxed font-medium flex-1">
-                      {active.newWay}
-                    </p>
-                  </div>
-                </div>
+                {/* Accent line */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="text-base font-medium text-foreground border-l-2 border-primary pl-5 max-w-xl"
+                >
+                  {active.accent}
+                </motion.p>
               </motion.div>
             </AnimatePresence>
           </motion.div>
@@ -198,14 +195,11 @@ const AuditDifferenceSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hidden lg:block sticky top-32"
           >
-            <div className="relative">
-              <img
-                src={auditorTimelineHero}
-                alt="Quality assurance professional with AI technology"
-                className="w-full max-h-[380px] object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent" />
-            </div>
+            <img
+              src={auditorTimelineHero}
+              alt="Quality assurance professional conducting an Atlas AI-guided audit"
+              className="w-full max-h-[420px] object-cover object-top"
+            />
           </motion.div>
         </div>
 
@@ -222,7 +216,7 @@ const AuditDifferenceSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="font-mono tracking-wide lowercase font-medium">see the difference live</span>
+              <span className="font-mono tracking-wide lowercase font-medium">see it in action</span>
               <ArrowRight className="w-5 h-5" />
             </a>
           </Button>
