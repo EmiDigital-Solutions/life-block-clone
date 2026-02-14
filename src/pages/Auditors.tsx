@@ -891,9 +891,7 @@ const DayInLifeSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            Others send you with a clipboard.
-            <br />
-            We send you with Atlas AI.
+            Clipboard vs. Atlas AI.
           </h2>
         </motion.div>
 
