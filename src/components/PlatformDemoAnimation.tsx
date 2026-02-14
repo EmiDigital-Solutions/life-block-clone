@@ -19,12 +19,12 @@ const SCREEN_BG = "bg-[hsl(0,0%,92%)]";
 /* ── White frosted glass cards — subtle transparency on grey ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-white/70 border-foreground/8'
+    ? 'bg-white/70 border-white/80'
     : layer === 2
-    ? 'bg-white/80 border-foreground/10'
-    : 'bg-white/90 border-foreground/12';
+    ? 'bg-white/75 border-white/85'
+    : 'bg-white/80 border-white/90';
   return (
-    <div className={`border backdrop-blur-sm ${highlight ? 'border-accent/40 bg-white/85' : layerBg} ${className}`}>
+    <div className={`border backdrop-blur-md ${highlight ? 'border-accent/40 bg-white/85' : layerBg} ${className}`}>
       {children}
     </div>
   );
