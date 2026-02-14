@@ -119,7 +119,7 @@ const AuditDifferenceSection = () => {
           </div>
           <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
             Auditors with Clipboard vs.<br />
-            <span className="font-medium">Auditors + YVOO Atlas AI Audits.</span>
+            <span className="font-medium">Auditors + YVOO Atlas AI</span>
           </h2>
         </motion.div>
 
