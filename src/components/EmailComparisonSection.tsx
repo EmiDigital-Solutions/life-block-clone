@@ -22,21 +22,21 @@ const EmailComparisonSection = () => {
   }, [isAutoSwitching]);
 
   const withYVOOContent = [
-    { title: "€700 flat—budget secured", description: "Finance approves instantly. No surprises." },
-    { title: "Auditor on-site in 48h", description: "Your supplier issues don't wait—neither should you." },
-    { title: "1-3 day structured audit", description: "Minimal disruption to your team and supplier." },
-    { title: "Report in 24h, not weeks", description: "Make decisions while the context is fresh." },
-    { title: "Every audit, same standard", description: "AI ensures consistency your QM team can trust." },
-    { title: "AI equipment intelligence", description: "Machine conditions documented automatically." },
+    { time: "Minute 1", title: "Upload your supplier list", description: "CSV, ERP export, or just type a name. No budget approval needed at €700." },
+    { time: "Hour 1", title: "AI matches local auditor", description: "Atlas finds the best certified auditor already near your supplier. No flights." },
+    { time: "Day 1", title: "Auditor on-site", description: "On the factory floor within 48 hours. No calendar Tetris. No coordination." },
+    { time: "Day 2–3", title: "AI-guided audit", description: "Atlas AI standardizes every check. Computer vision documents equipment conditions." },
+    { time: "Day 3", title: "Verified report delivered", description: "AI-standardized findings, evidence photos, equipment analysis. While context is fresh." },
+    { time: "Done", title: "€700. Zero emails sent.", description: "No travel, no coordination, no politics. Click 'Next supplier' and repeat." },
   ];
 
   const nightmareContent = [
-    { title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers." },
-    { title: "€15K-€25K per audit", description: "Budget fights, travel expenses, hotel costs. Every single time." },
-    { title: "10 weeks from request to report", description: "By then, the problem has already shipped." },
-    { title: "Report? Maybe in 10 days", description: "By then, everyone forgot the details." },
-    { title: "Quality depends on who's sent", description: "Junior auditor today, expert tomorrow. No consistency." },
-    { title: "Photos? What photos?", description: "Documentation gaps that hurt you later in customer audits." },
+    { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers." },
+    { time: "Week 2–3", title: "€15K–€25K budget fight", description: "Flights, hotels, per diems. Finance wants justification. Again." },
+    { time: "Week 4–6", title: "Calendar Tetris", description: "Your engineer's calendar is full. The supplier postpones. Repeat." },
+    { time: "Week 7–8", title: "Finally on-site", description: "Junior auditor sent instead. No AI, no standards. Just a clipboard." },
+    { time: "Week 9", title: "Report? Maybe next week", description: "By then, everyone forgot the details. Context is gone." },
+    { time: "Week 10", title: "Documentation gaps", description: "Photos? What photos? Missing evidence that haunts you in customer audits." },
   ];
 
   const currentContent = isWithScanPro ? withYVOOContent : nightmareContent;
@@ -86,7 +86,7 @@ const EmailComparisonSection = () => {
 
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
-            ? "What procurement directors, quality managers, and CFOs see when they switch."
+            ? "Upload → 3 days → Verified. No coordination required."
             : "50+ emails. 10 weeks. €15K minimum. Sound familiar?"}
         </p>
 
@@ -106,6 +106,11 @@ const EmailComparisonSection = () => {
               transition={{ delay: index * 0.05 }}
               className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
+              <span className={`text-xs font-mono tracking-[0.15em] uppercase mb-3 block ${
+                isWithScanPro ? 'text-primary' : 'text-destructive'
+              }`}>
+                {item.time}
+              </span>
               <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
               <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
             </motion.div>
