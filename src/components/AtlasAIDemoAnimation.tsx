@@ -1,413 +1,335 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
+/* ── AUDITOR VIEW DEMO ── */
+const AtlasAIDemoAnimation = () => {
+  const [showFinding, setShowFinding] = useState(false);
+  const [micActive, setMicActive] = useState(false);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [photoFlash, setPhotoFlash] = useState(false);
 
-const C = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
-  const bg = layer === 1
-    ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]'
-    : layer === 2
-    ? 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)]'
-    : 'bg-[hsl(0,0%,32%)] border-[hsl(0,0%,28%)]';
-  return (
-    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : bg} ${className}`}>
-      {children}
-    </div>
-  );
-};
+  const questions = [
+    "Is the fire suppression system compliant with local regulations?",
+    "Are calibration certificates current for all measurement equipment?",
+    "Is the document control procedure implemented effectively?",
+  ];
 
-const Bar = ({ value, color = "bg-primary", delay = 0 }: { value: number; color?: string; delay?: number }) => (
-  <div className="h-1.5 w-full bg-background/10 overflow-hidden">
-    <motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: 1.2, delay }} className={`h-full ${color}`} />
-  </div>
-);
-
-const Check = ({ done = false }: { done?: boolean }) => (
-  <div className={`w-3 h-3 border flex items-center justify-center shrink-0 ${done ? 'bg-[#3DC88E] border-[#3DC88E]' : 'border-background/30'}`}>
-    {done && <svg className="w-2 h-2 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M2 6l3 3 5-5" /></svg>}
-  </div>
-);
-
-/* ── ICON COMPONENTS ── */
-const MicIcon = ({ active = false }: { active?: boolean }) => (
-  <svg className={`w-3.5 h-3.5 ${active ? 'text-primary' : 'text-background/50'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-    <rect x="9" y="1" width="6" height="12" rx="3" />
-    <path d="M5 10a7 7 0 0014 0" />
-    <line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
-
-const CameraIcon = () => (
-  <svg className="w-3.5 h-3.5 text-background/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
-    <circle cx="12" cy="13" r="4" />
-  </svg>
-);
-
-const SpeakerIcon = ({ active = false }: { active?: boolean }) => (
-  <svg className={`w-3.5 h-3.5 ${active ? 'text-[#3DC88E]' : 'text-background/50'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-    {active && <>
-      <path d="M15.54 8.46a5 5 0 010 7.07" />
-      <path d="M19.07 4.93a10 10 0 010 14.14" />
-    </>}
-  </svg>
-);
-
-const FileIcon = () => (
-  <svg className="w-3 h-3 text-background/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-  </svg>
-);
-
-const ImageIcon = () => (
-  <svg className="w-3 h-3 text-background/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <circle cx="8.5" cy="8.5" r="1.5" />
-    <polyline points="21 15 16 10 5 21" />
-  </svg>
-);
-
-const SendIcon = () => (
-  <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-  </svg>
-);
-
-/* ── LEFT PANEL ── */
-const LeftPanel = () => (
-  <div className="h-full flex flex-col p-3 gap-2 overflow-hidden">
-    <C layer={2} className="p-2">
-      <span className="text-[10px] font-bold text-background uppercase tracking-wider">Audit Checklist</span>
-      <div className="text-[8px] text-background/50 mt-1">IATF 16949 · Precision Parts</div>
-      <div className="mt-1.5"><Bar value={45} /></div>
-      <div className="text-[8px] text-background/40 mt-1">Progress: 45%</div>
-    </C>
-
-    <div className="flex-1 overflow-hidden space-y-1">
-      <div className="text-[9px] font-bold text-foreground/60">▼ 4. QUALITY MGMT</div>
-      <div className="pl-3 space-y-1">
-        <div className="flex items-center gap-1.5"><Check done /> <span className="text-[8px] text-foreground/50">4.1.1 Process</span></div>
-        <div className="text-[9px] text-foreground/50 font-semibold">▼ 4.2 Documentation</div>
-        <div className="pl-3 space-y-1">
-          <div className="flex items-center gap-1.5"><Check done /> <span className="text-[8px] text-foreground/50">4.2.1 General</span></div>
-          <div className="flex items-center gap-1.5"><Check done /> <span className="text-[8px] text-foreground/50">4.2.2 Manual</span></div>
-          <C highlight className="p-1.5 -ml-1">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 bg-primary animate-pulse" />
-              <span className="text-[9px] font-bold text-background">4.2.3 Control</span>
-              <span className="text-[7px] px-1 bg-[#E04545] text-white font-bold ml-auto">HIGH</span>
-            </div>
-          </C>
-          <div className="flex items-center gap-1.5 text-foreground/30"><div className="w-3 h-3 border border-foreground/20" /> <span className="text-[8px]">4.2.4 Records</span></div>
-        </div>
-      </div>
-      <div className="text-[9px] font-bold text-foreground/60 mt-2">▼ 5. MANAGEMENT</div>
-      <div className="pl-3 flex items-center gap-1.5 text-foreground/30">
-        <div className="w-3 h-3 border border-foreground/20" /> <span className="text-[8px]">5.1 Commitment</span>
-      </div>
-    </div>
-
-    {/* Evidence Manager Mini */}
-    <C layer={3} className="p-2 mt-auto">
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-[8px] font-bold text-background/70 uppercase tracking-wider">Evidence</span>
-        <span className="text-[7px] text-primary font-bold">12 files</span>
-      </div>
-      <div className="space-y-1">
-        <div className="flex items-center gap-1.5">
-          <ImageIcon />
-          <span className="text-[7px] text-background/50 truncate">IMG_2847.jpg</span>
-          <span className="text-[6px] px-1 bg-[#3DC88E]/20 text-[#3DC88E] font-bold ml-auto">AI ✓</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <FileIcon />
-          <span className="text-[7px] text-background/50 truncate">calibration_cert.pdf</span>
-          <span className="text-[6px] px-1 bg-[#F5A623]/20 text-[#F5A623] font-bold ml-auto">Review</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <ImageIcon />
-          <span className="text-[7px] text-background/50 truncate">CNC_nameplate.jpg</span>
-          <span className="text-[6px] px-1 bg-[#3DC88E]/20 text-[#3DC88E] font-bold ml-auto">AI ✓</span>
-        </div>
-      </div>
-      <div className="mt-1.5 flex gap-1">
-        <button className="flex-1 flex items-center justify-center gap-1 bg-background/10 py-1 hover:bg-background/20 transition-colors">
-          <CameraIcon />
-          <span className="text-[7px] text-background/50">Capture</span>
-        </button>
-        <button className="flex-1 flex items-center justify-center gap-1 bg-background/10 py-1 hover:bg-background/20 transition-colors">
-          <FileIcon />
-          <span className="text-[7px] text-background/50">Upload</span>
-        </button>
-      </div>
-    </C>
-  </div>
-);
-
-/* ── MIDDLE PANEL ── */
-const MiddlePanel = () => {
-  const [vis, setVis] = useState(0);
-  const [typingText, setTypingText] = useState("");
-  const [isAISpeaking, setIsAISpeaking] = useState(false);
-  const [showVoiceWave, setShowVoiceWave] = useState(false);
-  const fullTyping = "Check document register for rev. history...";
-
+  // Cycle mic pulse
   useEffect(() => {
-    const t = [300, 900, 1800, 2800].map((d, i) => setTimeout(() => setVis(i + 1), d));
-    return () => t.forEach(clearTimeout);
+    const t1 = setTimeout(() => setMicActive(true), 1500);
+    const t2 = setTimeout(() => setMicActive(false), 4000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  // Simulate typing in chat input
+  // Show AI finding after delay
   useEffect(() => {
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      const typeInterval = setInterval(() => {
-        if (i <= fullTyping.length) {
-          setTypingText(fullTyping.slice(0, i));
-          i++;
-        } else {
-          clearInterval(typeInterval);
-        }
-      }, 80);
-      return () => clearInterval(typeInterval);
-    }, 3500);
-    return () => clearTimeout(startDelay);
+    const t = setTimeout(() => setShowFinding(true), 2200);
+    return () => clearTimeout(t);
   }, []);
 
-  // Simulate AI voice output
+  // Auto-select answer
   useEffect(() => {
-    const t1 = setTimeout(() => setIsAISpeaking(true), 1200);
-    const t2 = setTimeout(() => setIsAISpeaking(false), 3200);
-    const t3 = setTimeout(() => setShowVoiceWave(true), 1200);
-    const t4 = setTimeout(() => setShowVoiceWave(false), 3200);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    const t = setTimeout(() => setSelectedAnswer("NO"), 3000);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Photo flash
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setPhotoFlash(true);
+      setTimeout(() => setPhotoFlash(false), 300);
+    }, 5000);
+    return () => clearTimeout(t);
   }, []);
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
-      {/* AI Voice Status Bar */}
+    <div className="w-full h-full flex flex-col bg-[hsl(215,25%,12%)] overflow-hidden relative">
+      {/* Photo flash overlay */}
       <AnimatePresence>
-        {isAISpeaking && (
+        {photoFlash && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="bg-[hsl(0,0%,38%)] border-b border-[hsl(0,0%,33%)] px-3 py-1.5 flex items-center gap-2"
-          >
-            <SpeakerIcon active />
-            <div className="flex items-center gap-0.5 flex-1">
-              {[...Array(16)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="w-0.5 bg-[#3DC88E]"
-                  animate={{
-                    height: [2, Math.random() * 10 + 3, 2],
-                  }}
-                  transition={{
-                    duration: 0.4 + Math.random() * 0.3,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    delay: i * 0.05,
-                  }}
-                />
-              ))}
-            </div>
-            <span className="text-[7px] text-[#3DC88E] font-medium">AI Speaking</span>
-          </motion.div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-white z-50"
+          />
         )}
       </AnimatePresence>
 
-      {/* Chat/Content Area */}
-      <div className="flex-1 p-3 gap-2 overflow-y-auto overflow-x-hidden flex flex-col">
-        <div>
-          <span className="text-[12px] font-bold text-foreground/80">4.2.3 Control of Documents</span>
-          <div className="text-[8px] text-foreground/40 mt-0.5">IATF 16949:2016 · ISO 9001:2015 7.5.3</div>
+      {/* Top Bar */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-[#3DC88E] rounded-full" />
+          <span className="text-[11px] text-white/40 font-medium tracking-wide">IATF 16949 · Clause 4.2.3</span>
         </div>
-
-        {vis >= 1 && (
-          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-            <C highlight className="p-2">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[8px] font-bold text-primary uppercase tracking-wider">AI Context</span>
-                <span className="text-[7px] px-1 bg-[#E04545] text-white font-bold">HIGH PRIORITY</span>
-              </div>
-              <p className="text-[8px] text-background/60 mt-1 leading-relaxed">
-                BMW Tier-2 rejected 2 suppliers for document control gaps. Issues appear in 73% of 47 similar audits.
-              </p>
-            </C>
-          </motion.div>
-        )}
-
-        {vis >= 2 && (
-          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-            <C layer={1} className="p-2">
-              <span className="text-[8px] font-semibold text-background/70 uppercase tracking-wider">What to Check</span>
-              <div className="mt-1.5 space-y-1.5">
-                {[
-                  "Document control procedure exists?",
-                  "Approval signatures on documents?",
-                  "Revision history tracked?",
-                ].map((q, i) => (
-                  <div key={i} className="flex items-start gap-1.5">
-                    <span className="text-[8px] text-primary font-bold shrink-0">{i + 1}.</span>
-                    <span className="text-[8px] text-background/60">{q}</span>
-                  </div>
-                ))}
-              </div>
-            </C>
-          </motion.div>
-        )}
-
-        {vis >= 3 && (
-          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-            <C layer={2} className="p-2">
-              <span className="text-[8px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
-              <div className="mt-1 space-y-1">
-                {[
-                  "Register not used (73%)",
-                  "Obsolete docs accessible (68%)",
-                  "Missing signatures (54%)",
-                ].map(t => (
-                  <div key={t} className="flex items-center gap-1.5">
-                    <div className="w-1 h-1 bg-[#F5A623]" />
-                    <span className="text-[8px] text-background/50">{t}</span>
-                  </div>
-                ))}
-              </div>
-            </C>
-          </motion.div>
-        )}
-
-        {vis >= 4 && (
-          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-            <C highlight className="p-2">
-              <span className="text-[8px] font-semibold text-primary uppercase tracking-wider">AI Assessment</span>
-              <p className="text-[8px] text-background/50 mt-1 leading-relaxed">
-                "Document register not current. Last 4 revisions missing from master list."
-              </p>
-            </C>
-          </motion.div>
-        )}
+        <span className="text-[13px] font-bold text-white tracking-wide">Auditor View</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] text-white/30">45%</span>
+          <div className="w-16 h-1.5 bg-white/10 overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "45%" }}
+              transition={{ duration: 1.5, delay: 0.3 }}
+              className="h-full bg-primary"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Chat Input Bar */}
-      <div className="border-t border-[hsl(0,0%,33%)] bg-[hsl(0,0%,40%)] p-2">
-        <div className="flex items-center gap-1.5">
-          {/* Voice Input Button */}
-          <button className="w-7 h-7 flex items-center justify-center bg-[hsl(0,0%,35%)] hover:bg-[hsl(0,0%,30%)] transition-colors shrink-0">
-            <MicIcon />
-          </button>
+      {/* Main Content */}
+      <div className="flex-1 flex overflow-hidden min-h-0 p-4 gap-4">
 
-          {/* Camera Button */}
-          <button className="w-7 h-7 flex items-center justify-center bg-[hsl(0,0%,35%)] hover:bg-[hsl(0,0%,30%)] transition-colors shrink-0">
-            <CameraIcon />
-          </button>
+        {/* LEFT COLUMN — Question + Evidence */}
+        <div className="flex-[55] flex flex-col gap-4 min-w-0">
 
-          {/* Text Input */}
-          <div className="flex-1 bg-[hsl(0,0%,32%)] border border-[hsl(0,0%,28%)] px-2 py-1.5 flex items-center">
-            <span className="text-[8px] text-background/40 truncate">
-              {typingText || "Ask Atlas AI or type findings..."}
-              {typingText && typingText.length < fullTyping.length && (
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity }}
-                  className="text-primary"
-                >|</motion.span>
-              )}
-            </span>
-          </div>
+          {/* Question Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-[hsl(215,20%,18%)] border border-white/8 p-5 flex flex-col"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Question</span>
+              <div className="flex gap-1.5">
+                <button className="w-6 h-6 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                  <svg className="w-3.5 h-3.5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728" />
+                    <circle cx="8" cy="12" r="2" />
+                    <path d="M4 12H6" />
+                  </svg>
+                </button>
+                <button className="w-6 h-6 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                  <svg className="w-3.5 h-3.5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                </button>
+                <button className="w-6 h-6 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors">
+                  <svg className="w-3.5 h-3.5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p className="text-[15px] md:text-[17px] text-white font-medium leading-relaxed mb-5">
+              {questions[questionIndex]}
+            </p>
 
-          {/* Send Button */}
-          <button className="w-7 h-7 flex items-center justify-center bg-primary hover:bg-primary/80 transition-colors shrink-0">
-            <SendIcon />
-          </button>
+            {/* YES / NO / N/A Buttons */}
+            <div className="flex gap-3">
+              {["YES", "NO", "N/A"].map((label) => {
+                const isSelected = selectedAnswer === label;
+                const color = label === "YES"
+                  ? "bg-[#3DC88E] border-[#3DC88E]"
+                  : label === "NO"
+                  ? "bg-primary border-primary"
+                  : "bg-white/10 border-white/20";
+                const selectedStyle = isSelected
+                  ? label === "YES"
+                    ? "bg-[#3DC88E] border-[#3DC88E] text-white scale-105 shadow-lg shadow-[#3DC88E]/20"
+                    : label === "NO"
+                    ? "bg-primary border-primary text-white scale-105 shadow-lg shadow-primary/20"
+                    : "bg-white/20 border-white/30 text-white scale-105"
+                  : `${color} text-white/80 hover:opacity-80`;
+                return (
+                  <motion.button
+                    key={label}
+                    animate={isSelected ? { scale: 1.05 } : { scale: 1 }}
+                    className={`flex-1 py-3 text-[14px] md:text-[16px] font-bold border-2 transition-all duration-300 ${selectedStyle}`}
+                  >
+                    {label}
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Evidence Upload */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="bg-[hsl(215,20%,18%)] border border-white/8 p-4 flex-1 flex flex-col"
+          >
+            <span className="text-[11px] font-semibold text-white/50 uppercase tracking-wider mb-3">Evidence Upload</span>
+            <div className="flex gap-3 flex-1">
+              {/* Take Photo */}
+              <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-[hsl(215,20%,14%)] border border-white/8 hover:border-primary/30 transition-colors group">
+                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/5 group-hover:bg-primary/10 transition-colors">
+                  <svg className="w-6 h-6 md:w-7 md:h-7 text-white/40 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                </div>
+                <span className="text-[11px] text-white/40 group-hover:text-white/60 font-medium transition-colors">Take Photo</span>
+              </button>
+
+              {/* Upload File */}
+              <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-[hsl(215,20%,14%)] border border-white/8 hover:border-primary/30 transition-colors group">
+                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white/5 group-hover:bg-primary/10 transition-colors">
+                  <svg className="w-6 h-6 md:w-7 md:h-7 text-white/40 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                </div>
+                <span className="text-[11px] text-white/40 group-hover:text-white/60 font-medium transition-colors">Upload File</span>
+              </button>
+
+              {/* Recent Evidence */}
+              <div className="flex-1 flex flex-col gap-1.5 overflow-hidden">
+                <span className="text-[9px] text-white/30 uppercase tracking-wider">Recent</span>
+                {[
+                  { name: "IMG_2847.jpg", status: "✓", statusColor: "text-[#3DC88E]" },
+                  { name: "calibration.pdf", status: "⏳", statusColor: "text-[#F5A623]" },
+                  { name: "nameplate.jpg", status: "✓", statusColor: "text-[#3DC88E]" },
+                ].map((f, i) => (
+                  <motion.div
+                    key={f.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.8 + i * 0.15 }}
+                    className="flex items-center gap-1.5 bg-white/5 px-2 py-1.5"
+                  >
+                    <span className={`text-[10px] ${f.statusColor}`}>{f.status}</span>
+                    <span className="text-[9px] text-white/40 truncate">{f.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="flex gap-1 mt-1.5">
-          {["📸 Photo Evidence", "🎤 Voice Note", "⚠️ Add Finding", "📎 Attach"].map((action) => (
-            <button
-              key={action}
-              className="text-[6px] text-background/40 bg-[hsl(0,0%,35%)] px-1.5 py-0.5 hover:bg-[hsl(0,0%,30%)] hover:text-background/60 transition-colors whitespace-nowrap"
+        {/* RIGHT COLUMN — Atlas Copilot + AI Finding */}
+        <div className="flex-[45] flex flex-col gap-4 min-w-0">
+
+          {/* Atlas Copilot */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-[hsl(215,20%,18%)] border border-white/8 p-5 flex flex-col items-center flex-1"
+          >
+            <span className="text-[13px] font-bold text-white tracking-wide mb-4">Atlas Copilot</span>
+
+            {/* Microphone Circle */}
+            <div className="relative flex items-center justify-center my-auto">
+              {/* Outer pulse rings */}
+              <AnimatePresence>
+                {micActive && (
+                  <>
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0.5 }}
+                      animate={{ scale: 1.8, opacity: 0 }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full border border-primary/30"
+                    />
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0.4 }}
+                      animate={{ scale: 1.5, opacity: 0 }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+                      className="absolute w-20 h-20 md:w-24 md:h-24 rounded-full border border-primary/20"
+                    />
+                  </>
+                )}
+              </AnimatePresence>
+
+              {/* Main mic button */}
+              <motion.div
+                animate={micActive ? {
+                  boxShadow: ["0 0 20px hsl(var(--primary) / 0.3)", "0 0 40px hsl(var(--primary) / 0.5)", "0 0 20px hsl(var(--primary) / 0.3)"]
+                } : {}}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+                  micActive
+                    ? "bg-primary/20 border-2 border-primary"
+                    : "bg-white/5 border-2 border-white/20 hover:border-primary/50"
+                }`}
+              >
+                <svg
+                  className={`w-7 h-7 md:w-8 md:h-8 transition-colors duration-300 ${micActive ? "text-primary" : "text-white/50"}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <rect x="9" y="1" width="6" height="12" rx="3" />
+                  <path d="M5 10a7 7 0 0014 0" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                </svg>
+              </motion.div>
+            </div>
+
+            {/* Status text */}
+            <motion.span
+              animate={{ opacity: micActive ? [0.5, 1, 0.5] : 0.4 }}
+              transition={{ duration: 1.5, repeat: micActive ? Infinity : 0 }}
+              className={`text-[11px] font-medium mt-4 ${micActive ? "text-primary" : "text-white/40"}`}
             >
-              {action}
-            </button>
-          ))}
+              {micActive ? "Listening..." : "Tap to speak"}
+            </motion.span>
+
+            {/* Voice waveform */}
+            <AnimatePresence>
+              {micActive && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-0.5 mt-3"
+                >
+                  {[...Array(20)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="w-1 bg-primary"
+                      animate={{ height: [3, Math.random() * 16 + 4, 3] }}
+                      transition={{
+                        duration: 0.3 + Math.random() * 0.4,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        delay: i * 0.03,
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* AI Finding */}
+          <AnimatePresence>
+            {showFinding && (
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
+                className="bg-[hsl(215,20%,18%)] border border-[#F5A623]/30 p-4"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[13px] font-bold text-white">AI Finding:</span>
+                  <span className="text-[#F5A623] text-[16px]">⚠</span>
+                </div>
+                <p className="text-[13px] text-white/60 leading-relaxed">
+                  Check pressure gauge on adjacent unit. Calibration sticker expired 2024-11.
+                </p>
+                <div className="flex gap-2 mt-3">
+                  <button className="flex-1 py-1.5 text-[10px] font-bold text-[#3DC88E] border border-[#3DC88E]/30 bg-[#3DC88E]/5 hover:bg-[#3DC88E]/10 transition-colors uppercase tracking-wider">
+                    Accept
+                  </button>
+                  <button className="flex-1 py-1.5 text-[10px] font-bold text-white/40 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors uppercase tracking-wider">
+                    Dismiss
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
   );
 };
-
-/* ── RIGHT PANEL ── */
-const RightPanel = () => (
-  <div className="h-full flex flex-col p-3 gap-2 overflow-hidden">
-    <span className="text-[9px] font-bold text-foreground/60 uppercase tracking-wider">Intelligence</span>
-
-    <C highlight className="p-2">
-      <span className="text-[8px] font-bold text-[#E04545] uppercase">Priority</span>
-      <div className="mt-1 text-[8px] text-background/60 space-y-0.5">
-        <div>• Calibration (78%)</div>
-        <div>• Training (62%)</div>
-        <div className="text-primary mt-1">→ Check proactively</div>
-      </div>
-    </C>
-
-    <C layer={1} className="p-2">
-      <span className="text-[8px] font-bold text-background/70 uppercase">Client Focus</span>
-      <div className="mt-1 space-y-1 text-[8px] text-background/50">
-        <div><span className="px-1 bg-[#E04545] text-white font-bold text-[7px]">1</span> Documentation</div>
-        <div><span className="px-1 bg-[#E04545] text-white font-bold text-[7px]">2</span> Calibration</div>
-        <div><span className="px-1 bg-[#F5A623] text-white font-bold text-[7px]">3</span> Process Cap.</div>
-      </div>
-    </C>
-
-    <C layer={1} className="p-2">
-      <span className="text-[8px] font-bold text-background/70 uppercase">Progress</span>
-      <div className="mt-1"><Bar value={45} delay={0.5} /></div>
-      <div className="mt-1 space-y-0.5 text-[8px] text-background/50">
-        <div>Major NC: <span className="text-[#E04545] font-bold">1</span></div>
-        <div>Minor NC: <span className="text-[#F5A623] font-bold">3</span></div>
-      </div>
-    </C>
-
-    <C layer={2} className="p-2 mt-auto">
-      <span className="text-[8px] font-bold text-background/70 uppercase">Benchmark</span>
-      <div className="mt-1 space-y-1">
-        <div className="flex justify-between text-[8px]"><span className="text-background/50">This</span><span className="text-background/70 font-bold">7.2/10</span></div>
-        <Bar value={72} delay={0.3} />
-        <div className="flex justify-between text-[8px]"><span className="text-background/50">Industry</span><span className="text-background/70 font-bold">8.1/10</span></div>
-        <Bar value={81} color="bg-background/30" delay={0.5} />
-      </div>
-      <div className="text-[8px] text-[#3DC88E] font-semibold mt-1.5">Approved with conditions</div>
-    </C>
-  </div>
-);
-
-/* ── MAIN ── */
-const AtlasAIDemoAnimation = () => (
-  <div className={`w-full h-full flex flex-col ${SCREEN_BG} overflow-hidden`}>
-    <div className="flex items-center px-4 py-2 border-b border-muted-foreground/10">
-      <div className="flex-[22] text-center">
-        <span className="text-[9px] font-medium text-foreground/50 uppercase tracking-wider">Checklist & Evidence</span>
-      </div>
-      <div className="w-px h-3 bg-muted-foreground/10" />
-      <div className="flex-[50] text-center">
-        <span className="text-[9px] font-medium text-primary uppercase tracking-wider">AI Copilot</span>
-      </div>
-      <div className="w-px h-3 bg-muted-foreground/10" />
-      <div className="flex-[28] text-center">
-        <span className="text-[9px] font-medium text-foreground/50 uppercase tracking-wider">Intelligence</span>
-      </div>
-    </div>
-    <div className="flex-1 flex overflow-hidden min-h-0">
-      <div className="flex-[22] border-r border-muted-foreground/10 overflow-hidden"><LeftPanel /></div>
-      <div className="flex-[50] border-r border-muted-foreground/10 overflow-hidden"><MiddlePanel /></div>
-      <div className="flex-[28] overflow-hidden"><RightPanel /></div>
-    </div>
-  </div>
-);
 
 export default AtlasAIDemoAnimation;
