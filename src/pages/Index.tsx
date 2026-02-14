@@ -29,9 +29,8 @@ const Index = () => {
         <WhyYVOOSection />
         <AtlasAISection />
         <AuditDifferenceSection />
-        
-        <HowItWorksSection />
         <StatsWithQuoteSection />
+        <HowItWorksSection />
         <TestimonialsCarouselSection />
         <FAQSection />
         <FinalCTASection />
