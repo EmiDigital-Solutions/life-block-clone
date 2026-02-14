@@ -891,7 +891,7 @@ const DayInLifeSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            Your skills deserve better conditions.
+            What changes when the platform works for you.
           </h2>
         </motion.div>
 
