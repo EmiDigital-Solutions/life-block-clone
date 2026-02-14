@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              While others send auditors with clipboards
+              While others take 14 days and €15,000
             </motion.p>
 
             {/* Headline */}
@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Traditional audit firms charge €15,000 and take 14 days. We deploy AI + local certified auditors and deliver in 72 hours.
+                Traditional audit firms charge €15,000 and take 14 days — one auditor with a clipboard. We deploy AI + local certified auditors and deliver in 72 hours.
               </motion.p>
 
               <motion.div
