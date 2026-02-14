@@ -85,12 +85,12 @@ const GlobalNetworkSection = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={worldMapMinimal}
                   alt="Global auditor network coverage"
-                  className="w-full h-full object-contain p-4"
-                  style={{ opacity: 0.15 }}
+                  className="w-[120%] h-[120%] object-contain -ml-[10%] -mt-[5%]"
+                  style={{ opacity: 0.18 }}
                 />
 
                 {regions.map((region, index) => (
