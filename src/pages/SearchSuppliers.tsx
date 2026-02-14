@@ -146,7 +146,7 @@ const DemoChatbot = () => {
         {/* Step 1: Preference Engine auto-detects buyer context */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
               <div className="flex gap-2 flex-wrap">
                 {[
@@ -155,8 +155,8 @@ const DemoChatbot = () => {
                   { label: "IATF Required", type: "Standard" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
-                    <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,25%)] text-[hsl(0,0%,70%)] rounded-none">{item.type}</span>
-                    <span className="text-[11px] font-semibold text-white">{item.label}</span>
+                    <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,85%)] text-[hsl(0,0%,40%)] rounded-none">{item.type}</span>
+                    <span className="text-[11px] font-semibold text-foreground">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -167,9 +167,9 @@ const DemoChatbot = () => {
         {/* Step 2: User simple input — adaptive width */}
         {step >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="p-2.5 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">You</span>
-              <p className="text-[12px] font-semibold text-white leading-relaxed">I need aluminum brake calipers</p>
+            <div className="p-2.5 bg-white/50 backdrop-blur-md border border-white/60 rounded-none w-fit">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
+              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need aluminum brake calipers</p>
             </div>
           </motion.div>
         )}
@@ -177,7 +177,7 @@ const DemoChatbot = () => {
         {/* Step 3: AI analyzing indicator */}
         {step >= 3 && step < 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none w-fit">
+            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none w-fit">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <span className="text-[11px] text-primary font-bold">Preference Engine analyzing requirements...</span>
@@ -189,7 +189,7 @@ const DemoChatbot = () => {
         {/* Step 4: AI full breakdown — all recognized entities */}
         {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-3 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
@@ -205,11 +205,11 @@ const DemoChatbot = () => {
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary rounded-none">{item.cat}</span>
-                    <span className="text-[11px] font-semibold text-white">{item.tag}</span>
+                    <span className="text-[11px] font-semibold text-foreground">{item.tag}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-2 pt-2 border-t border-[hsl(0,0%,28%)]">
+              <div className="mt-2 pt-2 border-t border-white/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-primary/80 block mb-1">Also recommended</span>
                 <div className="flex gap-1.5 flex-wrap">
                   {["ISO 14001", "X-Ray NDT", "Tensile Test", "ISO 45001"].map((opt, i) => (
@@ -217,7 +217,7 @@ const DemoChatbot = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-[10px] text-[hsl(0,0%,65%)] mt-2 font-medium">Please confirm or add additional requirements ↓</p>
+              <p className="text-[10px] text-muted-foreground mt-2 font-medium">Please confirm or add additional requirements ↓</p>
             </div>
           </motion.div>
         )}
@@ -225,12 +225,12 @@ const DemoChatbot = () => {
         {/* Step 5: User confirms and adds — adaptive width */}
         {step >= 5 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="p-2.5 bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] rounded-none w-fit">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">You</span>
+            <div className="p-2.5 bg-white/50 backdrop-blur-md border border-white/60 rounded-none w-fit">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary rounded-none">✓ Confirmed</span>
               </div>
-              <p className="text-[11px] font-semibold text-white leading-relaxed">Also need capacity &gt;50K/month and PPAP Level 3</p>
+              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Also need capacity &gt;50K/month and PPAP Level 3</p>
             </div>
           </motion.div>
         )}
@@ -238,7 +238,7 @@ const DemoChatbot = () => {
         {/* Step 6: AI confirms ready to search */}
         {step >= 6 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-[hsl(0,0%,33%)] border border-[hsl(0,0%,28%)] rounded-none">
+            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
               <div className="flex gap-2 flex-wrap">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary rounded-none">+ 50K/mo min</span>
@@ -308,8 +308,8 @@ const DemoSearchResults = () => {
             <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
           </div>
           <div className="flex gap-1.5">
-            <span className="px-2 py-1 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[10px] text-white font-medium rounded-none">Sort: Match</span>
-            <span className="px-2 py-1 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-[10px] text-white font-medium rounded-none">Export</span>
+            <span className="px-2 py-1 bg-white/50 backdrop-blur-md border border-white/60 text-[10px] text-foreground font-medium rounded-none">Sort: Match</span>
+            <span className="px-2 py-1 bg-white/50 backdrop-blur-md border border-white/60 text-[10px] text-foreground font-medium rounded-none">Export</span>
           </div>
         </div>
 
@@ -360,31 +360,31 @@ const DemoSearchResults = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.15 }}
-                className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none flex items-start gap-2.5"
+                className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none flex items-start gap-2.5"
               >
                 {/* Numbering */}
-                <div className="w-6 h-6 bg-[hsl(0,0%,30%)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-[11px] font-bold text-white">{i + 1}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <p className="text-[13px] font-bold text-white truncate">{s.name}</p>
+                    <p className="text-[13px] font-bold text-foreground truncate">{s.name}</p>
                   </div>
-                  <p className="text-[11px] text-[hsl(0,0%,72%)] font-medium mb-1.5">{s.location} · {s.speciality}</p>
+                  <p className="text-[11px] text-muted-foreground font-medium mb-1.5">{s.location} · {s.speciality}</p>
                   <div className="flex gap-1.5 flex-wrap">
                     {s.certs.map((c, j) => (
                       <span key={j} className="px-1.5 py-0.5 border border-primary/40 text-primary text-[9px] font-bold uppercase">{c}</span>
                     ))}
-                    <span className="px-1.5 py-0.5 border border-[hsl(0,0%,55%)] text-[hsl(0,0%,80%)] text-[9px] font-semibold">{s.capacity}</span>
+                    <span className="px-1.5 py-0.5 border border-foreground/20 text-muted-foreground text-[9px] font-semibold">{s.capacity}</span>
                   </div>
                 </div>
 
                 {/* Score column */}
                 <div className="flex flex-col items-center flex-shrink-0 gap-0.5">
                   <span className="text-xl font-bold text-primary leading-none">{s.match}</span>
-                  <span className="text-[9px] text-[hsl(0,0%,65%)] uppercase tracking-wider font-medium">Score</span>
-                  <div className="w-10 h-1.5 bg-[hsl(0,0%,30%)] rounded-none mt-0.5">
+                  <span className="text-[9px] text-muted-foreground uppercase tracking-wider font-medium">Score</span>
+                  <div className="w-10 h-1.5 bg-foreground/10 rounded-none mt-0.5">
                     <div className="h-full bg-primary rounded-none" style={{ width: `${s.match}%` }} />
                   </div>
                 </div>
@@ -418,8 +418,8 @@ const DemoSupplierProfile = () => {
       {/* Supplier header */}
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] flex items-center justify-center rounded-none">
-            <span className="text-sm font-bold text-white">PM</span>
+          <div className="w-10 h-10 bg-white/50 backdrop-blur-md border border-white/60 flex items-center justify-center rounded-none">
+            <span className="text-sm font-bold text-foreground">PM</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
@@ -462,13 +462,13 @@ const DemoSupplierProfile = () => {
                 { label: "Surface Treatment", value: "In-house anodizing" },
                 { label: "Quality Score", value: "94/100" },
               ].map((item, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                  <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-1">{item.label}</p>
-                  <p className="text-[14px] font-bold text-white">{item.value}</p>
+                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">{item.label}</p>
+                  <p className="text-[14px] font-bold text-foreground">{item.value}</p>
                 </div>
               ))}
-              <div className="col-span-2 md:col-span-4 p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Certifications</p>
+              <div className="col-span-2 md:col-span-4 p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Certifications</p>
                 <div className="flex gap-2 flex-wrap">
                   {["IATF 16949:2016", "ISO 14001:2015", "ISO 9001:2015", "REACH Compliant"].map((c, i) => (
                     <span key={i} className="px-2 py-1 border border-primary/40 text-primary text-[10px] font-bold uppercase">{c}</span>
@@ -486,13 +486,13 @@ const DemoSupplierProfile = () => {
                 { type: "Quality System Audit", date: "Nov 2025", score: "88/100", auditor: "K. Tanaka", status: "Completed" },
                 { type: "Product Audit — Brake Caliper", date: "Sep 2025", score: "95/100", auditor: "L. Chen", status: "Completed" },
               ].map((audit, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-[13px] font-bold text-white">{audit.type}</p>
+                    <p className="text-[13px] font-bold text-foreground">{audit.type}</p>
                     <span className="text-[11px] font-bold text-primary">{audit.score}</span>
                   </div>
-                  <p className="text-[11px] text-[hsl(0,0%,72%)] font-medium">{audit.date} · Auditor: {audit.auditor}</p>
-                  <div className="mt-2 h-2 bg-[hsl(0,0%,30%)] rounded-none overflow-hidden">
+                  <p className="text-[11px] text-muted-foreground font-medium">{audit.date} · Auditor: {audit.auditor}</p>
+                  <div className="mt-2 h-2 bg-foreground/10 rounded-none overflow-hidden">
                     <div className="h-full bg-primary rounded-none" style={{ width: audit.score.split('/')[0] + '%' }} />
                   </div>
                 </div>
@@ -509,23 +509,23 @@ const DemoSupplierProfile = () => {
                   { label: "Financial Health", value: "Stable", color: "text-primary" },
                   { label: "Delivery Rating", value: "97.2%", color: "text-primary" },
                 ].map((kpi, i) => (
-                  <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none text-center">
-                    <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-1">{kpi.label}</p>
+                  <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none text-center">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">{kpi.label}</p>
                     <p className={`text-[14px] font-bold ${kpi.color}`}>{kpi.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Geopolitical Exposure</p>
+              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Geopolitical Exposure</p>
                 <div className="flex gap-2">
                   <span className="px-2.5 py-1 bg-secondary/20 text-secondary text-[10px] font-bold rounded-none">EU — Low Risk</span>
-                  <span className="px-2.5 py-1 bg-[hsl(0,0%,50%)] text-white text-[10px] font-semibold rounded-none">No sanctions</span>
+                  <span className="px-2.5 py-1 bg-foreground/10 text-foreground text-[10px] font-semibold rounded-none">No sanctions</span>
                 </div>
               </div>
-              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Equipment Verified</p>
+              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Equipment Verified</p>
                 {["DMG MORI NLX 2500 — 5-Axis CNC", "Zeiss CMM Contura — Quality", "Anodizing Line — In-house"].map((eq, i) => (
-                  <p key={i} className="text-[11px] text-white font-medium py-1.5 border-b border-[hsl(0,0%,33%)] last:border-0">{eq}</p>
+                  <p key={i} className="text-[11px] text-foreground font-medium py-1.5 border-b border-white/30 last:border-0">{eq}</p>
                 ))}
               </div>
             </div>
@@ -534,8 +534,8 @@ const DemoSupplierProfile = () => {
           {/* RFQ */}
           {activeTab === 3 && (
             <div className="space-y-3">
-              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Quick RFQ</p>
+              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Quick RFQ</p>
                 <div className="space-y-0">
                   {[
                     { field: "Product", value: "CNC Brake Caliper — Aluminum 6082" },
@@ -544,9 +544,9 @@ const DemoSupplierProfile = () => {
                     { field: "Surface", value: "Hard anodized, Type III" },
                     { field: "Delivery", value: "DDP Frankfurt, Incoterms 2020" },
                   ].map((row, i) => (
-                    <div key={i} className="flex items-center justify-between py-2 border-b border-[hsl(0,0%,33%)] last:border-0">
-                      <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">{row.field}</span>
-                      <span className="text-[11px] font-bold text-white">{row.value}</span>
+                    <div key={i} className="flex items-center justify-between py-2 border-b border-white/30 last:border-0">
+                      <span className="text-[11px] text-muted-foreground font-medium">{row.field}</span>
+                      <span className="text-[11px] font-bold text-foreground">{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -560,27 +560,27 @@ const DemoSupplierProfile = () => {
           {/* Audit Order */}
           {activeTab === 4 && (
             <div className="space-y-3">
-              <div className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
-                <p className="text-[10px] text-[hsl(0,0%,72%)] uppercase tracking-wider font-semibold mb-2">Order On-Site Audit</p>
+              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order On-Site Audit</p>
                 <div className="flex gap-2 mb-3">
                   {["Process Audit", "Quality Audit", "Product Audit"].map((type, i) => (
                     <span key={i} className={`px-2.5 py-1 text-[10px] font-semibold rounded-none ${
-                      i === 0 ? 'bg-accent text-white' : 'bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] text-white'
+                      i === 0 ? 'bg-accent text-white' : 'bg-foreground/10 border border-foreground/15 text-foreground'
                     }`}>{type}</span>
                   ))}
                 </div>
                 <div className="space-y-0">
-                  <div className="flex justify-between py-2 border-b border-[hsl(0,0%,33%)]">
-                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Audit Standard</span>
-                    <span className="text-[11px] font-bold text-white">VDA 6.3</span>
+                  <div className="flex justify-between py-2 border-b border-white/30">
+                    <span className="text-[11px] text-muted-foreground font-medium">Audit Standard</span>
+                    <span className="text-[11px] font-bold text-foreground">VDA 6.3</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-[hsl(0,0%,33%)]">
-                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Duration</span>
-                    <span className="text-[11px] font-bold text-white">2 days on-site</span>
+                  <div className="flex justify-between py-2 border-b border-white/30">
+                    <span className="text-[11px] text-muted-foreground font-medium">Duration</span>
+                    <span className="text-[11px] font-bold text-foreground">2 days on-site</span>
                   </div>
                   <div className="flex justify-between py-2">
-                    <span className="text-[11px] text-[hsl(0,0%,72%)] font-medium">Earliest Date</span>
-                    <span className="text-[11px] font-bold text-white">March 10, 2026</span>
+                    <span className="text-[11px] text-muted-foreground font-medium">Earliest Date</span>
+                    <span className="text-[11px] font-bold text-foreground">March 10, 2026</span>
                   </div>
                 </div>
               </div>
@@ -599,17 +599,17 @@ const DemoSupplierProfile = () => {
                 { headline: "Aluminum prices stabilize after Q4 volatility", date: "Feb 5, 2026", tag: "Commodity" },
                 { headline: "IATF 16949 revision expected in 2027 — key changes outlined", date: "Jan 30, 2026", tag: "Industry" },
               ].map((news, i) => (
-                <div key={i} className="p-3 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] rounded-none">
+                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
                   <div className="flex items-center gap-2 mb-1">
                     <span className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded-none ${
                       news.tag === 'Company' ? 'bg-primary/20 text-primary' :
-                      news.tag === 'Regulatory' ? 'bg-[hsl(30,80%,50%)]/20 text-[hsl(30,80%,60%)]' :
+                      news.tag === 'Regulatory' ? 'bg-[hsl(30,80%,50%)]/20 text-[hsl(30,80%,50%)]' :
                       news.tag === 'Commodity' ? 'bg-secondary/20 text-secondary' :
-                      'bg-[hsl(0,0%,50%)] text-white'
+                      'bg-foreground/10 text-foreground'
                     }`}>{news.tag}</span>
-                    <span className="text-[10px] text-[hsl(0,0%,65%)] font-medium">{news.date}</span>
+                    <span className="text-[10px] text-muted-foreground font-medium">{news.date}</span>
                   </div>
-                  <p className="text-[13px] font-semibold text-white leading-relaxed">{news.headline}</p>
+                  <p className="text-[13px] font-semibold text-foreground leading-relaxed">{news.headline}</p>
                 </div>
               ))}
             </div>
@@ -633,8 +633,8 @@ import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg
 
 // Design tokens
 const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
-const GLASS_CARD_LAYER1 = "bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]";
-const GLASS_CARD_LAYER2 = "bg-[hsl(0,0%,42%)] border-[hsl(0,0%,37%)]";
+const GLASS_CARD_LAYER1 = "bg-white/40 backdrop-blur-md border-white/50";
+const GLASS_CARD_LAYER2 = "bg-white/30 backdrop-blur-md border-white/40";
 
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
