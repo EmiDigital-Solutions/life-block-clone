@@ -260,8 +260,8 @@ const Auditors = () => {
 
         {/* Final CTA Section - Premium B2B Style */}
         <section 
-          data-nav-theme="white"
-          className="py-16 md:py-24 bg-[#0a0a0a]"
+          data-nav-theme="light"
+          className="py-16 md:py-24 bg-white"
         >
           <div className="mx-auto max-w-[1400px] px-8">
             <div className="max-w-3xl mx-auto text-center">
@@ -269,7 +269,7 @@ const Auditors = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-white/40 text-sm tracking-[0.3em] uppercase mb-8"
+                className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-8"
               >
                 Ready?
               </motion.p>
@@ -278,7 +278,7 @@ const Auditors = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="section-headline text-white mb-6"
+                className="section-headline text-foreground mb-6"
               >
                 See how it works.
                 <br />
@@ -290,7 +290,7 @@ const Auditors = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="text-white/50 text-lg mb-8 max-w-md mx-auto"
+                className="text-muted-foreground text-lg mb-8 max-w-md mx-auto"
               >
                 15-minute intro call. View real opportunities. Decide if it fits.
               </motion.p>
