@@ -125,7 +125,7 @@ const AtlasAISection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="lg:col-span-4"
           >
-            <div className="overflow-hidden aspect-[16/10] w-[calc(100%+30px)] bg-white">
+            <div className="overflow-hidden aspect-[16/10] w-[calc(100%+15px)] bg-white">
               <AtlasAIDemoAnimation />
             </div>
           </motion.div>
