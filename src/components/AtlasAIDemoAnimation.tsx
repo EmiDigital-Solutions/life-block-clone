@@ -63,10 +63,9 @@ const AtlasAIDemoAnimation = () => {
     // Chrome bug workaround: pause/resume every 10s to prevent cutoff
     const keepAlive = window.setInterval(() => {
       if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.pause();
         window.speechSynthesis.resume();
       }
-    }, 10000);
+    }, 5000);
 
     utterance.onend = () => {
       segmentTimers.forEach(clearTimeout);
@@ -143,7 +142,7 @@ const AtlasAIDemoAnimation = () => {
 
     return () => {
       timers.forEach(clearTimeout);
-      window.speechSynthesis.cancel();
+      // Don't cancel speech on loop restart — only on unmount
     };
   }, [loopKey]);
   
