@@ -7,24 +7,24 @@ import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 const timeline = [
   {
     day: "Day 1",
-    title: "You commission the audit",
-    oldWay: "Call three agencies. Wait for quotes. Compare CVs you can't verify. 3–4 weeks before anyone is even assigned.",
-    newWay: "Describe your requirements once. AI matches the nearest certified auditor — qualifications verified, availability instant. Fully organized before it starts.",
-    highlight: "Matched in seconds, not weeks",
+    title: "Your audit is scoped by intelligence, not guesswork",
+    oldWay: "Call agencies. Wait for quotes. Hope the auditor understands your industry. No context, no preparation — just a generic checklist.",
+    newWay: "Atlas AI builds a tailored audit framework from your supplier's profile, industry risks, and applicable standards. Your auditor arrives with deep context — knowing exactly what to verify, what to challenge, and where risks hide.",
+    highlight: "AI-prepared, industry-specific scope",
   },
   {
     day: "Day 2",
-    title: "Your supplier is audited",
-    oldWay: "One auditor with a clipboard. Photos on a phone. Handwritten notes. Subjective scoring. Zero visibility until weeks later.",
-    newWay: "Atlas AI guides every step: equipment auto-recognized, evidence photos linked to findings, maturity scores suggested. You see progress in real time.",
-    highlight: "Real-time visibility, standardized precision",
+    title: "Auditor + Atlas AI: precision on the shop floor",
+    oldWay: "One person with a clipboard and subjective judgment. Photos lost on a phone. Findings written from memory hours later. No standardization, no traceability.",
+    newWay: "Your auditor works hand-in-hand with Atlas AI — equipment is auto-recognized, evidence photos are linked to findings in real time, maturity scores are benchmarked against industry data. Every observation is structured, traceable, and verified on the spot. Human expertise amplified by machine precision.",
+    highlight: "Expert judgment + AI verification, together",
   },
   {
     day: "Day 3",
-    title: "You receive the report and decide",
-    oldWay: "Wait 6–10 weeks. Receive a 40-page PDF. No risk scoring. Import into your QMS manually. Interpret subjective language. Guess at risk levels.",
-    newWay: "Report delivered within 24 hours — with evidence photos, risk scores, and corrective actions. Your entire team sees verified data and decides with confidence.",
-    highlight: "Decisions in hours, not months",
+    title: "Verified intelligence, not a PDF. Plus CAPA tracking built in.",
+    oldWay: "Wait 6–10 weeks for a subjective PDF. No risk scores, no benchmarks, no corrective action plan. Import manually into your QMS. Then start guessing what to do next.",
+    newWay: "Within 24 hours: a complete audit intelligence package — risk-scored findings, photo-verified evidence, supplier maturity benchmarks, and a structured CAPA plan with assigned actions, deadlines, and automatic follow-up tracking. Your team sees verified data, makes confident decisions, and tracks corrective actions to closure — all in one place.",
+    highlight: "From audit to action — in 24 hours",
   },
 ];
 
