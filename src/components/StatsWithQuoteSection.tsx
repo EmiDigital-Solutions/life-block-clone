@@ -34,7 +34,7 @@ const StatsWithQuoteSection = () => {
                 transition={{ delay: index * 0.05 }}
                 className="pb-12"
               >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">
+                <p className="text-sm text-foreground/50 font-medium tracking-wide mb-2">
                   {stat.category}
                 </p>
                 <div className="border-t border-foreground/20 pt-4">

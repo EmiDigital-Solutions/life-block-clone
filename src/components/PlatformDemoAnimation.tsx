@@ -586,7 +586,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-xs text-primary tracking-wider uppercase">Step 3 of 5 · Audit</span>
+             <span className="text-sm text-primary tracking-wider uppercase">Step 3 of 5 · Audit</span>
           </div>
         </div>
       </div>
@@ -786,7 +786,7 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-xs text-primary tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
+             <span className="text-sm text-primary tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
           </div>
         </div>
       </div>
@@ -935,7 +935,7 @@ const CAPAScreen = () => {
           )}
 
           <div className="px-3 py-3 border-t border-muted-foreground/10 text-center mt-auto">
-            <span className="text-xs text-primary tracking-wider uppercase">Step 5 of 5 · CAPA</span>
+            <span className="text-sm text-primary tracking-wider uppercase">Step 5 of 5 · CAPA</span>
           </div>
         </div>
       </div>

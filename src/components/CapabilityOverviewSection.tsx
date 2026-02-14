@@ -59,7 +59,7 @@ const CapabilityOverviewSection = () => {
                 >
                   <div className="relative">
                     <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                    <span className="text-xs font-mono tracking-[0.15em] uppercase text-primary mb-3 block">
+                    <span className="text-sm font-medium tracking-[0.15em] uppercase text-primary mb-3 block">
                       {cap.phase}
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">

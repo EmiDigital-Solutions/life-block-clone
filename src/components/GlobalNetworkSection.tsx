@@ -27,7 +27,7 @@ const GlobalNetworkSection = () => {
                 className="flex items-center gap-3"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Global Coverage</span>
+                <span className="section-eyebrow">Global Coverage</span>
               </motion.div>
 
               <motion.h2
