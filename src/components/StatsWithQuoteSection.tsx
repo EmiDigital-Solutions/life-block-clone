@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
-  { category: "Save costs", value: "60%", description: "Lower audit costs with local certified auditors" },
-  { category: "Scale globally", value: "12K+", description: "Certified auditors in 50+ countries" },
-  { category: "Get results", value: "24h", description: "Digital audit reports delivered within hours" }
+  { category: "Audit time", value: "3 days", description: "vs. 14 days industry average. That's not optimization—it's obliteration." },
+  { category: "Audit cost", value: "€700", description: "vs. €15,000 with traditional firms. Same thoroughness. Better technology." },
+  { category: "First-time-right", value: "99%", description: "Audit acceptance rate. AI-standardized checklists eliminate human inconsistency." },
+  { category: "Report delivery", value: "24h", description: "Industry average: 10 days. We deliver while the context is still fresh." }
 ];
 
 const StatsWithQuoteSection = () => {

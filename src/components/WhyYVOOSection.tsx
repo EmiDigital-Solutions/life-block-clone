@@ -10,18 +10,18 @@ const WhyYVOOSection = () => {
   const painPoints = [
     {
       arrow: "→",
-      title: "Quality teams waste time on logistics.",
-      description: "Strategic audits are held back by travel booking, waiting for engineer calendars, leaving less time for actual supplier development."
+      title: "SGS sends one auditor with a clipboard.",
+      description: "YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously. Then a local expert verifies on-site."
     },
     {
       arrow: "→",
-      title: "Suppliers struggle with delayed assessments.",
-      description: "Months-long qualification timelines reduce competitiveness and limit your sourcing options."
+      title: "Traditional firms take 14 days and €15,000.",
+      description: "We deliver in 3 days for €700. Same thoroughness, better technology, zero flights."
     },
     {
       arrow: "→",
-      title: "Leadership views auditing as a cost center.",
-      description: "Disconnected data and €15K-25K per audit make it hard to demonstrate strategic value."
+      title: "Old reports hide behind 'professional judgment.'",
+      description: "We show you every data point, every photo, every AI analysis. You decide."
     }
   ];
 
@@ -79,10 +79,10 @@ const WhyYVOOSection = () => {
             className="max-w-4xl"
           >
             <h2 className="section-headline text-foreground mb-6">
-              How you audit shapes how suppliers see you
+              We didn't improve audits. We replaced them.
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              Your suppliers remember every audit. The question is: what will they remember about yours?
+              While SGS sends one auditor with a clipboard, YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}

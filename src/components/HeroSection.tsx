@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              AI-Powered Supplier Verification
+              While others send auditors with clipboards
             </motion.p>
 
             {/* Headline */}
@@ -55,8 +55,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              Audit Suppliers<br />
-              in Days, Not Weeks
+              3 Days. €700.<br />
+              Done.
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Reduce your average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Why wait weeks when you can get physical on-site audits in days?
+                Traditional audit firms charge €15,000 and take 14 days. We deploy AI + local certified auditors and deliver in 72 hours.
               </motion.p>
 
               <motion.div

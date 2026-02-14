@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 const capabilities = [
   {
-    title: "Search Suppliers",
-    description: "AI-powered discovery to find and qualify the right suppliers in minutes, not months.",
+    title: "AI scans thousands of suppliers",
+    description: "While traditional firms spend weeks shortlisting, our AI cross-references certifications, financials, and production capabilities in minutes. You get a ranked list, not a guessing game.",
     link: "/search-suppliers"
   },
   {
-    title: "ScanPro+",
-    description: "On-site audits with certified local auditors. No flights, no delays, consistent quality.",
+    title: "Local auditors deploy in 48h",
+    description: "Instead of flying your engineer 8,000km, we dispatch a certified auditor who's already there. Same standards, zero travel cost, 72-hour turnaround.",
     link: "/scanpro-plus"
   },
   {
-    title: "Ground Intelligence",
-    description: "Real-time supplier monitoring, risk scoring, and corrective action tracking.",
+    title: "Computer vision verifies on-site",
+    description: "Our AI analyzes equipment condition, safety protocols, and process compliance simultaneously. One auditor with our technology sees more than a team with clipboards.",
     link: "/ground-intelligence"
   }
 ];
@@ -32,7 +32,7 @@ const CapabilityOverviewSection = () => {
             className="mb-12 md:mb-16"
           >
             <h2 className="section-headline text-foreground max-w-3xl">
-              One place from search to verified partnership
+              The physics of why we're faster
             </h2>
           </motion.div>
 
