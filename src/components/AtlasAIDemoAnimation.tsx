@@ -16,6 +16,7 @@ const AtlasAIDemoAnimation = () => {
   const [copilotText, setCopilotText] = useState("");
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const [loopKey, setLoopKey] = useState(0);
+  const middleScrollRef = useRef<HTMLDivElement>(null);
 
   const LOOP_DURATION = 16000; // total cycle length in ms
   const PAUSE_ON_MATURITY = 3000; // pause showing maturity before restart
@@ -103,9 +104,20 @@ const AtlasAIDemoAnimation = () => {
 
     // Evidence completes → maturity
     t(8000, () => setEvidenceComplete(true));
-    t(9000, () => setShowMaturity(true));
+    t(9000, () => {
+      setShowMaturity(true);
+      // Auto-scroll to bottom so maturity is fully visible
+      setTimeout(() => {
+        middleScrollRef.current?.scrollTo({ top: middleScrollRef.current.scrollHeight, behavior: "smooth" });
+      }, 200);
+    });
     t(10000, () => setAtlasMaturity(3));
-    t(11500, () => setAuditorMaturity(2));
+    t(11500, () => {
+      setAuditorMaturity(2);
+      setTimeout(() => {
+        middleScrollRef.current?.scrollTo({ top: middleScrollRef.current.scrollHeight, behavior: "smooth" });
+      }, 300);
+    });
 
     // Restart loop after maturity pause
     t(LOOP_DURATION, () => setLoopKey(k => k + 1));
@@ -238,7 +250,7 @@ const AtlasAIDemoAnimation = () => {
             </motion.div>
 
             {/* AI Guidance — auto-animated chat */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
               <span className="text-[12px] font-bold text-white/40 uppercase tracking-wider block mb-3">AI Guidance</span>
 
               <AnimatePresence>
