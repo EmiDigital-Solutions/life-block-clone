@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { X, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import qualityHeroImage from "@/assets/quality-hero-green.png";
+import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 
 const timeline = [
   {
@@ -66,7 +66,7 @@ const QualityParallaxImage = ({ isInView }: { isInView: boolean }) => {
       <div className="relative">
         <motion.div className="relative overflow-hidden" style={{ y, scale }}>
           <img
-            src={qualityHeroImage}
+            src={auditorTimelineHero}
             alt="Quality assurance professional with AI technology"
             className="w-full h-auto object-cover"
           />
@@ -117,9 +117,9 @@ const AuditDifferenceSection = () => {
               The Difference
             </span>
           </div>
-          <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-3xl">
-            Others send an auditor with a clipboard.<br />
-            <span className="font-medium">We send Certified Auditors + Atlas AI.</span>
+          <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
+            Auditors with Clipboard vs.<br />
+            <span className="font-medium">Auditors + YVOO Atlas AI Audits.</span>
           </h2>
         </motion.div>
 
