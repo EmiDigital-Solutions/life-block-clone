@@ -146,7 +146,7 @@ const DemoChatbot = () => {
         {/* Step 1: Preference Engine auto-detects buyer context */}
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+            <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
               <div className="flex gap-2 flex-wrap">
                 {[
@@ -167,7 +167,7 @@ const DemoChatbot = () => {
         {/* Step 2: User simple input — adaptive width */}
         {step >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="p-2.5 bg-white/50 backdrop-blur-md border border-white/60 rounded-none w-fit">
+            <div className="p-2.5 bg-white/80 backdrop-blur-md border border-white/85 rounded-none w-fit">
               <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
               <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need aluminum brake calipers</p>
             </div>
@@ -177,7 +177,7 @@ const DemoChatbot = () => {
         {/* Step 3: AI analyzing indicator */}
         {step >= 3 && step < 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none w-fit">
+            <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80 rounded-none w-fit">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <span className="text-[11px] text-primary font-bold">Preference Engine analyzing requirements...</span>
@@ -189,7 +189,7 @@ const DemoChatbot = () => {
         {/* Step 4: AI full breakdown — all recognized entities */}
         {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+            <div className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
@@ -225,7 +225,7 @@ const DemoChatbot = () => {
         {/* Step 5: User confirms and adds — adaptive width */}
         {step >= 5 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-            <div className="p-2.5 bg-white/50 backdrop-blur-md border border-white/60 rounded-none w-fit">
+            <div className="p-2.5 bg-white/80 backdrop-blur-md border border-white/85 rounded-none w-fit">
               <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary rounded-none">✓ Confirmed</span>
@@ -238,7 +238,7 @@ const DemoChatbot = () => {
         {/* Step 6: AI confirms ready to search */}
         {step >= 6 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="p-2.5 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+            <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
               <div className="flex gap-2 flex-wrap">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary rounded-none">+ 50K/mo min</span>
@@ -308,8 +308,8 @@ const DemoSearchResults = () => {
             <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Brake Calipers · IATF 16949 · 50K+ capacity</p>
           </div>
           <div className="flex gap-1.5">
-            <span className="px-2 py-1 bg-white/50 backdrop-blur-md border border-white/60 text-[10px] text-foreground font-medium rounded-none">Sort: Match</span>
-            <span className="px-2 py-1 bg-white/50 backdrop-blur-md border border-white/60 text-[10px] text-foreground font-medium rounded-none">Export</span>
+            <span className="px-2 py-1 bg-white/80 backdrop-blur-md border border-white/85 text-[10px] text-foreground font-medium rounded-none">Sort: Match</span>
+            <span className="px-2 py-1 bg-white/80 backdrop-blur-md border border-white/85 text-[10px] text-foreground font-medium rounded-none">Export</span>
           </div>
         </div>
 
@@ -360,7 +360,7 @@ const DemoSearchResults = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.15 }}
-                className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none flex items-start gap-2.5"
+                className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none flex items-start gap-2.5"
               >
                 {/* Numbering */}
                 <div className="w-6 h-6 bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -418,7 +418,7 @@ const DemoSupplierProfile = () => {
       {/* Supplier header */}
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/50 backdrop-blur-md border border-white/60 flex items-center justify-center rounded-none">
+          <div className="w-10 h-10 bg-white/80 backdrop-blur-md border border-white/85 flex items-center justify-center rounded-none">
             <span className="text-sm font-bold text-foreground">PM</span>
           </div>
           <div className="flex-1">
@@ -462,12 +462,12 @@ const DemoSupplierProfile = () => {
                 { label: "Surface Treatment", value: "In-house anodizing" },
                 { label: "Quality Score", value: "94/100" },
               ].map((item, i) => (
-                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <div key={i} className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">{item.label}</p>
                   <p className="text-[14px] font-bold text-foreground">{item.value}</p>
                 </div>
               ))}
-              <div className="col-span-2 md:col-span-4 p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+              <div className="col-span-2 md:col-span-4 p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Certifications</p>
                 <div className="flex gap-2 flex-wrap">
                   {["IATF 16949:2016", "ISO 14001:2015", "ISO 9001:2015", "REACH Compliant"].map((c, i) => (
@@ -486,7 +486,7 @@ const DemoSupplierProfile = () => {
                 { type: "Quality System Audit", date: "Nov 2025", score: "88/100", auditor: "K. Tanaka", status: "Completed" },
                 { type: "Product Audit — Brake Caliper", date: "Sep 2025", score: "95/100", auditor: "L. Chen", status: "Completed" },
               ].map((audit, i) => (
-                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <div key={i} className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-[13px] font-bold text-foreground">{audit.type}</p>
                     <span className="text-[11px] font-bold text-primary">{audit.score}</span>
@@ -509,20 +509,20 @@ const DemoSupplierProfile = () => {
                   { label: "Financial Health", value: "Stable", color: "text-primary" },
                   { label: "Delivery Rating", value: "97.2%", color: "text-primary" },
                 ].map((kpi, i) => (
-                  <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none text-center">
+                  <div key={i} className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none text-center">
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">{kpi.label}</p>
                     <p className={`text-[14px] font-bold ${kpi.color}`}>{kpi.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+              <div className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Geopolitical Exposure</p>
                 <div className="flex gap-2">
                   <span className="px-2.5 py-1 bg-secondary/20 text-secondary text-[10px] font-bold rounded-none">EU — Low Risk</span>
                   <span className="px-2.5 py-1 bg-foreground/10 text-foreground text-[10px] font-semibold rounded-none">No sanctions</span>
                 </div>
               </div>
-              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+              <div className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Equipment Verified</p>
                 {["DMG MORI NLX 2500 — 5-Axis CNC", "Zeiss CMM Contura — Quality", "Anodizing Line — In-house"].map((eq, i) => (
                   <p key={i} className="text-[11px] text-foreground font-medium py-1.5 border-b border-white/30 last:border-0">{eq}</p>
@@ -534,7 +534,7 @@ const DemoSupplierProfile = () => {
           {/* RFQ */}
           {activeTab === 3 && (
             <div className="space-y-3">
-              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+              <div className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Quick RFQ</p>
                 <div className="space-y-0">
                   {[
@@ -560,7 +560,7 @@ const DemoSupplierProfile = () => {
           {/* Audit Order */}
           {activeTab === 4 && (
             <div className="space-y-3">
-              <div className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+              <div className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order On-Site Audit</p>
                 <div className="flex gap-2 mb-3">
                   {["Process Audit", "Quality Audit", "Product Audit"].map((type, i) => (
@@ -599,7 +599,7 @@ const DemoSupplierProfile = () => {
                 { headline: "Aluminum prices stabilize after Q4 volatility", date: "Feb 5, 2026", tag: "Commodity" },
                 { headline: "IATF 16949 revision expected in 2027 — key changes outlined", date: "Jan 30, 2026", tag: "Industry" },
               ].map((news, i) => (
-                <div key={i} className="p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-none">
+                <div key={i} className="p-3 bg-white/70 backdrop-blur-md border border-white/80 rounded-none">
                   <div className="flex items-center gap-2 mb-1">
                     <span className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded-none ${
                       news.tag === 'Company' ? 'bg-primary/20 text-primary' :
@@ -633,8 +633,8 @@ import procurementMaleSouthAsian from "@/assets/procurement-male-south-asian.jpg
 
 // Design tokens
 const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
-const GLASS_CARD_LAYER1 = "bg-white/40 backdrop-blur-md border-white/50";
-const GLASS_CARD_LAYER2 = "bg-white/30 backdrop-blur-md border-white/40";
+const GLASS_CARD_LAYER1 = "bg-white/70 backdrop-blur-md border-white/80";
+const GLASS_CARD_LAYER2 = "bg-white/60 backdrop-blur-md border-white/70";
 
 // Window Chrome Component for mockups
 const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
