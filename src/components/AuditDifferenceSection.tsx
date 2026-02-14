@@ -110,12 +110,12 @@ const AuditDifferenceSection = () => {
                     onClick={() => handleTabClick(index)}
                     className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 ${
                       activeTab === index
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-foreground text-white"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <span className={`font-mono text-xs tracking-wider ${
-                      activeTab === index ? "text-primary-foreground/70" : "text-muted-foreground/40"
+                      activeTab === index ? "text-white/50" : "text-muted-foreground/40"
                     }`}>
                       {item.id}
                     </span>
