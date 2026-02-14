@@ -791,7 +791,7 @@ const DayInLifeSection = () => {
       day: "Day 1",
       title: "You get the assignment",
       oldWay: "Email from a broker. Unclear scope. You call back, negotiate rate, book your own flight to a city 800 km away.",
-      newWay: "Assignment appears in your app. Scope, checklist, supplier docs—all there. The factory is 40 minutes from your home. Even for unfamiliar industries, the platform briefs you on context and critical process steps.",
+      newWay: "Assignment appears in your app. Scope, checklist, supplier docs—all there. The factory is 40 minutes from your home.",
       highlight: "Local expertise, not travel logistics",
     },
     {
