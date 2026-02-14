@@ -32,17 +32,17 @@ All colors MUST be HSL.
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
 
-    --accent: 158 55% 51%; /* Hero Green #3DC88E */
+    --accent: 161 26% 55%; /* Sage Green #6EA996 */
     --accent-foreground: 0 0% 0%;
 
-    --success: 158 55% 51%; /* Hero Green #3DC88E */
+    --success: 161 26% 55%; /* Sage Green #6EA996 */
     --success-foreground: 0 0% 0%;
 
     --warning: 37 91% 55%; /* Amber #F5A623 */
     --warning-foreground: 0 0% 0%;
 
-    --destructive: 0 47.8632% 45.8824%; /* Red #E04545 */
-    --destructive-foreground: 0 47.8632% 45.8824%;
+    --destructive: 0 48% 46%; /* Red #AE3D3D */
+    --destructive-foreground: 0 48% 46%;
 
     --mint: 143 18% 75%; /* Mint Light #B2CDBC */
 
@@ -62,13 +62,13 @@ All colors MUST be HSL.
     /* Full-screen project section colors */
     --project-blue: 192 20% 72%; /* BlueGrey Light */
     --project-brown: 0 0% 50%;
-    --project-teal: 158 23% 75%; /* Hero Green */
+    --project-teal: 161 26% 55%; /* Sage Green */
     --project-pink: 0 0% 60%;
 
     /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
-    --content-accent: 158 23% 75%; /* Hero Green */
+    --content-accent: 161 26% 55%; /* Sage Green */
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
@@ -93,17 +93,17 @@ All colors MUST be HSL.
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 158 23% 75%; /* Hero Green #3DC88E */
+    --accent: 161 26% 55%; /* Sage Green #6EA996 */
     --accent-foreground: 0 0% 0%;
 
-    --success: 153 53% 51%;
+    --success: 161 26% 55%;
     --success-foreground: 0 0% 0%;
 
     --warning: 37 91% 55%;
     --warning-foreground: 0 0% 0%;
 
-    --destructive: 4 49.7872% 53.9216%; /* Red #E04545 */
-    --destructive-foreground: 4 49.7872% 53.9216%;
+    --destructive: 0 48% 46%; /* Red #AE3D3D */
+    --destructive-foreground: 0 48% 46%;
 
     --mint: 143 18% 75%;
 
