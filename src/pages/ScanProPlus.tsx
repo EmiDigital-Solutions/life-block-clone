@@ -2263,7 +2263,7 @@ const ScanProPlus = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-[#1a1a1a] p-6 shadow-2xl overflow-hidden">
+            <div className="bg-[#1a1a1a] p-6 overflow-hidden">
               <EquipmentIntelligenceDemo />
             </div>
           </motion.div>

@@ -84,12 +84,13 @@ const detectedObjects: DetectedObject[] = [
 /* ── Design system matching PlatformDemoAnimation ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-white/90 border-white'
+    ? 'border-2 border-white/60'
     : layer === 2
-    ? 'bg-white/92 border-white'
-    : 'bg-white/95 border-white';
+    ? 'border-2 border-white/70'
+    : 'border-2 border-white/80';
+  const gradient = 'bg-gradient-to-br from-white/95 via-white/88 to-white/80 backdrop-blur-md';
   return (
-    <div className={`border backdrop-blur-md ${highlight ? 'border-accent/40 bg-white/95' : layerBg} ${className}`}>
+    <div className={`${gradient} ${highlight ? 'border-2 border-accent/40' : layerBg} ${className}`}>
       {children}
     </div>
   );
