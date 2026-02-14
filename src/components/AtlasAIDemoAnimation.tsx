@@ -15,6 +15,10 @@ const AtlasAIDemoAnimation = () => {
   const [copilotSpeaking, setCopilotSpeaking] = useState(false);
   const [copilotText, setCopilotText] = useState("");
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [loopKey, setLoopKey] = useState(0);
+
+  const LOOP_DURATION = 16000; // total cycle length in ms
+  const PAUSE_ON_MATURITY = 3000; // pause showing maturity before restart
 
   const riskAlertText = "BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits. Recommend thorough check of document control procedures, approval signatures, and revision history.";
 
@@ -42,7 +46,6 @@ const AtlasAIDemoAnimation = () => {
       setCopilotText("Reading risk alert...");
     };
 
-    // Animate text segments while speaking
     const segments = [
       { time: 1500, text: "BMW Tier-2 rejected 2 suppliers for document control gaps." },
       { time: 4000, text: "Issues found in 73% of similar audits." },
@@ -63,49 +66,56 @@ const AtlasAIDemoAnimation = () => {
     window.speechSynthesis.speak(utterance);
   }, [copilotSpeaking]);
 
-  // Staged reveal
+  // Single animation loop driven by loopKey
   useEffect(() => {
-    const t = [400, 1000, 2000, 3000].map((d, i) => setTimeout(() => setVis(i + 1), d));
-    return () => t.forEach(clearTimeout);
-  }, []);
+    // Reset all states
+    setShowFinding(false);
+    setVis(0);
+    setChatStep(0);
+    setEvidenceComplete(false);
+    setShowMaturity(false);
+    setAtlasMaturity(null);
+    setAuditorMaturity(null);
+    setPhotoFlash(false);
 
-  // Auto-animate chat messages
-  useEffect(() => {
-    const timers = [1200, 2800, 4500].map((d, i) =>
-      setTimeout(() => setChatStep(i + 1), d)
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
+    const timers: number[] = [];
+    const t = (delay: number, fn: () => void) => {
+      timers.push(window.setTimeout(fn, delay));
+    };
 
-  // Cleanup speech on unmount
-  useEffect(() => {
-    return () => { window.speechSynthesis.cancel(); };
-  }, []);
+    // Staged reveal of intelligence cards
+    t(400, () => setVis(1));
+    t(1000, () => setVis(2));
+    t(2000, () => setVis(3));
+    t(3000, () => setVis(4));
 
-  useEffect(() => {
-    const t = setTimeout(() => setShowFinding(true), 2500);
-    return () => clearTimeout(t);
-  }, []);
+    // Chat messages animate in
+    t(1200, () => setChatStep(1));
+    t(2800, () => setChatStep(2));
+    t(4500, () => setChatStep(3));
 
-  // Photo flash
-  useEffect(() => {
-    const t = setTimeout(() => { setPhotoFlash(true); setTimeout(() => setPhotoFlash(false), 250); }, 5500);
-    return () => clearTimeout(t);
-  }, []);
+    // AI Finding appears
+    t(2500, () => setShowFinding(true));
 
-  // Evidence completes, then maturity appears
-  useEffect(() => {
-    const t1 = setTimeout(() => setEvidenceComplete(true), 8000);
-    const t2 = setTimeout(() => setShowMaturity(true), 9000);
-    const t3 = setTimeout(() => setAtlasMaturity(3), 10000);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, []);
+    // Photo flash
+    t(5500, () => setPhotoFlash(true));
+    t(5750, () => setPhotoFlash(false));
 
-  // Auditor selects maturity
-  useEffect(() => {
-    const t = setTimeout(() => setAuditorMaturity(2), 11500);
-    return () => clearTimeout(t);
-  }, []);
+    // Evidence completes → maturity
+    t(8000, () => setEvidenceComplete(true));
+    t(9000, () => setShowMaturity(true));
+    t(10000, () => setAtlasMaturity(3));
+    t(11500, () => setAuditorMaturity(2));
+
+    // Restart loop after maturity pause
+    t(LOOP_DURATION, () => setLoopKey(k => k + 1));
+
+    return () => {
+      timers.forEach(clearTimeout);
+      window.speechSynthesis.cancel();
+    };
+  }, [loopKey]);
+  
 
   return (
     <div className="w-full h-full overflow-hidden">
