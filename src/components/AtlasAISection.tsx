@@ -116,17 +116,20 @@ const AtlasAISection = () => {
           </div>
         </div>
 
-        {/* Demo — full width, snaps to left and right grid lines */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-10"
-        >
-          <div className="overflow-hidden aspect-[16/10] w-full bg-white p-4 md:p-6">
-            <AtlasAIDemoAnimation />
-          </div>
-        </motion.div>
+        {/* Demo — 4 columns wide, offset by 2 (grid lines 3–6) */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mt-10">
+          <div className="hidden lg:block lg:col-span-2" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-4"
+          >
+            <div className="overflow-hidden aspect-[16/10] w-full bg-white p-4 md:p-6">
+              <AtlasAIDemoAnimation />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
