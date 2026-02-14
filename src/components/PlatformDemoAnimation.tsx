@@ -348,11 +348,11 @@ const MatchScreen = () => {
   ];
 
   const reasoningSteps = [
-    { icon: "🔍", text: "Analyzing audit requirements across 3 regions…" },
-    { icon: "📊", text: "Matching certifications: ISO 9001, AS9100, PED…" },
-    { icon: "📍", text: "Optimizing auditor proximity to supplier locations…" },
-    { icon: "⚡", text: "Evaluating auditor availability for Dec timeline…" },
-    { icon: "✓", text: "3 optimal auditors selected for parallel execution" },
+    "Analyzing audit requirements across 3 regions…",
+    "Matching certifications: ISO 9001, AS9100, PED…",
+    "Optimizing auditor proximity to supplier locations…",
+    "Evaluating auditor availability for Dec timeline…",
+    "3 optimal auditors selected for parallel execution",
   ];
 
   return (
@@ -370,19 +370,14 @@ const MatchScreen = () => {
               phase >= i + 1 && (
                 <motion.div key={i} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}>
-                  <div className="flex items-start gap-2.5">
-                    <div className={`w-5 h-5 flex items-center justify-center text-[10px] flex-shrink-0 ${
-                      phase > i + 1 || i === reasoningSteps.length - 1 ? '' : ''
-                    }`}>{step.icon}</div>
-                    <div className="flex-1">
-                      <span className={`text-xs leading-relaxed ${phase > i + 1 ? 'text-foreground/60' : 'text-foreground font-medium'}`}>
-                        {step.text}
-                      </span>
-                      {phase === i + 1 && i < reasoningSteps.length - 1 && (
-                        <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }}
-                          className="w-12 h-0.5 bg-foreground/30 mt-1" />
-                      )}
-                    </div>
+                  <div className="flex-1">
+                    <span className={`text-xs leading-relaxed ${phase > i + 1 ? 'text-foreground/60' : 'text-foreground font-medium'}`}>
+                      {step}
+                    </span>
+                    {phase === i + 1 && i < reasoningSteps.length - 1 && (
+                      <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }}
+                        className="w-12 h-0.5 bg-foreground/30 mt-1" />
+                    )}
                   </div>
                 </motion.div>
               )
