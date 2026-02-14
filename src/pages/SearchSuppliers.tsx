@@ -12,6 +12,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { FeatureModal } from "@/components/FeatureModal";
 import SearchSuppliersFAQ from "@/components/SearchSuppliersFAQ";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
+import AtlasAIDemoAnimation from "@/components/AtlasAIDemoAnimation";
 
 // 3-Window Demo: Chatbot → Search Results → Full Supplier Profile (Interactive)
 const SearchProDemoWindows = () => {
@@ -2182,7 +2183,7 @@ const ComparisonMockup = () => {
             </motion.div>
           </div>
 
-          {/* Step 3 - Ground Truth Intelligence */}
+          {/* Step 3 - Atlas AI Audit */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -2192,6 +2193,51 @@ const ComparisonMockup = () => {
             >
               <div className="flex items-center gap-3">
                 <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">03</span>
+                <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">AI Audit</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Atlas AI guides every audit in real time
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our AI copilot provides context-aware guidance, auto-generates findings, recognizes equipment from photos, and ensures consistent audit quality across all auditors.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Real-time audit guidance with Atlas Brain",
+                  "Voice input and AI-generated findings",
+                  "Equipment photo recognition and evidence analysis"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <WindowChrome title="Atlas AI — Audit Copilot">
+                <div className="h-full overflow-hidden">
+                  <AtlasAIDemoAnimation />
+                </div>
+              </WindowChrome>
+            </motion.div>
+          </div>
+
+          {/* Step 4 - Ground Truth Intelligence */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">04</span>
                 <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Intelligence</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
@@ -2241,7 +2287,7 @@ const ComparisonMockup = () => {
               className="space-y-6 order-1 lg:order-2"
             >
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">04</span>
+                <span className="w-8 h-8 bg-primary text-white text-sm font-bold flex items-center justify-center">05</span>
                 <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">Development</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
