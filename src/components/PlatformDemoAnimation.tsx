@@ -24,7 +24,7 @@ const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: {
     ? 'bg-white/80 border-foreground/10'
     : 'bg-white/90 border-foreground/12';
   return (
-    <div className={`border backdrop-blur-sm ${highlight ? 'border-primary/30 bg-white/85' : layerBg} ${className}`}>
+    <div className={`border backdrop-blur-sm ${highlight ? 'border-accent/40 bg-white/85' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -36,7 +36,7 @@ const BigStat = ({ value, delta, label, unit = "" }: { value: string; delta?: st
     <div className="flex items-baseline gap-1">
       <span className="text-3xl font-bold text-foreground tracking-tight">{value}</span>
       {unit && <span className="text-base font-medium text-foreground/70">{unit}</span>}
-      {delta && <span className="text-xs font-semibold text-primary ml-1 -translate-y-3">{delta}</span>}
+      {delta && <span className="text-xs font-semibold text-accent ml-1 -translate-y-3">{delta}</span>}
     </div>
     {label && <span className="text-xs text-muted-foreground uppercase tracking-wider">{label}</span>}
   </div>
@@ -48,7 +48,7 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
     {bars.map((h, i) => (
       <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
         transition={{ duration: 0.4, delay: i * 0.03 }}
-        className={`w-[4px] ${i === accentIndex ? 'bg-primary' : 'bg-foreground/25'}`}
+        className={`w-[4px] ${i === accentIndex ? 'bg-accent' : 'bg-foreground/25'}`}
       />
     ))}
   </div>
@@ -77,7 +77,7 @@ const DonutScore = ({ score, size = 160, labelSize = "text-2xl" }: { score: numb
           const filled = i / tickCount <= score / 100;
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke={filled ? 'hsl(199,91%,64%)' : 'hsl(0,0%,60%)'}
+              stroke={filled ? 'hsl(158,23%,75%)' : 'hsl(0,0%,60%)'}
               strokeWidth={0.8} strokeLinecap="square" />
           );
         })}
@@ -85,7 +85,7 @@ const DonutScore = ({ score, size = 160, labelSize = "text-2xl" }: { score: numb
           stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
         <motion.circle
           cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
+          stroke="hsl(158, 23%, 75%)" strokeWidth={strokeW} strokeLinecap="square"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
           animate={{ strokeDashoffset: circ * (1 - score / 100) }}
@@ -141,8 +141,8 @@ const DiscoverScreen = () => {
       <div className="w-[42%] flex flex-col border-r border-foreground/10">
         <div className="px-4 py-3 border-b border-foreground/10">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-primary/10 flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="w-6 h-6 bg-accent/20 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
             </div>
@@ -160,7 +160,7 @@ const DiscoverScreen = () => {
                   <motion.div key={s.name} initial={{ opacity: 0, x: -4 }} animate={{ opacity: phase >= 1 ? 1 : i === 0 ? 1 : 0.3, x: 0 }}
                     transition={{ delay: i * 0.15 }}
                     className="flex items-center gap-2 border-b border-foreground/10 pb-1.5">
-                    <div className={`w-4 h-4 flex items-center justify-center ${phase >= 2 ? 'bg-primary' : 'border border-foreground/20'}`}>
+                    <div className={`w-4 h-4 flex items-center justify-center ${phase >= 2 ? 'bg-accent' : 'border border-foreground/20'}`}>
                       {phase >= 2 && <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>}
                     </div>
                     <span className="text-sm text-foreground font-medium">{s.name}</span>
@@ -197,12 +197,12 @@ const DiscoverScreen = () => {
                   ].map((file, i) => (
                     <motion.div key={file.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}
                       className="flex items-center gap-2">
-                      <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <svg className="w-3.5 h-3.5 text-foreground/40 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                       <span className="text-xs text-foreground font-medium flex-1">{file.name}</span>
                       <span className="text-[10px] text-muted-foreground">{file.size}</span>
-                      <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      <svg className="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                     </motion.div>
                   ))}
                 </div>
@@ -229,9 +229,9 @@ const DiscoverScreen = () => {
           <span className="text-sm font-semibold text-foreground">AI Supplier Intelligence</span>
           {phase >= 5 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="flex items-center gap-1 px-2 py-1 border border-primary/30">
-              <div className="w-1.5 h-1.5 bg-primary" />
-              <span className="text-[9px] text-primary font-bold uppercase">AI Verified</span>
+              className="flex items-center gap-1 px-2 py-1 border border-accent/40">
+              <div className="w-1.5 h-1.5 bg-accent" />
+              <span className="text-[9px] text-accent font-bold uppercase">AI Verified</span>
             </motion.div>
           )}
         </div>
@@ -239,9 +239,9 @@ const DiscoverScreen = () => {
         <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
           {/* AI searching indicator */}
           {phase >= 2 && phase < 5 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-foreground/60">
               <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full" />
+                className="w-4 h-4 border-2 border-foreground/40 border-t-transparent rounded-full" />
               <span>{phase < 4 ? "AI analyzing suppliers…" : "Building intelligence profiles…"}</span>
             </motion.div>
           )}
@@ -256,14 +256,14 @@ const DiscoverScreen = () => {
                     transition={{ delay: i * 0.12 }}>
                     <GlassCard highlight={i === 0} layer={2} className="p-4 flex gap-4 aspect-[3/1]">
                       {/* Score block */}
-                      <div className={`w-14 h-14 flex items-center justify-center flex-shrink-0 ${i === 0 ? 'bg-primary text-white' : 'bg-foreground/10 text-foreground'}`}>
+                      <div className={`w-14 h-14 flex items-center justify-center flex-shrink-0 ${i === 0 ? 'bg-accent text-foreground' : 'bg-foreground/10 text-foreground'}`}>
                         <span className="text-lg font-bold">{s.score}%</span>
                       </div>
                       {/* Content */}
                       <div className="flex-1 flex flex-col justify-center min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span className="text-base font-semibold text-foreground truncate">{s.name}</span>
-                          {i === 0 && <span className="text-[9px] text-primary font-bold uppercase flex-shrink-0">Best Match</span>}
+                          {i === 0 && <span className="text-[9px] text-accent font-bold uppercase flex-shrink-0">Best Match</span>}
                         </div>
                         <div className="text-xs text-muted-foreground">{s.location} · {s.industry}</div>
                         <div className="text-xs text-foreground/60 mt-0.5">{s.certs}</div>
@@ -271,7 +271,7 @@ const DiscoverScreen = () => {
                         <div className="flex gap-2 mt-2">
                           {["Quality", "Delivery", "Compliance"].map((r, ri) => (
                             <div key={r} className="flex-1">
-                              <div className="w-full h-1.5 bg-primary/15"><div className="h-full bg-primary" style={{ width: `${riskWidths[i][ri]}%` }} /></div>
+                              <div className="w-full h-1.5 bg-accent/20"><div className="h-full bg-accent" style={{ width: `${riskWidths[i][ri]}%` }} /></div>
                               <span className="text-[8px] text-muted-foreground block mt-0.5">{r}</span>
                             </div>
                           ))}
@@ -289,7 +289,7 @@ const DiscoverScreen = () => {
             <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
               <GlassCard highlight className="p-3">
                 <div className="flex items-start gap-2">
-                  <svg className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-4 h-4 text-warning flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                   <div className="flex-1">
@@ -380,7 +380,7 @@ const MatchScreen = () => {
                       </span>
                       {phase === i + 1 && i < reasoningSteps.length - 1 && (
                         <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }}
-                          className="w-12 h-0.5 bg-primary mt-1" />
+                          className="w-12 h-0.5 bg-foreground/30 mt-1" />
                       )}
                     </div>
                   </div>
@@ -404,7 +404,7 @@ const MatchScreen = () => {
                     <span className="text-[9px] text-muted-foreground uppercase">Qualified</span>
                   </div>
                   <div className="text-center">
-                    <span className="text-lg font-bold text-primary block">3</span>
+                    <span className="text-lg font-bold text-accent block">3</span>
                     <span className="text-[9px] text-muted-foreground uppercase">Selected</span>
                   </div>
                 </div>
@@ -437,7 +437,7 @@ const MatchScreen = () => {
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center">
                 <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                  className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-3" />
+                  className="w-8 h-8 border-2 border-foreground/30 border-t-transparent rounded-full mx-auto mb-3" />
                 <span className="text-xs text-muted-foreground">AI selecting optimal auditors…</span>
               </div>
             </div>
@@ -454,7 +454,7 @@ const MatchScreen = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
-                        <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase bg-primary/10 text-primary">{a.region}</span>
+                        <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase bg-accent/15 text-accent">{a.region}</span>
                       </div>
                       <div className="text-[10px] text-muted-foreground">{a.cert}</div>
                       <div className="text-[10px] text-foreground/60 mt-0.5">→ {a.supplier} · {a.location}</div>
@@ -473,7 +473,7 @@ const MatchScreen = () => {
           {phase >= 7 && (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
               <GlassCard highlight className="p-3 flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 text-accent flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                 </svg>
                 <div className="flex-1">
@@ -521,7 +521,7 @@ const AuditScreen = () => {
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
        <div className="px-5 py-3 border-b border-foreground/10 flex items-center justify-between">
          <div className="flex items-center gap-2">
-           <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+           <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
            <span className="text-base font-semibold text-foreground">Live Audit</span>
            <span className="text-sm text-foreground/60">· PräzisionsTech GmbH</span>
          </div>
@@ -544,11 +544,11 @@ const AuditScreen = () => {
             transition={{ delay: 0.4, duration: 0.5 }} className="absolute top-4 left-4 right-4">
              <GlassCard highlight layer={2} className="p-3">
                <div className="flex items-center gap-2">
-                 <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                  </svg>
-                 <span className="text-sm font-semibold text-primary">DMG MORI NLX 2500</span>
+                 <span className="text-sm font-semibold text-accent">DMG MORI NLX 2500</span>
                </div>
                <span className="text-xs text-muted-foreground mt-1 block">AI Equipment Detection</span>
              </GlassCard>
@@ -583,11 +583,11 @@ const AuditScreen = () => {
           {checkedItems >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                className="px-5 py-3 border-t border-muted-foreground/10 flex items-center gap-2">
-               <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                </svg>
-               <span className="text-xs text-primary font-medium">Evidence photos capturing…</span>
+               <span className="text-xs text-accent font-medium">Evidence photos capturing…</span>
              </motion.div>
           )}
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
@@ -648,7 +648,7 @@ const IntelligenceScreen = () => {
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
                    <span className="text-xs text-muted-foreground uppercase tracking-wider">Overall Score</span>
-                   <div className="flex items-center gap-1 text-primary text-sm font-medium mt-1.5">
+                   <div className="flex items-center gap-1 text-accent text-sm font-medium mt-1.5">
                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
                      trending up
                    </div>
@@ -714,14 +714,14 @@ const IntelligenceScreen = () => {
                                const y2 = cy + Math.sin(rad) * (tickR + 1);
                                const filled = i / tickCount <= kpi.value / 100;
                                return (
-                                 <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-                                   stroke={filled ? 'hsl(199,91%,64%)' : 'hsl(0,0%,60%)'}
+                                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                                    stroke={filled ? 'hsl(158,23%,75%)' : 'hsl(0,0%,60%)'}
                                    strokeWidth={0.7} strokeLinecap="square" />
                                );
                              })}
                              <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
                              <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-                               stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
+                               stroke="hsl(158, 23%, 75%)" strokeWidth={strokeW} strokeLinecap="square"
                                transform={`rotate(-90 ${size / 2} ${size / 2})`}
                                initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
                                animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
@@ -734,7 +734,7 @@ const IntelligenceScreen = () => {
                           </div>
                           <div className="text-center">
                             <span className="text-xs text-muted-foreground uppercase block">{kpi.label}</span>
-                           <span className="text-[10px] text-primary font-semibold">{kpi.delta}</span>
+                           <span className="text-[10px] text-accent font-semibold">{kpi.delta}</span>
                          </div>
                        </motion.div>
                      );
@@ -785,7 +785,7 @@ const IntelligenceScreen = () => {
                     <div className="text-base font-medium text-foreground">Markus Hoffmann</div>
                     <div className="text-sm text-muted-foreground">ISO 9001 Lead Auditor</div>
                  </div>
-                 <span className="text-xs text-primary font-semibold">24h</span>
+                 <span className="text-xs text-accent font-semibold">24h</span>
                </GlassCard>
             </motion.div>
           )}
@@ -820,9 +820,9 @@ const CAPAScreen = () => {
     { id: "OFI-002", type: "OFI", title: "Update SPC charts for critical dimensions", owner: "PräzisionsTech", due: "Feb 12", status: "open", progress: 10 },
   ];
 
-  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-primary" : "bg-foreground/30";
+  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-accent" : "bg-foreground/30";
   const statusLabel = (s: string) => s === "overdue" ? "Overdue" : s === "in-progress" ? "In Progress" : "Open";
-  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-foreground" : "text-primary";
+  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-foreground" : "text-warning";
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
@@ -853,8 +853,8 @@ const CAPAScreen = () => {
                    <span className="text-xs text-muted-foreground uppercase block">Minor NC</span>
                  </GlassCard>
                  <GlassCard layer={2} className="px-4 py-3 flex-1 text-center">
-                   <span className="text-2xl font-bold text-primary">2</span>
-                   <span className="text-xs text-muted-foreground uppercase block">OFI</span>
+                    <span className="text-2xl font-bold text-warning">2</span>
+                    <span className="text-xs text-muted-foreground uppercase block">OFI</span>
                 </GlassCard>
               </div>
             </motion.div>
@@ -880,7 +880,7 @@ const CAPAScreen = () => {
                      <div className="flex-1 h-2 bg-foreground/15 overflow-hidden">
                        <motion.div initial={{ width: 0 }} animate={{ width: `${f.progress}%` }}
                          transition={{ duration: 0.8, delay: 0.2 }}
-                         className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-primary"}`}
+                         className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-accent"}`}
                        />
                      </div>
                      <span className="text-[10px] text-muted-foreground font-semibold">{f.progress}%</span>
@@ -917,7 +917,7 @@ const CAPAScreen = () => {
                  ].map((a, i) => (
                    <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.15 }}
                      className="flex items-start gap-2 mb-2 last:mb-0">
-                     <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                     <div className="w-1.5 h-1.5 rounded-full bg-foreground/40 mt-1.5 flex-shrink-0" />
                      <div>
                        <div className="text-sm text-foreground font-medium leading-tight">{a.text}</div>
                        <div className="text-xs text-muted-foreground">{a.actor} · {a.time}</div>
@@ -931,7 +931,7 @@ const CAPAScreen = () => {
           {phase >= 5 && (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-auto">
               <GlassCard highlight className="p-3 flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-5 h-5 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg>
                 <span className="text-sm font-semibold text-foreground">Client notified — NC-001 overdue</span>
@@ -968,11 +968,11 @@ const PlatformDemoAnimation = () => {
       <div className="flex items-center gap-1 px-4 py-2 border-b border-muted-foreground/10">
         {labels.map((label, i) => (
           <div key={label} className="flex items-center gap-1 flex-1">
-            <div className={`h-1 flex-1 transition-colors duration-500 ${
-              i <= currentScreen ? 'bg-primary' : 'bg-muted-foreground/15'
+             <div className={`h-1 flex-1 transition-colors duration-500 ${
+              i <= currentScreen ? 'bg-foreground' : 'bg-muted-foreground/15'
             }`} />
             <span className={`text-[10px] font-medium transition-colors duration-300 ${
-              i === currentScreen ? 'text-primary' : 'text-muted-foreground'
+              i === currentScreen ? 'text-foreground' : 'text-muted-foreground'
             }`}>{label}</span>
           </div>
         ))}
