@@ -2,20 +2,23 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const capabilities = [
+const steps = [
   {
-    title: "AI scans thousands of suppliers",
-    description: "While traditional firms spend weeks shortlisting, our AI cross-references certifications, financials, and production capabilities in minutes. You get a ranked list, not a guessing game.",
+    number: "01",
+    title: "Upload your supplier list",
+    description: "CSV, ERP export, or just type a name. AI finds certifications, location, production capabilities, and audit history in seconds.",
     link: "/search-suppliers"
   },
   {
-    title: "Local auditors deploy in 48h",
-    description: "Instead of flying your engineer 8,000km, we dispatch a certified auditor who's already there. Same standards, zero travel cost, 72-hour turnaround.",
+    number: "02",
+    title: "We match & dispatch",
+    description: "Atlas AI selects the best local certified auditor — already near your supplier. No flights, no hotels, no calendar Tetris. On-site in 48 hours.",
     link: "/scanpro-plus"
   },
   {
-    title: "Computer vision verifies on-site",
-    description: "Our AI analyzes equipment condition, safety protocols, and process compliance simultaneously. One auditor with our technology sees more than a team with clipboards.",
+    number: "03",
+    title: "Verified report in 3 days",
+    description: "AI-standardized assessment with computer vision evidence, equipment analysis, and actionable findings. €700. Done.",
     link: "/ground-intelligence"
   }
 ];
@@ -23,50 +26,51 @@ const capabilities = [
 const CapabilityOverviewSection = () => {
   return (
     <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-6 md:pb-8">
-       <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12 md:mb-16"
-          >
-            <h2 className="section-headline text-foreground max-w-3xl">
-              The physics of why we're faster
-            </h2>
-          </motion.div>
+      <div className="mx-auto max-w-[1400px] px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 md:mb-16"
+        >
+          <h2 className="section-headline text-foreground max-w-3xl">
+            YVOO eliminates all of that
+          </h2>
+        </motion.div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
-            {capabilities.map((cap, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="lg:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="lg:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
+            >
+              <Link
+                to={step.link}
+                className="group block h-full p-8 md:p-10 hover:bg-secondary/20 transition-colors"
               >
-                <Link
-                  to={cap.link}
-                  className="group block h-full p-8 md:p-10 hover:bg-secondary/20 transition-colors"
-                >
-                  <div className="relative">
-                    <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                      {cap.title}
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {cap.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                    <span className="text-sm">Learn more</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+                <div className="relative">
+                  <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
+                  <p className="text-xs font-mono tracking-widest text-primary mb-4">{step.number}</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {step.description}
+                </p>
+                <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
+                  <span className="text-sm">Learn more</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
