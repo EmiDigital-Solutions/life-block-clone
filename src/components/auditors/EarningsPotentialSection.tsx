@@ -40,16 +40,16 @@ const EarningsPotentialSection = () => {
   ];
 
   const exampleAudits = [
-    { standard: "ISO 9001", type: "Quality Management", location: "Shenzhen, China", fee: "$680", currency: "USD", distance: "15 km", duration: "2 days" },
-    { standard: "VDA 6.3", type: "Process Audit", location: "Pune, India", fee: "$520", currency: "USD", distance: "22 km", duration: "2 days" },
-    { standard: "IATF 16949", type: "Automotive QMS", location: "Wrocław, Poland", fee: "€1,150", currency: "EUR", distance: "8 km", duration: "3 days" },
-    { standard: "AS9100 Rev D", type: "Aerospace QMS", location: "Detroit, USA", fee: "$1,400", currency: "USD", distance: "30 km", duration: "3 days" },
+    { standard: "ISO 9001", type: "Quality Management", location: "Shenzhen, China", fee: "$680", currency: "USD", distance: "15 km from home", duration: "2 days" },
+    { standard: "VDA 6.3", type: "Process Audit", location: "Pune, India", fee: "$520", currency: "USD", distance: "22 km from home", duration: "2 days" },
+    { standard: "IATF 16949", type: "Automotive QMS", location: "Wrocław, Poland", fee: "€1,150", currency: "EUR", distance: "8 km from home", duration: "3 days" },
+    { standard: "AS9100 Rev D", type: "Aerospace QMS", location: "Detroit, USA", fee: "$1,400", currency: "USD", distance: "30 km from home", duration: "3 days" },
   ];
 
   return (
     <>
       {/* Payment Process Section — Dark, premium */}
-      <section ref={ref} data-nav-theme="white" className="py-24 md:py-32 bg-[#0a0a0a]">
+      <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-[#f5f5f5]">
         <div className="mx-auto max-w-[1400px] px-8">
 
           {/* Header */}
@@ -60,12 +60,12 @@ const EarningsPotentialSection = () => {
             className="max-w-3xl mb-20"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-white/30" />
-              <span className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                 Payment Process
               </span>
             </div>
-            <h2 className="section-headline text-white">
+            <h2 className="section-headline text-foreground">
               Simple. Transparent. Immediate.
             </h2>
           </motion.div>
@@ -82,28 +82,28 @@ const EarningsPotentialSection = () => {
               >
                 {/* Step number */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 border border-primary/40 flex items-center justify-center">
+                  <div className="w-8 h-8 border border-primary/40 bg-white flex items-center justify-center">
                     <span className="text-xs font-medium text-primary">{String(idx + 1).padStart(2, '0')}</span>
                   </div>
                   {idx < 3 && (
-                    <div className="hidden lg:block flex-1 h-px bg-white/10" />
+                    <div className="hidden lg:block flex-1 h-px bg-border" />
                   )}
                 </div>
 
                 {/* Traditional */}
-                <div className="mb-4 pb-4 border-b border-white/10">
+                <div className="mb-4 pb-4 border-b border-border">
                   <div className="flex items-start gap-2 mb-1">
                     <X className="w-3.5 h-3.5 text-destructive mt-0.5 flex-shrink-0" />
-                    <span className="text-white/40 text-sm">{step.traditional}</span>
+                    <span className="text-muted-foreground text-sm">{step.traditional}</span>
                   </div>
-                  <span className="text-white/20 text-xs ml-5.5">{step.traditionalTime}</span>
+                  <span className="text-muted-foreground/50 text-xs ml-5.5">{step.traditionalTime}</span>
                 </div>
 
                 {/* YVOO */}
                 <div>
                   <div className="flex items-start gap-2 mb-1">
                     <Check className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-white font-medium text-sm">{step.yvoo}</span>
+                    <span className="text-foreground font-medium text-sm">{step.yvoo}</span>
                   </div>
                   <span className="text-primary/60 text-xs ml-5.5">{step.yvooTime}</span>
                 </div>
@@ -116,13 +116,13 @@ const EarningsPotentialSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-8 border-t border-white/10"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-8 border-t border-border"
           >
-            <p className="text-xl md:text-2xl font-medium text-white">
+            <p className="text-xl md:text-2xl font-medium text-foreground">
               No invoicing. No waiting. No uncertainty.
             </p>
             <div className="hidden sm:block flex-1" />
-            <div className="flex items-center gap-2 text-white/30 text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               Report submitted → Payment released
             </div>
@@ -190,7 +190,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
               {/* Fee */}
               <div className="pt-4 border-t border-border/50">
                 <p className="text-2xl md:text-3xl font-semibold text-foreground">{audit.fee}</p>
-                <p className="text-xs text-muted-foreground mt-1">{audit.distance} from you</p>
+                <p className="text-xs text-muted-foreground mt-1">{audit.distance}</p>
               </div>
             </motion.div>
           ))}
