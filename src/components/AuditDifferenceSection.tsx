@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { X, Check, ArrowRight } from "lucide-react";
+import { X, Check, ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 
@@ -81,6 +81,27 @@ const AuditDifferenceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [activeTab, setActiveTab] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const advanceTab = useCallback(() => {
+    setActiveTab((prev) => (prev + 1) % timeline.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying && isInView) {
+      intervalRef.current = setInterval(advanceTab, 5000);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPlaying, isInView, advanceTab]);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    setIsPlaying(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
 
   return (
     <section
@@ -117,34 +138,43 @@ const AuditDifferenceSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {/* Tab Headers */}
-            <div className="flex gap-2 mb-8 border-b border-border">
-              {timeline.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={`relative flex items-center gap-3 px-5 py-4 text-left transition-colors duration-300 ${
-                    activeTab === index
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground/70"
-                  }`}
-                >
-                  <span className={`text-xs font-bold tracking-wider uppercase ${
-                    activeTab === index ? "text-primary" : "text-muted-foreground/60"
-                  }`}>
-                    {item.day}
-                  </span>
-                  <span className="hidden sm:inline text-sm font-medium">
-                    {item.label}
-                  </span>
-                  {activeTab === index && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                </button>
-              ))}
+            <div className="flex items-center gap-2 mb-8 border-b border-border">
+              <div className="flex gap-2 flex-1">
+                {timeline.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={`relative flex items-center gap-3 px-5 py-4 text-left transition-colors duration-300 ${
+                      activeTab === index
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground/70"
+                    }`}
+                  >
+                    <span className={`text-xs font-bold tracking-wider uppercase ${
+                      activeTab === index ? "text-primary" : "text-muted-foreground/60"
+                    }`}>
+                      {item.day}
+                    </span>
+                    <span className="hidden sm:inline text-sm font-medium">
+                      {item.label}
+                    </span>
+                    {activeTab === index && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
+              >
+                {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              </button>
             </div>
 
             {/* Tab Content */}
