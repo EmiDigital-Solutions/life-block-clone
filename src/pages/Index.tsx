@@ -6,7 +6,7 @@ import AtlasAISection from "@/components/AtlasAISection";
 import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
-import GlobalNetworkSection from "@/components/GlobalNetworkSection";
+
 import TestimonialSection from "@/components/TestimonialSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import StatsWithQuoteSection from "@/components/StatsWithQuoteSection";
@@ -29,7 +29,7 @@ const Index = () => {
         <WhyYVOOSection />
         <AtlasAISection />
         <AuditDifferenceSection />
-        <GlobalNetworkSection />
+        
         <HowItWorksSection />
         <StatsWithQuoteSection />
         <TestimonialsCarouselSection />
