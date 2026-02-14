@@ -14,17 +14,17 @@ import auditorGen4 from "@/assets/auditor-gen-4.jpg";
 const SCREEN_DURATION = 5000;
 
 /* Light grey background color for all screens */
-const SCREEN_BG = "bg-[hsl(0,0%,85%)]";
+const SCREEN_BG = "bg-[hsl(0,0%,92%)]";
 
-/* ── Solid dark grey cards — no glass, no shadow, no blur ── */
+/* ── White frosted glass cards — subtle transparency on grey ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]'
+    ? 'bg-white/70 border-foreground/8'
     : layer === 2
-    ? 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)]'
-    : 'bg-[hsl(0,0%,32%)] border-[hsl(0,0%,28%)]';
+    ? 'bg-white/80 border-foreground/10'
+    : 'bg-white/90 border-foreground/12';
   return (
-    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : layerBg} ${className}`}>
+    <div className={`border backdrop-blur-sm ${highlight ? 'border-primary/30 bg-white/85' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -34,11 +34,11 @@ const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: {
 const BigStat = ({ value, delta, label, unit = "" }: { value: string; delta?: string; label?: string; unit?: string }) => (
   <div>
     <div className="flex items-baseline gap-0.5">
-      <span className="text-2xl font-bold text-background tracking-tight">{value}</span>
-      {unit && <span className="text-sm font-medium text-background/70">{unit}</span>}
+      <span className="text-2xl font-bold text-foreground tracking-tight">{value}</span>
+      {unit && <span className="text-sm font-medium text-foreground/70">{unit}</span>}
       {delta && <span className="text-[10px] font-semibold text-primary ml-0.5 -translate-y-2">{delta}</span>}
     </div>
-    {label && <span className="text-[10px] text-background/60 uppercase tracking-wider">{label}</span>}
+    {label && <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{label}</span>}
   </div>
 );
 
@@ -48,7 +48,7 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
     {bars.map((h, i) => (
       <motion.div key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }}
         transition={{ duration: 0.4, delay: i * 0.03 }}
-        className={`w-[3px] ${i === accentIndex ? 'bg-primary' : 'bg-background/40'}`}
+        className={`w-[3px] ${i === accentIndex ? 'bg-primary' : 'bg-foreground/25'}`}
       />
     ))}
   </div>
@@ -82,7 +82,7 @@ const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => 
           );
         })}
         <circle cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
+          stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
         <motion.circle
           cx={size / 2} cy={size / 2} r={r} fill="none"
           stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
@@ -93,8 +93,8 @@ const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => 
         />
       </svg>
       <div className="text-center z-10">
-        <div className="text-2xl font-bold text-background leading-none">{score}%</div>
-        <div className="text-[8px] text-background/70 uppercase tracking-wider mt-0.5">Score</div>
+        <div className="text-2xl font-bold text-foreground leading-none">{score}%</div>
+        <div className="text-[8px] text-muted-foreground uppercase tracking-wider mt-0.5">Score</div>
       </div>
     </div>
   );
@@ -102,10 +102,10 @@ const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => 
 
 /* Segmented toggle — squared, ORION style */
 const SegmentedToggle = ({ items, activeIndex }: { items: string[]; activeIndex: number }) => (
-  <div className="flex border border-background/20 overflow-hidden">
+  <div className="flex border border-foreground/15 overflow-hidden">
     {items.map((item, i) => (
       <div key={item} className={`px-3 py-1.5 text-[10px] font-semibold tracking-wide transition-colors flex-1 text-center ${
-        i === activeIndex ? 'bg-background text-foreground' : 'bg-transparent text-background/60'
+        i === activeIndex ? 'bg-foreground text-background' : 'bg-transparent text-foreground/50'
       }`}>
         {item}
       </div>
@@ -154,27 +154,27 @@ const DiscoverScreen = () => {
         {phase >= 0 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <GlassCard layer={2} className="p-3 space-y-2">
-              <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold">Enter Supplier Details</div>
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-background/50 w-14">Name</span>
-                  <div className="flex-1 border-b border-background/20 pb-0.5">
-                    <span className="text-xs text-background font-medium">PräzisionsTech GmbH</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-background/50 w-14">Country</span>
-                  <div className="flex-1 border-b border-background/20 pb-0.5">
-                    <span className="text-xs text-background font-medium">Germany</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-background/50 w-14">City</span>
-                  <div className="flex-1 border-b border-background/20 pb-0.5">
-                    <span className="text-xs text-background font-medium">Stuttgart</span>
-                  </div>
-                </div>
-              </div>
+               <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold">Enter Supplier Details</div>
+               <div className="space-y-1.5">
+                 <div className="flex items-center gap-2">
+                   <span className="text-[10px] text-muted-foreground w-14">Name</span>
+                   <div className="flex-1 border-b border-foreground/15 pb-0.5">
+                     <span className="text-xs text-foreground font-medium">PräzisionsTech GmbH</span>
+                   </div>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   <span className="text-[10px] text-muted-foreground w-14">Country</span>
+                   <div className="flex-1 border-b border-foreground/15 pb-0.5">
+                     <span className="text-xs text-foreground font-medium">Germany</span>
+                   </div>
+                 </div>
+                 <div className="flex items-center gap-2">
+                   <span className="text-[10px] text-muted-foreground w-14">City</span>
+                   <div className="flex-1 border-b border-foreground/15 pb-0.5">
+                     <span className="text-xs text-foreground font-medium">Stuttgart</span>
+                   </div>
+                 </div>
+               </div>
             </GlassCard>
           </motion.div>
         )}
@@ -199,11 +199,11 @@ const DiscoverScreen = () => {
         {phase >= 2 && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
             <GlassCard layer={2} className="p-3">
-              <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold mb-2">Search Results</div>
-              <GlassCard highlight className="p-2.5 flex items-center gap-2">
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
-                  <div className="text-[10px] text-background/70">Stuttgart, Germany · Aerospace</div>
+               <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Search Results</div>
+               <GlassCard highlight className="p-2.5 flex items-center gap-2">
+                 <div className="flex-1">
+                   <div className="text-sm font-semibold text-foreground">PräzisionsTech GmbH</div>
+                   <div className="text-[10px] text-muted-foreground">Stuttgart, Germany · Aerospace</div>
                 </div>
                 <div className="flex items-center gap-1 px-1.5 py-0.5 border border-primary/40 bg-primary/5">
                   <span className="text-lg font-bold text-primary">94</span>
@@ -236,8 +236,8 @@ const DiscoverScreen = () => {
              <GlassCard highlight layer={2} className="p-3">
                <div className="flex items-center justify-between mb-2">
                  <div>
-                   <div className="text-sm font-semibold text-background">PräzisionsTech GmbH</div>
-                   <div className="text-[10px] text-background/60">Stuttgart, Germany</div>
+                    <div className="text-sm font-semibold text-foreground">PräzisionsTech GmbH</div>
+                    <div className="text-[10px] text-muted-foreground">Stuttgart, Germany</div>
                  </div>
                  <div className="flex items-center gap-1 px-2 py-0.5 border border-primary/40">
                    <div className="w-1.5 h-1.5 bg-primary" />
@@ -248,16 +248,16 @@ const DiscoverScreen = () => {
                  {profileFields.map((f, i) => (
                    <motion.div key={f.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.08 }}
                      className="flex items-start gap-2">
-                     <span className="text-[9px] text-background/50 w-20 flex-shrink-0 uppercase">{f.label}</span>
-                     <span className="text-[11px] text-background font-medium">{f.value}</span>
+                      <span className="text-[9px] text-muted-foreground w-20 flex-shrink-0 uppercase">{f.label}</span>
+                      <span className="text-[11px] text-foreground font-medium">{f.value}</span>
                    </motion.div>
                  ))}
                </div>
 
                {/* Analytics Section */}
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-                 className="border-t border-background/15 pt-2.5 space-y-2.5">
-                 <div className="text-[8px] text-background/50 uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
+                  className="border-t border-foreground/10 pt-2.5 space-y-2.5">
+                  <div className="text-[8px] text-muted-foreground uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
 
                  {/* Row 1: 3 Pie charts — Quality, Delivery, Compliance */}
                  <div className="flex items-center justify-between">
@@ -289,7 +289,7 @@ const DiscoverScreen = () => {
                                  stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
                                  strokeWidth={0.6} strokeLinecap="square" />;
                              })}
-                             <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={sw} />
+                             <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={sw} />
                              <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
                                stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
                                transform={`rotate(-90 ${sz/2} ${sz/2})`}
@@ -298,9 +298,9 @@ const DiscoverScreen = () => {
                                transition={{ duration: 1, ease: "easeOut", delay: 0.5 + idx * 0.15 }}
                              />
                            </svg>
-                           <span className="text-[9px] font-bold text-background z-10">{kpi.value}%</span>
-                         </div>
-                         <span className="text-[7px] text-background/60 uppercase">{kpi.label}</span>
+                            <span className="text-[9px] font-bold text-foreground z-10">{kpi.value}%</span>
+                          </div>
+                          <span className="text-[7px] text-muted-foreground uppercase">{kpi.label}</span>
                        </motion.div>
                      );
                    })}
@@ -309,13 +309,13 @@ const DiscoverScreen = () => {
                  {/* Row 2: Score trend line chart */}
                  <div>
                    <div className="flex items-center justify-between mb-1">
-                     <span className="text-[7px] text-background/50 uppercase">Score Trend (Last 8 Audits)</span>
+                     <span className="text-[7px] text-muted-foreground uppercase">Score Trend (Last 8 Audits)</span>
                      <span className="text-[8px] text-primary font-semibold">+12.4%</span>
                    </div>
                    <svg viewBox="0 0 140 32" className="w-full h-7">
                      {/* Grid lines */}
                      {[8, 16, 24].map(y => (
-                       <line key={y} x1="0" y1={y} x2="140" y2={y} stroke="hsl(0,0%,55%)" strokeWidth="0.3" strokeDasharray="2,2" />
+                       <line key={y} x1="0" y1={y} x2="140" y2={y} stroke="hsl(0,0%,82%)" strokeWidth="0.3" strokeDasharray="2,2" />
                      ))}
                      {/* Filled area */}
                      <motion.path
@@ -345,36 +345,36 @@ const DiscoverScreen = () => {
 
                   {/* Row 3: Macro/Micro economic risk indicators */}
                   <div>
-                    <div className="text-[7px] text-background/50 uppercase mb-1">Macroeconomic Risk Assessment</div>
-                    <div className="grid grid-cols-5 gap-1.5">
-                      {[
-                        { label: "Currency", value: "Stable", risk: "low" },
-                        { label: "Supply Chain", value: "Moderate", risk: "mid" },
-                        { label: "Regulatory", value: "Low", risk: "low" },
-                        { label: "Market", value: "Growing", risk: "low" },
-                        { label: "Geopolitical", value: "Clear", risk: "low" },
-                      ].map((item) => (
-                        <div key={item.label} className="text-center">
-                          <div className={`w-2 h-2 mx-auto mb-0.5 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
-                          <span className="text-[7px] text-background font-semibold block">{item.value}</span>
-                          <span className="text-[6px] text-background/50 uppercase">{item.label}</span>
+                     <div className="text-[7px] text-muted-foreground uppercase mb-1">Macroeconomic Risk Assessment</div>
+                     <div className="grid grid-cols-5 gap-1.5">
+                       {[
+                         { label: "Currency", value: "Stable", risk: "low" },
+                         { label: "Supply Chain", value: "Moderate", risk: "mid" },
+                         { label: "Regulatory", value: "Low", risk: "low" },
+                         { label: "Market", value: "Growing", risk: "low" },
+                         { label: "Geopolitical", value: "Clear", risk: "low" },
+                       ].map((item) => (
+                         <div key={item.label} className="text-center">
+                           <div className={`w-2 h-2 mx-auto mb-0.5 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
+                           <span className="text-[7px] text-foreground font-semibold block">{item.value}</span>
+                           <span className="text-[6px] text-muted-foreground uppercase">{item.label}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                  {/* Row 4: Client-specific KPIs */}
-                 <div className="flex gap-2 border-t border-background/10 pt-2">
-                   {[
-                     { label: "Qualification Time", value: "14 days", delta: "60% faster" },
-                     { label: "Cost / Audit", value: "€2.8K", delta: "−32%" },
-                     { label: "Defect Rate", value: "0.4%", delta: "−0.8pp" },
-                   ].map((kpi) => (
-                     <div key={kpi.label} className="flex-1 text-center">
-                       <span className="text-[10px] font-bold text-background block">{kpi.value}</span>
-                       <span className="text-[7px] text-primary font-semibold block">{kpi.delta}</span>
-                       <span className="text-[6px] text-background/50 uppercase">{kpi.label}</span>
-                     </div>
+                  <div className="flex gap-2 border-t border-foreground/10 pt-2">
+                    {[
+                      { label: "Qualification Time", value: "14 days", delta: "60% faster" },
+                      { label: "Cost / Audit", value: "€2.8K", delta: "−32%" },
+                      { label: "Defect Rate", value: "0.4%", delta: "−0.8pp" },
+                    ].map((kpi) => (
+                      <div key={kpi.label} className="flex-1 text-center">
+                        <span className="text-[10px] font-bold text-foreground block">{kpi.value}</span>
+                        <span className="text-[7px] text-primary font-semibold block">{kpi.delta}</span>
+                        <span className="text-[6px] text-muted-foreground uppercase">{kpi.label}</span>
+                      </div>
                    ))}
                  </div>
                </motion.div>
@@ -386,7 +386,7 @@ const DiscoverScreen = () => {
         {phase >= 3 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
             <GlassCard layer={2} className="p-2.5">
-              <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold mb-1.5">Upload Checklists</div>
+              <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold mb-1.5">Upload Checklists</div>
               <div className="space-y-1">
                 {["ISO_9001_Checklist.pdf", "Custom_Requirements.xlsx"].map((file, i) => (
                   <motion.div key={file} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
@@ -394,7 +394,7 @@ const DiscoverScreen = () => {
                     <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    <span className="text-background font-medium">{file}</span>
+                    <span className="text-foreground font-medium">{file}</span>
                     <svg className="w-3 h-3 text-primary ml-auto" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
@@ -413,8 +413,8 @@ const DiscoverScreen = () => {
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
               </svg>
               <div>
-                <span className="text-sm font-semibold text-background">Audit Order Confirmed</span>
-                <div className="text-[10px] text-background/60">Timeline: 3 business days</div>
+                 <span className="text-sm font-semibold text-foreground">Audit Order Confirmed</span>
+                 <div className="text-[10px] text-muted-foreground">Timeline: 3 business days</div>
               </div>
             </GlassCard>
           </motion.div>
@@ -483,15 +483,15 @@ const MatchScreen = () => {
              <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
                <GlassCard highlight={i === 0} layer={i === 0 ? 2 : 1} className="flex items-center gap-3 p-3">
                  <img src={a.img} alt={a.name} className="w-10 h-10 object-cover" />
-                 <div className="flex-1 min-w-0">
-                   <div className="flex items-center gap-2">
-                     <span className="text-sm font-semibold text-background truncate">{a.name}</span>
-                   </div>
-                   <div className="text-[11px] text-background/70 truncate">{a.cert}</div>
-                 </div>
-                 <div className="flex items-baseline gap-0.5">
-                   <span className="text-lg font-bold text-background">{a.match}</span>
-                   <span className="text-[10px] text-background/70">%</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground truncate">{a.cert}</div>
+                  </div>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-lg font-bold text-foreground">{a.match}</span>
+                    <span className="text-[10px] text-muted-foreground">%</span>
                  </div>
                </GlassCard>
              </motion.div>
@@ -505,7 +505,7 @@ const MatchScreen = () => {
              <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="currentColor">
                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
              </svg>
-             <span className="text-sm font-semibold text-background">Auditor confirmed: On-site Dec 22</span>
+             <span className="text-sm font-semibold text-foreground">Auditor confirmed: On-site Dec 22</span>
            </GlassCard>
          </motion.div>
       )}
@@ -576,11 +576,11 @@ const AuditScreen = () => {
                  </svg>
                  <span className="text-xs font-semibold text-primary">DMG MORI NLX 2500</span>
                </div>
-               <span className="text-[10px] text-background/70 mt-1 block">AI Equipment Detection</span>
+               <span className="text-[10px] text-muted-foreground mt-1 block">AI Equipment Detection</span>
              </GlassCard>
           </motion.div>
           <div className="absolute bottom-3 left-3">
-            <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">CNC Turning Center</div>
+             <div className="px-2 py-1 bg-foreground/70 text-background text-[10px] font-medium">CNC Turning Center</div>
           </div>
         </div>
 
@@ -673,7 +673,7 @@ const IntelligenceScreen = () => {
                 </div>
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
-                   <span className="text-[10px] text-background/60 uppercase tracking-wider">Overall Score</span>
+                   <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Overall Score</span>
                    <div className="flex items-center gap-1 text-primary text-xs font-medium mt-1">
                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z" /></svg>
                      trending up
@@ -687,20 +687,20 @@ const IntelligenceScreen = () => {
           {showElements >= 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <GlassCard layer={3} className="p-2.5">
-               <div className="text-xs font-semibold text-background mb-2">Process Scores</div>
-                 <div className="flex items-end justify-between gap-2">
-                   {[
-                     { label: "Quality", val: 93 },
-                     { label: "Equipment", val: 89 },
-                     { label: "Docs", val: 94 },
-                     { label: "Process", val: 88 },
-                   ].map((p) => (
-                     <div key={p.label} className="text-center">
-                       <div className="flex items-baseline justify-center gap-0.5">
-                         <span className="text-lg font-bold text-background">{p.val}</span>
-                         <span className="text-[9px] text-background/70">%</span>
-                       </div>
-                       <span className="text-[8px] text-background/70 uppercase">{p.label}</span>
+               <div className="text-xs font-semibold text-foreground mb-2">Process Scores</div>
+                  <div className="flex items-end justify-between gap-2">
+                    {[
+                      { label: "Quality", val: 93 },
+                      { label: "Equipment", val: 89 },
+                      { label: "Docs", val: 94 },
+                      { label: "Process", val: 88 },
+                    ].map((p) => (
+                      <div key={p.label} className="text-center">
+                        <div className="flex items-baseline justify-center gap-0.5">
+                          <span className="text-lg font-bold text-foreground">{p.val}</span>
+                          <span className="text-[9px] text-muted-foreground">%</span>
+                        </div>
+                        <span className="text-[8px] text-muted-foreground uppercase">{p.label}</span>
                      </div>
                    ))}
                  </div>
@@ -715,7 +715,7 @@ const IntelligenceScreen = () => {
            {showElements >= 4 && (
              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
                <GlassCard layer={2} className="p-3">
-                 <div className="text-[9px] text-background/60 uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
+                 <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
                  <div className="flex items-center justify-between">
                    {auditKpis.map((kpi, idx) => {
                      const size = 70;
@@ -746,7 +746,7 @@ const IntelligenceScreen = () => {
                                    strokeWidth={0.7} strokeLinecap="square" />
                                );
                              })}
-                             <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,55%)" strokeWidth={strokeW} />
+                             <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
                              <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
                                stroke="hsl(199, 91%, 64%)" strokeWidth={strokeW} strokeLinecap="square"
                                transform={`rotate(-90 ${size / 2} ${size / 2})`}
@@ -756,11 +756,11 @@ const IntelligenceScreen = () => {
                              />
                            </svg>
                            <div className="text-center z-10">
-                             <span className="text-sm font-bold text-background">{kpi.value}%</span>
-                           </div>
-                         </div>
-                         <div className="text-center">
-                           <span className="text-[8px] text-background/70 uppercase block">{kpi.label}</span>
+                              <span className="text-sm font-bold text-foreground">{kpi.value}%</span>
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <span className="text-[8px] text-muted-foreground uppercase block">{kpi.label}</span>
                            <span className="text-[7px] text-primary font-semibold">{kpi.delta}</span>
                          </div>
                        </motion.div>
@@ -775,13 +775,13 @@ const IntelligenceScreen = () => {
           {showElements >= 5 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
               <div className="flex gap-2">
-                 <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
-                   <span className="text-base font-bold text-background">0</span>
-                   <span className="text-[9px] text-background/70 uppercase block">Major</span>
-                 </GlassCard>
-                 <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
-                   <span className="text-base font-bold text-background">1</span>
-                   <span className="text-[9px] text-background/70 uppercase block">Minor</span>
+                  <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
+                    <span className="text-base font-bold text-foreground">0</span>
+                    <span className="text-[9px] text-muted-foreground uppercase block">Major</span>
+                  </GlassCard>
+                  <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
+                    <span className="text-base font-bold text-foreground">1</span>
+                    <span className="text-[9px] text-muted-foreground uppercase block">Minor</span>
                  </GlassCard>
               </div>
             </motion.div>
@@ -809,8 +809,8 @@ const IntelligenceScreen = () => {
                <GlassCard layer={2} className="flex items-center gap-3 p-2.5">
                  <img src={auditorGen2} alt="M. Hoffmann" className="w-9 h-9 object-cover" />
                  <div className="flex-1">
-                   <div className="text-sm font-medium text-background">Markus Hoffmann</div>
-                   <div className="text-[11px] text-background/70">ISO 9001 Lead Auditor</div>
+                    <div className="text-sm font-medium text-foreground">Markus Hoffmann</div>
+                    <div className="text-[11px] text-muted-foreground">ISO 9001 Lead Auditor</div>
                  </div>
                  <span className="text-[10px] text-primary font-semibold">24h</span>
                </GlassCard>
@@ -847,9 +847,9 @@ const CAPAScreen = () => {
     { id: "OFI-002", type: "OFI", title: "Update SPC charts for critical dimensions", owner: "PräzisionsTech", due: "Feb 12", status: "open", progress: 10 },
   ];
 
-  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-primary" : "bg-background/40";
+  const statusColor = (s: string) => s === "overdue" ? "bg-destructive" : s === "in-progress" ? "bg-primary" : "bg-foreground/30";
   const statusLabel = (s: string) => s === "overdue" ? "Overdue" : s === "in-progress" ? "In Progress" : "Open";
-  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-background" : "text-primary";
+  const typeColor = (t: string) => t === "Major NC" ? "text-destructive" : t === "Minor NC" ? "text-foreground" : "text-primary";
 
   return (
     <div className={`h-full flex flex-col ${SCREEN_BG}`}>
@@ -873,15 +873,15 @@ const CAPAScreen = () => {
               <div className="flex gap-2 mb-1">
                 <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
                   <span className="text-lg font-bold text-destructive">1</span>
-                  <span className="text-[8px] text-background/70 uppercase block">Major NC</span>
-                </GlassCard>
-                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
-                  <span className="text-lg font-bold text-background">1</span>
-                  <span className="text-[8px] text-background/70 uppercase block">Minor NC</span>
-                </GlassCard>
-                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
-                  <span className="text-lg font-bold text-primary">2</span>
-                  <span className="text-[8px] text-background/70 uppercase block">OFI</span>
+                   <span className="text-[8px] text-muted-foreground uppercase block">Major NC</span>
+                 </GlassCard>
+                 <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
+                   <span className="text-lg font-bold text-foreground">1</span>
+                   <span className="text-[8px] text-muted-foreground uppercase block">Minor NC</span>
+                 </GlassCard>
+                 <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
+                   <span className="text-lg font-bold text-primary">2</span>
+                   <span className="text-[8px] text-muted-foreground uppercase block">OFI</span>
                 </GlassCard>
               </div>
             </motion.div>
@@ -894,24 +894,24 @@ const CAPAScreen = () => {
                 <GlassCard highlight={f.status === "overdue"} layer={2} className="p-2.5">
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-bold text-background/50">{f.id}</span>
-                      <span className={`text-[9px] font-bold uppercase ${typeColor(f.type)}`}>{f.type}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <div className={`w-1.5 h-1.5 rounded-full ${statusColor(f.status)}`} />
-                      <span className="text-[8px] text-background/60 font-semibold">{statusLabel(f.status)}</span>
-                    </div>
-                  </div>
-                  <div className="text-[11px] text-background font-medium mb-1.5 leading-tight">{f.title}</div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-background/20 overflow-hidden">
-                      <motion.div initial={{ width: 0 }} animate={{ width: `${f.progress}%` }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-primary"}`}
-                      />
-                    </div>
-                    <span className="text-[8px] text-background/60 font-semibold">{f.progress}%</span>
-                    <span className="text-[8px] text-background/50">Due {f.due}</span>
+                       <span className="text-[9px] font-bold text-muted-foreground">{f.id}</span>
+                       <span className={`text-[9px] font-bold uppercase ${typeColor(f.type)}`}>{f.type}</span>
+                     </div>
+                     <div className="flex items-center gap-1.5">
+                       <div className={`w-1.5 h-1.5 rounded-full ${statusColor(f.status)}`} />
+                       <span className="text-[8px] text-muted-foreground font-semibold">{statusLabel(f.status)}</span>
+                     </div>
+                   </div>
+                   <div className="text-[11px] text-foreground font-medium mb-1.5 leading-tight">{f.title}</div>
+                   <div className="flex items-center gap-2">
+                     <div className="flex-1 h-1.5 bg-foreground/15 overflow-hidden">
+                       <motion.div initial={{ width: 0 }} animate={{ width: `${f.progress}%` }}
+                         transition={{ duration: 0.8, delay: 0.2 }}
+                         className={`h-full ${f.status === "overdue" ? "bg-destructive" : "bg-primary"}`}
+                       />
+                     </div>
+                     <span className="text-[8px] text-muted-foreground font-semibold">{f.progress}%</span>
+                     <span className="text-[8px] text-muted-foreground">Due {f.due}</span>
                   </div>
                 </GlassCard>
               </motion.div>
@@ -924,10 +924,10 @@ const CAPAScreen = () => {
           {phase >= 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <GlassCard layer={3} className="p-3">
-                <div className="text-[10px] font-semibold text-background/60 uppercase tracking-wider mb-2">Close-out Progress</div>
-                <DonutScore score={49} size={100} />
-                <div className="text-center mt-1">
-                  <span className="text-[9px] text-background/60">2 of 4 findings addressed</span>
+                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Close-out Progress</div>
+                 <DonutScore score={49} size={100} />
+                 <div className="text-center mt-1">
+                   <span className="text-[9px] text-muted-foreground">2 of 4 findings addressed</span>
                 </div>
               </GlassCard>
             </motion.div>
@@ -936,18 +936,18 @@ const CAPAScreen = () => {
           {phase >= 4 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <GlassCard layer={2} className="p-2.5">
-                <div className="text-[9px] font-semibold text-background/60 uppercase tracking-wider mb-1.5">Activity</div>
-                {[
-                  { time: "2h ago", text: "Calibration evidence uploaded", actor: "Supplier" },
-                  { time: "5h ago", text: "Training records requested", actor: "Client" },
-                  { time: "1d ago", text: "NC-001 response submitted", actor: "Supplier" },
-                ].map((a, i) => (
-                  <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.15 }}
-                    className="flex items-start gap-2 mb-1.5 last:mb-0">
-                    <div className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                    <div>
-                      <div className="text-[10px] text-background font-medium leading-tight">{a.text}</div>
-                      <div className="text-[8px] text-background/50">{a.actor} · {a.time}</div>
+                 <div className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">Activity</div>
+                 {[
+                   { time: "2h ago", text: "Calibration evidence uploaded", actor: "Supplier" },
+                   { time: "5h ago", text: "Training records requested", actor: "Client" },
+                   { time: "1d ago", text: "NC-001 response submitted", actor: "Supplier" },
+                 ].map((a, i) => (
+                   <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.15 }}
+                     className="flex items-start gap-2 mb-1.5 last:mb-0">
+                     <div className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                     <div>
+                       <div className="text-[10px] text-foreground font-medium leading-tight">{a.text}</div>
+                       <div className="text-[8px] text-muted-foreground">{a.actor} · {a.time}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -961,7 +961,7 @@ const CAPAScreen = () => {
                 <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg>
-                <span className="text-[10px] font-semibold text-background">Client notified — NC-001 overdue</span>
+                <span className="text-[10px] font-semibold text-foreground">Client notified — NC-001 overdue</span>
               </GlassCard>
             </motion.div>
           )}
