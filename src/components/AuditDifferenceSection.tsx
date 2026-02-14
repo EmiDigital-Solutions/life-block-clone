@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
+import aiTabletInspection from "@/assets/ai-tablet-inspection.png";
 
 const phases = [
   {
@@ -187,11 +187,22 @@ const AuditDifferenceSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hidden lg:block sticky top-32"
           >
-            <img
-              src={auditorTimelineHero}
-              alt="Quality assurance professional conducting an Atlas AI-guided audit"
-              className="w-full max-h-[480px] object-cover object-top"
-            />
+            <div className="relative bg-gradient-to-br from-gray-100 to-gray-200">
+              <img
+                src={aiTabletInspection}
+                alt="Auditor using AI-powered tablet for equipment inspection"
+                className="w-full max-h-[480px] object-cover object-top grayscale"
+                style={{ filter: 'grayscale(100%) contrast(1.1)' }}
+              />
+              {/* Selective green overlay */}
+              <div 
+                className="absolute inset-0" 
+                style={{ 
+                  background: 'linear-gradient(135deg, hsla(161, 26%, 55%, 0.15), hsla(161, 26%, 55%, 0.08))',
+                  mixBlendMode: 'multiply'
+                }} 
+              />
+            </div>
           </motion.div>
         </div>
 
