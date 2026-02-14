@@ -616,7 +616,7 @@ const QualificationsSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-[#f5f5f5]"
+      className="py-32 md:py-40 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
@@ -691,7 +691,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-[#f5f5f5]"
+      className="py-32 md:py-40 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -1215,7 +1215,7 @@ const ScrollZoomSection = () => {
   }, [auditors.length]);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-[#f5f5f5] overflow-hidden">
+    <section ref={sectionRef} className="py-32 md:py-40 bg-white overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
