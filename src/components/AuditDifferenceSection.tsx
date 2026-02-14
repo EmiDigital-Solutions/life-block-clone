@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import aiTabletInspection from "@/assets/ai-tablet-inspection-bw-green.jpg";
+import aiTabletInspection from "@/assets/ai-tablet-inspection-bw-blue.jpg";
 
 const phases = [
   {
