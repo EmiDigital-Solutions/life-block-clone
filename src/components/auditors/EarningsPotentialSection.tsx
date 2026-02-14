@@ -49,7 +49,7 @@ const EarningsPotentialSection = () => {
   return (
     <>
       {/* Payment Process Section — Dark, premium */}
-      <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
+      <section ref={ref} data-nav-theme="light" className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
 
           {/* Header */}
@@ -141,7 +141,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
+    <section ref={ref} data-nav-theme="light" className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
 
         {/* Header */}

@@ -263,7 +263,7 @@ const Auditors = () => {
         {/* Final CTA Section - Premium B2B Style */}
         <section 
           data-nav-theme="white"
-          className="py-32 md:py-40 bg-[#0a0a0a]"
+          className="py-16 md:py-24 bg-[#0a0a0a]"
         >
           <div className="mx-auto max-w-[1400px] px-8">
             <div className="max-w-3xl mx-auto text-center">
@@ -360,7 +360,7 @@ const ValuePropositionSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -369,7 +369,7 @@ const ValuePropositionSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-20"
+          className="max-w-3xl mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
@@ -493,11 +493,11 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section ref={ref} id="how-it-works" className="py-32 md:py-40 bg-white overflow-hidden">
+    <section ref={ref} id="how-it-works" className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 md:mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -616,7 +616,7 @@ const QualificationsSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
@@ -691,7 +691,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -700,7 +700,7 @@ const TechnologyFeaturesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-20"
+          className="max-w-3xl mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
@@ -852,7 +852,7 @@ const DayInLifeSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-12 md:py-16 bg-white overflow-hidden"
+      className="py-16 md:py-24 bg-white overflow-hidden"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -861,7 +861,7 @@ const DayInLifeSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-4xl mb-24 md:mb-32"
+          className="max-w-4xl mb-12 md:mb-16"
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="w-16 h-px bg-primary" />
@@ -1046,14 +1046,14 @@ const SuccessStoriesSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-32 md:py-40 bg-white"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mb-16 md:mb-20"
+          className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
@@ -1128,7 +1128,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-24 md:py-32 bg-white"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <motion.div
@@ -1215,14 +1215,14 @@ const ScrollZoomSection = () => {
   }, [auditors.length]);
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-40 bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mb-16 md:mb-20"
+          className="mb-12"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
