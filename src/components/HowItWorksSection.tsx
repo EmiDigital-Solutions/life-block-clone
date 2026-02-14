@@ -182,7 +182,7 @@ export const HowItWorksSection = () => {
               className="text-center py-8"
             >
               <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
-                Ready to transform your audits?
+                See what in 3 days looks like.
               </h3>
               <Button asChild size="lg">
                 <a 
