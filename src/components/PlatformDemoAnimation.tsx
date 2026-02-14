@@ -964,7 +964,7 @@ const PlatformDemoAnimation = () => {
         {labels.map((label, i) => (
           <div key={label} className="flex items-center gap-1 flex-1">
              <div className={`h-1 flex-1 transition-colors duration-500 ${
-              i <= currentScreen ? 'bg-foreground' : 'bg-muted-foreground/15'
+              i <= currentScreen ? 'bg-primary' : 'bg-muted-foreground/15'
             }`} />
             <span className={`text-[10px] font-medium transition-colors duration-300 ${
               i === currentScreen ? 'text-foreground' : 'text-muted-foreground'
