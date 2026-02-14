@@ -10,18 +10,18 @@ const WhyYVOOSection = () => {
   const painPoints = [
     {
       arrow: "→",
-      title: "Quality teams waste time on logistics.",
-      description: "Strategic audits are held back by travel booking, waiting for engineer calendars, leaving less time for actual supplier development."
+      title: "50+ emails before anyone steps on a factory floor.",
+      description: "Coordinating schedules, aligning departments, chasing supplier contacts—weeks of chaos before the audit even begins."
     },
     {
       arrow: "→",
-      title: "Suppliers struggle with delayed assessments.",
-      description: "Months-long qualification timelines reduce competitiveness and limit your sourcing options."
+      title: "10 weeks from request to report.",
+      description: "By the time you get results, the defective parts already shipped. The damage is done."
     },
     {
       arrow: "→",
-      title: "Leadership views auditing as a cost center.",
-      description: "Disconnected data and €15K-25K per audit make it hard to demonstrate strategic value."
+      title: "€15K–€25K burned on every single audit.",
+      description: "Flights, hotels, per diems, overtime—leadership sees auditing as a money pit, not a strategic function."
     }
   ];
 
@@ -135,10 +135,10 @@ const WhyYVOOSection = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="section-headline text-foreground mb-6">
-                  Auditing needs to move faster
+                  The nightmare everyone accepts
                 </h2>
                 <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-                  Billions in supplier spend are still audited using flights, hotels, and Excel—and everyone feels the pain.
+                  Billions in supplier spend are still audited with clipboards, Excel, and crossed fingers. Everyone feels the pain—nobody questions the process.
                 </p>
 
                 <div className="space-y-8 mb-16">
@@ -189,10 +189,10 @@ const WhyYVOOSection = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="section-headline text-foreground mb-6">
-                  Leaders are transforming audits
+                  Leaders who refuse the nightmare
                 </h2>
                 <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-                  Visionary procurement leaders are making audits faster, cheaper, and more transparent. With local auditors and AI-powered workflows, they focus on supplier development instead of travel logistics.
+                  Visionary procurement leaders replaced the chaos with a click. Local auditors, AI-powered workflows, results in days—not months.
                 </p>
 
                 <div className="space-y-8">
