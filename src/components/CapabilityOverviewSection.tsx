@@ -35,8 +35,7 @@ const CapabilityOverviewSection = () => {
             className="mb-12 md:mb-16"
           >
             <h2 className="section-headline text-foreground max-w-4xl">
-              The physics of speed.<br />
-              <span className="text-muted-foreground font-normal">One place from discover to on-site audited partnerships.</span>
+              The physics of speed. One place from discover to on-site audited partnerships.
             </h2>
           </motion.div>
 
