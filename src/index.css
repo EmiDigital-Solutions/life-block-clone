@@ -201,6 +201,11 @@ All colors MUST be HSL.
     line-height: 1.5;
   }
 
+  /* Section Eyebrow — global label style above headlines */
+  .section-eyebrow {
+    @apply font-mono text-sm tracking-wide lowercase text-primary;
+  }
+
   /* Section Headlines - bfl.ai inspired clean, semi-bold typography */
   .section-headline {
     @apply text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1];
