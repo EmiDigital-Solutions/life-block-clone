@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
-  { category: "Save costs", value: "60%", description: "Lower audit costs with local certified auditors" },
-  { category: "Scale globally", value: "12K+", description: "Certified auditors in 50+ countries" },
-  { category: "Get results", value: "24h", description: "Digital audit reports delivered within hours" }
+  { category: "Lead time", value: "3 days", description: "From audit request to verified report — down from 10 weeks" },
+  { category: "Cost per audit", value: "€700", description: "Flat fee replaces €15,000+ in travel, coordination and overhead" },
+  { category: "Coordination", value: "1 click", description: "Zero emails, zero calendar Tetris — upload and go" },
+  { category: "Quality outcome", value: "85%", description: "Risk reduction through AI-standardized audits with evidence" }
 ];
 
 const StatsWithQuoteSection = () => {
@@ -18,7 +18,7 @@ const StatsWithQuoteSection = () => {
           viewport={{ once: true }}
           className="section-headline text-foreground max-w-2xl mb-16"
         >
-          Built for Enterprise Scale
+          The numbers speak
         </motion.h2>
 
         {/* KPI Grid 2x2 — shifted one grid right */}

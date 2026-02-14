@@ -38,9 +38,9 @@ const CapabilityOverviewSection = () => {
             transition={{ duration: 0.5 }}
             className="mb-12 md:mb-16"
           >
-            <h2 className="section-headline text-foreground max-w-4xl">
-              The physics of why we're simply better.
-            </h2>
+             <h2 className="section-headline text-foreground max-w-4xl">
+               Find. Verify. Decide. One platform.
+             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">

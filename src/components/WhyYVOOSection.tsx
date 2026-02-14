@@ -78,12 +78,12 @@ const WhyYVOOSection = () => {
             viewport={{ once: true }}
             className="max-w-4xl"
           >
-            <h2 className="section-headline text-foreground mb-6">
-              How you audit shapes how suppliers see you
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              85% of auditors still show up with a clipboard. We didn't improve that process — we replaced it. YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
-            </p>
+             <h2 className="section-headline text-foreground mb-6">
+               85% still use clipboards. We replaced the clipboard.
+             </h2>
+             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+               While competitors send junior auditors with paper checklists, YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously. Same factory. Completely different outcome.
+             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}
               variant="outline"
@@ -116,8 +116,8 @@ const WhyYVOOSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-4xl mb-8">
-                  How you audit shapes<br />how suppliers see you
+                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-4xl mb-8">
+                   85% still use clipboards.<br />We replaced the clipboard.
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-xl">
                   85% of auditors still show up with a clipboard. We didn't improve that process — we replaced it. YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
