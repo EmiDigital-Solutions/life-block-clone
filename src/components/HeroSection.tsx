@@ -55,8 +55,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              3 Days. €700.<br />
-              Done.
+              The audit satisfying<br />
+              nightmare is over.
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                That's the reality of supplier audits today — budget battles, travel coordination, calendar chaos. Upload your supplier list. We handle everything. Verified report in 3 days.
+                Local certified auditors, guided by Atlas AI, on-site in days — not weeks. Quality no internal team can match. Zero coordination. Just click and verify.
               </motion.p>
 
               <motion.div
