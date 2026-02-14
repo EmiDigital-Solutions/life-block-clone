@@ -65,7 +65,7 @@ export const HowItWorksSection = () => {
             <h2 className="section-headline text-foreground">
               From request
               <br />
-              to report.
+              to report
             </h2>
           </motion.div>
           
@@ -182,7 +182,7 @@ export const HowItWorksSection = () => {
               className="text-center py-8"
             >
               <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
-                See what in 3 days looks like.
+                See what in 3 days looks like
               </h3>
               <Button asChild size="lg">
                 <a 
