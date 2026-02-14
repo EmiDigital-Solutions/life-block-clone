@@ -761,7 +761,7 @@ const TechnologyFeaturesSection = () => {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="mt-16"
         >
-          <div className="rounded-none overflow-hidden border border-border/20 aspect-[16/10] max-w-5xl mx-auto shadow-2xl">
+          <div className="rounded-none overflow-hidden border border-border/20 aspect-[16/10] w-full shadow-2xl">
             <AtlasAIDemoAnimation />
           </div>
         </motion.div>
