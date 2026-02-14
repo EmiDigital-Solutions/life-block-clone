@@ -1,31 +1,55 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { ArrowRight, Check, X, MapPin } from "lucide-react";
+import { ArrowRight, Check, X, MapPin, Clock, CreditCard, FileCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const EarningsPotentialSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const paymentComparison = [
-    { traditional: "Submit invoice", yvoo: "Submit report" },
-    { traditional: "Wait for approval", yvoo: "Instant validation" },
-    { traditional: "Chase payment", yvoo: "Auto-release" },
-    { traditional: "30–90 days typical", yvoo: "Same business day" },
+  const paymentSteps = [
+    {
+      icon: FileCheck,
+      traditional: "Submit invoice manually",
+      yvoo: "Submit audit report",
+      traditionalTime: "1–2 hours",
+      yvooTime: "Automatic",
+    },
+    {
+      icon: Clock,
+      traditional: "Wait for client approval",
+      yvoo: "Instant AI validation",
+      traditionalTime: "5–15 days",
+      yvooTime: "< 1 minute",
+    },
+    {
+      icon: CreditCard,
+      traditional: "Chase payment repeatedly",
+      yvoo: "Auto-release to your bank",
+      traditionalTime: "Ongoing",
+      yvooTime: "Immediate",
+    },
+    {
+      icon: Zap,
+      traditional: "Receive after 30–90 days",
+      yvoo: "Paid same business day",
+      traditionalTime: "30–90 days",
+      yvooTime: "Same day",
+    },
   ];
 
   const exampleAudits = [
-    { standard: "ISO 9001", location: "Munich", fee: "€850", distance: "12 km" },
-    { standard: "VDA 6.3", location: "Stuttgart", fee: "€1,200", distance: "25 km" },
-    { standard: "IATF 16949", location: "Ingolstadt", fee: "€1,450", distance: "8 km" },
-    { standard: "AS9100", location: "Hamburg", fee: "€1,100", distance: "18 km" },
+    { standard: "ISO 9001", type: "Quality Management", location: "Shenzhen, China", fee: "$680", currency: "USD", distance: "15 km", duration: "2 days" },
+    { standard: "VDA 6.3", type: "Process Audit", location: "Pune, India", fee: "$520", currency: "USD", distance: "22 km", duration: "2 days" },
+    { standard: "IATF 16949", type: "Automotive QMS", location: "Wrocław, Poland", fee: "€1,150", currency: "EUR", distance: "8 km", duration: "3 days" },
+    { standard: "AS9100 Rev D", type: "Aerospace QMS", location: "Detroit, USA", fee: "$1,400", currency: "USD", distance: "30 km", duration: "3 days" },
   ];
 
   return (
     <>
-      {/* Payment Process Section */}
-      <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
+      {/* Payment Process Section — Dark, premium */}
+      <section ref={ref} data-nav-theme="white" className="py-24 md:py-32 bg-[#0a0a0a]">
         <div className="mx-auto max-w-[1400px] px-8">
 
           {/* Header */}
@@ -33,65 +57,76 @@ const EarningsPotentialSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="max-w-3xl mb-16"
+            className="max-w-3xl mb-20"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <div className="w-12 h-px bg-white/30" />
+              <span className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
                 Payment Process
               </span>
             </div>
-            <h2 className="section-headline text-foreground">
+            <h2 className="section-headline text-white">
               Simple. Transparent. Immediate.
             </h2>
           </motion.div>
 
-          {/* Comparison Table */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-12"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-4 pr-8 text-sm font-medium text-muted-foreground uppercase tracking-wider">Traditional</th>
-                    <th className="text-left py-4 text-sm font-medium text-primary uppercase tracking-wider">With YVOO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {paymentComparison.map((row, idx) => (
-                    <tr key={idx} className="border-b border-border/50">
-                      <td className="py-5 pr-8 text-muted-foreground">
-                        <span className="flex items-center gap-2">
-                          <X className="w-4 h-4 text-destructive flex-shrink-0" />
-                          {row.traditional}
-                        </span>
-                      </td>
-                      <td className="py-5 text-foreground font-medium">
-                        <span className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                          {row.yvoo}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
+          {/* Payment Flow — Visual Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {paymentSteps.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + idx * 0.1 }}
+                className="relative"
+              >
+                {/* Step number */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 border border-primary/40 flex items-center justify-center">
+                    <span className="text-xs font-medium text-primary">{String(idx + 1).padStart(2, '0')}</span>
+                  </div>
+                  {idx < 3 && (
+                    <div className="hidden lg:block flex-1 h-px bg-white/10" />
+                  )}
+                </div>
 
-          {/* Tagline */}
-          <motion.p
+                {/* Traditional */}
+                <div className="mb-4 pb-4 border-b border-white/10">
+                  <div className="flex items-start gap-2 mb-1">
+                    <X className="w-3.5 h-3.5 text-destructive mt-0.5 flex-shrink-0" />
+                    <span className="text-white/40 text-sm">{step.traditional}</span>
+                  </div>
+                  <span className="text-white/20 text-xs ml-5.5">{step.traditionalTime}</span>
+                </div>
+
+                {/* YVOO */}
+                <div>
+                  <div className="flex items-start gap-2 mb-1">
+                    <Check className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-white font-medium text-sm">{step.yvoo}</span>
+                  </div>
+                  <span className="text-primary/60 text-xs ml-5.5">{step.yvooTime}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom tagline */}
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-muted-foreground"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-8 border-t border-white/10"
           >
-            No invoicing. No waiting. No uncertainty.
-          </motion.p>
+            <p className="text-xl md:text-2xl font-medium text-white">
+              No invoicing. No waiting. No uncertainty.
+            </p>
+            <div className="hidden sm:block flex-1" />
+            <div className="flex items-center gap-2 text-white/30 text-sm">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              Report submitted → Payment released
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -101,12 +136,12 @@ const EarningsPotentialSection = () => {
   );
 };
 
-const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; location: string; fee: string; distance: string }[] }) => {
+const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type: string; location: string; fee: string; currency: string; distance: string; duration: string }[] }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-[#f5f5f5]">
+    <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
 
         {/* Header */}
@@ -128,22 +163,35 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; loca
         </motion.div>
 
         {/* Audit Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {audits.map((audit, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white p-6 border border-border"
+              className="bg-[#f5f5f5] p-6 border-t-2 border-primary/30 hover:border-primary transition-colors duration-300 group"
             >
-              <p className="text-xs font-medium tracking-[0.15em] text-primary uppercase mb-3">{audit.standard}</p>
-              <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-4">
-                <MapPin className="w-3.5 h-3.5" />
+              {/* Standard badge */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium tracking-[0.15em] text-primary uppercase">{audit.standard}</span>
+                <span className="text-xs text-muted-foreground">{audit.duration}</span>
+              </div>
+
+              {/* Type */}
+              <p className="text-sm text-muted-foreground mb-3">{audit.type}</p>
+
+              {/* Location */}
+              <div className="flex items-center gap-1.5 text-foreground text-sm font-medium mb-5">
+                <MapPin className="w-3.5 h-3.5 text-primary" />
                 <span>{audit.location}</span>
               </div>
-              <p className="text-2xl font-semibold text-foreground mb-1">{audit.fee}</p>
-              <p className="text-sm text-muted-foreground">{audit.distance} from you</p>
+
+              {/* Fee */}
+              <div className="pt-4 border-t border-border/50">
+                <p className="text-2xl md:text-3xl font-semibold text-foreground">{audit.fee}</p>
+                <p className="text-xs text-muted-foreground mt-1">{audit.distance} from you</p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -155,7 +203,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; loca
           transition={{ delay: 0.4 }}
           className="text-sm text-muted-foreground/60 mb-10"
         >
-          Examples based on recent assignments
+          Examples based on recent assignments. Fees vary by standard, complexity, and region.
         </motion.p>
 
         {/* CTA */}
