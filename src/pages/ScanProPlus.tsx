@@ -2702,7 +2702,7 @@ const ScanProPlus = () => {
             className="bg-[#1a1a1a] p-12 lg:p-16"
           >
             <h3 className="text-2xl md:text-3xl text-white mb-4">
-              <span className="font-semibold">Your auditor is already there.</span>
+              <span className="font-semibold">Your auditor is already there</span>
             </h3>
             <p className="text-white/60 text-lg mb-8 max-w-2xl">
               Need a VDA 6.3 audit at your supplier in Shenzhen? No flights, no hotel costs, no time lost. Book a local expert—on-site within 24 hours.

@@ -846,8 +846,8 @@ const DayInLifeSection = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
-            Others send you with a clipboard.<br />
-            <span className="font-medium">We send you with Atlas AI.</span>
+            Others send you with a clipboard<br />
+            <span className="font-medium">We send you with Atlas AI</span>
           </h2>
         </motion.div>
 
