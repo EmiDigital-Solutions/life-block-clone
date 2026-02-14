@@ -89,8 +89,7 @@ const AuditDifferenceSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            Computer vision AI that sees{" "}
-            <span className="text-foreground">everything.</span>
+            Computer vision AI that sees everything
           </h2>
         </motion.div>
 
@@ -109,14 +108,14 @@ const AuditDifferenceSection = () => {
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 border ${
+                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 ${
                       activeTab === index
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <span className={`font-mono text-xs tracking-wider ${
-                      activeTab === index ? "text-primary" : "text-muted-foreground/40"
+                      activeTab === index ? "text-primary-foreground/70" : "text-muted-foreground/40"
                     }`}>
                       {item.id}
                     </span>
@@ -128,7 +127,7 @@ const AuditDifferenceSection = () => {
               </div>
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors border border-border"
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors"
                 aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
