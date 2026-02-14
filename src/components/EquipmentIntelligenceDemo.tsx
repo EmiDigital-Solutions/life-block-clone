@@ -84,12 +84,12 @@ const detectedObjects: DetectedObject[] = [
 /* ── Design system matching PlatformDemoAnimation ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {
   const layerBg = layer === 1
-    ? 'bg-[hsl(0,0%,45%)] border-[hsl(0,0%,40%)]'
+    ? 'bg-white/70 border-white/80'
     : layer === 2
-    ? 'bg-[hsl(0,0%,38%)] border-[hsl(0,0%,33%)]'
-    : 'bg-[hsl(0,0%,32%)] border-[hsl(0,0%,28%)]';
+    ? 'bg-white/75 border-white/85'
+    : 'bg-white/80 border-white/90';
   return (
-    <div className={`border ${highlight ? 'border-primary/30 bg-[hsl(0,0%,42%)]' : layerBg} ${className}`}>
+    <div className={`border backdrop-blur-md ${highlight ? 'border-accent/40 bg-white/85' : layerBg} ${className}`}>
       {children}
     </div>
   );
@@ -146,7 +146,7 @@ export function EquipmentIntelligenceDemo() {
       {/* AI Computer Vision Badge */}
       <div className="flex items-center gap-3 mb-4">
         <GlassCard layer={2} className="px-4 py-2 flex items-center gap-2">
-          <span className="text-sm text-background/90 font-medium">AI Computer Vision</span>
+          <span className="text-sm text-foreground font-medium">AI Computer Vision</span>
         </GlassCard>
       </div>
       
@@ -160,8 +160,8 @@ export function EquipmentIntelligenceDemo() {
                 onClick={() => setMode(m.id)}
                 className={`px-3 lg:px-4 py-2 text-xs font-medium flex items-center gap-2 transition-all duration-200 ${
                   mode === m.id 
-                    ? 'bg-primary text-background' 
-                    : 'text-background/60 hover:text-background/90 hover:bg-[hsl(0,0%,42%)]'
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-white/60'
                 }`}
               >
                 <span>{m.label}</span>
@@ -172,7 +172,7 @@ export function EquipmentIntelligenceDemo() {
           <div className="flex items-center gap-3">
             <GlassCard layer={2} className="flex items-center gap-2 px-3 py-1.5">
               <div className={`w-2 h-2 ${isScanning ? 'bg-primary animate-pulse' : 'bg-primary'}`} />
-              <span className="text-background/70 text-xs font-medium">
+              <span className="text-muted-foreground text-xs font-medium">
                 {isScanning ? 'Analyzing...' : 'Complete'}
               </span>
             </GlassCard>
@@ -184,7 +184,7 @@ export function EquipmentIntelligenceDemo() {
         
         {/* Progress Bar */}
         {isScanning && (
-          <div className="h-0.5 bg-[hsl(0,0%,70%)] mb-4 overflow-hidden">
+          <div className="h-0.5 bg-muted mb-4 overflow-hidden">
             <motion.div 
               className="h-full bg-primary"
               style={{ width: `${scanProgress}%` }}
@@ -195,7 +195,7 @@ export function EquipmentIntelligenceDemo() {
         {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Image Area */}
-          <div className="relative flex-1 aspect-video overflow-hidden border border-[hsl(0,0%,70%)]">
+          <div className="relative flex-1 aspect-video overflow-hidden border border-white/80">
             <img 
               src={equipmentImage} 
               alt="DMG MORI CNC Machine" 
@@ -303,10 +303,10 @@ export function EquipmentIntelligenceDemo() {
             <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
               <div className="flex gap-2">
                 <GlassCard layer={3} className="px-2.5 py-1.5 flex items-center gap-2">
-                  <span className="text-[11px] text-background/90 font-medium">{detectedObjects.length} Objects</span>
+                  <span className="text-[11px] text-foreground font-medium">{detectedObjects.length} Objects</span>
                 </GlassCard>
                 <GlassCard layer={3} className="px-2.5 py-1.5 flex items-center gap-2">
-                  <span className="text-[11px] text-background/90 font-medium">0.8s</span>
+                  <span className="text-[11px] text-foreground font-medium">0.8s</span>
                 </GlassCard>
               </div>
             </div>
@@ -315,7 +315,7 @@ export function EquipmentIntelligenceDemo() {
           {/* Side Panel - Desktop Only */}
           <div className="hidden lg:flex w-[240px] flex-col gap-3">
             <GlassCard layer={2} className="p-3">
-              <div className="text-[10px] text-background/50 uppercase tracking-wider font-semibold mb-3">Detection Process</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-3">Detection Process</div>
               <div className="space-y-2.5">
                 {[
                   { label: "Image Analysis", sub: "Neural network scan" },
@@ -328,8 +328,8 @@ export function EquipmentIntelligenceDemo() {
                       <div className="w-2 h-2 bg-primary" />
                     </div>
                     <div className="flex-1">
-                      <span className="text-[11px] text-background/80 block">{step.label}</span>
-                      <span className="text-[9px] text-background/50">{step.sub}</span>
+                      <span className="text-[11px] text-foreground block">{step.label}</span>
+                      <span className="text-[9px] text-muted-foreground">{step.sub}</span>
                     </div>
                   </GlassCard>
                 ))}
@@ -337,18 +337,18 @@ export function EquipmentIntelligenceDemo() {
             </GlassCard>
             
             <GlassCard layer={2} className="p-3 flex-1">
-              <div className="text-[10px] text-background/50 uppercase tracking-wider font-semibold mb-2">Analysis</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Analysis</div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-[11px] text-background/60">Accuracy</span>
+                  <span className="text-[11px] text-muted-foreground">Accuracy</span>
                   <span className="text-[11px] text-primary font-semibold">94%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[11px] text-background/60">Objects</span>
-                  <span className="text-[11px] text-background/80 font-semibold">{detectedObjects.length}</span>
+                  <span className="text-[11px] text-muted-foreground">Objects</span>
+                  <span className="text-[11px] text-foreground font-semibold">{detectedObjects.length}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[11px] text-background/60">Status</span>
+                  <span className="text-[11px] text-muted-foreground">Status</span>
                   <span className="text-[11px] text-primary font-semibold">Verified</span>
                 </div>
               </div>
@@ -374,11 +374,11 @@ export function EquipmentIntelligenceDemo() {
                       </svg>
                     </div>
                     <div>
-                      <div className="text-background font-semibold">{selectedDetails.model}</div>
-                      <div className="text-[11px] text-background/60">{selectedDetails.compliance}</div>
+                      <div className="text-foreground font-semibold">{selectedDetails.model}</div>
+                      <div className="text-[11px] text-muted-foreground">{selectedDetails.compliance}</div>
                     </div>
                   </div>
-                  <button className="px-3 py-1.5 bg-primary hover:bg-primary/90 text-xs text-background font-medium flex items-center gap-1.5 transition-colors">
+                  <button className="px-3 py-1.5 bg-primary hover:bg-primary/90 text-xs text-primary-foreground font-medium flex items-center gap-1.5 transition-colors">
                     View Report
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -394,13 +394,13 @@ export function EquipmentIntelligenceDemo() {
                 
                 <div className="grid grid-cols-4 gap-4 mb-3">
                   {[
-                    { label: "Asset ID", value: selectedDetails.assetId, color: "text-background/90" },
+                    { label: "Asset ID", value: selectedDetails.assetId, color: "text-foreground" },
                     { label: "Condition", value: selectedDetails.condition, color: "text-primary" },
-                    { label: "Last Service", value: selectedDetails.lastService, color: "text-background/90" },
+                    { label: "Last Service", value: selectedDetails.lastService, color: "text-foreground" },
                     { label: "Compliance", value: "CE · ISO 12100", color: "text-primary" },
                   ].map((item, i) => (
                     <GlassCard key={i} layer={3} className="p-2.5">
-                      <div className="text-[10px] text-background/50 uppercase tracking-wider mb-1">{item.label}</div>
+                      <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{item.label}</div>
                       <div className={`text-xs ${item.color} font-medium`}>{item.value}</div>
                     </GlassCard>
                   ))}
@@ -415,8 +415,8 @@ export function EquipmentIntelligenceDemo() {
                     { label: "Power", value: selectedDetails.specs?.power },
                   ].map((item, i) => (
                     <GlassCard key={i} layer={3} className="p-2.5">
-                      <div className="text-[10px] text-background/50 uppercase tracking-wider mb-1">{item.label}</div>
-                      <div className="text-xs text-background/90 font-medium">{item.value}</div>
+                      <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{item.label}</div>
+                      <div className="text-xs text-foreground font-medium">{item.value}</div>
                     </GlassCard>
                   ))}
                 </div>
