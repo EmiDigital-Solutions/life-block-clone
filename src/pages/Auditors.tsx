@@ -48,7 +48,7 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
-import atlasAiInterface from "@/assets/atlas-ai-interface.jpg";
+import AtlasAIDemoAnimation from "@/components/AtlasAIDemoAnimation";
 import EarningsPotentialSection from "@/components/auditors/EarningsPotentialSection";
 import CommunitySection from "@/components/auditors/CommunitySection";
 
@@ -754,20 +754,15 @@ const TechnologyFeaturesSection = () => {
           ))}
         </div>
 
-        {/* Atlas AI Screenshot */}
+        {/* Atlas AI Demo Animation */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.4 }}
           className="mt-16"
         >
-          <div className="rounded-lg overflow-hidden border border-border/20">
-            <img 
-              src={atlasAiInterface}
-              alt="Atlas AI audit interface showing real-time guidance and documentation"
-              className="w-full h-auto"
-              loading="lazy"
-            />
+          <div className="rounded-none overflow-hidden border border-border/20 aspect-[16/10] max-w-5xl mx-auto shadow-2xl">
+            <AtlasAIDemoAnimation />
           </div>
         </motion.div>
 
