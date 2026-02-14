@@ -16,6 +16,8 @@ const AtlasAIDemoAnimation = () => {
   const [copilotText, setCopilotText] = useState("");
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const middleScrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [speakerPulsing, setSpeakerPulsing] = useState(false);
 
   const riskAlertParts = [
     "BMW rejected 2 suppliers for documentation gaps.",
@@ -62,6 +64,27 @@ const AtlasAIDemoAnimation = () => {
     };
 
     speakNext();
+  }, [copilotSpeaking]);
+
+  // Pulse speaker when section scrolls into view
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !copilotSpeaking) {
+          setSpeakerPulsing(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [copilotSpeaking]);
+
+  // Stop pulsing when user clicks speak
+  useEffect(() => {
+    if (copilotSpeaking) setSpeakerPulsing(false);
   }, [copilotSpeaking]);
 
   // Single animation run (no loop)
@@ -113,7 +136,7 @@ const AtlasAIDemoAnimation = () => {
   
 
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div ref={sectionRef} className="w-full h-full overflow-hidden">
       <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
         {/* Flash */}
@@ -394,7 +417,7 @@ const AtlasAIDemoAnimation = () => {
               <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
               <div className="relative flex items-center justify-center">
                 <AnimatePresence>
-                  {copilotSpeaking && (
+                  {(copilotSpeaking || speakerPulsing) && (
                     <>
                       <motion.div initial={{ scale: 0.8, opacity: 0.4 }} animate={{ scale: 1.8, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/30" />
                       <motion.div initial={{ scale: 0.9, opacity: 0.3 }} animate={{ scale: 1.5, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/20" />
@@ -404,12 +427,12 @@ const AtlasAIDemoAnimation = () => {
                 </AnimatePresence>
                 <motion.button
                   onClick={speakRiskAlert}
-                  animate={copilotSpeaking ? {
+                  animate={(copilotSpeaking || speakerPulsing) ? {
                     boxShadow: ["0 0 15px rgba(61,200,142,0.15)", "0 0 35px rgba(61,200,142,0.4)", "0 0 15px rgba(61,200,142,0.15)"],
                     scale: [1, 1.05, 1],
                   } : {}}
                   transition={{ duration: 1.2, repeat: Infinity }}
-                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${copilotSpeaking ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15 hover:border-white/30"}`}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${(copilotSpeaking || speakerPulsing) ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15 hover:border-white/30"}`}
                 >
                   <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                     {copilotSpeaking ? (
@@ -429,8 +452,8 @@ const AtlasAIDemoAnimation = () => {
                   </svg>
                 </motion.button>
               </div>
-              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/30"}`}>
-                {copilotSpeaking ? "Speaking..." : "Tap to speak"}
+              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#3DC88E]" : speakerPulsing ? "text-[#3DC88E] animate-pulse" : "text-white/30"}`}>
+                {copilotSpeaking ? "Speaking..." : speakerPulsing ? "Tap to listen" : "Tap to speak"}
               </span>
               {/* Waveform — always rendered, visibility toggled */}
               <div className="flex items-center gap-0.5 mt-2 h-5">
