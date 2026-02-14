@@ -14,7 +14,7 @@ const CommunitySection = () => {
   ];
 
   return (
-    <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
+    <section ref={ref} data-nav-theme="light" className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
 
         {/* Header */}
