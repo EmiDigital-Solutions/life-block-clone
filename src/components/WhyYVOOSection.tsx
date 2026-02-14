@@ -152,7 +152,7 @@ const WhyYVOOSection = () => {
                       className="max-w-2xl"
                     >
                       <p className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-primary mr-2">{point.arrow}</span>
+                        <span className="text-foreground mr-2">{point.arrow}</span>
                         {point.title}
                       </p>
                       <p className="text-muted-foreground pl-6">
@@ -167,7 +167,7 @@ const WhyYVOOSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="border-l-4 border-primary pl-6 py-4 max-w-2xl"
+                  className="border-l-4 border-foreground pl-6 py-4 max-w-2xl"
                 >
                   <p className="text-lg text-foreground italic mb-3">
                     "Companies with mature supplier quality management have 30% fewer quality incidents and 20% lower warranty costs."
@@ -206,7 +206,7 @@ const WhyYVOOSection = () => {
                       className="max-w-2xl"
                     >
                       <p className="text-lg font-semibold text-foreground mb-2">
-                        <span className="text-primary mr-2">{item.arrow}</span>
+                        <span className="text-foreground mr-2">{item.arrow}</span>
                         {item.title}
                       </p>
                       <p className="text-muted-foreground pl-6">
@@ -284,7 +284,7 @@ const WhyYVOOSection = () => {
                     className="max-w-2xl"
                   >
                     <p className="text-lg text-foreground mb-2">
-                      <span className="font-bold text-primary">{pillar.number}</span>
+                      <span className="font-bold text-foreground">{pillar.number}</span>
                       <span className="font-bold ml-2">{pillar.title}</span>
                     </p>
                     <p className="text-muted-foreground pl-4">

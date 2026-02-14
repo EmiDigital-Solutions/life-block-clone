@@ -83,8 +83,8 @@ const AuditDifferenceSection = () => {
           className="mb-12 md:mb-16"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-px bg-primary" />
-            <span className="section-eyebrow-primary">
+            <div className="w-16 h-px bg-foreground/30" />
+            <span className="section-eyebrow">
               How an Atlas audit works
             </span>
           </div>
@@ -159,7 +159,7 @@ const AuditDifferenceSection = () => {
                       transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
                       className="flex gap-4"
                     >
-                      <div className="flex-shrink-0 w-6 h-px bg-primary mt-3" />
+                      <div className="flex-shrink-0 w-6 h-px bg-foreground/20 mt-3" />
                       <p className="text-base text-foreground/70 leading-relaxed">
                         {point}
                       </p>
@@ -172,7 +172,7 @@ const AuditDifferenceSection = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
-                  className="text-base font-medium text-foreground border-l-2 border-primary pl-5 max-w-xl"
+                  className="text-base font-medium text-foreground border-l-2 border-foreground pl-5 max-w-xl"
                 >
                   {active.accent}
                 </motion.p>

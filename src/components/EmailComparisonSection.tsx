@@ -54,7 +54,7 @@ const EmailComparisonSection = () => {
           >
             <h2 className="section-headline">
               <span className="text-foreground">{isWithScanPro ? 'With' : 'The'}</span>{" "}
-              <span className={isWithScanPro ? 'text-primary' : 'text-destructive'}>
+               <span className={isWithScanPro ? 'text-foreground' : 'text-destructive'}>
                 {isWithScanPro ? 'YVOO' : 'Nightmare'}
               </span>
             </h2>
@@ -63,7 +63,7 @@ const EmailComparisonSection = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
-              className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-primary' : 'bg-destructive'}`}
+              className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-foreground' : 'bg-destructive'}`}
               aria-label="Toggle comparison"
             >
               <motion.div
@@ -75,7 +75,7 @@ const EmailComparisonSection = () => {
             <button
               onClick={() => setIsAutoSwitching(!isAutoSwitching)}
               className={`w-8 h-8 flex items-center justify-center transition-colors duration-300 ${
-                isAutoSwitching ? 'bg-primary/10 text-primary hover:bg-primary/20' : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                isAutoSwitching ? 'bg-foreground/10 text-foreground hover:bg-foreground/20' : 'bg-muted text-muted-foreground hover:bg-muted/80'
               }`}
               aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
             >
@@ -107,7 +107,7 @@ const EmailComparisonSection = () => {
               className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
               <span className={`text-sm font-medium tracking-[0.15em] uppercase mb-3 block ${
-                isWithScanPro ? 'text-primary' : 'text-destructive'
+                isWithScanPro ? 'text-foreground/50' : 'text-destructive'
               }`}>
                 {item.time}
               </span>

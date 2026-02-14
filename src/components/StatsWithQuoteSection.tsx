@@ -55,7 +55,7 @@ const StatsWithQuoteSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="border-l-4 border-primary pl-8 py-6 max-w-3xl"
+          className="border-l-4 border-foreground pl-8 py-6 max-w-3xl"
         >
           <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-4">
             "Companies with mature supplier quality management have 30% fewer quality incidents and 20% lower warranty costs than their less mature peers."

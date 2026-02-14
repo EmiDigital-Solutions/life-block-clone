@@ -58,8 +58,8 @@ const CapabilityOverviewSection = () => {
                   className="group block h-full p-8 md:p-10 hover:bg-secondary/20 transition-colors"
                 >
                   <div className="relative">
-                    <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                    <span className="text-sm font-medium tracking-[0.15em] uppercase text-primary mb-3 block">
+                    <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-foreground scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
+                    <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
                       {cap.phase}
                     </span>
                     <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
@@ -69,12 +69,12 @@ const CapabilityOverviewSection = () => {
                   <p className="text-muted-foreground leading-relaxed mb-6">
                     {cap.description}
                     {cap.highlight && (
-                      <span className="inline-block ml-1.5 px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-bold tracking-wide uppercase rounded-sm">
+                      <span className="inline-block ml-1.5 px-2.5 py-0.5 bg-foreground/10 text-foreground text-xs font-bold tracking-wide uppercase rounded-sm">
                         {cap.highlight}
                       </span>
                     )}
                   </p>
-                  <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
+                  <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-foreground/70 transition-colors">
                     <span className="text-sm">{cap.cta}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>

@@ -207,7 +207,7 @@ All colors MUST be HSL.
   }
 
   .section-eyebrow-primary {
-    @apply text-sm font-medium tracking-[0.15em] text-primary uppercase;
+    @apply text-sm font-medium tracking-[0.15em] text-foreground/50 uppercase;
   }
 
   /* Section Headlines - bfl.ai inspired clean, semi-bold typography */
