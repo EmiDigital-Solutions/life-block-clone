@@ -236,14 +236,14 @@ const Auditors = () => {
         {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
 
-        {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
+        {/* 3. THE DIFFERENCE - "Same audit. Less friction" */}
+        <DayInLifeSection />
+
+        {/* 4. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
 
-        {/* 4. PROCESS - "From application to first audit" */}
+        {/* 5. PROCESS - "From application to first audit" */}
         <TimelineSection />
-
-        {/* 5. WORKFLOW - "Same audit. Less friction" */}
-        <DayInLifeSection />
 
         {/* 6. PAYMENT PROCESS + REAL OPPORTUNITIES */}
         <EarningsPotentialSection />
