@@ -55,7 +55,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              On-site satisfying audits<br />
+              On-site audits<br />
               in days, not weeks.
             </motion.h1>
 
