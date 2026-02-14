@@ -87,7 +87,7 @@ const AuditDifferenceSection = () => {
     <section
       ref={ref}
       data-nav-theme="light"
-      className="py-16 md:py-24 bg-white overflow-hidden"
+      className="py-10 md:py-14 bg-white overflow-hidden"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Header */}
@@ -95,7 +95,7 @@ const AuditDifferenceSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-4xl mb-12 md:mb-16"
+          className="max-w-4xl mb-8 md:mb-10"
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="w-16 h-px bg-primary" />
@@ -130,7 +130,7 @@ const AuditDifferenceSection = () => {
               />
             </div>
 
-            <div className="space-y-16 md:space-y-20">
+            <div className="space-y-8 md:space-y-10">
               {timeline.map((item, index) => (
                 <motion.div
                   key={index}
@@ -237,7 +237,7 @@ const AuditDifferenceSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.8, duration: 0.6 }}
-          className="mt-20 flex justify-center"
+          className="mt-10 flex justify-center"
         >
           <Button asChild size="lg">
             <a
