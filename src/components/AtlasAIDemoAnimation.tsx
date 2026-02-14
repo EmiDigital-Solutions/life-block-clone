@@ -36,9 +36,9 @@ const AtlasAIDemoAnimation = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-[hsl(220,15%,8%)] p-3 md:p-6 overflow-hidden">
+    <div className="w-full h-full overflow-hidden">
       {/* Tablet Frame */}
-      <div className="w-full h-full max-w-[1100px] bg-[hsl(220,18%,13%)] rounded-[20px] md:rounded-[28px] border border-white/10 shadow-2xl shadow-black/40 flex flex-col overflow-hidden relative">
+      <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
         {/* Flash */}
         <AnimatePresence>
