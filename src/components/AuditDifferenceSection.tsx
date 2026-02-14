@@ -6,8 +6,8 @@ import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 
 const phases = [
   {
+    id: "01",
     phase: "Before arrival",
-    label: "Intelligence",
     title: "Your auditor arrives knowing more than your own team.",
     points: [
       "Atlas AI analyzes your supplier's certifications, past audit history, industry benchmarks, and applicable standards — before anyone boards a plane.",
@@ -17,19 +17,19 @@ const phases = [
     accent: "Every audit starts with more preparation than most audits ever get.",
   },
   {
+    id: "02",
     phase: "On the shop floor",
-    label: "Execution",
     title: "Human expertise, amplified by machine precision.",
     points: [
       "Atlas AI recognizes equipment models in real time — CNC machines, CMMs, testing rigs — and cross-references calibration records, maintenance logs, and capability data automatically.",
       "Evidence photos are linked to findings the moment they're captured. No lost images. No ambiguity. Every observation is geo-tagged, timestamped, and traceable.",
       "Maturity scoring runs live against industry benchmarks. Your auditor sees exactly where this supplier stands relative to peers — not based on opinion, but on data from thousands of assessments.",
     ],
-    accent: "The result: audit depth that would normally require a team of three, delivered by one expert with Atlas.",
+    accent: "Audit depth that would normally require a team of three, delivered by one expert with Atlas.",
   },
   {
+    id: "03",
     phase: "Within 24 hours",
-    label: "Intelligence",
     title: "A complete audit intelligence package. Not a PDF.",
     points: [
       "Risk-scored findings with photo-verified evidence, supplier maturity benchmarks, and clear severity classifications — structured for immediate decision-making.",
@@ -85,60 +85,53 @@ const AuditDifferenceSection = () => {
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-px bg-primary" />
             <span className="section-eyebrow-primary">
-              Anatomy of an Atlas Audit
+              How an Atlas audit works
             </span>
           </div>
-          <h2 className="section-headline text-foreground max-w-3xl">
-            This is what a{" "}
-            <span className="text-primary">real audit</span>{" "}
-            looks like.
+          <h2 className="section-headline-sm text-foreground max-w-3xl">
+            From request to verified report —{" "}
+            <span className="text-primary">in days, not months.</span>
           </h2>
         </motion.div>
 
         {/* Two-column layout: Content + Image */}
-        <div className="grid lg:grid-cols-[1fr,340px] gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr,380px] gap-12 lg:gap-16 items-start">
           {/* Left: Tabs + Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* Tab Bar */}
-            <div className="flex items-center border-b border-border mb-10">
-              <div className="flex flex-1">
+            {/* Tab Bar — stronger visual presence */}
+            <div className="flex items-center gap-1 mb-10">
+              <div className="flex gap-1 flex-1">
                 {phases.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`relative px-5 py-3.5 transition-colors duration-200 ${
+                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 border ${
                       activeTab === index
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground/70"
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
                     }`}
                   >
-                    <div className="flex items-center gap-2.5">
-                      <span className={`text-sm font-medium tracking-wide ${
-                        activeTab === index ? "text-primary" : "text-muted-foreground/50"
-                      }`}>
-                        {item.phase}
-                      </span>
-                    </div>
-                    {activeTab === index && (
-                      <motion.div
-                        layoutId="auditTab"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      />
-                    )}
+                    <span className={`font-mono text-xs tracking-wider ${
+                      activeTab === index ? "text-primary" : "text-muted-foreground/40"
+                    }`}>
+                      {item.id}
+                    </span>
+                    <span className="text-sm font-medium tracking-wide">
+                      {item.phase}
+                    </span>
                   </button>
                 ))}
               </div>
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors"
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors border border-border"
                 aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
               >
-                {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               </button>
             </div>
 
@@ -198,7 +191,7 @@ const AuditDifferenceSection = () => {
             <img
               src={auditorTimelineHero}
               alt="Quality assurance professional conducting an Atlas AI-guided audit"
-              className="w-full max-h-[420px] object-cover object-top"
+              className="w-full max-h-[480px] object-cover object-top"
             />
           </motion.div>
         </div>
