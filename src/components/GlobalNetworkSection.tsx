@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import dottedWorldMap from "@/assets/dotted-world-map.png";
+import worldMapMinimal from "@/assets/world-map-minimal.png";
 
 const regions = [
   { name: "Europe", auditors: "2,400+", x: "48%", y: "28%" },
@@ -87,10 +87,10 @@ const GlobalNetworkSection = () => {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={dottedWorldMap}
+                  src={worldMapMinimal}
                   alt="Global auditor network coverage"
                   className="w-full h-full object-contain p-4"
-                  style={{ opacity: 0.5 }}
+                  style={{ opacity: 0.15 }}
                 />
 
                 {regions.map((region, index) => (
