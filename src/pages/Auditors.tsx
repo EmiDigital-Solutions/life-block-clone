@@ -1082,23 +1082,23 @@ const SuccessStoriesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="bg-[#0a0a0a] p-10 md:p-14 mb-12"
+          className="bg-muted p-10 md:p-14 mb-12"
         >
           <div className="grid lg:grid-cols-[1fr,auto] gap-10 items-center">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-white/30 uppercase mb-6">
+              <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase mb-6">
                 Our culture
               </p>
-              <p className="text-2xl md:text-3xl font-light text-white leading-snug max-w-2xl">
+              <p className="text-2xl md:text-3xl font-light text-foreground leading-snug max-w-2xl">
                 We seek auditors who are <span className="text-primary font-medium">curious</span>, <span className="text-primary font-medium">precise</span>, and <span className="text-primary font-medium">ethical</span>.
               </p>
-              <p className="text-white/40 mt-4 max-w-xl">
+              <p className="text-muted-foreground mt-4 max-w-xl">
                 Join professionals who care about quality, not just paychecks. Every partner shapes the standard we set.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {["Integrity", "Precision", "Growth"].map((value) => (
-                <span key={value} className="px-4 py-2 border border-white/15 text-white/50 text-xs tracking-wider uppercase">
+                <span key={value} className="px-5 py-3 border border-border text-foreground text-sm font-medium tracking-wider uppercase">
                   {value}
                 </span>
               ))}
