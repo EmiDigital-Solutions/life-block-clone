@@ -39,7 +39,7 @@ const CapabilityOverviewSection = () => {
             className="mb-12 md:mb-16"
           >
              <h2 className="section-headline text-foreground max-w-4xl">
-               Find. Verify. Decide. One platform.
+               The physics of why we're simply better.
              </h2>
           </motion.div>
 
