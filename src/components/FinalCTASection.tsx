@@ -23,7 +23,7 @@ const FinalCTASection = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="section-headline text-foreground mb-4">
-            It's time to rewrite the story
+            The old way is over
           </h2>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-10">
