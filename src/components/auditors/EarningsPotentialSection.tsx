@@ -49,7 +49,7 @@ const EarningsPotentialSection = () => {
   return (
     <>
       {/* Payment Process Section — Dark, premium */}
-      <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-[#f5f5f5]">
+      <section ref={ref} data-nav-theme="light" className="py-24 md:py-32 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
 
           {/* Header */}
@@ -170,7 +170,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-[#f5f5f5] p-6 border-t-2 border-primary/30 hover:border-primary transition-colors duration-300 group"
+              className="bg-muted p-6 border-t-2 border-primary/30 hover:border-primary transition-colors duration-300 group"
             >
               {/* Standard badge */}
               <div className="flex items-center justify-between mb-4">
