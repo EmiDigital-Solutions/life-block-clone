@@ -55,8 +55,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              The audit satisfying<br />
-              nightmare is over.
+              On-site satisfying audits<br />
+              in days, not weeks.
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
