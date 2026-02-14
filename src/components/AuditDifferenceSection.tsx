@@ -59,9 +59,9 @@ const QualityParallaxImage = ({ isInView }: { isInView: boolean }) => {
     <motion.div
       ref={imageRef}
       initial={{ opacity: 0, x: 60 }}
-      animate={isInView ? { opacity: 1, x: 40 } : {}}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="hidden lg:block sticky top-32 translate-x-12"
+      className="hidden lg:block sticky top-32"
     >
       <div className="relative">
         <motion.div className="relative overflow-hidden" style={{ y, scale }}>
