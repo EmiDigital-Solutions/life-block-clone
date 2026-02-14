@@ -59,9 +59,9 @@ const EmailComparisonSection = () => {
                 The old way
               </span>
             </div>
-            <h2 className="section-headline">
-              <span className="text-foreground">{isWithScanPro ? 'With' : 'The'}</span>{" "}
-               <span className={isWithScanPro ? 'text-foreground' : 'text-destructive'}>
+            <h2 className="section-headline text-foreground">
+              {isWithScanPro ? 'With ' : 'The '}
+              <span className={isWithScanPro ? 'text-foreground' : 'text-destructive'}>
                 {isWithScanPro ? 'YVOO' : 'Nightmare'}
               </span>
             </h2>
