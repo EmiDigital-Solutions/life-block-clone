@@ -35,8 +35,7 @@ const CapabilityOverviewSection = () => {
             className="mb-12 md:mb-16"
           >
             <h2 className="section-headline text-foreground max-w-4xl">
-              From search to verified partnership.<br />
-              <span className="text-muted-foreground font-normal">The physics of speed.</span>
+              From search to verified partnership
             </h2>
           </motion.div>
 
