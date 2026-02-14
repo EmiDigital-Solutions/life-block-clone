@@ -117,9 +117,9 @@ const AuditDifferenceSection = () => {
               The Difference
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
+          <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-3xl">
             Others send an auditor with a clipboard.<br />
-            <span className="font-medium">We send Atlas AI.</span>
+            <span className="font-medium">We send Certified Auditors + Atlas AI.</span>
           </h2>
         </motion.div>
 
