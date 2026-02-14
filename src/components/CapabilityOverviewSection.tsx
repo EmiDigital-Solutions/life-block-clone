@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const steps = [
   {
     number: "01",
-    title: "Upload your supplier list",
-    description: "CSV, ERP export, or just type a name. AI finds certifications, location, production capabilities, and audit history in seconds.",
+    title: "Discover suppliers — free & worldwide",
+    description: "Search live across global databases, or upload your own list. AI finds certifications, capabilities, equipment, and audit history in seconds — suppliers that Google and ChatGPT miss.",
     link: "/search-suppliers"
   },
   {
