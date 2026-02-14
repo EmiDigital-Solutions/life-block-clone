@@ -6,19 +6,23 @@ const capabilities = [
   {
     phase: "Find",
     title: "Search Suppliers",
-    description: "Type what you need. AI scans thousands of suppliers worldwide in seconds. No cold calls, no trade fairs, no guesswork. Free.",
+    description: "Type what you need. AI scans thousands of suppliers worldwide in seconds. No cold calls, no trade fairs, no guesswork",
+    highlight: "Free",
+    cta: "Start Free Supplier Discovery",
     link: "/search-suppliers"
   },
   {
     phase: "Verify",
     title: "ScanPro+ Audit",
-    description: "One click. Local certified auditor on-site in 48 hours. AI-guided audit. Verified report in 3 days. €700 flat. Done.",
+    description: "One click. Local certified auditor on-site in 48 hours. AI-guided audit. Verified report in 3 days. €700 flat. Done",
+    cta: "Learn more",
     link: "/scanpro-plus"
   },
   {
     phase: "Decide",
     title: "Ground Intelligence",
-    description: "Risk scores, evidence photos, equipment analysis—all in one dashboard. No more gut feeling. Just verified data.",
+    description: "Risk scores, evidence photos, equipment analysis—all in one dashboard. No more gut feeling. Just verified data",
+    cta: "Learn more",
     link: "/ground-intelligence"
   }
 ];
@@ -64,9 +68,14 @@ const CapabilityOverviewSection = () => {
                   </div>
                   <p className="text-muted-foreground leading-relaxed mb-6">
                     {cap.description}
+                    {cap.highlight && (
+                      <span className="inline-block ml-1.5 px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-bold tracking-wide uppercase rounded-sm">
+                        {cap.highlight}
+                      </span>
+                    )}
                   </p>
                   <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                    <span className="text-sm">Learn more</span>
+                    <span className="text-sm">{cap.cta}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
