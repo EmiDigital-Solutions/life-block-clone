@@ -305,7 +305,7 @@ const DiscoverScreen = () => {
           {phase >= 7 && (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
               <div className="flex items-center gap-3">
-                <div className="flex-1 bg-primary text-white px-4 py-2.5 text-sm font-semibold text-center cursor-pointer">
+                <div className="flex-1 bg-accent text-white px-4 py-2.5 text-sm font-semibold text-center cursor-pointer">
                   Confirm & Order 3 Audits
                 </div>
                 <div className="text-right">
@@ -318,7 +318,7 @@ const DiscoverScreen = () => {
         </div>
 
         <div className="px-4 py-2 border-t border-foreground/10 text-center">
-          <span className="text-[10px] text-foreground/50 tracking-wider uppercase">Step 1 of 5 · Discover</span>
+          <span className="text-[10px] text-primary tracking-wider uppercase">Step 1 of 5 · Discover</span>
         </div>
       </div>
     </div>
@@ -481,7 +481,7 @@ const MatchScreen = () => {
         </div>
 
         <div className="px-4 py-2 border-t border-foreground/10 text-center">
-          <span className="text-[10px] text-foreground/50 tracking-wider uppercase">Step 2 of 5 · Match</span>
+          <span className="text-[10px] text-primary tracking-wider uppercase">Step 2 of 5 · Match</span>
         </div>
       </div>
     </div>
@@ -586,7 +586,7 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-xs text-foreground/60 tracking-wider uppercase">Step 3 of 5 · Audit</span>
+             <span className="text-xs text-primary tracking-wider uppercase">Step 3 of 5 · Audit</span>
           </div>
         </div>
       </div>
@@ -786,7 +786,7 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-xs text-foreground/60 tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
+             <span className="text-xs text-primary tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
           </div>
         </div>
       </div>
@@ -935,7 +935,7 @@ const CAPAScreen = () => {
           )}
 
           <div className="px-3 py-3 border-t border-muted-foreground/10 text-center mt-auto">
-            <span className="text-xs text-foreground/60 tracking-wider uppercase">Step 5 of 5 · CAPA</span>
+            <span className="text-xs text-primary tracking-wider uppercase">Step 5 of 5 · CAPA</span>
           </div>
         </div>
       </div>
