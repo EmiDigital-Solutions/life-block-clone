@@ -9,7 +9,7 @@ const timeline = [
     day: "Day 1",
     title: "You commission the audit",
     oldWay: "Call three agencies. Wait for quotes. Compare CVs you can't verify. Negotiate rates. 3–4 weeks before anyone is even assigned — and you still don't know if the auditor understands your industry.",
-    newWay: "Describe your requirements once. AI matches the nearest certified auditor — VDA 6.3, IATF, ISO qualifications verified, industry experience confirmed, availability instant. Your audit is fully organized before it starts.",
+    newWay: "Describe your requirements once. Atlas AI matches the nearest certified auditor — VDA 6.3, IATF, ISO qualifications verified, industry experience confirmed, availability instant. Your audit is fully organized before it starts.",
     highlight: "Matched in seconds, not weeks",
   },
   {
