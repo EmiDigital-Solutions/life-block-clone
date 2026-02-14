@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { X, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 
 const timeline = [
   {
@@ -29,6 +30,52 @@ const timeline = [
     highlight: "From audit to action — in 24 hours",
   },
 ];
+
+const StickyVisual = ({ isInView }: { isInView: boolean }) => {
+  const imageRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.97, 1, 0.98]);
+
+  return (
+    <motion.div
+      ref={imageRef}
+      initial={{ opacity: 0, x: 40 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="hidden lg:block sticky top-32"
+    >
+      <div className="relative">
+        <motion.div className="relative overflow-hidden" style={{ y, scale }}>
+          <img
+            src={auditorTimelineHero}
+            alt="Quality assurance professional with AI technology"
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+        </motion.div>
+
+        {/* Corner accents — squared style */}
+        <motion.div
+          className="absolute -top-3 -right-3 w-20 h-20 border-2 border-primary/20"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        />
+        <motion.div
+          className="absolute -bottom-3 -left-3 w-14 h-14 bg-primary/10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.9, duration: 0.5 }}
+        />
+      </div>
+    </motion.div>
+  );
+};
 
 const AuditDifferenceSection = () => {
   const ref = useRef(null);
@@ -61,97 +108,103 @@ const AuditDifferenceSection = () => {
           </h2>
         </motion.div>
 
-        {/* Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {/* Tab Headers */}
-          <div className="flex gap-2 mb-8 border-b border-border">
-            {timeline.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={`relative flex items-center gap-3 px-5 py-4 text-left transition-colors duration-300 ${
-                  activeTab === index
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground/70"
-                }`}
-              >
-                <span className={`text-xs font-bold tracking-wider uppercase ${
-                  activeTab === index ? "text-primary" : "text-muted-foreground/60"
-                }`}>
-                  {item.day}
-                </span>
-                <span className="hidden sm:inline text-sm font-medium">
-                  {item.label}
-                </span>
-                {activeTab === index && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-            >
-              <div className="mb-6">
-                <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">
-                  {timeline[activeTab].title}
-                </h3>
-                <div className="mt-2 inline-block px-3 py-1 bg-primary/5 border border-primary/10 rounded-full">
-                  <span className="text-xs font-semibold text-primary tracking-wide">
-                    {timeline[activeTab].highlight}
+        {/* Content Grid: Tabs + Image */}
+        <div className="grid lg:grid-cols-[1fr,380px] gap-12 lg:gap-16 items-start">
+          {/* Tabs — Left Side */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {/* Tab Headers */}
+            <div className="flex gap-2 mb-8 border-b border-border">
+              {timeline.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className={`relative flex items-center gap-3 px-5 py-4 text-left transition-colors duration-300 ${
+                    activeTab === index
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground/70"
+                  }`}
+                >
+                  <span className={`text-xs font-bold tracking-wider uppercase ${
+                    activeTab === index ? "text-primary" : "text-muted-foreground/60"
+                  }`}>
+                    {item.day}
                   </span>
-                </div>
-              </div>
+                  <span className="hidden sm:inline text-sm font-medium">
+                    {item.label}
+                  </span>
+                  {activeTab === index && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
 
-              <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                {/* Old Way */}
-                <div className="flex items-start gap-4 p-5 rounded-lg bg-muted/30 border border-border/50">
-                  <div className="flex-shrink-0 w-7 h-7 rounded bg-muted flex items-center justify-center mt-0.5">
-                    <X className="w-4 h-4 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-semibold text-muted-foreground tracking-wider uppercase mb-2 block">
-                      Traditional Audit
+            {/* Tab Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+              >
+                <div className="mb-6">
+                  <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">
+                    {timeline[activeTab].title}
+                  </h3>
+                  <div className="mt-2 inline-block px-3 py-1 bg-primary/5 border border-primary/10">
+                    <span className="text-xs font-semibold text-primary tracking-wide">
+                      {timeline[activeTab].highlight}
                     </span>
-                    <p className="text-muted-foreground text-base leading-relaxed">
-                      {timeline[activeTab].oldWay}
-                    </p>
                   </div>
                 </div>
 
-                {/* New Way */}
-                <div className="flex items-start gap-4 p-5 rounded-lg bg-primary/[0.03] border border-primary/10">
-                  <div className="flex-shrink-0 w-7 h-7 rounded bg-primary/10 flex items-center justify-center mt-0.5">
-                    <Check className="w-4 h-4 text-primary" />
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* Old Way */}
+                  <div className="flex items-start gap-4 p-5 bg-muted/30 border border-border/50">
+                    <div className="flex-shrink-0 w-7 h-7 bg-muted flex items-center justify-center mt-0.5">
+                      <X className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground tracking-wider uppercase mb-2 block">
+                        Traditional Audit
+                      </span>
+                      <p className="text-muted-foreground text-base leading-relaxed">
+                        {timeline[activeTab].oldWay}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-xs font-semibold text-primary tracking-wider uppercase mb-2 block">
-                      With YVOO Atlas AI
-                    </span>
-                    <p className="text-foreground text-base leading-relaxed font-medium">
-                      {timeline[activeTab].newWay}
-                    </p>
+
+                  {/* New Way */}
+                  <div className="flex items-start gap-4 p-5 bg-primary/[0.03] border border-primary/10">
+                    <div className="flex-shrink-0 w-7 h-7 bg-primary/10 flex items-center justify-center mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-primary tracking-wider uppercase mb-2 block">
+                        With YVOO Atlas AI
+                      </span>
+                      <p className="text-foreground text-base leading-relaxed font-medium">
+                        {timeline[activeTab].newWay}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Image — Right Side */}
+          <StickyVisual isInView={isInView} />
+        </div>
 
         {/* CTA */}
         <motion.div
