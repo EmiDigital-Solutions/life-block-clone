@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   X,
   ArrowRight,
@@ -7,7 +7,9 @@ import {
   ChevronDown,
   ArrowUp,
   Plus,
-  Minus
+  Minus,
+  Pause,
+  Play
 } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
@@ -785,208 +787,236 @@ const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
 const DayInLifeSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [activeTab, setActiveTab] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const timeline = [
+  const phases = [
     {
-      day: "Day 1",
-      title: "You get the assignment",
-      oldWay: "Email from a broker. Unclear scope. You call back, negotiate rate, chase missing documents for days.",
-      newWay: "Assignment appears in your app. Scope, checklist, supplier docs—all there. The audit is already fully organized before you start.",
-      highlight: "Ready from day one",
+      id: "01",
+      phase: "Assignment",
+      title: "You get the assignment—fully organized before you start.",
+      points: [
+        "Assignment appears in your app. Scope, checklist, supplier docs—all there. No calls, no chasing missing documents.",
+        "Rate, timeline, and deliverables are clear upfront. Accept or decline with one tap.",
+        "Everything you need to prepare is already structured and waiting for you.",
+      ],
+      accent: "Ready from day one. No back-and-forth.",
     },
     {
-      day: "Day 2",
-      title: "You prepare the audit",
-      oldWay: "Download a generic VDA 6.3 template. Google the supplier. Read through 200 pages of QMS documentation. Email the supplier for missing documents. Wait. Follow up. Wait again.",
-      newWay: "You receive an AI-generated briefing based on supplier intelligence, client requirements, and previous audit history. No need to read the full QMS—key risks, process gaps, and focus areas are already analyzed and summarized for you.",
-      highlight: "Briefed, not buried in documents",
+      id: "02",
+      phase: "Preparation",
+      title: "AI-generated briefing replaces hours of manual research.",
+      points: [
+        "Receive an AI-generated briefing based on supplier intelligence, client requirements, and previous audit history.",
+        "No need to read the full QMS—key risks, process gaps, and focus areas are already analyzed and summarized.",
+        "A tailored audit framework with risk-weighted checkpoints is generated specifically for this supplier and scope.",
+      ],
+      accent: "Briefed, not buried in documents.",
     },
     {
-      day: "Day 3",
-      title: "You're on the shop floor",
-      oldWay: "Paper checklist on a clipboard. Take photos with your phone and rename them later. Scribble notes between stations. Hope you don't forget anything.",
-      newWay: "Guided step-by-step through each question—hands-free via voice if you need it. Scan equipment, specifications auto-recognized. Photos auto-linked to findings as evidence. Unsure about a maturity score? AI suggests a level with reasoning you can accept or override. Flag a critical deviation—the client sees it instantly.",
-      highlight: "Hands-free guidance, nothing gets missed",
+      id: "03",
+      phase: "On-site",
+      title: "Human expertise, amplified by machine precision.",
+      points: [
+        "Guided step-by-step through each question—hands-free via voice if needed. Scan equipment, specs auto-recognized.",
+        "Photos auto-linked to findings as evidence. Geo-tagged, timestamped, traceable. Nothing gets lost.",
+        "Unsure about a maturity score? AI suggests a level with reasoning you can accept or override. Flag critical deviations—the client sees them instantly.",
+      ],
+      accent: "Hands-free guidance, nothing gets missed.",
     },
     {
-      day: "Day 4",
-      title: "You write the report",
-      oldWay: "Back at your hotel. Open Word. Copy findings from notes. Format tables. Attach 47 photos manually. Two full evenings of admin work.",
-      newWay: "Report auto-assembled from your on-site inputs—evidence photos organized by finding, scores calculated, corrective actions pre-drafted, risk levels visualized. You refine the conclusions, add your expert judgment, and submit a report that meets any client's quality standard.",
-      highlight: "Your expertise, not your formatting skills",
+      id: "04",
+      phase: "Reporting",
+      title: "Report auto-assembled. You add the expert judgment.",
+      points: [
+        "Evidence photos organized by finding, scores calculated, corrective actions pre-drafted, risk levels visualized.",
+        "You refine conclusions and add your professional assessment. Submit a report that meets any client's quality standard.",
+        "No Word templates, no manual formatting, no two evenings of admin work.",
+      ],
+      accent: "Your expertise, not your formatting skills.",
     },
     {
-      day: "Day 5",
-      title: "You get paid",
-      oldWay: "Write an invoice. Send it. Wait 60 days. Send a reminder. Wait 30 more days. Finally: payment received.",
-      newWay: "Report approved → payment released same business day. No invoice. No chasing. The client already has your findings in their dashboard with risk scores and action tracking.",
-      highlight: "Same-day payment, zero admin",
+      id: "05",
+      phase: "Payment",
+      title: "Report approved. Payment released same day.",
+      points: [
+        "No invoice to write. No 60-day payment terms. No reminders to send.",
+        "Report approved → payment released same business day. Transparent, automatic, reliable.",
+        "The client already has your findings in their dashboard with risk scores and action tracking.",
+      ],
+      accent: "Same-day payment, zero admin.",
     },
   ];
 
+  const advanceTab = useCallback(() => {
+    setActiveTab((prev) => (prev + 1) % phases.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying && isInView) {
+      intervalRef.current = setInterval(advanceTab, 7000);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPlaying, isInView, advanceTab]);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    setIsPlaying(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  const active = phases[activeTab];
+
   return (
-    <section 
+    <section
       ref={ref}
       data-nav-theme="light"
       className="py-16 md:py-24 bg-white overflow-hidden"
     >
       <div className="mx-auto max-w-[1400px] px-8">
-        
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="max-w-4xl mb-12 md:mb-16"
+          className="mb-12 md:mb-16"
         >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-16 h-px bg-primary" />
-            <span className="section-eyebrow-primary">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-px bg-foreground/30" />
+            <span className="section-eyebrow">
               The Difference
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
-            Others send you with a clipboard<br />
-            <span className="font-medium">We send you with Atlas AI</span>
+          <h2 className="section-headline text-foreground max-w-4xl">
+            Others send you with a clipboard.
+            <br />
+            We send you with Atlas AI.
           </h2>
         </motion.div>
 
-        {/* Timeline with Auditor Image */}
-        <div className="grid lg:grid-cols-[1fr,400px] gap-12 lg:gap-20 items-start">
-          {/* Timeline - Left Side */}
-          <div className="relative">
-            {/* Animated Vertical line with flowing effect */}
-            <div className="absolute left-[28px] md:left-[44px] top-4 bottom-4 w-[2px] hidden sm:block overflow-hidden">
-              {/* Background line */}
-              <div className="absolute inset-0 bg-border/30" />
-              {/* Animated fill */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-b from-primary via-primary to-primary/20 origin-top"
-                initial={{ scaleY: 0 }}
-                animate={isInView ? { scaleY: 1 } : {}}
-                transition={{ duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-              />
-              {/* Flowing particle effect */}
-              <motion.div
-                className="absolute w-full h-8 bg-gradient-to-b from-white via-primary/60 to-transparent"
-                initial={{ top: "-32px" }}
-                animate={isInView ? { top: "100%" } : {}}
-                transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
-              />
+        {/* Two-column layout: Content + Image */}
+        <div className="grid lg:grid-cols-[1fr,380px] gap-12 lg:gap-16 items-start">
+          {/* Left: Tabs + Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {/* Tab Bar */}
+            <div className="flex items-center gap-1 mb-10 flex-wrap">
+              <div className="flex gap-1 flex-1 flex-wrap">
+                {phases.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 ${
+                      activeTab === index
+                        ? "bg-foreground text-white"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <span className={`font-mono text-xs tracking-wider ${
+                      activeTab === index ? "text-white/50" : "text-muted-foreground/40"
+                    }`}>
+                      {item.id}
+                    </span>
+                    <span className="text-sm font-medium tracking-wide">
+                      {item.phase}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors"
+                aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
+              >
+                {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              </button>
             </div>
-            
-            <div className="space-y-16 md:space-y-20">
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + index * 0.25, duration: 0.7, ease: "easeOut" }}
-                  className="flex gap-8 md:gap-12 group"
-                >
-                  {/* Square Day badge */}
-                  <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
-                    <motion.div 
-                      className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-lg border border-border bg-background items-center justify-center shadow-sm group-hover:border-primary/40 group-hover:shadow-md transition-all duration-300"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                      transition={{ delay: 0.4 + index * 0.25, duration: 0.4, ease: "easeOut" }}
-                    >
-                      {/* Corner accent */}
-                      <motion.div
-                        className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary rounded-tl-lg"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ delay: 0.6 + index * 0.25, duration: 0.3 }}
-                      />
-                      <motion.div
-                        className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary rounded-br-lg"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ delay: 0.65 + index * 0.25, duration: 0.3 }}
-                      />
-                      <span className="text-sm md:text-base font-semibold text-foreground tracking-wide">{item.day}</span>
-                    </motion.div>
-                    <motion.span 
-                      className="sm:hidden text-lg font-semibold text-primary"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : {}}
-                      transition={{ delay: 0.4 + index * 0.25 }}
-                    >
-                      {item.day}
-                    </motion.span>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 pt-2 md:pt-4">
-                    <motion.div 
-                      className="mb-6"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.5 + index * 0.25, duration: 0.5 }}
-                    >
-                      <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-tight">{item.title}</h3>
-                    </motion.div>
-                    
-                    {/* Old vs New with staggered animation */}
-                    <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                      <motion.div 
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.6 + index * 0.25, duration: 0.5 }}
-                      >
-                        <motion.div 
-                          className="flex-shrink-0 w-6 h-6 rounded bg-muted flex items-center justify-center mt-0.5"
-                          initial={{ scale: 0 }}
-                          animate={isInView ? { scale: 1 } : {}}
-                          transition={{ delay: 0.65 + index * 0.25, type: "spring", stiffness: 300 }}
-                        >
-                          <X className="w-3.5 h-3.5 text-muted-foreground" />
-                        </motion.div>
-                        <p className="text-muted-foreground text-base leading-relaxed">{item.oldWay}</p>
-                      </motion.div>
-                      <motion.div 
-                        className="flex items-start gap-4"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.7 + index * 0.25, duration: 0.5 }}
-                      >
-                        <motion.div 
-                          className="flex-shrink-0 w-6 h-6 rounded bg-primary/10 flex items-center justify-center mt-0.5"
-                          initial={{ scale: 0 }}
-                          animate={isInView ? { scale: 1 } : {}}
-                          transition={{ delay: 0.75 + index * 0.25, type: "spring", stiffness: 300 }}
-                          whileHover={{ scale: 1.2 }}
-                        >
-                          <Check className="w-3.5 h-3.5 text-primary" />
-                        </motion.div>
-                        <p className="text-foreground text-base leading-relaxed font-medium">{item.newWay}</p>
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
-          {/* Auditor Image - Right Side with Parallax */}
-          <AuditorParallaxImage isInView={isInView} />
+            {/* Tab Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="space-y-8"
+              >
+                {/* Title */}
+                <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-snug max-w-2xl">
+                  {active.title}
+                </h3>
+
+                {/* Detail points */}
+                <div className="space-y-5">
+                  {active.points.map((point, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
+                      className="flex gap-4"
+                    >
+                      <div className="flex-shrink-0 w-6 h-px bg-primary mt-3" />
+                      <p className="text-base text-foreground/70 leading-relaxed">
+                        {point}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Accent line */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="text-base font-medium text-foreground border-l-2 border-primary pl-5 max-w-xl"
+                >
+                  {active.accent}
+                </motion.p>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Right: Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hidden lg:block sticky top-32"
+          >
+            <img
+              src={auditorTimelineHero}
+              alt="Quality assurance professional conducting an Atlas AI-guided audit"
+              className="w-full max-h-[480px] object-cover object-top"
+            />
+          </motion.div>
         </div>
 
-        {/* Independent CTA Button */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.8, duration: 0.6 }}
-          className="mt-20 flex justify-center"
+          transition={{ delay: 1, duration: 0.6 }}
+          className="mt-12 md:mt-16 flex justify-center"
         >
-          <Button size="lg">
-            Start your new way to audit now
-            <ArrowRight className="w-5 h-5" />
+          <Button asChild size="lg">
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="font-mono tracking-wide lowercase font-medium">start your new way to audit</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
           </Button>
         </motion.div>
-
       </div>
     </section>
   );
