@@ -66,7 +66,7 @@ const EarningsPotentialSection = () => {
               </span>
             </div>
             <h2 className="section-headline text-foreground">
-              Simple. Transparent. Immediate.
+              Simple. Transparent. Immediate
             </h2>
           </motion.div>
 
@@ -158,7 +158,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            Real assignments. Real fees.
+            Real assignments. Real fees
           </h2>
         </motion.div>
 

@@ -31,7 +31,7 @@ const CommunitySection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            More than a platform.
+            More than a platform
           </h2>
         </motion.div>
 

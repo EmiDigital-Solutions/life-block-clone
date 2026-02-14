@@ -278,9 +278,9 @@ const Auditors = () => {
                 viewport={{ once: true }}
                 className="section-headline text-foreground mb-6"
               >
-                See how it works.
+                See how it works
                 <br />
-                No commitment.
+                No commitment
               </motion.h2>
               
               <motion.p
@@ -374,7 +374,7 @@ const ValuePropositionSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            Auditing, reinvented.
+            Auditing, reinvented
           </h2>
         </motion.div>
 
@@ -491,7 +491,7 @@ const TimelineSection = () => {
             <h2 className="section-headline text-foreground">
               From application
               <br />
-              to first audit.
+              to first audit
             </h2>
           </motion.div>
           
@@ -612,9 +612,9 @@ const QualificationsSection = () => {
               </span>
             </div>
             <h2 className="section-headline text-foreground mb-8">
-              We're selective.
+               We're selective
               <br />
-              So are you.
+              So are you
             </h2>
             <p className="text-muted-foreground text-lg max-w-md">
               Our 15% acceptance rate ensures every partner meets the standards our clients expect.
@@ -687,7 +687,7 @@ const TechnologyFeaturesSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground mb-6">
-            Your AI co-pilot.
+            Your AI co-pilot
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl">
             Point your phone at a machine—AI identifies it. Take a photo—AI categorizes it. Finish the audit—AI writes the report. You focus on what matters: your expertise.
@@ -891,7 +891,7 @@ const DayInLifeSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            What changes when the platform works for you.
+            What changes when the platform works for you
           </h2>
         </motion.div>
 
@@ -1072,7 +1072,7 @@ const SuccessStoriesSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            In their words.
+            In their words
           </h2>
         </motion.div>
 
@@ -1113,7 +1113,7 @@ const SuccessStoriesSection = () => {
               Our culture
             </p>
             <h3 className="section-headline-sm text-background mb-6">
-              Integrity. Precision. Growth.
+               Integrity. Precision. Growth.
             </h3>
             <p className="text-xl md:text-2xl font-light text-background/80 leading-snug max-w-2xl mb-4">
               We seek auditors who are <span className="text-primary font-medium">curious</span>, <span className="text-primary font-medium">precise</span>, and <span className="text-primary font-medium">ethical</span>.
@@ -1293,7 +1293,7 @@ const ScrollZoomSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground">
-            Experts worldwide.
+            Experts worldwide
           </h2>
         </motion.div>
 
