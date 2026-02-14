@@ -34,12 +34,12 @@ const AtlasAISection = () => {
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-          {/* Header — 5 columns (line 1–6) */}
+          {/* Header — 5 columns (line 2–7), offset 1 from left */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-5 mb-20"
+            className="lg:col-start-2 lg:col-span-5 mb-20"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
@@ -62,7 +62,7 @@ const AtlasAISection = () => {
           </motion.div>
 
           {/* Features — 5 columns (line 1–6), 4 items inside */}
-          <div className="lg:col-span-5 mb-16">
+          <div className="lg:col-start-2 lg:col-span-5 mb-16">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-16 gap-y-12">
               {atlasFeatures.map((feature, index) => (
                 <motion.div
@@ -84,7 +84,7 @@ const AtlasAISection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5"
+            className="lg:col-start-2 lg:col-span-5"
           >
             <div className="overflow-hidden aspect-[16/10] w-full bg-white">
               <AtlasAIDemoAnimation />
