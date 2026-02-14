@@ -45,13 +45,20 @@ const EmailComparisonSection = () => {
     <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
         
-        {/* Header with Toggle */}
-        <div className="flex items-center justify-between mb-12">
+        {/* Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="lg:col-span-3"
           >
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-px bg-foreground/30" />
+              <span className="section-eyebrow">
+                The old way
+              </span>
+            </div>
             <h2 className="section-headline">
               <span className="text-foreground">{isWithScanPro ? 'With' : 'The'}</span>{" "}
                <span className={isWithScanPro ? 'text-foreground' : 'text-destructive'}>
@@ -60,35 +67,36 @@ const EmailComparisonSection = () => {
             </h2>
           </motion.div>
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
-              className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-foreground' : 'bg-destructive'}`}
-              aria-label="Toggle comparison"
-            >
-              <motion.div
-                className="absolute top-0.5 left-0.5 w-7 h-7 bg-white"
-                animate={{ x: isWithScanPro ? 32 : 0 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            </button>
-            <button
-              onClick={() => setIsAutoSwitching(!isAutoSwitching)}
-              className={`w-8 h-8 flex items-center justify-center transition-colors duration-300 ${
-                isAutoSwitching ? 'bg-foreground/10 text-foreground hover:bg-foreground/20' : 'bg-muted text-muted-foreground hover:bg-muted/80'
-              }`}
-              aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
-            >
-              {isAutoSwitching ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-            </button>
+          <div className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end items-end gap-4">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {isWithScanPro 
+                ? "Upload → 3 days → Verified. No coordination required."
+                : "50+ emails. 10 weeks. €15K minimum. Sound familiar?"}
+            </p>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
+                className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-foreground' : 'bg-destructive'}`}
+                aria-label="Toggle comparison"
+              >
+                <motion.div
+                  className="absolute top-0.5 left-0.5 w-7 h-7 bg-white"
+                  animate={{ x: isWithScanPro ? 32 : 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              </button>
+              <button
+                onClick={() => setIsAutoSwitching(!isAutoSwitching)}
+                className={`w-8 h-8 flex items-center justify-center transition-colors duration-300 ${
+                  isAutoSwitching ? 'bg-foreground/10 text-foreground hover:bg-foreground/20' : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+                aria-label={isAutoSwitching ? 'Pause auto-switch' : 'Resume auto-switch'}
+              >
+                {isAutoSwitching ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+              </button>
+            </div>
           </div>
         </div>
-
-        <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-          {isWithScanPro 
-            ? "Upload → 3 days → Verified. No coordination required."
-            : "50+ emails. 10 weeks. €15K minimum. Sound familiar?"}
-        </p>
 
         <motion.div
           key={isWithScanPro ? 'with' : 'traditional'}
