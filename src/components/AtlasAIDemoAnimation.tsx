@@ -31,6 +31,9 @@ const AtlasAIDemoAnimation = () => {
       return;
     }
 
+    // Cancel any ongoing speech first
+    window.speechSynthesis.cancel();
+
     const utterance = new SpeechSynthesisUtterance(riskAlertText);
     utterance.rate = 0.95;
     utterance.pitch = 1.0;
@@ -52,13 +55,29 @@ const AtlasAIDemoAnimation = () => {
       { time: 4000, text: "Issues found in 73% of similar audits." },
       { time: 6500, text: "Recommend thorough check of procedures and signatures." },
     ];
-    const timers: number[] = [];
+    const segmentTimers: number[] = [];
     segments.forEach(s => {
-      timers.push(window.setTimeout(() => setCopilotText(s.text), s.time));
+      segmentTimers.push(window.setTimeout(() => setCopilotText(s.text), s.time));
     });
 
+    // Chrome bug workaround: pause/resume every 10s to prevent cutoff
+    const keepAlive = window.setInterval(() => {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+      }
+    }, 10000);
+
     utterance.onend = () => {
-      timers.forEach(clearTimeout);
+      segmentTimers.forEach(clearTimeout);
+      clearInterval(keepAlive);
+      setCopilotSpeaking(false);
+      setCopilotText("");
+    };
+
+    utterance.onerror = () => {
+      segmentTimers.forEach(clearTimeout);
+      clearInterval(keepAlive);
       setCopilotSpeaking(false);
       setCopilotText("");
     };
