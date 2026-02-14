@@ -35,18 +35,18 @@ const AtlasAISection = () => {
       className="relative bg-white py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1400px] px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-          {/* 2-column offset */}
-          <div className="hidden lg:block lg:col-span-2" />
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 lg:gap-8 items-start">
+          {/* 1-column offset (starts at line 2) */}
+          <div className="hidden lg:block lg:col-span-1" />
 
-          {/* Content — spans 4 columns */}
-          <div className="lg:col-span-4">
-            {/* Header — Auditors page pattern: line + label + headline + subtitle */}
+          {/* Text content — 2 columns */}
+          <div className="lg:col-span-2">
+            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7 }}
-              className="max-w-3xl mb-12 md:mb-16"
+              className="mb-12 md:mb-16"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-px bg-foreground" />
@@ -57,7 +57,7 @@ const AtlasAISection = () => {
               <h2 className="section-headline text-foreground mb-6">
                 Meet Atlas, the AI engine for auditing
               </h2>
-              <p className="text-lg text-muted-foreground max-w-xl mb-8">
+              <p className="text-lg text-muted-foreground mb-8">
                 Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
               </p>
               <Link
@@ -103,7 +103,7 @@ const AtlasAISection = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <p className="text-base text-muted-foreground leading-relaxed pb-4 max-w-lg">
+                          <p className="text-base text-muted-foreground leading-relaxed pb-4">
                             {feature.description}
                           </p>
                         </motion.div>
@@ -114,18 +114,15 @@ const AtlasAISection = () => {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Demo — 4 columns wide, offset by 2 (grid lines 3–6) */}
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mt-10">
-          <div className="hidden lg:block lg:col-span-2" />
+          {/* Demo — 3 columns (lines 4–7) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-4"
+            className="lg:col-span-3"
           >
-            <div className="overflow-hidden aspect-[16/10] w-[calc(100%+4px)] bg-white">
+            <div className="overflow-hidden aspect-[16/10] w-full bg-white">
               <AtlasAIDemoAnimation />
             </div>
           </motion.div>
