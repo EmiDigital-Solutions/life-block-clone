@@ -424,13 +424,13 @@ const DemoSupplierProfile = () => {
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Precision Metalworks GmbH</h3>
-              <span className="px-2 py-0.5 bg-primary text-white text-[10px] font-bold rounded-none">96% Match</span>
+              <span className="px-2 py-0.5 bg-accent text-white text-[10px] font-bold rounded-none">96% Match</span>
             </div>
             <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Munich, Germany · Est. 1987 · 280 employees</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-primary text-white text-[11px] font-semibold rounded-none">Request Quote</button>
-            <button className="px-3 py-1.5 bg-[hsl(0,0%,38%)] border border-[hsl(0,0%,33%)] text-white text-[11px] font-semibold rounded-none">Order Audit</button>
+             <button className="px-3 py-1.5 bg-accent text-white text-[11px] font-semibold rounded-none">Request Quote</button>
+             <button className="px-3 py-1.5 bg-accent text-white text-[11px] font-semibold rounded-none">Order Audit</button>
           </div>
         </div>
       </div>
@@ -551,7 +551,7 @@ const DemoSupplierProfile = () => {
                   ))}
                 </div>
               </div>
-              <button className="w-full py-2.5 bg-primary text-white text-[12px] font-semibold rounded-none">
+              <button className="w-full py-2.5 bg-accent text-white text-[12px] font-semibold rounded-none">
                 Send RFQ to Supplier
               </button>
             </div>
@@ -565,7 +565,7 @@ const DemoSupplierProfile = () => {
                 <div className="flex gap-2 mb-3">
                   {["Process Audit", "Quality Audit", "Product Audit"].map((type, i) => (
                     <span key={i} className={`px-2.5 py-1 text-[10px] font-semibold rounded-none ${
-                      i === 0 ? 'bg-primary text-white' : 'bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] text-white'
+                      i === 0 ? 'bg-accent text-white' : 'bg-[hsl(0,0%,50%)] border border-[hsl(0,0%,45%)] text-white'
                     }`}>{type}</span>
                   ))}
                 </div>
@@ -584,7 +584,7 @@ const DemoSupplierProfile = () => {
                   </div>
                 </div>
               </div>
-              <button className="w-full py-2.5 bg-primary text-white text-[12px] font-semibold rounded-none">
+              <button className="w-full py-2.5 bg-accent text-white text-[12px] font-semibold rounded-none">
                 Schedule Audit Now
               </button>
             </div>
@@ -779,13 +779,13 @@ const AuditOrderMockup = () => {
         <div className={`${GLASS_CARD_LAYER2} p-3 mb-4 border rounded-none`}>
           <p className="text-[10px] text-[hsl(0,0%,80%)] mb-2">Audit Type</p>
           <div className="flex gap-2">
-            <span className="px-2 py-1 bg-primary text-white text-[10px] font-medium rounded-none">Process Audit</span>
+            <span className="px-2 py-1 bg-accent text-white text-[10px] font-medium rounded-none">Process Audit</span>
             <span className="px-2 py-1 bg-[hsl(0,0%,60%)] border border-[hsl(0,0%,50%)] text-[10px] rounded-none text-[hsl(0,0%,95%)]">Quality Audit</span>
             <span className="px-2 py-1 bg-[hsl(0,0%,60%)] border border-[hsl(0,0%,50%)] text-[10px] rounded-none text-[hsl(0,0%,95%)]">Full Assessment</span>
           </div>
         </div>
 
-        <button className="w-full py-2.5 bg-primary text-white text-xs font-medium flex items-center justify-center gap-2 rounded-none">
+        <button className="w-full py-2.5 bg-accent text-white text-xs font-medium flex items-center justify-center gap-2 rounded-none">
           Order Audit for {suppliers.filter(s => s.selected).length} Suppliers
           <ArrowRight className="w-3 h-3" />
         </button>
@@ -1066,10 +1066,10 @@ const SupplierProfileMockup = () => {
         </motion.div>
 
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium rounded-none">
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium rounded-none">
             Request Quote
           </button>
-          <button className={`flex-1 py-2 border rounded-none text-xs font-medium bg-[hsl(0,0%,65%)] border-[hsl(0,0%,55%)] text-[hsl(0,0%,95%)]`}>
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium rounded-none">
             Order Audit
           </button>
         </div>
@@ -1104,7 +1104,7 @@ const ComparisonMockup = () => {
             <p className="text-[10px] text-[hsl(0,0%,50%)]">{selectedCount} suppliers selected</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1 rounded-none">
+            <button className="px-3 py-1.5 bg-accent text-white text-[10px] font-medium flex items-center gap-1 rounded-none">
               Export
               <ArrowRight className="w-3 h-3" />
             </button>
@@ -1150,7 +1150,7 @@ const ComparisonMockup = () => {
 
         <div className="mt-4 flex gap-2">
           <button className={`flex-1 py-2 text-xs font-medium rounded-none ${GLASS_CARD_LAYER2} border text-[hsl(0,0%,95%)]`}>Add to List</button>
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium rounded-none">Order Audits</button>
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium rounded-none">Order Audits</button>
         </div>
       </div>
     </WindowChrome>
@@ -1571,10 +1571,10 @@ const SupplierProfileMockup = () => {
 
         {/* CTA */}
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium">
             Request Quote
           </button>
-          <button className="flex-1 py-2 border border-gray-200 text-xs font-medium">
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium">
             Order Audit
           </button>
         </div>
@@ -1610,7 +1610,7 @@ const ComparisonMockup = () => {
             <p className="text-[10px] text-gray-500">{selectedCount} suppliers selected</p>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-primary text-white text-[10px] font-medium flex items-center gap-1">
+            <button className="px-3 py-1.5 bg-accent text-white text-[10px] font-medium flex items-center gap-1">
               Export
               <ArrowRight className="w-3 h-3" />
             </button>
@@ -1658,7 +1658,7 @@ const ComparisonMockup = () => {
         {/* Actions */}
         <div className="mt-4 flex gap-2">
           <button className="flex-1 py-2 bg-gray-100 text-xs font-medium">Add to List</button>
-          <button className="flex-1 py-2 bg-primary text-white text-xs font-medium">Send RFQ</button>
+          <button className="flex-1 py-2 bg-accent text-white text-xs font-medium">Send RFQ</button>
         </div>
 
         {/* Export formats */}
