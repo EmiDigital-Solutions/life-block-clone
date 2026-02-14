@@ -90,7 +90,7 @@ const AuditDifferenceSection = () => {
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
             Computer vision AI that sees{" "}
-            <span className="text-primary">everything.</span>
+            <span className="text-foreground">everything.</span>
           </h2>
         </motion.div>
 
