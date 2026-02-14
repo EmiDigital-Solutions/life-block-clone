@@ -239,24 +239,20 @@ const Auditors = () => {
         {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
 
-        {/* Experts Carousel - removed (redundant with hero) */}
-
         {/* 4. PROCESS - "From application to first audit" */}
         <TimelineSection />
 
-        {/* 5. REQUIREMENTS - "We're selective" */}
-        <QualificationsSection />
-
-        {/* 6. WORKFLOW - "Same audit. Less friction" */}
+        {/* 5. WORKFLOW - "Same audit. Less friction" */}
         <DayInLifeSection />
 
-        {/* 7. PAYMENT PROCESS + REAL OPPORTUNITIES */}
+        {/* 6. PAYMENT PROCESS + REAL OPPORTUNITIES */}
         <EarningsPotentialSection />
 
-        {/* 8. COMMUNITY merged into TESTIMONIALS */}
-
-        {/* 9. SUCCESS STORIES / TESTIMONIALS */}
+        {/* 7. SUCCESS STORIES / TESTIMONIALS */}
         <SuccessStoriesSection />
+
+        {/* 8. REQUIREMENTS - "We're selective" (moved near CTA as final filter) */}
+        <QualificationsSection />
 
         {/* Final CTA Section - Premium B2B Style */}
         <section 
@@ -671,7 +667,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-16 md:py-24 bg-white"
+      className="py-16 md:py-24 bg-muted"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -753,7 +749,7 @@ const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
       <div className="relative">
         {/* Main image container with parallax */}
         <motion.div 
-          className="relative overflow-hidden rounded-lg"
+          className="relative overflow-hidden"
           style={{ y, scale }}
         >
           <img 
@@ -767,14 +763,14 @@ const AuditorParallaxImage = ({ isInView }: { isInView: boolean }) => {
         
         {/* Decorative elements with opposite parallax */}
         <motion.div
-          className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-lg"
+          className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20"
           style={{ y: decorY1 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.8, duration: 0.5 }}
         />
         <motion.div
-          className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-lg"
+          className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10"
           style={{ y: decorY2 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -832,7 +828,7 @@ const DayInLifeSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-16 md:py-24 bg-white overflow-hidden"
+      className="py-16 md:py-24 bg-muted overflow-hidden"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
@@ -1032,7 +1028,7 @@ const SuccessStoriesSection = () => {
     <section 
       ref={ref} 
       data-nav-theme="light"
-      className="py-16 md:py-24 bg-white"
+      className="py-16 md:py-24 bg-muted"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Header */}
@@ -1189,7 +1185,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.05 }}
-                className="border-t border-[#d5d5d5]"
+                className="border-t border-border"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
@@ -1198,7 +1194,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
                   <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
                     {faq.q}
                   </span>
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
+                  <div className="flex-shrink-0 w-10 h-10 bg-muted flex items-center justify-center transition-colors duration-200 group-hover:bg-muted/80">
                     {openFaq === index ? (
                       <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
                     ) : (
@@ -1215,7 +1211,7 @@ const FAQSection = ({ openFaq, setOpenFaq }: { openFaq: number | null; setOpenFa
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
+                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
                     {faq.a}
                   </p>
                 </motion.div>
