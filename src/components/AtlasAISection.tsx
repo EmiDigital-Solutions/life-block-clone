@@ -1,6 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 
@@ -26,7 +25,6 @@ const atlasFeatures = [
 const AtlasAISection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section
@@ -35,92 +33,56 @@ const AtlasAISection = () => {
       className="relative bg-white py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1400px] px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 lg:gap-8 items-start">
-          {/* 1-column offset (starts at line 2) */}
-          <div className="hidden lg:block lg:col-span-1" />
-
-          {/* Text content — 2 columns */}
-          <div className="lg:col-span-2">
-            {/* Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7 }}
-              className="mb-12 md:mb-16"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-px bg-foreground" />
-                <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-                  Technology
-                </span>
-              </div>
-              <h2 className="section-headline text-foreground mb-6">
-                Meet Atlas, the AI engine for auditing
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
-              </p>
-              <Link
-                to="/features"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
-              >
-                explore atlas ai
-              </Link>
-            </motion.div>
-
-            {/* Feature accordion */}
-            <div className="mb-10">
-              <div className="border-t border-foreground/10">
-                {atlasFeatures.map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="border-b border-foreground/10"
-                  >
-                    <button
-                      onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                      className="w-full flex items-center justify-between py-4 text-left group"
-                    >
-                      <span className={`text-lg font-medium transition-colors ${
-                        openIndex === index ? "text-foreground" : "text-foreground/60"
-                      } group-hover:text-foreground`}>
-                        {feature.title}
-                      </span>
-                      {openIndex === index ? (
-                        <ChevronUp className="w-4 h-4 text-foreground/40 shrink-0" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 text-foreground/40 shrink-0" />
-                      )}
-                    </button>
-                    <AnimatePresence>
-                      {openIndex === index && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <p className="text-base text-muted-foreground leading-relaxed pb-4">
-                            {feature.description}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mb-20"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              Technology
+            </span>
           </div>
+          <h2 className="section-headline text-foreground mb-6">
+            Meet Atlas, the AI engine for auditing
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-xl mb-8">
+            Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
+          </p>
+          <Link
+            to="/features"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            explore atlas ai
+          </Link>
+        </motion.div>
 
-          {/* Demo — 3 columns (lines 4–7) */}
+        {/* Feature accordion */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-16 gap-y-12 mb-16">
+          {atlasFeatures.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: index * 0.1 }}
+              className="border-t-2 border-foreground/10 pt-6"
+            >
+              <h3 className="text-lg font-medium text-foreground mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm">{feature.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Atlas AI Demo — 5 columns wide (line 1–6) */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-3"
+            className="lg:col-span-5"
           >
             <div className="overflow-hidden aspect-[16/10] w-full bg-white">
               <AtlasAIDemoAnimation />
