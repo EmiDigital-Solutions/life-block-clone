@@ -37,12 +37,6 @@ const steps = [
   },
 ];
 
-const stats = [
-  { value: "60%", label: "Lower audit costs" },
-  { value: "48h", label: "Auditor on-site" },
-  { value: "24h", label: "Report delivery" },
-  { value: "€0", label: "Travel costs" },
-];
 
 export const HowItWorksSection = () => {
   const ref = useRef(null);
@@ -180,38 +174,15 @@ export const HowItWorksSection = () => {
           
           {/* Content */}
           <div className="relative z-10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-2">
-                    {stat.value}
-                  </p>
-                  <p className="text-white/50 text-sm font-medium">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-12 pt-12 border-t border-white/10 text-center"
+              transition={{ duration: 0.5 }}
+              className="text-center py-8"
             >
-              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
-                <span className="font-semibold">Your competitors already switched</span>{" "}
-                <br className="hidden md:block" />
-                <span className="font-normal text-white/80">When will you?</span>
+              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
+                Ready to transform your audits?
               </h3>
               <Button asChild size="lg">
                 <a 
