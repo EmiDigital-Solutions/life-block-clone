@@ -77,7 +77,7 @@ const DonutScore = ({ score, size = 160, labelSize = "text-2xl" }: { score: numb
           const filled = i / tickCount <= score / 100;
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke={filled ? 'hsl(158,23%,75%)' : 'hsl(0,0%,60%)'}
+              stroke={filled ? 'hsl(158,55%,51%)' : 'hsl(0,0%,60%)'}
               strokeWidth={0.8} strokeLinecap="square" />
           );
         })}
@@ -85,7 +85,7 @@ const DonutScore = ({ score, size = 160, labelSize = "text-2xl" }: { score: numb
           stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
         <motion.circle
           cx={size / 2} cy={size / 2} r={r} fill="none"
-          stroke="hsl(158, 23%, 75%)" strokeWidth={strokeW} strokeLinecap="square"
+          stroke="hsl(158,55%,51%)" strokeWidth={strokeW} strokeLinecap="square"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
           animate={{ strokeDashoffset: circ * (1 - score / 100) }}
@@ -710,13 +710,13 @@ const IntelligenceScreen = () => {
                                const filled = i / tickCount <= kpi.value / 100;
                                return (
                                   <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-                                    stroke={filled ? 'hsl(158,23%,75%)' : 'hsl(0,0%,60%)'}
+                                    stroke={filled ? 'hsl(158,55%,51%)' : 'hsl(0,0%,60%)'}
                                    strokeWidth={0.7} strokeLinecap="square" />
                                );
                              })}
                              <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={strokeW} />
                              <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none"
-                               stroke="hsl(158, 23%, 75%)" strokeWidth={strokeW} strokeLinecap="square"
+                               stroke="hsl(158,55%,51%)" strokeWidth={strokeW} strokeLinecap="square"
                                transform={`rotate(-90 ${size / 2} ${size / 2})`}
                                initial={{ strokeDasharray: circ, strokeDashoffset: circ }}
                                animate={{ strokeDashoffset: circ * (1 - kpi.value / 100) }}
