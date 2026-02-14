@@ -6,6 +6,7 @@ const AtlasAIDemoAnimation = () => {
   const [showFinding, setShowFinding] = useState(false);
   const [micActive, setMicActive] = useState(false);
   const [vis, setVis] = useState(0);
+  const [loopKey, setLoopKey] = useState(0);
   const [photoFlash, setPhotoFlash] = useState(false);
   const [chatStep, setChatStep] = useState(0);
   const [evidenceComplete, setEvidenceComplete] = useState(false);
@@ -88,8 +89,22 @@ const AtlasAIDemoAnimation = () => {
     if (copilotSpeaking) setSpeakerPulsing(false);
   }, [copilotSpeaking]);
 
-  // Single animation run (no loop)
+  // Animation loop — resets visual states but never touches speech
+  const copilotSpeakingRef = useRef(false);
+  useEffect(() => { copilotSpeakingRef.current = copilotSpeaking; }, [copilotSpeaking]);
+
   useEffect(() => {
+    // Reset visual states only (not speech)
+    setShowFinding(false);
+    setVis(0);
+    setChatStep(0);
+    setEvidenceComplete(false);
+    setShowMaturity(false);
+    setAtlasMaturity(null);
+    setAuditorMaturity(null);
+    setPhotoFlash(false);
+    middleScrollRef.current?.scrollTo({ top: 0 });
+
     const timers: number[] = [];
     const t = (delay: number, fn: () => void) => {
       timers.push(window.setTimeout(fn, delay));
@@ -129,11 +144,22 @@ const AtlasAIDemoAnimation = () => {
       }, 300);
     });
 
+    // Restart loop — but wait if voice is playing
+    t(16000, () => {
+      const waitForSpeech = () => {
+        if (copilotSpeakingRef.current) {
+          setTimeout(waitForSpeech, 1000);
+        } else {
+          setLoopKey(k => k + 1);
+        }
+      };
+      waitForSpeech();
+    });
+
     return () => {
       timers.forEach(clearTimeout);
-      window.speechSynthesis.cancel();
     };
-  }, []);
+  }, [loopKey]);
   
 
   return (
