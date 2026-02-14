@@ -36,9 +36,9 @@ const AtlasAIDemoAnimation = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-white p-3 md:p-6 overflow-hidden">
+    <div className="w-full h-full flex items-center justify-center bg-[hsl(220,15%,8%)] p-3 md:p-6 overflow-hidden">
       {/* Tablet Frame */}
-      <div className="w-full h-full max-w-[1100px] bg-white rounded-[20px] md:rounded-[28px] border border-slate-200 shadow-xl shadow-slate-200/50 flex flex-col overflow-hidden relative">
+      <div className="w-full h-full max-w-[1100px] bg-[hsl(220,18%,13%)] rounded-[20px] md:rounded-[28px] border border-white/10 shadow-2xl shadow-black/40 flex flex-col overflow-hidden relative">
 
         {/* Flash */}
         <AnimatePresence>
@@ -48,15 +48,15 @@ const AtlasAIDemoAnimation = () => {
         </AnimatePresence>
 
         {/* Tablet Top Bar */}
-        <div className="flex items-center justify-between px-5 md:px-7 py-3 border-b border-slate-100 bg-slate-50/50">
+        <div className="flex items-center justify-between px-5 md:px-7 py-3 border-b border-white/8">
           <div className="flex items-center gap-2.5">
             <div className="w-2.5 h-2.5 rounded-full bg-[#3DC88E]" />
-            <span className="text-[10px] md:text-[11px] text-slate-400 font-medium tracking-wider uppercase">Live Audit</span>
+            <span className="text-[10px] md:text-[11px] text-white/35 font-medium tracking-wider uppercase">Live Audit</span>
           </div>
-          <span className="text-[13px] md:text-[15px] font-bold text-slate-900 tracking-wide">Atlas AI · Auditor View</span>
+          <span className="text-[13px] md:text-[15px] font-bold text-white tracking-wide">Atlas AI · Auditor View</span>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] text-slate-400 hidden md:inline">Progress 45%</span>
-            <div className="w-20 h-2 bg-slate-200 rounded-full overflow-hidden">
+            <span className="text-[10px] text-white/30 hidden md:inline">Progress 45%</span>
+            <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
               <motion.div initial={{ width: 0 }} animate={{ width: "45%" }} transition={{ duration: 1.5, delay: 0.3 }} className="h-full bg-primary rounded-full" />
             </div>
           </div>
@@ -66,38 +66,38 @@ const AtlasAIDemoAnimation = () => {
         <div className="flex-1 flex overflow-hidden min-h-0">
 
           {/* LEFT — Checklist + Evidence */}
-          <div className="flex-[25] border-r border-slate-100 flex flex-col overflow-hidden bg-slate-50/30">
+          <div className="flex-[25] border-r border-white/6 flex flex-col overflow-hidden">
             {/* Checklist Header */}
-            <div className="px-4 py-3 border-b border-slate-100">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Checklist</span>
-              <div className="text-[9px] text-slate-400 mt-0.5">IATF 16949 · Precision Parts</div>
+            <div className="px-4 py-3 border-b border-white/6">
+              <span className="text-[11px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
+              <div className="text-[9px] text-white/25 mt-0.5">IATF 16949 · Precision Parts</div>
             </div>
 
             {/* Checklist Items */}
             <div className="flex-1 overflow-y-auto px-3 py-2 space-y-0.5">
-              <div className="text-[10px] font-bold text-slate-400 mb-1">▼ 4. QUALITY MGMT</div>
+              <div className="text-[10px] font-bold text-white/40 mb-1">▼ 4. QUALITY MGMT</div>
               <CheckItem done label="4.1.1 Process Approach" />
-              <div className="text-[10px] font-semibold text-slate-400 pl-2 mt-1 mb-0.5">▼ 4.2 Documentation</div>
+              <div className="text-[10px] font-semibold text-white/35 pl-2 mt-1 mb-0.5">▼ 4.2 Documentation</div>
               <CheckItem done label="4.2.1 General" indent />
               <CheckItem done label="4.2.2 Quality Manual" indent />
               {/* Active item */}
               <div className="bg-primary/10 border border-primary/25 rounded-lg px-2.5 py-2 ml-2 my-1">
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-[11px] font-bold text-slate-900">4.2.3 Control</span>
+                  <span className="text-[11px] font-bold text-white">4.2.3 Control</span>
                 </div>
                 <span className="text-[8px] px-1.5 py-0.5 bg-[#E04545] text-white font-bold rounded ml-5 inline-block mt-1">HIGH RISK</span>
               </div>
               <CheckItem label="4.2.4 Records" indent pending />
-              <div className="text-[10px] font-bold text-slate-400 mt-2 mb-1">▶ 5. MANAGEMENT</div>
+              <div className="text-[10px] font-bold text-white/40 mt-2 mb-1">▶ 5. MANAGEMENT</div>
               <CheckItem label="5.1 Commitment" pending />
               <CheckItem label="5.2 Customer Focus" pending />
             </div>
 
             {/* Evidence Manager */}
-            <div className="border-t border-slate-100 px-3 py-3 bg-white">
+            <div className="border-t border-white/6 px-3 py-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Evidence</span>
+                <span className="text-[10px] font-bold text-white/45 uppercase tracking-wider">Evidence</span>
                 <span className="text-[9px] text-primary font-bold">12 files</span>
               </div>
               <div className="space-y-1.5">
@@ -106,18 +106,18 @@ const AtlasAIDemoAnimation = () => {
                 <EvidenceItem name="CNC_nameplate.jpg" type="img" status="verified" />
               </div>
               <div className="flex gap-2 mt-2.5">
-                <button className="flex-1 flex items-center justify-center gap-1.5 bg-slate-50 hover:bg-slate-100 rounded-lg py-2 transition-colors group border border-slate-200">
-                  <svg className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <button className="flex-1 flex items-center justify-center gap-1.5 bg-white/5 hover:bg-white/10 rounded-lg py-2 transition-colors group">
+                  <svg className="w-3.5 h-3.5 text-white/30 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                     <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
                     <circle cx="12" cy="13" r="4" />
                   </svg>
-                  <span className="text-[9px] text-slate-500 font-medium">Capture</span>
+                  <span className="text-[9px] text-white/30 group-hover:text-white/50 font-medium">Capture</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center gap-1.5 bg-slate-50 hover:bg-slate-100 rounded-lg py-2 transition-colors group border border-slate-200">
-                  <svg className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <button className="flex-1 flex items-center justify-center gap-1.5 bg-white/5 hover:bg-white/10 rounded-lg py-2 transition-colors group">
+                  <svg className="w-3.5 h-3.5 text-white/30 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
                   </svg>
-                  <span className="text-[9px] text-slate-500 font-medium">Upload</span>
+                  <span className="text-[9px] text-white/30 group-hover:text-white/50 font-medium">Upload</span>
                 </button>
               </div>
             </div>
