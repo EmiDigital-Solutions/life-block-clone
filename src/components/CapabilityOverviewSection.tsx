@@ -35,11 +35,9 @@ const CapabilityOverviewSection = () => {
             className="mb-12 md:mb-16"
           >
             <h2 className="section-headline text-foreground max-w-4xl">
-              One place from search<br />to verified partnership
+              From search to verified partnership.<br />
+              <span className="text-muted-foreground font-normal">The physics of speed.</span>
             </h2>
-            <p className="text-lg text-muted-foreground mt-4 max-w-xl">
-              Find → Verify → Decide. No coordination required.
-            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
