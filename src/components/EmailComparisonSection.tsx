@@ -106,7 +106,7 @@ const EmailComparisonSection = () => {
               transition={{ delay: index * 0.05 }}
               className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
-              <span className={`text-xs font-mono tracking-[0.15em] uppercase mb-3 block ${
+              <span className={`text-sm font-medium tracking-[0.15em] uppercase mb-3 block ${
                 isWithScanPro ? 'text-primary' : 'text-destructive'
               }`}>
                 {item.time}

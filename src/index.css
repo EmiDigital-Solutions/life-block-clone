@@ -203,7 +203,11 @@ All colors MUST be HSL.
 
   /* Section Eyebrow — global label style above headlines */
   .section-eyebrow {
-    @apply font-mono text-sm tracking-wide lowercase text-primary;
+    @apply text-sm font-medium tracking-[0.15em] text-muted-foreground uppercase;
+  }
+
+  .section-eyebrow-primary {
+    @apply text-sm font-medium tracking-[0.15em] text-primary uppercase;
   }
 
   /* Section Headlines - bfl.ai inspired clean, semi-bold typography */

@@ -64,7 +64,7 @@ export const HowItWorksSection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <span className="section-eyebrow">
                 The Process
               </span>
             </div>
@@ -120,7 +120,7 @@ export const HowItWorksSection = () => {
                   
                   {/* Content */}
                   <div className="mt-12 md:mt-20">
-                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                    <span className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
                       {step.subtitle}

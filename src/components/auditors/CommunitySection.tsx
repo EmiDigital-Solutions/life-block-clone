@@ -26,7 +26,7 @@ const CommunitySection = () => {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               Community
             </span>
           </div>

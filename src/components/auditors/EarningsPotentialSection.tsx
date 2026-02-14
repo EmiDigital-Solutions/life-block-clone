@@ -61,7 +61,7 @@ const EarningsPotentialSection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <span className="section-eyebrow">
                 Payment Process
               </span>
             </div>
@@ -153,7 +153,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               Opportunities
             </span>
           </div>
@@ -174,7 +174,7 @@ const RealOpportunitiesSection = ({ audits }: { audits: { standard: string; type
             >
               {/* Standard badge */}
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-medium tracking-[0.15em] text-primary uppercase">{audit.standard}</span>
+                <span className="text-sm font-medium tracking-[0.15em] text-primary uppercase">{audit.standard}</span>
                 <span className="text-xs text-muted-foreground">{audit.duration}</span>
               </div>
 

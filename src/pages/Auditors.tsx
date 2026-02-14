@@ -367,7 +367,7 @@ const ValuePropositionSection = () => {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               Your Future
             </span>
           </div>
@@ -482,7 +482,7 @@ const TimelineSection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <span className="section-eyebrow">
                 The Process
               </span>
             </div>
@@ -538,7 +538,7 @@ const TimelineSection = () => {
                   
                   {/* Content */}
                   <div className="mt-12 md:mt-20">
-                    <span className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 ${
+                    <span className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
                       hoveredIndex === index ? 'text-primary' : 'text-muted-foreground/60'
                     }`}>
                       {step.subtitle}
@@ -605,7 +605,7 @@ const QualificationsSection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground/30" />
-              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              <span className="section-eyebrow">
                 Requirements
               </span>
             </div>
@@ -680,7 +680,7 @@ const TechnologyFeaturesSection = () => {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               Technology
             </span>
           </div>
@@ -841,7 +841,7 @@ const DayInLifeSection = () => {
         >
           <div className="flex items-center gap-4 mb-8">
             <div className="w-16 h-px bg-primary" />
-            <span className="text-xs font-semibold tracking-[0.25em] text-primary uppercase">
+            <span className="section-eyebrow-primary">
               The Difference
             </span>
           </div>
@@ -1039,7 +1039,7 @@ const SuccessStoriesSection = () => {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               From Our Partners
             </span>
           </div>
@@ -1081,7 +1081,7 @@ const SuccessStoriesSection = () => {
           className="bg-foreground p-10 md:p-14 mb-12"
         >
           <div className="max-w-3xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-background/30 uppercase mb-6">
+            <p className="section-eyebrow text-background/30 mb-6">
               Our culture
             </p>
             <h3 className="section-headline-sm text-background mb-6">
@@ -1102,7 +1102,7 @@ const SuccessStoriesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4 }}
         >
-          <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
+          <p className="section-eyebrow mb-8">
             More than a platform
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1260,7 +1260,7 @@ const ScrollZoomSection = () => {
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
-            <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="section-eyebrow">
               Our Network
             </span>
           </div>
