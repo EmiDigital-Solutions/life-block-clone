@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ── ATLAS AI DEMO — Tablet Hybrid ── */
@@ -14,6 +14,53 @@ const AtlasAIDemoAnimation = () => {
   const [auditorMaturity, setAuditorMaturity] = useState<number | null>(null);
   const [copilotSpeaking, setCopilotSpeaking] = useState(false);
   const [copilotText, setCopilotText] = useState("");
+  const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  const riskAlertText = "BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits. Recommend thorough check of document control procedures, approval signatures, and revision history.";
+
+  const speakRiskAlert = useCallback(() => {
+    if (copilotSpeaking) {
+      window.speechSynthesis.cancel();
+      setCopilotSpeaking(false);
+      setCopilotText("");
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(riskAlertText);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    utterance.lang = "en-US";
+    
+    // Try to pick a good voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel"));
+    if (preferred) utterance.voice = preferred;
+
+    utterance.onstart = () => {
+      setCopilotSpeaking(true);
+      setCopilotText("Reading risk alert...");
+    };
+
+    // Animate text segments while speaking
+    const segments = [
+      { time: 1500, text: "BMW Tier-2 rejected 2 suppliers for document control gaps." },
+      { time: 4000, text: "Issues found in 73% of similar audits." },
+      { time: 6500, text: "Recommend thorough check of procedures and signatures." },
+    ];
+    const timers: number[] = [];
+    segments.forEach(s => {
+      timers.push(window.setTimeout(() => setCopilotText(s.text), s.time));
+    });
+
+    utterance.onend = () => {
+      timers.forEach(clearTimeout);
+      setCopilotSpeaking(false);
+      setCopilotText("");
+    };
+
+    speechRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+  }, [copilotSpeaking]);
 
   // Staged reveal
   useEffect(() => {
@@ -27,23 +74,9 @@ const AtlasAIDemoAnimation = () => {
     return () => clearTimeout(t);
   }, []);
 
-  // Copilot reads risk alert aloud
+  // Cleanup speech on unmount
   useEffect(() => {
-    const t1 = setTimeout(() => {
-      setCopilotSpeaking(true);
-      setCopilotText("Reading risk alert...");
-    }, 2500);
-    const t2 = setTimeout(() => {
-      setCopilotText("BMW Tier-2 rejected 2 suppliers for document control gaps.");
-    }, 3500);
-    const t3 = setTimeout(() => {
-      setCopilotText("Issues found in 73% of similar audits. Recommend thorough check.");
-    }, 5500);
-    const t4 = setTimeout(() => {
-      setCopilotSpeaking(false);
-      setCopilotText("");
-    }, 7500);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    return () => { window.speechSynthesis.cancel(); };
   }, []);
 
   useEffect(() => {
@@ -180,7 +213,7 @@ const AtlasAIDemoAnimation = () => {
                 <span className="text-[12px] font-semibold text-white/40 uppercase tracking-wider">Question</span>
                 <div className="flex gap-2">
                   {["🔊", "📷", "📎"].map((icon, i) => (
-                    <button key={i} className="w-8 h-8 flex items-center justify-center bg-white/5 rounded-lg hover:bg-white/10 active:bg-white/15 transition-colors text-[14px] border border-transparent hover:border-white/10">
+                    <button key={i} onClick={i === 0 ? speakRiskAlert : undefined} className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors text-[14px] border ${i === 0 && copilotSpeaking ? "bg-[#3DC88E]/15 border-[#3DC88E] ring-1 ring-[#3DC88E]/30" : "bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10 active:bg-white/15"}`}>
                       {icon}
                     </button>
                   ))}
@@ -367,13 +400,14 @@ const AtlasAIDemoAnimation = () => {
                     </>
                   )}
                 </AnimatePresence>
-                <motion.div
+                <motion.button
+                  onClick={speakRiskAlert}
                   animate={copilotSpeaking ? {
                     boxShadow: ["0 0 15px rgba(61,200,142,0.15)", "0 0 35px rgba(61,200,142,0.4)", "0 0 15px rgba(61,200,142,0.15)"],
                     scale: [1, 1.05, 1],
                   } : {}}
                   transition={{ duration: 1.2, repeat: Infinity }}
-                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${copilotSpeaking ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15"}`}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${copilotSpeaking ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15 hover:border-white/30"}`}
                 >
                   <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                     {copilotSpeaking ? (
@@ -391,7 +425,7 @@ const AtlasAIDemoAnimation = () => {
                       </>
                     )}
                   </svg>
-                </motion.div>
+                </motion.button>
               </div>
               <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/30"}`}>
                 {copilotSpeaking ? "Speaking..." : "Tap to speak"}
