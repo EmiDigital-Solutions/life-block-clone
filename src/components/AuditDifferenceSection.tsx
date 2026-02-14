@@ -6,38 +6,38 @@ import qualityHeroImage from "@/assets/quality-hero-green.png";
 
 const timeline = [
   {
-    phase: "01",
-    title: "Finding the right auditor",
-    oldWay: "Email 5 agencies. Wait for quotes. Compare CVs. Negotiate rates. 3–4 weeks before anyone is even assigned.",
-    newWay: "AI matches your requirements to the nearest certified auditor in seconds. VDA 6.3, IATF, ISO — qualifications verified, availability confirmed instantly.",
+    day: "Day 1",
+    title: "You commission the audit",
+    oldWay: "Call three agencies. Wait for quotes. Compare CVs you can't verify. Negotiate rates. 3–4 weeks before anyone is even assigned — and you still don't know if the auditor understands your industry.",
+    newWay: "Describe your requirements once. AI matches the nearest certified auditor — VDA 6.3, IATF, ISO qualifications verified, industry experience confirmed, availability instant. Your audit is fully organized before it starts.",
     highlight: "Matched in seconds, not weeks",
   },
   {
-    phase: "02",
-    title: "Preparing the audit scope",
-    oldWay: "Back-and-forth emails with the supplier. Missing documents. Unclear scope. The auditor arrives underprepared — and you won't know until the report lands.",
-    newWay: "AI analyzes the supplier profile, previous findings, and your specific risk areas. A tailored audit framework is generated before the auditor even leaves home.",
+    day: "Day 2",
+    title: "The audit is prepared",
+    oldWay: "Generic checklist. The auditor Googles your supplier. Emails them for missing documents. No one knows the risk areas. The auditor arrives underprepared — and you won't know until the report lands.",
+    newWay: "AI analyzes the supplier profile, certifications, previous findings, and your specific risk areas. A tailored audit framework is generated — the auditor walks in knowing exactly where to focus. Your quality standards are built into every question.",
     highlight: "Intelligence-driven, not assumption-driven",
   },
   {
-    phase: "03",
-    title: "On-site execution",
-    oldWay: "One auditor with a clipboard. Photos on a phone. Handwritten notes. Subjective scoring that varies from auditor to auditor.",
-    newWay: "Atlas AI guides every step: equipment auto-recognized, evidence photos linked to findings, maturity scores suggested with reasoning. Consistent quality — regardless of who audits.",
-    highlight: "Standardized precision, every single time",
+    day: "Day 3",
+    title: "Your supplier is audited",
+    oldWay: "One auditor with a clipboard. Photos on a phone, renamed later. Handwritten notes. Subjective scoring that varies from auditor to auditor. You have zero visibility until weeks later.",
+    newWay: "Atlas AI guides every step: equipment auto-recognized, evidence photos linked to findings, maturity scores suggested with reasoning. Flag a critical deviation — you see it in real time. Consistent quality, regardless of who audits.",
+    highlight: "Real-time visibility, standardized precision",
   },
   {
-    phase: "04",
-    title: "Getting the report",
-    oldWay: "Wait 6–10 weeks. Receive a 40-page PDF. No risk scoring. No photos linked to findings. Import into your QMS manually.",
-    newWay: "Report delivered within 24 hours — with evidence photos, risk scores, corrective actions, and deviation analysis. Ready to import into your QMS instantly.",
+    day: "Day 4",
+    title: "You receive the report",
+    oldWay: "Wait 6–10 weeks. Receive a 40-page PDF. No risk scoring. No photos linked to findings. Import into your QMS manually. Hope the auditor remembered everything.",
+    newWay: "Report delivered within 24 hours — with evidence photos, risk scores, corrective actions, and deviation analysis. Every finding is traceable, every score is justified. Ready to import into your QMS instantly.",
     highlight: "Decisions in hours, not months",
   },
   {
-    phase: "05",
-    title: "Making the decision",
-    oldWay: "Read through dense text. Interpret subjective language. Guess at risk levels. Hope your team reads it the same way you do.",
-    newWay: "Clear risk visualization, quantified maturity levels, and AI-summarized findings. Your entire team sees the same verified data — and decides with confidence.",
+    day: "Day 5",
+    title: "You make the decision",
+    oldWay: "Read through dense text. Interpret subjective language. Guess at risk levels. Hope your team reads it the same way you do. The supplier dispute begins.",
+    newWay: "Clear risk visualization, quantified maturity levels, and AI-summarized findings in your dashboard. Your entire team sees the same verified data — and decides with confidence. The supplier sees exactly what to fix.",
     highlight: "Verified data, confident decisions",
   },
 ];
@@ -153,37 +153,37 @@ const AuditDifferenceSection = () => {
                   transition={{ delay: 0.3 + index * 0.25, duration: 0.7, ease: "easeOut" }}
                   className="flex gap-8 md:gap-12 group"
                 >
-                  {/* Phase badge */}
+                  {/* Day badge */}
                   <div className="flex-shrink-0 w-[56px] md:w-[88px] relative">
                     <motion.div
-                      className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] border border-border bg-background items-center justify-center group-hover:border-primary/40 group-hover:shadow-md transition-all duration-300"
+                      className="hidden sm:flex absolute left-0 top-0 w-[56px] md:w-[88px] h-[56px] md:h-[88px] rounded-lg border border-border bg-background items-center justify-center shadow-sm group-hover:border-primary/40 group-hover:shadow-md transition-all duration-300"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={isInView ? { scale: 1, opacity: 1 } : {}}
                       transition={{ delay: 0.4 + index * 0.25, duration: 0.4, ease: "easeOut" }}
                     >
                       <motion.div
-                        className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary"
+                        className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary rounded-tl-lg"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ delay: 0.6 + index * 0.25, duration: 0.3 }}
                       />
                       <motion.div
-                        className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary"
+                        className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary rounded-br-lg"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ delay: 0.65 + index * 0.25, duration: 0.3 }}
                       />
-                      <span className="text-sm md:text-base font-semibold text-foreground tracking-wide font-mono">
-                        {item.phase}
+                      <span className="text-sm md:text-base font-semibold text-foreground tracking-wide">
+                        {item.day}
                       </span>
                     </motion.div>
                     <motion.span
-                      className="sm:hidden text-lg font-semibold text-primary font-mono"
+                      className="sm:hidden text-lg font-semibold text-primary"
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : {}}
                       transition={{ delay: 0.4 + index * 0.25 }}
                     >
-                      {item.phase}
+                      {item.day}
                     </motion.span>
                   </div>
 
@@ -209,7 +209,7 @@ const AuditDifferenceSection = () => {
                         transition={{ delay: 0.6 + index * 0.25, duration: 0.5 }}
                       >
                         <motion.div
-                          className="flex-shrink-0 w-6 h-6 bg-muted flex items-center justify-center mt-0.5"
+                          className="flex-shrink-0 w-6 h-6 rounded bg-muted flex items-center justify-center mt-0.5"
                           initial={{ scale: 0 }}
                           animate={isInView ? { scale: 1 } : {}}
                           transition={{ delay: 0.65 + index * 0.25, type: "spring", stiffness: 300 }}
@@ -225,7 +225,7 @@ const AuditDifferenceSection = () => {
                         transition={{ delay: 0.7 + index * 0.25, duration: 0.5 }}
                       >
                         <motion.div
-                          className="flex-shrink-0 w-6 h-6 bg-primary/10 flex items-center justify-center mt-0.5"
+                          className="flex-shrink-0 w-6 h-6 rounded bg-primary/10 flex items-center justify-center mt-0.5"
                           initial={{ scale: 0 }}
                           animate={isInView ? { scale: 1 } : {}}
                           transition={{ delay: 0.75 + index * 0.25, type: "spring", stiffness: 300 }}
