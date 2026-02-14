@@ -469,7 +469,7 @@ const TimelineSection = () => {
   ];
 
   return (
-    <section ref={ref} id="how-it-works" className="py-16 md:py-24 bg-white overflow-hidden">
+    <section ref={ref} id="how-it-works" className="py-16 md:py-24 bg-muted overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
@@ -667,7 +667,7 @@ const TechnologyFeaturesSection = () => {
     <section 
       ref={ref}
       data-nav-theme="light"
-      className="py-16 md:py-24 bg-muted"
+      className="py-16 md:py-24 bg-white"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         
