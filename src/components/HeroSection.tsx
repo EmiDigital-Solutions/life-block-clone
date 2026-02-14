@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              AI-Powered Supplier Verification
+              supplier intelligence platform — find · verify · decide
             </motion.p>
 
             {/* Headline */}
