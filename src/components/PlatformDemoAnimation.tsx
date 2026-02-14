@@ -55,8 +55,8 @@ const BarChart = ({ bars, accentIndex = -1 }: { bars: number[]; accentIndex?: nu
 );
 
 /* Overflowing donut chart — clips at card boundary */
-const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => {
-  const strokeW = 10;
+const DonutScore = ({ score, size = 160, labelSize = "text-2xl" }: { score: number; size?: number; labelSize?: string }) => {
+  const strokeW = Math.max(6, size * 0.07);
   const r = (size - strokeW * 2) / 2;
   const circ = 2 * Math.PI * r;
   const tickCount = 60;
@@ -93,7 +93,7 @@ const DonutScore = ({ score, size = 160 }: { score: number; size?: number }) => 
         />
       </svg>
       <div className="text-center z-10">
-        <div className="text-2xl font-bold text-foreground leading-none">{score}%</div>
+        <div className={`${labelSize} font-bold text-foreground leading-none`}>{score}%</div>
         <div className="text-[8px] text-muted-foreground uppercase tracking-wider mt-0.5">Score</div>
       </div>
     </div>
@@ -260,51 +260,51 @@ const DiscoverScreen = () => {
                   <div className="text-[8px] text-muted-foreground uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
 
                  {/* Row 1: 3 Pie charts — Quality, Delivery, Compliance */}
-                 <div className="flex items-center justify-between">
-                   {[
-                     { label: "Quality", value: 92 },
-                     { label: "On-Time Del.", value: 88 },
-                     { label: "Compliance", value: 95 },
-                   ].map((kpi, idx) => {
-                     const sz = 52;
-                     const sw = 4;
-                     const r = (sz - sw * 2) / 2;
-                     const c = 2 * Math.PI * r;
-                     const ticks = 20;
-                     const tR = r + sw + 1.5;
-                     return (
-                       <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + idx * 0.15 }}
-                         className="flex flex-col items-center gap-0.5">
-                         <div className="relative flex items-center justify-center" style={{ width: sz, height: sz }}>
-                           <svg className="absolute inset-0" viewBox={`0 0 ${sz} ${sz}`}>
-                             {Array.from({ length: ticks }).map((_, i) => {
-                               const angle = (i / ticks) * 360 - 90;
-                               const rad = (angle * Math.PI) / 180;
-                               const cx = sz / 2; const cy = sz / 2;
-                               const x1 = cx + Math.cos(rad) * (tR - 1.5);
-                               const y1 = cy + Math.sin(rad) * (tR - 1.5);
-                               const x2 = cx + Math.cos(rad) * (tR + 0.8);
-                               const y2 = cy + Math.sin(rad) * (tR + 0.8);
-                               return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-                                 stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
-                                 strokeWidth={0.6} strokeLinecap="square" />;
-                             })}
-                             <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={sw} />
-                             <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
-                               stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
-                               transform={`rotate(-90 ${sz/2} ${sz/2})`}
-                               initial={{ strokeDasharray: c, strokeDashoffset: c }}
-                               animate={{ strokeDashoffset: c * (1 - kpi.value / 100) }}
-                               transition={{ duration: 1, ease: "easeOut", delay: 0.5 + idx * 0.15 }}
-                             />
-                           </svg>
-                            <span className="text-[9px] font-bold text-foreground z-10">{kpi.value}%</span>
-                          </div>
-                          <span className="text-[7px] text-muted-foreground uppercase">{kpi.label}</span>
-                       </motion.div>
-                     );
-                   })}
-                 </div>
+                 <div className="flex items-center justify-around">
+                    {[
+                      { label: "Quality", value: 92 },
+                      { label: "On-Time Del.", value: 88 },
+                      { label: "Compliance", value: 95 },
+                    ].map((kpi, idx) => {
+                      const sz = 72;
+                      const sw = 5;
+                      const r = (sz - sw * 2) / 2;
+                      const c = 2 * Math.PI * r;
+                      const ticks = 28;
+                      const tR = r + sw + 1.5;
+                      return (
+                        <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + idx * 0.15 }}
+                          className="flex flex-col items-center gap-1">
+                          <div className="relative flex items-center justify-center" style={{ width: sz, height: sz }}>
+                            <svg className="absolute inset-0" viewBox={`0 0 ${sz} ${sz}`}>
+                              {Array.from({ length: ticks }).map((_, i) => {
+                                const angle = (i / ticks) * 360 - 90;
+                                const rad = (angle * Math.PI) / 180;
+                                const cx = sz / 2; const cy = sz / 2;
+                                const x1 = cx + Math.cos(rad) * (tR - 1.5);
+                                const y1 = cy + Math.sin(rad) * (tR - 1.5);
+                                const x2 = cx + Math.cos(rad) * (tR + 0.8);
+                                const y2 = cy + Math.sin(rad) * (tR + 0.8);
+                                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                                  stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
+                                  strokeWidth={0.6} strokeLinecap="square" />;
+                              })}
+                              <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={sw} />
+                              <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
+                                stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
+                                transform={`rotate(-90 ${sz/2} ${sz/2})`}
+                                initial={{ strokeDasharray: c, strokeDashoffset: c }}
+                                animate={{ strokeDashoffset: c * (1 - kpi.value / 100) }}
+                                transition={{ duration: 1, ease: "easeOut", delay: 0.5 + idx * 0.15 }}
+                              />
+                            </svg>
+                             <span className="text-xs font-bold text-foreground z-10">{kpi.value}%</span>
+                           </div>
+                           <span className="text-[8px] text-muted-foreground uppercase">{kpi.label}</span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
 
                  {/* Row 2: Score trend line chart */}
                  <div>
@@ -663,13 +663,13 @@ const IntelligenceScreen = () => {
        </div>
 
       <div className="flex-1 flex">
-        <div className="w-3/5 p-3 flex flex-col gap-2 overflow-hidden">
+        <div className="w-3/5 p-3 flex flex-col gap-2.5 overflow-hidden">
           {/* Main score — donut + stat */}
           {showElements >= 1 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <GlassCard layer={2} className="p-3 flex items-center gap-3 overflow-hidden relative">
-                <div className="-ml-5 -my-3 flex-shrink-0">
-                  <DonutScore score={91} size={110} />
+              <GlassCard layer={2} className="p-4 flex items-center gap-4 overflow-hidden relative">
+                <div className="-ml-4 -my-2 flex-shrink-0">
+                  <DonutScore score={91} size={130} labelSize="text-xl" />
                 </div>
                  <div className="flex-1">
                    <BigStat value="91.3" unit="%" delta="+2.1" />
@@ -714,22 +714,21 @@ const IntelligenceScreen = () => {
            {/* Audit KPI pie charts — 3 in one card */}
            {showElements >= 4 && (
              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-               <GlassCard layer={2} className="p-3">
-                 <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Key Performance Indicators</div>
-                 <div className="flex items-center justify-between">
+               <GlassCard layer={2} className="p-4">
+                 <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-semibold mb-3">Key Performance Indicators</div>
+                 <div className="flex items-center justify-around">
                    {auditKpis.map((kpi, idx) => {
-                     const size = 70;
-                     const strokeW = 5;
+                     const size = 88;
+                     const strokeW = 6;
                      const r = (size - strokeW * 2) / 2;
                      const circ = 2 * Math.PI * r;
-                     const tickCount = 30;
+                     const tickCount = 36;
                      const tickR = r + strokeW + 2;
                      return (
                        <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: idx * 0.2 }}
-                         className="flex flex-col items-center gap-1">
+                         className="flex flex-col items-center gap-1.5">
                          <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
                            <svg className="absolute inset-0" viewBox={`0 0 ${size} ${size}`}>
-                             {/* Tick marks around pie */}
                              {Array.from({ length: tickCount }).map((_, i) => {
                                const angle = (i / tickCount) * 360 - 90;
                                const rad = (angle * Math.PI) / 180;
@@ -756,12 +755,12 @@ const IntelligenceScreen = () => {
                              />
                            </svg>
                            <div className="text-center z-10">
-                              <span className="text-sm font-bold text-foreground">{kpi.value}%</span>
+                              <span className="text-base font-bold text-foreground">{kpi.value}%</span>
                             </div>
                           </div>
                           <div className="text-center">
-                            <span className="text-[8px] text-muted-foreground uppercase block">{kpi.label}</span>
-                           <span className="text-[7px] text-primary font-semibold">{kpi.delta}</span>
+                            <span className="text-[9px] text-muted-foreground uppercase block">{kpi.label}</span>
+                           <span className="text-[8px] text-primary font-semibold">{kpi.delta}</span>
                          </div>
                        </motion.div>
                      );
@@ -774,13 +773,13 @@ const IntelligenceScreen = () => {
           {/* Non-conformances */}
           {showElements >= 5 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto">
-              <div className="flex gap-2">
-                  <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
-                    <span className="text-base font-bold text-foreground">0</span>
+              <div className="flex gap-2 max-w-[200px]">
+                  <GlassCard layer={1} className="px-3 py-2 flex-1 text-center">
+                    <span className="text-lg font-bold text-foreground">0</span>
                     <span className="text-[9px] text-muted-foreground uppercase block">Major</span>
                   </GlassCard>
-                  <GlassCard layer={1} className="px-3 py-1.5 flex-1 text-center">
-                    <span className="text-base font-bold text-foreground">1</span>
+                  <GlassCard layer={1} className="px-3 py-2 flex-1 text-center">
+                    <span className="text-lg font-bold text-foreground">1</span>
                     <span className="text-[9px] text-muted-foreground uppercase block">Minor</span>
                  </GlassCard>
               </div>
@@ -870,18 +869,18 @@ const CAPAScreen = () => {
           {/* Summary stats */}
           {phase >= 1 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="flex gap-2 mb-1">
-                <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
-                  <span className="text-lg font-bold text-destructive">1</span>
-                   <span className="text-[8px] text-muted-foreground uppercase block">Major NC</span>
+              <div className="flex gap-2 mb-1 max-w-[280px]">
+                <GlassCard layer={2} className="px-3 py-2 flex-1 text-center">
+                  <span className="text-xl font-bold text-destructive">1</span>
+                   <span className="text-[9px] text-muted-foreground uppercase block">Major NC</span>
                  </GlassCard>
-                 <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
-                   <span className="text-lg font-bold text-foreground">1</span>
-                   <span className="text-[8px] text-muted-foreground uppercase block">Minor NC</span>
+                 <GlassCard layer={2} className="px-3 py-2 flex-1 text-center">
+                   <span className="text-xl font-bold text-foreground">1</span>
+                   <span className="text-[9px] text-muted-foreground uppercase block">Minor NC</span>
                  </GlassCard>
-                 <GlassCard layer={2} className="px-2.5 py-1.5 flex-1 text-center">
-                   <span className="text-lg font-bold text-primary">2</span>
-                   <span className="text-[8px] text-muted-foreground uppercase block">OFI</span>
+                 <GlassCard layer={2} className="px-3 py-2 flex-1 text-center">
+                   <span className="text-xl font-bold text-primary">2</span>
+                   <span className="text-[9px] text-muted-foreground uppercase block">OFI</span>
                 </GlassCard>
               </div>
             </motion.div>
@@ -923,9 +922,9 @@ const CAPAScreen = () => {
         <div className="w-2/5 border-l border-muted-foreground/10 flex flex-col p-3 gap-2">
           {phase >= 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <GlassCard layer={3} className="p-3">
-                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Close-out Progress</div>
-                 <DonutScore score={49} size={100} />
+             <GlassCard layer={3} className="p-4">
+                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">Close-out Progress</div>
+                 <DonutScore score={49} size={120} labelSize="text-lg" />
                  <div className="text-center mt-1">
                    <span className="text-[9px] text-muted-foreground">2 of 4 findings addressed</span>
                 </div>
