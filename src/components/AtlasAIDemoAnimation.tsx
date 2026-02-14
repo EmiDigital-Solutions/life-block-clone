@@ -1,24 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ── ATLAS AI DEMO — Tablet Hybrid ── */
 const AtlasAIDemoAnimation = () => {
   const [showFinding, setShowFinding] = useState(false);
   const [micActive, setMicActive] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [vis, setVis] = useState(0);
   const [photoFlash, setPhotoFlash] = useState(false);
   const [guidanceOpen, setGuidanceOpen] = useState(false);
+  const [evidenceComplete, setEvidenceComplete] = useState(false);
+  const [showMaturity, setShowMaturity] = useState(false);
+  const [atlasMaturity, setAtlasMaturity] = useState<number | null>(null);
+  const [auditorMaturity, setAuditorMaturity] = useState<number | null>(null);
+  const [copilotSpeaking, setCopilotSpeaking] = useState(false);
+  const [copilotText, setCopilotText] = useState("");
 
+  // Staged reveal
   useEffect(() => {
     const t = [400, 1000, 2000, 3000].map((d, i) => setTimeout(() => setVis(i + 1), d));
     return () => t.forEach(clearTimeout);
   }, []);
 
+  // Auto-open guidance after insights load
   useEffect(() => {
-    const t1 = setTimeout(() => setMicActive(true), 1800);
-    const t2 = setTimeout(() => setMicActive(false), 4200);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t = setTimeout(() => setGuidanceOpen(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Copilot reads risk alert aloud
+  useEffect(() => {
+    const t1 = setTimeout(() => {
+      setCopilotSpeaking(true);
+      setCopilotText("Reading risk alert...");
+    }, 2500);
+    const t2 = setTimeout(() => {
+      setCopilotText("BMW Tier-2 rejected 2 suppliers for document control gaps.");
+    }, 3500);
+    const t3 = setTimeout(() => {
+      setCopilotText("Issues found in 73% of similar audits. Recommend thorough check.");
+    }, 5500);
+    const t4 = setTimeout(() => {
+      setCopilotSpeaking(false);
+      setCopilotText("");
+    }, 7500);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
   }, []);
 
   useEffect(() => {
@@ -26,29 +51,38 @@ const AtlasAIDemoAnimation = () => {
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const t = setTimeout(() => setSelectedAnswer("NO"), 3500);
-    return () => clearTimeout(t);
-  }, []);
-
+  // Photo flash
   useEffect(() => {
     const t = setTimeout(() => { setPhotoFlash(true); setTimeout(() => setPhotoFlash(false), 250); }, 5500);
     return () => clearTimeout(t);
   }, []);
 
+  // Evidence completes, then maturity appears
+  useEffect(() => {
+    const t1 = setTimeout(() => setEvidenceComplete(true), 8000);
+    const t2 = setTimeout(() => setShowMaturity(true), 9000);
+    const t3 = setTimeout(() => setAtlasMaturity(3), 10000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
+
+  // Auditor selects maturity
+  useEffect(() => {
+    const t = setTimeout(() => setAuditorMaturity(2), 11500);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div className="w-full h-full overflow-hidden">
-      {/* Tablet Frame */}
       <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
         {/* Flash */}
         <AnimatePresence>
           {photoFlash && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white z-50 rounded-[28px]" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white z-50" />
           )}
         </AnimatePresence>
 
-        {/* Tablet Top Bar */}
+        {/* Top Bar */}
         <div className="flex items-center justify-between px-6 md:px-8 py-3 border-b border-white/8">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-[#3DC88E]" />
@@ -63,25 +97,22 @@ const AtlasAIDemoAnimation = () => {
           </div>
         </div>
 
-        {/* Main 3-Column Layout */}
+        {/* Main 3-Column */}
         <div className="flex-1 flex overflow-hidden min-h-0">
 
           {/* LEFT — Checklist + Evidence */}
           <div className="flex-[25] border-r border-white/6 flex flex-col overflow-hidden">
-            {/* Checklist Header */}
             <div className="px-4 py-3 border-b border-white/6">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
               <div className="text-[10px] text-white/25 mt-1">IATF 16949 · Precision Parts</div>
             </div>
 
-            {/* Checklist Items — increased spacing */}
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1">
               <div className="text-[12px] font-bold text-white/40 mb-2">▼ 4. QUALITY MGMT</div>
               <CheckItem done label="4.1.1 Process Approach" />
               <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 4.2 Documentation</div>
               <CheckItem done label="4.2.1 General" indent />
               <CheckItem done label="4.2.2 Quality Manual" indent />
-              {/* Active item */}
               <div className="bg-[#E04545]/8 border border-[#E04545]/25 rounded-lg px-3 py-2.5 ml-2 my-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-[#E04545] animate-pulse" />
@@ -95,18 +126,34 @@ const AtlasAIDemoAnimation = () => {
               <CheckItem label="5.2 Customer Focus" pending />
             </div>
 
-            {/* Evidence Manager — clear requirements */}
+            {/* Evidence */}
             <div className="border-t border-white/6 px-4 py-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Evidence</span>
-                <span className="text-[12px] text-[#3DC88E] font-bold">3 / 5 required</span>
+                <span className={`text-[12px] font-bold ${evidenceComplete ? "text-[#3DC88E]" : "text-[#F5A623]"}`}>
+                  {evidenceComplete ? "5 / 5 ✓" : "3 / 5 required"}
+                </span>
               </div>
               <div className="space-y-2">
                 <EvidenceItem name="IMG_2847.jpg" type="img" status="verified" />
-                <EvidenceItem name="calibration_cert.pdf" type="doc" status="review" />
+                <EvidenceItem name="calibration_cert.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
                 <EvidenceItem name="CNC_nameplate.jpg" type="img" status="verified" />
+                <AnimatePresence>
+                  {evidenceComplete && (
+                    <>
+                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
+                        <EvidenceItem name="fire_cert_2024.pdf" type="doc" status="verified" />
+                      </motion.div>
+                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ delay: 0.2 }}>
+                        <EvidenceItem name="inspection_photo.jpg" type="img" status="verified" />
+                      </motion.div>
+                    </>
+                  )}
+                </AnimatePresence>
               </div>
-              <div className="mt-2 text-[10px] text-[#F5A623] font-medium">⚠ 2 more evidence items required</div>
+              {!evidenceComplete && (
+                <div className="mt-2 text-[10px] text-[#F5A623] font-medium">⚠ 2 more evidence items required</div>
+              )}
               <div className="flex gap-2 mt-3">
                 <button className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-lg py-2.5 transition-colors group border border-white/8 hover:border-white/20">
                   <svg className="w-4 h-4 text-white/30 group-hover:text-[#3DC88E] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -125,9 +172,9 @@ const AtlasAIDemoAnimation = () => {
             </div>
           </div>
 
-          {/* MIDDLE — Question + AI Context */}
+          {/* MIDDLE — Question + Maturity */}
           <div className="flex-[45] border-r border-white/6 flex flex-col overflow-hidden">
-            {/* Question Section — 30% larger with more padding */}
+            {/* Question */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-8 py-6 border-b border-white/6">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[12px] font-semibold text-white/40 uppercase tracking-wider">Question</span>
@@ -139,34 +186,14 @@ const AtlasAIDemoAnimation = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5] mb-6">
+              <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5]">
                 Is the fire suppression system compliant with local regulations?
               </p>
-              {/* Color-coded answer buttons with clear hierarchy */}
-              <div className="flex gap-3">
-                {["YES", "NO", "N/A"].map((label) => {
-                  const isSelected = selectedAnswer === label;
-                  const colors = {
-                    YES: { border: "border-[#3DC88E]/40", activeBg: "bg-[#3DC88E]", activeBorder: "border-[#3DC88E]", hoverBg: "hover:bg-[#3DC88E]/10", hoverBorder: "hover:border-[#3DC88E]/60" },
-                    NO: { border: "border-[#E04545]/40", activeBg: "bg-[#E04545]", activeBorder: "border-[#E04545]", hoverBg: "hover:bg-[#E04545]/10", hoverBorder: "hover:border-[#E04545]/60" },
-                    "N/A": { border: "border-white/15", activeBg: "bg-white/20", activeBorder: "border-white/30", hoverBg: "hover:bg-white/8", hoverBorder: "hover:border-white/25" },
-                  }[label]!;
-                  return (
-                    <motion.button key={label} animate={isSelected ? { scale: 1.05 } : { scale: 1 }}
-                      className={`flex-1 py-3 text-[14px] md:text-[16px] font-bold rounded-lg border-2 transition-all duration-300 ${
-                        isSelected 
-                          ? `${colors.activeBg} ${colors.activeBorder} text-white` 
-                          : `${colors.border} text-white/50 bg-white/5 ${colors.hoverBg} ${colors.hoverBorder}`
-                      }`}
-                    >{label}</motion.button>
-                  );
-                })}
-              </div>
             </motion.div>
 
-            {/* AI Intelligence Feed — collapsed by default */}
+            {/* AI Guidance — collapsible */}
             <div className="flex-1 overflow-y-auto px-6 py-4">
-              <button 
+              <button
                 onClick={() => setGuidanceOpen(!guidanceOpen)}
                 className="w-full flex items-center justify-between py-2 mb-2 group"
               >
@@ -192,7 +219,6 @@ const AtlasAIDemoAnimation = () => {
                         </p>
                       </div>
                     )}
-
                     {vis >= 2 && (
                       <div className="bg-white/5 rounded-lg p-4">
                         <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
@@ -206,7 +232,6 @@ const AtlasAIDemoAnimation = () => {
                         </div>
                       </div>
                     )}
-
                     {vis >= 3 && (
                       <div className="bg-white/5 rounded-lg p-4">
                         <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
@@ -220,15 +245,90 @@ const AtlasAIDemoAnimation = () => {
                         </div>
                       </div>
                     )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-                    {vis >= 4 && (
-                      <div className="bg-white/5 border border-white/8 rounded-lg p-4">
-                        <span className="text-[12px] font-semibold text-white/50 uppercase tracking-wider">AI Assessment</span>
-                        <p className="text-[12px] text-white/45 mt-2 leading-[1.5] italic">
-                          "Document register not current. Last 4 revisions missing from master list."
-                        </p>
+              {/* Maturity Rating — appears after guidance + evidence */}
+              <AnimatePresence>
+                {showMaturity && (
+                  <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 180 }}
+                    className="mt-6 space-y-4">
+                    <div className="border-t border-white/8 pt-4">
+                      <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Maturity Assessment</span>
+                    </div>
+
+                    {/* Atlas AI suggestion */}
+                    <div className="bg-[#3DC88E]/8 border border-[#3DC88E]/20 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-2 h-2 rounded-full bg-[#3DC88E]" />
+                        <span className="text-[12px] font-bold text-[#3DC88E] uppercase tracking-wider">Atlas AI suggests</span>
                       </div>
-                    )}
+                      <div className="flex gap-2">
+                        {[1, 2, 3, 4, 5].map((level) => (
+                          <motion.div key={level}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: level * 0.1 }}
+                            className={`flex-1 py-2 text-center text-[14px] font-bold rounded-lg transition-all ${
+                              atlasMaturity === level
+                                ? "bg-[#3DC88E] text-white"
+                                : level <= (atlasMaturity || 0)
+                                  ? "bg-[#3DC88E]/15 text-[#3DC88E]/60"
+                                  : "bg-white/5 text-white/20"
+                            }`}
+                          >{level}</motion.div>
+                        ))}
+                      </div>
+                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Defined process with gaps in execution</p>
+                    </div>
+
+                    {/* Auditor selection */}
+                    <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                      <span className="text-[12px] font-bold text-white/60 uppercase tracking-wider mb-3 block">Your Assessment</span>
+                      <div className="flex gap-2 mb-3">
+                        {[1, 2, 3, 4, 5].map((level) => {
+                          const isSelected = auditorMaturity === level;
+                          return (
+                            <motion.div key={level}
+                              animate={isSelected ? { scale: 1.1 } : { scale: 1 }}
+                              className={`flex-1 py-2.5 text-center text-[14px] font-bold rounded-lg transition-all cursor-pointer ${
+                                isSelected
+                                  ? "bg-white text-[hsl(220,18%,13%)]"
+                                  : "bg-white/8 text-white/30 hover:bg-white/12 hover:text-white/50"
+                              }`}
+                            >{level}</motion.div>
+                          );
+                        })}
+                      </div>
+                      {/* Comment field */}
+                      <AnimatePresence>
+                        {auditorMaturity !== null && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
+                            <div className="bg-white/5 border border-white/8 rounded-lg px-3 py-2.5 mt-2 hover:border-white/15 transition-colors">
+                              <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 }}
+                                className="text-[12px] text-white/40 italic"
+                              >
+                                Fire suppression cert expired. Needs renewal before next audit...
+                              </motion.span>
+                            </div>
+                            <div className="flex justify-end mt-3">
+                              <motion.button
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8 }}
+                                className="px-4 py-2 bg-[#3DC88E] text-white text-[12px] font-bold rounded-lg hover:bg-[#3DC88E]/80 active:bg-[#3DC88E]/60 transition-colors"
+                              >
+                                Submit & Next →
+                              </motion.button>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -254,40 +354,67 @@ const AtlasAIDemoAnimation = () => {
 
           {/* RIGHT — Copilot + Intelligence */}
           <div className="flex-[30] flex flex-col overflow-hidden">
-            {/* Atlas Copilot Voice */}
+            {/* Atlas Copilot Voice — animated speaker */}
             <div className="px-4 py-4 border-b border-white/6 flex flex-col items-center">
               <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
               <div className="relative flex items-center justify-center">
                 <AnimatePresence>
-                  {micActive && (
+                  {copilotSpeaking && (
                     <>
-                      <motion.div initial={{ scale: 0.8, opacity: 0.4 }} animate={{ scale: 1.6, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/25" />
-                      <motion.div initial={{ scale: 0.9, opacity: 0.3 }} animate={{ scale: 1.4, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/15" />
+                      <motion.div initial={{ scale: 0.8, opacity: 0.4 }} animate={{ scale: 1.8, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/30" />
+                      <motion.div initial={{ scale: 0.9, opacity: 0.3 }} animate={{ scale: 1.5, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/20" />
+                      <motion.div initial={{ scale: 1.0, opacity: 0.2 }} animate={{ scale: 1.3, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }} className="absolute w-16 h-16 rounded-full border border-[#3DC88E]/10" />
                     </>
                   )}
                 </AnimatePresence>
                 <motion.div
-                  animate={micActive ? { boxShadow: ["0 0 15px rgba(61,200,142,0.2)", "0 0 30px rgba(61,200,142,0.4)", "0 0 15px rgba(61,200,142,0.2)"] } : {}}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${micActive ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15"}`}
+                  animate={copilotSpeaking ? {
+                    boxShadow: ["0 0 15px rgba(61,200,142,0.15)", "0 0 35px rgba(61,200,142,0.4)", "0 0 15px rgba(61,200,142,0.15)"],
+                    scale: [1, 1.05, 1],
+                  } : {}}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${copilotSpeaking ? "bg-[#3DC88E]/15 border-2 border-[#3DC88E]" : "bg-white/5 border-2 border-white/15"}`}
                 >
-                  <svg className={`w-6 h-6 ${micActive ? "text-[#3DC88E]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                    <rect x="9" y="1" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0014 0" /><line x1="12" y1="17" x2="12" y2="21" /><line x1="8" y1="21" x2="16" y2="21" />
+                  <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                    {copilotSpeaking ? (
+                      <>
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                        <motion.path d="M15.54 8.46a5 5 0 010 7.07" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 0.8, repeat: Infinity }} />
+                        <motion.path d="M19.07 4.93a10 10 0 010 14.14" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }} />
+                      </>
+                    ) : (
+                      <>
+                        <rect x="9" y="1" width="6" height="12" rx="3" />
+                        <path d="M5 10a7 7 0 0014 0" />
+                        <line x1="12" y1="17" x2="12" y2="21" />
+                        <line x1="8" y1="21" x2="16" y2="21" />
+                      </>
+                    )}
                   </svg>
                 </motion.div>
               </div>
-              <span className={`text-[12px] font-medium mt-2 ${micActive ? "text-[#3DC88E]" : "text-white/30"}`}>
-                {micActive ? "Listening..." : "Tap to speak"}
+              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#3DC88E]" : "text-white/30"}`}>
+                {copilotSpeaking ? "Speaking..." : "Tap to speak"}
               </span>
               {/* Waveform */}
               <AnimatePresence>
-                {micActive && (
+                {copilotSpeaking && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-0.5 mt-2">
-                    {[...Array(14)].map((_, i) => (
-                      <motion.div key={i} className="w-[3px] rounded-full bg-[#3DC88E]" animate={{ height: [2, Math.random() * 12 + 3, 2] }}
-                        transition={{ duration: 0.3 + Math.random() * 0.3, repeat: Infinity, repeatType: "reverse", delay: i * 0.04 }} />
+                    {[...Array(16)].map((_, i) => (
+                      <motion.div key={i} className="w-[3px] rounded-full bg-[#3DC88E]"
+                        animate={{ height: [2, Math.random() * 16 + 4, 2] }}
+                        transition={{ duration: 0.25 + Math.random() * 0.25, repeat: Infinity, repeatType: "reverse", delay: i * 0.03 }} />
                     ))}
                   </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Copilot speech text */}
+              <AnimatePresence mode="wait">
+                {copilotText && (
+                  <motion.p key={copilotText} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                    className="text-[10px] text-white/40 text-center mt-3 px-2 leading-[1.5] max-w-[200px]">
+                    {copilotText}
+                  </motion.p>
                 )}
               </AnimatePresence>
             </div>
