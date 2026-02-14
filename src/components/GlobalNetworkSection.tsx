@@ -58,11 +58,17 @@ const GlobalNetworkSection = () => {
                 className="text-left"
               >
                 <p className="text-sm font-semibold text-foreground mb-3">
-                  Our auditors come from TÜV, Bureau Veritas, SGS, and DNV.
+                  Our auditor network includes professionals certified by:
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  They chose YVOO because the technology is better.
-                </p>
+                <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
+                  <span className="text-sm">TÜV SÜD</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">Bureau Veritas</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">SGS</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">DNV</span>
+                </div>
               </motion.div>
 
               <motion.div

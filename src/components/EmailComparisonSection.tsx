@@ -1,65 +1,74 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause } from "lucide-react";
-
-const nightmareContent = [
-  { week: "Week 1–2", title: "Budget approval battles", description: "Three rounds of sign-offs. Finance wants quotes. Procurement wants justification." },
-  { week: "Week 3–4", title: "Find an available auditor", description: "Your quality engineer is booked. External firms need 4-week lead time." },
-  { week: "Week 5", title: "Coordinate with supplier", description: "Back-and-forth emails. Time zones. Production schedules. Someone's on vacation." },
-  { week: "Week 6", title: "Book flights and hotels", description: "Travel policy reviews. Expense pre-approvals. All for one factory visit." },
-  { week: "Week 7–8", title: "Travel, conduct the audit", description: "Your engineer away from their real work. Jet-lagged. One auditor with a clipboard." },
-  { week: "Week 9–10", title: "Wait for the report", description: "By now everyone forgot the details. Inconsistent, incomplete, too late to act on." },
-];
-
-const yvooContent = [
-  { week: "Minute 1", title: "Upload your supplier list", description: "CSV, ERP export, or just type a name. No budget approval needed at €700." },
-  { week: "Hour 1", title: "AI matches local auditor", description: "Atlas finds the best certified auditor already near your supplier. No flights." },
-  { week: "Day 1", title: "Auditor on-site", description: "On the factory floor within 48 hours. No calendar Tetris. No coordination." },
-  { week: "Day 2–3", title: "AI-guided audit", description: "Atlas AI standardizes every check. Computer vision documents equipment conditions." },
-  { week: "Day 3", title: "Verified report delivered", description: "AI-standardized findings, evidence photos, equipment analysis. While context is fresh." },
-  { week: "Done", title: "€700. Zero emails sent.", description: "No travel, no coordination, no politics. Click 'Next supplier' and repeat." },
-];
+import { Play, Pause, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ROICalculator from "./ROICalculator";
 
 const EmailComparisonSection = () => {
-  const [isYvoo, setIsYvoo] = useState(false);
+  const [isWithScanPro, setIsWithScanPro] = useState(false);
   const [isAutoSwitching, setIsAutoSwitching] = useState(true);
+  const [showROIModal, setShowROIModal] = useState(false);
 
   useEffect(() => {
     if (!isAutoSwitching) return;
-    const interval = setInterval(() => setIsYvoo(prev => !prev), 5000);
+    const interval = setInterval(() => setIsWithScanPro(prev => !prev), 5000);
     return () => clearInterval(interval);
   }, [isAutoSwitching]);
 
-  const currentContent = isYvoo ? yvooContent : nightmareContent;
+  const withScanProContent = [
+    { title: "€700 flat—budget secured", description: "Finance approves instantly. No surprises." },
+    { title: "Auditor on-site in 48h", description: "Your supplier issues don't wait—neither should you." },
+    { title: "1-3 day structured audit", description: "Minimal disruption to your team and supplier." },
+    { title: "Report in 24h, not weeks", description: "Make decisions while the context is fresh." },
+    { title: "Every audit, same standard", description: "AI ensures consistency your QM team can trust." },
+    { title: "AI equipment intelligence", description: "Machine conditions documented automatically." },
+  ];
+
+  const traditionalContent = [
+    { title: "€15K-€25K per audit", description: "Budget fights, travel expenses, hotel costs." },
+    { title: "2-3 weeks just to start", description: "Your quality engineer's calendar is full." },
+    { title: "3-5 days on-site", description: "Your engineer away from their real work." },
+    { title: "Report? Maybe in 10 days", description: "By then, everyone forgot the details." },
+    { title: "Quality depends on who's sent", description: "Junior auditor today, expert tomorrow." },
+    { title: "Photos? What photos?", description: "Documentation gaps that hurt you later." },
+  ];
+
+  const currentContent = isWithScanPro ? withScanProContent : traditionalContent;
 
   return (
-    <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
+    <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
-
+        
         {/* Header with Toggle */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <h2 className="section-headline">
-              <span className="text-foreground">{isYvoo ? 'With' : 'The'}</span>{" "}
-              <span className={isYvoo ? 'text-primary' : 'text-destructive'}>
-                {isYvoo ? 'YVOO' : 'Nightmare'}
+              <span className="text-foreground">{isWithScanPro ? 'With' : 'The Old'}</span>{" "}
+              <span className={isWithScanPro ? 'text-primary' : 'text-destructive'}>
+                {isWithScanPro ? 'ScanPro+' : 'Way'}
               </span>
             </h2>
           </motion.div>
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => { setIsAutoSwitching(false); setIsYvoo(!isYvoo); }}
-              className={`relative w-16 h-8 transition-colors duration-300 ${isYvoo ? 'bg-primary' : 'bg-destructive'}`}
+              onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
+              className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-primary' : 'bg-destructive'}`}
               aria-label="Toggle comparison"
             >
               <motion.div
                 className="absolute top-0.5 left-0.5 w-7 h-7 bg-white"
-                animate={{ x: isYvoo ? 32 : 0 }}
+                animate={{ x: isWithScanPro ? 32 : 0 }}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             </button>
@@ -76,13 +85,13 @@ const EmailComparisonSection = () => {
         </div>
 
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-          {isYvoo
-            ? "Upload → 3 days → Verified. No coordination required."
-            : "10 weeks. 50+ emails. €13,000 all-in. And that's if nothing goes wrong."}
+          {isWithScanPro 
+            ? "What procurement directors, quality managers, and CFOs see when they switch."
+            : "The hidden cost of 'we've always done it this way.'"}
         </p>
 
         <motion.div
-          key={isYvoo ? 'yvoo' : 'nightmare'}
+          key={isWithScanPro ? 'with' : 'traditional'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -95,17 +104,24 @@ const EmailComparisonSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="bg-muted p-8 md:p-10"
+              className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
             >
-              <p className={`text-xs font-mono tracking-widest uppercase mb-3 ${isYvoo ? 'text-primary' : 'text-destructive/70'}`}>
-                {item.week}
-              </p>
               <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* ROI Calculator Modal */}
+      <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Calculate Your ROI</DialogTitle>
+          </DialogHeader>
+          <ROICalculator />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

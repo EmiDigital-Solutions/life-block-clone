@@ -22,11 +22,11 @@ const Index = () => {
       <div className="relative">
         <Navigation />
         <HeroSection />
-        <EmailComparisonSection />
         <CapabilityOverviewSection />
         <TestimonialSection />
         <WhyYVOOSection />
         <AtlasAISection />
+        <EmailComparisonSection />
         <GlobalNetworkSection />
         <HowItWorksSection />
         <StatsWithQuoteSection />

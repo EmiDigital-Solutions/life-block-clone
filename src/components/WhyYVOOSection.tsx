@@ -10,18 +10,18 @@ const WhyYVOOSection = () => {
   const painPoints = [
     {
       arrow: "→",
-      title: "SGS sends one auditor with a clipboard.",
-      description: "YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously. Then a local expert verifies on-site."
+      title: "Quality teams waste time on logistics.",
+      description: "Strategic audits are held back by travel booking, waiting for engineer calendars, leaving less time for actual supplier development."
     },
     {
       arrow: "→",
-      title: "Traditional firms take 14 days and €15,000.",
-      description: "We deliver in 3 days for €700. Same thoroughness, better technology, zero flights."
+      title: "Suppliers struggle with delayed assessments.",
+      description: "Months-long qualification timelines reduce competitiveness and limit your sourcing options."
     },
     {
       arrow: "→",
-      title: "Old reports hide behind 'professional judgment.'",
-      description: "We show you every data point, every photo, every AI analysis. You decide."
+      title: "Leadership views auditing as a cost center.",
+      description: "Disconnected data and €15K-25K per audit make it hard to demonstrate strategic value."
     }
   ];
 
@@ -79,10 +79,10 @@ const WhyYVOOSection = () => {
             className="max-w-4xl"
           >
             <h2 className="section-headline text-foreground mb-6">
-              We didn't improve audits. We replaced them.
+              How you audit shapes how suppliers see you
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              While SGS sends one auditor with a clipboard, YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
+              Your suppliers remember every audit. The question is: what will they remember about yours?
             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}
@@ -293,34 +293,6 @@ const WhyYVOOSection = () => {
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Transparency Manifesto */}
-          <div className="py-24 bg-foreground text-background">
-            <div className="container mx-auto px-6 max-w-7xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="max-w-3xl"
-              >
-                <p className="text-sm font-mono tracking-wide text-background/50 mb-6">
-                  What we believe
-                </p>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[1.05] mb-8">
-                  Radical transparency is not a feature. It's a principle.
-                </h2>
-                <p className="text-lg text-background/70 leading-relaxed mb-6">
-                  Traditional audits hide behind "professional judgment." A single auditor's opinion, scribbled on a clipboard, submitted weeks later. You pay €15,000 for a black box.
-                </p>
-                <p className="text-lg text-background/70 leading-relaxed mb-6">
-                  We show you every data point, every photo, every AI analysis. Every piece of equipment documented. Every process scored. Full transparency. You decide.
-                </p>
-                <p className="text-xl font-semibold text-background">
-                  That's not a feature. That's how audits should have always worked.
-                </p>
-              </motion.div>
             </div>
           </div>
 

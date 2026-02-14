@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              supplier intelligence platform — find · verify · decide
+              AI-Powered Supplier Verification
             </motion.p>
 
             {/* Headline */}
@@ -55,8 +55,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              On-site audits<br />
-              in days, not weeks.
+              Audit Suppliers<br />
+              in Days, Not Weeks
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Local certified auditors, guided by Atlas AI, on-site in days — not weeks. Quality no internal team can match. Zero coordination. Just click and verify.
+                Reduce your average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Why wait weeks when you can get physical on-site audits in days?
               </motion.p>
 
               <motion.div
@@ -82,8 +82,8 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="sm:hidden">See the Future</span>
-                    <span className="hidden sm:inline">See the Future of Audits</span>
+                    <span className="sm:hidden">Get Audit Free</span>
+                    <span className="hidden sm:inline">Get Your First Audit Free</span>
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>

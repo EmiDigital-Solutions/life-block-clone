@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { category: "Time to verified", value: "3 days", description: "Not 10 weeks. Upload today, verified report by Thursday. While the context is still fresh." },
-  { category: "Coordination required", value: "Zero", description: "No emails. No calendar Tetris. No travel booking. No budget battles. Upload → Done." },
-  { category: "All-in cost", value: "€700", description: "Not €13,000. No flights, no hotels, no day rates, no surprise expenses." },
-  { category: "AI-assured quality", value: "99%", description: "Atlas AI standardizes every audit. Your best auditor's thoroughness — every single time." }
+  { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
+  { category: "Save costs", value: "60%", description: "Lower audit costs with local certified auditors" },
+  { category: "Scale globally", value: "12K+", description: "Certified auditors in 50+ countries" },
+  { category: "Get results", value: "24h", description: "Digital audit reports delivered within hours" }
 ];
 
 const StatsWithQuoteSection = () => {
@@ -18,7 +18,7 @@ const StatsWithQuoteSection = () => {
           viewport={{ once: true }}
           className="section-headline text-foreground max-w-2xl mb-16"
         >
-          The numbers speak for themselves
+          Built for Enterprise Scale
         </motion.h2>
 
         {/* KPI Grid 2x2 — shifted one grid right */}
