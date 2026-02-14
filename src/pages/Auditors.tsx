@@ -48,6 +48,9 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import digitalCollaboration from "@/assets/digital-collaboration.jpg";
 import auditorFactoryTeam from "@/assets/auditor-factory-team.png";
 import auditorSelectiveGreen1 from "@/assets/auditor-selective-green-1.jpg";
+import atlasAiInterface from "@/assets/atlas-ai-interface.jpg";
+import EarningsPotentialSection from "@/components/auditors/EarningsPotentialSection";
+import CommunitySection from "@/components/auditors/CommunitySection";
 
 const Auditors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -230,6 +233,9 @@ const Auditors = () => {
           </motion.div>
         </section>
 
+        {/* Earnings Potential - NEW */}
+        <EarningsPotentialSection />
+
         {/* Scroll-Zoom Section */}
         <ScrollZoomSection />
 
@@ -242,12 +248,14 @@ const Auditors = () => {
         {/* Qualifications Section */}
         <QualificationsSection />
 
-
         {/* Technology Features - New Design */}
         <TechnologyFeaturesSection />
 
         {/* Day in the Life */}
         <DayInLifeSection />
+
+        {/* Community Section */}
+        <CommunitySection />
 
         {/* Success Stories */}
         <SuccessStoriesSection />
@@ -272,7 +280,7 @@ const Auditors = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="section-headline text-white mb-8"
+                className="section-headline text-white mb-6"
               >
                 Let's discuss
                 <br />
@@ -283,8 +291,18 @@ const Auditors = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+                className="text-primary text-base font-medium mb-4"
+              >
+                Onboarding 50 auditors this quarter. Limited spots available.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-white/40 text-lg mb-12"
+                className="text-white/40 text-lg mb-8"
               >
                 15-minute conversation. No commitment.
               </motion.p>
@@ -294,6 +312,7 @@ const Auditors = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
+                className="mb-8"
               >
                 <Button asChild size="lg">
                   <a href="#">
@@ -302,6 +321,17 @@ const Auditors = () => {
                   </a>
                 </Button>
               </motion.div>
+
+              {/* Risk Reversal */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-white/30 text-sm max-w-md mx-auto"
+              >
+                Complete your first audit. If not satisfied, we part ways professionally. No questions asked.
+              </motion.p>
             </div>
           </div>
         </section>
@@ -430,7 +460,7 @@ const ValuePropositionSection = () => {
           className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-border"
         >
           {[
-            { title: "Premium clients", desc: "Fortune 500 manufacturers, automotive OEMs, aerospace suppliers." },
+            { title: "Premium clients", desc: "Built for Fortune 500 manufacturers, automotive OEMs, aerospace suppliers." },
             { title: "AI co-pilot", desc: "Computer vision, smart templates, real-time guidance at your fingertips." },
             { title: "Focus on expertise", desc: "You audit. AI handles documentation. 70% less admin work." },
           ].map((item, idx) => (
@@ -546,7 +576,7 @@ const TimelineSection = () => {
                   {/* Number */}
                   <div className="flex items-start justify-between mb-auto">
                     <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 text-primary ${
-                      hoveredIndex === index ? 'opacity-100' : 'opacity-30'
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-60'
                     }`}>
                       {step.number}
                     </span>
@@ -607,8 +637,8 @@ const QualificationsSection = () => {
   return (
     <section 
       ref={ref} 
-      data-nav-theme="white"
-      className="py-32 md:py-40 bg-[#0a0a0a]"
+      data-nav-theme="light"
+      className="py-32 md:py-40 bg-[#f5f5f5]"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
@@ -620,17 +650,17 @@ const QualificationsSection = () => {
             transition={{ duration: 0.7 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-white/30" />
-              <span className="text-xs font-medium tracking-[0.2em] text-white/40 uppercase">
+              <div className="w-12 h-px bg-foreground/30" />
+              <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                 Requirements
               </span>
             </div>
-            <h2 className="section-headline text-white mb-8">
+            <h2 className="section-headline text-foreground mb-8">
               We're selective.
               <br />
               So are you.
             </h2>
-            <p className="text-white/50 text-lg max-w-md">
+            <p className="text-muted-foreground text-lg max-w-md">
               Our 15% acceptance rate ensures every partner meets the standards our clients expect.
             </p>
           </motion.div>
@@ -644,17 +674,17 @@ const QualificationsSection = () => {
           >
             <div className="space-y-6">
               {requirements.map((req, idx) => (
-                <div key={idx} className="flex items-start gap-4 text-white/70">
+                <div key={idx} className="flex items-start gap-4 text-muted-foreground">
                   <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span className="text-lg">{req}</span>
                 </div>
               ))}
             </div>
             
-            <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="mt-12 pt-8 border-t border-border">
               <a
                 href="#"
-                className="inline-flex items-center gap-3 text-white font-medium group"
+                className="inline-flex items-center gap-3 text-foreground font-medium group"
               >
                 Check if you qualify
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -723,6 +753,23 @@ const TechnologyFeaturesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Atlas AI Screenshot */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-16"
+        >
+          <div className="rounded-lg overflow-hidden border border-border/20">
+            <img 
+              src={atlasAiInterface}
+              alt="Atlas AI audit interface showing real-time guidance and documentation"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+        </motion.div>
 
       </div>
     </section>
