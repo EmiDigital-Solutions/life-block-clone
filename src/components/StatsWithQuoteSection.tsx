@@ -9,7 +9,7 @@ const stats = [
 
 const StatsWithQuoteSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Section Header */}
         <motion.h2

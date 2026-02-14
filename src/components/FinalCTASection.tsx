@@ -14,7 +14,7 @@ const FinalCTASection = () => {
   const [showROIModal, setShowROIModal] = useState(false);
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-16 md:py-24 bg-background">
       <div className="mx-auto max-w-[1400px] px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

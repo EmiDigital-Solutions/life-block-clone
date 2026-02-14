@@ -30,7 +30,7 @@ const AtlasAISection = () => {
     <section
       ref={ref}
       data-nav-theme="light"
-      className="relative bg-white py-24 md:py-32"
+      className="relative bg-white py-16 md:py-24"
     >
       <div className="mx-auto max-w-[1400px] px-8">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
