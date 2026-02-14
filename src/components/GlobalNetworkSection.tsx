@@ -1,12 +1,5 @@
 import { motion } from "framer-motion";
 
-const stats = [
-  { value: "2,000+", label: "Local Auditors" },
-  { value: "90+", label: "Countries" },
-  { value: "48h", label: "On-site" },
-  { value: "€0", label: "Travel Costs" },
-];
-
 const certifications = ["ISO Lead Auditor", "VDA 6.3", "IATF 16949", "AS9100", "ISO 13485"];
 
 const GlobalNetworkSection = () => {
@@ -40,25 +33,6 @@ const GlobalNetworkSection = () => {
             <br />
             is already there
           </motion.h2>
-
-          {/* Stats grid – large typographic numbers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px border-t border-foreground/10">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index }}
-                className="pt-8 pr-8"
-              >
-                <p className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
 
           {/* Bottom text block */}
           <motion.div
