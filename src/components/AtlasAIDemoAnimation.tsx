@@ -1,5 +1,43 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronUp, ChevronDown } from "lucide-react";
+
+/* ── Scroll Nav Arrows ── */
+const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }) => {
+  const [canUp, setCanUp] = useState(false);
+  const [canDown, setCanDown] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const check = () => {
+      setCanUp(el.scrollTop > 10);
+      setCanDown(el.scrollTop + el.clientHeight < el.scrollHeight - 10);
+    };
+    check();
+    el.addEventListener("scroll", check);
+    const obs = new MutationObserver(check);
+    obs.observe(el, { childList: true, subtree: true });
+    return () => { el.removeEventListener("scroll", check); obs.disconnect(); };
+  }, [scrollRef]);
+
+  const scroll = (dir: "up" | "down") => {
+    scrollRef.current?.scrollBy({ top: dir === "up" ? -120 : 120, behavior: "smooth" });
+  };
+
+  return (
+    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-10">
+      <button onClick={() => scroll("up")}
+        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canUp ? "bg-white/10 text-white/50 hover:bg-white/20" : "opacity-0 pointer-events-none"}`}>
+        <ChevronUp className="w-3.5 h-3.5" />
+      </button>
+      <button onClick={() => scroll("down")}
+        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canDown ? "bg-white/10 text-white/50 hover:bg-white/20" : "opacity-0 pointer-events-none"}`}>
+        <ChevronDown className="w-3.5 h-3.5" />
+      </button>
+    </div>
+  );
+};
 
 /* ── ATLAS AI DEMO — Tablet Hybrid ── */
 const AtlasAIDemoAnimation = () => {
@@ -17,6 +55,8 @@ const AtlasAIDemoAnimation = () => {
   const [copilotText, setCopilotText] = useState("");
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const middleScrollRef = useRef<HTMLDivElement>(null);
+  const leftScrollRef = useRef<HTMLDivElement>(null);
+  const rightScrollRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [speakerPulsing, setSpeakerPulsing] = useState(false);
 
@@ -198,7 +238,8 @@ const AtlasAIDemoAnimation = () => {
               <div className="text-[10px] text-white/25 mt-1">IATF 16949 · Precision Parts</div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1">
+            <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={leftScrollRef} />
               <div className="text-[12px] font-bold text-white/40 mb-2">▼ 4. QUALITY MGMT</div>
               <CheckItem done label="4.1.1 Process Approach" />
               <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 4.2 Documentation</div>
@@ -283,7 +324,8 @@ const AtlasAIDemoAnimation = () => {
             </motion.div>
 
             {/* AI Guidance — auto-animated chat */}
-            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={middleScrollRef} />
               <span className="text-[12px] font-bold text-white/40 uppercase tracking-wider block mb-3">AI Guidance</span>
 
               <AnimatePresence>
@@ -503,7 +545,8 @@ const AtlasAIDemoAnimation = () => {
             </div>
 
             {/* Intelligence Cards */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative" ref={rightScrollRef} style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={rightScrollRef} />
               <IntelCard title="Priority" titleColor="text-[#E04545]">
                 <div className="space-y-2 text-[12px] text-white/45">
                   <div>• Calibration (78%)</div>
