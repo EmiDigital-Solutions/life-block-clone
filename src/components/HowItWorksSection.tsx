@@ -209,7 +209,7 @@ export const HowItWorksSection = () => {
               className="mt-12 pt-12 border-t border-white/10 text-center"
             >
               <h3 className="text-2xl md:text-4xl lg:text-5xl text-white mb-8">
-                <span className="font-semibold">Your competitors already switched.</span>{" "}
+                <span className="font-semibold">Your competitors already switched</span>{" "}
                 <br className="hidden md:block" />
                 <span className="font-normal text-white/80">When will you?</span>
               </h3>
