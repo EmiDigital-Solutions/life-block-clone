@@ -14,7 +14,7 @@ import auditorGen4 from "@/assets/auditor-gen-4.jpg";
 const SCREEN_DURATION = 5000;
 
 /* Light grey background color for all screens */
-const SCREEN_BG = "bg-[#dde3ea]";
+const SCREEN_BG = "bg-[hsl(0,0%,92%)]";
 
 /* ── White frosted glass cards — subtle transparency on grey ── */
 const GlassCard = ({ children, className = "", highlight = false, layer = 1 }: { children: React.ReactNode; className?: string; highlight?: boolean; layer?: number }) => {

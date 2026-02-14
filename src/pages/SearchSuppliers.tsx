@@ -59,7 +59,7 @@ const SearchProDemoWindows = () => {
   const stepLabels = ["Discover", "Results", "Profile"];
 
   return (
-    <div className="bg-[#dde3ea] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] aspect-[16/9] flex flex-col relative">
+    <div className="bg-[hsl(0,0%,85%)] overflow-hidden rounded-none border border-[hsl(0,0%,80%)] aspect-[16/9] flex flex-col relative">
       {/* Pause/Play button — top right corner */}
       <button
         onClick={handlePauseToggle}
@@ -129,7 +129,7 @@ const DemoChatbot = () => {
   }, []);
 
   return (
-    <div className="bg-[#dde3ea] flex flex-col h-full">
+    <div className="bg-[hsl(0,0%,85%)] flex flex-col h-full">
       {/* Top toolbar — Preference Engine prominently branded */}
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
@@ -277,7 +277,7 @@ const DemoSearchResults = () => {
   const activeMenu = 1;
 
   return (
-    <div className="bg-[#dde3ea] flex">
+    <div className="bg-[hsl(0,0%,85%)] flex">
       {/* Left sidebar navigation */}
       <div className="w-[100px] md:w-[120px] bg-[hsl(0,0%,28%)] border-r border-[hsl(0,0%,22%)] flex flex-col flex-shrink-0">
         <div className="p-2.5 border-b border-[hsl(0,0%,22%)]">
@@ -414,7 +414,7 @@ const DemoSupplierProfile = () => {
   const tabLabels = ["Overview", "Audit Reports", "Intelligence", "RFQ", "Audit Order", "News"];
 
   return (
-    <div className="bg-[#dde3ea] flex flex-col">
+    <div className="bg-[hsl(0,0%,85%)] flex flex-col">
       {/* Supplier header */}
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
