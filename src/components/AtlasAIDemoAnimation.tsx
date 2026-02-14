@@ -18,7 +18,8 @@ const AtlasAIDemoAnimation = () => {
   const middleScrollRef = useRef<HTMLDivElement>(null);
 
   const riskAlertParts = [
-    "BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits.",
+    "BMW Tier-2 rejected 2 suppliers for document control gaps.",
+    "Issues found in 73% of 47 similar audits.",
     "Recommend thorough check of document control procedures, approval signatures, and revision history.",
   ];
 
@@ -44,34 +45,23 @@ const AtlasAIDemoAnimation = () => {
     };
 
     setCopilotSpeaking(true);
-    setCopilotText("BMW Tier-2 rejected 2 suppliers for document control gaps.");
+    let partIndex = 0;
 
-    const u1 = makeUtterance(riskAlertParts[0]);
-    const u2 = makeUtterance(riskAlertParts[1]);
-
-    const textTimer = window.setTimeout(() => {
-      setCopilotText("Issues found in 73% of similar audits.");
-    }, 3500);
-
-    u1.onend = () => {
-      setCopilotText("Recommend thorough check of procedures and signatures.");
-      window.speechSynthesis.speak(u2);
+    const speakNext = () => {
+      if (partIndex >= riskAlertParts.length) {
+        setCopilotSpeaking(false);
+        setCopilotText("");
+        return;
+      }
+      const text = riskAlertParts[partIndex];
+      setCopilotText(text);
+      const u = makeUtterance(text);
+      u.onend = () => { partIndex++; speakNext(); };
+      u.onerror = () => { setCopilotSpeaking(false); setCopilotText(""); };
+      window.speechSynthesis.speak(u);
     };
 
-    u2.onend = () => {
-      clearTimeout(textTimer);
-      setCopilotSpeaking(false);
-      setCopilotText("");
-    };
-
-    u2.onerror = u1.onerror = () => {
-      clearTimeout(textTimer);
-      setCopilotSpeaking(false);
-      setCopilotText("");
-    };
-
-    speechRef.current = u1;
-    window.speechSynthesis.speak(u1);
+    speakNext();
   }, [copilotSpeaking]);
 
   // Single animation run (no loop)
