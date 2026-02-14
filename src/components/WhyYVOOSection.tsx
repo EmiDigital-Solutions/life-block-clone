@@ -79,10 +79,10 @@ const WhyYVOOSection = () => {
             className="max-w-4xl"
           >
             <h2 className="section-headline text-foreground mb-6">
-              How you audit shapes how suppliers see you
+              We didn't improve audits. We replaced them.
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              Your suppliers remember every audit. The question is: what will they remember about yours?
+              While SGS sends one auditor with a clipboard, YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}
@@ -117,10 +117,10 @@ const WhyYVOOSection = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-4xl mb-8">
-                  How you audit shapes<br />how suppliers see you
+                  We didn't improve audits.<br />We replaced them.
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-xl">
-                  Your suppliers remember every audit. The question is: what will they remember about yours?
+                  While SGS sends one auditor with a clipboard, YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
                 </p>
               </motion.div>
             </div>
