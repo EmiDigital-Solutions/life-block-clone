@@ -21,7 +21,7 @@ const EmailComparisonSection = () => {
     return () => clearInterval(interval);
   }, [isAutoSwitching]);
 
-  const withScanProContent = [
+  const withYVOOContent = [
     { title: "€700 flat—budget secured", description: "Finance approves instantly. No surprises." },
     { title: "Auditor on-site in 48h", description: "Your supplier issues don't wait—neither should you." },
     { title: "1-3 day structured audit", description: "Minimal disruption to your team and supplier." },
@@ -30,16 +30,16 @@ const EmailComparisonSection = () => {
     { title: "AI equipment intelligence", description: "Machine conditions documented automatically." },
   ];
 
-  const traditionalContent = [
-    { title: "€15K-€25K per audit", description: "Budget fights, travel expenses, hotel costs." },
-    { title: "2-3 weeks just to start", description: "Your quality engineer's calendar is full." },
-    { title: "3-5 days on-site", description: "Your engineer away from their real work." },
+  const nightmareContent = [
+    { title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers." },
+    { title: "€15K-€25K per audit", description: "Budget fights, travel expenses, hotel costs. Every single time." },
+    { title: "10 weeks from request to report", description: "By then, the problem has already shipped." },
     { title: "Report? Maybe in 10 days", description: "By then, everyone forgot the details." },
-    { title: "Quality depends on who's sent", description: "Junior auditor today, expert tomorrow." },
-    { title: "Photos? What photos?", description: "Documentation gaps that hurt you later." },
+    { title: "Quality depends on who's sent", description: "Junior auditor today, expert tomorrow. No consistency." },
+    { title: "Photos? What photos?", description: "Documentation gaps that hurt you later in customer audits." },
   ];
 
-  const currentContent = isWithScanPro ? withScanProContent : traditionalContent;
+  const currentContent = isWithScanPro ? withYVOOContent : nightmareContent;
 
   return (
     <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
@@ -53,9 +53,9 @@ const EmailComparisonSection = () => {
             viewport={{ once: true }}
           >
             <h2 className="section-headline">
-              <span className="text-foreground">{isWithScanPro ? 'With' : 'The Old'}</span>{" "}
+              <span className="text-foreground">{isWithScanPro ? 'With' : 'The'}</span>{" "}
               <span className={isWithScanPro ? 'text-primary' : 'text-destructive'}>
-                {isWithScanPro ? 'ScanPro+' : 'Way'}
+                {isWithScanPro ? 'YVOO' : 'Nightmare'}
               </span>
             </h2>
           </motion.div>
@@ -87,7 +87,7 @@ const EmailComparisonSection = () => {
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
             ? "What procurement directors, quality managers, and CFOs see when they switch."
-            : "The hidden cost of 'we've always done it this way.'"}
+            : "50+ emails. 10 weeks. €15K minimum. Sound familiar?"}
         </p>
 
         <motion.div
