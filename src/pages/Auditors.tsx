@@ -1023,9 +1023,9 @@ const SuccessStoriesSection = () => {
   ];
 
   const communityItems = [
-    { title: "Access exclusive training", desc: "Continuous professional development and certification support." },
-    { title: "Learn from top auditors globally", desc: "Connect with peers and share best practices." },
-    { title: "Get standards updates first", desc: "Stay ahead with early access to regulatory and standards changes." },
+    { number: "01", title: "Exclusive training", desc: "Continuous professional development and certification support." },
+    { number: "02", title: "Global peer network", desc: "Connect with auditors across industries and share best practices." },
+    { number: "03", title: "Standards updates first", desc: "Early access to regulatory changes and evolving industry requirements." },
   ];
 
   return (
@@ -1052,49 +1052,84 @@ const SuccessStoriesSection = () => {
           </h2>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-16">
+        {/* Testimonials — Large quote cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
-              className="border-t border-border pt-8"
+              className="bg-muted p-8 flex flex-col justify-between group hover:bg-muted/70 transition-colors duration-300"
             >
-              <p className="text-lg text-foreground leading-relaxed mb-8">
-                "{testimonial.quote}"
-              </p>
               <div>
+                <span className="text-5xl font-serif text-primary/30 leading-none block mb-4">"</span>
+                <p className="text-foreground leading-relaxed mb-8">
+                  {testimonial.quote}
+                </p>
+              </div>
+              <div className="pt-6 border-t border-border/50">
                 <p className="font-medium text-foreground">{testimonial.name}</p>
                 <p className="text-sm text-muted-foreground">{testimonial.credential}</p>
-                <p className="text-sm text-muted-foreground/60">{testimonial.company}</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">{testimonial.company}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Community — More than a platform */}
+        {/* Culture Statement — Full-width dark block */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="pt-12 border-t border-border"
+          className="bg-[#0a0a0a] p-10 md:p-14 mb-12"
+        >
+          <div className="grid lg:grid-cols-[1fr,auto] gap-10 items-center">
+            <div>
+              <p className="text-xs font-medium tracking-[0.2em] text-white/30 uppercase mb-6">
+                Our culture
+              </p>
+              <p className="text-2xl md:text-3xl font-light text-white leading-snug max-w-2xl">
+                We seek auditors who are <span className="text-primary font-medium">curious</span>, <span className="text-primary font-medium">precise</span>, and <span className="text-primary font-medium">ethical</span>.
+              </p>
+              <p className="text-white/40 mt-4 max-w-xl">
+                Join professionals who care about quality, not just paychecks. Every partner shapes the standard we set.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              {["Integrity", "Precision", "Growth"].map((value) => (
+                <span key={value} className="px-4 py-2 border border-white/15 text-white/50 text-xs tracking-wider uppercase">
+                  {value}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Community Benefits — Numbered cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4 }}
         >
           <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
             More than a platform
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {communityItems.map((item, idx) => (
-              <div key={idx}>
-                <h3 className="text-lg font-medium text-foreground mb-2">{item.title}</h3>
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.45 + idx * 0.1 }}
+                className="border-t-2 border-primary/20 pt-6 group hover:border-primary transition-colors duration-300"
+              >
+                <span className="text-3xl font-extralight text-primary/40 group-hover:text-primary transition-colors duration-300">{item.number}</span>
+                <h3 className="text-lg font-medium text-foreground mt-3 mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed italic mt-10 max-w-2xl">
-            "We seek auditors who are curious, precise, and ethical. Join professionals who care about quality, not just paychecks."
-          </p>
         </motion.div>
       </div>
     </section>
