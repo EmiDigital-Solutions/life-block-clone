@@ -11,7 +11,7 @@ const capabilities = [
   },
   {
     phase: "Verify",
-    title: "ScanPro+",
+    title: "ScanPro+ Audit",
     description: "One click. Local certified auditor on-site in 48 hours. AI-guided audit. Verified report in 3 days. €700 flat. Done.",
     link: "/scanpro-plus"
   },
