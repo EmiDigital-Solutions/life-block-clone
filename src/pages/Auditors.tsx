@@ -236,11 +236,11 @@ const Auditors = () => {
         {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
 
-        {/* 3. THE DIFFERENCE - "Same audit. Less friction" */}
-        <DayInLifeSection />
-
-        {/* 4. TECHNOLOGY - "Your AI co-pilot" */}
+        {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
+
+        {/* 4. THE DIFFERENCE - "Same audit. Less friction" */}
+        <DayInLifeSection />
 
         {/* 5. PROCESS - "From application to first audit" */}
         <TimelineSection />
@@ -845,9 +845,9 @@ const DayInLifeSection = () => {
               The Difference
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight">
-            Same audit.<br />
-            <span className="font-medium">Less friction.</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground leading-[1.1] tracking-tight max-w-4xl">
+            Others send you with a clipboard.<br />
+            <span className="font-medium">We send you with Atlas AI.</span>
           </h2>
         </motion.div>
 
