@@ -891,7 +891,7 @@ const DayInLifeSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            Same expertise. Better everything else.
+            Your skills deserve better conditions.
           </h2>
         </motion.div>
 
