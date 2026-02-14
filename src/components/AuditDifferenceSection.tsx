@@ -54,7 +54,7 @@ const StickyVisual = ({ isInView }: { isInView: boolean }) => {
           <img
             src={auditorTimelineHero}
             alt="Quality assurance professional with AI technology"
-            className="w-full h-auto object-cover"
+            className="w-full max-h-[420px] object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
         </motion.div>
