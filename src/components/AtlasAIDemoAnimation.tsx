@@ -33,37 +33,38 @@ const AtlasAIDemoAnimation = () => {
       return;
     }
 
+    window.speechSynthesis.cancel();
+
     const voices = window.speechSynthesis.getVoices();
     const englishVoices = voices.filter(v => v.lang.startsWith("en"));
     const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
 
-    const makeUtterance = (text: string) => {
+    setCopilotSpeaking(true);
+
+    // Queue all parts upfront — Chrome handles queued utterances reliably
+    riskAlertParts.forEach((text, i) => {
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 0.95;
       u.pitch = 1.0;
       u.lang = "en-US";
       if (preferred) u.voice = preferred;
-      return u;
-    };
 
-    setCopilotSpeaking(true);
-    let partIndex = 0;
+      u.onstart = () => setCopilotText(text);
 
-    const speakNext = () => {
-      if (partIndex >= riskAlertParts.length) {
-        setCopilotSpeaking(false);
-        setCopilotText("");
-        return;
+      // Last utterance ends the speaking state
+      if (i === riskAlertParts.length - 1) {
+        u.onend = () => {
+          setCopilotSpeaking(false);
+          setCopilotText("");
+        };
+        u.onerror = () => {
+          setCopilotSpeaking(false);
+          setCopilotText("");
+        };
       }
-      const text = riskAlertParts[partIndex];
-      setCopilotText(text);
-      const u = makeUtterance(text);
-      u.onend = () => { partIndex++; speakNext(); };
-      u.onerror = () => { setCopilotSpeaking(false); setCopilotText(""); };
-      window.speechSynthesis.speak(u);
-    };
 
-    speakNext();
+      window.speechSynthesis.speak(u);
+    });
   }, [copilotSpeaking]);
 
   // Pulse speaker when section scrolls into view
