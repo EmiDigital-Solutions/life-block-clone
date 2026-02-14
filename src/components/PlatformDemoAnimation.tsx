@@ -118,308 +118,212 @@ const DiscoverScreen = () => {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 400),
-      setTimeout(() => setPhase(2), 1000),
-      setTimeout(() => setPhase(3), 1800),
-      setTimeout(() => setPhase(4), 2600),
-      setTimeout(() => setPhase(5), 3400),
-      setTimeout(() => setPhase(6), 4200),
+      setTimeout(() => setPhase(1), 300),
+      setTimeout(() => setPhase(2), 900),
+      setTimeout(() => setPhase(3), 1500),
+      setTimeout(() => setPhase(4), 2200),
+      setTimeout(() => setPhase(5), 3000),
+      setTimeout(() => setPhase(6), 3800),
+      setTimeout(() => setPhase(7), 4400),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const profileFields = [
-    { label: "Industry", value: "Aerospace & Defense" },
-    { label: "Capabilities", value: "CNC Machining, 5-Axis, EDM" },
-    { label: "Certifications", value: "ISO 9001, AS9100 Rev D" },
-    { label: "Employees", value: "120 · Founded 2004" },
+  const suppliers = [
+    { name: "PräzisionsTech GmbH", location: "Stuttgart, DE", industry: "CNC Machining", score: 94, certs: "ISO 9001, AS9100" },
+    { name: "AeroComponents SA", location: "Toulouse, FR", industry: "Aerospace Parts", score: 89, certs: "EN 9100, ISO 14001" },
+    { name: "TurboValve Ltd", location: "Sheffield, UK", industry: "Valve Manufacturing", score: 86, certs: "ISO 9001, PED" },
   ];
 
   return (
-    <div className={`h-full flex flex-col ${SCREEN_BG} p-5 gap-3`}>
-       <div className="flex items-center justify-between">
-         <div className="flex items-center gap-2">
-           <div className="w-7 h-7 bg-background flex items-center justify-center">
-             <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-             </svg>
-           </div>
-           <span className="text-base font-semibold text-foreground">New Audit Order</span>
-         </div>
-         <span className="text-xs text-foreground/60 uppercase tracking-wider">Step 1</span>
-       </div>
+    <div className={`h-full flex ${SCREEN_BG}`}>
+      {/* LEFT PANEL — Client Input */}
+      <div className="w-[42%] flex flex-col border-r border-foreground/10">
+        <div className="px-4 py-3 border-b border-foreground/10">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-primary/10 flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+            <span className="text-sm font-semibold text-foreground">New Audit Order</span>
+          </div>
+        </div>
 
-      <div className="flex-1 flex flex-col gap-3 overflow-hidden">
-        {/* Step 1: Client enters supplier info */}
-        {phase >= 0 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="max-w-md">
-            <GlassCard layer={2} className="p-4 space-y-3">
-               <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Enter Supplier Details</div>
-               <div className="space-y-2">
-                 <div className="flex items-center gap-3">
-                   <span className="text-xs text-muted-foreground w-16">Name</span>
-                   <div className="flex-1 border-b border-foreground/15 pb-1">
-                     <span className="text-sm text-foreground font-medium">PräzisionsTech GmbH</span>
-                   </div>
-                 </div>
-                 <div className="flex items-center gap-3">
-                   <span className="text-xs text-muted-foreground w-16">Country</span>
-                   <div className="flex-1 border-b border-foreground/15 pb-1">
-                     <span className="text-sm text-foreground font-medium">Germany</span>
-                   </div>
-                 </div>
-                 <div className="flex items-center gap-3">
-                   <span className="text-xs text-muted-foreground w-16">City</span>
-                   <div className="flex-1 border-b border-foreground/15 pb-1">
-                     <span className="text-sm text-foreground font-medium">Stuttgart</span>
-                   </div>
-                 </div>
-               </div>
-            </GlassCard>
-          </motion.div>
-        )}
-
-        {/* Step 2: AI searching for suppliers */}
-        {phase >= 1 && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-sm text-primary">
-            <motion.div animate={{ rotate: phase < 2 ? 360 : 0 }} transition={{ repeat: phase < 2 ? Infinity : 0, duration: 1, ease: "linear" }}
-              className={`w-5 h-5 border-2 border-primary ${phase < 2 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
-            {phase < 2 ? "AI searching suppliers…" : (
-              <span className="flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-                Found 1 match
-              </span>
-            )}
-          </motion.div>
-        )}
-
-        {/* Step 3: Search results showing supplier match */}
-        {phase >= 2 && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="max-w-md">
-            <GlassCard layer={2} className="p-4">
-               <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Search Results</div>
-               <GlassCard highlight className="p-3 flex items-center gap-3">
-                 <div className="flex-1">
-                   <div className="text-base font-semibold text-foreground">PräzisionsTech GmbH</div>
-                   <div className="text-xs text-muted-foreground">Stuttgart, Germany · Aerospace</div>
-                </div>
-                <div className="flex items-center gap-1 px-2 py-1 border border-primary/40 bg-primary/5">
-                  <span className="text-xl font-bold text-primary">94</span>
-                  <span className="text-xs text-primary">%</span>
-                </div>
-              </GlassCard>
-            </GlassCard>
-          </motion.div>
-        )}
-
-        {/* Step 4: AI generating intelligence profile */}
-        {phase >= 2 && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-sm text-primary">
-            <motion.div animate={{ rotate: phase < 3 ? 360 : 0 }} transition={{ repeat: phase < 3 ? Infinity : 0, duration: 1, ease: "linear" }}
-              className={`w-5 h-5 border-2 border-primary ${phase < 3 ? 'border-t-transparent rounded-full' : 'rounded-full bg-primary'}`} />
-            {phase < 3 ? "AI building intelligence profile…" : (
-              <span className="flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-                Intelligence profile created
-              </span>
-            )}
-          </motion.div>
-        )}
-
-         {/* Step 5: AI-generated intelligence profile with analytics */}
-         {phase >= 3 && (
-           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="max-w-lg">
-             <GlassCard highlight layer={2} className="p-4">
-               <div className="flex items-center justify-between mb-3">
-                 <div>
-                    <div className="text-base font-semibold text-foreground">PräzisionsTech GmbH</div>
-                    <div className="text-xs text-muted-foreground">Stuttgart, Germany</div>
-                 </div>
-                 <div className="flex items-center gap-1.5 px-2.5 py-1 border border-primary/40">
-                   <div className="w-2 h-2 bg-primary" />
-                   <span className="text-[10px] text-primary font-bold uppercase">AI Verified</span>
-                 </div>
-               </div>
-               <div className="space-y-1.5 mb-4">
-                 {profileFields.map((f, i) => (
-                   <motion.div key={f.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.08 }}
-                     className="flex items-start gap-3">
-                      <span className="text-[10px] text-muted-foreground w-24 flex-shrink-0 uppercase">{f.label}</span>
-                      <span className="text-sm text-foreground font-medium">{f.value}</span>
-                   </motion.div>
-                 ))}
-               </div>
-
-               {/* Analytics Section */}
-               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-                  className="border-t border-foreground/10 pt-3 space-y-3">
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">AI Intelligence Assessment</div>
-
-                 {/* Row 1: 3 Pie charts — Quality, Delivery, Compliance */}
-                 <div className="flex items-center justify-around max-w-[360px]">
-                    {[
-                      { label: "Quality", value: 92 },
-                      { label: "On-Time Del.", value: 88 },
-                      { label: "Compliance", value: 95 },
-                    ].map((kpi, idx) => {
-                      const sz = 86;
-                      const sw = 6;
-                      const r = (sz - sw * 2) / 2;
-                      const c = 2 * Math.PI * r;
-                      const ticks = 32;
-                      const tR = r + sw + 1.5;
-                      return (
-                        <motion.div key={kpi.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + idx * 0.15 }}
-                          className="flex flex-col items-center gap-1.5">
-                          <div className="relative flex items-center justify-center" style={{ width: sz, height: sz }}>
-                            <svg className="absolute inset-0" viewBox={`0 0 ${sz} ${sz}`}>
-                              {Array.from({ length: ticks }).map((_, i) => {
-                                const angle = (i / ticks) * 360 - 90;
-                                const rad = (angle * Math.PI) / 180;
-                                const cx = sz / 2; const cy = sz / 2;
-                                const x1 = cx + Math.cos(rad) * (tR - 1.5);
-                                const y1 = cy + Math.sin(rad) * (tR - 1.5);
-                                const x2 = cx + Math.cos(rad) * (tR + 0.8);
-                                const y2 = cy + Math.sin(rad) * (tR + 0.8);
-                                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-                                  stroke={i / ticks <= kpi.value / 100 ? 'hsl(var(--primary))' : 'hsl(0,0%,60%)'}
-                                  strokeWidth={0.7} strokeLinecap="square" />;
-                              })}
-                              <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="hsl(0,0%,82%)" strokeWidth={sw} />
-                              <motion.circle cx={sz/2} cy={sz/2} r={r} fill="none"
-                                stroke="hsl(var(--primary))" strokeWidth={sw} strokeLinecap="square"
-                                transform={`rotate(-90 ${sz/2} ${sz/2})`}
-                                initial={{ strokeDasharray: c, strokeDashoffset: c }}
-                                animate={{ strokeDashoffset: c * (1 - kpi.value / 100) }}
-                                transition={{ duration: 1, ease: "easeOut", delay: 0.5 + idx * 0.15 }}
-                              />
-                            </svg>
-                             <span className="text-sm font-bold text-foreground z-10">{kpi.value}%</span>
-                           </div>
-                           <span className="text-[10px] text-muted-foreground uppercase">{kpi.label}</span>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-
-                 {/* Row 2: Score trend line chart */}
-                 <div className="max-w-[360px]">
-                   <div className="flex items-center justify-between mb-1.5">
-                     <span className="text-[10px] text-muted-foreground uppercase">Score Trend (Last 8 Audits)</span>
-                     <span className="text-xs text-primary font-semibold">+12.4%</span>
-                   </div>
-                   <svg viewBox="0 0 140 32" className="w-full h-10">
-                     {[8, 16, 24].map(y => (
-                       <line key={y} x1="0" y1={y} x2="140" y2={y} stroke="hsl(0,0%,82%)" strokeWidth="0.3" strokeDasharray="2,2" />
-                     ))}
-                     <motion.path
-                       d="M0,26 L20,24 40,22 60,25 80,18 100,14 120,11 140,6 L140,32 L0,32 Z"
-                       fill="hsl(var(--primary))" fillOpacity="0.1"
-                       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                       transition={{ duration: 0.8, delay: 0.8 }}
-                     />
-                     <motion.polyline
-                       points="0,26 20,24 40,22 60,25 80,18 100,14 120,11 140,6"
-                       fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5"
-                       initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-                       transition={{ duration: 1.2, delay: 0.6 }}
-                     />
-                     {[[0,26],[20,24],[40,22],[60,25],[80,18],[100,14],[120,11],[140,6]].map(([x,y], i) => (
-                       <motion.circle key={i} cx={x} cy={y} r="2.5" fill="hsl(var(--primary))"
-                         initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}
-                         transition={{ delay: 0.7 + i * 0.08 }} />
-                     ))}
-                     <text x="2" y="7" fill="hsl(0,0%,70%)" fontSize="3.5">95</text>
-                     <text x="2" y="28" fill="hsl(0,0%,70%)" fontSize="3.5">70</text>
-                   </svg>
-                 </div>
-
-                  {/* Row 3: Macro/Micro economic risk indicators */}
-                  <div className="max-w-[360px]">
-                     <div className="text-[10px] text-muted-foreground uppercase mb-1.5">Macroeconomic Risk Assessment</div>
-                     <div className="grid grid-cols-5 gap-2">
-                       {[
-                         { label: "Currency", value: "Stable", risk: "low" },
-                         { label: "Supply Chain", value: "Moderate", risk: "mid" },
-                         { label: "Regulatory", value: "Low", risk: "low" },
-                         { label: "Market", value: "Growing", risk: "low" },
-                         { label: "Geopolitical", value: "Clear", risk: "low" },
-                       ].map((item) => (
-                         <div key={item.label} className="text-center">
-                           <div className={`w-2.5 h-2.5 mx-auto mb-1 ${item.risk === 'low' ? 'bg-primary' : 'bg-[hsl(var(--warning))]'}`} />
-                           <span className="text-[10px] text-foreground font-semibold block">{item.value}</span>
-                           <span className="text-[8px] text-muted-foreground uppercase">{item.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                 {/* Row 4: Client-specific KPIs */}
-                  <div className="flex gap-3 border-t border-foreground/10 pt-3 max-w-[360px]">
-                    {[
-                      { label: "Qualification Time", value: "14 days", delta: "60% faster" },
-                      { label: "Cost / Audit", value: "€2.8K", delta: "−32%" },
-                      { label: "Defect Rate", value: "0.4%", delta: "−0.8pp" },
-                    ].map((kpi) => (
-                      <div key={kpi.label} className="flex-1 text-center">
-                        <span className="text-sm font-bold text-foreground block">{kpi.value}</span>
-                        <span className="text-[10px] text-primary font-semibold block">{kpi.delta}</span>
-                        <span className="text-[8px] text-muted-foreground uppercase">{kpi.label}</span>
-                      </div>
-                   ))}
-                 </div>
-               </motion.div>
-             </GlassCard>
-           </motion.div>
-         )}
-
-        {/* Step 4: Upload checklists */}
-        {phase >= 3 && (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="max-w-md">
-            <GlassCard layer={2} className="p-3">
-              <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Upload Checklists</div>
+        <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+          {/* Supplier name inputs */}
+          {phase >= 0 && (
+            <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Suppliers to Audit</div>
               <div className="space-y-1.5">
-                {["ISO_9001_Checklist.pdf", "Custom_Requirements.xlsx"].map((file, i) => (
-                  <motion.div key={file} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="text-foreground font-medium">{file}</span>
-                    <svg className="w-4 h-4 text-primary ml-auto" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
+                {suppliers.map((s, i) => (
+                  <motion.div key={s.name} initial={{ opacity: 0, x: -4 }} animate={{ opacity: phase >= 1 ? 1 : i === 0 ? 1 : 0.3, x: 0 }}
+                    transition={{ delay: i * 0.15 }}
+                    className="flex items-center gap-2 border-b border-foreground/10 pb-1.5">
+                    <div className={`w-4 h-4 flex items-center justify-center ${phase >= 2 ? 'bg-primary' : 'border border-foreground/20'}`}>
+                      {phase >= 2 && <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>}
+                    </div>
+                    <span className="text-sm text-foreground font-medium">{s.name}</span>
                   </motion.div>
                 ))}
               </div>
-            </GlassCard>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {/* Step 5: Order confirmed */}
-        {phase >= 4 && (
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-md">
-            <GlassCard highlight className="flex items-center gap-3 p-4">
-              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <div>
-                 <span className="text-base font-semibold text-foreground">Audit Order Confirmed</span>
-                 <div className="text-xs text-muted-foreground">Timeline: 3 business days</div>
+          {/* Standards selection */}
+          {phase >= 2 && (
+            <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1.5">Audit Standard</div>
+              <div className="flex gap-1.5">
+                {["ISO 9001", "AS9100", "IATF"].map((std, i) => (
+                  <div key={std} className={`px-3 py-1.5 text-xs font-semibold ${i === 0 ? 'bg-foreground text-background' : 'border border-foreground/15 text-foreground/50'}`}>
+                    {std}
+                  </div>
+                ))}
               </div>
-            </GlassCard>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {phase >= 5 && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-auto text-center">
-           <span className="text-xs text-foreground/60 tracking-wider uppercase">Step 1 of 5 · Discover</span>
-          </motion.div>
-        )}
+          {/* Document upload */}
+          {phase >= 3 && (
+            <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1.5">Documents & Checklists</div>
+              <GlassCard layer={2} className="p-3">
+                <div className="space-y-1.5">
+                  {[
+                    { name: "ISO_9001_Checklist.pdf", size: "2.4 MB" },
+                    { name: "Custom_Requirements.xlsx", size: "1.1 MB" },
+                    { name: "Supplier_Specs.pdf", size: "3.8 MB" },
+                  ].map((file, i) => (
+                    <motion.div key={file.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-2">
+                      <svg className="w-3.5 h-3.5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span className="text-xs text-foreground font-medium flex-1">{file.name}</span>
+                      <span className="text-[10px] text-muted-foreground">{file.size}</span>
+                      <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </motion.div>
+                  ))}
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* Timeline */}
+          {phase >= 4 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">Timeline</div>
+              <div className="flex items-center gap-2">
+                <div className="px-3 py-1.5 bg-foreground text-background text-xs font-semibold">3 Business Days</div>
+                <span className="text-xs text-muted-foreground">per audit</span>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </div>
+
+      {/* RIGHT PANEL — Supplier Cards + AI Guidance */}
+      <div className="w-[58%] flex flex-col">
+        <div className="px-4 py-3 border-b border-foreground/10 flex items-center justify-between">
+          <span className="text-sm font-semibold text-foreground">AI Supplier Intelligence</span>
+          {phase >= 5 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              className="flex items-center gap-1 px-2 py-1 border border-primary/30">
+              <div className="w-1.5 h-1.5 bg-primary" />
+              <span className="text-[9px] text-primary font-bold uppercase">AI Verified</span>
+            </motion.div>
+          )}
+        </div>
+
+        <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+          {/* AI searching indicator */}
+          {phase >= 2 && phase < 5 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-primary">
+              <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full" />
+              <span>{phase < 4 ? "AI analyzing suppliers…" : "Building intelligence profiles…"}</span>
+            </motion.div>
+          )}
+
+          {/* 3 Supplier Cards — symmetric grid */}
+          {phase >= 5 && (
+            <div className="grid grid-cols-3 gap-2.5 flex-1">
+              {suppliers.map((s, i) => (
+                <motion.div key={s.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.12 }} className="flex">
+                  <GlassCard highlight={i === 0} layer={2} className="p-3 flex flex-col w-full">
+                    {/* Score badge */}
+                    <div className="flex items-center justify-between mb-2">
+                      <div className={`px-2 py-0.5 text-xs font-bold ${i === 0 ? 'bg-primary text-white' : 'bg-foreground/10 text-foreground'}`}>
+                        {s.score}%
+                      </div>
+                      {i === 0 && <span className="text-[8px] text-primary font-bold uppercase">Best Match</span>}
+                    </div>
+                    {/* Supplier info */}
+                    <div className="text-sm font-semibold text-foreground leading-tight mb-1">{s.name}</div>
+                    <div className="text-[10px] text-muted-foreground mb-2">{s.location}</div>
+                    <div className="border-t border-foreground/8 pt-2 mt-auto space-y-1">
+                      <div className="flex justify-between">
+                        <span className="text-[9px] text-muted-foreground uppercase">Industry</span>
+                        <span className="text-[10px] text-foreground font-medium">{s.industry}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[9px] text-muted-foreground uppercase">Certs</span>
+                        <span className="text-[10px] text-foreground font-medium">{s.certs}</span>
+                      </div>
+                      {/* Mini risk indicator */}
+                      <div className="flex items-center gap-1 mt-1">
+                        {["Quality", "Delivery", "Compliance"].map((r) => (
+                          <div key={r} className="flex-1 text-center">
+                            <div className="w-full h-1 bg-primary/20 mb-0.5"><div className="h-full bg-primary" style={{ width: `${75 + Math.random() * 20}%` }} /></div>
+                            <span className="text-[7px] text-muted-foreground">{r}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {/* AI Guidance & Recommendation */}
+          {phase >= 6 && (
+            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard highlight className="p-3">
+                <div className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold text-foreground block">AI Recommendation</span>
+                    <span className="text-[10px] text-muted-foreground leading-relaxed">All 3 suppliers qualify for ISO 9001 audit. PräzisionsTech shows strongest quality metrics. Recommend parallel audit execution for fastest qualification.</span>
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* Order Button */}
+          {phase >= 7 && (
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+              <div className="flex items-center gap-3">
+                <div className="flex-1 bg-primary text-white px-4 py-2.5 text-sm font-semibold text-center cursor-pointer">
+                  Confirm & Order 3 Audits
+                </div>
+                <div className="text-right">
+                  <span className="text-sm font-bold text-foreground block">€8,400</span>
+                  <span className="text-[10px] text-muted-foreground">€2,800 / audit</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        <div className="px-4 py-2 border-t border-foreground/10 text-center">
+          <span className="text-[10px] text-foreground/50 tracking-wider uppercase">Step 1 of 5 · Discover</span>
+        </div>
       </div>
     </div>
   );
@@ -429,87 +333,166 @@ const DiscoverScreen = () => {
 const MatchScreen = () => {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 600);
-    const t2 = setTimeout(() => setPhase(2), 1500);
-    const t3 = setTimeout(() => setPhase(3), 2800);
-    const t4 = setTimeout(() => setPhase(4), 3800);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    const timers = [
+      setTimeout(() => setPhase(1), 400),
+      setTimeout(() => setPhase(2), 1000),
+      setTimeout(() => setPhase(3), 1600),
+      setTimeout(() => setPhase(4), 2400),
+      setTimeout(() => setPhase(5), 3200),
+      setTimeout(() => setPhase(6), 4000),
+      setTimeout(() => setPhase(7), 4600),
+    ];
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   const auditors = [
-    { name: "Markus Hoffmann", match: 94, cert: "ISO 9001 · Stuttgart · 15 yrs", img: auditorGen2 },
-    { name: "Dr. Anna Weber", match: 91, cert: "AS9100 · Frankfurt · 12 yrs", img: auditorGen3 },
-    { name: "Thomas Richter", match: 88, cert: "IATF 16949 · Munich · 9 yrs", img: auditorGen4 },
+    { name: "Markus Hoffmann", region: "DACH", location: "Stuttgart, DE", match: 96, cert: "ISO 9001 Lead · 15 yrs", supplier: "PräzisionsTech", img: auditorGen2 },
+    { name: "Dr. Anna Weber", region: "Western EU", location: "Toulouse, FR", match: 93, cert: "AS9100 Lead · 12 yrs", supplier: "AeroComponents", img: auditorGen3 },
+    { name: "Thomas Richter", region: "UK & Ireland", location: "Manchester, UK", match: 89, cert: "ISO 9001 · 9 yrs", supplier: "TurboValve", img: auditorGen4 },
   ];
 
-  const matchBars = [30, 45, 55, 40, 60, 50, 70, 65, 80, 75, 85, 90, 94, 88, 70, 60, 55, 45, 35, 30];
+  const reasoningSteps = [
+    { icon: "🔍", text: "Analyzing audit requirements across 3 regions…" },
+    { icon: "📊", text: "Matching certifications: ISO 9001, AS9100, PED…" },
+    { icon: "📍", text: "Optimizing auditor proximity to supplier locations…" },
+    { icon: "⚡", text: "Evaluating auditor availability for Dec timeline…" },
+    { icon: "✓", text: "3 optimal auditors selected for parallel execution" },
+  ];
 
   return (
-    <div className={`h-full flex flex-col ${SCREEN_BG} p-5 gap-3`}>
-       <div className="flex items-center justify-between">
-         <span className="text-base font-semibold text-foreground">Auditor Matching</span>
-         <span className="text-xs text-foreground/60 uppercase tracking-wider">ScanPro+</span>
-       </div>
-
-      {/* Stat card with bar chart — layer 2 for depth */}
-      <GlassCard layer={2} className="p-4 max-w-md">
-        <div className="flex items-center justify-between mb-3">
-          <BigStat value="3" delta="+3" label="Auditors Matched" />
-          <div className="w-7 h-7 border border-muted-foreground/20 flex items-center justify-center">
-            <svg className="w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </div>
+    <div className={`h-full flex ${SCREEN_BG}`}>
+      {/* LEFT PANEL — AI Reasoning */}
+      <div className="w-[42%] flex flex-col border-r border-foreground/10">
+        <div className="px-4 py-3 border-b border-foreground/10">
+          <span className="text-sm font-semibold text-foreground">AI Matching Engine</span>
         </div>
-        <BarChart bars={matchBars} accentIndex={12} />
-      </GlassCard>
 
-       {phase >= 1 && (
-         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-sm text-primary">
-           <motion.div animate={{ rotate: 360 }} transition={{ repeat: phase < 2 ? Infinity : 0, duration: 1, ease: "linear" }}
-             className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full" />
-           {phase < 2 ? "Matching auditors…" : "3 auditors matched"}
-         </motion.div>
-       )}
-
-      {phase >= 2 && (
-        <div className="space-y-2.5 flex-1 max-w-lg">
-           {auditors.map((a, i) => (
-             <motion.div key={a.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
-               <GlassCard highlight={i === 0} layer={i === 0 ? 2 : 1} className="flex items-center gap-4 p-4">
-                 <img src={a.img} alt={a.name} className="w-12 h-12 object-cover" />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base font-semibold text-foreground truncate">{a.name}</span>
+        <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+          {/* AI reasoning steps */}
+          <div className="space-y-2.5">
+            {reasoningSteps.map((step, i) => (
+              phase >= i + 1 && (
+                <motion.div key={i} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}>
+                  <div className="flex items-start gap-2.5">
+                    <div className={`w-5 h-5 flex items-center justify-center text-[10px] flex-shrink-0 ${
+                      phase > i + 1 || i === reasoningSteps.length - 1 ? '' : ''
+                    }`}>{step.icon}</div>
+                    <div className="flex-1">
+                      <span className={`text-xs leading-relaxed ${phase > i + 1 ? 'text-foreground/60' : 'text-foreground font-medium'}`}>
+                        {step.text}
+                      </span>
+                      {phase === i + 1 && i < reasoningSteps.length - 1 && (
+                        <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }}
+                          className="w-12 h-0.5 bg-primary mt-1" />
+                      )}
                     </div>
-                    <div className="text-sm text-muted-foreground truncate">{a.cert}</div>
                   </div>
-                  <div className="flex items-baseline gap-0.5">
-                    <span className="text-xl font-bold text-foreground">{a.match}</span>
-                    <span className="text-xs text-muted-foreground">%</span>
-                 </div>
-               </GlassCard>
-             </motion.div>
-           ))}
+                </motion.div>
+              )
+            ))}
+          </div>
+
+          {/* Matching stats */}
+          {phase >= 5 && (
+            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+              <GlassCard layer={2} className="p-3">
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Matching Summary</div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-center">
+                    <span className="text-lg font-bold text-foreground block">47</span>
+                    <span className="text-[9px] text-muted-foreground uppercase">Evaluated</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-lg font-bold text-foreground block">12</span>
+                    <span className="text-[9px] text-muted-foreground uppercase">Qualified</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-lg font-bold text-primary block">3</span>
+                    <span className="text-[9px] text-muted-foreground uppercase">Selected</span>
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {/* Processing bar chart */}
+          {phase >= 4 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <GlassCard layer={1} className="p-3">
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Match Distribution</div>
+                <BarChart bars={[15, 25, 35, 30, 45, 55, 60, 70, 75, 80, 85, 90, 96, 93, 89, 75, 60, 45, 30, 20]} accentIndex={12} />
+              </GlassCard>
+            </motion.div>
+          )}
         </div>
-      )}
+      </div>
 
-      {phase >= 3 && (
-         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-lg">
-           <GlassCard highlight className="flex items-center gap-3 p-4">
-             <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="currentColor">
-               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-             </svg>
-             <span className="text-base font-semibold text-foreground">Auditor confirmed: On-site Dec 22</span>
-           </GlassCard>
-         </motion.div>
-      )}
+      {/* RIGHT PANEL — Selected Auditors */}
+      <div className="w-[58%] flex flex-col">
+        <div className="px-4 py-3 border-b border-foreground/10 flex items-center justify-between">
+          <span className="text-sm font-semibold text-foreground">Selected Auditors</span>
+          <span className="text-[10px] text-foreground/50 uppercase tracking-wider">3 Regions</span>
+        </div>
 
-      {phase >= 4 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-           <span className="text-xs text-foreground/60 tracking-wider uppercase">Step 2 of 5 · Match</span>
-        </motion.div>
-      )}
+        <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+          {/* Waiting state */}
+          {phase < 6 && (
+            <div className="flex-1 flex items-center justify-center">
+              <div className="text-center">
+                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-3" />
+                <span className="text-xs text-muted-foreground">AI selecting optimal auditors…</span>
+              </div>
+            </div>
+          )}
+
+          {/* 3 Auditor cards — prominent, symmetric */}
+          {phase >= 6 && (
+            <div className="space-y-2.5 flex-1">
+              {auditors.map((a, i) => (
+                <motion.div key={a.name} initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: i * 0.15 }}>
+                  <GlassCard highlight={i === 0} layer={2} className="p-3 flex items-center gap-3">
+                    <img src={a.img} alt={a.name} className="w-11 h-11 object-cover flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="text-sm font-semibold text-foreground truncate">{a.name}</span>
+                        <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase bg-primary/10 text-primary">{a.region}</span>
+                      </div>
+                      <div className="text-[10px] text-muted-foreground">{a.cert}</div>
+                      <div className="text-[10px] text-foreground/60 mt-0.5">→ {a.supplier} · {a.location}</div>
+                    </div>
+                    <div className="text-right flex-shrink-0">
+                      <span className="text-xl font-bold text-foreground">{a.match}</span>
+                      <span className="text-[10px] text-muted-foreground">%</span>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {/* Confirmation */}
+          {phase >= 7 && (
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+              <GlassCard highlight className="p-3 flex items-center gap-3">
+                <svg className="w-5 h-5 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <div className="flex-1">
+                  <span className="text-sm font-semibold text-foreground">3 Auditors Confirmed</span>
+                  <span className="text-[10px] text-muted-foreground block">On-site audits scheduled: Dec 18–22</span>
+                </div>
+              </GlassCard>
+            </motion.div>
+          )}
+        </div>
+
+        <div className="px-4 py-2 border-t border-foreground/10 text-center">
+          <span className="text-[10px] text-foreground/50 tracking-wider uppercase">Step 2 of 5 · Match</span>
+        </div>
+      </div>
     </div>
   );
 };
