@@ -31,9 +31,10 @@ const AtlasAIDemoAnimation = () => {
     utterance.pitch = 1.0;
     utterance.lang = "en-US";
     
-    // Try to pick a good voice
+    // Force English voice
     const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel"));
+    const englishVoices = voices.filter(v => v.lang.startsWith("en"));
+    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
     if (preferred) utterance.voice = preferred;
 
     utterance.onstart = () => {
