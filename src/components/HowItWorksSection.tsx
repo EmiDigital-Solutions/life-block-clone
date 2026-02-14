@@ -181,9 +181,9 @@ export const HowItWorksSection = () => {
               transition={{ duration: 0.5 }}
               className="text-center py-8"
             >
-               <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
-                 See what 3 days looks like.
-               </h3>
+              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
+                Ready to transform your audits?
+              </h3>
               <Button asChild size="lg">
                 <a 
                   href="https://calendly.com/yvoo/demo-yvoo"

@@ -22,13 +22,13 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-           <h2 className="section-headline text-foreground mb-4">
-             Your competitors switched last quarter.
-           </h2>
+          <h2 className="section-headline text-foreground mb-4">
+            It's time to rewrite the story
+          </h2>
 
-           <p className="text-xl md:text-2xl text-muted-foreground mb-10">
-             €15,000 → €700 per audit <span className="mx-2 text-muted-foreground/40">|</span> 10 weeks → 3 days <span className="mx-2 text-muted-foreground/40">|</span> Only 12 enterprise slots left this quarter
-           </p>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-10">
+            €15,000 → €700 per audit <span className="mx-2 text-muted-foreground/40">|</span> Weeks → 3 Days
+          </p>
 
           <Button
             size="lg"
