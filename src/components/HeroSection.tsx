@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              While others take 14 days and €15,000
+              50 emails. 10 weeks. €13,000 all-in.
             </motion.p>
 
             {/* Headline */}
@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
               >
-                Traditional audit firms charge €15,000 and take 14 days — one auditor with a clipboard. We deploy AI + local certified auditors and deliver in 72 hours.
+                That's the reality of supplier audits today — budget battles, travel coordination, calendar chaos. Upload your supplier list. We handle everything. Verified report in 3 days.
               </motion.p>
 
               <motion.div

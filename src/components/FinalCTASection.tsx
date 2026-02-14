@@ -23,22 +23,25 @@ const FinalCTASection = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="section-headline text-foreground mb-4">
-            The old way is over
+            Stop the nightmare
           </h2>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-10">
-            €15,000 → €700 per audit <span className="mx-2 text-muted-foreground/40">|</span> Weeks → 3 Days
+            Upload supplier list → 3 days → Verified report. €700.
           </p>
 
           <Button
             size="lg"
-            onClick={() => {
-              const demoSection = document.getElementById('platform-demo');
-              if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
-            }}
+            asChild
           >
-            See How YVOO Works
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <a
+              href="https://calendly.com/yvoo/demo-yvoo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Verify your first supplier
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
           </Button>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
