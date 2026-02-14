@@ -15,11 +15,7 @@ const AtlasAIDemoAnimation = () => {
   const [copilotSpeaking, setCopilotSpeaking] = useState(false);
   const [copilotText, setCopilotText] = useState("");
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const [loopKey, setLoopKey] = useState(0);
   const middleScrollRef = useRef<HTMLDivElement>(null);
-
-  const LOOP_DURATION = 16000; // total cycle length in ms
-  const PAUSE_ON_MATURITY = 3000; // pause showing maturity before restart
 
   const riskAlertText = "BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits. Recommend thorough check of document control procedures, approval signatures, and revision history.";
 
@@ -85,18 +81,8 @@ const AtlasAIDemoAnimation = () => {
     window.speechSynthesis.speak(utterance);
   }, [copilotSpeaking]);
 
-  // Single animation loop driven by loopKey
+  // Single animation run (no loop)
   useEffect(() => {
-    // Reset all states
-    setShowFinding(false);
-    setVis(0);
-    setChatStep(0);
-    setEvidenceComplete(false);
-    setShowMaturity(false);
-    setAtlasMaturity(null);
-    setAuditorMaturity(null);
-    setPhotoFlash(false);
-
     const timers: number[] = [];
     const t = (delay: number, fn: () => void) => {
       timers.push(window.setTimeout(fn, delay));
@@ -124,7 +110,6 @@ const AtlasAIDemoAnimation = () => {
     t(8000, () => setEvidenceComplete(true));
     t(9000, () => {
       setShowMaturity(true);
-      // Auto-scroll to bottom so maturity is fully visible
       setTimeout(() => {
         middleScrollRef.current?.scrollTo({ top: middleScrollRef.current.scrollHeight, behavior: "smooth" });
       }, 200);
@@ -137,14 +122,11 @@ const AtlasAIDemoAnimation = () => {
       }, 300);
     });
 
-    // Restart loop after maturity pause
-    t(LOOP_DURATION, () => setLoopKey(k => k + 1));
-
     return () => {
       timers.forEach(clearTimeout);
-      // Don't cancel speech on loop restart — only on unmount
+      window.speechSynthesis.cancel();
     };
-  }, [loopKey]);
+  }, []);
   
 
   return (
