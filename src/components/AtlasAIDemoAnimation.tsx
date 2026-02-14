@@ -18,9 +18,9 @@ const AtlasAIDemoAnimation = () => {
   const middleScrollRef = useRef<HTMLDivElement>(null);
 
   const riskAlertParts = [
-    "BMW Tier-2 rejected 2 suppliers for document control gaps.",
-    "Issues found in 73% of 47 similar audits.",
-    "Recommend thorough check of document control procedures, approval signatures, and revision history.",
+    "BMW rejected 2 suppliers for documentation gaps.",
+    "73% of similar audits had this issue.",
+    "Check document control and signatures.",
   ];
 
   const speakRiskAlert = useCallback(() => {
