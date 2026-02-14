@@ -40,10 +40,10 @@ const EarningsPotentialSection = () => {
   ];
 
   const exampleAudits = [
-    { standard: "ISO 9001", type: "Quality Management", location: "Shenzhen, China", fee: "$680", currency: "USD", distance: "15 km from home", duration: "2 days" },
-    { standard: "VDA 6.3", type: "Process Audit", location: "Pune, India", fee: "$520", currency: "USD", distance: "22 km from home", duration: "2 days" },
-    { standard: "IATF 16949", type: "Automotive QMS", location: "Wrocław, Poland", fee: "€1,150", currency: "EUR", distance: "8 km from home", duration: "3 days" },
-    { standard: "AS9100 Rev D", type: "Aerospace QMS", location: "Detroit, USA", fee: "$1,400", currency: "USD", distance: "30 km from home", duration: "3 days" },
+    { standard: "ISO 9001", type: "Quality Management", location: "Shenzhen, China", fee: "$680", currency: "USD", distance: "15 km from auditor's home", duration: "2 days" },
+    { standard: "VDA 6.3", type: "Process Audit", location: "Pune, India", fee: "$520", currency: "USD", distance: "22 km from auditor's home", duration: "2 days" },
+    { standard: "IATF 16949", type: "Automotive QMS", location: "Wrocław, Poland", fee: "€1,150", currency: "EUR", distance: "8 km from auditor's home", duration: "3 days" },
+    { standard: "AS9100 Rev D", type: "Aerospace QMS", location: "Detroit, USA", fee: "$1,400", currency: "USD", distance: "30 km from auditor's home", duration: "3 days" },
   ];
 
   return (
