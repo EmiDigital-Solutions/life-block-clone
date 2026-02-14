@@ -58,16 +58,18 @@ const GlobalNetworkSection = () => {
                 className="text-left"
               >
                 <p className="text-sm font-semibold text-foreground mb-3">
-                  Our auditor network includes professionals certified by:
+                  All auditors are certified by authorized certification bodies worldwide
                 </p>
                 <div className="flex flex-wrap items-center gap-3 text-muted-foreground">
-                  <span className="text-sm">TÜV SÜD</span>
+                  <span className="text-sm">ISO Lead Auditor</span>
                   <span className="text-muted-foreground/30">•</span>
-                  <span className="text-sm">Bureau Veritas</span>
+                  <span className="text-sm">VDA 6.3</span>
                   <span className="text-muted-foreground/30">•</span>
-                  <span className="text-sm">SGS</span>
+                  <span className="text-sm">IATF 16949</span>
                   <span className="text-muted-foreground/30">•</span>
-                  <span className="text-sm">DNV</span>
+                  <span className="text-sm">AS9100</span>
+                  <span className="text-muted-foreground/30">•</span>
+                  <span className="text-sm">ISO 13485</span>
                 </div>
               </motion.div>
 
@@ -139,7 +141,7 @@ const GlobalNetworkSection = () => {
                   >
                     {/* Pulse effect */}
                     <motion.div
-                      className="absolute rounded-full bg-foreground"
+                      className="absolute rounded-full bg-primary"
                       animate={{
                         scale: [1, 2.2, 1],
                         opacity: [0.7, 0, 0.7],
@@ -153,7 +155,7 @@ const GlobalNetworkSection = () => {
                     />
                     
                     {/* Marker dot */}
-                    <div className="relative w-4 h-4 bg-foreground rounded-full border-2 border-white shadow-lg z-10" />
+                    <div className="relative w-4 h-4 bg-primary rounded-full border-2 border-white shadow-lg z-10" />
                     
                     {/* Label on hover */}
                     <div className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
