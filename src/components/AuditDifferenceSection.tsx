@@ -102,16 +102,16 @@ const AuditDifferenceSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {/* Tab Bar — stronger visual presence */}
-            <div className="flex items-center gap-1 mb-10">
-              <div className="flex gap-1 flex-1">
+            <div className="flex items-center gap-2 mb-10">
+              <div className="flex gap-2 flex-1">
                 {phases.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => handleTabClick(index)}
-                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 ${
+                    className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 border backdrop-blur-md ${
                       activeTab === index
-                        ? "bg-foreground text-white"
-                        : "bg-muted text-muted-foreground hover:text-foreground"
+                        ? "bg-foreground/90 text-white border-foreground/20"
+                        : "bg-white/60 text-muted-foreground hover:text-foreground hover:bg-white/80 border-white/40"
                     }`}
                   >
                     <span className={`font-mono text-xs tracking-wider ${
@@ -127,7 +127,7 @@ const AuditDifferenceSection = () => {
               </div>
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors"
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-muted-foreground/40 hover:text-foreground transition-colors backdrop-blur-md bg-white/60 border border-white/40"
                 aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
