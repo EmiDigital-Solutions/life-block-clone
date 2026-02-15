@@ -76,7 +76,7 @@ const EmailComparisonSection = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => { setIsAutoSwitching(false); setIsWithScanPro(!isWithScanPro); }}
-                className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-foreground' : 'bg-destructive'}`}
+                className={`relative w-16 h-8 transition-colors duration-300 ${isWithScanPro ? 'bg-secondary' : 'bg-destructive'}`}
                 aria-label="Toggle comparison"
               >
                 <motion.div
