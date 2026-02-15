@@ -8,7 +8,7 @@ const phases = [
   {
     id: "01",
     phase: "Before arrival",
-    title: "Your auditor arrives knowing more than your own team.",
+    title: "Our auditor arrives knowing more than your own team.",
     points: [
       "Atlas AI analyzes your supplier's certifications, past audit history, industry benchmarks, and applicable standards — before anyone boards a plane.",
       "A tailored audit framework is generated: risk-weighted focus areas, equipment-specific checkpoints, and compliance gaps identified from public and proprietary data sources.",
