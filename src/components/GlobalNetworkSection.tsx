@@ -29,9 +29,9 @@ const GlobalNetworkSection = () => {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground tracking-tight leading-[0.95] max-w-4xl mb-16 md:mb-24"
           >
-            Your auditor
+            Expert-level audits.
             <br />
-            is already there
+            Anywhere. Every time
           </motion.h2>
 
           {/* Bottom text block */}
