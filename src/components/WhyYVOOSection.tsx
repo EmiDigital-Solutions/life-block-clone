@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 const stats = [
   { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
-  { category: "Save costs", value: "60%", description: "Lower audit costs with local certified auditors" },
-  { category: "Scale globally", value: "12K+", description: "Certified auditors in 50+ countries" },
-  { category: "Get results", value: "24h", description: "Digital audit reports delivered within hours" }
+  { category: "Save costs", value: "60%", description: "Lower audit costs with local auditors" },
+  { category: "Global reach", value: "400K+", description: "Access to certified auditors globally" },
+  { category: "Get results", value: "24h", description: "Digital reports delivered within hours" }
 ];
 
 const WhyYVOOSection = () => {
