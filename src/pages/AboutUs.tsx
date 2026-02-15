@@ -125,7 +125,7 @@ const AboutUs = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-              Building the Global<br />B2B Platform
+              Building the World's Largest<br />Auditor Marketplace
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               Connecting clients, suppliers, and local experts through innovative technology and human expertise.
