@@ -117,7 +117,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted">
+    <section className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
         {/* Header - offmenu style mixed weight typography */}
         <motion.div

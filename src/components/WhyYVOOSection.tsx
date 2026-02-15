@@ -70,7 +70,7 @@ const WhyYVOOSection = () => {
   return (
     <>
       {/* Homepage Section - Provocative Hook */}
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-white">
          <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

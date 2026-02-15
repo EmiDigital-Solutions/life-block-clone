@@ -45,7 +45,7 @@ export const HowItWorksSection = () => {
 
   return (
     <>
-    <section ref={ref} className="py-24 lg:py-32 bg-muted overflow-hidden">
+    <section ref={ref} className="py-24 lg:py-32 bg-white overflow-hidden">
        <div className="mx-auto max-w-[1400px] px-8">
         
         {/* Header */}
