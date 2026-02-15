@@ -89,8 +89,11 @@ const AuditDifferenceSection = () => {
             </span>
           </div>
           <h2 className="section-headline text-foreground max-w-4xl">
-            Computer vision AI that sees everything
+            Expert-level audits. Anywhere. Every time
           </h2>
+          <p className="mt-4 text-lg md:text-xl text-foreground/60 max-w-3xl leading-relaxed">
+            Atlas AI ensures every YVOO auditor delivers the same quality as your best internal auditor — whether in Munich or Mumbai.
+          </p>
         </motion.div>
 
         {/* Two-column layout: Content + Image */}
