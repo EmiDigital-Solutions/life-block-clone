@@ -9,7 +9,7 @@ import EmailComparisonSection from "@/components/EmailComparisonSection";
 
 import TestimonialSection from "@/components/TestimonialSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
-import StatsWithQuoteSection from "@/components/StatsWithQuoteSection";
+
 import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
@@ -29,7 +29,7 @@ const Index = () => {
         <WhyYVOOSection />
         <AtlasAISection />
         <AuditDifferenceSection />
-        <StatsWithQuoteSection />
+        
         <HowItWorksSection />
         <TestimonialsCarouselSection />
         <FAQSection />
