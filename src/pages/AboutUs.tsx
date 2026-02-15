@@ -2,8 +2,10 @@ import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
@@ -18,6 +20,72 @@ import auditorFemaleLatin from "@/assets/auditor-female-latin.jpg";
 import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
+
+const ContactForm = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+    if (!name || name.length > 100) { toast.error("Please enter a valid name"); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast.error("Please enter a valid email"); return; }
+    if (formData.company.trim().length > 100) { toast.error("Company name too long"); return; }
+    if (!message || message.length > 1000) { toast.error("Please enter a message (max 1000 chars)"); return; }
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from('contact_submissions').insert({ name, email, company: formData.company.trim() || null, message, source: 'about-us' });
+      if (error) throw error;
+      setIsSubmitted(true);
+      toast.success("Message sent successfully!");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="bg-background/5 border border-background/10 p-12 flex flex-col items-center justify-center text-center space-y-4 min-h-[380px]">
+        <div className="w-12 h-12 bg-primary flex items-center justify-center"><Check className="w-6 h-6 text-primary-foreground" /></div>
+        <h3 className="text-2xl font-semibold text-background">Thank you</h3>
+        <p className="text-background/50">We'll get back to you within 24 hours.</p>
+        <Button variant="outline" className="border-background/30 text-background hover:bg-background/10 mt-4" onClick={() => { setIsSubmitted(false); setFormData({ name: '', email: '', company: '', message: '' }); }}>Send another message</Button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-background/5 border border-background/10 p-8 md:p-10 space-y-6">
+      <div className="grid sm:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Name *</label>
+          <input type="text" required maxLength={100} value={formData.name} onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
+        </div>
+        <div className="space-y-2">
+          <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Email *</label>
+          <input type="email" required maxLength={255} value={formData.email} onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="work@company.com" />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Company</label>
+        <input type="text" maxLength={100} value={formData.company} onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
+      </div>
+      <div className="space-y-2">
+        <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Message *</label>
+        <textarea required maxLength={1000} rows={4} value={formData.message} onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Tell us about your needs..." />
+      </div>
+      <div className="flex flex-col sm:flex-row gap-4 pt-2">
+        <Button type="submit" size="lg" disabled={isSubmitting}>{isSubmitting ? "Sending..." : "Send Message"}<ArrowRight className="w-5 h-5" /></Button>
+        <Button type="button" variant="outline" size="lg" className="border-background/30 text-background hover:bg-background/10" onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}>Book Expert Call</Button>
+      </div>
+    </form>
+  );
+};
 
 const AboutUs = () => {
   const [selectedYear, setSelectedYear] = useState(2023);
@@ -440,34 +508,45 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* CTA SECTION */}
+      {/* CTA SECTION WITH CONTACT FORM */}
       <section data-nav-theme="dark" className="py-32 bg-foreground">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center"
-          >
-            <div className="lg:col-span-8 space-y-6">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+            {/* Left: Text */}
+            <motion.div
+              className="lg:col-span-5 space-y-6 flex flex-col justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-background leading-tight">
                 Ready to Transform Your Procurement?
               </h2>
               <p className="text-xl text-background/50 leading-relaxed">
                 Join leading enterprises achieving 70% cost reduction and 80% time savings.
               </p>
-            </div>
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end">
-              <Button size="lg">
-                Request Demo
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="border-background/30 text-background hover:bg-background/10">
-                Contact Sales
-              </Button>
-            </div>
-          </motion.div>
+              <div className="space-y-3 pt-4">
+                {["Response within 24 hours", "Personalized demo of the platform", "No commitment required"].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-background/60 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right: Contact Form */}
+            <motion.div
+              className="lg:col-span-7"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <ContactForm />
+            </motion.div>
+          </div>
         </div>
       </section>
 
