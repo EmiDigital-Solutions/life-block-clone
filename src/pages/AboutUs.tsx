@@ -169,8 +169,9 @@ const AboutUs = () => {
           >
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Mission</p>
-                <div className="w-10 h-[2px] bg-accent" />
+                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-4">About YVOO</p>
+                <h2 className="section-headline text-foreground mb-6">Our Mission</h2>
+                <div className="w-10 h-[2px] bg-primary" />
               </div>
               <div className="lg:col-span-8">
                 <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.35] font-light">
@@ -194,8 +195,9 @@ const AboutUs = () => {
           >
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Vision</p>
-                <div className="w-10 h-[2px] bg-accent" />
+                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-4">About YVOO</p>
+                <h2 className="section-headline text-foreground mb-6">Our Vision</h2>
+                <div className="w-10 h-[2px] bg-primary" />
               </div>
               <div className="lg:col-span-8 space-y-10">
                 <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-foreground font-semibold leading-[1.2] tracking-tight">
