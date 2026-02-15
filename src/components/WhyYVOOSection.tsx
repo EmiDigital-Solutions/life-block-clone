@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const stats = [
   { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
   { category: "Save costs", value: "60%", description: "Lower audit costs with local auditors" },
-  { category: "Global reach", value: "400K+", description: "Access to certified auditors globally" },
+  { category: "Global reach", value: "400K+", description: "Auditor marketplace (AI-powered)" },
   { category: "Get results", value: "24h", description: "Digital reports delivered within hours" }
 ];
 
@@ -55,19 +55,32 @@ const WhyYVOOSection = () => {
           </div>
         </div>
 
-        {/* Authority Quote */}
+        {/* How We Access 400K+ Auditors */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="border-l-4 border-foreground pl-8 py-6 max-w-3xl"
         >
-          <p className="text-xl md:text-2xl text-foreground leading-relaxed mb-4">
-            "Companies with mature supplier quality management have 30% fewer quality incidents and 20% lower warranty costs than their less mature peers."
+          <p className="text-sm font-medium tracking-wide text-foreground/50 uppercase mb-4">
+            How we access 400K+ auditors
           </p>
-          <p className="text-sm text-muted-foreground font-medium">
-            — McKinsey & Company, Supply Chain Report (2024)
+          <p className="text-foreground/70 leading-relaxed mb-6">
+            Our AI Auditor Agent continuously searches global databases (LinkedIn, ISO registries, certification bodies) and maintains a verified network of 400,000+ certified auditors.
           </p>
+          <p className="text-sm font-medium text-foreground mb-3">When you need an audit:</p>
+          <ol className="list-decimal list-inside text-foreground/70 space-y-1.5 text-sm mb-6">
+            <li>AI searches and matches best auditor (location, expertise, availability)</li>
+            <li>Verifies credentials and onboards instantly</li>
+            <li>Connects with Atlas AI for guided execution</li>
+            <li>Audit starts in 48 hours</li>
+          </ol>
+          <p className="text-foreground font-medium mb-6">
+            Zero employment overhead. Infinite scale.
+          </p>
+          <a href="#" className="text-sm font-medium text-foreground underline underline-offset-4 hover:text-foreground/70 transition-colors">
+            See how AI matching works →
+          </a>
         </motion.div>
       </div>
     </section>
