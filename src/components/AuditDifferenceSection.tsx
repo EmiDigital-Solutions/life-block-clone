@@ -7,6 +7,17 @@ import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
 const phases = [
   {
     id: "01",
+    phase: "The Network",
+    title: "400,000+ certified auditors globally.",
+    points: [
+      "Our AI Auditor Agent continuously searches LinkedIn (24,000+ in Europe alone), ISO registries, VDA/IATF certification bodies, and professional auditor networks worldwide.",
+      "The auditors already exist. Certified. Experienced. We connect you to them on-demand.",
+      "Every auditor undergoes background verification, Atlas AI training, and quality certification before activation.",
+    ],
+    accent: "No employment overhead. Infinite scale. Guaranteed quality.",
+  },
+  {
+    id: "02",
     phase: "Before arrival",
     title: "Our auditor arrives knowing more than your own team.",
     points: [
@@ -17,7 +28,7 @@ const phases = [
     accent: "Every audit starts with more preparation than most audits ever get.",
   },
   {
-    id: "02",
+    id: "03",
     phase: "On the shop floor",
     title: "Human expertise, amplified by machine precision.",
     points: [
@@ -28,7 +39,7 @@ const phases = [
     accent: "Audit depth that would normally require a team of three, delivered by one expert with Atlas.",
   },
   {
-    id: "03",
+    id: "04",
     phase: "Within 24 hours",
     title: "A complete audit intelligence package. Not a PDF.",
     points: [
