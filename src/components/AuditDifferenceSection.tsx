@@ -113,7 +113,7 @@ const AuditDifferenceSection = () => {
                     onClick={() => handleTabClick(index)}
                     className={`relative flex items-center gap-3 px-5 py-3.5 transition-all duration-300 border backdrop-blur-md ${
                       activeTab === index
-                        ? "bg-secondary text-white border-secondary/20"
+                        ? "bg-foreground/90 text-white border-foreground/20"
                         : "bg-white/60 text-muted-foreground hover:text-foreground hover:bg-white/80 border-white/40"
                     }`}
                   >
