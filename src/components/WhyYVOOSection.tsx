@@ -22,7 +22,7 @@ const WhyYVOOSection = () => {
             How you audit shapes how suppliers see you
           </h2>
           <p className="text-lg text-muted-foreground">
-            85% of auditors still show up with a clipboard. We didn't improve that process — we replaced it. YVOO deploys AI that analyzes equipment, processes, and compliance simultaneously.
+            85% still use clipboards. YVOO uses Network Power &amp; AI.
           </p>
         </motion.div>
 
