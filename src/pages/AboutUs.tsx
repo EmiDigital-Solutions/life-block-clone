@@ -155,68 +155,67 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* MISSION STATEMENT - Full Width */}
-      <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="mx-auto max-w-[1400px] px-8">
+      {/* MISSION & VISION — Combined Minimal Section */}
+      <section data-nav-theme="light" className="py-32 md:py-40 bg-background">
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+
+          {/* MISSION */}
           <motion.div 
-            className="text-center space-y-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="mb-32 md:mb-40"
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="w-12 h-0.5 bg-[#B2CDBC] mx-auto" />
-            <h2 className="section-headline text-foreground">
-              Our Mission
-            </h2>
-            <p className="text-2xl text-gray-700 leading-relaxed font-light">
-              Building exceptional supplier relationships through every interaction. 
-              We empower our customers, partners, and team to achieve continuous growth 
-              in a culture of mutual respect and trust.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* OUR VISION */}
-      <section data-nav-theme="light" className="py-32 bg-white">
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div 
-            className="space-y-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="space-y-4">
-              <p className="text-sm font-medium text-foreground/50 tracking-[0.2em] uppercase">About YVOO</p>
-              <div className="w-12 h-0.5 bg-[#B2CDBC]" />
-              <h2 className="section-headline text-foreground">
-                Our Vision
-              </h2>
-            </div>
-
-            <div className="grid lg:grid-cols-6 gap-0">
-              <div className="hidden lg:block lg:col-span-1" />
-              <div className="lg:col-span-5 space-y-8">
-                <p className="text-2xl md:text-3xl text-foreground font-bold leading-snug">
-                  We're building the world's largest AI-powered auditor marketplace
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+              <div className="lg:col-span-4">
+                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Mission</p>
+                <div className="w-10 h-[2px] bg-accent" />
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.35] font-light">
+                  Building exceptional supplier relationships through every interaction. 
+                  We empower our customers, partners, and team to achieve continuous growth 
+                  in a culture of mutual respect and trust.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-border mb-32 md:mb-40" />
+
+          {/* VISION */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+              <div className="lg:col-span-4">
+                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Vision</p>
+                <div className="w-10 h-[2px] bg-accent" />
+              </div>
+              <div className="lg:col-span-8 space-y-10">
+                <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-foreground font-semibold leading-[1.2] tracking-tight">
+                  We're building the world's largest AI-powered auditor marketplace
+                </h2>
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
                   400,000 ISO/VDA/IATF certified auditors exist globally. They're fragmented, disconnected, inconsistent. YVOO connects them. Atlas AI standardizes them.
                 </p>
-                <p className="text-xl md:text-2xl font-semibold text-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl text-foreground leading-relaxed font-medium">
                   The result: Any company can verify any supplier, anywhere in the world, in 3 days
                 </p>
-                <div className="border-l-2 border-accent pl-8 space-y-3">
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                <div className="border-l-2 border-foreground/15 pl-8 md:pl-10 space-y-4 py-2">
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                     No employment overhead. No travel chaos. No geographic limitations.
                   </p>
-                  <p className="text-lg font-bold text-foreground tracking-tight">
-                    Just: Upload → Match → Verify → Decide
+                  <p className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">
+                    Upload → Match → Verify → Decide
                   </p>
                 </div>
-                <p className="text-lg font-light text-foreground/80 italic">
+                <p className="text-lg md:text-xl text-foreground/60 italic">
                   This is the future of supplier verification.
                 </p>
               </div>
