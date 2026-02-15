@@ -22,7 +22,7 @@ const WhyYVOOSection = () => {
             How you audit shapes how suppliers see you
           </h2>
           <p className="text-lg text-muted-foreground">
-            85% still use clipboards. YVOO uses Network Power &amp; AI.
+            85% of auditors still show up with a clipboard and fly across the world. YVOO uses Atlas AI and connects you with local certified auditors.
           </p>
         </motion.div>
 
