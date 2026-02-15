@@ -2,16 +2,15 @@ import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import sustainabilityImage from "@/assets/about-sustainability.jpg";
 import timelineImage from "@/assets/about-timeline-2019.jpg";
 import leadershipTeamImage from "@/assets/about-leadership-team.jpg";
 
+// Import images from Enterprise Technology section
 import auditorFemaleAfrican from "@/assets/auditor-female-african.jpg";
 import auditorAsian from "@/assets/auditor-real-asian.jpg";
 import auditorFemaleEuropean from "@/assets/auditor-female-european.jpg";
@@ -21,73 +20,8 @@ import auditorFemaleSouthAsian from "@/assets/auditor-female-south-asian.jpg";
 import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const name = formData.name.trim();
-    const email = formData.email.trim();
-    const message = formData.message.trim();
-    if (!name || name.length > 100) { toast.error("Please enter a valid name"); return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast.error("Please enter a valid email"); return; }
-    if (formData.company.trim().length > 100) { toast.error("Company name too long"); return; }
-    if (!message || message.length > 1000) { toast.error("Please enter a message (max 1000 chars)"); return; }
-    setIsSubmitting(true);
-    try {
-      const { error } = await supabase.from('contact_submissions').insert({ name, email, company: formData.company.trim() || null, message, source: 'about-us' });
-      if (error) throw error;
-      setIsSubmitted(true);
-      toast.success("Message sent successfully!");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="bg-background/5 border border-background/10 p-12 flex flex-col items-center justify-center text-center space-y-4 min-h-[380px]">
-        <div className="w-12 h-12 bg-primary flex items-center justify-center"><Check className="w-6 h-6 text-primary-foreground" /></div>
-        <h3 className="text-2xl font-semibold text-background">Thank you</h3>
-        <p className="text-background/50">We'll get back to you within 24 hours.</p>
-        <Button variant="outline" className="border-background/30 text-background hover:bg-background/10 mt-4" onClick={() => { setIsSubmitted(false); setFormData({ name: '', email: '', company: '', message: '' }); }}>Send another message</Button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="bg-background/5 border border-background/10 p-8 md:p-10 space-y-6">
-      <div className="grid sm:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Name *</label>
-          <input type="text" required maxLength={100} value={formData.name} onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
-        </div>
-        <div className="space-y-2">
-          <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Email *</label>
-          <input type="email" required maxLength={255} value={formData.email} onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="work@company.com" />
-        </div>
-      </div>
-      <div className="space-y-2">
-        <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Company</label>
-        <input type="text" maxLength={100} value={formData.company} onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors" placeholder="Company name" />
-      </div>
-      <div className="space-y-2">
-        <label className="text-xs font-medium text-background/40 tracking-[0.15em] uppercase">Message *</label>
-        <textarea required maxLength={1000} rows={4} value={formData.message} onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))} className="w-full bg-transparent border-b border-background/20 pb-3 text-background placeholder:text-background/25 focus:border-primary focus:outline-none transition-colors resize-none" placeholder="Tell us about your needs..." />
-      </div>
-      <div className="flex flex-col sm:flex-row gap-4 pt-2">
-        <Button type="submit" size="lg" disabled={isSubmitting}>{isSubmitting ? "Sending..." : "Send Message"}<ArrowRight className="w-5 h-5" /></Button>
-        <Button type="button" variant="outline" size="lg" className="border-background/30 text-background hover:bg-background/10" onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}>Book Expert Call</Button>
-      </div>
-    </form>
-  );
-};
-
 const AboutUs = () => {
+  const [selectedLocation, setSelectedLocation] = useState("zagreb");
   const [selectedYear, setSelectedYear] = useState(2023);
 
   const heroImages = [
@@ -107,18 +41,33 @@ const AboutUs = () => {
     { year: 2025, title: "Market Leadership", desc: "Achieved 70% cost reduction and 80% time savings for enterprise clients across Europe." },
   ];
 
+  const locations = {
+    zagreb: {
+      name: "Zagreb HQ",
+      address: "Ulica grada Vukovara 271, 10000 Zagreb, Croatia",
+      phone: "+385 1 234 5678",
+      email: "info@yvoo.com"
+    },
+    munich: {
+      name: "Munich",
+      address: "Leopoldstraße 244, 80807 Munich, Germany",
+      phone: "+49 89 1234 5678",
+      email: "munich@yvoo.com"
+    }
+  };
+
   const selectedTimeline = timelineData.find(item => item.year === selectedYear);
+  const selectedLocationData = locations[selectedLocation as keyof typeof locations];
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-white relative">
       <PageGridOverlay />
       <div className="relative">
       <Navigation />
       
-      {/* HERO SECTION */}
-      <section data-nav-theme="light" className="relative bg-gradient-to-br from-primary/5 via-background to-primary/5">
+      {/* HERO SECTION - Compliance Modal Style */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
         <HeroSquaresAnimation className="top-24 right-8 md:top-28 md:right-20 lg:top-32 lg:right-24" />
-        
         {/* Mobile/Tablet Image - Top */}
         <motion.div 
           className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
@@ -135,6 +84,7 @@ const AboutUs = () => {
                   alt={image.alt} 
                   className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-500" 
                 />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
               </div>
             ))}
           </div>
@@ -158,6 +108,7 @@ const AboutUs = () => {
                     alt={image.alt} 
                     className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-500" 
                   />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
                 </div>
               ))}
             </div>
@@ -165,7 +116,7 @@ const AboutUs = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 mx-auto max-w-[1400px] px-4 md:px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center pointer-events-none">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center pointer-events-none">
           <motion.div 
             className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6 pointer-events-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -174,12 +125,12 @@ const AboutUs = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-              Building the World's Largest<br />Auditor Marketplace
+              Building the Global<br />B2B Platform
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
               Connecting clients, suppliers, and local experts through innovative technology and human expertise.
             </p>
-            <p className="text-sm sm:text-base text-muted-foreground/70 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
               Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
             </p>
             <Button size="lg">
@@ -189,113 +140,61 @@ const AboutUs = () => {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - hidden on mobile */}
         <div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <motion.div 
-            className="w-12 h-12 lg:w-14 lg:h-14 bg-primary flex items-center justify-center animate-bounce"
+            className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg bg-[#0A7FA5] flex items-center justify-center animate-bounce"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </motion.div>
         </div>
       </section>
 
-      {/* MISSION & VISION */}
-      <section data-nav-theme="light" className="py-32 md:py-40 bg-background">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-
-          {/* MISSION */}
+      {/* MISSION STATEMENT - Full Width */}
+      <section data-nav-theme="light" className="py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div 
-            className="mb-32 md:mb-40"
-            initial={{ opacity: 0, y: 24 }}
+            className="text-center space-y-8"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Mission</p>
-                <div className="w-10 h-[2px] bg-primary" />
-              </div>
-              <div className="lg:col-span-8">
-                <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.35] font-light">
-                  Building exceptional supplier relationships through every interaction. 
-                  We empower our customers, partners, and team to achieve continuous growth 
-                  in a culture of mutual respect and trust.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-border mb-32 md:mb-40" />
-
-          {/* VISION */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Vision</p>
-                <div className="w-10 h-[2px] bg-primary" />
-              </div>
-              <div className="lg:col-span-8 space-y-10">
-                <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-foreground font-semibold leading-[1.2] tracking-tight">
-                  We're building the world's largest AI-powered auditor marketplace
-                </h2>
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  400,000 ISO/VDA/IATF certified auditors exist globally. They're fragmented, disconnected, inconsistent. YVOO connects them. Atlas AI standardizes them.
-                </p>
-                <p className="text-xl md:text-2xl text-foreground leading-relaxed font-medium">
-                  The result: Any company can verify any supplier, anywhere in the world, in 3 days
-                </p>
-                <div className="border-l-2 border-foreground/15 pl-8 md:pl-10 space-y-4 py-2">
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    No employment overhead. No travel chaos. No geographic limitations.
-                  </p>
-                  <p className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">
-                    Upload → Match → Verify → Decide
-                  </p>
-                </div>
-                <p className="text-lg md:text-xl text-foreground/60 italic">
-                  This is the future of supplier verification.
-                </p>
-              </div>
-            </div>
+            <div className="w-12 h-0.5 bg-[#B2CDBC] mx-auto" />
+            <h2 className="section-headline text-foreground">
+              Our Mission
+            </h2>
+            <p className="text-2xl text-gray-700 leading-relaxed font-light">
+              Building exceptional supplier relationships through every interaction. 
+              We empower our customers, partners, and team to achieve continuous growth 
+              in a culture of mutual respect and trust.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* CORE PRINCIPLES — Clean grid, no icons */}
-      <section data-nav-theme="light" className="py-32 bg-muted/30">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+      {/* CORE PRINCIPLES - Minimal List */}
+      <section data-nav-theme="light" className="py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-20"
+            className="space-y-16"
           >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">What drives us</p>
-                <h2 className="section-headline text-foreground">Core Principles</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  Four pillars that guide every decision we make — from product design to client partnerships.
-                </p>
-              </div>
+            <div className="text-center">
+              <h2 className="section-headline text-foreground">
+                Core Principles
+              </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-px bg-border">
+            <div className="grid md:grid-cols-2 gap-x-20 gap-y-12">
               {[
                 { title: "Innovation First", desc: "Leading the industry with AI-powered procurement solutions that transform how businesses source and verify suppliers." },
                 { title: "Customer-Centric", desc: "Delivering outstanding experiences through technology designed around real procurement challenges and workflows." },
@@ -304,15 +203,21 @@ const AboutUs = () => {
               ].map((principle, index) => (
                 <motion.div
                   key={index}
-                  className="bg-background p-10 md:p-12 space-y-4"
+                  className="space-y-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <span className="text-xs font-medium text-muted-foreground tracking-[0.2em]">0{index + 1}</span>
-                  <h3 className="text-xl font-semibold text-foreground">{principle.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{principle.desc}</p>
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 flex-shrink-0 mt-1 bg-primary/20 rounded flex items-center justify-center">
+                      <span className="text-primary text-xs font-bold">✓</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-black mb-2">{principle.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{principle.desc}</p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -320,233 +225,279 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* SUSTAINABILITY — Side-by-side grid (breaks ellipse repetition) */}
-      <section data-nav-theme="light" className="py-32 bg-background">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
+      {/* SUSTAINABILITY - Compliance Modal Style */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        {/* Mobile/Tablet Image - Top */}
+        <motion.div 
+          className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={sustainabilityImage} alt="Sustainable operations" className="w-full h-full object-cover" />
+        </motion.div>
+
+        {/* Desktop - Left side image - clipped ellipse */}
+        <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
+          <motion.div 
+            className="absolute inset-0"
+            style={{ clipPath: 'ellipse(100% 100% at 0% 50%)' }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <img src={sustainabilityImage} alt="Sustainable operations" className="h-full w-full object-cover" />
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
+          <motion.div 
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="grid lg:grid-cols-2 gap-0">
-              {/* Image */}
-              <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden bg-muted">
-                <img 
-                  src={sustainabilityImage} 
-                  alt="Sustainable operations" 
-                  className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%)' }} 
-                />
-                <div 
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(110, 169, 150, 0.4) 0%, transparent 60%)',
-                    mixBlendMode: 'multiply'
-                  }}
-                />
-              </div>
-              {/* Content */}
-              <div className="flex flex-col justify-center p-8 md:p-12 lg:p-20 space-y-6">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase">Sustainability</p>
-                <div className="w-10 h-[2px] bg-primary" />
-                <h2 className="section-headline text-foreground">
-                  Building a Sustainable Future
-                </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  We're committed to minimizing our environmental impact through renewable energy adoption, 
-                  waste reduction initiatives, and sustainable practices across all operations.
-                </p>
-                <p className="text-base text-muted-foreground/70">
-                  Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
-                </p>
-                <div className="pt-2">
-                  <Button size="lg">
-                    Get In Touch
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <h2 className="section-headline text-foreground">
+              Building a Sustainable Future
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
+              We're committed to minimizing our environmental impact through renewable energy adoption, 
+              waste reduction initiatives, and sustainable practices across all operations.
+            </p>
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
+              Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
+            </p>
+            <Button size="lg">
+              Get In Touch
+              <ArrowRight className="w-5 h-5" />
+            </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* TIMELINE — Vertical layout */}
-      <section data-nav-theme="light" className="py-32 bg-muted/30">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+      {/* TIMELINE - Minimal Horizontal */}
+      <section data-nav-theme="light" className="py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-20"
+            className="space-y-16"
           >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Timeline</p>
-                <h2 className="section-headline text-foreground">Our Journey</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  From a bold idea in Zagreb to transforming supplier verification worldwide.
-                </p>
+            <div className="text-center">
+              <h2 className="section-headline text-foreground">
+                Our Journey
+              </h2>
+            </div>
+
+            {/* Timeline Navigation */}
+            <div className="relative">
+              <div className="absolute top-2 left-0 right-0 h-px bg-gray-200" />
+              <div className="flex justify-between relative">
+                {timelineData.map((item) => (
+                  <button
+                    key={item.year}
+                    onClick={() => setSelectedYear(item.year)}
+                    className="flex flex-col items-center gap-3 group"
+                  >
+                    <motion.div 
+                      className="w-4 h-4 rounded-sm transition-all"
+                      whileHover={{ scale: 1.2 }}
+                      style={{
+                        backgroundColor: selectedYear === item.year ? 'hsl(195, 89%, 34%)' : '#d1d5db',
+                      }}
+                    />
+                    <span 
+                      className="text-sm font-semibold transition-colors"
+                      style={{ color: selectedYear === item.year ? 'hsl(195, 89%, 34%)' : '#9ca3af', fontWeight: selectedYear === item.year ? '900' : '600' }}
+                    >
+                      {item.year}
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Timeline entries */}
-            <div className="space-y-0">
-              {timelineData.map((item, index) => (
-                <motion.div
-                  key={item.year}
-                  className="grid lg:grid-cols-12 gap-8 lg:gap-16 border-t border-border py-12 md:py-16 items-start"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="lg:col-span-4">
-                    <span className="text-5xl md:text-6xl font-bold text-foreground/10 tracking-tight">{item.year}</span>
-                  </div>
-                  <div className="lg:col-span-8 space-y-3">
-                    <h3 className="text-2xl font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+            {/* Timeline Content */}
+            {selectedTimeline && (
+              <motion.div
+                key={selectedYear}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid md:grid-cols-2 gap-12"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-gray-200">
+                  <img 
+                    src={timelineImage} 
+                    alt={`Year ${selectedTimeline.year}`}
+                    className="w-full h-full object-cover"
+                    style={{ filter: 'grayscale(100%)' }}
+                  />
+                  {/* Green highlight on specific objects - like helmet reference */}
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      background: `
+                        radial-gradient(ellipse 200px 180px at 50% 40%, rgba(168, 197, 184, 0.9) 0%, rgba(168, 197, 184, 0.55) 28%, transparent 58%),
+                        radial-gradient(ellipse 120px 100px at 35% 60%, rgba(168, 197, 184, 0.8) 0%, rgba(168, 197, 184, 0.45) 25%, transparent 52%)
+                      `,
+                      mixBlendMode: 'overlay'
+                    }}
+                  />
+                </div>
+
+                <div className="flex flex-col justify-center space-y-6">
+                  <h3 className="text-3xl font-bold text-black">{selectedTimeline.title}</h3>
+                  <p className="text-lg text-gray-600 leading-relaxed">{selectedTimeline.desc}</p>
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LEADERSHIP - Compliance Modal Style */}
+      <section data-nav-theme="light" className="relative bg-gradient-to-br from-[#e8f4f8] via-white to-[#e8f4f8]">
+        {/* Mobile/Tablet Image - Top */}
+        <motion.div 
+          className="lg:hidden w-full h-48 sm:h-64 md:h-80 overflow-hidden"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={leadershipTeamImage} alt="YVOO Leadership Team" className="w-full h-full object-cover" />
+        </motion.div>
+
+        {/* Desktop - Left side image - clipped ellipse */}
+        <div className="absolute left-0 top-0 bottom-0 w-[45%] hidden lg:block overflow-hidden">
+          <motion.div 
+            className="absolute inset-0"
+            style={{ clipPath: 'ellipse(100% 100% at 0% 50%)' }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <img src={leadershipTeamImage} alt="YVOO Leadership Team" className="h-full w-full object-cover" />
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-[1400px] px-8 py-12 sm:py-16 lg:py-24 lg:min-h-[80vh] flex items-center">
+          <motion.div 
+            className="lg:ml-[45%] lg:pl-16 space-y-4 sm:space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2 className="section-headline text-foreground">
+              Leadership Team
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl leading-relaxed">
+              Our leadership brings together entrepreneurial expertise and deep industry knowledge—a combination 
+              that drives innovation in AI-powered procurement and global supplier verification.
+            </p>
+            <p className="text-sm sm:text-base text-gray-500 max-w-xl">
+              Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
+            </p>
+            <Button size="lg">
+              Get In Touch
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LOCATIONS - Minimal List */}
+      <section data-nav-theme="light" className="py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-16"
+          >
+            <div className="text-center">
+              <h2 className="section-headline text-foreground">
+                Global Locations
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Location Selector */}
+              <div className="space-y-2">
+                {Object.entries(locations).map(([key, location]) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => setSelectedLocation(key)}
+                    className="w-full text-left px-6 py-4 transition-all"
+                    whileHover={{ x: 4 }}
+                    style={{
+                      backgroundColor: selectedLocation === key ? '#B2CDBC' : 'transparent',
+                      color: selectedLocation === key ? 'white' : 'black',
+                      borderLeft: selectedLocation === key ? 'none' : '2px solid #e5e7eb'
+                    }}
+                  >
+                    <span className="font-semibold text-lg">{location.name}</span>
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* Location Details */}
+              <motion.div
+                key={selectedLocation}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-6 p-8 bg-gray-50"
+              >
+                <h3 className="text-2xl font-bold text-black">{selectedLocationData.name}</h3>
+                <div className="space-y-3 text-gray-600">
+                  <p><span className="font-semibold text-[#A8B8CA]">Address:</span> {selectedLocationData.address}</p>
+                  <p><span className="font-semibold text-[#A8B8CA]">Phone:</span> {selectedLocationData.phone}</p>
+                  <p><span className="font-semibold text-[#A8B8CA]">Email:</span> {selectedLocationData.email}</p>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* LEADERSHIP — Full-bleed image + overlay (different from hero ellipse) */}
-      <section data-nav-theme="dark" className="relative min-h-[70vh] flex items-center">
-        <div className="absolute inset-0 overflow-hidden">
-          <img 
-            src={leadershipTeamImage} 
-            alt="YVOO Leadership Team" 
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%)' }}
-          />
-          <div className="absolute inset-0 bg-foreground/70" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-[1400px] px-4 md:px-8 py-20">
+      {/* CTA SECTION - Full Width */}
+      <section data-nav-theme="light" className="py-32 bg-black text-white">
+        <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
-            className="max-w-2xl space-y-6"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
           >
-            <p className="text-xs font-medium text-background/50 tracking-[0.25em] uppercase">Team</p>
-            <div className="w-10 h-[2px] bg-primary" />
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.1] tracking-tight">
-              Leadership Team
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Ready to Transform Your Procurement?
             </h2>
-            <p className="text-lg md:text-xl text-background/70 leading-relaxed">
-              Our leadership brings together entrepreneurial expertise and deep industry knowledge — a combination 
-              that drives innovation in AI-powered procurement and global supplier verification.
+            <p className="text-xl text-gray-400">
+              Join leading enterprises achieving 70% cost reduction and 80% time savings.
             </p>
-            <p className="text-base text-background/50">
-              Our team provides ongoing guidance and strategic direction to ensure YVOO remains at the forefront of procurement technology innovation.
-            </p>
-            <div className="pt-2">
-              <Button size="lg" variant="outline" className="border-background/30 text-background hover:bg-background/10">
-                Get In Touch
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button size="lg">
+                Request Demo
                 <ArrowRight className="w-5 h-5" />
+              </Button>
+              <Button variant="outline" size="lg">
+                Contact Sales
               </Button>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* LOCATIONS — Cleaner design with blue active state */}
-      <section data-nav-theme="light" className="py-32 bg-background">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-20"
-          >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              <div className="lg:col-span-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase mb-6">Offices</p>
-                <h2 className="section-headline text-foreground">Global Locations</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  Headquartered in Zagreb, with presence across Europe.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-px bg-border">
-              {[
-                { name: "Zagreb HQ", address: "Ulica grada Vukovara 271, 10000 Zagreb, Croatia", phone: "+385 1 234 5678", email: "info@yvoo.com" },
-                { name: "Munich", address: "Leopoldstraße 244, 80807 Munich, Germany", phone: "+49 89 1234 5678", email: "munich@yvoo.com" }
-              ].map((location, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-background p-10 md:p-12 space-y-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <h3 className="text-2xl font-semibold text-foreground">{location.name}</h3>
-                  <div className="space-y-2 text-muted-foreground">
-                    <p>{location.address}</p>
-                    <p>{location.phone}</p>
-                    <p className="text-primary">{location.email}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA SECTION WITH CONTACT FORM */}
-      <section data-nav-theme="dark" className="py-32 bg-foreground">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-            {/* Left: Text */}
-            <motion.div
-              className="lg:col-span-5 space-y-6 flex flex-col justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-background leading-tight">
-                Ready to Transform Your Procurement?
-              </h2>
-              <p className="text-xl text-background/50 leading-relaxed">
-                Join leading enterprises achieving 70% cost reduction and 80% time savings.
-              </p>
-              <div className="space-y-3 pt-4">
-                {["Response within 24 hours", "Personalized demo of the platform", "No commitment required"].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-background/60 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Right: Contact Form */}
-            <motion.div
-              className="lg:col-span-7"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-            >
-              <ContactForm />
-            </motion.div>
-          </div>
         </div>
       </section>
 
