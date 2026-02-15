@@ -64,8 +64,11 @@ const WhyYVOOSection = () => {
         >
           <div className="hidden lg:block lg:col-span-1" />
           <div className="lg:col-span-5 border-l-2 border-accent pl-8 md:pl-12">
-            <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground/80 leading-relaxed tracking-tight mb-6">
-              "Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a network of 400,000+ certified auditors. Every auditor undergoes background verification."
+            <p className="text-lg md:text-xl lg:text-2xl font-light text-foreground/80 leading-relaxed tracking-tight mb-4">
+              "Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a network of 400,000+ certified auditors."
+            </p>
+            <p className="text-base md:text-lg text-foreground/60 leading-relaxed mb-6">
+              Every auditor undergoes background verification, Atlas AI training, and quality certification before activation.
             </p>
             <p className="text-sm font-medium text-foreground/50 tracking-wide">
               — YVOO Founders
