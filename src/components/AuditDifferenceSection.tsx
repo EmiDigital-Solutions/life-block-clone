@@ -12,7 +12,7 @@ const phases = [
     points: [
       "Atlas AI analyzes your supplier's certifications, past audit history, industry benchmarks, and applicable standards — before anyone boards a plane.",
       "A tailored audit framework is generated: risk-weighted focus areas, equipment-specific checkpoints, and compliance gaps identified from public and proprietary data sources.",
-      "Your auditor receives a structured briefing — not a generic checklist, but a precision-engineered assessment plan built for this specific supplier, this specific scope.",
+      "Our auditor receives a structured briefing — not a generic checklist, but a precision-engineered assessment plan built for this specific supplier, this specific scope.",
     ],
     accent: "Every audit starts with more preparation than most audits ever get.",
   },
@@ -23,7 +23,7 @@ const phases = [
     points: [
       "Atlas AI recognizes equipment models in real time — CNC machines, CMMs, testing rigs — and cross-references calibration records, maintenance logs, and capability data automatically.",
       "Evidence photos are linked to findings the moment they're captured. No lost images. No ambiguity. Every observation is geo-tagged, timestamped, and traceable.",
-      "Maturity scoring runs live against industry benchmarks. Your auditor sees exactly where this supplier stands relative to peers — not based on opinion, but on data from thousands of assessments.",
+      "Maturity scoring runs live against industry benchmarks. Our auditor sees exactly where this supplier stands relative to peers — not based on opinion, but on data from thousands of assessments.",
     ],
     accent: "Audit depth that would normally require a team of three, delivered by one expert with Atlas.",
   },
