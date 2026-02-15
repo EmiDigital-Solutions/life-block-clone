@@ -36,11 +36,11 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[1.125rem] md:rounded-[2rem]' : 'rounded-full'
         }`}
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.35) 60%, rgba(255,255,255,0.45) 100%)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 0 60px rgba(255,255,255,0.25)',
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.7) 100%)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 60px rgba(255,255,255,0.4)',
           backdropFilter: 'blur(50px) saturate(180%)',
           WebkitBackdropFilter: 'blur(50px) saturate(180%)',
-          border: '2px solid rgba(255,255,255,0.6)',
+          border: '2px solid rgba(255,255,255,0.9)',
           maxHeight: isMenuOpen ? '85vh' : 'auto',
         }}
       >
