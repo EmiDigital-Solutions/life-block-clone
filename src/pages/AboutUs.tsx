@@ -178,6 +178,53 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* OUR VISION */}
+      <section data-nav-theme="light" className="py-32 bg-white">
+        <div className="mx-auto max-w-[1400px] px-8">
+          <motion.div 
+            className="space-y-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="space-y-4">
+              <p className="text-sm font-medium text-foreground/50 tracking-[0.2em] uppercase">About YVOO</p>
+              <div className="w-12 h-0.5 bg-[#B2CDBC]" />
+              <h2 className="section-headline text-foreground">
+                Our Vision
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-6 gap-0">
+              <div className="hidden lg:block lg:col-span-1" />
+              <div className="lg:col-span-5 space-y-8">
+                <p className="text-2xl md:text-3xl text-foreground font-bold leading-snug">
+                  We're building the world's largest AI-powered auditor marketplace
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  400,000 ISO/VDA/IATF certified auditors exist globally. They're fragmented, disconnected, inconsistent. YVOO connects them. Atlas AI standardizes them.
+                </p>
+                <p className="text-xl md:text-2xl font-semibold text-foreground leading-relaxed">
+                  The result: Any company can verify any supplier, anywhere in the world, in 3 days
+                </p>
+                <div className="border-l-2 border-accent pl-8 space-y-3">
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    No employment overhead. No travel chaos. No geographic limitations.
+                  </p>
+                  <p className="text-lg font-bold text-foreground tracking-tight">
+                    Just: Upload → Match → Verify → Decide
+                  </p>
+                </div>
+                <p className="text-lg font-light text-foreground/80 italic">
+                  This is the future of supplier verification.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CORE PRINCIPLES - Minimal List */}
       <section data-nav-theme="light" className="py-32 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
