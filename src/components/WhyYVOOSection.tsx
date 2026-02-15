@@ -96,33 +96,33 @@ const WhyYVOOSection = () => {
         >
           <div className="hidden lg:block lg:col-span-1" />
           <div className="lg:col-span-5">
-            {/* Dashboard Container */}
-            <div className="bg-foreground text-background">
+            {/* Dashboard Container — white with border */}
+            <div className="border border-foreground/10">
               {/* Dashboard Header */}
-              <div className="px-6 md:px-10 pt-8 pb-6 border-b border-background/10">
+              <div className="px-6 md:px-10 pt-8 pb-6 border-b border-foreground/10">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-2 h-2 bg-accent animate-pulse" />
-                      <p className="text-xs font-medium tracking-widest uppercase text-background/50">
+                      <p className="text-xs font-medium tracking-widest uppercase text-foreground/40">
                         AI Auditor Agent — Live
                       </p>
                     </div>
-                    <h3 className="text-xl md:text-2xl font-medium text-background tracking-tight">
+                    <h3 className="text-xl md:text-2xl font-medium text-foreground tracking-tight">
                       How we access 400,000+ auditors
                     </h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-3xl md:text-4xl font-bold text-primary tracking-tight">400K+</p>
-                    <p className="text-xs text-background/40 mt-1">Verified network</p>
+                    <p className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">400K+</p>
+                    <p className="text-xs text-foreground/40 mt-1">Global network</p>
                   </div>
                 </div>
               </div>
 
               {/* Dashboard Body */}
               <div className="px-6 md:px-10 py-8">
-                <p className="text-sm text-background/60 leading-relaxed max-w-xl mb-8">
-                  Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a verified network of 400,000+ certified auditors.
+                <p className="text-sm text-foreground/60 leading-relaxed max-w-xl mb-8">
+                  Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a network of 400,000+ certified auditors.
                 </p>
 
                 {/* Agent Pipeline Steps */}
@@ -134,32 +134,25 @@ const WhyYVOOSection = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 + i * 0.08 }}
-                      className="border border-background/10 px-5 py-6 relative group"
+                      className="border border-foreground/10 px-5 py-6"
                     >
-                      {/* Step Number */}
-                      <p className="text-[10px] font-mono text-background/30 mb-4">
+                      <p className="text-[10px] font-mono text-foreground/25 mb-4">
                         {String(i + 1).padStart(2, "0")}
                       </p>
-
-                      {/* Icon */}
-                      <step.icon className="w-5 h-5 text-primary mb-4" strokeWidth={1.5} />
-
-                      {/* Label */}
-                      <p className="text-sm font-medium text-background mb-1">
+                      <step.icon className="w-5 h-5 text-foreground/40 mb-4" strokeWidth={1.5} />
+                      <p className="text-sm font-medium text-foreground mb-1">
                         {step.label}
                       </p>
-                      <p className="text-xs text-background/40 leading-relaxed mb-4">
+                      <p className="text-xs text-foreground/50 leading-relaxed mb-4">
                         {step.detail}
                       </p>
-
-                      {/* Status */}
                       <div className="flex items-center justify-between">
                         <span className={`text-[10px] font-mono tracking-wide ${
                           step.status === "Complete" ? "text-accent" : "text-primary"
                         }`}>
                           {step.status}
                         </span>
-                        <span className="text-[10px] font-mono text-background/30">
+                        <span className="text-[10px] font-mono text-foreground/25">
                           {step.time}
                         </span>
                       </div>
@@ -169,12 +162,12 @@ const WhyYVOOSection = () => {
 
                 {/* Bottom Bar */}
                 <div className="mt-8 flex items-center justify-between flex-wrap gap-4">
-                  <p className="text-sm font-medium text-background/80">
+                  <p className="text-sm font-medium text-foreground/70">
                     Zero employment overhead. Infinite scale.
                   </p>
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors"
                   >
                     See how AI matching works
                     <span className="text-lg">→</span>
