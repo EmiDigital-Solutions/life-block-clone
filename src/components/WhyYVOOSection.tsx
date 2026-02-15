@@ -1,42 +1,10 @@
 import { motion } from "framer-motion";
-import { Search, ShieldCheck, Cpu, Zap } from "lucide-react";
 
 const stats = [
   { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
   { category: "Save costs", value: "60%", description: "Lower audit costs with local auditors" },
   { category: "Global reach", value: "400K+", description: "Auditor marketplace (AI-powered)" },
   { category: "Get results", value: "24h", description: "Digital reports delivered within hours" }
-];
-
-const agentSteps = [
-  {
-    icon: Search,
-    label: "Search & Match",
-    detail: "AI scans location, expertise, availability",
-    status: "Complete",
-    time: "0.8s",
-  },
-  {
-    icon: ShieldCheck,
-    label: "Verify & Onboard",
-    detail: "Credentials checked, instant onboarding",
-    status: "Complete",
-    time: "1.2s",
-  },
-  {
-    icon: Cpu,
-    label: "Connect Atlas AI",
-    detail: "Guided audit execution framework",
-    status: "Complete",
-    time: "0.3s",
-  },
-  {
-    icon: Zap,
-    label: "Audit Starts",
-    detail: "On-site within 48 hours",
-    status: "Ready",
-    time: "48h",
-  },
 ];
 
 const WhyYVOOSection = () => {
@@ -87,94 +55,18 @@ const WhyYVOOSection = () => {
           </div>
         </div>
 
-        {/* AI Auditor Agent — Product Dashboard */}
+        {/* Founder-style quote */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="grid grid-cols-1 lg:grid-cols-6 gap-0"
         >
           <div className="hidden lg:block lg:col-span-1" />
-          <div className="lg:col-span-5">
-            {/* Dashboard Container — white with border */}
-            <div className="border border-foreground/10">
-              {/* Dashboard Header */}
-              <div className="px-6 md:px-10 pt-8 pb-6 border-b border-foreground/10">
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-2 h-2 bg-accent animate-pulse" />
-                      <p className="text-xs font-medium tracking-widest uppercase text-foreground/40">
-                        AI Auditor Agent — Live
-                      </p>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-medium text-foreground tracking-tight">
-                      How we access 400,000+ auditors
-                    </h3>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">400K+</p>
-                    <p className="text-xs text-foreground/40 mt-1">Global network</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dashboard Body */}
-              <div className="px-6 md:px-10 py-8">
-                <p className="text-sm text-foreground/60 leading-relaxed max-w-xl mb-8">
-                  Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a network of 400,000+ certified auditors.
-                </p>
-
-                {/* Agent Pipeline Steps */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
-                  {agentSteps.map((step, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.1 + i * 0.08 }}
-                      className="border border-foreground/10 px-5 py-6"
-                    >
-                      <p className="text-[10px] font-mono text-foreground/25 mb-4">
-                        {String(i + 1).padStart(2, "0")}
-                      </p>
-                      <step.icon className="w-5 h-5 text-foreground/40 mb-4" strokeWidth={1.5} />
-                      <p className="text-sm font-medium text-foreground mb-1">
-                        {step.label}
-                      </p>
-                      <p className="text-xs text-foreground/50 leading-relaxed mb-4">
-                        {step.detail}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-mono tracking-wide ${
-                          step.status === "Complete" ? "text-accent" : "text-primary"
-                        }`}>
-                          {step.status}
-                        </span>
-                        <span className="text-[10px] font-mono text-foreground/25">
-                          {step.time}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="mt-8 flex items-center justify-between flex-wrap gap-4">
-                  <p className="text-sm font-medium text-foreground/70">
-                    Zero employment overhead. Infinite scale.
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors"
-                  >
-                    See how AI matching works
-                    <span className="text-lg">→</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div className="lg:col-span-5 border-l-2 border-accent pl-8 md:pl-12">
+            <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground/80 leading-relaxed tracking-tight">
+              "Our AI Auditor Agent continuously searches global databases — LinkedIn, ISO registries, certification bodies — and maintains a network of 400,000+ certified auditors."
+            </p>
           </div>
         </motion.div>
       </div>
