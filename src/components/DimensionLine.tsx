@@ -32,7 +32,7 @@ const DimensionLine = ({
   return (
     <div className={`relative w-full h-6 ${className}`} aria-hidden="true">
       <div
-        className="absolute flex items-center text-foreground/[0.28]"
+        className="absolute flex items-center text-foreground/[0.15]"
         style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
       >
         {/* Start value */}
