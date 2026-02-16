@@ -318,7 +318,7 @@ const DiscoverScreen = () => {
         </div>
 
         <div className="px-4 py-2 border-t border-foreground/10 text-center">
-          <span className="text-[10px] text-primary tracking-wider uppercase">Step 1 of 5 · Discover</span>
+          <span className="text-[10px] text-primary tracking-wider uppercase">Step 1 of 6 · Discover</span>
         </div>
       </div>
     </div>
@@ -481,7 +481,7 @@ const MatchScreen = () => {
         </div>
 
         <div className="px-4 py-2 border-t border-foreground/10 text-center">
-          <span className="text-[10px] text-primary tracking-wider uppercase">Step 2 of 5 · Match</span>
+          <span className="text-[10px] text-primary tracking-wider uppercase">Step 2 of 6 · Match</span>
         </div>
       </div>
     </div>
@@ -586,7 +586,153 @@ const AuditScreen = () => {
              </motion.div>
           )}
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-sm text-primary tracking-wider uppercase">Step 3 of 5 · Audit</span>
+             <span className="text-sm text-primary tracking-wider uppercase">Step 3 of 6 · Audit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 3.5: ATLAS AI — Computer Vision ────────────────────
+const AtlasAIScreen = () => {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 300),
+      setTimeout(() => setPhase(2), 800),
+      setTimeout(() => setPhase(3), 1400),
+      setTimeout(() => setPhase(4), 2200),
+      setTimeout(() => setPhase(5), 3000),
+      setTimeout(() => setPhase(6), 3800),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const detections = [
+    { label: "CNC Lathe", confidence: 94, x: 5, y: 8, w: 90, h: 80 },
+    { label: "Control Panel", confidence: 91, x: 8, y: 15, w: 22, h: 25 },
+    { label: "Spindle Unit", confidence: 88, x: 55, y: 30, w: 30, h: 35 },
+    { label: "Safety Guard", confidence: 96, x: 35, y: 10, w: 35, h: 20 },
+  ];
+
+  return (
+    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
+      <div className="px-5 py-3 border-b border-foreground/10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className={`w-2.5 h-2.5 ${phase < 4 ? 'bg-primary animate-pulse' : 'bg-accent'}`} />
+          <span className="text-base font-semibold text-foreground">Atlas AI</span>
+          <span className="text-sm text-foreground/60">· Computer Vision</span>
+        </div>
+        {phase >= 4 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            className="flex items-center gap-1 px-2 py-1 border border-accent/40">
+            <div className="w-1.5 h-1.5 bg-accent" />
+            <span className="text-[9px] text-accent font-bold uppercase">4 Objects Detected</span>
+          </motion.div>
+        )}
+      </div>
+
+      <div className="flex-1 flex">
+        {/* Image with scanning overlay */}
+        <div className="w-3/5 relative overflow-hidden">
+          <img src={equipmentImage} alt="CNC Machine" className="w-full h-full object-cover" />
+          
+          {/* Scanning line */}
+          {phase >= 1 && phase < 4 && (
+            <>
+              <div className="absolute inset-0 bg-primary/5" />
+              <motion.div
+                initial={{ top: 0 }}
+                animate={{ top: '100%' }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="absolute left-0 right-0 h-1 bg-primary/60"
+              />
+            </>
+          )}
+
+          {/* Detection bounding boxes */}
+          {phase >= 4 && detections.map((obj, i) => (
+            <motion.div
+              key={obj.label}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1, duration: 0.3 }}
+              className="absolute border-2 border-primary"
+              style={{ left: `${obj.x}%`, top: `${obj.y}%`, width: `${obj.w}%`, height: `${obj.h}%` }}
+            >
+              <div className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-primary" />
+              <div className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-primary" />
+              <div className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-primary" />
+              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-b-2 border-r-2 border-primary" />
+              <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
+                className="absolute -top-7 left-0 px-2.5 py-1 bg-primary flex items-center gap-1.5">
+                <span className="text-background text-[11px] font-semibold whitespace-nowrap">{obj.label}</span>
+                <span className="text-background/80 text-[10px]">{obj.confidence}%</span>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Right panel — detection results */}
+        <div className="w-2/5 flex flex-col border-l border-foreground/10">
+          <div className="px-4 py-3 border-b border-foreground/10">
+            <span className="text-sm font-semibold text-foreground">Detection Results</span>
+          </div>
+          <div className="flex-1 p-4 flex flex-col gap-3 overflow-hidden">
+            {/* Progress */}
+            {phase >= 1 && phase < 4 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-xs text-foreground/60">
+                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                  className="w-4 h-4 border-2 border-foreground/40 border-t-transparent rounded-full" />
+                <span>Analyzing equipment…</span>
+              </motion.div>
+            )}
+
+            {/* Detected objects list */}
+            {phase >= 4 && detections.map((obj, i) => (
+              <motion.div key={obj.label} initial={{ opacity: 0, x: 6 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}>
+                <GlassCard layer={2} className={`p-3 flex items-center gap-3 ${i === 0 ? 'border-accent/40' : ''}`}>
+                  <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 ${i === 0 ? 'bg-accent' : 'bg-foreground/10'}`}>
+                    <svg className={`w-4 h-4 ${i === 0 ? 'text-white' : 'text-foreground/50'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs font-semibold text-foreground block">{obj.label}</span>
+                    <span className="text-[10px] text-muted-foreground">{obj.confidence}% confidence</span>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+
+            {/* Equipment ID */}
+            {phase >= 5 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <GlassCard highlight className="p-3">
+                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1">Identified Equipment</div>
+                  <span className="text-sm font-bold text-foreground">DMG MORI NLX 2500</span>
+                  <span className="text-[10px] text-muted-foreground block">Asset: MCH-2024-0847 · CE · ISO 12100</span>
+                </GlassCard>
+              </motion.div>
+            )}
+
+            {/* Compliance check */}
+            {phase >= 6 && (
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+                <GlassCard highlight className="p-3 flex items-center gap-2 border-accent/40">
+                  <svg className="w-5 h-5 text-accent flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                  <span className="text-xs font-semibold text-foreground">All equipment verified & compliant</span>
+                </GlassCard>
+              </motion.div>
+            )}
+          </div>
+          <div className="px-4 py-2 border-t border-foreground/10 text-center">
+            <span className="text-[10px] text-primary tracking-wider uppercase">Step 4 of 6 · Atlas AI</span>
           </div>
         </div>
       </div>
@@ -786,7 +932,7 @@ const IntelligenceScreen = () => {
           )}
 
           <div className="px-5 py-3 border-t border-muted-foreground/10 text-center">
-             <span className="text-sm text-primary tracking-wider uppercase">Step 4 of 5 · Intelligence</span>
+             <span className="text-sm text-primary tracking-wider uppercase">Step 5 of 6 · Intelligence</span>
           </div>
         </div>
       </div>
@@ -935,7 +1081,7 @@ const CAPAScreen = () => {
           )}
 
           <div className="px-3 py-3 border-t border-muted-foreground/10 text-center mt-auto">
-            <span className="text-sm text-primary tracking-wider uppercase">Step 5 of 5 · CAPA</span>
+            <span className="text-sm text-primary tracking-wider uppercase">Step 6 of 6 · CAPA</span>
           </div>
         </div>
       </div>
@@ -946,12 +1092,12 @@ const CAPAScreen = () => {
 // ─── MAIN COMPONENT ─────────────────────────────────────────────
 const PlatformDemoAnimation = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const screens = [DiscoverScreen, MatchScreen, AuditScreen, IntelligenceScreen, CAPAScreen];
-  const labels = ["Discover", "Match", "Audit", "Intel", "CAPA"];
+  const screens = [DiscoverScreen, MatchScreen, AuditScreen, AtlasAIScreen, IntelligenceScreen, CAPAScreen];
+  const labels = ["Discover", "Match", "Audit", "Atlas AI", "Intel", "CAPA"];
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentScreen((prev) => (prev + 1) % 5);
+      setCurrentScreen((prev) => (prev + 1) % 6);
     }, SCREEN_DURATION);
     return () => clearTimeout(timer);
   }, [currentScreen]);
