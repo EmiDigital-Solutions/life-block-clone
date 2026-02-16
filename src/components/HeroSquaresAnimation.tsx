@@ -90,13 +90,16 @@ const formationLabels: Record<Formation, string> = {
   checkmark: "Verified Supplier",
 };
 
-// Calculate max visible Y (ignoring opacity:0 squares) + SQUARE_SIZE for bottom edge
-const formationBottoms: Record<Formation, number> = Object.fromEntries(
+// Calculate bottom Y and horizontal center for each formation (ignoring opacity:0 squares)
+const formationMetrics: Record<Formation, { bottom: number; centerX: number }> = Object.fromEntries(
   Object.entries(formations).map(([key, squares]) => {
-    const maxY = Math.max(...squares.filter(s => (s as any).opacity === undefined).map(s => s.y));
-    return [key, maxY + SQUARE_SIZE];
+    const visible = squares.filter(s => (s as any).opacity === undefined);
+    const maxY = Math.max(...visible.map(s => s.y));
+    const minX = Math.min(...visible.map(s => s.x));
+    const maxX = Math.max(...visible.map(s => s.x));
+    return [key, { bottom: maxY + SQUARE_SIZE, centerX: (minX + maxX + SQUARE_SIZE) / 2 }];
   })
-) as Record<Formation, number>;
+) as Record<Formation, { bottom: number; centerX: number }>;
 
 interface HeroSquaresAnimationProps {
   className?: string;
@@ -146,8 +149,12 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
-            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase text-center w-full"
-            style={{ top: formationBottoms[formationOrder[currentFormation]] + 12, left: 0 }}
+            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
+            style={{
+              top: formationMetrics[formationOrder[currentFormation]].bottom + 12,
+              left: formationMetrics[formationOrder[currentFormation]].centerX,
+              transform: 'translateX(-50%)',
+            }}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
