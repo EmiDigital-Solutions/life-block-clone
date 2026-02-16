@@ -56,7 +56,7 @@ const AtlasAISection = () => {
             </p>
             <Link
               to="/features"
-              className="inline-flex items-center justify-center gap-2 bg-primary text-white py-4 font-mono text-base font-medium hover:bg-primary/90 transition-colors tracking-wide lowercase w-[calc(100%/6+8px)]"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-white py-4 font-mono text-base font-medium hover:bg-primary/90 transition-colors tracking-wide lowercase w-[calc(100%/5)]"
             >
               explore atlas ai
               <ArrowRight className="w-5 h-5" />
