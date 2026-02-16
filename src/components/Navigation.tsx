@@ -36,10 +36,10 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[1.125rem] md:rounded-[1.5rem] min-w-[90vw] md:min-w-[600px]' : 'rounded-full'
         }`}
         style={{
-          background: 'linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.45) 8%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.45) 92%, rgba(255,255,255,0.8) 100%), linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.35) 80%, rgba(255,255,255,0.8) 100%)',
+          background: 'linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.45) 8%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.45) 92%, rgba(255,255,255,0.8) 100%), linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.35) 80%, rgba(255,255,255,0.8) 100%)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-          backdropFilter: 'blur(8px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+          backdropFilter: 'blur(50px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(50px) saturate(180%)',
           border: 'none',
           maxHeight: isMenuOpen ? '85vh' : 'auto',
         }}
@@ -61,8 +61,8 @@ const Navigation = () => {
           </Link>
 
           <div className="flex-1 flex items-center justify-between">
-            {/* Hamburger Menu Button - absolutely centered */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            {/* Hamburger Menu Button - centered */}
+            <div className="flex-1 flex items-center justify-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
@@ -70,14 +70,13 @@ const Navigation = () => {
                 {isMenuOpen ? (
                   <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
                 ) : (
-                  <div className="flex flex-col justify-center items-center gap-[5px] md:gap-[6px]">
-                    <span className="w-[20px] md:w-[22px] h-[2px] bg-foreground rounded-full block" />
-                    <span className="w-[20px] md:w-[22px] h-[2px] bg-foreground rounded-full block" />
+                  <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
+                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
                   </div>
                 )}
               </button>
             </div>
-            <div className="flex-1" />
 
             {/* CTA Button */}
             <a
