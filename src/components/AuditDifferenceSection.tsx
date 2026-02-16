@@ -200,12 +200,8 @@ const AuditDifferenceSection = () => {
               <div className="absolute top-[5%] right-[4%] w-[10%] aspect-square bg-primary" />
               <div className="absolute top-[5%] right-[16%] w-[10%] aspect-square bg-primary" />
               <div className="absolute top-[17%] right-[4%] w-[10%] aspect-square bg-primary" />
-              {/* Bottom-left cluster — mix of regular and elongated rectangles */}
-              <div className="absolute bottom-[6%] left-[3%] w-[10%] aspect-square bg-primary" />
-              <div className="absolute bottom-[6%] left-[15%] w-[10%] aspect-square bg-primary" />
-              <div className="absolute bottom-[18%] left-[3%] w-[10%] aspect-square bg-primary" />
-              <div className="absolute bottom-[18%] left-[15%] w-[22%] h-[10%] bg-primary" />
-              <div className="absolute bottom-[30%] left-[3%] w-[22%] h-[10%] bg-primary" />
+              {/* Bottom — long horizontal stripe, right edge to ~50%, same height as top squares (10% of width) */}
+              <div className="absolute bottom-[5%] right-0 w-[50%] h-[10%] bg-primary" />
             </div>
           </motion.div>
         </div>
