@@ -68,9 +68,9 @@ const formations = {
 type Formation = keyof typeof formations;
 const formationOrder: Formation[] = ["triangle", "person", "checkmark"];
 const formationLabels: Record<Formation, string> = {
-  triangle: "Unlimited",
+  triangle: "Unlimited Capacity",
   person: "Local Auditors",
-  checkmark: "Verified",
+  checkmark: "Verified Supplier",
 };
 
 interface HeroSquaresAnimationProps {
