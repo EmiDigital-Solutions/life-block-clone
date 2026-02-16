@@ -30,7 +30,7 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[420px]" ref={menuRef}>
+    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[94%] md:w-[550px]" ref={menuRef}>
       <div 
         className={`relative overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'rounded-[1.125rem] md:rounded-[1.5rem] min-w-[90vw] md:min-w-[600px]' : 'rounded-full'
@@ -49,13 +49,13 @@ const Navigation = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center pl-4 md:pl-5 pr-1 md:pr-2 py-2 md:py-2.5 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center pl-4 md:pl-6 pr-2 md:pr-4 py-3 md:py-4 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-7 md:h-8 w-auto object-contain"
+              className="h-8 md:h-10 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
@@ -81,10 +81,10 @@ const Navigation = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 md:gap-2 bg-foreground text-white px-4 md:px-5 py-2 md:py-2.5 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-semibold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-foreground text-white px-5 md:px-7 py-3 md:py-4 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-base md:text-lg tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
                Demo
-               <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
+               <ArrowRight className="w-4 h-4" />
              </a>
           </div>
         </div>
