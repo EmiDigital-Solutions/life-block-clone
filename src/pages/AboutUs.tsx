@@ -367,7 +367,7 @@ const AboutUs = () => {
                   Our team provides ongoing expertise and guidance to ensure your sustainability goals are achieved through continuous improvement in carbon footprint reduction and resource efficiency.
                 </p>
                 <div className="pt-2">
-                  <Button size="lg">
+                  <Button size="lg" variant="outline">
                     Get In Touch
                     <ArrowRight className="w-5 h-5" />
                   </Button>
