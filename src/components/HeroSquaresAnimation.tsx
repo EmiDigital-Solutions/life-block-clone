@@ -49,24 +49,21 @@ const formations = {
     { x: UNIT * 2, y: UNIT * 4 },
     { x: UNIT * 3, y: UNIT * 4 },
   ],
-  // Atlas AI Copilot — filled screen/tablet shape
+  // Atlas AI Copilot — "AI" letters from squares
   atlasAI: [
-    // Top row (screen top)
-    { x: UNIT * 1.5, y: 0 },
-    { x: UNIT * 2.5, y: 0 },
+    // Letter A
+    { x: UNIT * 1, y: 0 },           // top
+    { x: UNIT * 0.5, y: UNIT },      // left shoulder
+    { x: UNIT * 1.5, y: UNIT },      // right shoulder
+    { x: UNIT * 0.5, y: UNIT * 2 },  // left mid (bar)
+    { x: UNIT * 1.5, y: UNIT * 2 },  // right mid (bar)
+    { x: 0, y: UNIT * 3 },           // left leg
+    { x: UNIT * 2, y: UNIT * 3 },    // right leg
+    // Letter I
     { x: UNIT * 3.5, y: 0 },
-    // Second row
-    { x: UNIT * 1.5, y: UNIT },
-    { x: UNIT * 2.5, y: UNIT },
     { x: UNIT * 3.5, y: UNIT },
-    // Third row
-    { x: UNIT * 1.5, y: UNIT * 2 },
-    { x: UNIT * 2.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 2 },
-    // Stand/base
-    { x: UNIT * 2.5, y: UNIT * 3 },
-    // Hidden
-    { x: UNIT * 2.5, y: UNIT * 4, opacity: 0 },
+    { x: UNIT * 3.5, y: UNIT * 3 },
   ],
   // Checkmark shape
   checkmark: [
