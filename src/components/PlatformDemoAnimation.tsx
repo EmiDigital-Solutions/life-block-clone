@@ -1312,7 +1312,7 @@ const PlatformDemoAnimation = () => {
   const labels = ["Discover", "Match", "Audit", "Atlas AI", "Intel", "CAPA"];
   const aiSubtexts = [
     "AI scans global supplier databases and ranks matches by capability, risk and proximity.",
-    "AI cross-references certifications, capacity and audit history to find the optimal supplier.",
+    "AI matches suitable and available auditors based on location, certifications and industry expertise.",
     "AI guides the auditor with real-time checklists, risk alerts and evidence verification.",
     "AI generates context-aware questions, maturity scoring and predictive insights.",
     "AI compiles the audit report with scoring, findings classification and risk-prioritized recommendations.",
