@@ -155,11 +155,10 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
             style={{
               top: formationMetrics[formationOrder[currentFormation]].bottom + 12,
               left: formationMetrics[formationOrder[currentFormation]].centerX,
-              transform: 'translateX(-50%)',
             }}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            initial={{ opacity: 0, y: 6, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: -6, x: '-50%' }}
             transition={{ duration: 0.4 }}
           >
             {formationLabels[formationOrder[currentFormation]]}
