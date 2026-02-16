@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import ROICalculator from "./ROICalculator";
@@ -20,18 +20,8 @@ const marqueeItems = [
   "Rail & Transport",
 ];
 
-const heroWords = [
-  { text: "Unlimited", key: "triangle" },
-  { text: "Local Auditors", key: "person" },
-  { text: "Verified", key: "checkmark" },
-];
-
 const HeroSection = () => {
   const [showROIModal, setShowROIModal] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
-  const handleFormationChange = useCallback((index: number) => {
-    setWordIndex(index);
-  }, []);
 
   return (
     <>
@@ -39,7 +29,7 @@ const HeroSection = () => {
       data-nav-theme="light"
       className="relative min-h-[100dvh] flex flex-col bg-white"
     >
-      <HeroSquaresAnimation className="top-[100px] right-8 md:top-[91px] md:right-20 lg:top-[103px] lg:right-24" onFormationChange={handleFormationChange} />
+      <HeroSquaresAnimation className="top-[100px] right-8 md:top-[91px] md:right-20 lg:top-[103px] lg:right-24" />
       {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-[106px] md:pt-[154px] lg:pt-[186px] min-h-0">
         <div className="px-8 w-full max-w-[1400px] mx-auto">
@@ -65,21 +55,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              <span className="inline-block relative h-[1.1em] align-bottom overflow-hidden" style={{ minWidth: '4ch' }}>
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={heroWords[wordIndex].key}
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -40, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute left-0 bottom-0 text-primary"
-                  >
-                    {heroWords[wordIndex].text}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-              <br />
+              Unlimited<br />
               On-Site Audit Capacity. Finally.
             </motion.h1>
 
