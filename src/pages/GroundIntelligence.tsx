@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -550,6 +551,11 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 4→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="1200" from={4} to={6} />
+      </div>
+
       {/* Benefits Section - 3 columns with accent bars */}
       <section
         data-nav-theme="light"
@@ -618,6 +624,11 @@ const GroundIntelligence = () => {
           ))}
         </div>
       </section>
+
+      {/* DIN annotation — grid 0→3 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
 
       {/* Results Section */}
       <section 
@@ -725,6 +736,11 @@ const GroundIntelligence = () => {
           </div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 2→5 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
 
       {/* FAQ Section - Homepage style */}
       <section 
@@ -861,6 +877,11 @@ const GroundIntelligence = () => {
           </div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 3→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
 
       {/* Final CTA Section */}
       <section 

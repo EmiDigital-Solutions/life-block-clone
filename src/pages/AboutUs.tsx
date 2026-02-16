@@ -1,6 +1,7 @@
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
@@ -204,6 +205,11 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 4→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="1200" from={4} to={6} />
+      </div>
+
       {/* MISSION & VISION */}
       <section data-nav-theme="light" className="py-32 md:py-40 bg-background">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
@@ -273,6 +279,11 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 0→2 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="460" from={0} to={2} />
+      </div>
+
       {/* CORE PRINCIPLES — Clean grid, no icons */}
       <section data-nav-theme="light" className="py-32 bg-muted/30">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
@@ -319,6 +330,11 @@ const AboutUs = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 3→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="700" from={3} to={6} />
+      </div>
 
       {/* SUSTAINABILITY — Side-by-side grid (breaks ellipse repetition) */}
       <section data-nav-theme="light" className="py-32 bg-background">
@@ -377,6 +393,11 @@ const AboutUs = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 1→4 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="Ø 800" from={1} to={4} />
+      </div>
 
       {/* TIMELINE — Vertical layout */}
       <section data-nav-theme="light" className="py-32 bg-muted/30">
@@ -465,6 +486,11 @@ const AboutUs = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 0→3 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="950" from={0} to={3} />
+      </div>
 
       {/* LOCATIONS — Cleaner design with blue active state */}
       <section data-nav-theme="light" className="py-32 bg-background">
