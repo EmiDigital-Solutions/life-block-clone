@@ -121,8 +121,8 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
-            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase text-right"
-            style={{ top: UNIT * 5 + 8, right: 0 }}
+            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase text-center w-full"
+            style={{ top: UNIT * 5 + 8, left: 0 }}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
