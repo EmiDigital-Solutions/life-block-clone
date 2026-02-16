@@ -1012,7 +1012,7 @@ const DayInLifeSection = () => {
           transition={{ delay: 1, duration: 0.6 }}
           className="mt-12 md:mt-16 flex justify-center"
         >
-          <Button asChild size="lg">
+          <Button asChild size="lg" variant="outline">
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
