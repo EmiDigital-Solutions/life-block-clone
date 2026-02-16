@@ -70,17 +70,22 @@ const formationOrder: Formation[] = ["triangle", "person", "checkmark"];
 
 interface HeroSquaresAnimationProps {
   className?: string;
+  onFormationChange?: (index: number) => void;
 }
 
-const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => {
+const HeroSquaresAnimation = ({ className = "", onFormationChange }: HeroSquaresAnimationProps) => {
   const [currentFormation, setCurrentFormation] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentFormation((prev) => (prev + 1) % formationOrder.length);
+      setCurrentFormation((prev) => {
+        const next = (prev + 1) % formationOrder.length;
+        onFormationChange?.(next);
+        return next;
+      });
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [onFormationChange]);
 
   const activeFormation = formations[formationOrder[currentFormation]];
 
