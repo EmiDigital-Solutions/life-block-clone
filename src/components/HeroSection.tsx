@@ -57,7 +57,7 @@ const HeroSection = () => {
             >
               Unlimited Supplier<br />
               On-Site Audit Capacity.<br />
-              <span className="text-foreground/40">Finally. 48 Hours Mobilization</span>
+              Finally. 48h Mobilization.
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
