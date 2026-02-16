@@ -76,21 +76,25 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button asChild size="lg" className="w-full sm:w-auto text-lg">
-                  <a
-                    href="https://calendly.com/yvoo/demo-yvoo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="sm:hidden">Get Audit Free</span>
-                    <span className="hidden sm:inline">Get Your First Audit Free</span>
-                  </a>
+                <Button size="lg" className="w-full sm:w-auto text-lg" onClick={() => {
+                  const demoSection = document.getElementById('platform-demo');
+                  if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
+                }}>
+                  See Platform Demo →
                 </Button>
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>
-                  <span className="sm:hidden">Calculate ROI</span>
-                  <span className="hidden sm:inline">Calculate Your ROI</span>
+                  Calculate Your Savings →
                 </Button>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="mt-6 text-xs md:text-sm font-mono tracking-widest text-foreground/40"
+              >
+                IATF 16949 · ISO 9001 · VDA 6.3 · 47 Countries · 48H Mobilization
+              </motion.p>
             </div>
           </motion.div>
         </div>
