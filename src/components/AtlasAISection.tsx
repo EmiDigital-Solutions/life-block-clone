@@ -48,7 +48,7 @@ const AtlasAISection = () => {
               </span>
             </div>
             <h2 className="section-headline text-foreground mb-6">
-              Meet Atlas, the AI engine for auditing
+              Meet Atlas: The AI that ensures audit quality
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mb-8">
               Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
