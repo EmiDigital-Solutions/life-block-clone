@@ -219,7 +219,7 @@ const AuditDifferenceSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="font-mono tracking-wide lowercase font-medium">see it in action</span>
+              <span className="font-mono tracking-wide font-medium">See It in Action</span>
               <ArrowRight className="w-5 h-5" />
             </a>
           </Button>
