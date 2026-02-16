@@ -166,7 +166,7 @@ export const HowItWorksSection = () => {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover z-0"
+            className="absolute inset-0 w-full h-full object-cover object-top z-0"
           >
             <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
           </video>
