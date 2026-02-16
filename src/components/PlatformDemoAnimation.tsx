@@ -1310,6 +1310,14 @@ const PlatformDemoAnimation = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
   const screens = [DiscoverScreen, MatchScreen, AuditScreen, AtlasAIScreen, IntelligenceScreen, CAPAScreen];
   const labels = ["Discover", "Match", "Audit", "Atlas AI", "Intel", "CAPA"];
+  const aiSubtexts = [
+    "AI scans global supplier databases and ranks matches by capability, risk and proximity.",
+    "AI cross-references certifications, capacity and audit history to find the optimal supplier.",
+    "AI guides the auditor with real-time checklists, risk alerts and evidence verification.",
+    "AI generates context-aware questions, maturity scoring and predictive insights.",
+    "AI detects equipment anomalies and predicts maintenance needs from visual evidence.",
+    "AI auto-generates corrective actions, assigns owners and tracks resolution timelines.",
+  ];
 
   useEffect(() => {
     const duration = currentScreen === 2 ? 8000 : SCREEN_DURATION;
@@ -1334,6 +1342,17 @@ const PlatformDemoAnimation = () => {
             }`}>{label}</span>
           </div>
         ))}
+      </div>
+
+      {/* AI subtext */}
+      <div className="px-4 py-1.5 border-b border-muted-foreground/6 bg-white/40">
+        <AnimatePresence mode="wait">
+          <motion.p key={currentScreen} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.25 }}
+            className="text-[10px] text-muted-foreground leading-snug">
+            <span className="text-primary font-semibold mr-1">AI:</span>{aiSubtexts[currentScreen]}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       <div className="flex-1 relative overflow-hidden">
