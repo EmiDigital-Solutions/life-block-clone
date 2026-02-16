@@ -14,6 +14,7 @@ import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSectio
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
+import TechnicalGridAnnotation from "@/components/TechnicalGridAnnotation";
 
 const Index = () => {
   return (
@@ -23,14 +24,17 @@ const Index = () => {
       <div className="relative">
         <Navigation />
         <HeroSection />
+        <TechnicalGridAnnotation variant="hero-transition" />
         <EmailComparisonSection />
         <CapabilityOverviewSection />
+        <TechnicalGridAnnotation variant="mid-section" />
         <TestimonialSection />
         <WhyYVOOSection />
         <AtlasAISection />
         <AuditDifferenceSection />
         
         <HowItWorksSection />
+        <TechnicalGridAnnotation variant="bottom-section" />
         <TestimonialsCarouselSection />
         <FAQSection />
         <FinalCTASection />
