@@ -30,63 +30,61 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-[94%] md:w-[680px] lg:w-[720px]" ref={menuRef}>
+    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-auto" ref={menuRef}>
       <div 
         className={`relative overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'rounded-[1.125rem] md:rounded-[2rem]' : 'rounded-full'
+          isMenuOpen ? 'rounded-[1.125rem] md:rounded-[1.5rem] min-w-[90vw] md:min-w-[600px]' : 'rounded-full'
         }`}
         style={{
           background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.7) 100%)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 60px rgba(255,255,255,0.4)',
           backdropFilter: 'blur(50px) saturate(180%)',
           WebkitBackdropFilter: 'blur(50px) saturate(180%)',
-          border: '2px solid rgba(255,255,255,0.9)',
+          border: '1.5px solid rgba(255,255,255,0.9)',
           maxHeight: isMenuOpen ? '85vh' : 'auto',
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-1 md:gap-2">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center pl-2 md:pl-6 pr-2 md:pr-8 py-1 md:py-4 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center pl-4 md:pl-5 pr-1 md:pr-2 py-2 md:py-2.5 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-10 md:h-14 w-auto object-contain"
+              className="h-7 md:h-8 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
 
-          <div className="flex-1 flex items-center justify-between gap-4">
-            {/* Hamburger Menu Button - centered with spacing */}
-            <div className="flex-1 flex items-center justify-center">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center justify-center p-2 md:p-4 hover:bg-foreground/5 transition-colors"
-              >
-                {isMenuOpen ? (
-                  <X className="w-5 h-5 md:w-7 md:h-7 text-foreground" />
-                ) : (
-                  <div className="flex flex-col justify-center items-center gap-[4px] md:gap-2.5">
-                    <span className="w-6 md:w-9 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
-                    <span className="w-6 md:w-9 h-[2.5px] md:h-[3px] bg-foreground rounded-full block" />
-                  </div>
-                )}
-              </button>
-            </div>
+          <div className="flex items-center gap-1 md:gap-3">
+            {/* Hamburger Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center justify-center p-2.5 md:p-3 hover:bg-foreground/5 transition-colors rounded-full"
+            >
+              {isMenuOpen ? (
+                <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
+              ) : (
+                <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
+                  <span className="w-[18px] md:w-5 h-[2px] bg-foreground rounded-full block" />
+                  <span className="w-[18px] md:w-5 h-[2px] bg-foreground rounded-full block" />
+                </div>
+              )}
+            </button>
 
             {/* CTA Button */}
             <a
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-xl md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 md:gap-2 bg-foreground text-white px-4 md:px-5 py-2 md:py-2.5 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-semibold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
                Demo
-               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+               <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
              </a>
           </div>
         </div>
