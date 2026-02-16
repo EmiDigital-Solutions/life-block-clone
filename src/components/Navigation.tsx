@@ -49,7 +49,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center justify-center pl-3 md:pl-5 pr-1 md:pr-2 py-2.5 md:py-3 hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center pl-3 md:pl-5 pr-1 md:pr-2 py-4 md:py-5 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
@@ -83,7 +83,7 @@ const Navigation = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-foreground text-white px-4 md:px-5 py-2 md:py-2.5 my-1 mr-1 md:my-1 md:mr-1 rounded-full font-bold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 bg-foreground text-white px-4 md:px-5 py-2.5 md:py-3.5 my-1 mr-1 md:my-1 md:mr-1 rounded-full font-bold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
                Demo
                <ArrowRight className="w-3.5 h-3.5" />
