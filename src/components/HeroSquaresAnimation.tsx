@@ -49,6 +49,26 @@ const formations = {
     { x: UNIT * 2, y: UNIT * 4 },
     { x: UNIT * 3, y: UNIT * 4 },
   ],
+  // Atlas AI — robot head shape
+  atlasAI: [
+    // Antenna
+    { x: UNIT * 2.5, y: 0 },
+    // Signal dot
+    { x: UNIT * 3.5, y: 0 },
+    // Head top row
+    { x: UNIT * 1.5, y: UNIT },
+    { x: UNIT * 2.5, y: UNIT },
+    { x: UNIT * 3.5, y: UNIT },
+    // Eyes
+    { x: UNIT * 1.5, y: UNIT * 2 },
+    { x: UNIT * 3.5, y: UNIT * 2 },
+    // Mouth row
+    { x: UNIT * 1.5, y: UNIT * 3 },
+    { x: UNIT * 2.5, y: UNIT * 3 },
+    { x: UNIT * 3.5, y: UNIT * 3 },
+    // Neck
+    { x: UNIT * 2.5, y: UNIT * 4 },
+  ],
   // Checkmark shape
   checkmark: [
     { x: UNIT * 0.5, y: UNIT * 1.5 },
@@ -66,10 +86,11 @@ const formations = {
 };
 
 type Formation = keyof typeof formations;
-const formationOrder: Formation[] = ["triangle", "person", "checkmark"];
+const formationOrder: Formation[] = ["triangle", "person", "atlasAI", "checkmark"];
 const formationLabels: Record<Formation, string> = {
   triangle: "Unlimited Capacity",
   person: "Local Auditors",
+  atlasAI: "Atlas AI",
   checkmark: "Verified Supplier",
 };
 
