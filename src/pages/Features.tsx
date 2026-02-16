@@ -360,9 +360,9 @@ const Features = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-6 py-3 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-foreground text-white h-16 px-12 py-5 font-mono text-lg font-medium hover:bg-foreground/90 transition-colors"
             >
-              Request a demo
+              Request a Demo
             </a>
           </motion.div>
         </div>
@@ -515,9 +515,9 @@ const Features = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-6 py-3 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors shrink-0"
+              className="inline-flex items-center gap-2 bg-foreground text-white h-16 px-12 py-5 font-mono text-lg font-medium hover:bg-foreground/90 transition-colors shrink-0"
             >
-              Request a demo
+              Request a Demo
             </a>
           </div>
         </div>
@@ -536,10 +536,10 @@ const Features = () => {
             href="https://calendly.com/yvoo/demo-yvoo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-foreground text-white px-8 py-4 font-mono text-sm font-medium hover:bg-foreground/90 transition-colors"
+            className="inline-flex items-center gap-2 bg-foreground text-white h-16 px-12 py-5 font-mono text-lg font-medium hover:bg-foreground/90 transition-colors"
           >
-            Request a demo
-            <ArrowRight className="w-4 h-4" />
+            Request a Demo
+            <ArrowRight className="w-5 h-5" />
           </a>
         </div>
       </section>
