@@ -1,13 +1,17 @@
 /**
- * Technical drawing-inspired dimension line with arrow tips.
- * ISO blueprint aesthetic — barely visible, rewards close inspection.
+ * Technical drawing-inspired dimension line snapped to the 6-column grid.
+ * ISO / DIN blueprint aesthetic — barely visible, rewards close inspection.
+ *
+ * Grid columns (7 lines): 0%, 16.67%, 33.33%, 50%, 66.67%, 83.33%, 100%
  */
 
 interface TechnicalAnnotationProps {
-  /** Measurement label, e.g. "1200" or "Ø 800" */
+  /** Measurement label in mm, e.g. "1200" — DIN standard */
   label?: string;
-  /** Horizontal alignment: full width or partial */
-  variant?: "full" | "left" | "right" | "center";
+  /** Start grid line (0–6) */
+  from?: number;
+  /** End grid line (0–6) */
+  to?: number;
   /** Optional className override */
   className?: string;
 }
@@ -27,41 +31,43 @@ const ArrowTip = ({ direction = "right" }: { direction?: "left" | "right" }) => 
 
 const TechnicalAnnotation = ({
   label = "1200",
-  variant = "full",
+  from = 0,
+  to = 6,
   className = "",
 }: TechnicalAnnotationProps) => {
-  const widthClass =
-    variant === "full"
-      ? "w-full"
-      : variant === "center"
-      ? "w-1/2 mx-auto"
-      : variant === "left"
-      ? "w-1/3"
-      : "w-1/3 ml-auto";
+  const leftPct = (from / 6) * 100;
+  const widthPct = ((to - from) / 6) * 100;
 
   return (
     <div
-      className={`relative ${widthClass} ${className}`}
+      className={`relative w-full ${className}`}
       aria-hidden="true"
     >
-      <div className="flex items-center gap-0 text-foreground/[0.12]">
-        {/* Left arrow + line */}
-        <ArrowTip direction="left" />
-        <div className="flex-1 h-px bg-current" />
+      <div
+        className="absolute"
+        style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
+      >
+        <div className="flex items-center gap-0 text-foreground/[0.12]">
+          {/* Left tick + arrow + line */}
+          <div className="relative flex-shrink-0">
+            <div className="absolute left-[2px] top-1/2 -translate-y-1/2 w-px h-2.5 bg-current" />
+            <ArrowTip direction="left" />
+          </div>
+          <div className="flex-1 h-px bg-current" />
 
-        {/* Label */}
-        <span className="px-3 font-mono text-[9px] tracking-[0.2em] uppercase select-none whitespace-nowrap">
-          {label}
-        </span>
+          {/* Label — DIN style */}
+          <span className="px-2 font-mono text-[9px] tracking-[0.15em] select-none whitespace-nowrap">
+            {label}
+          </span>
 
-        {/* Line + right arrow */}
-        <div className="flex-1 h-px bg-current" />
-        <ArrowTip direction="right" />
+          {/* Line + arrow + right tick */}
+          <div className="flex-1 h-px bg-current" />
+          <div className="relative flex-shrink-0">
+            <div className="absolute right-[2px] top-1/2 -translate-y-1/2 w-px h-2.5 bg-current" />
+            <ArrowTip direction="right" />
+          </div>
+        </div>
       </div>
-
-      {/* Small perpendicular ticks at ends */}
-      <div className="absolute left-[3px] top-1/2 -translate-y-1/2 w-px h-2 bg-current text-foreground/[0.12]" />
-      <div className="absolute right-[3px] top-1/2 -translate-y-1/2 w-px h-2 bg-current text-foreground/[0.12]" />
     </div>
   );
 };

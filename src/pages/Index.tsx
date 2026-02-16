@@ -20,37 +20,59 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <PageGridOverlay />
-      {/* Content — no z-index wrapper so lines show through */}
       <div className="relative">
         <Navigation />
         <HeroSection />
+
+        {/* DIN annotation — grid 4→6 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="1200" from={4} to={6} />
+        </div>
+
         <EmailComparisonSection />
 
-        {/* Technical annotation — transition into capabilities */}
-        <div className="mx-auto max-w-[1400px] px-8">
-          <TechnicalAnnotation label="SEC 1200" variant="right" />
+        {/* DIN annotation — grid 0→3 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="700" from={0} to={3} />
         </div>
 
         <CapabilityOverviewSection />
         <TestimonialSection />
+
+        {/* DIN annotation — grid 2→5 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+        </div>
+
         <WhyYVOOSection />
 
-        {/* Technical annotation — transition into Atlas AI */}
-        <div className="mx-auto max-w-[1400px] px-8 py-1">
-          <TechnicalAnnotation label="Ø 800" variant="center" />
+        {/* DIN annotation — grid 3→6 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="950" from={3} to={6} />
         </div>
 
         <AtlasAISection />
         <AuditDifferenceSection />
-        
+
+        {/* DIN annotation — grid 0→2 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="460" from={0} to={2} />
+        </div>
+
         <HowItWorksSection />
 
-        {/* Technical annotation — before testimonials */}
-        <div className="mx-auto max-w-[1400px] px-8">
-          <TechnicalAnnotation label="DIM 1400" variant="left" />
+        {/* DIN annotation — grid 1→4 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="1400" from={1} to={4} />
         </div>
 
         <TestimonialsCarouselSection />
+
+        {/* DIN annotation — grid 4→6 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="580" from={4} to={6} />
+        </div>
+
         <FAQSection />
         <FinalCTASection />
         <Footer />
