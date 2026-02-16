@@ -4,13 +4,12 @@ import { DollarSign, TrendingDown, Clock, MapPin, FileCheck } from "lucide-react
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { auditTypes, regions, categories, travelCosts, getAuditsByCategory, getMostCommonAudits, type AuditType, type RegionKey } from "@/data/auditPricingData";
+import { auditTypes, regions, categories, getAuditsByCategory, getMostCommonAudits, type AuditType } from "@/data/auditPricingData";
 
 const ROICalculator = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Most Common Audits");
   const [selectedAuditId, setSelectedAuditId] = useState<string>(""); // Will be set by first audit
-  const [clientRegion, setClientRegion] = useState<RegionKey>("dach");
-  const [selectedRegion, setSelectedRegion] = useState<RegionKey>("china");
+  const [selectedRegion, setSelectedRegion] = useState<string>("dach");
   const [auditsPerYear, setAuditsPerYear] = useState(10);
 
   // Get filtered audits by category using the proper function
@@ -38,11 +37,8 @@ const ROICalculator = () => {
     [selectedRegion]
   );
 
-  // Calculations - traditional cost includes travel (client travels to supplier)
-  const traditionalBaseCost = selectedAudit?.traditionalEur || 0;
-  const travelCost = travelCosts[clientRegion]?.[selectedRegion] || 0;
-  const auditorCount = selectedAudit?.auditors || 1;
-  const traditionalCost = traditionalBaseCost + (travelCost * auditorCount);
+  // Calculations
+  const traditionalCost = selectedAudit?.traditionalEur || 0;
   const yvooCost = selectedAudit?.pricing[selectedRegion as keyof typeof selectedAudit.pricing] || 0;
   const savingsPerAudit = traditionalCost - yvooCost;
   const savingsPercent = traditionalCost > 0 ? Math.round((savingsPerAudit / traditionalCost) * 100) : 0;
@@ -102,7 +98,7 @@ const ROICalculator = () => {
         transition={{ delay: 0.1 }}
         className="bg-[#e3e3e3] rounded-lg p-4 sm:p-6 mb-8"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Category Selection */}
           <div className="space-y-2">
             <Label className="text-sm font-medium text-foreground flex items-center gap-2">
@@ -143,33 +139,13 @@ const ROICalculator = () => {
             </Select>
           </div>
 
-          {/* Client Region Selection */}
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-muted-foreground" />
-              Your Location
-            </Label>
-            <Select value={clientRegion} onValueChange={(v) => setClientRegion(v as RegionKey)}>
-              <SelectTrigger className="h-12 border-0 bg-white rounded-lg">
-                <SelectValue placeholder="Select your region" />
-              </SelectTrigger>
-              <SelectContent>
-                {regions.map((region) => (
-                  <SelectItem key={region.id} value={region.id}>
-                    {region.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Supplier Region Selection */}
+          {/* Region Selection */}
           <div className="space-y-2">
             <Label className="text-sm font-medium text-foreground flex items-center gap-2">
               <MapPin className="w-4 h-4 text-muted-foreground" />
               Supplier Region
             </Label>
-            <Select value={selectedRegion} onValueChange={(v) => setSelectedRegion(v as RegionKey)}>
+            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
               <SelectTrigger className="h-12 border-0 bg-white rounded-lg">
                 <SelectValue placeholder="Select region" />
               </SelectTrigger>
@@ -231,7 +207,7 @@ const ROICalculator = () => {
           className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-lg"
         >
           <div>
-            <p className="text-sm text-muted-foreground mb-1">Traditional Audit Cost <span className="text-xs">(incl. travel)</span></p>
+            <p className="text-sm text-muted-foreground mb-1">Traditional Audit Cost</p>
             <p className="text-foreground font-medium">{auditsPerYear} × {formatCurrency(traditionalCost)}</p>
           </div>
           <div className="text-2xl sm:text-3xl font-semibold text-foreground mt-2 sm:mt-0">
