@@ -2695,9 +2695,9 @@ const ComparisonMockup = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-white h-16 px-12 py-5 font-mono text-lg font-medium hover:bg-primary/90 transition-colors"
             >
-              See the full platform
+              See the Full Platform
             </a>
           </motion.div>
         </div>
