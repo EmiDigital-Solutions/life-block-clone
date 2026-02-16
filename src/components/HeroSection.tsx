@@ -56,7 +56,7 @@ const HeroSection = () => {
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               Unlimited<br />
-              On-Site Audit Capacity. Finally.
+              On-Site Audit Capacity. <span className="text-foreground/50">Finally.</span>
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
