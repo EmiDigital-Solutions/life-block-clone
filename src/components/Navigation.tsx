@@ -70,9 +70,9 @@ const Navigation = () => {
                 {isMenuOpen ? (
                   <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
                 ) : (
-                  <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
-                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+                  <div className="flex flex-col justify-center items-center gap-[5px] md:gap-[6px]">
+                    <span className="w-[20px] md:w-[22px] h-[2px] bg-foreground rounded-full block" />
+                    <span className="w-[20px] md:w-[22px] h-[2px] bg-foreground rounded-full block" />
                   </div>
                 )}
               </button>
