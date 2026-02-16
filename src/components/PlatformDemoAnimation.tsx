@@ -1271,9 +1271,10 @@ const PlatformDemoAnimation = () => {
   const labels = ["Discover", "Match", "Audit", "Atlas AI", "Intel", "CAPA"];
 
   useEffect(() => {
+    const duration = currentScreen === 2 ? 8000 : SCREEN_DURATION;
     const timer = setTimeout(() => {
       setCurrentScreen((prev) => (prev + 1) % 6);
-    }, SCREEN_DURATION);
+    }, duration);
     return () => clearTimeout(timer);
   }, [currentScreen]);
 
