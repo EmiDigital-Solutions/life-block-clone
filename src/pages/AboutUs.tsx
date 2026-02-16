@@ -345,6 +345,12 @@ const AboutUs = () => {
                     mixBlendMode: 'multiply'
                   }}
                 />
+                {/* Top-right squares */}
+                <div className="absolute top-[5%] right-[4%] w-[10%] aspect-square bg-primary" />
+                <div className="absolute top-[5%] right-[16%] w-[10%] aspect-square bg-primary" />
+                <div className="absolute top-[17%] right-[4%] w-[10%] aspect-square bg-primary" />
+                {/* Bottom — long horizontal stripe */}
+                <div className="absolute bottom-[5%] right-0 w-[50%] h-[10%] bg-primary" />
               </div>
               {/* Content */}
               <div className="flex flex-col justify-center p-8 md:p-12 lg:p-20 space-y-6">
