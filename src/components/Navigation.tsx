@@ -45,50 +45,48 @@ const Navigation = () => {
         }}
       >
         {/* Main Nav Bar */}
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <div className="flex items-center h-[48px] md:h-[56px]">
+          {/* Logo — flush left, vertically centered */}
           <Link 
             to="/" 
-            className="flex items-center justify-center pl-1 md:pl-1.5 pr-1 md:pr-2 py-1 md:py-1.5 hover:opacity-80 transition-opacity"
+            className="flex items-center pl-2.5 md:pl-3 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-10 md:h-[52px] w-auto object-contain"
+              className="h-[28px] md:h-[34px] w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
 
-          <div className="flex-1 flex items-center justify-between">
-            {/* Hamburger Menu Button - centered */}
-            <div className="flex-1 flex items-center justify-center">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
-              >
-                {isMenuOpen ? (
-                  <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
-                ) : (
-                  <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
-                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                    <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                  </div>
-                )}
-              </button>
-            </div>
-
-            {/* CTA Button */}
-            <a
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-foreground text-white px-5 md:px-7 py-3.5 md:py-[18px] my-[3px] mr-[3px] md:my-1 md:mr-1 rounded-full font-bold text-base md:text-lg tracking-tight hover:bg-foreground/90 transition-all duration-300"
+          {/* Hamburger — exact center */}
+          <div className="flex-1 flex items-center justify-center">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center justify-center w-10 h-10 hover:bg-foreground/5 transition-colors rounded-full"
             >
-               Demo
-               <ArrowRight className="w-4 h-4" />
-             </a>
+              {isMenuOpen ? (
+                <X className="w-[18px] h-[18px] text-foreground" />
+              ) : (
+                <div className="flex flex-col justify-center items-center gap-[5px]">
+                  <span className="w-[18px] h-[1.5px] bg-foreground block" />
+                  <span className="w-[18px] h-[1.5px] bg-foreground block" />
+                </div>
+              )}
+            </button>
           </div>
+
+          {/* CTA — flush right, fills height */}
+          <a
+            href="https://calendly.com/yvoo/demo-yvoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 bg-foreground text-white px-5 md:px-6 rounded-full font-semibold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300 h-[40px] md:h-[44px] mr-[4px]"
+          >
+            Demo
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
         {/* Dropdown Menu */}
