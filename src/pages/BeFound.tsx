@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock, Plus, Minus } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -684,6 +687,11 @@ const BeFound = () => {
         <TechnicalAnnotation label="1200" from={4} to={6} />
       </div>
 
+      {/* Section cut marker A—A */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="A" from={1} to={5} />
+      </div>
+
       {/* Benefits Cards */}
       <section className="py-8 px-6 bg-white">
         <div className="mx-auto max-w-[1400px] px-8">
@@ -766,6 +774,11 @@ const BeFound = () => {
       {/* DIN annotation — grid 0→3 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
+
+      {/* Dimension line — visibility increase */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="12" to="340" unit=" Anfragen" gridFrom={0} gridTo={4} />
       </div>
 
       {/* Pain Points Section - Homepage Style */}
@@ -924,6 +937,11 @@ const BeFound = () => {
       {/* DIN annotation — grid 2→5 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
+
+      {/* Tolerance notation — profile completeness */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="98.5" tolerance="0.8" unit="%" label="Profile Score" gridColumn={4} />
       </div>
 
       {/* Feature Section 1 - Profile Builder */}
@@ -1114,6 +1132,11 @@ const BeFound = () => {
       {/* DIN annotation — grid 3→6 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
+
+      {/* Section cut marker B—B */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="B" from={0} to={3} />
       </div>
 
       {/* Stats Section - Archlet Style */}

@@ -31,7 +31,7 @@ const ToleranceNotation = ({
   return (
     <div className={`relative w-full h-8 ${className}`} aria-hidden="true">
       <div
-        className="absolute flex flex-col items-start text-foreground/[0.12]"
+        className="absolute flex flex-col items-start text-foreground/[0.28]"
         style={{ left: `${leftPct}%` }}
       >
         {/* Optional label */}

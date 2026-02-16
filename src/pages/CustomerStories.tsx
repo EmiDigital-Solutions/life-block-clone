@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Plus, Minus } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
@@ -163,6 +167,11 @@ const CustomerStories = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 4→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="1200" from={4} to={6} />
+      </div>
+
       {/* Hero Video/Image Section */}
       <section className="px-8 pb-16">
         <div className="mx-auto max-w-[1400px]">
@@ -188,6 +197,11 @@ const CustomerStories = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Section cut marker A—A */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="A" from={0} to={6} />
+      </div>
 
       {/* KPI Stats Strip - BeFound Style */}
       <section className="py-24 px-8">
@@ -221,6 +235,11 @@ const CustomerStories = () => {
           </div>
         </div>
       </section>
+
+      {/* Dimension line — qualification speed */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="21" to="7" unit=" Tage" gridFrom={0} gridTo={4} />
+      </div>
 
       {/* Featured Story */}
       {featuredStory && (
@@ -259,6 +278,11 @@ const CustomerStories = () => {
           </div>
         </section>
       )}
+
+      {/* DIN annotation — grid 2→5 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
 
       {/* Stories Grid */}
       <section className="py-16 px-8">
@@ -301,6 +325,16 @@ const CustomerStories = () => {
           </div>
         </div>
       </section>
+
+      {/* Tolerance notation — customer satisfaction */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="94.2" tolerance="1.5" unit="%" label="NPS Score" gridColumn={5} />
+      </div>
+
+      {/* Section cut marker B—B */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="B" from={1} to={5} />
+      </div>
 
       {/* Video Testimonial Section */}
       <section className="py-16 px-8 bg-muted/30">
@@ -367,6 +401,11 @@ const CustomerStories = () => {
           </div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 3→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
 
       {/* FAQ Section - matching homepage */}
       <section className="py-24 md:py-32 bg-white">

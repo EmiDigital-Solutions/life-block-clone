@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
@@ -374,6 +377,11 @@ const Features = () => {
         <TechnicalAnnotation label="1200" from={4} to={6} />
       </div>
 
+      {/* Section cut marker A—A */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="A" from={0} to={6} />
+      </div>
+
       {/* Category Tabs */}
       <section className="px-8 border-t border-foreground/10">
         <div className="mx-auto max-w-[1400px]">
@@ -510,6 +518,11 @@ const Features = () => {
         <TechnicalAnnotation label="700" from={0} to={3} />
       </div>
 
+      {/* Dimension line — feature coverage */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="3" to="1" unit=" Plattformen" gridFrom={1} gridTo={5} />
+      </div>
+
       {/* API Section */}
       <section className="py-16 px-8 bg-muted/30">
         <div className="mx-auto max-w-[1400px]">
@@ -537,6 +550,11 @@ const Features = () => {
       {/* DIN annotation — grid 2→5 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
+
+      {/* Tolerance notation — API uptime */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="99.9" tolerance="0.05" unit="%" label="API Uptime" gridColumn={5} />
       </div>
 
       {/* Looking for more details */}

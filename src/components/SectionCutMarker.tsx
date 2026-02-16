@@ -26,7 +26,7 @@ const SectionCutMarker = ({
   return (
     <div className={`relative w-full h-6 ${className}`} aria-hidden="true">
       <div
-        className="absolute flex items-center text-foreground/[0.10]"
+        className="absolute flex items-center text-foreground/[0.28]"
         style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
       >
         {/* Left label circle */}
