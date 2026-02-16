@@ -38,8 +38,8 @@ const Navigation = () => {
         style={{
           background: 'linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.45) 8%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.45) 92%, rgba(255,255,255,0.8) 100%), linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.35) 80%, rgba(255,255,255,0.8) 100%)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-          backdropFilter: 'blur(50px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(50px) saturate(180%)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           border: 'none',
           maxHeight: isMenuOpen ? '85vh' : 'auto',
         }}
