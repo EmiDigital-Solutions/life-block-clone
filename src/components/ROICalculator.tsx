@@ -41,7 +41,7 @@ const ROICalculator = () => {
   const traditionalCost = selectedAudit?.traditionalEur || 0;
   const yvooCost = selectedAudit?.pricing[selectedRegion as keyof typeof selectedAudit.pricing] || 0;
   const savingsPerAudit = traditionalCost - yvooCost;
-  const savingsPercent = selectedAudit?.savingsPercent || 0;
+  const savingsPercent = traditionalCost > 0 ? Math.round((savingsPerAudit / traditionalCost) * 100) : 0;
   
   const totalTraditionalCost = traditionalCost * auditsPerYear;
   const totalYvooCost = yvooCost * auditsPerYear;
