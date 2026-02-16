@@ -86,15 +86,6 @@ const HeroSection = () => {
                   Calculate Your Savings →
                 </Button>
               </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="mt-6 text-xs md:text-sm font-mono tracking-widest text-foreground/40"
-              >
-                IATF 16949 · ISO 9001 · VDA 6.3 · 47 Countries · 48H Mobilization
-              </motion.p>
             </div>
           </motion.div>
         </div>
