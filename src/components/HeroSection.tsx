@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed"
               >
-                Certified auditors deployed to any supplier facility within 48 hours. Audit 1 supplier or 100 suppliers in parallel—same timeline, same professional IATF/ISO standards. No resource drain on your quality team. What took Procurement years takes weeks with YVOO. 60% lower cost.
+                Certified auditors deployed to any supplier facility within 3 days. Audit 1 supplier or 100 suppliers in parallel—same timeline, same professional IATF/ISO standards. No resource drain on your quality team. What took Procurement years takes weeks with YVOO. 60% lower cost.
               </motion.p>
 
               <motion.div
