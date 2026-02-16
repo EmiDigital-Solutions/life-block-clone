@@ -232,7 +232,7 @@ const AtlasAIDemoAnimation = () => {
         <div className="flex-1 flex overflow-hidden min-h-0">
 
           {/* LEFT — Checklist + Evidence */}
-          <div className="flex-[25] border-r border-white/6 flex flex-col overflow-hidden">
+          <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
             <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
               <div className="text-[10px] text-white/25 mt-1">IATF 16949 · Precision Parts</div>
@@ -305,7 +305,7 @@ const AtlasAIDemoAnimation = () => {
           </div>
 
           {/* MIDDLE — Question + Maturity */}
-          <div className="flex-[45] border-r border-white/6 flex flex-col overflow-hidden">
+          <div className="flex-[45] border-r border-white/[0.03] flex flex-col overflow-hidden">
             {/* Question */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-8 py-6">
               <div className="flex items-center justify-between mb-3">
