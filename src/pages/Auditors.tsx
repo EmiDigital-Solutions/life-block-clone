@@ -12,6 +12,7 @@ import {
   Play
 } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -235,8 +236,18 @@ const Auditors = () => {
           </motion.div>
         </section>
 
+        {/* DIN annotation — grid 4→6 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="1200" from={4} to={6} />
+        </div>
+
         {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
+
+        {/* DIN annotation — grid 0→3 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="700" from={0} to={3} />
+        </div>
 
         {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
         <TechnologyFeaturesSection />
@@ -244,14 +255,29 @@ const Auditors = () => {
         {/* 4. THE DIFFERENCE - "Same audit. Less friction" */}
         <DayInLifeSection />
 
+        {/* DIN annotation — grid 2→5 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+        </div>
+
         {/* 5. PROCESS - "From application to first audit" */}
         <TimelineSection />
 
         {/* 6. PAYMENT PROCESS + REAL OPPORTUNITIES */}
         <EarningsPotentialSection />
 
+        {/* DIN annotation — grid 3→6 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="950" from={3} to={6} />
+        </div>
+
         {/* 7. SUCCESS STORIES / TESTIMONIALS */}
         <SuccessStoriesSection />
+
+        {/* DIN annotation — grid 0→2 */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="460" from={0} to={2} />
+        </div>
 
         {/* 8. REQUIREMENTS - "We're selective" (moved near CTA as final filter) */}
         <QualificationsSection />

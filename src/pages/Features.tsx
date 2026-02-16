@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
@@ -368,6 +369,11 @@ const Features = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 4→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="1200" from={4} to={6} />
+      </div>
+
       {/* Category Tabs */}
       <section className="px-8 border-t border-foreground/10">
         <div className="mx-auto max-w-[1400px]">
@@ -499,6 +505,11 @@ const Features = () => {
         </section>
       )}
 
+      {/* DIN annotation — grid 0→3 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
+
       {/* API Section */}
       <section className="py-16 px-8 bg-muted/30">
         <div className="mx-auto max-w-[1400px]">
@@ -522,6 +533,11 @@ const Features = () => {
           </div>
         </div>
       </section>
+
+      {/* DIN annotation — grid 2→5 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
 
       {/* Looking for more details */}
       <section className="py-24 px-8">

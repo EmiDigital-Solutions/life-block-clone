@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
@@ -2236,6 +2237,11 @@ const ScanProPlus = () => {
         </motion.div>
       </section>
 
+      {/* DIN annotation — grid 4→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="1200" from={4} to={6} />
+      </div>
+
       {/* Demo Section - Equipment Intelligence */}
       <section
         data-nav-theme="light"
@@ -2311,6 +2317,11 @@ const ScanProPlus = () => {
       {/* How Does YVOO Work Carousel */}
       <HowItWorksCarousel />
 
+
+      {/* DIN annotation — grid 0→3 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
 
       {/* Results Section - Clean Minimalist */}
       <section 
@@ -2571,6 +2582,11 @@ const ScanProPlus = () => {
         </div>
       </section>
 
+      {/* DIN annotation — grid 2→5 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
+
       {/* Compliance Standards - Homepage Style */}
       <section 
         data-nav-theme="light" 
@@ -2618,6 +2634,11 @@ const ScanProPlus = () => {
 
       {/* Industry Use Cases - Homepage Style */}
       <IndustryUseCasesGrid />
+
+      {/* DIN annotation — grid 3→6 */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+        <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
 
       {/* Global Network - Homepage Style */}
       <section 
