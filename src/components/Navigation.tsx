@@ -2,12 +2,10 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import yvooLogo from "@/assets/logo-new.svg";
-import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { language, setLanguage, t } = useLanguage();
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -62,16 +60,8 @@ const Navigation = () => {
             />
           </Link>
 
-          <div className="flex-1 flex items-center justify-between gap-2 md:gap-4">
-            {/* Language Toggle */}
-            <button
-              onClick={() => setLanguage(language === "en" ? "de" : "en")}
-              className="flex items-center justify-center px-2 py-1 md:px-3 md:py-1.5 text-xs md:text-sm font-mono font-semibold tracking-wide text-foreground/70 hover:text-foreground transition-colors rounded-full border border-foreground/15 hover:border-foreground/30"
-            >
-              {language === "en" ? "DE" : "EN"}
-            </button>
-
-            {/* Hamburger Menu Button */}
+          <div className="flex-1 flex items-center justify-between gap-4">
+            {/* Hamburger Menu Button - centered with spacing */}
             <div className="flex-1 flex items-center justify-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -95,7 +85,7 @@ const Navigation = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 md:gap-3 bg-foreground text-white pl-4 pr-3.5 py-2.5 md:pl-8 md:pr-7 md:py-6 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-xl md:text-2xl tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
-               {t.nav.demo}
+               Demo
                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
              </a>
           </div>
@@ -105,58 +95,42 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="px-4 md:px-10 pb-6 md:pb-10 pt-3 md:pt-6 animate-fade-in overflow-y-auto" style={{ maxHeight: 'calc(85vh - 50px)' }}>
             <nav className="space-y-2 md:space-y-4">
-              {[
-                { to: "/features", label: t.nav.features, desc: t.nav.featuresDesc },
-                { to: "/search-suppliers", label: t.nav.searchSuppliers, desc: t.nav.searchSuppliersDesc },
-                { to: "/scanpro-plus", label: t.nav.scanProPlus, desc: t.nav.scanProPlusDesc },
-                { to: "/ground-intelligence", label: t.nav.groundIntelligence, desc: t.nav.groundIntelligenceDesc },
-                { to: "/auditors", label: t.nav.forAuditors, desc: t.nav.forAuditorsDesc },
-                { to: "/be-found", label: t.nav.beFound, desc: t.nav.beFoundDesc },
-              ].map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="block group py-1 md:py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {item.label}
-                  </span>
-                  <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
-                    {item.desc}
-                  </span>
-                </Link>
-              ))}
-              <a
-                href="#pricing"
-                className="block group py-1 md:py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {t.nav.pricing}
-                </span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
-                  {t.nav.pricingDesc}
-                </span>
+              <Link to="/features" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Features</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Complete feature overview</span>
+              </Link>
+              <Link to="/search-suppliers" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Search Suppliers</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Find verified suppliers worldwide</span>
+              </Link>
+              <Link to="/scanpro-plus" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">ScanPro+</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI-powered audit intelligence</span>
+              </Link>
+              <Link to="/ground-intelligence" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Ground Intelligence</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Real-time factory insights</span>
+              </Link>
+              <Link to="/auditors" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">For Auditors</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Join our global auditor network</span>
+              </Link>
+              <Link to="/be-found" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Be Found</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Get discovered by global buyers</span>
+              </Link>
+              <a href="#pricing" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Pricing</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Transparent & flexible plans</span>
               </a>
-              {[
-                { to: "/about-us", label: t.nav.aboutUs, desc: t.nav.aboutUsDesc },
-                { to: "/customer-stories", label: t.nav.customerStories, desc: t.nav.customerStoriesDesc },
-              ].map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="block group py-1 md:py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-foreground/60 transition-colors">
-                    {item.label}
-                  </span>
-                  <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">
-                    {item.desc}
-                  </span>
-                </Link>
-              ))}
+              <Link to="/about-us" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">About Us</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Our mission & team</span>
+              </Link>
+              <Link to="/customer-stories" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-foreground/60 transition-colors">Customer Stories</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Success stories from our clients</span>
+              </Link>
 
               {/* Mobile CTA */}
               <a
@@ -166,7 +140,7 @@ const Navigation = () => {
                 className="md:hidden flex items-center justify-center gap-2 bg-foreground text-white px-4 py-3 mt-3 rounded-full font-medium text-sm hover:bg-foreground/90 transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {t.nav.demo}
+                Demo
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </nav>

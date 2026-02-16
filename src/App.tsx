@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { LanguageProvider } from "@/i18n/LanguageContext";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BeFound from "./pages/BeFound";
@@ -23,7 +23,6 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -49,7 +48,6 @@ const App = () => (
         </BrowserRouter>
       </div>
     </TooltipProvider>
-    </LanguageProvider>
   </QueryClientProvider>
 );
 
