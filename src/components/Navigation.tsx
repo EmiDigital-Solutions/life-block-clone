@@ -36,7 +36,7 @@ const Navigation = () => {
           isMenuOpen ? 'rounded-[1.125rem] md:rounded-[1.5rem] min-w-[90vw] md:min-w-[600px]' : 'rounded-full'
         }`}
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.7) 100%)',
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.65) 80%, rgba(255,255,255,0.85) 100%)',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 60px rgba(255,255,255,0.4)',
           backdropFilter: 'blur(50px) saturate(180%)',
           WebkitBackdropFilter: 'blur(50px) saturate(180%)',
