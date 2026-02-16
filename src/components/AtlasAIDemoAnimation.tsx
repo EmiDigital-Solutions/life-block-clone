@@ -28,18 +28,18 @@ const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }
   return (
     <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-1 z-10">
       <button onClick={() => scroll("up")}
-        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canUp ? "bg-foreground/5 text-foreground/40 hover:bg-foreground/10" : "opacity-0 pointer-events-none"}`}>
+        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canUp ? "bg-white/10 text-white/50 hover:bg-white/20" : "opacity-0 pointer-events-none"}`}>
         <ChevronUp className="w-3.5 h-3.5" />
       </button>
       <button onClick={() => scroll("down")}
-        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canDown ? "bg-foreground/5 text-foreground/40 hover:bg-foreground/10" : "opacity-0 pointer-events-none"}`}>
+        className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${canDown ? "bg-white/10 text-white/50 hover:bg-white/20" : "opacity-0 pointer-events-none"}`}>
         <ChevronDown className="w-3.5 h-3.5" />
       </button>
     </div>
   );
 };
 
-/* ── ATLAS AI DEMO — Tablet Hybrid (Light Frosted Glass) ── */
+/* ── ATLAS AI DEMO — Tablet Hybrid ── */
 const AtlasAIDemoAnimation = () => {
   const [showFinding, setShowFinding] = useState(false);
   const [micActive, setMicActive] = useState(false);
@@ -82,6 +82,7 @@ const AtlasAIDemoAnimation = () => {
 
     setCopilotSpeaking(true);
 
+    // Queue all parts upfront — Chrome handles queued utterances reliably
     riskAlertParts.forEach((text, i) => {
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 0.95;
@@ -91,6 +92,7 @@ const AtlasAIDemoAnimation = () => {
 
       u.onstart = () => setCopilotText(text);
 
+      // Last utterance ends the speaking state
       if (i === riskAlertParts.length - 1) {
         u.onend = () => {
           setCopilotSpeaking(false);
@@ -132,6 +134,7 @@ const AtlasAIDemoAnimation = () => {
   useEffect(() => { copilotSpeakingRef.current = copilotSpeaking; }, [copilotSpeaking]);
 
   useEffect(() => {
+    // Reset visual states only (not speech)
     setShowFinding(false);
     setVis(0);
     setChatStep(0);
@@ -147,20 +150,25 @@ const AtlasAIDemoAnimation = () => {
       timers.push(window.setTimeout(fn, delay));
     };
 
+    // Staged reveal of intelligence cards
     t(400, () => setVis(1));
     t(1000, () => setVis(2));
     t(2000, () => setVis(3));
     t(3000, () => setVis(4));
 
+    // Chat messages animate in
     t(1200, () => setChatStep(1));
     t(2800, () => setChatStep(2));
     t(4500, () => setChatStep(3));
 
+    // AI Finding appears
     t(2500, () => setShowFinding(true));
 
+    // Photo flash
     t(5500, () => setPhotoFlash(true));
     t(5750, () => setPhotoFlash(false));
 
+    // Evidence completes → maturity
     t(8000, () => setEvidenceComplete(true));
     t(9000, () => {
       setShowMaturity(true);
@@ -176,6 +184,7 @@ const AtlasAIDemoAnimation = () => {
       }, 300);
     });
 
+    // Restart loop — but wait if voice is playing
     t(16000, () => {
       const waitForSpeech = () => {
         if (copilotSpeakingRef.current) {
@@ -195,7 +204,7 @@ const AtlasAIDemoAnimation = () => {
 
   return (
     <div ref={sectionRef} className="w-full h-full overflow-hidden">
-      <div className="w-full h-full bg-[hsl(0,0%,92%)] border-2 border-white flex flex-col overflow-hidden relative">
+      <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
         {/* Flash */}
         <AnimatePresence>
@@ -205,15 +214,15 @@ const AtlasAIDemoAnimation = () => {
         </AnimatePresence>
 
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-6 md:px-8 py-3 bg-gradient-to-r from-white/95 via-white/88 to-white/80 backdrop-blur-md border-b border-foreground/5">
+        <div className="flex items-center justify-between px-6 md:px-8 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996]" />
-            <span className="text-[12px] text-foreground/40 font-medium tracking-wider uppercase">Live Audit</span>
+            <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
           </div>
-          <span className="text-[14px] font-bold text-foreground tracking-wide">Atlas AI · Auditor View</span>
+          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Auditor View</span>
           <div className="flex items-center gap-3">
-            <span className="text-[12px] text-foreground/30 hidden md:inline">Progress 45%</span>
-            <div className="w-20 h-2 bg-foreground/5 rounded-full overflow-hidden">
+            <span className="text-[12px] text-white/30 hidden md:inline">Progress 45%</span>
+            <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
               <motion.div initial={{ width: 0 }} animate={{ width: "45%" }} transition={{ duration: 1.5, delay: 0.3 }} className="h-full bg-[#6EA996] rounded-full" />
             </div>
           </div>
@@ -223,28 +232,28 @@ const AtlasAIDemoAnimation = () => {
         <div className="flex-1 flex overflow-hidden min-h-0">
 
           {/* LEFT — Checklist + Evidence */}
-          <div className="flex-[25] border-r border-foreground/5 flex flex-col overflow-hidden">
+          <div className="flex-[25] border-r border-white/6 flex flex-col overflow-hidden">
             <div className="px-4 py-3">
-              <span className="text-[12px] font-bold text-foreground/50 uppercase tracking-wider">Checklist</span>
-              <div className="text-[10px] text-foreground/25 mt-1">IATF 16949 · Precision Parts</div>
+              <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
+              <div className="text-[10px] text-white/25 mt-1">IATF 16949 · Precision Parts</div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={leftScrollRef} />
-              <div className="text-[12px] font-bold text-foreground/40 mb-2">▼ 4. QUALITY MGMT</div>
+              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 4. QUALITY MGMT</div>
               <CheckItem done label="4.1.1 Process Approach" />
-              <div className="text-[12px] font-semibold text-foreground/35 pl-2 mt-2 mb-1">▼ 4.2 Documentation</div>
+              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 4.2 Documentation</div>
               <CheckItem done label="4.2.1 General" indent />
               <CheckItem done label="4.2.2 Quality Manual" indent />
-              <div className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/20 px-3 py-2.5 ml-2 my-2">
+              <div className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/25 rounded-lg px-3 py-2.5 ml-2 my-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-[#AE3D3D] animate-pulse" />
-                  <span className="text-[12px] font-bold text-foreground">4.2.3 Control</span>
+                  <span className="text-[12px] font-bold text-white">4.2.3 Control</span>
                 </div>
-                <span className="text-[10px] px-2 py-0.5 bg-[#AE3D3D] text-white font-bold ml-5 inline-block mt-1">HIGH RISK</span>
+                <span className="text-[10px] px-2 py-0.5 bg-[#AE3D3D] text-white font-bold rounded ml-5 inline-block mt-1">HIGH RISK</span>
               </div>
               <CheckItem label="4.2.4 Records" indent pending />
-              <div className="text-[12px] font-bold text-foreground/40 mt-3 mb-2">▶ 5. MANAGEMENT</div>
+              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 5. MANAGEMENT</div>
               <CheckItem label="5.1 Commitment" pending />
               <CheckItem label="5.2 Customer Focus" pending />
             </div>
@@ -252,7 +261,7 @@ const AtlasAIDemoAnimation = () => {
             {/* Evidence */}
             <div className="px-4 py-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[12px] font-bold text-foreground/50 uppercase tracking-wider">Evidence</span>
+                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Evidence</span>
                 <span className={`text-[12px] font-bold ${evidenceComplete ? "text-[#6EA996]" : "text-[#F5A623]"}`}>
                   {evidenceComplete ? "5 / 5 ✓" : "3 / 5 required"}
                 </span>
@@ -278,38 +287,38 @@ const AtlasAIDemoAnimation = () => {
                 <div className="mt-2 text-[10px] text-[#F5A623] font-medium">⚠ 2 more evidence items required</div>
               )}
               <div className="flex gap-2 mt-3">
-                <button className="flex-1 flex items-center justify-center gap-2 bg-white/70 hover:bg-white/90 active:bg-white py-2.5 transition-colors group border border-foreground/5 hover:border-foreground/10">
-                  <svg className="w-4 h-4 text-foreground/30 group-hover:text-[#6EA996] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <button className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-lg py-2.5 transition-colors group border border-white/8 hover:border-white/20">
+                  <svg className="w-4 h-4 text-white/30 group-hover:text-[#6EA996] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                     <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
                     <circle cx="12" cy="13" r="4" />
                   </svg>
-                  <span className="text-[10px] text-foreground/30 group-hover:text-foreground/60 font-medium">Capture</span>
+                  <span className="text-[10px] text-white/30 group-hover:text-white/60 font-medium">Capture</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center gap-2 bg-white/70 hover:bg-white/90 active:bg-white py-2.5 transition-colors group border border-foreground/5 hover:border-foreground/10">
-                  <svg className="w-4 h-4 text-foreground/30 group-hover:text-[#6EA996] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <button className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-lg py-2.5 transition-colors group border border-white/8 hover:border-white/20">
+                  <svg className="w-4 h-4 text-white/30 group-hover:text-[#6EA996] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
                   </svg>
-                  <span className="text-[10px] text-foreground/30 group-hover:text-foreground/60 font-medium">Upload</span>
+                  <span className="text-[10px] text-white/30 group-hover:text-white/60 font-medium">Upload</span>
                 </button>
               </div>
             </div>
           </div>
 
           {/* MIDDLE — Question + Maturity */}
-          <div className="flex-[45] border-r border-foreground/5 flex flex-col overflow-hidden">
+          <div className="flex-[45] border-r border-white/6 flex flex-col overflow-hidden">
             {/* Question */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-8 py-6">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[12px] font-semibold text-foreground/40 uppercase tracking-wider">Question</span>
+                <span className="text-[12px] font-semibold text-white/40 uppercase tracking-wider">Question</span>
                 <div className="flex gap-2">
                   {["🔊", "📷", "📎"].map((icon, i) => (
-                    <button key={i} onClick={i === 0 ? speakRiskAlert : undefined} className={`w-8 h-8 flex items-center justify-center transition-colors text-[14px] border ${i === 0 && copilotSpeaking ? "bg-[#6EA996]/10 border-[#6EA996] ring-1 ring-[#6EA996]/30" : "bg-white/70 border-foreground/5 hover:bg-white/90 hover:border-foreground/10 active:bg-white"}`}>
+                    <button key={i} onClick={i === 0 ? speakRiskAlert : undefined} className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors text-[14px] border ${i === 0 && copilotSpeaking ? "bg-[#6EA996]/15 border-[#6EA996] ring-1 ring-[#6EA996]/30" : "bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10 active:bg-white/15"}`}>
                       {icon}
                     </button>
                   ))}
                 </div>
               </div>
-              <p className="text-[18px] md:text-[20px] text-foreground font-medium leading-[1.5]">
+              <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5]">
                 Is the fire suppression system compliant with local regulations?
               </p>
             </motion.div>
@@ -317,16 +326,16 @@ const AtlasAIDemoAnimation = () => {
             {/* AI Guidance — auto-animated chat */}
             <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={middleScrollRef} />
-              <span className="text-[12px] font-bold text-foreground/40 uppercase tracking-wider block mb-3">AI Guidance</span>
+              <span className="text-[12px] font-bold text-white/40 uppercase tracking-wider block mb-3">AI Guidance</span>
 
               <AnimatePresence>
                 {chatStep >= 1 && (
                   <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
-                    className="bg-[#AE3D3D]/6 border border-[#AE3D3D]/15 p-4">
+                    className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/20 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-[12px] font-bold text-[#AE3D3D] uppercase tracking-wider">Risk Alert</span>
                     </div>
-                    <p className="text-[12px] text-foreground/50 leading-[1.5]">
+                    <p className="text-[12px] text-white/50 leading-[1.5]">
                       BMW Tier-2 rejected 2 suppliers for document control gaps. Issues found in 73% of 47 similar audits.
                     </p>
                   </motion.div>
@@ -336,13 +345,13 @@ const AtlasAIDemoAnimation = () => {
               <AnimatePresence>
                 {chatStep >= 2 && (
                   <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
-                    className="bg-white/80 backdrop-blur-sm border border-foreground/5 p-4">
-                    <span className="text-[12px] font-semibold text-foreground/45 uppercase tracking-wider">What to Check</span>
+                    className="bg-white/5 rounded-lg p-4">
+                    <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
                     <div className="mt-2 space-y-2">
                       {["Document control procedure exists?", "Approval signatures on documents?", "Revision history tracked?"].map((q, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <span className="text-[12px] text-foreground/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
-                          <span className="text-[12px] text-foreground/50 leading-[1.5]">{q}</span>
+                          <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
+                          <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
                         </div>
                       ))}
                     </div>
@@ -353,13 +362,13 @@ const AtlasAIDemoAnimation = () => {
               <AnimatePresence>
                 {chatStep >= 3 && (
                   <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
-                    className="bg-white/80 backdrop-blur-sm border border-foreground/5 p-4">
+                    className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
                     <div className="mt-2 space-y-2">
                       {["Register not used (73%)", "Obsolete docs accessible (68%)", "Missing signatures (54%)"].map(t => (
                         <div key={t} className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
-                          <span className="text-[12px] text-foreground/45 leading-[1.5]">{t}</span>
+                          <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
                         </div>
                       ))}
                     </div>
@@ -373,11 +382,11 @@ const AtlasAIDemoAnimation = () => {
                   <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 180 }}
                     className="mt-6 space-y-4">
                     <div className="pt-4">
-                      <span className="text-[12px] font-bold text-foreground/50 uppercase tracking-wider">Maturity Assessment</span>
+                      <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Maturity Assessment</span>
                     </div>
 
                     {/* Atlas AI suggestion */}
-                    <div className="bg-[#6EA996]/6 border border-[#6EA996]/15 p-4">
+                    <div className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
                       <div className="flex items-center gap-2 mb-3">
                         <div className="w-2 h-2 rounded-full bg-[#6EA996]" />
                         <span className="text-[12px] font-bold text-[#6EA996] uppercase tracking-wider">Atlas AI suggests</span>
@@ -388,32 +397,32 @@ const AtlasAIDemoAnimation = () => {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: level * 0.1 }}
-                            className={`flex-1 py-2 text-center text-[14px] font-bold transition-all ${
+                            className={`flex-1 py-2 text-center text-[14px] font-bold rounded-lg transition-all ${
                               atlasMaturity === level
                                 ? "bg-[#6EA996] text-white"
                                 : level <= (atlasMaturity || 0)
                                   ? "bg-[#6EA996]/15 text-[#6EA996]/60"
-                                  : "bg-foreground/5 text-foreground/20"
+                                  : "bg-white/5 text-white/20"
                             }`}
                           >{level}</motion.div>
                         ))}
                       </div>
-                      <p className="text-[10px] text-foreground/35 mt-2">Level 3 — Defined process with gaps in execution</p>
+                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Defined process with gaps in execution</p>
                     </div>
 
                     {/* Auditor selection */}
-                    <div className="bg-white/80 backdrop-blur-sm border border-foreground/8 p-4">
-                      <span className="text-[12px] font-bold text-foreground/60 uppercase tracking-wider mb-3 block">Your Assessment</span>
+                    <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                      <span className="text-[12px] font-bold text-white/60 uppercase tracking-wider mb-3 block">Your Assessment</span>
                       <div className="flex gap-2 mb-3">
                         {[1, 2, 3, 4, 5].map((level) => {
                           const isSelected = auditorMaturity === level;
                           return (
                             <motion.div key={level}
                               animate={isSelected ? { scale: 1.1 } : { scale: 1 }}
-                              className={`flex-1 py-2.5 text-center text-[14px] font-bold transition-all cursor-pointer ${
+                              className={`flex-1 py-2.5 text-center text-[14px] font-bold rounded-lg transition-all cursor-pointer ${
                                 isSelected
-                                  ? "bg-foreground text-white"
-                                  : "bg-foreground/5 text-foreground/30 hover:bg-foreground/10 hover:text-foreground/50"
+                                  ? "bg-white text-[hsl(220,18%,13%)]"
+                                  : "bg-white/8 text-white/30 hover:bg-white/12 hover:text-white/50"
                               }`}
                             >{level}</motion.div>
                           );
@@ -423,12 +432,12 @@ const AtlasAIDemoAnimation = () => {
                       <AnimatePresence>
                         {auditorMaturity !== null && (
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                            <div className="bg-foreground/3 border border-foreground/5 px-3 py-2.5 mt-2 hover:border-foreground/10 transition-colors">
+                            <div className="bg-white/5 border border-white/8 rounded-lg px-3 py-2.5 mt-2 hover:border-white/15 transition-colors">
                               <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.5 }}
-                                className="text-[12px] text-foreground/40 italic"
+                                className="text-[12px] text-white/40 italic"
                               >
                                 Fire suppression cert expired. Needs renewal before next audit...
                               </motion.span>
@@ -438,7 +447,7 @@ const AtlasAIDemoAnimation = () => {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.8 }}
-                                className="px-4 py-2 bg-[#6EA996] text-white text-[12px] font-bold hover:bg-[#6EA996]/80 active:bg-[#6EA996]/60 transition-colors"
+                                className="px-4 py-2 bg-[#6EA996] text-white text-[12px] font-bold rounded-lg hover:bg-[#6EA996]/80 active:bg-[#6EA996]/60 transition-colors"
                               >
                                 Submit & Next →
                               </motion.button>
@@ -455,15 +464,15 @@ const AtlasAIDemoAnimation = () => {
             {/* Chat Input */}
             <div className="px-6 py-4">
               <div className="flex items-center gap-2">
-                <button className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${micActive ? "bg-[#6EA996]/10 border border-[#6EA996]" : "bg-white/70 border border-foreground/5 hover:border-foreground/10"}`}>
-                  <svg className={`w-4 h-4 ${micActive ? "text-[#6EA996]" : "text-foreground/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <button className={`w-10 h-10 flex items-center justify-center rounded-lg shrink-0 transition-all ${micActive ? "bg-[#6EA996]/15 border border-[#6EA996]" : "bg-white/5 border border-white/10 hover:border-white/20"}`}>
+                  <svg className={`w-4 h-4 ${micActive ? "text-[#6EA996]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                     <rect x="9" y="1" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0014 0" /><line x1="12" y1="17" x2="12" y2="21" />
                   </svg>
                 </button>
-                <div className="flex-1 bg-white/70 border border-foreground/5 px-4 py-2.5 flex items-center hover:border-foreground/10 transition-colors">
-                  <span className="text-[12px] text-foreground/25">Ask Atlas AI or add findings...</span>
+                <div className="flex-1 bg-white/5 border border-white/8 rounded-lg px-4 py-2.5 flex items-center hover:border-white/15 transition-colors">
+                  <span className="text-[12px] text-white/25">Ask Atlas AI or add findings...</span>
                 </div>
-                <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] shrink-0 hover:bg-[#6EA996]/80 active:bg-[#6EA996]/60 transition-colors">
+                <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] rounded-lg shrink-0 hover:bg-[#6EA996]/80 active:bg-[#6EA996]/60 transition-colors">
                   <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
                 </button>
               </div>
@@ -474,7 +483,7 @@ const AtlasAIDemoAnimation = () => {
           <div className="flex-[30] flex flex-col overflow-hidden">
             {/* Atlas Copilot Voice — animated speaker */}
             <div className="px-4 py-4 flex flex-col items-center min-h-[180px] overflow-visible">
-              <span className="text-[14px] font-bold text-foreground tracking-wide mb-3">Atlas Copilot</span>
+              <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
               <div className="relative flex items-center justify-center">
                 <AnimatePresence>
                   {(copilotSpeaking || speakerPulsing) && (
@@ -488,13 +497,13 @@ const AtlasAIDemoAnimation = () => {
                 <motion.button
                   onClick={speakRiskAlert}
                   animate={(copilotSpeaking || speakerPulsing) ? {
-                    boxShadow: ["0 0 15px rgba(110,169,150,0.1)", "0 0 35px rgba(110,169,150,0.3)", "0 0 15px rgba(110,169,150,0.1)"],
+                    boxShadow: ["0 0 15px rgba(110,169,150,0.15)", "0 0 35px rgba(110,169,150,0.4)", "0 0 15px rgba(110,169,150,0.15)"],
                     scale: [1, 1.05, 1],
                   } : {}}
                   transition={{ duration: 1.2, repeat: Infinity }}
-                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${(copilotSpeaking || speakerPulsing) ? "bg-[#6EA996]/10 border-2 border-[#6EA996]" : "bg-white/70 border-2 border-foreground/10 hover:border-foreground/20"}`}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${(copilotSpeaking || speakerPulsing) ? "bg-[#6EA996]/15 border-2 border-[#6EA996]" : "bg-white/5 border-2 border-white/15 hover:border-white/30"}`}
                 >
-                  <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#6EA996]" : "text-foreground/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#6EA996]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                     {copilotSpeaking ? (
                       <>
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
@@ -512,10 +521,10 @@ const AtlasAIDemoAnimation = () => {
                   </svg>
                 </motion.button>
               </div>
-              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#6EA996]" : speakerPulsing ? "text-[#6EA996] animate-pulse" : "text-foreground/30"}`}>
+              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#6EA996]" : speakerPulsing ? "text-[#6EA996] animate-pulse" : "text-white/30"}`}>
                 {copilotSpeaking ? "Speaking..." : speakerPulsing ? "Tap to listen" : "Tap to speak"}
               </span>
-              {/* Waveform */}
+              {/* Waveform — always rendered, visibility toggled */}
               <div className="flex items-center gap-0.5 mt-2 h-5">
                 {copilotSpeaking && [...Array(16)].map((_, i) => (
                   <motion.div key={i} className="w-[3px] rounded-full bg-[#6EA996]"
@@ -524,11 +533,11 @@ const AtlasAIDemoAnimation = () => {
                     transition={{ duration: 0.25 + Math.random() * 0.25, repeat: Infinity, repeatType: "reverse", delay: i * 0.03 }} />
                 ))}
               </div>
-              {/* Copilot speech text */}
+              {/* Copilot speech text — fixed height container */}
               <div className="h-8 mt-2 flex items-start justify-center">
                 {copilotText && (
                   <motion.p key={copilotText} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="text-[10px] text-foreground/40 text-center px-2 leading-[1.5] max-w-[200px]">
+                    className="text-[10px] text-white/40 text-center px-2 leading-[1.5] max-w-[200px]">
                     {copilotText}
                   </motion.p>
                 )}
@@ -539,7 +548,7 @@ const AtlasAIDemoAnimation = () => {
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative" ref={rightScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={rightScrollRef} />
               <IntelCard title="Priority" titleColor="text-[#AE3D3D]">
-                <div className="space-y-2 text-[12px] text-foreground/45">
+                <div className="space-y-2 text-[12px] text-white/45">
                   <div>• Calibration (78%)</div>
                   <div>• Training (62%)</div>
                   <div className="text-[#6EA996] mt-1 font-medium">→ Check proactively</div>
@@ -547,19 +556,19 @@ const AtlasAIDemoAnimation = () => {
               </IntelCard>
 
               <IntelCard title="Client Focus">
-                <div className="space-y-2 text-[12px] text-foreground/45">
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold mr-2">1</span>Documentation</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold mr-2">2</span>Calibration</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold mr-2">3</span>Process Cap.</div>
+                <div className="space-y-2 text-[12px] text-white/45">
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Documentation</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Calibration</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Process Cap.</div>
                 </div>
               </IntelCard>
 
               <IntelCard title="Benchmark">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-[12px]"><span className="text-foreground/40">This supplier</span><span className="text-foreground/60 font-bold">7.2/10</span></div>
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">7.2/10</span></div>
                   <BarRound value={72} />
-                  <div className="flex justify-between text-[12px]"><span className="text-foreground/40">Industry avg</span><span className="text-foreground/60 font-bold">8.1/10</span></div>
-                  <BarRound value={81} color="bg-foreground/15" />
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">8.1/10</span></div>
+                  <BarRound value={81} color="bg-white/20" />
                   <div className="text-[12px] text-[#6EA996] font-semibold mt-2">Approved with conditions</div>
                 </div>
               </IntelCard>
@@ -568,15 +577,15 @@ const AtlasAIDemoAnimation = () => {
               <AnimatePresence>
                 {showFinding && (
                   <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
-                    className="bg-[#F5A623]/6 border border-[#F5A623]/20 p-4">
+                    className="bg-[#F5A623]/8 border border-[#F5A623]/25 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[12px] font-bold text-foreground">AI Finding</span>
+                      <span className="text-[12px] font-bold text-white">AI Finding</span>
                       <span className="text-[#F5A623]">⚠</span>
                     </div>
-                    <p className="text-[12px] text-foreground/45 leading-[1.5]">Check pressure gauge on adjacent unit. Calibration expired 2024-11.</p>
+                    <p className="text-[12px] text-white/45 leading-[1.5]">Check pressure gauge on adjacent unit. Calibration expired 2024-11.</p>
                     <div className="flex gap-2 mt-3">
-                      <button className="flex-1 py-2 text-[10px] font-bold text-[#6EA996] border border-[#6EA996]/20 bg-[#6EA996]/5 hover:bg-[#6EA996]/15 active:bg-[#6EA996]/25 uppercase tracking-wider transition-colors">Accept</button>
-                      <button className="flex-1 py-2 text-[10px] font-bold text-foreground/35 border border-foreground/8 bg-foreground/3 hover:bg-foreground/8 active:bg-foreground/12 uppercase tracking-wider transition-colors">Dismiss</button>
+                      <button className="flex-1 py-2 text-[10px] font-bold text-[#6EA996] border border-[#6EA996]/25 rounded-lg bg-[#6EA996]/5 hover:bg-[#6EA996]/15 active:bg-[#6EA996]/25 uppercase tracking-wider transition-colors">Accept</button>
+                      <button className="flex-1 py-2 text-[10px] font-bold text-white/35 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 uppercase tracking-wider transition-colors">Dismiss</button>
                     </div>
                   </motion.div>
                 )}
@@ -593,32 +602,32 @@ const AtlasAIDemoAnimation = () => {
 
 const CheckItem = ({ done, label, indent, pending }: { done?: boolean; label: string; indent?: boolean; pending?: boolean }) => (
   <div className={`flex items-center gap-2 py-1.5 ${indent ? "pl-4" : "pl-1"}`}>
-    <div className={`w-4 h-4 flex items-center justify-center shrink-0 ${done ? "bg-[#6EA996]" : pending ? "border border-foreground/10" : "border border-foreground/15"}`}>
+    <div className={`w-4 h-4 rounded flex items-center justify-center shrink-0 ${done ? "bg-[#6EA996]" : pending ? "border border-white/10" : "border border-white/20"}`}>
       {done && <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M2 6l3 3 5-5" /></svg>}
     </div>
-    <span className={`text-[12px] leading-[1.5] ${done ? "text-foreground/40" : pending ? "text-foreground/20" : "text-foreground/50"}`}>{label}</span>
+    <span className={`text-[12px] leading-[1.5] ${done ? "text-white/40" : pending ? "text-white/20" : "text-white/50"}`}>{label}</span>
   </div>
 );
 
 const EvidenceItem = ({ name, type, status }: { name: string; type: "img" | "doc"; status: "verified" | "review" }) => (
-  <div className={`flex items-center gap-2 px-3 py-2 ${status === "review" ? "bg-[#F5A623]/5 border border-[#F5A623]/12" : "bg-white/70 border border-foreground/3"}`}>
+  <div className={`flex items-center gap-2 rounded-lg px-3 py-2 ${status === "review" ? "bg-[#F5A623]/5 border border-[#F5A623]/15" : "bg-white/5 border border-transparent"}`}>
     <span className="text-[12px]">{type === "img" ? "🖼" : "📄"}</span>
-    <span className="text-[10px] text-foreground/40 truncate flex-1">{name}</span>
-    <span className={`text-[10px] px-2 py-0.5 font-bold ${status === "verified" ? "bg-[#6EA996]/10 text-[#6EA996]" : "bg-[#F5A623]/10 text-[#F5A623]"}`}>
+    <span className="text-[10px] text-white/40 truncate flex-1">{name}</span>
+    <span className={`text-[10px] px-2 py-0.5 rounded font-bold ${status === "verified" ? "bg-[#6EA996]/15 text-[#6EA996]" : "bg-[#F5A623]/15 text-[#F5A623]"}`}>
       {status === "verified" ? "✓ Verified" : "⚠ Review"}
     </span>
   </div>
 );
 
-const IntelCard = ({ title, titleColor = "text-foreground/50", children }: { title: string; titleColor?: string; children: React.ReactNode }) => (
-  <div className="bg-white/80 backdrop-blur-sm border border-foreground/5 p-4">
+const IntelCard = ({ title, titleColor = "text-white/50", children }: { title: string; titleColor?: string; children: React.ReactNode }) => (
+  <div className="bg-white/5 rounded-lg p-4">
     <span className={`text-[12px] font-bold uppercase tracking-wider ${titleColor}`}>{title}</span>
     <div className="mt-2">{children}</div>
   </div>
 );
 
 const BarRound = ({ value, color = "bg-[#6EA996]", delay = 0.3 }: { value: number; color?: string; delay?: number }) => (
-  <div className="h-2 w-full bg-foreground/5 rounded-full overflow-hidden">
+  <div className="h-2 w-full bg-white/8 rounded-full overflow-hidden">
     <motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: 1.2, delay }} className={`h-full rounded-full ${color}`} />
   </div>
 );
