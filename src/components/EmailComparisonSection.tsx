@@ -31,12 +31,13 @@ const EmailComparisonSection = () => {
   ];
 
   const nightmareContent = [
-    { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers." },
-    { time: "Week 2–3", title: "€15K–€25K budget fight", description: "Flights, hotels, per diems. Finance wants justification. Again." },
-    { time: "Week 4–6", title: "Calendar Tetris", description: "Your engineer's calendar is full. The supplier postpones. Repeat." },
-    { time: "Week 7–8", title: "Finally on-site", description: "Junior auditor sent instead. No AI, no standards. Just a clipboard." },
-    { time: "Week 9", title: "Report? Maybe next week", description: "By then, everyone forgot the details. Context is gone." },
-    { time: "Week 10", title: "Documentation gaps", description: "Photos? What photos? Missing evidence that haunts you in customer audits." },
+    { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers. Quality schedules auditors. Procurement chases approvals. Supplier confirms facility access. Everyone's calendar is full." },
+    { time: "Week 2–3", title: "€50K–€70K budget fight", description: "Flights from Germany to Mexico. Hotels. Per diems. Two senior auditors for 10 days. Finance wants justification. \"Why can't we use local contractors?\" Three weeks of approvals." },
+    { time: "Week 4–6", title: "Calendar Tetris", description: "Your quality engineer's calendar is full until Q3. The supplier postpones because their production manager is on vacation. Reschedule. Repeat. Six weeks gone." },
+    { time: "Week 7–8", title: "Finally on-site", description: "Junior auditor sent instead. No AI documentation. No standardized checklist. Just a clipboard and a camera. Misses critical process weaknesses." },
+    { time: "Week 9", title: "Report? Maybe next week", description: "Quality team spends 2–4 weeks typing findings. No standardization. By then, everyone forgot the details. Context is gone. Procurement still waiting to onboard supplier." },
+    { time: "Week 10", title: "Documentation gaps", description: "Equipment photos? What photos? Missing evidence that haunts you in customer audits. No traceability. No process verification. Just incomplete notes." },
+    { time: "The Result", title: "10 weeks minimum. €70,000 per audit.", description: "You can afford 10–12 audits per year. The other 90 suppliers? Unverified risk." },
   ];
 
   const currentContent = isWithScanPro ? withYVOOContent : nightmareContent;
