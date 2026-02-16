@@ -73,6 +73,14 @@ const formationLabels: Record<Formation, string> = {
   checkmark: "Verified Supplier",
 };
 
+// Calculate max visible Y (ignoring opacity:0 squares) + SQUARE_SIZE for bottom edge
+const formationBottoms: Record<Formation, number> = Object.fromEntries(
+  Object.entries(formations).map(([key, squares]) => {
+    const maxY = Math.max(...squares.filter(s => (s as any).opacity === undefined).map(s => s.y));
+    return [key, maxY + SQUARE_SIZE];
+  })
+) as Record<Formation, number>;
+
 interface HeroSquaresAnimationProps {
   className?: string;
 }
@@ -122,7 +130,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
           <motion.p
             key={formationOrder[currentFormation]}
             className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase text-center w-full"
-            style={{ top: UNIT * 5 + 8, left: 0 }}
+            style={{ top: formationBottoms[formationOrder[currentFormation]] + 12, left: 0 }}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
