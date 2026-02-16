@@ -1018,7 +1018,7 @@ const DayInLifeSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="font-mono tracking-wide lowercase font-medium">start your new way to audit</span>
+              <span className="font-mono tracking-wide font-medium">Start Your New Way to Audit</span>
               <ArrowRight className="w-5 h-5" />
             </a>
           </Button>
