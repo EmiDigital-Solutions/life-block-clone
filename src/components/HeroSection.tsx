@@ -61,13 +61,13 @@ const HeroSection = () => {
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
             <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
-              <motion.p
+                <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
+                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed"
               >
-                Reduce your average €15,000 audit cost to €700. <span className="mx-3 text-foreground/30">|</span> Why wait weeks when you can get physical on-site audits in days?
+                Deploy certified auditors to 1 supplier or 100 suppliers in parallel. Same 7-day timeline. Same professional IATF/ISO standards. No capacity constraints. No resource drain on your quality team. Build your verified supplier base in months, not years. 60% lower cost per audit.
               </motion.p>
 
               <motion.div
