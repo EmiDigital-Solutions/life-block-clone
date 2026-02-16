@@ -87,9 +87,9 @@ const EarningsPotentialSection = () => {
                 </div>
 
                 {/* Step content */}
-                <h4 className="text-foreground font-medium text-sm mb-2">{step.title}</h4>
-                <p className="text-muted-foreground text-sm mb-3">{step.description}</p>
-                <span className="text-primary text-xs font-medium">{step.time}</span>
+                <h4 className="text-foreground font-semibold text-lg mb-2">{step.title}</h4>
+                <p className="text-muted-foreground text-base leading-relaxed mb-4">{step.description}</p>
+                <span className="text-primary text-sm font-semibold whitespace-nowrap">{step.time}</span>
               </motion.div>
             ))}
           </div>
