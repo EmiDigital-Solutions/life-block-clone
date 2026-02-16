@@ -47,7 +47,7 @@ const AtlasAISection = () => {
                 Technology
               </span>
             </div>
-            <h2 className="section-headline text-foreground mb-6">
+            <h2 className="section-headline text-foreground mb-6 whitespace-nowrap">
               Meet Atlas: The AI that ensures audit quality
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mb-8">
