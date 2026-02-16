@@ -1344,23 +1344,23 @@ const PlatformDemoAnimation = () => {
         ))}
       </div>
 
-      {/* AI subtext */}
-      <div className="px-4 py-1.5 border-b border-muted-foreground/6 bg-white/40">
-        <AnimatePresence mode="wait">
-          <motion.p key={currentScreen} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.25 }}
-            className="text-[10px] text-muted-foreground leading-snug">
-            <span className="text-primary font-semibold mr-1">AI:</span>{aiSubtexts[currentScreen]}
-          </motion.p>
-        </AnimatePresence>
-      </div>
-
       <div className="flex-1 relative overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div key={currentScreen} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="absolute inset-0">
             <CurrentScreenComponent />
           </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* AI subtext — bottom */}
+      <div className="px-5 py-2 border-t border-muted-foreground/8 bg-white/50">
+        <AnimatePresence mode="wait">
+          <motion.p key={currentScreen} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.25 }}
+            className="text-xs text-muted-foreground leading-relaxed">
+            <span className="text-primary font-semibold mr-1.5">AI:</span>{aiSubtexts[currentScreen]}
+          </motion.p>
         </AnimatePresence>
       </div>
     </div>
