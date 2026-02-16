@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import auditorTimelineHero from "@/assets/auditor-timeline-hero.png";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
 
 const phases = [
   {
@@ -191,7 +191,7 @@ const AuditDifferenceSection = () => {
             className="hidden lg:block sticky top-32"
           >
             <img
-              src={auditorTimelineHero}
+              src={auditorEuropean}
               alt="Quality assurance professional conducting an Atlas AI-guided audit"
               className="w-full max-h-[480px] object-cover object-top"
             />
