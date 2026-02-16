@@ -2,6 +2,9 @@ import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
@@ -279,9 +282,9 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 0→2 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="460" from={0} to={2} />
+      {/* Section cut marker A—A */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="A" from={0} to={6} />
       </div>
 
       {/* CORE PRINCIPLES — Clean grid, no icons */}
@@ -394,9 +397,9 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 1→4 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="Ø 800" from={1} to={4} />
+      {/* Tolerance notation — quality metric */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Process Cpk" gridColumn={1} />
       </div>
 
       {/* TIMELINE — Vertical layout */}
@@ -487,9 +490,9 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 0→3 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="950" from={0} to={3} />
+      {/* Dimension line — cost savings */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
       </div>
 
       {/* LOCATIONS — Cleaner design with blue active state */}

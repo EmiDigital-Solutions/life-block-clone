@@ -3,6 +3,9 @@ import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
@@ -2318,9 +2321,9 @@ const ScanProPlus = () => {
       <HowItWorksCarousel />
 
 
-      {/* DIN annotation — grid 0→3 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="700" from={0} to={3} />
+      {/* Section cut marker B—B */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="B" from={0} to={6} />
       </div>
 
       {/* Results Section - Clean Minimalist */}
@@ -2582,9 +2585,9 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 2→5 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      {/* Dimension line — audit cost reduction */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="15.000" to="700" unit="€" gridFrom={1} gridTo={5} />
       </div>
 
       {/* Compliance Standards - Homepage Style */}
@@ -2635,9 +2638,9 @@ const ScanProPlus = () => {
       {/* Industry Use Cases - Homepage Style */}
       <IndustryUseCasesGrid />
 
-      {/* DIN annotation — grid 3→6 */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="950" from={3} to={6} />
+      {/* Tolerance notation — deployment time */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="48" tolerance="4" unit="h" label="Deployment" gridColumn={4} />
       </div>
 
       {/* Global Network - Homepage Style */}
