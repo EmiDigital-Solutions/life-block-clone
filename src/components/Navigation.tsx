@@ -55,7 +55,7 @@ const Navigation = () => {
             <img 
               src={yvooLogo} 
               alt="YVOO Logo"
-              className="h-7 md:h-8 w-auto object-contain"
+              className="h-9 md:h-11 w-auto object-contain"
               style={{ filter: 'brightness(0)' }}
             />
           </Link>
@@ -83,10 +83,10 @@ const Navigation = () => {
               href="https://calendly.com/yvoo/demo-yvoo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-foreground text-white px-4 md:px-5 py-2.5 md:py-3.5 my-1 mr-1 md:my-1 md:mr-1 rounded-full font-bold text-sm md:text-base tracking-tight hover:bg-foreground/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-foreground text-white px-5 md:px-7 py-3 md:py-4 my-1 mr-1 md:my-1.5 md:mr-1.5 rounded-full font-bold text-base md:text-lg tracking-tight hover:bg-foreground/90 transition-all duration-300"
             >
                Demo
-               <ArrowRight className="w-3.5 h-3.5" />
+               <ArrowRight className="w-4 h-4" />
              </a>
           </div>
         </div>
