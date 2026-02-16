@@ -11,31 +11,27 @@ const EarningsPotentialSection = () => {
   const paymentSteps = [
     {
       icon: FileCheck,
-      traditional: "Submit invoice manually",
-      yvoo: "Submit audit report",
-      traditionalTime: "1–2 hours",
-      yvooTime: "Automatic",
+      title: "Submit report",
+      description: "Upload your completed audit report to the platform",
+      time: "Automatic",
     },
     {
       icon: Clock,
-      traditional: "Wait for client approval",
-      yvoo: "Instant AI validation",
-      traditionalTime: "5–15 days",
-      yvooTime: "< 1 minute",
+      title: "AI validates",
+      description: "Instant quality check — no manual client approval needed",
+      time: "< 1 minute",
     },
     {
       icon: CreditCard,
-      traditional: "Chase payment repeatedly",
-      yvoo: "Auto-release to your bank",
-      traditionalTime: "Ongoing",
-      yvooTime: "Immediate",
+      title: "Payment released",
+      description: "Funds are auto-released to your bank account",
+      time: "Immediate",
     },
     {
       icon: Zap,
-      traditional: "Receive after 30–90 days",
-      yvoo: "Paid same business day",
-      traditionalTime: "30–90 days",
-      yvooTime: "Same day",
+      title: "Paid same day",
+      description: "Money in your account the same business day",
+      time: "Same day",
     },
   ];
 
@@ -90,23 +86,10 @@ const EarningsPotentialSection = () => {
                   )}
                 </div>
 
-                {/* Traditional */}
-                <div className="mb-4 pb-4 border-b border-border">
-                  <div className="flex items-start gap-2 mb-1">
-                    <X className="w-3.5 h-3.5 text-destructive mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm">{step.traditional}</span>
-                  </div>
-                  <span className="text-muted-foreground/50 text-xs ml-5.5">{step.traditionalTime}</span>
-                </div>
-
-                {/* YVOO */}
-                <div>
-                  <div className="flex items-start gap-2 mb-1">
-                    <Check className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground font-medium text-sm">{step.yvoo}</span>
-                  </div>
-                  <span className="text-primary/60 text-xs ml-5.5">{step.yvooTime}</span>
-                </div>
+                {/* Step content */}
+                <h4 className="text-foreground font-medium text-sm mb-2">{step.title}</h4>
+                <p className="text-muted-foreground text-sm mb-3">{step.description}</p>
+                <span className="text-primary text-xs font-medium">{step.time}</span>
               </motion.div>
             ))}
           </div>
