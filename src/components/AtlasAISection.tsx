@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 
 const atlasFeatures = [
@@ -55,9 +56,10 @@ const AtlasAISection = () => {
             </p>
             <Link
               to="/features"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 font-mono text-base font-medium hover:bg-primary/90 transition-colors tracking-wide lowercase"
             >
               explore atlas ai
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>
 
