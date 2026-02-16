@@ -22,12 +22,13 @@ const EmailComparisonSection = () => {
   }, [isAutoSwitching]);
 
   const withYVOOContent = [
-    { time: "Minute 1", title: "Upload your supplier list", description: "CSV, ERP export, or just type a name. No budget approval needed at €700." },
-    { time: "Hour 1", title: "AI matches local auditor", description: "Atlas finds the best certified auditor already near your supplier. No flights." },
-    { time: "Day 1", title: "Auditor on-site", description: "On the factory floor within 48 hours. No calendar Tetris. No coordination." },
-    { time: "Day 2–3", title: "AI-guided audit", description: "Atlas AI standardizes every check. Computer vision documents equipment conditions." },
-    { time: "Day 3", title: "Verified report delivered", description: "AI-standardized findings, evidence photos, equipment analysis. While context is fresh." },
-    { time: "Done", title: "€700. Zero emails sent.", description: "No travel, no coordination, no politics. Click 'Next supplier' and repeat." },
+    { time: "Day 1", title: "One message", description: "Tell us: supplier name, country, your requirements. Done. No emails. No time zone coordination. No department approvals. No calendar checking. Just one message." },
+    { time: "Day 1", title: "Fixed transparent pricing", description: "Clear pricing. No surprise costs. No flights. No hotels. No per diems. No travel budget battles. Certified local auditor already in the supplier's region. Finance approves instantly. 60% lower cost than traditional firms." },
+    { time: "Day 2", title: "Auditor ready", description: "Certified IATF/ISO auditor matched and mobilized within 48 hours. No waiting for your quality team's availability. No capacity constraints. No supplier rescheduling. Professional auditor ready to deploy." },
+    { time: "Day 2–3", title: "Senior certified auditor on-site", description: "IATF 16949 / ISO 9001 / VDA 6.3 certified professional. AI-powered documentation tools. Standardized checklists. Equipment photos. Process analysis. Compliance verification. No junior auditors. No clipboards. No guesswork." },
+    { time: "Day 7", title: "Complete report delivered", description: "Comprehensive verification report. AI-standardized format. Consistent data structure. No 2–4 weeks of manual typing. No lost context. No forgotten details. Everything documented, everything traceable." },
+    { time: "Day 7", title: "AI-verified documentation", description: "Equipment photos with timestamps. Process verification videos. Compliance evidence. Full traceability. Everything you need for customer audits. No gaps. No missing evidence. No incomplete notes. Complete professional documentation." },
+    { time: "The Result", title: "7 days total. 60% lower cost. Local auditors, no travel.", description: "You can audit 100 suppliers in parallel. Zero unverified risk. Full visibility." },
   ];
 
   const nightmareContent = [
@@ -107,7 +108,7 @@ const EmailComparisonSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {currentContent.map((item, index) => {
-            const isResult = !isWithScanPro && item.time === "The Result";
+            const isResult = item.time === "The Result";
             return (
               <motion.div
                 key={index}
@@ -117,7 +118,7 @@ const EmailComparisonSection = () => {
                 transition={{ delay: index * 0.05 }}
                 className={`p-10 transition-colors duration-300 ${
                   isResult
-                    ? 'bg-destructive/5 border border-destructive/10 md:col-span-2 lg:col-span-3'
+                    ? `md:col-span-2 lg:col-span-3 border ${isWithScanPro ? 'bg-secondary/5 border-secondary/10' : 'bg-destructive/5 border-destructive/10'}`
                     : 'bg-muted hover:bg-muted/80'
                 }`}
               >
