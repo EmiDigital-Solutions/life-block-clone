@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -556,6 +559,11 @@ const GroundIntelligence = () => {
         <TechnicalAnnotation label="1200" from={4} to={6} />
       </div>
 
+      {/* Section cut marker A—A */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="A" from={0} to={5} />
+      </div>
+
       {/* Benefits Section - 3 columns with accent bars */}
       <section
         data-nav-theme="light"
@@ -628,6 +636,11 @@ const GroundIntelligence = () => {
       {/* DIN annotation — grid 0→3 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
+
+      {/* Dimension line — risk detection speed */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="72" to="4" unit=" h" gridFrom={1} gridTo={5} />
       </div>
 
       {/* Results Section */}
@@ -740,6 +753,11 @@ const GroundIntelligence = () => {
       {/* DIN annotation — grid 2→5 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+      </div>
+
+      {/* Tolerance notation — monitoring accuracy */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="97.8" tolerance="0.5" unit="%" label="Detection Rate" gridColumn={3} />
       </div>
 
       {/* FAQ Section - Homepage style */}
@@ -881,6 +899,11 @@ const GroundIntelligence = () => {
       {/* DIN annotation — grid 3→6 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
+
+      {/* Section cut marker B—B */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="B" from={2} to={6} />
       </div>
 
       {/* Final CTA Section */}

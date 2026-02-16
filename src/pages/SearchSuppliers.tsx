@@ -2,6 +2,9 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -1996,6 +1999,11 @@ const ComparisonMockup = () => {
           <TechnicalAnnotation label="1200" from={4} to={6} />
         </div>
 
+        {/* Section cut marker A—A */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="A" from={0} to={4} />
+        </div>
+
         {/* Interactive Demo Section - White Background */}
         <section className="py-24 bg-white" data-nav-theme="light">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -2086,6 +2094,11 @@ const ComparisonMockup = () => {
       {/* DIN annotation — grid 0→3 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="700" from={0} to={3} />
+      </div>
+
+      {/* Dimension line — search speed */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <DimensionLine from="14" to="1" unit=" Tage" gridFrom={0} gridTo={4} />
       </div>
 
       {/* Product Overview Section - Beyond Discovery */}
@@ -2318,6 +2331,11 @@ const ComparisonMockup = () => {
         <TechnicalAnnotation label="Ø 800" from={2} to={5} />
       </div>
 
+      {/* Section cut marker B—B */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <SectionCutMarker section="B" from={2} to={6} />
+      </div>
+
       {/* 8 AI Features Section - BeFound Style */}
       <section className="py-24 md:py-32 bg-white" data-nav-theme="light">
         <div className="mx-auto max-w-[1400px] px-8">
@@ -2523,6 +2541,11 @@ const ComparisonMockup = () => {
       {/* DIN annotation — grid 3→6 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="950" from={3} to={6} />
+      </div>
+
+      {/* Tolerance notation — match accuracy */}
+      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+        <ToleranceNotation nominal="96.3" tolerance="1.2" unit="%" label="Match Accuracy" gridColumn={2} />
       </div>
 
       {/* Testimonial Section - BeFound 3-Column Style */}

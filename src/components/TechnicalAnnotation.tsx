@@ -47,7 +47,7 @@ const TechnicalAnnotation = ({
         className="absolute"
         style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
       >
-        <div className="flex items-center gap-0 text-foreground/[0.12]">
+        <div className="flex items-center gap-0 text-foreground/[0.28]">
           {/* Left tick + arrow + line */}
           <div className="relative flex-shrink-0">
             <div className="absolute left-[2px] top-1/2 -translate-y-1/2 w-px h-2.5 bg-current" />
