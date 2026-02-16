@@ -1358,7 +1358,7 @@ const PlatformDemoAnimation = () => {
         <AnimatePresence mode="wait">
           <motion.p key={currentScreen} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-            className="text-xs text-muted-foreground leading-relaxed text-center">
+            className="text-sm text-muted-foreground leading-relaxed text-center">
             <span className="text-primary font-semibold mr-1.5">AI:</span>{aiSubtexts[currentScreen]}
           </motion.p>
         </AnimatePresence>
