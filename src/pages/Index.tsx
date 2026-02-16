@@ -7,6 +7,9 @@ import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import ToleranceNotation from "@/components/ToleranceNotation";
+import SectionCutMarker from "@/components/SectionCutMarker";
 
 import TestimonialSection from "@/components/TestimonialSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
@@ -31,17 +34,23 @@ const Index = () => {
 
         <EmailComparisonSection />
 
-        {/* DIN annotation — grid 0→3 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="700" from={0} to={3} />
+        {/* Section cut marker A—A */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="A" from={0} to={6} />
         </div>
 
         <CapabilityOverviewSection />
+
+        {/* Dimension line: cost reduction */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
+        </div>
+
         <TestimonialSection />
 
-        {/* DIN annotation — grid 2→5 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+        {/* Tolerance notation for quality metric */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Audit Quality" gridColumn={4} />
         </div>
 
         <WhyYVOOSection />
@@ -52,25 +61,31 @@ const Index = () => {
         </div>
 
         <AtlasAISection />
+
+        {/* Section cut marker B—B */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="B" from={1} to={5} />
+        </div>
+
         <AuditDifferenceSection />
 
-        {/* DIN annotation — grid 0→2 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="460" from={0} to={2} />
+        {/* Dimension line: time reduction */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <DimensionLine from="14" to="3" unit=" Tage" gridFrom={2} gridTo={6} />
         </div>
 
         <HowItWorksSection />
 
-        {/* DIN annotation — grid 1→4 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="1400" from={1} to={4} />
+        {/* Section cut marker C—C */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="C" from={0} to={3} />
         </div>
 
         <TestimonialsCarouselSection />
 
-        {/* DIN annotation — grid 4→6 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="580" from={4} to={6} />
+        {/* Tolerance notation for delivery performance */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <ToleranceNotation nominal="48" tolerance="4" unit="h" label="Deployment" gridColumn={5} />
         </div>
 
         <FAQSection />

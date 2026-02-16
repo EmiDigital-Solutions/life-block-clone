@@ -13,6 +13,9 @@ import {
 } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
+import DimensionLine from "@/components/DimensionLine";
+import SectionCutMarker from "@/components/SectionCutMarker";
+import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -244,9 +247,9 @@ const Auditors = () => {
         {/* 2. CREDIBILITY - "Auditing, reinvented" */}
         <ValuePropositionSection />
 
-        {/* DIN annotation — grid 0→3 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="700" from={0} to={3} />
+        {/* Section cut marker A—A */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="A" from={0} to={6} />
         </div>
 
         {/* 3. TECHNOLOGY - "Your AI co-pilot" */}
@@ -255,9 +258,9 @@ const Auditors = () => {
         {/* 4. THE DIFFERENCE - "Same audit. Less friction" */}
         <DayInLifeSection />
 
-        {/* DIN annotation — grid 2→5 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="Ø 800" from={2} to={5} />
+        {/* Dimension line — earnings */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <DimensionLine from="0" to="850" unit="€/d" gridFrom={1} gridTo={5} />
         </div>
 
         {/* 5. PROCESS - "From application to first audit" */}
@@ -274,9 +277,9 @@ const Auditors = () => {
         {/* 7. SUCCESS STORIES / TESTIMONIALS */}
         <SuccessStoriesSection />
 
-        {/* DIN annotation — grid 0→2 */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-          <TechnicalAnnotation label="460" from={0} to={2} />
+        {/* Tolerance notation — audit quality */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <ToleranceNotation nominal="4.9" tolerance="0.1" unit="★" label="Rating" gridColumn={5} />
         </div>
 
         {/* 8. REQUIREMENTS - "We're selective" (moved near CTA as final filter) */}
