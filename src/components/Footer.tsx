@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useLanguage } from "@/i18n/LanguageContext";
+
 
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const { t } = useLanguage();
+  
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
