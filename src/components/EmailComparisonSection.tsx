@@ -106,24 +106,31 @@ const EmailComparisonSection = () => {
           transition={{ duration: 0.3 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {currentContent.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="bg-muted p-10 hover:bg-muted/80 transition-colors duration-300"
-            >
-              <span className={`text-sm font-medium tracking-[0.15em] uppercase mb-3 block ${
-                isWithScanPro ? 'text-foreground/50' : 'text-destructive'
-              }`}>
-                {item.time}
-              </span>
-              <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
-              <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
-            </motion.div>
-          ))}
+          {currentContent.map((item, index) => {
+            const isResult = !isWithScanPro && item.time === "The Result";
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className={`p-10 transition-colors duration-300 ${
+                  isResult
+                    ? 'bg-destructive/10 border border-destructive/20 md:col-span-2 lg:col-span-3'
+                    : 'bg-muted hover:bg-muted/80'
+                }`}
+              >
+                <span className={`text-sm font-medium tracking-[0.15em] uppercase mb-3 block ${
+                  isWithScanPro ? 'text-foreground/50' : 'text-destructive'
+                }`}>
+                  {item.time}
+                </span>
+                <h3 className={`font-semibold text-foreground mb-3 ${isResult ? 'text-2xl md:text-3xl' : 'text-xl'}`}>{item.title}</h3>
+                <p className={`text-muted-foreground leading-relaxed ${isResult ? 'text-lg' : 'text-base'}`}>{item.description}</p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 
