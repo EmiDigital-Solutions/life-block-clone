@@ -67,6 +67,11 @@ const formations = {
 
 type Formation = keyof typeof formations;
 const formationOrder: Formation[] = ["triangle", "person", "checkmark"];
+const formationLabels: Record<Formation, string> = {
+  triangle: "Unlimited",
+  person: "Local Auditors",
+  checkmark: "Verified",
+};
 
 interface HeroSquaresAnimationProps {
   className?: string;
@@ -89,7 +94,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
       className={`absolute pointer-events-none z-[5] origin-top-right scale-[0.55] md:scale-100 ${className}`}
       aria-hidden="true"
     >
-      <div className="relative" style={{ width: UNIT * 4, height: UNIT * 4 }}>
+      <div className="relative" style={{ width: UNIT * 5 + SQUARE_SIZE, height: UNIT * 5 + 32 }}>
         {activeFormation?.map((pos, i) => (
           <motion.div
             key={i}
@@ -113,6 +118,19 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
             }}
           />
         ))}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={formationOrder[currentFormation]}
+            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase text-right"
+            style={{ top: UNIT * 5 + 8, right: 0 }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.4 }}
+          >
+            {formationLabels[formationOrder[currentFormation]]}
+          </motion.p>
+        </AnimatePresence>
       </div>
     </div>
   );
