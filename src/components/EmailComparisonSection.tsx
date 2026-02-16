@@ -123,7 +123,7 @@ const EmailComparisonSection = () => {
                 }`}
               >
                 <span className={`text-sm font-medium tracking-[0.15em] uppercase mb-3 block ${
-                  isWithScanPro ? 'text-foreground/50' : 'text-destructive'
+                  isResult && isWithScanPro ? 'text-secondary' : isWithScanPro ? 'text-foreground/50' : 'text-destructive'
                 }`}>
                   {item.time}
                 </span>
