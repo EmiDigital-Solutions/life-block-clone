@@ -488,278 +488,310 @@ const MatchScreen = () => {
   );
 };
 
-// ─── SCREEN 3: AUDIT (Atlas AI · Auditor View) ─────────────────
+// ─── SCREEN 3: AUDIT (Atlas AI · Auditor View — Dark Theme) ────
 const AuditScreen = () => {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
     const timers = [
       setTimeout(() => setPhase(1), 400),
-      setTimeout(() => setPhase(2), 1000),
-      setTimeout(() => setPhase(3), 1600),
-      setTimeout(() => setPhase(4), 2200),
-      setTimeout(() => setPhase(5), 2800),
-      setTimeout(() => setPhase(6), 3400),
-      setTimeout(() => setPhase(7), 4200),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 2200),
+      setTimeout(() => setPhase(4), 3200),
+      setTimeout(() => setPhase(5), 4200),
+      setTimeout(() => setPhase(6), 5500),
+      setTimeout(() => setPhase(7), 6800),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const checklistSections = [
-    { id: "4.1", label: "Process Approach", done: true },
-    { id: "4.2.1", label: "General", done: true },
-    { id: "4.2.2", label: "Quality Manual", done: true },
-    { id: "4.2.3", label: "Control", done: false, risk: true, active: true },
-    { id: "4.2.4", label: "Records", done: false },
-  ];
-
-  const evidenceFiles = [
-    { name: "IMG_2847.jpg", verified: true },
-    { name: "calibration_cert.pdf", verified: true },
-    { name: "CNC_nameplate.jpg", verified: true },
-    { name: "fire_cert_2024.pdf", verified: phase >= 5 },
-    { name: "inspection_photo.jpg", verified: phase >= 6 },
-  ];
-
   const maturityLevels = [1, 2, 3, 4, 5];
 
   return (
-    <div className={`h-full flex flex-col ${SCREEN_BG}`}>
-      {/* Header */}
-      <div className="px-4 py-2.5 border-b border-foreground/10 flex items-center justify-between">
+    <div className="h-full flex flex-col bg-[hsl(220,18%,13%)] text-white overflow-hidden">
+      {/* Top Bar */}
+      <div className="flex items-center justify-between px-5 py-2.5 border-b border-white/6">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-accent animate-pulse" />
-          <span className="text-sm font-semibold text-foreground">Atlas AI</span>
-          <span className="text-xs text-foreground/40">· Auditor View</span>
+          <div className="w-2 h-2 rounded-full bg-[#6EA996] animate-pulse" />
+          <span className="text-[11px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
         </div>
+        <span className="text-[12px] font-bold text-white tracking-wide">Atlas AI · Auditor View</span>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-foreground/50">Progress 45%</span>
-          <div className="w-16 h-1.5 bg-foreground/10">
-            <motion.div className="h-full bg-accent" initial={{ width: "20%" }} animate={{ width: phase >= 7 ? "55%" : "45%" }}
-              transition={{ duration: 0.5 }} />
+          <span className="text-[10px] text-white/30">Progress 45%</span>
+          <div className="w-16 h-1.5 bg-white/8 overflow-hidden">
+            <motion.div initial={{ width: "20%" }} animate={{ width: phase >= 7 ? "55%" : "45%" }}
+              transition={{ duration: 0.5 }} className="h-full bg-[#6EA996]" />
           </div>
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden">
-        {/* LEFT: Checklist + Evidence */}
-        <div className="w-[22%] flex flex-col border-r border-foreground/10 overflow-hidden">
-          <div className="px-3 py-2 border-b border-foreground/10">
-            <div className="text-[10px] text-foreground font-bold uppercase tracking-wider">Checklist</div>
-            <div className="text-[9px] text-muted-foreground">IATF 16949 · Precision Parts</div>
-          </div>
-          <div className="flex-1 p-2 space-y-0.5 overflow-auto">
-            <div className="text-[9px] text-muted-foreground uppercase tracking-wider mb-1 px-1">4. Quality Mgmt</div>
-            {checklistSections.map((item, i) => (
-              <motion.div key={item.id} initial={{ opacity: 0.4 }} animate={{ opacity: phase >= 1 ? 1 : 0.4 }}
-                transition={{ delay: i * 0.08 }}
-                className={`flex items-center gap-1.5 px-2 py-1.5 text-[10px] ${
-                  item.active ? 'bg-foreground/5 border-l-2 border-foreground' : ''
-                }`}>
-                <div className={`w-3.5 h-3.5 flex items-center justify-center flex-shrink-0 ${
-                  item.done ? 'bg-accent' : item.risk ? 'bg-destructive/80' : 'border border-foreground/20'
-                }`}>
-                  {item.done && <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>}
-                  {item.risk && <div className="w-1.5 h-1.5 bg-white rounded-full" />}
-                </div>
-                <span className={`${item.active ? 'text-foreground font-semibold' : item.done ? 'text-foreground/60' : 'text-foreground/40'}`}>
-                  {item.id} {item.label}
-                </span>
-                {item.risk && phase >= 2 && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="px-1.5 py-0.5 bg-destructive/15 text-destructive text-[7px] font-bold uppercase">
-                    Risk
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
+      {/* Main 3-Column */}
+      <div className="flex-1 flex overflow-hidden min-h-0">
+        {/* LEFT — Checklist + Evidence */}
+        <div className="w-[24%] border-r border-white/6 flex flex-col overflow-hidden">
+          <div className="px-3 py-2.5">
+            <span className="text-[11px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
+            <div className="text-[9px] text-white/25 mt-0.5">IATF 16949 · Precision Parts</div>
           </div>
 
-          {/* Evidence section */}
+          <div className="flex-1 overflow-y-auto px-3 py-1 space-y-0.5" style={{ scrollbarWidth: "none" }}>
+            <div className="text-[10px] font-bold text-white/40 mb-1.5">▼ 4. QUALITY MGMT</div>
+            {/* Checklist items */}
+            {[
+              { id: "4.1.1", label: "Process Approach", done: true },
+              { id: "4.2.1", label: "General", done: true },
+              { id: "4.2.2", label: "Quality Manual", done: true },
+            ].map((item) => (
+              <div key={item.id} className="flex items-center gap-2 py-1 pl-3">
+                <div className="w-3.5 h-3.5 rounded flex items-center justify-center bg-[#6EA996] flex-shrink-0">
+                  <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M2 6l3 3 5-5" /></svg>
+                </div>
+                <span className="text-[10px] text-white/40">{item.id} {item.label}</span>
+              </div>
+            ))}
+
+            {/* Active risk item */}
+            <motion.div initial={{ opacity: 0.5 }} animate={{ opacity: phase >= 1 ? 1 : 0.5 }}
+              className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/25 px-2.5 py-2 ml-2 my-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#AE3D3D] animate-pulse" />
+                <span className="text-[11px] font-bold text-white">4.2.3 Control</span>
+              </div>
+              {phase >= 2 && (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                  className="text-[8px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold ml-5 inline-block mt-1">HIGH RISK</motion.span>
+              )}
+            </motion.div>
+
+            <div className="flex items-center gap-2 py-1 pl-3">
+              <div className="w-3.5 h-3.5 rounded border border-white/10 flex-shrink-0" />
+              <span className="text-[10px] text-white/20">4.2.4 Records</span>
+            </div>
+            <div className="text-[10px] font-bold text-white/40 mt-2 mb-1">▶ 5. MANAGEMENT</div>
+          </div>
+
+          {/* Evidence */}
           {phase >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="border-t border-foreground/10 p-2">
+              className="border-t border-white/6 px-3 py-2.5">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[9px] text-foreground font-bold uppercase tracking-wider">Evidence</span>
-                <span className="text-[9px] text-accent font-bold">{evidenceFiles.filter(f => f.verified).length} / {evidenceFiles.length} ✓</span>
+                <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Evidence</span>
+                <span className={`text-[10px] font-bold ${phase >= 6 ? "text-[#6EA996]" : "text-[#F5A623]"}`}>
+                  {phase >= 6 ? "5 / 5 ✓" : "3 / 5"}
+                </span>
               </div>
               <div className="space-y-1">
-                {evidenceFiles.map((file, i) => (
-                  <motion.div key={file.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    transition={{ delay: i * 0.06 }}
-                    className="flex items-center gap-1.5 text-[9px]">
-                    <div className="w-3 h-3 bg-foreground/10 flex items-center justify-center flex-shrink-0">
-                      <div className="w-1.5 h-1.5 bg-foreground/30" />
-                    </div>
-                    <span className="text-foreground/60 truncate flex-1">{file.name}</span>
-                    {file.verified && <span className="text-accent text-[8px] font-bold flex-shrink-0">✓ Verified</span>}
-                  </motion.div>
+                {[
+                  { name: "IMG_2847.jpg", v: true },
+                  { name: "calibration_cert.pdf", v: true },
+                  { name: "CNC_nameplate.jpg", v: true },
+                  { name: "fire_cert_2024.pdf", v: phase >= 5 },
+                  { name: "inspection_photo.jpg", v: phase >= 6 },
+                ].map((f) => (
+                  <div key={f.name} className={`flex items-center gap-1.5 px-2 py-1 text-[9px] ${!f.v ? 'opacity-40' : ''} ${f.v ? 'bg-white/5' : ''}`}>
+                    <span className="text-white/40 truncate flex-1">{f.name}</span>
+                    {f.v && <span className="text-[#6EA996] text-[8px] font-bold flex-shrink-0">✓ Verified</span>}
+                  </div>
                 ))}
               </div>
             </motion.div>
           )}
         </div>
 
-        {/* CENTER: Question + Maturity Assessment */}
-        <div className="flex-1 flex flex-col border-r border-foreground/10 overflow-hidden">
-          <div className="flex-1 p-4 flex flex-col gap-3 overflow-auto">
+        {/* CENTER — Question + Maturity */}
+        <div className="flex-1 border-r border-white/6 flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4" style={{ scrollbarWidth: "none" }}>
             {/* Question */}
             {phase >= 1 && (
-              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Question</div>
-                <GlassCard layer={2} className="p-4">
-                  <p className="text-sm font-medium text-foreground leading-relaxed">
-                    Is the fire suppression system compliant with local regulations?
-                  </p>
-                  <div className="w-full h-0.5 bg-foreground/10 mt-3">
-                    <motion.div className="h-full bg-primary" initial={{ width: 0 }} animate={{ width: "100%" }}
-                      transition={{ duration: 2, delay: 0.5 }} />
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-semibold text-white/40 uppercase tracking-wider">Question</span>
+                  <div className="flex gap-1.5">
+                    {["🔊", "📷", "📎"].map((icon, i) => (
+                      <div key={i} className="w-7 h-7 flex items-center justify-center bg-white/5 border border-transparent hover:border-white/10 text-[12px]">{icon}</div>
+                    ))}
                   </div>
-                </GlassCard>
+                </div>
+                <p className="text-[15px] text-white font-medium leading-[1.5]">
+                  Is the fire suppression system compliant with local regulations?
+                </p>
+                <div className="w-full h-0.5 bg-white/8 mt-3">
+                  <motion.div className="h-full bg-white/25" initial={{ width: 0 }} animate={{ width: "100%" }}
+                    transition={{ duration: 2, delay: 0.5 }} />
+                </div>
               </motion.div>
             )}
 
-            {/* Maturity Assessment — AI Suggests */}
+            {/* AI Guidance — Risk Alert */}
+            {phase >= 2 && (
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ type: "spring", stiffness: 200 }}
+                className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/20 p-3">
+                <span className="text-[10px] font-bold text-[#AE3D3D] uppercase tracking-wider">Risk Alert</span>
+                <p className="text-[10px] text-white/45 mt-1 leading-[1.5]">
+                  2 suppliers rejected for document control gaps. Issues found in 73% of similar audits.
+                </p>
+              </motion.div>
+            )}
+
+            {/* What to Check */}
             {phase >= 3 && (
-              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Maturity Assessment</div>
-                <GlassCard layer={2} className="p-3">
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                className="bg-white/5 p-3">
+                <span className="text-[10px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
+                <div className="mt-1.5 space-y-1">
+                  {["Document control procedure exists?", "Approval signatures on documents?", "Revision history tracked?"].map((q, i) => (
+                    <div key={i} className="flex items-start gap-1.5">
+                      <span className="text-[10px] text-white/60 font-bold shrink-0">{i + 1}.</span>
+                      <span className="text-[10px] text-white/45">{q}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Maturity Assessment */}
+            {phase >= 4 && (
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+                <span className="text-[11px] font-bold text-white/50 uppercase tracking-wider block mb-2">Maturity Assessment</span>
+                <div className="bg-[#6EA996]/8 border border-[#6EA996]/20 p-3">
                   <div className="flex items-center gap-1.5 mb-2">
-                    <div className="w-1.5 h-1.5 bg-accent" />
-                    <span className="text-[10px] text-accent font-bold uppercase tracking-wider">Atlas AI Suggests</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#6EA996]" />
+                    <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">Atlas AI Suggests</span>
                   </div>
-                  <div className="flex gap-1.5 mb-1.5">
+                  <div className="flex gap-1.5">
                     {maturityLevels.map((level) => (
-                      <motion.div key={level}
-                        initial={{ scale: 0.8, opacity: 0.5 }}
-                        animate={{ scale: level === 3 ? 1.1 : 1, opacity: 1 }}
+                      <motion.div key={level} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: level * 0.08 }}
-                        className={`w-9 h-9 flex items-center justify-center text-xs font-bold ${
-                          level <= 2 ? 'bg-accent/30 text-foreground' :
-                          level === 3 ? 'bg-accent text-white' :
-                          'bg-foreground/10 text-foreground/40'
-                        }`}>
-                        {level}
-                      </motion.div>
+                        className={`flex-1 py-2 text-center text-[12px] font-bold ${
+                          level === 3 ? "bg-[#6EA996] text-white" : level <= 2 ? "bg-[#6EA996]/15 text-[#6EA996]/60" : "bg-white/5 text-white/20"
+                        }`}>{level}</motion.div>
                     ))}
                   </div>
-                  <span className="text-[9px] text-muted-foreground">Level 3 — Defined process with gaps in execution</span>
-                </GlassCard>
+                  <p className="text-[9px] text-white/35 mt-1.5">Level 3 — Defined process with gaps in execution</p>
+                </div>
               </motion.div>
             )}
 
             {/* Your Assessment */}
-            {phase >= 5 && (
-              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-                <GlassCard layer={2} className="p-3">
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Your Assessment</div>
+            {phase >= 6 && (
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+                <div className="bg-white/5 border border-white/10 p-3">
+                  <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider mb-2 block">Your Assessment</span>
                   <div className="flex gap-1.5 mb-2">
                     {maturityLevels.map((level) => (
-                      <div key={level} className={`w-9 h-9 flex items-center justify-center text-xs font-bold ${
-                        level === 2 ? 'bg-foreground text-background' : 'bg-foreground/10 text-foreground/40'
-                      }`}>
-                        {level}
-                      </div>
+                      <motion.div key={level}
+                        animate={level === 2 ? { scale: 1.1 } : { scale: 1 }}
+                        className={`flex-1 py-2 text-center text-[12px] font-bold ${
+                          level === 2 ? "bg-white text-[hsl(220,18%,13%)]" : "bg-white/8 text-white/30"
+                        }`}>{level}</motion.div>
                     ))}
                   </div>
-                  <div className="border border-foreground/15 p-2 text-[10px] text-muted-foreground italic">
-                    Fire suppression cert expired. Needs renewal before next audit...
+                  <div className="bg-white/5 border border-white/8 px-2.5 py-2">
+                    <span className="text-[10px] text-white/40 italic">Fire suppression cert expired. Needs renewal before next audit...</span>
                   </div>
-                  {phase >= 6 && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 flex justify-end">
-                      <div className="px-4 py-1.5 bg-accent text-white text-[10px] font-semibold cursor-pointer">
-                        Submit & Next →
-                      </div>
+                  {phase >= 7 && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-end mt-2">
+                      <div className="px-3 py-1.5 bg-[#6EA996] text-white text-[10px] font-bold">Submit & Next →</div>
                     </motion.div>
                   )}
-                </GlassCard>
+                </div>
               </motion.div>
             )}
           </div>
 
-          {/* Bottom chat bar */}
-          <div className="px-4 py-2 border-t border-foreground/10 flex items-center gap-2">
-            <div className="flex-1 border border-foreground/15 px-3 py-1.5 text-[10px] text-foreground/30">
-              Ask Atlas AI or add findings...
-            </div>
-            <div className="w-7 h-7 bg-accent flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          {/* Chat Input */}
+          <div className="px-5 py-2.5 border-t border-white/6 flex items-center gap-2">
+            <div className="w-7 h-7 flex items-center justify-center bg-white/5 border border-white/10">
+              <svg className="w-3.5 h-3.5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <rect x="9" y="1" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0014 0" /><line x1="12" y1="17" x2="12" y2="21" />
               </svg>
+            </div>
+            <div className="flex-1 bg-white/5 border border-white/8 px-3 py-1.5">
+              <span className="text-[10px] text-white/25">Ask Atlas AI or add findings...</span>
+            </div>
+            <div className="w-7 h-7 flex items-center justify-center bg-[#6EA996]">
+              <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
             </div>
           </div>
 
-          <div className="px-4 py-2 border-t border-foreground/10 text-center">
-            <span className="text-[10px] text-primary tracking-wider uppercase">Step 3 of 6 · Audit</span>
+          <div className="px-4 py-1.5 border-t border-white/6 text-center">
+            <span className="text-[10px] text-[#4FC3F7] tracking-wider uppercase">Step 3 of 6 · Audit</span>
           </div>
         </div>
 
-        {/* RIGHT: Atlas Copilot */}
-        <div className="w-[22%] flex flex-col overflow-hidden">
-          <div className="px-3 py-2 border-b border-foreground/10 text-center">
-            <span className="text-[10px] text-foreground font-bold">Atlas Copilot</span>
+        {/* RIGHT — Copilot + Intelligence */}
+        <div className="w-[24%] flex flex-col overflow-hidden">
+          <div className="px-3 py-3 flex flex-col items-center">
+            <span className="text-[12px] font-bold text-white tracking-wide mb-2">Atlas Copilot</span>
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${phase >= 2 ? 'border-[#6EA996] bg-[#6EA996]/15' : 'border-white/15 bg-white/5'}`}>
+              <svg className={`w-4 h-4 ${phase >= 2 ? 'text-[#6EA996]' : 'text-white/40'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                <rect x="9" y="1" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0014 0" /><line x1="12" y1="17" x2="12" y2="21" /><line x1="8" y1="21" x2="16" y2="21" />
+              </svg>
+            </div>
+            <span className="text-[10px] text-white/30 mt-1">Tap to listen</span>
           </div>
-          <div className="flex-1 p-2 space-y-2 overflow-auto">
+
+          <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2" style={{ scrollbarWidth: "none" }}>
             {/* Priority */}
             {phase >= 2 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <GlassCard layer={2} className="p-2.5">
-                  <div className="text-[9px] text-destructive font-bold uppercase tracking-wider mb-1.5">Priority</div>
-                  <div className="space-y-1 text-[9px] text-foreground/70">
-                    <div>• Calibration (78%)</div>
-                    <div>• Training (62%)</div>
-                    <div className="text-accent font-medium">→ Check proactively</div>
-                  </div>
-                </GlassCard>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 p-3">
+                <span className="text-[10px] font-bold text-[#AE3D3D] uppercase tracking-wider">Priority</span>
+                <div className="mt-1.5 space-y-1 text-[10px] text-white/45">
+                  <div>• Calibration (78%)</div>
+                  <div>• Training (62%)</div>
+                  <div className="text-[#6EA996] font-medium">→ Check proactively</div>
+                </div>
               </motion.div>
             )}
 
             {/* Client Focus */}
             {phase >= 4 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <GlassCard layer={2} className="p-2.5">
-                  <div className="text-[9px] text-foreground font-bold uppercase tracking-wider mb-1.5">Client Focus</div>
-                  <div className="space-y-1">
-                    {["Documentation", "Calibration", "Process Cap."].map((item, i) => (
-                      <div key={item} className="flex items-center gap-1.5 text-[9px]">
-                        <div className={`w-3.5 h-3.5 flex items-center justify-center text-[7px] font-bold text-white ${
-                          i === 0 ? 'bg-destructive/80' : i === 1 ? 'bg-warning' : 'bg-accent'
-                        }`}>{i + 1}</div>
-                        <span className="text-foreground/70">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </GlassCard>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 p-3">
+                <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Client Focus</span>
+                <div className="mt-1.5 space-y-1.5">
+                  {["Documentation", "Calibration", "Process Cap."].map((item, i) => (
+                    <div key={item} className="flex items-center gap-1.5 text-[10px]">
+                      <span className={`text-[8px] px-1.5 py-0.5 font-bold text-white ${
+                        i === 0 ? 'bg-[#AE3D3D]' : i === 1 ? 'bg-[#AE3D3D]' : 'bg-[#F5A623]'
+                      }`}>{i + 1}</span>
+                      <span className="text-white/45">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             )}
 
             {/* Benchmark */}
             {phase >= 5 && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <GlassCard layer={2} className="p-2.5">
-                  <div className="text-[9px] text-foreground font-bold uppercase tracking-wider mb-1.5">Benchmark</div>
-                  <div className="space-y-2">
-                    <div>
-                      <div className="flex justify-between text-[9px]">
-                        <span className="text-foreground/60">This supplier</span>
-                        <span className="text-foreground font-bold">7.2/10</span>
-                      </div>
-                      <div className="h-1 bg-foreground/10 mt-0.5">
-                        <motion.div className="h-full bg-primary" initial={{ width: 0 }} animate={{ width: "72%" }} transition={{ duration: 0.8 }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between text-[9px]">
-                        <span className="text-foreground/60">Industry avg</span>
-                        <span className="text-foreground font-bold">8.1/10</span>
-                      </div>
-                      <div className="h-1 bg-foreground/10 mt-0.5">
-                        <motion.div className="h-full bg-primary" initial={{ width: 0 }} animate={{ width: "81%" }} transition={{ duration: 0.8, delay: 0.2 }} />
-                      </div>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white/5 p-3">
+                <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">Benchmark</span>
+                <div className="mt-1.5 space-y-2">
+                  <div>
+                    <div className="flex justify-between text-[10px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">7.2/10</span></div>
+                    <div className="h-1.5 w-full bg-white/8 mt-0.5 overflow-hidden">
+                      <motion.div initial={{ width: 0 }} animate={{ width: "72%" }} transition={{ duration: 1 }} className="h-full bg-[#6EA996]" />
                     </div>
                   </div>
-                  <div className="text-[8px] text-accent font-medium mt-1.5">Approved with conditions</div>
-                </GlassCard>
+                  <div>
+                    <div className="flex justify-between text-[10px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">8.1/10</span></div>
+                    <div className="h-1.5 w-full bg-white/8 mt-0.5 overflow-hidden">
+                      <motion.div initial={{ width: 0 }} animate={{ width: "81%" }} transition={{ duration: 1, delay: 0.2 }} className="h-full bg-white/20" />
+                    </div>
+                  </div>
+                  <div className="text-[9px] text-[#6EA996] font-semibold mt-1">Approved with conditions</div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* AI Finding */}
+            {phase >= 5 && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                className="bg-[#F5A623]/8 border border-[#F5A623]/25 p-3">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="text-[10px] font-bold text-white">AI Finding</span>
+                  <span className="text-[#F5A623]">⚠</span>
+                </div>
+                <p className="text-[9px] text-white/45 leading-[1.5]">Check pressure gauge on adjacent unit. Calibration expired 2024-11.</p>
               </motion.div>
             )}
           </div>
