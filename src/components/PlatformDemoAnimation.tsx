@@ -1315,7 +1315,7 @@ const PlatformDemoAnimation = () => {
     "AI cross-references certifications, capacity and audit history to find the optimal supplier.",
     "AI guides the auditor with real-time checklists, risk alerts and evidence verification.",
     "AI generates context-aware questions, maturity scoring and predictive insights.",
-    "AI detects equipment anomalies and predicts maintenance needs from visual evidence.",
+    "AI compiles the audit report with scoring, findings classification and risk-prioritized recommendations.",
     "AI auto-generates corrective actions, assigns owners and tracks resolution timelines.",
   ];
 
