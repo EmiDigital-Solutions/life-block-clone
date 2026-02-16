@@ -61,8 +61,8 @@ const Navigation = () => {
           </Link>
 
           <div className="flex-1 flex items-center justify-between">
-            {/* Hamburger Menu Button - centered */}
-            <div className="flex-1 flex items-center justify-center">
+            {/* Hamburger Menu Button - absolutely centered */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
@@ -77,6 +77,7 @@ const Navigation = () => {
                 )}
               </button>
             </div>
+            <div className="flex-1" />
 
             {/* CTA Button */}
             <a
