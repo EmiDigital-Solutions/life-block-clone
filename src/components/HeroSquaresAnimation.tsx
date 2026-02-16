@@ -89,7 +89,7 @@ const formationOrder: Formation[] = ["triangle", "person", "atlasAI", "checkmark
 const formationLabels: Record<Formation, string> = {
   triangle: "Unlimited Capacity",
   person: "Local Auditors",
-  atlasAI: "Atlas AI",
+  atlasAI: "Atlas Copilot",
   checkmark: "Verified Supplier",
 };
 
