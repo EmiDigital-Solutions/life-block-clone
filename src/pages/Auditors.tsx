@@ -989,11 +989,19 @@ const DayInLifeSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hidden lg:block sticky top-32"
           >
-            <img
-              src={auditorTimelineHero}
-              alt="Quality assurance professional conducting an Atlas AI-guided audit"
-              className="w-full max-h-[480px] object-cover object-top"
-            />
+            <div className="relative">
+              <img
+                src={auditorTimelineHero}
+                alt="Quality assurance professional conducting an Atlas AI-guided audit"
+                className="w-full max-h-[480px] object-cover object-top"
+              />
+              {/* Top-right squares */}
+              <div className="absolute top-[5%] right-[4%] w-[10%] aspect-square bg-primary" />
+              <div className="absolute top-[5%] right-[16%] w-[10%] aspect-square bg-primary" />
+              <div className="absolute top-[17%] right-[4%] w-[10%] aspect-square bg-primary" />
+              {/* Bottom — long horizontal stripe, right edge to ~50%, same height as top squares */}
+              <div className="absolute bottom-[5%] right-0 w-[50%] h-[10%] bg-primary" />
+            </div>
           </motion.div>
         </div>
 
