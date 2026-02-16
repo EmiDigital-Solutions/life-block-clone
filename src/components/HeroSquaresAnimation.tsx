@@ -49,23 +49,23 @@ const formations = {
     { x: UNIT * 2, y: UNIT * 4 },
     { x: UNIT * 3, y: UNIT * 4 },
   ],
-  // Atlas AI Copilot — "AI" letters with diagonal strokes
+  // Atlas AI Copilot — "AI" letters, narrow symmetric A
   atlasAI: [
-    // Letter A — diagonal left leg
-    { x: 0, y: UNIT * 3 },
-    { x: UNIT * 0.5, y: UNIT * 2 },
+    // Letter A — left leg (narrow angle)
+    { x: UNIT * 0.5, y: UNIT * 3 },
+    { x: UNIT * 0.75, y: UNIT * 2 },
     { x: UNIT * 1, y: UNIT },
     // A — apex
-    { x: UNIT * 1.5, y: UNIT * 0.5 },
-    // A — diagonal right leg
-    { x: UNIT * 2, y: UNIT },
-    { x: UNIT * 2.5, y: UNIT * 2 },
-    { x: UNIT * 3, y: UNIT * 3 },
-    // Letter I
-    { x: UNIT * 4.5, y: 0 },
-    { x: UNIT * 4.5, y: UNIT },
-    { x: UNIT * 4.5, y: UNIT * 2 },
-    { x: UNIT * 4.5, y: UNIT * 3 },
+    { x: UNIT * 1.25, y: 0 },
+    // A — right leg
+    { x: UNIT * 1.5, y: UNIT },
+    { x: UNIT * 1.75, y: UNIT * 2 },
+    { x: UNIT * 2, y: UNIT * 3 },
+    // Letter I (centered with A)
+    { x: UNIT * 3.5, y: 0 },
+    { x: UNIT * 3.5, y: UNIT },
+    { x: UNIT * 3.5, y: UNIT * 2 },
+    { x: UNIT * 3.5, y: UNIT * 3 },
   ],
   // Checkmark shape
   checkmark: [
