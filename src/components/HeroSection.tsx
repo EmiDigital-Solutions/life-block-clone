@@ -45,7 +45,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm md:text-base text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
             >
-              Supplier intelligence platform — built by Former Bosch, Linde and Siemens Experts
+              On-demand supplier verification
             </motion.p>
 
             {/* Headline */}
@@ -55,8 +55,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              Unlimited<br />
-              On-Site Audit Capacity. <span className="text-muted-foreground font-bold tracking-[-0.03em] leading-[0.95]">Finally.</span>
+              On-site supplier<br />
+              audits in days — <span className="text-muted-foreground font-bold tracking-[-0.03em] leading-[0.95]">weeks</span>
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
@@ -65,10 +65,22 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed"
+                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-4 md:mb-6 leading-relaxed"
               >
-                Certified auditors deployed to any supplier facility in 3 days. Audit 1 supplier or 100 suppliers in parallel—same timeline, same professional IATF/ISO standards. No resource drain on your quality team. What took Procurement years takes weeks with YVOO. 60% lower cost.
+                Most delays come from internal coordination, travel, and limited auditor capacity. YVOO makes fast the default with qualified local auditors and standardized reporting.
               </motion.p>
+
+              <motion.ul
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-foreground/60 text-sm md:text-base mb-6 md:mb-8 space-y-1.5"
+              >
+                <li>▸ On-site in ~3 days, globally</li>
+                <li>▸ Standardized scoring (ISO / IATF aligned)</li>
+                <li>▸ 1 to 100+ audits in parallel</li>
+                <li>▸ Up to 60% lower cost vs. traditional rollouts</li>
+              </motion.ul>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -82,8 +94,8 @@ const HeroSection = () => {
                 }}>
                   See Platform Demo →
                 </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>
-                  Calculate Your Savings →
+                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg">
+                  View Sample Report →
                 </Button>
               </motion.div>
             </div>
