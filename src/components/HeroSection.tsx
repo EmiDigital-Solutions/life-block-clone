@@ -67,7 +67,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-foreground/60 text-base md:text-lg lg:text-xl mb-4 md:mb-6 leading-relaxed"
               >
-                Most delays come from internal coordination, travel, and limited auditor capacity. YVOO makes fast the default with qualified local auditors and standardized reporting.
+                Most companies do the bare minimum — not because they don't care, but because audits are expensive and operationally heavy. YVOO makes on-site verification affordable and scalable with qualified local auditors and AI-guided execution.
               </motion.p>
 
               <motion.ul
