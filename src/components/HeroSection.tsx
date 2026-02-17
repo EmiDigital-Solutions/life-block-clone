@@ -56,7 +56,7 @@ const HeroSection = () => {
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
               On-site supplier<br />
-              audits in days — <span className="text-muted-foreground font-bold tracking-[-0.03em] leading-[0.95]">weeks</span>
+              audits in days, <span className="text-muted-foreground font-bold tracking-[-0.03em] leading-[0.95]">not weeks</span>
             </motion.h1>
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
