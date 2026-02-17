@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
  */
 
 const SQUARE_SIZE = 28;
-const GAP = 2;
+const GAP = 3;
 const UNIT = SQUARE_SIZE + GAP;
 
 // Formation definitions — each square gets {x, y} offsets and opacity
