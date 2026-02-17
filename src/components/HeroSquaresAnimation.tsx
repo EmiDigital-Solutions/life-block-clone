@@ -67,23 +67,23 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — short leg (2) + vertex + long leg (4), tip points down
+  // Checkmark — short vertical leg (2) + corner + long horizontal leg (4), corner points down
   checkmark: [
-    // Short leg (2 squares, down-right to vertex)
+    // Short leg (2 squares going down to corner)
     { x: 0, y: UNIT * 2 },
-    { x: UNIT, y: UNIT * 3 },
-    // Vertex (bottom tip pointing toward text)
+    { x: 0, y: UNIT * 3 },
+    // Corner (bottom-left, pointing toward text)
+    { x: 0, y: UNIT * 4 },
+    // Long leg (4 squares going right from corner)
+    { x: UNIT, y: UNIT * 4 },
     { x: UNIT * 2, y: UNIT * 4 },
-    // Long leg (4 squares, up-right from vertex)
-    { x: UNIT * 3, y: UNIT * 3 },
-    { x: UNIT * 4, y: UNIT * 2 },
-    { x: UNIT * 5, y: UNIT },
-    { x: UNIT * 6, y: 0 },
+    { x: UNIT * 3, y: UNIT * 4 },
+    { x: UNIT * 4, y: UNIT * 4 },
     // Hidden (to keep 11 squares)
-    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
+    { x: UNIT * 2, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 3, y: UNIT * 2, opacity: 0 },
     { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 5, y: UNIT, opacity: 0 },
-    { x: UNIT * 6, y: 0, opacity: 0 },
+    { x: UNIT * 5, y: UNIT * 2, opacity: 0 },
   ],
 };
 
