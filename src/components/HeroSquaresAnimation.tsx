@@ -67,23 +67,23 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark shape — straight horizontal + vertical lines
+  // Checkmark — short leg (2) + vertex + long leg (4), tip points down
   checkmark: [
-    // Left short uptick (vertical)
-    { x: 0, y: UNIT * 3 },
-    { x: 0, y: UNIT * 4 },
-    // Bottom horizontal bar
-    { x: UNIT, y: UNIT * 4 },
+    // Short leg (2 squares, down-right to vertex)
+    { x: 0, y: UNIT * 2 },
+    { x: UNIT, y: UNIT * 3 },
+    // Vertex (bottom tip pointing toward text)
     { x: UNIT * 2, y: UNIT * 4 },
-    { x: UNIT * 3, y: UNIT * 4 },
-    { x: UNIT * 4, y: UNIT * 4 },
-    // Right tall vertical leg (going up)
-    { x: UNIT * 4, y: UNIT * 3 },
+    // Long leg (4 squares, up-right from vertex)
+    { x: UNIT * 3, y: UNIT * 3 },
     { x: UNIT * 4, y: UNIT * 2 },
-    { x: UNIT * 4, y: UNIT },
-    { x: UNIT * 4, y: 0 },
+    { x: UNIT * 5, y: UNIT },
+    { x: UNIT * 6, y: 0 },
     // Hidden (to keep 11 squares)
-    { x: UNIT * 2, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
+    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 5, y: UNIT, opacity: 0 },
+    { x: UNIT * 6, y: 0, opacity: 0 },
   ],
 };
 
