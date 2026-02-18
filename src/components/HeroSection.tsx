@@ -70,9 +70,9 @@ const HeroSection = () => {
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">72-hour mobilization</span> — any country, any industry</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">60% lower cost, 70% faster</span> — than traditional audit programs</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">New supplier base in weeks</span> — not years. Unlimited audits running simultaneously</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your standards, AI-enhanced</span> — your templates, elevated with AI</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your checklists, AI-enhanced</span> — your templates, elevated with AI</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real data, not questionnaires</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real supplier data with predictive insights</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">AI-driven CAPA & close-out</span> — every finding tracked, escalated, and resolved digitally</p>
               </motion.div>
 
