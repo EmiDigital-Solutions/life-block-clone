@@ -597,56 +597,6 @@ const GroundIntelligence = () => {
           <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Verification Accuracy" gridColumn={4} />
         </div>
 
-        {/* ═══════════════════════════════════════════════════
-            RESULTS — Stats
-        ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-muted">
-          <div className="mx-auto max-w-[1400px] px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-16"
-            >
-              <h2 className="section-headline text-foreground">
-                Verified results
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-primary">
-              {[
-                { metric: "850+", label: "Expert auditors worldwide" },
-                { metric: "47", label: "Countries covered" },
-                { metric: "3 days", label: "Avg. time to on-site visit" },
-                { metric: "€700", label: "Starting price per verification" }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
-                >
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
-                    {item.metric}
-                  </div>
-                  <p className="text-muted-foreground text-sm">{item.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Dimension line */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <DimensionLine from="14" to="3" unit=" Tage" gridFrom={2} gridTo={6} />
-        </div>
-
-        {/* Section cut marker C—C */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <SectionCutMarker section="C" from={0} to={3} />
-        </div>
 
         {/* ═══════════════════════════════════════════════════
             FEATURES — Clickable grid with modals
