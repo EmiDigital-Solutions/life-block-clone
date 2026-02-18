@@ -78,8 +78,11 @@ const HeroSection = () => {
                   { lead: "Automated follow-up & close-out", detail: "No finding ever dies in a spreadsheet" },
                 ].map((item, i) => (
                   <div key={i} className="border-t border-foreground/10 py-3 md:py-4">
-                    <p className="text-sm md:text-base font-semibold text-foreground leading-snug">{item.lead}</p>
-                    <p className="text-xs md:text-sm text-foreground/50 mt-0.5">{item.detail}</p>
+                    <p className="text-sm md:text-base text-foreground leading-snug">
+                      <span className="font-semibold">{item.lead}</span>
+                      <span className="text-foreground/40 mx-2">—</span>
+                      <span className="text-foreground/50 font-normal">{item.detail}</span>
+                    </p>
                   </div>
                 ))}
                 <div className="border-t border-foreground/10" />
