@@ -128,14 +128,11 @@ const EmailComparisonSection = () => {
                   {item.time}
                 </span>
                 <h3 className={`font-semibold text-foreground mb-3 ${isResult ? 'text-xl md:text-2xl' : 'text-xl'}`}>{item.title}</h3>
-                <ul className="text-muted-foreground text-base space-y-1.5 mt-1">
+                <p className="text-muted-foreground text-base leading-relaxed">
                   {item.description.split('. ').filter(Boolean).map((sentence, i, arr) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className={`mt-2 w-1.5 h-1.5 shrink-0 ${isWithScanPro ? 'bg-secondary' : 'bg-destructive'}`} />
-                      <span>{sentence.endsWith('.') ? sentence : `${sentence}.`}</span>
-                    </li>
+                    <span key={i}>{i > 0 && ' · '}{sentence.endsWith('.') ? sentence.slice(0, -1) : sentence}</span>
                   ))}
-                </ul>
+                </p>
               </motion.div>
             );
           })}
