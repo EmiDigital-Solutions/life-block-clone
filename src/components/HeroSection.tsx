@@ -113,7 +113,7 @@ const HeroSection = () => {
                     </p>
                   ))}
                 </div>
-                <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-3">
+                <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-5">
                   <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book Now →</a></span>
                 </p>
               </motion.div>
