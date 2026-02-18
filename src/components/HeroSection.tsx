@@ -68,7 +68,7 @@ const HeroSection = () => {
                 className="space-y-2.5 mb-6 md:mb-8"
               >
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">72-hour mobilization</span> — any country, any industry</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">From €700 per audit</span> — not €15,000–25,000</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">60% lower cost, 70% faster</span> — than traditional audit programs</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">New supplier base in weeks</span> — qualify 100+ in parallel</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your standards, AI-enhanced</span> — your templates, elevated with AI</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
