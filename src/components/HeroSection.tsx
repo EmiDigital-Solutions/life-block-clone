@@ -74,7 +74,7 @@ const HeroSection = () => {
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real supplier data with predictive insights</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">AI-driven CAPA & close-out</span> — every finding tracked, escalated, and resolved digitally</p>
-                <p className="text-sm md:text-base text-primary whitespace-nowrap font-semibold">▸ Fast-mover advantage — get 30% off your first audit</p>
+                <p className="text-sm md:text-base whitespace-nowrap">▸ <span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 font-semibold">Book Now →</a></p>
               </motion.div>
 
               <motion.div
